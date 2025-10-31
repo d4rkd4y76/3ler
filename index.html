@@ -12844,7 +12844,7 @@ function showExplanationAndNext(){
 <div class="video-title" id="lesson-video-title">Ders Videosu</div>
 </div>
 <div class="video-frame">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" id="lesson-video-iframe" src="" title="Ders Videosu"></iframe>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen="" id="lesson-video-iframe" src="" title="Ders Videosu"></iframe>
 </div>
 <div class="lesson-video-actions">
 <button class="lesson-video-back" id="lesson-video-back">Geri</button>
@@ -14196,10 +14196,19 @@ function isInsideOptions(node){
   function ensureCompactGauge(){
     const topRow=q('#nova-summary .nz-row'); if(!topRow) return;
     if(!q('#nzGaugeMini')){
-      const card=document.createElement('div'); card.className='nz-card nz-compact-card';
-class="nz-badge-mini">BRONZ</div></div>`;
+      const card=document.createElement('div'); 
+      card.className='nz-card nz-compact-card';
+      card.innerHTML = `
+        <div class="nz-card-body">
+          <div class="nz-compact-wrapper">
+            <canvas id="nzGaugeMini" width="140" height="140"></canvas>
+            <div class="nz-badge-mini">BRONZ</div>
+          </div>
+        </div>`;
       topRow.appendChild(card);
     }
+    
+}
   }
 
   // Draw gauge on either mini || legacy id
@@ -14459,14 +14468,14 @@ class="nz-badge-mini">BRONZ</div></div>`;
           if (!txt) return;
           const item = document.createElement('div');
           item.className = 'nova-wrong-item';
-          item.innerHTML = \`
+          item.innerHTML = `
             <div class="q">\${txt.split('. ').slice(0,1)[0]}</div>
             <div class="row">
               <div><span class="lbl">Senin Cevabın</span><span class="val">—</span></div>
               <div><span class="lbl">Doğru Cevap</span><span class="val">—</span></div>
             </div>
-          \`;
-          hook.appendChild(item);
+          `;
+hook.appendChild(item);
         });
       }else{
         // If nothing found, keep area empty but visible
