@@ -6726,6 +6726,38 @@ body > #nova-summary{display:none !important;}
 </head>
 <body data-nova-back='1'>
 
+<style id="nova-hotfix-visibility">
+/* === NOVA HOTFIX: görünmez container düzeltmesi (Chromebook/Reduced Motion) === */
+#main-screen,
+.container,
+.game-container,
+.student-selection-container,
+.single-player-game-container,
+.duel-selection-container,
+.duel-game-container,
+.buttons {
+  opacity: 1 !important;
+  filter: none !important;
+  visibility: visible !important;
+}
+
+/* Cihaz "reduced motion" bildiriyorsa animasyonları kapat, görünürlüğü koru */
+@media (prefers-reduced-motion: reduce) {
+  #main-screen,
+  .container,
+  .game-container,
+  .student-selection-container,
+  .single-player-game-container,
+  .duel-selection-container,
+  .duel-game-container,
+  .buttons {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+</style>
+
 <style id="nova-duel-intro-column">
 /* === Nova Duel Intro: vertical stack for meta (rank & cups under stars) === */
 #duel-intro-overlay .player-meta{
