@@ -100,7 +100,7 @@ const SHAPES = {
     question: "Koninin kaç tepe noktası vardır?",
     props: { faces: 2, edges: 1, vertices: 1 },
     model: () => coneModel(1.25, 2.8, 24),
-    net: () => coneNet(90, 170, 58)
+    net: () => coneNet(90, 210, 58)
   },
   sphere: {
     name: "Küre",
@@ -225,6 +225,9 @@ const CYLINDER_NET_H = 120;
 const CYLINDER_NET_SEG_X = 14;
 const CYLINDER_NET_SEG_Y = 5;
 const CYLINDER_NET_CIRCLE_STEPS = 28;
+/** `renderNet` / `coneNet` ile aynı — gelişmiş sektör açısı 2πr / L */
+const CONE_NET_R = 1.25;
+const CONE_NET_H = 2.8;
 
 /** Dikdörtgen çevresi (CCW), silindir yan yüzeyini ince çokgen olarak morflamak için. */
 function rectOutlineCCW(x, y, w, h, segX, segY) {
@@ -240,29 +243,15 @@ function rectOutlineCCW(x, y, w, h, segX, segY) {
 function cylinderMorphModelForNet(radius, height, circleSteps, segX, segY, wNet, hNet) {
   const hh = height / 2;
   const twoPi = Math.PI * 2;
-  const beta = twoPi * 0.96;
   const verts = [];
-  const foldedSide = [];
-  for (let i = 0; i <= segX; i += 1) {
-    const px = (wNet * i) / segX;
-    const u = px / wNet;
-    const a = u * beta;
-    foldedSide.push([radius * Math.cos(a), -hh, radius * Math.sin(a)]);
-  }
-  for (let j = 1; j <= segY; j += 1) {
-    const v = j / segY;
-    foldedSide.push([radius * Math.cos(beta), -hh + v * (2 * hh), radius * Math.sin(beta)]);
-  }
-  for (let i = segX - 1; i >= 0; i -= 1) {
-    const px = (wNet * i) / segX;
-    const u = px / wNet;
-    const a = u * beta;
-    foldedSide.push([radius * Math.cos(a), hh, radius * Math.sin(a)]);
-  }
-  for (let j = segY - 1; j > 0; j -= 1) {
-    const v = j / segY;
-    foldedSide.push([radius * Math.cos(0), -hh + v * (2 * hh), radius * Math.sin(0)]);
-  }
+  const sideOutline = rectOutlineCCW(0, 0, wNet, hNet, segX, segY);
+  const foldedSide = sideOutline.map(([ox, oy]) => {
+    const u = wNet > 0 ? ox / wNet : 0;
+    const v = hNet > 0 ? oy / hNet : 0;
+    const a = u >= 1 ? twoPi - 1e-4 : u * twoPi;
+    const y = hh - v * (2 * hh);
+    return [radius * Math.cos(a), y, radius * Math.sin(a)];
+  });
   verts.push(...foldedSide);
   const topStart = verts.length;
   for (let i = 0; i < circleSteps; i += 1) {
@@ -288,17 +277,24 @@ function cylinderMorphModelForNet(radius, height, circleSteps, segX, segY, wNet,
   };
 }
 
+/** Düz koni yan yüzünün gelişmiş sektör açısı (radyan): tam daire değil, 2πr/L. */
+function coneDevelopedSectorRadians(radius, height) {
+  const L = Math.hypot(radius, height);
+  if (L < 1e-9) return { start: -Math.PI, end: Math.PI };
+  const span = (2 * Math.PI * radius) / L;
+  return { start: -span / 2, end: span / 2 };
+}
+
 /** Koni açılım morfı: 2 yüzey (sektör + taban dairesi), `coneNet` ile aynı köşe sayıları. */
 function coneMorphModelForNet(radius, height, sectorSteps = 36, baseSteps = 36) {
   const hh = height / 2;
-  const startA = -Math.PI * 0.62;
-  const endA = Math.PI * 0.62;
+  const { start: startA, end: endA } = coneDevelopedSectorRadians(radius, height);
   const verts = [];
   verts.push([0, hh, 0]);
   for (let i = 0; i <= sectorSteps; i += 1) {
     const t = i / sectorSteps;
-    const a = startA + (endA - startA) * t;
-    verts.push([radius * Math.cos(a), -hh, radius * Math.sin(a)]);
+    const fullA = -Math.PI + t * Math.PI * 2;
+    verts.push([radius * Math.cos(fullA), -hh, radius * Math.sin(fullA)]);
   }
   const baseStart = verts.length;
   for (let i = 0; i < baseSteps; i += 1) {
@@ -448,8 +444,16 @@ function cylinderNet(w, h, r) {
 function coneNet(_baseRadius, sectorRadius, baseCircleR) {
   const gap = sectorRadius * 0.3;
   const steps = 36;
-  const sector = sectorPolygon(0, 0, sectorRadius, -Math.PI * 0.62, Math.PI * 0.62, steps);
-  const collapsedSector = sectorPolygon(0, -baseCircleR * 0.35, sectorRadius * 0.42, -Math.PI * 0.33, Math.PI * 0.33, steps);
+  const { start: s0, end: s1 } = coneDevelopedSectorRadians(CONE_NET_R, CONE_NET_H);
+  const sector = sectorPolygon(0, 0, sectorRadius, s0, s1, steps);
+  const collapsedSector = sectorPolygon(
+    0,
+    -baseCircleR * 0.35,
+    sectorRadius * 0.42,
+    s0 * 0.42,
+    s1 * 0.42,
+    steps
+  );
   const closedCircle = circlePolygon(0, 0, baseCircleR, steps);
   return [
     { closed: collapsedSector, open: sector, color: "#ffc06a" },
@@ -878,6 +882,36 @@ function drawPolygon(ctx, points, fill, stroke) {
   if (stroke) ctx.stroke();
 }
 
+function polygonArea2(points) {
+  let area2 = 0;
+  for (let i = 0; i < points.length; i += 1) {
+    const [x1, y1] = points[i];
+    const [x2, y2] = points[(i + 1) % points.length];
+    area2 += x1 * y2 - y1 * x2;
+  }
+  return area2;
+}
+
+function convexHull(points) {
+  if (points.length <= 3) return points.slice();
+  const pts = [...points].sort((a, b) => (a[0] - b[0]) || (a[1] - b[1]));
+  const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lower = [];
+  for (const p of pts) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) lower.pop();
+    lower.push(p);
+  }
+  const upper = [];
+  for (let i = pts.length - 1; i >= 0; i -= 1) {
+    const p = pts[i];
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) upper.pop();
+    upper.push(p);
+  }
+  lower.pop();
+  upper.pop();
+  return lower.concat(upper);
+}
+
 function renderNet() {
   const { w, h } = resizeCanvas(netCanvas);
   netCtx.clearRect(0, 0, w, h);
@@ -911,7 +945,7 @@ function renderNet() {
           CYLINDER_NET_H
         )
       : state.shapeKey === "cone"
-        ? coneMorphModelForNet(1.25, 2.8, 36, 36)
+        ? coneMorphModelForNet(CONE_NET_R, CONE_NET_H, 36, 36)
         : shape.model();
   const shapeHasEdges = canShowEdges(shape);
   const shapeHasVertices = canShowVertices(shape);
@@ -1003,11 +1037,7 @@ function renderNet() {
       // Silindir: yan dikdörtgen ile daireler aynı düzlemde; daireler üstte çizilince yan yüzey silik kalır.
       // Açık uçta hafif Z ile yüzeyi net düzlemden ayır + çizim sırası (aşağıda) daire → yan.
       const sideLift =
-        state.shapeKey === "cylinder" && faceIndex === 0
-          ? 0.1 * localT
-          : state.shapeKey === "cone" && faceIndex === 0
-            ? 0.16 * localT
-            : 0;
+        state.shapeKey === "cylinder" && faceIndex === 0 ? 0.1 * localT : 0;
       const openWorld = [
         (openP[0] - nCx) * netToWorld,
         -(openP[1] - nCy) * netToWorld,
@@ -1056,7 +1086,14 @@ function renderNet() {
       const light =
         state.shapeKey === "cylinder" && f.faceIndex === 0 ? 76 : isConeOrange ? 72 : 78;
       netCtx.fillStyle = `hsla(${baseHue + hueShift}, ${isConeOrange ? 88 : 82}%, ${light}%, ${alpha})`;
-      drawPolygon(netCtx, f.pts2, true, false);
+      let fillPts = f.pts2;
+      if ((state.shapeKey === "cylinder" || state.shapeKey === "cone") && f.faceIndex === 0) {
+        // Egrisel yan yüz tek bir oz-kesisen cokgen oldugunda dolgu kaybolabiliyor.
+        // Dis siniri (convex hull) doldurarak orta govdeyi her acida gorunur tut.
+        fillPts = convexHull(f.pts2);
+        if (polygonArea2(fillPts) < 0) fillPts = fillPts.slice().reverse();
+      }
+      drawPolygon(netCtx, fillPts, true, false);
     });
   }
   if (showEdges.checked && shapeHasEdges) {
@@ -1066,11 +1103,23 @@ function renderNet() {
   }
   if (showVertices.checked && shapeHasVertices) {
     netCtx.fillStyle = "#ef476f";
-    renderedFaces.forEach((f) => f.pts2.forEach(([x, y]) => {
-      netCtx.beginPath();
-      netCtx.arc(x, y, 3.3, 0, Math.PI * 2);
-      netCtx.fill();
-    }));
+    if (state.shapeKey === "cone") {
+      const apexFace = renderedFaces.find((ff) => ff.faceIndex === 0);
+      if (apexFace && apexFace.pts2.length) {
+        const [ax, ay] = apexFace.pts2[0];
+        netCtx.beginPath();
+        netCtx.arc(ax, ay, 4, 0, Math.PI * 2);
+        netCtx.fill();
+      }
+    } else if (state.shapeKey === "cylinder") {
+      /* Silindir/koni eğri yüzeylerde çokgen örneklemesi köşe değildir; açılımda kırmızı nokta gösterme. */
+    } else {
+      renderedFaces.forEach((f) => f.pts2.forEach(([x, y]) => {
+        netCtx.beginPath();
+        netCtx.arc(x, y, 3.3, 0, Math.PI * 2);
+        netCtx.fill();
+      }));
+    }
   }
 }
 
@@ -1133,28 +1182,93 @@ function bindEvents() {
   const endDrag = () => {
     state.drag = null;
   };
+  const touchPoint = (e) => {
+    if (!e.touches || !e.touches.length) return null;
+    return e.touches[0];
+  };
 
   mainCanvas.addEventListener("pointerdown", (e) => {
     mainCanvas.setPointerCapture(e.pointerId);
     startDrag(e.clientX, e.clientY);
   });
-  mainCanvas.addEventListener("pointermove", (e) => moveDrag(e.clientX, e.clientY));
+  mainCanvas.addEventListener(
+    "pointermove",
+    (e) => {
+      if (state.drag) e.preventDefault();
+      moveDrag(e.clientX, e.clientY);
+    },
+    { passive: false }
+  );
   mainCanvas.addEventListener("pointerup", endDrag);
   mainCanvas.addEventListener("pointercancel", endDrag);
+  mainCanvas.addEventListener(
+    "touchstart",
+    (e) => {
+      const t = touchPoint(e);
+      if (!t) return;
+      e.preventDefault();
+      startDrag(t.clientX, t.clientY);
+    },
+    { passive: false }
+  );
+  mainCanvas.addEventListener(
+    "touchmove",
+    (e) => {
+      const t = touchPoint(e);
+      if (!t || !state.drag) return;
+      e.preventDefault();
+      moveDrag(t.clientX, t.clientY);
+    },
+    { passive: false }
+  );
+  mainCanvas.addEventListener("touchend", endDrag, { passive: true });
+  mainCanvas.addEventListener("touchcancel", endDrag, { passive: true });
 
   netCanvas.addEventListener("pointerdown", (e) => {
     netCanvas.setPointerCapture(e.pointerId);
     state.netDrag = { x: e.clientX, y: e.clientY, rotX: state.rotX, rotY: state.rotY };
   });
-  netCanvas.addEventListener("pointermove", (e) => {
-    if (!state.netDrag || state.activeTab !== "net") return;
-    const dx = (e.clientX - state.netDrag.x) * 0.01;
-    const dy = (e.clientY - state.netDrag.y) * 0.01;
-    state.rotY = state.netDrag.rotY + dx;
-    state.rotX = Math.max(-1.5, Math.min(1.5, state.netDrag.rotX + dy));
-  });
+  netCanvas.addEventListener(
+    "pointermove",
+    (e) => {
+      if (!state.netDrag || state.activeTab !== "net") return;
+      e.preventDefault();
+      const dx = (e.clientX - state.netDrag.x) * 0.01;
+      const dy = (e.clientY - state.netDrag.y) * 0.01;
+      state.rotY = state.netDrag.rotY + dx;
+      state.rotX = Math.max(-1.5, Math.min(1.5, state.netDrag.rotX + dy));
+    },
+    { passive: false }
+  );
   netCanvas.addEventListener("pointerup", () => { state.netDrag = null; });
   netCanvas.addEventListener("pointercancel", () => { state.netDrag = null; });
+  netCanvas.addEventListener(
+    "touchstart",
+    (e) => {
+      if (state.activeTab !== "net") return;
+      const t = touchPoint(e);
+      if (!t) return;
+      e.preventDefault();
+      state.netDrag = { x: t.clientX, y: t.clientY, rotX: state.rotX, rotY: state.rotY };
+    },
+    { passive: false }
+  );
+  netCanvas.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!state.netDrag || state.activeTab !== "net") return;
+      const t = touchPoint(e);
+      if (!t) return;
+      e.preventDefault();
+      const dx = (t.clientX - state.netDrag.x) * 0.01;
+      const dy = (t.clientY - state.netDrag.y) * 0.01;
+      state.rotY = state.netDrag.rotY + dx;
+      state.rotX = Math.max(-1.5, Math.min(1.5, state.netDrag.rotX + dy));
+    },
+    { passive: false }
+  );
+  netCanvas.addEventListener("touchend", () => { state.netDrag = null; }, { passive: true });
+  netCanvas.addEventListener("touchcancel", () => { state.netDrag = null; }, { passive: true });
 
   window.addEventListener("resize", () => {
     renderMain();

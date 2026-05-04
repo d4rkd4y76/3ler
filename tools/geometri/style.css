@@ -137,6 +137,12 @@ canvas {
   background: linear-gradient(180deg, #dce2ea, #cfd5df);
   border-radius: 10px;
 }
+#mainCanvas,
+#netCanvas {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
 #netCanvas {
   height: min(44vh, 340px);
 }
