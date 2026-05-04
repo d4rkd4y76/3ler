@@ -15,14 +15,13 @@ const shapeButtons = document.getElementById("shapeButtons");
 const showFaces = document.getElementById("showFaces");
 const showEdges = document.getElementById("showEdges");
 const showVertices = document.getElementById("showVertices");
-const strictMode = document.getElementById("strictMode");
+const stickyControls = document.getElementById("sticky-controls");
 
 const toggleOpenBtn = document.getElementById("toggleOpenBtn");
 const toggleRotateBtn = document.getElementById("toggleRotateBtn");
 const toggleExplodeBtn = document.getElementById("toggleExplodeBtn");
 const resetBtn = document.getElementById("resetBtn");
 const tabButtons = document.querySelectorAll(".tab-btn");
-const actionRow = document.querySelector(".action-row");
 
 const SHAPES = {
   cube: {
@@ -124,7 +123,6 @@ const state = {
   explodeValue: 0,
   openTarget: 0,
   openValue: 0,
-  strictMode: true,
   activeTab: "3d",
   netDrag: null,
   drag: null
@@ -527,15 +525,25 @@ function getOpenTargetMax() {
 }
 
 function canShowEdges(shape) {
-  if (!state.strictMode) return true;
   if (["cylinder", "cone", "sphere"].includes(state.shapeKey)) return false;
   return shape.props.edges > 0;
 }
 
 function canShowVertices(shape) {
-  if (!state.strictMode) return true;
   if (["cylinder", "sphere"].includes(state.shapeKey)) return false;
   return shape.props.vertices > 0;
+}
+
+function syncToggleOpenLabel() {
+  toggleOpenBtn.textContent = state.openTarget ? "Tekrar katla" : "Kağıttaki gibi göster";
+}
+
+function syncRotateLabel() {
+  toggleRotateBtn.textContent = state.autoRotate ? "Dönmeyi durdur" : "Kendi kendine dönsün";
+}
+
+function syncExplodeLabel() {
+  toggleExplodeBtn.textContent = state.explodeTarget ? "Yüzleri birleştir" : "Yüzleri ayır";
 }
 
 function setupButtons() {
@@ -550,7 +558,7 @@ function setupButtons() {
       state.openValue = 0;
       state.explodeTarget = 0;
       state.explodeValue = 0;
-      toggleOpenBtn.textContent = "Açılımı Aç";
+      syncToggleOpenLabel();
       syncActiveButtons();
       updateInfo();
     });
@@ -571,15 +579,14 @@ function updateInfo() {
   shapeTitle.textContent = shape.name;
   shapeDesc.textContent = shape.desc;
   shapeProps.innerHTML = [
-    `<li>Yüzey Sayısı: ${shape.props.faces}</li>`,
-    `<li>Ayrıt Sayısı: ${shape.props.edges}</li>`,
-    `<li>Köşe Sayısı: ${shape.props.vertices}</li>`
+    `<li>Yüz sayısı: ${shape.props.faces}</li>`,
+    `<li>Kenar (ayrıt) sayısı: ${shape.props.edges}</li>`,
+    `<li>Köşe sayısı: ${shape.props.vertices}</li>`
   ].join("");
-  if (state.strictMode) {
-    shapeNote.textContent = `${shape.name} için matematiksel doğru gösterim açık.`;
-  } else {
-    shapeNote.textContent = "Serbest görselleştirme açık (ders için Öğretmen Modu önerilir).";
-  }
+  shapeNote.textContent =
+    state.shapeKey === "sphere"
+      ? "Küre tek bir eğri yüzeydir; düz kağıtta kesmeden açılamaz. «Kağıt hali» sekmesinde bunu kısaca anlattık."
+      : "Parmağınla veya farenle sürükleyerek modele bakabilirsin. «Kağıt hali» sekmesinde düz şekli açılıp kapanırken izleyebilirsin.";
   shapeKidInfo.textContent = shape.kidInfo;
   shapeExamples.innerHTML = shape.examples.map((item) => `<li>${item}</li>`).join("");
   shapeQuestion.textContent = shape.question;
@@ -684,7 +691,7 @@ function renderCylinderMain(w, h) {
     });
   }
 
-  if (showEdges.checked && !state.strictMode) {
+  if (showEdges.checked) {
     mainCtx.strokeStyle = "#2240b6";
     mainCtx.lineWidth = 1.6;
     drawPathFromPoints(mainCtx, top, true);
@@ -727,7 +734,7 @@ function renderConeMain(w, h) {
     });
   }
 
-  if (showEdges.checked && !state.strictMode) {
+  if (showEdges.checked) {
     mainCtx.strokeStyle = "#2240b6";
     mainCtx.lineWidth = 1.6;
     drawPathFromPoints(mainCtx, base, true);
@@ -1134,19 +1141,26 @@ function animate() {
 }
 
 function bindEvents() {
+  const backBtn = document.getElementById("backToDuellomatik");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      window.location.href = "../../index.html";
+    });
+  }
+
   toggleOpenBtn.addEventListener("click", () => {
     state.openTarget = state.openTarget ? 0 : getOpenTargetMax();
-    toggleOpenBtn.textContent = state.openTarget ? "Açılımı Kapat" : "Açılımı Aç";
+    syncToggleOpenLabel();
   });
 
   toggleRotateBtn.addEventListener("click", () => {
     state.autoRotate = !state.autoRotate;
-    toggleRotateBtn.textContent = state.autoRotate ? "Döndürme Dursun" : "Otomatik Döndür";
+    syncRotateLabel();
   });
 
   toggleExplodeBtn.addEventListener("click", () => {
     state.explodeTarget = state.explodeTarget ? 0 : 1;
-    toggleExplodeBtn.textContent = state.explodeTarget ? "Parçaları Birleştir" : "Parçalara Ayır";
+    syncExplodeLabel();
   });
 
   resetBtn.addEventListener("click", () => {
@@ -1154,15 +1168,16 @@ function bindEvents() {
     state.rotY = 0.8;
     state.autoRotate = false;
     state.explodeTarget = 0;
+    state.explodeValue = 0;
     state.openTarget = 0;
-    toggleRotateBtn.textContent = "Otomatik Döndür";
-    toggleExplodeBtn.textContent = "Parçalara Ayır";
-    toggleOpenBtn.textContent = "Açılımı Aç";
+    state.openValue = 0;
+    syncRotateLabel();
+    syncExplodeLabel();
+    syncToggleOpenLabel();
   });
 
-  [showFaces, showEdges, showVertices, strictMode].forEach((el) => {
+  [showFaces, showEdges, showVertices].forEach((el) => {
     el.addEventListener("change", () => {
-      state.strictMode = strictMode.checked;
       updateInfo();
       renderMain();
       renderNet();
@@ -1281,23 +1296,20 @@ function bindEvents() {
       document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
       state.activeTab = key;
+      if (stickyControls) stickyControls.dataset.activeTab = key;
       document.getElementById("panel-view-3d").classList.toggle("active", key === "3d");
       document.getElementById("panel-view-net").classList.toggle("active", key === "net");
       document.getElementById("panel-view-info").classList.toggle("active", key === "info");
-      const showOnly3d = key !== "3d";
-      [toggleRotateBtn, toggleExplodeBtn].forEach((el) => {
-        el.classList.toggle("is-hidden", showOnly3d);
-      });
-      actionRow.classList.toggle("mode-net", key === "net");
-      actionRow.classList.toggle("mode-info", key === "info");
     });
   });
 }
 
 setupButtons();
-state.strictMode = strictMode.checked;
+syncToggleOpenLabel();
+syncRotateLabel();
+syncExplodeLabel();
 updateInfo();
 bindEvents();
 document.getElementById("panel-view-3d").classList.add("active");
-[toggleRotateBtn, toggleExplodeBtn].forEach((el) => el.classList.remove("is-hidden"));
+if (stickyControls) stickyControls.dataset.activeTab = "3d";
 animate();
