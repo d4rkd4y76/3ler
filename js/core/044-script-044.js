@@ -19,6 +19,13 @@
 
   var denemeUiMode = 'off'; // off | exam | result
 
+  function denemeFabMarkup(){
+    if (denemeUiMode === 'result') {
+      return '<span class="deneme-fab-shine" aria-hidden="true"></span><span class="deneme-fab-content"><span class="deneme-fab-ico" aria-hidden="true">🏆</span><span class="deneme-fab-txt">SONUÇ</span></span>';
+    }
+    return '<span class="deneme-fab-shine" aria-hidden="true"></span><span class="deneme-fab-content"><span class="deneme-fab-ico" aria-hidden="true">✏️</span><span class="deneme-fab-txt">DENEME</span></span>';
+  }
+
   function applyDenemeFabState(btn, meta){
     var isEnded = !!(meta && meta.ended);
     var isEnabled = !!(meta && meta.enabled) && !isEnded;
@@ -26,7 +33,12 @@
     btn.classList.toggle('deneme-fab--result', denemeUiMode === 'result');
     btn.classList.toggle('deneme-fab--on', denemeUiMode === 'exam');
     btn.classList.toggle('deneme-fab--off', denemeUiMode === 'off');
-    btn.innerHTML = '<span class="deneme-fab-inner">' + (denemeUiMode === 'result' ? 'SONUÇ' : 'DENEME') + '</span>';
+    var wrap = document.getElementById('deneme_fab_wrap');
+    if (wrap) {
+      wrap.classList.remove('deneme-fab-wrap--result', 'deneme-fab-wrap--on', 'deneme-fab-wrap--off');
+      wrap.classList.add(denemeUiMode === 'result' ? 'deneme-fab-wrap--result' : denemeUiMode === 'exam' ? 'deneme-fab-wrap--on' : 'deneme-fab-wrap--off');
+    }
+    btn.innerHTML = denemeFabMarkup();
     btn.setAttribute('aria-label', denemeUiMode === 'result' ? 'Sonuç' : 'Deneme');
   }
 
@@ -38,10 +50,10 @@
     btn.id = 'deneme_fab';
     btn.className = 'deneme-fab deneme-fab--off';
     btn.setAttribute('aria-label','Deneme');
-    btn.innerHTML = '<span class="deneme-fab-inner">DENEME</span>';
+    btn.innerHTML = '<span class="deneme-fab-shine" aria-hidden="true"></span><span class="deneme-fab-content"><span class="deneme-fab-ico" aria-hidden="true">✏️</span><span class="deneme-fab-txt">DENEME</span></span>';
     const wrap = document.createElement('span');
     wrap.id = 'deneme_fab_wrap';
-    wrap.className = 'deneme-fab-wrap';
+    wrap.className = 'deneme-fab-wrap deneme-fab-wrap--off';
     wrap.appendChild(btn);
     ms.appendChild(wrap);
 

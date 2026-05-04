@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 #main-screen .main-screen-top-bar .main-screen-odev-anchor,
-#main-screen .main-screen-top-bar .main-screen-deneme-slot,
+#main-screen .main-screen-top-bar .main-screen-deneme-column,
 #main-screen .main-screen-top-bar .main-screen-store-anchor{
   min-width: 0;
 }
@@ -142,15 +142,24 @@
 #main-screen .main-screen-top-bar .main-screen-odev-anchor #homework_fab.homework-fab{
   margin: 0 !important;
 }
-#main-screen .main-screen-top-bar .main-screen-deneme-slot{
+#main-screen .main-screen-top-bar .main-screen-deneme-column{
   position: relative;
   justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.6vw, 10px);
+  min-width: 0;
+  max-width: min(200px, 44vw);
+  align-self: center;
+}
+#main-screen .main-screen-top-bar .main-screen-deneme-column .main-screen-deneme-slot{
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 0;
-  max-width: min(200px, 44vw);
-  align-self: center;
+  width: 100%;
 }
 #main-screen .main-screen-top-bar .main-screen-store-anchor{
   position: relative;
@@ -393,14 +402,17 @@
   gap: inherit;
 }
 #main-screen .deneme-fab-wrap{
-  width: clamp(44px, 12vw, 62px) !important;
-  height: clamp(44px, 12vw, 62px) !important;
+  width: clamp(56px, 14vw, 76px) !important;
+  height: clamp(62px, 15.5vw, 84px) !important;
   flex: 0 0 auto;
 }
 #main-screen .deneme-fab{
-  width: clamp(36px, 10.5vw, 52px) !important;
-  height: clamp(36px, 10.5vw, 52px) !important;
-  font-size: clamp(7px, 2vw, 10px) !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: clamp(50px, 13vw, 70px) !important;
+  max-height: clamp(56px, 14.5vw, 78px) !important;
+  margin: 0 auto !important;
+  font-size: inherit !important;
 }
 /* Alt ana butonlar: profil ile aynı görsel eksende, taşma yok */
 #main-screen > .buttons{
