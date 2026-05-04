@@ -1300,6 +1300,9 @@ function bindEvents() {
       document.getElementById("panel-view-3d").classList.toggle("active", key === "3d");
       document.getElementById("panel-view-net").classList.toggle("active", key === "net");
       document.getElementById("panel-view-info").classList.toggle("active", key === "info");
+      requestAnimationFrame(() => {
+        window.dispatchEvent(new Event("resize"));
+      });
     });
   });
 }
