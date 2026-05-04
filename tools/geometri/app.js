@@ -16,10 +16,9 @@ const showFaces = document.getElementById("showFaces");
 const showEdges = document.getElementById("showEdges");
 const showVertices = document.getElementById("showVertices");
 const stickyControls = document.getElementById("sticky-controls");
-const geoToolsSheet = document.getElementById("geo-tools-sheet");
-const geoToolsBackdrop = document.getElementById("geo-tools-backdrop");
-const geoToolsOpenBtn = document.getElementById("geo-tools-open-btn");
-const geoToolsCloseBtn = document.getElementById("geo-tools-close-btn");
+const geoControlsRail = document.getElementById("geo-controls-rail");
+const geoControlsToggle = document.getElementById("geo-controls-toggle");
+const geoControlsDrawer = document.getElementById("geo-controls-drawer");
 
 const toggleOpenBtn = document.getElementById("toggleOpenBtn");
 const toggleRotateBtn = document.getElementById("toggleRotateBtn");
@@ -554,25 +553,57 @@ function isWideLayout() {
   return typeof window.matchMedia === "function" && window.matchMedia("(min-width: 980px)").matches;
 }
 
-function setGeoToolsOpen(open) {
+let geoLayoutWasWide = null;
+
+function setGeoControlsExpanded(exp) {
+  if (!geoControlsRail || !geoControlsToggle || !geoControlsDrawer) return;
   if (isWideLayout()) return;
-  document.body.classList.toggle("geo-tools-open", open);
-  if (geoToolsSheet) {
-    geoToolsSheet.setAttribute("aria-hidden", open ? "false" : "true");
-  }
-  if (geoToolsBackdrop) geoToolsBackdrop.setAttribute("aria-hidden", open ? "false" : "true");
-  if (geoToolsOpenBtn) geoToolsOpenBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  geoControlsRail.classList.toggle("is-expanded", exp);
+  geoControlsToggle.setAttribute("aria-expanded", exp ? "true" : "false");
+  geoControlsDrawer.setAttribute("aria-hidden", exp ? "false" : "true");
   requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
 }
 
-function bindGeoToolsSheet() {
-  if (!geoToolsOpenBtn || !geoToolsSheet) return;
-  geoToolsOpenBtn.addEventListener("click", () => setGeoToolsOpen(true));
-  if (geoToolsCloseBtn) geoToolsCloseBtn.addEventListener("click", () => setGeoToolsOpen(false));
-  if (geoToolsBackdrop) geoToolsBackdrop.addEventListener("click", () => setGeoToolsOpen(false));
+function syncGeoControlsLayout() {
+  if (!geoControlsRail || !geoControlsDrawer || !geoControlsToggle) return;
+  const wide = isWideLayout();
+  if (geoLayoutWasWide === null) {
+    geoLayoutWasWide = wide;
+    if (!wide) {
+      geoControlsRail.classList.remove("is-expanded");
+      geoControlsDrawer.setAttribute("aria-hidden", "true");
+      geoControlsToggle.setAttribute("aria-expanded", "false");
+    } else {
+      geoControlsRail.classList.add("is-expanded");
+      geoControlsDrawer.setAttribute("aria-hidden", "false");
+      geoControlsToggle.setAttribute("aria-expanded", "true");
+    }
+    return;
+  }
+  if (wide === geoLayoutWasWide) return;
+  geoLayoutWasWide = wide;
+  if (wide) {
+    geoControlsRail.classList.add("is-expanded");
+    geoControlsDrawer.setAttribute("aria-hidden", "false");
+    geoControlsToggle.setAttribute("aria-expanded", "true");
+  } else {
+    geoControlsRail.classList.remove("is-expanded");
+    geoControlsDrawer.setAttribute("aria-hidden", "true");
+    geoControlsToggle.setAttribute("aria-expanded", "false");
+  }
+  requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+}
+
+function bindGeoControlsDrawer() {
+  if (!geoControlsToggle || !geoControlsRail) return;
+  geoControlsToggle.addEventListener("click", () => {
+    if (isWideLayout()) return;
+    const next = !geoControlsRail.classList.contains("is-expanded");
+    setGeoControlsExpanded(next);
+  });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && document.body.classList.contains("geo-tools-open")) {
-      setGeoToolsOpen(false);
+    if (e.key === "Escape" && !isWideLayout() && geoControlsRail.classList.contains("is-expanded")) {
+      setGeoControlsExpanded(false);
     }
   });
 }
@@ -592,7 +623,6 @@ function setupButtons() {
       syncToggleOpenLabel();
       syncActiveButtons();
       updateInfo();
-      setGeoToolsOpen(false);
     });
     btn.dataset.key = key;
     shapeButtons.appendChild(btn);
@@ -1318,12 +1348,7 @@ function bindEvents() {
   netCanvas.addEventListener("touchcancel", () => { state.netDrag = null; }, { passive: true });
 
   window.addEventListener("resize", () => {
-    if (isWideLayout()) {
-      document.body.classList.remove("geo-tools-open");
-      if (geoToolsSheet) geoToolsSheet.setAttribute("aria-hidden", "false");
-      if (geoToolsBackdrop) geoToolsBackdrop.setAttribute("aria-hidden", "true");
-      if (geoToolsOpenBtn) geoToolsOpenBtn.setAttribute("aria-expanded", "false");
-    }
+    syncGeoControlsLayout();
     renderMain();
     renderNet();
   });
@@ -1351,8 +1376,8 @@ syncRotateLabel();
 syncExplodeLabel();
 updateInfo();
 bindEvents();
-bindGeoToolsSheet();
+bindGeoControlsDrawer();
+syncGeoControlsLayout();
 document.getElementById("panel-view-3d").classList.add("active");
 if (stickyControls) stickyControls.dataset.activeTab = "3d";
-if (isWideLayout() && geoToolsSheet) geoToolsSheet.setAttribute("aria-hidden", "false");
 animate();
