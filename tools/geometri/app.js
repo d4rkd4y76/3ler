@@ -16,6 +16,10 @@ const showFaces = document.getElementById("showFaces");
 const showEdges = document.getElementById("showEdges");
 const showVertices = document.getElementById("showVertices");
 const stickyControls = document.getElementById("sticky-controls");
+const geoToolsSheet = document.getElementById("geo-tools-sheet");
+const geoToolsBackdrop = document.getElementById("geo-tools-backdrop");
+const geoToolsOpenBtn = document.getElementById("geo-tools-open-btn");
+const geoToolsCloseBtn = document.getElementById("geo-tools-close-btn");
 
 const toggleOpenBtn = document.getElementById("toggleOpenBtn");
 const toggleRotateBtn = document.getElementById("toggleRotateBtn");
@@ -546,6 +550,33 @@ function syncExplodeLabel() {
   toggleExplodeBtn.textContent = state.explodeTarget ? "Yüzleri birleştir" : "Yüzleri ayır";
 }
 
+function isWideLayout() {
+  return typeof window.matchMedia === "function" && window.matchMedia("(min-width: 980px)").matches;
+}
+
+function setGeoToolsOpen(open) {
+  if (isWideLayout()) return;
+  document.body.classList.toggle("geo-tools-open", open);
+  if (geoToolsSheet) {
+    geoToolsSheet.setAttribute("aria-hidden", open ? "false" : "true");
+  }
+  if (geoToolsBackdrop) geoToolsBackdrop.setAttribute("aria-hidden", open ? "false" : "true");
+  if (geoToolsOpenBtn) geoToolsOpenBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+}
+
+function bindGeoToolsSheet() {
+  if (!geoToolsOpenBtn || !geoToolsSheet) return;
+  geoToolsOpenBtn.addEventListener("click", () => setGeoToolsOpen(true));
+  if (geoToolsCloseBtn) geoToolsCloseBtn.addEventListener("click", () => setGeoToolsOpen(false));
+  if (geoToolsBackdrop) geoToolsBackdrop.addEventListener("click", () => setGeoToolsOpen(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.body.classList.contains("geo-tools-open")) {
+      setGeoToolsOpen(false);
+    }
+  });
+}
+
 function setupButtons() {
   shapeButtons.innerHTML = "";
   Object.entries(SHAPES).forEach(([key, data]) => {
@@ -561,6 +592,7 @@ function setupButtons() {
       syncToggleOpenLabel();
       syncActiveButtons();
       updateInfo();
+      setGeoToolsOpen(false);
     });
     btn.dataset.key = key;
     shapeButtons.appendChild(btn);
@@ -1286,6 +1318,12 @@ function bindEvents() {
   netCanvas.addEventListener("touchcancel", () => { state.netDrag = null; }, { passive: true });
 
   window.addEventListener("resize", () => {
+    if (isWideLayout()) {
+      document.body.classList.remove("geo-tools-open");
+      if (geoToolsSheet) geoToolsSheet.setAttribute("aria-hidden", "false");
+      if (geoToolsBackdrop) geoToolsBackdrop.setAttribute("aria-hidden", "true");
+      if (geoToolsOpenBtn) geoToolsOpenBtn.setAttribute("aria-expanded", "false");
+    }
     renderMain();
     renderNet();
   });
@@ -1313,6 +1351,8 @@ syncRotateLabel();
 syncExplodeLabel();
 updateInfo();
 bindEvents();
+bindGeoToolsSheet();
 document.getElementById("panel-view-3d").classList.add("active");
 if (stickyControls) stickyControls.dataset.activeTab = "3d";
+if (isWideLayout() && geoToolsSheet) geoToolsSheet.setAttribute("aria-hidden", "false");
 animate();

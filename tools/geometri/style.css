@@ -1,35 +1,35 @@
 :root {
   --bg: #1a1530;
-  --card: #2a2248;
-  --card-2: #352a55;
-  --line: #5b4a8a;
   --text: #fff8fc;
   --muted: #d4c8f5;
   --accent: #7b9cff;
-  --accent-2: #5ee1c0;
-  --danger: #ff8fb2;
-  --sun: #ffd87a;
-  --mint: #8fe8d3;
+  --geo-dock-h: 70px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-/* Telefon: tek ekranda şekil + kontroller; tuval kalan yüksekliği doldurur */
+html {
+  height: 100%;
+}
+
+/* Telefon: tam ekran yükseklik; alt sekme çubuğu her zaman görünür */
 body.geo-app {
   margin: 0;
+  height: 100%;
   min-height: 100dvh;
-  min-height: 100vh;
+  max-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
   background:
-    radial-gradient(1200px 500px at 10% -10%, rgba(255, 182, 193, 0.22), transparent 55%),
-    radial-gradient(900px 420px at 95% 0%, rgba(167, 211, 255, 0.2), transparent 50%),
-    radial-gradient(800px 500px at 50% 100%, rgba(143, 232, 211, 0.12), transparent 55%),
-    linear-gradient(180deg, #2d2650 0%, var(--bg) 45%, #151028 100%);
+    radial-gradient(900px 420px at 8% 0%, rgba(255, 182, 193, 0.2), transparent 52%),
+    radial-gradient(700px 360px at 96% 8%, rgba(167, 211, 255, 0.18), transparent 48%),
+    linear-gradient(180deg, #2d2650 0%, var(--bg) 50%, #151028 100%);
   color: var(--text);
   padding: 0;
-  overflow: hidden;
 }
 
 .geo-app-flow {
@@ -38,6 +38,7 @@ body.geo-app {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding-bottom: calc(var(--geo-dock-h) + env(safe-area-inset-bottom, 0px) + 6px);
 }
 
 .topbar {
@@ -57,12 +58,9 @@ body.geo-app {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08));
   color: #fff;
   font-weight: 800;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(45, 38, 80, 0.3);
-}
-.btn-back:active {
-  transform: scale(0.98);
 }
 .title-wrap {
   background: linear-gradient(135deg, #4a3f7a, #3d5a9c 55%, #3a7d8f);
@@ -73,26 +71,143 @@ body.geo-app {
 }
 .topbar h1 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.2;
 }
 .topbar p {
   margin: 2px 0 0;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   line-height: 1.25;
+}
+
+/* Açılır şekil & ayarlar paneli (mobil) */
+.geo-tools-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: rgba(10, 6, 28, 0.52);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+body.geo-tools-open .geo-tools-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+.geo-tools-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--geo-dock-h) + env(safe-area-inset-bottom, 0px));
+  z-index: 410;
+  max-height: min(72dvh, 520px);
+  transform: translateY(110%);
+  transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: none;
+}
+body.geo-tools-open .geo-tools-sheet {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.geo-tools-sheet-panel {
+  margin: 0 10px;
+  background: linear-gradient(180deg, #fffafd 0%, #eef2ff 55%, #e8ecff 100%);
+  border-radius: 18px 18px 0 0;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-bottom: none;
+  box-shadow: 0 -10px 40px rgba(20, 12, 45, 0.45);
+  max-height: min(72dvh, 520px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.geo-tools-sheet-grab {
+  width: 40px;
+  height: 5px;
+  border-radius: 99px;
+  background: rgba(30, 24, 55, 0.22);
+  margin: 8px auto 4px;
+  flex-shrink: 0;
+}
+.geo-tools-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 14px 8px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(60, 50, 100, 0.12);
+}
+.geo-tools-sheet-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #2a2248;
+}
+.geo-tools-close-btn {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 900;
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #6b9dff, #8b7dff);
+  box-shadow: 0 3px 12px rgba(80, 100, 200, 0.45);
+}
+.geo-tools-sheet-body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 12px 16px;
+  flex: 1;
+  min-height: 0;
+}
+.geo-tools-hint {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #5b4a8a;
+  line-height: 1.35;
+}
+
+.shape-scroll {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.shape-btn {
+  border: 1px solid rgba(90, 70, 140, 0.45);
+  background: linear-gradient(180deg, #ede8ff, #dcd5f5);
+  color: #2a1f45;
+  border-radius: 999px;
+  padding: 7px 12px;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 0.74rem;
+  box-shadow: 0 2px 6px rgba(40, 30, 80, 0.15);
+}
+.shape-btn small {
+  display: none;
+}
+.shape-btn.active {
+  background: linear-gradient(135deg, #ffb7d5, #9db8ff 42%, #7dffc8);
+  color: #1a1530;
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 14px rgba(123, 156, 255, 0.4);
 }
 
 .sticky-controls {
   position: relative;
-  z-index: 40;
-  padding: 4px 8px 6px;
-  flex-shrink: 0;
-  background: linear-gradient(180deg, rgba(42, 34, 72, 0.95), rgba(26, 21, 48, 0.92));
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(180, 160, 255, 0.25);
+  padding: 6px 0 0;
+  margin-top: 4px;
 }
-/* Şekil: kağıt butonu yok | Kağıt hali: yüz ayırma yok | Bilgi: sadece Başına al */
 .sticky-controls[data-active-tab="3d"] .tab-only-net {
   display: none !important;
 }
@@ -107,59 +222,26 @@ body.geo-app {
 .sticky-controls[data-active-tab="info"] #geometry-toggles {
   display: none;
 }
-.shape-scroll {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-  scrollbar-width: thin;
-}
-.shape-btn {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: linear-gradient(180deg, #5c4d8a, #453a72);
-  color: #fff5ff;
-  border-radius: 999px;
-  padding: 5px 10px;
-  white-space: nowrap;
-  font-weight: 800;
-  font-size: 0.72rem;
-  box-shadow: 0 2px 6px rgba(25, 20, 45, 0.3);
-}
-.shape-btn small { display: none; }
-.shape-btn.active {
-  background: linear-gradient(135deg, #ff9ecd, #7b9cff 40%, #5ee1c0);
-  color: #1a1530;
-  border-color: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 6px 20px rgba(123, 156, 255, 0.45);
-}
 
 .action-row {
-  margin-top: 4px;
+  margin-top: 6px;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  justify-content: stretch;
+  gap: 5px;
 }
 .action-row .btn {
-  flex: 1 1 calc(50% - 2px);
-  min-height: 34px;
-  justify-content: center;
-  align-items: center;
+  flex: 1 1 calc(50% - 3px);
+  min-height: 38px;
   display: inline-flex;
-}
-.action-row .btn.tab-only-net,
-.action-row .btn.tab-only-not-info {
-  flex: 1 1 calc(50% - 2px);
-}
-.is-hidden {
-  display: none !important;
+  align-items: center;
+  justify-content: center;
 }
 .btn {
   border: none;
-  border-radius: 10px;
-  padding: 5px 6px;
+  border-radius: 11px;
+  padding: 6px 6px;
   font-weight: 800;
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   line-height: 1.15;
   color: #2a1f45;
   background: linear-gradient(180deg, #fff6e5, #ffd8a8);
@@ -177,10 +259,10 @@ body.geo-app {
 }
 
 .toggle-row {
-  margin-top: 4px;
+  margin-top: 8px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 4px;
+  gap: 5px;
 }
 @media (max-width: 340px) {
   .toggle-row {
@@ -193,23 +275,14 @@ body.geo-app {
   display: flex;
   align-items: center;
   gap: 6px;
-  min-height: 32px;
+  min-height: 34px;
   padding: 4px 6px 4px 4px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(90, 70, 140, 0.2);
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-.geo-toggle:hover {
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 4px 14px rgba(40, 30, 70, 0.35);
-}
-.geo-toggle:has(.geo-toggle-input:focus-visible) {
-  outline: 3px solid rgba(127, 255, 200, 0.75);
-  outline-offset: 2px;
 }
 .geo-toggle-input {
   position: absolute;
@@ -229,13 +302,9 @@ body.geo-app {
   height: 26px;
   border-radius: 7px;
   box-sizing: border-box;
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  background: linear-gradient(165deg, rgba(40, 32, 72, 0.85), rgba(25, 20, 48, 0.95));
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.35),
-    0 2px 0 rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(90, 70, 140, 0.45);
+  background: linear-gradient(165deg, #f5f2ff, #e4dff7);
   position: relative;
-  transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 .geo-toggle-mark::after {
   content: "";
@@ -246,20 +315,16 @@ body.geo-app {
   height: 11px;
   border: solid #fff;
   border-width: 0 3px 3px 0;
-  border-radius: 0 2px 2px 0;
   transform: translate(-50%, -50%) rotate(45deg) scale(0.35);
   opacity: 0;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  transition: transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.18s ease;
+  transition: transform 0.2s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.15s ease;
 }
 .geo-toggle-input:checked + .geo-toggle-mark {
   border-color: rgba(255, 255, 255, 0.95);
   background: linear-gradient(145deg, #8fffd4, #6b9dff 48%, #b8a4ff);
   box-shadow:
     0 0 0 2px rgba(123, 200, 255, 0.45),
-    inset 0 2px 8px rgba(255, 255, 255, 0.55),
-    inset 0 -3px 8px rgba(60, 80, 160, 0.25);
-  transform: scale(1.05);
+    inset 0 2px 6px rgba(255, 255, 255, 0.55);
 }
 .geo-toggle-input:checked + .geo-toggle-mark::after {
   transform: translate(-50%, -55%) rotate(45deg) scale(1);
@@ -268,56 +333,87 @@ body.geo-app {
 .geo-toggle-label {
   font-size: 0.72rem;
   font-weight: 800;
-  color: #fff8ff;
-  letter-spacing: 0.02em;
-  line-height: 1.15;
+  color: #2a2248;
 }
 
+/* Ana alan: başlık + şekil aç butonu */
 .app-main {
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 4px 8px 6px;
+  padding: 4px 8px 0;
   overflow: hidden;
 }
-.app-main h2 {
-  margin: 0 0 4px;
-  font-size: 0.9rem;
-  line-height: 1.2;
+.app-main-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   flex-shrink: 0;
+  margin-bottom: 4px;
 }
+.app-main-head #shapeTitle {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  font-weight: 900;
+  flex: 1;
+  min-width: 0;
+}
+.geo-tools-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 6px 11px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.65rem;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #8b7dff, #5b8cff);
+  box-shadow: 0 3px 12px rgba(60, 80, 180, 0.45);
+  white-space: nowrap;
+}
+.geo-tools-open-ico {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
 .view-panel {
   display: none;
-  background: linear-gradient(180deg, rgba(255, 250, 252, 0.12), rgba(45, 38, 80, 0.55));
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 250, 252, 0.1), rgba(45, 38, 80, 0.5));
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 6px 8px;
-  box-shadow: 0 4px 16px rgba(25, 18, 48, 0.3);
 }
-/* Şekil / Kağıt hali: tuval kalan alanı doldurur */
 #panel-view-3d.view-panel.active,
 #panel-view-net.view-panel.active {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
 }
 #panel-view-info.view-panel.active {
   display: block;
-  flex: 1;
-  min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-.view-panel h3 {
+.view-panel-tag {
   margin: 0 0 4px;
-  color: #fff9e6;
-  font-size: 0.78rem;
+  display: inline-block;
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.65rem;
   font-weight: 900;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-  flex-shrink: 0;
+  letter-spacing: 0.06em;
+  color: #2a1f45;
+  background: linear-gradient(135deg, #c8f5ff, #e8d4ff);
+  border: 1px solid rgba(255, 255, 255, 0.55);
 }
 
 #mainCanvas,
@@ -327,7 +423,7 @@ body.geo-app {
   -webkit-user-select: none;
   width: 100%;
   flex: 1;
-  min-height: 120px;
+  min-height: 100px;
   height: auto;
   display: block;
   background: linear-gradient(165deg, #fff9f0, #e8f4ff 55%, #d8ecff);
@@ -341,10 +437,12 @@ body.geo-app {
   padding-left: 18px;
   color: #d5e2ff;
 }
-#shapeProps li { margin: 5px 0; }
+#shapeProps li {
+  margin: 5px 0;
+}
 .note {
   margin: 8px 0 0;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   color: #d3e0ff;
   background: #1a2a48;
   border: 1px solid #304872;
@@ -361,99 +459,184 @@ body.geo-app {
 .learn-box h4 {
   margin: 0 0 5px;
   color: #bed2ff;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 .learn-box p,
 .learn-box ul {
   margin: 0;
   color: #dfebff;
-  font-size: 0.87rem;
+  font-size: 0.84rem;
 }
-.learn-box ul { padding-left: 16px; }
+.learn-box ul {
+  padding-left: 16px;
+}
+
+/* Sabit alt sekme — her zaman görünür */
+.geo-bottom-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  padding: 8px 10px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, rgba(22, 16, 42, 0.94), rgba(38, 30, 72, 0.98));
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.35);
+}
 
 .bottom-tabs {
-  position: relative;
-  z-index: 60;
-  flex-shrink: 0;
-  margin: 0 8px max(6px, env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(180deg, rgba(60, 48, 100, 0.95), rgba(35, 28, 62, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 12px;
-  padding: 5px;
+  max-width: 420px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  box-shadow: 0 4px 14px rgba(20, 15, 40, 0.4);
+  gap: 8px;
 }
+
 .tab-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 48px;
+  padding: 6px 4px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  color: #e8e0ff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.tab-btn:active {
+  transform: scale(0.97);
+}
+.tab-ico {
+  font-size: 1.25rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+.tab-lbl {
+  font-size: 0.62rem;
   font-weight: 900;
-  font-size: 0.74rem;
-  color: #f5f0ff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid transparent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.92;
 }
 .tab-btn.active {
-  background: linear-gradient(135deg, #ffb7d5, #9db8ff 45%, #7dffc8);
-  color: #2a1f45;
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 2px 10px rgba(123, 156, 255, 0.35);
+  color: #1a1530;
+  background: linear-gradient(145deg, #fff4d4, #b8d4ff 45%, #b4ffd9);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 16px rgba(123, 156, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+.tab-btn.active .tab-lbl {
+  opacity: 1;
 }
 
 .signature {
   display: none;
 }
 
+/* Masaüstü: panel akışta, alt bar sayfa içinde */
 @media (min-width: 980px) {
   body.geo-app {
-    overflow: auto;
+    max-height: none;
     min-height: 100vh;
+    overflow: auto;
   }
   .geo-app-flow {
+    padding-bottom: 0;
     overflow: visible;
     flex: none;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .geo-tools-open-btn {
+    display: none;
+  }
+  .geo-tools-backdrop {
+    display: none !important;
+  }
+  .geo-tools-sheet {
+    position: static !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    max-height: none !important;
+    z-index: auto;
+    flex-shrink: 0;
+    margin: 6px 10px 0;
+  }
+  .geo-tools-sheet-panel {
+    margin: 0;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.55);
+    max-height: none;
+    box-shadow: 0 8px 28px rgba(20, 12, 45, 0.25);
+  }
+  .geo-tools-sheet-grab {
+    display: none;
+  }
+  .geo-tools-close-btn {
+    display: none;
+  }
+  .geo-tools-sheet-body {
+    max-height: none;
+    overflow: visible;
+    padding: 12px 16px 16px;
+  }
+  body.geo-tools-open .geo-tools-sheet {
+    transform: none;
   }
   .topbar {
     padding: 10px 12px 6px;
   }
-  .topbar-row {
-    margin-bottom: 8px;
-  }
   .btn-back {
     padding: 8px 14px;
     font-size: 0.88rem;
-    border-width: 2px;
   }
   .title-wrap {
     padding: 12px 14px;
     border-radius: 18px;
-    border-width: 2px;
   }
   .topbar h1 {
     font-size: 1.2rem;
   }
   .topbar p {
     font-size: 0.9rem;
-    margin-top: 4px;
   }
-  .sticky-controls {
+  .app-main {
+    padding: 10px;
+    flex: none;
+    overflow: visible;
+  }
+  .app-main-head #shapeTitle {
+    font-size: 1.1rem;
+  }
+  #panel-view-3d.view-panel.active,
+  #panel-view-net.view-panel.active {
+    display: block;
+    flex: none;
+    overflow: visible;
+  }
+  #mainCanvas,
+  #netCanvas {
+    flex: none;
+    height: 460px;
+  }
+  #netCanvas {
+    height: 360px;
+  }
+  .geo-bottom-dock {
     position: static;
-    padding: 8px 10px 10px;
-  }
-  .shape-scroll {
-    gap: 8px;
-    padding-bottom: 4px;
-  }
-  .shape-btn {
-    padding: 9px 14px;
-    font-size: 0.86rem;
-    border-width: 2px;
-  }
-  .action-row {
-    margin-top: 8px;
-    gap: 8px;
+    padding: 10px;
+    margin: 10px auto 0;
+    max-width: 520px;
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
   .action-row .btn {
     min-height: 46px;
@@ -470,97 +653,14 @@ body.geo-app {
   .btn.danger {
     box-shadow: 0 4px 0 rgba(200, 90, 120, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.65);
   }
-  .toggle-row {
-    margin-top: 8px;
-    gap: 8px;
-  }
   .geo-toggle {
     min-height: 44px;
-    padding: 8px 10px 8px 8px;
-    gap: 10px;
-    border-radius: 14px;
-    border-width: 2px;
-  }
-  .geo-toggle-input {
-    left: 10px;
-    width: 34px;
-    height: 34px;
+    padding: 8px 10px;
   }
   .geo-toggle-mark {
-    flex: 0 0 34px;
     width: 34px;
     height: 34px;
-    border-radius: 10px;
-    border-width: 3px;
-  }
-  .geo-toggle-mark::after {
-    width: 9px;
-    height: 14px;
-    border-width: 0 4px 4px 0;
-  }
-  .geo-toggle-input:checked + .geo-toggle-mark {
-    box-shadow:
-      0 0 0 3px rgba(123, 200, 255, 0.45),
-      inset 0 2px 8px rgba(255, 255, 255, 0.55),
-      inset 0 -3px 8px rgba(60, 80, 160, 0.25);
-  }
-  .geo-toggle-label {
-    font-size: 0.86rem;
-  }
-  .app-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 10px;
-    flex: none;
-    overflow: visible;
-  }
-  .app-main h2 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-  .view-panel {
-    padding: 12px;
-    border-radius: 18px;
-    border-width: 2px;
-  }
-  #panel-view-3d.view-panel.active,
-  #panel-view-net.view-panel.active {
-    display: block;
-    flex: none;
-    overflow: visible;
-  }
-  #panel-view-info.view-panel.active {
-    overflow: visible;
-  }
-  .view-panel h3 {
-    font-size: 1rem;
-    margin-bottom: 8px;
-  }
-  #mainCanvas,
-  #netCanvas {
-    flex: none;
-    height: 460px;
-    max-height: none;
-    border-radius: 14px;
-    border-width: 3px;
-  }
-  #netCanvas {
-    height: 360px;
-  }
-  .bottom-tabs {
-    position: static;
-    margin: 10px auto;
-    max-width: 520px;
-    padding: 8px;
-    gap: 8px;
-    border-radius: 18px;
-    border-width: 2px;
-  }
-  .tab-btn {
-    padding: 11px 6px;
-    font-size: 0.88rem;
-    border-radius: 14px;
-    border-width: 2px;
+    flex-basis: 34px;
   }
   .signature {
     display: block;
@@ -568,6 +668,6 @@ body.geo-app {
     color: #8ea5d8;
     font-weight: 800;
     letter-spacing: 1.1px;
-    margin: 8px 0 12px;
+    margin: 12px 0;
   }
 }

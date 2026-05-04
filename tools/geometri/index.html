@@ -8,80 +8,112 @@
 </head>
 <body class="geo-app">
   <div class="geo-app-flow">
-  <header class="topbar">
-    <div class="topbar-row">
-      <button type="button" class="btn-back" id="backToDuellomatik" aria-label="Düellomatik ana sayfaya dön">← Ana sayfa</button>
-    </div>
-    <div class="title-wrap">
-      <h1>Geometri Atölyesi</h1>
-      <p id="shapeDesc">Şekilleri elinle çevir; kağıt üstündeki halini ve bilgileri keşfet.</p>
-    </div>
-  </header>
-
-  <section class="sticky-controls" id="sticky-controls" data-active-tab="3d">
-    <div id="shapeButtons" class="shape-scroll"></div>
-    <div class="action-row" id="action-row">
-      <button id="toggleOpenBtn" class="btn primary tab-only-net" type="button">Kağıttaki gibi göster</button>
-      <button id="toggleRotateBtn" class="btn tab-only-not-info" type="button">Kendi kendine dönsün</button>
-      <button id="toggleExplodeBtn" class="btn tab-only-3d" type="button">Yüzleri ayır</button>
-      <button id="resetBtn" class="btn danger" type="button">Başına al</button>
-    </div>
-    <div class="toggle-row" id="geometry-toggles">
-      <label class="geo-toggle">
-        <input id="showFaces" class="geo-toggle-input" type="checkbox" checked>
-        <span class="geo-toggle-mark" aria-hidden="true"></span>
-        <span class="geo-toggle-label">Yüzey</span>
-      </label>
-      <label class="geo-toggle">
-        <input id="showEdges" class="geo-toggle-input" type="checkbox" checked>
-        <span class="geo-toggle-mark" aria-hidden="true"></span>
-        <span class="geo-toggle-label">Ayrıt</span>
-      </label>
-      <label class="geo-toggle">
-        <input id="showVertices" class="geo-toggle-input" type="checkbox" checked>
-        <span class="geo-toggle-mark" aria-hidden="true"></span>
-        <span class="geo-toggle-label">Köşe</span>
-      </label>
-    </div>
-  </section>
-
-  <main class="app-main">
-    <h2 id="shapeTitle">Küp</h2>
-    <section id="panel-view-3d" class="view-panel active">
-      <h3>Şekle bak</h3>
-      <canvas id="mainCanvas"></canvas>
-    </section>
-
-    <section id="panel-view-net" class="view-panel">
-      <h3>Kağıt üstündeki hali</h3>
-      <canvas id="netCanvas"></canvas>
-    </section>
-
-    <section id="panel-view-info" class="view-panel">
-      <h3>Öğren</h3>
-      <ul id="shapeProps"></ul>
-      <p id="shapeNote" class="note"></p>
-      <div class="learn-box">
-        <h4>Sana anlatım</h4>
-        <p id="shapeKidInfo"></p>
+    <header class="topbar">
+      <div class="topbar-row">
+        <button type="button" class="btn-back" id="backToDuellomatik" aria-label="Düellomatik ana sayfaya dön">← Ana sayfa</button>
       </div>
-      <div class="learn-box">
-        <h4>Hayattan örnekler</h4>
-        <ul id="shapeExamples"></ul>
+      <div class="title-wrap">
+        <h1>Geometri Atölyesi</h1>
+        <p id="shapeDesc">Şekilleri çevir; kağıt halini ve bilgileri keşfet.</p>
       </div>
-      <div class="learn-box">
-        <h4>Mini soru</h4>
-        <p id="shapeQuestion"></p>
+    </header>
+
+    <aside id="geo-tools-sheet" class="geo-tools-sheet" role="dialog" aria-modal="true" aria-labelledby="geo-tools-sheet-title" aria-hidden="true">
+      <div class="geo-tools-sheet-panel">
+        <div class="geo-tools-sheet-grab" aria-hidden="true"></div>
+        <div class="geo-tools-sheet-head">
+          <h2 id="geo-tools-sheet-title" class="geo-tools-sheet-title">Şekil ve ayarlar</h2>
+          <button type="button" class="geo-tools-close-btn" id="geo-tools-close-btn" aria-label="Menüyü kapat">Kapat</button>
+        </div>
+        <div class="geo-tools-sheet-body">
+          <p class="geo-tools-hint">Şekli seç; aşağı kaydırarak tüm ayarlara ulaş.</p>
+          <div id="shapeButtons" class="shape-scroll"></div>
+          <section class="sticky-controls" id="sticky-controls" data-active-tab="3d">
+            <div class="action-row" id="action-row">
+              <button id="toggleOpenBtn" class="btn primary tab-only-net" type="button">Kağıttaki gibi göster</button>
+              <button id="toggleRotateBtn" class="btn tab-only-not-info" type="button">Kendi kendine dönsün</button>
+              <button id="toggleExplodeBtn" class="btn tab-only-3d" type="button">Yüzleri ayır</button>
+              <button id="resetBtn" class="btn danger" type="button">Başına al</button>
+            </div>
+            <div class="toggle-row" id="geometry-toggles">
+              <label class="geo-toggle">
+                <input id="showFaces" class="geo-toggle-input" type="checkbox" checked>
+                <span class="geo-toggle-mark" aria-hidden="true"></span>
+                <span class="geo-toggle-label">Yüzey</span>
+              </label>
+              <label class="geo-toggle">
+                <input id="showEdges" class="geo-toggle-input" type="checkbox" checked>
+                <span class="geo-toggle-mark" aria-hidden="true"></span>
+                <span class="geo-toggle-label">Ayrıt</span>
+              </label>
+              <label class="geo-toggle">
+                <input id="showVertices" class="geo-toggle-input" type="checkbox" checked>
+                <span class="geo-toggle-mark" aria-hidden="true"></span>
+                <span class="geo-toggle-label">Köşe</span>
+              </label>
+            </div>
+          </section>
+        </div>
       </div>
-    </section>
-  </main>
+    </aside>
+
+    <main class="app-main">
+      <div class="app-main-head">
+        <h2 id="shapeTitle">Küp</h2>
+        <button type="button" class="geo-tools-open-btn" id="geo-tools-open-btn" aria-controls="geo-tools-sheet" aria-expanded="false">
+          <span class="geo-tools-open-ico" aria-hidden="true">✨</span>
+          <span class="geo-tools-open-txt">Şekil &amp; ayarlar</span>
+        </button>
+      </div>
+
+      <section id="panel-view-3d" class="view-panel active">
+        <h3 class="view-panel-tag">3B</h3>
+        <canvas id="mainCanvas"></canvas>
+      </section>
+
+      <section id="panel-view-net" class="view-panel">
+        <h3 class="view-panel-tag">Kağıt</h3>
+        <canvas id="netCanvas"></canvas>
+      </section>
+
+      <section id="panel-view-info" class="view-panel">
+        <h3 class="view-panel-tag">Bilgi</h3>
+        <ul id="shapeProps"></ul>
+        <p id="shapeNote" class="note"></p>
+        <div class="learn-box">
+          <h4>Sana anlatım</h4>
+          <p id="shapeKidInfo"></p>
+        </div>
+        <div class="learn-box">
+          <h4>Hayattan örnekler</h4>
+          <ul id="shapeExamples"></ul>
+        </div>
+        <div class="learn-box">
+          <h4>Mini soru</h4>
+          <p id="shapeQuestion"></p>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <nav class="bottom-tabs" aria-label="Görünüm seç">
-    <button class="tab-btn active" type="button" data-tab="3d" title="Üç boyutlu model">Şekil</button>
-    <button class="tab-btn" type="button" data-tab="net" title="Düzleştirilmiş kağıt gibi">Kağıt hali</button>
-    <button class="tab-btn" type="button" data-tab="info" title="Bilgi ve soru">Bilgi</button>
-  </nav>
+  <div id="geo-tools-backdrop" class="geo-tools-backdrop" aria-hidden="true"></div>
+
+  <div class="geo-bottom-dock" role="navigation" aria-label="Görünüm">
+    <nav class="bottom-tabs" aria-label="Görünüm seç">
+      <button class="tab-btn active" type="button" data-tab="3d" title="Üç boyutlu model">
+        <span class="tab-ico" aria-hidden="true">🧊</span>
+        <span class="tab-lbl">3B</span>
+      </button>
+      <button class="tab-btn" type="button" data-tab="net" title="Kağıt üstündeki açılım">
+        <span class="tab-ico" aria-hidden="true">📄</span>
+        <span class="tab-lbl">Kağıt</span>
+      </button>
+      <button class="tab-btn" type="button" data-tab="info" title="Bilgi ve soru">
+        <span class="tab-ico" aria-hidden="true">💡</span>
+        <span class="tab-lbl">Bilgi</span>
+      </button>
+    </nav>
+  </div>
 
   <footer class="signature">NASK GAMES</footer>
   <script src="app.js"></script>
