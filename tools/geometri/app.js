@@ -21,6 +21,8 @@ const toggleOpenBtn = document.getElementById("toggleOpenBtn");
 const toggleRotateBtn = document.getElementById("toggleRotateBtn");
 const toggleExplodeBtn = document.getElementById("toggleExplodeBtn");
 const resetBtn = document.getElementById("resetBtn");
+const tabButtons = document.querySelectorAll(".tab-btn");
+const actionRow = document.querySelector(".action-row");
 
 const SHAPES = {
   cube: {
@@ -123,6 +125,8 @@ const state = {
   openTarget: 0,
   openValue: 0,
   strictMode: true,
+  activeTab: "3d",
+  netDrag: null,
   drag: null
 };
 
@@ -216,6 +220,98 @@ function cylinderModel(radius, height, segments) {
   return { vertices, edges, faces };
 }
 
+const CYLINDER_NET_W = 180;
+const CYLINDER_NET_H = 120;
+const CYLINDER_NET_SEG_X = 14;
+const CYLINDER_NET_SEG_Y = 5;
+const CYLINDER_NET_CIRCLE_STEPS = 28;
+
+/** Dikdörtgen çevresi (CCW), silindir yan yüzeyini ince çokgen olarak morflamak için. */
+function rectOutlineCCW(x, y, w, h, segX, segY) {
+  const p = [];
+  for (let i = 0; i <= segX; i += 1) p.push([x + (w * i) / segX, y]);
+  for (let j = 1; j <= segY; j += 1) p.push([x + w, y + (h * j) / segY]);
+  for (let i = segX - 1; i >= 0; i -= 1) p.push([x + (w * i) / segX, y + h]);
+  for (let j = segY - 1; j > 0; j -= 1) p.push([x, y + (h * j) / segY]);
+  return p;
+}
+
+/** Açılım morfı: yan = silindire sarılmış çokgen şerit + iki daire; `cylinderNet` ile köşe sayıları eşleşir. */
+function cylinderMorphModelForNet(radius, height, circleSteps, segX, segY, wNet, hNet) {
+  const hh = height / 2;
+  const twoPi = Math.PI * 2;
+  const beta = twoPi * 0.96;
+  const verts = [];
+  const foldedSide = [];
+  for (let i = 0; i <= segX; i += 1) {
+    const px = (wNet * i) / segX;
+    const u = px / wNet;
+    const a = u * beta;
+    foldedSide.push([radius * Math.cos(a), -hh, radius * Math.sin(a)]);
+  }
+  for (let j = 1; j <= segY; j += 1) {
+    const v = j / segY;
+    foldedSide.push([radius * Math.cos(beta), -hh + v * (2 * hh), radius * Math.sin(beta)]);
+  }
+  for (let i = segX - 1; i >= 0; i -= 1) {
+    const px = (wNet * i) / segX;
+    const u = px / wNet;
+    const a = u * beta;
+    foldedSide.push([radius * Math.cos(a), hh, radius * Math.sin(a)]);
+  }
+  for (let j = segY - 1; j > 0; j -= 1) {
+    const v = j / segY;
+    foldedSide.push([radius * Math.cos(0), -hh + v * (2 * hh), radius * Math.sin(0)]);
+  }
+  verts.push(...foldedSide);
+  const topStart = verts.length;
+  for (let i = 0; i < circleSteps; i += 1) {
+    const a = (i / circleSteps) * twoPi;
+    verts.push([radius * Math.cos(a), hh, radius * Math.sin(a)]);
+  }
+  const botStart = verts.length;
+  for (let i = 0; i < circleSteps; i += 1) {
+    const a = (i / circleSteps) * twoPi;
+    verts.push([radius * Math.cos(a), -hh, radius * Math.sin(a)]);
+  }
+  const sideIdx = foldedSide.map((_, i) => i);
+  const topRing = [];
+  const botRing = [];
+  for (let i = 0; i < circleSteps; i += 1) {
+    topRing.push(topStart + i);
+    botRing.push(botStart + i);
+  }
+  return {
+    vertices: verts,
+    edges: [],
+    faces: [sideIdx, topRing, botRing]
+  };
+}
+
+/** Koni açılım morfı: 2 yüzey (sektör + taban dairesi), `coneNet` ile aynı köşe sayıları. */
+function coneMorphModelForNet(radius, height, sectorSteps = 36, baseSteps = 36) {
+  const hh = height / 2;
+  const startA = -Math.PI * 0.62;
+  const endA = Math.PI * 0.62;
+  const verts = [];
+  verts.push([0, hh, 0]);
+  for (let i = 0; i <= sectorSteps; i += 1) {
+    const t = i / sectorSteps;
+    const a = startA + (endA - startA) * t;
+    verts.push([radius * Math.cos(a), -hh, radius * Math.sin(a)]);
+  }
+  const baseStart = verts.length;
+  for (let i = 0; i < baseSteps; i += 1) {
+    const ang = (i / baseSteps) * Math.PI * 2;
+    verts.push([radius * Math.cos(ang), -hh, radius * Math.sin(ang)]);
+  }
+  const sectorIdx = [];
+  for (let i = 0; i < verts.length - baseSteps; i += 1) sectorIdx.push(i);
+  const baseIdx = [];
+  for (let i = 0; i < baseSteps; i += 1) baseIdx.push(baseStart + i);
+  return { vertices: verts, edges: [], faces: [sectorIdx, baseIdx] };
+}
+
 function coneModel(radius, height, segments) {
   const vertices = [[0, height / 2, 0]];
   const edges = [];
@@ -281,19 +377,16 @@ function prismNet(w, h, d) {
 
 function triangularPrismNet(edge, triH, len) {
   const gap = Math.max(edge, len) * 0.35;
-  const triA = [[0, 0], [edge, 0], [edge / 2, -triH]];
-  const triB = [[0, 0], [edge, 0], [edge / 2, triH]];
-  const closedRectA = rect(0, 0, edge, len);
-  const closedRectB = rect(edge * 0.08, -len * 0.05, edge, len);
-  const closedRectC = rect(edge * 0.16, len * 0.05, edge, len);
-  const closedTriA = offsetPolygon(triA, -edge * 0.02, 0);
-  const closedTriB = offsetPolygon(triB, edge * 1.14, len);
+  const closedQuad = rect(0, 0, edge, len);
+  const closedTri = [[0, 0], [edge, 0], [edge / 2, -triH]];
+  // Sıra triangularPrismModel().faces ile AYNI: [0,1,2], [3,4,5], [0,1,4,3], [1,2,5,4], [2,0,3,5]
+  // open köşe sırası model yüz dolaşımı ile birebir → 3B morf (küp gibi) doğru çalışır.
   return [
-    { closed: closedRectA, open: rect(0, 0, edge, len), color: "#8fc5ff" },
-    { closed: closedRectB, open: rect(edge + gap, 0, edge, len), color: "#a7d4ff" },
-    { closed: closedRectC, open: rect((edge * 2) + (gap * 2), 0, edge, len), color: "#8fc5ff" },
-    { closed: closedTriA, open: offsetPolygon(triA, 0, -(gap * 0.9)), color: "#d2ecff" },
-    { closed: closedTriB, open: offsetPolygon(triB, (edge * 2) + (gap * 2), len + (gap * 0.9)), color: "#d2ecff" }
+    { closed: closedTri, open: [[0, 0], [edge, 0], [edge / 2, -triH]], color: "#d2ecff" },
+    { closed: closedTri, open: [[0, len], [edge, len], [edge / 2, len + triH]], color: "#d2ecff" },
+    { closed: closedQuad, open: rect(0, 0, edge, len), color: "#8fc5ff" },
+    { closed: closedQuad, open: rect(edge + gap, 0, edge, len), color: "#a7d4ff" },
+    { closed: closedQuad, open: rect(-edge, 0, edge, len), color: "#8fc5ff" }
   ];
 }
 
@@ -338,23 +431,29 @@ function sectorPolygon(cx, cy, r, startA, endA, steps = 28) {
 
 function cylinderNet(w, h, r) {
   const gap = h * 0.45;
-  const closedRect = rect(0, 0, w, h);
-  const closedCircle = circlePolygon(w / 2, h / 2, r);
+  const steps = CYLINDER_NET_CIRCLE_STEPS;
+  const segX = CYLINDER_NET_SEG_X;
+  const segY = CYLINDER_NET_SEG_Y;
+  const openSide = rectOutlineCCW(0, 0, w, h, segX, segY);
+  const cx = w / 2;
+  const cy = h / 2;
+  const closedSide = openSide.map(([px, py]) => [cx + (px - cx) * 0.22, cy + (py - cy) * 0.22]);
   return [
-    { closed: closedRect, open: rect(0, 0, w, h), color: "#a7d4ff" },
-    { closed: closedCircle, open: circlePolygon(w * 0.5, -(r + gap * 0.6), r), color: "#d2ecff" },
-    { closed: closedCircle, open: circlePolygon(w * 0.5, h + (r + gap * 0.6), r), color: "#d2ecff" }
+    { closed: closedSide, open: openSide, color: "#a7d4ff" },
+    { closed: circlePolygon(cx, cy, r, steps), open: circlePolygon(w * 0.5, -(r + gap * 0.6), r, steps), color: "#d2ecff" },
+    { closed: circlePolygon(cx, cy, r, steps), open: circlePolygon(w * 0.5, h + (r + gap * 0.6), r, steps), color: "#d2ecff" }
   ];
 }
 
 function coneNet(_baseRadius, sectorRadius, baseCircleR) {
   const gap = sectorRadius * 0.3;
-  const sector = sectorPolygon(0, 0, sectorRadius, -Math.PI * 0.62, Math.PI * 0.62, 36);
-  const collapsedSector = sectorPolygon(0, -baseCircleR * 0.35, sectorRadius * 0.42, -Math.PI * 0.33, Math.PI * 0.33, 24);
-  const closedCircle = circlePolygon(0, 0, baseCircleR, 36);
+  const steps = 36;
+  const sector = sectorPolygon(0, 0, sectorRadius, -Math.PI * 0.62, Math.PI * 0.62, steps);
+  const collapsedSector = sectorPolygon(0, -baseCircleR * 0.35, sectorRadius * 0.42, -Math.PI * 0.33, Math.PI * 0.33, steps);
+  const closedCircle = circlePolygon(0, 0, baseCircleR, steps);
   return [
     { closed: collapsedSector, open: sector, color: "#ffc06a" },
-    { closed: closedCircle, open: circlePolygon(0, sectorRadius + baseCircleR + gap, baseCircleR), color: "#ffd084" }
+    { closed: closedCircle, open: circlePolygon(0, sectorRadius + baseCircleR + gap, baseCircleR, steps), color: "#ffd084" }
   ];
 }
 
@@ -799,56 +898,180 @@ function renderNet() {
     netCtx.fillText("Çünkü küre tek, kesintisiz eğri yüzeyden oluşur.", w / 2, h / 2 + 48);
     return;
   }
-
-  const faces = shape.net();
-  const t = state.openValue;
+  const netFaces = shape.net();
+  const model =
+    state.shapeKey === "cylinder"
+      ? cylinderMorphModelForNet(
+          1.1,
+          2.6,
+          CYLINDER_NET_CIRCLE_STEPS,
+          CYLINDER_NET_SEG_X,
+          CYLINDER_NET_SEG_Y,
+          CYLINDER_NET_W,
+          CYLINDER_NET_H
+        )
+      : state.shapeKey === "cone"
+        ? coneMorphModelForNet(1.25, 2.8, 36, 36)
+        : shape.model();
   const shapeHasEdges = canShowEdges(shape);
   const shapeHasVertices = canShowVertices(shape);
-  const allPts = [];
-  const interpolated = faces.map((f, i) => {
-    const localRaw = (t - i * OPEN_STAGGER) / OPEN_WINDOW;
-    const localT = smoothStep01(localRaw);
-    const points = f.closed.map((c, i2) => [
-      lerp(c[0], f.open[i2][0], localT),
-      lerp(c[1], f.open[i2][1], localT)
-    ]);
-    allPts.push(...points);
-    return { points, color: f.color, localT };
-  });
+  const t = state.openValue;
 
-  const xs = allPts.map((p) => p[0]);
-  const ys = allPts.map((p) => p[1]);
-  const minX = Math.min(...xs);
-  const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
-  const maxY = Math.max(...ys);
-  const width = Math.max(1, maxX - minX);
-  const height = Math.max(1, maxY - minY);
-  const scale = Math.min((w * 0.86) / width, (h * 0.78) / height);
-  const offsetX = w / 2 - ((minX + maxX) / 2) * scale;
-  const offsetY = h / 2 - ((minY + maxY) / 2) * scale;
+  const canMorphFrom3D =
+    model.faces.length === netFaces.length &&
+    model.faces.every((face, i) => face.length === netFaces[i].open.length);
 
-  interpolated.forEach((face) => {
-    const transformed = face.points.map(([x, y]) => [x * scale + offsetX, y * scale + offsetY]);
+  if (!canMorphFrom3D) {
+    const flat = netFaces.map((face, faceIndex) => {
+      const localRaw = (t - faceIndex * OPEN_STAGGER) / OPEN_WINDOW;
+      const localT = smoothStep01(localRaw);
+      const points = face.closed.map((c, i2) => [
+        lerp(c[0], face.open[i2][0], localT),
+        lerp(c[1], face.open[i2][1], localT)
+      ]);
+      return { points, faceIndex };
+    });
+    const pts = flat.flatMap((f) => f.points);
+    const xs = pts.map((p) => p[0]);
+    const ys = pts.map((p) => p[1]);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    const fitScale = Math.min((w * 0.84) / Math.max(1, maxX - minX), (h * 0.8) / Math.max(1, maxY - minY));
+    const ox = w / 2 - ((minX + maxX) / 2) * fitScale;
+    const oy = h / 2 - ((minY + maxY) / 2) * fitScale;
+    const spin = state.rotY * 0.45;
+    const c = Math.cos(spin);
+    const s = Math.sin(spin);
+    const cx = w / 2;
+    const cy = h / 2;
+    const rendered = flat.map((f) => ({
+      faceIndex: f.faceIndex,
+      pts2: f.points.map(([x, y]) => {
+        const sx = x * fitScale + ox;
+        const sy = y * fitScale + oy;
+        const dx = sx - cx;
+        const dy = sy - cy;
+        return [cx + dx * c - dy * s, cy + dx * s + dy * c];
+      })
+    }));
 
     if (showFaces.checked) {
-      netCtx.fillStyle = `${face.color}cc`;
-      drawPolygon(netCtx, transformed, true, false);
+      rendered.forEach((f) => {
+        const hueShift = (f.faceIndex * 27) % 35;
+        netCtx.fillStyle = `hsla(${218 + hueShift}, 80%, 78%, 0.78)`;
+        drawPolygon(netCtx, f.pts2, true, false);
+      });
     }
     if (showEdges.checked && shapeHasEdges) {
-      netCtx.lineWidth = 2;
       netCtx.strokeStyle = "#2240b6";
-      drawPolygon(netCtx, transformed, false, true);
+      netCtx.lineWidth = 2;
+      rendered.forEach((f) => drawPolygon(netCtx, f.pts2, false, true));
     }
     if (showVertices.checked && shapeHasVertices) {
       netCtx.fillStyle = "#ef476f";
-      transformed.forEach(([x, y]) => {
+      rendered.forEach((f) => f.pts2.forEach(([x, y]) => {
         netCtx.beginPath();
-        netCtx.arc(x, y, 3.6, 0, Math.PI * 2);
+        netCtx.arc(x, y, 3.2, 0, Math.PI * 2);
         netCtx.fill();
-      });
+      }));
     }
+    return;
+  }
+
+  const openPoints = netFaces.flatMap((f) => f.open);
+  const nx = openPoints.map((p) => p[0]);
+  const ny = openPoints.map((p) => p[1]);
+  const nMinX = Math.min(...nx);
+  const nMaxX = Math.max(...nx);
+  const nMinY = Math.min(...ny);
+  const nMaxY = Math.max(...ny);
+  const nCx = (nMinX + nMaxX) / 2;
+  const nCy = (nMinY + nMaxY) / 2;
+  const nSize = Math.max(1, nMaxX - nMinX, nMaxY - nMinY);
+  const netToWorld = 5.8 / nSize;
+
+  const morphedFaces = model.faces.map((faceIndices, faceIndex) => {
+    const localRaw = (t - faceIndex * OPEN_STAGGER) / OPEN_WINDOW;
+    const localT = smoothStep01(localRaw);
+    const openPoly = netFaces[faceIndex].open;
+
+    const points3 = faceIndices.map((vi, i2) => {
+      const v = model.vertices[vi];
+      const openP = openPoly[i2];
+      // Silindir: yan dikdörtgen ile daireler aynı düzlemde; daireler üstte çizilince yan yüzey silik kalır.
+      // Açık uçta hafif Z ile yüzeyi net düzlemden ayır + çizim sırası (aşağıda) daire → yan.
+      const sideLift =
+        state.shapeKey === "cylinder" && faceIndex === 0
+          ? 0.1 * localT
+          : state.shapeKey === "cone" && faceIndex === 0
+            ? 0.16 * localT
+            : 0;
+      const openWorld = [
+        (openP[0] - nCx) * netToWorld,
+        -(openP[1] - nCy) * netToWorld,
+        sideLift
+      ];
+      return [
+        lerp(v[0], openWorld[0], localT),
+        lerp(v[1], openWorld[1], localT),
+        lerp(v[2], openWorld[2], localT)
+      ];
+    });
+    const rotated = points3.map((p) => rotatePoint(p, state.rotX, state.rotY));
+    const depth = rotated.reduce((sum, p) => sum + p[2], 0) / rotated.length;
+    return { rotated, faceIndex, depth };
   });
+
+  const preProjected = morphedFaces.flatMap((f) => f.rotated.map((p) => projectPoint(p, w, h, 1)));
+  const pXs = preProjected.map((p) => p[0]);
+  const pYs = preProjected.map((p) => p[1]);
+  const fitScale = Math.min((w * 0.84) / Math.max(1, Math.max(...pXs) - Math.min(...pXs)), (h * 0.78) / Math.max(1, Math.max(...pYs) - Math.min(...pYs)));
+
+  let renderedFaces = morphedFaces.map((f) => {
+    const pts2 = f.rotated.map((p) => {
+      const q = projectPoint(p, w, h, fitScale);
+      return [q[0], q[1]];
+    });
+    return { pts2, faceIndex: f.faceIndex, depth: f.depth };
+  }).sort((a, b) => a.depth - b.depth);
+
+  if (state.shapeKey === "cylinder") {
+    const pick = (idx) => renderedFaces.find((x) => x.faceIndex === idx);
+    renderedFaces = [pick(1), pick(2), pick(0)].filter(Boolean);
+  }
+  if (state.shapeKey === "cone") {
+    const pick = (idx) => renderedFaces.find((x) => x.faceIndex === idx);
+    renderedFaces = [pick(1), pick(0)].filter(Boolean);
+  }
+
+  if (showFaces.checked) {
+    renderedFaces.forEach((f) => {
+      const hueShift = (f.faceIndex * 29) % 35;
+      const isConeOrange = state.shapeKey === "cone";
+      const baseHue = isConeOrange ? 32 : 218;
+      const alpha =
+        state.shapeKey === "cylinder" && f.faceIndex === 0 ? 0.9 : isConeOrange ? 0.82 : 0.78;
+      const light =
+        state.shapeKey === "cylinder" && f.faceIndex === 0 ? 76 : isConeOrange ? 72 : 78;
+      netCtx.fillStyle = `hsla(${baseHue + hueShift}, ${isConeOrange ? 88 : 82}%, ${light}%, ${alpha})`;
+      drawPolygon(netCtx, f.pts2, true, false);
+    });
+  }
+  if (showEdges.checked && shapeHasEdges) {
+    netCtx.strokeStyle = "#2240b6";
+    netCtx.lineWidth = 2;
+    renderedFaces.forEach((f) => drawPolygon(netCtx, f.pts2, false, true));
+  }
+  if (showVertices.checked && shapeHasVertices) {
+    netCtx.fillStyle = "#ef476f";
+    renderedFaces.forEach((f) => f.pts2.forEach(([x, y]) => {
+      netCtx.beginPath();
+      netCtx.arc(x, y, 3.3, 0, Math.PI * 2);
+      netCtx.fill();
+    }));
+  }
 }
 
 function animate() {
@@ -919,9 +1142,41 @@ function bindEvents() {
   mainCanvas.addEventListener("pointerup", endDrag);
   mainCanvas.addEventListener("pointercancel", endDrag);
 
+  netCanvas.addEventListener("pointerdown", (e) => {
+    netCanvas.setPointerCapture(e.pointerId);
+    state.netDrag = { x: e.clientX, y: e.clientY, rotX: state.rotX, rotY: state.rotY };
+  });
+  netCanvas.addEventListener("pointermove", (e) => {
+    if (!state.netDrag || state.activeTab !== "net") return;
+    const dx = (e.clientX - state.netDrag.x) * 0.01;
+    const dy = (e.clientY - state.netDrag.y) * 0.01;
+    state.rotY = state.netDrag.rotY + dx;
+    state.rotX = Math.max(-1.5, Math.min(1.5, state.netDrag.rotX + dy));
+  });
+  netCanvas.addEventListener("pointerup", () => { state.netDrag = null; });
+  netCanvas.addEventListener("pointercancel", () => { state.netDrag = null; });
+
   window.addEventListener("resize", () => {
     renderMain();
     renderNet();
+  });
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.tab;
+      document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      state.activeTab = key;
+      document.getElementById("panel-view-3d").classList.toggle("active", key === "3d");
+      document.getElementById("panel-view-net").classList.toggle("active", key === "net");
+      document.getElementById("panel-view-info").classList.toggle("active", key === "info");
+      const showOnly3d = key !== "3d";
+      [toggleRotateBtn, toggleExplodeBtn].forEach((el) => {
+        el.classList.toggle("is-hidden", showOnly3d);
+      });
+      actionRow.classList.toggle("mode-net", key === "net");
+      actionRow.classList.toggle("mode-info", key === "info");
+    });
   });
 }
 
@@ -929,4 +1184,6 @@ setupButtons();
 state.strictMode = strictMode.checked;
 updateInfo();
 bindEvents();
+document.getElementById("panel-view-3d").classList.add("active");
+[toggleRotateBtn, toggleExplodeBtn].forEach((el) => el.classList.remove("is-hidden"));
 animate();
