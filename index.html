@@ -219,6 +219,10 @@
 <div class="main-screen-hero-center">
 <div class="student-info">
 <img alt="Öğrenci Fotoğrafı" class="student-photo" id="student-photo" src="" style="display: none;"/>
+<button class="profile-tools-button" id="tools-open-button" type="button" aria-label="Araçlar menüsünü aç">
+<span class="profile-tools-icon" aria-hidden="true">🧰</span>
+<span class="profile-tools-text">Araçlar</span>
+</button>
 <div class="student-name" id="student-name"></div>
 <div class="star-frame" id="student-stars"></div>
 <div class="rank-label" id="student-rank"></div>
@@ -267,7 +271,6 @@
 <button class="kupa-siralama-button" id="kupa-siralama-button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;">
                 🏆 Sezon Sıralaması
             </button>
-<button class="kupa-siralama-button" id="tools-open-button" type="button">🧰 Araçlar</button>
 <button class="logout-button" id="logout-button">Çıkış Yap</button>
 </div>
 <div class="nask-game-signature" aria-hidden="true">NASK GAME</div>
@@ -1098,38 +1101,84 @@
 }
 </style>
 <style id="nask-tools-style">
-#tools-open-button{
+.student-info{
   position:relative;
-  overflow:hidden;
-  background:linear-gradient(135deg,#ff7a18,#ff2d95 45%, #5b8cff);
-  color:#fff;
-  border:none;
-  border-radius:14px;
-  padding:11px 18px;
-  font-weight:800;
-  letter-spacing:.3px;
-  box-shadow:0 10px 24px rgba(255,45,149,.38), 0 0 0 2px rgba(255,255,255,.2) inset;
-  animation:naskToolsPulse 2s ease-in-out infinite;
 }
-#tools-open-button::after{
+#tools-open-button.profile-tools-button{
+  position:absolute;
+  top:6px;
+  right:-8px;
+  z-index:5;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:none;
+  border-radius:999px;
+  padding:8px 12px 8px 9px;
+  cursor:pointer;
+  color:#fff;
+  font-weight:800;
+  letter-spacing:.2px;
+  background:linear-gradient(135deg,#273d75,#3254a2 42%,#5b8cff);
+  box-shadow:0 12px 30px rgba(36,65,132,.36), 0 0 0 1px rgba(255,255,255,.36) inset;
+  isolation:isolate;
+  overflow:hidden;
+  transition:transform .2s ease, filter .2s ease, box-shadow .2s ease;
+  animation:naskToolsPulse 2.8s ease-in-out infinite;
+}
+#tools-open-button.profile-tools-button::after{
   content:"";
   position:absolute;
-  top:-40%;
-  left:-25%;
-  width:40%;
+  inset:-120% auto -120% -24%;
+  width:34%;
   height:180%;
   transform:rotate(18deg);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
-  animation:naskToolsShine 2.4s linear infinite;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  animation:naskToolsShine 2.8s linear infinite;
+  z-index:-1;
 }
-#tools-open-button:hover{ filter:brightness(1.08); transform:translateY(-1px) scale(1.02); }
+.profile-tools-icon{
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#7aa3ff,#9bb8ff);
+  box-shadow:0 2px 8px rgba(8,17,46,.28) inset, 0 1px 4px rgba(17,32,78,.3);
+  font-size:13px;
+}
+.profile-tools-text{
+  font-size:.8rem;
+  line-height:1;
+}
+#tools-open-button.profile-tools-button:hover{
+  filter:brightness(1.07);
+  transform:translateY(-2px);
+  box-shadow:0 14px 34px rgba(36,65,132,.45), 0 0 0 1px rgba(255,255,255,.44) inset;
+}
 @keyframes naskToolsShine{
   0%{ left:-35%; }
   100%{ left:120%; }
 }
 @keyframes naskToolsPulse{
-  0%,100%{ box-shadow:0 10px 24px rgba(255,45,149,.38), 0 0 0 2px rgba(255,255,255,.2) inset; }
-  50%{ box-shadow:0 16px 32px rgba(91,140,255,.42), 0 0 0 2px rgba(255,255,255,.28) inset; }
+  0%,100%{ box-shadow:0 12px 30px rgba(36,65,132,.36), 0 0 0 1px rgba(255,255,255,.36) inset; }
+  50%{ box-shadow:0 16px 34px rgba(91,140,255,.46), 0 0 0 1px rgba(255,255,255,.42) inset; }
+}
+@media (max-width: 640px){
+  #tools-open-button.profile-tools-button{
+    top:8px;
+    right:-2px;
+    padding:7px 10px 7px 8px;
+    gap:6px;
+  }
+  .profile-tools-icon{
+    width:22px;
+    height:22px;
+    font-size:12px;
+  }
+  .profile-tools-text{
+    font-size:.74rem;
+  }
 }
 
 .tools-modal{
