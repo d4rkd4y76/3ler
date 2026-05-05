@@ -275,7 +275,7 @@
             </button>
 <button class="logout-button" id="logout-button">Çıkış Yap</button>
 </div>
-<div class="nask-game-signature" aria-hidden="true">NASK GAME</div>
+<div class="nask-game-signature" aria-hidden="true">NASK GAMES</div>
 </div>
 <!-- Giriş panosu (DOM’da erken: Firebase cache ile yarışmayı önler) -->
 <div id="giris-panosu-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Giriş panosu">
@@ -664,7 +664,7 @@
 <div class="nova-store-ambient" aria-hidden="true"></div>
 <header class="profile-change-header nova-store-header">
 <div class="nova-store-title-block">
-<p class="nova-store-kicker">NASK GAME</p>
+<p class="nova-store-kicker">NASK GAMES</p>
 <h2 class="store-title">Mağaza <span class="cart-icon" aria-hidden="true">🛒</span></h2>
 <p class="nova-store-sub">Avatar, çerçeve ve dahası burada.</p>
 </div>
@@ -834,6 +834,7 @@
     </div>
     <p class="tools-modal-sub">Ders araçlarını buradan açabilirsin.</p>
     <button id="open-geometry-app-btn" class="tools-geometry-btn" type="button">📐 GEOMETRİK CİSİMLER</button>
+    <button id="open-matter-states-app-btn" class="tools-geometry-btn tools-matter-btn" type="button">🧪 FEN: MADDENİN HALLERİ</button>
   </div>
 </div>
 <!-- === Nova: Premium Bitiş Özeti (JS v3) === -->
@@ -1239,6 +1240,11 @@
   box-shadow:0 10px 24px rgba(54,91,255,.34);
 }
 .tools-geometry-btn:hover{ filter:brightness(1.06); }
+.tools-matter-btn{
+  margin-top:10px;
+  background:linear-gradient(135deg,#0ea5e9,#10b981);
+  box-shadow:0 10px 24px rgba(14,165,233,.33);
+}
 </style>
 <script id="nask-tools-script">
 (function () {
@@ -1246,7 +1252,8 @@
   const modal = document.getElementById("tools-modal");
   const closeBtn = document.getElementById("tools-close-button");
   const geometryBtn = document.getElementById("open-geometry-app-btn");
-  if (!openBtn || !modal || !closeBtn || !geometryBtn) return;
+  const matterBtn = document.getElementById("open-matter-states-app-btn");
+  if (!openBtn || !modal || !closeBtn || !geometryBtn || !matterBtn) return;
 
   const closeModal = () => {
     modal.classList.remove("open");
@@ -1265,6 +1272,9 @@
 
   geometryBtn.addEventListener("click", () => {
     window.open("./tools/geometri/index.html", "_blank", "noopener,noreferrer");
+  });
+  matterBtn.addEventListener("click", () => {
+    window.open("./tools/maddenin-halleri/index.html", "_blank", "noopener,noreferrer");
   });
 })();
 </script>

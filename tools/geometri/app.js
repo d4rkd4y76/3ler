@@ -89,7 +89,7 @@ const SHAPES = {
     kidInfo: "Silindirin iki daire tabanı vardır. Yan kısmı dümdüz değil, eğri bir yüzeydir.",
     examples: ["Konserve kutusu", "Su bardağı", "Pil"],
     question: "Silindirin köşesi var mıdır?",
-    props: { faces: 3, edges: 2, vertices: 0 },
+    props: { faces: 3, edges: 0, vertices: 0 },
     model: () => cylinderModel(1.1, 2.6, 20),
     net: () => cylinderNet(180, 120, 58)
   },
@@ -100,7 +100,7 @@ const SHAPES = {
     kidInfo: "Koninin altı daire, üstü ise tek bir noktada biter. Bu noktaya tepe deriz.",
     examples: ["Dondurma külahı", "Parti şapkası", "Trafik konisi"],
     question: "Koninin kaç tepe noktası vardır?",
-    props: { faces: 2, edges: 1, vertices: 1 },
+    props: { faces: 2, edges: 0, vertices: 0 },
     model: () => coneModel(1.25, 2.8, 24),
     net: () => coneNet(90, 210, 58)
   },
@@ -533,7 +533,7 @@ function canShowEdges(shape) {
 }
 
 function canShowVertices(shape) {
-  if (["cylinder", "sphere"].includes(state.shapeKey)) return false;
+  if (["cylinder", "cone", "sphere"].includes(state.shapeKey)) return false;
   return shape.props.vertices > 0;
 }
 
@@ -642,7 +642,7 @@ function updateInfo() {
   shapeDesc.textContent = shape.desc;
   shapeProps.innerHTML = [
     `<li>Yüz sayısı: ${shape.props.faces}</li>`,
-    `<li>Kenar (ayrıt) sayısı: ${shape.props.edges}</li>`,
+    `<li>Ayrıt sayısı: ${shape.props.edges}</li>`,
     `<li>Köşe sayısı: ${shape.props.vertices}</li>`
   ].join("");
   shapeNote.textContent =
@@ -803,19 +803,7 @@ function renderConeMain(w, h) {
     });
   }
 
-  if (showEdges.checked) {
-    mainCtx.strokeStyle = "#2240b6";
-    mainCtx.lineWidth = 1.6;
-    drawPathFromPoints(mainCtx, base, true);
-    mainCtx.stroke();
-  }
-
-  if (showVertices.checked) {
-    mainCtx.fillStyle = "#ef476f";
-    mainCtx.beginPath();
-    mainCtx.arc(apex.x, apex.y, 4.6, 0, Math.PI * 2);
-    mainCtx.fill();
-  }
+  // Konide eğitimsel gösterimde ayrıt/köşe vurgusu kullanılmıyor.
 }
 
 function renderSphereMain(w, h) {
@@ -1179,15 +1167,7 @@ function renderNet() {
   }
   if (showVertices.checked && shapeHasVertices) {
     netCtx.fillStyle = "#ef476f";
-    if (state.shapeKey === "cone") {
-      const apexFace = renderedFaces.find((ff) => ff.faceIndex === 0);
-      if (apexFace && apexFace.pts2.length) {
-        const [ax, ay] = apexFace.pts2[0];
-        netCtx.beginPath();
-        netCtx.arc(ax, ay, 4, 0, Math.PI * 2);
-        netCtx.fill();
-      }
-    } else if (state.shapeKey === "cylinder") {
+    if (state.shapeKey === "cylinder" || state.shapeKey === "cone") {
       /* Silindir/koni eğri yüzeylerde çokgen örneklemesi köşe değildir; açılımda kırmızı nokta gösterme. */
     } else {
       renderedFaces.forEach((f) => f.pts2.forEach(([x, y]) => {
