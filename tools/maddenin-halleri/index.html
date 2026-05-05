@@ -18,6 +18,10 @@
 
     <main class="stage">
       <section class="control-card">
+        <div class="status-strip" aria-live="polite">
+          <span class="status-pill" id="phase-pill">Hal: Sıvı</span>
+          <span class="status-pill status-temp" id="energy-pill">Enerji: Orta</span>
+        </div>
         <div class="phase-tabs" role="tablist" aria-label="Maddenin halleri">
           <button type="button" class="phase-btn active" data-phase="solid">🧊 Katı</button>
           <button type="button" class="phase-btn" data-phase="liquid">💧 Sıvı</button>
@@ -52,6 +56,7 @@
         <p class="model-note">Su 0°C'de donar, 100°C'de kaynar.</p>
         <p id="phase-desc" class="phase-desc"></p>
         <p id="event-desc" class="event-desc">İpucu: Düğmelere basarak maddenin hal değişimini izle.</p>
+        <div class="auto-alert" id="auto-alert" aria-live="polite" aria-atomic="true"></div>
       </section>
 
       <section class="viz-card">
@@ -73,6 +78,10 @@
         <article class="info-item">
           <h3>Günlük örnek</h3>
           <p id="sample-text"></p>
+        </article>
+        <article class="info-item">
+          <h3>Sınıfta sor</h3>
+          <p id="quiz-text">Sence sıcaklık arttıkça tanecikler neden daha hızlı hareket ediyor?</p>
         </article>
       </section>
     </main>

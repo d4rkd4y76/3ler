@@ -1,14 +1,13 @@
 const canvas = document.getElementById("matter-canvas");
 const ctx = canvas.getContext("2d");
-
 const tempSlider = document.getElementById("temp-slider");
 const tempValue = document.getElementById("temp-value");
 const phaseButtons = Array.from(document.querySelectorAll(".phase-btn"));
 const eventButtons = Array.from(document.querySelectorAll(".event-btn"));
+const styleButtons = Array.from(document.querySelectorAll(".style-btn"));
 const eventPanel = document.querySelector(".event-panel");
 const eventToggleBtn = document.getElementById("event-toggle-btn");
 const eventDrawer = document.getElementById("event-drawer");
-const styleButtons = Array.from(document.querySelectorAll(".style-btn"));
 const stylePanel = document.querySelector(".style-panel");
 const styleToggleBtn = document.getElementById("style-toggle-btn");
 const styleDrawer = document.getElementById("style-drawer");
@@ -17,51 +16,45 @@ const eventDesc = document.getElementById("event-desc");
 const orderText = document.getElementById("order-text");
 const motionText = document.getElementById("motion-text");
 const sampleText = document.getElementById("sample-text");
+const quizText = document.getElementById("quiz-text");
 const pointInfo = document.getElementById("point-info");
+const autoAlert = document.getElementById("auto-alert");
+const phasePill = document.getElementById("phase-pill");
+const energyPill = document.getElementById("energy-pill");
 const backBtn = document.getElementById("back-btn");
 
 const PHASE_INFO = {
   solid: {
-    desc: "Su katı halde buz olur. Tanecikler düzenli dizilir ve yerinde titreşir.",
-    order: "Tanecikler çok yakındır ve düzenli sıra halindedir.",
-    motion: "Çok az hareket ederler; yer değiştirmezler.",
-    sample: "Buz küpü, dondurulmuş su"
+    title: "Katı",
+    desc: "Katıda tanecikler çok yakın durur. Birbirine sıkı tutunur ve sadece titreşir.",
+    order: "Tanecikler düzenli sıra halinde ve çok yakındır.",
+    motion: "Yer değiştirmezler, sadece bulundukları noktada titreşirler.",
+    sample: "Buz küpü, taş, metal kaşık",
+    quiz: "Sence buz neden kendi şeklini koruyabiliyor?"
   },
   liquid: {
-    desc: "Su sıvı halde akar. Tanecikler yakın ama kayarak hareket eder.",
-    order: "Tanecikler düzensizdir; aralarında küçük boşluklar vardır.",
-    motion: "Birbirlerinin üzerinden kayabilirler.",
-    sample: "Bardaktaki su, yağmur damlası"
+    title: "Sıvı",
+    desc: "Sıvıda tanecikler yakın ama daha özgürdür. Birbirinin üzerinden kayarak akar.",
+    order: "Tanecikler birbirine yakındır ancak düzen tam değildir.",
+    motion: "Akışkan hareket ederler ve kabın şeklini alırlar.",
+    sample: "Su, süt, meyve suyu",
+    quiz: "Neden suyu farklı bardaklara koyunca şekli değişiyor?"
   },
   gas: {
-    desc: "Su gaz halde buhar olur. Tanecikler uzak ve çok hızlıdır.",
+    title: "Gaz",
+    desc: "Gazda tanecikler çok uzaktadır ve çok hızlı hareket eder.",
     order: "Tanecikler arasında büyük boşluklar vardır.",
-    motion: "Her yöne hızlı hareket ederler.",
-    sample: "Çaydanlıktan çıkan buhar"
+    motion: "Her yöne hızlıca yayılırlar.",
+    sample: "Su buharı, hava, parfüm kokusu",
+    quiz: "Parfüm kokusu odada neden hızlı yayılır?"
   }
 };
 
 const EVENT_INFO = {
-  melt: {
-    text: "Erime: Buz 0°C'de çözülmeye başlar ve suya döner.",
-    phase: "liquid",
-    temp: 0
-  },
-  freeze: {
-    text: "Donma: Su 0°C'de buz olmaya başlar.",
-    phase: "solid",
-    temp: 0
-  },
-  evaporate: {
-    text: "Buharlaşma/Kaynama: Su 100°C'de hızla buhara dönüşür.",
-    phase: "gas",
-    temp: 100
-  },
-  condense: {
-    text: "Yoğunlaşma: Buhar soğuk yüzeyde damlacıklara dönüşür.",
-    phase: "liquid",
-    temp: 40
-  }
+  melt: { text: "Erime: Buz ısı alınca sıvı suya dönüşür.", phase: "liquid", temp: 2 },
+  freeze: { text: "Donma: Su ısı kaybedince katı buz olur.", phase: "solid", temp: -3 },
+  evaporate: { text: "Kaynama/Buharlaşma: Su 100°C civarında hızla gaza dönüşür.", phase: "gas", temp: 100 },
+  condense: { text: "Yoğunlaşma: Gaz soğuyunca küçük su damlacıkları oluşur.", phase: "liquid", temp: 40 }
 };
 
 const state = {
@@ -70,15 +63,17 @@ const state = {
   style: "pro",
   particles: [],
   transition: 1,
-  eventText: "İpucu: Erime, donma, buharlaşma ve yoğunlaşmaya tıklayıp izle.",
+  eventText: "İpucu: Hal değişimi düğmelerine bas ve sıcaklığı değiştir.",
   lessonEffect: null,
-  shownAt: { freeze: false, boil: false }
+  freezeShown: false,
+  boilShown: false,
+  alertMeta: null
 };
 
 function resizeCanvas() {
   const ratio = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
   const w = Math.max(320, Math.floor(canvas.clientWidth * ratio));
-  const h = Math.max(190, Math.floor(canvas.clientHeight * ratio));
+  const h = Math.max(220, Math.floor(canvas.clientHeight * ratio));
   if (canvas.width !== w || canvas.height !== h) {
     canvas.width = w;
     canvas.height = h;
@@ -87,32 +82,67 @@ function resizeCanvas() {
 }
 
 function buildParticles() {
-  const count = 72;
+  const count = Math.max(64, Math.min(120, Math.floor(canvas.width / 11)));
   state.particles = [];
   for (let i = 0; i < count; i += 1) {
     state.particles.push({
-      x: canvas.width * 0.2 + Math.random() * canvas.width * 0.6,
-      y: canvas.height * 0.2 + Math.random() * canvas.height * 0.6,
-      vx: 0,
-      vy: 0,
+      x: canvas.width * (0.2 + Math.random() * 0.6),
+      y: canvas.height * (0.2 + Math.random() * 0.62),
       tx: 0,
       ty: 0,
-      radius: Math.max(3.2, Math.min(8.5, canvas.width * 0.0085)),
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.2,
+      r: Math.max(2.2, Math.min(5, canvas.width * 0.004)),
       seed: Math.random() * 1000
     });
   }
   assignTargets();
 }
 
-function setPointInfo(text) {
+function showToast(text, durationMs = 3000) {
   if (!pointInfo) return;
   pointInfo.textContent = text;
   pointInfo.classList.add("show");
-  if (typeof gsap !== "undefined") {
-    gsap.fromTo(pointInfo, { y: -6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22 });
-  }
-  clearTimeout(setPointInfo._t);
-  setPointInfo._t = setTimeout(() => pointInfo.classList.remove("show"), 2600);
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => pointInfo.classList.remove("show"), durationMs);
+}
+
+function showAutoAlert(text, opts = {}) {
+  if (!autoAlert) return;
+  const meta = {
+    min: opts.min ?? null,
+    max: opts.max ?? null,
+    until: performance.now() + (opts.durationMs ?? 3600)
+  };
+  state.alertMeta = meta;
+  autoAlert.textContent = text;
+  autoAlert.classList.add("show");
+}
+
+function hideAutoAlert() {
+  if (!autoAlert) return;
+  autoAlert.classList.remove("show");
+  autoAlert.textContent = "";
+  state.alertMeta = null;
+}
+
+function refreshAutoAlertByTemp() {
+  if (!state.alertMeta) return;
+  const now = performance.now();
+  const expired = now > state.alertMeta.until;
+  const below = state.alertMeta.min !== null && state.temp < state.alertMeta.min;
+  const above = state.alertMeta.max !== null && state.temp > state.alertMeta.max;
+  if (expired || below || above) hideAutoAlert();
+}
+
+function updatePills() {
+  const p = PHASE_INFO[state.phase];
+  if (phasePill) phasePill.textContent = `Hal: ${p.title}`;
+  let energy = "Düşük";
+  if (state.temp >= 80) energy = "Çok yüksek";
+  else if (state.temp >= 30) energy = "Orta";
+  if (state.temp < 0) energy = "Çok düşük";
+  if (energyPill) energyPill.textContent = `Enerji: ${energy}`;
 }
 
 function setPhase(phase, fromEvent = false) {
@@ -125,21 +155,24 @@ function setPhase(phase, fromEvent = false) {
   orderText.textContent = info.order;
   motionText.textContent = info.motion;
   sampleText.textContent = info.sample;
-  if (!fromEvent) {
-    state.eventText = "İpucu: Erime, donma, buharlaşma ve yoğunlaşmaya tıklayıp izle.";
-  }
+  if (quizText) quizText.textContent = info.quiz;
+  if (!fromEvent) state.eventText = "İpucu: Hal değişimi düğmelerine bas ve sıcaklığı değiştir.";
   eventDesc.textContent = state.eventText;
+  updatePills();
 }
 
 function assignTargets() {
   const w = canvas.width;
   const h = canvas.height;
-  const cols = 9;
-  const cellW = w * 0.052;
-  const cellH = h * 0.064;
-  const startX = w * 0.23;
-  const startY = h * 0.22;
-  const liquidTop = h * 0.5;
+  const left = w * 0.15;
+  const right = w * 0.85;
+  const top = h * 0.12;
+  const bottom = h * 0.88;
+  const cols = Math.max(8, Math.floor(Math.sqrt(state.particles.length)));
+  const cellW = ((right - left) * 0.84) / cols;
+  const cellH = ((bottom - top) * 0.5) / cols;
+  const startX = left + (right - left) * 0.08;
+  const startY = top + (bottom - top) * 0.3;
 
   state.particles.forEach((p, i) => {
     if (state.phase === "solid") {
@@ -148,41 +181,33 @@ function assignTargets() {
       p.tx = startX + c * cellW;
       p.ty = startY + r * cellH;
     } else if (state.phase === "liquid") {
-      p.tx = w * 0.2 + Math.random() * w * 0.6;
-      p.ty = liquidTop + Math.random() * h * 0.32;
+      p.tx = left + Math.random() * (right - left);
+      p.ty = h * 0.54 + Math.random() * h * 0.3;
     } else {
-      p.tx = w * 0.16 + Math.random() * w * 0.68;
-      p.ty = h * 0.12 + Math.random() * h * 0.75;
+      p.tx = left + Math.random() * (right - left);
+      p.ty = top + Math.random() * (bottom - top);
     }
   });
 }
 
-function updatePhaseFromTemp() {
-  let next = "solid";
-  if (state.temp >= 100) next = "gas";
-  else if (state.temp >= 0) next = "liquid";
-  setPhase(next);
-
-  if (state.temp === 0 && !state.shownAt.freeze) {
-    setPointInfo("0°C: Kritik nokta! Su donabilir, buz eriyebilir.");
-    state.shownAt.freeze = true;
-  }
-  if (state.temp !== 0) state.shownAt.freeze = false;
-
-  if (state.temp === 100 && !state.shownAt.boil) {
-    setPointInfo("100°C: Su kaynar ve buhar artar.");
-    state.shownAt.boil = true;
-  }
-  if (state.temp !== 100) state.shownAt.boil = false;
-}
-
-function drawJar() {
+function drawContainer() {
   const w = canvas.width;
   const h = canvas.height;
-  ctx.strokeStyle = state.style === "neon" ? "rgba(34,211,238,0.62)" : "rgba(45,84,145,0.45)";
-  ctx.lineWidth = Math.max(2, w * 0.004);
+  const x = w * 0.13;
+  const y = h * 0.07;
+  const cw = w * 0.74;
+  const ch = h * 0.86;
+
+  const glass = ctx.createLinearGradient(x, y, x + cw, y + ch);
+  glass.addColorStop(0, "rgba(255,255,255,0.22)");
+  glass.addColorStop(1, "rgba(255,255,255,0.05)");
+  ctx.fillStyle = glass;
   ctx.beginPath();
-  ctx.roundRect(w * 0.13, h * 0.07, w * 0.74, h * 0.86, 18);
+  ctx.roundRect(x, y, cw, ch, Math.min(30, w * 0.04));
+  ctx.fill();
+
+  ctx.strokeStyle = state.style === "neon" ? "rgba(45,212,191,0.6)" : "rgba(30,64,175,0.34)";
+  ctx.lineWidth = Math.max(2, w * 0.0035);
   ctx.stroke();
 }
 
@@ -194,71 +219,74 @@ function applyLessonEffect(t) {
     return;
   }
   const p = age / 3200;
-  if (state.lessonEffect.type === "melt") {
-    ctx.fillStyle = `rgba(56,189,248,${0.1 + 0.15 * (1 - p)})`;
-    ctx.fillRect(0, canvas.height * (0.42 + p * 0.12), canvas.width, canvas.height * 0.6);
-  } else if (state.lessonEffect.type === "freeze") {
-    ctx.strokeStyle = `rgba(147,197,253,${0.35 * (1 - p)})`;
+  const w = canvas.width;
+  const h = canvas.height;
+  if (state.lessonEffect.type === "freeze") {
+    ctx.strokeStyle = `rgba(147,197,253,${0.4 * (1 - p)})`;
     for (let i = 0; i < 18; i += 1) {
-      const x = (i / 18) * canvas.width;
+      const xx = (i / 18) * w;
       ctx.beginPath();
-      ctx.moveTo(x, canvas.height * 0.55);
-      ctx.lineTo(x + Math.sin(i * 1.8 + p * 7) * 18, canvas.height * 0.24);
+      ctx.moveTo(xx, h * 0.58);
+      ctx.lineTo(xx + Math.sin(i + p * 8) * 20, h * 0.22);
       ctx.stroke();
     }
   } else if (state.lessonEffect.type === "evaporate") {
     ctx.strokeStyle = `rgba(191,219,254,${0.4 * (1 - p)})`;
-    for (let i = 0; i < 9; i += 1) {
-      const x = canvas.width * 0.24 + i * canvas.width * 0.06;
+    for (let i = 0; i < 8; i += 1) {
+      const xx = w * (0.24 + i * 0.08);
       ctx.beginPath();
-      ctx.moveTo(x, canvas.height * 0.58);
-      ctx.bezierCurveTo(x - 8, canvas.height * 0.45, x + 10, canvas.height * 0.3, x + Math.sin(i + p * 9) * 14, canvas.height * (0.16 + p * 0.12));
+      ctx.moveTo(xx, h * 0.6);
+      ctx.bezierCurveTo(xx - 8, h * 0.44, xx + 10, h * 0.3, xx + Math.sin(i + p * 9) * 12, h * 0.15);
       ctx.stroke();
     }
+  } else if (state.lessonEffect.type === "melt") {
+    ctx.fillStyle = `rgba(59,130,246,${0.18 * (1 - p)})`;
+    ctx.fillRect(0, h * (0.48 + p * 0.14), w, h);
   } else if (state.lessonEffect.type === "condense") {
-    ctx.fillStyle = `rgba(125,211,252,${0.55 * (1 - p)})`;
-    for (let i = 0; i < 26; i += 1) {
-      const x = canvas.width * 0.18 + ((i * 37) % (canvas.width * 0.64));
-      const y = canvas.height * 0.16 + ((i * 19) % (canvas.height * 0.28)) + p * 36;
+    ctx.fillStyle = `rgba(125,211,252,${0.45 * (1 - p)})`;
+    for (let i = 0; i < 24; i += 1) {
+      const xx = w * 0.18 + ((i * 37) % (w * 0.64));
+      const yy = h * 0.15 + ((i * 17) % (h * 0.26)) + p * 34;
       ctx.beginPath();
-      ctx.arc(x, y, 2.2 + (i % 2), 0, Math.PI * 2);
+      ctx.arc(xx, yy, 2 + (i % 2), 0, Math.PI * 2);
       ctx.fill();
     }
   }
 }
 
 function animateParticles(t) {
-  const speed = 0.28 + ((state.temp + 20) / 140) * 2.4;
-  state.transition = Math.min(1, state.transition + 0.017);
+  const heatFactor = (state.temp + 20) / 140;
+  const speed = 0.6 + heatFactor * 2.6;
+  state.transition = Math.min(1, state.transition + 0.02);
+
+  const left = canvas.width * 0.16;
+  const right = canvas.width * 0.84;
+  const top = canvas.height * 0.11;
+  const bottom = canvas.height * 0.88;
 
   state.particles.forEach((p, i) => {
-    const pull = state.phase === "solid" ? 0.24 : state.phase === "liquid" ? 0.1 : 0.05;
+    const pull = state.phase === "solid" ? 0.26 : state.phase === "liquid" ? 0.11 : 0.045;
     p.x += (p.tx - p.x) * pull * state.transition;
     p.y += (p.ty - p.y) * pull * state.transition;
 
     if (state.phase === "solid") {
-      const j = 0.52 + speed * 0.35;
-      p.vx = Math.sin(t * 0.002 + p.seed) * j * 0.06;
-      p.vy = Math.cos(t * 0.0024 + p.seed) * j * 0.06;
+      const amp = 0.18 + speed * 0.12;
+      p.vx = Math.sin(t * 0.003 + p.seed) * amp;
+      p.vy = Math.cos(t * 0.0032 + p.seed) * amp;
     } else if (state.phase === "liquid") {
-      p.vx += Math.sin(t * 0.0015 + i) * 0.018;
-      p.vy += Math.cos(t * 0.0013 + i) * 0.012;
-      p.vx *= 0.96;
-      p.vy *= 0.96;
+      p.vx += Math.sin((t * 0.0018) + i) * 0.025;
+      p.vy += Math.cos((t * 0.0014) + i) * 0.018;
+      p.vx *= 0.95;
+      p.vy *= 0.95;
     } else {
-      p.vx += (Math.random() - 0.5) * 0.56;
-      p.vy += (Math.random() - 0.5) * 0.56;
-      p.vx = Math.max(-3.1, Math.min(3.1, p.vx));
-      p.vy = Math.max(-3.1, Math.min(3.1, p.vy));
+      p.vx += (Math.random() - 0.5) * 0.55;
+      p.vy += (Math.random() - 0.5) * 0.55;
+      p.vx = Math.max(-3.6, Math.min(3.6, p.vx));
+      p.vy = Math.max(-3.6, Math.min(3.6, p.vy));
     }
 
-    p.x += p.vx * speed;
-    p.y += p.vy * speed * (state.phase === "liquid" ? 0.72 : 1);
-
-    const left = canvas.width * 0.16;
-    const right = canvas.width * 0.84;
-    const top = canvas.height * 0.11;
-    const bottom = canvas.height * 0.88;
+    p.x += p.vx * speed * 0.38;
+    p.y += p.vy * speed * (state.phase === "liquid" ? 0.24 : 0.34);
     if (p.x < left || p.x > right) p.vx *= -1;
     if (p.y < top || p.y > bottom) p.vy *= -1;
     p.x = Math.max(left, Math.min(right, p.x));
@@ -266,30 +294,29 @@ function animateParticles(t) {
   });
 }
 
-function drawScene(t) {
+function drawBackground(t) {
   const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
   if (state.style === "neon") {
-    grad.addColorStop(0, "#0a1530");
-    grad.addColorStop(1, "#10284d");
+    grad.addColorStop(0, "#0b1731");
+    grad.addColorStop(1, "#0f2c53");
   } else if (state.style === "comic") {
-    grad.addColorStop(0, "#fff7d6");
-    grad.addColorStop(1, "#ffe9b8");
+    grad.addColorStop(0, "#fff5cf");
+    grad.addColorStop(1, "#ffe6ad");
   } else {
     grad.addColorStop(0, "#f8fbff");
-    grad.addColorStop(1, "#e8f2ff");
+    grad.addColorStop(1, "#e9f4ff");
   }
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  drawJar();
 
   if (state.phase === "liquid") {
-    const ly = canvas.height * 0.5;
-    ctx.fillStyle = "rgba(79,124,255,0.11)";
+    const ly = canvas.height * 0.52;
+    ctx.fillStyle = "rgba(59,130,246,0.16)";
     ctx.beginPath();
     ctx.moveTo(canvas.width * 0.14, canvas.height * 0.9);
-    ctx.lineTo(canvas.width * 0.14, ly + Math.sin(t * 0.002) * 4);
-    for (let x = canvas.width * 0.14; x <= canvas.width * 0.86; x += 8) {
-      const y = ly + Math.sin(x * 0.04 + t * 0.003) * 3;
+    ctx.lineTo(canvas.width * 0.14, ly + Math.sin(t * 0.0024) * 6);
+    for (let x = canvas.width * 0.14; x <= canvas.width * 0.86; x += 9) {
+      const y = ly + Math.sin(x * 0.035 + t * 0.0032) * 4;
       ctx.lineTo(x, y);
     }
     ctx.lineTo(canvas.width * 0.86, canvas.height * 0.9);
@@ -297,94 +324,109 @@ function drawScene(t) {
     ctx.fill();
   }
 
-  if (state.phase === "solid") {
-    ctx.strokeStyle = state.style === "neon" ? "rgba(34,211,238,0.3)" : "rgba(60,98,178,0.2)";
-    ctx.lineWidth = 1;
-    for (let i = 0; i < state.particles.length; i += 1) {
-      const a = state.particles[i];
-      for (let j = i + 1; j < state.particles.length; j += 1) {
-        const b = state.particles[j];
-        const d = Math.hypot(a.x - b.x, a.y - b.y);
-        if (d < 38) {
-          ctx.globalAlpha = (1 - d / 38) * 0.6;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-    }
-    ctx.globalAlpha = 1;
-  }
-
-  if (state.phase === "gas") {
-    ctx.strokeStyle = state.style === "neon" ? "rgba(45,212,191,0.22)" : "rgba(36,84,145,0.16)";
-    ctx.lineWidth = 1;
-    state.particles.forEach((p) => {
-      ctx.beginPath();
-      ctx.moveTo(p.x, p.y);
-      ctx.lineTo(p.x - p.vx * 5, p.y - p.vy * 5);
-      ctx.stroke();
-    });
-  }
-
-  if ((state.phase === "liquid" && state.temp >= 70) || (state.lessonEffect && state.lessonEffect.type === "evaporate")) {
-    ctx.strokeStyle = state.style === "neon" ? "rgba(186,230,253,0.24)" : "rgba(148,163,184,0.22)";
+  if (state.phase === "gas" || state.temp > 80) {
+    ctx.strokeStyle = state.style === "neon" ? "rgba(148,163,184,0.3)" : "rgba(71,85,105,0.18)";
     ctx.lineWidth = 1.2;
     for (let i = 0; i < 7; i += 1) {
-      const x = canvas.width * (0.24 + i * 0.08);
+      const x = canvas.width * (0.25 + i * 0.08);
       ctx.beginPath();
       ctx.moveTo(x, canvas.height * 0.58);
-      ctx.bezierCurveTo(
-        x - 6,
-        canvas.height * 0.5,
-        x + 8,
-        canvas.height * 0.38,
-        x + Math.sin((t * 0.002) + i) * 10,
-        canvas.height * 0.26
-      );
+      ctx.bezierCurveTo(x - 9, canvas.height * 0.47, x + 9, canvas.height * 0.35, x + Math.sin((t * 0.002) + i) * 10, canvas.height * 0.2);
       ctx.stroke();
     }
   }
+}
 
-  applyLessonEffect(t);
-
-  state.particles.forEach((p) => {
-    const glow = ctx.createRadialGradient(p.x, p.y, 1, p.x, p.y, p.radius * 2.5);
-    if (state.style === "neon") {
-      glow.addColorStop(0, "rgba(34,211,238,0.92)");
-      glow.addColorStop(1, "rgba(167,139,250,0)");
-    } else if (state.style === "comic") {
-      glow.addColorStop(0, "rgba(255,145,75,0.88)");
-      glow.addColorStop(1, "rgba(255,214,110,0)");
-    } else {
-      glow.addColorStop(0, "rgba(79,124,255,0.82)");
-      glow.addColorStop(1, "rgba(25,195,162,0)");
+function drawSolidLinks() {
+  if (state.phase !== "solid") return;
+  ctx.strokeStyle = state.style === "neon" ? "rgba(34,211,238,0.34)" : "rgba(59,130,246,0.22)";
+  ctx.lineWidth = 1;
+  for (let i = 0; i < state.particles.length; i += 1) {
+    const a = state.particles[i];
+    for (let j = i + 1; j < state.particles.length; j += 1) {
+      const b = state.particles[j];
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 34) {
+        ctx.globalAlpha = (1 - d / 34) * 0.65;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
     }
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawParticles() {
+  state.particles.forEach((p) => {
+    const glow = ctx.createRadialGradient(p.x, p.y, 0.5, p.x, p.y, p.r * 2.8);
+    if (state.style === "neon") {
+      glow.addColorStop(0, "rgba(34,211,238,0.95)");
+      glow.addColorStop(1, "rgba(168,85,247,0)");
+      ctx.fillStyle = "#22d3ee";
+    } else if (state.style === "comic") {
+      glow.addColorStop(0, "rgba(251,146,60,0.92)");
+      glow.addColorStop(1, "rgba(251,146,60,0)");
+      ctx.fillStyle = "#ea580c";
+    } else {
+      glow.addColorStop(0, "rgba(59,130,246,0.9)");
+      glow.addColorStop(1, "rgba(6,182,212,0)");
+      ctx.fillStyle = "#2563eb";
+    }
+    ctx.globalAlpha = 0.95;
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius * 2.2, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
     ctx.fill();
+    ctx.globalAlpha = 1;
 
-    if (state.style === "neon") ctx.fillStyle = "#22d3ee";
-    else if (state.style === "comic") ctx.fillStyle = "#f97316";
-    else ctx.fillStyle = "#2f58d9";
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fillStyle = state.style === "comic" ? "#f97316" : state.style === "neon" ? "#22d3ee" : "#2f58d9";
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fill();
-
     if (state.style === "comic") {
-      ctx.strokeStyle = "rgba(24,24,24,0.75)";
-      ctx.lineWidth = 1.1;
+      ctx.strokeStyle = "rgba(15,23,42,0.65)";
+      ctx.lineWidth = 1;
       ctx.stroke();
     }
   });
+}
+
+function drawScene(t) {
+  drawBackground(t);
+  drawContainer();
+  drawSolidLinks();
+  applyLessonEffect(t);
+  drawParticles();
+}
+
+function updatePhaseFromTemp() {
+  let next = "solid";
+  if (state.temp >= 100) next = "gas";
+  else if (state.temp >= 0) next = "liquid";
+  setPhase(next, false);
+
+  if (Math.abs(state.temp) <= 1 && !state.freezeShown) {
+    state.freezeShown = true;
+    showToast("0°C kritik eşik: donma ve erime görülebilir.");
+    showAutoAlert("0°C civarı: donma-erime gözlenir.", { min: -5, max: 6, durationMs: 5000 });
+  }
+  if (Math.abs(state.temp) > 1) state.freezeShown = false;
+
+  if (Math.abs(state.temp - 100) <= 1 && !state.boilShown) {
+    state.boilShown = true;
+    showToast("100°C kritik eşik: kaynama başlar.");
+    showAutoAlert("100°C civarı: su hızla buhara dönüşür.", { min: 95, max: 120, durationMs: 5000 });
+  }
+  if (Math.abs(state.temp - 100) > 1) state.boilShown = false;
 }
 
 function frame(t) {
   resizeCanvas();
   animateParticles(t);
   drawScene(t);
+  refreshAutoAlertByTemp();
   requestAnimationFrame(frame);
 }
 
@@ -395,7 +437,10 @@ tempSlider.addEventListener("input", () => {
 });
 
 phaseButtons.forEach((btn) => {
-  btn.addEventListener("click", () => setPhase(btn.dataset.phase, false));
+  btn.addEventListener("click", () => {
+    setPhase(btn.dataset.phase, false);
+    showToast(`${PHASE_INFO[btn.dataset.phase].title} hali inceleniyor.`);
+  });
 });
 
 eventButtons.forEach((btn) => {
@@ -406,16 +451,14 @@ eventButtons.forEach((btn) => {
     tempSlider.value = String(meta.temp);
     tempValue.textContent = `${meta.temp}°C`;
     state.eventText = meta.text;
+    eventDesc.textContent = meta.text;
     state.lessonEffect = { type: btn.dataset.event, start: performance.now() };
-    if (typeof gsap !== "undefined") {
-      gsap.fromTo(canvas, { scale: 0.985, filter: "brightness(1.16)" }, { scale: 1, filter: "brightness(1)", duration: 0.42, ease: "power2.out" });
-      gsap.fromTo(eventDesc, { y: -6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32, ease: "power2.out" });
-    }
-    if (btn.dataset.event === "evaporate") setPointInfo("100°C'de su kaynar ve buhar artar.");
-    if (btn.dataset.event === "freeze" || btn.dataset.event === "melt") {
-      setPointInfo("0°C: Kritik nokta! Donma ve erime bu sıcaklıkta olur.");
-    }
     setPhase(meta.phase, true);
+    showAutoAlert(meta.text, { durationMs: 4500, min: meta.temp - 20, max: meta.temp + 20 });
+    if (typeof gsap !== "undefined") {
+      gsap.fromTo(canvas, { scale: 0.985, filter: "brightness(1.1)" }, { scale: 1, filter: "brightness(1)", duration: 0.38, ease: "power2.out" });
+      gsap.fromTo(eventDesc, { y: -6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, ease: "power2.out" });
+    }
   });
 });
 
@@ -426,7 +469,7 @@ styleButtons.forEach((btn) => {
     document.body.setAttribute("data-style", style);
     styleButtons.forEach((b) => b.classList.toggle("active", b === btn));
     if (typeof gsap !== "undefined") {
-      gsap.fromTo(canvas, { opacity: 0.9, scale: 0.99 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power1.out" });
+      gsap.fromTo(canvas, { opacity: 0.9, scale: 0.99 }, { opacity: 1, scale: 1, duration: 0.24, ease: "power1.out" });
     }
   });
 });
