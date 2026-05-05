@@ -35,6 +35,7 @@ body.geo-app {
   flex-direction: column;
   padding: 12px clamp(12px, 3vw, 28px) 8px;
   gap: 10px;
+  overflow: hidden;
 }
 
 .topbar {
@@ -170,7 +171,7 @@ body.geo-app {
   flex-direction: column;
   gap: 10px;
   padding: 0 12px 12px;
-  max-height: min(42vh, 320px);
+  max-height: min(32vh, 210px);
 }
 
 .geo-controls-rail.is-expanded .geo-controls-drawer-inner {
@@ -182,19 +183,20 @@ body.geo-app {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   scrollbar-width: thin;
 }
 
 .shape-btn {
   border: 1px solid rgba(43, 31, 22, 0.12);
   background: #fff;
-  border-radius: 14px;
-  padding: 8px 12px;
-  min-width: 110px;
+  border-radius: 12px;
+  padding: 7px 10px;
+  min-width: 96px;
   cursor: pointer;
   text-align: left;
   font-weight: 700;
+  font-size: 0.86rem;
   color: var(--ink);
   box-shadow: 0 6px 14px rgba(43, 31, 22, 0.08);
   flex: 0 0 auto;
@@ -204,7 +206,8 @@ body.geo-app {
   display: block;
   color: var(--muted);
   font-weight: 600;
-  margin-top: 2px;
+  font-size: 0.7rem;
+  margin-top: 1px;
 }
 
 .shape-btn.active {
@@ -215,7 +218,7 @@ body.geo-app {
 .sticky-controls {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .sticky-controls[data-active-tab="info"] .action-row,
@@ -237,15 +240,19 @@ body.geo-app {
 
 .action-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 
 .btn {
   border: none;
-  border-radius: 12px;
-  padding: 8px 12px;
+  border-radius: 10px;
+  padding: 7px 10px;
   font-weight: 700;
+  font-size: 0.8rem;
+  white-space: nowrap;
   cursor: pointer;
   color: #fff;
   background: var(--accent-2);
@@ -265,20 +272,23 @@ body.geo-app {
 
 .toggle-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 14px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 8px 10px;
+  padding-bottom: 2px;
   align-items: center;
 }
 
 .geo-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: var(--ink);
   user-select: none;
+  white-space: nowrap;
 }
 
 .geo-toggle-input {
@@ -289,9 +299,9 @@ body.geo-app {
 }
 
 .geo-toggle-mark {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
   border: 2px solid rgba(43, 31, 22, 0.22);
   background: #fff;
   box-shadow: inset 0 0 0 2px #fff;
@@ -323,7 +333,7 @@ body.geo-app {
   background: var(--panel);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 12px;
+  padding: 10px;
   display: none;
   flex-direction: column;
   gap: 8px;
@@ -440,6 +450,84 @@ canvas#netCanvas {
   color: var(--muted);
   font-size: 0.85rem;
   padding: 6px 0 10px;
+}
+
+@media (max-width: 979px) {
+  .geo-app-flow {
+    padding: 8px 10px 6px;
+    gap: 8px;
+  }
+
+  .topbar {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .btn-back {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .title-wrap h1 {
+    font-size: clamp(1rem, 4.2vw, 1.2rem);
+  }
+
+  .title-wrap p {
+    margin-top: 2px;
+    font-size: 0.8rem;
+  }
+
+  .app-main-head h2 {
+    font-size: 1rem;
+  }
+
+  .geo-controls-rail {
+    border-radius: 14px;
+  }
+
+  .geo-controls-toggle {
+    padding: 9px 10px;
+    font-size: 0.86rem;
+  }
+
+  .geo-controls-drawer-inner {
+    gap: 6px;
+    padding: 0 8px 8px;
+    max-height: min(24vh, 150px);
+  }
+
+  .view-panel {
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  .view-panel-tag {
+    font-size: 0.72rem;
+  }
+
+  .signature {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .title-wrap p {
+    display: none;
+  }
+
+  .geo-controls-drawer-inner {
+    max-height: min(20vh, 116px);
+  }
+
+  .bottom-tabs {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .tab-btn {
+    padding: 7px 4px;
+    font-size: 0.68rem;
+  }
 }
 
 @media (min-width: 980px) {

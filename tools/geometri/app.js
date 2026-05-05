@@ -697,6 +697,13 @@ function projectRotatedPoint(x, y, z, w, h, scale) {
   return { x: projected[0], y: projected[1], z: projected[2] };
 }
 
+function responsiveMainScale(w, h, baseFactor = 0.2) {
+  const shortSide = Math.min(w, h);
+  const aspect = w / Math.max(h, 1);
+  const boost = aspect > 1.2 ? Math.min(1.32, 1 + (aspect - 1.2) * 0.18) : 1;
+  return shortSide * baseFactor * boost;
+}
+
 function drawPathFromPoints(ctx, points, closePath) {
   if (!points.length) return;
   ctx.beginPath();
@@ -710,7 +717,7 @@ function drawPathFromPoints(ctx, points, closePath) {
 function renderCylinderMain(w, h) {
   const radius = 1.25;
   const halfH = 1.35;
-  const scale = Math.min(w, h) * 0.2;
+  const scale = responsiveMainScale(w, h, 0.205);
   const seg = 30;
   const top = [];
   const bottom = [];
@@ -766,7 +773,7 @@ function renderCylinderMain(w, h) {
 function renderConeMain(w, h) {
   const radius = 1.35;
   const height = 2.8;
-  const scale = Math.min(w, h) * 0.2;
+  const scale = responsiveMainScale(w, h, 0.205);
   const seg = 34;
   const apex = projectRotatedPoint(0, height / 2, 0, w, h, scale);
   const base = [];
@@ -814,7 +821,7 @@ function renderConeMain(w, h) {
 function renderSphereMain(w, h) {
   const cx = w / 2;
   const cy = h / 2;
-  const r = Math.min(w, h) * 0.205;
+  const r = responsiveMainScale(w, h, 0.21);
 
   const hlx = cx + Math.cos(state.rotY + Math.PI) * r * 0.35;
   const hly = cy + Math.sin(state.rotX) * r * 0.25 - r * 0.25;
@@ -865,7 +872,7 @@ function renderMain() {
 
   const model = shape.model();
   const explode = state.explodeValue * 0.55;
-  const scale = Math.min(w, h) * 0.2;
+  const scale = responsiveMainScale(w, h, 0.205);
   const shapeHasEdges = canShowEdges(shape);
   const shapeHasVertices = canShowVertices(shape);
 
