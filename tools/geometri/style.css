@@ -446,10 +446,24 @@ canvas#netCanvas {
 }
 
 .signature {
-  text-align: center;
+  position: fixed;
+  right: clamp(10px, 2.2vw, 20px);
+  bottom: calc(var(--geo-dock-h) + env(safe-area-inset-bottom, 0px) + 8px);
+  z-index: 490;
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 31, 22, 0.08);
+  background: rgba(255, 250, 244, 0.72);
+  backdrop-filter: blur(3px);
   color: var(--muted);
-  font-size: 0.85rem;
-  padding: 6px 0 10px;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.78;
+  pointer-events: none;
+  user-select: none;
 }
 
 @media (max-width: 979px) {
@@ -506,7 +520,12 @@ canvas#netCanvas {
   }
 
   .signature {
-    display: none;
+    right: 10px;
+    bottom: calc(var(--geo-dock-h) + env(safe-area-inset-bottom, 0px) + 6px);
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    padding: 3px 7px;
+    opacity: 0.72;
   }
 }
 
