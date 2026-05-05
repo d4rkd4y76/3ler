@@ -826,7 +826,7 @@
 </div>
 
 <!-- Araçlar Modalı -->
-<div id="tools-modal" class="tools-modal" aria-hidden="true">
+<div id="tools-modal" class="tools-modal" aria-hidden="true" hidden>
   <div class="tools-modal-card" role="dialog" aria-modal="true" aria-labelledby="tools-modal-title">
     <div class="tools-modal-header">
       <h3 id="tools-modal-title">Araçlar</h3>
@@ -1258,8 +1258,10 @@
   const closeModal = () => {
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
+    modal.hidden = true;
   };
   const openModal = () => {
+    modal.hidden = false;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
   };
