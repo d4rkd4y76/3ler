@@ -423,9 +423,11 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 .visual .bar-wrap{
   will-change: transform;
 }
+.visual .pizza{ z-index: 2; }
+.visual .bar-wrap{ z-index: 1; }
 /* Odak: Pizza (pizza büyük, çubuk küçük altta) */
 .visual.focus-pizza{
-  grid-template-rows: 1fr auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   align-content: center;
   justify-items: center;
   padding-top: 42px; /* floating seg-toggle için boşluk */
@@ -434,11 +436,15 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 .visual.focus-pizza .pizza{
   width:min(420px, 88%);
   position:relative;
+  align-self: stretch;
+  max-height: 68%;
 }
 .visual.focus-pizza .bar-wrap{
   width:min(520px, 88%);
   margin-top:10px;
   opacity:0.98;
+  align-self: end;
+  max-height: 32%;
 }
 .visual.focus-pizza .bar{
   height:54px;
@@ -449,9 +455,11 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   align-content:center;
   justify-items:center;
   padding-top: 42px;
+  grid-template-rows: minmax(0, 1fr);
 }
 .visual.focus-bar .bar-wrap{
   width:min(560px, 90%);
+  align-self: center;
 }
 .visual.focus-bar .bar{
   height:86px;
@@ -463,6 +471,7 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   width:min(150px, 36%);
   opacity:0.96;
   filter:drop-shadow(0 12px 24px rgba(15,23,42,.18));
+  pointer-events:none;
 }
 .pizza[hidden],
 .bar-wrap[hidden]{ display:none !important; }
@@ -575,6 +584,8 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   .visual.focus-bar .bar-wrap{ width:92%; }
   .visual.focus-bar .bar{ height:76px; }
   .visual.focus-bar .pizza{ width:min(132px, 34%); right:8px; bottom:8px; }
+  .visual.focus-pizza .pizza{ max-height: 64%; }
+  .visual.focus-pizza .bar-wrap{ max-height: 36%; }
   .facts-compact{ gap:6px; }
   .fact-chip{ padding:7px 9px; font-size:.78rem; }
   .seg-btn{ padding:7px 9px; font-size:.78rem; }
