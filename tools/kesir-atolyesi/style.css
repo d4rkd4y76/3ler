@@ -214,6 +214,15 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 .stage-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .stage-title{font-weight:1000;letter-spacing:.02em}
 .seg-toggle{display:flex;gap:8px;background:#eef6ff;border:1px solid rgba(59,130,246,.2);padding:6px;border-radius:999px}
+.seg-float{
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:3;
+  background:rgba(238,246,255,.82);
+  backdrop-filter: blur(10px);
+  box-shadow:0 12px 26px rgba(12,27,60,.12);
+}
 .seg-btn{
   border:none;border-radius:999px;
   padding:8px 10px;
@@ -239,19 +248,50 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   overflow:hidden;
   position:relative;
 }
-.visual.dual{
+.visual .pizza,
+.visual .bar-wrap{
+  will-change: transform;
+}
+/* Odak: Pizza (pizza büyük, çubuk küçük altta) */
+.visual.focus-pizza{
+  grid-template-rows: 1fr auto;
+  align-content: center;
+  justify-items: center;
+  padding-top: 42px; /* floating seg-toggle için boşluk */
+  padding-bottom: 10px;
+}
+.visual.focus-pizza .pizza{
+  width:min(440px, 92%);
+  position:relative;
+}
+.visual.focus-pizza .bar-wrap{
+  width:min(560px, 92%);
+  margin-top:10px;
+  opacity:0.98;
+}
+.visual.focus-pizza .bar{
+  height:54px;
+  border-radius:16px;
+}
+/* Odak: Çubuk (çubuk büyük, pizza küçük köşede) */
+.visual.focus-bar{
   align-content:center;
+  justify-items:center;
+  padding-top: 42px;
 }
-.visual.dual .pizza{
+.visual.focus-bar .bar-wrap{
+  width:min(620px, 94%);
+}
+.visual.focus-bar .bar{
+  height:86px;
+}
+.visual.focus-bar .pizza{
   position:absolute;
-  right:12px;
-  bottom:12px;
-  width:min(180px, 38%);
-  opacity:0.95;
+  right:10px;
+  bottom:10px;
+  width:min(170px, 40%);
+  opacity:0.96;
   filter:drop-shadow(0 12px 24px rgba(15,23,42,.18));
-}
-.visual.dual .bar-wrap{
-  width:min(560px, 94%);
 }
 .pizza[hidden],
 .bar-wrap[hidden]{ display:none !important; }
@@ -311,11 +351,9 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   }
   .panel-controls{ order:1; flex:0 0 auto; }
   .panel-stage{ order:2; flex:1 1 auto; min-height:0; }
-  .panel-controls{
-    max-height:28dvh;
-    overflow:auto;
-  }
-  .visual{min-height:260px}
+  /* Mobil/tablette kaydırma olmasın diye kontrol alanını iyice kompaktlaştırıyoruz */
+  .panel-controls{ overflow: visible; }
+  .visual{min-height: calc(100dvh - 190px); }
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width: 640px){
@@ -325,13 +363,26 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   .chip-btn{ padding:8px 12px; font-weight:900; }
   .tabs{grid-template-columns:1fr 1fr;gap:6px}
   .tab-btn{padding:8px 6px;font-size:.75rem;border-radius:11px}
-  .card{padding:10px}
+  .panel-controls{ padding:10px; gap:8px; }
+  .card{padding:9px}
+  .row{ gap:6px; }
+  .pill{ padding:5px 9px; font-size:.74rem; }
+  .control-grid{ margin-top:8px; gap:8px; }
+  .stepper{ grid-template-columns:36px 1fr 36px; gap:6px; }
+  .step-btn{ height:36px; border-radius:11px; }
+  .step-out{ height:36px; border-radius:11px; }
+  input[type="range"]{ margin-top:6px; }
   .big-frac__num,.big-frac__den{font-size:2rem}
-  .panel-controls{ max-height:26dvh; padding:10px; }
   .hint{ display:none; }
   .big-frac{ display:none; }
-  .visual{min-height:240px}
+  /* Görev kartını mobilde mini hale getir (tek satır) */
+  .card-task{ padding:9px; }
+  .task-sub{ display:none; }
+  .task-actions .primary-btn,
+  .task-actions .secondary-btn{ padding:8px 10px; border-radius:12px; }
+  .task-line{ font-size:.98rem; margin-top:8px; }
+  .visual{ min-height: calc(100dvh - 182px); }
   .facts{grid-template-columns:1fr}
-  .seg-toggle{width:100%;justify-content:space-between}
-  .seg-btn{flex:1;text-align:center}
+  .seg-btn{ padding:7px 9px; }
+  .seg-toggle{ padding:5px; gap:6px; }
 }

@@ -83,17 +83,13 @@
 
       <section class="panel panel-stage" aria-label="Görsel alan">
         <div class="stage">
-          <div class="stage-head">
-            <div class="stage-title">Görsel</div>
-            <div class="seg-toggle" role="group" aria-label="Model seçimi">
+          <div class="visual" id="visual" aria-label="Kesir görselleştirmesi">
+            <div class="seg-toggle seg-float" role="group" aria-label="Model seçimi">
               <button type="button" class="seg-btn active" data-model="pizza">🍕 Pizza</button>
               <button type="button" class="seg-btn" data-model="bar">🧱 Çubuk</button>
             </div>
-          </div>
-
-          <div class="visual" id="visual" aria-label="Kesir görselleştirmesi">
             <svg id="pizza-svg" class="pizza" viewBox="-110 -110 220 220" aria-label="Pizza modeli" role="img"></svg>
-            <div id="bar-wrap" class="bar-wrap" aria-label="Çubuk modeli" role="img" hidden>
+            <div id="bar-wrap" class="bar-wrap" aria-label="Çubuk modeli" role="img">
               <div class="bar" id="bar"></div>
               <div class="bar-legend">
                 <span>0</span>

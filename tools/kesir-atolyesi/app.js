@@ -146,11 +146,14 @@ function setModel(model) {
   state.model = model;
   segButtons.forEach((b) => b.classList.toggle("active", b.dataset.model === model));
   const isPizza = model === "pizza";
-  // Pizza odağı: sadece pizza. Çubuk odağı: çubuk + küçük pizza birlikte (ikisi de aynı kesri gösterir).
+  // Her zaman ikisi de görünür, sadece odak (büyük/küçük) değişir.
   if (pizzaSvg) pizzaSvg.hidden = false;
-  if (barWrap) barWrap.hidden = isPizza;
+  if (barWrap) barWrap.hidden = false;
   const visual = $("#visual");
-  if (visual) visual.classList.toggle("dual", !isPizza);
+  if (visual) {
+    visual.classList.toggle("focus-pizza", isPizza);
+    visual.classList.toggle("focus-bar", !isPizza);
+  }
   render();
 }
 
@@ -418,9 +421,9 @@ function confettiPulse() {
 
 function render() {
   updateFractionTexts();
-
-  if (state.model === "pizza") renderPizza();
-  else renderBar();
+  // Her zaman ikisini de güncelle: odak sadece boyutu/konumu değiştirir.
+  renderPizza();
+  renderBar();
 
   // Animate only the “filled” highlight quickly for attention.
   if (typeof gsap !== "undefined") {
