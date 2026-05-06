@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kesir Atölyesi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-style="pro">
+  <div class="app">
+    <header class="topbar">
+      <button type="button" class="chip-btn" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="title">
+        <h1>Kesir Atölyesi</h1>
+        <p>Pizza ve çubuklarla kesirleri öğren, dene, oyuna çevir.</p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel panel-controls" aria-label="Kontroller">
+        <div class="tabs" role="tablist" aria-label="Atölye modları">
+          <button type="button" class="tab-btn active" data-tab="learn" role="tab" aria-selected="true">📚 Öğren</button>
+          <button type="button" class="tab-btn" data-tab="practice" role="tab" aria-selected="false">🧩 Uygula</button>
+        </div>
+
+        <div class="card">
+          <div class="row">
+            <div class="pill" id="mode-pill">Mod: Öğren</div>
+            <div class="pill pill-good" id="score-pill">Puan: 0</div>
+          </div>
+
+          <div class="control-grid">
+            <div class="control">
+              <label for="denom">Parça sayısı (payda)</label>
+              <div class="stepper">
+                <button type="button" class="step-btn" id="denom-dec" aria-label="Paydayı azalt">−</button>
+                <output id="denom-out" class="step-out">4</output>
+                <button type="button" class="step-btn" id="denom-inc" aria-label="Paydayı artır">+</button>
+              </div>
+              <p class="hint">Payda: bütünü kaç eş parçaya böldük.</p>
+            </div>
+
+            <div class="control">
+              <label for="numer">Boyalı parça (pay)</label>
+              <input id="numer" type="range" min="0" max="4" value="1" />
+              <div class="range-row">
+                <output id="numer-out" class="range-out">1</output>
+                <span class="muted">/</span>
+                <output id="frac-out" class="range-out">4</output>
+              </div>
+              <p class="hint">Pay: boyadığımız parça sayısı.</p>
+            </div>
+          </div>
+
+          <div class="big-frac" aria-label="Gösterilen kesir">
+            <span class="big-frac__num" id="big-num">1</span>
+            <span class="big-frac__bar" aria-hidden="true"></span>
+            <span class="big-frac__den" id="big-den">4</span>
+            <span class="big-frac__name" id="big-name">“1 bölü 4”</span>
+          </div>
+
+          <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+        </div>
+
+        <div class="card card-task" id="task-card" aria-label="Görev kartı">
+          <div class="task-head">
+            <div>
+              <div class="task-title" id="task-title">Görev</div>
+              <div class="task-sub" id="task-sub">Bir kesir seç ve görselde göster.</div>
+            </div>
+            <button type="button" class="ghost-btn" id="new-task-btn">Yeni görev</button>
+          </div>
+          <div class="task-body" id="task-body">
+            <div class="task-line"><b id="task-fraction">1/4</b> kesrini yap!</div>
+            <div class="task-actions">
+              <button type="button" class="primary-btn" id="check-btn">Kontrol et</button>
+              <button type="button" class="secondary-btn" id="hint-btn">İpucu</button>
+            </div>
+            <div class="task-msg" id="task-msg" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel-stage" aria-label="Görsel alan">
+        <div class="stage">
+          <div class="stage-head">
+            <div class="stage-title">Görsel</div>
+            <div class="seg-toggle" role="group" aria-label="Model seçimi">
+              <button type="button" class="seg-btn active" data-model="pizza">🍕 Pizza</button>
+              <button type="button" class="seg-btn" data-model="bar">🧱 Çubuk</button>
+            </div>
+          </div>
+
+          <div class="visual" id="visual" aria-label="Kesir görselleştirmesi">
+            <svg id="pizza-svg" class="pizza" viewBox="-110 -110 220 220" aria-label="Pizza modeli" role="img"></svg>
+            <div id="bar-wrap" class="bar-wrap" aria-label="Çubuk modeli" role="img" hidden>
+              <div class="bar" id="bar"></div>
+              <div class="bar-legend">
+                <span>0</span>
+                <span>1 bütün</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="facts">
+            <div class="fact">
+              <div class="fact-k">Kesir</div>
+              <div class="fact-v" id="fact-frac">1/4</div>
+            </div>
+            <div class="fact">
+              <div class="fact-k">Tür</div>
+              <div class="fact-v" id="fact-type">Basit kesir</div>
+            </div>
+            <div class="fact">
+              <div class="fact-k">Okunuş</div>
+              <div class="fact-v" id="fact-read">Bir bölü dört</div>
+            </div>
+          </div>
+        </div>
+        <span class="signature" aria-hidden="true">NASK GAMES</span>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

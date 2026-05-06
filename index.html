@@ -835,6 +835,7 @@
     <p class="tools-modal-sub">Ders araçlarını buradan açabilirsin.</p>
     <button id="open-geometry-app-btn" class="tools-geometry-btn" type="button">📐 GEOMETRİK CİSİMLER</button>
     <button id="open-matter-states-app-btn" class="tools-geometry-btn tools-matter-btn" type="button">🧪 FEN: MADDENİN HALLERİ</button>
+    <button id="open-fractions-app-btn" class="tools-geometry-btn tools-fractions-btn" type="button">🍕 MAT: KESİR ATÖLYESİ</button>
   </div>
 </div>
 <!-- === Nova: Premium Bitiş Özeti (JS v3) === -->
@@ -1245,6 +1246,11 @@
   background:linear-gradient(135deg,#0ea5e9,#10b981);
   box-shadow:0 10px 24px rgba(14,165,233,.33);
 }
+.tools-fractions-btn{
+  margin-top:10px;
+  background:linear-gradient(135deg,#f97316,#f59e0b);
+  box-shadow:0 10px 24px rgba(245,158,11,.32);
+}
 </style>
 <script id="nask-tools-script">
 (function () {
@@ -1253,7 +1259,8 @@
   const closeBtn = document.getElementById("tools-close-button");
   const geometryBtn = document.getElementById("open-geometry-app-btn");
   const matterBtn = document.getElementById("open-matter-states-app-btn");
-  if (!openBtn || !modal || !closeBtn || !geometryBtn || !matterBtn) return;
+  const fractionsBtn = document.getElementById("open-fractions-app-btn");
+  if (!openBtn || !modal || !closeBtn || !geometryBtn || !matterBtn || !fractionsBtn) return;
 
   const closeModal = () => {
     modal.classList.remove("open");
@@ -1277,6 +1284,9 @@
   });
   matterBtn.addEventListener("click", () => {
     window.open("./tools/maddenin-halleri/index.html", "_blank", "noopener,noreferrer");
+  });
+  fractionsBtn.addEventListener("click", () => {
+    window.open("./tools/kesir-atolyesi/index.html", "_blank", "noopener,noreferrer");
   });
 })();
 </script>
