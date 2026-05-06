@@ -544,7 +544,9 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   .layout{ flex:1; min-height:0; height:100%; }
   .panel-stage{ overflow:hidden; }
   .stage-full{ height:100%; min-height:0; grid-template-rows:auto minmax(0,1fr) auto; }
-  .visual{ min-height:0; height:100%; }
+  /* ÖNEMLİ: visual'a height:100% verme → kontrol barı eziliyor */
+  .visual{ min-height:0; height:auto; width:100%; }
+  .controlbar{ position:relative; z-index:5; }
 }
 @media (max-width: 640px){
   .app{padding:8px;gap:8px;height:100dvh;overflow:hidden}
@@ -565,7 +567,7 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   .frac-mini__num,.frac-mini__den{ font-size:.9rem; }
   .frac-mini__bar{ width:40px; }
   .mini-read{ font-size:.78rem; }
-  .visual{ border-radius:14px; }
+  .visual{ border-radius:14px; height:auto; width:100%; }
   .visual{ padding:8px; }
   .visual.focus-pizza .pizza{ width:86%; }
   .visual.focus-pizza .bar-wrap{ width:90%; }
