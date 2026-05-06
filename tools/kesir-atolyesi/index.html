@@ -17,74 +17,46 @@
     </header>
 
     <main class="layout">
-      <section class="panel panel-controls" aria-label="Kontroller">
-        <div class="tabs" role="tablist" aria-label="Atölye modları">
-          <button type="button" class="tab-btn active" data-tab="learn" role="tab" aria-selected="true">📚 Öğren</button>
-          <button type="button" class="tab-btn" data-tab="practice" role="tab" aria-selected="false">🧩 Uygula</button>
-        </div>
-
-        <div class="card">
-          <div class="row">
-            <div class="pill" id="mode-pill">Mod: Öğren</div>
-            <div class="pill pill-good" id="score-pill">Puan: 0</div>
-          </div>
-
-          <div class="control-grid">
-            <div class="control">
-              <label for="denom">Parça sayısı (payda)</label>
-              <div class="stepper">
-                <button type="button" class="step-btn" id="denom-dec" aria-label="Paydayı azalt">−</button>
-                <output id="denom-out" class="step-out">4</output>
-                <button type="button" class="step-btn" id="denom-inc" aria-label="Paydayı artır">+</button>
+      <section class="panel panel-stage" aria-label="Kesir atölyesi">
+        <div class="stage stage-full">
+          <div class="controlbar" aria-label="Kontrol barı">
+            <div class="controlbar__row">
+              <div class="seg-tabs" role="tablist" aria-label="Atölye modları">
+                <button type="button" class="seg-tab active tab-btn" data-tab="learn" role="tab" aria-selected="true">Öğren</button>
+                <button type="button" class="seg-tab tab-btn" data-tab="practice" role="tab" aria-selected="false">Uygula</button>
               </div>
-              <p class="hint">Payda: bütünü kaç eş parçaya böldük.</p>
-            </div>
-
-            <div class="control">
-              <label for="numer">Boyalı parça (pay)</label>
-              <input id="numer" type="range" min="0" max="4" value="1" />
-              <div class="range-row">
-                <span class="frac-mini" aria-label="Seçilen kesir">
-                  <output id="numer-out" class="frac-mini__num">1</output>
-                  <span class="frac-mini__bar" aria-hidden="true"></span>
-                  <output id="frac-out" class="frac-mini__den">4</output>
-                </span>
+              <div class="mini-pills">
+                <span class="mini-pill" id="mode-pill">Mod: Öğren</span>
+                <span class="mini-pill mini-pill--good" id="score-pill">Puan: 0</span>
               </div>
-              <p class="hint">Pay: boyadığımız parça sayısı.</p>
+            </div>
+
+            <div class="controlbar__row controlbar__row--grid">
+              <div class="mini-field">
+                <div class="mini-label">Payda</div>
+                <div class="mini-stepper">
+                  <button type="button" class="mini-btn" id="denom-dec" aria-label="Paydayı azalt">−</button>
+                  <output id="denom-out" class="mini-out">4</output>
+                  <button type="button" class="mini-btn" id="denom-inc" aria-label="Paydayı artır">+</button>
+                </div>
+              </div>
+
+              <div class="mini-field mini-field--wide">
+                <div class="mini-label">Pay</div>
+                <div class="mini-slider">
+                  <input id="numer" type="range" min="0" max="4" value="1" />
+                  <span class="frac-mini" aria-label="Seçilen kesir">
+                    <output id="numer-out" class="frac-mini__num">1</output>
+                    <span class="frac-mini__bar" aria-hidden="true"></span>
+                    <output id="frac-out" class="frac-mini__den">4</output>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mini-read" id="big-name">“Bir bölü dört — 1’de 4”</div>
             </div>
           </div>
 
-          <div class="big-frac" aria-label="Gösterilen kesir">
-            <span class="big-frac__num" id="big-num">1</span>
-            <span class="big-frac__bar" aria-hidden="true"></span>
-            <span class="big-frac__den" id="big-den">4</span>
-            <span class="big-frac__name" id="big-name">“1 bölü 4”</span>
-          </div>
-
-          <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
-        </div>
-
-        <div class="card card-task" id="task-card" aria-label="Görev kartı">
-          <div class="task-head">
-            <div>
-              <div class="task-title" id="task-title">Görev</div>
-              <div class="task-sub" id="task-sub">Bir kesir seç ve görselde göster.</div>
-            </div>
-            <button type="button" class="ghost-btn" id="new-task-btn">Yeni görev</button>
-          </div>
-          <div class="task-body" id="task-body">
-            <div class="task-line"><b id="task-fraction">1/4</b> kesrini yap!</div>
-            <div class="task-actions">
-              <button type="button" class="primary-btn" id="check-btn">Kontrol et</button>
-              <button type="button" class="secondary-btn" id="hint-btn">İpucu</button>
-            </div>
-            <div class="task-msg" id="task-msg" aria-live="polite"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel panel-stage" aria-label="Görsel alan">
-        <div class="stage">
           <div class="visual" id="visual" aria-label="Kesir görselleştirmesi">
             <div class="seg-toggle seg-float" role="group" aria-label="Model seçimi">
               <button type="button" class="seg-btn active" data-model="pizza">🍕 Pizza</button>
@@ -100,18 +72,30 @@
             </div>
           </div>
 
-          <div class="facts">
-            <div class="fact">
-              <div class="fact-k">Kesir</div>
-              <div class="fact-v" id="fact-frac">1/4</div>
+          <div class="facts facts-compact" aria-label="Bilgi">
+            <span class="fact-chip"><b>Kesir:</b> <span id="fact-frac">1/4</span></span>
+            <span class="fact-chip"><b>Tür:</b> <span id="fact-type">Basit kesir</span></span>
+            <span class="fact-chip"><b>Okunuş:</b> <span id="fact-read">Bir bölü dört — 1’de 4</span></span>
+          </div>
+
+          <div class="toast toast-bar" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+          <div class="task-sheet" id="task-card" aria-label="Görev">
+            <div class="task-sheet__head">
+              <div>
+                <div class="task-kicker">SORU</div>
+                <div class="task-title" id="task-title">Görev</div>
+                <div class="task-sub" id="task-sub">Aşağıdaki kesri görselde göster.</div>
+              </div>
+              <button type="button" class="mini-ghost" id="new-task-btn">Yeni</button>
             </div>
-            <div class="fact">
-              <div class="fact-k">Tür</div>
-              <div class="fact-v" id="fact-type">Basit kesir</div>
-            </div>
-            <div class="fact">
-              <div class="fact-k">Okunuş</div>
-              <div class="fact-v" id="fact-read">Bir bölü dört</div>
+            <div class="task-sheet__body" id="task-body">
+              <div class="task-line"><b id="task-fraction">1/4</b> kesrini yap!</div>
+              <div class="task-actions">
+                <button type="button" class="mini-primary" id="check-btn">Kontrol</button>
+                <button type="button" class="mini-secondary" id="hint-btn">İpucu</button>
+              </div>
+              <div class="task-msg" id="task-msg" aria-live="polite"></div>
             </div>
           </div>
         </div>

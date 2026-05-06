@@ -139,6 +139,9 @@ function setTab(tab) {
     b.classList.toggle("active", active);
     b.setAttribute("aria-selected", active ? "true" : "false");
   });
+  try {
+    document.body.classList.toggle("is-practice", tab === "practice");
+  } catch (_) {}
   if (modePill) {
     const map = { learn: "Öğren", practice: "Uygula" };
     modePill.textContent = `Mod: ${map[tab] || "Öğren"}`;
