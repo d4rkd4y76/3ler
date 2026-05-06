@@ -44,9 +44,11 @@
               <label for="numer">Boyalı parça (pay)</label>
               <input id="numer" type="range" min="0" max="4" value="1" />
               <div class="range-row">
-                <output id="numer-out" class="range-out">1</output>
-                <span class="muted">/</span>
-                <output id="frac-out" class="range-out">4</output>
+                <span class="frac-mini" aria-label="Seçilen kesir">
+                  <output id="numer-out" class="frac-mini__num">1</output>
+                  <span class="frac-mini__bar" aria-hidden="true"></span>
+                  <output id="frac-out" class="frac-mini__den">4</output>
+                </span>
               </div>
               <p class="hint">Pay: boyadığımız parça sayısı.</p>
             </div>

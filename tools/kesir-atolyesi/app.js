@@ -90,6 +90,12 @@ function fractionReadTr(numer, denom) {
   return `${numer}/${denom}`;
 }
 
+function fractionReadTrDual(numer, denom) {
+  const bolu = fractionReadTr(numer, denom);
+  const de = `${numer}’de ${denom}`;
+  return `${bolu} — ${de}`;
+}
+
 function fractionType(numer, denom) {
   if (numer === 0) return "Sıfır kesir";
   if (numer < denom) return "Basit kesir";
@@ -181,10 +187,11 @@ function updateFractionTexts() {
   if (bigDen) bigDen.textContent = String(state.denom);
 
   const read = fractionReadTr(state.numer, state.denom);
-  if (bigName) bigName.textContent = `“${capitalizeTr(read)}”`;
+  const dual = fractionReadTrDual(state.numer, state.denom);
+  if (bigName) bigName.textContent = `“${capitalizeTr(dual)}”`;
   if (factFrac) factFrac.textContent = `${state.numer}/${state.denom}`;
   if (factType) factType.textContent = fractionType(state.numer, state.denom);
-  if (factRead) factRead.textContent = capitalizeTr(read);
+  if (factRead) factRead.textContent = capitalizeTr(dual);
 }
 
 function polarToXY(r, angRad) {
