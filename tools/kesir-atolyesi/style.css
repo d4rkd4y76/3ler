@@ -387,7 +387,8 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 .seg-float{
   position:absolute;
   top:10px;
-  right:10px;
+  left:50%;
+  transform:translateX(-50%);
   z-index:3;
   background:rgba(238,246,255,.82);
   backdrop-filter: blur(10px);
@@ -408,8 +409,11 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 }
 .visual{
   min-height:320px;
-  display:grid;
-  place-items:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
   border-radius:16px;
   border:1px solid rgba(59,130,246,.16);
   background:
@@ -417,7 +421,7 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
     linear-gradient(170deg,#f8fbff,#eaf5ff);
   overflow:hidden;
   position:relative;
-  padding:10px;
+  padding:64px 10px 10px; /* üstteki model seçici için (şekli kapatmasın) */
 }
 .visual .pizza,
 .visual .bar-wrap{
@@ -427,24 +431,15 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 .visual .bar-wrap{ z-index: 1; }
 /* Odak: Pizza (pizza büyük, çubuk küçük altta) */
 .visual.focus-pizza{
-  grid-template-rows: minmax(0, 1fr) auto;
-  align-content: center;
-  justify-items: center;
-  padding-top: 42px; /* floating seg-toggle için boşluk */
-  padding-bottom: 10px;
+  /* tekli görünüm: sadece pizza */
 }
 .visual.focus-pizza .pizza{
-  width:min(420px, 88%);
-  position:relative;
-  align-self: stretch;
-  max-height: 68%;
+  width:min(460px, 92%);
+  max-width:100%;
+  max-height:100%;
 }
 .visual.focus-pizza .bar-wrap{
-  width:min(520px, 88%);
-  margin-top:10px;
-  opacity:0.98;
-  align-self: end;
-  max-height: 32%;
+  display:none;
 }
 .visual.focus-pizza .bar{
   height:54px;
@@ -452,38 +447,33 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 }
 /* Odak: Çubuk (çubuk büyük, pizza küçük köşede) */
 .visual.focus-bar{
-  align-content:center;
-  justify-items:center;
-  padding-top: 42px;
-  grid-template-rows: minmax(0, 1fr);
+  /* tekli görünüm: sadece çubuk */
 }
 .visual.focus-bar .bar-wrap{
-  width:min(560px, 90%);
-  align-self: center;
+  width:min(640px, 96%);
+  max-width:100%;
 }
 .visual.focus-bar .bar{
   height:86px;
 }
 .visual.focus-bar .pizza{
-  position:absolute;
-  right:10px;
-  bottom:10px;
-  width:min(150px, 36%);
-  opacity:0.96;
-  filter:drop-shadow(0 12px 24px rgba(15,23,42,.18));
-  pointer-events:none;
+  display:none;
 }
+
+/* Tekli gösterimde üst üste binme olmasın */
+.pizza[hidden],
+.bar-wrap[hidden]{ display:none !important; }
 .pizza[hidden],
 .bar-wrap[hidden]{ display:none !important; }
 .pizza{
-  width:min(420px, 90%);
+  width:min(460px, 92%);
   height:auto;
   max-width:100%;
   max-height:100%;
   filter:drop-shadow(0 18px 32px rgba(15,23,42,.18));
 }
 .bar-wrap{
-  width:min(520px, 90%);
+  width:min(640px, 96%);
   max-width:100%;
   display:grid;
   gap:10px
@@ -524,20 +514,29 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
 .fact-chip b{color:#1f3b68}
 
 .signature{
-  position:absolute;
-  right:12px;
-  bottom:10px;
-  z-index:3;
+  position:fixed;
+  right: calc(max(10px, env(safe-area-inset-right, 0px) + 10px));
+  bottom: calc(max(10px, env(safe-area-inset-bottom, 0px) + 10px));
+  z-index: 200;
   padding:3px 8px;
   border-radius:999px;
   font-size:.54rem;
   font-weight:900;
   letter-spacing:.08em;
-  color:#45638b;
-  border:1px solid rgba(30,64,175,.15);
-  background:rgba(255,255,255,.7);
+  color:#0f172a;
+  border:1px solid rgba(15, 23, 42, .12);
+  background:rgba(255,255,255,.86);
+  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   pointer-events:none;
   user-select:none;
+}
+
+/* Uygula modunda alttaki sabit soru paneli imzayı kesmesin */
+@media (max-width: 640px){
+  body.is-practice .signature{
+    bottom: calc(clamp(170px, 30dvh, 240px) + max(10px, env(safe-area-inset-bottom, 0px) + 16px));
+  }
 }
 
 @media (max-width: 980px){
@@ -577,15 +576,10 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   .frac-mini__bar{ width:40px; }
   .mini-read{ font-size:.78rem; }
   .visual{ border-radius:14px; height:auto; width:100%; }
-  .visual{ padding:8px; }
-  .visual.focus-pizza .pizza{ width:86%; }
-  .visual.focus-pizza .bar-wrap{ width:90%; }
-  .visual.focus-pizza .bar{ height:46px; }
-  .visual.focus-bar .bar-wrap{ width:92%; }
+  .visual{ padding:60px 8px 8px; }
+  .visual.focus-pizza .pizza{ width:92%; }
+  .visual.focus-bar .bar-wrap{ width:98%; }
   .visual.focus-bar .bar{ height:76px; }
-  .visual.focus-bar .pizza{ width:min(132px, 34%); right:8px; bottom:8px; }
-  .visual.focus-pizza .pizza{ max-height: 64%; }
-  .visual.focus-pizza .bar-wrap{ max-height: 36%; }
   .facts-compact{ gap:6px; }
   .fact-chip{ padding:7px 9px; font-size:.78rem; }
   .seg-btn{ padding:7px 9px; font-size:.78rem; }
@@ -610,4 +604,8 @@ input[type="range"]{width:100%;accent-color:var(--blue);margin-top:8px}
   body.is-practice .panel-stage{
     padding-bottom: calc(clamp(170px, 30dvh, 240px) + 12px);
   }
+
+  /* Uygula modunda kopya çektiren “kesir değeri” bilgi satırlarını gizle */
+  body.is-practice .facts-compact{ display:none; }
+  body.is-practice .mini-read{ display:none; }
 }

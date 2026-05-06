@@ -155,9 +155,9 @@ function setModel(model) {
   state.model = model;
   segButtons.forEach((b) => b.classList.toggle("active", b.dataset.model === model));
   const isPizza = model === "pizza";
-  // Her zaman ikisi de görünür, sadece odak (büyük/küçük) değişir.
-  if (pizzaSvg) pizzaSvg.hidden = false;
-  if (barWrap) barWrap.hidden = false;
+  // Tekli gösterim: Pizza seçiliyken sadece pizza, Çubuk seçiliyken sadece çubuk.
+  if (pizzaSvg) pizzaSvg.hidden = !isPizza;
+  if (barWrap) barWrap.hidden = isPizza;
   const visual = $("#visual");
   if (visual) {
     visual.classList.toggle("focus-pizza", isPizza);

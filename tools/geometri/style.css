@@ -447,16 +447,17 @@ canvas#netCanvas {
 
 .signature {
   position: fixed;
-  right: clamp(10px, 2.2vw, 20px);
-  bottom: calc(var(--geo-dock-h) + env(safe-area-inset-bottom, 0px) + 8px);
-  z-index: 490;
+  right: calc(max(10px, env(safe-area-inset-right, 0px) + 10px));
+  bottom: calc(max(10px, env(safe-area-inset-bottom, 0px) + 10px));
+  z-index: 999;
   margin: 0;
   padding: 4px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(43, 31, 22, 0.08);
-  background: rgba(255, 250, 244, 0.72);
-  backdrop-filter: blur(3px);
-  color: var(--muted);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: #0f172a;
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   font-weight: 800;
