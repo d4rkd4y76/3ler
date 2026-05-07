@@ -1,17 +1,14 @@
 const $ = (sel) => document.querySelector(sel);
 
 const backBtn = $("#back-btn");
-const tabButtons = Array.from(document.querySelectorAll(".tab-btn"));
+const infoButtons = Array.from(document.querySelectorAll(".info-btn"));
 
 const digitalEl = $("#digital");
-const readKac = $("#read-kac");
-const readKacAk = $("#read-kacak");
 const readPeriod = $("#read-period");
+const readLine = $("#read-line");
 const amBtn = $("#am-btn");
 const pmBtn = $("#pm-btn");
 
-const modePill = $("#mode-pill");
-const scorePill = $("#score-pill");
 const toast = $("#toast");
 
 const clockSvg = $("#clock");
@@ -21,22 +18,12 @@ const handMinute = $("#hand-minute");
 const handHour = $("#hand-hour");
 const handSecond = $("#hand-second");
 
-const taskCard = $("#task-card");
-const taskTarget = $("#task-target");
-const newTaskBtn = $("#new-task-btn");
-const checkBtn = $("#check-btn");
-const hintBtn = $("#hint-btn");
-const taskMsg = $("#task-msg");
-
 const state = {
-  tab: "learn",
   hour: 3,
   minute: 0,
   period: "am", // am = Öğleden Önce, pm = Öğleden Sonra
-  score: 0,
   toastMeta: null,
   drag: null,
-  task: null,
   lastDragMinute: null
 };
 
@@ -54,11 +41,6 @@ function hourTo24(hour12, period) {
   const p = period === "pm" ? "pm" : "am";
   if (p === "am") return h === 12 ? 0 : h;
   return h === 12 ? 12 : h + 12;
-}
-
-function setScore(delta) {
-  state.score = Math.max(0, state.score + delta);
-  if (scorePill) scorePill.textContent = `Puan: ${state.score}`;
 }
 
 function showToast(text, durationMs = 2200) {
@@ -116,20 +98,66 @@ function numberToTr(n) {
   return m[n] || String(n);
 }
 
-function kacGecKacKalaText(hour, minute) {
-  const h = ((hour % 12) + 12) % 12 || 12;
-  if (minute === 0) return { kac: `${numberToTr(h)}`, kacak: "Tam" };
-  if (minute === 30) return { kac: `${numberToTr(h)}`, kacak: "Buçuk" };
-  if (minute < 30) return { kac: `${numberToTr(h)}`, kacak: `${numberToTr(minute)} geçe` };
+function hourWordTR(h) {
+  const v = ((Math.floor(h) % 12) + 12) % 12 || 12;
+  return numberToTr(v);
+}
+
+function hourAccusativeTR(h) {
+  // “beşi / dördü” gibi (okunuşta: “beşi on geçiyor”)
+  const v = ((Math.floor(h) % 12) + 12) % 12 || 12;
+  const map = {
+    1: "biri",
+    2: "ikiyi",
+    3: "üçü",
+    4: "dördü",
+    5: "beşi",
+    6: "altıyı",
+    7: "yediyi",
+    8: "sekizi",
+    9: "dokuzu",
+    10: "onu",
+    11: "on biri",
+    12: "on ikiyi"
+  };
+  return map[v] || hourWordTR(v);
+}
+
+function hourDativeTR(h) {
+  // “dörde / beşe” gibi (okunuşta: “dörde on var”)
+  const v = ((Math.floor(h) % 12) + 12) % 12 || 12;
+  const map = {
+    1: "bire",
+    2: "ikiye",
+    3: "üçe",
+    4: "dörde",
+    5: "beşe",
+    6: "altıya",
+    7: "yedİye",
+    8: "sekize",
+    9: "dokuza",
+    10: "ona",
+    11: "on bire",
+    12: "on ikiye"
+  };
+  // “yedİye” yazım hatasına karşı düzelt
+  return (map[v] || hourWordTR(v)).replace("yedİ", "yedi");
+}
+
+function readingTR(hour, minute) {
+  const h = ((Math.floor(hour) % 12) + 12) % 12 || 12;
+  const m = clamp(Math.floor(minute), 0, 59);
+  if (m === 0) return { hourText: hourWordTR(h), minuteText: "tam" };
+  if (m === 30) return { hourText: hourWordTR(h), minuteText: "buçuk" };
+  if (m === 15) return { hourText: hourAccusativeTR(h), minuteText: "on beş geçiyor (çeyrek geçiyor)" };
+  if (m < 30) return { hourText: hourAccusativeTR(h), minuteText: `${numberToTr(m)} geçiyor` };
   const next = (h % 12) + 1;
-  const kalan = 60 - minute;
-  return { kac: `${numberToTr(next)}`, kacak: `${numberToTr(kalan)} kala` };
+  const kalan = 60 - m;
+  if (m === 45) return { hourText: hourDativeTR(next), minuteText: "on beş var (çeyrek var)" };
+  return { hourText: hourDativeTR(next), minuteText: `${numberToTr(kalan)} var` };
 }
 
 function syncReadouts() {
-  const t = kacGecKacKalaText(state.hour, state.minute);
-  if (readKac) readKac.textContent = t.kac;
-  if (readKacAk) readKacAk.textContent = t.kacak;
   if (readPeriod) readPeriod.textContent = state.period === "pm" ? "Öğleden sonra" : "Öğleden önce";
   // Tek dijital: ÖÖ -> 00-11, ÖS -> 12-23 olarak göster
   const h24 = hourTo24(state.hour, state.period);
@@ -141,6 +169,18 @@ function syncReadouts() {
   } else if (digitalEl) {
     digitalEl.textContent = `${pad2(h24)}:${pad2(state.minute)}`;
   }
+
+  const r = readingTR(state.hour, state.minute);
+  if (readLine) {
+    readLine.innerHTML = `<span class="reading-hour">${r.hourText}</span> <span class="reading-minute">${r.minuteText}</span>`;
+  }
+
+  if (digitalEl) {
+    digitalEl.classList.remove("tick");
+    // eslint-disable-next-line no-unused-expressions
+    digitalEl.offsetWidth;
+    digitalEl.classList.add("tick");
+  }
 }
 
 function setPeriod(period) {
@@ -150,6 +190,22 @@ function setPeriod(period) {
   amBtn?.setAttribute("aria-pressed", state.period === "am" ? "true" : "false");
   pmBtn?.setAttribute("aria-pressed", state.period === "pm" ? "true" : "false");
   syncReadouts();
+}
+
+function showNote(kind) {
+  const notes = {
+    am: "Öğleden önce (ÖÖ), gece yarısından öğleye kadar olan zamandır. Dijital saat 00:00–11:59 arası olur.",
+    pm: "Öğleden sonra (ÖS), öğleden gece yarısına kadar olan zamandır. Dijital saat 12:00–23:59 arası olur.",
+    hour: "Akrep saati gösterir. Kısa ve kalındır. Dakika arttıkça bir sonraki saate doğru yavaşça ilerler.",
+    minute: "Yelkovan dakikayı gösterir. Uzun ve incedir. Saatteki her sayı 5 dakikayı temsil eder."
+  };
+  showToast(notes[kind] || "Bilgi notu bulunamadı.", 5200);
+  if (typeof gsap !== "undefined") {
+    try {
+      const target = kind === "hour" ? handHour : kind === "minute" ? handMinute : null;
+      if (target) gsap.fromTo(target, { scale: 1 }, { scale: 1.06, yoyo: true, repeat: 1, duration: 0.18, ease: "power2.out" });
+    } catch (_) {}
+  }
 }
 
 function setTime(hour, minute, fromDrag = false) {
@@ -289,76 +345,16 @@ function endDrag() {
   showToast("Harika! Şimdi dijital saati oku.", 1800);
 }
 
-function setTab(tab) {
-  state.tab = tab;
-  tabButtons.forEach((b) => {
-    const active = b.dataset.tab === tab;
-    b.classList.toggle("active", active);
-    b.setAttribute("aria-selected", active ? "true" : "false");
-  });
-  document.body.classList.toggle("is-practice", tab === "practice");
-  if (modePill) modePill.textContent = `Mod: ${tab === "practice" ? "Uygula" : "Öğren"}`;
-  if (tab === "practice") {
-    if (!state.task) newTask();
-    showToast("Görevi yap: hedef saati analogda göster!", 2400);
-  } else {
-    showToast("Akrep‑yelkovanı sürükle. Dakikayı yelkovandan oku.", 2400);
-  }
-}
-
-function newTask() {
-  // Primary school-friendly: 5 dakikalık adımlar + özel zamanlar
-  const minutesPool = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
-  const m = minutesPool[Math.floor(Math.random() * minutesPool.length)];
-  const h = 1 + Math.floor(Math.random() * 12);
-  const p = Math.random() < 0.5 ? "am" : "pm";
-  state.task = { hour: h, minute: m, period: p };
-  if (taskTarget) taskTarget.textContent = `${pad2(h)}:${pad2(m)} ${p === "pm" ? "ÖS" : "ÖÖ"}`;
-  if (taskMsg) {
-    taskMsg.textContent = "";
-    taskMsg.className = "task-msg";
-  }
-}
-
-function checkTask() {
-  if (!state.task) return;
-  const ok = state.hour === state.task.hour && state.minute === state.task.minute && state.period === state.task.period;
-  if (ok) {
-    taskMsg.textContent = "Süper! Doğru yaptın.";
-    taskMsg.className = "task-msg good";
-    setScore(8);
-    if (typeof gsap !== "undefined") {
-      try {
-        gsap.fromTo(clockSvg, { scale: 0.985, filter: "brightness(1.08)" }, { scale: 1, filter: "brightness(1)", duration: 0.35, ease: "power2.out" });
-      } catch (_) {}
-    }
-    setTimeout(newTask, 650);
-    return;
-  }
-  taskMsg.textContent = "Henüz değil. Biraz daha çevir!";
-  taskMsg.className = "task-msg bad";
-}
-
-function giveHint() {
-  if (!state.task) return;
-  const t = kacGecKacKalaText(state.task.hour, state.task.minute);
-  const per = state.task.period === "pm" ? "öğleden sonra" : "öğleden önce";
-  showToast(`İpucu: ${per} ${t.kac} ${t.kacak}`, 3200);
-}
+// Uygula/mini görev kaldırıldı.
 
 function bind() {
   backBtn?.addEventListener("click", () => {
     window.location.href = "../../index.html";
   });
 
-  tabButtons.forEach((b) => b.addEventListener("click", () => setTab(b.dataset.tab || "learn")));
-
   amBtn?.addEventListener("click", () => setPeriod("am"));
   pmBtn?.addEventListener("click", () => setPeriod("pm"));
-
-  newTaskBtn?.addEventListener("click", newTask);
-  checkBtn?.addEventListener("click", checkTask);
-  hintBtn?.addEventListener("click", giveHint);
+  infoButtons.forEach((b) => b.addEventListener("click", () => showNote(b.dataset.note)));
 
   handMinute?.addEventListener("pointerdown", (e) => startDrag("minute", e));
   handHour?.addEventListener("pointerdown", (e) => startDrag("hour", e));
@@ -379,7 +375,5 @@ buildFace();
 bind();
 setTime(3, 0);
 setPeriod("am");
-setTab("learn");
-newTask();
 requestAnimationFrame(raf);
 

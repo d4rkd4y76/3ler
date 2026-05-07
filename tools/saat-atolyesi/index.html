@@ -21,13 +21,11 @@
         <div class="stage">
           <div class="controlbar" aria-label="Kontrol barı">
             <div class="controlbar__row">
-              <div class="seg-tabs" role="tablist" aria-label="Modlar">
-                <button type="button" class="seg-tab tab-btn active" data-tab="learn" role="tab" aria-selected="true">Öğren</button>
-                <button type="button" class="seg-tab tab-btn" data-tab="practice" role="tab" aria-selected="false">Uygula</button>
-              </div>
-              <div class="mini-pills">
-                <span class="mini-pill" id="mode-pill">Mod: Öğren</span>
-                <span class="mini-pill mini-pill--good" id="score-pill">Puan: 0</span>
+              <div class="seg-tabs seg-tabs--tight" role="group" aria-label="Bilgi notları">
+                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="am">ÖÖ nedir?</button>
+                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="pm">ÖS nedir?</button>
+                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="hour">Akrep</button>
+                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="minute">Yelkovan</button>
               </div>
             </div>
 
@@ -38,15 +36,18 @@
                   <div class="digital" id="digital" aria-label="Dijital saat">
                     <span class="digital__hh">03</span><span class="digital__colon" aria-hidden="true">:</span><span class="digital__mm">00</span>
                   </div>
+                  <div class="period-mini" id="read-period" aria-label="Öğleden önce/sonra">Öğleden önce</div>
                   <div class="seg-tabs seg-tabs--mini seg-tabs--tight" role="group" aria-label="ÖÖ/ÖS seçimi">
                     <button type="button" class="seg-tab seg-tab--mini active" id="am-btn" aria-pressed="true">ÖÖ</button>
                     <button type="button" class="seg-tab seg-tab--mini" id="pm-btn" aria-pressed="false">ÖS</button>
                   </div>
                 </div>
-                <div class="readouts">
-                  <span class="read-chip" id="read-kac">Üç</span>
-                  <span class="read-chip read-chip--accent" id="read-kacak">Tam</span>
-                  <span class="read-chip read-chip--soft" id="read-period">Öğleden önce</span>
+                <div class="reading-card" aria-label="Saat okunuşu">
+                  <div class="reading-title">Okunuş</div>
+                  <div class="reading-line" id="read-line">
+                    <span class="reading-hour">üç</span>
+                    <span class="reading-minute">tam</span>
+                  </div>
                 </div>
               </div>
 
@@ -91,31 +92,13 @@
                 <circle r="6" fill="#ffffff"></circle>
               </svg>
               <div class="touch-note">Akrep / yelkovanı tutup çevir.</div>
+              <span class="signature signature--in-clock" aria-hidden="true">NASK GAMES</span>
             </div>
           </div>
 
           <div class="toast toast-bar" id="toast" aria-live="polite" aria-atomic="true"></div>
 
-          <div class="task-sheet" id="task-card" aria-label="Görev">
-            <div class="task-sheet__head">
-              <div>
-                <div class="task-kicker">SORU</div>
-                <div class="task-title" id="task-title">Görev</div>
-                <div class="task-sub" id="task-sub">Aşağıdaki saati analogda göster.</div>
-              </div>
-              <button type="button" class="mini-ghost" id="new-task-btn">Yeni</button>
-            </div>
-            <div class="task-sheet__body" id="task-body">
-              <div class="task-line"><b id="task-target">03:20</b> saatini yap!</div>
-              <div class="task-actions">
-                <button type="button" class="mini-primary" id="check-btn">Kontrol</button>
-                <button type="button" class="mini-secondary" id="hint-btn">İpucu</button>
-              </div>
-              <div class="task-msg" id="task-msg" aria-live="polite"></div>
-            </div>
-          </div>
         </div>
-        <span class="signature" aria-hidden="true">NASK GAMES</span>
       </section>
     </main>
   </div>
