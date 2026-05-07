@@ -15,6 +15,7 @@
   --minuteRead: var(--minute); /* okunuş dakika = MM ile aynı */
 }
 *,:before,:after{box-sizing:border-box}
+html,body{ width:100%; overflow-x:hidden; }
 body{
   margin:0;
   min-height:100dvh;
@@ -33,6 +34,7 @@ body{
   display:grid;
   grid-template-rows:auto 1fr;
   gap:12px;
+  width:100%;
 }
 .topbar{
   display:grid;
@@ -67,6 +69,7 @@ body{
   min-height:0;
   position:relative;
   overflow:hidden;
+  width:100%;
 }
 .stage{
   min-height:0;
@@ -305,6 +308,7 @@ input[type="range"]{width:100%;accent-color:var(--blue)}
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  max-width:100%;
 }
 .clock{
   width:100%;
@@ -336,28 +340,8 @@ input[type="range"]{width:100%;accent-color:var(--blue)}
 }
 
 
-.toast{
-  position:fixed;
-  left:12px;
-  right:12px;
-  bottom: calc(max(10px, env(safe-area-inset-bottom, 0px) + 10px));
-  z-index: 999;
-  margin:0 auto;
-  max-width: 520px;
-  padding:10px 12px;
-  border-radius:14px;
-  font-weight:1000;
-  font-size:.86rem;
-  color:#0f172a;
-  background: rgba(255,255,255,.92);
-  border:1px solid rgba(59,130,246,.14);
-  box-shadow:0 14px 28px rgba(12,27,60,.12);
-  opacity:0;
-  transform:translateY(6px);
-  transition:opacity .18s ease, transform .18s ease;
-  pointer-events:none;
-}
-.toast.show{opacity:1;transform:translateY(0)}
+.toast{ display:none !important; }
+.toast.show{ display:none !important; }
 
 .info-dock{
   border-radius:16px;

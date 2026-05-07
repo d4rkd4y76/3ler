@@ -46,6 +46,8 @@ function hourTo24(hour12, period) {
 }
 
 function showToast(text, durationMs = 2200) {
+  // Toast UI kaldırıldı; mesajları bilgi alanında gösteriyoruz.
+  if (infoText) infoText.textContent = text;
   if (!toast) return;
   toast.textContent = text;
   toast.classList.add("show");
