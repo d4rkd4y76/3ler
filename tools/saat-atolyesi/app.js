@@ -8,6 +8,8 @@ const readPeriod = $("#read-period");
 const readLine = $("#read-line");
 const amBtn = $("#am-btn");
 const pmBtn = $("#pm-btn");
+const infoText = $("#info-text");
+const infoDock = $("#info-dock");
 
 const toast = $("#toast");
 
@@ -199,7 +201,14 @@ function showNote(kind) {
     hour: "Akrep saati gösterir. Kısa ve kalındır. Dakika arttıkça bir sonraki saate doğru yavaşça ilerler.",
     minute: "Yelkovan dakikayı gösterir. Uzun ve incedir. Saatteki her sayı 5 dakikayı temsil eder."
   };
-  showToast(notes[kind] || "Bilgi notu bulunamadı.", 5200);
+  const text = notes[kind] || "Bilgi notu bulunamadı.";
+  if (infoText) infoText.textContent = text;
+  if (infoDock) {
+    infoDock.classList.remove("flash");
+    // eslint-disable-next-line no-unused-expressions
+    infoDock.offsetWidth;
+    infoDock.classList.add("flash");
+  }
   if (typeof gsap !== "undefined") {
     try {
       const target = kind === "hour" ? handHour : kind === "minute" ? handMinute : null;
