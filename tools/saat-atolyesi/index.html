@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Saat Atölyesi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button type="button" class="chip-btn" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="title">
+        <h1>Saat Atölyesi</h1>
+        <p>Akrep‑yelkovanı sürükle. Dijital saatten oku. “Kaç geçe/kaç kala” öğren.</p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="stage">
+          <div class="controlbar" aria-label="Kontrol barı">
+            <div class="controlbar__row">
+              <div class="seg-tabs" role="tablist" aria-label="Modlar">
+                <button type="button" class="seg-tab tab-btn active" data-tab="learn" role="tab" aria-selected="true">Öğren</button>
+                <button type="button" class="seg-tab tab-btn" data-tab="practice" role="tab" aria-selected="false">Uygula</button>
+              </div>
+              <div class="mini-pills">
+                <span class="mini-pill" id="mode-pill">Mod: Öğren</span>
+                <span class="mini-pill mini-pill--good" id="score-pill">Puan: 0</span>
+              </div>
+            </div>
+
+            <div class="controlbar__row controlbar__row--grid">
+              <div class="mini-field mini-field--wide">
+                <div class="mini-label">Dijital saat</div>
+                <div class="digital-row">
+                  <div class="digital" id="digital">03:00</div>
+                  <span class="period-pill" id="period-pill" aria-label="Öğleden önce/sonra">ÖÖ</span>
+                </div>
+                <div class="readouts">
+                  <span class="read-chip" id="read-kac">Üç</span>
+                  <span class="read-chip read-chip--accent" id="read-kacak">Tam</span>
+                  <span class="read-chip read-chip--soft" id="read-period">Öğleden önce</span>
+                </div>
+              </div>
+
+              <div class="mini-field">
+                <div class="mini-label">Öğleden önce / sonra</div>
+                <div class="seg-tabs seg-tabs--mini" role="group" aria-label="ÖÖ/ÖS seçimi">
+                  <button type="button" class="seg-tab seg-tab--mini active" id="am-btn" aria-pressed="true">ÖÖ</button>
+                  <button type="button" class="seg-tab seg-tab--mini" id="pm-btn" aria-pressed="false">ÖS</button>
+                </div>
+              </div>
+
+              <div class="mini-field">
+                <div class="mini-label">Hızlı</div>
+                <div class="quick-actions">
+                  <button type="button" class="mini-ghost" id="random-btn">Rastgele saat</button>
+                  <button type="button" class="mini-ghost" id="reset-btn">Sıfırla</button>
+                </div>
+              </div>
+
+              <div class="mini-hint" id="mini-hint">İpucu: Yelkovan dakikayı gösterir. Akrep saati gösterir.</div>
+            </div>
+          </div>
+
+          <div class="clock-area">
+            <div class="clock-card">
+              <svg id="clock" class="clock" viewBox="-120 -120 240 240" aria-label="Analog saat" role="img">
+                <defs>
+                  <radialGradient id="faceGrad" cx="35%" cy="25%" r="80%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="70%" stop-color="#eff6ff"/>
+                    <stop offset="100%" stop-color="#dbeafe"/>
+                  </radialGradient>
+                  <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="rgba(15,23,42,.22)"/>
+                  </filter>
+                </defs>
+
+                <circle r="104" fill="rgba(37,99,235,0.12)"></circle>
+                <circle r="100" fill="url(#faceGrad)" filter="url(#softShadow)"></circle>
+                <circle r="100" fill="none" stroke="rgba(15,23,42,0.08)" stroke-width="2"></circle>
+
+                <g id="ticks"></g>
+                <g id="nums"></g>
+
+                <g id="hand-minute" class="hand hand-minute" aria-label="Yelkovan" tabindex="0">
+                  <path d="M -4 12 L 0 -76 L 4 12 Q 0 18 -4 12 Z"></path>
+                </g>
+                <g id="hand-hour" class="hand hand-hour" aria-label="Akrep" tabindex="0">
+                  <path d="M -5 12 L 0 -52 L 5 12 Q 0 19 -5 12 Z"></path>
+                </g>
+                <g id="hand-second" class="hand hand-second" aria-hidden="true">
+                  <path d="M -2 16 L 0 -84 L 2 16 Z"></path>
+                </g>
+                <circle r="9" fill="rgba(15,23,42,0.18)"></circle>
+                <circle r="6" fill="#ffffff"></circle>
+              </svg>
+              <div class="touch-note">Akrep / yelkovanı tutup çevir.</div>
+            </div>
+          </div>
+
+          <div class="toast toast-bar" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+          <div class="task-sheet" id="task-card" aria-label="Görev">
+            <div class="task-sheet__head">
+              <div>
+                <div class="task-kicker">SORU</div>
+                <div class="task-title" id="task-title">Görev</div>
+                <div class="task-sub" id="task-sub">Aşağıdaki saati analogda göster.</div>
+              </div>
+              <button type="button" class="mini-ghost" id="new-task-btn">Yeni</button>
+            </div>
+            <div class="task-sheet__body" id="task-body">
+              <div class="task-line"><b id="task-target">03:20</b> saatini yap!</div>
+              <div class="task-actions">
+                <button type="button" class="mini-primary" id="check-btn">Kontrol</button>
+                <button type="button" class="mini-secondary" id="hint-btn">İpucu</button>
+              </div>
+              <div class="task-msg" id="task-msg" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <span class="signature" aria-hidden="true">NASK GAMES</span>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
