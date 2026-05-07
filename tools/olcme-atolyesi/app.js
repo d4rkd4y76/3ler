@@ -18,7 +18,6 @@ const rail = $("#ruler-rail");
 const marker = $("#len-marker");
 const objectEl = $("#len-object");
 const outCm = $("#len-cm");
-const outMm = $("#len-mm");
 const outM = $("#len-m");
 
 // mass refs
@@ -31,6 +30,7 @@ const clearWeightsBtn = $("#clear-weights-btn");
 const checkMassBtn = $("#check-mass-btn");
 const panDrops = $$(".pan__drop");
 const beam = $("#beam");
+const massTarget = $("#mass-target");
 
 const state = {
   tool: "len",
@@ -38,9 +38,9 @@ const state = {
   toastMeta: null,
 
   // length
-  targetLenCm: 12,
-  objectLenCm: 18,
-  markerCm: 12,
+  targetLenCm: 120,
+  objectLenCm: 160,
+  markerCm: 120,
   drag: null,
 
   // mass
@@ -87,7 +87,7 @@ function setTool(tool) {
   });
   sceneLen.hidden = state.tool !== "len";
   sceneMass.hidden = state.tool !== "mass";
-  unitPill.textContent = state.tool === "len" ? "Birim: cm • mm • m" : "Birim: g • kg";
+  unitPill.textContent = state.tool === "len" ? "Birim: cm • m" : "Birim: g • kg";
   newTask();
 }
 
@@ -106,15 +106,15 @@ function railMetrics() {
 
 function cmToX(cm) {
   const m = railMetrics();
-  const t = clamp(cm / 30, 0, 1);
+  const t = clamp(cm / 200, 0, 1);
   return m.left + t * m.width;
 }
 
 function xToCm(x) {
   const m = railMetrics();
   const t = clamp((x - m.left) / m.width, 0, 1);
-  // 0.5cm adımı (3. sınıf için yeterince hassas)
-  return Math.round(t * 30 * 2) / 2;
+  // 1cm adımı (mm yok)
+  return Math.round(t * 200);
 }
 
 function renderLength() {
@@ -126,25 +126,24 @@ function renderLength() {
 
   // object length
   const m = railMetrics();
-  const pxPerCm = m.width / 30;
+  const pxPerCm = m.width / 200;
   objectEl.style.width = `${Math.max(120, state.objectLenCm * pxPerCm)}px`;
 
   // readout based on marker (teaching)
   const cm = state.markerCm;
-  outCm.textContent = String(cm).replace(".5", ",5");
-  outMm.textContent = String(Math.round(cm * 10)).replace(".0", "");
+  outCm.textContent = String(cm);
   outM.textContent = fmtTR(cm / 100, 2);
 }
 
 function pickLenTask() {
-  // 3. sınıf: 0.5cm adımı, 2–25 cm arası
-  const cm = (Math.floor(Math.random() * 47) + 4) / 2; // 2..25 step .5
+  // 3. sınıf: cm ve metre odaklı (0–200cm)
+  const cm = (Math.floor(Math.random() * 191) + 10); // 10..200
   state.targetLenCm = cm;
-  // object length: target +/- küçük fark, görsel “yaklaştır” görevi
-  const off = (Math.floor(Math.random() * 9) - 4) / 2; // -2..+2 step .5
-  state.objectLenCm = clamp(cm + off, 2, 28);
-  state.markerCm = clamp(cm, 0, 30);
-  taskPill.textContent = `Görev: İmleci ${String(cm).replace(".5", ",5")} cm yap.`;
+  const off = (Math.floor(Math.random() * 41) - 20); // -20..+20 cm
+  state.objectLenCm = clamp(cm + off, 10, 200);
+  state.markerCm = clamp(cm, 0, 200);
+  const mVal = (cm / 100).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  taskPill.textContent = `Görev: İmleci ${cm} cm (=${mVal} m) yap.`;
   showToast("İmleci sürükle ve ölçümü bul.", 2200);
 }
 
@@ -161,7 +160,7 @@ function checkLen() {
     setTimeout(pickLenTask, 650);
     return true;
   }
-  showToast("Biraz daha dene. Cetvelin çizgilerine dikkat et.", 2400);
+  showToast("Biraz daha dene. 100 cm = 1 m kuralını unutma.", 2400);
   return false;
 }
 
@@ -214,11 +213,11 @@ function sumG(list) {
 }
 
 function renderMass() {
-  const leftG = sumG(state.left);
+  const leftG = state.targetMassG; // sol kefede hedef nesne var
   const rightG = sumG(state.right);
-  const total = leftG + rightG;
-  massG.textContent = String(total);
-  massKg.textContent = (total / 1000).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  massG.textContent = String(rightG);
+  massKg.textContent = (rightG / 1000).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (massTarget) massTarget.textContent = `Hedef: ${state.targetMassG} g`;
 
   // beam tilt: left-heavy negative, right-heavy positive
   const diff = rightG - leftG;
@@ -229,7 +228,7 @@ function renderMass() {
     beam.style.transform = `translateX(-50%) rotate(${deg}deg)`;
   }
 
-  panLeftItems.innerHTML = state.left.map((w) => `<span class="chip">${w.label}</span>`).join("");
+  panLeftItems.innerHTML = `<span class="chip">Nesne</span>`;
   panRightItems.innerHTML = state.right.map((w) => `<span class="chip">${w.label}</span>`).join("");
 }
 
@@ -243,9 +242,14 @@ function buildWeights() {
       const g = Number(btn.dataset.g || 0);
       const item = WEIGHTS.find((x) => x.g === g);
       if (!item) return;
-      state.drag = { kind: "weight", weight: item };
+      state.drag = { kind: "weight", weight: item, ghost: null };
+      const ghost = document.createElement("div");
+      ghost.className = "drag-ghost";
+      ghost.textContent = item.label;
+      document.body.appendChild(ghost);
+      state.drag.ghost = ghost;
+      moveGhost(e.clientX, e.clientY);
       btn.setPointerCapture?.(e.pointerId);
-      btn.classList.add("is-drag");
       window.addEventListener("pointermove", onWeightDrag, { passive: false });
       window.addEventListener("pointerup", endWeightDrag, { passive: true });
       window.addEventListener("pointercancel", endWeightDrag, { passive: true });
@@ -253,18 +257,33 @@ function buildWeights() {
   });
 }
 
+function moveGhost(x, y) {
+  if (!state.drag || state.drag.kind !== "weight" || !state.drag.ghost) return;
+  state.drag.ghost.style.transform = `translate(${x + 10}px, ${y + 10}px)`;
+}
+
 function onWeightDrag(e) {
   if (!state.drag || state.drag.kind !== "weight") return;
   e.preventDefault?.();
+  moveGhost(e.clientX, e.clientY);
+  // drop highlight
+  panDrops.forEach((d) => {
+    const r = d.getBoundingClientRect();
+    const hot = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    d.classList.toggle("is-hot", hot);
+  });
 }
 
 function endWeightDrag(e) {
   if (!state.drag || state.drag.kind !== "weight") return;
   const w = state.drag.weight;
+  const ghost = state.drag.ghost;
   state.drag = null;
   window.removeEventListener("pointermove", onWeightDrag);
   window.removeEventListener("pointerup", endWeightDrag);
   window.removeEventListener("pointercancel", endWeightDrag);
+  panDrops.forEach((d) => d.classList.remove("is-hot"));
+  ghost?.remove?.();
 
   const x = e.clientX;
   const y = e.clientY;
@@ -273,8 +292,7 @@ function endWeightDrag(e) {
     const r = d.getBoundingClientRect();
     if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
       const pan = d.dataset.pan;
-      if (pan === "left") state.left.push(w);
-      else state.right.push(w);
+      if (pan === "right") state.right.push(w);
       dropped = true;
     }
   });
@@ -289,15 +307,14 @@ function pickMassTask() {
   // hedef 100..2000g, 10'luk adımlar
   const g = (Math.floor(Math.random() * 191) + 10) * 10;
   state.targetMassG = g;
-  state.left = [];
   state.right = [];
   renderMass();
-  taskPill.textContent = `Görev: Toplamı ${g} g yap.`;
-  showToast("Ağırlıkları kefelere bırak ve toplamı bul.", 2400);
+  taskPill.textContent = `Görev: Sağ kefeyi ${g} g ile dengele.`;
+  showToast("Sağ kefeye ağırlıkları bırak. Hedefe eşitle.", 2400);
 }
 
 function checkMass() {
-  const total = sumG(state.left) + sumG(state.right);
+  const total = sumG(state.right);
   if (total === state.targetMassG) {
     setScore(8);
     showToast("Harika! Doğru tarttın.", 2000);
@@ -309,7 +326,6 @@ function checkMass() {
 }
 
 function clearMass() {
-  state.left = [];
   state.right = [];
   renderMass();
   showToast("Kefeler temizlendi.", 1400);
@@ -323,7 +339,7 @@ function newTask() {
 
 function hint() {
   if (state.tool === "len") {
-    showToast("İpucu: 1 cm = 10 mm. 2,5 cm = 25 mm.", 4200);
+    showToast("İpucu: 100 cm = 1 m. 150 cm = 1,50 m.", 4200);
   } else {
     showToast("İpucu: 1 kg = 1000 g. 500 g + 200 g = 700 g.", 4200);
   }
