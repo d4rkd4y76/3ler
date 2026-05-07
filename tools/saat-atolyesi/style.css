@@ -36,7 +36,15 @@ body{
 .toggle__btn.active{ border-color:transparent; color:#fff; background:linear-gradient(135deg,#2563eb,#06b6d4); box-shadow:0 14px 28px rgba(37,99,235,.18); }
 .reading{ width:100%; border-radius:14px; border:1px solid rgba(59,130,246,.14); background:linear-gradient(180deg,#ffffff,#f6fbff); padding:8px 10px; }
 .reading__label{ font-weight:1000; font-size:.76rem; color:#1f3b68; }
-.reading__line{ margin-top:6px; display:flex; flex-wrap:wrap; gap:8px; font-weight:1000; font-size:1.02rem; }
+.reading__line{
+  margin-top:6px;
+  display:flex;
+  flex-wrap:nowrap;
+  gap:6px;
+  font-weight:1000;
+  font-size:clamp(.84rem, 3.1vw, 1.02rem);
+  white-space:nowrap;
+}
 .read-hour{ padding:4px 10px; border-radius:999px; background: rgba(37,99,235,.12); box-shadow: inset 0 0 0 1px rgba(37,99,235,.22); color:#0b2a66; }
 .read-minute{ padding:4px 10px; border-radius:999px; background: rgba(6,182,212,.12); box-shadow: inset 0 0 0 1px rgba(6,182,212,.22); color:#064e5f; }
 .card--clock{ min-height:0; flex:1; display:flex; align-items:center; justify-content:center; padding:10px; }
@@ -47,7 +55,7 @@ body{
 .hand path{ fill: rgba(37,99,235,0.95); pointer-events:all; }
 .hand .hand-hit{ fill:none; stroke:rgba(0,0,0,0); stroke-width:24; stroke-linecap:round; pointer-events:stroke; }
 .hand-hour path{ fill: rgba(15,23,42,0.86); }
-.hint{ font-weight:900; font-size:.82rem; color:var(--muted); text-align:center; padding:0 56px 0 0; }
+.hint{ font-weight:900; font-size:.82rem; color:var(--muted); text-align:center; padding:0 56px; }
 .brand{ position:absolute; right:0; bottom:0; padding:3px 8px; border-radius:999px; font-size:.54rem; font-weight:1000; letter-spacing:.08em; border:1px solid rgba(15,23,42,.12); background:rgba(255,255,255,.86); box-shadow:0 10px 22px rgba(2,6,23,.16), inset 0 1px 0 rgba(255,255,255,.85); pointer-events:none; }
 .info__label{ font-weight:1000; font-size:.78rem; color:#1f3b68; }
 .info__text{ margin-top:4px; font-weight:900; font-size:.88rem; line-height:1.25; color:#0f172a; max-height: 12dvh; overflow:auto; }
@@ -63,7 +71,7 @@ body{
   .toggle__btn{ padding:8px 10px; }
   .clock-wrap{ max-height:340px; padding-bottom:28px; }
   .clock{ transform:scale(1.12); }
-  .hint{ padding-right:54px; }
+  .hint{ padding:0 54px; }
   .info__text{ max-height: 14dvh; }
 }
 
@@ -71,4 +79,5 @@ body{
   .period{ max-width:32vw; }
   .toggle__btn{ padding:7px 9px; }
   .digital{ padding:9px 11px; }
+  .reading__line{ font-size: .88rem; }
 }
