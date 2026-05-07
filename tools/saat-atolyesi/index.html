@@ -35,7 +35,9 @@
               <div class="mini-field mini-field--wide">
                 <div class="mini-label">Dijital saat</div>
                 <div class="digital-row digital-row--single">
-                  <div class="digital" id="digital" aria-label="Dijital saat">03:00</div>
+                  <div class="digital" id="digital" aria-label="Dijital saat">
+                    <span class="digital__hh">03</span><span class="digital__colon" aria-hidden="true">:</span><span class="digital__mm">00</span>
+                  </div>
                   <div class="seg-tabs seg-tabs--mini seg-tabs--tight" role="group" aria-label="ÖÖ/ÖS seçimi">
                     <button type="button" class="seg-tab seg-tab--mini active" id="am-btn" aria-pressed="true">ÖÖ</button>
                     <button type="button" class="seg-tab seg-tab--mini" id="pm-btn" aria-pressed="false">ÖS</button>
@@ -48,15 +50,7 @@
                 </div>
               </div>
 
-              <div class="mini-field">
-                <div class="mini-label">Hızlı</div>
-                <div class="quick-actions">
-                  <button type="button" class="mini-ghost" id="random-btn">Rastgele saat</button>
-                  <button type="button" class="mini-ghost" id="reset-btn">Sıfırla</button>
-                </div>
-              </div>
-
-              <div class="mini-hint" id="mini-hint">İpucu: Yelkovan dakikayı gösterir. Akrep saati gösterir.</div>
+              <div class="mini-hint" id="mini-hint">İpucu: Yelkovan dakikayı gösterir.</div>
             </div>
           </div>
 

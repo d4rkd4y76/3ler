@@ -9,8 +9,6 @@ const readKacAk = $("#read-kacak");
 const readPeriod = $("#read-period");
 const amBtn = $("#am-btn");
 const pmBtn = $("#pm-btn");
-const randomBtn = $("#random-btn");
-const resetBtn = $("#reset-btn");
 
 const modePill = $("#mode-pill");
 const scorePill = $("#score-pill");
@@ -135,7 +133,14 @@ function syncReadouts() {
   if (readPeriod) readPeriod.textContent = state.period === "pm" ? "Öğleden sonra" : "Öğleden önce";
   // Tek dijital: ÖÖ -> 00-11, ÖS -> 12-23 olarak göster
   const h24 = hourTo24(state.hour, state.period);
-  if (digitalEl) digitalEl.textContent = `${pad2(h24)}:${pad2(state.minute)}`;
+  const hh = digitalEl?.querySelector?.(".digital__hh");
+  const mm = digitalEl?.querySelector?.(".digital__mm");
+  if (hh && mm) {
+    hh.textContent = pad2(h24);
+    mm.textContent = pad2(state.minute);
+  } else if (digitalEl) {
+    digitalEl.textContent = `${pad2(h24)}:${pad2(state.minute)}`;
+  }
 }
 
 function setPeriod(period) {
@@ -350,20 +355,6 @@ function bind() {
 
   amBtn?.addEventListener("click", () => setPeriod("am"));
   pmBtn?.addEventListener("click", () => setPeriod("pm"));
-  randomBtn?.addEventListener("click", () => {
-    const minutesPool = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
-    const m = minutesPool[Math.floor(Math.random() * minutesPool.length)];
-    const h = 1 + Math.floor(Math.random() * 12);
-    const p = Math.random() < 0.5 ? "am" : "pm";
-    setPeriod(p);
-    setTime(h, m);
-    showToast("Rastgele saat geldi. Analogdan göster!", 2000);
-  });
-  resetBtn?.addEventListener("click", () => {
-    setPeriod("am");
-    setTime(3, 0);
-    showToast("Sıfırlandı.", 1200);
-  });
 
   newTaskBtn?.addEventListener("click", newTask);
   checkBtn?.addEventListener("click", checkTask);
