@@ -7,100 +7,81 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app">
+  <div class="app" role="application" aria-label="Saat Atölyesi">
     <header class="topbar">
-      <button type="button" class="chip-btn" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
-      <div class="title">
-        <h1>Saat Atölyesi</h1>
-        <p>Akrep‑yelkovanı sürükle. Dijital saatten oku. “Kaç geçe/kaç kala” öğren.</p>
-      </div>
+      <button type="button" class="back" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="topbar__title">Saat Atölyesi</div>
     </header>
 
-    <main class="layout">
-      <section class="panel">
-        <div class="stage">
-          <div class="controlbar" aria-label="Kontrol barı">
-            <div class="controlbar__row">
-              <div class="seg-tabs seg-tabs--tight" role="group" aria-label="Bilgi notları">
-                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="am">ÖÖ nedir?</button>
-                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="pm">ÖS nedir?</button>
-                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="hour">Akrep</button>
-                <button type="button" class="seg-tab seg-tab--mini info-btn" data-note="minute">Yelkovan</button>
-              </div>
-            </div>
+    <main class="main">
+      <section class="card card--controls" aria-label="Kontroller">
+        <div class="row row--chips" aria-label="Bilgi notları">
+          <button type="button" class="chip info-btn" data-note="am">ÖÖ nedir?</button>
+          <button type="button" class="chip info-btn" data-note="pm">ÖS nedir?</button>
+          <button type="button" class="chip info-btn" data-note="hour">Akrep</button>
+          <button type="button" class="chip info-btn" data-note="minute">Yelkovan</button>
+        </div>
 
-            <div class="controlbar__row controlbar__row--grid">
-              <div class="mini-field mini-field--wide">
-                <div class="mini-label">Dijital saat</div>
-                <div class="digital-row digital-row--single">
-                  <div class="digital" id="digital" aria-label="Dijital saat">
-                    <span class="digital__hh">03</span><span class="digital__colon" aria-hidden="true">:</span><span class="digital__mm">00</span>
-                  </div>
-                  <div class="period-mini" id="read-period" aria-label="Öğleden önce/sonra">Öğleden önce</div>
-                  <div class="seg-tabs seg-tabs--mini seg-tabs--tight" role="group" aria-label="ÖÖ/ÖS seçimi">
-                    <button type="button" class="seg-tab seg-tab--mini active" id="am-btn" aria-pressed="true">ÖÖ</button>
-                    <button type="button" class="seg-tab seg-tab--mini" id="pm-btn" aria-pressed="false">ÖS</button>
-                  </div>
-                </div>
-                <div class="reading-card" aria-label="Saat okunuşu">
-                  <div class="reading-title">Okunuş</div>
-                  <div class="reading-line" id="read-line">
-                    <span class="reading-hour">üç</span>
-                    <span class="reading-minute">tam</span>
-                  </div>
-                </div>
-              </div>
+        <div class="row row--digital" aria-label="Dijital saat ve ÖÖ/ÖS">
+          <div class="digital" id="digital" aria-label="Dijital saat">
+            <span class="hh" id="hh">03</span><span class="colon" aria-hidden="true">:</span><span class="mm" id="mm">00</span>
+          </div>
+          <div class="period" id="period">Öğleden önce</div>
+          <div class="toggle" role="group" aria-label="ÖÖ/ÖS seçimi">
+            <button type="button" class="toggle__btn active" id="am-btn" aria-pressed="true">ÖÖ</button>
+            <button type="button" class="toggle__btn" id="pm-btn" aria-pressed="false">ÖS</button>
+          </div>
+        </div>
 
-              <div class="mini-hint" id="mini-hint">İpucu: Yelkovan dakikayı gösterir.</div>
+        <div class="row row--reading" aria-label="Okunuş">
+          <div class="reading">
+            <div class="reading__label">Okunuş</div>
+            <div class="reading__line" id="read-line">
+              <span class="read-hour">üç</span>
+              <span class="read-minute">tam</span>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="clock-area">
-            <div class="clock-card">
-              <svg id="clock" class="clock" viewBox="-120 -120 240 240" aria-label="Analog saat" role="img">
-                <defs>
-                  <radialGradient id="faceGrad" cx="35%" cy="25%" r="80%">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="70%" stop-color="#eff6ff"/>
-                    <stop offset="100%" stop-color="#dbeafe"/>
-                  </radialGradient>
-                  <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="rgba(15,23,42,.22)"/>
-                  </filter>
-                </defs>
+      <section class="card card--clock" aria-label="Analog saat">
+        <div class="clock-wrap">
+          <svg id="clock" class="clock" viewBox="-120 -120 240 240" role="img" aria-label="Analog saat">
+            <defs>
+              <radialGradient id="faceGrad2" cx="35%" cy="25%" r="80%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="70%" stop-color="#eff6ff"/>
+                <stop offset="100%" stop-color="#dbeafe"/>
+              </radialGradient>
+              <filter id="softShadow2" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="rgba(15,23,42,.20)"/>
+              </filter>
+            </defs>
+            <circle r="104" fill="rgba(37,99,235,0.10)"></circle>
+            <circle r="100" fill="url(#faceGrad2)" filter="url(#softShadow2)"></circle>
+            <circle r="100" fill="none" stroke="rgba(15,23,42,0.08)" stroke-width="2"></circle>
+            <g id="ticks"></g>
+            <g id="nums"></g>
+            <g id="hand-minute" class="hand hand-minute" aria-label="Yelkovan" tabindex="0">
+              <path class="hand-hit" d="M 0 10 L 0 -86" />
+              <path d="M -4 12 L 0 -76 L 4 12 Q 0 18 -4 12 Z"></path>
+            </g>
+            <g id="hand-hour" class="hand hand-hour" aria-label="Akrep" tabindex="0">
+              <path class="hand-hit" d="M 0 10 L 0 -62" />
+              <path d="M -5 12 L 0 -52 L 5 12 Q 0 19 -5 12 Z"></path>
+            </g>
+            <circle r="9" fill="rgba(15,23,42,0.16)"></circle>
+            <circle r="6" fill="#ffffff"></circle>
+          </svg>
+          <div class="hint">Akrep / yelkovanı tutup çevir.</div>
+          <div class="brand" aria-hidden="true">NASK GAMES</div>
+        </div>
+      </section>
 
-                <circle r="104" fill="rgba(37,99,235,0.12)"></circle>
-                <circle r="100" fill="url(#faceGrad)" filter="url(#softShadow)"></circle>
-                <circle r="100" fill="none" stroke="rgba(15,23,42,0.08)" stroke-width="2"></circle>
-
-                <g id="ticks"></g>
-                <g id="nums"></g>
-
-                <g id="hand-minute" class="hand hand-minute" aria-label="Yelkovan" tabindex="0">
-                  <!-- geniş görünmez yakalama alanı -->
-                  <path class="hand-hit" d="M 0 10 L 0 -82" />
-                  <path d="M -4 12 L 0 -76 L 4 12 Q 0 18 -4 12 Z"></path>
-                </g>
-                <g id="hand-hour" class="hand hand-hour" aria-label="Akrep" tabindex="0">
-                  <path class="hand-hit" d="M 0 10 L 0 -58" />
-                  <path d="M -5 12 L 0 -52 L 5 12 Q 0 19 -5 12 Z"></path>
-                </g>
-                <g id="hand-second" class="hand hand-second" aria-hidden="true">
-                  <path d="M -2 16 L 0 -84 L 2 16 Z"></path>
-                </g>
-                <circle r="9" fill="rgba(15,23,42,0.18)"></circle>
-                <circle r="6" fill="#ffffff"></circle>
-              </svg>
-              <div class="touch-note">Akrep / yelkovanı tutup çevir.</div>
-              <span class="signature signature--in-clock" aria-hidden="true">NASK GAMES</span>
-            </div>
-          </div>
-
-          <div class="info-dock" id="info-dock" aria-live="polite" aria-atomic="true">
-            <div class="info-dock__title">Bilgi</div>
-            <div class="info-dock__text" id="info-text">Bir bilgi notuna dokun.</div>
-          </div>
-
+      <section class="card card--info" aria-label="Bilgi notu">
+        <div class="info">
+          <div class="info__label">Bilgi</div>
+          <div class="info__text" id="info-text">Bir bilgi notuna dokun.</div>
         </div>
       </section>
     </main>

@@ -3,28 +3,26 @@ const $ = (sel) => document.querySelector(sel);
 const backBtn = $("#back-btn");
 const infoButtons = Array.from(document.querySelectorAll(".info-btn"));
 
+const hhEl = $("#hh");
+const mmEl = $("#mm");
+const periodEl = $("#period");
 const digitalEl = $("#digital");
-const readPeriod = $("#read-period");
 const readLine = $("#read-line");
 const amBtn = $("#am-btn");
 const pmBtn = $("#pm-btn");
 const infoText = $("#info-text");
-const infoDock = $("#info-dock");
-
-const toast = $("#toast");
+const readPeriod = $("#read-period");
 
 const clockSvg = $("#clock");
 const ticksG = $("#ticks");
 const numsG = $("#nums");
 const handMinute = $("#hand-minute");
 const handHour = $("#hand-hour");
-const handSecond = $("#hand-second");
 
 const state = {
   hour: 3,
   minute: 0,
   period: "am", // am = Öğleden Önce, pm = Öğleden Sonra
-  toastMeta: null,
   drag: null,
   lastDragMinute: null
 };
@@ -45,27 +43,8 @@ function hourTo24(hour12, period) {
   return h === 12 ? 12 : h + 12;
 }
 
-function showToast(text, durationMs = 2200) {
-  // Toast UI kaldırıldı; mesajları bilgi alanında gösteriyoruz.
+function showInfo(text) {
   if (infoText) infoText.textContent = text;
-  if (!toast) return;
-  toast.textContent = text;
-  toast.classList.add("show");
-  state.toastMeta = { until: performance.now() + durationMs };
-  if (typeof gsap !== "undefined") {
-    try {
-      gsap.fromTo(toast, { y: -4, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22, ease: "power2.out" });
-    } catch (_) {}
-  }
-}
-
-function tickToast() {
-  if (!state.toastMeta) return;
-  if (performance.now() > state.toastMeta.until) {
-    toast.classList.remove("show");
-    toast.textContent = "";
-    state.toastMeta = null;
-  }
 }
 
 function numberToTr(n) {
@@ -162,21 +141,14 @@ function readingTR(hour, minute) {
 }
 
 function syncReadouts() {
-  if (readPeriod) readPeriod.textContent = state.period === "pm" ? "Öğleden sonra" : "Öğleden önce";
-  // Tek dijital: ÖÖ -> 00-11, ÖS -> 12-23 olarak göster
   const h24 = hourTo24(state.hour, state.period);
-  const hh = digitalEl?.querySelector?.(".digital__hh");
-  const mm = digitalEl?.querySelector?.(".digital__mm");
-  if (hh && mm) {
-    hh.textContent = pad2(h24);
-    mm.textContent = pad2(state.minute);
-  } else if (digitalEl) {
-    digitalEl.textContent = `${pad2(h24)}:${pad2(state.minute)}`;
-  }
+  if (hhEl) hhEl.textContent = pad2(h24);
+  if (mmEl) mmEl.textContent = pad2(state.minute);
+  if (periodEl) periodEl.textContent = state.period === "pm" ? "Öğleden sonra" : "Öğleden önce";
 
   const r = readingTR(state.hour, state.minute);
   if (readLine) {
-    readLine.innerHTML = `<span class="reading-hour">${r.hourText}</span> <span class="reading-minute">${r.minuteText}</span>`;
+    readLine.innerHTML = `<span class="read-hour">${r.hourText}</span> <span class="read-minute">${r.minuteText}</span>`;
   }
 
   if (digitalEl) {
@@ -203,14 +175,7 @@ function showNote(kind) {
     hour: "Akrep saati gösterir. Kısa ve kalındır. Dakika arttıkça bir sonraki saate doğru yavaşça ilerler.",
     minute: "Yelkovan dakikayı gösterir. Uzun ve incedir. Saatteki her sayı 5 dakikayı temsil eder."
   };
-  const text = notes[kind] || "Bilgi notu bulunamadı.";
-  if (infoText) infoText.textContent = text;
-  if (infoDock) {
-    infoDock.classList.remove("flash");
-    // eslint-disable-next-line no-unused-expressions
-    infoDock.offsetWidth;
-    infoDock.classList.add("flash");
-  }
+  showInfo(notes[kind] || "Bilgi notu bulunamadı.");
   if (typeof gsap !== "undefined") {
     try {
       const target = kind === "hour" ? handHour : kind === "minute" ? handMinute : null;
@@ -377,14 +342,9 @@ function bind() {
   }, { passive: false });
 }
 
-function raf() {
-  tickToast();
-  requestAnimationFrame(raf);
-}
-
 buildFace();
 bind();
 setTime(3, 0);
 setPeriod("am");
-requestAnimationFrame(raf);
+showInfo("Bir bilgi notuna dokun veya saati çevir.");
 
