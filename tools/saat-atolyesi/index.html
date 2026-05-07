@@ -34,22 +34,17 @@
             <div class="controlbar__row controlbar__row--grid">
               <div class="mini-field mini-field--wide">
                 <div class="mini-label">Dijital saat</div>
-                <div class="digital-row">
-                  <div class="digital" id="digital">03:00</div>
-                  <span class="period-pill" id="period-pill" aria-label="Öğleden önce/sonra">ÖÖ</span>
+                <div class="digital-row digital-row--single">
+                  <div class="digital" id="digital" aria-label="Dijital saat">03:00</div>
+                  <div class="seg-tabs seg-tabs--mini seg-tabs--tight" role="group" aria-label="ÖÖ/ÖS seçimi">
+                    <button type="button" class="seg-tab seg-tab--mini active" id="am-btn" aria-pressed="true">ÖÖ</button>
+                    <button type="button" class="seg-tab seg-tab--mini" id="pm-btn" aria-pressed="false">ÖS</button>
+                  </div>
                 </div>
                 <div class="readouts">
                   <span class="read-chip" id="read-kac">Üç</span>
                   <span class="read-chip read-chip--accent" id="read-kacak">Tam</span>
                   <span class="read-chip read-chip--soft" id="read-period">Öğleden önce</span>
-                </div>
-              </div>
-
-              <div class="mini-field">
-                <div class="mini-label">Öğleden önce / sonra</div>
-                <div class="seg-tabs seg-tabs--mini" role="group" aria-label="ÖÖ/ÖS seçimi">
-                  <button type="button" class="seg-tab seg-tab--mini active" id="am-btn" aria-pressed="true">ÖÖ</button>
-                  <button type="button" class="seg-tab seg-tab--mini" id="pm-btn" aria-pressed="false">ÖS</button>
                 </div>
               </div>
 
@@ -87,9 +82,12 @@
                 <g id="nums"></g>
 
                 <g id="hand-minute" class="hand hand-minute" aria-label="Yelkovan" tabindex="0">
+                  <!-- geniş görünmez yakalama alanı -->
+                  <path class="hand-hit" d="M 0 10 L 0 -82" />
                   <path d="M -4 12 L 0 -76 L 4 12 Q 0 18 -4 12 Z"></path>
                 </g>
                 <g id="hand-hour" class="hand hand-hour" aria-label="Akrep" tabindex="0">
+                  <path class="hand-hit" d="M 0 10 L 0 -58" />
                   <path d="M -5 12 L 0 -52 L 5 12 Q 0 19 -5 12 Z"></path>
                 </g>
                 <g id="hand-second" class="hand hand-second" aria-hidden="true">

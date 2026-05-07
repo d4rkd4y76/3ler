@@ -7,7 +7,6 @@ const digitalEl = $("#digital");
 const readKac = $("#read-kac");
 const readKacAk = $("#read-kacak");
 const readPeriod = $("#read-period");
-const periodPill = $("#period-pill");
 const amBtn = $("#am-btn");
 const pmBtn = $("#pm-btn");
 const randomBtn = $("#random-btn");
@@ -50,6 +49,13 @@ function clamp(v, a, b) {
 function pad2(n) {
   const v = Math.floor(Math.abs(n)) % 100;
   return v < 10 ? `0${v}` : `${v}`;
+}
+
+function hourTo24(hour12, period) {
+  const h = clamp(Math.floor(hour12), 1, 12);
+  const p = period === "pm" ? "pm" : "am";
+  if (p === "am") return h === 12 ? 0 : h;
+  return h === 12 ? 12 : h + 12;
 }
 
 function setScore(delta) {
@@ -127,7 +133,9 @@ function syncReadouts() {
   if (readKac) readKac.textContent = t.kac;
   if (readKacAk) readKacAk.textContent = t.kacak;
   if (readPeriod) readPeriod.textContent = state.period === "pm" ? "Öğleden sonra" : "Öğleden önce";
-  if (periodPill) periodPill.textContent = state.period === "pm" ? "ÖS" : "ÖÖ";
+  // Tek dijital: ÖÖ -> 00-11, ÖS -> 12-23 olarak göster
+  const h24 = hourTo24(state.hour, state.period);
+  if (digitalEl) digitalEl.textContent = `${pad2(h24)}:${pad2(state.minute)}`;
 }
 
 function setPeriod(period) {
@@ -142,7 +150,6 @@ function setPeriod(period) {
 function setTime(hour, minute, fromDrag = false) {
   state.hour = clamp(Math.floor(hour), 1, 12);
   state.minute = clamp(Math.floor(minute), 0, 59);
-  if (digitalEl) digitalEl.textContent = `${pad2(state.hour)}:${pad2(state.minute)}`;
   syncReadouts();
   renderHands(fromDrag);
 }
@@ -202,6 +209,21 @@ function angleFromPointer(evt) {
   let deg = (ang * 180) / Math.PI + 90;
   if (deg < 0) deg += 360;
   return deg;
+}
+
+function chooseHandFromPointerDeg(deg) {
+  // Pointer yönüne en yakın eli seç (tıklamak zor olmasın)
+  const mAng = (state.minute / 60) * 360;
+  const hFrac = ((state.hour % 12) / 12) + (state.minute / 720);
+  const hAng = hFrac * 360;
+  const dist = (a, b) => {
+    const d = Math.abs(a - b) % 360;
+    return Math.min(d, 360 - d);
+  };
+  const dm = dist(deg, mAng);
+  const dh = dist(deg, hAng);
+  // dakika eli daha uzun: biraz daha öncelik ver
+  return dm <= dh + 10 ? "minute" : "hour";
 }
 
 function snapMinuteFromDeg(deg) {
@@ -349,6 +371,12 @@ function bind() {
 
   handMinute?.addEventListener("pointerdown", (e) => startDrag("minute", e));
   handHour?.addEventListener("pointerdown", (e) => startDrag("hour", e));
+  // Saatin herhangi bir yerinden de tutabilsin (mouse ile kolay)
+  clockSvg?.addEventListener("pointerdown", (e) => {
+    const deg = angleFromPointer(e);
+    const which = chooseHandFromPointerDeg(deg);
+    startDrag(which, e);
+  }, { passive: false });
 }
 
 function raf() {

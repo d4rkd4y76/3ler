@@ -83,7 +83,7 @@ body{
 .controlbar__row--grid{
   margin-top:8px;
   display:grid;
-  grid-template-columns: 1fr 1fr 120px;
+  grid-template-columns: 1fr 240px;
   gap:10px 12px;
   align-items:center;
 }
@@ -121,23 +121,41 @@ body{
   border:1px solid rgba(59,130,246,.18);font-weight:1000;
 }
 .digital{
-  height:44px;
-  border-radius:14px;
+  height:46px;
+  border-radius:16px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:1000;
-  letter-spacing:.08em;
-  color:#0f172a;
-  background:linear-gradient(180deg, rgba(15,23,42,.92), rgba(15,23,42,.8));
-  box-shadow:0 12px 28px rgba(2,6,23,.22);
-  color:#e2e8f0;
-  font-size:1.2rem;
+  letter-spacing:.12em;
+  background:linear-gradient(180deg, #0f172a, #111827);
+  box-shadow:0 14px 30px rgba(2,6,23,.22), inset 0 1px 0 rgba(255,255,255,.08);
+  color:#e5e7eb;
+  font-size:1.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  border:1px solid rgba(148,163,184,.18);
 }
 .digital-row{
   display:flex;
   align-items:center;
   gap:8px;
+  flex-wrap:wrap;
+}
+.digital-row--single{
+  justify-content:space-between;
+  align-items:stretch;
+}
+.seg-tabs--tight{ background:transparent; border:none; padding:0; gap:8px; }
+.seg-tabs--tight .seg-tab--mini{
+  padding:10px 14px;
+  border:1px solid rgba(59,130,246,.18);
+  background:#f3f7ff;
+  box-shadow:0 10px 20px rgba(12,27,60,.06);
+}
+.seg-tabs--tight .seg-tab--mini.active{
+  border-color:transparent;
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
+  box-shadow:0 14px 28px rgba(37,99,235,.22);
 }
 .period-pill{
   display:inline-flex;
@@ -170,6 +188,7 @@ body{
 .seg-tabs--mini{padding:4px}
 .seg-tab--mini{padding:7px 12px}
 .quick-actions{display:flex;gap:8px;flex-wrap:wrap}
+
 .mini-hint{
   grid-column:1 / -1;
   font-weight:800;
@@ -202,6 +221,13 @@ input[type="range"]{width:100%;accent-color:var(--blue)}
 .hand{ cursor:grab; }
 .hand:active{ cursor:grabbing; }
 .hand path{ fill: rgba(37,99,235,0.95); pointer-events:all; }
+.hand .hand-hit{
+  fill:none;
+  stroke:rgba(0,0,0,0);
+  stroke-width:22;
+  stroke-linecap:round;
+  pointer-events:stroke;
+}
 .hand-hour path{ fill: rgba(15,23,42,0.86); }
 .hand-second{ opacity:.55 }
 .hand-second path{ fill: rgba(239,68,68,0.9); }
@@ -212,6 +238,7 @@ input[type="range"]{width:100%;accent-color:var(--blue)}
   font-size:.8rem;
   color:var(--muted);
 }
+
 
 .toast{
   min-height:18px;
@@ -293,6 +320,7 @@ input[type="range"]{width:100%;accent-color:var(--blue)}
   .title p{ display:none; }
   .app{ height:100dvh; overflow:hidden; padding:8px; gap:8px; }
   .panel{ padding:8px; }
+  /* tek ekran: kontrol + saat + (öğretici kartı masaüstünde) */
   .stage{ grid-template-rows:auto minmax(0,1fr) auto; }
   .controlbar__row--grid{ grid-template-columns: 1fr; }
   .mini-field--wide{ grid-column:auto; }
