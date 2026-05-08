@@ -12,6 +12,8 @@
   const replayBtn = $("replayBtn");
   const backBtn = $("backBtn");
   const warningBox = $("warningBox");
+  const infoToggleBtn = $("infoToggleBtn");
+  const learnArea = $("learnArea");
 
   const STEPS = /** @type {const} */ (["corners", "edges", "equal"]);
   const STEP_LABEL = {
@@ -72,13 +74,13 @@
 
             <!-- measurement -->
             <line class="measure" data-measure="a" x1="55" y1="28" x2="145" y2="28"></line>
-            <text class="m-label" data-mlabel="a" x="100" y="18" text-anchor="middle"></text>
+            <g class="m-icon" data-mlabel="a" transform="translate(100 14)"></g>
             <line class="measure" data-measure="a2" x1="172" y1="55" x2="172" y2="145"></line>
-            <text class="m-label" data-mlabel="a2" x="194" y="104" text-anchor="start"></text>
+            <g class="m-icon" data-mlabel="a2" transform="translate(188 104)"></g>
             <line class="measure" data-measure="a3" x1="55" y1="172" x2="145" y2="172"></line>
-            <text class="m-label" data-mlabel="a3" x="100" y="186" text-anchor="middle"></text>
+            <g class="m-icon" data-mlabel="a3" transform="translate(100 190)"></g>
             <line class="measure" data-measure="a4" x1="28" y1="55" x2="28" y2="145"></line>
-            <text class="m-label" data-mlabel="a4" x="6" y="104" text-anchor="end"></text>
+            <g class="m-icon" data-mlabel="a4" transform="translate(12 104)"></g>
           </svg>
         `;
       },
@@ -117,14 +119,14 @@
             <text class="edge-label" data-edge-label="3" x="12" y="105" text-anchor="middle">4</text>
 
             <line class="measure" data-measure="a" x1="58" y1="40" x2="162" y2="40"></line>
-            <text class="m-label" data-mlabel="a" x="110" y="30" text-anchor="middle"></text>
+            <g class="m-icon" data-mlabel="a" transform="translate(110 24)"></g>
             <line class="measure" data-measure="a2" x1="58" y1="160" x2="162" y2="160"></line>
-            <text class="m-label" data-mlabel="a2" x="110" y="182" text-anchor="middle"></text>
+            <g class="m-icon" data-mlabel="a2" transform="translate(110 188)"></g>
 
             <line class="measure" data-measure="b" x1="195" y1="70" x2="195" y2="130"></line>
-            <text class="m-label" data-mlabel="b" x="204" y="105" text-anchor="end"></text>
+            <g class="m-icon" data-mlabel="b" transform="translate(210 105)"></g>
             <line class="measure" data-measure="b2" x1="25" y1="70" x2="25" y2="130"></line>
-            <text class="m-label" data-mlabel="b2" x="16" y="105" text-anchor="start"></text>
+            <g class="m-icon" data-mlabel="b2" transform="translate(10 105)"></g>
           </svg>
         `;
       },
@@ -159,9 +161,9 @@
             <text class="edge-label" data-edge-label="2" x="60" y="96" text-anchor="middle">3</text>
 
             <line class="measure" data-measure="a" x1="120" y1="50" x2="180" y2="150"></line>
-            <text class="m-label" data-mlabel="a" x="186" y="90" text-anchor="middle"></text>
+            <g class="m-icon" data-mlabel="a" transform="translate(165 104)"></g>
             <line class="measure" data-measure="a2" x1="40" y1="150" x2="100" y2="50"></line>
-            <text class="m-label" data-mlabel="a2" x="34" y="90" text-anchor="middle"></text>
+            <g class="m-icon" data-mlabel="a2" transform="translate(55 104)"></g>
           </svg>
         `;
       },
@@ -301,7 +303,7 @@
     svgWrap.querySelectorAll(".edge").forEach((n) => n.classList.remove("active"));
     svgWrap.querySelectorAll(".edge-label").forEach((n) => n.classList.remove("active"));
     svgWrap.querySelectorAll(".measure").forEach((n) => n.classList.remove("show"));
-    svgWrap.querySelectorAll(".m-label").forEach((n) => n.classList.remove("show"));
+    svgWrap.querySelectorAll(".m-icon").forEach((n) => n.classList.remove("show"));
   }
 
   async function playCorners(shape, token) {
@@ -365,69 +367,119 @@
   }
 
   async function playEqual(shape, token) {
-    const setLabel = (key, text) => {
-      const lbl = svgWrap.querySelector(`[data-mlabel="${key}"]`);
-      if (lbl) lbl.textContent = text;
+    const setIcon = (key, type) => {
+      const node = svgWrap.querySelector(`.m-icon[data-mlabel="${key}"]`);
+      if (!node) return;
+      node.innerHTML = makeIconMarkup(type);
     };
-    const show = (key, text) => {
+    const show = (key, type) => {
       const line = svgWrap.querySelector(`[data-measure="${key}"]`);
-      const lbl = svgWrap.querySelector(`[data-mlabel="${key}"]`);
-      if (lbl && typeof text === "string") lbl.textContent = text;
+      const node = svgWrap.querySelector(`.m-icon[data-mlabel="${key}"]`);
+      if (node && typeof type === "string") node.innerHTML = makeIconMarkup(type);
       if (line) line.classList.add("show");
-      if (lbl) lbl.classList.add("show");
+      if (node) node.classList.add("show");
     };
     const activateAllEdges = () => {
       svgWrap.querySelectorAll(".edge").forEach((n) => n.classList.add("active"));
+    };
+
+    const makeIconMarkup = (type) => {
+      // Consistent "fun" icons drawn as vectors (no emoji font differences).
+      // Everything is centered at (0,0) and kept small so it never touches lines.
+      if (type === "lollipop") {
+        return `
+          <g transform="scale(.92)">
+            <circle cx="0" cy="0" r="8.6" fill="#ffffff" opacity=".95"></circle>
+            <circle cx="0" cy="0" r="7.6" fill="url(#luxVtxGrad)"></circle>
+            <path d="M0,-7.6 A7.6,7.6 0 0 1 6.6,3.8" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2.4" stroke-linecap="round"></path>
+            <path d="M-5.6,-2.6 C -2.8,-6.6, 2.8,-6.6, 5.6,-2.6 C 2.8,1.6, -2.8,1.6, -5.6,-2.6Z"
+              fill="rgba(255,255,255,.22)"></path>
+            <path d="M4.2,6.2 L9.6,11.6" stroke="#f59e0b" stroke-width="2.4" stroke-linecap="round"></path>
+            <path d="M5.4,5.0 L10.8,10.4" stroke="rgba(255,255,255,.55)" stroke-width="1.3" stroke-linecap="round"></path>
+          </g>
+        `;
+      }
+      if (type === "apple") {
+        return `
+          <g transform="scale(.9)">
+            <path d="M0,-8 C3.6,-10 7.6,-6.8 7.2,-2.2 C6.8,2.4 3.6,8 0,8 C-3.6,8 -6.8,2.4 -7.2,-2.2 C-7.6,-6.8 -3.6,-10 0,-8Z"
+              fill="#ef4444"></path>
+            <path d="M1.4,-8.8 C2.8,-11.2 5.8,-11.6 7.2,-10.0 C5.2,-9.2 3.4,-8.2 1.4,-8.8Z" fill="#22c55e"></path>
+            <path d="M0.6,-10.6 C0.6,-8.8 -0.4,-8.0 -1.6,-7.2" fill="none" stroke="#7c2d12" stroke-width="1.6" stroke-linecap="round"></path>
+            <path d="M-2.2,-1.0 C-0.6,-3.6 1.0,-3.8 2.6,-1.4 C1.2,0.0 -1.0,0.2 -2.2,-1.0Z" fill="rgba(255,255,255,.28)"></path>
+          </g>
+        `;
+      }
+      if (type === "banana") {
+        return `
+          <g transform="scale(.92)">
+            <path d="M-7,-2 C-3,7 6,9 9,2 C5,6 -1,4 -4,-4 Z" fill="#f59e0b"></path>
+            <path d="M-6,-2 C-2,6 6,7 8,2" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.8" stroke-linecap="round"></path>
+            <circle cx="-7.5" cy="-2.2" r="1.4" fill="#7c2d12"></circle>
+          </g>
+        `;
+      }
+      if (type === "star") {
+        return `
+          <g transform="scale(.9)">
+            <path d="M0,-10 L2.8,-3.2 L10,-3.2 L4.2,1.2 L6.8,8.8 L0,4.8 L-6.8,8.8 L-4.2,1.2 L-10,-3.2 L-2.8,-3.2 Z"
+              fill="#7c3aed"></path>
+            <path d="M0,-8 L2.2,-2.8 L8,-2.8 L3.5,0.8 L5.5,6.8 L0,3.8 L-5.5,6.8 L-3.5,0.8 L-8,-2.8 L-2.2,-2.8 Z"
+              fill="rgba(255,255,255,.24)"></path>
+          </g>
+        `;
+      }
+      return `<circle cx="0" cy="0" r="7" fill="#2563eb"></circle>`;
     };
 
     if (token !== playToken) return;
     if (shape.id === "square") {
       // Emphasize: all 4 sides are equal
       activateAllEdges();
-      const sym = "🍭";
-      setLabel("a", sym);
-      setLabel("a2", sym);
-      setLabel("a3", sym);
-      setLabel("a4", sym);
-      show("a", sym);
+      const type = "lollipop";
+      setIcon("a", type);
+      setIcon("a2", type);
+      setIcon("a3", type);
+      setIcon("a4", type);
+      show("a", type);
       await sleep(740);
       if (token !== playToken) return;
-      show("a2", sym);
+      show("a2", type);
       await sleep(420);
       if (token !== playToken) return;
-      show("a3", sym);
+      show("a3", type);
       await sleep(420);
       if (token !== playToken) return;
-      show("a4", sym);
+      show("a4", type);
       return;
     }
     if (shape.id === "rectangle") {
-      const longSym = "🍎";
-      const shortSym = "🍌";
-      setLabel("a", longSym);
-      setLabel("a2", longSym);
-      setLabel("b", shortSym);
-      setLabel("b2", shortSym);
-      show("a", longSym);
+      const longType = "apple";
+      const shortType = "banana";
+      setIcon("a", longType);
+      setIcon("a2", longType);
+      setIcon("b", shortType);
+      setIcon("b2", shortType);
+      show("a", longType);
       await sleep(560);
       if (token !== playToken) return;
-      show("a2", longSym);
+      show("a2", longType);
       await sleep(560);
       if (token !== playToken) return;
-      show("b", shortSym);
+      show("b", shortType);
       await sleep(560);
       if (token !== playToken) return;
-      show("b2", shortSym);
+      show("b2", shortType);
       return;
     }
     if (shape.id === "triangle") {
-      const sym = "⭐";
-      setLabel("a", sym);
-      setLabel("a2", sym);
-      show("a", sym);
+      const type = "star";
+      setIcon("a", type);
+      setIcon("a2", type);
+      show("a", type);
       await sleep(740);
       if (token !== playToken) return;
-      show("a2", sym);
+      show("a2", type);
       return;
     }
     // Circle: no radius/measure animation requested
@@ -465,20 +517,79 @@
 
   replayBtn?.addEventListener("click", () => play());
 
+  function isMobile() {
+    return window.matchMedia && window.matchMedia("(max-width: 480px)").matches;
+  }
+
+  function setInfoCollapsed(collapsed) {
+    document.body.dataset.infoCollapsed = collapsed ? "1" : "0";
+    if (infoToggleBtn) {
+      infoToggleBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      infoToggleBtn.textContent = collapsed ? "Bilgileri göster" : "Bilgileri küçült";
+    }
+    updateSvgSize();
+  }
+
+  infoToggleBtn?.addEventListener("click", () => {
+    const collapsed = document.body.dataset.infoCollapsed === "1";
+    setInfoCollapsed(!collapsed);
+  });
+
   // Init
   renderChips();
   setShape(activeShapeId);
   setStep(activeStep);
 
   // Resize guard: avoid tiny SVG on very small heights
-  function tightenIfNeeded() {
-    const h = window.innerHeight || 0;
+  function updateSvgSize() {
     const svg = svgWrap.querySelector("svg");
     if (!svg) return;
-    const max = clamp(Math.floor(h * 0.42), 220, 420);
-    svg.style.maxHeight = `${max}px`;
+
+    // Compute remaining height inside the app for the SVG area.
+    const app = document.querySelector(".app");
+    const topbar = document.querySelector(".topbar");
+    const selector = document.querySelector(".selector");
+    const stageHead = document.querySelector(".stage-head");
+    const bottom = document.querySelector(".bottom");
+    const infoToggleRow = document.querySelector(".info-toggle-row");
+
+    const vh = window.innerHeight || 0;
+    const padTop = 10;
+    const padBottom = 12;
+    const used =
+      (topbar?.getBoundingClientRect().height || 0) +
+      (selector?.getBoundingClientRect().height || 0) +
+      (stageHead?.getBoundingClientRect().height || 0) +
+      (warningBox && !warningBox.hidden ? warningBox.getBoundingClientRect().height : 0) +
+      (infoToggleRow?.getBoundingClientRect().height || 0) +
+      (bottom?.getBoundingClientRect().height || 0) +
+      // If learn is visible, count it; otherwise 0
+      (learnArea && document.body.dataset.infoCollapsed !== "1" ? learnArea.getBoundingClientRect().height : 0) +
+      // gaps / paddings
+      (app ? 34 : 24) +
+      padTop +
+      padBottom;
+
+    const avail = clamp(vh - used, 240, Math.floor(vh * 0.72));
+    svg.style.maxHeight = `${avail}px`;
   }
+
+  function tightenIfNeeded() {
+    // On mobile, default to collapsed info for maximum shape size.
+    if (isMobile() && document.body.dataset.infoCollapsed == null) {
+      setInfoCollapsed(true);
+    } else {
+      updateSvgSize();
+    }
+  }
+
   window.addEventListener("resize", tightenIfNeeded, { passive: true });
+  // Also react after layout changes (step warnings etc.)
+  const _origSetWarning = setWarning;
+  setWarning = (html) => {
+    _origSetWarning(html);
+    updateSvgSize();
+  };
   tightenIfNeeded();
 })();
 

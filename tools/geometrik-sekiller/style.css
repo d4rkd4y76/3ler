@@ -205,6 +205,28 @@ body{
   gap:10px;
 }
 
+.info-toggle-row{
+  padding: 0 12px;
+  margin-top: 2px;
+}
+.info-toggle{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:10px 12px;
+  cursor:pointer;
+  font-weight:1000;
+  letter-spacing:.2px;
+  background:linear-gradient(180deg,#eef2ff,#ffffff);
+  border:1px solid rgba(37,99,235,.16);
+  color:#24318b;
+}
+.info-toggle:active{ transform: translateY(1px); }
+
+body[data-info-collapsed="1"] .learn{
+  display:none;
+}
+
 .warning{
   margin: 6px 12px 2px;
   border-radius: 14px;
@@ -390,16 +412,14 @@ body[data-step="equal"] .edge.active{
   filter: drop-shadow(0 6px 10px rgba(16,185,129,.22));
   animation: measureDraw .85s ease forwards;
 }
-.m-label{
-  font-weight:1000;
-  font-size:22px; /* keep emoji inside viewBox */
-  fill:#065f46;
+.m-icon{
   opacity:0;
   transform-origin: center;
-  transform: scale(.85);
-  dominant-baseline: middle;
+  transform: scale(.88);
+  filter: drop-shadow(0 10px 16px rgba(2,8,23,.12));
+  pointer-events:none;
 }
-.m-label.show{
+.m-icon.show{
   opacity:1;
   animation: labelPop .8s cubic-bezier(.2,.9,.2,1) forwards;
 }
@@ -456,6 +476,8 @@ body[data-step="edges"] .edge-label{ opacity:.60; }
   .warning .k{ font-size:.86rem; }
   .warning .t{ font-size:.86rem; }
 
+  .info-toggle-row{ padding:0 10px; }
+  .info-toggle{ padding:9px 10px; font-size:.9rem; }
   .learn{ padding:8px 10px 10px; gap:8px; }
   .learn-kicker{ font-size:.9rem; }
   .learn-text{ font-size:.9rem; }
