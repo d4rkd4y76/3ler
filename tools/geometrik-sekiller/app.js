@@ -74,13 +74,9 @@
 
             <!-- measurement -->
             <line class="measure" data-measure="a" x1="55" y1="28" x2="145" y2="28"></line>
-            <g class="m-icon" data-mlabel="a" transform="translate(100 14)"></g>
             <line class="measure" data-measure="a2" x1="172" y1="55" x2="172" y2="145"></line>
-            <g class="m-icon" data-mlabel="a2" transform="translate(188 104)"></g>
             <line class="measure" data-measure="a3" x1="55" y1="172" x2="145" y2="172"></line>
-            <g class="m-icon" data-mlabel="a3" transform="translate(100 190)"></g>
             <line class="measure" data-measure="a4" x1="28" y1="55" x2="28" y2="145"></line>
-            <g class="m-icon" data-mlabel="a4" transform="translate(12 104)"></g>
           </svg>
         `;
       },
@@ -119,14 +115,10 @@
             <text class="edge-label" data-edge-label="3" x="12" y="105" text-anchor="middle">4</text>
 
             <line class="measure" data-measure="a" x1="58" y1="40" x2="162" y2="40"></line>
-            <g class="m-icon" data-mlabel="a" transform="translate(110 24)"></g>
             <line class="measure" data-measure="a2" x1="58" y1="160" x2="162" y2="160"></line>
-            <g class="m-icon" data-mlabel="a2" transform="translate(110 188)"></g>
 
             <line class="measure" data-measure="b" x1="195" y1="70" x2="195" y2="130"></line>
-            <g class="m-icon" data-mlabel="b" transform="translate(210 105)"></g>
             <line class="measure" data-measure="b2" x1="25" y1="70" x2="25" y2="130"></line>
-            <g class="m-icon" data-mlabel="b2" transform="translate(10 105)"></g>
           </svg>
         `;
       },
@@ -137,11 +129,11 @@
       name: "Üçgen",
       corners: 3,
       edges: 3,
-      equal: "Bazı üçgenlerde 2 kenar eşit olabilir (ikizkenar).",
+      equal: "Üçgende kenarlar bazen eşit olabilir, bazen de farklı olabilir.",
       mini: [
         "3 köşe, 3 kenar.",
         "Üçgenin kenarları doğru parçalarıdır.",
-        "İkizkenar üçgende 2 kenar eşittir.",
+        "Bazı üçgenlerde kenarlar eşit olabilir; bazı üçgenlerde farklı olabilir.",
       ],
       svg: () => {
         return `
@@ -161,9 +153,7 @@
             <text class="edge-label" data-edge-label="2" x="60" y="96" text-anchor="middle">3</text>
 
             <line class="measure" data-measure="a" x1="120" y1="50" x2="180" y2="150"></line>
-            <g class="m-icon" data-mlabel="a" transform="translate(165 104)"></g>
             <line class="measure" data-measure="a2" x1="40" y1="150" x2="100" y2="50"></line>
-            <g class="m-icon" data-mlabel="a2" transform="translate(55 104)"></g>
           </svg>
         `;
       },
@@ -252,6 +242,11 @@
       </linearGradient>
     `;
     svg.insertBefore(defs, svg.firstChild);
+
+    // Equal icons layer (dynamic placement next to edges)
+    const eqLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    eqLayer.setAttribute("id", "eq-icons");
+    svg.appendChild(eqLayer);
   }
 
   function renderText() {
@@ -284,13 +279,24 @@
         learnText.textContent = "Dairede düz kenar yoktur. Kenar yerine yuvarlak bir çizgi vardır.";
         setWarning(
           `<div class="k"><span aria-hidden="true">ℹ️</span><span>Uyarı</span></div>` +
-          `<div class="t">Dairede <b>düz kenar yoktur</b>. Bu yüzden kenar animasyonu oynatılmaz.</div>`
+          `<div class="t">Dairenin kenarı yoktur.</div>`
         );
       } else {
         learnText.textContent = `${shape.name} ${shape.edges} kenarlıdır. Kenarlar düz çizgi parçası gibidir.`;
         setWarning("");
       }
       return;
+    }
+
+    if (step === "equal") {
+      if (shape.id === "triangle") {
+        setWarning(
+          `<div class="k"><span aria-hidden="true">ℹ️</span><span>Bilgi</span></div>` +
+          `<div class="t">Üçgende kenarlar <b>eşit de olabilir</b>, <b>farklı da olabilir</b>. Her üçgen ikizkenar değildir.</div>`
+        );
+      } else {
+        setWarning("");
+      }
     }
 
     setWarning("");
@@ -301,9 +307,133 @@
     svgWrap.querySelectorAll(".vtx").forEach((n) => n.classList.remove("active"));
     svgWrap.querySelectorAll(".vtx-label").forEach((n) => n.classList.remove("active"));
     svgWrap.querySelectorAll(".edge").forEach((n) => n.classList.remove("active"));
+    svgWrap.querySelectorAll(".edge").forEach((n) => n.classList.remove("eqA", "eqB", "done"));
     svgWrap.querySelectorAll(".edge-label").forEach((n) => n.classList.remove("active"));
     svgWrap.querySelectorAll(".measure").forEach((n) => n.classList.remove("show"));
     svgWrap.querySelectorAll(".m-icon").forEach((n) => n.classList.remove("show"));
+    const eq = svgWrap.querySelector("#eq-icons");
+    if (eq) eq.innerHTML = "";
+  }
+
+  function getShapeCenter() {
+    const svg = svgWrap.querySelector("svg");
+    if (!svg) return { cx: 0, cy: 0 };
+    const base = svg.querySelector(".shape-fill");
+    if (base && typeof base.getBBox === "function") {
+      const b = base.getBBox();
+      return { cx: b.x + b.width / 2, cy: b.y + b.height / 2 };
+    }
+    return { cx: 100, cy: 100 };
+  }
+
+  function listEdges() {
+    const edges = [...svgWrap.querySelectorAll(".edge")].map((el) => {
+      const idx = Number(el.getAttribute("data-edge") || 0);
+      const x1 = Number(el.getAttribute("x1") || 0);
+      const y1 = Number(el.getAttribute("y1") || 0);
+      const x2 = Number(el.getAttribute("x2") || 0);
+      const y2 = Number(el.getAttribute("y2") || 0);
+      return { idx, x1, y1, x2, y2 };
+    });
+    return edges.sort((a, b) => a.idx - b.idx);
+  }
+
+  function makeFunIconMarkup(type) {
+    // Consistent "fun" icons drawn as vectors (no emoji font differences).
+    if (type === "lollipop") {
+      return `
+        <g transform="scale(.92)">
+          <circle cx="0" cy="0" r="8.6" fill="#ffffff" opacity=".95"></circle>
+          <circle cx="0" cy="0" r="7.6" fill="url(#luxVtxGrad)"></circle>
+          <path d="M0,-7.6 A7.6,7.6 0 0 1 6.6,3.8" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2.4" stroke-linecap="round"></path>
+          <path d="M-5.6,-2.6 C -2.8,-6.6, 2.8,-6.6, 5.6,-2.6 C 2.8,1.6, -2.8,1.6, -5.6,-2.6Z"
+            fill="rgba(255,255,255,.22)"></path>
+          <path d="M4.2,6.2 L9.6,11.6" stroke="#f59e0b" stroke-width="2.4" stroke-linecap="round"></path>
+          <path d="M5.4,5.0 L10.8,10.4" stroke="rgba(255,255,255,.55)" stroke-width="1.3" stroke-linecap="round"></path>
+        </g>
+      `;
+    }
+    if (type === "apple") {
+      return `
+        <g transform="scale(.9)">
+          <path d="M0,-8 C3.6,-10 7.6,-6.8 7.2,-2.2 C6.8,2.4 3.6,8 0,8 C-3.6,8 -6.8,2.4 -7.2,-2.2 C-7.6,-6.8 -3.6,-10 0,-8Z"
+            fill="#ef4444"></path>
+          <path d="M1.4,-8.8 C2.8,-11.2 5.8,-11.6 7.2,-10.0 C5.2,-9.2 3.4,-8.2 1.4,-8.8Z" fill="#22c55e"></path>
+          <path d="M0.6,-10.6 C0.6,-8.8 -0.4,-8.0 -1.6,-7.2" fill="none" stroke="#7c2d12" stroke-width="1.6" stroke-linecap="round"></path>
+          <path d="M-2.2,-1.0 C-0.6,-3.6 1.0,-3.8 2.6,-1.4 C1.2,0.0 -1.0,0.2 -2.2,-1.0Z" fill="rgba(255,255,255,.28)"></path>
+        </g>
+      `;
+    }
+    if (type === "banana") {
+      return `
+        <g transform="scale(.92)">
+          <path d="M-7,-2 C-3,7 6,9 9,2 C5,6 -1,4 -4,-4 Z" fill="#f59e0b"></path>
+          <path d="M-6,-2 C-2,6 6,7 8,2" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.8" stroke-linecap="round"></path>
+          <circle cx="-7.5" cy="-2.2" r="1.4" fill="#7c2d12"></circle>
+        </g>
+      `;
+    }
+    if (type === "star") {
+      return `
+        <g transform="scale(.9)">
+          <path d="M0,-10 L2.8,-3.2 L10,-3.2 L4.2,1.2 L6.8,8.8 L0,4.8 L-6.8,8.8 L-4.2,1.2 L-10,-3.2 L-2.8,-3.2 Z"
+            fill="#7c3aed"></path>
+          <path d="M0,-8 L2.2,-2.8 L8,-2.8 L3.5,0.8 L5.5,6.8 L0,3.8 L-5.5,6.8 L-3.5,0.8 L-8,-2.8 L-2.2,-2.8 Z"
+            fill="rgba(255,255,255,.24)"></path>
+        </g>
+      `;
+    }
+    return `<circle cx="0" cy="0" r="7" fill="#2563eb"></circle>`;
+  }
+
+  function addEqualIcon(edgeIdx, icon) {
+    const svg = svgWrap.querySelector("svg");
+    const layer = svgWrap.querySelector("#eq-icons");
+    if (!svg || !layer) return;
+
+    const edges = listEdges();
+    const { cx, cy } = getShapeCenter();
+    const OFFSET = 18; // standard distance from edge midpoint (outside)
+
+    const e = edges.find((x) => x.idx === edgeIdx);
+    if (!e) return;
+      const mx = (e.x1 + e.x2) / 2;
+      const my = (e.y1 + e.y2) / 2;
+      const dx = e.x2 - e.x1;
+      const dy = e.y2 - e.y1;
+      const len = Math.hypot(dx, dy) || 1;
+      // perpendicular normal
+      let nx = -dy / len;
+      let ny = dx / len;
+      // choose outward direction (farther from center)
+      const c1x = mx + nx * OFFSET, c1y = my + ny * OFFSET;
+      const c2x = mx - nx * OFFSET, c2y = my - ny * OFFSET;
+      const d1 = (c1x - cx) * (c1x - cx) + (c1y - cy) * (c1y - cy);
+      const d2 = (c2x - cx) * (c2x - cx) + (c2y - cy) * (c2y - cy);
+      if (d2 > d1) { nx = -nx; ny = -ny; }
+
+      // IMPORTANT: keep translate on outer group; animate scale on inner group
+      // so CSS transform animation does not override positioning.
+      const outer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      outer.setAttribute("class", "eq-icon-pos");
+      outer.setAttribute("transform", `translate(${mx + nx * OFFSET} ${my + ny * OFFSET})`);
+
+      const inner = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      inner.setAttribute("class", "eq-icon");
+      inner.innerHTML = makeFunIconMarkup(icon);
+
+      outer.appendChild(inner);
+      layer.appendChild(outer);
+  }
+
+  function setEqualEdgeState(edgeIdx, state) {
+    const el = svgWrap.querySelector(`.edge[data-edge="${edgeIdx}"]`);
+    if (!el) return;
+    el.classList.remove("eqA", "eqB", "done");
+    if (state === "eqA") el.classList.add("eqA");
+    if (state === "eqB") el.classList.add("eqB");
+    if (state === "doneA") el.classList.add("eqA", "done");
+    if (state === "doneB") el.classList.add("eqB", "done");
   }
 
   async function playCorners(shape, token) {
@@ -367,119 +497,44 @@
   }
 
   async function playEqual(shape, token) {
-    const setIcon = (key, type) => {
-      const node = svgWrap.querySelector(`.m-icon[data-mlabel="${key}"]`);
-      if (!node) return;
-      node.innerHTML = makeIconMarkup(type);
-    };
-    const show = (key, type) => {
-      const line = svgWrap.querySelector(`[data-measure="${key}"]`);
-      const node = svgWrap.querySelector(`.m-icon[data-mlabel="${key}"]`);
-      if (node && typeof type === "string") node.innerHTML = makeIconMarkup(type);
-      if (line) line.classList.add("show");
-      if (node) node.classList.add("show");
-    };
-    const activateAllEdges = () => {
-      svgWrap.querySelectorAll(".edge").forEach((n) => n.classList.add("active"));
-    };
-
-    const makeIconMarkup = (type) => {
-      // Consistent "fun" icons drawn as vectors (no emoji font differences).
-      // Everything is centered at (0,0) and kept small so it never touches lines.
-      if (type === "lollipop") {
-        return `
-          <g transform="scale(.92)">
-            <circle cx="0" cy="0" r="8.6" fill="#ffffff" opacity=".95"></circle>
-            <circle cx="0" cy="0" r="7.6" fill="url(#luxVtxGrad)"></circle>
-            <path d="M0,-7.6 A7.6,7.6 0 0 1 6.6,3.8" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2.4" stroke-linecap="round"></path>
-            <path d="M-5.6,-2.6 C -2.8,-6.6, 2.8,-6.6, 5.6,-2.6 C 2.8,1.6, -2.8,1.6, -5.6,-2.6Z"
-              fill="rgba(255,255,255,.22)"></path>
-            <path d="M4.2,6.2 L9.6,11.6" stroke="#f59e0b" stroke-width="2.4" stroke-linecap="round"></path>
-            <path d="M5.4,5.0 L10.8,10.4" stroke="rgba(255,255,255,.55)" stroke-width="1.3" stroke-linecap="round"></path>
-          </g>
-        `;
-      }
-      if (type === "apple") {
-        return `
-          <g transform="scale(.9)">
-            <path d="M0,-8 C3.6,-10 7.6,-6.8 7.2,-2.2 C6.8,2.4 3.6,8 0,8 C-3.6,8 -6.8,2.4 -7.2,-2.2 C-7.6,-6.8 -3.6,-10 0,-8Z"
-              fill="#ef4444"></path>
-            <path d="M1.4,-8.8 C2.8,-11.2 5.8,-11.6 7.2,-10.0 C5.2,-9.2 3.4,-8.2 1.4,-8.8Z" fill="#22c55e"></path>
-            <path d="M0.6,-10.6 C0.6,-8.8 -0.4,-8.0 -1.6,-7.2" fill="none" stroke="#7c2d12" stroke-width="1.6" stroke-linecap="round"></path>
-            <path d="M-2.2,-1.0 C-0.6,-3.6 1.0,-3.8 2.6,-1.4 C1.2,0.0 -1.0,0.2 -2.2,-1.0Z" fill="rgba(255,255,255,.28)"></path>
-          </g>
-        `;
-      }
-      if (type === "banana") {
-        return `
-          <g transform="scale(.92)">
-            <path d="M-7,-2 C-3,7 6,9 9,2 C5,6 -1,4 -4,-4 Z" fill="#f59e0b"></path>
-            <path d="M-6,-2 C-2,6 6,7 8,2" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.8" stroke-linecap="round"></path>
-            <circle cx="-7.5" cy="-2.2" r="1.4" fill="#7c2d12"></circle>
-          </g>
-        `;
-      }
-      if (type === "star") {
-        return `
-          <g transform="scale(.9)">
-            <path d="M0,-10 L2.8,-3.2 L10,-3.2 L4.2,1.2 L6.8,8.8 L0,4.8 L-6.8,8.8 L-4.2,1.2 L-10,-3.2 L-2.8,-3.2 Z"
-              fill="#7c3aed"></path>
-            <path d="M0,-8 L2.2,-2.8 L8,-2.8 L3.5,0.8 L5.5,6.8 L0,3.8 L-5.5,6.8 L-3.5,0.8 L-8,-2.8 L-2.2,-2.8 Z"
-              fill="rgba(255,255,255,.24)"></path>
-          </g>
-        `;
-      }
-      return `<circle cx="0" cy="0" r="7" fill="#2563eb"></circle>`;
-    };
-
     if (token !== playToken) return;
     if (shape.id === "square") {
-      // Emphasize: all 4 sides are equal
-      activateAllEdges();
-      const type = "lollipop";
-      setIcon("a", type);
-      setIcon("a2", type);
-      setIcon("a3", type);
-      setIcon("a4", type);
-      show("a", type);
-      await sleep(740);
-      if (token !== playToken) return;
-      show("a2", type);
-      await sleep(420);
-      if (token !== playToken) return;
-      show("a3", type);
-      await sleep(420);
-      if (token !== playToken) return;
-      show("a4", type);
+      // All 4 sides equal: only equal edges are highlighted (here: all)
+      const seq = [0, 1, 2, 3];
+      for (const e of seq) {
+        if (token !== playToken) return;
+        setEqualEdgeState(e, "eqB");
+        await sleep(520);
+        if (token !== playToken) return;
+        addEqualIcon(e, "lollipop");
+        setEqualEdgeState(e, "doneB");
+        await sleep(340);
+      }
       return;
     }
     if (shape.id === "rectangle") {
-      const longType = "apple";
-      const shortType = "banana";
-      setIcon("a", longType);
-      setIcon("a2", longType);
-      setIcon("b", shortType);
-      setIcon("b2", shortType);
-      show("a", longType);
-      await sleep(560);
+      // Opposite edges: top-bottom (0,2) same; right-left (1,3) same
+      // First pair (yellow): top & bottom
+      for (const e of [0, 2]) setEqualEdgeState(e, "eqA");
+      await sleep(520);
       if (token !== playToken) return;
-      show("a2", longType);
-      await sleep(560);
+      addEqualIcon(0, "apple");
+      addEqualIcon(2, "apple");
+      for (const e of [0, 2]) setEqualEdgeState(e, "doneA");
+      await sleep(420);
       if (token !== playToken) return;
-      show("b", shortType);
-      await sleep(560);
+
+      // Second pair (green): right & left
+      for (const e of [1, 3]) setEqualEdgeState(e, "eqB");
+      await sleep(520);
       if (token !== playToken) return;
-      show("b2", shortType);
+      addEqualIcon(1, "banana");
+      addEqualIcon(3, "banana");
+      for (const e of [1, 3]) setEqualEdgeState(e, "doneB");
       return;
     }
     if (shape.id === "triangle") {
-      const type = "star";
-      setIcon("a", type);
-      setIcon("a2", type);
-      show("a", type);
-      await sleep(740);
-      if (token !== playToken) return;
-      show("a2", type);
+      // Do not force "equal edges" logic for triangle; show info via warning instead.
       return;
     }
     // Circle: no radius/measure animation requested

@@ -321,16 +321,14 @@ body[data-info-collapsed="1"] .learn{
 }
 
 .signature{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom: calc(8px + env(safe-area-inset-bottom));
   text-align:center;
   pointer-events:none;
   color:rgba(226,232,240,.45);
   font-weight:900;
   letter-spacing:2px;
   font-size:.72rem;
+  margin-top: 8px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
 }
 
 /* SVG helper classes (animated by JS) */
@@ -398,6 +396,19 @@ body[data-step="equal"] .edge.active{
   stroke:#7c3aed;
   filter: drop-shadow(0 6px 10px rgba(124,58,237,.28));
 }
+.edge.eqA{
+  opacity:1 !important;
+  stroke:#fbbf24; /* yellow */
+  filter: drop-shadow(0 10px 18px rgba(251,191,36,.26));
+}
+.edge.eqB{
+  opacity:1 !important;
+  stroke:#22c55e; /* green */
+  filter: drop-shadow(0 10px 18px rgba(34,197,94,.22));
+}
+.edge.eqA.done, .edge.eqB.done{
+  opacity:1 !important;
+}
 .measure{
   stroke:#111827;
   stroke-width:6;
@@ -422,6 +433,20 @@ body[data-step="equal"] .edge.active{
 .m-icon.show{
   opacity:1;
   animation: labelPop .8s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+.eq-icon-pos{ pointer-events:none; }
+.eq-icon{
+  opacity:0;
+  transform-origin:center;
+  transform: scale(.72);
+  filter: drop-shadow(0 10px 16px rgba(2,8,23,.12));
+  animation: eqPop .9s cubic-bezier(.2,.9,.2,1) forwards;
+}
+@keyframes eqPop{
+  0%{ opacity:0; transform: scale(.62); }
+  65%{ opacity:1; transform: scale(1.06); }
+  100%{ opacity:1; transform: scale(1); }
 }
 
 @keyframes measureDraw{
