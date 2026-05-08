@@ -72,13 +72,13 @@
 
             <!-- measurement -->
             <line class="measure" data-measure="a" x1="55" y1="28" x2="145" y2="28"></line>
-            <text class="m-label" data-mlabel="a" x="100" y="22" text-anchor="middle"></text>
+            <text class="m-label" data-mlabel="a" x="100" y="18" text-anchor="middle"></text>
             <line class="measure" data-measure="a2" x1="172" y1="55" x2="172" y2="145"></line>
-            <text class="m-label" data-mlabel="a2" x="178" y="104" text-anchor="start"></text>
+            <text class="m-label" data-mlabel="a2" x="194" y="104" text-anchor="start"></text>
             <line class="measure" data-measure="a3" x1="55" y1="172" x2="145" y2="172"></line>
-            <text class="m-label" data-mlabel="a3" x="100" y="196" text-anchor="middle"></text>
+            <text class="m-label" data-mlabel="a3" x="100" y="186" text-anchor="middle"></text>
             <line class="measure" data-measure="a4" x1="28" y1="55" x2="28" y2="145"></line>
-            <text class="m-label" data-mlabel="a4" x="22" y="104" text-anchor="end"></text>
+            <text class="m-label" data-mlabel="a4" x="6" y="104" text-anchor="end"></text>
           </svg>
         `;
       },
@@ -117,14 +117,14 @@
             <text class="edge-label" data-edge-label="3" x="12" y="105" text-anchor="middle">4</text>
 
             <line class="measure" data-measure="a" x1="58" y1="40" x2="162" y2="40"></line>
-            <text class="m-label" data-mlabel="a" x="110" y="34" text-anchor="middle"></text>
+            <text class="m-label" data-mlabel="a" x="110" y="30" text-anchor="middle"></text>
             <line class="measure" data-measure="a2" x1="58" y1="160" x2="162" y2="160"></line>
-            <text class="m-label" data-mlabel="a2" x="110" y="194" text-anchor="middle"></text>
+            <text class="m-label" data-mlabel="a2" x="110" y="182" text-anchor="middle"></text>
 
             <line class="measure" data-measure="b" x1="195" y1="70" x2="195" y2="130"></line>
-            <text class="m-label" data-mlabel="b" x="202" y="105" text-anchor="start"></text>
+            <text class="m-label" data-mlabel="b" x="204" y="105" text-anchor="end"></text>
             <line class="measure" data-measure="b2" x1="25" y1="70" x2="25" y2="130"></line>
-            <text class="m-label" data-mlabel="b2" x="18" y="105" text-anchor="end"></text>
+            <text class="m-label" data-mlabel="b2" x="16" y="105" text-anchor="start"></text>
           </svg>
         `;
       },
@@ -159,9 +159,9 @@
             <text class="edge-label" data-edge-label="2" x="60" y="96" text-anchor="middle">3</text>
 
             <line class="measure" data-measure="a" x1="120" y1="50" x2="180" y2="150"></line>
-            <text class="m-label" data-mlabel="a" x="170" y="92" text-anchor="middle"></text>
+            <text class="m-label" data-mlabel="a" x="186" y="90" text-anchor="middle"></text>
             <line class="measure" data-measure="a2" x1="40" y1="150" x2="100" y2="50"></line>
-            <text class="m-label" data-mlabel="a2" x="50" y="92" text-anchor="middle"></text>
+            <text class="m-label" data-mlabel="a2" x="34" y="90" text-anchor="middle"></text>
           </svg>
         `;
       },
@@ -390,13 +390,13 @@
       setLabel("a3", sym);
       setLabel("a4", sym);
       show("a", sym);
-      await sleep(520);
+      await sleep(740);
       if (token !== playToken) return;
       show("a2", sym);
-      await sleep(260);
+      await sleep(420);
       if (token !== playToken) return;
       show("a3", sym);
-      await sleep(260);
+      await sleep(420);
       if (token !== playToken) return;
       show("a4", sym);
       return;
@@ -409,13 +409,13 @@
       setLabel("b", shortSym);
       setLabel("b2", shortSym);
       show("a", longSym);
-      await sleep(420);
+      await sleep(560);
       if (token !== playToken) return;
       show("a2", longSym);
-      await sleep(420);
+      await sleep(560);
       if (token !== playToken) return;
       show("b", shortSym);
-      await sleep(420);
+      await sleep(560);
       if (token !== playToken) return;
       show("b2", shortSym);
       return;
@@ -425,7 +425,7 @@
       setLabel("a", sym);
       setLabel("a2", sym);
       show("a", sym);
-      await sleep(520);
+      await sleep(740);
       if (token !== playToken) return;
       show("a2", sym);
       return;

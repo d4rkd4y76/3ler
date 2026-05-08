@@ -388,19 +388,20 @@ body[data-step="equal"] .edge.active{
   opacity:1;
   stroke:#10b981;
   filter: drop-shadow(0 6px 10px rgba(16,185,129,.22));
-  animation: measureDraw .55s ease forwards;
+  animation: measureDraw .85s ease forwards;
 }
 .m-label{
   font-weight:1000;
-  font-size:26px; /* bigger for emoji/symbols */
+  font-size:22px; /* keep emoji inside viewBox */
   fill:#065f46;
   opacity:0;
   transform-origin: center;
   transform: scale(.85);
+  dominant-baseline: middle;
 }
 .m-label.show{
   opacity:1;
-  animation: labelPop .55s cubic-bezier(.2,.9,.2,1) forwards;
+  animation: labelPop .8s cubic-bezier(.2,.9,.2,1) forwards;
 }
 
 @keyframes measureDraw{
@@ -421,10 +422,10 @@ body[data-step="equal"] .edge.active{
   paint-order: stroke;
   stroke: rgba(255,255,255,.95);
   stroke-width:5;
-  opacity:.18;
+  opacity:0; /* only show on edges step */
   transition: opacity .18s ease, transform .18s ease;
 }
-body[data-step="edges"] .edge-label{ opacity:.55; }
+body[data-step="edges"] .edge-label{ opacity:.60; }
 .edge-label.active{
   opacity:1 !important;
   transform: translateY(-1px);
@@ -433,4 +434,35 @@ body[data-step="edges"] .edge-label{ opacity:.55; }
 @media (min-width: 520px){
   .svg-wrap svg{ max-height: 48dvh; }
   .learn{ grid-template-columns: 1.2fr .8fr; }
+}
+
+/* Mobile tuning: bigger shape, smaller info */
+@media (max-width: 480px){
+  .app{ gap:8px; }
+  .title-wrap h1{ font-size:1.08rem; }
+  .subtitle{ font-size:.86rem; }
+
+  .selector-label{ width:44px; font-size:.86rem; padding-top:8px; }
+  .chip{ padding:8px 10px; font-size:.92rem; }
+
+  .stage-head{ padding:10px 10px 6px; }
+  .stage-head h2{ font-size:1.02rem; }
+  .btn.ghost{ padding:8px 10px; font-size:.9rem; }
+
+  .svg-wrap{ padding:6px 8px 0; }
+  .svg-wrap svg{ max-height: 56dvh; } /* give shape more room */
+
+  .warning{ margin:6px 10px 0; padding:9px 10px; }
+  .warning .k{ font-size:.86rem; }
+  .warning .t{ font-size:.86rem; }
+
+  .learn{ padding:8px 10px 10px; gap:8px; }
+  .learn-kicker{ font-size:.9rem; }
+  .learn-text{ font-size:.9rem; }
+  .mini-kicker{ font-size:.9rem; }
+  .mini-list{ font-size:.9rem; padding-left:16px; }
+
+  .bottom{ gap:8px; }
+  .tab{ padding:9px 8px; }
+  .tab .lbl{ font-size:.88rem; }
 }
