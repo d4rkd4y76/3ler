@@ -834,6 +834,7 @@
     </div>
     <p class="tools-modal-sub">Ders araçlarını buradan açabilirsin.</p>
     <button id="open-geometry-app-btn" class="tools-geometry-btn" type="button">📐 GEOMETRİK CİSİMLER</button>
+    <button id="open-geo-shapes-app-btn" class="tools-geometry-btn tools-shapes-btn" type="button">🟦 MAT: GEOMETRİK ŞEKİLLER</button>
     <button id="open-matter-states-app-btn" class="tools-geometry-btn tools-matter-btn" type="button">🧪 FEN: MADDENİN HALLERİ</button>
     <button id="open-fractions-app-btn" class="tools-geometry-btn tools-fractions-btn" type="button">🍕 MAT: KESİR ATÖLYESİ</button>
     <button id="open-clock-app-btn" class="tools-geometry-btn tools-clock-btn" type="button">🕒 MAT: SAAT ATÖLYESİ</button>
@@ -1247,6 +1248,11 @@
   background:linear-gradient(135deg,#0ea5e9,#10b981);
   box-shadow:0 10px 24px rgba(14,165,233,.33);
 }
+.tools-shapes-btn{
+  margin-top:10px;
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  box-shadow:0 10px 24px rgba(124,58,237,.28);
+}
 .tools-fractions-btn{
   margin-top:10px;
   background:linear-gradient(135deg,#f97316,#f59e0b);
@@ -1264,10 +1270,11 @@
   const modal = document.getElementById("tools-modal");
   const closeBtn = document.getElementById("tools-close-button");
   const geometryBtn = document.getElementById("open-geometry-app-btn");
+  const geoShapesBtn = document.getElementById("open-geo-shapes-app-btn");
   const matterBtn = document.getElementById("open-matter-states-app-btn");
   const fractionsBtn = document.getElementById("open-fractions-app-btn");
   const clockBtn = document.getElementById("open-clock-app-btn");
-  if (!openBtn || !modal || !closeBtn || !geometryBtn || !matterBtn || !fractionsBtn || !clockBtn) return;
+  if (!openBtn || !modal || !closeBtn || !geometryBtn || !geoShapesBtn || !matterBtn || !fractionsBtn || !clockBtn) return;
 
   const closeModal = () => {
     modal.classList.remove("open");
@@ -1288,6 +1295,9 @@
 
   geometryBtn.addEventListener("click", () => {
     window.open("./tools/geometri/index.html", "_blank", "noopener,noreferrer");
+  });
+  geoShapesBtn.addEventListener("click", () => {
+    window.open("./tools/geometrik-sekiller/index.html", "_blank", "noopener,noreferrer");
   });
   matterBtn.addEventListener("click", () => {
     window.open("./tools/maddenin-halleri/index.html", "_blank", "noopener,noreferrer");

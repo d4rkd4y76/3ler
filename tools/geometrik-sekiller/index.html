@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>Geometrik Şekiller (3. Sınıf)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="shapes-app">
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-row">
+        <button type="button" class="btn-back" id="backBtn" aria-label="Düellomatik ana sayfaya dön">← Ana sayfa</button>
+        <div class="pill" id="stepPill" aria-live="polite">1 / 3</div>
+      </div>
+      <div class="title-wrap">
+        <h1>Geometrik Şekiller</h1>
+        <p class="subtitle" id="subtitle">Köşeleri, kenarları ve eşitlikleri animasyonlarla öğren.</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="selector" aria-label="Şekil seç">
+        <div class="selector-label">Şekil</div>
+        <div class="chips" id="shapeChips"></div>
+      </section>
+
+      <section class="stage" aria-label="Şekil gösterimi">
+        <div class="stage-card">
+          <div class="stage-head">
+            <h2 id="shapeTitle">Kare</h2>
+            <div class="stage-actions">
+              <button type="button" class="btn ghost" id="replayBtn">Tekrar oynat</button>
+            </div>
+          </div>
+
+          <div class="svg-wrap" id="svgWrap">
+            <!-- SVG injected by app.js -->
+          </div>
+          <div id="warningBox" class="warning" role="status" aria-live="polite" hidden></div>
+
+          <div class="learn">
+            <div class="learn-card">
+              <div class="learn-kicker" id="learnKicker">Köşeler</div>
+              <div class="learn-text" id="learnText"></div>
+            </div>
+            <div class="mini">
+              <div class="mini-kicker">Mini bilgi</div>
+              <ul class="mini-list" id="miniList"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom" aria-label="Anlatım adımı">
+      <button type="button" class="tab active" data-step="corners">
+        <span class="ico" aria-hidden="true">🔺</span>
+        <span class="lbl">Köşe</span>
+      </button>
+      <button type="button" class="tab" data-step="edges">
+        <span class="ico" aria-hidden="true">📏</span>
+        <span class="lbl">Kenar</span>
+      </button>
+      <button type="button" class="tab" data-step="equal">
+        <span class="ico" aria-hidden="true">⚖️</span>
+        <span class="lbl">Eşitlik</span>
+      </button>
+    </nav>
+  </div>
+
+  <footer class="signature">NASK GAMES</footer>
+  <script src="app.js"></script>
+</body>
+</html>
