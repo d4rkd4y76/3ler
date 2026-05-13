@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Geometri: Temel Kavramlar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="geo-basics-app">
+  <div class="shell">
+    <header class="topbar">
+      <button type="button" class="btn-back" id="backToDuellomatik" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="topbar-main">
+        <h1>Geometride temel kavramlar</h1>
+        <p class="lead">Okul kitabındaki gibi: ok (&gt;) sonsuzluğu gösterir. Noktaları parmağınla ızgarada oynat.</p>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" class="btn-life" id="openLifeExamples" title="Günlük hayattan örnekler">
+          <span class="btn-life-ico" aria-hidden="true">✨</span>
+          <span class="btn-life-txt">Günlük hayattan örnekler</span>
+        </button>
+        <button type="button" class="btn-sound" id="toggleSound" aria-pressed="false" title="Seslendir">🔊 Ses</button>
+      </div>
+    </header>
+
+    <nav class="topics" id="topicNav" aria-label="Konu seç"></nav>
+
+    <div class="content">
+      <section class="board-wrap" aria-label="Çizim tahtası">
+        <canvas id="sceneCanvas" aria-hidden="true"></canvas>
+        <p class="board-tip" id="boardTip"></p>
+      </section>
+
+      <section class="read-panel" aria-live="polite">
+        <h2 id="topicHeading">Nokta</h2>
+        <p class="symbol-strip" id="symbolStrip"></p>
+        <p class="explain" id="topicExplain"></p>
+        <ul class="bullets" id="topicBullets"></ul>
+        <p class="fine-print" id="finePrint"></p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Günlük hayat: sadece bu butonla açılır -->
+  <div class="life-modal" id="lifeModal" hidden aria-hidden="true">
+    <div class="life-modal__backdrop" id="lifeModalBackdrop"></div>
+    <div class="life-modal__card" role="dialog" aria-modal="true" aria-labelledby="lifeModalTitle">
+      <header class="life-modal__head">
+        <div>
+          <h2 id="lifeModalTitle">Günlük hayattan örnekler</h2>
+          <p class="life-modal__sub" id="lifeModalSub"></p>
+        </div>
+        <button type="button" class="life-modal__close" id="closeLifeModal" aria-label="Kapat">✕</button>
+      </header>
+      <div class="life-modal__body" id="lifeModalBody"></div>
+    </div>
+  </div>
+
+  <footer class="signature">NASK GAMES</footer>
+  <script src="app.js"></script>
+</body>
+</html>

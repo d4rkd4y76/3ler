@@ -825,19 +825,54 @@
 </div>
 </div>
 
-<!-- Araçlar Modalı -->
-<div id="tools-modal" class="tools-modal" aria-hidden="true" hidden>
-  <div class="tools-modal-card" role="dialog" aria-modal="true" aria-labelledby="tools-modal-title">
-    <div class="tools-modal-header">
-      <h3 id="tools-modal-title">Araçlar</h3>
-      <button id="tools-close-button" type="button" aria-label="Kapat">✕</button>
+<!-- Araçlar: ders seç → kaydırılabilir araç listesi -->
+<div id="tools-modal" class="tools-modal tools-modal--pro" aria-hidden="true" hidden>
+  <div class="tools-pro-card" role="dialog" aria-modal="true" aria-labelledby="tools-modal-title">
+    <div class="tools-pro-top">
+      <div class="tools-pro-top-text">
+        <h3 id="tools-modal-title">Araçlar</h3>
+        <p id="tools-modal-tagline" class="tools-pro-tagline">Önce dersini seç; sonra o derse ait araçları kaydırarak gör.</p>
+      </div>
+      <button id="tools-close-button" type="button" class="tools-pro-close" aria-label="Kapat">✕</button>
     </div>
-    <p class="tools-modal-sub">Ders araçlarını buradan açabilirsin.</p>
-    <button id="open-geometry-app-btn" class="tools-geometry-btn" type="button">📐 GEOMETRİK CİSİMLER</button>
-    <button id="open-geo-shapes-app-btn" class="tools-geometry-btn tools-shapes-btn" type="button">🟦 MAT: GEOMETRİK ŞEKİLLER</button>
-    <button id="open-matter-states-app-btn" class="tools-geometry-btn tools-matter-btn" type="button">🧪 FEN: MADDENİN HALLERİ</button>
-    <button id="open-fractions-app-btn" class="tools-geometry-btn tools-fractions-btn" type="button">🍕 MAT: KESİR ATÖLYESİ</button>
-    <button id="open-clock-app-btn" class="tools-geometry-btn tools-clock-btn" type="button">🕒 MAT: SAAT ATÖLYESİ</button>
+
+    <div class="tools-pro-body">
+      <div id="tools-view-cats" class="tools-pro-view tools-pro-view--active">
+        <p class="tools-pro-hint">Bir derse dokun</p>
+        <div class="tools-pro-cat-grid" role="list">
+          <button type="button" class="tools-pro-cat tools-pro-cat--tr" data-cat="tr" role="listitem">
+            <span class="tools-pro-cat-ico" aria-hidden="true">📖</span>
+            <span class="tools-pro-cat-k">Türkçe</span>
+            <span class="tools-pro-cat-s">Okuma · yazma · dil</span>
+            <span class="tools-pro-cat-go" aria-hidden="true">›</span>
+          </button>
+          <button type="button" class="tools-pro-cat tools-pro-cat--mat" data-cat="mat" role="listitem">
+            <span class="tools-pro-cat-ico" aria-hidden="true">🔢</span>
+            <span class="tools-pro-cat-k">Matematik</span>
+            <span class="tools-pro-cat-s">Sayılar · geometri · saat</span>
+            <span class="tools-pro-cat-go" aria-hidden="true">›</span>
+          </button>
+          <button type="button" class="tools-pro-cat tools-pro-cat--fen" data-cat="fen" role="listitem">
+            <span class="tools-pro-cat-ico" aria-hidden="true">🧪</span>
+            <span class="tools-pro-cat-k">Fen Bilimleri</span>
+            <span class="tools-pro-cat-s">Madde · doğa · gözlem</span>
+            <span class="tools-pro-cat-go" aria-hidden="true">›</span>
+          </button>
+          <button type="button" class="tools-pro-cat tools-pro-cat--hayat" data-cat="hayat" role="listitem">
+            <span class="tools-pro-cat-ico" aria-hidden="true">🌿</span>
+            <span class="tools-pro-cat-k">Hayat Bilgisi</span>
+            <span class="tools-pro-cat-s">Toplum · çevre · yaşam</span>
+            <span class="tools-pro-cat-go" aria-hidden="true">›</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="tools-view-list" class="tools-pro-view" hidden>
+        <button type="button" id="tools-back-cat" class="tools-pro-back">← Derslere dön</button>
+        <div id="tools-list-banner" class="tools-pro-banner"></div>
+        <div id="tools-list-scroll" class="tools-pro-list-scroll"></div>
+      </div>
+    </div>
   </div>
 </div>
 <!-- === Nova: Premium Bitiş Özeti (JS v3) === -->
@@ -1187,81 +1222,287 @@
 .tools-modal{
   position:fixed;
   inset:0;
-  background:rgba(2,6,23,.55);
+  background:rgba(2,6,23,.58);
   display:none;
   align-items:center;
   justify-content:center;
   z-index:12000;
-  padding:16px;
+  padding:14px;
+  backdrop-filter: blur(6px);
 }
 .tools-modal.open{ display:flex; }
-.tools-modal-card{
-  width:min(92vw,420px);
-  border-radius:16px;
-  border:1px solid #dbe7ff;
-  background:linear-gradient(180deg,#ffffff,#f6f9ff);
-  box-shadow:0 20px 48px rgba(15,23,42,.32);
-  padding:14px;
-}
-.tools-modal-header{
+
+.tools-pro-card{
+  width:min(100%, 440px);
+  max-height:min(90dvh, 760px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.65);
+  background:linear-gradient(165deg,#ffffff 0%,#f1f5f9 55%,#e0f2fe 100%);
+  box-shadow:0 28px 70px rgba(2,6,23,.35), inset 0 1px 0 rgba(255,255,255,.9);
   display:flex;
-  align-items:center;
+  flex-direction:column;
+  overflow:hidden;
+  transform:translateY(0);
+  animation:toolsProIn .32s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes toolsProIn{
+  from{ opacity:0; transform:translateY(16px) scale(.98); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+.tools-pro-top{
+  display:flex;
+  align-items:flex-start;
   justify-content:space-between;
-  gap:10px;
+  gap:12px;
+  padding:16px 18px 10px;
+  border-bottom:1px solid rgba(15,23,42,.08);
 }
-.tools-modal-header h3{
+.tools-pro-top-text h3{
   margin:0;
-  font-size:1.2rem;
-  color:#1e2a68;
+  font-size:1.28rem;
+  font-weight:900;
+  color:#0f172a;
+  letter-spacing:-.03em;
 }
-#tools-close-button{
+.tools-pro-tagline{
+  margin:4px 0 0;
+  font-size:.84rem;
+  color:#64748b;
+  font-weight:650;
+  line-height:1.4;
+  max-width:320px;
+}
+.tools-pro-close{
   border:none;
-  background:#e6ecff;
-  color:#21306b;
-  border-radius:8px;
-  width:34px;
-  height:34px;
-  font-size:1rem;
-  font-weight:700;
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:rgba(15,23,42,.06);
+  color:#0f172a;
+  font-size:1.15rem;
+  font-weight:900;
   cursor:pointer;
+  flex-shrink:0;
 }
-.tools-modal-sub{
-  margin:10px 0 12px;
-  color:#4b5b9d;
+.tools-pro-close:hover{ background:rgba(15,23,42,.1); }
+
+.tools-pro-body{
+  flex:1;
+  min-height:0;
+  position:relative;
+  overflow:hidden;
+}
+
+.tools-pro-view{
+  position:absolute;
+  inset:0;
+  padding:12px 14px 16px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  opacity:0;
+  pointer-events:none;
+  transform:translateX(12px);
+  transition:opacity .22s ease, transform .22s ease;
+}
+.tools-pro-view--active{
+  position:relative;
+  inset:auto;
+  opacity:1;
+  pointer-events:auto;
+  transform:translateX(0);
+}
+
+.tools-pro-hint{
+  margin:0 2px 2px;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#94a3b8;
+}
+
+.tools-pro-cat-grid{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  flex:1;
+  min-height:0;
+  padding-bottom:4px;
+}
+
+.tools-pro-cat{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  grid-template-rows:auto auto;
+  column-gap:12px;
+  row-gap:2px;
+  align-items:center;
+  width:100%;
+  padding:14px 14px 14px 12px;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  text-align:left;
+  font:inherit;
+  color:#0f172a;
+  border:1px solid rgba(15,23,42,.08);
+  background:rgba(255,255,255,.88);
+  box-shadow:0 10px 26px rgba(15,23,42,.07);
+  transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.tools-pro-cat:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(15,23,42,.1);
+  border-color:rgba(59,130,246,.25);
+}
+.tools-pro-cat:active{ transform:translateY(0); }
+
+.tools-pro-cat--tr{ background:linear-gradient(135deg,#fffbeb,#fff7ed); }
+.tools-pro-cat--mat{ background:linear-gradient(135deg,#eff6ff,#eef2ff); }
+.tools-pro-cat--fen{ background:linear-gradient(135deg,#ecfdf5,#f0fdf4); }
+.tools-pro-cat--hayat{ background:linear-gradient(135deg,#f0fdf4,#ecfccb); }
+
+.tools-pro-cat-ico{
+  grid-row:1 / span 2;
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  font-size:1.45rem;
+  background:rgba(255,255,255,.75);
+  border:1px solid rgba(15,23,42,.08);
+}
+.tools-pro-cat-k{
+  font-weight:900;
+  font-size:1.02rem;
+}
+.tools-pro-cat-s{
+  grid-column:2;
+  font-size:.8rem;
+  color:#64748b;
+  font-weight:650;
+  line-height:1.3;
+}
+.tools-pro-cat-go{
+  grid-row:1 / span 2;
+  font-size:1.35rem;
+  font-weight:900;
+  color:#cbd5e1;
+}
+
+.tools-pro-back{
+  align-self:flex-start;
+  border:none;
+  background:rgba(15,23,42,.06);
+  color:#0f172a;
+  font-weight:800;
+  font-size:.86rem;
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  margin-bottom:2px;
+}
+.tools-pro-back:hover{ background:rgba(15,23,42,.1); }
+
+.tools-pro-banner{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,.08);
+  background:rgba(255,255,255,.9);
+  box-shadow:0 6px 18px rgba(15,23,42,.06);
+}
+.tools-pro-banner-title{
+  margin:0;
+  font-size:1.05rem;
+  font-weight:900;
+  color:#0f172a;
+}
+.tools-pro-banner-sub{
+  margin:3px 0 0;
+  font-size:.8rem;
+  color:#64748b;
   font-weight:600;
 }
-.tools-geometry-btn{
+
+.tools-pro-list-scroll{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  padding:4px 2px 8px;
+}
+
+.tools-pro-item{
   width:100%;
-  border:none;
-  border-radius:12px;
-  padding:12px;
-  font-size:1rem;
-  font-weight:800;
-  color:#fff;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:15px;
+  padding:12px 12px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:11px;
   cursor:pointer;
-  background:linear-gradient(135deg,#365bff,#5b8cff);
-  box-shadow:0 10px 24px rgba(54,91,255,.34);
+  text-align:left;
+  font:inherit;
+  background:rgba(255,255,255,.95);
+  transition:transform .14s ease, border-color .14s ease, box-shadow .14s ease;
 }
-.tools-geometry-btn:hover{ filter:brightness(1.06); }
-.tools-matter-btn{
-  margin-top:10px;
-  background:linear-gradient(135deg,#0ea5e9,#10b981);
-  box-shadow:0 10px 24px rgba(14,165,233,.33);
+.tools-pro-item:hover{
+  transform:translateY(-1px);
+  border-color:rgba(59,130,246,.3);
+  box-shadow:0 10px 24px rgba(37,99,235,.1);
 }
-.tools-shapes-btn{
-  margin-top:10px;
-  background:linear-gradient(135deg,#7c3aed,#2563eb);
-  box-shadow:0 10px 24px rgba(124,58,237,.28);
+
+.tools-pro-item-ico{
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  font-size:1.28rem;
+  background:linear-gradient(145deg,#f8fafc,#fff);
+  border:1px solid rgba(15,23,42,.08);
 }
-.tools-fractions-btn{
-  margin-top:10px;
-  background:linear-gradient(135deg,#f97316,#f59e0b);
-  box-shadow:0 10px 24px rgba(245,158,11,.32);
+.tools-pro-item-name{
+  font-weight:900;
+  font-size:.95rem;
+  color:#0f172a;
 }
-.tools-clock-btn{
-  margin-top:10px;
-  background:linear-gradient(135deg,#2563eb,#06b6d4);
-  box-shadow:0 10px 24px rgba(37,99,235,.28);
+.tools-pro-item-sub{
+  margin-top:2px;
+  font-size:.76rem;
+  color:#64748b;
+  font-weight:650;
+  line-height:1.35;
+}
+.tools-pro-item-go{
+  font-size:1.15rem;
+  color:#94a3b8;
+  font-weight:900;
+}
+
+.tools-pro-empty{
+  margin:0;
+  padding:20px 14px;
+  text-align:center;
+  font-size:.9rem;
+  color:#94a3b8;
+  font-weight:650;
+  line-height:1.5;
+}
+
+@media (min-width: 520px){
+  .tools-pro-card{ width:min(100%, 480px); }
 }
 </style>
 <script id="nask-tools-script">
@@ -1269,22 +1510,102 @@
   const openBtn = document.getElementById("tools-open-button");
   const modal = document.getElementById("tools-modal");
   const closeBtn = document.getElementById("tools-close-button");
-  const geometryBtn = document.getElementById("open-geometry-app-btn");
-  const geoShapesBtn = document.getElementById("open-geo-shapes-app-btn");
-  const matterBtn = document.getElementById("open-matter-states-app-btn");
-  const fractionsBtn = document.getElementById("open-fractions-app-btn");
-  const clockBtn = document.getElementById("open-clock-app-btn");
-  if (!openBtn || !modal || !closeBtn || !geometryBtn || !geoShapesBtn || !matterBtn || !fractionsBtn || !clockBtn) return;
+  const viewCats = document.getElementById("tools-view-cats");
+  const viewList = document.getElementById("tools-view-list");
+  const backCat = document.getElementById("tools-back-cat");
+  const listBanner = document.getElementById("tools-list-banner");
+  const listScroll = document.getElementById("tools-list-scroll");
+  if (!openBtn || !modal || !closeBtn || !viewCats || !viewList || !backCat || !listBanner || !listScroll) return;
+
+  const CATALOG = {
+    tr: {
+      title: "Türkçe",
+      subtitle: "Okuma, yazma ve dil becerileri",
+      items: [],
+    },
+    mat: {
+      title: "Matematik",
+      subtitle: "Sayılar, geometri, kesir ve saat",
+      items: [
+        { href: "./tools/geometri-temel-kavramlar/index.html", icon: "📍", name: "Geometri: Temel kavramlar", sub: "Nokta, doğru parçası, ışın, doğru, açı" },
+        { href: "./tools/geometrik-sekiller/index.html", icon: "🟦", name: "Geometrik şekiller", sub: "Üçgen, kare, dikdörtgen ve daha fazlası" },
+        { href: "./tools/geometri/index.html", icon: "🧊", name: "Geometrik cisimler", sub: "Küp, prizma, silindir… 3B keşif" },
+        { href: "./tools/kesir-atolyesi/index.html", icon: "🍕", name: "Kesir atölyesi", sub: "Kesirleri görerek öğren" },
+        { href: "./tools/saat-atolyesi/index.html", icon: "🕒", name: "Saat atölyesi", sub: "Zamanı okuma ve kurma" },
+      ],
+    },
+    fen: {
+      title: "Fen Bilimleri",
+      subtitle: "Doğa, madde ve gözlem",
+      items: [
+        { href: "./tools/maddenin-halleri/index.html", icon: "💧", name: "Maddenin halleri", sub: "Katı, sıvı, gaz" },
+      ],
+    },
+    hayat: {
+      title: "Hayat Bilgisi",
+      subtitle: "Toplum, çevre ve günlük yaşam",
+      items: [],
+    },
+  };
+
+  function showCategories() {
+    viewList.hidden = true;
+    viewCats.hidden = false;
+    viewCats.classList.add("tools-pro-view--active");
+    viewList.classList.remove("tools-pro-view--active");
+  }
+
+  function showList(cat) {
+    const meta = CATALOG[cat];
+    if (!meta) return;
+    listBanner.innerHTML =
+      "<p class=\"tools-pro-banner-title\">" +
+      meta.title +
+      "</p><p class=\"tools-pro-banner-sub\">" +
+      meta.subtitle +
+      "</p>";
+    listScroll.innerHTML = "";
+    if (!meta.items.length) {
+      const p = document.createElement("p");
+      p.className = "tools-pro-empty";
+      p.textContent = "Bu derse henüz araç eklenmedi. Yakında burada olacak.";
+      listScroll.appendChild(p);
+    } else {
+      meta.items.forEach((it) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "tools-pro-item";
+        b.dataset.toolHref = it.href;
+        b.innerHTML =
+          "<span class=\"tools-pro-item-ico\" aria-hidden=\"true\">" +
+          it.icon +
+          "</span><span><span class=\"tools-pro-item-name\">" +
+          it.name +
+          "</span><br><span class=\"tools-pro-item-sub\">" +
+          it.sub +
+          "</span></span><span class=\"tools-pro-item-go\" aria-hidden=\"true\">↗</span>";
+        listScroll.appendChild(b);
+      });
+    }
+    viewCats.hidden = true;
+    viewList.hidden = false;
+    viewCats.classList.remove("tools-pro-view--active");
+    viewList.classList.add("tools-pro-view--active");
+    listScroll.scrollTop = 0;
+  }
 
   const closeModal = () => {
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     modal.hidden = true;
+    showCategories();
   };
+
   const openModal = () => {
     modal.hidden = false;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
+    showCategories();
   };
 
   openBtn.addEventListener("click", openModal);
@@ -1293,20 +1614,20 @@
     if (e.target === modal) closeModal();
   });
 
-  geometryBtn.addEventListener("click", () => {
-    window.open("./tools/geometri/index.html", "_blank", "noopener,noreferrer");
+  modal.querySelectorAll("[data-cat]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cat = btn.getAttribute("data-cat");
+      showList(cat);
+    });
   });
-  geoShapesBtn.addEventListener("click", () => {
-    window.open("./tools/geometrik-sekiller/index.html", "_blank", "noopener,noreferrer");
-  });
-  matterBtn.addEventListener("click", () => {
-    window.open("./tools/maddenin-halleri/index.html", "_blank", "noopener,noreferrer");
-  });
-  fractionsBtn.addEventListener("click", () => {
-    window.open("./tools/kesir-atolyesi/index.html", "_blank", "noopener,noreferrer");
-  });
-  clockBtn.addEventListener("click", () => {
-    window.open("./tools/saat-atolyesi/index.html", "_blank", "noopener,noreferrer");
+
+  backCat.addEventListener("click", showCategories);
+
+  listScroll.addEventListener("click", (e) => {
+    const item = e.target.closest("[data-tool-href]");
+    if (!item || !listScroll.contains(item)) return;
+    const href = item.getAttribute("data-tool-href");
+    if (href) window.open(href, "_blank", "noopener,noreferrer");
   });
 })();
 </script>
