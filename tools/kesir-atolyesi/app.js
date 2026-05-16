@@ -92,7 +92,7 @@ function fractionReadTr(numer, denom) {
 
 function fractionReadTrDual(numer, denom) {
   const bolu = fractionReadTr(numer, denom);
-  const de = `${numer}’de ${denom}`;
+  const de = `${numberToTr(denom)}’de ${numberToTr(numer)}`;
   return `${bolu} — ${de}`;
 }
 

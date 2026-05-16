@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Noktalama İşaretleri Atölyesi — 3. Sınıf Türkçe</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="mode-learn">
+  <div class="app">
+    <header class="topbar">
+      <button type="button" class="chip-btn" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="title">
+        <h1>Noktalama İşaretleri Atölyesi</h1>
+        <p>3. sınıf Türkçe — öğren, gör, uygula.</p>
+      </div>
+      <button type="button" class="chip-btn chip-btn--ghost" id="toggle-sound" aria-pressed="false" title="Seslendir">🔊</button>
+    </header>
+
+    <main class="layout learn-view" id="learnView">
+      <nav class="mark-nav" id="markNav" aria-label="Noktalama işaretleri"></nav>
+
+      <section class="hero-panel" aria-live="polite">
+        <div class="hero-stage" id="heroStage">
+          <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+          <div class="hero-symbol-wrap" aria-hidden="true">
+            <span class="hero-symbol" id="heroSymbol">.</span>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <p class="hero-kicker" id="heroKicker">Noktalama işareti</p>
+          <h2 class="hero-title" id="heroTitle">Nokta</h2>
+          <p class="hero-lead" id="heroLead"></p>
+        </div>
+      </section>
+
+      <section class="rules-list" id="rulesList" aria-label="Kullanım durumları"></section>
+
+      <div class="learn-cta-wrap">
+        <button type="button" class="cta-practice" id="openPractice">
+          <span class="cta-practice__icon" aria-hidden="true">🎯</span>
+          <span class="cta-practice__text">
+            <strong>Uygulamaya geç</strong>
+            <small>Boş kutulara işareti sürükle</small>
+          </span>
+        </button>
+      </div>
+    </main>
+
+    <section class="practice-view" id="practiceView" hidden aria-label="Uygulama">
+      <header class="practice-top">
+        <button type="button" class="chip-btn chip-btn--soft" id="closePractice">← Öğrenme</button>
+        <div class="practice-meta">
+          <span class="practice-pill" id="practiceProgress">1 / 50</span>
+          <span class="practice-pill practice-pill--score" id="practiceScore">Puan: 0</span>
+        </div>
+      </header>
+
+      <div class="practice-card">
+        <p class="practice-task-kicker">Cümleyi tamamla</p>
+        <p class="practice-sentence" id="practiceSentence"></p>
+        <p class="practice-palette-label">İşareti tut, boş kutuya sürükleyip bırak</p>
+        <div class="palette" id="palette"></div>
+        <p class="practice-feedback" id="practiceFeedback" aria-live="polite"></p>
+        <div class="practice-actions">
+          <button type="button" class="btn-primary" id="checkPracticeBtn">Kontrol et</button>
+          <button type="button" class="btn-next" id="nextPractice" disabled>Sonraki →</button>
+        </div>
+      </div>
+
+      <p class="practice-tip-bar">Dolu kutuya dokunarak işareti sil. Önce paletten işaret seç, sonra kutuya dokun veya sürükle.</p>
+    </section>
+
+    <footer class="signature">NASK GAMES</footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -843,25 +843,21 @@
           <button type="button" class="tools-pro-cat tools-pro-cat--tr" data-cat="tr" role="listitem">
             <span class="tools-pro-cat-ico" aria-hidden="true">📖</span>
             <span class="tools-pro-cat-k">Türkçe</span>
-            <span class="tools-pro-cat-s">Okuma · yazma · dil</span>
             <span class="tools-pro-cat-go" aria-hidden="true">›</span>
           </button>
           <button type="button" class="tools-pro-cat tools-pro-cat--mat" data-cat="mat" role="listitem">
             <span class="tools-pro-cat-ico" aria-hidden="true">🔢</span>
             <span class="tools-pro-cat-k">Matematik</span>
-            <span class="tools-pro-cat-s">Sayılar · geometri · saat</span>
             <span class="tools-pro-cat-go" aria-hidden="true">›</span>
           </button>
           <button type="button" class="tools-pro-cat tools-pro-cat--fen" data-cat="fen" role="listitem">
             <span class="tools-pro-cat-ico" aria-hidden="true">🧪</span>
             <span class="tools-pro-cat-k">Fen Bilimleri</span>
-            <span class="tools-pro-cat-s">Madde · doğa · gözlem</span>
             <span class="tools-pro-cat-go" aria-hidden="true">›</span>
           </button>
           <button type="button" class="tools-pro-cat tools-pro-cat--hayat" data-cat="hayat" role="listitem">
             <span class="tools-pro-cat-ico" aria-hidden="true">🌿</span>
             <span class="tools-pro-cat-k">Hayat Bilgisi</span>
-            <span class="tools-pro-cat-s">Toplum · çevre · yaşam</span>
             <span class="tools-pro-cat-go" aria-hidden="true">›</span>
           </button>
         </div>
@@ -1339,9 +1335,8 @@
   position:relative;
   display:grid;
   grid-template-columns:auto 1fr auto;
-  grid-template-rows:auto auto;
+  grid-template-rows:auto;
   column-gap:12px;
-  row-gap:2px;
   align-items:center;
   width:100%;
   padding:14px 14px 14px 12px;
@@ -1369,7 +1364,6 @@
 .tools-pro-cat--hayat{ background:linear-gradient(135deg,#f0fdf4,#ecfccb); }
 
 .tools-pro-cat-ico{
-  grid-row:1 / span 2;
   width:48px;
   height:48px;
   border-radius:14px;
@@ -1381,17 +1375,13 @@
 }
 .tools-pro-cat-k{
   font-weight:900;
-  font-size:1.02rem;
+  font-size:1.12rem;
 }
-.tools-pro-cat-s{
-  grid-column:2;
-  font-size:.8rem;
-  color:#64748b;
-  font-weight:650;
-  line-height:1.3;
-}
+.tools-pro-cat--tr .tools-pro-cat-k{ color:#c2410c; }
+.tools-pro-cat--mat .tools-pro-cat-k{ color:#2563eb; }
+.tools-pro-cat--fen .tools-pro-cat-k{ color:#059669; }
+.tools-pro-cat--hayat .tools-pro-cat-k{ color:#65a30d; }
 .tools-pro-cat-go{
-  grid-row:1 / span 2;
   font-size:1.35rem;
   font-weight:900;
   color:#cbd5e1;
@@ -1420,16 +1410,13 @@
 }
 .tools-pro-banner-title{
   margin:0;
-  font-size:1.05rem;
+  font-size:1.15rem;
   font-weight:900;
-  color:#0f172a;
 }
-.tools-pro-banner-sub{
-  margin:3px 0 0;
-  font-size:.8rem;
-  color:#64748b;
-  font-weight:600;
-}
+.tools-pro-banner-title--tr{ color:#c2410c; }
+.tools-pro-banner-title--mat{ color:#2563eb; }
+.tools-pro-banner-title--fen{ color:#059669; }
+.tools-pro-banner-title--hayat{ color:#65a30d; }
 
 .tools-pro-list-scroll{
   flex:1;
@@ -1520,30 +1507,28 @@
   const CATALOG = {
     tr: {
       title: "Türkçe",
-      subtitle: "Okuma, yazma ve dil becerileri",
-      items: [],
+      items: [
+        { href: "./tools/noktalama-atolyesi/index.html", icon: "✏️", name: "Noktalama işaretleri atölyesi" },
+      ],
     },
     mat: {
       title: "Matematik",
-      subtitle: "Sayılar, geometri, kesir ve saat",
       items: [
-        { href: "./tools/geometri-temel-kavramlar/index.html", icon: "📍", name: "Geometri: Temel kavramlar", sub: "Nokta, doğru parçası, ışın, doğru, açı" },
-        { href: "./tools/geometrik-sekiller/index.html", icon: "🟦", name: "Geometrik şekiller", sub: "Üçgen, kare, dikdörtgen ve daha fazlası" },
-        { href: "./tools/geometri/index.html", icon: "🧊", name: "Geometrik cisimler", sub: "Küp, prizma, silindir… 3B keşif" },
-        { href: "./tools/kesir-atolyesi/index.html", icon: "🍕", name: "Kesir atölyesi", sub: "Kesirleri görerek öğren" },
-        { href: "./tools/saat-atolyesi/index.html", icon: "🕒", name: "Saat atölyesi", sub: "Zamanı okuma ve kurma" },
+        { href: "./tools/geometri-temel-kavramlar/index.html", icon: "📍", name: "Geometri: Temel kavramlar" },
+        { href: "./tools/geometrik-sekiller/index.html", icon: "🟦", name: "Geometrik şekiller" },
+        { href: "./tools/geometri/index.html", icon: "🧊", name: "Geometrik cisimler" },
+        { href: "./tools/kesir-atolyesi/index.html", icon: "🍕", name: "Kesir atölyesi" },
+        { href: "./tools/saat-atolyesi/index.html", icon: "🕒", name: "Saat atölyesi" },
       ],
     },
     fen: {
       title: "Fen Bilimleri",
-      subtitle: "Doğa, madde ve gözlem",
       items: [
-        { href: "./tools/maddenin-halleri/index.html", icon: "💧", name: "Maddenin halleri", sub: "Katı, sıvı, gaz" },
+        { href: "./tools/maddenin-halleri/index.html", icon: "💧", name: "Maddenin halleri" },
       ],
     },
     hayat: {
       title: "Hayat Bilgisi",
-      subtitle: "Toplum, çevre ve günlük yaşam",
       items: [],
     },
   };
@@ -1559,10 +1544,10 @@
     const meta = CATALOG[cat];
     if (!meta) return;
     listBanner.innerHTML =
-      "<p class=\"tools-pro-banner-title\">" +
+      '<p class="tools-pro-banner-title tools-pro-banner-title--' +
+      cat +
+      '">' +
       meta.title +
-      "</p><p class=\"tools-pro-banner-sub\">" +
-      meta.subtitle +
       "</p>";
     listScroll.innerHTML = "";
     if (!meta.items.length) {
@@ -1579,11 +1564,9 @@
         b.innerHTML =
           "<span class=\"tools-pro-item-ico\" aria-hidden=\"true\">" +
           it.icon +
-          "</span><span><span class=\"tools-pro-item-name\">" +
+          '</span><span class="tools-pro-item-name">' +
           it.name +
-          "</span><br><span class=\"tools-pro-item-sub\">" +
-          it.sub +
-          "</span></span><span class=\"tools-pro-item-go\" aria-hidden=\"true\">↗</span>";
+          '</span><span class="tools-pro-item-go" aria-hidden="true">↗</span>';
         listScroll.appendChild(b);
       });
     }
