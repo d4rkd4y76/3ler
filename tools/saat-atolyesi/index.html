@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Saat Atölyesi</title>
+  <link rel="stylesheet" href="../tool-sound.css" />
   <link rel="stylesheet" href="style.css?v=2026-05-07-1636" />
 </head>
 <body>
   <div class="app" role="application" aria-label="Saat Atölyesi">
-    <header class="topbar">
+    <header class="topbar topbar--with-sound">
       <button type="button" class="back" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
       <div class="topbar__title">Saat Atölyesi</div>
+      <button type="button" class="chip-btn--sound" id="toggle-sound" aria-pressed="false" title="Seslendir">🔊</button>
     </header>
 
     <main class="main">
@@ -88,6 +90,7 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../tool-sound.js"></script>
   <script src="app.js?v=2026-05-07-1636"></script>
 </body>
 </html>

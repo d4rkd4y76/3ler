@@ -175,7 +175,9 @@ function showNote(kind) {
     hour: "Akrep saati gösterir. Kısa ve kalındır. Dakika arttıkça bir sonraki saate doğru yavaşça ilerler.",
     minute: "Yelkovan dakikayı gösterir. Uzun ve incedir. Saatteki her sayı 5 dakikayı temsil eder."
   };
-  showInfo(notes[kind] || "Bilgi notu bulunamadı.");
+  const note = notes[kind] || "Bilgi notu bulunamadı.";
+  showInfo(note);
+  if (window.ToolSound) window.ToolSound.speak(note);
   if (typeof gsap !== "undefined") {
     try {
       const target = kind === "hour" ? handHour : kind === "minute" ? handMinute : null;
@@ -324,6 +326,8 @@ function endDrag() {
 // Uygula/mini görev kaldırıldı.
 
 function bind() {
+  if (window.ToolSound) window.ToolSound.bind("toggle-sound");
+
   backBtn?.addEventListener("click", () => {
     window.location.href = "../../index.html";
   });

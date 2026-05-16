@@ -15,7 +15,7 @@ const lifeModalClose = document.getElementById("closeLifeModal");
 const lifeModalSub = document.getElementById("lifeModalSub");
 const lifeModalBody = document.getElementById("lifeModalBody");
 
-const toggleSoundBtn = document.getElementById("toggleSound");
+const toggleSoundBtn = document.getElementById("toggle-sound");
 
 const TAU = Math.PI * 2;
 const GRID = { cols: 15, rows: 12 };
@@ -93,7 +93,6 @@ function speak(text) {
 function setSound(on) {
   sound.enabled = !!on;
   toggleSoundBtn.setAttribute("aria-pressed", on ? "true" : "false");
-  toggleSoundBtn.textContent = on ? "🔈 Ses" : "🔊 Ses";
   if (!on && window.speechSynthesis) window.speechSynthesis.cancel();
 }
 
@@ -686,6 +685,21 @@ function lifeScene(mod, art, hint) {
   );
 }
 
+function angleLifeSvg(key) {
+  const pack = window.LIFE_ANGLE_SVG;
+  return pack && pack[key] ? pack[key] : "";
+}
+
+function lifeAngleStage(mod, svg) {
+  return (
+    '<div class="life-stage life-stage--angle-svg life-stage--angle-' +
+    mod +
+    '"><div class="life-art-svg">' +
+    svg +
+    "</div></div>"
+  );
+}
+
 function lifeCardsHTML(key) {
   const blocks = {
     point: [
@@ -774,39 +788,23 @@ function lifeCardsHTML(key) {
       {
         title: "Makas",
         text: "Makasın ortadaki vidası köşe gibidir. İki bıçak açılınca arada bir açıklık oluşur; bu açıya benzer.",
-        inner: lifeScene(
-          "ang-scissor",
-          '<span class="life-illus life-illus--scissor"><span class="life-illus__emoji">✂️</span><span class="life-illus__arc life-illus__arc--sm"></span></span>',
-          "Vida = köşe · Bıçaklar = kenarlar"
-        ),
+        inner: lifeAngleStage("scissor", angleLifeSvg("scissor")),
       },
       {
         title: "Açılmış kapı",
         text: "Kapıyı içeri doğru araladığında, kapı ile duvardaki kapı çerçevesi arasında bir boşluk oluşur. Bu boşluğun büyüklüğü bir açıdır.",
-        inner: lifeScene(
-          "ang-door",
-          '<span class="life-illus life-illus--door"><span class="life-illus__wall"></span><span class="life-illus__door"></span><span class="life-illus__arc"></span></span>',
-          "Kapı ile duvar arası = açı"
-        ),
+        inner: lifeAngleStage("door", angleLifeSvg("door")),
       },
       {
         title: "Saatte kollar",
         text: "Akrep ile yelkovan ortadaki noktadan çıkar. Aralarındaki boşluk bir açıdır; saat okurken bu boşluğa bakarız.",
         note: "Genelde akrep saati, yelkovan dakikayı gösterir.",
-        inner: lifeScene(
-          "ang-clock",
-          '<span class="life-illus life-illus--clock"><span class="life-illus__clock-face"></span><span class="life-illus__clock-fan"></span><span class="life-illus__clock-hour"></span><span class="life-illus__clock-minute"></span></span>',
-          "Akrep–yelkovan arası = açı"
-        ),
+        inner: lifeAngleStage("clock", angleLifeSvg("clock")),
       },
       {
         title: "Açık kitap",
         text: "Kitabı ortadan açınca iki sayfa birleşme yerinden (sırt) ayrılır. Sayfalar arasındaki açıklık da açı fikrini hatırlatır.",
-        inner: lifeScene(
-          "ang-book",
-          '<span class="life-illus life-illus--book"><span class="life-illus__spine"></span><span class="life-illus__page life-illus__page--l"></span><span class="life-illus__page life-illus__page--r"></span><span class="life-illus__arc life-illus__arc--book"></span></span>',
-          "Açık sayfalar arası = açı"
-        ),
+        inner: lifeAngleStage("book", angleLifeSvg("book")),
       },
     ],
   };

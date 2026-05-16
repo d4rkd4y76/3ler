@@ -22,6 +22,7 @@ const autoAlert = document.getElementById("auto-alert");
 const phasePill = document.getElementById("phase-pill");
 const energyPill = document.getElementById("energy-pill");
 const backBtn = document.getElementById("back-btn");
+if (window.ToolSound) window.ToolSound.bind("toggle-sound");
 
 const PHASE_INFO = {
   solid: {
@@ -159,6 +160,7 @@ function setPhase(phase, fromEvent = false) {
   if (!fromEvent) state.eventText = "İpucu: Hal değişimi düğmelerine bas ve sıcaklığı değiştir.";
   eventDesc.textContent = state.eventText;
   updatePills();
+  if (window.ToolSound) window.ToolSound.speak(`${info.title}. ${info.desc}`);
 }
 
 function assignTargets() {

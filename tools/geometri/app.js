@@ -652,6 +652,9 @@ function updateInfo() {
   shapeKidInfo.textContent = shape.kidInfo;
   shapeExamples.innerHTML = shape.examples.map((item) => `<li>${item}</li>`).join("");
   shapeQuestion.textContent = shape.question;
+  if (window.ToolSound) {
+    window.ToolSound.speak(`${shape.name}. ${shape.desc}`);
+  }
 }
 
 function resizeCanvas(canvas) {
@@ -1190,6 +1193,8 @@ function animate() {
 }
 
 function bindEvents() {
+  if (window.ToolSound) window.ToolSound.bind("toggle-sound");
+
   const backBtn = document.getElementById("backToDuellomatik");
   if (backBtn) {
     backBtn.addEventListener("click", () => {

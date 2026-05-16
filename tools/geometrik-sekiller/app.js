@@ -36,6 +36,7 @@
   }
 
   backBtn?.addEventListener("click", safeCloseOrHome);
+  if (window.ToolSound) window.ToolSound.bind("toggle-sound");
 
   const SHAPES = [
     {
@@ -199,7 +200,14 @@
     learnKicker.textContent = STEP_LABEL[step] || "Anlatım";
 
     renderText();
+    speakCurrent();
     play();
+  }
+
+  function speakCurrent() {
+    if (!window.ToolSound || !learnText?.textContent) return;
+    const shape = SHAPES.find((s) => s.id === activeShapeId) || SHAPES[0];
+    window.ToolSound.speak(`${shape.name}. ${learnText.textContent}`);
   }
 
   function setShape(id) {
@@ -215,6 +223,7 @@
     injectLuxDefs();
 
     renderText();
+    speakCurrent();
     play();
   }
 

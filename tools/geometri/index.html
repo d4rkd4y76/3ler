@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Geometri Atölyesi</title>
+  <link rel="stylesheet" href="../tool-sound.css" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="geo-app">
   <div class="geo-app-flow">
     <header class="topbar">
-      <div class="topbar-row">
+      <div class="topbar-row topbar-row--with-sound">
         <button type="button" class="btn-back" id="backToDuellomatik" aria-label="Düellomatik ana sayfaya dön">← Ana sayfa</button>
+        <button type="button" class="chip-btn--sound" id="toggle-sound" aria-pressed="false" title="Seslendir">🔊</button>
       </div>
       <div class="title-wrap">
         <h1>Geometri Atölyesi</h1>
@@ -110,6 +112,7 @@
   </div>
 
   <footer class="signature">NASK GAMES</footer>
+  <script src="../tool-sound.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

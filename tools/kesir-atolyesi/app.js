@@ -429,8 +429,16 @@ function confettiPulse() {
   } catch (_) {}
 }
 
+function speakLearn() {
+  if (!window.ToolSound) return;
+  const dual = fractionReadTrDual(state.numer, state.denom);
+  const type = fractionType(state.numer, state.denom);
+  window.ToolSound.speak(`${capitalizeTr(dual)} kesri. ${type}`);
+}
+
 function render() {
   updateFractionTexts();
+  speakLearn();
   // Her zaman ikisini de güncelle: odak sadece boyutu/konumu değiştirir.
   renderPizza();
   renderBar();
@@ -450,6 +458,8 @@ function render() {
 }
 
 function bind() {
+  if (window.ToolSound) window.ToolSound.bind("toggle-sound");
+
   backBtn?.addEventListener("click", () => {
     window.location.href = "../../index.html";
   });

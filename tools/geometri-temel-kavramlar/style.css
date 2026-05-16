@@ -358,6 +358,57 @@ body.geo-basics-app {
   overflow: hidden;
 }
 
+/* Günlük hayat — açı örnekleri (profesyonel SVG) */
+.life-stage--angle-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.life-art-svg {
+  flex: 1;
+  width: 100%;
+  min-height: clamp(140px, 34vw, 188px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  box-sizing: border-box;
+}
+
+.life-art-svg .life-svg {
+  width: min(100%, 320px);
+  height: auto;
+  max-height: clamp(140px, 36vw, 200px);
+  display: block;
+  shape-rendering: geometricPrecision;
+}
+
+.life-art-svg .la-wedge {
+  animation: la-wedge-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes la-wedge-glow {
+  0%,
+  100% {
+    opacity: 0.88;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.life-stage--angle-scissor,
+.life-stage--angle-door,
+.life-stage--angle-clock,
+.life-stage--angle-book {
+  background: #f8fafc;
+}
+
 .life-geo-hint {
   margin: 0;
   padding: 9px 12px;
