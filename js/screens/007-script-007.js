@@ -5428,8 +5428,13 @@ logoutButton.addEventListener('click', async () => {
         function formatHwQuestionFromRaw(questionData) {
             if (!questionData || typeof questionData !== 'object') return null;
             const qField = questionData.question;
+            const infoItems =
+              qField && typeof qField === 'object' && Array.isArray(qField.infoItems)
+                ? qField.infoItems
+                : null;
             return {
                 info: (qField && typeof qField === 'object' && qField.info) ? qField.info : '',
+                infoItems: infoItems,
                 actualQuestion: (qField && typeof qField === 'object' && qField.text) ? qField.text : qField,
                 question: (qField && typeof qField === 'object' && qField.text) ? qField.text : qField,
                 correct: questionData.correct,
@@ -5437,6 +5442,15 @@ logoutButton.addEventListener('click', async () => {
                 wrong2: questionData.wrong2,
                 explanation: (questionData.explanation || questionData.aciklama || questionData['açıklama'] || '')
             };
+        }
+
+        function novaFillOptionButton(button, text) {
+            const mq = window.NovaQuestionMarkup;
+            if (mq) {
+                mq.fillMarkupElement(button, text);
+            } else {
+                button.textContent = text;
+            }
         }
 
         function novaNormalizeHomeworkQuestionIds(raw) {
@@ -5619,12 +5633,21 @@ if (currentQuestion.question.startsWith('http')) {
 
   if (currentQuestion.actualQuestion) {
     const questionTextDiv = document.createElement('div');
-    questionTextDiv.className = 'question-text';
-    questionTextDiv.textContent = currentQuestion.actualQuestion;
+    questionTextDiv.className = 'question-text q-markup';
+    const mqImg = window.NovaQuestionMarkup;
+    if (mqImg) mqImg.fillMarkupElement(questionTextDiv, currentQuestion.actualQuestion);
+    else questionTextDiv.textContent = currentQuestion.actualQuestion;
     questionContainer.appendChild(questionTextDiv);
   }
 } else {
-  // Metin şeklindeki soru için
+  const mqMain = window.NovaQuestionMarkup;
+  if (mqMain) {
+    mqMain.mountQuestionText(questionContainer, {
+      info: currentQuestion.info,
+      infoItems: currentQuestion.infoItems,
+      question: currentQuestion.question,
+    });
+  } else {
   const textContainer = document.createElement('div');
 textContainer.className = 'question-text-container';
 const infoValue = String(currentQuestion.info || '').trim();
@@ -5659,7 +5682,7 @@ questionText.textContent = currentQuestion.question;
 textContainer.appendChild(questionText);
 
 questionContainer.appendChild(textContainer);
-
+  }
 }
 
     // Seçenekleri oluştur
@@ -5676,7 +5699,7 @@ questionContainer.appendChild(textContainer);
         const button = document.createElement('button');
         button.classList.add('option-button');
         button.classList.add('nova-opt-enter');
-        button.textContent = option.text;
+        novaFillOptionButton(button, option.text);
         button.dataset.correct = option.correct;
         button.addEventListener('click', selectOption);
         optionsContainer.appendChild(button);
@@ -7696,12 +7719,14 @@ let chosen = pickedDuelQs.slice(0, 10).map(q => {
     if (typeof q.question === 'object' && q.question !== null) {
         infoText = q.question.info || "";
         questionText = q.question.text || "";
+        var infoItems = Array.isArray(q.question.infoItems) ? q.question.infoItems : null;
     } else {
         // Eğer soru doğrudan metin olarak saklanmışsa:
         questionText = q.question;
     }
     return {
         info: infoText,
+        infoItems: typeof infoItems !== 'undefined' ? infoItems : null,
         actualQuestion: questionText,
         question: questionText,
         correct: q.correct,
@@ -7869,12 +7894,21 @@ await currentDuelRef.child('questions').set(chosen);
 
         if (currentQuestion.actualQuestion) {
             const questionTextDiv = document.createElement('div');
-            questionTextDiv.className = 'question-text';
-            questionTextDiv.textContent = currentQuestion.actualQuestion;
+            questionTextDiv.className = 'question-text q-markup';
+            const mqD = window.NovaQuestionMarkup;
+            if (mqD) mqD.fillMarkupElement(questionTextDiv, currentQuestion.actualQuestion);
+            else questionTextDiv.textContent = currentQuestion.actualQuestion;
             questionContainer.appendChild(questionTextDiv);
         }
     } else {
-        // Metin şeklindeki soru için
+        const mqDuel = window.NovaQuestionMarkup;
+        if (mqDuel) {
+            mqDuel.mountQuestionText(questionContainer, {
+                info: currentQuestion.info,
+                infoItems: currentQuestion.infoItems,
+                question: currentQuestion.question,
+            });
+        } else {
         const textContainer = document.createElement('div');
         textContainer.className = 'question-text-container';
         const infoValue = String(currentQuestion.info || '').trim();
@@ -7909,6 +7943,7 @@ await currentDuelRef.child('questions').set(chosen);
         textContainer.appendChild(questionText);
 
         questionContainer.appendChild(textContainer);
+        }
     }
 
     duelOptionsContainer.innerHTML = '';
@@ -7916,7 +7951,7 @@ await currentDuelRef.child('questions').set(chosen);
         const button = document.createElement('button');
         button.classList.add('option-button');
         button.classList.add('nova-opt-enter');
-        button.textContent = option.text;
+        novaFillOptionButton(button, option.text);
         button.dataset.correct = option.correct;
         button.dataset.optionIndex = idx;
         button.addEventListener('click', duelSelectOption);

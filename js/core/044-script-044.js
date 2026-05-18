@@ -324,6 +324,11 @@
     card.className = 'deneme-q-card';
 
     const info = q.info || '';
+    const infoItems = q.infoItems || null;
+    const mq = window.NovaQuestionMarkup;
+    if (mq) {
+      mq.mountDenemePreamble(card, info, infoItems);
+    } else {
     const isInfoImg = info && /^https?:\/\/.*\.(png|jpg|jpeg|gif|webp)$/i.test(info);
     if(isInfoImg){
       const pre = document.createElement('div');
@@ -338,6 +343,7 @@
       pre.textContent = info;
       card.appendChild(pre);
     }
+    }
 
     if(q.imageUrl){
       const im = document.createElement('img');
@@ -348,8 +354,9 @@
     }
 
     const qt = document.createElement('div');
-    qt.className = 'deneme-q-text';
-    qt.innerHTML = '<div style="font-size:.88rem;font-weight:900;color:#0ea5e9;letter-spacing:.03em;margin-bottom:6px">SORU</div>' + escHtml(q.questionText || '');
+    qt.className = 'deneme-q-text q-markup';
+    const stemHtml = mq ? mq.renderMarkupHtml(q.questionText || '') : escHtml(q.questionText || '');
+    qt.innerHTML = '<div style="font-size:.88rem;font-weight:900;color:#0ea5e9;letter-spacing:.03em;margin-bottom:6px">SORU</div>' + stemHtml;
     card.appendChild(qt);
     wrap.appendChild(card);
 
@@ -372,7 +379,8 @@
       b.dataset.correct = opt.ok ? '1' : '0';
       b.dataset.i = String(si % 4);
       const lab = ['A','B','C','D'][si] || '?';
-      b.innerHTML = '<span class="deneme-opt-lbl">'+lab+'</span><span style="flex:1">'+String(opt.text||'')+'</span>';
+      const optHtml = mq ? mq.renderMarkupHtml(opt.text || '') : escHtml(String(opt.text || ''));
+      b.innerHTML = '<span class="deneme-opt-lbl">'+lab+'</span><span style="flex:1">'+optHtml+'</span>';
       if(existing && String(existing.chosenLabel || '') === lab){
         b.classList.add('deneme-selected');
       }
@@ -879,10 +887,12 @@
         var d = raw[k] || {};
         var qtext = (typeof d.question === 'object') ? (d.question.text||'') : (d.question||'');
         var qinfo = (typeof d.question === 'object') ? (d.question.info||'') : (d.info||'');
+        var qinfoItems = (typeof d.question === 'object' && Array.isArray(d.question.infoItems)) ? d.question.infoItems : null;
         return {
           qid: k,
           questionText: qtext,
           info: qinfo || '',
+          infoItems: qinfoItems,
           imageUrl: (d.url || d.image || '').trim(),
           correct: d.correct || '',
           wrong1: d.wrong1 || '',

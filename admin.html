@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Duellomatik – NASK GAMES ADMİN PANEL</title>
+<link rel="stylesheet" href="styles/059-nova-question-markup.css" />
 <style>
   :root{
     --bg:#0b1020;
@@ -987,6 +988,8 @@ window.NovaAdminExport = (function(){
 </main>
 
 <!-- Firebase v8 (compatible with existing app). Fill config below if needed. -->
+<script src="js/core/nova-question-markup.js"></script>
+<script src="js/core/nova-admin-question-editor.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
@@ -2120,6 +2123,10 @@ btnAddHeading.addEventListener('click', async ()=>{
   btnReloadQuestions.addEventListener('click', reloadQuestions);
 
   function questionEditorTemplate(q){
+    if (window.NovaAdminQuestionEditor) {
+      return NovaAdminQuestionEditor.enhancedEditorHtml(q, 'q', { explanation: true }) +
+        '<div class="sticky-actions"><button class="btn ok" id="btnSaveQ">💾 Kaydet</button></div>';
+    }
     // Supports string or object question
     const questionText = (typeof q.question === 'object') ? (q.question.text||'') : (q.question||'');
     const questionInfo = (typeof q.question === 'object') ? (q.question.info||'') : (q.info||'');
@@ -2139,25 +2146,38 @@ btnAddHeading.addEventListener('click', async ()=>{
       </div>`;
   }
 
+  function readChampionQuestionPayload(dlg){
+    if (window.NovaAdminQuestionEditor) {
+      return NovaAdminQuestionEditor.readQuestionPayload(dlg, 'q', { explanation: true });
+    }
+    return {
+      question: { text: $('#q_text').value.trim(), info: $('#q_info').value.trim() || null },
+      url: $('#q_img').value.trim()||null,
+      correct: $('#q_correct').value.trim(),
+      wrong1: $('#q_wrong1').value.trim(),
+      wrong2: $('#q_wrong2').value.trim(),
+      explanation: $('#q_exp').value.trim() || null
+    };
+  }
+
+  function wireChampionQuestionEditor(dlg){
+    if (window.NovaAdminQuestionEditor) NovaAdminQuestionEditor.wireEditor(dlg, 'q', { explanation: true });
+  }
+
   // Minimal composer for creating a question before pushing to DB
   function newQuestionComposer(h,l,t){
     const blank = { question:{text:'',info:null}, correct:'', wrong1:'', wrong2:'', explanation:'', url:'' };
     const dlg = CE('div','card'); dlg.style.position='fixed'; dlg.style.right='20px'; dlg.style.bottom='20px'; dlg.style.width='min(720px, 96vw)'; dlg.style.maxHeight='82vh'; dlg.style.overflow='auto'; dlg.style.zIndex='20';
     dlg.style.paddingTop='32px'; dlg.style.boxShadow='0 12px 36px rgba(0,0,0,.55)';
+    dlg.style.width='min(920px, 96vw)'; dlg.style.maxHeight='90vh';
     dlg.innerHTML = `<button class="dlg-x" title="Kapat">✕</button><h3>Yeni Soru</h3>${questionEditorTemplate(blank).replace('💾 Kaydet','➕ Oluştur')}`;
     document.body.appendChild(dlg);
+    wireChampionQuestionEditor(dlg);
     const _x = dlg.querySelector('.dlg-x'); if(_x){ _x.onclick = ()=> dlg.remove(); }
     dlg.querySelector('#btnSaveQ').onclick = async ()=>{
-      const payload = {
-        question: { text: $('#q_text').value.trim(), info: $('#q_info').value.trim() || null },
-        url: $('#q_img').value.trim()||null,
-        correct: $('#q_correct').value.trim(),
-        wrong1: $('#q_wrong1').value.trim(),
-        wrong2: $('#q_wrong2').value.trim(),
-        explanation: $('#q_exp').value.trim() || null
-      };
-      if(!payload.question.text && !payload.url){
-        alert('En az soru metni veya görsel URL giriniz.'); return;
+      const payload = readChampionQuestionPayload(dlg);
+      if(!payload.question.text){
+        alert('Soru metnini yazınız.'); return;
       }
       const ref = rdb.ref(`championData/headings/${h}/lessons/${l}/topics/${t}/questions`).push();
       await ref.set(payload);
@@ -2172,16 +2192,11 @@ btnAddHeading.addEventListener('click', async ()=>{
     const dlg = CE('div','card'); dlg.style.position='fixed'; dlg.style.right='20px'; dlg.style.bottom='20px'; dlg.style.width='min(720px, 96vw)'; dlg.style.maxHeight='82vh'; dlg.style.overflow='auto'; dlg.style.zIndex='20';
     dlg.innerHTML = `<button class="dlg-x" title="Kapat">✕</button><h3>Soru Düzenle</h3>${questionEditorTemplate(data)}<div class="mt8 small muted">Konum: <span class="mono">…/${qid}</span></div>`;
     document.body.appendChild(dlg);
+    wireChampionQuestionEditor(dlg);
+    dlg.style.width='min(920px, 96vw)'; dlg.style.maxHeight='90vh';
     const _x = dlg.querySelector('.dlg-x'); if(_x){ _x.onclick = ()=> dlg.remove(); }
     dlg.querySelector('#btnSaveQ').onclick = async ()=>{
-      const payload = {
-        question: { text: $('#q_text').value.trim(), info: $('#q_info').value.trim() || null },
-        url: $('#q_img').value.trim()||null,
-        correct: $('#q_correct').value.trim(),
-        wrong1: $('#q_wrong1').value.trim(),
-        wrong2: $('#q_wrong2').value.trim(),
-        explanation: $('#q_exp').value.trim() || null
-      };
+      const payload = readChampionQuestionPayload(dlg);
       await ref.update(payload);
       dlg.remove(); reloadQuestions();
     };
@@ -4841,6 +4856,10 @@ Doğru şık: C
   }
 
   function editorHtml(q){
+    if (window.NovaAdminQuestionEditor) {
+      return NovaAdminQuestionEditor.enhancedEditorHtml(q, 'dq', { wrong3: true, subject: true, explanation: true }) +
+        '<div class="sticky-actions"><button class="btn ok" type="button" id="dq_save">💾 Kaydet</button></div>';
+    }
     const questionText = (typeof q.question==='object') ? (q.question.text||'') : (q.question||'');
     const questionInfo = (typeof q.question==='object') ? (q.question.info||'') : (q.info||'');
     const imageUrl = q.url || q.image || '';
@@ -4859,7 +4878,10 @@ Doğru şık: C
       <div class="sticky-actions"><button class="btn ok" type="button" id="dq_save">💾 Kaydet</button></div>`;
   }
 
-  function readPayload(){
+  function readPayload(dlg){
+    if (window.NovaAdminQuestionEditor && dlg) {
+      return NovaAdminQuestionEditor.readQuestionPayload(dlg, 'dq', { wrong3: true, subject: true, explanation: true });
+    }
     return {
       question: { text: $('#dq_text').value.trim(), info: $('#dq_info').value.trim() || null },
       url: $('#dq_img').value.trim() || null,
@@ -4879,12 +4901,14 @@ Doğru şık: C
     const dlg = document.createElement('div');
     dlg.className = 'card';
     dlg.style.cssText = 'position:fixed;right:20px;bottom:20px;width:min(760px,96vw);max-height:86vh;overflow:auto;z-index:50;padding-top:32px;box-shadow:0 12px 36px rgba(0,0,0,.55)';
+    dlg.style.width='min(920px, 96vw)'; dlg.style.maxHeight='90vh';
     dlg.innerHTML = '<button class="dlg-x" type="button" title="Kapat">✕</button><h3>Deneme sorusu</h3>'+editorHtml(q);
     document.body.appendChild(dlg);
+    if (window.NovaAdminQuestionEditor) NovaAdminQuestionEditor.wireEditor(dlg, 'dq', { wrong3: true, subject: true, explanation: true });
     dlg.querySelector('.dlg-x').onclick = ()=> dlg.remove();
     dlg.querySelector('#dq_save').onclick = async ()=>{
-      const payload = readPayload();
-      if(!payload.question.text && !payload.url){ alert('Soru metni veya görsel URL giriniz.'); return; }
+      const payload = readPayload(dlg);
+      if(!payload.question.text){ alert('Soru metnini yazınız.'); return; }
       if(!payload.correct || !payload.wrong1 || !payload.wrong2 || !payload.wrong3){ alert('Tüm şıkları doldurunuz.'); return; }
       await ref.set(payload);
       dlg.remove();
@@ -4898,12 +4922,14 @@ Doğru şık: C
     const dlg = document.createElement('div');
     dlg.className = 'card';
     dlg.style.cssText = 'position:fixed;right:20px;bottom:20px;width:min(760px,96vw);max-height:86vh;overflow:auto;z-index:50;padding-top:32px;box-shadow:0 12px 36px rgba(0,0,0,.55)';
+    dlg.style.width='min(920px, 96vw)'; dlg.style.maxHeight='90vh';
     dlg.innerHTML = '<button class="dlg-x" type="button" title="Kapat">✕</button><h3>Yeni deneme sorusu</h3>'+editorHtml(blank);
     document.body.appendChild(dlg);
+    if (window.NovaAdminQuestionEditor) NovaAdminQuestionEditor.wireEditor(dlg, 'dq', { wrong3: true, subject: true, explanation: true });
     dlg.querySelector('.dlg-x').onclick = ()=> dlg.remove();
     dlg.querySelector('#dq_save').onclick = async ()=>{
-      const payload = readPayload();
-      if(!payload.question.text && !payload.url){ alert('Soru metni veya görsel URL giriniz.'); return; }
+      const payload = readPayload(dlg);
+      if(!payload.question.text){ alert('Soru metnini yazınız.'); return; }
       if(!payload.correct || !payload.wrong1 || !payload.wrong2 || !payload.wrong3){ alert('Tüm şıkları doldurunuz.'); return; }
       const ref = rdb.ref('denemeQuestions').push();
       await ref.set(payload);
