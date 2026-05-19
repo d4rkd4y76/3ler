@@ -34,7 +34,7 @@
     btn.id = 'nova_perf_open_btn';
     btn.type = 'button';
     btn.className = 'kupa-siralama-button';
-    btn.innerHTML = '⚙️ Ayarlar';
+    btn.innerHTML = '<span class="main-menu-icon" aria-hidden="true">⚙</span><span class="main-menu-label">Ayarlar</span>';
     const rankBtn = document.getElementById('kupa-siralama-button');
     if (rankBtn && rankBtn.parentNode === mainButtons){
       if (rankBtn.nextSibling) mainButtons.insertBefore(btn, rankBtn.nextSibling);

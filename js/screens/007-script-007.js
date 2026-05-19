@@ -8664,6 +8664,31 @@ if (winnerId && loserId) {
             }
         }
 
+
+        function renderRankingPlayerName(player) {
+            const name = (player && player.name) ? String(player.name) : 'Oyuncu';
+            const frameId = (player && player.nameFrame) ? String(player.nameFrame) : 'default';
+            const esc =
+              typeof escapeHtml === 'function'
+                ? escapeHtml
+                : function (x) {
+                    return String(x)
+                      .replace(/&/g, '&amp;')
+                      .replace(/</g, '&lt;')
+                      .replace(/>/g, '&gt;');
+                  };
+            if (typeof renderNameWithFrame === 'function' && frameId && frameId !== 'default') {
+                const hasMap =
+                  typeof NAME_FRAME_MAP !== 'undefined' &&
+                  NAME_FRAME_MAP &&
+                  NAME_FRAME_MAP[frameId];
+                if (hasMap || frameId === 'deneme_champion') {
+                    return renderNameWithFrame(name, frameId);
+                }
+            }
+            return '<span class="ranking-player-name">' + esc(name) + '</span>';
+        }
+
         async function displayRankingData(players, meta) {
             const renderSeq = ++__rankingRenderSeq;
             const userRank = meta && meta.userRank != null ? meta.userRank : 0;
@@ -8694,7 +8719,7 @@ if (winnerId && loserId) {
            <td class="rank-column">${index + 1}</td>
            <td><img src="${player.photo}" alt="" class="ranking-player-photo" loading="lazy" decoding="async" width="48" height="48"
                onerror="this.src='https://via.placeholder.com/50'"></td>
-          <td class="player-name-column"><div class="name-line">${renderNameWithFrame(player.name, player.nameFrame)}</div><div class="star-frame">${getStars(Number(player.gameCup) || 0)}</div>${getRankHTML(Number(player.gameCup) || 0)}</td>
+          <td class="player-name-column"><div class="name-line">${renderRankingPlayerName(player)}</div><div class="star-frame">${getStars(Number(player.gameCup) || 0)}</div>${getRankHTML(Number(player.gameCup) || 0)}</td>
            <td class="class-name-column">${player.className}</td>
            <td class="match-count-column">
    <div class="match-wrapper">

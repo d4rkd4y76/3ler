@@ -1,0 +1,26 @@
+/* Sezon sıralaması: oyuncu isimleri = sınıf sütunu (3.SINIF) stili; özel çerçeve hariç */
+
+.ranking-table .player-name-column .name-line {
+  font-weight: inherit;
+}
+
+.ranking-table .player-name-column .ranking-player-name {
+  display: inline;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-shadow: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+/* İlk 3 satırda sınıf metniyle aynı renk (beyaz) */
+.ranking-table tr.top-1 .ranking-player-name,
+.ranking-table tr.top-2 .ranking-player-name,
+.ranking-table tr.top-3 .ranking-player-name {
+  color: inherit;
+}

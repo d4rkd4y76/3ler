@@ -1,4 +1,4 @@
-<!-- Nova injected default purchasedPhotos key into 1 registration write(s). -->
+﻿<!-- Nova injected default purchasedPhotos key into 1 registration write(s). -->
 <!DOCTYPE html>
 
 <html lang="tr">
@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="styles/011-nova-profile-frame-override.css" />
 <link rel="stylesheet" href="styles/012-nova-extra-frames.css" />
 <link rel="stylesheet" href="styles/013-nova-ranking-table-photo-override.css" />
+<link rel="stylesheet" href="styles/060-nova-ranking-player-names.css" />
 <link rel="stylesheet" href="styles/014-nova-store-fix.css" />
 <link rel="stylesheet" href="styles/015-style-015.css" />
 <link rel="stylesheet" href="styles/016-style-016.css" />
@@ -181,6 +182,7 @@
 </div>
 </div>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css" />
+<link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
 <!-- Ana Ekran -->
 <div class="container" id="main-screen" style="display: none; position: relative;">
 <div class="app-duyuru-strip" id="app-duyuru-strip" hidden>
@@ -260,20 +262,17 @@
 </div>
 </div>
 <div class="buttons">
-<button class="single-player">Tek Kişilik Oyun</button>
-<button class="find-duel-button" id="findDuelButton">
+<button class="single-player" type="button"><span class="main-menu-icon" aria-hidden="true">▶</span><span class="main-menu-label">Tek Kişilik Oyun</span></button>
+<button class="find-duel-button" id="findDuelButton" type="button">
 <span class="button-content">
-<i class="duel-icon">⚔️</i>
-<span>Düello Ara</span>
+<i class="duel-icon" aria-hidden="true">⚔</i>
+<span class="main-menu-label">Düello Ara</span>
 </span>
 <div class="button-glow"></div>
 </button>
 <div class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 kredi.</div>
-<!-- Yeni Eklenen "Kupa Sıralaması" Butonu -->
-<button class="kupa-siralama-button" id="kupa-siralama-button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;">
-                🏆 Sezon Sıralaması
-            </button>
-<button class="logout-button" id="logout-button">Çıkış Yap</button>
+<button class="kupa-siralama-button" id="kupa-siralama-button" type="button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;"><span class="main-menu-icon" aria-hidden="true">🏆</span><span class="main-menu-label">Sezon Sıralaması</span></button>
+<button class="logout-button" id="logout-button" type="button"><span class="main-menu-icon" aria-hidden="true">↩</span><span class="main-menu-label">Çıkış Yap</span></button>
 </div>
 <div class="nask-game-signature" aria-hidden="true">NASK GAMES</div>
 </div>

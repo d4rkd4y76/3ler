@@ -589,24 +589,94 @@
     return parts.join('');
   }
 
+
+  function isDenemeAnswerEntry(a){
+    return !!(a && (a.qid || a.chosen != null || String(a.chosenLabel || '') !== '' || a.question));
+  }
+
+  function denemeAnswerIsCorrect(a){
+    if(!a) return false;
+    if(a.isCorrect === true || a.isCorrect === 1 || a.isCorrect === '1' || a.isCorrect === 'true') return true;
+    if(a.isCorrect === false || a.isCorrect === 0 || a.isCorrect === '0' || a.isCorrect === 'false') return false;
+    var ch = String(a.chosen || '').trim();
+    var co = String(a.correct || '').trim();
+    if(ch && co) return ch === co;
+    return false;
+  }
+
   function buildAnswersPanelHtml(payload){
-    const arr = Array.isArray(payload.answers) ? payload.answers : [];
-    if(!arr.length){
-      return '<div class="deneme-answers-panel"><div class="deneme-ans-item">Bu deneme için cevap kaydı bulunamadı.</div></div>';
-    }
-    const rows = arr.map(function(a, i){
-      const q = escHtml(a.question || ('Soru '+(i+1)));
-      const chosen = escHtml(a.chosen || '-');
-      const correct = escHtml(a.correct || '-');
-      const st = a.isCorrect ? '<span class="deneme-ans-good">Doğru</span>' : '<span class="deneme-ans-bad">Yanlış</span>';
-      const pre = buildDenemeAnswerPremiseHtml(a);
-      return '<div class="deneme-ans-item">' +
-        pre +
-        '<div class="deneme-ans-q">S'+String(i+1)+': '+q+'</div>' +
-        '<div class="deneme-ans-c">Cevabın: <b>'+chosen+'</b> · Doğru: <b>'+correct+'</b> · '+st+'</div>' +
-      '</div>';
+    const raw = Array.isArray(payload.answers) ? payload.answers : [];
+    const items = [];
+    raw.forEach(function(a, i){
+      if(isDenemeAnswerEntry(a)) items.push({ a: a, num: i + 1 });
     });
-    return '<div class="deneme-answers-panel">'+rows.join('')+'</div>';
+    if(!items.length){
+      return '<div class="deneme-answers-panel deneme-answers-panel--empty"><p>Bu deneme için cevap kaydı bulunamadı.</p></div>';
+    }
+    var correctN = Number(payload.correctCount);
+    var wrongN = Number(payload.wrongCount);
+    if(!Number.isFinite(correctN) || !Number.isFinite(wrongN)){
+      correctN = 0;
+      wrongN = 0;
+      items.forEach(function(it){
+        if(denemeAnswerIsCorrect(it.a)) correctN++;
+        else wrongN++;
+      });
+    }
+    var wrongBadge = wrongN > 0
+      ? '<span class="deneme-answers-stat deneme-answers-stat--bad">'+wrongN+' yanlış</span>'
+      : '';
+    const head =
+      '<div class="deneme-answers-head">' +
+        '<p class="deneme-answers-head__title">Cevap incelemesi</p>' +
+        '<div class="deneme-answers-head__stats">' +
+          '<span class="deneme-answers-stat deneme-answers-stat--ok">'+correctN+' doğru</span>' +
+          wrongBadge +
+        '</div>' +
+      '</div>';
+    const rows = items.map(function(it){
+      const a = it.a;
+      const q = escHtml(a.question || ('Soru '+it.num));
+      const chosen = escHtml(a.chosen || '—');
+      const correct = escHtml(a.correct || '—');
+      const ok = denemeAnswerIsCorrect(a);
+      const pre = buildDenemeAnswerPremiseHtml(a);
+      const badge = ok
+        ? '<span class="deneme-ans-badge deneme-ans-badge--ok">Doğru</span>'
+        : '<span class="deneme-ans-badge deneme-ans-badge--bad">Yanlış</span>';
+      var answersBlock;
+      if(ok){
+        answersBlock =
+          '<div class="deneme-ans-compare deneme-ans-compare--single">' +
+            '<div class="deneme-ans-box deneme-ans-box--match">' +
+              '<span class="deneme-ans-box__label">Cevabın</span>' +
+              '<span class="deneme-ans-box__value">'+chosen+'</span>' +
+            '</div>' +
+          '</div>';
+      } else {
+        answersBlock =
+          '<div class="deneme-ans-compare">' +
+            '<div class="deneme-ans-box deneme-ans-box--yours">' +
+              '<span class="deneme-ans-box__label">Senin cevabın</span>' +
+              '<span class="deneme-ans-box__value">'+chosen+'</span>' +
+            '</div>' +
+            '<div class="deneme-ans-box deneme-ans-box--right">' +
+              '<span class="deneme-ans-box__label">Doğru cevap</span>' +
+              '<span class="deneme-ans-box__value">'+correct+'</span>' +
+            '</div>' +
+          '</div>';
+      }
+      return '<article class="deneme-ans-card deneme-ans-card--'+(ok?'ok':'bad')+'">' +
+        '<header class="deneme-ans-card__head">' +
+          '<span class="deneme-ans-card__num">S'+it.num+'</span>' +
+          badge +
+        '</header>' +
+        pre +
+        '<div class="deneme-ans-card__q">'+q+'</div>' +
+        answersBlock +
+      '</article>';
+    });
+    return '<div class="deneme-answers-panel">'+head+rows.join('')+'</div>';
   }
 
   function renderDenemeResultCard(payload, headingText, podiumHtml){
