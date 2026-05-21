@@ -9,6 +9,20 @@
     throw new Error('dbGet unsupported ref');
   }
   function sel(){ try { return window.selectedStudent || JSON.parse(localStorage.getItem('selectedStudent')||'null'); } catch(_) { return null; } }
+  function gradeFromStudent(stu){
+    const txt = String((stu && (stu.className || stu.classId)) || '').toLocaleLowerCase('tr-TR');
+    const m = txt.match(/([1-4])\s*\.?\s*s[ıi]n[ıi]f/);
+    if (m && m[1]) return Number(m[1]);
+    const d = txt.match(/\b([1-4])\b/);
+    return d && d[1] ? Number(d[1]) : null;
+  }
+  function fillRootForStudent(stu){
+    const g = gradeFromStudent(stu);
+    if (g === 3) return 'fillBlanks'; // mevcut 3. sınıf verisi
+    if (g >= 1 && g <= 4) return 'classContent/sinif' + g + '/fillBlanks';
+    const cid = String((stu && stu.classId) || '').trim();
+    return cid ? ('classContent/class_' + cid.replace(/[^\w-]/g,'_') + '/fillBlanks') : 'fillBlanks';
+  }
   function dayKey(){
     const d = new Date();
     const y = d.getFullYear();
@@ -39,8 +53,8 @@
     return val;
   }
 
-  async function pickDailyQuestionId(rdb, dKey){
-    const idxVal = await readPathCached(rdb, 'fillBlanks/questionIds', FILLBLANK_CACHE_TTL_MS);
+  async function pickDailyQuestionId(rdb, dKey, rootPath){
+    const idxVal = await readPathCached(rdb, rootPath + '/questionIds', FILLBLANK_CACHE_TTL_MS);
     let ids = [];
     if (idxVal && typeof idxVal === 'object'){
       const v = idxVal || {};
@@ -50,21 +64,21 @@
       let keys = null;
       try {
         if (typeof window.novaRtdbShallowKeys === 'function') {
-          keys = await window.novaRtdbShallowKeys('fillBlanks/questions');
+          keys = await window.novaRtdbShallowKeys(rootPath + '/questions');
         }
       } catch (_) {}
       if (keys && keys.length) {
         ids = keys;
         const idMap = {};
         ids.forEach(id => idMap[id]=true);
-        rdb.ref('fillBlanks/questionIds').set(idMap).catch(()=>{});
+        rdb.ref(rootPath + '/questionIds').set(idMap).catch(()=>{});
       } else if (keys === null) {
-        const v = await readPathCached(rdb, 'fillBlanks/questions', FILLBLANK_CACHE_TTL_MS);
+        const v = await readPathCached(rdb, rootPath + '/questions', FILLBLANK_CACHE_TTL_MS);
         if (!v || typeof v !== 'object') return null;
         ids = Object.keys(v);
         const idMap = {};
         ids.forEach(id => idMap[id]=true);
-        rdb.ref('fillBlanks/questionIds').set(idMap).catch(()=>{});
+        rdb.ref(rootPath + '/questionIds').set(idMap).catch(()=>{});
       }
     }
     if (!ids.length) return null;
@@ -77,26 +91,27 @@
     const rdb = db();
     const s = sel();
     if (!rdb || !s || !s.studentId || !s.classId){
-      if (typeof showAlert === 'function') showAlert('Önce giriş yapmalısın.');
+      if (typeof showAlert === 'function') showAlert('🔐 Giriş Gerekli\nÖnce hesabınla giriş yapmalısın.');
       return;
     }
 
     const dKey = dayKey();
-    const attemptRef = rdb.ref(`fillBlanks/attempts/${s.studentId}/${dKey}`);
+    const rootPath = fillRootForStudent(s);
+    const attemptRef = rdb.ref(`${rootPath}/attempts/${s.studentId}/${dKey}`);
     const attemptSnap = await dbGet(attemptRef);
     if (attemptSnap.exists()){
-      if (typeof showAlert === 'function') showAlert('Bugünkü Boşluğu Doldur hakkını zaten kullandın. Yeni soru gelene kadar beklemelisin.');
+      if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
       return;
     }
 
-    const qid = await pickDailyQuestionId(rdb, dKey);
+    const qid = await pickDailyQuestionId(rdb, dKey, rootPath);
     if (!qid){
-      if (typeof showAlert === 'function') showAlert('Bugün için soru bulunamadı.');
+      if (typeof showAlert === 'function') showAlert('🛠️ İçerik Hazırlanıyor\nBu sınıf için Boşluk Ustası soruları henüz eklenmemiş.');
       return;
     }
-    const q = await readPathCached(rdb, `fillBlanks/questions/${qid}`, FILLBLANK_CACHE_TTL_MS);
+    const q = await readPathCached(rdb, `${rootPath}/questions/${qid}`, FILLBLANK_CACHE_TTL_MS);
     if (!q || typeof q !== 'object'){
-      if (typeof showAlert === 'function') showAlert('Soru yüklenemedi.');
+      if (typeof showAlert === 'function') showAlert('⚠️ Yükleme Hatası\nSoru yüklenemedi. Lütfen birazdan tekrar dene.');
       return;
     }
     const answerLen = Number(q.answerLength || String(q.answer||'').trim().length || 1);
@@ -259,22 +274,24 @@
     st.id = 'fillblank-style';
     st.textContent = `
       #fillblank_fab{
-        position:relative;z-index:12;border:none;border-radius:14px;
+        position:relative;z-index:12;border-radius:14px;
         padding:0 4px;font-weight:900;color:#fff;cursor:pointer;
-        background:linear-gradient(135deg,#fb7185,#f59e0b);box-shadow:0 10px 22px rgba(245,158,11,.28);
+        background:linear-gradient(145deg,#f97316 0%,#fb7185 52%,#ef4444 100%);
+        border:1px solid rgba(254,205,211,.68);
+        box-shadow:0 10px 20px rgba(225,29,72,.30), inset 0 1px 0 rgba(255,255,255,.28);
         display:flex;align-items:center;justify-content:center;
         white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
         line-height:1;font-size:11px;letter-spacing:0;
-        width: clamp(64px, 15vw, 90px);
-        height: clamp(30px, 7.5vw, 42px);
-        min-width: 64px;
-        min-height: 30px;
+        width: clamp(60px, 14vw, 84px);
+        height: clamp(28px, 6.8vw, 38px);
+        min-width: 60px;
+        min-height: 28px;
       }
       #fillblank_fab_wrap{display:inline-flex;position:relative;z-index:80;pointer-events:auto;margin-top:8px}
       #main-screen-hud-left{
         display:flex !important;
         flex-direction:column !important;
-        align-items:center !important;
+        align-items:flex-start !important;
         justify-content:flex-start !important;
         gap:8px !important;
         overflow:visible !important;
@@ -288,7 +305,7 @@
         bottom:auto !important;
         transform:none !important;
         margin:0 !important;
-        align-self:center !important;
+        align-self:flex-start !important;
       }
       #main-screen-hud-left #puzzle_fab_wrap{order:1 !important}
       #main-screen-hud-left #fillblank_fab_wrap{order:2 !important;margin-top:0 !important}
@@ -298,7 +315,7 @@
       #main-screen-quest-slot{
         display:flex !important;
         flex-direction:column !important;
-        align-items:center !important;
+        align-items:flex-end !important;
         justify-content:flex-start !important;
         gap:8px !important;
         overflow:visible !important;
@@ -312,7 +329,7 @@
         bottom:auto !important;
         transform:none !important;
         margin:0 !important;
-        align-self:center !important;
+        align-self:flex-end !important;
       }
       #main-screen-quest-slot .surprise-box{
         position:relative !important;
@@ -321,30 +338,40 @@
         top:auto !important;
         bottom:auto !important;
         margin:0 !important;
-        align-self:center !important;
+        align-self:flex-end !important;
       }
       #main-screen-quest-slot #homework_fab{order:1 !important}
       #main-screen-quest-slot #quest_fab_wrap{order:2 !important}
       #main-screen-quest-slot .surprise-box{order:3 !important}
       #main-screen-quest-slot .nova-tour-fab-wrap{order:4 !important}
-      #fillblank_fab .fb-fab-label{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
+      #fillblank_fab .fb-fab-label{display:block;max-width:100%;overflow:visible;text-overflow:clip;white-space:nowrap;padding:0 1px}
       #fillblank_fab:hover{transform:translateY(-1px);filter:brightness(1.04)}
-      #fillblank-screen{display:none;position:fixed;inset:0;z-index:100001;background:
-        radial-gradient(900px 500px at 20% -10%,rgba(56,189,248,.18),transparent 60%),
-        radial-gradient(900px 500px at 90% 0%,rgba(251,113,133,.16),transparent 60%),
-        #0b1020;color:#e7ecf7;align-items:center;justify-content:center}
-      .fb-card{width:min(760px,92vw);background:linear-gradient(180deg,#1d2b5f,#141f43);border:1px solid rgba(147,197,253,.35);border-radius:22px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);position:relative;overflow:hidden}
-      .fb-card::before{content:'';position:absolute;inset:-40% auto auto -20%;width:240px;height:240px;background:radial-gradient(circle,rgba(59,130,246,.24),transparent 70%);pointer-events:none;animation:fbAura 5s ease-in-out infinite}
-      .fb-card::after{content:'';position:absolute;inset:auto -20% -45% auto;width:260px;height:260px;background:radial-gradient(circle,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+      #fillblank-screen{display:none;position:fixed;inset:0;z-index:100001;padding:max(10px, env(safe-area-inset-top, 0px)) max(10px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px));background:
+        radial-gradient(900px 500px at 20% -10%,rgba(56,189,248,.22),transparent 60%),
+        radial-gradient(900px 500px at 90% 0%,rgba(251,113,133,.2),transparent 60%),
+        linear-gradient(180deg,#7c3aed 0%, #4f46e5 45%, #22d3ee 100%);color:#0f172a;align-items:center;justify-content:center;overflow:auto}
+      .fb-card{width:min(920px,96vw);max-height:calc(100dvh - 20px);background:linear-gradient(180deg,#ffffff,#f8fbff 55%,#eff6ff);border:1px solid rgba(255,255,255,.72);border-radius:22px;padding:22px;box-shadow:0 24px 60px rgba(30,41,59,.35), inset 0 1px 0 rgba(255,255,255,.9);position:relative;overflow:auto}
+      .fb-card::before{content:'';position:absolute;inset:-40% auto auto -20%;width:240px;height:240px;background:radial-gradient(circle,rgba(192,132,252,.2),transparent 70%);pointer-events:none;animation:fbAura 5s ease-in-out infinite}
+      .fb-card::after{content:'';position:absolute;inset:auto -20% -45% auto;width:260px;height:260px;background:radial-gradient(circle,rgba(56,189,248,.2),transparent 70%);pointer-events:none}
       .fb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-      .fb-title{font-size:26px;font-weight:900;letter-spacing:.2px;color:#fef3c7}
-      .fb-close{background:transparent;border:1px solid rgba(148,163,184,.4);color:#fff;border-radius:10px;padding:8px 10px;cursor:pointer}
-      .fb-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.4);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;margin-bottom:10px}
-      .fb-question{font-size:27px;font-weight:800;line-height:1.35;margin:10px 0;color:#ffffff}
+      .fb-title{font-size:28px;font-weight:900;letter-spacing:.2px;color:#4c1d95}
+      .fb-close{
+        background:linear-gradient(135deg,#f472b6,#fb7185);
+        border:1px solid rgba(244,114,182,.72);
+        color:#fff;
+        border-radius:12px;
+        padding:8px 12px;
+        cursor:pointer;
+        font-weight:800;
+        box-shadow:0 10px 22px rgba(244,114,182,.32);
+      }
+      .fb-close:hover{filter:brightness(1.07);transform:translateY(-1px)}
+      .fb-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#dbeafe,#cffafe);border:1px solid rgba(125,211,252,.55);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;margin-bottom:10px;color:#0f172a}
+      .fb-question{font-size:27px;font-weight:800;line-height:1.35;margin:10px 0;color:#0f172a}
       .fb-hole{display:inline-block;letter-spacing:3px;color:#fbbf24}
-      .fb-hint{opacity:.92;margin-bottom:12px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25);padding:8px 10px;border-radius:10px}
+      .fb-hint{opacity:.95;margin-bottom:12px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid rgba(250,204,21,.45);padding:8px 10px;border-radius:10px;color:#7c2d12}
       .fb-row{display:flex;gap:10px;align-items:center}
-      .fb-input{flex:1;background:#0d1430;border:1px solid rgba(148,163,184,.32);color:#fff;border-radius:12px;padding:12px 13px;font-size:18px;outline:none}
+      .fb-input{flex:1;background:#fff;border:1px solid rgba(148,163,184,.4);color:#0f172a;border-radius:12px;padding:12px 13px;font-size:18px;outline:none}
       .fb-input:focus{border-color:rgba(96,165,250,.8);box-shadow:0 0 0 3px rgba(96,165,250,.22)}
       .fb-check{border:none;background:linear-gradient(135deg,#34d399,#22c55e);color:#fff;border-radius:12px;padding:12px 14px;font-weight:800;cursor:pointer;box-shadow:0 10px 24px rgba(34,197,94,.35)}
       .fb-chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
@@ -390,7 +417,7 @@
       .fb-shake .fb-card{animation:fbShake .55s}
       .fb-pop .fb-card{animation:fbPop .55s}
       @media (max-width: 560px){
-        .fb-card{width:min(94vw,560px);padding:14px}
+        .fb-card{width:min(96vw,560px);max-height:calc(100dvh - 16px);padding:14px}
         .fb-title{font-size:20px}
         .fb-question{font-size:22px}
         .fb-row{flex-direction:column;align-items:stretch}
@@ -404,7 +431,7 @@
     wrapBtn.id = 'fillblank_fab_wrap';
     const btn = document.createElement('button');
     btn.id = 'fillblank_fab';
-    btn.innerHTML = '<span class="fb-fab-label">🧩 Boşluk</span>';
+    btn.innerHTML = '<span class="fb-fab-label">BOŞLUK</span>';
     btn.addEventListener('click', ()=>{ openFillBlankScreen().catch(e=>{ console.warn(e); if(typeof showAlert==='function') showAlert('Boşluğu Doldur açılamadı.'); }); });
     wrapBtn.appendChild(btn);
     var rewardTag = document.createElement('span');
@@ -431,12 +458,12 @@
     function fitFabText(){
       try{
         if (!labelEl) return;
-        const labels = ['🧩 Boşluk'];
+        const labels = ['BOŞLUK'];
         for (const text of labels){
           labelEl.textContent = text;
           let fs = 13;
           labelEl.style.fontSize = fs + 'px';
-          while (labelEl.scrollWidth > (btn.clientWidth - 6) && fs > 7){
+          while (labelEl.scrollWidth > (btn.clientWidth - 6) && fs > 5){
             fs -= 1;
             labelEl.style.fontSize = fs + 'px';
           }
@@ -447,7 +474,6 @@
     function placeAndSizeLikeQuest(){
       try{
         const qbtn = document.getElementById('quest_fab');
-        const hbtn = document.getElementById('homework_fab');
         const puzW = document.getElementById('puzzle_fab_wrap');
         const hudLeft = document.getElementById('main-screen-hud-left');
         if (hudLeft && wrapBtn.parentNode !== hudLeft){ hudLeft.appendChild(wrapBtn); }
@@ -455,13 +481,13 @@
           hudLeft.insertBefore(wrapBtn, puzW.nextSibling);
         }
         if (!qbtn) return;
-        btn.style.width = Math.round(qbtn.offsetWidth) + 'px';
-        btn.style.height = Math.round(qbtn.offsetHeight) + 'px';
-        if (hbtn){
-          hbtn.style.width = Math.round(qbtn.offsetWidth) + 'px';
-          hbtn.style.height = Math.round(qbtn.offsetHeight) + 'px';
-          hbtn.style.margin = '0';
+        const qW = Math.round(Number(qbtn.offsetWidth || 0));
+        const qH = Math.round(Number(qbtn.offsetHeight || 0));
+        // Hidden/transition states can report tiny sizes; ignore those.
+        if (qW < 40 || qH < 24){
+          return;
         }
+        // Sizing is controlled by responsive CSS for all side FABs.
         wrapBtn.style.pointerEvents = 'auto';
         btn.style.pointerEvents = 'auto';
         fitFabText();
@@ -482,6 +508,7 @@
     setTimeout(placeAndSizeLikeQuest, 800);
     window.addEventListener('load', scheduleFabLayoutSync, { once: true });
     window.addEventListener('pageshow', scheduleFabLayoutSync);
+    document.addEventListener('nova:main-screen-visible', scheduleFabLayoutSync);
     scheduleFabLayoutSync();
 
     const wrap = document.createElement('div');
@@ -494,10 +521,10 @@
           <span class="fb-star s3">⭐</span>
         </div>
         <div class="fb-top">
-          <div class="fb-title">Boşluğu Doldur</div>
+          <div class="fb-title">Boşluk Ustası</div>
           <button class="fb-close" id="fillblank-close">Kapat</button>
         </div>
-        <div class="fb-badge">⭐ Günlük Meydan Okuma</div>
+        <div class="fb-badge">🧩 Günlük Boşluk Doldurma</div>
         <div class="fb-hint" id="fillblank-hint">İpucu:</div>
         <div class="fb-question" id="fillblank-question"></div>
         <div class="fb-chips" id="fillblank-chips"></div>

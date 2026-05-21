@@ -1,4 +1,23 @@
 (function(){
+  function tuneFabLabels(){
+    try{
+      var pz = document.getElementById('puzzle_fab');
+      if (pz){
+        pz.textContent = 'BULMACA';
+      }
+      var fb = document.getElementById('fillblank_fab');
+      if (fb){
+        var lbl = fb.querySelector('.fb-fab-label');
+        if (lbl) lbl.textContent = 'BOŞLUK';
+      }
+      var mt = document.getElementById('match_fab');
+      if (mt){
+        var sp = mt.querySelector('span');
+        if (sp) sp.textContent = 'EŞLEŞTİR';
+      }
+    }catch(_){}
+  }
+
   function moveFab(){
     try{
       var ms = document.getElementById('main-screen');
@@ -79,6 +98,7 @@
         pzw.style.top = 'auto';
         pzw.style.margin = '0';
       }
+      tuneFabLabels();
       return !!(hw || dnw || qw || fbw || pzw || sb);
     }catch(e){ return false; }
   }

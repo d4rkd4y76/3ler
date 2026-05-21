@@ -221,24 +221,15 @@
     if (!screen || !play || !done) return;
 
     if (dateLabel) dateLabel.textContent = dKey.split('-').reverse().join('.');
-    screen.classList.add('open');
-    screen.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
     if (attemptSnap && attemptSnap.exists()){
-      const v = attemptSnap.val() || {};
-      play.style.display = 'none';
-      done.style.display = 'block';
-      if (v.correct){
-        done.className = 'dp-done';
-        done.innerHTML = '🏆 Harika! Bugünkü bulmacayı çözdün.<br/><span style="font-size:0.95em;opacity:.9">+100 elmas ödülün hesabına işlendi.</span>';
-      } else {
-        done.className = 'dp-done dp-fail';
-        done.innerHTML = '😊 Bugünkü denemen tamamlandı.<br/><span style="font-size:0.95em">Yarın yeni bir bulmaca seni bekliyor!</span>';
-      }
+      if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
       dailyState = null;
       return;
     }
+
+    screen.classList.add('open');
+    screen.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
 
     const picked = await loadDailyWord(rdb, dKey, rootPath);
     const word = picked && picked.word ? picked.word : '';
