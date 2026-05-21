@@ -77,9 +77,11 @@
             padding: 20px 20px 10px 20px;
             animation: backgroundPulse 10s infinite alternate;
         }
+        html.nova-lock-main-scroll,
         body.nova-lock-main-scroll{
-            overflow-y: hidden !important;
-            overscroll-behavior-y: none !important;
+            overflow: hidden !important;
+            overscroll-behavior: none !important;
+            height: 100%;
         }
 
         @keyframes backgroundPulse {
@@ -623,19 +625,10 @@ html, body {
   user-select: none;
 }
 
-/* Hareketli ışık efekti */
-#main-screen::before {
-    /* Bu bloğu tamamen kaldırabilir veya şu şekilde değiştirebilirsiniz: */
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: -150%;
-    width: 300%;
-    height: 200%;
-    background: none; /* linear-gradient yerine none kullanarak efekti kaldırıyoruz */
-    animation: none; /* Animasyonu da kaldırıyoruz */
-    z-index: 0;
-    pointer-events: none;
+/* Eski ışık efekti kaldırıldı — devasa ::before scroll yüksekliğini şişiriyordu */
+#main-screen::before{
+    display: none !important;
+    content: none !important;
 }
 
 
@@ -4828,9 +4821,15 @@ animation: floatButton 1s ease infinite;
 
 
 /* === Mobile Market/Profile Scroll Fixes (Nova) === */
-html, body {
+html {
   min-height: 100dvh;
+  overflow-x: hidden;
   overflow-y: auto;
+}
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 @supports (height: 100dvh) {

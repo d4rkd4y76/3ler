@@ -2464,8 +2464,10 @@ function novaIsElementVisibleById(id){
 }
 function novaSyncMainScreenScrollLock(){
   try{
+    const root = document.documentElement;
     const mainVisible = novaIsElementVisibleById('main-screen');
     if (!mainVisible){
+      root.classList.remove('nova-lock-main-scroll');
       document.body.classList.remove('nova-lock-main-scroll');
       return;
     }
@@ -2482,8 +2484,9 @@ function novaSyncMainScreenScrollLock(){
     ];
     const hasForegroundOverlay = overlayIds.some(novaIsElementVisibleById);
     const main = document.getElementById('main-screen');
-    const contentTooTall = !!(main && (main.scrollHeight > (window.innerHeight - 8)));
+    const contentTooTall = !!(main && (main.offsetHeight > (window.innerHeight - 8)));
     const shouldLock = mainVisible && !hasForegroundOverlay && !contentTooTall;
+    root.classList.toggle('nova-lock-main-scroll', shouldLock);
     document.body.classList.toggle('nova-lock-main-scroll', shouldLock);
   }catch(_){}
 }
