@@ -203,6 +203,35 @@
     renderDp();
   }
 
+  function applyDailyFabLock(locked){
+    var fab = document.getElementById('puzzle_fab');
+    var wrap = document.getElementById('puzzle_fab_wrap');
+    if (!fab) return;
+    fab.disabled = !!locked;
+    fab.classList.toggle('nova-daily-locked', !!locked);
+    fab.setAttribute('aria-disabled', locked ? 'true' : 'false');
+    if (wrap) wrap.classList.toggle('nova-daily-locked-wrap', !!locked);
+    if (locked) fab.title = 'Bugünkü hakkını kullandın. Yarın tekrar açılır.';
+    else fab.title = 'Doğru çözümde +100 elmas';
+  }
+
+  async function refreshDailyFabState(){
+    try{
+      var rdb = db();
+      var s = sel();
+      if (!rdb || !s || !s.studentId || !s.classId){
+        applyDailyFabLock(false);
+        return;
+      }
+      var dKey = dayKey();
+      var attemptRef = rdb.ref(dailyAttemptRootForStudent(s) + '/attempts/' + s.studentId + '/' + dKey);
+      var snap = await dbGet(attemptRef);
+      applyDailyFabLock(!!(snap && snap.exists && snap.exists()));
+    }catch(_e){
+      applyDailyFabLock(false);
+    }
+  }
+
   async function openDailyPuzzle(){
     const rdb = db();
     const s = sel();
@@ -224,6 +253,7 @@
     if (attemptSnap && attemptSnap.exists()){
       if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
       dailyState = null;
+      refreshDailyFabState();
       return;
     }
 
@@ -360,9 +390,11 @@
     if (!committed){
       if (msg) msg.textContent = 'Bugünkü hakkın zaten kullanıldı.';
       if (checkBtn) checkBtn.disabled = true;
+      refreshDailyFabState();
       return;
     }
     if (checkBtn) checkBtn.disabled = true;
+    refreshDailyFabState();
     var rdb = db();
     if (isCorrect && rdb){
       var stuRef = rdb.ref('classes/' + st.classId + '/students/' + st.studentId);
@@ -434,6 +466,7 @@
       checkBtn.dataset.dpBound = '1';
       checkBtn.addEventListener('click', function(){ dpCheck().catch(function(e){ console.warn(e); }); });
     }
+    refreshDailyFabState();
   }
 
   if (document.readyState === 'loading'){
@@ -442,4 +475,7 @@
     bindDailyPuzzle();
   }
   window.addEventListener('load', bindDailyPuzzle, { once: true });
+  window.addEventListener('pageshow', function(){ refreshDailyFabState(); });
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) refreshDailyFabState(); });
+  document.addEventListener('nova:main-screen-visible', function(){ refreshDailyFabState(); });
 })();

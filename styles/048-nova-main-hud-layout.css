@@ -173,6 +173,25 @@
   transform: translateY(-2px);
   filter: brightness(1.06);
 }
+#main-screen #puzzle_fab.nova-daily-locked,
+#main-screen #fillblank_fab.nova-daily-locked,
+#main-screen #match_fab.nova-daily-locked{
+  cursor: not-allowed !important;
+  opacity: .58 !important;
+  filter: grayscale(.6) saturate(.45) brightness(.95) !important;
+  transform: none !important;
+  box-shadow: 0 6px 14px rgba(2, 6, 23, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+#main-screen #puzzle_fab.nova-daily-locked:hover,
+#main-screen #fillblank_fab.nova-daily-locked:hover,
+#main-screen #match_fab.nova-daily-locked:hover{
+  transform: none !important;
+  filter: grayscale(.6) saturate(.45) brightness(.95) !important;
+}
+#main-screen .nova-daily-locked-wrap .nova-fab-reward-tag{
+  opacity: .45 !important;
+  filter: grayscale(.55) !important;
+}
 #main-screen .main-screen-hero-left .nova-fab-reward-tag{
   position: absolute !important;
   top: -7px !important;

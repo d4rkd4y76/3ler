@@ -87,6 +87,35 @@
     return ids[idx];
   }
 
+  function applyFillFabLock(locked){
+    const fab = document.getElementById('fillblank_fab');
+    const wrap = document.getElementById('fillblank_fab_wrap');
+    if (!fab) return;
+    fab.disabled = !!locked;
+    fab.classList.toggle('nova-daily-locked', !!locked);
+    fab.setAttribute('aria-disabled', locked ? 'true' : 'false');
+    if (wrap) wrap.classList.toggle('nova-daily-locked-wrap', !!locked);
+    fab.title = locked ? 'Bugünkü hakkını kullandın. Yarın tekrar açılır.' : 'Doğru cevapta +100 elmas';
+  }
+
+  async function refreshFillFabState(){
+    try{
+      const rdb = db();
+      const s = sel();
+      if (!rdb || !s || !s.studentId || !s.classId){
+        applyFillFabLock(false);
+        return;
+      }
+      const dKey = dayKey();
+      const rootPath = fillRootForStudent(s);
+      const attemptRef = rdb.ref(`${rootPath}/attempts/${s.studentId}/${dKey}`);
+      const snap = await dbGet(attemptRef);
+      applyFillFabLock(!!(snap && snap.exists && snap.exists()));
+    }catch(_e){
+      applyFillFabLock(false);
+    }
+  }
+
   async function openFillBlankScreen(){
     const rdb = db();
     const s = sel();
@@ -101,6 +130,7 @@
     const attemptSnap = await dbGet(attemptRef);
     if (attemptSnap.exists()){
       if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
+      refreshFillFabState();
       return;
     }
 
@@ -174,8 +204,10 @@
       if (!committed){
         resultEl.textContent = 'Bugünkü hakkını zaten kullandın.';
         resultEl.className = 'fb-result fail';
+        refreshFillFabState();
         return;
       }
+      refreshFillFabState();
 
       if (isCorrect){
         const stuRef = rdb.ref(`classes/${s.classId}/students/${s.studentId}`);
@@ -510,6 +542,10 @@
     window.addEventListener('pageshow', scheduleFabLayoutSync);
     document.addEventListener('nova:main-screen-visible', scheduleFabLayoutSync);
     scheduleFabLayoutSync();
+    refreshFillFabState();
+    window.addEventListener('pageshow', refreshFillFabState);
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshFillFabState(); });
+    document.addEventListener('nova:main-screen-visible', refreshFillFabState);
 
     const wrap = document.createElement('div');
     wrap.id = 'fillblank-screen';

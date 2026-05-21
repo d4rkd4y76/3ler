@@ -179,6 +179,35 @@
     requestAnimationFrame(drawLines);
   }
 
+  function applyMatchFabLock(locked){
+    const fab = document.getElementById('match_fab');
+    const wrap = document.getElementById('match_fab_wrap');
+    if (!fab) return;
+    fab.disabled = !!locked;
+    fab.classList.toggle('nova-daily-locked', !!locked);
+    fab.setAttribute('aria-disabled', locked ? 'true' : 'false');
+    if (wrap) wrap.classList.toggle('nova-daily-locked-wrap', !!locked);
+    fab.title = locked ? 'Bugünkü hakkını kullandın. Yarın tekrar açılır.' : 'Günlük eşleştirme oyunu (+100 elmas)';
+  }
+
+  async function refreshMatchFabState(){
+    try{
+      const rdb = db();
+      const s = sel();
+      if (!rdb || !s || !s.studentId || !s.classId){
+        applyMatchFabLock(false);
+        return;
+      }
+      const dKey = dayKey();
+      const rootPath = matchRootForStudent(s);
+      const attemptRef = rdb.ref(`${rootPath}/attempts/${s.studentId}/${dKey}`);
+      const snap = await dbGet(attemptRef);
+      applyMatchFabLock(!!(snap && snap.exists && snap.exists()));
+    }catch(_e){
+      applyMatchFabLock(false);
+    }
+  }
+
   async function openMatchScreen(){
     const rdb = db();
     const s = sel();
@@ -192,6 +221,7 @@
     const attemptSnap = await dbGet(attemptRef);
     if (attemptSnap && attemptSnap.exists()){
       if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
+      refreshMatchFabState();
       return;
     }
     const qid = await pickDailyMatchId(rdb, dKey, rootPath);
@@ -239,8 +269,10 @@
     await mState.attemptRef.transaction(curr => curr ? curr : payload, function(err, c){ committed = !!c; });
     if (!committed){
       if (msg){ msg.textContent = 'Bugünkü hakkın zaten kullanılmış.'; msg.className = 'match-msg fail'; }
+      refreshMatchFabState();
       return;
     }
+    refreshMatchFabState();
     mState.checked = true;
     const allCorrect = Object.keys(mState.picks).every(function(k){
       return Number(mState.picks[k]) === Number(mState.pairMap[k]);
@@ -435,6 +467,10 @@
     window.addEventListener('pageshow', scheduleMatchLayoutSync);
     document.addEventListener('nova:main-screen-visible', scheduleMatchLayoutSync);
     scheduleMatchLayoutSync();
+    refreshMatchFabState();
+    window.addEventListener('pageshow', refreshMatchFabState);
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshMatchFabState(); });
+    document.addEventListener('nova:main-screen-visible', refreshMatchFabState);
 
     const screen = document.createElement('div');
     screen.id = 'match-screen';
