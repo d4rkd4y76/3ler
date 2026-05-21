@@ -200,6 +200,31 @@
   @media (max-width: 420px){
     .tab{ flex: 1 1 100%; min-width: 100%; }
   }
+  .admin-class-gate{
+    position:fixed; inset:0; z-index:99999;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(2,6,23,.86);
+    backdrop-filter: blur(4px);
+  }
+  .admin-class-gate[hidden]{ display:none !important; }
+  .admin-class-gate-card{
+    width:min(96vw,560px);
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:linear-gradient(180deg,#111933,#0b1020);
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+    padding:18px;
+  }
+  .admin-class-gate-title{margin:0 0 6px;font-size:20px;font-weight:900}
+  .admin-class-gate-sub{margin:0 0 12px;color:var(--muted)}
+  .admin-class-grid{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:10px}
+  .admin-class-chip{
+    border:1px solid var(--border); border-radius:12px; min-height:52px; cursor:pointer;
+    background:linear-gradient(180deg,#1e2756,#19224a); color:#fff; font-weight:800;
+  }
+  .admin-class-chip:hover{filter:brightness(1.08)}
+  .admin-class-gate-status{min-height:18px;margin-top:10px;color:#93c5fd;font-size:12px}
+  @media (max-width: 560px){ .admin-class-grid{grid-template-columns:1fr} }
 </style>
 <script>
 function novaToEmbedUrl(url){
@@ -273,6 +298,14 @@ window.NovaAdminExport = (function(){
   <div class="brand"><span class="dot"></span><span>NASK GAMES ADMİN PANEL</span></div>
   <div class="env small">Durum: <b id="conn">Bağlanıyor…</b> <span class="pill"><span>RTDB</span></span></div>
 </header>
+<div id="adminClassGate" class="admin-class-gate">
+  <div class="admin-class-gate-card">
+    <h2 class="admin-class-gate-title">Önce işlem yapılacak sınıfı seçin</h2>
+    <p class="admin-class-gate-sub">Seçtiğiniz sınıf dışındaki veriler bu oturumda gösterilmez.</p>
+    <div id="adminClassGateList" class="admin-class-grid"></div>
+    <div id="adminClassGateStatus" class="admin-class-gate-status"></div>
+  </div>
+</div>
 <main>
   <nav>
     <div class="tab-group">
@@ -1006,13 +1039,14 @@ window.NovaAdminExport = (function(){
   // Değilse, aşağıdaki objeyi doldurun:
   const SHOULD_INIT = (typeof firebase === 'object') && firebase.apps && !firebase.apps.length;
   const FALLBACK_CONFIG = {
-  apiKey: "AIzaSyAV8LLng3Cx6-116U6WcEFVn7XqOq2l3Sc",
-  authDomain: "duellomatik.firebaseapp.com",
-  databaseURL: "https://duellomatik-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "duellomatik",
-  storageBucket: "duellomatik.firebasestorage.app",
-  messagingSenderId: "274662566652",
-  appId: "1:274662566652:web:c097e7052aba00a6b04579"
+  apiKey: "AIzaSyAZ8u7pix02x5-MbjOqurra6PWILmLfKGI",
+  authDomain: "dllwrld-e5419.firebaseapp.com",
+  databaseURL: "https://dllwrld-e5419-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "dllwrld-e5419",
+  storageBucket: "dllwrld-e5419.firebasestorage.app",
+  messagingSenderId: "244776245953",
+  appId: "1:244776245953:web:fbc041505911ae0b951240",
+  measurementId: "G-N2L6729PRY"
 };
   if (SHOULD_INIT){
     try{ firebase.initializeApp(FALLBACK_CONFIG); }catch(e){ console.warn('Firebase init error', e); }
@@ -1028,6 +1062,68 @@ window.NovaAdminExport = (function(){
     try{ if(!ms) return '-'; const d=new Date(ms); return d.toLocaleString('tr-TR'); }catch(_){ return String(ms) }
   };
   const sleep = (t)=> new Promise(r=>setTimeout(r,t));
+  window.__novaAdminClassMetaMap = window.__novaAdminClassMetaMap || {};
+  function novaAdminExtractGrade(raw){
+    const txt = String(raw || '').toLocaleLowerCase('tr-TR');
+    const m = txt.match(/([1-4])\s*\.?\s*s[ıi]n[ıi]f/);
+    if (m && m[1]) return Number(m[1]);
+    const d = txt.match(/\b([1-4])\b/);
+    return d && d[1] ? Number(d[1]) : null;
+  }
+  function novaAdminScopeClassId(){
+    return String(window.novaAdminScopedClassId || '').trim();
+  }
+  function novaAdminScopePrefix(){
+    const cid = novaAdminScopeClassId();
+    if (!cid) return '';
+    const meta = (window.__novaAdminClassMetaMap && window.__novaAdminClassMetaMap[cid]) || {};
+    const grade = novaAdminExtractGrade(meta.name || cid);
+    if (grade === 3) return ''; // mevcut 3. sınıf global veriyle uyum
+    if (grade >= 1 && grade <= 4) return 'classContent/sinif' + grade + '/';
+    return 'classContent/class_' + cid.replace(/[^\w-]/g,'_') + '/';
+  }
+  function novaAdminMapScopedPath(path){
+    const p = String(path || '').replace(/^\/+/, '');
+    if (!p) return p;
+    const prefix = novaAdminScopePrefix();
+    if (!prefix) return p;
+    const roots = ['denemeQuestions','denemeMeta','denemeAttempts','denemeResults','denemeProgress','denemeLeaderboard','denemeAgg','fillBlanks','dailyPuzzles','dailyPuzzle','matchingGame'];
+    for (let i = 0; i < roots.length; i++){
+      const r = roots[i];
+      if (p === r || p.indexOf(r + '/') === 0) return prefix + p;
+    }
+    return p;
+  }
+  try{
+    if (rdb && !window.__novaAdminScopedRefPatched) {
+      const proto = Object.getPrototypeOf(rdb);
+      const origRef = proto && proto.ref;
+      if (origRef) {
+        proto.ref = function(path){
+          if (typeof path === 'undefined') return origRef.call(this);
+          return origRef.call(this, novaAdminMapScopedPath(path));
+        };
+        window.__novaAdminScopedRefPatched = true;
+      }
+    }
+  }catch(e){ console.warn('admin scoped ref patch', e); }
+  try{
+    const refProto = firebase && firebase.database && firebase.database.Reference && firebase.database.Reference.prototype;
+    if (refProto && !window.__novaAdminScopedUpdatePatched) {
+      const origUpdate = refProto.update;
+      refProto.update = function(values, onComplete){
+        if (this && this.key === null && values && typeof values === 'object' && !Array.isArray(values)) {
+          const mapped = {};
+          Object.keys(values).forEach(function(k){
+            mapped[novaAdminMapScopedPath(k)] = values[k];
+          });
+          return origUpdate.call(this, mapped, onComplete);
+        }
+        return origUpdate.call(this, values, onComplete);
+      };
+      window.__novaAdminScopedUpdatePatched = true;
+    }
+  }catch(e){ console.warn('admin scoped update patch', e); }
 
   // ---- Tabs ----
   $$('.tab').forEach(t=>t.addEventListener('click',()=>{
@@ -1880,21 +1976,148 @@ window.NovaAdminExport = (function(){
   const studentsList = $('#studentsList');
   const studentEditor = $('#studentEditor');
   const addBtn = $('#btnAddStudent');
+  const adminClassGate = document.getElementById('adminClassGate');
+  const adminClassGateList = document.getElementById('adminClassGateList');
+  const adminClassGateStatus = document.getElementById('adminClassGateStatus');
 
-  async function loadClasses(selectEl){
-    if(!rdb) return;
-    selectEl.innerHTML = '<option value="">Yükleniyor…</option>';
+  function deepClone(v){
+    try{ return JSON.parse(JSON.stringify(v)); }catch(_){ return null; }
+  }
+  function gradeName(n){ return String(n) + '.SINIF'; }
+  function gradeFromName(name){
+    const m = String(name || '').match(/([1-4])\s*\.?\s*SINIF/i);
+    return m && m[1] ? Number(m[1]) : null;
+  }
+  async function fetchClassRowsRaw(){
     const snap = await rdb.ref('classes').get();
     const data = snap.exists() ? snap.val() : {};
     const opts = [];
     for (const cid in data){
       const name = (data[cid] && data[cid].name) || (data[cid] && data[cid].className) || (data[cid] && data[cid]['2.SINIF']) || data[cid]?.label || 'Sınıf';
-      opts.push({cid, name: name || 'Sınıf'});
+      opts.push({ cid, name: name || 'Sınıf' });
+      window.__novaAdminClassMetaMap[cid] = { name: name || cid };
     }
-    opts.sort((a,b)=>a.name.localeCompare(b.name,'tr'));
+    opts.sort((a,b)=>{
+      const ga = gradeFromName(a.name), gb = gradeFromName(b.name);
+      if (ga && gb && ga !== gb) return ga - gb;
+      if (ga && !gb) return -1;
+      if (!ga && gb) return 1;
+      return a.name.localeCompare(b.name,'tr');
+    });
+    return opts;
+  }
+  async function ensureBaseGradeStructureOnce(){
+    if (window.__novaAdminGradeBootstrapDone) return;
+    window.__novaAdminGradeBootstrapDone = true;
+    let bootstrapFlag = null;
+    try{
+      const flagSnap = await rdb.ref('platformMeta/gradeBootstrapV2').get();
+      if (flagSnap.exists()) bootstrapFlag = flagSnap.val() || null;
+    }catch(_){}
+    if (bootstrapFlag && bootstrapFlag.done) return;
+
+    const classesSnap = await rdb.ref('classes').get();
+    const classes = classesSnap.exists() ? (classesSnap.val() || {}) : {};
+    const classByGrade = {};
+    Object.keys(classes).forEach((cid)=>{
+      const nm = String((classes[cid] && classes[cid].name) || '').toUpperCase();
+      const g = gradeFromName(nm);
+      if (g && !classByGrade[g]) classByGrade[g] = cid;
+    });
+    const rootUpdates = {};
+    for (let g = 1; g <= 4; g++){
+      if (!classByGrade[g]){
+        const deterministicId = 'SINIF' + g;
+        const cid = classes[deterministicId] ? rdb.ref('classes').push().key : deterministicId;
+        classByGrade[g] = cid;
+        rootUpdates['classes/' + cid] = { name: gradeName(g), pin: String(g).repeat(4), students: {} };
+      }
+      rootUpdates['classesIndex/' + classByGrade[g]] = { name: gradeName(g) };
+    }
+    if (Object.keys(rootUpdates).length) await rdb.ref().update(rootUpdates);
+
+    const hSnap = await rdb.ref('championData/headings').get();
+    const headings = hSnap.exists() ? (hSnap.val() || {}) : {};
+    const headingByGrade = {};
+    Object.keys(headings).forEach((hid)=>{
+      const nm = String((headings[hid] && headings[hid].name) || '').toUpperCase();
+      const g = gradeFromName(nm);
+      if (g && !headingByGrade[g]) headingByGrade[g] = hid;
+    });
+    const structureUpdates = {};
+    for (let g = 1; g <= 4; g++){
+      if (!headingByGrade[g]){
+        let hid = classByGrade[g] || '';
+        if (!hid || headings[hid]) hid = rdb.ref('championData/headings').push().key;
+        structureUpdates['championData/headings/' + hid] = { name: gradeName(g), lessons: {} };
+      }
+    }
+    if (Object.keys(structureUpdates).length) await rdb.ref().update(structureUpdates);
+    try{
+      await rdb.ref('platformMeta/gradeBootstrapV2').set({
+        done: true,
+        version: 2,
+        ts: Date.now()
+      });
+    }catch(_){}
+  }
+  async function askClassScope(rows){
+    if (!adminClassGate || !adminClassGateList) return null;
+    adminClassGateList.innerHTML = '';
+    adminClassGateStatus.textContent = 'İşlem yapılacak sınıfı seçin.';
+    return await new Promise((resolve)=>{
+      rows.forEach((r)=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'admin-class-chip';
+        b.textContent = r.name;
+        b.addEventListener('click', ()=> resolve(r));
+        adminClassGateList.appendChild(b);
+      });
+    });
+  }
+
+  async function loadClasses(selectEl){
+    if(!rdb) return;
+    if (!window.__novaAdminClassPicked){
+      adminClassGateStatus.textContent = 'Sınıflar hazırlanıyor…';
+      await ensureBaseGradeStructureOnce();
+      const rows = await fetchClassRowsRaw();
+      if (!rows.length) throw new Error('Sınıf bulunamadı.');
+      const picked = await askClassScope(rows);
+      if (!picked || !picked.cid) throw new Error('Sınıf seçimi yapılmadı.');
+      window.novaAdminScopedClassId = picked.cid;
+      window.__novaAdminClassPicked = true;
+      localStorage.setItem('nova_admin_scope_class', picked.cid);
+      if (adminClassGate) adminClassGate.hidden = true;
+    }
+    selectEl.innerHTML = '<option value="">Yükleniyor…</option>';
+    const opts = await fetchClassRowsRaw();
     selectEl.innerHTML = opts.map(o=>`<option value="${o.cid}">${o.name}</option>`).join('');
-    const saved = localStorage.getItem('nova_admin_last_class');
-    if(saved && opts.find(x=>x.cid===saved)){ selectEl.value = saved; }
+    if (window.novaAdminScopedClassId && opts.find(x=>x.cid===window.novaAdminScopedClassId)) {
+      selectEl.value = window.novaAdminScopedClassId;
+    } else {
+      selectEl.value = opts.length ? opts[0].cid : '';
+    }
+    if (window.novaAdminScopedClassId) {
+      selectEl.disabled = true;
+      selectEl.style.pointerEvents = 'none';
+      selectEl.style.opacity = '0.8';
+      try{
+        const env = document.querySelector('header .env');
+        const row = opts.find(x=>x.cid===window.novaAdminScopedClassId);
+        if (env && row) {
+          let badge = document.getElementById('nova_admin_scope_badge');
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.id = 'nova_admin_scope_badge';
+            badge.className = 'pill';
+            env.appendChild(badge);
+          }
+          badge.innerHTML = `Sınıf: <b>${row.name}</b>`;
+        }
+      }catch(_){}
+    }
     listStudents();
   }
 
@@ -2005,18 +2228,39 @@ window.NovaAdminExport = (function(){
   const btnSaveTopicVideo = $('#btnSaveTopicVideo');
   const btnClearTopicVideo = $('#btnClearTopicVideo');
   const btnSaveLvl = $('#btnSaveLvl');
+  function normalizeClassTag(v){
+    return String(v || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'').replace(/\.SINIF/g,'.SINIF');
+  }
+  function getScopedClassName(){
+    const cid = String(window.novaAdminScopedClassId || classSelect.value || '').trim();
+    const meta = (window.__novaAdminClassMetaMap && window.__novaAdminClassMetaMap[cid]) || {};
+    return String(meta.name || '').trim();
+  }
 
   
   async function loadHeadings(){
     headingSelect.innerHTML = '<option value="">Yükleniyor…</option>';
     const snap = await rdb.ref('championData/headings').get();
     const data = snap.exists() ? snap.val() : {};
-    const arr = Object.entries(data).map(([id, h])=>{
+    let arr = Object.entries(data).map(([id, h])=>{
       const label = (h && (h.name || h.label || h.title)) || ('Heading ' + id.slice(-4));
       return { id, name: label };
     });
+    const scopedName = getScopedClassName();
+    if (scopedName) {
+      const scopedTag = normalizeClassTag(scopedName);
+      arr = arr.filter((x)=> normalizeClassTag(x.name) === scopedTag);
+      if (!arr.length){
+        const ref = rdb.ref('championData/headings').push();
+        await ref.set({ name: scopedName, lessons: {}, createdAt: Date.now() });
+        arr = [{ id: ref.key, name: scopedName }];
+      }
+    }
     // Sort by numeric grade first if present (e.g., "2.SINIF", "3.SINIF"), then locale text
     arr.sort((a,b)=>{
+      const scopedCid = String(window.novaAdminScopedClassId || '');
+      if (scopedCid && a.id === scopedCid && b.id !== scopedCid) return -1;
+      if (scopedCid && b.id === scopedCid && a.id !== scopedCid) return 1;
       const na = parseInt(String(a.name).replace(/[^0-9]/g,'')) || 0;
       const nb = parseInt(String(b.name).replace(/[^0-9]/g,'')) || 0;
       if (na !== nb) return na - nb;
@@ -2024,6 +2268,15 @@ window.NovaAdminExport = (function(){
     });
     headingSelect.innerHTML = arr.map(o=>`<option value="${o.id}">${o.name}</option>`).join('');
     if(arr.length){ headingSelect.value = arr[0].id; }
+    headingSelect.disabled = true;
+    headingSelect.style.pointerEvents = 'none';
+    headingSelect.style.cursor = 'not-allowed';
+    if (!arr.length){
+      lessonSelect.innerHTML = '';
+      topicSelect.innerHTML = '';
+      questionsTable.innerHTML = '<div class="soft small">Seçilen sınıf için heading bulunamadı.</div>';
+      return;
+    }
     await loadLessons();
   }
 
@@ -5413,6 +5666,13 @@ Doğru şık: C
   }
 
   const cache = { headings:{}, lessons:{}, topics:{} };
+  function scopedClassTagHW(){
+    try{
+      const cid = String(window.novaAdminScopedClassId || '').trim();
+      const meta = (window.__novaAdminClassMetaMap && window.__novaAdminClassMetaMap[cid]) || {};
+      return String(meta.name || '').toLocaleUpperCase('tr-TR').replace(/[^0-9A-ZÇĞİÖŞÜ]/g,'');
+    }catch(_){ return ''; }
+  }
   // Student index (sid -> name)
   const studentIndex = { ready:false, map:{} };
   async function buildStudentIndex(){
@@ -5494,10 +5754,19 @@ Doğru şık: C
     const s = await d.ref('championData/headings').get();
     const headingSel = byId('hw_heading'); headingSel.innerHTML='';
     const items = [];
+    const scopedTag = scopedClassTagHW();
     s.forEach(ch => {
       const v = ch.val()||{};
-      items.push({ id: ch.key, name: pickName(v, ch.key, 'Başlık') });
+      const nm = pickName(v, ch.key, 'Başlık');
+      if (scopedTag && String(nm || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'') !== scopedTag) return;
+      items.push({ id: ch.key, name: nm });
     });
+    if (!items.length && scopedTag){
+      const rawName = String((((window.__novaAdminClassMetaMap || {})[window.novaAdminScopedClassId] || {}).name) || '').trim() || 'Sınıf';
+      const ref = d.ref('championData/headings').push();
+      await ref.set({ name: rawName, lessons: {}, createdAt: Date.now() });
+      items.push({ id: ref.key, name: rawName });
+    }
     items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
     items.forEach(it=>{
       const opt = document.createElement('option');
@@ -5505,6 +5774,8 @@ Doğru şık: C
       opt.textContent = it.name;
       headingSel.appendChild(opt);
     });
+    headingSel.disabled = true;
+    headingSel.style.pointerEvents = 'none';
     loadLessons();
   }
   async function loadLessons(){
@@ -5545,35 +5816,42 @@ Doğru şık: C
   // -----------------------------
   async function loadHomeworkStudents(){
     const cont = byId('hw_students'); cont.innerHTML='Yükleniyor…';
-    const classesSnap = await d.ref('classes').get();
-    const frag = document.createDocumentFragment();
-    classesSnap.forEach(csnap => {
-      const cval = csnap.val()||{};
-      const classLabel = cval.name || cval.className || cval.label || csnap.key;
-      const cdiv = document.createElement('div');
-      cdiv.innerHTML = '<div style="font-weight:700; margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:10px">'+'<span>'+classLabel+'</span>'+'<label class="small muted" style="font-weight:400"><input type="checkbox" data-master="1" data-class-id="'+csnap.key+'"> Tümünü Seç</label>'+'</div>';
-      const students = csnap.child('students');
-      students.forEach(ss => {
-        const st = ss.val()||{};
-        const id = ss.key;
-        const line = document.createElement('label');
-        line.style.display='flex'; line.style.alignItems='center'; line.style.gap='8px';
-        const cb = document.createElement('input'); cb.type='checkbox'; cb.value=id; cb.dataset.classId = csnap.key; cb.dataset.student = '1';
-        const span = document.createElement('span'); span.textContent = (st.name || 'Öğrenci') + ' — ' + classLabel;
-        line.appendChild(cb); line.appendChild(span);
-        cdiv.appendChild(line);
-      });
-      
-      // 'Tümünü Seç' (sınıf bazlı) checkbox bağlama
-      const master = cdiv.querySelector('input[type="checkbox"][data-master="1"][data-class-id="'+csnap.key+'"]');
-      if(master){
-        master.addEventListener('change', ()=>{
-          cdiv.querySelectorAll('input[type="checkbox"][data-student="1"][data-class-id="'+csnap.key+'"]').forEach(cb=>{ cb.checked = master.checked; });
-        });
-      }
-frag.appendChild(cdiv);
+    const scopedCid = String(window.novaAdminScopedClassId || byId('classSelect')?.value || '').trim();
+    if (!scopedCid){
+      cont.innerHTML = '<div class="soft small">Önce sınıf seçin.</div>';
+      return;
+    }
+    const cSnap = await d.ref('classes/' + scopedCid).get();
+    if (!cSnap.exists()){
+      cont.innerHTML = '<div class="soft small">Seçilen sınıf bulunamadı.</div>';
+      return;
+    }
+    const cval = cSnap.val() || {};
+    const classLabel = cval.name || cval.className || cval.label || scopedCid;
+    const cdiv = document.createElement('div');
+    cdiv.innerHTML = '<div style="font-weight:700; margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:10px">'+'<span>'+classLabel+'</span>'+'<label class="small muted" style="font-weight:400"><input type="checkbox" data-master="1" data-class-id="'+scopedCid+'"> Tümünü Seç</label>'+'</div>';
+    const students = cval.students || {};
+    const studentRows = Object.entries(students).sort((a,b)=>{
+      const an = String((a[1] && a[1].name) || '').toLocaleLowerCase('tr-TR');
+      const bn = String((b[1] && b[1].name) || '').toLocaleLowerCase('tr-TR');
+      return an.localeCompare(bn, 'tr');
     });
-    cont.innerHTML=''; cont.appendChild(frag);
+    studentRows.forEach(([id, st]) => {
+      const line = document.createElement('label');
+      line.style.display='flex'; line.style.alignItems='center'; line.style.gap='8px';
+      const cb = document.createElement('input'); cb.type='checkbox'; cb.value=id; cb.dataset.classId = scopedCid; cb.dataset.student = '1';
+      const span = document.createElement('span'); span.textContent = (st && st.name ? st.name : 'Öğrenci') + ' — ' + classLabel;
+      line.appendChild(cb); line.appendChild(span);
+      cdiv.appendChild(line);
+    });
+    const master = cdiv.querySelector('input[type="checkbox"][data-master="1"][data-class-id="'+scopedCid+'"]');
+    if(master){
+      master.addEventListener('change', ()=>{
+        cdiv.querySelectorAll('input[type="checkbox"][data-student="1"][data-class-id="'+scopedCid+'"]').forEach(cb=>{ cb.checked = master.checked; });
+      });
+    }
+    cont.innerHTML='';
+    cont.appendChild(cdiv);
   }
   const hwAllBtn = byId('hw_students_all');
   const hwNoneBtn = byId('hw_students_none');
@@ -5589,10 +5867,38 @@ frag.appendChild(cdiv);
   // -----------------------------
   async function listHomeworks(){
     const tbody = byId('hw_list_admin'); tbody.innerHTML='';
+    const scopedTag = scopedClassTagHW();
+    const scopedCid = String(window.novaAdminScopedClassId || byId('classSelect')?.value || '').trim();
+    const scopedStudentIds = new Set();
+    if (scopedCid) {
+      try{
+        const ss = await d.ref('classes/' + scopedCid + '/students').get();
+        if (ss.exists()) {
+          ss.forEach(ch=> scopedStudentIds.add(ch.key));
+        }
+      }catch(_){}
+    }
+    const headingNameById = Object.create(null);
+    try{
+      const hs = await d.ref('championData/headings').get();
+      hs.forEach(ch=>{
+        const v = ch.val() || {};
+        headingNameById[ch.key] = pickName(v, ch.key, 'Başlık');
+      });
+    }catch(_){}
     const snap = await d.ref('homeworks').orderByChild('createdAt').get();
     const rows = [];
     snap.forEach(ch => {
       const v = ch.val()||{};
+      if (scopedStudentIds.size) {
+        const assignees = (v && v.assignees && typeof v.assignees === 'object') ? v.assignees : {};
+        const hasScopedAssignee = Object.keys(assignees).some((sid)=> scopedStudentIds.has(String(sid)));
+        if (!hasScopedAssignee) return;
+      }
+      if (scopedTag) {
+        const hName = String(headingNameById[v.headingId] || '').toLocaleUpperCase('tr-TR').replace(/[^0-9A-ZÇĞİÖŞÜ]/g,'');
+        if (!hName || hName !== scopedTag) return;
+      }
       const assigned = v.assignees ? Object.keys(v.assignees).length : 0;
       const tr = document.createElement('tr');
       // placeholder topic path cell
@@ -5808,19 +6114,37 @@ byId('hw_assign').addEventListener('click', async ()=>{
     if(!obj) return fallbackPrefix + ' ' + (id||'').slice(-4);
     return obj.name || obj.label || obj.title || (fallbackPrefix + ' ' + (id||'').slice(-4));
   }
+  function scopedClassTagLA(){
+    try{
+      const cid = String(window.novaAdminScopedClassId || '').trim();
+      const meta = (window.__novaAdminClassMetaMap && window.__novaAdminClassMetaMap[cid]) || {};
+      return String(meta.name || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'');
+    }catch(_){ return ''; }
+  }
 
   async function loadHeadingsLA(){
     const sel = byId('la_heading'); sel.innerHTML='';
     const snap = await d.ref('championData/headings').get();
     const items = [];
+    const scopedTag = scopedClassTagLA();
     snap.forEach(ch=>{
       const v = ch.val()||{};
-      items.push({id:ch.key, name:pickName(v, ch.key, 'Başlık')});
+      const nm = pickName(v, ch.key, 'Başlık');
+      if (scopedTag && String(nm || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'') !== scopedTag) return;
+      items.push({id:ch.key, name:nm});
     });
+    if (!items.length && scopedTag){
+      const rawName = String((((window.__novaAdminClassMetaMap || {})[window.novaAdminScopedClassId] || {}).name) || '').trim() || 'Sınıf';
+      const ref = d.ref('championData/headings').push();
+      await ref.set({ name: rawName, lessons: {}, createdAt: Date.now() });
+      items.push({ id: ref.key, name: rawName });
+    }
     items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
     items.forEach(it=>{
       const o = document.createElement('option'); o.value=it.id; o.textContent=it.name; sel.appendChild(o);
     });
+    sel.disabled = true;
+    sel.style.pointerEvents = 'none';
     await loadLessonsLA();
   }
 

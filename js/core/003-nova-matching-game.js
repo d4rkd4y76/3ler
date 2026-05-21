@@ -7,6 +7,20 @@
     throw new Error('dbGet unsupported ref');
   }
   function sel(){ try { return window.selectedStudent || JSON.parse(localStorage.getItem('selectedStudent')||'null'); } catch(_) { return null; } }
+  function gradeFromStudent(stu){
+    const txt = String((stu && (stu.className || stu.classId)) || '').toLocaleLowerCase('tr-TR');
+    const m = txt.match(/([1-4])\s*\.?\s*s[ıi]n[ıi]f/);
+    if (m && m[1]) return Number(m[1]);
+    const d = txt.match(/\b([1-4])\b/);
+    return d && d[1] ? Number(d[1]) : null;
+  }
+  function matchRootForStudent(stu){
+    const g = gradeFromStudent(stu);
+    if (g === 3) return 'matchingGame'; // mevcut 3. sınıf verisi
+    if (g >= 1 && g <= 4) return 'classContent/sinif' + g + '/matchingGame';
+    const cid = String((stu && stu.classId) || '').trim();
+    return cid ? ('classContent/class_' + cid.replace(/[^\w-]/g,'_') + '/matchingGame') : 'matchingGame';
+  }
   function dayKey(){
     const d = new Date();
     const y = d.getFullYear();
@@ -43,29 +57,29 @@
     return a;
   }
 
-  async function pickDailyMatchId(rdb, dKey){
-    const idxVal = await readPathCached(rdb, 'matchingGame/questionIds', MATCH_CACHE_TTL_MS);
+  async function pickDailyMatchId(rdb, dKey, rootPath){
+    const idxVal = await readPathCached(rdb, rootPath + '/questionIds', MATCH_CACHE_TTL_MS);
     let ids = [];
     if (idxVal && typeof idxVal === 'object') ids = Object.keys(idxVal || {});
     if (!ids.length){
       let keys = null;
       try {
         if (typeof window.novaRtdbShallowKeys === 'function') {
-          keys = await window.novaRtdbShallowKeys('matchingGame/questions');
+          keys = await window.novaRtdbShallowKeys(rootPath + '/questions');
         }
       } catch (_) {}
       if (keys && keys.length) {
         ids = keys;
         const map = {};
         ids.forEach(id => map[id] = true);
-        rdb.ref('matchingGame/questionIds').set(map).catch(function(){});
+        rdb.ref(rootPath + '/questionIds').set(map).catch(function(){});
       } else if (keys === null) {
-        const qVal = await readPathCached(rdb, 'matchingGame/questions', MATCH_CACHE_TTL_MS);
+        const qVal = await readPathCached(rdb, rootPath + '/questions', MATCH_CACHE_TTL_MS);
         if (qVal && typeof qVal === 'object'){
           ids = Object.keys(qVal || {});
           const map = {};
           ids.forEach(id => map[id] = true);
-          rdb.ref('matchingGame/questionIds').set(map).catch(function(){});
+          rdb.ref(rootPath + '/questionIds').set(map).catch(function(){});
         }
       }
     }
@@ -169,31 +183,32 @@
     const rdb = db();
     const s = sel();
     if (!rdb || !s || !s.studentId || !s.classId){
-      if (typeof showAlert === 'function') showAlert('Önce giriş yapmalısın.');
+      if (typeof showAlert === 'function') showAlert('🔐 Giriş Gerekli\nÖnce hesabınla giriş yapmalısın.');
       return;
     }
     const dKey = dayKey();
-    const attemptRef = rdb.ref(`matchingGame/attempts/${s.studentId}/${dKey}`);
+    const rootPath = matchRootForStudent(s);
+    const attemptRef = rdb.ref(`${rootPath}/attempts/${s.studentId}/${dKey}`);
     const attemptSnap = await dbGet(attemptRef);
     if (attemptSnap && attemptSnap.exists()){
-      if (typeof showAlert === 'function') showAlert('Bugünkü Eşleştir hakkını zaten kullandın.');
+      if (typeof showAlert === 'function') showAlert('🔗 Günlük Hak Kullanıldı\nBugünkü Eşleştir Ustası hakkını kullandın. Yarın yeni eşleşmeler gelecek.');
       return;
     }
-    const qid = await pickDailyMatchId(rdb, dKey);
+    const qid = await pickDailyMatchId(rdb, dKey, rootPath);
     if (!qid){
-      if (typeof showAlert === 'function') showAlert('Bugün için eşleştirme sorusu bulunamadı.');
+      if (typeof showAlert === 'function') showAlert('🛠️ İçerik Hazırlanıyor\nBu sınıf için Eşleştir soruları henüz eklenmemiş.');
       return;
     }
-    const q = await readPathCached(rdb, `matchingGame/questions/${qid}`, MATCH_CACHE_TTL_MS);
+    const q = await readPathCached(rdb, `${rootPath}/questions/${qid}`, MATCH_CACHE_TTL_MS);
     if (!q || typeof q !== 'object'){
-      if (typeof showAlert === 'function') showAlert('Eşleştirme sorusu yüklenemedi.');
+      if (typeof showAlert === 'function') showAlert('⚠️ Yükleme Hatası\nEşleştirme sorusu yüklenemedi. Lütfen birazdan tekrar dene.');
       return;
     }
     const left = Array.isArray(q.left) ? q.left.slice(0,5).map(v=>String(v||'').trim()).filter(Boolean) : [];
     const rightRaw = Array.isArray(q.right) ? q.right.slice(0,5).map(v=>String(v||'').trim()).filter(Boolean) : [];
     const pairMap = (q.pairs && typeof q.pairs === 'object') ? q.pairs : { "0":0, "1":1, "2":2, "3":3, "4":4 };
     if (left.length !== 5 || rightRaw.length !== 5){
-      if (typeof showAlert === 'function') showAlert('Eşleştirme sorusu hatalı (5 sol + 5 sağ gerekli).');
+      if (typeof showAlert === 'function') showAlert('⚠️ Soru Formatı Hatalı\nEşleştirme sorusunda 5 sol + 5 sağ öğe olmalı.');
       return;
     }
     const right = shuffle(rightRaw.map((t, i) => ({ ridx: i, text: t })));
@@ -314,13 +329,15 @@
     st.id = 'match-style';
     st.textContent = `
       #match_fab_wrap{display:inline-flex;position:relative;z-index:80;pointer-events:auto;margin-top:8px}
-      #match_fab{border:none;border-radius:14px;padding:0 4px;font-weight:900;color:#fff;cursor:pointer;
-        background:linear-gradient(135deg,#22c55e,#0ea5e9);box-shadow:0 10px 22px rgba(14,165,233,.28);
+      #match_fab{border-radius:14px;padding:0 4px;font-weight:900;color:#fff;cursor:pointer;
+        background:linear-gradient(145deg,#14b8a6 0%,#06b6d4 52%,#3b82f6 100%);
+        border:1px solid rgba(186,230,253,.68);
+        box-shadow:0 10px 20px rgba(2,132,199,.30), inset 0 1px 0 rgba(255,255,255,.28);
         display:flex;align-items:center;justify-content:center;line-height:1;font-size:11px;white-space:nowrap;
-        width: clamp(64px, 15vw, 90px);
-        height: clamp(30px, 7.5vw, 42px);
-        min-width: 64px;
-        min-height: 30px}
+        width: clamp(60px, 14vw, 84px);
+        height: clamp(28px, 6.8vw, 38px);
+        min-width: 60px;
+        min-height: 28px}
       #match-screen{display:none;position:fixed;inset:0;z-index:100001;background:
         radial-gradient(900px 520px at 8% -8%,rgba(255,182,193,.36),transparent 60%),
         radial-gradient(900px 520px at 94% -10%,rgba(135,206,250,.34),transparent 58%),
@@ -335,6 +352,7 @@
       .match-card::after{content:'';position:absolute;inset:auto -12% -38% auto;width:320px;height:320px;background:radial-gradient(circle,rgba(56,189,248,.2),transparent 72%);pointer-events:none}
       .match-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
       .match-title{font-size:32px;font-weight:900;color:#4c1d95;letter-spacing:.3px;text-shadow:0 6px 16px rgba(192,132,252,.25)}
+      .match-badge{display:inline-flex;align-items:center;gap:6px;margin-top:6px;background:linear-gradient(135deg,#dbeafe,#cffafe);border:1px solid rgba(125,211,252,.55);color:#0f172a;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px}
       .match-sub{font-size:13px;color:#334155;font-weight:700}
       .match-close{background:linear-gradient(135deg,#f472b6,#fb7185);border:1px solid rgba(244,114,182,.6);color:#fff;border-radius:12px;padding:8px 12px;cursor:pointer;font-weight:800}
       .match-close:hover{filter:brightness(1.07);transform:translateY(-1px)}
@@ -394,15 +412,10 @@
     }
     function syncMatchFabSizeLikeBlank(){
       try{
-        const fbBtn = document.getElementById('fillblank_fab');
         const mBtn = document.getElementById('match_fab');
-        if (!fbBtn || !mBtn) return;
-        const w = Math.round(fbBtn.offsetWidth || 0);
-        const h = Math.round(fbBtn.offsetHeight || 0);
-        if (w > 0) mBtn.style.width = w + 'px';
-        if (h > 0) mBtn.style.height = h + 'px';
-        mBtn.style.fontSize = getComputedStyle(fbBtn).fontSize || '11px';
-        mBtn.style.borderRadius = getComputedStyle(fbBtn).borderRadius || '14px';
+        if (!mBtn) return;
+        // Sizing is controlled by responsive CSS for all side FABs.
+        mBtn.style.pointerEvents = 'auto';
       }catch(_){}
     }
     function scheduleMatchLayoutSync(){
@@ -420,6 +433,7 @@
     setTimeout(syncMatchFabSizeLikeBlank, 800);
     window.addEventListener('load', scheduleMatchLayoutSync, { once: true });
     window.addEventListener('pageshow', scheduleMatchLayoutSync);
+    document.addEventListener('nova:main-screen-visible', scheduleMatchLayoutSync);
     scheduleMatchLayoutSync();
 
     const screen = document.createElement('div');
@@ -428,8 +442,9 @@
       <div class="match-card">
         <div class="match-head">
           <div>
-            <div class="match-title">Eşleştir Oyunu</div>
+            <div class="match-title">Eşleştir Ustası</div>
             <div class="match-sub" id="match_date"></div>
+            <div class="match-badge">🔗 Günlük Eşleştirme</div>
           </div>
           <button class="match-close" id="match_close">Kapat</button>
         </div>

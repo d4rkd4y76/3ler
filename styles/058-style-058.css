@@ -621,6 +621,155 @@
   .nova-duel-report-grid{ grid-template-columns: 1fr; }
 }
 
+/* === Nova Premium Single Player Select Screen === */
+#single-player-screen{
+  position: relative;
+  width: min(980px, 96vw) !important;
+  max-width: min(980px, 96vw) !important;
+  margin: clamp(8px, 2.2vh, 22px) auto !important;
+  padding: clamp(20px, 3.6vw, 34px) !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(255,255,255,.48);
+  background:
+    radial-gradient(110% 120% at 0% 0%, rgba(196,181,253,.24), transparent 52%),
+    radial-gradient(90% 110% at 100% 0%, rgba(125,211,252,.24), transparent 54%),
+    linear-gradient(175deg, rgba(255,255,255,.96) 0%, rgba(244,247,255,.94) 54%, rgba(235,244,255,.95) 100%) !important;
+  box-shadow: 0 28px 60px rgba(30, 41, 59, .24), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  overflow: hidden;
+}
+#single-player-screen::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 16% 10%, rgba(168,85,247,.14), transparent 24%),
+    radial-gradient(circle at 88% 86%, rgba(14,165,233,.14), transparent 25%);
+}
+#single-player-screen > *{
+  position: relative;
+  z-index: 1;
+}
+#single-player-screen h2{
+  margin-bottom: 16px;
+  font-size: clamp(1.5rem, 3.4vw, 2.05rem);
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: .01em;
+  color: #1e1b4b;
+  text-shadow: 0 4px 16px rgba(99,102,241,.18);
+}
+#single-player-screen .table-section{
+  width: min(700px, 100%);
+  margin: 0 auto;
+  padding: clamp(16px, 2.8vw, 24px) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(251,146,60,.22);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,247,237,.78)) !important;
+  box-shadow: 0 16px 34px rgba(148, 163, 184, .22) !important;
+}
+#single-player-screen .table-section h3{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: clamp(1rem, 2.4vw, 1.18rem) !important;
+  color: #c2410c !important;
+  border-bottom: 2px solid rgba(249,115,22,.8) !important;
+  padding-bottom: 8px !important;
+}
+#single-player-screen .table-section h3::before{
+  content: "🎯";
+}
+#single-player-screen .table-section label{
+  margin-bottom: 7px;
+  font-size: clamp(.96rem, 2vw, 1.06rem);
+  font-weight: 800 !important;
+  color: #374151 !important;
+}
+#single-player-screen .table-section select{
+  margin-bottom: 16px !important;
+  padding: 12px 14px !important;
+  border-radius: 14px !important;
+  border: 2px solid rgba(249,115,22,.62) !important;
+  background:
+    linear-gradient(135deg, rgba(255,237,213,.8), rgba(224,231,255,.72)) !important;
+  box-shadow: 0 8px 18px rgba(148,163,184,.22) !important;
+  font-size: clamp(1rem, 2.2vw, 1.16rem) !important;
+  color: #1f2937;
+  transition: border-color .16s ease, box-shadow .16s ease, transform .14s ease;
+}
+#single-player-screen .table-section select:focus{
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 4px rgba(139,92,246,.14), 0 10px 22px rgba(99,102,241,.18) !important;
+  transform: translateY(-1px);
+}
+#single-player-screen .start-game-button,
+#single-player-screen .back-button{
+  width: min(320px, 100%) !important;
+  max-width: min(320px, 100%) !important;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 14px !important;
+  padding: 12px 18px !important;
+  font-size: clamp(1rem, 2.1vw, 1.14rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: .02em;
+  box-shadow: 0 10px 24px rgba(15,23,42,.22) !important;
+  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+}
+#single-player-screen .start-game-button{
+  background: linear-gradient(145deg, #22c55e 0%, #16a34a 50%, #0ea5e9 100%) !important;
+  border: 1px solid rgba(187,247,208,.72) !important;
+  color: #fff !important;
+}
+#single-player-screen .start-game-button:disabled{
+  filter: saturate(.78) brightness(.96);
+  opacity: .78 !important;
+}
+#single-player-screen .start-game-button.active:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 26px rgba(22,163,74,.28) !important;
+}
+#single-player-screen .back-button{
+  background: linear-gradient(145deg, #4b5563 0%, #374151 60%, #1f2937 100%) !important;
+  border: 1px solid rgba(209,213,219,.52) !important;
+  color: #f9fafb !important;
+}
+#single-player-screen .back-button:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+@media (max-width: 640px){
+  #single-player-screen{
+    width: min(100%, 100vw) !important;
+    margin: 0 !important;
+    border-radius: 18px !important;
+    padding: 16px 12px 18px !important;
+  }
+  #single-player-screen h2{
+    margin-bottom: 12px;
+    font-size: clamp(1.3rem, 6.2vw, 1.6rem);
+  }
+  #single-player-screen .table-section{
+    border-radius: 16px !important;
+    padding: 13px 12px !important;
+  }
+  #single-player-screen .table-section select{
+    font-size: 1rem !important;
+    padding: 11px 12px !important;
+    margin-bottom: 12px !important;
+  }
+  #single-player-screen .start-game-button,
+  #single-player-screen .back-button{
+    width: min(280px, 100%) !important;
+    padding: 11px 14px !important;
+    margin-top: 14px;
+  }
+}
+
 @keyframes scorePop{
   0%{ opacity:0; transform: translate(-50%, 6px) scale(.85); }
   40%{ opacity:1; transform: translate(-50%, -2px) scale(1); }

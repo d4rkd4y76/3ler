@@ -2388,3 +2388,364 @@ body.geo-basics-app {
     padding: 10px 12px 16px;
   }
 }
+igin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+igin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+2px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+igin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}

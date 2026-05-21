@@ -7,6 +7,27 @@
     throw new Error('dbGet unsupported ref');
   }
   function sel(){ try { return window.selectedStudent || JSON.parse(localStorage.getItem('selectedStudent')||'null'); } catch(_) { return null; } }
+  function gradeFromStudent(stu){
+    const txt = String((stu && (stu.className || stu.classId)) || '').toLocaleLowerCase('tr-TR');
+    const m = txt.match(/([1-4])\s*\.?\s*s[ıi]n[ıi]f/);
+    if (m && m[1]) return Number(m[1]);
+    const d = txt.match(/\b([1-4])\b/);
+    return d && d[1] ? Number(d[1]) : null;
+  }
+  function dailyRootForStudent(stu){
+    const g = gradeFromStudent(stu);
+    if (g === 3) return 'dailyPuzzles'; // mevcut 3. sınıf verisi
+    if (g >= 1 && g <= 4) return 'classContent/sinif' + g + '/dailyPuzzles';
+    const cid = String((stu && stu.classId) || '').trim();
+    return cid ? ('classContent/class_' + cid.replace(/[^\w-]/g,'_') + '/dailyPuzzles') : 'dailyPuzzles';
+  }
+  function dailyAttemptRootForStudent(stu){
+    const g = gradeFromStudent(stu);
+    if (g === 3) return 'dailyPuzzle'; // mevcut deneme kayıt yolu
+    if (g >= 1 && g <= 4) return 'classContent/sinif' + g + '/dailyPuzzle';
+    const cid = String((stu && stu.classId) || '').trim();
+    return cid ? ('classContent/class_' + cid.replace(/[^\w-]/g,'_') + '/dailyPuzzle') : 'dailyPuzzle';
+  }
   function dayKey(){
     const d = new Date();
     const y = d.getFullYear();
@@ -69,8 +90,8 @@
     { w: 'KAPI', h: 'İçeri girmek için açarız.' }
   ];
 
-  async function pickDailyPuzzleId(rdb, dKey){
-    const idxVal = await readPathCached(rdb, 'dailyPuzzles/questionIds', DAILY_CACHE_TTL_MS);
+  async function pickDailyPuzzleId(rdb, dKey, rootPath){
+    const idxVal = await readPathCached(rdb, rootPath + '/questionIds', DAILY_CACHE_TTL_MS);
     let ids = [];
     if (idxVal && typeof idxVal === 'object'){
       ids = Object.keys(idxVal || {});
@@ -79,21 +100,21 @@
       let keys = null;
       try {
         if (typeof window.novaRtdbShallowKeys === 'function') {
-          keys = await window.novaRtdbShallowKeys('dailyPuzzles/questions');
+          keys = await window.novaRtdbShallowKeys(rootPath + '/questions');
         }
       } catch (_) {}
       if (keys && keys.length) {
         ids = keys;
         const idMap = {};
         ids.forEach(function(id){ idMap[id] = true; });
-        rdb.ref('dailyPuzzles/questionIds').set(idMap).catch(function(){});
+        rdb.ref(rootPath + '/questionIds').set(idMap).catch(function(){});
       } else if (keys === null) {
-        const v = await readPathCached(rdb, 'dailyPuzzles/questions', DAILY_CACHE_TTL_MS);
+        const v = await readPathCached(rdb, rootPath + '/questions', DAILY_CACHE_TTL_MS);
         if (v && typeof v === 'object'){
           ids = Object.keys(v);
           const idMap = {};
           ids.forEach(function(id){ idMap[id] = true; });
-          rdb.ref('dailyPuzzles/questionIds').set(idMap).catch(function(){});
+          rdb.ref(rootPath + '/questionIds').set(idMap).catch(function(){});
         }
       }
     }
@@ -103,10 +124,10 @@
     return ids[idx];
   }
 
-  async function loadDailyWord(rdb, dKey){
-    const qid = await pickDailyPuzzleId(rdb, dKey);
+  async function loadDailyWord(rdb, dKey, rootPath){
+    const qid = await pickDailyPuzzleId(rdb, dKey, rootPath);
     if (qid){
-      const q = await readPathCached(rdb, 'dailyPuzzles/questions/' + qid, DAILY_CACHE_TTL_MS);
+      const q = await readPathCached(rdb, rootPath + '/questions/' + qid, DAILY_CACHE_TTL_MS);
       if (q && typeof q === 'object'){
         const raw = String(q.word || '').trim().replace(/\s{2,}/g, ' ');
         if (raw.length >= 2){
@@ -117,9 +138,7 @@
         }
       }
     }
-    const fbIdx = hashStr('dailypuzzle:' + dKey) % WORD_BANK.length;
-    const pick = WORD_BANK[fbIdx];
-    return { word: pick.w.toLocaleUpperCase('tr-TR'), hint: pick.h };
+    return null;
   }
 
   function shuffle(a){
@@ -192,7 +211,8 @@
       return;
     }
     const dKey = dayKey();
-    const attemptRef = rdb.ref('dailyPuzzle/attempts/' + s.studentId + '/' + dKey);
+    const rootPath = dailyRootForStudent(s);
+    const attemptRef = rdb.ref(dailyAttemptRootForStudent(s) + '/attempts/' + s.studentId + '/' + dKey);
     const attemptSnap = await dbGet(attemptRef);
     const screen = document.getElementById('daily-puzzle-screen');
     const play = document.getElementById('dp_play_area');
@@ -220,11 +240,11 @@
       return;
     }
 
-    const picked = await loadDailyWord(rdb, dKey);
-    const word = picked.word;
-    const hint = picked.hint;
+    const picked = await loadDailyWord(rdb, dKey, rootPath);
+    const word = picked && picked.word ? picked.word : '';
+    const hint = picked && picked.hint ? picked.hint : '';
     if (!word || word.length < 2){
-      if (typeof showAlert === 'function') showAlert('Bugün için kelime yüklenemedi.');
+      if (typeof showAlert === 'function') showAlert('Bu sınıf için günlük bulmaca henüz tanımlanmadı.');
       screen.classList.remove('open');
       screen.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';

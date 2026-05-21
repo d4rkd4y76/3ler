@@ -7,6 +7,23 @@
     try{ var raw = localStorage.getItem('selectedStudent'); if(raw) return JSON.parse(raw); }catch(_){}
     return null;
   }
+  function getGradeFromStudent(stu){
+    const txt = String((stu && (stu.className || stu.classId)) || '').toLocaleLowerCase('tr-TR');
+    const m = txt.match(/([1-4])\s*\.?\s*s[ıi]n[ıi]f/);
+    if (m && m[1]) return Number(m[1]);
+    const d = txt.match(/\b([1-4])\b/);
+    return d && d[1] ? Number(d[1]) : null;
+  }
+  function denemeRoot(stu){
+    const g = getGradeFromStudent(stu);
+    if (g === 3) return ''; // mevcut 3. sınıf global veri
+    if (g >= 1 && g <= 4) return 'classContent/sinif' + g + '/';
+    const cid = String((stu && stu.classId) || '').trim();
+    return cid ? ('classContent/class_' + cid.replace(/[^\w-]/g,'_') + '/') : '';
+  }
+  function denemePath(stu, suffix){
+    return denemeRoot(stu) + suffix;
+  }
 
   function shuffleArr(a){
     const arr = a.slice();
@@ -71,9 +88,11 @@
 
     try{
       var d0 = getDb();
+      var stu0 = getSelStudent();
       if(d0 && d0.ref){
-        d0.ref('denemeMeta').off('value');
-        d0.ref('denemeMeta').on('value', function(snap){
+        var metaPath = denemePath(stu0, 'denemeMeta');
+        d0.ref(metaPath).off('value');
+        d0.ref(metaPath).on('value', function(snap){
           var meta = snap && snap.exists ? (snap.exists() ? (snap.val() || {}) : {}) : {};
           applyDenemeFabState(btn, meta);
         });
@@ -122,7 +141,7 @@
         questions: denemeState.questions || [],
         updatedAt: Date.now()
       };
-      await dbs.ref('denemeProgress/'+stu.studentId).set(payload);
+      await dbs.ref(denemePath(stu, 'denemeProgress/'+stu.studentId)).set(payload);
     }catch(e){ console.warn('saveDenemeProgress', e); }
   }
 
@@ -131,7 +150,7 @@
       var dbs = getDb();
       var stu = getSelStudent();
       if(!dbs || !stu || !stu.studentId) return;
-      await dbs.ref('denemeProgress/'+stu.studentId).remove();
+      await dbs.ref(denemePath(stu, 'denemeProgress/'+stu.studentId)).remove();
     }catch(e){ console.warn('clearDenemeProgress', e); }
   }
 
@@ -181,9 +200,9 @@
       };
       const attemptId = dbs.ref().push().key;
       const upd = {};
-      upd['denemeAttempts/'+attemptId] = payload;
-      upd['denemeResults/'+stu.studentId+'/'+attemptId] = payload;
-      upd['denemeProgress/'+stu.studentId] = null;
+      upd[denemePath(stu, 'denemeAttempts/'+attemptId)] = payload;
+      upd[denemePath(stu, 'denemeResults/'+stu.studentId+'/'+attemptId)] = payload;
+      upd[denemePath(stu, 'denemeProgress/'+stu.studentId)] = null;
       await dbs.ref().update(upd);
     }catch(e){ console.warn('writeDeniedAttemptByResumeLimit', e); }
   }
@@ -472,10 +491,10 @@
           answers: enrichDenemeAnswersWithQuestions(Array.isArray(st.answers) ? st.answers : [], st.questions)
         };
         var upd = {};
-        upd['denemeAttempts/'+attemptId] = payload;
-        upd['denemeResults/'+sid+'/'+attemptId] = payload;
+        upd[denemePath(stu, 'denemeAttempts/'+attemptId)] = payload;
+        upd[denemePath(stu, 'denemeResults/'+sid+'/'+attemptId)] = payload;
         // Lightweight leaderboard index (best correct, tie: shorter duration)
-        var lbRef = dbs.ref('denemeLeaderboard/'+sid);
+        var lbRef = dbs.ref(denemePath(stu, 'denemeLeaderboard/'+sid));
         lbRef.transaction(function(cur){
           var next = Object.assign({}, cur || {});
           var curCorrect = Number(cur && cur.bestCorrect || 0);
@@ -499,7 +518,7 @@
           var o = payload.bySubject[sub] || {};
           var addC = Number(o.correct || 0);
           var addW = Number(o.wrong || 0);
-          var sref = dbs.ref('denemeAgg/subjects/'+sub);
+          var sref = dbs.ref(denemePath(stu, 'denemeAgg/subjects/'+sub));
           sref.transaction(function(cur){
             cur = cur || {};
             return {
@@ -550,7 +569,7 @@
         return missInfo || missImg;
       });
       if(!need) return p;
-      var raw = await readValCached('denemeQuestions', NOVA_DENEME_QUESTIONS_TTL_MS) || {};
+      var raw = await readValCached(denemePath(stu, 'denemeQuestions'), NOVA_DENEME_QUESTIONS_TTL_MS) || {};
       var byQid = {};
       Object.keys(raw).forEach(function(k){
         var d = raw[k] || {};
@@ -754,7 +773,8 @@
 
   async function buildTopThreePodiumHtml(dbs){
     try{
-      const lbObj = await readValCached('denemeLeaderboard', NOVA_DENEME_LEADERBOARD_TTL_MS);
+      const stu = getSelStudent();
+      const lbObj = await readValCached(denemePath(stu, 'denemeLeaderboard'), NOVA_DENEME_LEADERBOARD_TTL_MS);
       if(!lbObj || typeof lbObj !== 'object') return '';
       const arr = [];
       Object.keys(lbObj).forEach(function(k){
@@ -796,7 +816,7 @@
         if(typeof window.showAlert === 'function') window.showAlert('Öğrenci bilgisi bulunamadı.');
         return;
       }
-      const snap = await dbs.ref('denemeResults/'+stu.studentId).limitToLast(1).once('value');
+      const snap = await dbs.ref(denemePath(stu, 'denemeResults/'+stu.studentId)).limitToLast(1).once('value');
       if(!snap.exists()){
         if(typeof window.showAlert === 'function') window.showAlert('Henüz sana ait deneme sonucu bulunmuyor.');
         return;
@@ -940,15 +960,15 @@
         return;
       }
 
-      const completedSnap = await dbs.ref('denemeResults/'+stu.studentId).limitToLast(1).once('value');
+      const completedSnap = await dbs.ref(denemePath(stu, 'denemeResults/'+stu.studentId)).limitToLast(1).once('value');
       if(completedSnap.exists()){
         if(typeof window.showAlert === 'function') window.showAlert('Deneme hakkını kullandın. Tekrar giremezsin.');
         return;
       }
 
-      const progressSnap = await dbs.ref('denemeProgress/'+stu.studentId).once('value');
+      const progressSnap = await dbs.ref(denemePath(stu, 'denemeProgress/'+stu.studentId)).once('value');
       var progress = progressSnap.exists() ? (progressSnap.val() || null) : null;
-      const raw = await readValCached('denemeQuestions', NOVA_DENEME_QUESTIONS_TTL_MS) || {};
+      const raw = await readValCached(denemePath(stu, 'denemeQuestions'), NOVA_DENEME_QUESTIONS_TTL_MS) || {};
       if(!Object.keys(raw).length){ try{ if(typeof window.showAlert === 'function') window.showAlert('Henüz deneme sorusu eklenmemiş.'); }catch(_){} return; }
       const keys = Object.keys(raw);
       if(!keys.length){ try{ if(typeof window.showAlert === 'function') window.showAlert('Henüz deneme sorusu yok.'); }catch(_){} return; }

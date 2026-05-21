@@ -54,14 +54,14 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
 
         // Lütfen kendi firebaseConfig değerlerinizi girin
         const firebaseConfig = {
-  apiKey: "AIzaSyAV8LLng3Cx6-116U6WcEFVn7XqOq2l3Sc",
-  authDomain: "duellomatik.firebaseapp.com",
-  databaseURL: "https://duellomatik-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "duellomatik",
-  storageBucket: "duellomatik.firebasestorage.app",
-  messagingSenderId: "274662566652",
-  appId: "1:274662566652:web:c097e7052aba00a6b04579",
-  measurementId: "G-4HXFJJ0WLR"
+  apiKey: "AIzaSyAZ8u7pix02x5-MbjOqurra6PWILmLfKGI",
+  authDomain: "dllwrld-e5419.firebaseapp.com",
+  databaseURL: "https://dllwrld-e5419-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "dllwrld-e5419",
+  storageBucket: "dllwrld-e5419.firebasestorage.app",
+  messagingSenderId: "244776245953",
+  appId: "1:244776245953:web:fbc041505911ae0b951240",
+  measurementId: "G-N2L6729PRY"
 };
         firebase.initializeApp(firebaseConfig);
     // Nova guard for auth
@@ -3506,16 +3506,29 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
 
         async function novaFetchLessonsList(classId) {
             if (!classId) return [];
+            const dedupeLessons = function (rows) {
+                const seen = Object.create(null);
+                const out = [];
+                (rows || []).forEach(function (r) {
+                    if (!r || !r.id) return;
+                    const k = normalizeClassTag(r.name || r.id);
+                    if (k && seen[k]) return;
+                    if (k) seen[k] = true;
+                    out.push(r);
+                });
+                return out;
+            };
             const ids = await novaChampionChildKeys('championData/headings/' + classId + '/lessons');
             if (ids === null) {
                 const lessonsVal = await readValCached('championData/headings/' + classId + '/lessons', NOVA_CHAMPION_HEADINGS_TTL_MS);
                 if (!lessonsVal || typeof lessonsVal !== 'object') return [];
-                return Object.keys(lessonsVal).map(function (lessonId) {
+                const rows = Object.keys(lessonsVal).map(function (lessonId) {
                     return {
                         id: lessonId,
                         name: (lessonsVal[lessonId] && lessonsVal[lessonId].name) ? String(lessonsVal[lessonId].name) : lessonId
                     };
                 });
+                return dedupeLessons(rows);
             }
             const out = [];
             const base = 'championData/headings/' + classId + '/lessons/';
@@ -3527,7 +3540,7 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
                 }));
                 out.push.apply(out, rows);
             }
-            return out;
+            return dedupeLessons(out);
         }
 
         async function novaFetchTopicsList(classId, lessonId) {
@@ -3584,6 +3597,180 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
             className: '',
             nameFrame: 'default'
         };
+        const NOVA_ACTIVE_STUDENT_FP_KEY = 'nova_active_student_fp';
+        function getStudentFingerprint(st) {
+            const cid = String((st && st.classId) || '').trim();
+            const sid = String((st && st.studentId) || '').trim();
+            if (!cid || !sid) return '';
+            return cid + '|' + sid;
+        }
+        function clearStorageByPrefixes(storageObj, prefixes) {
+            try {
+                if (!storageObj || typeof storageObj.length !== 'number') return;
+                for (let i = storageObj.length - 1; i >= 0; i--) {
+                    const k = storageObj.key(i);
+                    if (!k) continue;
+                    if (prefixes.some((p) => k === p || k.indexOf(p) === 0)) {
+                        storageObj.removeItem(k);
+                    }
+                }
+            } catch (_) {}
+        }
+        function resetCrossStudentCaches() {
+            clearStorageByPrefixes(localStorage, [
+                'cachedChampionData',
+                'cachedChampionDataTimestamp',
+                'cachedClasses',
+                'cachedClassesTimestamp',
+                'cachedLessons_',
+                'cachedLessonsTimestamp_',
+                'cachedTopics_',
+                'cachedTopicsTimestamp_',
+                'nova_read_cache_ls_',
+                'nova_rank_cache_',
+                'friendsList_'
+            ]);
+            clearStorageByPrefixes(sessionStorage, [
+                'nova_read_cache_'
+            ]);
+            try {
+                if (typeof NOVA_READ_CACHE_MEM === 'object' && NOVA_READ_CACHE_MEM) {
+                    Object.keys(NOVA_READ_CACHE_MEM).forEach((k) => { delete NOVA_READ_CACHE_MEM[k]; });
+                }
+            } catch (_) {}
+        }
+        function applyStudentSessionIsolation(st) {
+            const nextFp = getStudentFingerprint(st);
+            if (!nextFp) return;
+            let prevFp = '';
+            try { prevFp = String(localStorage.getItem(NOVA_ACTIVE_STUDENT_FP_KEY) || '').trim(); } catch (_) {}
+            if (prevFp && prevFp !== nextFp) {
+                resetCrossStudentCaches();
+            }
+            try { localStorage.setItem(NOVA_ACTIVE_STUDENT_FP_KEY, nextFp); } catch (_) {}
+        }
+        function normalizeClassTag(v) {
+            return String(v || '')
+                .toLocaleUpperCase('tr-TR')
+                .replace(/[^0-9A-ZÇĞİÖŞÜ]/g, '');
+        }
+        function isLikelyDbKeyLabel(v) {
+            const s = String(v || '').trim();
+            if (!s) return true;
+            if (/[1-4]\s*\.?\s*SINIF/i.test(s)) return false;
+            return /^-[A-Za-z0-9_-]{8,}$/.test(s);
+        }
+        async function ensureSelectedStudentClassName() {
+            try {
+                const cid = String((selectedStudent && selectedStudent.classId) || '').trim();
+                if (!cid) return '';
+                const current = String((selectedStudent && selectedStudent.className) || '').trim();
+                if (current && !isLikelyDbKeyLabel(current)) return current;
+                const mapped = (classNameMap && classNameMap[cid]) ? String(classNameMap[cid] || '').trim() : '';
+                if (mapped && !isLikelyDbKeyLabel(mapped)) {
+                    selectedStudent.className = mapped;
+                    try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch (_) {}
+                    return mapped;
+                }
+                const snap = await database.ref('classes/' + cid + '/name').once('value');
+                const fresh = snap.exists() ? String(snap.val() || '').trim() : '';
+                if (fresh) {
+                    selectedStudent.className = fresh;
+                    classNameMap[cid] = fresh;
+                    try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch (_) {}
+                    return fresh;
+                }
+            } catch (_) {}
+            return String((selectedStudent && selectedStudent.className) || '').trim();
+        }
+        function getScopedClassLabel() {
+            const byStudent = String((selectedStudent && selectedStudent.className) || '').trim();
+            if (byStudent && !isLikelyDbKeyLabel(byStudent)) return byStudent;
+            const byMap = (classNameMap && selectedStudent && selectedStudent.classId)
+                ? String(classNameMap[selectedStudent.classId] || '').trim()
+                : '';
+            if (byMap && !isLikelyDbKeyLabel(byMap)) return byMap;
+            return '';
+        }
+        function extractGradeNumber(v) {
+            const m = String(v || '').match(/([1-9])/);
+            return m ? Number(m[1]) : 0;
+        }
+        function resolveSinglePlayerHeadingId() {
+            try {
+                if (!classSelect || !classSelect.options) return '';
+                const scopedLabel = getScopedClassLabel();
+                const tag = normalizeClassTag(scopedLabel);
+                const grade = extractGradeNumber(scopedLabel);
+                const scopedClassId = String((selectedStudent && selectedStudent.classId) || '').trim();
+                if (scopedClassId) {
+                    for (let i = 0; i < classSelect.options.length; i++) {
+                        const opx = classSelect.options[i];
+                        if (opx && String(opx.value || '').trim() === scopedClassId) return opx.value;
+                    }
+                }
+                if (!tag) return '';
+                for (let i = 0; i < classSelect.options.length; i++) {
+                    const op = classSelect.options[i];
+                    if (!op || !op.value) continue;
+                    const opTag = normalizeClassTag(op.textContent || '');
+                    if (opTag === tag) return op.value;
+                    if (grade && extractGradeNumber(op.textContent || '') === grade) return op.value;
+                }
+            } catch (_) {}
+            return '';
+        }
+        async function enforceSinglePlayerClassLock() {
+            try {
+                if (!classSelect) return;
+                await ensureSelectedStudentClassName();
+                let headingId = resolveSinglePlayerHeadingId();
+                if (!headingId) {
+                    try { await fetchChampionData(); } catch (_) {}
+                    headingId = resolveSinglePlayerHeadingId();
+                }
+                let label = getScopedClassLabel();
+                if ((!label || isLikelyDbKeyLabel(label)) && selectionClassSelect && selectedStudent && selectedStudent.classId) {
+                    const fallbackOpt = selectionClassSelect.querySelector('option[value="' + String(selectedStudent.classId).replace(/"/g, '\\"') + '"]');
+                    if (fallbackOpt) label = String(fallbackOpt.textContent || '').trim();
+                }
+                if (!label || isLikelyDbKeyLabel(label)) {
+                    try {
+                        const classSnap = await database.ref('classes/' + selectedStudent.classId + '/name').once('value');
+                        if (classSnap.exists()) label = String(classSnap.val() || '').trim();
+                    } catch (_) {}
+                }
+                if (!label || isLikelyDbKeyLabel(label)) {
+                    try {
+                        const headingName = await novaReadChampionLeaf('championData/headings/' + headingId + '/name');
+                        if (headingName != null && headingName !== '') label = String(headingName).trim();
+                    } catch (_) {}
+                }
+                if (!label || isLikelyDbKeyLabel(label)) label = 'Sınıf';
+                classSelect.innerHTML = '';
+                const lockedOption = document.createElement('option');
+                lockedOption.value = headingId || '';
+                lockedOption.textContent = label;
+                classSelect.appendChild(lockedOption);
+                classSelect.value = headingId || '';
+                classSelect.disabled = true;
+                classSelect.style.pointerEvents = 'none';
+                classSelect.style.cursor = 'not-allowed';
+                classSelect.style.opacity = '0.8';
+                if (subjectSelect) subjectSelect.value = '';
+                if (topicSelect) topicSelect.value = '';
+                if (headingId) {
+                    fetchLessons(headingId, subjectSelect);
+                } else {
+                    if (subjectSelect) subjectSelect.innerHTML = '<option value="">Bu sınıf için ders yok</option>';
+                    if (topicSelect) topicSelect.innerHTML = '<option value="">Bu sınıf için konu yok</option>';
+                    if (typeof startGameButton !== 'undefined' && startGameButton) {
+                        startGameButton.classList.remove('active');
+                        startGameButton.disabled = true;
+                    }
+                }
+            } catch (_) {}
+        }
 
         const studentPhoto = document.getElementById('student-photo');
         const studentName = document.getElementById('student-name');
@@ -3687,8 +3874,7 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
 
         // Sınıf adına göre sırala (aynı sınıftakiler önce)
         const sameClassPlayers = playersArr.filter(p => p.classId === selectedStudent.classId && p.studentId !== selectedStudent.studentId);
-        const otherClassPlayers = playersArr.filter(p => p.classId !== selectedStudent.classId);
-        playersArr = [...sameClassPlayers, ...otherClassPlayers];
+        playersArr = sameClassPlayers;
 
         // N+1 read'i engelle: loggedinPlayers içindeki anlık snapshot'ı kullan.
         // Kayıt eksikse ekstra DB okumak yerine güvenli fallback göster.
@@ -3842,6 +4028,7 @@ window.onload = async () => {
         if (storedStudent) {
             selectedStudent = JSON.parse(storedStudent);
             if (!selectedStudent.avatarFrame) selectedStudent.avatarFrame = 'default';
+            applyStudentSessionIsolation(selectedStudent);
             
             // Ana ekranı göster
             mainScreen.style.removeProperty('display');
@@ -3898,16 +4085,20 @@ window.onload = async () => {
             try { novaUpdateAdminPortalBtn(); } catch(_) {}
         }
 
-        // Gerekli verileri yükle
-        await Promise.all([
-            fetchClassesForSelection(),
-            fetchChampionData()
-        ]);
+        // Önce sınıf adlarını al, sonra champion select'i doldur (scope için önemli)
+        await fetchClassesForSelection();
         try{
-            if (selectedStudent && selectedStudent.classId && !selectedStudent.className) {
-                selectedStudent.className = (classNameMap && classNameMap[selectedStudent.classId]) ? classNameMap[selectedStudent.classId] : '';
-                localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent));
+            if (selectedStudent && selectedStudent.classId) {
+                const mapped = (classNameMap && classNameMap[selectedStudent.classId]) ? String(classNameMap[selectedStudent.classId] || '').trim() : '';
+                if (mapped && selectedStudent.className !== mapped) {
+                    selectedStudent.className = mapped;
+                    localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent));
+                }
             }
+        }catch(_){}
+        await fetchChampionData();
+        try{
+            enforceSinglePlayerClassLock();
         }catch(_){}
 
     } catch (error) {
@@ -4090,17 +4281,38 @@ function applyMainScreenCreditsState(userData){
     }catch(_){}
 }
 
+function novaRequestHudFabRelayout(){
+  try{
+    if (typeof window.novaFixHudFabLayout === 'function'){
+      window.novaFixHudFabLayout();
+    }
+  }catch(_){}
+  try{
+    document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
+  }catch(_){}
+  try{
+    window.dispatchEvent(new Event('resize'));
+  }catch(_){}
+  [90, 260, 700].forEach(function(ms){
+    setTimeout(function(){
+      try{
+        if (typeof window.novaFixHudFabLayout === 'function'){
+          window.novaFixHudFabLayout();
+        }
+      }catch(_){}
+      try{ document.dispatchEvent(new CustomEvent('nova:main-screen-visible')); }catch(_){}
+      try{ window.dispatchEvent(new Event('resize')); }catch(_){}
+    }, ms);
+  });
+}
+
 // Ana ekrana gelindiğinde elmas sayısını güncelle
 function onMainScreenLoad() {
     try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
     // NOVA: Sürpriz kutuyu başlat
     try{ initSurpriseBox(); }catch(e){ console.warn(e); }
     // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; güvenli reflow tetikle.
-    try{
-      if (typeof window.novaFixHudFabLayout === 'function') {
-        window.novaFixHudFabLayout();
-      }
-    }catch(_){}
+    novaRequestHudFabRelayout();
 
     updateDiamondCount();
     try { applyOwnAvatarFrame(); } catch(_) {}
@@ -4138,9 +4350,7 @@ function novaEnsureLoggedInUi(){
     if (hasSession){
       ss.style.display = 'none';
       ms.style.removeProperty('display');
-      if (typeof window.novaFixHudFabLayout === 'function'){
-        window.novaFixHudFabLayout();
-      }
+      try { novaRequestHudFabRelayout(); } catch(_) {}
       try {
         if (typeof window.novaTournamentRefreshFab === 'function') window.novaTournamentRefreshFab();
       } catch (_) {}
@@ -4247,6 +4457,13 @@ async function handleLogin() {
             avatarFrame: studentInfo.avatarFrame || 'default',
             photo: studentInfo.photo || ''
         };
+        applyStudentSessionIsolation(selectedStudent);
+        if (!selectedStudent.className) {
+            try {
+                const clsSnap = await database.ref('classes/' + selectedClass + '/name').once('value');
+                if (clsSnap.exists()) selectedStudent.className = String(clsSnap.val() || '').trim();
+            } catch (_) {}
+        }
 
         // Ana ekrana geçiş ve diğer işlemler
         mainScreen.style.removeProperty('display');
@@ -4268,6 +4485,7 @@ async function handleLogin() {
         startInvitationListener(selectedStudent.studentId);
         fetchAndDisplayGameCup();
         onMainScreenLoad();
+        enforceSinglePlayerClassLock();
 
         await novaSyncAdminPortalFlag();
 
@@ -5046,14 +5264,19 @@ function showConfirmation(message) {
                     currentScreen.style.display = 'none';
                     mainScreen.style.removeProperty('display');
                     resetGameScreens();
+                    novaRequestHudFabRelayout();
                 }
             });
         });
 
-        singlePlayerButton.addEventListener('click', () => {
+        singlePlayerButton.addEventListener('click', async () => {
             mainScreen.style.setProperty('display', 'none', 'important');
             if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
             singlePlayerScreen.style.display = 'flex';
+            try {
+                await fetchChampionData();
+            } catch (_) {}
+            await enforceSinglePlayerClassLock();
             try { window.scrollTo(0, 0); } catch (e) {}
         });
 
@@ -5089,10 +5312,11 @@ function showConfirmation(message) {
 
 
        // GÜNCELLENMİŞ HAL
-function fetchChampionData() {
+async function fetchChampionData() {
     const CACHE_KEY = 'cachedChampionData';
     const CACHE_TIMESTAMP_KEY = 'cachedChampionDataTimestamp';
     const CACHE_DURATION = NOVA_CHAMPION_HEADINGS_TTL_MS;
+    await ensureSelectedStudentClassName();
 
     const cachedChampionData = localStorage.getItem(CACHE_KEY);
     const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
@@ -5113,31 +5337,59 @@ function fetchChampionData() {
     }
 
     // Cache yok: tam headings ağacını indirmeden shallow + name yaprakları
-    novaFetchChampionHeadingList()
-        .then(result => {
-            if (!result || !result.length) {
-                console.warn("Şampiyon sınıf listesi boş.");
-                return;
-            }
-            localStorage.setItem(CACHE_KEY, JSON.stringify(result));
-            localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
-            populateChampionSelect(result);
-        })
-        .catch(error => {
-            console.error("Sınıf bilgileri hata:", error);
-        });
+    try {
+        const result = await novaFetchChampionHeadingList();
+        if (!result || !result.length) {
+            console.warn("Şampiyon sınıf listesi boş.");
+            return;
+        }
+        localStorage.setItem(CACHE_KEY, JSON.stringify(result));
+        localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+        populateChampionSelect(result);
+    } catch (error) {
+        console.error("Sınıf bilgileri hata:", error);
+    }
 }
 
 function populateChampionSelect(data) {
     // Önce mevcut seçenekleri temizleyin
     classSelect.innerHTML = '<option value="">Seçiniz</option>';
+    const scopedLabel = getScopedClassLabel();
+    const scopedTag = normalizeClassTag(scopedLabel);
+    const scopedGrade = extractGradeNumber(scopedLabel);
+    const scopedRows = [];
+    const scopedClassId = String((selectedStudent && selectedStudent.classId) || '').trim();
 
     data.forEach(item => {
+        if (!item) return;
+        if (scopedClassId && String(item.id || '').trim() === scopedClassId) {
+            scopedRows.push(item);
+            return;
+        }
+        if (scopedTag) {
+            const itemTag = normalizeClassTag(item.name);
+            const sameGrade = scopedGrade && extractGradeNumber(item.name) === scopedGrade;
+            if (itemTag !== scopedTag && !sameGrade) return;
+        }
+        scopedRows.push(item);
+    });
+    const preferredRows = scopedRows.length
+        ? [scopedRows.find((x)=> scopedClassId && String((x && x.id) || '').trim() === scopedClassId) || scopedRows[0]]
+        : [];
+    preferredRows.forEach(item => {
         const option = document.createElement('option');
         option.value = item.id;
-        option.textContent = item.name;
+        option.textContent = scopedLabel || item.name;
         classSelect.appendChild(option);
     });
+    if (selectedStudent && (selectedStudent.className || selectedStudent.classId)) {
+        const headingId = resolveSinglePlayerHeadingId();
+        if (headingId) classSelect.value = headingId;
+        else classSelect.value = '';
+        classSelect.disabled = true;
+        classSelect.style.pointerEvents = 'none';
+        classSelect.style.cursor = 'not-allowed';
+    }
 }
 
 
@@ -5350,6 +5602,7 @@ function checkLoginButtonState() {
             singlePlayerSelects.forEach(select => {
                 select.value = "";
             });
+            enforceSinglePlayerClassLock();
             startGameButton.classList.remove('active');
             startGameButton.disabled = true;
 
@@ -5904,6 +6157,7 @@ finally{
               if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
               if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
             }catch(_){}
+            novaRequestHudFabRelayout();
         });
 
         // Tüm müzikleri durdurma fonksiyonu
@@ -6164,11 +6418,46 @@ function populateClassSelect(classesData) {
         const alertOverlay = document.getElementById('alertOverlay');
         const alertMessage = document.getElementById('alertMessage');
         const alertOkButton = document.getElementById('alertOkButton');
+        function ensureEpicAlertStyles(){
+            try{
+                if (document.getElementById('nova_epic_alert_style')) return;
+                const st = document.createElement('style');
+                st.id = 'nova_epic_alert_style';
+                st.textContent =
+                    '.alert-overlay.nova-epic{backdrop-filter:blur(6px);background:radial-gradient(ellipse at top,rgba(125,211,252,.25),rgba(15,23,42,.75));animation:novaAlertFade .25s ease-out both}' +
+                    '.alert-overlay.nova-epic .alert-content{width:min(92vw,430px);border-radius:18px;padding:18px 16px;background:linear-gradient(155deg,#0f172a,#1e1b4b 58%,#312e81);border:1px solid rgba(125,211,252,.35);box-shadow:0 28px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12);transform:translateY(12px) scale(.98);animation:novaAlertPop .3s cubic-bezier(.2,.8,.2,1) forwards}' +
+                    '.alert-overlay.nova-epic .alert-ok-button{border:none;border-radius:12px;padding:12px 16px;font-weight:800;letter-spacing:.01em;color:#fff;background:linear-gradient(135deg,#06b6d4,#2563eb,#7c3aed);box-shadow:0 12px 26px rgba(37,99,235,.35)}' +
+                    '.alert-overlay.nova-epic .alert-message{white-space:normal}' +
+                    '.nova-alert-title{font-size:22px;font-weight:900;color:#fef9c3;line-height:1.15;text-align:center;text-shadow:0 0 22px rgba(250,204,21,.35);margin-bottom:8px}' +
+                    '.nova-alert-body{font-size:15px;line-height:1.55;color:#e2e8f0;text-align:center;white-space:pre-line}' +
+                    '@keyframes novaAlertFade{from{opacity:0}to{opacity:1}}' +
+                    '@keyframes novaAlertPop{to{transform:translateY(0) scale(1)}}';
+                document.head.appendChild(st);
+            }catch(_){}
+        }
+        function escAlertText(v){
+            return String(v == null ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
 
         function showAlert(message, showButton = true) {
-    alertMessage.textContent = message;
+    ensureEpicAlertStyles();
+    const raw = String(message == null ? '' : message).trim();
+    const lines = raw.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+    let title = 'Bilgilendirme';
+    let body = raw || 'İşlem tamamlandı.';
+    if (lines.length >= 2) {
+        title = lines[0];
+        body = lines.slice(1).join('\n');
+    } else if (raw.length <= 52) {
+        title = raw;
+        body = '';
+    }
+    alertOverlay.classList.add('nova-epic');
+    alertMessage.innerHTML = '<div class="nova-alert-title">' + escAlertText(title) + '</div>' +
+        (body ? ('<div class="nova-alert-body">' + escAlertText(body) + '</div>') : '');
     alertOverlay.style.display = 'flex';
     alertOkButton.style.display = showButton ? 'block' : 'none';
+    alertOkButton.textContent = 'Tamam';
     return new Promise(resolve => {
         if (showButton) {
             alertOkButton.onclick = () => {
@@ -8544,6 +8833,7 @@ if (winnerId && loserId) {
                 if (!raw) return null;
                 const parsed = JSON.parse(raw);
                 if (!parsed || parsed.v !== RANKING_CACHE_VERSION || parsed.dayKey !== todayKey) return null;
+                if (String(parsed.classId || '') !== String((selectedStudent && selectedStudent.classId) || '')) return null;
                 if (!Array.isArray(parsed.topPlayers) || !parsed.topPlayers.length) return null;
                 return parsed;
             } catch (e) {
@@ -8575,37 +8865,17 @@ if (winnerId && loserId) {
             rankingTableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:16px;">Yükleniyor…</td></tr>';
 
             try {
-                const summarySnap = await database.ref(RANKING_SUMMARY_ROOT).once('value');
-                const rootVal = summarySnap && summarySnap.val ? summarySnap.val() : null;
-                const parsedRoot = parseSeasonRankingRoot(rootVal);
-                let players = rankingPlayersFromTopRaw(parsedRoot.topRaw);
-                const meta = parsedRoot.meta || {};
-                let topPlayers;
-                let totalPlayers;
-                let userRank;
-                let userTrophyCount;
-
-                if (players.length) {
-                    if (Number(meta.totalPlayers || 0) > 0) {
-                        totalPlayers = Number(meta.totalPlayers);
-                    } else {
-                        totalPlayers = players.length;
-                    }
-                    userRank = sid ? (players.findIndex(p => p.id === sid) + 1) : 0;
-                    userTrophyCount = 0;
-                    const meFull = sid ? players.find(p => p.id === sid) : null;
-                    if (meFull) userTrophyCount = Number(meFull.gameCup) || 0;
-                    if (sid && userRank < 1 && meta.userRankMap && meta.userRankMap[sid]) {
-                        userRank = Number(meta.userRankMap[sid]);
-                    }
-                    if (sid && !userTrophyCount && meta.userCupMap && Object.prototype.hasOwnProperty.call(meta.userCupMap, sid)) {
-                        userTrophyCount = Number(meta.userCupMap[sid] || 0);
-                    }
-                    topPlayers = players.slice(0, RANKING_PLAYER_LIMIT);
-                } else {
-                    const classesSnap = await database.ref('classes').once('value');
-                    const classesVal = classesSnap && classesSnap.val ? classesSnap.val() : null;
-                    const agg = aggregateRankingFromClasses(classesVal, sid);
+                const classId = String((selectedStudent && selectedStudent.classId) || '');
+                let topPlayers = [];
+                let totalPlayers = 0;
+                let userRank = 0;
+                let userTrophyCount = 0;
+                if (classId) {
+                    const classSnap = await database.ref('classes/' + classId).once('value');
+                    const classVal = classSnap && classSnap.val ? classSnap.val() : null;
+                    const scoped = {};
+                    if (classVal) scoped[classId] = classVal;
+                    const agg = aggregateRankingFromClasses(scoped, sid);
                     topPlayers = agg.topPlayers;
                     totalPlayers = agg.totalPlayers;
                     userRank = agg.userRank;
@@ -8623,6 +8893,7 @@ if (winnerId && loserId) {
                     localStorage.setItem(RANKING_CACHE_KEY, JSON.stringify({
                         v: RANKING_CACHE_VERSION,
                         dayKey: todayKey,
+                        classId: String((selectedStudent && selectedStudent.classId) || ''),
                         topPlayers,
                         userRank,
                         totalPlayers,
