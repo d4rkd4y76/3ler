@@ -64,8 +64,21 @@
     }
   }
 
+  var NOVA_MENU_Z = 101200;
+
   function usesFixedMenu(wrap){
     return wrap && (wrap.dataset.tone === 'arena' || wrap.dataset.tone === 'login' || wrap.dataset.tone === 'register');
+  }
+
+  function syncMenuToneClass(menu, wrap){
+    if (!menu || !wrap) return;
+    menu.classList.remove(
+      'nova-game-select__menu--arena',
+      'nova-game-select__menu--login',
+      'nova-game-select__menu--register'
+    );
+    var tone = wrap.dataset.tone || 'arena';
+    menu.classList.add('nova-game-select__menu--' + tone);
   }
 
   function dropdownHostScreen(wrap){
@@ -83,7 +96,12 @@
     const menu = getMenu(wrap);
     const trigger = wrap.querySelector('.nova-game-select__trigger');
     if (!menu) return;
-    menu.classList.remove('nova-game-select__menu--fixed');
+    menu.classList.remove(
+      'nova-game-select__menu--fixed',
+      'nova-game-select__menu--arena',
+      'nova-game-select__menu--login',
+      'nova-game-select__menu--register'
+    );
     menu.style.position = '';
     menu.style.left = '';
     menu.style.top = '';
@@ -111,13 +129,14 @@
     const r = trigger.getBoundingClientRect();
     const gap = 6;
     const maxH = Math.min(280, Math.max(120, window.innerHeight - r.bottom - gap - 16));
+    syncMenuToneClass(menu, wrap);
     menu.classList.add('nova-game-select__menu--fixed');
     menu.style.position = 'fixed';
     menu.style.left = Math.max(8, r.left) + 'px';
     menu.style.top = (r.bottom + gap) + 'px';
     menu.style.width = Math.min(r.width, window.innerWidth - 16) + 'px';
     menu.style.maxHeight = maxH + 'px';
-    menu.style.zIndex = '100400';
+    menu.style.zIndex = String(NOVA_MENU_Z);
     const screen = dropdownHostScreen(wrap);
     if (screen) screen.classList.add('nova-game-form-dropdown-open');
   }
