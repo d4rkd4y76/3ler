@@ -173,12 +173,18 @@
       c.textContent = i+1;
       chipsEl.appendChild(c);
     }
+    try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
     screen.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
 
     const closeBtn = document.getElementById('fillblank-close');
     const checkBtn = document.getElementById('fillblank-check');
-    closeBtn.onclick = () => { screen.style.display='none'; document.body.style.overflow=''; };
+    closeBtn.onclick = () => {
+      screen.style.display='none';
+      document.body.style.overflow='';
+      try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
+    };
 
     let answeredOnce = false;
     checkBtn.onclick = async () => {
@@ -549,6 +555,7 @@
 
     const wrap = document.createElement('div');
     wrap.id = 'fillblank-screen';
+    wrap.className = 'nova-perf-hq-scope';
     wrap.innerHTML = `
       <div class="fb-card">
         <div class="fb-decor">

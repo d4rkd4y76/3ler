@@ -5264,6 +5264,7 @@ function showConfirmation(message) {
                     currentScreen.style.display = 'none';
                     mainScreen.style.removeProperty('display');
                     resetGameScreens();
+                    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
                     novaRequestHudFabRelayout();
                 }
             });
@@ -5272,7 +5273,9 @@ function showConfirmation(message) {
         singlePlayerButton.addEventListener('click', async () => {
             mainScreen.style.setProperty('display', 'none', 'important');
             if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
+            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
             singlePlayerScreen.style.display = 'flex';
+            try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             try {
                 await fetchChampionData();
             } catch (_) {}
@@ -5799,7 +5802,9 @@ logoutButton.addEventListener('click', async () => {
             currentQuestionIndex = 0;
             score = 0;
             singlePlayerScreen.style.display = 'none';
+            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
             singlePlayerGameScreen.style.display = 'flex';
+            try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             scoreContainer.style.display = 'none';
             displayCurrentQuestion();
             singlePlayerQuestionMusic.currentTime = 0;
@@ -5827,7 +5832,9 @@ logoutButton.addEventListener('click', async () => {
             score = 0;
 
             singlePlayerScreen.style.display = 'none';
+            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
             singlePlayerGameScreen.style.display = 'flex';
+            try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             scoreContainer.style.display = 'none';
             displayCurrentQuestion();
 
@@ -6019,7 +6026,11 @@ function proceedToNextQuestion() {
             try{ if (timer) clearInterval(timer); }catch(_){}
             try{ if (mainScreen) mainScreen.style.display = 'none'; }catch(_){}
             try{ if (singlePlayerScreen) singlePlayerScreen.style.display = 'none'; }catch(_){}
-            try{ if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'flex'; }catch(_){}
+            try{
+              if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen();
+              if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'flex';
+              if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime();
+            }catch(_){}
             try{ if (questionNumber) questionNumber.style.display = 'none'; }catch(_){}
             try{ var pc = document.querySelector('.progress-container'); if(pc) pc.style.display = 'none'; }catch(_){}
             try{ var tc = document.querySelector('.timer-container'); if(tc) tc.style.display = 'none'; }catch(_){}
@@ -6151,6 +6162,7 @@ finally{
 
             // Ekranları sıfırla ve ana ekrana dön
             singlePlayerGameScreen.style.display = 'none';
+            try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             mainScreen.style.removeProperty('display');
             resetGameScreens();
             try{
@@ -7436,6 +7448,7 @@ function switchToDuelScreen(duelKey) {
     if (mainScreen) mainScreen.style.setProperty('display', 'none', 'important');
     if (singlePlayerScreen) singlePlayerScreen.style.display = 'none';
     if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'none';
+    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
     if (friendsScreen) friendsScreen.style.display = 'none';
     if (rankingPanel) {
       rankingPanel.classList.remove('open');

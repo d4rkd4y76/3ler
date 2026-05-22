@@ -252,8 +252,10 @@
     const msg = document.getElementById('match_msg');
     if (msg) { msg.textContent = ''; msg.className = 'match-msg'; }
     renderMatchBoard();
+    try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
     screen.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
   }
 
   async function checkMatching(){
@@ -474,6 +476,7 @@
 
     const screen = document.createElement('div');
     screen.id = 'match-screen';
+    screen.className = 'nova-perf-hq-scope';
     screen.innerHTML = `
       <div class="match-card">
         <div class="match-head">
@@ -500,6 +503,7 @@
       const el = document.getElementById('match-screen');
       if (el) el.style.display = 'none';
       document.body.style.overflow = '';
+      try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
     });
     document.getElementById('match_check_btn').addEventListener('click', function(){ checkMatching().catch(function(e){ console.warn(e); }); });
     window.addEventListener('resize', function(){ requestAnimationFrame(drawLines); });

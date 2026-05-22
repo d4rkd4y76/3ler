@@ -257,9 +257,11 @@
       return;
     }
 
+    try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
     screen.classList.add('open');
     screen.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
 
     const picked = await loadDailyWord(rdb, dKey, rootPath);
     const word = picked && picked.word ? picked.word : '';
@@ -308,6 +310,7 @@
     }
     document.body.style.overflow = '';
     dailyState = null;
+    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
   }
 
   function runDpWinFx(totalReward, rewardMul){

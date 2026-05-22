@@ -63,7 +63,6 @@
 <script src="js/core/002-script-002.js"></script>
 <script src="js/core/003-nova-matching-game.js"></script>
 <link rel="stylesheet" href="styles/034-nova-perf-settings-style.css" />
-<script src="js/ui/004-nova-perf-settings-script.js"></script>
 <script src="js/core/005-nova-daily-puzzle.js"></script>
 <script src="js/core/006-script-006.js"></script>
 
@@ -183,6 +182,7 @@
 </div>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
+<link rel="stylesheet" href="styles/063-nova-screen-loader.css" />
 <!-- Ana Ekran -->
 <div class="container" id="main-screen" style="display: none; position: relative;">
 <div class="app-duyuru-strip" id="app-duyuru-strip" hidden>
@@ -289,7 +289,7 @@
   </div>
 </div>
 <!-- === NOVA: Günün bulmacası === -->
-<div id="daily-puzzle-screen" aria-hidden="true">
+<div class="nova-perf-hq-scope" id="daily-puzzle-screen" aria-hidden="true">
 <div class="dp-card" id="daily_puzzle_card">
 <div class="dp-head">
 <div>
@@ -361,7 +361,7 @@
 <button class="ranking-back-button" id="rankingBackButton" onclick="window.closeSeasonRankingPanel && window.closeSeasonRankingPanel(); return false;">Geri Dön</button>
 </div>
 <!-- Tek Kişilik Oyun Ekranı -->
-<div class="game-container" id="single-player-screen">
+<div class="game-container nova-perf-hq-scope" id="single-player-screen">
 <h2>Tek Kişilik Oyun</h2>
 <div class="table-section">
 <h3>Konu Belirleme</h3>
@@ -382,7 +382,7 @@
 <button class="back-button">Geri Dön</button>
 </div>
 <!-- Tek Kişilik Oyun Sorular Ekranı -->
-<div class="single-player-game-container" id="single-player-game-screen">
+<div class="single-player-game-container nova-perf-hq-scope" id="single-player-game-screen">
 <div class="progress-container">
 <div class="question-number" id="question-number">Soru 1/10</div>
 <div class="progress-bar">
@@ -749,6 +749,7 @@
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=1" />
 <script src="js/core/nova-question-markup.js?v=1"></script>
 <script src="js/screens/007-script-007.js?v=20260502admin1"></script>
+<script src="js/ui/005-nova-screen-loader.js"></script>
 <script src="js/core/008-script-008.js"></script>
 <script src="js/core/009-script-009.js"></script>
 <script src="js/core/010-script-010.js"></script>
@@ -1095,7 +1096,7 @@
 <script src="js/core/045-nova-weekly-quests.js"></script>
 
 <script src="js/features/046-nova-move-homework-above-photo.js"></script>
-
+<script src="js/ui/004-nova-perf-settings-script.js"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
 <script src="js/screens/047-script-047.js"></script>

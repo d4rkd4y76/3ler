@@ -1608,8 +1608,10 @@ async function buyProfilePhoto(photo){
   }
 }
 
-document.getElementById('profileCloseButton').addEventListener('click', () => {
-    document.getElementById('profileChangeOverlay').style.display = 'none';
+document.getElementById('profileCloseButton')?.addEventListener('click', () => {
+    if (typeof window.novaForceHideScreenLoader === 'function') window.novaForceHideScreenLoader();
+    const ov = document.getElementById('profileChangeOverlay');
+    if (ov) ov.style.display = 'none';
     try{ document.body.style.overflow = ''; }catch(_){}
 });
 
@@ -1628,7 +1630,14 @@ async function novaOpenStore() {
   if (!overlay) return;
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  try { await novaOpenStoreFlow(); } catch(e) { console.error('Store init error', e); }
+  try {
+    if (typeof window.novaShowScreenLoader === 'function') window.novaShowScreenLoader('store');
+    await novaOpenStoreFlow();
+  } catch(e) {
+    console.error('Store init error', e);
+  } finally {
+    if (typeof window.novaHideScreenLoader === 'function') window.novaHideScreenLoader();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1850,11 +1859,63 @@ function charInvNodeFromHtml(html){
   return t.content.firstElementChild;
 }
 
+async function charInvEnsurePhotoMetas(entries, renderSeq){
+  const list = (entries || []).filter((e) => e && e.url && !e.meta);
+  if (!list.length) return;
+  const BATCH = 8;
+  for (let i = 0; i < list.length; i += BATCH) {
+    if (renderSeq !== __charInvRenderSeq) return;
+    await Promise.all(list.slice(i, i + BATCH).map(async (entry) => {
+      try {
+        const meta = await novaEnsurePhotoMetaForUrl(entry.url);
+        if (meta) entry.meta = meta;
+      } catch (_) {}
+    }));
+  }
+}
+
+function charInvWaitGridImages(rootEl, maxMs){
+  return new Promise(function(resolve){
+    const cap = maxMs || 2000;
+    const timer = setTimeout(resolve, cap);
+    if (!rootEl || !rootEl.querySelectorAll) {
+      clearTimeout(timer);
+      return resolve();
+    }
+    const imgs = Array.from(rootEl.querySelectorAll('img'));
+    if (!imgs.length) {
+      clearTimeout(timer);
+      return resolve();
+    }
+    let pending = 0;
+    imgs.forEach(function(img){
+      if (!img.complete) pending++;
+    });
+    if (!pending) {
+      clearTimeout(timer);
+      return resolve();
+    }
+    const finish = function(){
+      pending--;
+      if (pending <= 0) {
+        clearTimeout(timer);
+        resolve();
+      }
+    };
+    imgs.forEach(function(img){
+      if (!img.complete) {
+        img.addEventListener('load', finish, { once: true });
+        img.addEventListener('error', finish, { once: true });
+      }
+    });
+  });
+}
+
 async function charInvAppendProgressive(gridEl, nodes, renderSeq){
   if (!gridEl || !Array.isArray(nodes) || !nodes.length) return;
   const isLow = !!((navigator && navigator.deviceMemory && navigator.deviceMemory <= 4) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches));
-  const first = isLow ? 6 : 10;
-  const chunk = isLow ? 5 : 8;
+  const first = isLow ? 12 : 18;
+  const chunk = isLow ? 8 : 12;
   let i = 0;
   const push = (n) => {
     const frag = document.createDocumentFragment();
@@ -1905,26 +1966,11 @@ async function novaRenderCharacterInventory() {
     return;
   }
 
-  await Promise.all([
+  const [, userDataRaw] = await Promise.all([
     ensureNameFrameCatalogFresh(),
-    novaFetchStoreCategories()
+    getCharacterInventoryStudentData()
   ]);
-
-  const userData = (await getCharacterInventoryStudentData()) || {};
-  try {
-    const pr = userData.purchasedPhotos || {};
-    const encKeys = Object.keys(pr).filter((k) => pr[k]);
-    for (let pi = 0; pi < encKeys.length; pi++) {
-      let url = '';
-      try {
-        url = atob(encKeys[pi]);
-      } catch (_) {
-        continue;
-      }
-      if (!url || !/^https?:\/\//i.test(url)) continue;
-      await novaEnsurePhotoMetaForUrl(url);
-    }
-  } catch (_) {}
+  const userData = userDataRaw || {};
 
   const purchasedRaw = userData.purchasedPhotos || {};
   try {
@@ -1962,6 +2008,9 @@ async function novaRenderCharacterInventory() {
     const be = b.url === currentPhoto ? 1 : 0;
     return be - ae;
   });
+
+  await charInvEnsurePhotoMetas(photoEntries, renderSeq);
+  if (renderSeq !== __charInvRenderSeq) return;
 
   const ownedFrames = userData.purchasedNameFrames || {};
   const ownedAvatarFrames = userData.purchasedAvatarFrames || {};
@@ -2096,6 +2145,16 @@ async function novaRenderCharacterInventory() {
     novaCloseCharacterInventory();
     novaOpenStore();
   });
+
+  if (renderSeq === __charInvRenderSeq) {
+    await Promise.race([
+      Promise.all([
+        charInvWaitGridImages(panelP, 2200),
+        charInvWaitGridImages(panelF, 2200)
+      ]),
+      new Promise(function(r){ setTimeout(r, 2200); })
+    ]);
+  }
 }
 
 let __charInvActionsBound = false;
@@ -2137,40 +2196,20 @@ async function novaOpenCharacterInventory() {
     await showAlert('Önce giriş yapmalısın!');
     return;
   }
-  let __doneCharWait = false;
-  const __charWaitTimer = setTimeout(function(){
-    if (__doneCharWait) return;
-    let n = document.getElementById('nova_char_screen_wait_hint');
-    if (!n){
-      n = document.createElement('div');
-      n.id = 'nova_char_screen_wait_hint';
-      n.setAttribute('aria-live', 'polite');
-      n.style.cssText = 'position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:999999;padding:10px 14px;border-radius:12px;font-weight:800;font-size:13px;letter-spacing:.01em;color:#f8fafc;background:rgba(15,23,42,.92);border:1px solid rgba(148,163,184,.42);box-shadow:0 10px 30px rgba(0,0,0,.35);display:none;max-width:min(92vw,520px);text-align:center';
-      document.body.appendChild(n);
-    }
-    n.textContent = 'Karakter ekranı yükleniyor… Lütfen bekleyiniz.';
-    n.style.display = 'block';
-  }, 700);
-  function endSlowHint(){
-    if (__doneCharWait) return;
-    __doneCharWait = true;
-    try { clearTimeout(__charWaitTimer); } catch(_) {}
-    const n = document.getElementById('nova_char_screen_wait_hint');
-    if (n) n.style.display = 'none';
-  }
   const ov = document.getElementById('characterInventoryOverlay');
-  if (!ov){ endSlowHint(); return; }
+  if (!ov) return;
   ov.style.display = 'flex';
   ov.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   try {
+    if (typeof window.novaShowScreenLoader === 'function') window.novaShowScreenLoader('character');
     __charInvLastSig = '';
     await novaRenderCharacterInventory();
   } catch (e) {
     console.error('Karakter envanteri yüklenemedi:', e);
     await showAlert('Sandık açılırken bir sorun oluştu. Tekrar dene.');
   } finally {
-    endSlowHint();
+    if (typeof window.novaHideScreenLoader === 'function') window.novaHideScreenLoader();
   }
 }
 
@@ -2178,6 +2217,7 @@ function novaCloseCharacterInventory() {
   try {
     novaCloseLessonStatusPanel();
   } catch (_) {}
+  if (typeof window.novaForceHideScreenLoader === 'function') window.novaForceHideScreenLoader();
   const ov = document.getElementById('characterInventoryOverlay');
   if (!ov) return;
   ov.style.display = 'none';
