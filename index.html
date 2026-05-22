@@ -362,7 +362,7 @@
 </div>
 <!-- Tek Kişilik Oyun Ekranı -->
 <div class="game-container nova-perf-hq-scope" id="single-player-screen">
-<h2>Tek Kişilik Oyun</h2>
+<h2 class="nova-sp-screen-title" lang="tr">TEK KİŞİLİK OYUN</h2>
 <div class="table-section">
 <h3>Konu Belirleme</h3>
 <label for="class-select">Sınıf Seç:</label>
@@ -447,29 +447,52 @@
 </div>
 </div>
 <!-- Yeni modal ekranları - body etiketinin sonuna, diğer modallardan önce eklenecek -->
-<div class="registration-overlay" id="registrationOverlay" style="display: none;">
-<div class="registration-content">
-<div class="registration-header">
-<div>
-<h2>Yeni Hesap Oluştur</h2>
-<p class="registration-subtitle">3 adımda hesabını aç ve hemen düelloya katıl.</p>
+<div class="registration-overlay nova-register-overlay" id="registrationOverlay" style="display: none;">
+<div class="registration-content nova-register-card">
+<div class="registration-header nova-register-header">
+<div class="nova-register-headcopy">
+<span class="nova-register-badge">🎮 Yeni Oyuncu</span>
+<h2 id="registerModalTitle">Yeni Hesap Oluştur</h2>
+<p class="registration-subtitle">Sınıfını seç, bilgilerini gir ve Şampiyonlar Düellosu’na katıl.</p>
 </div>
-<button class="close-button" id="closeRegistration">✖</button>
+<button aria-label="Kapat" class="close-button nova-register-close" id="closeRegistration" type="button">✕</button>
 </div>
-<div class="registration-form">
+<form class="registration-form nova-register-form" novalidate="">
+<div class="nova-register-field">
+<label class="nova-register-label" for="registerClassSelect">Sınıf</label>
+<div class="nova-register-control nova-register-control--select">
+<span aria-hidden="true" class="nova-register-ico">🏫</span>
 <select class="registration-input" id="registerClassSelect">
-<option value="">Sınıf Seçin</option>
+<option value="">Sınıfını seç</option>
 </select>
-<input class="registration-input" id="registerUsername" maxlength="11" placeholder="Kullanıcı Adı (max 11 karakter)" type="text"/>
-<input class="registration-input" id="registerPassword" placeholder="Şifre (en az 6 karakter, harf ve rakam içermeli)" type="password"/>
-<p class="registration-tip">Şifren güçlü olsun: en az 1 harf + 1 rakam.</p>
-<input class="registration-input" id="registerEmail" placeholder="E-posta Adresi" type="email"/>
-<p class="registration-tip">Doğrulama bağlantısı bu adrese gönderilir.</p>
-<button class="registration-submit" disabled="" id="submitRegistration">
-                Kayıt Ol
-            </button>
 </div>
-<div class="registration-error" id="registrationError"></div>
+</div>
+<div class="nova-register-field">
+<label class="nova-register-label" for="registerUsername">Kullanıcı adı</label>
+<div class="nova-register-control">
+<span aria-hidden="true" class="nova-register-ico">👤</span>
+<input autocomplete="username" class="registration-input" id="registerUsername" maxlength="11" placeholder="En fazla 11 karakter" type="text"/>
+</div>
+</div>
+<div class="nova-register-field">
+<label class="nova-register-label" for="registerPassword">Şifre</label>
+<div class="nova-register-control">
+<span aria-hidden="true" class="nova-register-ico">🔒</span>
+<input autocomplete="new-password" class="registration-input" id="registerPassword" placeholder="En az 6 karakter" type="password"/>
+</div>
+<p class="registration-tip">En az 1 harf ve 1 rakam içermeli.</p>
+</div>
+<div class="nova-register-field">
+<label class="nova-register-label" for="registerEmail">E-posta</label>
+<div class="nova-register-control">
+<span aria-hidden="true" class="nova-register-ico">✉️</span>
+<input autocomplete="email" class="registration-input" id="registerEmail" placeholder="ornek@mail.com" type="email"/>
+</div>
+<p class="registration-tip">Doğrulama bağlantısı bu adrese gönderilir.</p>
+</div>
+<button class="registration-submit nova-register-submit" disabled="" id="submitRegistration" type="button">Kayıt Ol</button>
+</form>
+<div aria-live="polite" class="registration-error nova-register-error" id="registrationError" role="alert"></div>
 </div>
 </div>
 <div class="verification-overlay" id="verificationOverlay" style="display: none;">
@@ -748,7 +771,9 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=1" />
 <script src="js/core/nova-question-markup.js?v=1"></script>
-<script src="js/screens/007-script-007.js?v=20260502admin1"></script>
+<script src="js/ui/006-nova-game-select.js?v=20260522fix2"></script>
+<script src="js/ui/007-nova-single-player-screen.js?v=20260522sp1"></script>
+<script src="js/screens/007-script-007.js?v=20260522sp1"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
 <script src="js/core/008-script-008.js"></script>
 <script src="js/core/009-script-009.js"></script>
@@ -1112,6 +1137,8 @@
 </div>
 <script src="js/ui/049-nova-wait-script.js"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=20260413q1" />
+<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=20260522sp1" />
+<link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
 <script src="js/screens/050-script-050.js"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
@@ -1132,7 +1159,6 @@
 #student-selection-screen.nova-kids-login .cta.active{
   box-shadow:0 16px 34px rgba(91,140,255,.36), inset 0 1px 0 rgba(255,255,255,.4) !important;
 }
-.registration-content,
 .verification-content{
   border:1px solid rgba(255,255,255,.78) !important;
   box-shadow:0 24px 60px rgba(2,8,23,.42), inset 0 1px 0 rgba(255,255,255,.8) !important;

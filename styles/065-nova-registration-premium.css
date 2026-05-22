@@ -1,0 +1,272 @@
+/* ═══ Kayıt modalı — premium, okunaklı (giriş ekranı ile uyumlu) ═══ */
+
+.nova-register-overlay.registration-overlay{
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  background: rgba(15, 23, 42, .55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100200;
+}
+
+.nova-register-card.registration-content{
+  width: min(440px, 94vw);
+  max-height: min(92vh, 720px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: clamp(20px, 4.5vw, 28px) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255, 255, 255, .88) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 55%, #f1f5f9 100%) !important;
+  box-shadow:
+    0 28px 64px rgba(15, 23, 42, .28),
+    0 0 0 1px rgba(255, 255, 255, .9) inset !important;
+  color: #0f172a !important;
+}
+
+.nova-register-header.registration-header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(16px, 3vw, 22px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, .28);
+}
+
+.nova-register-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #4338ca;
+  background: linear-gradient(90deg, #eef2ff, #e0e7ff);
+  border: 1px solid rgba(99, 102, 241, .25);
+}
+
+.nova-register-header h2,
+#registerModalTitle{
+  margin: 0 0 6px !important;
+  font-size: clamp(1.35rem, 4.5vw, 1.65rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  background: none !important;
+  text-shadow: none !important;
+}
+
+.nova-register-header .registration-subtitle{
+  margin: 0 !important;
+  font-size: clamp(.82rem, 2.4vw, .92rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  color: #475569 !important;
+}
+
+.nova-register-close.close-button{
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, .35);
+  background: #fff;
+  color: #334155;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .16s ease, transform .14s ease;
+}
+.nova-register-close:hover{
+  background: #f1f5f9;
+  transform: scale(1.04);
+}
+
+.nova-register-form.registration-form{
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.8vw, 16px);
+}
+
+.nova-register-field{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nova-register-label{
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.nova-register-control{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 10px;
+  border-radius: 14px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .04);
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+
+.nova-register-control:focus-within{
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, .14);
+}
+
+.nova-register-ico{
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: .9;
+}
+
+.nova-register-control .registration-input,
+.nova-register-control select.registration-input{
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 4px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0f172a !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+.nova-register-control .registration-input::placeholder{
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+.nova-register-control--select{
+  padding-right: 6px;
+}
+
+.registration-form select.registration-input{
+  display: none !important;
+}
+
+.registration-form .nova-game-select--login{
+  margin: 0 !important;
+  grid-column: 1 / -1;
+}
+
+.registration-form .nova-game-select--login .nova-game-select__trigger{
+  padding: 8px 4px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #0f172a !important;
+}
+
+.registration-form .nova-game-select--login .nova-game-select__value{
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+.registration-form .nova-game-select--login .nova-game-select__chev{
+  background: rgba(99, 102, 241, .12);
+  color: #4f46e5;
+}
+
+.registration-form .nova-register-field:has(.nova-game-select--login) .nova-register-control{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.registration-form .nova-register-field:has(.nova-game-select--login) .nova-register-ico{
+  grid-row: 1;
+  align-self: center;
+}
+
+.registration-form .nova-register-field:has(.nova-game-select--login) .nova-game-select{
+  grid-column: 2;
+  min-width: 0;
+}
+
+.registration-tip{
+  margin: 0 !important;
+  padding-left: 2px;
+  font-size: .76rem !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  line-height: 1.35 !important;
+}
+
+.nova-register-submit.registration-submit{
+  margin-top: 6px;
+  width: 100%;
+  min-height: 50px;
+  padding: 14px 18px !important;
+  border: none !important;
+  border-radius: 14px !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  color: #fff !important;
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 48%, #db2777 100%) !important;
+  box-shadow: 0 14px 32px rgba(79, 70, 229, .32) !important;
+  cursor: pointer;
+  transition: transform .16s ease, filter .16s ease, opacity .16s ease;
+}
+
+.nova-register-submit:not(:disabled):hover{
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.nova-register-submit:disabled{
+  opacity: .45 !important;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.nova-register-error.registration-error{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  min-height: 0;
+}
+
+.nova-register-error:empty{
+  display: none;
+}
+
+#registrationOverlay.nova-game-form-dropdown-open .nova-register-submit,
+#registrationOverlay.nova-game-form-dropdown-open .nova-register-field:not(:has(.nova-game-select--open)){
+  opacity: .35;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+@media (max-width: 480px){
+  .nova-register-card.registration-content{
+    border-radius: 18px !important;
+    padding: 18px 16px !important;
+  }
+}

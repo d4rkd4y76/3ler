@@ -1,12 +1,36 @@
 // JavaScript Kodları
 
+window.classNameMap = window.classNameMap || {};
+var classNameMap = window.classNameMap;
+
+function novaSortClassGradeRowsLocal(rows) {
+    if (typeof window.novaSortClassGradeRows === 'function') {
+        return window.novaSortClassGradeRows(rows);
+    }
+    return (rows || []).slice().sort(function (a, b) {
+        const grade = function (t) {
+            const s = String(t || '').trim();
+            const m = s.match(/([1-4])\s*\.?\s*SINIF/i);
+            if (m) return parseInt(m[1], 10);
+            const m2 = s.match(/([1-4])(?:\.|\s|$)/);
+            return m2 ? parseInt(m2[1], 10) : 99;
+        };
+        const ga = grade(a.name);
+        const gb = grade(b.name);
+        if (ga !== gb) return ga - gb;
+        return String(a.name || '').localeCompare(String(b.name || ''), 'tr');
+    });
+}
+try { window.novaSortClassGradeRowsLocal = novaSortClassGradeRowsLocal; } catch (_) {}
+
         // Audio Elementlerini Seçme
         const duelMusic = document.getElementById('duelBackgroundMusic');
         const winnerMusic = document.getElementById('winnerMusic');
         const singlePlayerQuestionMusic = document.getElementById('singlePlayerQuestionMusic');
 
         // "Oyunu Sonlandır" butonuna eklenen event listener
-document.getElementById('duel-final-back-button').addEventListener('click', async () => {
+var duelFinalBackBtn = document.getElementById('duel-final-back-button');
+if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
     await showAlert('🏆 Kupa verileriniz güncellendi.');
     if (currentDuelRef) {
         try {
@@ -67,6 +91,7 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
     // Nova guard for auth
     try { window.auth = window.auth || (firebase && firebase.auth ? firebase.auth() : null); } catch(e){ window.auth = null; }
         const database = firebase.database();
+        try { window.database = database; } catch (_) {}
         const __novaOnceOrig = firebase.database.Reference.prototype.once;
         const __novaOnceInflight = new Map();
         function novaDedupedOnceValue(ref) {
@@ -3488,9 +3513,9 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
             if (ids === null) {
                 const data = await readValCached('championData/headings', NOVA_CHAMPION_HEADINGS_TTL_MS);
                 if (!data || typeof data !== 'object') return [];
-                return Object.keys(data).map(function (k) {
+                return (window.novaSortClassGradeRows || novaSortClassGradeRowsLocal)(Object.keys(data).map(function (k) {
                     return { id: k, name: (data[k] && data[k].name) ? String(data[k].name) : k };
-                });
+                }));
             }
             const out = [];
             for (let i = 0; i < ids.length; i += NOVA_CHAMPION_SHALLOW_BATCH) {
@@ -3501,8 +3526,10 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
                 }));
                 out.push.apply(out, rows);
             }
-            return out;
+            return (window.novaSortClassGradeRows || novaSortClassGradeRowsLocal)(out);
         }
+
+        try { window.novaFetchChampionHeadingList = novaFetchChampionHeadingList; } catch (_) {}
 
         async function novaFetchLessonsList(classId) {
             if (!classId) return [];
@@ -3576,7 +3603,7 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
         }
 
         // Diğer değişkenler
-        let classNameMap = {};
+        classNameMap = window.classNameMap || (window.classNameMap = {});
         let duelEnded = false; // Eklendi
 
         const playersOverlay = document.getElementById('playersOverlay');
@@ -3585,9 +3612,11 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
         const invitationOverlay = document.getElementById('invitationOverlay');
         const invitationMessage = document.getElementById('invitationMessage');
 
-        playersCloseButton.addEventListener('click', () => {
-            playersOverlay.style.display = 'none';
-        });
+        if (playersCloseButton && playersOverlay) {
+            playersCloseButton.addEventListener('click', () => {
+                playersOverlay.style.display = 'none';
+            });
+        }
 
         let loggedinPlayerRef = null;
         let selectedStudent = {
@@ -3597,6 +3626,7 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
             className: '',
             nameFrame: 'default'
         };
+        try { window.selectedStudent = selectedStudent; } catch (_) {}
         const NOVA_ACTIVE_STUDENT_FP_KEY = 'nova_active_student_fp';
         function getStudentFingerprint(st) {
             const cid = String((st && st.classId) || '').trim();
@@ -3720,6 +3750,13 @@ document.getElementById('duel-final-back-button').addEventListener('click', asyn
             } catch (_) {}
             return '';
         }
+        try {
+            window.__novaEnsureSelectedStudentClassName = ensureSelectedStudentClassName;
+            window.__novaGetScopedClassLabel = getScopedClassLabel;
+            window.__novaNormalizeClassTag = normalizeClassTag;
+            window.__novaExtractGradeNumber = extractGradeNumber;
+            window.__novaResolveSinglePlayerHeadingId = resolveSinglePlayerHeadingId;
+        } catch (_novaExportFns) {}
         async function enforceSinglePlayerClassLock() {
             try {
                 if (!classSelect) return;
@@ -4011,23 +4048,29 @@ window.onload = async () => {
         try { novaBindAdminPortalBtnOnce(); } catch (_) {}
 
         // Sınıf ve öğrenci seçimi için event listener'lar
-        selectionClassSelect.addEventListener('change', () => {
-            if (selectionClassSelect.value === "") {
-                selectionNameInput.disabled = true;
-                selectionNameInput.value = "";
-            } else {
-                selectionNameInput.disabled = false;
-            }
-            checkLoginButtonState();
-        });
+        if (selectionClassSelect) {
+            selectionClassSelect.addEventListener('change', () => {
+                if (selectionClassSelect.value === "") {
+                    if (selectionNameInput) {
+                        selectionNameInput.disabled = true;
+                        selectionNameInput.value = "";
+                    }
+                } else if (selectionNameInput) {
+                    selectionNameInput.disabled = false;
+                }
+                checkLoginButtonState();
+            });
+        }
 
-        // Yeni input event listener'ı
-        selectionNameInput.addEventListener('input', checkLoginButtonState);
+        if (selectionNameInput) {
+            selectionNameInput.addEventListener('input', checkLoginButtonState);
+        }
 
         const storedStudent = localStorage.getItem('selectedStudent');
         if (storedStudent) {
             selectedStudent = JSON.parse(storedStudent);
             if (!selectedStudent.avatarFrame) selectedStudent.avatarFrame = 'default';
+            try { window.selectedStudent = selectedStudent; } catch (_) {}
             applyStudentSessionIsolation(selectedStudent);
             
             // Ana ekranı göster
@@ -4086,24 +4129,25 @@ window.onload = async () => {
         }
 
         // Önce sınıf adlarını al, sonra champion select'i doldur (scope için önemli)
-        await fetchClassesForSelection();
+        try { await fetchClassesForSelection(); } catch (e) { console.error('fetchClassesForSelection', e); }
         try{
             if (selectedStudent && selectedStudent.classId) {
                 const mapped = (classNameMap && classNameMap[selectedStudent.classId]) ? String(classNameMap[selectedStudent.classId] || '').trim() : '';
                 if (mapped && selectedStudent.className !== mapped) {
                     selectedStudent.className = mapped;
+                    try { window.selectedStudent = selectedStudent; } catch (_) {}
                     localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent));
                 }
             }
         }catch(_){}
-        await fetchChampionData();
+        try { await fetchChampionData(); } catch (e) { console.error('fetchChampionData', e); }
         try{
             enforceSinglePlayerClassLock();
-        }catch(_){}
+        }catch(e){ console.error('enforceSinglePlayerClassLock', e); }
 
     } catch (error) {
         console.error("Uygulama başlatma hatası:", error);
-        showAlert('Bir hata oluştu. Lütfen sayfayı yenileyin.');
+        try { showAlert('Bir hata oluştu. Lütfen sayfayı yenileyin.'); } catch (_) {}
     }
 };
 window.addEventListener('pageshow', ()=>{ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} });
@@ -5261,8 +5305,12 @@ function showConfirmation(message) {
                         showAlert('Düello referansı kaldırılırken hata oluştu.');
                     });
                 } else {
-                    currentScreen.style.display = 'none';
-                    mainScreen.style.removeProperty('display');
+                    if (currentScreen && currentScreen.id === 'single-player-screen' && typeof window.novaCloseSinglePlayerSelectScreen === 'function') {
+                        window.novaCloseSinglePlayerSelectScreen();
+                    } else {
+                        currentScreen.style.display = 'none';
+                        mainScreen.style.removeProperty('display');
+                    }
                     resetGameScreens();
                     try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
                     novaRequestHudFabRelayout();
@@ -5271,16 +5319,20 @@ function showConfirmation(message) {
         });
 
         singlePlayerButton.addEventListener('click', async () => {
-            mainScreen.style.setProperty('display', 'none', 'important');
-            if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
+            if (typeof window.novaOpenSinglePlayerSelectScreen === 'function') {
+                window.novaOpenSinglePlayerSelectScreen();
+            } else {
+                mainScreen.style.setProperty('display', 'none', 'important');
+                if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
+                singlePlayerScreen.style.display = 'flex';
+            }
             try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
-            singlePlayerScreen.style.display = 'flex';
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
+            try{ if (window.novaEnhanceGameSelects) window.novaEnhanceGameSelects(singlePlayerScreen); }catch(_){}
             try {
                 await fetchChampionData();
             } catch (_) {}
             await enforceSinglePlayerClassLock();
-            try { window.scrollTo(0, 0); } catch (e) {}
         });
 
         startGameButton.addEventListener('click', () => {
@@ -5318,8 +5370,14 @@ function showConfirmation(message) {
 async function fetchChampionData() {
     const CACHE_KEY = 'cachedChampionData';
     const CACHE_TIMESTAMP_KEY = 'cachedChampionDataTimestamp';
-    const CACHE_DURATION = NOVA_CHAMPION_HEADINGS_TTL_MS;
-    await ensureSelectedStudentClassName();
+    const CACHE_DURATION = (typeof window.NOVA_CHAMPION_HEADINGS_TTL_MS === 'number')
+        ? window.NOVA_CHAMPION_HEADINGS_TTL_MS
+        : (24 * 60 * 60 * 1000);
+    try {
+        if (typeof window.__novaEnsureSelectedStudentClassName === 'function') {
+            await window.__novaEnsureSelectedStudentClassName();
+        }
+    } catch (_) {}
 
     const cachedChampionData = localStorage.getItem(CACHE_KEY);
     const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
@@ -5341,7 +5399,12 @@ async function fetchChampionData() {
 
     // Cache yok: tam headings ağacını indirmeden shallow + name yaprakları
     try {
-        const result = await novaFetchChampionHeadingList();
+        const fetchHeadings = window.novaFetchChampionHeadingList;
+        if (typeof fetchHeadings !== 'function') {
+            console.warn('novaFetchChampionHeadingList tanımlı değil.');
+            return;
+        }
+        const result = await fetchHeadings();
         if (!result || !result.length) {
             console.warn("Şampiyon sınıf listesi boş.");
             return;
@@ -5355,44 +5418,65 @@ async function fetchChampionData() {
 }
 
 function populateChampionSelect(data) {
-    // Önce mevcut seçenekleri temizleyin
-    classSelect.innerHTML = '<option value="">Seçiniz</option>';
-    const scopedLabel = getScopedClassLabel();
-    const scopedTag = normalizeClassTag(scopedLabel);
-    const scopedGrade = extractGradeNumber(scopedLabel);
-    const scopedRows = [];
-    const scopedClassId = String((selectedStudent && selectedStudent.classId) || '').trim();
+    const classSelectEl = document.getElementById('class-select');
+    if (!classSelectEl || !data) return;
 
-    data.forEach(item => {
-        if (!item) return;
-        if (scopedClassId && String(item.id || '').trim() === scopedClassId) {
+    const getScoped = window.__novaGetScopedClassLabel;
+    const normTag = window.__novaNormalizeClassTag;
+    const gradeNum = window.__novaExtractGradeNumber;
+    const resolveId = window.__novaResolveSinglePlayerHeadingId;
+    const student = window.selectedStudent || null;
+
+    if (typeof getScoped === 'function' && typeof normTag === 'function' && typeof gradeNum === 'function') {
+        classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
+        const scopedLabel = getScoped();
+        const scopedTag = normTag(scopedLabel);
+        const scopedGrade = gradeNum(scopedLabel);
+        const scopedRows = [];
+        const scopedClassId = String((student && student.classId) || '').trim();
+
+        data.forEach(function (item) {
+            if (!item) return;
+            if (scopedClassId && String(item.id || '').trim() === scopedClassId) {
+                scopedRows.push(item);
+                return;
+            }
+            if (scopedTag) {
+                const itemTag = normTag(item.name);
+                const sameGrade = scopedGrade && gradeNum(item.name) === scopedGrade;
+                if (itemTag !== scopedTag && !sameGrade) return;
+            }
             scopedRows.push(item);
-            return;
+        });
+        const preferredRows = scopedRows.length
+            ? [scopedRows.find(function (x) {
+                return scopedClassId && String((x && x.id) || '').trim() === scopedClassId;
+            }) || scopedRows[0]]
+            : [];
+        preferredRows.forEach(function (item) {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = scopedLabel || item.name;
+            classSelectEl.appendChild(option);
+        });
+        if (student && (student.className || student.classId)) {
+            const headingId = typeof resolveId === 'function' ? resolveId() : '';
+            classSelectEl.value = headingId || '';
+            classSelectEl.disabled = true;
+            classSelectEl.style.pointerEvents = 'none';
+            classSelectEl.style.cursor = 'not-allowed';
         }
-        if (scopedTag) {
-            const itemTag = normalizeClassTag(item.name);
-            const sameGrade = scopedGrade && extractGradeNumber(item.name) === scopedGrade;
-            if (itemTag !== scopedTag && !sameGrade) return;
-        }
-        scopedRows.push(item);
-    });
-    const preferredRows = scopedRows.length
-        ? [scopedRows.find((x)=> scopedClassId && String((x && x.id) || '').trim() === scopedClassId) || scopedRows[0]]
-        : [];
-    preferredRows.forEach(item => {
+        return;
+    }
+
+    classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
+    novaSortClassGradeRowsLocal(data).forEach(function (item) {
+        if (!item || !item.id) return;
         const option = document.createElement('option');
         option.value = item.id;
-        option.textContent = scopedLabel || item.name;
-        classSelect.appendChild(option);
+        option.textContent = item.name || item.id;
+        classSelectEl.appendChild(option);
     });
-    if (selectedStudent && (selectedStudent.className || selectedStudent.classId)) {
-        const headingId = resolveSinglePlayerHeadingId();
-        if (headingId) classSelect.value = headingId;
-        else classSelect.value = '';
-        classSelect.disabled = true;
-        classSelect.style.pointerEvents = 'none';
-        classSelect.style.cursor = 'not-allowed';
-    }
 }
 
 
@@ -5801,7 +5885,11 @@ logoutButton.addEventListener('click', async () => {
             gameQuestions = ordered.slice(0, lim);
             currentQuestionIndex = 0;
             score = 0;
-            singlePlayerScreen.style.display = 'none';
+            if (typeof window.novaHideSinglePlayerSelectForGame === 'function') {
+                window.novaHideSinglePlayerSelectForGame();
+            } else {
+                singlePlayerScreen.style.display = 'none';
+            }
             try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
             singlePlayerGameScreen.style.display = 'flex';
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
@@ -5831,7 +5919,11 @@ logoutButton.addEventListener('click', async () => {
             currentQuestionIndex = 0;
             score = 0;
 
-            singlePlayerScreen.style.display = 'none';
+            if (typeof window.novaHideSinglePlayerSelectForGame === 'function') {
+                window.novaHideSinglePlayerSelectForGame();
+            } else {
+                singlePlayerScreen.style.display = 'none';
+            }
             try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
             singlePlayerGameScreen.style.display = 'flex';
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
@@ -6320,7 +6412,13 @@ async function fetchClassesForSelection() {
         }
     }
 
-    const classesIndexRef = database.ref('classesIndex');
+    const db = window.database || (typeof database !== 'undefined' ? database : null);
+    if (!db || typeof db.ref !== 'function') {
+        console.warn('fetchClassesForSelection: database yok');
+        return;
+    }
+    const map = window.classNameMap || (window.classNameMap = {});
+    const classesIndexRef = db.ref('classesIndex');
     try{
         const snapshot = await classesIndexRef.once('value');
         if (snapshot.exists()) {
@@ -6329,9 +6427,11 @@ async function fetchClassesForSelection() {
                 const classId = childSnapshot.key;
                 const raw = childSnapshot.val() || {};
                 const className = (typeof raw === 'string' ? raw : raw.name) || classId;
-                classNameMap[classId] = className;
+                map[classId] = className;
                 classesData.push({ id: classId, name: className });
             });
+            classNameMap = map;
+            window.classNameMap = map;
             localStorage.setItem(CACHE_KEY, JSON.stringify(classesData));
             localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
             populateClassSelect(classesData);
@@ -6353,8 +6453,10 @@ async function fetchClassesForSelection() {
         }
         classesData.forEach(function (cls) {
             const cid = String((cls && cls.id) || '').trim();
-            if (cid) classNameMap[cid] = (cls && cls.name) ? String(cls.name) : cid;
+            if (cid) map[cid] = (cls && cls.name) ? String(cls.name) : cid;
         });
+        classNameMap = map;
+        window.classNameMap = map;
         localStorage.setItem(CACHE_KEY, JSON.stringify(classesData));
         localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
         populateClassSelect(classesData);
@@ -6406,22 +6508,25 @@ async function getClassesTreeCached(maxAgeMs) {
 
 // Doldurma fonksiyonu
 function populateClassSelect(classesData) {
-    // Önce mevcut seçenekleri temizleyin
-    selectionClassSelect.innerHTML = '<option value="">Seçiniz</option>';
+    const selectionClassSelectEl = document.getElementById('selection-class-select');
+    if (!selectionClassSelectEl) return;
+    const map = window.classNameMap || (window.classNameMap = {});
+    selectionClassSelectEl.innerHTML = '<option value="">Seçiniz</option>';
     
-    classesData.forEach(cls => {
+    novaSortClassGradeRowsLocal(classesData).forEach(function(cls) {
         const cid = String((cls && cls.id) || '').trim();
         const cname = String((cls && cls.name) || '').trim();
         if (!cid || !cname) return;
         if (cid.toLowerCase() === 'undefined' || cname.toLowerCase() === 'undefined') return;
         if (cid.toLowerCase() === 'null' || cname.toLowerCase() === 'null') return;
-        classNameMap[cid] = cname;
+        map[cid] = cname;
         const option = document.createElement('option');
         option.value = cid;
         option.textContent = cname;
-        selectionClassSelect.appendChild(option);
+        selectionClassSelectEl.appendChild(option);
     });
-    try { window.classNameMap = classNameMap; } catch(_) {}
+    classNameMap = map;
+    window.classNameMap = map;
 }
 
 
@@ -7446,7 +7551,12 @@ function switchToDuelScreen(duelKey) {
     } catch (_) {}
     // Diğer ekranları gizle
     if (mainScreen) mainScreen.style.setProperty('display', 'none', 'important');
-    if (singlePlayerScreen) singlePlayerScreen.style.display = 'none';
+    if (typeof window.novaHideSinglePlayerSelectForGame === 'function') {
+        window.novaHideSinglePlayerSelectForGame();
+    } else if (singlePlayerScreen) {
+        singlePlayerScreen.style.display = 'none';
+    }
+    document.body.classList.remove('nova-sp-screen-open');
     if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'none';
     try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
     if (friendsScreen) friendsScreen.style.display = 'none';
@@ -7550,7 +7660,9 @@ function switchToDuelScreen(duelKey) {
                 if (nameSnap.exists()) {
                     const studentClassName = String(nameSnap.val() || '');
 
-                    novaFetchChampionHeadingList().then(function(list){
+                    var fetchHeadingsFn = window.novaFetchChampionHeadingList;
+                    if (typeof fetchHeadingsFn !== 'function') return;
+                    fetchHeadingsFn().then(function(list){
                         duelClassSelect.innerHTML = '<option value="">Seçiniz</option>';
                         if (!list || !list.length) return;
                         list.forEach(function(row){
@@ -7841,7 +7953,10 @@ duelRef.on('value', async (snap) => {
 
 // Select elementleri için yardımcı fonksiyonlar
 async function getClassOptions() {
-   const list = await novaFetchChampionHeadingList();
+   const fetchHeadings = window.novaFetchChampionHeadingList;
+   const list = novaSortClassGradeRowsLocal(
+       typeof fetchHeadings === 'function' ? await fetchHeadings() : []
+   );
    let options = '<option value="">Seçiniz</option>';
    if (list && list.length) {
        list.forEach(function (row) {

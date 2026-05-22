@@ -2548,53 +2548,63 @@ const registrationError = document.getElementById('registrationError');
 const verificationOverlay = document.getElementById('verificationOverlay');
 
 // Modal açma/kapama olayları
-registerButton.addEventListener('click', () => {
-    registrationOverlay.style.display = 'flex';
-    loadClassesForRegistration();
-});
+if (registerButton) {
+    registerButton.addEventListener('click', () => {
+        if (registrationOverlay) registrationOverlay.style.display = 'flex';
+        loadClassesForRegistration();
+        try {
+            if (window.novaEnhanceGameSelects && registrationOverlay) {
+                window.novaEnhanceGameSelects(registrationOverlay);
+            }
+        } catch (_) {}
+    });
+}
 
-closeRegistration.addEventListener('click', () => {
-    registrationOverlay.style.display = 'none';
-    resetRegistrationForm();
-});
+if (closeRegistration) {
+    closeRegistration.addEventListener('click', () => {
+        if (registrationOverlay) registrationOverlay.style.display = 'none';
+        resetRegistrationForm();
+    });
+}
 
 // Sınıf listesini yükleme fonksiyonu (tam /classes ağacı yok)
+function appendSortedClassOptions(selectEl, rows) {
+    const sorted = (typeof window.novaSortClassGradeRows === 'function')
+        ? window.novaSortClassGradeRows(rows)
+        : (rows || []).slice();
+    sorted.forEach(function (c) {
+        const option = document.createElement('option');
+        option.value = c.id;
+        option.textContent = c.name || c.id;
+        selectEl.appendChild(option);
+    });
+}
+
 async function loadClassesForRegistration() {
     registerClassSelect.innerHTML = '<option value="">Sınıf Seçin</option>';
     const cached = localStorage.getItem('cachedClasses');
     if (cached) {
         try {
             const list = JSON.parse(cached) || [];
-            list.forEach(c => {
-                const option = document.createElement('option');
-                option.value = c.id;
-                option.textContent = c.name || c.id;
-                registerClassSelect.appendChild(option);
-            });
+            appendSortedClassOptions(registerClassSelect, list);
             if (list.length) return;
         } catch (_) {}
     }
     try {
         const snapshot = await database.ref('classesIndex').once('value');
         if (snapshot.exists()) {
+            const rows = [];
             snapshot.forEach(childSnapshot => {
                 const classId = childSnapshot.key;
                 const raw = childSnapshot.val() || {};
                 const className = (typeof raw === 'string' ? raw : raw.name) || classId;
-                const option = document.createElement('option');
-                option.value = classId;
-                option.textContent = className;
-                registerClassSelect.appendChild(option);
+                rows.push({ id: classId, name: className });
             });
+            appendSortedClassOptions(registerClassSelect, rows);
             return;
         }
         const list = await novaBuildClassListWithoutFullTree();
-        list.forEach(c => {
-            const option = document.createElement('option');
-            option.value = c.id;
-            option.textContent = c.name || c.id;
-            registerClassSelect.appendChild(option);
-        });
+        appendSortedClassOptions(registerClassSelect, list);
         if (!list.length) {
             registrationError.textContent = 'Sınıf listesi alınamadı.';
         }
