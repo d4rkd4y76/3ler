@@ -9,8 +9,13 @@
       var mainScreen = document.getElementById('main-screen');
       var scoreContainer = document.getElementById('score-container');
       if (scoreContainer) scoreContainer.style.display='none';
-      if (singlePlayerGameScreen) singlePlayerGameScreen.style.display='none';
-      if (mainScreen) mainScreen.style.removeProperty('display');
+      if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
+        window.novaCloseSinglePlayerGameScreen();
+      } else {
+        if (singlePlayerGameScreen) singlePlayerGameScreen.style.display='none';
+        if (mainScreen) mainScreen.style.removeProperty('display');
+      }
+      try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
       if (typeof resetGameScreens === 'function') resetGameScreens();
     }catch(_){}
   }

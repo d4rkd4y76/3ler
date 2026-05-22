@@ -560,6 +560,15 @@ body:has(#single-player-screen.nova-sp-screen-visible) #main-screen{
   border-color: rgba(148, 163, 184, .45) !important;
 }
 
+/* Tek kişilik soru ekranı → styles/067-nova-single-player-game-layout.css */
+body.nova-sp-game-open #main-screen,
+body:has(#single-player-game-screen[style*="flex"]) #main-screen,
+body:has(#single-player-game-screen.nova-sp-game-visible) #main-screen{
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* ═══ DÜELLO SEÇİM — aynı arena stili ═══ */
 #duel-selection-screen{
   width: min(520px, 94vw) !important;

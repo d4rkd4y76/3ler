@@ -1,13 +1,18 @@
 (function(){
   const KEY = 'novaPerfMode';
+  /* Akıcı modda tam çözünürlük — sadece mini oyunlar */
   const HIGH_RES_GAME_IDS = [
-    'single-player-screen',
-    'single-player-game-screen',
     'daily-puzzle-screen',
     'fillblank-screen',
     'match-screen'
   ];
+  /* Akıcı modda orta (iyi) çözünürlük — yalnızca tek kişilik giriş + soru ekranı */
+  const SINGLE_PLAYER_PERF_IDS = [
+    'single-player-screen',
+    'single-player-game-screen'
+  ];
   const ULTRA_SCALE = 0.74;
+  const SINGLE_PLAYER_ULTRA_SCALE = 0.86;
   const MODES = [
     {
       value: 'normal',
@@ -83,11 +88,28 @@
     }
     return false;
   }
+  function isSinglePlayerPerfActive(){
+    for (let i = 0; i < SINGLE_PLAYER_PERF_IDS.length; i++){
+      if (isElementVisible(document.getElementById(SINGLE_PLAYER_PERF_IDS[i]))) return true;
+    }
+    return false;
+  }
+  function isSinglePlayerPerfScreen(screenId){
+    return SINGLE_PLAYER_PERF_IDS.indexOf(screenId) >= 0;
+  }
   function ensureHighResScopeMarkers(){
     HIGH_RES_GAME_IDS.forEach(function(id){
       const el = document.getElementById(id);
       if (el && !el.classList.contains('nova-perf-hq-scope')) {
         el.classList.add('nova-perf-hq-scope');
+      }
+    });
+  }
+  function ensureSinglePlayerScopeMarkers(){
+    SINGLE_PLAYER_PERF_IDS.forEach(function(id){
+      const el = document.getElementById(id);
+      if (el && !el.classList.contains('nova-perf-sp-scope')) {
+        el.classList.add('nova-perf-sp-scope');
       }
     });
   }
@@ -114,20 +136,33 @@
     if (!document.body) return;
     const mode = window.__novaPerfMode || getDefaultMode();
     const hqActive = mode === 'ultra' && isHighResGameActive();
-    const scale = (mode === 'ultra' && hqActive) ? 1 : modeScale(mode);
-    const nextKey = mode + '|' + (hqActive ? '1' : '0') + '|' + scale;
+    const spMediumActive = mode === 'ultra' && !hqActive && isSinglePlayerPerfActive();
+    let scale = modeScale(mode);
+    if (mode === 'ultra' && hqActive) scale = 1;
+    else if (spMediumActive) scale = SINGLE_PLAYER_ULTRA_SCALE;
+    const nextKey = mode + '|' + (hqActive ? '1' : '0') + '|' + (spMediumActive ? '1' : '0') + '|' + scale;
     if (nextKey === lastRuntimeKey) return;
     lastRuntimeKey = nextKey;
     document.body.classList.toggle('nova-perf-hq-active', hqActive);
+    document.body.classList.toggle('nova-perf-sp-medium-active', spMediumActive);
     updatePerfCssVars(mode, scale);
     applyBodyScale(scale);
     try{ if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout(); }catch(_){}
   }
-  function novaPerfBeforeGameScreen(){
+  function novaPerfBeforeGameScreen(screenId){
     ensureHighResScopeMarkers();
+    ensureSinglePlayerScopeMarkers();
     const mode = window.__novaPerfMode || getDefaultMode();
     if (mode !== 'ultra') return;
     lastRuntimeKey = '';
+    if (isSinglePlayerPerfScreen(screenId)) {
+      document.body.classList.remove('nova-perf-hq-active');
+      document.body.classList.add('nova-perf-sp-medium-active');
+      updatePerfCssVars(mode, SINGLE_PLAYER_ULTRA_SCALE);
+      applyBodyScale(SINGLE_PLAYER_ULTRA_SCALE);
+      return;
+    }
+    document.body.classList.remove('nova-perf-sp-medium-active');
     document.body.classList.add('nova-perf-hq-active');
     updatePerfCssVars(mode, 1);
     applyBodyScale(1);
@@ -137,6 +172,7 @@
     syncTimer = setTimeout(function(){
       syncTimer = null;
       ensureHighResScopeMarkers();
+      ensureSinglePlayerScopeMarkers();
       syncPerfRuntime();
     }, 80);
   }
@@ -146,10 +182,11 @@
     lastRuntimeKey = '';
     try{ localStorage.setItem(KEY, mode); }catch(_){}
     if (!document.body) return;
-    document.body.classList.remove('nova-perf-performance','nova-perf-ultra','nova-perf-hq-active');
+    document.body.classList.remove('nova-perf-performance','nova-perf-ultra','nova-perf-hq-active','nova-perf-sp-medium-active');
     if (mode === 'performance') document.body.classList.add('nova-perf-performance');
     if (mode === 'ultra') document.body.classList.add('nova-perf-ultra');
     ensureHighResScopeMarkers();
+    ensureSinglePlayerScopeMarkers();
     updatePerfCssVars(mode, modeScale(mode));
     syncPerfRuntime();
   }
@@ -260,6 +297,8 @@
       return;
     }
     applyMode(getDefaultMode());
+    ensureHighResScopeMarkers();
+    ensureSinglePlayerScopeMarkers();
     ensureUi();
     startPerfRuntimeWatch();
     schedulePerfSync();
@@ -268,6 +307,7 @@
   window.novaSyncPerfRuntime = function(){
     lastRuntimeKey = '';
     ensureHighResScopeMarkers();
+    ensureSinglePlayerScopeMarkers();
     syncPerfRuntime();
   };
   window.novaApplyPerfMode = applyMode;

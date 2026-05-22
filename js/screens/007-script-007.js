@@ -5326,7 +5326,7 @@ function showConfirmation(message) {
                 if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
                 singlePlayerScreen.style.display = 'flex';
             }
-            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
+            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-screen'); }catch(_){}
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             try{ if (window.novaEnhanceGameSelects) window.novaEnhanceGameSelects(singlePlayerScreen); }catch(_){}
             try {
@@ -5890,8 +5890,12 @@ logoutButton.addEventListener('click', async () => {
             } else {
                 singlePlayerScreen.style.display = 'none';
             }
-            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
-            singlePlayerGameScreen.style.display = 'flex';
+            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-game-screen'); }catch(_){}
+            if (typeof window.novaOpenSinglePlayerGameScreen === 'function') {
+                window.novaOpenSinglePlayerGameScreen();
+            } else {
+                singlePlayerGameScreen.style.display = 'flex';
+            }
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             scoreContainer.style.display = 'none';
             displayCurrentQuestion();
@@ -5924,8 +5928,12 @@ logoutButton.addEventListener('click', async () => {
             } else {
                 singlePlayerScreen.style.display = 'none';
             }
-            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen(); }catch(_){}
-            singlePlayerGameScreen.style.display = 'flex';
+            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-game-screen'); }catch(_){}
+            if (typeof window.novaOpenSinglePlayerGameScreen === 'function') {
+                window.novaOpenSinglePlayerGameScreen();
+            } else {
+                singlePlayerGameScreen.style.display = 'flex';
+            }
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             scoreContainer.style.display = 'none';
             displayCurrentQuestion();
@@ -6099,7 +6107,15 @@ questionContainer.appendChild(textContainer);
 
             clearInterval(timer);
 
-            showExplanationAndNext();
+            if (isCorrect && typeof window.novaTryPlayKnightCorrectFx === 'function') {
+                window.novaTryPlayKnightCorrectFx().then(function () {
+                    showExplanationAndNext();
+                }).catch(function () {
+                    showExplanationAndNext();
+                });
+            } else {
+                showExplanationAndNext();
+            }
         }
 
 function proceedToNextQuestion() {
@@ -6116,11 +6132,14 @@ function proceedToNextQuestion() {
 
         function endGame() {
             try{ if (timer) clearInterval(timer); }catch(_){}
-            try{ if (mainScreen) mainScreen.style.display = 'none'; }catch(_){}
             try{ if (singlePlayerScreen) singlePlayerScreen.style.display = 'none'; }catch(_){}
             try{
-              if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen();
-              if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'flex';
+              if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-game-screen');
+              if (typeof window.novaOpenSinglePlayerGameScreen === 'function') {
+                window.novaOpenSinglePlayerGameScreen();
+              } else if (singlePlayerGameScreen) {
+                singlePlayerGameScreen.style.display = 'flex';
+              }
               if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime();
             }catch(_){}
             try{ if (questionNumber) questionNumber.style.display = 'none'; }catch(_){}
@@ -6253,9 +6272,13 @@ finally{
             stopAllMusic();
 
             // Ekranları sıfırla ve ana ekrana dön
-            singlePlayerGameScreen.style.display = 'none';
+            if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
+                window.novaCloseSinglePlayerGameScreen();
+            } else {
+                singlePlayerGameScreen.style.display = 'none';
+                mainScreen.style.removeProperty('display');
+            }
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
-            mainScreen.style.removeProperty('display');
             resetGameScreens();
             try{
               if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
@@ -7556,8 +7579,12 @@ function switchToDuelScreen(duelKey) {
     } else if (singlePlayerScreen) {
         singlePlayerScreen.style.display = 'none';
     }
-    document.body.classList.remove('nova-sp-screen-open');
-    if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'none';
+    if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
+        window.novaCloseSinglePlayerGameScreen();
+    } else {
+        document.body.classList.remove('nova-sp-screen-open', 'nova-sp-game-open');
+        if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'none';
+    }
     try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
     if (friendsScreen) friendsScreen.style.display = 'none';
     if (rankingPanel) {

@@ -62,7 +62,7 @@
 
 <script src="js/core/002-script-002.js"></script>
 <script src="js/core/003-nova-matching-game.js"></script>
-<link rel="stylesheet" href="styles/034-nova-perf-settings-style.css" />
+<link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=20260522sp3" />
 <script src="js/core/005-nova-daily-puzzle.js"></script>
 <script src="js/core/006-script-006.js"></script>
 
@@ -361,7 +361,7 @@
 <button class="ranking-back-button" id="rankingBackButton" onclick="window.closeSeasonRankingPanel && window.closeSeasonRankingPanel(); return false;">Geri Dön</button>
 </div>
 <!-- Tek Kişilik Oyun Ekranı -->
-<div class="game-container nova-perf-hq-scope" id="single-player-screen">
+<div class="game-container nova-perf-sp-scope" id="single-player-screen">
 <h2 class="nova-sp-screen-title" lang="tr">TEK KİŞİLİK OYUN</h2>
 <div class="table-section">
 <h3>Konu Belirleme</h3>
@@ -382,7 +382,8 @@
 <button class="back-button">Geri Dön</button>
 </div>
 <!-- Tek Kişilik Oyun Sorular Ekranı -->
-<div class="single-player-game-container nova-perf-hq-scope" id="single-player-game-screen">
+<div class="single-player-game-container nova-perf-sp-scope" id="single-player-game-screen">
+<div class="nova-sp-game-hud">
 <div class="progress-container">
 <div class="question-number" id="question-number">Soru 1/10</div>
 <div class="progress-bar">
@@ -391,6 +392,7 @@
 </div>
 <div class="timer-container">
 <div class="timer" id="timer">45</div>
+</div>
 </div>
 <div class="question-container">
 <img alt="Soru Resmi" class="question-image" id="question-image" src="" style="display: none;"/>
@@ -772,8 +774,8 @@
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=1" />
 <script src="js/core/nova-question-markup.js?v=1"></script>
 <script src="js/ui/006-nova-game-select.js?v=20260522sp2"></script>
-<script src="js/ui/007-nova-single-player-screen.js?v=20260522sp1"></script>
-<script src="js/screens/007-script-007.js?v=20260522sp1"></script>
+<script src="js/ui/007-nova-single-player-screen.js?v=20260522sp3"></script>
+<script src="js/screens/007-script-007.js?v=20260522knight"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
 <script src="js/core/008-script-008.js"></script>
 <script src="js/core/009-script-009.js"></script>
@@ -1121,7 +1123,7 @@
 <script src="js/core/045-nova-weekly-quests.js"></script>
 
 <script src="js/features/046-nova-move-homework-above-photo.js"></script>
-<script src="js/ui/004-nova-perf-settings-script.js"></script>
+<script src="js/ui/004-nova-perf-settings-script.js?v=20260522sp3"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
 <script src="js/screens/047-script-047.js"></script>
@@ -1137,9 +1139,13 @@
 </div>
 <script src="js/ui/049-nova-wait-script.js"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=20260413q1" />
-<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=20260522sp2" />
+<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=20260522sp3" />
+<link rel="stylesheet" href="styles/066-nova-knight-hero.css?v=20260522knight4" />
+<link rel="stylesheet" href="styles/067-nova-single-player-game-layout.css?v=20260522knight5" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
 <script src="js/screens/050-script-050.js"></script>
+<script src="js/ui/009-nova-knight-svg-data.js?v=20260522knight5"></script>
+<script src="js/ui/008-nova-knight-hero.js?v=20260522knight5"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
 <script src="js/core/052-script-052.js"></script>
