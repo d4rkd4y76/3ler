@@ -1,4 +1,4 @@
-/* ═══ Alev Bot — mağaza + FX ═══ */
+/* ═══ Alev Bot — mağaza + ana ekran + mağaza canlı önizleme ═══ */
 
 .nova-hero-store-card{
   grid-column: 1 / -1;
@@ -8,7 +8,7 @@
 }
 .nova-hero-store-card--blaze .nova-hero-preview{
   width: 100%;
-  height: 220px;
+  height: 300px;
   display: grid;
   place-items: end center;
   background:
@@ -52,6 +52,50 @@
   overflow: visible;
   filter: drop-shadow(0 12px 28px rgba(249, 115, 22, .35));
 }
+
+/* Mağaza — tam boy, eğlenceli CSS hareketleri (rAF yok) */
+.nova-hero-preview--store-live .nova-hero-svg{
+  max-width: min(260px, 78vw);
+  animation: novaStoreHeroBob 3.2s ease-in-out infinite;
+  transform-origin: 50% 92%;
+}
+.nova-hero-preview--store-live .nova-hero__core-glow{
+  animation: bbCoreIdle 2.2s ease-in-out infinite;
+}
+.nova-hero-preview--store-live .nova-hero__head{
+  animation: novaHeroHeadIdle 2.6s ease-in-out infinite;
+  transform-origin: 50% 85%;
+}
+.nova-hero-preview--store-live .nova-hero__arm-l{
+  animation: novaStoreArmL 2.4s ease-in-out infinite;
+  transform-origin: 88px 168px;
+}
+.nova-hero-preview--store-live .nova-hero__arm-r{
+  animation: novaStoreArmR 2.8s ease-in-out infinite;
+  transform-origin: 152px 168px;
+}
+.nova-hero-preview--store-live .nova-hero__legs{
+  animation: novaHeroLegShift 4.5s ease-in-out infinite;
+  transform-origin: 50% 0%;
+}
+.nova-hero-preview--store-live .nova-hero__flames{
+  animation: novaHeroFlameFlicker 1.6s ease-in-out infinite;
+}
+@keyframes novaStoreHeroBob{
+  0%, 100%{ transform: translateY(0) scale(1); }
+  40%{ transform: translateY(-6px) scale(1.03); }
+  70%{ transform: translateY(-2px) scale(1.01); }
+}
+@keyframes novaStoreArmL{
+  0%, 100%{ transform: rotate(0deg); }
+  35%{ transform: rotate(-18deg); }
+  65%{ transform: rotate(8deg); }
+}
+@keyframes novaStoreArmR{
+  0%, 100%{ transform: rotate(0deg); }
+  30%{ transform: rotate(14deg); }
+  55%{ transform: rotate(-12deg); }
+}
 .nova-hero-preview--idle .nova-hero__core-glow{
   animation: bbCoreIdle 2.4s ease-in-out infinite;
 }
@@ -60,20 +104,14 @@
   50%{ opacity: .32; }
 }
 
-@media (prefers-reduced-motion: reduce){
-  .nova-hero-preview--idle .nova-hero__core-glow{
-    animation: none;
-  }
-}
-
-/* ═══ Ana ekran — isim tam ortada, kahraman solda ayrı alanda ═══ */
+/* ═══ Ana ekran — grid: isim ortada, kahraman solda (yazıdan geçmez) ═══ */
 #main-screen .student-name-stage{
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   width: 100%;
   max-width: 100%;
-  min-height: clamp(58px, 15vw, 78px);
+  min-height: clamp(52px, 13vw, 68px);
   margin: 0 auto 10px;
   padding: 0 clamp(4px, 2vw, 10px);
   box-sizing: border-box;
@@ -89,7 +127,6 @@
   justify-self: center;
   max-width: min(100%, 92vw);
 }
-/* Sol sütun: dolaşım alanı — isimle aynı hücrede değil, arkada kalmaz */
 #main-screen .nova-main-hero-zone{
   grid-column: 1;
   grid-row: 1;
@@ -97,13 +134,13 @@
   align-self: center;
   position: relative;
   z-index: 2;
-  width: clamp(64px, 18vw, 88px);
-  height: clamp(64px, 18vw, 88px);
+  width: clamp(60px, 17vw, 80px);
+  height: clamp(60px, 17vw, 80px);
   margin-right: clamp(6px, 2.5vw, 14px);
   pointer-events: none;
   contain: layout style paint;
   opacity: 0;
-  transform: scale(0.85);
+  transform: scale(0.88);
   transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34, 1.15, 0.64, 1);
 }
 #main-screen .nova-main-hero-zone.is-visible{
@@ -115,16 +152,16 @@
   left: 6%;
   right: 6%;
   bottom: 4%;
-  height: 24%;
+  height: 22%;
   border-radius: 50%;
   background: radial-gradient(ellipse 100% 100% at 50% 50%,
-    rgba(251, 191, 36, 0.28),
+    rgba(251, 191, 36, 0.26),
     rgba(249, 115, 22, 0.1) 52%,
     transparent 70%);
-  box-shadow: 0 0 22px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.18);
+  z-index: 0;
   opacity: 0;
   transition: opacity 0.35s ease;
-  z-index: 0;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-zone__pad{
   opacity: 1;
@@ -135,43 +172,43 @@
   inset: 4% 6% 12% 6%;
   display: grid;
   place-items: end center;
-  pointer-events: none;
   z-index: 1;
+  pointer-events: none;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-slot{
-  animation: novaHeroPatrol 11s ease-in-out infinite;
+  animation: novaHeroPatrol 12s ease-in-out infinite;
   will-change: transform;
 }
 #main-screen .nova-main-hero-slot .nova-main-hero-host,
 #main-screen .nova-main-hero-slot .nova-hero-svg{
   width: 100%;
   height: auto;
-  max-width: 54px;
-  max-height: 62px;
+  max-width: 52px;
+  max-height: 58px;
   margin: 0;
   display: block;
   overflow: visible;
-  filter: drop-shadow(0 5px 12px rgba(249, 115, 22, 0.42));
+  filter: drop-shadow(0 4px 10px rgba(249, 115, 22, 0.4));
+  transform-origin: 50% 92%;
 }
-/* Gövde parçaları — hafif, GPU dostu */
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__body{
-  animation: novaHeroBodySway 4.2s ease-in-out infinite;
+  animation: novaHeroBodySway 4s ease-in-out infinite;
   transform-origin: 50% 70%;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__head{
-  animation: novaHeroHeadNod 3.1s ease-in-out infinite;
+  animation: novaHeroHeadIdle 2.8s ease-in-out infinite;
   transform-origin: 50% 85%;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__arm-l{
-  animation: novaHeroArmL 2.6s ease-in-out infinite;
+  animation: novaHeroArmL 2.5s ease-in-out infinite;
   transform-origin: 88px 168px;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__arm-r{
-  animation: novaHeroArmR 2.9s ease-in-out infinite;
+  animation: novaHeroWaveIdle 3s ease-in-out infinite;
   transform-origin: 152px 168px;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__legs{
-  animation: novaHeroLegShift 5.5s ease-in-out infinite;
+  animation: novaHeroLegShift 5s ease-in-out infinite;
   transform-origin: 50% 0%;
 }
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__core-glow{
@@ -183,57 +220,67 @@
 #main-screen .nova-main-hero-zone.is-visible .nova-hero__flames{
   animation: novaHeroFlameFlicker 1.8s ease-in-out infinite;
 }
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__core{
+  animation: novaMainHeroCorePulse 2.4s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes novaMainHeroCorePulse{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.1); }
+}
 @keyframes novaHeroPatrol{
   0%, 100%{ transform: translate(0, 0) scale(1); }
-  10%{ transform: translate(4px, -7px) scale(1.05); }
-  22%{ transform: translate(14px, -3px) scale(1.02); }
-  35%{ transform: translate(20px, 4px) scale(1); }
-  48%{ transform: translate(10px, 7px) scale(0.98); }
-  62%{ transform: translate(-2px, 5px) scale(1.01); }
-  76%{ transform: translate(-8px, -2px) scale(1.03); }
-  88%{ transform: translate(2px, -6px) scale(1.04); }
+  12%{ transform: translate(5px, -6px) scale(1.04); }
+  28%{ transform: translate(14px, -2px) scale(1.02); }
+  42%{ transform: translate(18px, 4px) scale(1); }
+  58%{ transform: translate(8px, 6px) scale(0.98); }
+  72%{ transform: translate(-4px, 3px) scale(1.01); }
+  86%{ transform: translate(-6px, -3px) scale(1.03); }
 }
 @keyframes novaHeroBodySway{
   0%, 100%{ transform: rotate(0deg); }
   50%{ transform: rotate(2.5deg); }
 }
-@keyframes novaHeroHeadNod{
-  0%, 100%{ transform: rotate(0deg) translateY(0); }
-  35%{ transform: rotate(-4deg) translateY(-2px); }
-  70%{ transform: rotate(3deg) translateY(-1px); }
+@keyframes novaHeroHeadIdle{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(-3deg); }
 }
 @keyframes novaHeroArmL{
   0%, 100%{ transform: rotate(0deg); }
-  25%{ transform: rotate(-16deg); }
-  55%{ transform: rotate(10deg); }
-  80%{ transform: rotate(-8deg); }
+  25%{ transform: rotate(-14deg); }
+  55%{ transform: rotate(9deg); }
 }
-@keyframes novaHeroArmR{
+@keyframes novaHeroWaveIdle{
   0%, 100%{ transform: rotate(0deg); }
-  20%{ transform: rotate(12deg); }
-  45%{ transform: rotate(-14deg); }
-  75%{ transform: rotate(8deg); }
+  40%{ transform: rotate(-11deg); }
+  70%{ transform: rotate(7deg); }
 }
 @keyframes novaHeroLegShift{
   0%, 100%{ transform: translateX(0); }
   50%{ transform: translateX(3px); }
 }
 @keyframes novaHeroFlameFlicker{
-  0%, 100%{ opacity: 0.15; }
-  40%{ opacity: 0.35; }
-  70%{ opacity: 0.22; }
+  0%, 100%{ opacity: 0.12; }
+  45%{ opacity: 0.32; }
 }
 @keyframes novaHeroPadPulse{
   0%, 100%{ transform: scaleX(1); opacity: 0.85; }
-  50%{ transform: scaleX(1.08); opacity: 1; }
+  50%{ transform: scaleX(1.06); opacity: 1; }
 }
 @keyframes novaMainHeroVisor{
-  0%, 85%, 100%{ opacity: 1; }
-  88%{ opacity: 0.45; }
-  91%{ opacity: 1; }
-  94%{ opacity: 0.55; }
+  0%, 88%, 100%{ opacity: 1; }
+  92%{ opacity: 0.45; }
+  96%{ opacity: 1; }
 }
+
 @media (prefers-reduced-motion: reduce){
+  .nova-hero-preview--store-live .nova-hero-svg,
+  .nova-hero-preview--store-live .nova-hero__core-glow,
+  .nova-hero-preview--store-live .nova-hero__head,
+  .nova-hero-preview--store-live .nova-hero__arm-l,
+  .nova-hero-preview--store-live .nova-hero__arm-r,
+  .nova-hero-preview--store-live .nova-hero__legs,
+  .nova-hero-preview--store-live .nova-hero__flames,
   #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-slot,
   #main-screen .nova-main-hero-zone.is-visible .nova-hero__body,
   #main-screen .nova-main-hero-zone.is-visible .nova-hero__head,
@@ -243,6 +290,7 @@
   #main-screen .nova-main-hero-zone.is-visible .nova-hero__core-glow,
   #main-screen .nova-main-hero-zone.is-visible .nova-hero__visor,
   #main-screen .nova-main-hero-zone.is-visible .nova-hero__flames,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__core,
   #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-zone__pad{
     animation: none !important;
   }

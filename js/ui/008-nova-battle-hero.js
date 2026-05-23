@@ -6,17 +6,25 @@
   var HERO_COST = 5000;
 
   var MOTIVATE_LINES = [
-    'Muhteşemsin, devam!',
-    'Harika cevap!',
-    'Süpersin şampiyon!',
-    'Zekân parlıyor!',
-    'Bravo, böyle devam!',
-    'İnanılmaz gidiyorsun!',
-    'Alev gibi güçlüsün!'
+    '🔥 {n}, tam isabet! Böyle devam!',
+    '⭐ {n}, zekân parlıyor!',
+    '💪 Harika cevap {n}!',
+    '🚀 {n}, süpersin şampiyon!',
+    '✨ Bravo {n}! İnanılmaz gidiyorsun!',
+    '🏆 {n}, sen bu işi biliyorsun!',
+    '🔥 Alev gibi güçlüsün {n}!'
   ];
 
-  var EPIC_LINES = ['EPİK VURUŞ!', 'MUHTEŞEM!', 'EFSANE!'];
-  var FIRE_LINES = ['ALEV PATLAMASI!', 'GÜÇ MODU!', 'ISINDI!'];
+  var EPIC_LINES = [
+    '🔥 {n} — EFSANE CEVAP!',
+    '⚡ {n}, MUHTEŞEM VURUŞ!',
+    '👑 {n}, KRALİYORSUN!'
+  ];
+  var FIRE_LINES = [
+    '💥 {n}, ALEV PATLAMASI!',
+    '🔥 {n}, GÜÇ MODU AÇIK!',
+    '⚡ {n}, ISINDIN!'
+  ];
 
   var fxBusy = false;
   var correctFxCount = 0;
@@ -167,10 +175,21 @@
     return new Promise(function (resolve) { setTimeout(resolve, ms); });
   }
 
+  function heroDisplayName() {
+    var s = getStudent();
+    var n = (s && s.studentName) ? String(s.studentName).trim() : '';
+    if (!n) return 'Şampiyon';
+    if (n.length > 14) return n.slice(0, 13) + '…';
+    return n;
+  }
+
   function pickCaption(variant) {
-    if (variant === 'epic') return EPIC_LINES[correctFxCount % EPIC_LINES.length];
-    if (variant === 'fire') return FIRE_LINES[correctFxCount % FIRE_LINES.length];
-    return MOTIVATE_LINES[correctFxCount % MOTIVATE_LINES.length];
+    var name = heroDisplayName();
+    var pool = MOTIVATE_LINES;
+    if (variant === 'epic') pool = EPIC_LINES;
+    else if (variant === 'fire') pool = FIRE_LINES;
+    var line = pool[correctFxCount % pool.length];
+    return String(line).replace(/\{n\}/g, name);
   }
 
   function pickVariant() {
@@ -180,86 +199,16 @@
     return 'cheer';
   }
 
-  function runFireBurst(svg, done) {
-    var core = svg.querySelector('.nova-hero__core');
-    var glow = svg.querySelector('.nova-hero__core-glow');
-    var flames = svg.querySelector('.nova-hero__flames');
-    var armL = svg.querySelector('.nova-hero__arm-l');
-    var armR = svg.querySelector('.nova-hero__arm-r');
-    var start = performance.now();
-    var dur = 1000;
-
-    function frame(now) {
-      var t = Math.min(1, (now - start) / dur);
-      var pulse = t < 0.45 ? t / 0.45 : 1 - (t - 0.45) / 0.55;
-      if (core) core.setAttribute('r', String(22 + pulse * 6));
-      if (glow) glow.setAttribute('opacity', String(pulse * 0.55));
-      if (flames) flames.setAttribute('opacity', String(t < 0.2 ? 0 : Math.min(1, (t - 0.15) * 2) * (1 - Math.max(0, t - 0.75) * 3)));
-      if (armL) armL.style.transform = 'rotate(' + (-8 - pulse * 18) + 'deg)';
-      if (armR) armR.style.transform = 'rotate(' + (8 + pulse * 18) + 'deg)';
-      if (t < 1) requestAnimationFrame(frame);
-      else if (done) done();
-    }
-    if (flames) flames.setAttribute('opacity', '0');
-    if (glow) glow.setAttribute('opacity', '0');
-    if (armL) armL.style.transformOrigin = '88px 168px';
-    if (armR) armR.style.transformOrigin = '152px 168px';
-    requestAnimationFrame(frame);
-  }
-
-  function runCheer(svg, done) {
-    var head = svg.querySelector('.nova-hero__head');
-    var armL = svg.querySelector('.nova-hero__arm-l');
-    var armR = svg.querySelector('.nova-hero__arm-r');
-    var start = performance.now();
-    var dur = 880;
-    function frame(now) {
-      var t = Math.min(1, (now - start) / dur);
-      var w = Math.sin(t * Math.PI * 4);
-      if (head) head.style.transform = 'rotate(' + (w * 4) + 'deg)';
-      if (armL) armL.style.transform = 'rotate(' + (-28 + w * 12) + 'deg)';
-      if (armR) armR.style.transform = 'rotate(' + (28 - w * 12) + 'deg)';
-      if (t < 1) requestAnimationFrame(frame);
-      else if (done) done();
-    }
-    requestAnimationFrame(frame);
-  }
-
-  function runEpic(svg, done) {
-    runFireBurst(svg, function () {
-      var sparks = svg.querySelector('.nova-hero__sparks');
-      if (sparks) sparks.setAttribute('opacity', '1');
-      setTimeout(function () {
-        if (sparks) sparks.setAttribute('opacity', '0');
-        if (done) done();
-      }, 320);
-    });
-  }
-
-  function runIdleAnimation(svg) {
-    if (!svg || svg.__idleRunning) return;
-    svg.__idleRunning = true;
-    var core = svg.querySelector('.nova-hero__core');
-    var glow = svg.querySelector('.nova-hero__core-glow');
-    var start = performance.now();
-    function breathe(now) {
-      if (!svg.isConnected) { svg.__idleRunning = false; return; }
-      var t = (now - start) / 1000;
-      var p = 0.5 + Math.sin(t * 2.2) * 0.5;
-      if (core) core.setAttribute('r', String(20 + p * 3));
-      if (glow) glow.setAttribute('opacity', String(p * 0.22));
-      requestAnimationFrame(breathe);
-    }
-    requestAnimationFrame(breathe);
-  }
-
   function hideArena(arena) {
     if (!arena) arena = document.getElementById('nova-sp-hero-arena');
     if (!arena) return;
     arena.classList.remove('is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show');
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
-    if (host) host.innerHTML = '';
+    if (host) {
+      host.classList.remove('nova-sp-fx-live', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer');
+      host.innerHTML = '';
+    }
   }
 
   function ensureArena() {
@@ -319,7 +268,6 @@
       var cap = arena.querySelector('.nova-sp-hero-arena__caption');
       var svg = mountHeroInto(host);
       if (!svg) { resolve(); return; }
-      if (svg.__idleRunning) svg.__idleRunning = false;
 
       fxBusy = true;
       if (cap) cap.textContent = pickCaption(variant);
@@ -339,24 +287,27 @@
   }
 
   function runHeroSequence(arena, svg, variant) {
-    return waitMs(60).then(function () {
+    var host = arena.querySelector('.nova-sp-hero-arena__host');
+    return waitMs(40).then(function () {
       arena.classList.add('is-centered', 'is-caption-show');
-      return waitMs(480);
+      if (host) {
+        host.classList.add('nova-sp-fx-live', 'nova-sp-fx-' + variant);
+      }
+      return waitMs(400);
     }).then(function () {
       spawnArenaFx(arena, variant);
-      if (variant === 'epic') setTimeout(triggerGameShake, 380);
-      else if (variant === 'fire') setTimeout(triggerGameShake, 420);
-      return new Promise(function (res) {
-        if (variant === 'epic') runEpic(svg, res);
-        else if (variant === 'fire') runFireBurst(svg, res);
-        else runCheer(svg, res);
-      });
+      if (variant === 'epic') setTimeout(triggerGameShake, 260);
+      else if (variant === 'fire') setTimeout(triggerGameShake, 300);
+      return waitMs(850);
     }).then(function () {
-      return waitMs(260);
+      if (host) {
+        host.classList.remove('nova-sp-fx-live', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer');
+      }
+      return waitMs(180);
     }).then(function () {
       arena.classList.remove('is-centered', 'is-caption-show', 'is-slamming', 'is-epic');
       arena.classList.add('is-exiting');
-      return waitMs(500);
+      return waitMs(440);
     });
   }
 
@@ -376,7 +327,7 @@
   }
 
   function heroPreviewHtml() {
-    return '<div class="nova-hero-preview nova-hero-preview--idle">'
+    return '<div class="nova-hero-preview nova-hero-preview--store-live">'
       + '<div class="nova-hero-svg-host" data-nova-hero-host="1"></div>'
       + '</div>';
   }
@@ -498,8 +449,7 @@
     }
     container.appendChild(card);
     var host = card.querySelector('[data-nova-hero-host]');
-    var svg = mountHeroInto(host);
-    if (svg) runIdleAnimation(svg);
+    mountHeroInto(host);
   }
 
   function patchStoreCategoryButtons() {
