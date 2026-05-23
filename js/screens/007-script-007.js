@@ -4427,6 +4427,7 @@ function novaRequestHudFabRelayout(){
 // Ana ekrana gelindiğinde elmas sayısını güncelle
 function onMainScreenLoad() {
     try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
+    try { if (typeof window.novaRefreshMainScreenHero === 'function') window.novaRefreshMainScreenHero(); } catch (_) {}
     // NOVA: Sürpriz kutuyu başlat
     try{ initSurpriseBox(); }catch(e){ console.warn(e); }
     // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; güvenli reflow tetikle.

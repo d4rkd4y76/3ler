@@ -65,3 +65,188 @@
     animation: none;
   }
 }
+
+/* ═══ Ana ekran — isim tam ortada, kahraman solda ayrı alanda ═══ */
+#main-screen .student-name-stage{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(58px, 15vw, 78px);
+  margin: 0 auto 10px;
+  padding: 0 clamp(4px, 2vw, 10px);
+  box-sizing: border-box;
+  position: relative;
+}
+#main-screen .student-name-stage .student-name{
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 5;
+  margin: 0 !important;
+  text-align: center;
+  justify-self: center;
+  max-width: min(100%, 92vw);
+}
+/* Sol sütun: dolaşım alanı — isimle aynı hücrede değil, arkada kalmaz */
+#main-screen .nova-main-hero-zone{
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+  position: relative;
+  z-index: 2;
+  width: clamp(64px, 18vw, 88px);
+  height: clamp(64px, 18vw, 88px);
+  margin-right: clamp(6px, 2.5vw, 14px);
+  pointer-events: none;
+  contain: layout style paint;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34, 1.15, 0.64, 1);
+}
+#main-screen .nova-main-hero-zone.is-visible{
+  opacity: 1;
+  transform: scale(1);
+}
+#main-screen .nova-main-hero-zone__pad{
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 4%;
+  height: 24%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    rgba(251, 191, 36, 0.28),
+    rgba(249, 115, 22, 0.1) 52%,
+    transparent 70%);
+  box-shadow: 0 0 22px rgba(249, 115, 22, 0.2);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-main-hero-zone__pad{
+  opacity: 1;
+  animation: novaHeroPadPulse 3.6s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-slot{
+  position: absolute;
+  inset: 4% 6% 12% 6%;
+  display: grid;
+  place-items: end center;
+  pointer-events: none;
+  z-index: 1;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-main-hero-slot{
+  animation: novaHeroPatrol 11s ease-in-out infinite;
+  will-change: transform;
+}
+#main-screen .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-hero-slot .nova-hero-svg{
+  width: 100%;
+  height: auto;
+  max-width: 54px;
+  max-height: 62px;
+  margin: 0;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 5px 12px rgba(249, 115, 22, 0.42));
+}
+/* Gövde parçaları — hafif, GPU dostu */
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__body{
+  animation: novaHeroBodySway 4.2s ease-in-out infinite;
+  transform-origin: 50% 70%;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__head{
+  animation: novaHeroHeadNod 3.1s ease-in-out infinite;
+  transform-origin: 50% 85%;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__arm-l{
+  animation: novaHeroArmL 2.6s ease-in-out infinite;
+  transform-origin: 88px 168px;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__arm-r{
+  animation: novaHeroArmR 2.9s ease-in-out infinite;
+  transform-origin: 152px 168px;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__legs{
+  animation: novaHeroLegShift 5.5s ease-in-out infinite;
+  transform-origin: 50% 0%;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__core-glow{
+  animation: bbCoreIdle 2.2s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__visor{
+  animation: novaMainHeroVisor 4.2s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-zone.is-visible .nova-hero__flames{
+  animation: novaHeroFlameFlicker 1.8s ease-in-out infinite;
+}
+@keyframes novaHeroPatrol{
+  0%, 100%{ transform: translate(0, 0) scale(1); }
+  10%{ transform: translate(4px, -7px) scale(1.05); }
+  22%{ transform: translate(14px, -3px) scale(1.02); }
+  35%{ transform: translate(20px, 4px) scale(1); }
+  48%{ transform: translate(10px, 7px) scale(0.98); }
+  62%{ transform: translate(-2px, 5px) scale(1.01); }
+  76%{ transform: translate(-8px, -2px) scale(1.03); }
+  88%{ transform: translate(2px, -6px) scale(1.04); }
+}
+@keyframes novaHeroBodySway{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(2.5deg); }
+}
+@keyframes novaHeroHeadNod{
+  0%, 100%{ transform: rotate(0deg) translateY(0); }
+  35%{ transform: rotate(-4deg) translateY(-2px); }
+  70%{ transform: rotate(3deg) translateY(-1px); }
+}
+@keyframes novaHeroArmL{
+  0%, 100%{ transform: rotate(0deg); }
+  25%{ transform: rotate(-16deg); }
+  55%{ transform: rotate(10deg); }
+  80%{ transform: rotate(-8deg); }
+}
+@keyframes novaHeroArmR{
+  0%, 100%{ transform: rotate(0deg); }
+  20%{ transform: rotate(12deg); }
+  45%{ transform: rotate(-14deg); }
+  75%{ transform: rotate(8deg); }
+}
+@keyframes novaHeroLegShift{
+  0%, 100%{ transform: translateX(0); }
+  50%{ transform: translateX(3px); }
+}
+@keyframes novaHeroFlameFlicker{
+  0%, 100%{ opacity: 0.15; }
+  40%{ opacity: 0.35; }
+  70%{ opacity: 0.22; }
+}
+@keyframes novaHeroPadPulse{
+  0%, 100%{ transform: scaleX(1); opacity: 0.85; }
+  50%{ transform: scaleX(1.08); opacity: 1; }
+}
+@keyframes novaMainHeroVisor{
+  0%, 85%, 100%{ opacity: 1; }
+  88%{ opacity: 0.45; }
+  91%{ opacity: 1; }
+  94%{ opacity: 0.55; }
+}
+@media (prefers-reduced-motion: reduce){
+  #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-slot,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__body,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__head,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__arm-l,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__arm-r,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__legs,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__core-glow,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__visor,
+  #main-screen .nova-main-hero-zone.is-visible .nova-hero__flames,
+  #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-zone__pad{
+    animation: none !important;
+  }
+  #main-screen .nova-main-hero-zone{
+    transition: opacity 0.2s ease;
+  }
+}

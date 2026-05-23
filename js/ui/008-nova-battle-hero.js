@@ -36,11 +36,106 @@
   function syncHeroToStudent(data) {
     var s = getStudent();
     if (!s || !data) return;
-    s.battleHero = data.battleHero || null;
+    if (Object.prototype.hasOwnProperty.call(data, 'battleHero')) {
+      s.battleHero = data.battleHero || null;
+    }
     try {
       window.selectedStudent = s;
       localStorage.setItem('selectedStudent', JSON.stringify(s));
     } catch (_) {}
+  }
+
+  function getEquippedHeroId() {
+    var s = getStudent();
+    return (s && s.battleHero) ? String(s.battleHero).trim() : '';
+  }
+
+  function isMainScreenVisible() {
+    var main = document.getElementById('main-screen');
+    if (!main) return false;
+    try {
+      var st = window.getComputedStyle(main);
+      return st.display !== 'none' && st.visibility !== 'hidden';
+    } catch (_) {
+      return main.style.display !== 'none';
+    }
+  }
+
+  async function loadBattleHeroFromDb() {
+    var s = getStudent();
+    if (!s || !s.classId || !s.studentId || typeof database === 'undefined') return '';
+    try {
+      var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId + '/battleHero').once('value');
+      var heroId = snap.exists() ? String(snap.val() || '').trim() : '';
+      syncHeroToStudent({ battleHero: heroId || null });
+      return heroId;
+    } catch (e) {
+      console.warn('loadBattleHeroFromDb', e);
+      return getEquippedHeroId();
+    }
+  }
+
+  function clearMainHeroSlot(slot) {
+    var zone = document.getElementById('nova-main-hero-zone');
+    if (zone) {
+      zone.classList.remove('is-visible', 'nova-main-hero-zone--blaze');
+      zone.setAttribute('aria-hidden', 'true');
+    }
+    if (!slot) slot = document.getElementById('nova-main-hero-slot');
+    if (!slot) return;
+    slot.innerHTML = '';
+    slot.classList.remove('nova-main-hero-slot--blaze');
+  }
+
+  function mountMainScreenHero(heroId) {
+    var zone = document.getElementById('nova-main-hero-zone');
+    var slot = document.getElementById('nova-main-hero-slot');
+    if (!zone || !slot) return;
+    clearMainHeroSlot(slot);
+    if (!heroId || heroId !== HERO_ID) return;
+    if (!window.NOVA_BLAZE_BOT_SVG_TEMPLATE) return;
+    zone.setAttribute('aria-hidden', 'false');
+    zone.classList.add('is-visible', 'nova-main-hero-zone--blaze');
+    slot.classList.add('nova-main-hero-slot--blaze');
+    var host = document.createElement('div');
+    host.className = 'nova-hero-svg-host nova-main-hero-host';
+    host.setAttribute('data-nova-main-hero', heroId);
+    slot.appendChild(host);
+    mountHeroInto(host);
+  }
+
+  async function refreshMainScreenHero() {
+    var slot = document.getElementById('nova-main-hero-slot');
+    if (!slot) return;
+    if (!isMainScreenVisible()) return;
+    var s = getStudent();
+    if (!s || !s.classId || !s.studentId) {
+      clearMainHeroSlot(slot);
+      return;
+    }
+    var heroId = getEquippedHeroId();
+    if (!heroId) heroId = await loadBattleHeroFromDb();
+    if (!heroId) {
+      clearMainHeroSlot(slot);
+      return;
+    }
+    if (heroId === HERO_ID) {
+      try {
+        var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
+        var data = snap.val() || {};
+        if (!ownsHero(data) || data.battleHero !== HERO_ID) {
+          clearMainHeroSlot(slot);
+          return;
+        }
+      } catch (_) {
+        clearMainHeroSlot(slot);
+        return;
+      }
+    } else {
+      clearMainHeroSlot(slot);
+      return;
+    }
+    mountMainScreenHero(heroId);
   }
 
   function isHeroEquipped(data) {
@@ -344,6 +439,7 @@
     try {
       await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: HERO_ID });
       syncHeroToStudent({ battleHero: HERO_ID });
+      try { refreshMainScreenHero(); } catch (_) {}
       await showAlert('🔥 ' + HERO_NAME + ' aktif! Doğru cevaplarda ortaya gelip seni motive eder.');
     } catch (e) {
       console.error('equipBlazeHero', e);
@@ -451,6 +547,7 @@
     window.getStoreStudentData = async function (force) {
       var data = await orig.apply(this, arguments);
       syncHeroToStudent(data);
+      try { refreshMainScreenHero(); } catch (_) {}
       return data;
     };
     window.getStoreStudentData.__novaHeroPatched = true;
@@ -474,6 +571,26 @@
     }
   }
 
+  function patchMainScreenHeroHooks() {
+    if (typeof applyOwnNameFrame === 'function' && !applyOwnNameFrame.__novaHeroPatched) {
+      var origApply = applyOwnNameFrame;
+      window.applyOwnNameFrame = function () {
+        origApply();
+        try { refreshMainScreenHero(); } catch (_) {}
+      };
+      window.applyOwnNameFrame.__novaHeroPatched = true;
+    }
+    var main = document.getElementById('main-screen');
+    if (main && !main.__novaHeroObs) {
+      var obs = new MutationObserver(function () {
+        if (isMainScreenVisible()) refreshMainScreenHero();
+        else clearMainHeroSlot(document.getElementById('nova-main-hero-slot'));
+      });
+      obs.observe(main, { attributes: true, attributeFilter: ['style', 'class'] });
+      main.__novaHeroObs = obs;
+    }
+  }
+
   function boot() {
     try {
       if (typeof photoCategories === 'object' && photoCategories) {
@@ -486,10 +603,13 @@
     patchLoadProfilePhotos();
     patchStudentDataLoad();
     patchSpGameOpen();
+    patchMainScreenHeroHooks();
+    try { refreshMainScreenHero(); } catch (_) {}
   }
 
   window.novaTryPlayBattleHeroFx = novaTryPlayBattleHeroFx;
   window.novaTryPlayKnightCorrectFx = novaTryPlayBattleHeroFx;
+  window.novaRefreshMainScreenHero = refreshMainScreenHero;
   window.NOVA_BATTLE_HERO_ID = HERO_ID;
 
   if (document.readyState === 'loading') {
