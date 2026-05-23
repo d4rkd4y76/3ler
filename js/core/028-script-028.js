@@ -149,13 +149,13 @@
           if (!txt) return;
           const item = document.createElement('div');
           item.className = 'nova-wrong-item';
-          item.innerHTML = \`
-            <div class="q">\${txt.split('. ').slice(0,1)[0]}</div>
+          item.innerHTML = `
+            <div class="q">${txt.split('. ').slice(0,1)[0]}</div>
             <div class="row">
               <div><span class="lbl">Senin Cevabın</span><span class="val">—</span></div>
               <div><span class="lbl">Doğru Cevap</span><span class="val">—</span></div>
             </div>
-          \`;
+          `;
           hook.appendChild(item);
         });
       }else{

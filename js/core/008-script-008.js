@@ -10,21 +10,45 @@ function novaAutoMatchUiReset() {
    if (cnt) cnt.textContent = '3';
 }
 
-async function novaShowFoundBannerThenContinue(duelData) {
+async function novaResolveDuelSyncEnterAt(duelKey, duelData) {
+   let target = Number(duelData && duelData.syncEnterAt) || 0;
+   if (!target && window.database && duelKey) {
+      try {
+         const s = await window.database.ref('duels/' + duelKey + '/syncEnterAt').once('value');
+         if (s.exists()) target = Number(s.val()) || 0;
+      } catch (_) {}
+   }
+   if (!target) {
+      const createdAt = Number(duelData && duelData.createdAt) || Date.now();
+      target = createdAt + 3500;
+   }
+   return target;
+}
+
+async function novaShowFoundBannerThenContinue(duelData, duelKey) {
+   const target = await novaResolveDuelSyncEnterAt(duelKey, duelData);
    const mm = document.getElementById('matchmakingScreen');
-   if (!mm || getComputedStyle(mm).display === 'none') return;
+   const showBanner = mm && getComputedStyle(mm).display !== 'none';
    const ov = document.getElementById('autoMatchFoundOverlay');
    const cnt = document.getElementById('autoMatchFoundCount');
-   if (ov) ov.hidden = false;
-   const createdAt = Number(duelData && duelData.createdAt) || Date.now();
-   let remain = Math.ceil(Math.max(0, (createdAt + 3000) - Date.now()) / 1000);
+   if (showBanner && ov) ov.hidden = false;
+   const serverNow = (typeof window.novaGetServerTimeMs === 'function')
+      ? await window.novaGetServerTimeMs()
+      : Date.now();
+   let remain = Math.ceil(Math.max(0, target - serverNow) / 1000);
    if (remain < 1) remain = 1;
    while (remain > 0) {
-      if (cnt) cnt.textContent = String(remain);
+      if (showBanner && cnt) cnt.textContent = String(remain);
       await new Promise((r) => setTimeout(r, 1000));
       remain--;
    }
-   if (ov) ov.hidden = true;
+   if (showBanner && ov) ov.hidden = true;
+   if (typeof window.novaWaitUntilMs === 'function') {
+      await window.novaWaitUntilMs(target);
+   } else {
+      const wait = Math.max(0, target - Date.now());
+      if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+   }
 }
 
 async function novaEnterDuelWithSyncDelay(duelKey, duelData) {
@@ -32,7 +56,7 @@ async function novaEnterDuelWithSyncDelay(duelKey, duelData) {
    if (window.__novaPendingEnterDuel[duelKey]) return;
    window.__novaPendingEnterDuel[duelKey] = true;
    try {
-      await novaShowFoundBannerThenContinue(duelData);
+      await novaShowFoundBannerThenContinue(duelData, duelKey);
       switchToDuelScreen(duelKey);
       // Safety net: if UI transition is interrupted, force-start when data is ready.
       setTimeout(async function () {

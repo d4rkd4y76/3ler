@@ -54,8 +54,12 @@
 
     // Mutation observer: when duel screen becomes visible -> run intro once
     let introPlayedThisRound = false;
-    function playIntroIfNeeded(){
+    async function playIntroIfNeeded(){
       if(introPlayedThisRound) return;
+      if(window.__novaSkipDuelIntro032) {
+        introPlayedThisRound = true;
+        return;
+      }
       if(!gameScreen) return;
       const visible = window.getComputedStyle(gameScreen).display !== 'none';
       if(!visible) return;

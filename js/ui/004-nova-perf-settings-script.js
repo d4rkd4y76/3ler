@@ -6,10 +6,13 @@
     'fillblank-screen',
     'match-screen'
   ];
-  /* Akıcı modda orta (iyi) çözünürlük — yalnızca tek kişilik giriş + soru ekranı */
+  /* Akıcı modda orta (iyi) çözünürlük — tek kişilik + düello (geri sayım dahil) */
   const SINGLE_PLAYER_PERF_IDS = [
     'single-player-screen',
-    'single-player-game-screen'
+    'single-player-game-screen',
+    'duel-selection-screen',
+    'duel-game-screen',
+    'matchmakingScreen'
   ];
   const ULTRA_SCALE = 0.74;
   const SINGLE_PLAYER_ULTRA_SCALE = 0.86;
@@ -97,6 +100,9 @@
   function isSinglePlayerPerfScreen(screenId){
     return SINGLE_PLAYER_PERF_IDS.indexOf(screenId) >= 0;
   }
+  function isDuelPerfScreen(screenId){
+    return screenId === 'duel-selection-screen' || screenId === 'duel-game-screen' || screenId === 'matchmakingScreen';
+  }
   function ensureHighResScopeMarkers(){
     HIGH_RES_GAME_IDS.forEach(function(id){
       const el = document.getElementById(id);
@@ -137,6 +143,7 @@
     const mode = window.__novaPerfMode || getDefaultMode();
     const hqActive = mode === 'ultra' && isHighResGameActive();
     const spMediumActive = mode === 'ultra' && !hqActive && isSinglePlayerPerfActive();
+    const duelMediumActive = spMediumActive;
     let scale = modeScale(mode);
     if (mode === 'ultra' && hqActive) scale = 1;
     else if (spMediumActive) scale = SINGLE_PLAYER_ULTRA_SCALE;
@@ -145,6 +152,7 @@
     lastRuntimeKey = nextKey;
     document.body.classList.toggle('nova-perf-hq-active', hqActive);
     document.body.classList.toggle('nova-perf-sp-medium-active', spMediumActive);
+    document.body.classList.toggle('nova-perf-duel-medium-active', duelMediumActive);
     updatePerfCssVars(mode, scale);
     applyBodyScale(scale);
     try{ if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout(); }catch(_){}
@@ -155,14 +163,14 @@
     const mode = window.__novaPerfMode || getDefaultMode();
     if (mode !== 'ultra') return;
     lastRuntimeKey = '';
-    if (isSinglePlayerPerfScreen(screenId)) {
+    if (isSinglePlayerPerfScreen(screenId) || isDuelPerfScreen(screenId)) {
       document.body.classList.remove('nova-perf-hq-active');
-      document.body.classList.add('nova-perf-sp-medium-active');
+      document.body.classList.add('nova-perf-sp-medium-active', 'nova-perf-duel-medium-active');
       updatePerfCssVars(mode, SINGLE_PLAYER_ULTRA_SCALE);
       applyBodyScale(SINGLE_PLAYER_ULTRA_SCALE);
       return;
     }
-    document.body.classList.remove('nova-perf-sp-medium-active');
+    document.body.classList.remove('nova-perf-sp-medium-active', 'nova-perf-duel-medium-active');
     document.body.classList.add('nova-perf-hq-active');
     updatePerfCssVars(mode, 1);
     applyBodyScale(1);
@@ -182,7 +190,7 @@
     lastRuntimeKey = '';
     try{ localStorage.setItem(KEY, mode); }catch(_){}
     if (!document.body) return;
-    document.body.classList.remove('nova-perf-performance','nova-perf-ultra','nova-perf-hq-active','nova-perf-sp-medium-active');
+    document.body.classList.remove('nova-perf-performance','nova-perf-ultra','nova-perf-hq-active','nova-perf-sp-medium-active','nova-perf-duel-medium-active');
     if (mode === 'performance') document.body.classList.add('nova-perf-performance');
     if (mode === 'ultra') document.body.classList.add('nova-perf-ultra');
     ensureHighResScopeMarkers();

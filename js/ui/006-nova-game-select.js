@@ -334,7 +334,16 @@
     });
   });
 
+  function refreshGameSelectMenu(sel) {
+    if (!sel || sel.tagName !== 'SELECT') return;
+    const wrap = sel.closest('.nova-game-select');
+    if (!wrap) return;
+    buildMenu(wrap, sel, true);
+    syncTrigger(wrap, sel);
+  }
+
   window.novaEnhanceGameSelects = enhanceRoot;
+  window.novaRefreshGameSelectMenu = refreshGameSelectMenu;
   window.novaSortClassGradeRows = sortClassRows;
   window.novaSortNativeClassSelect = sortNativeClassSelect;
 

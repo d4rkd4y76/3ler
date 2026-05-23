@@ -23,6 +23,29 @@ function novaSortClassGradeRowsLocal(rows) {
 }
 try { window.novaSortClassGradeRowsLocal = novaSortClassGradeRowsLocal; } catch (_) {}
 
+async function novaGetServerTimeMs() {
+    return new Promise(function (resolve) {
+        try {
+            firebase.database().ref('.info/serverTimeOffset').once('value', function (s) {
+                resolve(Date.now() + (Number(s.val()) || 0));
+            }, function () { resolve(Date.now()); });
+        } catch (_) { resolve(Date.now()); }
+    });
+}
+try { window.novaGetServerTimeMs = novaGetServerTimeMs; } catch (_) {}
+
+async function novaWaitUntilMs(targetMs) {
+    const t = Number(targetMs) || 0;
+    if (!t) return;
+    const serverNow = await novaGetServerTimeMs();
+    const wait = Math.max(0, t - serverNow);
+    if (wait > 0) await new Promise(function (r) { setTimeout(r, wait); });
+}
+try { window.novaWaitUntilMs = novaWaitUntilMs; } catch (_) {}
+
+const NOVA_DUEL_INTRO_MS = 3200;
+const NOVA_DUEL_SYNC_ENTER_MS = 3500;
+
         // Audio Elementlerini Seçme
         const duelMusic = document.getElementById('duelBackgroundMusic');
         const winnerMusic = document.getElementById('winnerMusic');
@@ -3481,13 +3504,14 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             if (res.status === 401 || res.status === 403) throw new Error('RTDB REST ' + res.status);
             if (!res.ok) throw new Error('RTDB REST ' + res.status);
             const text = await res.text();
-            if (!text || text === 'null') return shallow ? {} : null;
+            if (!text || text === 'null') return null;
             return JSON.parse(text);
         }
 
         async function novaChampionChildKeys(path) {
             try {
                 const o = await novaRtdbRestJson(path, { shallow: true });
+                if (o === null) return null;
                 if (!o || typeof o !== 'object') return [];
                 return Object.keys(o);
             } catch (e) {
@@ -3529,7 +3553,11 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             return (window.novaSortClassGradeRows || novaSortClassGradeRowsLocal)(out);
         }
 
-        try { window.novaFetchChampionHeadingList = novaFetchChampionHeadingList; } catch (_) {}
+        try {
+            window.novaFetchChampionHeadingList = novaFetchChampionHeadingList;
+            window.novaFetchLessonsList = novaFetchLessonsList;
+            window.novaFetchTopicsList = novaFetchTopicsList;
+        } catch (_) {}
 
         async function novaFetchLessonsList(classId) {
             if (!classId) return [];
@@ -3545,8 +3573,8 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 });
                 return out;
             };
-            const ids = await novaChampionChildKeys('championData/headings/' + classId + '/lessons');
-            if (ids === null) {
+            let ids = await novaChampionChildKeys('championData/headings/' + classId + '/lessons');
+            if (ids === null || !ids.length) {
                 const lessonsVal = await readValCached('championData/headings/' + classId + '/lessons', NOVA_CHAMPION_HEADINGS_TTL_MS);
                 if (!lessonsVal || typeof lessonsVal !== 'object') return [];
                 const rows = Object.keys(lessonsVal).map(function (lessonId) {
@@ -3572,8 +3600,8 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
 
         async function novaFetchTopicsList(classId, lessonId) {
             if (!classId || !lessonId) return [];
-            const ids = await novaChampionChildKeys('championData/headings/' + classId + '/lessons/' + lessonId + '/topics');
-            if (ids === null) {
+            let ids = await novaChampionChildKeys('championData/headings/' + classId + '/lessons/' + lessonId + '/topics');
+            if (ids === null || !ids.length) {
                 const topicsVal = await readValCached('championData/headings/' + classId + '/lessons/' + lessonId + '/topics', NOVA_CHAMPION_HEADINGS_TTL_MS);
                 if (!topicsVal || typeof topicsVal !== 'object') return [];
                 const topicsData = [];
@@ -3732,23 +3760,60 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 const scopedLabel = getScopedClassLabel();
                 const tag = normalizeClassTag(scopedLabel);
                 const grade = extractGradeNumber(scopedLabel);
-                const scopedClassId = String((selectedStudent && selectedStudent.classId) || '').trim();
-                if (scopedClassId) {
-                    for (let i = 0; i < classSelect.options.length; i++) {
-                        const opx = classSelect.options[i];
-                        if (opx && String(opx.value || '').trim() === scopedClassId) return opx.value;
-                    }
-                }
-                if (!tag) return '';
+                if (!tag && !grade) return String(classSelect.value || '').trim();
                 for (let i = 0; i < classSelect.options.length; i++) {
                     const op = classSelect.options[i];
                     if (!op || !op.value) continue;
                     const opTag = normalizeClassTag(op.textContent || '');
-                    if (opTag === tag) return op.value;
+                    if (tag && opTag === tag) return op.value;
                     if (grade && extractGradeNumber(op.textContent || '') === grade) return op.value;
                 }
             } catch (_) {}
-            return '';
+            return String((classSelect && classSelect.value) || '').trim();
+        }
+        function filterHeadingsForStudent(headingsList) {
+            const list = headingsList || [];
+            const scopedLabel = getScopedClassLabel();
+            const tag = normalizeClassTag(scopedLabel);
+            const grade = extractGradeNumber(scopedLabel);
+            if (!tag && !grade) return list.slice();
+            return list.filter(function (item) {
+                if (!item || !item.id) return false;
+                const itemTag = normalizeClassTag(item.name);
+                if (tag && itemTag === tag) return true;
+                if (grade && extractGradeNumber(item.name) === grade) return true;
+                return false;
+            });
+        }
+        async function resolveBestHeadingFromList(headingsList) {
+            const matches = filterHeadingsForStudent(headingsList);
+            const pool = matches.length ? matches : (headingsList || []);
+            if (!pool.length) return '';
+            const ordered = [];
+            const seen = Object.create(null);
+            pool.forEach(function (item) {
+                const id = String((item && item.id) || '').trim();
+                if (!id || seen[id]) return;
+                seen[id] = true;
+                ordered.push(id);
+            });
+            for (let i = 0; i < ordered.length; i++) {
+                const lessons = await novaFetchLessonsList(ordered[i]);
+                if (lessons && lessons.length) return ordered[i];
+            }
+            return ordered[0];
+        }
+        async function resolveBestSinglePlayerHeadingId() {
+            let list = window.__novaChampionHeadingsList;
+            if (!list || !list.length) {
+                try {
+                    const fn = window.novaFetchChampionHeadingList;
+                    if (typeof fn === 'function') list = await fn();
+                    if (list && list.length) window.__novaChampionHeadingsList = list;
+                } catch (_) {}
+            }
+            if (list && list.length) return resolveBestHeadingFromList(list);
+            return resolveSinglePlayerHeadingId();
         }
         try {
             window.__novaEnsureSelectedStudentClassName = ensureSelectedStudentClassName;
@@ -3756,15 +3821,18 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             window.__novaNormalizeClassTag = normalizeClassTag;
             window.__novaExtractGradeNumber = extractGradeNumber;
             window.__novaResolveSinglePlayerHeadingId = resolveSinglePlayerHeadingId;
+            window.__novaResolveBestSinglePlayerHeadingId = resolveBestSinglePlayerHeadingId;
+            window.__novaResolveBestHeadingFromList = resolveBestHeadingFromList;
+            window.__novaFilterHeadingsForStudent = filterHeadingsForStudent;
         } catch (_novaExportFns) {}
         async function enforceSinglePlayerClassLock() {
             try {
                 if (!classSelect) return;
                 await ensureSelectedStudentClassName();
-                let headingId = resolveSinglePlayerHeadingId();
+                let headingId = await resolveBestSinglePlayerHeadingId();
                 if (!headingId) {
                     try { await fetchChampionData(); } catch (_) {}
-                    headingId = resolveSinglePlayerHeadingId();
+                    headingId = await resolveBestSinglePlayerHeadingId();
                 }
                 let label = getScopedClassLabel();
                 if ((!label || isLikelyDbKeyLabel(label)) && selectionClassSelect && selectedStudent && selectedStudent.classId) {
@@ -3797,7 +3865,13 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 if (subjectSelect) subjectSelect.value = '';
                 if (topicSelect) topicSelect.value = '';
                 if (headingId) {
-                    fetchLessons(headingId, subjectSelect);
+                    await fetchLessons(headingId, subjectSelect);
+                    if (subjectSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                        window.novaRefreshGameSelectMenu(subjectSelect);
+                    }
+                    if (topicSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                        window.novaRefreshGameSelectMenu(topicSelect);
+                    }
                 } else {
                     if (subjectSelect) subjectSelect.innerHTML = '<option value="">Bu sınıf için ders yok</option>';
                     if (topicSelect) topicSelect.innerHTML = '<option value="">Bu sınıf için konu yok</option>';
@@ -5388,6 +5462,7 @@ async function fetchChampionData() {
         if (age < CACHE_DURATION) {
             // Cache süresi dolmamış, veriyi kullan
             const parsedData = JSON.parse(cachedChampionData);
+            try { window.__novaChampionHeadingsList = parsedData; } catch (_) {}
             populateChampionSelect(parsedData);
             return;
         } else {
@@ -5409,6 +5484,7 @@ async function fetchChampionData() {
             console.warn("Şampiyon sınıf listesi boş.");
             return;
         }
+        try { window.__novaChampionHeadingsList = result; } catch (_) {}
         localStorage.setItem(CACHE_KEY, JSON.stringify(result));
         localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
         populateChampionSelect(result);
@@ -5428,43 +5504,63 @@ function populateChampionSelect(data) {
     const student = window.selectedStudent || null;
 
     if (typeof getScoped === 'function' && typeof normTag === 'function' && typeof gradeNum === 'function') {
-        classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
         const scopedLabel = getScoped();
         const scopedTag = normTag(scopedLabel);
         const scopedGrade = gradeNum(scopedLabel);
         const scopedRows = [];
-        const scopedClassId = String((student && student.classId) || '').trim();
+        const filterFn = window.__novaFilterHeadingsForStudent;
 
-        data.forEach(function (item) {
-            if (!item) return;
-            if (scopedClassId && String(item.id || '').trim() === scopedClassId) {
+        if (typeof filterFn === 'function') {
+            scopedRows.push.apply(scopedRows, filterFn(data));
+        } else {
+            data.forEach(function (item) {
+                if (!item) return;
+                if (scopedTag || scopedGrade) {
+                    const itemTag = normTag(item.name);
+                    const sameGrade = scopedGrade && gradeNum(item.name) === scopedGrade;
+                    if (scopedTag && itemTag !== scopedTag && !sameGrade) return;
+                }
                 scopedRows.push(item);
-                return;
-            }
-            if (scopedTag) {
-                const itemTag = normTag(item.name);
-                const sameGrade = scopedGrade && gradeNum(item.name) === scopedGrade;
-                if (itemTag !== scopedTag && !sameGrade) return;
-            }
-            scopedRows.push(item);
-        });
-        const preferredRows = scopedRows.length
-            ? [scopedRows.find(function (x) {
-                return scopedClassId && String((x && x.id) || '').trim() === scopedClassId;
-            }) || scopedRows[0]]
-            : [];
-        preferredRows.forEach(function (item) {
-            const option = document.createElement('option');
-            option.value = item.id;
-            option.textContent = scopedLabel || item.name;
-            classSelectEl.appendChild(option);
-        });
+            });
+        }
+
         if (student && (student.className || student.classId)) {
-            const headingId = typeof resolveId === 'function' ? resolveId() : '';
-            classSelectEl.value = headingId || '';
+            classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
             classSelectEl.disabled = true;
             classSelectEl.style.pointerEvents = 'none';
             classSelectEl.style.cursor = 'not-allowed';
+            var subEl = document.getElementById('subject-select');
+            (async function () {
+                var resolveBest = window.__novaResolveBestHeadingFromList || window.__novaResolveBestSinglePlayerHeadingId;
+                var pool = scopedRows.length ? scopedRows : data;
+                var bestId = (typeof resolveBest === 'function')
+                    ? await resolveBest(pool)
+                    : ((pool[0] && pool[0].id) || '');
+                if (!bestId) {
+                    console.warn('Öğrenci sınıfı için champion heading bulunamadı:', scopedLabel);
+                    return;
+                }
+                var pickRow = pool.find(function (x) { return x && String(x.id) === String(bestId); }) || { id: bestId, name: scopedLabel };
+                classSelectEl.innerHTML = '';
+                var option = document.createElement('option');
+                option.value = bestId;
+                option.textContent = scopedLabel || pickRow.name || 'Sınıf';
+                classSelectEl.appendChild(option);
+                classSelectEl.value = bestId;
+                try { localStorage.removeItem('cachedLessons_' + bestId); } catch (_) {}
+                await fetchLessons(bestId, subEl);
+                if (subEl && typeof window.novaRefreshGameSelectMenu === 'function') {
+                    window.novaRefreshGameSelectMenu(subEl);
+                }
+            })();
+        } else {
+            classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
+            scopedRows.forEach(function (item) {
+                var opt = document.createElement('option');
+                opt.value = item.id;
+                opt.textContent = item.name || item.id;
+                classSelectEl.appendChild(opt);
+            });
         }
         return;
     }
@@ -5516,7 +5612,28 @@ async function fetchLessons(classId, subjectSelectElement) {
             }
         }
 
-        const lessonsData = await novaFetchLessonsList(classId);
+        let lessonsData = await novaFetchLessonsList(classId);
+        if ((!lessonsData || !lessonsData.length) && subjectSelectElement && subjectSelectElement.id === 'subject-select') {
+            try {
+                const resolveBest = window.__novaResolveBestHeadingFromList || window.__novaResolveBestSinglePlayerHeadingId;
+                let list = window.__novaChampionHeadingsList;
+                if ((!list || !list.length) && typeof window.novaFetchChampionHeadingList === 'function') {
+                    list = await window.novaFetchChampionHeadingList();
+                    if (list && list.length) window.__novaChampionHeadingsList = list;
+                }
+                const bestId = (typeof resolveBest === 'function')
+                    ? await resolveBest(list || [])
+                    : '';
+                if (bestId && bestId !== classId && classSelect) {
+                    classSelect.value = bestId;
+                    classId = bestId;
+                    try { localStorage.removeItem(CACHE_KEY); } catch (_) {}
+                    lessonsData = await novaFetchLessonsList(bestId);
+                }
+            } catch (e) {
+                console.warn('Ders listesi yedek heading denemesi:', e);
+            }
+        }
         if (lessonsData && lessonsData.length) {
             localStorage.setItem(CACHE_KEY, JSON.stringify(lessonsData));
             localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
@@ -5613,6 +5730,9 @@ function populateLessonsSelect(lessonsData, subjectSelectElement) {
         option.textContent = lesson.name;
         subjectSelectElement.appendChild(option);
     });
+    if (subjectSelectElement && typeof window.novaRefreshGameSelectMenu === 'function') {
+        window.novaRefreshGameSelectMenu(subjectSelectElement);
+    }
 }
 
 function populateTopicsSelect(topicsData, topicSelectElement) {
@@ -5622,6 +5742,9 @@ function populateTopicsSelect(topicsData, topicSelectElement) {
         option.textContent = topic.name;
         topicSelectElement.appendChild(option);
     });
+    if (topicSelectElement && typeof window.novaRefreshGameSelectMenu === 'function') {
+        window.novaRefreshGameSelectMenu(topicSelectElement);
+    }
 }
 
 
@@ -5675,13 +5798,22 @@ function checkLoginButtonState() {
 
         classSelect.addEventListener('change', () => {
             const selectedClass = classSelect.value;
-            fetchLessons(selectedClass, subjectSelect);
+            if (topicSelect) topicSelect.innerHTML = '<option value="">Seçiniz</option>';
+            fetchLessons(selectedClass, subjectSelect).then(function () {
+                if (subjectSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                    window.novaRefreshGameSelectMenu(subjectSelect);
+                }
+            });
         });
 
         subjectSelect.addEventListener('change', () => {
             const selectedClass = classSelect.value;
             const selectedLesson = subjectSelect.value;
-            fetchTopics(selectedClass, selectedLesson, topicSelect);
+            fetchTopics(selectedClass, selectedLesson, topicSelect).then(function () {
+                if (topicSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                    window.novaRefreshGameSelectMenu(topicSelect);
+                }
+            });
         });
 
         function resetGameScreens() {
@@ -7416,6 +7548,15 @@ async function createDuelSession(inviterId, inviterClassId, inviterName, inviter
         createdAt: firebase.database.ServerValue.TIMESTAMP
     });
 
+    try {
+        let createdAtMs = Date.now();
+        const cs = await duelRef.child('createdAt').once('value');
+        if (cs.exists()) createdAtMs = Number(cs.val()) || createdAtMs;
+        await duelRef.child('syncEnterAt').set(createdAtMs + NOVA_DUEL_SYNC_ENTER_MS);
+    } catch (e) {
+        console.warn('syncEnterAt yazılamadı:', e);
+    }
+
     // İki oyuncunun da inDuel durumunu true yap
     await inviterInDuelRef.set(true);
     await invitedInDuelRef.set(true);
@@ -7441,9 +7582,11 @@ async function createDuelSession(inviterId, inviterClassId, inviterName, inviter
 
 // ----- 1. Otomatik seçim: tek kişilikle aynı mantık (shallow + yaprak); tüm ders listesi gerekirse seçicide lazy -----
 function autoSelectDuelSelections() {
+  window.__novaAutoDuelSelecting = true;
   const classId = duelClassSelect.value;
   if (!classId) {
     console.error("duelClassSelect değeri boş!");
+    window.__novaAutoDuelSelecting = false;
     return;
   }
 
@@ -7521,7 +7664,7 @@ function animateDuelSelection(lessonName, topicName) {
 // ----- 3. Tek geri sayım: davet eden otomatik başlatır (switchToDuelScreen içindeki eski çift sayaç kaldırıldı) -----
 function startDuelAutoCountdown() {
   const countdownEl = document.getElementById('duelCountdown');
-  const startBtn = document.getElementById('duelStartButton');
+  const startBtn = document.getElementById('duel-start-button');
   if (!countdownEl) return;
 
   if (window.__duelSelectionCountdownInterval) {
@@ -7593,22 +7736,12 @@ function switchToDuelScreen(duelKey) {
     }
     if (playersOverlay) playersOverlay.style.display = 'none';
     
-    // Body genel ayarları
-    document.body.style.display = 'flex';
-    document.body.style.justifyContent = 'center';
-    document.body.style.alignItems = 'center';
-    document.body.style.minHeight = '100vh';
-    
-    // Duel seçim ekranı stil ayarları
-    duelSelectionScreen.style.display = 'flex';
-    duelSelectionScreen.style.flexDirection = 'column';
-    duelSelectionScreen.style.width = '100%';
-    duelSelectionScreen.style.maxWidth = '900px';
-    duelSelectionScreen.style.background = 'white';
-    duelSelectionScreen.style.padding = '30px 40px';
-    duelSelectionScreen.style.borderRadius = '20px';
-    duelSelectionScreen.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
-    duelSelectionScreen.classList.add('container');
+    if (typeof window.novaOpenDuelSelectionScreen === 'function') {
+        window.novaOpenDuelSelectionScreen();
+    } else {
+        duelSelectionScreen.style.display = 'flex';
+        duelSelectionScreen.classList.add('container');
+    }
 
     const duelRef = database.ref(`duels/${duelKey}`);
     currentDuelRef = duelRef;
@@ -7616,6 +7749,9 @@ function switchToDuelScreen(duelKey) {
     duelGameStarted = false;
     duelEnded = false;
     duelQuestions = [];
+    window.__novaStartDuelGameLock = null;
+    window.__novaDuelGameActiveKey = null;
+    window.__novaDuelPlayAt = 0;
     let inviterId, inviterClassId, invitedId, invitedClassId;
 
     const gameStartedRef = duelRef.child('gameStarted');
@@ -7628,19 +7764,17 @@ function switchToDuelScreen(duelKey) {
             }
             const ce = document.getElementById('duelCountdown');
             if (ce) ce.style.display = 'none';
-            // Bazı cihazlarda gameStarted sinyali gelirken ana duelRef value gecikebiliyor.
-            // Bu durumda aynı anda tek seferlik snapshot alıp oyunu zorla başlat.
-            if (!duelGameStarted) {
-              duelRef.once('value').then(function (s) {
+            if (window.__novaStartDuelGameLock === duelKey) return;
+            window.__novaStartDuelGameLock = duelKey;
+            duelGameStarted = true;
+            duelRef.once('value').then(function (s) {
                 if (!s.exists()) return;
                 const d = s.val() || {};
                 if (!d.gameStarted) return;
                 if (Array.isArray(d.questions) && d.questions.length >= 10) {
-                  duelGameStarted = true;
-                  startDuelGame(d);
+                    startDuelGame(d);
                 }
-              }).catch(function(){});
-            }
+            }).catch(function () {});
         }
     });
 
@@ -7751,7 +7885,10 @@ function switchToDuelScreen(duelKey) {
     }
 });
 
-    duelRef.onDisconnect().remove();
+    if (isInviter && window.__novaDuelDisconnectKey !== duelKey) {
+        window.__novaDuelDisconnectKey = duelKey;
+        duelRef.onDisconnect().remove();
+    }
 
 
 
@@ -7932,7 +8069,8 @@ duelRef.on('value', async (snap) => {
         }
 
         // Oyun durumu kontrolü
-        if (data.gameStarted && !duelGameStarted) {
+        if (data.gameStarted && window.__novaStartDuelGameLock !== duelKey) {
+            window.__novaStartDuelGameLock = duelKey;
             duelGameStarted = true;
             duelEnded = false;
             startDuelGame(data);
@@ -8184,8 +8322,11 @@ let chosen = pickedDuelQs.slice(0, 10).map(q => {
     };
 });
 
-await currentDuelRef.child('questions').set(chosen);
-                await currentDuelRef.child('gameStarted').set(true);
+await currentDuelRef.update({
+                    questions: chosen,
+                    playAt: firebase.database.ServerValue.TIMESTAMP,
+                    gameStarted: true
+                });
                 
             } else {
                 showAlert("Bu konuya ait yeterli soru yok veya soru id listesi bulunamadı.");
@@ -8193,6 +8334,17 @@ await currentDuelRef.child('questions').set(chosen);
         });
 
         function startDuelGame(data) {
+            if (window.__novaDuelGameActiveKey === duelKey) return;
+            window.__novaDuelGameActiveKey = duelKey;
+            try {
+                if (data && data.playAt) {
+                    window.__novaDuelPlayAt = Number(data.playAt) || 0;
+                    window.__novaSkipDuelIntro032 = true;
+                } else {
+                    window.__novaSkipDuelIntro032 = false;
+                }
+            } catch (_) {}
+
             const normalizeFrames = async () => {
               try{
                 if (!data || !data.inviter || !data.invited) return;
@@ -8209,8 +8361,12 @@ await currentDuelRef.child('questions').set(chosen);
             duelFinalContainer.style.display='none';
             winnerMessage.textContent = '';
 
-            duelSelectionScreen.style.display = 'none';
-            duelGameScreen.style.display = 'flex';
+            if (typeof window.novaOpenDuelGameScreen === 'function') {
+                window.novaOpenDuelGameScreen();
+            } else {
+                duelSelectionScreen.style.display = 'none';
+                duelGameScreen.style.display = 'flex';
+            }
             try{ novaInitDuelHud(data); }catch(e){}
 
 
@@ -8260,7 +8416,12 @@ await currentDuelRef.child('questions').set(chosen);
             const hasEnoughQuestions = Array.isArray(data.questions) && data.questions.length >= 10;
             if (hasEnoughQuestions) {
                 duelQuestions = data.questions;
-                loadDuelQuestion();
+                (async function () {
+                    const playAt = Number(data.playAt) || Number(window.__novaDuelPlayAt) || 0;
+                    const introPad = window.__novaSkipDuelIntro032 ? 700 : NOVA_DUEL_INTRO_MS;
+                    if (playAt) await novaWaitUntilMs(playAt + introPad);
+                    loadDuelQuestion();
+                })();
             } else {
                 // gameStarted sinyali sorulardan önce gelebilir; soruları beklerken kullanıcıyı boş ekranda bırakma.
                 try {
@@ -8285,7 +8446,14 @@ await currentDuelRef.child('questions').set(chosen);
                                 duelQuestions = qv;
                                 try { qRef.off('value', fn); } catch (_) {}
                                 window.__duelQuestionsWaitUnsub = null;
-                                loadDuelQuestion();
+                                (async function () {
+                                    const dSnap = await currentDuelRef.once('value');
+                                    const dVal = dSnap.exists() ? (dSnap.val() || {}) : {};
+                                    const playAt = Number(dVal.playAt) || 0;
+                                    const introPad = window.__novaSkipDuelIntro032 ? 700 : NOVA_DUEL_INTRO_MS;
+                                    if (playAt) await novaWaitUntilMs(playAt + introPad);
+                                    loadDuelQuestion();
+                                })();
                             }
                         });
                         window.__duelQuestionsWaitUnsub = function () {
@@ -8306,6 +8474,7 @@ await currentDuelRef.child('questions').set(chosen);
                 console.error("Müzik çalınamadı:", error);
             });
         }
+        try { window.startDuelGame = startDuelGame; } catch (_) {}
 
         function loadDuelQuestion() {
     if (duelCurrentQuestionIndex >= 10) {

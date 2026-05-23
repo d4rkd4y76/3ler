@@ -9,7 +9,7 @@
     const topRow=q('#nova-summary .nz-row'); if(!topRow) return;
     if(!q('#nzGaugeMini')){
       const card=document.createElement('div'); card.className='nz-card nz-compact-card';
-class="nz-badge-mini">BRONZ</div></div>`;
+      card.innerHTML = `<div style="position:relative"><canvas id="nzGaugeMini" width="160" height="160" aria-label="Başarı göstergesi"></canvas><div id="nzBadgeMini" class="nz-badge-mini">BRONZ</div></div>`;
       topRow.appendChild(card);
     }
   }

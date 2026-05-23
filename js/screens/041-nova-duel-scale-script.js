@@ -103,10 +103,10 @@
       const duel = getEl(DUEL_ID);
       const shouldShow = isVisible(duel);
       if (shouldShow !== lastShown){
-        showToolbar(shouldShow);
-        // Only add scale class when visible to avoid affecting other screens
+        var fullscreen = document.body.classList.contains('nova-duel-game-open');
+        showToolbar(shouldShow && !fullscreen);
         if (duel){
-          if (shouldShow) duel.classList.add('nova-scaled');
+          if (shouldShow && !fullscreen) duel.classList.add('nova-scaled');
           else duel.classList.remove('nova-scaled');
         }
         lastShown = shouldShow;

@@ -1,0 +1,67 @@
+/* ═══ Alev Bot — mağaza + FX ═══ */
+
+.nova-hero-store-card{
+  grid-column: 1 / -1;
+  max-width: 380px;
+  margin: 0 auto;
+  width: 100%;
+}
+.nova-hero-store-card--blaze .nova-hero-preview{
+  width: 100%;
+  height: 220px;
+  display: grid;
+  place-items: end center;
+  background:
+    radial-gradient(ellipse 90% 80% at 50% 100%, rgba(249, 115, 22, .35), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 20% 20%, rgba(34, 211, 238, .15), transparent 55%),
+    linear-gradient(180deg, #0f172a 0%, #1e1b4b 45%, #312e81 100%);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+}
+.nova-hero-store-meta{
+  padding: 12px 14px 4px;
+  text-align: center;
+}
+.nova-hero-store-name{
+  margin: 0 0 6px;
+  font-size: 1.12rem;
+  font-weight: 900;
+  color: #fef3c7;
+  text-shadow: 0 0 20px rgba(251, 191, 36, .4);
+}
+.nova-hero-store-desc{
+  margin: 0;
+  font-size: .82rem;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+.nova-hero-diamond-price{
+  background: linear-gradient(135deg, rgba(251, 191, 36, .25), rgba(249, 115, 22, .2)) !important;
+  color: #fde68a !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(251, 191, 36, .35);
+}
+
+.nova-hero-svg-host,
+.nova-hero-svg{
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible;
+  filter: drop-shadow(0 12px 28px rgba(249, 115, 22, .35));
+}
+.nova-hero-preview--idle .nova-hero__core-glow{
+  animation: bbCoreIdle 2.4s ease-in-out infinite;
+}
+@keyframes bbCoreIdle{
+  0%, 100%{ opacity: .12; }
+  50%{ opacity: .32; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nova-hero-preview--idle .nova-hero__core-glow{
+    animation: none;
+  }
+}

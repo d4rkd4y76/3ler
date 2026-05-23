@@ -318,7 +318,9 @@
       const style = getComputedStyle(c);
       if (style.display !== 'none'){
         const infos = document.querySelectorAll('.duel-bottom-info .duel-player-info');
-        if (infos.length >= 2 && !novaIntroShown) setTimeout(()=> showIntro(10), 300);
+        if (infos.length >= 2 && !novaIntroShown && !window.__novaAutoDuelSelecting) {
+          setTimeout(()=> showIntro(10), 300);
+        }
       }
       hideLegacySelectionPanel();
     });

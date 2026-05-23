@@ -264,11 +264,18 @@ body.nova-perf-ultra:not(.nova-perf-hq-active) .nova-perf-hq-scope{
 body.nova-perf-ultra.nova-perf-hq-active .nova-perf-hq-scope{
   zoom: 1 !important;
 }
-/* Akıcı mod: tek kişilik giriş + soru ekranı orta (iyi) çözünürlük — body 0.86, ek counter-zoom yok */
-body.nova-perf-ultra.nova-perf-sp-medium-active .nova-perf-sp-scope{
+/* Akıcı mod: tek kişilik + düello orta (iyi) çözünürlük — body 0.86, ek counter-zoom yok */
+body.nova-perf-ultra.nova-perf-sp-medium-active .nova-perf-sp-scope,
+body.nova-perf-ultra.nova-perf-duel-medium-active #duel-selection-screen,
+body.nova-perf-ultra.nova-perf-duel-medium-active #duel-game-screen,
+body.nova-perf-ultra.nova-perf-duel-medium-active #matchmakingScreen{
   zoom: 1 !important;
 }
 body.nova-perf-ultra:not(.nova-perf-hq-active):not(.nova-perf-sp-medium-active) .nova-perf-sp-scope{
+  zoom: var(--nova-perf-counter-zoom, 1.35135) !important;
+}
+body.nova-perf-ultra:not(.nova-perf-duel-medium-active):not(.nova-perf-sp-medium-active) #duel-selection-screen,
+body.nova-perf-ultra:not(.nova-perf-duel-medium-active):not(.nova-perf-sp-medium-active) #duel-game-screen{
   zoom: var(--nova-perf-counter-zoom, 1.35135) !important;
 }
 body.nova-perf-performance:not(.nova-perf-hq-active) .nova-perf-hq-scope{
