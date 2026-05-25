@@ -198,16 +198,8 @@
   overflow: visible;
 }
 .profile-change-content .profile-photo-item.nova-store-card::after{
-  content:'';
-  position:absolute;
-  top:-120%;
-  left:-60%;
-  width:42%;
-  height:260%;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
-  transform:rotate(18deg);
-  animation: storeCardShine 4.2s ease-in-out infinite;
-  pointer-events:none;
+  display: none !important;
+  animation: none !important;
 }
 .profile-change-content .profile-photo-item .profile-photo{
   border: 2px solid rgba(251,191,36,.45) !important;

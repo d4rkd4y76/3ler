@@ -1,47 +1,104 @@
 /* ═══ Alev Bot — mağaza + ana ekran + mağaza canlı önizleme ═══ */
 
 .nova-hero-store-card{
-  max-width: 380px;
+  max-width: 252px;
   margin: 0 auto;
   width: 100%;
+  padding: 10px 10px 12px !important;
 }
 .profile-change-content .nova-store-products--heroes{
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)) !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)) !important;
   justify-items: center;
   align-items: start;
+  gap: 14px !important;
 }
 @media (max-width: 520px){
+  .profile-change-content .nova-store-products--heroes{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+}
+@media (max-width: 380px){
   .profile-change-content .nova-store-products--heroes{
     grid-template-columns: 1fr !important;
   }
 }
-.nova-hero-store-card--blaze .nova-hero-preview{
+
+/* Mağaza önizleme — küçük, tam boy, uzaktan, sakin */
+.nova-hero-store-card .nova-hero-preview,
+.nova-hero-store-card--blaze .nova-hero-preview,
+.nova-hero-store-card--star .nova-hero-preview{
   width: 100%;
-  height: 300px;
-  display: grid;
-  place-items: end center;
-  background:
-    radial-gradient(ellipse 90% 80% at 50% 100%, rgba(249, 115, 22, .35), transparent 62%),
-    radial-gradient(ellipse 70% 50% at 20% 20%, rgba(34, 211, 238, .15), transparent 55%),
-    linear-gradient(180deg, #0f172a 0%, #1e1b4b 45%, #312e81 100%);
-  border-radius: 16px 16px 0 0;
+  height: 186px;
+  min-height: 186px;
+  max-height: 186px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8px 6px 4px;
+  border-radius: 12px 12px 0 0;
   overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+.nova-hero-store-card .nova-hero-svg-host{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero-svg,
+.nova-hero-store-card .nova-hero-svg{
+  max-width: 112px !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 162px !important;
+  margin: 0 auto;
+  flex-shrink: 0;
+  animation: novaHeroStoreStillFloat 5.5s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes novaHeroStoreStillFloat{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-3px); }
+}
+
+/* Alev Bot — ateş/ocak atölyesi */
+.nova-hero-store-card--blaze .nova-hero-preview{
+  background:
+    radial-gradient(ellipse 95% 48% at 50% 100%, rgba(249, 115, 22, .42), transparent 74%),
+    radial-gradient(ellipse 35% 22% at 50% 8%, rgba(251, 191, 36, .1), transparent),
+    linear-gradient(168deg, #44403c 0%, #292524 32%, #1c1917 68%, #0f172a 100%);
+}
+.nova-hero-store-card--blaze .nova-hero-preview::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .35;
+  background: radial-gradient(circle at 20% 80%, rgba(249, 115, 22, .15) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 70%, rgba(234, 88, 12, .12) 0 1px, transparent 2px);
+  pointer-events: none;
+}
+.nova-hero-store-card--blaze .nova-hero-svg{
+  filter: drop-shadow(0 8px 16px rgba(249, 115, 22, .35));
 }
 .nova-hero-store-meta{
-  padding: 12px 14px 4px;
+  padding: 8px 8px 2px;
   text-align: center;
 }
 .nova-hero-store-name{
-  margin: 0 0 6px;
-  font-size: 1.12rem;
+  margin: 0 0 4px;
+  font-size: 1rem;
   font-weight: 900;
   color: #fef3c7;
-  text-shadow: 0 0 20px rgba(251, 191, 36, .4);
+  text-shadow: none;
 }
 .nova-hero-store-desc{
   margin: 0;
-  font-size: .82rem;
-  line-height: 1.4;
+  font-size: .75rem;
+  line-height: 1.35;
   color: #94a3b8;
 }
 .nova-hero-diamond-price{
@@ -51,63 +108,33 @@
   border: 1px solid rgba(251, 191, 36, .35);
 }
 
-.nova-hero-svg-host,
-.nova-hero-svg{
-  width: 100%;
-  max-width: 240px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+.nova-hero-svg-host:not(.nova-main-hero-host),
+.nova-hero-svg:not(.nova-main-hero-host .nova-hero-svg){
   overflow: visible;
-  filter: drop-shadow(0 12px 28px rgba(249, 115, 22, .35));
 }
 
-/* Mağaza — tam boy, eğlenceli CSS hareketleri (rAF yok) */
-.nova-hero-preview--store-live .nova-hero-svg{
-  max-width: min(260px, 78vw);
-  animation: novaStoreHeroBob 3.2s ease-in-out infinite;
-  transform-origin: 50% 92%;
+/* Mağaza kartında parça animasyonu yok (parlama / titreşim yok) */
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__core-glow,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__head,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__arm-l,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__arm-r,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__legs,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__flames,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wings,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__halo,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wand,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__hair,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__sparks,
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__aura{
+  animation: none !important;
 }
-.nova-hero-preview--store-live .nova-hero__core-glow{
-  animation: bbCoreIdle 2.2s ease-in-out infinite;
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__sparks{
+  opacity: 0 !important;
 }
-.nova-hero-preview--store-live .nova-hero__head{
-  animation: novaHeroHeadIdle 2.6s ease-in-out infinite;
-  transform-origin: 50% 85%;
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__flames{
+  opacity: .08 !important;
 }
-.nova-hero-preview--store-live .nova-hero__arm-l{
-  animation: novaStoreArmL 2.4s ease-in-out infinite;
-  transform-origin: 88px 168px;
-}
-.nova-hero-preview--store-live .nova-hero__arm-r{
-  animation: novaStoreArmR 2.8s ease-in-out infinite;
-  transform-origin: 152px 168px;
-}
-.nova-hero-preview--store-live .nova-hero__legs{
-  animation: novaHeroLegShift 4.5s ease-in-out infinite;
-  transform-origin: 50% 0%;
-}
-.nova-hero-preview--store-live .nova-hero__flames{
-  animation: novaHeroFlameFlicker 1.6s ease-in-out infinite;
-}
-@keyframes novaStoreHeroBob{
-  0%, 100%{ transform: translateY(0) scale(1); }
-  40%{ transform: translateY(-6px) scale(1.03); }
-  70%{ transform: translateY(-2px) scale(1.01); }
-}
-@keyframes novaStoreArmL{
-  0%, 100%{ transform: rotate(0deg); }
-  35%{ transform: rotate(-18deg); }
-  65%{ transform: rotate(8deg); }
-}
-@keyframes novaStoreArmR{
-  0%, 100%{ transform: rotate(0deg); }
-  30%{ transform: rotate(14deg); }
-  55%{ transform: rotate(-12deg); }
-}
-.nova-hero-preview--idle .nova-hero__core-glow{
-  animation: bbCoreIdle 2.4s ease-in-out infinite;
-}
+
 @keyframes bbCoreIdle{
   0%, 100%{ opacity: .12; }
   50%{ opacity: .32; }
