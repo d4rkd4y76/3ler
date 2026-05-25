@@ -57,12 +57,7 @@
   max-height: 162px !important;
   margin: 0 auto;
   flex-shrink: 0;
-  animation: novaHeroStoreStillFloat 5.5s ease-in-out infinite;
   transform-origin: 50% 100%;
-}
-@keyframes novaHeroStoreStillFloat{
-  0%, 100%{ transform: translateY(0); }
-  50%{ transform: translateY(-3px); }
 }
 
 /* Alev Bot — ateş/ocak atölyesi */
@@ -111,28 +106,6 @@
 .nova-hero-svg-host:not(.nova-main-hero-host),
 .nova-hero-svg:not(.nova-main-hero-host .nova-hero-svg){
   overflow: visible;
-}
-
-/* Mağaza kartında parça animasyonu yok (parlama / titreşim yok) */
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__core-glow,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__head,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__arm-l,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__arm-r,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__legs,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__flames,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wings,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__halo,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wand,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__hair,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__sparks,
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__aura{
-  animation: none !important;
-}
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__sparks{
-  opacity: 0 !important;
-}
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__flames{
-  opacity: .08 !important;
 }
 
 @keyframes bbCoreIdle{

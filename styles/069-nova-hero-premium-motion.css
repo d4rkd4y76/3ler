@@ -1,0 +1,489 @@
+/* ═══ Kahraman premium hareket — Alev Bot & Yıldız Perisi ═══ */
+
+/* Eski genel FX animasyonlarını devre dışı bırak */
+.nova-sp-hero-arena__host.nova-sp-fx-live .nova-hero__arm-l,
+.nova-sp-hero-arena__host.nova-sp-fx-live .nova-hero__arm-r,
+.nova-sp-hero-arena__host.nova-sp-fx-live .nova-hero__head,
+.nova-sp-hero-arena__host.nova-sp-fx-fire .nova-hero__flames,
+.nova-sp-hero-arena__host.nova-sp-fx-epic .nova-hero__flames,
+.nova-sp-hero-arena__host.nova-sp-fx-fire .nova-hero__core-glow,
+.nova-sp-hero-arena__host.nova-sp-fx-epic .nova-hero__core-glow{
+  animation: none !important;
+}
+
+/* ── Mağaza: rafine idle (parlama süpürgesi yok) ── */
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero__sparks{
+  opacity: 0 !important;
+}
+.nova-hero-store-card .nova-hero-preview--store-live .nova-hero-svg{
+  animation: nhStoreFloat 6s cubic-bezier(.45, 0, .55, 1) infinite;
+  transform-origin: 50% 100%;
+}
+
+/* Alev Bot — mağaza */
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__body{
+  animation: bbStoreBodyBreath 4.2s ease-in-out infinite;
+  transform-origin: 50% 72%;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__core-glow{
+  animation: bbStoreCoreGlow 2.8s ease-in-out infinite;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__core{
+  animation: bbStoreCoreSpin 8s linear infinite;
+  transform-origin: 120px 188px;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__head{
+  animation: bbStoreHeadTilt 5s ease-in-out infinite;
+  transform-origin: 50% 88%;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__visor{
+  animation: bbStoreVisorScan 3.5s ease-in-out infinite;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__arm-l{
+  animation: bbStoreArmL 3.8s ease-in-out infinite;
+  transform-origin: 88px 168px;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__arm-r{
+  animation: bbStoreArmR 4.4s ease-in-out infinite;
+  transform-origin: 152px 168px;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__flames{
+  opacity: .14 !important;
+  animation: bbStoreEmberGlow 2.4s ease-in-out infinite;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__flame-c{
+  animation: bbStoreFlameC 1.8s ease-in-out infinite;
+  transform-origin: 120px 250px;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__visor-shine{
+  animation: bbStoreVisorShine 2.2s ease-in-out infinite;
+}
+.nova-hero-store-card--blaze .nova-hero-preview--store-live .nova-hero__chest-ring{
+  animation: bbStoreChestRing 6s linear infinite;
+  transform-origin: 120px 178px;
+}
+
+/* Yıldız Perisi — mağaza */
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__wing-l{
+  animation: sfStoreWingL 2.6s ease-in-out infinite;
+  transform-origin: 72px 165px;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__wing-r{
+  animation: sfStoreWingR 2.8s ease-in-out infinite;
+  transform-origin: 168px 165px;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__halo{
+  animation: sfStoreHalo 5s ease-in-out infinite;
+  transform-origin: 120px 50px;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__wand{
+  animation: sfStoreWand 3.2s ease-in-out infinite;
+  transform-origin: 188px 200px;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__hair{
+  animation: sfStoreHair 4.5s ease-in-out infinite;
+  transform-origin: 120px 65px;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__head{
+  animation: sfStoreHead 4.8s ease-in-out infinite;
+  transform-origin: 50% 88%;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__core-glow{
+  animation: sfStoreAura 3s ease-in-out infinite;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__dress-shine{
+  animation: sfStoreDressShine 4s ease-in-out infinite;
+}
+.nova-hero-store-card--star .nova-hero-preview--store-live .nova-hero__stars-idle{
+  animation: sfStoreStarTwinkle 2.2s ease-in-out infinite;
+}
+
+/* ── Ana ekran — Alev Bot ── */
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-main-hero-slot{
+  animation: bbMainPatrol 14s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__body{
+  animation: bbStoreBodyBreath 3.6s ease-in-out infinite;
+  transform-origin: 50% 72%;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__core-glow{
+  animation: bbStoreCoreGlow 2.4s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__core{
+  animation: bbStoreCoreSpin 10s linear infinite;
+  transform-origin: 120px 188px;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__head{
+  animation: bbStoreHeadTilt 4.5s ease-in-out infinite;
+  transform-origin: 50% 88%;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__visor{
+  animation: bbStoreVisorScan 3.2s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__arm-l{
+  animation: bbStoreArmL 3.2s ease-in-out infinite;
+  transform-origin: 88px 168px;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__arm-r{
+  animation: bbStoreArmR 3.8s ease-in-out infinite;
+  transform-origin: 152px 168px;
+}
+#main-screen .nova-main-hero-zone--blaze.is-visible .nova-hero__flames{
+  opacity: .1 !important;
+  animation: bbStoreEmberGlow 2s ease-in-out infinite;
+}
+
+/* ── Ana ekran — Yıldız Perisi ── */
+#main-screen .nova-main-hero-zone--star.is-visible .nova-main-hero-slot{
+  animation: sfMainFloat 13s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__wing-l{
+  animation: sfStoreWingL 2.2s ease-in-out infinite;
+  transform-origin: 72px 165px;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__wing-r{
+  animation: sfStoreWingR 2.4s ease-in-out infinite;
+  transform-origin: 168px 165px;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__halo{
+  animation: sfStoreHalo 4.5s ease-in-out infinite;
+  transform-origin: 120px 50px;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__wand{
+  animation: sfStoreWand 2.8s ease-in-out infinite;
+  transform-origin: 188px 200px;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__core-glow{
+  animation: sfStoreAura 2.6s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__stars-idle{
+  animation: sfStoreStarTwinkle 1.9s ease-in-out infinite;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__hair{
+  animation: sfStoreHair 4.2s ease-in-out infinite;
+  transform-origin: 120px 65px;
+}
+#main-screen .nova-main-hero-zone--star.is-visible .nova-hero__head{
+  animation: sfStoreHead 4.5s ease-in-out infinite;
+  transform-origin: 50% 88%;
+}
+
+/* ── Soru ekranı — Alev Bot FX ── */
+.nova-hero-mount--blaze-robot.nova-sp-fx-live{
+  animation: nhFxEnterPop .42s cubic-bezier(.34, 1.25, .64, 1) both;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-cheer .nova-hero__body{
+  animation: bbFxCheerBody .7s cubic-bezier(.34, 1.1, .64, 1) 2;
+  transform-origin: 50% 80%;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-cheer .nova-hero__head{
+  animation: bbFxCheerHead .55s ease-in-out 3;
+  transform-origin: 50% 88%;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-cheer .nova-hero__arm-l{
+  animation: bbFxCheerArmL .5s cubic-bezier(.34, 1.2, .64, 1) 4;
+  transform-origin: 88px 168px;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-cheer .nova-hero__arm-r{
+  animation: bbFxCheerArmR .5s cubic-bezier(.34, 1.2, .64, 1) 4;
+  transform-origin: 152px 168px;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-fire .nova-hero__flames,
+.nova-hero-mount--blaze-robot.nova-sp-fx-epic .nova-hero__flames{
+  opacity: 1 !important;
+  animation: bbFxFlameBurst .85s cubic-bezier(.22, 1, .36, 1) 2 forwards;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-fire .nova-hero__flame-c{
+  animation: bbFxFlameCore .7s ease-out 3;
+  transform-origin: 120px 250px;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-fire .nova-hero__core-glow,
+.nova-hero-mount--blaze-robot.nova-sp-fx-epic .nova-hero__core-glow{
+  animation: bbFxCoreBlast .55s ease-out 4;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-fire .nova-hero__sparks,
+.nova-hero-mount--blaze-robot.nova-sp-fx-epic .nova-hero__sparks{
+  opacity: 1 !important;
+  animation: bbFxSparksFly .75s ease-out 1 forwards;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-epic .nova-hero__body{
+  animation: bbFxEpicBody .6s cubic-bezier(.34, 1.15, .64, 1) 2;
+  transform-origin: 50% 75%;
+}
+.nova-hero-mount--blaze-robot.nova-sp-fx-epic .nova-hero__head{
+  animation: bbFxEpicHead .45s ease-in-out 4;
+  transform-origin: 50% 88%;
+}
+
+/* ── Soru ekranı — Yıldız Perisi FX ── */
+.nova-hero-mount--star-fairy.nova-sp-fx-live{
+  animation: nhFxEnterPop .45s cubic-bezier(.34, 1.2, .64, 1) both;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-cheer .nova-hero__wing-l{
+  animation: sfFxWingCheerL .55s ease-in-out 4;
+  transform-origin: 72px 165px;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-cheer .nova-hero__wing-r{
+  animation: sfFxWingCheerR .55s ease-in-out 4;
+  transform-origin: 168px 165px;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-cheer .nova-hero__wand{
+  animation: sfFxWandCast .48s cubic-bezier(.34, 1.2, .64, 1) 5;
+  transform-origin: 188px 200px;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-cheer .nova-hero__head{
+  animation: spFxHead .5s ease-in-out 4;
+  transform-origin: 50% 88%;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-cheer .nova-hero__halo{
+  animation: sfFxHaloBurst .55s ease-in-out 3;
+  transform-origin: 120px 50px;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-cheer .nova-hero__body{
+  animation: sfStoreHead 0.65s ease-in-out 4;
+  transform-origin: 50% 75%;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-fire .nova-hero__stars,
+.nova-hero-mount--star-fairy.nova-sp-fx-epic .nova-hero__stars{
+  opacity: 1 !important;
+  animation: sfFxStarBurst .9s cubic-bezier(.22, 1, .36, 1) 2 forwards;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-fire .nova-hero__core-glow,
+.nova-hero-mount--star-fairy.nova-sp-fx-epic .nova-hero__core-glow{
+  animation: sfFxAuraNova .6s ease-out 3;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-fire .nova-hero__halo{
+  animation: sfFxHaloBurst .65s ease-out 3;
+  transform-origin: 120px 50px;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-fire .nova-hero__sparks,
+.nova-hero-mount--star-fairy.nova-sp-fx-epic .nova-hero__sparks{
+  opacity: 1 !important;
+  animation: sfFxSparkOrbit .8s ease-out 1 forwards;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-epic .nova-hero__wing-l,
+.nova-hero-mount--star-fairy.nova-sp-fx-epic .nova-hero__wing-r{
+  animation: sfFxWingEpic .7s ease-in-out 3;
+}
+.nova-hero-mount--star-fairy.nova-sp-fx-epic .nova-hero__wand{
+  animation: sfFxWandEpic .55s cubic-bezier(.34, 1.2, .64, 1) 4;
+  transform-origin: 188px 200px;
+}
+
+/* Keyframes */
+@keyframes nhStoreFloat{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-4px); }
+}
+@keyframes nhFxEnterPop{
+  0%{ transform: scale(.88); opacity: .7; }
+  60%{ transform: scale(1.04); }
+  100%{ transform: scale(1); opacity: 1; }
+}
+@keyframes bbStoreBodyBreath{
+  0%, 100%{ transform: scale(1) translateY(0); }
+  50%{ transform: scale(1.02) translateY(-2px); }
+}
+@keyframes bbStoreCoreGlow{
+  0%, 100%{ opacity: .08; transform: scale(.95); }
+  50%{ opacity: .38; transform: scale(1.08); }
+}
+@keyframes bbStoreCoreSpin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+@keyframes bbStoreHeadTilt{
+  0%, 100%{ transform: rotate(0deg); }
+  35%{ transform: rotate(-2.5deg); }
+  70%{ transform: rotate(1.5deg); }
+}
+@keyframes bbStoreVisorScan{
+  0%, 78%, 100%{ opacity: 1; filter: brightness(1); }
+  82%{ opacity: .55; filter: brightness(1.4); }
+  86%{ opacity: 1; }
+}
+@keyframes bbStoreVisorShine{
+  0%, 100%{ opacity: .45; transform: translateX(0); }
+  50%{ opacity: .85; transform: translateX(6px); }
+}
+@keyframes bbStoreChestRing{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+@keyframes bbStoreArmL{
+  0%, 100%{ transform: rotate(0deg); }
+  40%{ transform: rotate(-12deg); }
+}
+@keyframes bbStoreArmR{
+  0%, 100%{ transform: rotate(0deg); }
+  45%{ transform: rotate(10deg); }
+}
+@keyframes bbStoreEmberGlow{
+  0%, 100%{ opacity: .1; }
+  50%{ opacity: .22; }
+}
+@keyframes bbStoreFlameC{
+  0%, 100%{ transform: scaleY(.85); opacity: .5; }
+  50%{ transform: scaleY(1.08); opacity: .9; }
+}
+@keyframes bbMainPatrol{
+  0%, 100%{ transform: translate(0, 0); }
+  25%{ transform: translate(6px, -5px); }
+  50%{ transform: translate(12px, 0); }
+  75%{ transform: translate(4px, 3px); }
+}
+@keyframes bbFxCheerBody{
+  0%, 100%{ transform: scale(1); }
+  40%{ transform: scale(1.05) translateY(-4px); }
+}
+@keyframes bbFxCheerHead{
+  0%, 100%{ transform: rotate(0deg); }
+  30%{ transform: rotate(-6deg); }
+  60%{ transform: rotate(4deg); }
+}
+@keyframes bbFxCheerArmL{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(-32deg); }
+}
+@keyframes bbFxCheerArmR{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(32deg); }
+}
+@keyframes bbFxFlameBurst{
+  0%{ opacity: 0; transform: scale(.4); }
+  25%{ opacity: 1; transform: scale(1.05); }
+  100%{ opacity: 0; transform: scale(1.35); }
+}
+@keyframes bbFxFlameCore{
+  0%, 100%{ transform: scaleY(1); }
+  50%{ transform: scaleY(1.25); }
+}
+@keyframes bbFxCoreBlast{
+  0%{ opacity: .2; transform: scale(.8); }
+  40%{ opacity: .85; transform: scale(1.2); }
+  100%{ opacity: .15; transform: scale(1); }
+}
+@keyframes bbFxSparksFly{
+  0%{ opacity: 0; transform: translateY(8px); }
+  30%{ opacity: 1; }
+  100%{ opacity: 0; transform: translateY(-24px); }
+}
+@keyframes bbFxEpicBody{
+  0%, 100%{ transform: scale(1); }
+  35%{ transform: scale(1.08) translateY(-6px); }
+}
+@keyframes bbFxEpicHead{
+  0%, 100%{ transform: rotate(0deg); }
+  25%{ transform: rotate(-4deg); }
+  75%{ transform: rotate(4deg); }
+}
+@keyframes sfStoreWingL{
+  0%, 100%{ transform: rotate(0deg) scaleX(1); }
+  50%{ transform: rotate(-8deg) scaleX(1.05); }
+}
+@keyframes sfStoreWingR{
+  0%, 100%{ transform: rotate(0deg) scaleX(1); }
+  50%{ transform: rotate(8deg) scaleX(1.05); }
+}
+@keyframes sfStoreHalo{
+  0%, 100%{ opacity: .6; transform: scale(1) rotate(0deg); }
+  50%{ opacity: 1; transform: scale(1.06) rotate(3deg); }
+}
+@keyframes sfStoreWand{
+  0%, 100%{ transform: rotate(0deg); }
+  40%{ transform: rotate(-10deg); }
+  70%{ transform: rotate(6deg); }
+}
+@keyframes sfStoreHair{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(-1.5deg); }
+}
+@keyframes sfStoreHead{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-2px); }
+}
+@keyframes sfStoreAura{
+  0%, 100%{ opacity: .25; transform: scale(.96); }
+  50%{ opacity: .5; transform: scale(1.1); }
+}
+@keyframes sfStoreDressShine{
+  0%, 100%{ opacity: .15; }
+  50%{ opacity: .45; }
+}
+@keyframes sfStoreStarTwinkle{
+  0%, 100%{ opacity: .35; transform: scale(.9); }
+  50%{ opacity: .85; transform: scale(1.1); }
+}
+@keyframes sfMainFloat{
+  0%, 100%{ transform: translate(0, 0); }
+  33%{ transform: translate(5px, -6px); }
+  66%{ transform: translate(-3px, -2px); }
+}
+@keyframes sfFxWingCheerL{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(-18deg); }
+}
+@keyframes sfFxWingCheerR{
+  0%, 100%{ transform: rotate(0deg); }
+  50%{ transform: rotate(18deg); }
+}
+@keyframes sfFxWandCast{
+  0%, 100%{ transform: rotate(0deg); }
+  45%{ transform: rotate(-35deg); }
+}
+@keyframes sfFxStarBurst{
+  0%{ opacity: 0; transform: scale(.5); }
+  30%{ opacity: 1; transform: scale(1.15); }
+  100%{ opacity: 0; transform: scale(1.4); }
+}
+@keyframes sfFxAuraNova{
+  0%{ opacity: .2; transform: scale(.85); }
+  45%{ opacity: .9; transform: scale(1.25); }
+  100%{ opacity: .3; transform: scale(1); }
+}
+@keyframes sfFxHaloBurst{
+  0%{ transform: scale(1); opacity: .5; }
+  50%{ transform: scale(1.2); opacity: 1; }
+  100%{ transform: scale(1.05); opacity: .7; }
+}
+@keyframes sfFxSparkOrbit{
+  0%{ opacity: 0; }
+  25%{ opacity: 1; }
+  100%{ opacity: 0; transform: rotate(12deg); }
+}
+@keyframes sfFxWingEpic{
+  0%, 100%{ transform: scaleX(1); }
+  50%{ transform: scaleX(1.12); }
+}
+@keyframes sfFxWandEpic{
+  0%, 100%{ transform: rotate(0deg) scale(1); }
+  40%{ transform: rotate(-40deg) scale(1.05); }
+}
+@keyframes spFxHead{
+  0%, 100%{ transform: rotate(0deg); }
+  30%{ transform: rotate(-5deg); }
+  60%{ transform: rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__body,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__core-glow,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__core,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__head,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__visor,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__arm-l,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__arm-r,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__flames,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wing-l,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wing-r,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__halo,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wand,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__hair,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__stars-idle,
+  .nova-hero-store-card .nova-hero-preview--store-live .nova-hero-svg,
+  #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-slot,
+  .nova-hero-mount--blaze-robot.nova-sp-fx-live,
+  .nova-hero-mount--star-fairy.nova-sp-fx-live{
+    animation: none !important;
+  }
+}
