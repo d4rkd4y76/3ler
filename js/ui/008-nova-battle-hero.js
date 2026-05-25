@@ -1,35 +1,79 @@
-/* Alev Bot — mağaza 5000 💎, tek kişilik doğru cevap FX */
+/* Savaş kahramanları — mağaza, ana ekran, tek kişilik doğru cevap FX */
 (function () {
-  var HERO_ID = 'blaze_robot';
-  var HERO_NAME = 'Alev Bot';
-  var HERO_DESC = 'Göğsünden alev fışkırtan eğlenceli savaş robotu. Doğru cevaplarda seni motive eder!';
-  var HERO_COST = 5000;
-  var heroCatalogCache = null;
-
-  var MOTIVATE_LINES = [
-    '🔥 {n}, tam isabet! Böyle devam!',
-    '⭐ {n}, zekân parlıyor!',
-    '💪 Harika cevap {n}!',
-    '🚀 {n}, süpersin şampiyon!',
-    '✨ Bravo {n}! İnanılmaz gidiyorsun!',
-    '🏆 {n}, sen bu işi biliyorsun!',
-    '🔥 Alev gibi güçlüsün {n}!'
-  ];
-
-  var EPIC_LINES = [
-    '🔥 {n} — EFSANE CEVAP!',
-    '⚡ {n}, MUHTEŞEM VURUŞ!',
-    '👑 {n}, KRALİYORSUN!'
-  ];
-  var FIRE_LINES = [
-    '💥 {n}, ALEV PATLAMASI!',
-    '🔥 {n}, GÜÇ MODU AÇIK!',
-    '⚡ {n}, ISINDIN!'
-  ];
+  var HERO_REGISTRY = {
+    blaze_robot: {
+      id: 'blaze_robot',
+      templateKey: 'NOVA_BLAZE_BOT_SVG_TEMPLATE',
+      theme: 'blaze',
+      name: 'Alev Bot',
+      desc: 'Göğsünden alev fışkırtan eğlenceli savaş robotu. Doğru cevaplarda seni motive eder!',
+      price: 5000,
+      order: 1,
+      equipEmoji: '🔥',
+      lines: {
+        cheer: [
+          '🔥 {n}, tam isabet! Böyle devam!',
+          '⭐ {n}, zekân parlıyor!',
+          '💪 Harika cevap {n}!',
+          '🚀 {n}, süpersin şampiyon!',
+          '✨ Bravo {n}! İnanılmaz gidiyorsun!',
+          '🏆 {n}, sen bu işi biliyorsun!',
+          '🔥 Alev gibi güçlüsün {n}!'
+        ],
+        fire: [
+          '💥 {n}, ALEV PATLAMASI!',
+          '🔥 {n}, GÜÇ MODU AÇIK!',
+          '⚡ {n}, ISINDIN!'
+        ],
+        epic: [
+          '🔥 {n} — EFSANE CEVAP!',
+          '⚡ {n}, MUHTEŞEM VURUŞ!',
+          '👑 {n}, KRALİYORSUN!'
+        ]
+      }
+    },
+    star_fairy: {
+      id: 'star_fairy',
+      templateKey: 'NOVA_STAR_FAIRY_SVG_TEMPLATE',
+      theme: 'star',
+      name: 'Yıldız Perisi',
+      desc: 'Kozmik güçle seni kutlayan yıldız perisi. Doğru cevaplarda yıldız yağmuru ve sihirli motivasyon!',
+      price: 6500,
+      order: 2,
+      equipEmoji: '✨',
+      lines: {
+        cheer: [
+          '✨ {n}, yıldız gibi parladın!',
+          '⭐ Harika cevap {n}! Evren seninle!',
+          '💫 {n}, takımyıldızı kadar net!',
+          '🌟 Bravo {n}! Işığın göz kamaştırıyor!',
+          '✨ {n}, sihirli bir cevap!',
+          '🪄 Muhteşem {n}, peri onayladı!',
+          '⭐ {n}, gökyüzü seninle dans ediyor!'
+        ],
+        fire: [
+          '💫 {n}, YILDIZ PATLAMASI!',
+          '✨ {n}, KOZMİK GÜÇ AÇIK!',
+          '⭐ {n}, IŞILDIYORSUN!'
+        ],
+        epic: [
+          '✨ {n} — KOZMİK ZAFER!',
+          '🌟 {n}, GALAKSİ SEVİYESİ!',
+          '👑 {n}, YILDIZLARIN KRALİÇESİ!'
+        ]
+      }
+    }
+  };
 
   var fxBusy = false;
   var correctFxCount = 0;
   var uidSeq = 0;
+  var heroCatalogCache = null;
+
+  function getHeroDef(heroId) {
+    if (!heroId) return null;
+    return HERO_REGISTRY[String(heroId).trim()] || null;
+  }
 
   function getStudent() {
     try {
@@ -57,6 +101,10 @@
   function getEquippedHeroId() {
     var s = getStudent();
     return (s && s.battleHero) ? String(s.battleHero).trim() : '';
+  }
+
+  function getEquippedHeroDef() {
+    return getHeroDef(getEquippedHeroId());
   }
 
   function isMainScreenVisible() {
@@ -87,30 +135,30 @@
   function clearMainHeroSlot(slot) {
     var zone = document.getElementById('nova-main-hero-zone');
     if (zone) {
-      zone.classList.remove('is-visible', 'nova-main-hero-zone--blaze');
+      zone.classList.remove('is-visible', 'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star');
       zone.setAttribute('aria-hidden', 'true');
     }
     if (!slot) slot = document.getElementById('nova-main-hero-slot');
     if (!slot) return;
     slot.innerHTML = '';
-    slot.classList.remove('nova-main-hero-slot--blaze');
+    slot.classList.remove('nova-main-hero-slot--blaze', 'nova-main-hero-slot--star');
   }
 
   function mountMainScreenHero(heroId) {
+    var def = getHeroDef(heroId);
     var zone = document.getElementById('nova-main-hero-zone');
     var slot = document.getElementById('nova-main-hero-slot');
-    if (!zone || !slot) return;
+    if (!def || !zone || !slot) return;
+    if (!window[def.templateKey]) return;
     clearMainHeroSlot(slot);
-    if (!heroId || heroId !== HERO_ID) return;
-    if (!window.NOVA_BLAZE_BOT_SVG_TEMPLATE) return;
     zone.setAttribute('aria-hidden', 'false');
-    zone.classList.add('is-visible', 'nova-main-hero-zone--blaze');
-    slot.classList.add('nova-main-hero-slot--blaze');
+    zone.classList.add('is-visible', 'nova-main-hero-zone--' + def.theme);
+    slot.classList.add('nova-main-hero-slot--' + def.theme);
     var host = document.createElement('div');
-    host.className = 'nova-hero-svg-host nova-main-hero-host';
+    host.className = 'nova-hero-svg-host nova-main-hero-host nova-hero-mount--' + heroId.replace(/_/g, '-');
     host.setAttribute('data-nova-main-hero', heroId);
     slot.appendChild(host);
-    mountHeroInto(host);
+    mountHeroInto(host, heroId);
   }
 
   async function refreshMainScreenHero() {
@@ -124,23 +172,19 @@
     }
     var heroId = getEquippedHeroId();
     if (!heroId) heroId = await loadBattleHeroFromDb();
-    if (!heroId) {
+    var def = getHeroDef(heroId);
+    if (!heroId || !def) {
       clearMainHeroSlot(slot);
       return;
     }
-    if (heroId === HERO_ID) {
-      try {
-        var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
-        var data = snap.val() || {};
-        if (!ownsHero(data) || data.battleHero !== HERO_ID) {
-          clearMainHeroSlot(slot);
-          return;
-        }
-      } catch (_) {
+    try {
+      var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
+      var data = snap.val() || {};
+      if (!ownsHero(data, heroId) || data.battleHero !== heroId) {
         clearMainHeroSlot(slot);
         return;
       }
-    } else {
+    } catch (_) {
       clearMainHeroSlot(slot);
       return;
     }
@@ -148,64 +192,78 @@
   }
 
   function isHeroEquipped(data) {
-    if (!data) {
-      var s = getStudent();
-      return !!(s && s.battleHero === HERO_ID);
-    }
-    return data.battleHero === HERO_ID;
+    var heroId = data ? String(data.battleHero || '').trim() : getEquippedHeroId();
+    if (!heroId || !getHeroDef(heroId)) return false;
+    if (data) return data.battleHero === heroId && ownsHero(data, heroId);
+    var s = getStudent();
+    return !!(s && s.battleHero === heroId && ownsHero({ purchasedBattleHeroes: s.purchasedBattleHeroes }, heroId));
   }
 
   function ownsHero(data, heroId) {
-    var id = heroId || HERO_ID;
-    return !!(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[id]);
+    if (!heroId) return false;
+    return !!(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]);
+  }
+
+  function defaultCatalog() {
+    return Object.keys(HERO_REGISTRY).map(function (id) {
+      var h = HERO_REGISTRY[id];
+      return {
+        id: h.id,
+        name: h.name,
+        price: h.price,
+        desc: h.desc,
+        order: h.order,
+        theme: h.theme
+      };
+    }).sort(function (a, b) { return a.order - b.order; });
   }
 
   async function loadHeroCatalogFromDB() {
     if (heroCatalogCache) return heroCatalogCache;
+    var merged = {};
+    defaultCatalog().forEach(function (h) { merged[h.id] = h; });
     try {
       if (typeof database !== 'undefined') {
         var snap = await database.ref('store/battleHeroes').once('value');
         var val = snap.val() || {};
-        var list = Object.keys(val).map(function (k) {
-          var h = val[k] || {};
-          if (h.active === false) return null;
-          return {
+        Object.keys(val).forEach(function (k) {
+          var row = val[k] || {};
+          if (row.active === false) return;
+          var local = HERO_REGISTRY[k];
+          merged[k] = {
             id: k,
-            name: String(h.name || k),
-            price: Math.max(0, Number(h.price) || 0),
-            desc: String(h.desc || ''),
-            order: Number(h.order) || 1e9
+            name: String(row.name || (local && local.name) || k),
+            price: Math.max(0, Number(row.price) || (local && local.price) || 0),
+            desc: String(row.desc || (local && local.desc) || ''),
+            order: Number(row.order) || (local && local.order) || 1e9,
+            theme: (local && local.theme) || 'blaze'
           };
-        }).filter(Boolean);
-        list.sort(function (a, b) { return a.order - b.order; });
-        if (list.length) {
-          heroCatalogCache = list;
-          return list;
-        }
+        });
       }
     } catch (e) {
       console.warn('loadHeroCatalogFromDB', e);
     }
-    heroCatalogCache = [{
-      id: HERO_ID,
-      name: HERO_NAME,
-      price: HERO_COST,
-      desc: HERO_DESC,
-      order: 1
-    }];
+    heroCatalogCache = Object.keys(merged).map(function (k) { return merged[k]; })
+      .filter(function (h) { return !!HERO_REGISTRY[h.id]; })
+      .sort(function (a, b) { return a.order - b.order; });
     return heroCatalogCache;
   }
 
-  function buildHeroSvgHtml() {
-    var uid = 'b' + ++uidSeq;
-    var raw = window.NOVA_BLAZE_BOT_SVG_TEMPLATE || '';
+  function buildHeroSvgHtml(heroId) {
+    var def = getHeroDef(heroId);
+    if (!def) return '';
+    var uid = 'h' + ++uidSeq;
+    var raw = window[def.templateKey] || '';
     if (!raw) return '';
-    return raw.split('__UID__').join(uid).replace('<svg ', '<svg class="nova-hero-svg" ');
+    return raw.split('__UID__').join(uid).replace('<svg ', '<svg class="nova-hero-svg nova-hero-svg--' + def.theme + '" ');
   }
 
-  function mountHeroInto(host) {
+  function mountHeroInto(host, heroId) {
     if (!host) return null;
-    host.innerHTML = buildHeroSvgHtml();
+    var id = heroId || getEquippedHeroId();
+    host.innerHTML = buildHeroSvgHtml(id);
+    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy');
+    if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
     return host.querySelector('svg');
   }
 
@@ -222,10 +280,11 @@
   }
 
   function pickCaption(variant) {
+    var def = getEquippedHeroDef() || HERO_REGISTRY.blaze_robot;
     var name = heroDisplayName();
-    var pool = MOTIVATE_LINES;
-    if (variant === 'epic') pool = EPIC_LINES;
-    else if (variant === 'fire') pool = FIRE_LINES;
+    var pool = def.lines.cheer;
+    if (variant === 'epic') pool = def.lines.epic;
+    else if (variant === 'fire') pool = def.lines.fire;
     var line = pool[correctFxCount % pool.length];
     return String(line).replace(/\{n\}/g, name);
   }
@@ -240,7 +299,10 @@
   function hideArena(arena) {
     if (!arena) arena = document.getElementById('nova-sp-hero-arena');
     if (!arena) return;
-    arena.classList.remove('is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show');
+    arena.classList.remove(
+      'is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show',
+      'nova-sp-theme-blaze', 'nova-sp-theme-star'
+    );
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
     if (host) {
@@ -301,10 +363,17 @@
   function playHeroFx(variant) {
     return new Promise(function (resolve) {
       if (fxBusy || !isSinglePlayerGameVisible()) { resolve(); return; }
+      var equippedId = getEquippedHeroId();
+      var def = getHeroDef(equippedId);
+      if (!def) { resolve(); return; }
+
       var arena = ensureArena();
+      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star');
+      arena.classList.add('nova-sp-theme-' + def.theme);
+
       var host = arena.querySelector('.nova-sp-hero-arena__host');
       var cap = arena.querySelector('.nova-sp-hero-arena__caption');
-      var svg = mountHeroInto(host);
+      var svg = mountHeroInto(host, equippedId);
       if (!svg) { resolve(); return; }
 
       fxBusy = true;
@@ -316,7 +385,7 @@
         arena.classList.remove(c);
       });
 
-      runHeroSequence(arena, svg, variant).then(function () {
+      runHeroSequence(arena, variant).then(function () {
         hideArena(arena);
         fxBusy = false;
         resolve();
@@ -324,7 +393,7 @@
     });
   }
 
-  function runHeroSequence(arena, svg, variant) {
+  function runHeroSequence(arena, variant) {
     var host = arena.querySelector('.nova-sp-hero-arena__host');
     return waitMs(40).then(function () {
       arena.classList.add('is-centered', 'is-caption-show');
@@ -364,9 +433,10 @@
     }
   }
 
-  function heroPreviewHtml() {
-    return '<div class="nova-hero-preview nova-hero-preview--store-live">'
-      + '<div class="nova-hero-svg-host" data-nova-hero-host="1"></div>'
+  function heroPreviewHtml(heroId) {
+    var mount = heroId ? ' nova-hero-mount--' + heroId.replace(/_/g, '-') : '';
+    return '<div class="nova-hero-preview nova-hero-preview--store-live' + mount + '">'
+      + '<div class="nova-hero-svg-host" data-nova-hero-host="1" data-hero-id="' + (heroId || '') + '"></div>'
       + '</div>';
   }
 
@@ -376,9 +446,11 @@
       await showAlert('Önce giriş yapmalısın.');
       return false;
     }
+    var def = getHeroDef(hero.id);
+    if (!def) return false;
     var heroId = hero.id;
-    var cost = Number(hero.price) || HERO_COST;
-    var heroName = hero.name || HERO_NAME;
+    var cost = Number(hero.price) || def.price;
+    var heroName = hero.name || def.name;
     try {
       var ref = database.ref('classes/' + s.classId + '/students/' + s.studentId);
       var snap = await ref.once('value');
@@ -414,7 +486,7 @@
           localStorage.setItem('selectedStudent', JSON.stringify(s));
         } catch (_) {}
       }
-      await showAlert('🔥 ' + heroName + ' artık senin! Mağazadan Kullan ile aktif et.');
+      await showAlert((def.equipEmoji || '✨') + ' ' + heroName + ' artık senin! Mağazadan Kullan ile aktif et.');
       return true;
     } catch (e) {
       console.error('purchaseBattleHero', e);
@@ -426,13 +498,13 @@
   async function equipBattleHero(hero) {
     var s = getStudent();
     if (!s || !s.classId || !s.studentId || !hero) return;
-    var heroId = hero.id;
-    var heroName = hero.name || HERO_NAME;
+    var def = getHeroDef(hero.id);
+    if (!def) return;
     try {
-      await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: heroId });
-      syncHeroToStudent({ battleHero: heroId });
+      await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: hero.id });
+      syncHeroToStudent({ battleHero: hero.id });
       try { refreshMainScreenHero(); } catch (_) {}
-      await showAlert('🔥 ' + heroName + ' aktif! Doğru cevaplarda ortaya gelip seni motive eder.');
+      await showAlert((def.equipEmoji || '✨') + ' ' + def.name + ' aktif! Doğru cevaplarda seni motive eder.');
     } catch (e) {
       console.error('equipBattleHero', e);
       await showAlert('Kahraman seçilemedi.');
@@ -440,20 +512,22 @@
   }
 
   function renderHeroStoreCard(hero, userData, container, index) {
-    if (hero.id !== HERO_ID) return;
+    var def = getHeroDef(hero.id);
+    if (!def || !window[def.templateKey]) return;
+
     var owned = ownsHero(userData, hero.id);
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
-    var cost = Number(hero.price) || HERO_COST;
+    var cost = Number(hero.price) || def.price;
 
     var card = document.createElement('div');
-    card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--blaze';
+    card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme;
     card.style.animationDelay = (index * 0.06) + 's';
     card.innerHTML =
-      heroPreviewHtml()
+      heroPreviewHtml(hero.id)
       + '<div class="nova-hero-store-meta">'
-      + '<h4 class="nova-hero-store-name">' + (hero.name || HERO_NAME) + '</h4>'
-      + '<p class="nova-hero-store-desc">' + (hero.desc || HERO_DESC) + '</p>'
+      + '<h4 class="nova-hero-store-name">' + (hero.name || def.name) + '</h4>'
+      + '<p class="nova-hero-store-desc">' + (hero.desc || def.desc) + '</p>'
       + '</div>'
       + '<div class="profile-photo-price">'
       + (owned
@@ -484,7 +558,7 @@
     }
     container.appendChild(card);
     var host = card.querySelector('[data-nova-hero-host]');
-    mountHeroInto(host);
+    mountHeroInto(host, hero.id);
   }
 
   async function novaRenderBattleHeroStore() {
@@ -495,6 +569,7 @@
     if (!container) return;
     container.style.display = 'grid';
     container.innerHTML = '';
+    container.classList.add('nova-store-products--heroes');
 
     var catalog = await loadHeroCatalogFromDB();
     var userData = await getStoreStudentData(true);
@@ -585,7 +660,8 @@
   window.novaTryPlayBattleHeroFx = novaTryPlayBattleHeroFx;
   window.novaTryPlayKnightCorrectFx = novaTryPlayBattleHeroFx;
   window.novaRefreshMainScreenHero = refreshMainScreenHero;
-  window.NOVA_BATTLE_HERO_ID = HERO_ID;
+  window.NOVA_BATTLE_HERO_REGISTRY = HERO_REGISTRY;
+  window.NOVA_BATTLE_HERO_ID = 'blaze_robot';
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot, { once: true });
