@@ -1,12 +1,9 @@
-/* Mağaza kartlarındaki görsel oranını 440x550 (w:h=1:1.25) yap */
-.profile-photo {
+/* Mağaza — yalnızca gerçek avatar img (kapsayıcı div'e uygulanmaz) */
+.profile-change-content .profile-photos-container img.profile-photo,
+.profile-change-content .profile-photos-container img.nova-store-avatar-img {
   width: 120px !important;
-  height: 150px !important; /* 120 * 1.25 */
+  height: 150px !important;
   border-radius: 12px !important;
   object-fit: cover !important;
-}
-/* Güvenlik: grid içindeki tüm img'lere de uygula */
-.profile-photos-container img {
-  border-radius: 12px !important;
-  object-fit: cover !important;
+  display: block !important;
 }

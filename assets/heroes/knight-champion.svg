@@ -18,11 +18,11 @@
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <!-- gölge -->
+  <!-- gï¿½lge -->
   <ellipse cx="120" cy="298" rx="52" ry="10" fill="#000" opacity=".35"/>
   <!-- pelerin -->
   <path class="nk-cape" d="M78 95c-18 42-22 88-14 128 6 32 20 48 34 52 4-38 2-92-8-140-6-28-14-44-12-40z" fill="url(#cape)" opacity=".92"/>
-  <!-- gövde z1rh -->
+  <!-- gï¿½vde z1rh -->
   <path d="M92 108h56c8 0 14 6 16 14l8 78c2 12-6 24-18 26h-52c-12-2-20-14-18-26l8-78c2-8 8-14 16-14z" fill="url(#armor)" stroke="#cbd5e1" stroke-width="1.2"/>
   <path d="M108 118h24v18h-24z" fill="#1e293b" opacity=".5"/>
   <!-- kafa / mifer -->
@@ -30,7 +30,7 @@
   <path d="M96 72c6-18 42-18 48 0 2 8-2 16-10 18h-28c-8-2-12-10-10-18z" fill="#334155"/>
   <path d="M108 58h24l6 14h-36z" fill="url(#gold)" filter="url(#glow)"/>
   <rect x="114" y="78" width="12" height="6" rx="2" fill="#0f172a"/>
-  <!-- k1l1ç kolu -->
+  <!-- k1l1ï¿½ kolu -->
   <g class="nk-sword-arm" transform-origin="148 130">
     <path d="M138 118c18-4 32 8 38 28 4 14 2 30-6 42" stroke="#64748b" stroke-width="10" stroke-linecap="round" fill="none"/>
     <g transform="translate(168 88)">

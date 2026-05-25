@@ -34,7 +34,7 @@
     </filter>
   </defs>
 
-  <!-- Zemin gölgesi -->
+  <!-- Zemin gï¿½lgesi -->
   <ellipse class="nova-knight-svg__shadow" cx="120" cy="338" rx="72" ry="14" fill="#0f172a" opacity=".28"/>
 
   <!-- Pelerin -->
@@ -51,7 +51,7 @@
     <rect x="88" y="300" width="64" height="12" rx="4" fill="url(#nkGold)" opacity=".85"/>
   </g>
 
-  <!-- Gövde -->
+  <!-- Gï¿½vde -->
   <g class="nova-knight-svg__torso" filter="url(#nkShadow)">
     <path d="M88 138 C84 175 86 220 94 252 L146 252 C154 220 156 175 152 138 C148 118 128 108 120 106 C112 108 92 118 88 138 Z" fill="url(#nkArmor)"/>
     <path d="M108 145 L132 145 L128 210 L112 210 Z" fill="url(#nkGold)" opacity=".75"/>
@@ -75,7 +75,7 @@
     <path d="M58 178 L66 188 L58 198" stroke="#fde68a" stroke-width="2" fill="none"/>
   </g>
 
-  <!-- Sa kol + k1l1ç (vuru_ pivot: omuz) -->
+  <!-- Sa kol + k1l1ï¿½ (vuru_ pivot: omuz) -->
   <g class="nova-knight-svg__arm" style="transform-origin: 158px 158px">
     <path d="M148 142 L178 128 L186 155 L168 178 L152 168 Z" fill="url(#nkArmor)"/>
     <g class="nova-knight-svg__sword">

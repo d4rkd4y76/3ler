@@ -37,63 +37,28 @@
     return out;
   }
 
-  window.renderStoreCategoryButtons = function renderStoreCategoryButtons(){
-    const area = document.querySelector('.profile-categories');
-    if(!area) return;
-    area.style.display = 'flex';
-    area.innerHTML = '';
-
-    let keys = [];
-    try {
-      if (typeof photoCategories === 'object' && photoCategories){
-        keys = Object.keys(photoCategories);
-      }
-    } catch(e){}
-    if(!keys.length){
-      keys = ['duel','DünyaDevleri','cesur','TemelKarakterler','SüperLig','DünyaFutbolcuları','KizlarKösesi','EFSANE'];
-    }
-    keys = sortKeys(keys);
-    if (!keys.includes('__nameFrames')) keys.unshift('__nameFrames');
-    if (!keys.includes('__avatarFrames')) keys.unshift('__avatarFrames');
-
-    keys.forEach((k, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'category-button' + (i===0 ? ' active' : '');
-      btn.dataset.category = k;
-      btn.dataset.categoryRaw = k;
-      btn.textContent = labelForKey(k);
-
-      if (k === 'EFSANE'){
-        btn.classList.add('legendary');
-        btn.title = '🔥 Efsane Seçkisi';
-      } else if (k === '__nameFrames' || k === '__avatarFrames'){
-        btn.classList.add('legendary');
-        btn.title = (k === '__avatarFrames') ? '✨ Avatar çerçeveleri' : '✨ İsim çerçeveleri';
-      }
-
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.category-button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const duelStore = document.getElementById('duelCreditsStore');
-        const photosContainer = document.getElementById('profilePhotosContainer');
-        if (duelStore && photosContainer){
-          if (k === 'duel'){
-            duelStore.style.display = 'block';
-            photosContainer.style.display = 'none';
-          } else {
-            duelStore.style.display = 'none';
-            photosContainer.style.display = 'grid';
-          }
-        }
-        if (typeof loadProfilePhotos === 'function' && k !== 'duel'){
-          loadProfilePhotos(k);
-        }
+  /* Mağaza sekmeleri: js/ui/012-nova-store-hub.js */
+  if (typeof window.renderStoreCategoryButtons !== 'function') {
+    window.renderStoreCategoryButtons = function renderStoreCategoryButtons(){
+      const main = document.getElementById('novaStoreMainTabs');
+      if (main && typeof window.novaStoreHubInit === 'function') return;
+      const area = document.querySelector('.profile-categories');
+      if(!area) return;
+      area.style.display = 'flex';
+      area.innerHTML = '';
+      let keys = sortKeys(['duel','TemelKarakterler','DünyaDevleri','EFSANE']);
+      keys.forEach((k, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'category-button' + (i===0 ? ' active' : '');
+        btn.dataset.category = k;
+        btn.textContent = labelForKey(k);
+        btn.addEventListener('click', () => {
+          if (typeof loadProfilePhotos === 'function') loadProfilePhotos(k);
+        });
+        area.appendChild(btn);
       });
-
-      area.appendChild(btn);
-    });
-  };
+    };
+  }
 
   // Mağaza üst başlık hizalama (varsa uygula)
   document.addEventListener('DOMContentLoaded', function(){

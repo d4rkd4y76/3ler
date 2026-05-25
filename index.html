@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="styles/018-nova-storebar-fix-20251002.css" />
 <link rel="stylesheet" href="styles/019-nova-store-premium-ui.css" />
 <link rel="stylesheet" href="styles/020-nova-store-boutique-v3.css" />
+<link rel="stylesheet" href="styles/022-nova-store-hub.css?v=20260522store3" />
 <link rel="stylesheet" href="styles/021-nova-name-frame-styles.css" />
 <link rel="stylesheet" href="styles/022-style-022.css" />
 <link rel="stylesheet" href="styles/023-style-023.css" />
@@ -653,41 +654,46 @@
 </div>
 </div>
 <div class="profile-change-overlay" id="profileChangeOverlay">
-<!-- Elmas Takas Modal (Minimal, layoutı bozmaz) -->
-<div id="diamondExchangeModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;">
-<div style="max-width:420px;margin:8vh auto;background:#0b1220;border:2px solid #1f2a44;border-radius:16px;box-shadow: 0 6px 18px rgba(0,0,0,.5);padding:18px;">
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-<div style="font-size:20px;font-weight:800;color:#e5e7eb;">💱 Elmas Takas</div>
-<button aria-label="Kapat" onclick="closeDiamondExchangeModal()" style="background:transparent;border:none;color:#94a3b8;font-size:20px;cursor:pointer;">✖</button>
+<!-- Elmas Takas Modal -->
+<div id="diamondExchangeModal" class="nova-exchange-modal" style="display:none;" aria-hidden="true">
+<div class="nova-exchange-modal__backdrop" onclick="closeDiamondExchangeModal()"></div>
+<div class="nova-exchange-modal__panel" role="dialog" aria-labelledby="novaExchangeTitle">
+<header class="nova-exchange-modal__head">
+<div>
+<p class="nova-exchange-modal__kicker">NASK GAMES</p>
+<h3 id="novaExchangeTitle" class="nova-exchange-modal__title">💱 Elmas Takas</h3>
 </div>
-<div style="font-size:13px;color:#94a3b8;margin-bottom:12px;">
-      Takas türü seçin:
-      <b style="color:#fef08a">100 💎 → 5 🏆</b>
-      veya
-      <b style="color:#f0f9ff">100 💎 → 30 düello kredisi</b>
-      <span style="display:block;margin-top:6px;color:#64748b;font-size:12px;">Her &quot;adet&quot; bir pakettir (ör. 2 adet = 200 💎). Günde en fazla <b style="color:#cbd5e1">3 adet</b> takas.</span>
+<button type="button" class="nova-exchange-modal__close" aria-label="Kapat" onclick="closeDiamondExchangeModal()">✖</button>
+</header>
+<p class="nova-exchange-modal__lead">Elmaslarını kupa veya düello kredisine çevir. Her <strong>adet</strong> bir pakettir (2 adet = 200 💎). Günde en fazla <strong>3 adet</strong> takas yapabilirsin.</p>
+<div id="exchange-daily-takas" class="nova-exchange-modal__daily">Bugün takas: …</div>
+<div class="nova-exchange-modal__balances">
+<span id="exchange-current-diamonds">💎 Elmas: …</span>
+<span id="exchange-current-cups">🏆 Kupa: …</span>
+<span id="exchange-current-credits">⚔️ Düello kredisi: …</span>
 </div>
-<div id="exchange-daily-takas" style="font-size:12px;color:#94a3b8;margin:-4px 0 10px;">Bugün takas: …</div>
-<div style="display:flex;align-items:center;gap:8px;margin:8px 0 10px;">
-<label for="exchange-type-select" style="color:#cbd5e1;font-size:14px;">Takas</label>
-<select id="exchange-type-select" style="flex:1;padding:10px;border-radius:10px;border:2px solid #334155;background:#0b1220;color:#e2e8f0;font-size:14px;">
-  <option value="diamond_to_cup">100 💎 → 5 🏆</option>
-  <option value="diamond_to_credits">100 💎 → 30 düello kredisi</option>
+<div class="nova-exchange-modal__field">
+<label for="exchange-type-select">Ne almak istiyorsun?</label>
+<select id="exchange-type-select">
+<option value="diamond_to_cup">🏆 Kupa — 100 💎 karşılığı 5 kupa</option>
+<option value="diamond_to_credits">⚔️ Düello kredisi — 100 💎 karşılığı 30 kredi</option>
 </select>
 </div>
-<div style="display:flex;align-items:center;gap:8px;margin:10px 0 14px;">
-<label for="exchange-count-input" style="color:#cbd5e1;font-size:14px;">Adet</label>
-<input id="exchange-count-input" min="1" style="flex:0 0 120px;padding:10px;border-radius:10px;border:2px solid #ff8a00;font-size:1.05em;text-align:center;background:#0b1220;color:#e2e8f0;" type="number" value="1"/>
-<span id="exchange-current-credits" style="margin-left:auto;font-size:13px;color:#94a3b8;">Mevcut Kredin: ...</span>
+<div class="nova-exchange-modal__field nova-exchange-modal__field--qty">
+<label for="exchange-count-input">Kaç adet?</label>
+<div class="nova-exchange-qty-row">
+<button type="button" class="nova-exchange-qty-btn" data-exchange-delta="-1" aria-label="Azalt">−</button>
+<input id="exchange-count-input" min="1" type="number" value="1" inputmode="numeric"/>
+<button type="button" class="nova-exchange-qty-btn" data-exchange-delta="1" aria-label="Artır">+</button>
 </div>
-<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:-8px;margin-bottom:12px;font-size:13px;color:#94a3b8;">
-<span id="exchange-current-diamonds">Mevcut Elmasın: ...</span>
-<span id="exchange-current-cups">Mevcut Kupan: ...</span>
 </div>
-<button type="button" id="diamond_exchange_btn" onclick="handleDiamondExchangeModal()" style="width:100%;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;">
-      Takas Yap
-    </button>
-<div style="margin-top:10px;font-size:12px;color:#64748b;">İşlem onayından sonra elmas ve krediler anında güncellenir.</div>
+<div class="nova-exchange-preview" id="nova-exchange-preview">
+<span class="nova-exchange-preview__cost" id="exchange-preview-cost">100 💎</span>
+<span class="nova-exchange-preview__arrow" aria-hidden="true">→</span>
+<span class="nova-exchange-preview__gain" id="exchange-preview-gain">5 🏆</span>
+</div>
+<button type="button" id="diamond_exchange_btn" class="nova-exchange-modal__submit" onclick="handleDiamondExchangeModal()">Takası Onayla</button>
+<p class="nova-exchange-modal__foot">Onaydan sonra bakiyen anında güncellenir.</p>
 </div>
 </div>
 <div class="profile-change-content nova-store-shell">
@@ -696,7 +702,7 @@
 <div class="nova-store-title-block">
 <p class="nova-store-kicker">NASK GAMES</p>
 <h2 class="store-title">Mağaza <span class="cart-icon" aria-hidden="true">🛒</span></h2>
-<p class="nova-store-sub">Avatar, çerçeve ve dahası burada.</p>
+<p class="nova-store-sub">Avatar, çerçeve ve kahramanlar — tek ekranda.</p>
 </div>
 <div class="store-controls nova-store-actions">
 <div class="current-diamonds nova-store-wallet">
@@ -707,14 +713,10 @@
 <button type="button" id="profileCloseButton" aria-label="Mağazayı kapat">✖</button>
 </div>
 </header>
-<section class="nova-store-cat-section" aria-label="Mağaza kategorileri">
-<div class="nova-store-cat-head">
-<span class="nova-store-cat-label">Koleksiyonlar</span>
-<span class="nova-store-cat-hint">Kaydır</span>
-</div>
-<div class="profile-categories nova-store-categories">
-<!-- Buttons will be rendered from DB by renderStoreCategoryButtons() -->
-</div>
+<section class="nova-store-nav-section" aria-label="Mağaza bölümleri">
+<div class="nova-store-main-tabs" id="novaStoreMainTabs" role="tablist" aria-label="Ana mağaza sekmeleri"></div>
+<div class="nova-store-sub-nav" id="novaStoreSubNav" role="tablist" aria-label="Alt kategoriler"></div>
+<div class="profile-categories nova-store-categories" id="novaStoreLegacyCategories" hidden aria-hidden="true"></div>
 </section>
 <div class="nova-store-stage">
 <!-- Düello Hakları Mağazası -->
@@ -784,7 +786,7 @@
 <script src="js/ui/010-nova-duel-screen.js?v=20260522duel1"></script>
 <script src="js/screens/007-script-007.js?v=20260522spfix3"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
-<script src="js/core/008-script-008.js?v=20260522duelfix1"></script>
+<script src="js/core/008-script-008.js?v=20260522store3"></script>
 <script src="js/core/009-script-009.js"></script>
 <script src="js/core/010-script-010.js"></script>
 <script src="js/ui/011-script-011.js"></script>
@@ -1152,8 +1154,9 @@
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=20260522duelfix1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
 <script src="js/screens/050-script-050.js"></script>
+<script src="js/ui/012-nova-store-hub.js?v=20260522store2"></script>
 <script src="js/ui/009-nova-blaze-bot-svg-data.js?v=20260522blaze1"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=20260522blaze7"></script>
+<script src="js/ui/008-nova-battle-hero.js?v=20260522store1"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
 <script src="js/core/052-script-052.js"></script>

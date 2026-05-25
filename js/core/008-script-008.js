@@ -1298,6 +1298,10 @@ async function loadProfilePhotos(category = 'DünyaDevleri') {
           const card = createPhotoCard(photo, purchasedPhotos, category, container, index);
           if (card) cards.push(card);
        });
+       if (!cards.length) {
+         container.innerHTML = '<div class="no-champion">Bu kategoride henüz ürün yok veya sana özel görünür ürün bulunmuyor.</div>';
+         return;
+       }
        await appendCardsProgressively(container, cards, seq);
    } catch (error) {
        console.error('Fotoğraf listesi yükleme hatası:', error);
@@ -1314,7 +1318,9 @@ function createPhotoCard(photo, purchasedPhotos, category, container, index) {
     const isPurchased = purchasedPhotos[encodedUrl];
 
     div.innerHTML = `
-        <img src="${photo.url}" class="profile-photo" alt="${photo.name || 'Avatar'}" onerror="this.style.opacity=0.3">
+        <div class="nova-store-preview">
+        <img src="${photo.url}" class="profile-photo nova-store-avatar-img" alt="${photo.name || 'Avatar'}" loading="lazy" decoding="async" onerror="this.style.opacity=0.35;this.alt='Görsel yüklenemedi'">
+        </div>
         <div class="profile-photo-price">
             ${isPurchased 
                 ? '<span class="purchased-badge">✓ Satın Alındı</span>'
@@ -1343,7 +1349,7 @@ async function renderNameFrameStore(userData, container){
   const defaultCard = document.createElement('div');
   defaultCard.className = 'profile-photo-item nova-store-card';
   defaultCard.innerHTML = `
-    <div class="profile-photo" style="display:flex;align-items:center;justify-content:center;font-size:14px;background:linear-gradient(135deg,#334155,#1f2937)">
+    <div class="nova-store-preview nova-store-preview--nameframe">
       ${renderNameWithFrame(selectedStudent.studentName || 'Oyuncu', 'default')}
     </div>
     <div class="profile-photo-price"><span class="purchased-badge">Ucretsiz</span></div>
@@ -1359,7 +1365,7 @@ async function renderNameFrameStore(userData, container){
     card.className = 'profile-photo-item nova-store-card';
     card.style.animationDelay = `${(index + 1) * 0.06}s`;
     card.innerHTML = `
-      <div class="profile-photo" style="display:flex;align-items:center;justify-content:center;font-size:14px;background:linear-gradient(135deg,#0f172a,#111827)">
+      <div class="nova-store-preview nova-store-preview--nameframe">
         ${renderNameWithFrame(selectedStudent.studentName || 'Oyuncu', item.id)}
       </div>
       <div class="profile-photo-price">
@@ -1461,10 +1467,11 @@ async function renderAvatarFrameStore(userData, container){
 
   const defaultCard = document.createElement('div');
   defaultCard.className = 'profile-photo-item nova-store-card';
+  const defPhoto = (selectedStudent && selectedStudent.photo) || (document.getElementById('student-photo') && document.getElementById('student-photo').src) || '';
   defaultCard.innerHTML = `
-    <div class="profile-photo" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#334155,#1f2937)">
+    <div class="nova-store-preview nova-store-preview--avatar">
       <div class="store-avatar-frame af-default">
-        <img src="${escapeHtml((selectedStudent && selectedStudent.photo) || document.getElementById('student-photo')?.src || '')}" class="profile-photo avatar-framed af-default" alt="Avatar" onerror="this.style.opacity=0.3">
+        <img src="${escapeHtml(defPhoto)}" class="nova-store-avatar-img avatar-framed af-default" alt="Avatar" loading="lazy" onerror="this.style.opacity=0.35">
       </div>
     </div>
     <div class="profile-photo-price"><span class="purchased-badge">Ucretsiz</span></div>
@@ -1491,10 +1498,11 @@ async function renderAvatarFrameStore(userData, container){
     const card = document.createElement('div');
     card.className = 'profile-photo-item nova-store-card';
     card.style.animationDelay = `${(index + 1) * 0.06}s`;
+    const stPhoto = (selectedStudent && selectedStudent.photo) || (document.getElementById('student-photo') && document.getElementById('student-photo').src) || '';
     card.innerHTML = `
-      <div class="profile-photo" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a,#111827)">
+      <div class="nova-store-preview nova-store-preview--avatar">
         <div class="store-avatar-frame ${getAvatarFrameClass(item.id)}">
-          <img src="${escapeHtml((selectedStudent && selectedStudent.photo) || document.getElementById('student-photo')?.src || '')}" class="profile-photo avatar-framed ${getAvatarFrameClass(item.id)}" alt="Avatar" onerror="this.style.opacity=0.3">
+          <img src="${escapeHtml(stPhoto)}" class="nova-store-avatar-img avatar-framed ${getAvatarFrameClass(item.id)}" alt="Avatar" loading="lazy" onerror="this.style.opacity=0.35">
         </div>
       </div>
       <div class="profile-photo-price">
@@ -1735,16 +1743,20 @@ function novaRenderCategoryButtons() {
   });
 }
 
-/** Open store flow: fetch -> buttons -> first category list. */
+/** Open store flow: fetch -> hub tabs -> first category list. */
 async function novaOpenStoreFlow() {
   await novaFetchStoreCategories();
+  if (typeof window.novaStoreHubInit === 'function') {
+    await window.novaStoreHubInit();
+    return;
+  }
   if (typeof window.renderStoreCategoryButtons === 'function') {
     window.renderStoreCategoryButtons();
   } else {
     novaRenderCategoryButtons();
   }
   const active = document.querySelector('.profile-categories .category-button.active');
-  const first = (active && active.dataset.category) ? active.dataset.category : '__nameFrames';
+  const first = (active && active.dataset.category) ? active.dataset.category : 'TemelKarakterler';
   await loadProfilePhotos(first);
 }
 // === /NOVA FIX ===

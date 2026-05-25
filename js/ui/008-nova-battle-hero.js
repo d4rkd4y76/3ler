@@ -4,6 +4,7 @@
   var HERO_NAME = 'Alev Bot';
   var HERO_DESC = 'Göğsünden alev fışkırtan eğlenceli savaş robotu. Doğru cevaplarda seni motive eder!';
   var HERO_COST = 5000;
+  var heroCatalogCache = null;
 
   var MOTIVATE_LINES = [
     '🔥 {n}, tam isabet! Böyle devam!',
@@ -154,8 +155,45 @@
     return data.battleHero === HERO_ID;
   }
 
-  function ownsHero(data) {
-    return !!(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[HERO_ID]);
+  function ownsHero(data, heroId) {
+    var id = heroId || HERO_ID;
+    return !!(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[id]);
+  }
+
+  async function loadHeroCatalogFromDB() {
+    if (heroCatalogCache) return heroCatalogCache;
+    try {
+      if (typeof database !== 'undefined') {
+        var snap = await database.ref('store/battleHeroes').once('value');
+        var val = snap.val() || {};
+        var list = Object.keys(val).map(function (k) {
+          var h = val[k] || {};
+          if (h.active === false) return null;
+          return {
+            id: k,
+            name: String(h.name || k),
+            price: Math.max(0, Number(h.price) || 0),
+            desc: String(h.desc || ''),
+            order: Number(h.order) || 1e9
+          };
+        }).filter(Boolean);
+        list.sort(function (a, b) { return a.order - b.order; });
+        if (list.length) {
+          heroCatalogCache = list;
+          return list;
+        }
+      }
+    } catch (e) {
+      console.warn('loadHeroCatalogFromDB', e);
+    }
+    heroCatalogCache = [{
+      id: HERO_ID,
+      name: HERO_NAME,
+      price: HERO_COST,
+      desc: HERO_DESC,
+      order: 1
+    }];
+    return heroCatalogCache;
   }
 
   function buildHeroSvgHtml() {
@@ -332,70 +370,121 @@
       + '</div>';
   }
 
-  async function purchaseBlazeHero() {
+  async function purchaseBattleHero(hero) {
     var s = getStudent();
-    if (!s || !s.classId || !s.studentId) {
+    if (!s || !s.classId || !s.studentId || !hero) {
       await showAlert('Önce giriş yapmalısın.');
       return false;
     }
+    var heroId = hero.id;
+    var cost = Number(hero.price) || HERO_COST;
+    var heroName = hero.name || HERO_NAME;
     try {
       var ref = database.ref('classes/' + s.classId + '/students/' + s.studentId);
       var snap = await ref.once('value');
       var userData = snap.val() || {};
       var diamonds = Number(userData.diamond) || 0;
-      if (ownsHero(userData)) {
+      if (ownsHero(userData, heroId)) {
         await showAlert('Bu kahraman zaten sende var.');
         return false;
       }
-      if (diamonds < HERO_COST) {
-        await showAlert('Yeterli elmasın yok! ' + HERO_COST + ' 💎 gerekli.');
+      if (diamonds < cost) {
+        await showAlert('Yeterli elmasın yok! ' + cost + ' 💎 gerekli.');
         return false;
       }
-      var ok = await showConfirmation(
-        HERO_COST + ' 💎 karşılığında ' + HERO_NAME + ' satın alınsın mı?'
-      );
+      var ok = await showConfirmation(cost + ' 💎 karşılığında ' + heroName + ' satın alınsın mı?');
       if (!ok) return false;
 
       await ref.update({
-        diamond: diamonds - HERO_COST,
-        ['purchasedBattleHeroes/' + HERO_ID]: true
+        diamond: diamonds - cost,
+        ['purchasedBattleHeroes/' + heroId]: true
       });
       try {
         var el = document.getElementById('diamond-value');
-        if (el) el.textContent = diamonds - HERO_COST;
+        if (el) el.textContent = diamonds - cost;
         var cur = document.getElementById('currentDiamonds');
-        if (cur) cur.textContent = diamonds - HERO_COST;
+        if (cur) cur.textContent = diamonds - cost;
       } catch (_) {}
       if (s) {
-        s.diamond = diamonds - HERO_COST;
+        s.diamond = diamonds - cost;
         if (!s.purchasedBattleHeroes) s.purchasedBattleHeroes = {};
-        s.purchasedBattleHeroes[HERO_ID] = true;
+        s.purchasedBattleHeroes[heroId] = true;
         try {
           window.selectedStudent = s;
           localStorage.setItem('selectedStudent', JSON.stringify(s));
         } catch (_) {}
       }
-      await showAlert('🔥 ' + HERO_NAME + ' artık senin! Mağazadan Kullan ile aktif et.');
+      await showAlert('🔥 ' + heroName + ' artık senin! Mağazadan Kullan ile aktif et.');
       return true;
     } catch (e) {
-      console.error('purchaseBlazeHero', e);
+      console.error('purchaseBattleHero', e);
       await showAlert('Satın alma sırasında hata oluştu.');
       return false;
     }
   }
 
-  async function equipBlazeHero() {
+  async function equipBattleHero(hero) {
     var s = getStudent();
-    if (!s || !s.classId || !s.studentId) return;
+    if (!s || !s.classId || !s.studentId || !hero) return;
+    var heroId = hero.id;
+    var heroName = hero.name || HERO_NAME;
     try {
-      await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: HERO_ID });
-      syncHeroToStudent({ battleHero: HERO_ID });
+      await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: heroId });
+      syncHeroToStudent({ battleHero: heroId });
       try { refreshMainScreenHero(); } catch (_) {}
-      await showAlert('🔥 ' + HERO_NAME + ' aktif! Doğru cevaplarda ortaya gelip seni motive eder.');
+      await showAlert('🔥 ' + heroName + ' aktif! Doğru cevaplarda ortaya gelip seni motive eder.');
     } catch (e) {
-      console.error('equipBlazeHero', e);
+      console.error('equipBattleHero', e);
       await showAlert('Kahraman seçilemedi.');
     }
+  }
+
+  function renderHeroStoreCard(hero, userData, container, index) {
+    if (hero.id !== HERO_ID) return;
+    var owned = ownsHero(userData, hero.id);
+    var equipped = userData && userData.battleHero === hero.id;
+    var diamonds = Number(userData && userData.diamond) || 0;
+    var cost = Number(hero.price) || HERO_COST;
+
+    var card = document.createElement('div');
+    card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--blaze';
+    card.style.animationDelay = (index * 0.06) + 's';
+    card.innerHTML =
+      heroPreviewHtml()
+      + '<div class="nova-hero-store-meta">'
+      + '<h4 class="nova-hero-store-name">' + (hero.name || HERO_NAME) + '</h4>'
+      + '<p class="nova-hero-store-desc">' + (hero.desc || HERO_DESC) + '</p>'
+      + '</div>'
+      + '<div class="profile-photo-price">'
+      + (owned
+        ? '<span class="purchased-badge">Sende var</span>'
+        : '<span class="purchased-badge nova-hero-diamond-price">💎 ' + cost + '</span>')
+      + '</div>'
+      + '<button type="button" class="profile-photo-button"></button>';
+
+    var btn = card.querySelector('.profile-photo-button');
+    if (!owned) {
+      btn.className = 'profile-photo-button buy-button';
+      btn.textContent = diamonds >= cost ? 'Satın Al' : 'Elmas yetersiz';
+      btn.disabled = diamonds < cost;
+      btn.onclick = async function () {
+        if (await purchaseBattleHero(hero)) await novaRenderBattleHeroStore();
+      };
+    } else if (equipped) {
+      btn.className = 'profile-photo-button use-button';
+      btn.textContent = 'Kullanımda';
+      btn.disabled = true;
+    } else {
+      btn.className = 'profile-photo-button use-button';
+      btn.textContent = 'Kullan';
+      btn.onclick = async function () {
+        await equipBattleHero(hero);
+        await novaRenderBattleHeroStore();
+      };
+    }
+    container.appendChild(card);
+    var host = card.querySelector('[data-nova-hero-host]');
+    mountHeroInto(host);
   }
 
   async function novaRenderBattleHeroStore() {
@@ -407,78 +496,15 @@
     container.style.display = 'grid';
     container.innerHTML = '';
 
+    var catalog = await loadHeroCatalogFromDB();
     var userData = await getStoreStudentData(true);
-    var owned = ownsHero(userData);
-    var equipped = isHeroEquipped(userData);
-    var diamonds = Number(userData && userData.diamond) || 0;
-
-    var card = document.createElement('div');
-    card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--blaze';
-    card.innerHTML =
-      heroPreviewHtml()
-      + '<div class="nova-hero-store-meta">'
-      + '<h4 class="nova-hero-store-name">' + HERO_NAME + '</h4>'
-      + '<p class="nova-hero-store-desc">' + HERO_DESC + '</p>'
-      + '</div>'
-      + '<div class="profile-photo-price">'
-      + (owned
-        ? '<span class="purchased-badge">Sende var</span>'
-        : '<span class="purchased-badge nova-hero-diamond-price">💎 ' + HERO_COST + '</span>')
-      + '</div>'
-      + '<button type="button" class="profile-photo-button"></button>';
-
-    var btn = card.querySelector('.profile-photo-button');
-    if (!owned) {
-      btn.className = 'profile-photo-button buy-button';
-      btn.textContent = diamonds >= HERO_COST ? 'Satın Al' : 'Elmas yetersiz';
-      btn.disabled = diamonds < HERO_COST;
-      btn.onclick = async function () {
-        if (await purchaseBlazeHero()) await novaRenderBattleHeroStore();
-      };
-    } else if (equipped) {
-      btn.className = 'profile-photo-button use-button';
-      btn.textContent = 'Kullanımda';
-      btn.disabled = true;
-    } else {
-      btn.className = 'profile-photo-button use-button';
-      btn.textContent = 'Kullan';
-      btn.onclick = async function () {
-        await equipBlazeHero();
-        await novaRenderBattleHeroStore();
-      };
+    if (!catalog.length) {
+      container.innerHTML = '<div class="no-champion">Henüz kahraman eklenmedi</div>';
+      return;
     }
-    container.appendChild(card);
-    var host = card.querySelector('[data-nova-hero-host]');
-    mountHeroInto(host);
-  }
-
-  function patchStoreCategoryButtons() {
-    var orig = window.renderStoreCategoryButtons;
-    if (!orig || orig.__novaHeroPatched) return;
-    window.renderStoreCategoryButtons = function () {
-      orig();
-      var area = document.querySelector('.profile-categories');
-      if (!area || area.querySelector('[data-category="__battleHeroes"]')) return;
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'category-button';
-      btn.dataset.category = '__battleHeroes';
-      btn.textContent = 'Kahramanlar';
-      btn.title = 'Savaş kahramanları';
-      btn.addEventListener('click', function () {
-        document.querySelectorAll('.category-button').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        var duelStore = document.getElementById('duelCreditsStore');
-        var photosContainer = document.getElementById('profilePhotosContainer');
-        if (duelStore) duelStore.style.display = 'none';
-        if (photosContainer) photosContainer.style.display = 'grid';
-        if (typeof loadProfilePhotos === 'function') loadProfilePhotos('__battleHeroes');
-      });
-      var anchor = area.querySelector('[data-category="__avatarFrames"]');
-      if (anchor && anchor.nextSibling) area.insertBefore(btn, anchor.nextSibling);
-      else area.appendChild(btn);
-    };
-    window.renderStoreCategoryButtons.__novaHeroPatched = true;
+    catalog.forEach(function (hero, i) {
+      renderHeroStoreCard(hero, userData, container, i);
+    });
   }
 
   function patchLoadProfilePhotos() {
@@ -549,7 +575,6 @@
     } catch (_) {}
     var oldArena = document.getElementById('nova-sp-knight-arena');
     if (oldArena) oldArena.remove();
-    patchStoreCategoryButtons();
     patchLoadProfilePhotos();
     patchStudentDataLoad();
     patchSpGameOpen();

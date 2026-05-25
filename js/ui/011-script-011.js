@@ -5,17 +5,39 @@ function safeShowAlert(msg){
   }catch(e){ try{ window.alert(msg); }catch(_){} }
 }
 
+function updateExchangePreview(){
+  try{
+    const typeEl = document.getElementById('exchange-type-select');
+    const qtyEl = document.getElementById('exchange-count-input');
+    const costEl = document.getElementById('exchange-preview-cost');
+    const gainEl = document.getElementById('exchange-preview-gain');
+    if (!costEl || !gainEl) return;
+    const type = (typeEl && typeEl.value) ? typeEl.value : 'diamond_to_cup';
+    let qty = parseInt(qtyEl && qtyEl.value ? qtyEl.value : '1', 10);
+    if (!Number.isFinite(qty) || qty < 1) qty = 1;
+    const cost = qty * 100;
+    const gain = type === 'diamond_to_cup' ? (qty * 5) + ' 🏆' : (qty * 30) + ' düello kredisi';
+    costEl.textContent = cost + ' 💎';
+    gainEl.textContent = gain;
+  }catch(e){ console.warn('updateExchangePreview', e); }
+}
+
 function openDiamondExchangeModal(){
   try{
     const m = document.getElementById('diamondExchangeModal');
     if(!m){ safeShowAlert('Takas penceresi yüklenemedi.'); return; }
-    m.style.display = 'block';
+    m.style.display = 'flex';
+    m.setAttribute('aria-hidden', 'false');
     refreshExchangeModalStats();
+    updateExchangePreview();
   }catch(e){ console.error(e); }
 }
 function closeDiamondExchangeModal(){
   const m = document.getElementById('diamondExchangeModal');
-  if(m) m.style.display = 'none';
+  if(m){
+    m.style.display = 'none';
+    m.setAttribute('aria-hidden', 'true');
+  }
 }
 
 const DIAMOND_EXCHANGE_DAILY_ADET_LIMIT = 3;
@@ -75,8 +97,29 @@ async function refreshExchangeModalStats(){
       exBtn.style.opacity = remaining < 1 ? '0.55' : '1';
       exBtn.style.cursor = remaining < 1 ? 'not-allowed' : 'pointer';
     }
+    updateExchangePreview();
   }catch(e){ console.error('refreshExchangeModalStats:', e); }
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+  const typeEl = document.getElementById('exchange-type-select');
+  const qtyEl = document.getElementById('exchange-count-input');
+  if (typeEl) typeEl.addEventListener('change', updateExchangePreview);
+  if (qtyEl) qtyEl.addEventListener('input', updateExchangePreview);
+  document.querySelectorAll('[data-exchange-delta]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const d = parseInt(btn.getAttribute('data-exchange-delta'), 10);
+      if (!qtyEl || !Number.isFinite(d)) return;
+      let v = parseInt(qtyEl.value, 10);
+      if (!Number.isFinite(v)) v = 1;
+      const max = qtyEl.max ? parseInt(qtyEl.max, 10) : null;
+      v = Math.max(1, v + d);
+      if (Number.isFinite(max) && max > 0) v = Math.min(v, max);
+      qtyEl.value = String(v);
+      updateExchangePreview();
+    });
+  });
+});
 
 // showAlert tarzı onay penceresi: showAlertConfirm varsa onu kullan, yoksa Nova modal
 async function safeShowConfirm(msg){

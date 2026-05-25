@@ -493,8 +493,15 @@ window.NovaAdminExport = (function(){
 
     <div id="storeView" class="view">
       <h2>3) Mağaza</h2>
-      <div class="sub">Profil fotoğrafı kategorileri: <span class="mono">/store/profilePhotos/{anahtar}/{id}</span> · Meta: <span class="mono">/store/categoryMeta/{anahtar}</span> → <span class="mono">label</span>, <span class="mono">order</span>. <b>İsim çerçeveleri</b> aşağıda listelenir; bunlar RTDB’de ürün satırı olarak tutulmaz (öğrencide <span class="mono">nameFrame</span> alanı).</div>
+      <div class="sub">Öğrenci mağazası <b>AVATAR</b> · <b>ÇERÇEVELER</b> · <b>KAHRAMANLAR</b> sekmeleriyle açılır. Veri: <span class="mono">store/profilePhotos</span>, <span class="mono">store/nameFrames</span>, <span class="mono">store/battleHeroes</span>.</div>
 
+      <div class="nova-admin-store-tabs" role="tablist" style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px">
+        <button type="button" class="btn acc nova-admin-store-tab active" data-admin-store-tab="avatars">AVATAR</button>
+        <button type="button" class="btn nova-admin-store-tab" data-admin-store-tab="frames">ÇERÇEVELER</button>
+        <button type="button" class="btn nova-admin-store-tab" data-admin-store-tab="heroes">KAHRAMANLAR</button>
+      </div>
+
+      <div id="adminStorePanelAvatars" class="nova-admin-store-panel">
       <div class="row">
         <div class="col">
           <div class="card">
@@ -542,29 +549,70 @@ window.NovaAdminExport = (function(){
           </div>
         </div>
       </div>
+      </div>
 
-      <div class="card mt12">
-        <h3>İsim çerçeveleri (uygulama içi)</h3>
-        <div class="sub" style="margin-bottom:10px">Öğrenci mağazasındaki çerçeveler <span class="mono">düello.html</span> → <span class="mono">NAME_FRAME_ITEMS</span> ile tanımlıdır; fiyat ve isimleri kodda değiştirirsiniz. Burada yalnızca referans tablosu gösterilir.</div>
-        <div class="list" style="max-height:320px">
-          <table>
-            <thead><tr><th>Kod (id)</th><th>Görünen ad</th><th>Fiyat (💎)</th></tr></thead>
-            <tbody>
-              <tr><td class="mono">spark</td><td>Parilti</td><td>5 000</td></tr>
-              <tr><td class="mono">wind</td><td>Ruzgar</td><td>8 000</td></tr>
-              <tr><td class="mono">neon</td><td>Neon</td><td>12 000</td></tr>
-              <tr><td class="mono">fire</td><td>Ates</td><td>18 000</td></tr>
-              <tr><td class="mono">ice</td><td>Buz</td><td>22 000</td></tr>
-              <tr><td class="mono">legend</td><td>Efsane</td><td>30 000</td></tr>
-              <tr><td class="mono">inferno</td><td>Cehennem Alevi</td><td>34 000</td></tr>
-              <tr><td class="mono">phoenix</td><td>Anka Kanadi</td><td>38 000</td></tr>
-              <tr><td class="mono">cosmic</td><td>Kozmik Nebula</td><td>42 000</td></tr>
-              <tr><td class="mono">magma</td><td>Magma Kabugu</td><td>46 000</td></tr>
-              <tr><td class="mono">dragonfire</td><td>Ejder Nefesi</td><td>52 000</td></tr>
-              <tr><td class="mono">wildfire</td><td>Uçucu Alev</td><td>60 000</td></tr>
-            </tbody>
-          </table>
+      <div id="adminStorePanelFrames" class="nova-admin-store-panel" hidden>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h3>İsim çerçeveleri</h3>
+            <div class="sub" style="margin-bottom:8px">RTDB: <span class="mono">store/nameFrames/{id}</span> · Öğrencide <span class="mono">nameFrame</span></div>
+            <div class="toolbar">
+              <select id="storeCatSelectFrames"></select>
+              <button class="btn acc" id="btnReloadStoreFrames" type="button">Yenile</button>
+            </div>
+            <div class="list" id="storeItemsFrames"></div>
+          </div>
         </div>
+        <div class="col">
+          <div class="card">
+            <h3>Yeni isim çerçevesi</h3>
+            <div class="grid cols-2">
+              <div><label>Ad</label><input id="store_frame_name" type="text"></div>
+              <div><label>Fiyat (elmas)</label><input id="store_frame_price" type="number" min="0" value="0"></div>
+              <div><label>ID (tone)</label><input id="store_frame_id" type="text" placeholder="ör: inferno"></div>
+            </div>
+            <div class="sticky-actions">
+              <button class="btn ok" id="btnAddNameFrame" type="button">➕ Çerçeve ekle</button>
+            </div>
+          </div>
+          <div class="card mt12">
+            <h3>Avatar çerçeveleri (kod)</h3>
+            <div class="sub small">Seri avatar çerçeveleri uygulama kodunda (<span class="mono">SERIES_AVATAR_FRAME_ITEMS</span>) tanımlıdır; mağazada ÇERÇEVELER → Avatar Çerçevesi sekmesinde görünür.</div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div id="adminStorePanelHeroes" class="nova-admin-store-panel" hidden>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h3>Savaş kahramanları</h3>
+            <div class="sub" style="margin-bottom:8px">RTDB: <span class="mono">store/battleHeroes/{id}</span> · Öğrencide <span class="mono">battleHero</span>, <span class="mono">purchasedBattleHeroes</span></div>
+            <div class="toolbar">
+              <button class="btn acc" id="btnReloadStoreHeroes" type="button">Yenile</button>
+            </div>
+            <div class="list" id="storeItemsHeroes"></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h3>Yeni kahraman</h3>
+            <div class="grid cols-2">
+              <div><label>ID</label><input id="store_hero_id" type="text" placeholder="blaze_robot"></div>
+              <div><label>Ad</label><input id="store_hero_name" type="text"></div>
+              <div><label>Fiyat (💎)</label><input id="store_hero_price" type="number" min="0" value="5000"></div>
+              <div><label>Sıra</label><input id="store_hero_order" type="number" value="1"></div>
+              <div class="col" style="flex-basis:100%"><label>Açıklama</label><input id="store_hero_desc" type="text"></div>
+            </div>
+            <div class="sticky-actions">
+              <button class="btn ok" id="btnAddStoreHero" type="button">➕ Kahraman ekle</button>
+              <span class="hint">Şimdilik yalnızca <span class="mono">blaze_robot</span> (Alev Bot) uygulamada animasyonlu.</span>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -2597,11 +2645,9 @@ btnAddHeading.addEventListener('click', async ()=>{
       const photos = snapPhotos.exists() ? snapPhotos.val() : {};
       const meta = snapMeta.exists() ? snapMeta.val() : {};
       const hasFrames = snapFrames.exists() && Object.keys(snapFrames.val() || {}).length > 0;
-      const keys = [...new Set([...Object.keys(photos), ...Object.keys(meta)])].filter(k => k && k !== '_meta');
-      if(hasFrames || !keys.includes(NAME_FRAME_CATEGORY_KEY)) keys.unshift(NAME_FRAME_CATEGORY_KEY);
+      const keys = [...new Set([...Object.keys(photos), ...Object.keys(meta)])]
+        .filter(k => k && k !== '_meta' && k !== NAME_FRAME_CATEGORY_KEY);
       keys.sort((a,b)=>{
-        if (a === NAME_FRAME_CATEGORY_KEY) return -1;
-        if (b === NAME_FRAME_CATEGORY_KEY) return 1;
         const oa = (meta[a] && meta[a].order != null) ? Number(meta[a].order) : 1e9;
         const ob = (meta[b] && meta[b].order != null) ? Number(meta[b].order) : 1e9;
         if (oa !== ob) return oa - ob;
@@ -2610,22 +2656,16 @@ btnAddHeading.addEventListener('click', async ()=>{
         return String(la).localeCompare(String(lb), 'tr');
       });
       storeCatSelect.innerHTML = keys.map(c=>{
-        if(c === NAME_FRAME_CATEGORY_KEY){
-          return `<option value="${NAME_FRAME_CATEGORY_KEY}">İsim Çerçeveleri (${NAME_FRAME_CATEGORY_KEY})</option>`;
-        }
         const lab = (meta[c] && meta[c].label) ? meta[c].label : c;
         const safe = String(lab).replace(/</g,'&lt;').replace(/"/g,'&quot;');
         return `<option value="${c}">${safe} (${c})</option>`;
       }).join('');
       if(keys.length){ storeCatSelect.value = keys[0]; }
       const urlInput = $('#store_item_url');
-      if (urlInput){
-        urlInput.placeholder = (storeCatSelect.value === NAME_FRAME_CATEGORY_KEY)
-          ? 'İsim çerçevesi ID (ör: inferno)'
-          : 'https://…';
-      }
+      if (urlInput) urlInput.placeholder = 'https://…';
       syncCatEditors(meta);
       await listStoreItems();
+      try { await loadStoreFramesPanel(); await loadStoreHeroesPanel(); } catch(_){}
     }catch(e){
       console.error('Mağaza yüklenemedi', e);
       storeItems.innerHTML = '<div class="danger soft">Mağaza verisi okunamadı: ' + String(e && e.message || e) + '. Firebase kurallarında <span class="mono">store/profilePhotos</span> ve <span class="mono">store/categoryMeta</span> okuma izni olduğundan emin olun.</div>';
@@ -2778,15 +2818,190 @@ btnAddHeading.addEventListener('click', async ()=>{
       });
     });
   }
+  const DEFAULT_BATTLE_HEROES = [
+    { id:'blaze_robot', name:'Alev Bot', price:5000, desc:'Göğsünden alev fışkırtan eğlenceli savaş robotu.', order:1, active:true }
+  ];
+  async function ensureBattleHeroesSeeded(){
+    const snap = await rdb.ref('store/battleHeroes').get();
+    const curr = snap.exists() ? (snap.val() || {}) : {};
+    if (Object.keys(curr).length) return curr;
+    const updates = {};
+    DEFAULT_BATTLE_HEROES.forEach((h)=>{
+      updates[`store/battleHeroes/${h.id}`] = {
+        name: h.name,
+        price: Number(h.price||0),
+        desc: h.desc || '',
+        order: Number(h.order||1),
+        active: h.active !== false
+      };
+    });
+    await rdb.ref().update(updates);
+    return DEFAULT_BATTLE_HEROES.reduce((acc,h)=>{ acc[h.id]={...h}; return acc; }, {});
+  }
+  async function loadStoreHeroesPanel(){
+    const box = $('#storeItemsHeroes');
+    if (!box || !rdb) return;
+    box.innerHTML = '<div class="skeleton" style="height:200px"></div>';
+    let heroes = {};
+    try { heroes = await ensureBattleHeroesSeeded(); } catch(e){
+      box.innerHTML = '<div class="danger soft">Kahramanlar okunamadı: '+String(e&&e.message||e)+'</div>';
+      return;
+    }
+    const ids = Object.keys(heroes);
+    ids.sort((a,b)=>{
+      const oa = Number((heroes[a]||{}).order ?? 1e9);
+      const ob = Number((heroes[b]||{}).order ?? 1e9);
+      return oa - ob;
+    });
+    const rows = ['<table><thead><tr><th>ID</th><th>Ad</th><th>Fiyat</th><th>Sıra</th><th>Aktif</th><th>Açıklama</th><th></th></tr></thead><tbody>'];
+    ids.forEach((id)=>{
+      const it = heroes[id]||{};
+      rows.push(`<tr>
+        <td class="mono">${id}</td>
+        <td><input data-h-name="${id}" type="text" value="${String(it.name||id).replace(/"/g,'&quot;')}"/></td>
+        <td><input data-h-price="${id}" type="number" min="0" value="${Number(it.price||0)}" style="width:90px"/></td>
+        <td><input data-h-order="${id}" type="number" value="${Number.isFinite(Number(it.order))?Number(it.order):''}" style="width:70px"/></td>
+        <td><input data-h-active="${id}" type="checkbox" ${it.active===false?'':'checked'}/></td>
+        <td><input data-h-desc="${id}" type="text" value="${String(it.desc||'').replace(/"/g,'&quot;')}" style="min-width:160px"/></td>
+        <td><button class="btn small" data-h-save="${id}">Kaydet</button></td>
+      </tr>`);
+    });
+    rows.push('</tbody></table>');
+    box.innerHTML = rows.join('');
+    box.querySelectorAll('button[data-h-save]').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const id = btn.getAttribute('data-h-save');
+        const name = (box.querySelector(`input[data-h-name="${id}"]`)?.value||'').trim()||id;
+        const price = Number(box.querySelector(`input[data-h-price="${id}"]`)?.value||0);
+        const orderRaw = (box.querySelector(`input[data-h-order="${id}"]`)?.value||'').trim();
+        const active = !!box.querySelector(`input[data-h-active="${id}"]`)?.checked;
+        const desc = (box.querySelector(`input[data-h-desc="${id}"]`)?.value||'').trim();
+        const payload = { name, price: Math.max(0, Number.isFinite(price)?price:0), desc, active };
+        if (orderRaw !== '' && Number.isFinite(Number(orderRaw))) payload.order = Number(orderRaw);
+        await rdb.ref(`store/battleHeroes/${id}`).update(payload);
+        alert('Kahraman güncellendi.');
+        loadStoreHeroesPanel();
+      });
+    });
+  }
+  async function loadStoreFramesPanel(){
+    const sel = $('#storeCatSelectFrames');
+    const box = $('#storeItemsFrames');
+    if (!sel || !box) return;
+    sel.innerHTML = `<option value="${NAME_FRAME_CATEGORY_KEY}">İsim çerçeveleri</option>`;
+    sel.value = NAME_FRAME_CATEGORY_KEY;
+    box.innerHTML = '<div class="skeleton" style="height:200px"></div>';
+    let frames = {};
+    try { frames = await ensureNameFramesSeeded(); } catch(e){
+      box.innerHTML = '<div class="danger soft">Çerçeveler okunamadı.</div>';
+      return;
+    }
+    const ids = Object.keys(frames);
+    ids.sort((a,b)=>{
+      const oa = Number((frames[a]||{}).order ?? 1e9);
+      const ob = Number((frames[b]||{}).order ?? 1e9);
+      if (oa !== ob) return oa - ob;
+      return String((frames[a]||{}).name||a).localeCompare(String((frames[b]||{}).name||b),'tr');
+    });
+    const rows = ['<table><thead><tr><th>Önizleme</th><th>ID</th><th>Ad</th><th>Fiyat</th><th>Tone</th><th>Sıra</th><th></th></tr></thead><tbody>'];
+    ids.forEach((id)=>{
+      const it = frames[id]||{};
+      const tone = String(it.tone||id);
+      const name = String(it.name||id);
+      rows.push(`<tr>
+        <td>${renderAdminNameFramePreview(name, tone)}</td>
+        <td class="mono">${id}</td>
+        <td><input data-nf-name="${id}" type="text" value="${name.replace(/"/g,'&quot;')}" /></td>
+        <td><input data-nf-price="${id}" type="number" min="0" value="${Number(it.price||0)}" style="width:100px"/></td>
+        <td><input data-nf-tone="${id}" type="text" value="${tone.replace(/"/g,'&quot;')}" /></td>
+        <td><input data-nf-order="${id}" type="number" value="${Number.isFinite(Number(it.order)) ? Number(it.order) : ''}" style="width:90px"/></td>
+        <td><button class="btn small" data-nf-save="${id}">Kaydet</button>
+            <button class="btn small err" data-nf-del="${id}">Sil</button></td>
+      </tr>`);
+    });
+    rows.push('</tbody></table>');
+    box.innerHTML = rows.join('');
+    box.querySelectorAll('button[data-nf-save]').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const id = btn.getAttribute('data-nf-save');
+        const name = (box.querySelector(`input[data-nf-name="${id}"]`)?.value || '').trim() || id;
+        const price = Number(box.querySelector(`input[data-nf-price="${id}"]`)?.value || 0);
+        const tone = (box.querySelector(`input[data-nf-tone="${id}"]`)?.value || '').trim() || id;
+        const orderRaw = (box.querySelector(`input[data-nf-order="${id}"]`)?.value || '').trim();
+        const payload = { name, price: Math.max(0, Number.isFinite(price) ? price : 0), tone };
+        if(orderRaw !== '' && Number.isFinite(Number(orderRaw))) payload.order = Number(orderRaw);
+        else payload.order = null;
+        await rdb.ref(`store/nameFrames/${id}`).update(payload);
+        alert('Çerçeve güncellendi.');
+        loadStoreFramesPanel();
+      });
+    });
+    box.querySelectorAll('button[data-nf-del]').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const id = btn.getAttribute('data-nf-del');
+        if(!confirm('Bu isim çerçevesi silinsin mi?')) return;
+        await rdb.ref(`store/nameFrames/${id}`).remove();
+        loadStoreFramesPanel();
+      });
+    });
+  }
+  document.querySelectorAll('.nova-admin-store-tab').forEach(tabBtn=>{
+    tabBtn.addEventListener('click', ()=>{
+      const tab = tabBtn.getAttribute('data-admin-store-tab');
+      document.querySelectorAll('.nova-admin-store-tab').forEach(b=> b.classList.toggle('active', b===tabBtn));
+      const av = $('#adminStorePanelAvatars');
+      const fr = $('#adminStorePanelFrames');
+      const he = $('#adminStorePanelHeroes');
+      if (av) av.hidden = tab !== 'avatars';
+      if (fr) fr.hidden = tab !== 'frames';
+      if (he) he.hidden = tab !== 'heroes';
+      if (tab === 'frames') loadStoreFramesPanel();
+      if (tab === 'heroes') loadStoreHeroesPanel();
+    });
+  });
+  const btnReloadStoreFrames = $('#btnReloadStoreFrames');
+  if (btnReloadStoreFrames) btnReloadStoreFrames.addEventListener('click', loadStoreFramesPanel);
+  const btnReloadStoreHeroes = $('#btnReloadStoreHeroes');
+  if (btnReloadStoreHeroes) btnReloadStoreHeroes.addEventListener('click', loadStoreHeroesPanel);
+  const btnAddNameFrame = $('#btnAddNameFrame');
+  if (btnAddNameFrame) btnAddNameFrame.addEventListener('click', async ()=>{
+    const inputName = ($('#store_frame_name').value || '').trim();
+    const price = Number($('#store_frame_price').value||0);
+    const rawId = ($('#store_frame_id').value || '').trim();
+    const id = sanitizeNameFrameId(rawId || inputName);
+    if(!id) return alert('Geçerli bir ID girin.');
+    if(!inputName) return alert('Çerçeve adı gerekli.');
+    await rdb.ref(`store/nameFrames/${id}`).set({
+      name: inputName,
+      price: Math.max(0, Number.isFinite(price) ? price : 0),
+      tone: sanitizeNameFrameId(id) || id,
+      order: Date.now()
+    });
+    $('#store_frame_name').value=''; $('#store_frame_price').value='0'; $('#store_frame_id').value='';
+    await loadStoreFramesPanel();
+  });
+  const btnAddStoreHero = $('#btnAddStoreHero');
+  if (btnAddStoreHero) btnAddStoreHero.addEventListener('click', async ()=>{
+    const id = sanitizeNameFrameId($('#store_hero_id').value || '').replace(/-/g,'_');
+    const name = ($('#store_hero_name').value || '').trim();
+    const price = Number($('#store_hero_price').value||0);
+    const order = Number($('#store_hero_order').value||1);
+    const desc = ($('#store_hero_desc').value || '').trim();
+    if(!id) return alert('Kahraman ID gerekli (ör: blaze_robot).');
+    if(!name) return alert('Kahraman adı gerekli.');
+    await rdb.ref(`store/battleHeroes/${id}`).set({
+      name, price: Math.max(0, Number.isFinite(price)?price:0), desc, order: Number.isFinite(order)?order:1, active: true
+    });
+    $('#store_hero_id').value=''; $('#store_hero_name').value=''; $('#store_hero_price').value='5000';
+    $('#store_hero_order').value='1'; $('#store_hero_desc').value='';
+    await loadStoreHeroesPanel();
+  });
+
   btnReloadStore.addEventListener('click', loadStoreCats);
   storeCatSelect.addEventListener('change', async ()=>{
     const urlInput = $('#store_item_url');
     if (urlInput){
-      if ((storeCatSelect && storeCatSelect.value) === NAME_FRAME_CATEGORY_KEY){
-        urlInput.placeholder = 'İsim çerçevesi ID (ör: inferno)';
-      } else {
-        urlInput.placeholder = 'https://…';
-      }
+      if (urlInput) urlInput.placeholder = 'https://…';
     }
     try{
       const snap = await rdb.ref('store/categoryMeta').get();

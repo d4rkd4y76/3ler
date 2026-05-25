@@ -283,6 +283,24 @@
             ".validate": "newData.hasChildren(['url','price']) && newData.child('url').isString() && newData.child('price').isNumber() && (!newData.child('name').exists() || newData.child('name').isString()) && (!newData.child('allowedStudents').exists() || newData.child('allowedStudents').hasChildren())"
           }
         }
+      },
+      "nameFrames": {
+        ".read": true,
+        ".write": true,
+        "$frameId": {
+          ".validate": "newData.hasChildren(['name','price']) && newData.child('name').isString() && newData.child('price').isNumber()"
+        }
+      },
+      "battleHeroes": {
+        ".read": true,
+        ".write": true,
+        "$heroId": {
+          ".validate": "newData.hasChildren(['name','price']) && newData.child('name').isString() && newData.child('price').isNumber()"
+        }
+      },
+      "profilePhotosIndex": {
+        ".read": true,
+        ".write": true
       }
     },
     "analytics": {
