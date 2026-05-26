@@ -555,8 +555,10 @@
   .profile-change-overlay::before{ animation: none !important; }
   .profile-change-content{ animation: none !important; }
   .profile-change-content .profile-photo-item.nova-store-card{ animation: none !important; }
-  .profile-icon-container.nova-store-chip{ animation: none !important; }
-  .profile-icon-container.nova-store-chip .store-chip-ring{ animation: none !important; }
+  .nova-store-chip,
+  .nova-store-chip .store-chip-ring,
+  .nova-store-chip .store-chip-sparkles::before,
+  .nova-store-chip .store-chip-sparkles::after,
   .nova-character-chip,
   .nova-character-chip .char-chip-ring,
   .nova-character-chip .char-chip-sparkles::before,

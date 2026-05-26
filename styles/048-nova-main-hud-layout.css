@@ -301,25 +301,15 @@
   z-index: 5;
   pointer-events: auto;
 }
-#main-screen .main-screen-store-anchor .profile-icon-container.nova-store-chip{
+#main-screen .main-screen-store-anchor .nova-store-chip{
   position: relative !important;
   top: auto !important;
   right: auto !important;
   margin: 0;
-  max-width: min(120px, 28vw);
-  padding: clamp(3px, 1vw, 7px) clamp(5px, 1.8vw, 11px) !important;
-  min-height: clamp(40px, 10vw, 50px);
-  height: auto;
+  max-width: min(130px, 32vw);
 }
-#main-screen .main-screen-store-anchor .profile-icon{
-  width: clamp(30px, 8vw, 40px) !important;
-  height: clamp(30px, 8vw, 40px) !important;
-}
-#main-screen .main-screen-store-anchor .store-chip-label{
-  font-size: clamp(7px, 1.8vw, 10px) !important;
-  max-width: 72px;
-}
-#main-screen .main-screen-top-bar .nova-character-chip{
+#main-screen .main-screen-top-bar .nova-character-chip,
+#main-screen .main-screen-top-bar .nova-store-chip{
   position: relative !important;
   top: auto !important;
   right: auto !important;
@@ -942,6 +932,18 @@
 }
 .dp-card.dp-win-glow{
   box-shadow: 0 28px 56px rgba(124, 58, 237, 0.28), 0 0 0 2px rgba(250, 204, 21, 0.35), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+.dp-card.dp-wrong-flash,
+#daily-puzzle-screen.dp-wrong-flash .dp-card{
+  animation: dpWrongFlash .55s ease;
+  box-shadow: 0 28px 56px rgba(124, 58, 237, 0.28), 0 0 0 2px rgba(239, 68, 68, 0.45), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+@keyframes dpWrongFlash{
+  0%, 100%{ transform: translateX(0); }
+  20%{ transform: translateX(-6px); }
+  40%{ transform: translateX(6px); }
+  60%{ transform: translateX(-4px); }
+  80%{ transform: translateX(4px); }
 }
 @keyframes dpWinLift{
   0%{ opacity: 0; transform: translateY(12px) scale(0.92); }

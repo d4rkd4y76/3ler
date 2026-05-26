@@ -356,6 +356,15 @@
       });
       if (msg){ msg.textContent = 'Harika! Tüm eşleşmeler doğru. +' + matchRewardTotal + ' 💎' + (matchRewardMul > 1 ? (' (Rozet x'+matchRewardMul+')') : ''); msg.className = 'match-msg ok'; }
     } else {
+      if (msg) {
+        msg.textContent = 'Yanlış eşleşme! Kartları kontrol et.';
+        msg.className = 'match-msg fail';
+      }
+      const matchShell = document.getElementById('match-screen') || document.querySelector('.match-card');
+      if (matchShell) {
+        matchShell.classList.add('match-wrong-flash');
+        setTimeout(() => matchShell.classList.remove('match-wrong-flash'), 700);
+      }
       if (typeof window.novaHeroOfferDailyRetry === 'function') {
         const retry = await window.novaHeroOfferDailyRetry('matching');
         if (retry) {
@@ -431,6 +440,14 @@
       .match-msg.ok{color:#059669}
       .match-msg.fail{color:#e11d48}
       .match-msg.warn{color:#d97706}
+      .match-card.match-wrong-flash{animation:matchWrongFlash .55s ease}
+      @keyframes matchWrongFlash{
+        0%,100%{transform:translateX(0)}
+        20%{transform:translateX(-6px)}
+        40%{transform:translateX(6px)}
+        60%{transform:translateX(-4px)}
+        80%{transform:translateX(4px)}
+      }
       @media (max-width:760px){
         .match-card{width:min(98vw,980px);max-height:calc(100dvh - 16px);padding:12px}
         .match-board{grid-template-columns:1fr 1fr;gap:10px;min-height:min(46dvh,320px)}

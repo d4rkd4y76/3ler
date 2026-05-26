@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="styles/016-style-016.css" />
 <link rel="stylesheet" href="styles/017-style-017.css" />
 <link rel="stylesheet" href="styles/018-nova-storebar-fix-20251002.css" />
-<link rel="stylesheet" href="styles/019-nova-store-premium-ui.css?v=20260526char_inv1" />
+<link rel="stylesheet" href="styles/019-nova-store-premium-ui.css?v=20260526store_chip1" />
 <link rel="stylesheet" href="styles/020-nova-store-boutique-v3.css" />
 <link rel="stylesheet" href="styles/022-nova-store-hub.css?v=20260522store3" />
 <link rel="stylesheet" href="styles/021-nova-name-frame-styles.css" />
@@ -65,10 +65,10 @@
 <!-- NOVA: Freeze guard (must load early) -->
 <script src="js/core/000-nova-freeze-guard.js?v=20260526freeze1"></script>
 
-<script src="js/core/002-script-002.js"></script>
-<script src="js/core/003-nova-matching-game.js"></script>
+<script src="js/core/002-script-002.js?v=20260527hero_retry1"></script>
+<script src="js/core/003-nova-matching-game.js?v=20260527hero_retry1"></script>
 <link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=20260522duel1" />
-<script src="js/core/005-nova-daily-puzzle.js"></script>
+<script src="js/core/005-nova-daily-puzzle.js?v=20260527hero_retry1"></script>
 <script src="js/core/006-script-006.js"></script>
 
 
@@ -185,7 +185,7 @@
 </section>
 </div>
 </div>
-<link rel="stylesheet" href="styles/048-nova-main-hud-layout.css" />
+<link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=20260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
 <link rel="stylesheet" href="styles/063-nova-screen-loader.css" />
 <!-- Ana Ekran -->
@@ -215,11 +215,12 @@
 </button>
 </div>
 <div class="main-screen-store-anchor" id="main-screen-hud-right">
-<div class="profile-icon-container nova-store-chip" role="button" tabindex="0" aria-label="Mağaza">
+<button type="button" class="nova-store-chip" id="nova_store_open_btn" aria-label="Mağaza — avatar, çerçeve ve kahramanlar">
 <span class="store-chip-ring" aria-hidden="true"></span>
-<img alt="" class="profile-icon" decoding="async" id="profile-icon" loading="lazy" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif"/>
-<span class="store-chip-label">Mağaza</span>
-</div>
+<span class="store-chip-sparkles" aria-hidden="true"></span>
+<span class="store-chip-icon" aria-hidden="true">🛒</span>
+<span class="store-chip-label">MAĞAZA</span>
+</button>
 </div>
 </div>
 <div class="main-profile-hero" id="main-profile-hero">
@@ -792,7 +793,7 @@
 <script src="js/ui/010-nova-duel-screen.js?v=20260522duel1"></script>
 <script src="js/screens/007-script-007.js?v=20260526nova_fix2"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
-<script src="js/core/008-script-008.js?v=20260526char_inv1"></script>
+<script src="js/core/008-script-008.js?v=20260526store_chip1"></script>
 <script src="js/core/009-script-009.js?v=20260526rank2"></script>
 <script src="js/core/010-script-010.js"></script>
 <script src="js/ui/011-script-011.js"></script>
@@ -1166,9 +1167,9 @@
 <link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=20260526hero_store3" />
 <link rel="stylesheet" href="styles/068-nova-star-fairy-hero.css?v=20260522hero4" />
 <link rel="stylesheet" href="styles/069-nova-hero-premium-motion.css?v=20260522hero4" />
-<link rel="stylesheet" href="styles/070-nova-hero-level-system.css?v=20260526herolv6" />
-<link rel="stylesheet" href="styles/074-nova-hero-level-v4.css?v=20260526herolv7" />
-<link rel="stylesheet" href="styles/081-nova-store-detail.css?v=20260526store_inuse1" />
+<link rel="stylesheet" href="styles/070-nova-hero-level-system.css?v=20260527herolv10" />
+<link rel="stylesheet" href="styles/074-nova-hero-level-v4.css?v=20260527herolv10" />
+<link rel="stylesheet" href="styles/081-nova-store-detail.css?v=20260527store_detail3" />
 <link rel="stylesheet" href="styles/071-nova-hero-sp-reveal.css?v=20260526heroreveal1" />
 <link rel="stylesheet" href="styles/072-nova-hero-main-sheet.css?v=20260526hero_stars1" />
 <link rel="stylesheet" href="styles/073-nova-store-layout-fix.css?v=20260526storefix1" />
@@ -1182,9 +1183,9 @@
 <script src="js/ui/012-nova-store-hub.js?v=20260522store2"></script>
 <script src="js/ui/009-nova-blaze-bot-svg-data.js?v=20260522hero4"></script>
 <script src="js/ui/010-nova-star-fairy-svg-data.js?v=20260522hero4"></script>
-<script src="js/ui/015-nova-store-detail.js?v=20260526store_inuse1"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=20260526char_inv1"></script>
-<script src="js/ui/013-nova-hero-level-system.js?v=20260526herolv7"></script>
+<script src="js/ui/015-nova-store-detail.js?v=20260527store_detail3"></script>
+<script src="js/ui/008-nova-battle-hero.js?v=20260527store_detail3"></script>
+<script src="js/ui/013-nova-hero-level-system.js?v=20260527herolv2"></script>
 <script src="js/ui/014-nova-hero-main-ui.js?v=20260526hero_stars3"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>

@@ -425,6 +425,15 @@
         msg.style.color = '#059669';
       }
     } else {
+      if (msg) {
+        msg.textContent = 'Yanlış cevap! Harfleri kontrol et.';
+        msg.style.color = '#dc2626';
+      }
+      var dpShell = document.getElementById('daily_puzzle_card') || document.getElementById('daily-puzzle-screen');
+      if (dpShell) {
+        dpShell.classList.add('dp-wrong-flash');
+        setTimeout(function () { dpShell.classList.remove('dp-wrong-flash'); }, 700);
+      }
       if (typeof window.novaHeroOfferDailyRetry === 'function') {
         var retry = await window.novaHeroOfferDailyRetry('dailyPuzzle');
         if (retry) {

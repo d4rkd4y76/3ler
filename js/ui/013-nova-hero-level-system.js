@@ -219,6 +219,9 @@
       + '<div class="nh-level-hero-preview" id="nh_level_hero_preview"></div>'
       + '<div class="nh-level-arena__stars" id="nh_level_stars"></div>'
       + '<div class="nh-level-roll-fx" id="nh_level_roll_fx" hidden aria-hidden="true">'
+      + '<span class="nh-level-roll-fx__beams" aria-hidden="true"></span>'
+      + '<span class="nh-level-roll-fx__scan" aria-hidden="true"></span>'
+      + '<span class="nh-level-roll-fx__sparks" aria-hidden="true"></span>'
       + '<span class="nh-level-roll-fx__txt">Şans deneniyor…</span></div>'
       + '</section>'
       + '<div class="nh-level-banner" id="nh_level_result" hidden role="status"></div>'
@@ -701,9 +704,12 @@
       }
     }
 
+    // Not: animasyonların görünmesi için preview'ı hemen yeniden mount etmiyoruz.
     renderHeroPick(user);
-    mountHeroPreview(heroId);
     updatePanelStats();
+    setTimeout(function () {
+      try { mountHeroPreview(heroId); } catch (_) {}
+    }, success ? 1200 : 800);
     try {
       if (typeof novaRenderBattleHeroStore === 'function') await novaRenderBattleHeroStore();
     } catch (_) {}
@@ -731,10 +737,20 @@
     dailyRetryUsed[dailyRetryKey(activity)] = true;
   }
 
-  async function offerDailyHeroRetry(activityLabel) {
+  async function offerDailyHeroRetry(activityLabel, opts) {
+    opts = opts || {};
     if (!canUseDailyRetry(activityLabel)) return false;
-    var ok = false;
-    ok = await nhGlobalConfirm('🦸 Kahraman gücü: yanlış cevapta 1 ek deneme hakkın var. Tekrar dene?');
+    var waitMs = opts.waitMs;
+    if (waitMs !== 0) {
+      await new Promise(function (resolve) {
+        setTimeout(resolve, waitMs > 0 ? waitMs : 1500);
+      });
+    }
+    var ok = await nhGlobalConfirm(
+      '❌ Yanlış cevap verdin.\n\n'
+      + '🦸 Kahraman gücün bugün sana 1 ek deneme hakkı veriyor.\n'
+      + 'Tekrar denemek ister misin?'
+    );
     if (!ok) return false;
     markDailyRetryUsed(activityLabel);
     return true;
@@ -926,7 +942,7 @@
         '<div style="width:min(92vw,420px);border-radius:18px;border:1px solid rgba(255,255,255,.14);'
         + 'background:linear-gradient(165deg,#1a2138 0%,#0e121f 52%,#141c2e 100%);'
         + 'box-shadow:0 28px 70px rgba(0,0,0,.55);padding:16px 16px 14px;color:#e2e8f0;">'
-        + '<p style="margin:0 0 12px;font-weight:800;line-height:1.35;">' + message + '</p>'
+        + '<p style="margin:0 0 12px;font-weight:800;line-height:1.45;white-space:pre-line;">' + message + '</p>'
         + '<div style="display:flex;gap:10px;justify-content:flex-end;">'
         + '<button type="button" id="nh_global_yes" style="padding:10px 12px;border-radius:12px;border:1px solid rgba(34,197,94,.45);'
         + 'background:linear-gradient(135deg,#22c55e,#16a34a);color:#052e16;font-weight:900;cursor:pointer;">Evet</button>'

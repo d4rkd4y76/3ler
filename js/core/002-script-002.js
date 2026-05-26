@@ -299,6 +299,11 @@
         screen.classList.add('fb-pop');
         setTimeout(()=>screen.classList.remove('fb-pop'), 700);
       } else {
+        resultEl.textContent = 'Yanlış cevap! Boşlukları kontrol et.';
+        resultEl.className = 'fb-result fail';
+        screen.classList.remove('fb-pop');
+        screen.classList.add('fb-shake');
+        setTimeout(() => screen.classList.remove('fb-shake'), 700);
         if (typeof window.novaHeroOfferDailyRetry === 'function') {
           const retry = await window.novaHeroOfferDailyRetry('fillblank');
           if (retry) {
@@ -314,9 +319,6 @@
         }
         resultEl.textContent = 'Yanlış! Günlük hakkın bitti.';
         resultEl.className = 'fb-result fail';
-        screen.classList.remove('fb-pop');
-        screen.classList.add('fb-shake');
-        setTimeout(()=>screen.classList.remove('fb-shake'), 700);
       }
       // Bilerek tekrar acmiyoruz: gunde tek kontrol tek odul.
     };

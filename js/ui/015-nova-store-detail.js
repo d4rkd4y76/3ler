@@ -75,18 +75,23 @@
     var btn = document.getElementById('nova_store_detail_action');
     var label = document.getElementById('nova_store_detail_inuse');
     if (!btn) return;
+    if (label) {
+      label.hidden = true;
+      label.style.display = 'none';
+    }
     if (inUse) {
       btn.hidden = true;
       btn.disabled = true;
       if (label) {
         label.hidden = false;
+        label.style.display = 'flex';
         label.textContent = 'Kullanımda';
       }
       state.onAction = null;
       return;
     }
-    if (label) label.hidden = true;
     btn.hidden = false;
+    btn.style.display = '';
     btn.className = 'nova-store-detail-action profile-photo-button ' + (btnType || 'buy-button');
     btn.textContent = text || 'Tamam';
     btn.disabled = !!disabled;
@@ -96,6 +101,17 @@
     opts = opts || {};
     ensureOverlay();
     state.onAction = opts.onAction || null;
+
+    var resetBtn = document.getElementById('nova_store_detail_action');
+    var resetLabel = document.getElementById('nova_store_detail_inuse');
+    if (resetLabel) {
+      resetLabel.hidden = true;
+      resetLabel.style.display = 'none';
+    }
+    if (resetBtn) {
+      resetBtn.hidden = false;
+      resetBtn.style.display = '';
+    }
 
     var ov = document.getElementById('nova-store-detail-overlay');
     var preview = document.getElementById('nova_store_detail_preview');
@@ -110,8 +126,11 @@
       preview.className = 'nova-store-detail-preview' + (opts.previewClass ? ' ' + opts.previewClass : '');
       preview.innerHTML = opts.previewHtml || '';
       if (typeof opts.mountPreview === 'function') {
-        var host = preview.querySelector('[data-store-detail-host]') || preview;
-        opts.mountPreview(host);
+        var mountFn = opts.mountPreview;
+        requestAnimationFrame(function () {
+          var box = document.getElementById('nova_store_detail_preview');
+          if (box) mountFn(box);
+        });
       }
     }
 
@@ -166,28 +185,34 @@
       var div = orig.apply(this, arguments);
       if (!div || !photo) return div;
       var encodedUrl = btoa(photo.url);
-      var isPurchased = purchasedPhotos[encodedUrl];
-      var isActive = typeof isStoreAvatarActive === 'function' && isStoreAvatarActive(photo.url);
+      var isPurchased = !!purchasedPhotos[encodedUrl];
       bindCardOpenDetail(div, function () {
+        var livePurchased = isPurchased;
+        try {
+          if (typeof purchasedPhotos === 'object' && photo && photo.url) {
+            livePurchased = !!purchasedPhotos[btoa(photo.url)];
+          }
+        } catch (_) {}
+        var isActive = !!(livePurchased && typeof isStoreAvatarActive === 'function' && isStoreAvatarActive(photo.url));
         openStoreDetail({
           kicker: category || 'Avatar',
           title: photo.name || 'Avatar',
           desc: photo.desc || 'Profilinde kullanabileceğin özel avatar.',
-          priceHtml: isPurchased ? '' : (photo.price + ' <span class="diamond-icon">💎</span>'),
+          priceHtml: livePurchased ? '' : (photo.price + ' <span class="diamond-icon">💎</span>'),
           previewClass: 'nova-store-detail-preview--avatar',
           previewHtml: '<div class="nova-store-preview nova-store-preview--avatar nova-store-detail-vitrine">'
             + '<img src="' + esc(photo.url) + '" class="profile-photo nova-store-avatar-img" alt="">'
             + '</div>',
-          btnClass: isPurchased ? 'use-button' : 'buy-button',
-          btnText: isPurchased ? 'Kullan' : 'Satın Al',
-          btnDisabled: false,
+          btnClass: livePurchased ? 'use-button' : 'buy-button',
+          btnText: livePurchased ? 'Kullan' : 'Satın Al',
+          btnDisabled: !!(livePurchased && isActive),
           inUse: isActive,
           onAction: async function () {
             if (isActive) {
               closeStoreDetail();
               return;
             }
-            if (isPurchased) await useProfilePhoto(photo.url);
+            if (livePurchased) await useProfilePhoto(photo.url);
             else await buyProfilePhoto(photo);
             closeStoreDetail();
             if (typeof loadProfilePhotos === 'function') loadProfilePhotos(category);

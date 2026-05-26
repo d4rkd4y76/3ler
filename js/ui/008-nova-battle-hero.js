@@ -502,16 +502,17 @@
     window.novaOpenStoreDetail({
       kicker: 'Kahraman',
       title: name,
-      meta: owned ? ('Aktif seviye: ' + lvl + ' / 4') : 'Savaş arkadaşın',
+      meta: '',
       desc: desc,
       extraHtml: extra,
       priceHtml: owned ? '' : ('💎 ' + cost),
       previewClass: 'nova-store-detail-preview--hero nova-store-detail-preview--' + def.theme,
-      previewHtml: '<div class="nova-store-preview nova-store-preview--hero nova-store-preview--' + def.theme + '" data-store-detail-host="1">'
-        + '<div class="nova-hero-svg-host" data-nova-hero-host="1"></div></div>',
-      mountPreview: function (host) {
-        var h = host.querySelector('[data-nova-hero-host]') || host;
-        mountHeroInto(h, hero.id);
+      previewHtml: '',
+      mountPreview: function (box) {
+        if (!box || !hero.id) return;
+        box.innerHTML = heroPreviewHtml(hero.id, def.theme);
+        var h = box.querySelector('[data-nova-hero-host]');
+        if (h) mountHeroInto(h, hero.id);
       },
       btnClass: btnClass,
       btnText: btnText,

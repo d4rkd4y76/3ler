@@ -1335,9 +1335,20 @@ function novaStoreInUseMarkup() {
 function isStoreAvatarActive(photoUrl) {
   try {
     const sp = document.getElementById('student-photo');
-    const cur = String((selectedStudent && selectedStudent.photo) || (sp && sp.src) || '').trim();
-    if (!cur || !photoUrl) return false;
-    return cur === photoUrl || cur.endsWith(photoUrl) || photoUrl.endsWith(cur);
+    const curRaw = String((selectedStudent && selectedStudent.photo) || (sp && sp.src) || '').trim();
+    const nextRaw = String(photoUrl || '').trim();
+    if (!curRaw || !nextRaw) return false;
+
+    const norm = (u) => {
+      try {
+        const url = new URL(u, window.location.href);
+        return (url.origin + url.pathname).replace(/\/$/, '');
+      } catch (_) {
+        return String(u).split('#')[0].split('?')[0].replace(/\/$/, '');
+      }
+    };
+
+    return norm(curRaw) === norm(nextRaw);
   } catch (_) {
     return false;
   }
@@ -1711,19 +1722,12 @@ async function novaOpenStore() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const chip = document.querySelector('.profile-icon-container.nova-store-chip');
+  const chip = document.getElementById('nova_store_open_btn') || document.querySelector('.nova-store-chip');
   if (chip) {
-    chip.style.cursor = 'pointer';
-    chip.addEventListener('click', function(e){ e.preventDefault(); novaOpenStore(); });
-    chip.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); novaOpenStore(); }
+    chip.addEventListener('click', function (e) {
+      e.preventDefault();
+      novaOpenStore();
     });
-  } else {
-    const pi = document.getElementById('profile-icon');
-    if (pi) {
-      pi.style.cursor = 'pointer';
-      pi.addEventListener('click', novaOpenStore);
-    }
   }
 
   const oldFab = document.getElementById('nova_store_fab');
