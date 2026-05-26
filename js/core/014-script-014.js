@@ -32,15 +32,31 @@ function showExplanationAndNext(){
         expl.innerHTML='';
         try{
           if (isLast){
+            // Son soru: bazen ilerleme akışı takılabiliyor (özellikle son adımda).
+            // Bu yüzden proceedToNextQuestion + kısa süre sonra endGame fallback.
             setTimeout(function(){
-              try { proceedToNextQuestion(); }
-              catch (e1) {
+              try {
+                if (typeof window.proceedToNextQuestion === 'function') window.proceedToNextQuestion();
+                else if (typeof proceedToNextQuestion === 'function') proceedToNextQuestion();
+              } catch (e1) {
                 console.error('Son soru sonuç geçişi', e1);
-                try {
-                  if (typeof window.endGame === 'function') window.endGame();
-                  else if (typeof endGame === 'function') endGame();
-                } catch (e2) { console.error('endGame', e2); }
               }
+              setTimeout(function(){
+                try{
+                  var score = document.getElementById('score-container');
+                  var cs = score ? getComputedStyle(score) : null;
+                  var open = !!(score && cs && cs.display !== 'none' && cs.visibility !== 'hidden' && cs.opacity !== '0');
+                  if (!open) {
+                    if (typeof window.endGame === 'function') window.endGame();
+                    else if (typeof endGame === 'function') endGame();
+                  }
+                }catch(e2){
+                  try{
+                    if (typeof window.endGame === 'function') window.endGame();
+                    else if (typeof endGame === 'function') endGame();
+                  }catch(e3){ console.error('endGame', e3); }
+                }
+              }, 60);
             }, 0);
           } else {
             proceedToNextQuestion();
