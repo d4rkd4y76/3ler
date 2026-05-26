@@ -107,7 +107,7 @@
 
 /* Hücre içi — sabit yükseklik, ortalı */
 #rankingPanel.nova-season-rank .ranking-table td.nsr-cell{
-  height: 52px;
+  height: 66px;
   padding: 6px 4px;
   vertical-align: middle;
   text-align: center;
@@ -179,7 +179,7 @@
   justify-content: center;
   overflow: visible;
   height: 100%;
-  min-height: 52px;
+  min-height: 66px;
   margin: 0;
   padding: 0;
 }
@@ -194,7 +194,8 @@
   width: auto !important;
   margin: 0 auto !important;
   padding: 0 !important;
-  transform: scale(0.5);
+  /* İstenen: mevcut boyutun ~2 katı */
+  transform: scale(1.2);
   transform-origin: center center;
   position: relative;
   top: 0;
@@ -208,7 +209,7 @@
 }
 
 #rankingPanel.nova-season-rank .nsr-lig-wrap .nova-lig__ribbon{
-  margin-top: -8px;
+  margin-top: -10px;
 }
 
 /* Eski kahraman markup */

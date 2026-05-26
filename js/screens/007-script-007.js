@@ -6323,9 +6323,25 @@ window.displayCurrentQuestion = displayCurrentQuestion;
               if(spGame) spGame.classList.add('nova-sp-result-open');
             }catch(_){}
 
-scoreContainer.style.display = 'flex';
-scoreContainer.style.visibility = 'visible';
-scoreContainer.style.opacity = '1';
+// NOVA: Bazı cihazlarda/akışlarda score container null olabiliyor; crash olmasın.
+var __sc = null;
+var __sd = null;
+var __sm = null;
+var __si = null;
+try{
+  __sc = scoreContainer || document.getElementById('score-container') || document.querySelector('.single-player-game-container .score-container');
+  __sd = scoreDisplay || document.getElementById('score');
+  __sm = scoreMessage || document.getElementById('score-message');
+  __si = scoreImage || document.getElementById('score-image');
+}catch(_){}
+
+try{
+  if (__sc){
+    __sc.style.display = 'flex';
+    __sc.style.visibility = 'visible';
+    __sc.style.opacity = '1';
+  }
+}catch(_){}
 try{ var rb=document.getElementById('result-back-btn'); if(rb) rb.style.display='inline-flex'; }catch(_){}
 try{ window.scrollTo(0,0); }catch(_){}
 try{ (function prune(){ const sc=document.querySelector('.single-player-game-container .score-container'); if(sc){ sc.querySelectorAll('div').forEach(n=>{ if(n.id==='score-message'||n.id==='score'||n.id==='score-image') return; const hasChildren=n.children&&n.children.length>0; const t=(n.textContent||'').trim(); if(!hasChildren && !t) n.remove(); }); } })(); }catch(e){};
@@ -6333,7 +6349,9 @@ try{ (function prune(){ const sc=document.querySelector('.single-player-game-con
 const totalQ = Array.isArray(window.gameQuestions)
   ? window.gameQuestions.length
   : (window.NOVA_Q_LIMIT || 10);
-scoreDisplay.textContent = `Doğru Sayısı: ${score}/${totalQ}`;
+try{
+  if (__sd) __sd.textContent = `Doğru Sayısı: ${score}/${totalQ}`;
+}catch(_){}
 
 try{ document.getElementById('score')?.setAttribute('data-score', String(score)); }catch(e){}
 window.score = score;
@@ -6342,7 +6360,7 @@ window.totalQuestions = totalQ; let message = '';
 
             let messageClass = '';
             let imageUrl = '';
-            if (scoreMessage) scoreMessage.style.display = 'block';
+            try{ if (__sm) __sm.style.display = 'block'; }catch(_){}
 
             if (score === 10) {
                 message = 'ŞAHANE';
@@ -6366,16 +6384,20 @@ window.totalQuestions = totalQ; let message = '';
                 imageUrl = 'https://media.tenor.com/rPTWl04F5igAAAAM/byuntear-emoji.gif';
             }
 
-            if (scoreMessage){
-              scoreMessage.textContent = message;
-              scoreMessage.classList.remove('purple','green','blue','red');
-              if (messageClass !== '') scoreMessage.classList.add(messageClass);
-            }
+            try{
+              if (__sm){
+                __sm.textContent = message;
+                __sm.classList.remove('purple','green','blue','red');
+                if (messageClass !== '') __sm.classList.add(messageClass);
+              }
+            }catch(_){}
 
-            if (scoreImage){
-              scoreImage.src = imageUrl;
-              scoreImage.style.display = 'block';
-            }
+            try{
+              if (__si){
+                __si.src = imageUrl;
+                __si.style.display = 'block';
+              }
+            }catch(_){}
 
             // Müzik çalma işlemi burada
             if (score > 9) { // Örneğin, belirli bir başarı düzeyinde müzik çalınır
