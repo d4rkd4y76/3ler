@@ -144,6 +144,11 @@
       cat = preferredSub || keys[0] || 'TemelKarakterler';
     }
     loadCategory(cat);
+    try {
+      if (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.setStoreLevelBarVisible) {
+        window.NOVA_HERO_LEVEL.setStoreLevelBarVisible(mainId === 'heroes');
+      }
+    } catch (_) {}
   }
 
   function renderMainTabs() {

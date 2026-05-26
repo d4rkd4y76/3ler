@@ -199,9 +199,23 @@
     return !!(s && s.battleHero === heroId && ownsHero({ purchasedBattleHeroes: s.purchasedBattleHeroes }, heroId));
   }
 
+  function parseHeroOwn(val) {
+    if (!val) return { owned: false, level: 0 };
+    if (val === true) return { owned: true, level: 1 };
+    if (typeof val === 'object') {
+      return { owned: true, level: Math.min(4, Math.max(1, Number(val.level) || 1)) };
+    }
+    return { owned: !!val, level: val ? 1 : 0 };
+  }
+
+  function getHeroLevel(data, heroId) {
+    if (!data || !heroId) return 0;
+    return parseHeroOwn(data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).level;
+  }
+
   function ownsHero(data, heroId) {
     if (!heroId) return false;
-    return !!(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]);
+    return parseHeroOwn(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).owned;
   }
 
   function defaultCatalog() {
@@ -469,7 +483,7 @@
 
       await ref.update({
         diamond: diamonds - cost,
-        ['purchasedBattleHeroes/' + heroId]: true
+        ['purchasedBattleHeroes/' + heroId]: { level: 1, purchasedAt: Date.now() }
       });
       try {
         var el = document.getElementById('diamond-value');
@@ -480,7 +494,7 @@
       if (s) {
         s.diamond = diamonds - cost;
         if (!s.purchasedBattleHeroes) s.purchasedBattleHeroes = {};
-        s.purchasedBattleHeroes[heroId] = true;
+        s.purchasedBattleHeroes[heroId] = { level: 1, purchasedAt: Date.now() };
         try {
           window.selectedStudent = s;
           localStorage.setItem('selectedStudent', JSON.stringify(s));
@@ -527,6 +541,7 @@
       heroPreviewHtml(hero.id)
       + '<div class="nova-hero-store-meta">'
       + '<h4 class="nova-hero-store-name">' + (hero.name || def.name) + '</h4>'
+      + (owned ? '<span class="nova-hero-level-badge">★ Seviye ' + getHeroLevel(userData, hero.id) + '</span>' : '')
       + '<p class="nova-hero-store-desc">' + (hero.desc || def.desc) + '</p>'
       + '</div>'
       + '<div class="profile-photo-price">'
@@ -661,6 +676,10 @@
   window.novaTryPlayKnightCorrectFx = novaTryPlayBattleHeroFx;
   window.novaRefreshMainScreenHero = refreshMainScreenHero;
   window.NOVA_BATTLE_HERO_REGISTRY = HERO_REGISTRY;
+  window.NOVA_HERO_REGISTRY = HERO_REGISTRY;
+  window.novaGetHeroLevel = getHeroLevel;
+  window.novaMountHeroInto = mountHeroInto;
+  window.novaBuildHeroSvgHtml = buildHeroSvgHtml;
   window.NOVA_BATTLE_HERO_ID = 'blaze_robot';
 
   if (document.readyState === 'loading') {

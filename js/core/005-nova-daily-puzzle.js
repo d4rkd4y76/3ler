@@ -409,6 +409,9 @@
         var gain = computeChampionDiamondGain(dpRewardBase, stu);
         dpRewardMul = Number(gain.multiplier || 1);
         dpRewardTotal = Number(gain.total || dpRewardBase);
+        var heroMul = (typeof window.novaHeroGetDailyDiamondMultiplier === 'function')
+          ? window.novaHeroGetDailyDiamondMultiplier(stu) : 1;
+        if (heroMul > 1) dpRewardTotal = Math.round(dpRewardTotal * heroMul);
         stu.diamond = Math.min(25000, Number(stu.diamond||0) + dpRewardTotal);
         stu.lastDiamondUpdate = Date.now();
         return stu;
@@ -422,6 +425,19 @@
         msg.style.color = '#059669';
       }
     } else {
+      if (typeof window.novaHeroOfferDailyRetry === 'function') {
+        var retry = await window.novaHeroOfferDailyRetry('dailyPuzzle');
+        if (retry) {
+          await st.attemptRef.remove();
+          if (checkBtn) checkBtn.disabled = false;
+          refreshDailyFabState();
+          if (msg){
+            msg.textContent = '🦸 Kahraman gücü: bir hak daha! Tekrar dene.';
+            msg.style.color = '#7c3aed';
+          }
+          return;
+        }
+      }
       if (msg){
         msg.textContent = 'Yanlış! Günlük hakkın bitti — yarın tekrar!';
         msg.style.color = '#b45309';

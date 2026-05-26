@@ -70,6 +70,18 @@
             "purchasedPhotos": {
               ".read": true,
               ".write": true
+            },
+            "battleHero": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isString()"
+            },
+            "purchasedBattleHeroes": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.val() === true || (newData.hasChildren() && newData.child('level').isNumber() && newData.child('level').val() >= 1 && newData.child('level').val() <= 4)"
+              }
             }
           }
         }
@@ -290,6 +302,10 @@
         "$frameId": {
           ".validate": "newData.hasChildren(['name','price']) && newData.child('name').isString() && newData.child('price').isNumber()"
         }
+      },
+      "battleHeroLevelConfig": {
+        ".read": true,
+        ".write": true
       },
       "battleHeroes": {
         ".read": true,

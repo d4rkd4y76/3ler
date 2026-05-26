@@ -589,7 +589,11 @@ window.NovaAdminExport = (function(){
         <div class="col">
           <div class="card">
             <h3>Savaş kahramanları</h3>
-            <div class="sub" style="margin-bottom:8px">RTDB: <span class="mono">store/battleHeroes/{id}</span> · Öğrencide <span class="mono">battleHero</span>, <span class="mono">purchasedBattleHeroes</span></div>
+            <div class="sub" style="margin-bottom:8px">RTDB: <span class="mono">store/battleHeroes/{id}</span> · Öğrencide <span class="mono">battleHero</span>, <span class="mono">purchasedBattleHeroes/{id}</span> → <span class="mono">{ level: 1-4 }</span></div>
+            <div class="card mt12" style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:12px">
+              <h4 style="margin:0 0 8px">⚔️ Kahraman seviye sistemi</h4>
+              <div class="small">Satın alınca <b>Seviye 1</b> (giriş). Yükseltme: Sv.2 → 5000💎+1000🎫 (%50) · Sv.3 → 5000💎+2000🎫 (%20) · Sv.4 → 5000💎+2500🎫 (%5). Başarısız denemede kaynak harcanır.</div>
+            </div>
             <div class="toolbar">
               <button class="btn acc" id="btnReloadStoreHeroes" type="button">Yenile</button>
             </div>

@@ -105,6 +105,7 @@
       .wq-claim.ready{ background:linear-gradient(135deg,#fde047,#f59e0b); color:#111827; }
       .wq-claim.locked{ background:#1f2937; color:#9ca3af; cursor:not-allowed; }
       .wq-claim.done{ background:#065f46; color:#d1fae5; cursor:default; }
+      .wq-hero-bonus-hint{ margin-top:6px; font-size:11px; font-weight:800; color:#c4b5fd; line-height:1.35; }
       #wq-toast{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%) scale(.95); opacity:0; pointer-events:none; z-index:12100; }
       #wq-toast.show{ animation:wqPop .9s ease forwards; }
       @keyframes wqPop{
@@ -152,7 +153,7 @@
     document.body.appendChild(toast);
     const reward = document.createElement('div');
     reward.id = 'wq-reward-overlay';
-    reward.innerHTML = '<div class="wq-reward-card"><div class="wq-reward-head">Görev Ödülü Toplandı</div><div class="wq-reward-amount"><span id="wq_reward_num">+0</span> 💎</div><div class="wq-reward-sub" id="wq_reward_sub">Ödül hesabına eklendi.</div><div class="wq-reward-meta"><div class="wq-chip" id="wq_reward_task">Görev</div><div class="wq-chip bonus" id="wq_reward_bonus">👑 Rozet x2 bonus aktif</div></div><button class="wq-reward-ok" id="wq_reward_ok" type="button">Harika!</button></div>';
+    reward.innerHTML = '<div class="wq-reward-card"><div class="wq-reward-head">Görev Ödülü Toplandı</div><div class="wq-reward-amount"><span id="wq_reward_num">+0</span> 💎</div><div class="wq-reward-sub" id="wq_reward_sub">Ödül hesabına eklendi.</div><div class="wq-reward-meta"><div class="wq-chip" id="wq_reward_task">Görev</div><div class="wq-chip bonus" id="wq_reward_bonus">👑 Rozet x2 bonus aktif</div><div class="wq-chip bonus" id="wq_reward_hero_bonus" style="display:none">🦸 Kahraman bonusu</div></div><button class="wq-reward-ok" id="wq_reward_ok" type="button">Harika!</button></div>';
     document.body.appendChild(reward);
     const okBtn = document.getElementById('wq_reward_ok');
     if(okBtn) okBtn.addEventListener('click', function(){ reward.classList.remove('open', 'champion'); });
@@ -195,6 +196,12 @@
     const gain = Math.max(0, Number(total || 0));
     if(taskEl) taskEl.textContent = (quest && quest.icon ? quest.icon + ' ' : '') + (quest && quest.title ? quest.title : 'Görev');
     if(subEl) subEl.textContent = mul > 1 ? ('Şampiyonluk Rozeti ile ' + base + ' → ' + gain + ' 💎') : 'Ödül hesabına eklendi.';
+    var heroChip = document.getElementById('wq_reward_hero_bonus');
+    if(heroChip){
+      var hb = Number(window.__novaLastQuestHeroBonus || 0);
+      heroChip.style.display = hb > 0 ? 'inline-flex' : 'none';
+      heroChip.textContent = '🦸 Kahraman görev bonusu: +' + hb + ' 💎';
+    }
     if(numEl){
       const t0 = performance.now();
       const dur = 920;
@@ -228,18 +235,23 @@
     if(!committed) return;
     var questMul = 1;
     var questTotal = Number(quest.reward || 0);
+    var heroQuestBonus = 0;
     await d.ref('classes/'+s.classId+'/students/'+s.studentId).transaction((u)=>{
       u = u || {};
       var gain = computeChampionDiamondGain(Number(quest.reward||0), u);
       questMul = Number(gain.multiplier || 1);
       questTotal = Number(gain.total || Number(quest.reward||0));
-      u.diamond = Math.min(25000, Number(u.diamond||0) + Number(questTotal || 0));
+      heroQuestBonus = (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.getQuestBonusDiamonds)
+        ? window.NOVA_HERO_LEVEL.getQuestBonusDiamonds(u) : 0;
+      u.diamond = Math.min(25000, Number(u.diamond||0) + Number(questTotal || 0) + heroQuestBonus);
       u.lastDiamondUpdate = Date.now();
       return u;
     });
     stateCache.ts = 0;
-    toast('+' + questTotal + ' 💎 toplandı!' + (questMul > 1 ? ' (Rozet x2)' : ''));
-    showQuestRewardOverlay(questTotal, questMul, quest);
+    window.__novaLastQuestHeroBonus = heroQuestBonus;
+    var toastTotal = questTotal + heroQuestBonus;
+    toast('+' + toastTotal + ' 💎 toplandı!' + (questMul > 1 ? ' (Rozet x2)' : '') + (heroQuestBonus > 0 ? (' · Kahraman +' + heroQuestBonus) : ''));
+    showQuestRewardOverlay(toastTotal, questMul, quest);
     try{ if(typeof updateDiamondCount === 'function') updateDiamondCount(); }catch(_){}
     await renderQuestPanel();
   }
@@ -261,7 +273,15 @@
       const isClaimed = !!claimed[q.id];
       const card = document.createElement('div');
       card.className = 'wq-card';
-      card.innerHTML = '<div class="wq-row"><div class="wq-task">'+q.icon+' '+q.title+'</div><div class="wq-reward">+'+q.reward+' 💎</div></div>' +
+      var heroBonusHint = '';
+      try{
+        var s = sel();
+        if(s && typeof window.NOVA_HERO_LEVEL !== 'undefined'){
+          var hb = window.NOVA_HERO_LEVEL.getQuestBonusDiamonds(s);
+          if(hb > 0) heroBonusHint = '<div class="wq-hero-bonus-hint">🦸 Kahraman bonusu: toplandığında +' + hb + ' 💎 ek</div>';
+        }
+      }catch(_){}
+      card.innerHTML = '<div class="wq-row"><div class="wq-task">'+q.icon+' '+q.title+'</div><div class="wq-reward">+'+q.reward+' 💎</div></div>' + heroBonusHint +
         '<div class="wq-progress"><i style="width:'+pct+'%"></i></div>' +
         '<div class="wq-meta"><span>İlerleme</span><span>'+val+' / '+q.target+'</span></div>';
       const btn = document.createElement('button');

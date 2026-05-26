@@ -225,6 +225,9 @@
           var gain = computeChampionDiamondGain(fbRewardBase, stu);
           fbRewardMul = Number(gain.multiplier || 1);
           fbRewardTotal = Number(gain.total || fbRewardBase);
+          var heroMul = (typeof window.novaHeroGetDailyDiamondMultiplier === 'function')
+            ? window.novaHeroGetDailyDiamondMultiplier(stu) : 1;
+          if (heroMul > 1) fbRewardTotal = Math.round(fbRewardTotal * heroMul);
           stu.diamond = Math.min(25000, Number(stu.diamond||0) + fbRewardTotal);
           stu.lastDiamondUpdate = Date.now();
           return stu;
@@ -296,6 +299,19 @@
         screen.classList.add('fb-pop');
         setTimeout(()=>screen.classList.remove('fb-pop'), 700);
       } else {
+        if (typeof window.novaHeroOfferDailyRetry === 'function') {
+          const retry = await window.novaHeroOfferDailyRetry('fillblank');
+          if (retry) {
+            await attemptRef.remove();
+            answeredOnce = false;
+            checkBtn.disabled = false;
+            resultEl.textContent = '🦸 Kahraman gücü: bir hak daha! Tekrar dene.';
+            resultEl.className = 'fb-result';
+            screen.classList.remove('fb-shake', 'fb-pop');
+            refreshFillFabState();
+            return;
+          }
+        }
         resultEl.textContent = 'Yanlış! Günlük hakkın bitti.';
         resultEl.className = 'fb-result fail';
         screen.classList.remove('fb-pop');

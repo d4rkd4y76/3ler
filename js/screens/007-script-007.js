@@ -4863,18 +4863,23 @@ async function updateDuelScore(type, data) {
 
                 if (canApply && winnerId && loserId) {
                     let duelDiamondGain = 10;
+                    var heroCupBonus = 0;
+                    var heroCreditBonus = 0;
                     await Promise.all([
-                        database.ref(`classes/${winnerClassId}/students/${winnerId}/gameCup`).transaction(current => (current || 0) + 6 + extraCup),
-                        database.ref(`classes/${loserClassId}/students/${loserId}/gameCup`).transaction(current => Math.max((current || 0) - 3, 0)),
                         database.ref(`classes/${winnerClassId}/students/${winnerId}`).transaction(user => {
                           user = user || {};
-                          user.duelCredits = Number(user.duelCredits || 0) + 15;
-                          // Duel winner reward is fixed +10 diamonds.
+                          heroCupBonus = (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.getDuelCupBonus)
+                            ? window.NOVA_HERO_LEVEL.getDuelCupBonus(user) : 0;
+                          heroCreditBonus = (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.getDuelCreditBonusOnWin)
+                            ? window.NOVA_HERO_LEVEL.getDuelCreditBonusOnWin(user) : 0;
+                          user.gameCup = Number(user.gameCup || 0) + 6 + extraCup + heroCupBonus;
+                          user.duelCredits = Number(user.duelCredits || 0) + 15 + heroCreditBonus;
                           duelDiamondGain = 10;
                           user.diamond = Math.min(25000, Number(user.diamond || 0) + 10);
                           user.lastDiamondUpdate = Date.now();
                           return user;
-                        })
+                        }),
+                        database.ref(`classes/${loserClassId}/students/${loserId}/gameCup`).transaction(current => Math.max((current || 0) - 3, 0))
                     ]);
                     try{
                       var localStu = (typeof selectedStudent !== 'undefined' && selectedStudent) ? selectedStudent : null;
@@ -4886,6 +4891,11 @@ async function updateDuelScore(type, data) {
                       var localStu2 = (typeof selectedStudent !== 'undefined' && selectedStudent) ? selectedStudent : null;
                       if (extraCup > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
                         await showAlert(`🔥 Çerçeve bonusu aktif: +${extraCup} ekstra kupa kazandın!`);
+                      }
+                      if (heroCupBonus > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
+                        await showAlert(`🦸 Kahraman bonusu: +${heroCupBonus} ek kupa${heroCreditBonus > 0 ? (' ve +' + heroCreditBonus + ' düello kredisi') : ''}!`);
+                      } else if (heroCreditBonus > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
+                        await showAlert(`🦸 Kahraman bonusu: +${heroCreditBonus} düello kredisi!`);
                       }
                     }catch(_){}
                 } else {

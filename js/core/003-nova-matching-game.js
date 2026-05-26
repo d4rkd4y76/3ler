@@ -336,6 +336,9 @@
         const gain = computeChampionDiamondGain(matchRewardBase, stu);
         matchRewardMul = Number(gain.multiplier || 1);
         matchRewardTotal = Number(gain.total || matchRewardBase);
+        var heroMul = (typeof window.novaHeroGetDailyDiamondMultiplier === 'function')
+          ? window.novaHeroGetDailyDiamondMultiplier(stu) : 1;
+        if (heroMul > 1) matchRewardTotal = Math.round(matchRewardTotal * heroMul);
         stu.diamond = Math.min(25000, Number(stu.diamond||0) + matchRewardTotal);
         stu.lastDiamondUpdate = Date.now();
         return stu;
@@ -353,6 +356,19 @@
       });
       if (msg){ msg.textContent = 'Harika! Tüm eşleşmeler doğru. +' + matchRewardTotal + ' 💎' + (matchRewardMul > 1 ? (' (Rozet x'+matchRewardMul+')') : ''); msg.className = 'match-msg ok'; }
     } else {
+      if (typeof window.novaHeroOfferDailyRetry === 'function') {
+        const retry = await window.novaHeroOfferDailyRetry('matching');
+        if (retry) {
+          await mState.attemptRef.remove();
+          mState.checked = false;
+          mState.picks = {};
+          mState.activeLeft = null;
+          renderMatchBoard();
+          refreshMatchFabState();
+          if (msg){ msg.textContent = '🦸 Kahraman gücü: bir hak daha! Tekrar eşleştir.'; msg.className = 'match-msg warn'; }
+          return;
+        }
+      }
       if (msg){ msg.textContent = 'Bazı eşleşmeler yanlış. Günlük hakkın bitti.'; msg.className = 'match-msg fail'; }
     }
   }
