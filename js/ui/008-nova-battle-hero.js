@@ -819,13 +819,15 @@
         var lvl = getHeroLevel(userData, hero.id);
         var eq = hero.id === equippedId;
         html += '<div class="char-inv-card char-inv-hero-card' + (eq ? ' equipped' : '') + '">'
-          + (eq ? '<span class="char-inv-badge">Kullanımda</span>' : '')
+          + (eq ? '<span class="char-inv-badge">Takılı</span>' : '')
           + '<div class="char-inv-hero-thumb-host" data-char-inv-hero-host="' + hero.id + '"></div>'
           + '<div class="char-inv-card-title">' + (hero.name || def.name) + '</div>'
           + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">★ Sv. ' + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
           + renderHeroStarsHtml(lvl)
-          + '<button type="button" class="char-inv-action' + (eq ? ' is-on' : '') + '" data-char-equip-hero="' + hero.id + '">'
-          + (eq ? '✨ Şu an bu' : '⚔️ Kullan') + '</button></div>';
+          + (eq
+            ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
+            : '<button type="button" class="char-inv-action" data-char-equip-hero="' + hero.id + '">⚔️ Kullan</button>')
+          + '</div>';
       });
       html += '</div>';
     }

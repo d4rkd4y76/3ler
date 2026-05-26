@@ -2119,7 +2119,9 @@ async function novaRenderCharacterInventory() {
   } catch (_) {}
 
   hero.innerHTML = `
-    <img class="char-inv-hero-avatar avatar-framed ${getAvatarFrameClass(activeAvatarFrame)}" src="${novaCharSafeAttr(photoSrc)}" alt="">
+    <div class="char-inv-hero-avatar-wrap">
+      <img class="char-inv-hero-avatar avatar-framed ${getAvatarFrameClass(activeAvatarFrame)}" src="${novaCharSafeAttr(photoSrc)}" alt="">
+    </div>
     <div>
       <div class="char-inv-hero-name">${renderNameWithFrame(rawName, activeFrame)}</div>
       <div class="char-inv-hero-stats">
@@ -2150,9 +2152,13 @@ async function novaRenderCharacterInventory() {
       return charInvNodeFromHtml(`
         <div class="char-inv-card${eq ? ' equipped' : ''}" style="animation-delay:${delay}s">
           ${eq ? '<span class="char-inv-badge">Takılı</span>' : ''}
-          <img class="char-inv-thumb" src="${novaCharSafeAttr(entry.url)}" alt="">
+          <div class="char-inv-thumb-wrap">
+            <img class="char-inv-thumb" src="${novaCharSafeAttr(entry.url)}" alt="">
+          </div>
           <div class="char-inv-card-title">${title}</div>
-          <button type="button" class="char-inv-action${eq ? ' is-on' : ''}" data-char-use-photo="${novaCharSafeAttr(entry.url)}">${eq ? '✨ Şu an bu' : '👕 Giy'}</button>
+          ${eq
+            ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
+            : `<button type="button" class="char-inv-action" data-char-use-photo="${novaCharSafeAttr(entry.url)}">👕 Giy</button>`}
         </div>`);
     }).filter(Boolean);
     await charInvAppendProgressive(gridP, photoNodes, renderSeq);
@@ -2190,7 +2196,9 @@ async function novaRenderCharacterInventory() {
         ${eq ? '<span class="char-inv-badge">Takılı</span>' : ''}
         <div class="char-inv-frame-preview">${preview}</div>
         <div class="char-inv-card-title">${escapeHtml(fr.name)}</div>
-        <button type="button" class="char-inv-action${eq ? ' is-on' : ''}" data-char-use-frame="${novaCharSafeAttr(fid)}">${eq ? '✨ Şu an bu' : '✨ Tak'}</button>
+        ${eq
+          ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
+          : `<button type="button" class="char-inv-action" data-char-use-frame="${novaCharSafeAttr(fid)}">✨ Tak</button>`}
       </div>`);
   }).filter(Boolean);
   await charInvAppendProgressive(nfGrid, nfNodes, renderSeq);
@@ -2200,16 +2208,31 @@ async function novaRenderCharacterInventory() {
     const fid = fr.id;
     const eq = fid === activeAvatarFrame;
     const delay = (k++ * 0.05).toFixed(2);
+    const afClass = getAvatarFrameClass(fid);
     return charInvNodeFromHtml(`
       <div class="char-inv-card${eq ? ' equipped' : ''}" style="animation-delay:${delay}s">
         ${eq ? '<span class="char-inv-badge">Takılı</span>' : ''}
-        <img class="char-inv-thumb avatar-framed ${getAvatarFrameClass(fid)}" src="${novaCharSafeAttr(photoSrc)}" alt="">
+        <div class="char-inv-thumb-wrap char-inv-thumb-wrap--frame">
+          <div class="store-avatar-frame ${afClass}">
+            <img class="char-inv-thumb avatar-framed ${afClass}" src="${novaCharSafeAttr(photoSrc)}" alt="" data-char-inv-frame="${novaCharSafeAttr(fid)}">
+          </div>
+        </div>
         <div class="char-inv-card-title">${escapeHtml(fr.name)}</div>
-        <button type="button" class="char-inv-action${eq ? ' is-on' : ''}" data-char-use-avatar-frame="${novaCharSafeAttr(fid)}">${eq ? '✨ Şu an bu' : '✨ Tak'}</button>
+        ${eq
+          ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
+          : `<button type="button" class="char-inv-action" data-char-use-avatar-frame="${novaCharSafeAttr(fid)}">✨ Tak</button>`}
       </div>`);
   }).filter(Boolean);
   await charInvAppendProgressive(afGrid, afNodes, renderSeq);
   if (renderSeq !== __charInvRenderSeq) return;
+
+  try {
+    applyAvatarFrameToImage(document.querySelector('#char_inv_hero .char-inv-hero-avatar'), activeAvatarFrame);
+    afGrid.querySelectorAll('.char-inv-thumb[data-char-inv-frame]').forEach((img) => {
+      const fid = img.getAttribute('data-char-inv-frame') || 'default';
+      applyAvatarFrameToImage(img, fid);
+    });
+  } catch (_) {}
 
   panelP.querySelector('.char-inv-cta-store')?.addEventListener('click', () => {
     novaCloseCharacterInventory();
