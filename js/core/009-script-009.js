@@ -110,7 +110,17 @@ function getRankHTML(count, compact) {
   );
 }
 
+/** Sezon sıralaması: hafif lig etiketi (ağır SVG rozet yok — akıcı) */
+function getSeasonRankLeaguePill(cups) {
+  var league = getLeagueFromCups(Number(cups) || 0);
+  var short = getLeagueShortName(league);
+  return (
+    '<span class="nsr-lig nsr-lig--' + league + '" title="' + getLeagueFullName(league) + '">' + short + '</span>'
+  );
+}
+
 window.getLeagueFromCups = getLeagueFromCups;
 window.getLeagueName = getLeagueFullName;
 window.getLeagueShortName = getLeagueShortName;
 window.getRankHTML = getRankHTML;
+window.getSeasonRankLeaguePill = getSeasonRankLeaguePill;

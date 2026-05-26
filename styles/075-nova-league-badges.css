@@ -205,13 +205,25 @@
 
 /* Ana ekran */
 #student-rank{
-  margin-top: 6px;
+  margin-top: -6px;
+  margin-bottom: 0;
   display: flex;
   justify-content: center;
+  line-height: 0;
 }
 
 #student-rank .nova-lig{
-  transform: scale(0.98);
+  transform: scale(0.38);
+  transform-origin: center top;
+}
+
+/* Ana ekran: isim ile lig arasını sıkıştır */
+.student-info{
+  gap: 0;
+}
+
+#main-screen #student-name{
+  margin-bottom: 0 !important;
 }
 
 /* Düello intro / oyun içi */
@@ -223,28 +235,28 @@
 }
 
 .nova-lig--compact{
-  width: 96px;
-  min-height: 62px;
+  width: 64px;
+  min-height: 40px;
 }
 
 .nova-lig--compact .nova-lig__frame{
-  width: 52px;
-  height: 52px;
+  width: 34px;
+  height: 34px;
 }
 
 .nova-lig--compact .nova-lig__halo{
-  width: 74px;
-  height: 74px;
+  width: 46px;
+  height: 46px;
 }
 
 .nova-lig--compact .nova-lig__ribbon{
-  min-width: 72px;
-  padding: 3px 8px 4px;
+  min-width: 52px;
+  padding: 2px 6px 3px;
 }
 
 .nova-lig--compact .nova-lig__name{
-  font-size: 9px;
-  letter-spacing: .12em;
+  font-size: 7px;
+  letter-spacing: .10em;
 }
 
 /* Eski yıldız alanı */

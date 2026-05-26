@@ -1,0 +1,274 @@
+/* ═══ Sezon Sıralaması v2 — sıfırdan, hafif, profesyonel ═══
+   Sadece #rankingPanel.nova-season-rank — kasma yok, sütunlar net.
+*/
+
+#rankingPanel.nova-season-rank .ranking-table-container{
+  background: rgba(255,255,255,.97);
+  border-radius: 14px;
+  padding: 8px 6px 12px;
+  contain: layout style;
+}
+
+#rankingPanel.nova-season-rank .ranking-table{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+
+#rankingPanel.nova-season-rank col.ranking-col-rank{ width: 8%; }
+#rankingPanel.nova-season-rank col.ranking-col-photo{ width: 12%; }
+#rankingPanel.nova-season-rank col.ranking-col-name{ width: 28%; }
+#rankingPanel.nova-season-rank col.ranking-col-class{ width: 16%; }
+#rankingPanel.nova-season-rank col.ranking-col-hero{ width: 18%; }
+#rankingPanel.nova-season-rank col.ranking-col-cup{ width: 18%; }
+
+#rankingPanel.nova-season-rank .ranking-table tbody tr:hover td{
+  background: transparent !important;
+}
+
+#rankingPanel.nova-season-rank .ranking-table th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 8px 4px;
+  font-size: clamp(0.62rem, 2.1vw, 0.72rem);
+  font-weight: 800;
+  background: linear-gradient(180deg, #fde68a, #fecaca);
+  color: #1e293b;
+  border: none;
+}
+
+#rankingPanel.nova-season-rank .ranking-table td{
+  padding: 0;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0f172a;
+  font-size: clamp(0.68rem, 2.2vw, 0.84rem);
+  line-height: 1.2;
+  overflow: visible;
+}
+
+/* Satır kartı — tek parça arka plan, beyaz leke yok */
+#rankingPanel.nova-season-rank .ranking-table tbody tr{
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(15,23,42,.07);
+}
+
+#rankingPanel.nova-season-rank .ranking-table tbody tr.top-1{
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: #fff;
+}
+#rankingPanel.nova-season-rank .ranking-table tbody tr.top-2{
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  color: #fff;
+}
+#rankingPanel.nova-season-rank .ranking-table tbody tr.top-3{
+  background: linear-gradient(135deg, #b45309, #92400e);
+  color: #fff;
+}
+
+#rankingPanel.nova-season-rank .ranking-table tbody tr.current-user-row{
+  outline: 2px solid rgba(99,102,241,.75);
+  outline-offset: -2px;
+}
+
+#rankingPanel.nova-season-rank .ranking-table tbody tr:hover{
+  filter: brightness(1.03);
+}
+
+#rankingPanel.nova-season-rank .ranking-table tbody tr::before,
+#rankingPanel.nova-season-rank .ranking-table tbody tr::after{
+  display: none !important;
+  content: none !important;
+}
+
+/* Hücre içi — sabit yükseklik, ortalı */
+#rankingPanel.nova-season-rank .ranking-table td.nsr-cell{
+  height: 52px;
+  padding: 6px 4px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#rankingPanel.nova-season-rank .nsr-cell--rank{
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  width: 8%;
+}
+
+#rankingPanel.nova-season-rank .nsr-cell--photo{
+  width: 12%;
+}
+
+#rankingPanel.nova-season-rank .ranking-player-photo{
+  width: 40px !important;
+  height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+#rankingPanel.nova-season-rank .nsr-cell--name{
+  width: 28%;
+  text-align: center;
+}
+
+#rankingPanel.nova-season-rank .nsr-name{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#rankingPanel.nova-season-rank .nsr-name__txt,
+#rankingPanel.nova-season-rank .nsr-name .ranking-player-name{
+  font-weight: 700;
+  font-size: inherit;
+  color: inherit;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* İsim çerçevesi: mağaza/düello ile aynı (021 stilleri); sadece taşmayı kes */
+#rankingPanel.nova-season-rank .nsr-name .nova-name-frame{
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* Lig sütunu — rozetli lig (nova-lig compact) */
+#rankingPanel.nova-season-rank .nsr-cell--lig{
+  width: 16%;
+  overflow: visible !important;
+}
+
+#rankingPanel.nova-season-rank .nsr-lig-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+#rankingPanel.nova-season-rank .nsr-lig-wrap .nova-lig{
+  transform: scale(0.54);
+  transform-origin: center;
+  margin: 0 auto;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.22));
+}
+
+#rankingPanel.nova-season-rank .nsr-lig-wrap .nova-lig__halo,
+#rankingPanel.nova-season-rank .nsr-lig-wrap .nova-lig__shine{
+  display: none !important;
+}
+
+/* Eski kahraman markup */
+#rankingPanel.nova-season-rank .nova-rank-hero{
+  display: none !important;
+}
+
+/* Kahraman sütunu */
+#rankingPanel.nova-season-rank .nsr-cell--hero{
+  width: 18%;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-wrap{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic{
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(15,23,42,.75);
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-fallback{
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(226,232,240,.8);
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-stars{
+  display: inline-flex;
+  gap: 1px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(15,23,42,.88);
+  border: 1px solid rgba(255,255,255,.12);
+  line-height: 1;
+}
+
+#rankingPanel.nova-season-rank .nsr-star{
+  font-size: 8px;
+  opacity: .25;
+  color: #e2e8f0;
+}
+
+#rankingPanel.nova-season-rank .nsr-star.is-on{
+  opacity: 1;
+  color: #fde68a;
+}
+
+/* Kupa */
+#rankingPanel.nova-season-rank .nsr-cell--cup{
+  width: 18%;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+#rankingPanel.nova-season-rank .nsr-cup{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px){
+  #rankingPanel.nova-season-rank .ranking-table tr{
+    background: inherit;
+  }
+  #rankingPanel.nova-season-rank .ranking-table td.nsr-cell{
+    height: 48px;
+    padding: 5px 2px;
+  }
+  #rankingPanel.nova-season-rank .ranking-player-photo{
+    width: 34px !important;
+    height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+  }
+  #rankingPanel.nova-season-rank .nsr-lig{
+    font-size: 0.55rem;
+    padding: 3px 6px;
+  }
+  #rankingPanel.nova-season-rank .nsr-hero-pic{
+    width: 28px;
+    height: 28px;
+  }
+}

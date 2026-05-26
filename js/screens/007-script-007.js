@@ -9157,7 +9157,13 @@ if (winnerId && loserId) {
                 }
                 return { owned: !!val, level: val ? 1 : 0 };
             }
-            const heroId = String(it.battleHero || it.heroId || it.hero || '').trim();
+            let heroId = String(it.battleHero || it.heroId || it.hero || '').trim();
+            try{
+                if (!heroId && it.purchasedBattleHeroes && typeof it.purchasedBattleHeroes === 'object') {
+                    const keys = Object.keys(it.purchasedBattleHeroes).filter(k => !!k && k !== 'null' && k !== 'undefined');
+                    if (keys.length) heroId = String(keys[0]).trim();
+                }
+            }catch(_){}
             let heroLevel = 0;
             try {
                 if (it.heroLevel != null) heroLevel = Number(it.heroLevel) || 0;
@@ -9226,7 +9232,13 @@ if (winnerId && loserId) {
                     const resolvedAvatarFrame = (resolvedNameFrame === 'deneme_champion')
                         ? 'deneme_champion'
                         : rawAvatarFrame;
-                    const heroId = student && student.battleHero ? String(student.battleHero).trim() : '';
+                    let heroId = student && student.battleHero ? String(student.battleHero).trim() : '';
+                    try{
+                        if (!heroId && student && student.purchasedBattleHeroes && typeof student.purchasedBattleHeroes === 'object') {
+                            const keys = Object.keys(student.purchasedBattleHeroes).filter(k => !!k && k !== 'null' && k !== 'undefined');
+                            if (keys.length) heroId = String(keys[0]).trim();
+                        }
+                    }catch(_){}
                     let heroLevel = 0;
                     try {
                         if (student && student.heroLevel != null) heroLevel = Number(student.heroLevel) || 0;
@@ -9280,15 +9292,8 @@ if (winnerId && loserId) {
                 ? String(selectedStudent.studentId)
                 : '';
 
-            const cached = rankingReadCacheForToday(todayKey);
-            if (cached) {
-                displayRankingData(cached.topPlayers, {
-                    userRank: cached.userRank,
-                    totalPlayers: cached.totalPlayers,
-                    userTrophy: cached.userTrophy
-                });
-                return;
-            }
+            // Nova: Sezon sıralaması her açılışta güncellensin (günlük cache kapalı)
+            const cached = null;
 
             const now = Date.now();
             if ((now - __rankingLastLoadTs) < RANKING_NET_DEBOUNCE_MS) return;
@@ -9298,6 +9303,10 @@ if (winnerId && loserId) {
 
             try {
                 const classId = String((selectedStudent && selectedStudent.classId) || '');
+                try{
+                    var pill2 = document.getElementById('rankingClassPill');
+                    if (pill2) pill2.textContent = String((selectedStudent && (selectedStudent.className || '')) || '');
+                }catch(_){}
                 let topPlayers = [];
                 let totalPlayers = 0;
                 let userRank = 0;
@@ -9321,18 +9330,7 @@ if (winnerId && loserId) {
                     return;
                 }
 
-                try {
-                    localStorage.setItem(RANKING_CACHE_KEY, JSON.stringify({
-                        v: RANKING_CACHE_VERSION,
-                        dayKey: todayKey,
-                        classId: String((selectedStudent && selectedStudent.classId) || ''),
-                        topPlayers,
-                        userRank,
-                        totalPlayers,
-                        userTrophy: userTrophyCount,
-                        ts: Date.now()
-                    }));
-                } catch (e) {}
+                // Nova: cache yazma kapalı
 
                 displayRankingData(topPlayers, {
                     userRank: userRank,
@@ -9392,6 +9390,57 @@ if (winnerId && loserId) {
             return '<span class="ranking-player-name">' + esc(name) + '</span>';
         }
 
+        function buildNsrNameCell(player) {
+            return '<div class="nsr-name">' + renderRankingPlayerName(player) + '</div>';
+        }
+
+        function buildNsrLeagueCell(player) {
+            try {
+                if (typeof getRankHTML === 'function') {
+                    return '<div class="nsr-lig-wrap">' + getRankHTML(Number((player && player.gameCup) || 0), true) + '</div>';
+                }
+            } catch (_) {}
+            return '<div class="nsr-lig-wrap"></div>';
+        }
+
+        function buildNsrHeroCell(player) {
+            var heroId = (player && player.heroId) ? String(player.heroId).trim() : '';
+            var lvl = Math.max(0, Math.min(4, Number(player && player.heroLevel) || 0));
+            var stars = '';
+            for (var i = 1; i <= 4; i++) {
+                stars += '<span class="nsr-star' + (i <= lvl ? ' is-on' : '') + '" aria-hidden="true">★</span>';
+            }
+            return (
+                '<div class="nsr-hero-wrap">' +
+                '<div class="nsr-hero-pic" data-hero-id="' + (heroId ? heroId.replace(/"/g, '') : '') + '"></div>' +
+                '<div class="nsr-hero-stars">' + stars + '</div>' +
+                '</div>'
+            );
+        }
+
+        function mountNsrRankingHeroes(root) {
+            if (!root) return;
+            var pics = root.querySelectorAll('.nsr-hero-pic[data-hero-id]');
+            pics.forEach(function (el) {
+                var id = (el.getAttribute('data-hero-id') || '').trim();
+                if (!id) {
+                    el.innerHTML = '<span class="nsr-hero-fallback">—</span>';
+                    return;
+                }
+                try {
+                    if (typeof window.novaMountHeroInto === 'function') {
+                        window.novaMountHeroInto(el, id);
+                        if (el.querySelector('svg')) return;
+                    }
+                    if (typeof window.novaBuildHeroSvgHtml === 'function') {
+                        var html = window.novaBuildHeroSvgHtml(id);
+                        if (html) { el.innerHTML = html; return; }
+                    }
+                } catch (_) {}
+                el.innerHTML = '<span class="nsr-hero-fallback">?</span>';
+            });
+        }
+
         async function displayRankingData(players, meta) {
             const renderSeq = ++__rankingRenderSeq;
             const userRank = meta && meta.userRank != null ? meta.userRank : 0;
@@ -9418,48 +9467,14 @@ if (winnerId && loserId) {
                 if (index < 3) tr.classList.add('top-' + (index + 1));
                 if (myId && player.id === myId) tr.classList.add('current-user-row');
 
-                function buildHeroSvgHtml(heroId) {
-                    try {
-                        var def = window.NOVA_HERO_REGISTRY && window.NOVA_HERO_REGISTRY[heroId];
-                        if (!def || !window[def.templateKey]) return '';
-                        var raw = window[def.templateKey];
-                        var uid = 'rh' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-                        return String(raw).split('__UID__').join(uid).replace('<svg ', '<svg class="nova-hero-svg nova-hero-svg--' + (def.theme || 'blaze') + '" ');
-                    } catch (_) {
-                        return '';
-                    }
-                }
-                function buildHeroStarsHtml(level) {
-                    var lvl = Math.max(0, Math.min(4, Number(level) || 0));
-                    var out = '';
-                    for (var i = 1; i <= 4; i++) out += '<span class="nova-rank-hero__star' + (i <= lvl ? ' is-on' : '') + '" aria-hidden="true">★</span>';
-                    return out;
-                }
-                function buildHeroCell(p) {
-                    var heroId = (p && p.heroId) ? String(p.heroId).trim() : '';
-                    var lvl = (p && p.heroLevel) ? Number(p.heroLevel) : 0;
-                    var svg = heroId ? buildHeroSvgHtml(heroId) : '';
-                    if (!svg) svg = '<div class="nova-rank-hero__fallback" aria-hidden="true">?</div>';
-                    return (
-                      '<div class="nova-rank-hero" title="Kahraman ve seviye">' +
-                        '<div class="nova-rank-hero__icon">' + svg + '</div>' +
-                        '<div class="nova-rank-hero__stars">' + buildHeroStarsHtml(lvl) + '</div>' +
-                      '</div>'
-                    );
-                }
                 tr.innerHTML = `
-           <td class="rank-column">${index + 1}</td>
-           <td><img src="${player.photo}" alt="" class="ranking-player-photo" loading="lazy" decoding="async" width="48" height="48"
+           <td class="nsr-cell nsr-cell--rank">${index + 1}</td>
+           <td class="nsr-cell nsr-cell--photo"><img src="${player.photo}" alt="" class="ranking-player-photo" loading="lazy" decoding="async" width="40" height="40"
                onerror="this.src='https://via.placeholder.com/50'"></td>
-          <td class="player-name-column"><div class="name-line">${renderRankingPlayerName(player)}</div>${getRankHTML(Number(player.gameCup) || 0, true)}</td>
-           <td class="class-name-column">${player.className}</td>
-           <td class="hero-column">${buildHeroCell(player)}</td>
-<td class="trophy-column">
-               <div class="trophy-wrapper">
-                   <span class="trophy-icon">🏆</span>
-                   <span class="trophy-count">${player.gameCup}</span>
-               </div>
-           </td>`;
+           <td class="nsr-cell nsr-cell--name">${buildNsrNameCell(player)}</td>
+           <td class="nsr-cell nsr-cell--lig">${buildNsrLeagueCell(player)}</td>
+           <td class="nsr-cell nsr-cell--hero">${buildNsrHeroCell(player)}</td>
+           <td class="nsr-cell nsr-cell--cup"><span class="nsr-cup"><span aria-hidden="true">🏆</span><span>${player.gameCup}</span></span></td>`;
                 const photoEl = tr.querySelector('.ranking-player-photo');
                 if (photoEl) {
                   try { applyAvatarFrameToImage(photoEl, effectiveAvatarFrame); } catch(_){}
@@ -9470,6 +9485,7 @@ if (winnerId && loserId) {
             rankingTableBody.innerHTML = '';
             await appendRankingRowsProgressive(rankingTableBody, rows, renderSeq);
             if (renderSeq !== __rankingRenderSeq) return;
+            mountNsrRankingHeroes(rankingTableBody);
             updateUserStats(userRank, totalPlayers, userTrophy);
         }
 

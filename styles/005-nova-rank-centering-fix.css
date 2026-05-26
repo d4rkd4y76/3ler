@@ -14,7 +14,7 @@
 .student-info{ display:flex; flex-direction:column; align-items:center; text-align:center; }
 #student-name{ text-align:center; }
 #student-stars{ margin-top:6px; }
-#student-rank{ margin-top:6px; }
+#student-rank{ margin-top:0px; }
 /* Ranking table name cell */
 .ranking-table .player-name-column .rank-label{ margin-top:6px; }
 /* Phones: keep everything centered in a single column nicely */

@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="styles/002-style-002.css" />
 <link rel="stylesheet" href="styles/003-style-003.css" />
 <link rel="stylesheet" href="styles/004-style-004.css" />
-<link rel="stylesheet" href="styles/005-nova-rank-centering-fix.css" />
+<link rel="stylesheet" href="styles/005-nova-rank-centering-fix.css?v=20260526rank1" />
 <link rel="stylesheet" href="styles/006-nova-store-title-top.css" />
 <link rel="stylesheet" href="styles/007-nova-placement-fix.css" />
 <link rel="stylesheet" href="styles/008-nova-perf.css" />
@@ -29,8 +29,9 @@
 <link rel="stylesheet" href="styles/010-style-010.css" />
 <link rel="stylesheet" href="styles/011-nova-profile-frame-override.css" />
 <link rel="stylesheet" href="styles/012-nova-extra-frames.css" />
-<link rel="stylesheet" href="styles/013-nova-ranking-table-photo-override.css" />
-<link rel="stylesheet" href="styles/060-nova-ranking-player-names.css" />
+<link rel="stylesheet" href="styles/013-nova-ranking-table-photo-override.css?v=20260526rank1" />
+<link rel="stylesheet" href="styles/060-nova-ranking-player-names.css?v=20260526rank1" />
+<link rel="stylesheet" href="styles/077-nova-season-ranking-v2.css?v=20260526rank3" />
 <link rel="stylesheet" href="styles/014-nova-store-fix.css" />
 <link rel="stylesheet" href="styles/015-style-015.css" />
 <link rel="stylesheet" href="styles/016-style-016.css" />
@@ -319,8 +320,8 @@
 </div>
 </div>
 <!-- Ranking Panel (Sezon sıralaması — görünürlük .open ile) -->
-<div class="ranking-panel" id="rankingPanel" aria-hidden="true">
-<h2>Sezon Sıralaması</h2>
+<div class="ranking-panel nova-season-rank" id="rankingPanel" aria-hidden="true">
+<h2>Sezon Sıralaması <span class="ranking-class-pill" id="rankingClassPill"></span></h2>
 <div class="ranking-table-container">
 <table class="ranking-table" id="ranking-table">
 <colgroup>
@@ -336,7 +337,7 @@
 <th scope="col" title="Sıra">#</th>
 <th scope="col" title="Fotoğraf">Foto</th>
 <th scope="col" title="İsim">İsim</th>
-<th scope="col" title="Sınıf">Sınıf</th>
+<th scope="col" title="Lig">Lig</th>
 <th scope="col" title="Kullanılan kahraman ve seviye">Kahraman</th>
 <th scope="col" title="Kupa sayısı">Kupa</th>
 </tr>
@@ -784,10 +785,10 @@
 <script src="js/ui/006-nova-game-select.js?v=20260522spfix2"></script>
 <script src="js/ui/007-nova-single-player-screen.js?v=20260522sp3"></script>
 <script src="js/ui/010-nova-duel-screen.js?v=20260522duel1"></script>
-<script src="js/screens/007-script-007.js?v=20260526sp_result1"></script>
+<script src="js/screens/007-script-007.js?v=20260526rank2"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
 <script src="js/core/008-script-008.js?v=20260522store3"></script>
-<script src="js/core/009-script-009.js?v=20260526lig1"></script>
+<script src="js/core/009-script-009.js?v=20260526rank2"></script>
 <script src="js/core/010-script-010.js"></script>
 <script src="js/ui/011-script-011.js"></script>
 <script src="js/core/012-script-012.js"></script>
@@ -1157,7 +1158,7 @@
 <link rel="stylesheet" href="styles/071-nova-hero-sp-reveal.css?v=20260526herolv5" />
 <link rel="stylesheet" href="styles/072-nova-hero-main-sheet.css?v=20260526hero_stars1" />
 <link rel="stylesheet" href="styles/073-nova-store-layout-fix.css?v=20260526storefix1" />
-<link rel="stylesheet" href="styles/075-nova-league-badges.css?v=20260526lig1" />
+<link rel="stylesheet" href="styles/075-nova-league-badges.css?v=20260526rank3" />
 <link rel="stylesheet" href="styles/067-nova-single-player-game-layout.css?v=20260526sp_result1" />
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=20260522duelfix1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />

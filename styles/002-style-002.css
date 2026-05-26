@@ -1945,6 +1945,21 @@ html, body {
    border-radius: 2px;
 }
 
+/* Sezon sıralaması: sınıf etiketi */
+.ranking-class-pill{
+  display: inline-block;
+  margin-left: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  background: rgba(99,102,241,.12);
+  border: 1px solid rgba(99,102,241,.25);
+  color: #3730a3;
+  vertical-align: middle;
+}
+
 @media (max-width: 600px) {
    .ranking-panel {
        width: 100%;
@@ -2034,7 +2049,7 @@ html, body {
    max-width: 100%;
    table-layout: fixed;
    border-collapse: separate;
-   border-spacing: 0 6px;
+   border-spacing: 0 4px;
 }
 .ranking-table col.ranking-col-rank { width: 6%; }
 .ranking-table col.ranking-col-photo { width: 11%; }
