@@ -137,6 +137,26 @@ body.nova-sp-game-open{
   max-width: min(900px, 100%) !important;
 }
 
+#single-player-game-screen.nova-sp-result-open{
+  justify-content: center !important;
+  align-content: center !important;
+}
+#single-player-game-screen.nova-sp-result-open .score-container{
+  display: flex !important;
+  flex: 1 1 auto;
+  min-height: min(72vh, 640px);
+  justify-content: center;
+  align-items: center;
+  padding: clamp(12px, 3vw, 24px) !important;
+}
+#single-player-game-screen.nova-sp-result-open .nova-sp-game-hud,
+#single-player-game-screen.nova-sp-result-open .question-container,
+#single-player-game-screen.nova-sp-result-open .options-container,
+#single-player-game-screen.nova-sp-result-open .explanation-container,
+#single-player-game-screen.nova-sp-result-open #nova-sp-hero-feature-bar{
+  display: none !important;
+}
+
 #single-player-game-screen .explanation-container .explanation-card{
   border-radius: 18px;
   box-shadow: 0 16px 36px rgba(2, 6, 23, .28);

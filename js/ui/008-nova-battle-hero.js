@@ -679,6 +679,7 @@
   window.NOVA_HERO_REGISTRY = HERO_REGISTRY;
   window.novaGetHeroLevel = getHeroLevel;
   window.novaMountHeroInto = mountHeroInto;
+  window.mountHeroInto = mountHeroInto;
   window.novaBuildHeroSvgHtml = buildHeroSvgHtml;
   window.NOVA_BATTLE_HERO_ID = 'blaze_robot';
 

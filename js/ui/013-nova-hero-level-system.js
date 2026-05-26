@@ -195,33 +195,41 @@
       '<div class="nh-level-panel" role="dialog" aria-labelledby="nh_level_title">'
       + '<div class="nh-level-panel__glow" aria-hidden="true"></div>'
       + '<header class="nh-level-head">'
-      + '<div><h2 id="nh_level_title">⚔️ Kahraman Seviye Artışı</h2>'
-      + '<p class="nh-level-sub">Kahramanına dokun · şansını dene</p></div>'
+      + '<div><h2 id="nh_level_title">Kahraman Seviye Artışı</h2>'
+      + '<p class="nh-level-sub">Üstten kahramanını seç · ortada yükselt</p></div>'
       + '<button type="button" class="nh-level-close" id="nh_level_close" aria-label="Kapat">✕</button>'
       + '</header>'
-      + '<p class="nh-level-pick-label">Kahramanını seç</p>'
-      + '<div class="nh-level-hero-pick" id="nh_level_hero_pick"></div>'
-      + '<div class="nh-level-body">'
-      + '<div class="nh-level-stage" id="nh_level_stage">'
-      + '<div class="nh-level-hero-preview" id="nh_level_hero_preview"></div>'
-      + '<div class="nh-level-orb" id="nh_level_orb" hidden><span class="nh-level-orb__inner" id="nh_level_orb_txt">?</span></div>'
+      + '<div class="nh-level-tabs-wrap">'
+      + '<p class="nh-level-pick-label">Kahramanların</p>'
+      + '<div class="nh-level-tabs" id="nh_level_hero_pick" role="tablist"></div>'
       + '</div>'
-      + '<div class="nh-level-info">'
-      + '<div class="nh-level-stars" id="nh_level_stars"></div>'
-      + '<div class="nh-level-cost" id="nh_level_cost"></div>'
-      + '<div class="nh-level-chance" id="nh_level_chance"></div>'
+      + '<section class="nh-level-arena" id="nh_level_stage">'
+      + '<div class="nh-level-arena__pedestal" aria-hidden="true"></div>'
+      + '<h3 class="nh-level-arena__name" id="nh_level_hero_name">—</h3>'
+      + '<div class="nh-level-hero-preview" id="nh_level_hero_preview"></div>'
+      + '<div class="nh-level-arena__stars" id="nh_level_stars"></div>'
+      + '<div class="nh-level-roll-fx" id="nh_level_roll_fx" hidden aria-hidden="true">'
+      + '<span class="nh-level-roll-fx__txt">Şans deneniyor…</span></div>'
+      + '</section>'
+      + '<div class="nh-level-banner" id="nh_level_result" hidden role="status"></div>'
+      + '<section class="nh-level-stats">'
+      + '<div class="nh-level-stat" id="nh_level_cost"></div>'
+      + '<div class="nh-level-stat nh-level-stat--chance" id="nh_level_chance"></div>'
+      + '</section>'
+      + '<section class="nh-level-perks-block">'
+      + '<div class="nh-level-perks-card">'
+      + '<h4 class="nh-level-perks-title">⚡ Mevcut güçler</h4>'
       + '<ul class="nh-level-perks" id="nh_level_perks_now"></ul>'
-      + '<div class="nh-level-next" id="nh_level_next_wrap">'
-      + '<div class="nh-level-next-title">Sonraki seviye özellikleri</div>'
+      + '</div>'
+      + '<div class="nh-level-perks-card nh-level-perks-card--next" id="nh_level_next_wrap">'
+      + '<h4 class="nh-level-perks-title">🔮 Sonraki seviye</h4>'
       + '<ul class="nh-level-perks nh-level-perks--next" id="nh_level_perks_next"></ul>'
       + '</div>'
-      + '</div>'
-      + '</div>'
+      + '</section>'
       + '<div class="nh-level-actions">'
-      + '<button type="button" class="nh-level-btn nh-level-btn--roll" id="nh_level_roll" disabled>🎲 Seviye Yükselt</button>'
+      + '<button type="button" class="nh-level-btn nh-level-btn--roll" id="nh_level_roll" disabled>⬆️ Seviye Yükselt</button>'
       + '<button type="button" class="nh-level-btn nh-level-btn--ghost" id="nh_level_done">Kapat</button>'
       + '</div>'
-      + '<div class="nh-level-result" id="nh_level_result" hidden></div>'
       + '<div class="nh-level-victory" id="nh_level_victory" hidden aria-hidden="true"></div>'
       + '</div>';
     document.body.appendChild(ov);
@@ -277,25 +285,144 @@
     return html;
   }
 
+  function getPerkSummaryLines(level) {
+    level = Math.min(MAX_LEVEL, Math.max(0, Number(level) || 0));
+    var p = CUMULATIVE[level];
+    if (!p || level < 1) return [];
+    var lines = [];
+    if (p.duelCupBonus > 0) {
+      lines.push('Düello galibiyeti: toplam +' + p.duelCupBonus + ' ek kupa');
+    }
+    if (p.duelCreditBonusOnWin > 0) {
+      lines.push('Düello galibiyeti: +' + p.duelCreditBonusOnWin + ' düello kredisi');
+    }
+    if (p.questBonusDiamonds > 0) {
+      lines.push('Görev ödülü: tamamlanan her görevde +' + p.questBonusDiamonds + ' 💎 kahraman bonusu');
+    }
+    if (p.dailyRetryOnWrong) {
+      lines.push('Boşluk · Bulmaca · Eşleştir: yanlışta 1 ek deneme hakkı');
+    }
+    if (p.spWrongRevealPerGame > 0) {
+      lines.push('Tek kişilik: oyunda ' + p.spWrongRevealPerGame + ' kez yanlış şıkkı göster');
+    }
+    if (p.dailyDiamondMultiplier > 1) {
+      lines.push('Boşluk · Bulmaca · Eşleştir: kazanılan elmaslar ' + p.dailyDiamondMultiplier + ' kat');
+    }
+    return lines;
+  }
+
   function renderPerkList(el, level) {
     if (!el) return;
-    var lines = PERK_LINES[level] || [];
+    var lines = getPerkSummaryLines(level);
     el.innerHTML = lines.map(function (l) {
       return '<li>' + l + '</li>';
     }).join('');
   }
 
+  function showResultBanner(kind, title, sub) {
+    var el = document.getElementById('nh_level_result');
+    if (!el) return;
+    el.hidden = false;
+    el.className = 'nh-level-banner nh-level-banner--' + (kind === 'win' ? 'win' : 'fail');
+    el.innerHTML =
+      '<span class="nh-level-banner__icon" aria-hidden="true">' + (kind === 'win' ? '✓' : '✕') + '</span>'
+      + '<span class="nh-level-banner__title">' + title + '</span>'
+      + '<span class="nh-level-banner__sub">' + (sub || '') + '</span>';
+  }
+
+  function hideResultBanner() {
+    var el = document.getElementById('nh_level_result');
+    if (el) el.hidden = true;
+  }
+
   function mountHeroPreview(heroId) {
     var box = document.getElementById('nh_level_hero_preview');
-    if (!box) return;
+    if (!box || !heroId) return;
     box.innerHTML = '';
-    box.className = 'nh-level-hero-preview nh-level-hero-preview--' + heroTheme(heroId);
+    box.className = 'nh-level-hero-preview nh-level-hero-preview--' + heroTheme(heroId) + ' is-enter';
     var host = document.createElement('div');
     host.className = 'nh-level-hero-preview__host nova-hero-mount--' + heroId.replace(/_/g, '-');
     box.appendChild(host);
     if (typeof window.novaMountHeroInto === 'function') {
       window.novaMountHeroInto(host, heroId);
     }
+    var nameEl = document.getElementById('nh_level_hero_name');
+    if (nameEl) nameEl.textContent = heroName(heroId);
+    requestAnimationFrame(function () {
+      box.classList.remove('is-enter');
+    });
+  }
+
+  function updatePanelStats() {
+    var data = uiState.data;
+    var heroId = uiState.heroId;
+    if (!heroId || !data) return;
+    var lvl = getHeroLevelFromData(data, heroId);
+    var next = Math.min(MAX_LEVEL, lvl + 1);
+    var stars = document.getElementById('nh_level_stars');
+    var costEl = document.getElementById('nh_level_cost');
+    var chanceEl = document.getElementById('nh_level_chance');
+    var rollBtn = document.getElementById('nh_level_roll');
+    var nextWrap = document.getElementById('nh_level_next_wrap');
+
+    if (stars) {
+      stars.innerHTML = renderStars(lvl)
+        + '<span class="nh-level-arena__rank">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>';
+    }
+    renderPerkList(document.getElementById('nh_level_perks_now'), lvl);
+
+    if (lvl >= MAX_LEVEL) {
+      if (costEl) costEl.innerHTML = '<span class="nh-level-stat__label">Durum</span><span class="nh-level-stat__value nh-level-maxed">🏆 Maksimum seviye</span>';
+      if (chanceEl) chanceEl.innerHTML = '';
+      if (nextWrap) nextWrap.hidden = true;
+      if (rollBtn) {
+        rollBtn.disabled = true;
+        rollBtn.textContent = 'Maksimum Seviyeye Ulaşıldı';
+      }
+    } else {
+      var cost = getUpgradeCost(next);
+      var pct = Math.round(getUpgradeChance(next) * 100);
+      if (costEl) {
+        costEl.innerHTML =
+          '<span class="nh-level-stat__label">Maliyet</span>'
+          + '<span class="nh-level-stat__value">💎 ' + cost.diamonds
+          + (cost.duelCredits ? ' · 🎫 ' + cost.duelCredits : '')
+          + '</span>'
+          + '<span class="nh-level-stat__note">Başarısız olsa da harcanır</span>';
+      }
+      if (chanceEl) {
+        chanceEl.innerHTML =
+          '<span class="nh-level-stat__label">Başarı şansı</span>'
+          + '<span class="nh-level-stat__value nh-level-stat__value--pct">%' + pct + '</span>'
+          + '<span class="nh-level-stat__note">Hedef: Seviye ' + next + '</span>';
+      }
+      if (nextWrap) {
+        nextWrap.hidden = false;
+        renderPerkList(document.getElementById('nh_level_perks_next'), next);
+      }
+      var diamonds = Number(data.diamond) || 0;
+      var credits = Number(data.duelCredits) || 0;
+      var canPay = diamonds >= cost.diamonds && credits >= cost.duelCredits;
+      if (rollBtn) {
+        rollBtn.disabled = !canPay;
+        rollBtn.textContent = canPay
+          ? ('⬆️ ' + heroName(heroId) + ' · Seviye ' + next + ' Dene (%' + pct + ')')
+          : 'Kaynak yetersiz';
+      }
+    }
+  }
+
+  function selectHero(heroId) {
+    uiState.heroId = heroId;
+    var pick = document.getElementById('nh_level_hero_pick');
+    if (pick) {
+      pick.querySelectorAll('.nh-level-hero-tab').forEach(function (tab) {
+        tab.classList.toggle('is-active', tab.getAttribute('data-hero-id') === heroId);
+      });
+    }
+    hideResultBanner();
+    mountHeroPreview(heroId);
+    updatePanelStats();
   }
 
   async function refreshLevelPanel() {
@@ -312,51 +439,10 @@
     }
     var lvl = getHeroLevelFromData(data, heroId);
     var next = Math.min(MAX_LEVEL, lvl + 1);
-    var stars = document.getElementById('nh_level_stars');
-    var costEl = document.getElementById('nh_level_cost');
-    var chanceEl = document.getElementById('nh_level_chance');
-    var rollBtn = document.getElementById('nh_level_roll');
-    var nextWrap = document.getElementById('nh_level_next_wrap');
-    var resultEl = document.getElementById('nh_level_result');
-
-    mountHeroPreview(heroId);
     renderHeroPick(data);
-
-    if (stars) {
-      stars.innerHTML = '<span class="nh-level-stars-label">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>' + renderStars(lvl);
-    }
-    renderPerkList(document.getElementById('nh_level_perks_now'), lvl);
-
-    if (lvl >= MAX_LEVEL) {
-      if (costEl) costEl.innerHTML = '<span class="nh-level-maxed">🏆 Maksimum seviye — Kozmik güç aktif!</span>';
-      if (chanceEl) chanceEl.textContent = '';
-      if (nextWrap) nextWrap.hidden = true;
-      if (rollBtn) {
-        rollBtn.disabled = true;
-        rollBtn.textContent = 'Maksimum Seviye';
-      }
-    } else {
-      var cost = getUpgradeCost(next);
-      var pct = Math.round(getUpgradeChance(next) * 100);
-      if (costEl) {
-        costEl.innerHTML = 'Maliyet: <strong>💎 ' + cost.diamonds + '</strong>'
-          + (cost.duelCredits ? ' + <strong>🎫 ' + cost.duelCredits + ' düello kredisi</strong>' : '')
-          + ' <span class="nh-level-burn">(başarısız olsa da harcanır)</span>';
-      }
-      if (chanceEl) chanceEl.textContent = 'Seviye ' + next + ' şansı: %' + pct;
-      if (nextWrap) {
-        nextWrap.hidden = false;
-        renderPerkList(document.getElementById('nh_level_perks_next'), next);
-      }
-      var diamonds = Number(data && data.diamond) || 0;
-      var credits = Number(data && data.duelCredits) || 0;
-      var canPay = diamonds >= cost.diamonds && credits >= cost.duelCredits;
-      if (rollBtn) {
-        rollBtn.disabled = !canPay || !heroId;
-        rollBtn.textContent = canPay ? '🎲 Seviye Yükselt (Şans %' + pct + ')' : 'Kaynak yetersiz';
-      }
-    }
-    if (resultEl) resultEl.hidden = true;
+    mountHeroPreview(heroId);
+    hideResultBanner();
+    updatePanelStats();
   }
 
   function renderHeroPick(data) {
@@ -365,22 +451,22 @@
     var owned = listOwnedHeroes(data);
     pick.innerHTML = '';
     owned.forEach(function (h) {
-      var card = document.createElement('button');
-      card.type = 'button';
-      card.className = 'nh-level-hero-card nh-level-hero-card--' + heroTheme(h.id)
+      var tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'nh-level-hero-tab nh-level-hero-tab--' + heroTheme(h.id)
         + (h.id === uiState.heroId ? ' is-active' : '');
-      card.setAttribute('aria-label', heroName(h.id) + ' seviye ' + h.level);
-      card.innerHTML =
-        '<span class="nh-level-hero-card__frame">'
-        + '<span class="nh-level-hero-card__host" data-hero-pick="' + h.id + '"></span>'
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('data-hero-id', h.id);
+      tab.setAttribute('aria-selected', h.id === uiState.heroId ? 'true' : 'false');
+      tab.innerHTML =
+        '<span class="nh-level-hero-tab__thumb nh-level-hero-tab__thumb--' + heroTheme(h.id) + '">'
+        + '<span class="nh-level-hero-tab__host" data-hero-pick="' + h.id + '"></span>'
         + '</span>'
-        + '<span class="nh-level-hero-card__badge">★' + h.level + '</span>';
-      card.addEventListener('click', function () {
-        uiState.heroId = h.id;
-        refreshLevelPanel();
-      });
-      pick.appendChild(card);
-      var host = card.querySelector('[data-hero-pick]');
+        + '<span class="nh-level-hero-tab__name">' + heroName(h.id) + '</span>'
+        + '<span class="nh-level-hero-tab__lvl">Sv. ' + h.level + '</span>';
+      tab.addEventListener('click', function () { selectHero(h.id); });
+      pick.appendChild(tab);
+      var host = tab.querySelector('[data-hero-pick]');
       if (host && typeof window.novaMountHeroInto === 'function') {
         window.novaMountHeroInto(host, h.id);
       }
@@ -388,6 +474,10 @@
   }
 
   async function openLevelOverlay() {
+    var existing = document.getElementById('nova-hero-level-overlay');
+    if (existing && !document.querySelector('.nh-level-tabs')) {
+      existing.remove();
+    }
     ensureLevelUi();
     var ov = document.getElementById('nova-hero-level-overlay');
     if (!ov) return;
@@ -475,12 +565,7 @@
     var diamonds = Number(user.diamond) || 0;
     var credits = Number(user.duelCredits) || 0;
     if (diamonds < cost.diamonds || credits < cost.duelCredits) {
-      var resultEl0 = document.getElementById('nh_level_result');
-      if (resultEl0) {
-        resultEl0.hidden = false;
-        resultEl0.className = 'nh-level-result is-loss';
-        resultEl0.textContent = 'Yeterli elmas veya düello kredin yok.';
-      }
+      showResultBanner('fail', 'BAŞARISIZ', 'Yeterli elmas veya düello kredin yok.');
       return;
     }
 
@@ -491,31 +576,28 @@
     if (!ok) return;
 
     var rollBtn = document.getElementById('nh_level_roll');
-    var orb = document.getElementById('nh_level_orb');
-    var orbTxt = document.getElementById('nh_level_orb_txt');
-    var resultEl = document.getElementById('nh_level_result');
+    var rollFx = document.getElementById('nh_level_roll_fx');
     var panel = document.querySelector('.nh-level-panel');
+    var arena = document.getElementById('nh_level_stage');
+    hideResultBanner();
     if (rollBtn) rollBtn.disabled = true;
     if (panel) panel.classList.add('is-rolling');
-
-    if (orb) {
-      orb.hidden = false;
-      orb.classList.add('is-rolling');
+    if (arena) arena.classList.add('is-rolling');
+    if (rollFx) {
+      rollFx.hidden = false;
+      rollFx.setAttribute('aria-hidden', 'false');
     }
-    if (orbTxt) orbTxt.textContent = '…';
-    await waitMs(1500);
+    await waitMs(1600);
 
     var success = Math.random() < chance;
     var entry = user.purchasedBattleHeroes && user.purchasedBattleHeroes[heroId];
     var base = parseHeroOwnership(entry);
     if (!base.owned) {
-      if (resultEl) {
-        resultEl.hidden = false;
-        resultEl.className = 'nh-level-result is-loss';
-        resultEl.textContent = 'Bu kahraman sende kayıtlı değil.';
-      }
+      showResultBanner('fail', 'BAŞARISIZ', 'Bu kahraman hesabında bulunamadı.');
       if (rollBtn) rollBtn.disabled = false;
       if (panel) panel.classList.remove('is-rolling');
+      if (arena) arena.classList.remove('is-rolling');
+      if (rollFx) rollFx.hidden = true;
       return;
     }
 
@@ -533,28 +615,17 @@
       });
     } catch (e) {
       console.error('hero level upgrade', e);
-      if (orb) orb.classList.remove('is-rolling');
       if (panel) panel.classList.remove('is-rolling');
-      if (resultEl) {
-        resultEl.hidden = false;
-        resultEl.className = 'nh-level-result is-loss';
-        resultEl.innerHTML = '<strong>Bağlantı hatası.</strong> İnternetini kontrol edip tekrar dene.';
-      }
+      if (arena) arena.classList.remove('is-rolling');
+      if (rollFx) rollFx.hidden = true;
+      showResultBanner('fail', 'BAŞARISIZ', 'Bağlantı hatası. Tekrar dene.');
       if (rollBtn) rollBtn.disabled = false;
       return;
     }
 
-    if (orb) {
-      orb.classList.remove('is-rolling');
-      orb.classList.add(success ? 'is-success' : 'is-fail');
-    }
-    if (orbTxt) orbTxt.textContent = success ? '★' : '×';
-    await waitMs(500);
-    if (orb) {
-      orb.classList.remove('is-success', 'is-fail');
-      orb.hidden = true;
-    }
     if (panel) panel.classList.remove('is-rolling');
+    if (arena) arena.classList.remove('is-rolling');
+    if (rollFx) rollFx.hidden = true;
 
     var fresh = await ref.once('value');
     user = fresh.val() || {};
@@ -574,22 +645,25 @@
       if (dv) dv.textContent = String(user.duelCredits || 0);
     } catch (_) {}
 
+    var preview = document.getElementById('nh_level_hero_preview');
     if (success) {
       playVictoryFx(heroId, newLevel);
-      if (resultEl) {
-        resultEl.hidden = false;
-        resultEl.className = 'nh-level-result is-win';
-        resultEl.innerHTML = '<strong>🎉 Seviye ' + newLevel + '!</strong> ' + heroName(heroId) + ' yeni güçler kazandı.';
+      showResultBanner('win', 'BAŞARILI!', heroName(heroId) + ' artık Seviye ' + newLevel + ' · ' + (LEVEL_LABELS[newLevel] || ''));
+      if (preview) {
+        preview.classList.add('nh-level-hero-preview--success-flash');
+        setTimeout(function () { preview.classList.remove('nh-level-hero-preview--success-flash'); }, 1200);
       }
     } else {
-      if (resultEl) {
-        resultEl.hidden = false;
-        resultEl.className = 'nh-level-result is-loss';
-        resultEl.innerHTML = '<strong>💨 Bu sefer olmadı.</strong> Kaynaklar harcandı — şansını tekrar dene!';
+      showResultBanner('fail', 'BAŞARISIZ', 'Kaynaklar harcandı. Şansını tekrar dene!');
+      if (preview) {
+        preview.classList.add('nh-level-hero-preview--fail-shake');
+        setTimeout(function () { preview.classList.remove('nh-level-hero-preview--fail-shake'); }, 700);
       }
     }
 
-    await refreshLevelPanel();
+    renderHeroPick(user);
+    mountHeroPreview(heroId);
+    updatePanelStats();
     try {
       if (typeof novaRenderBattleHeroStore === 'function') await novaRenderBattleHeroStore();
     } catch (_) {}
@@ -612,9 +686,7 @@
   async function offerDailyHeroRetry(activityLabel) {
     if (!canUseDailyRetry(activityLabel)) return false;
     var ok = false;
-    if (typeof showConfirmation === 'function') {
-      ok = await showConfirmation('🦸 Kahraman gücü: yanlış cevapta 1 ek deneme hakkın var. Tekrar dene?');
-    }
+    ok = await nhGlobalConfirm('🦸 Kahraman gücü: yanlış cevapta 1 ek deneme hakkın var. Tekrar dene?');
     if (!ok) return false;
     markDailyRetryUsed(activityLabel);
     return true;
@@ -629,16 +701,26 @@
 
   function ensureSpHeroFeatureBar() {
     var hud = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
-    if (!hud || document.getElementById('nova-sp-hero-feature-bar')) return;
+    if (!hud) return;
+    var existing = document.getElementById('nova-sp-hero-feature-bar');
+    if (existing && !document.getElementById('nova_sp_hero_reveal_btn')) {
+      existing.remove();
+      existing = null;
+    }
+    if (existing) return;
     var bar = document.createElement('div');
     bar.id = 'nova-sp-hero-feature-bar';
     bar.className = 'nova-sp-hero-feature-bar';
     bar.hidden = true;
     bar.innerHTML =
-      '<span class="nova-sp-hero-feature-bar__icon" id="nova_sp_hero_feat_icon">🦸</span>'
+      '<button type="button" class="nova-sp-hero-reveal-btn" id="nova_sp_hero_reveal_btn" aria-label="Yanlış şık göster">'
+      + '<span class="nova-sp-hero-feature-bar__icon" id="nova_sp_hero_feat_icon">🦸</span>'
       + '<span class="nova-sp-hero-feature-bar__text" id="nova_sp_hero_feat_text">Kahraman özelliği</span>'
-      + '<span class="nova-sp-hero-feature-bar__count" id="nova_sp_hero_feat_count"></span>';
+      + '<span class="nova-sp-hero-feature-bar__count" id="nova_sp_hero_feat_count"></span>'
+      + '</button>';
     hud.appendChild(bar);
+    var btn = document.getElementById('nova_sp_hero_reveal_btn');
+    if (btn) btn.addEventListener('click', revealOneWrongOption);
   }
 
   function refreshSpHeroFeatureBar() {
@@ -659,30 +741,145 @@
     if (txt) txt.textContent = 'Kahraman özelliği · Yanlış şıkkı göster';
     if (cnt) cnt.textContent = left + ' / ' + spRevealState.max;
     if (icon) icon.textContent = lvl >= 4 ? '👑' : (lvl >= 3 ? '✨' : '🦸');
+    var btn = document.getElementById('nova_sp_hero_reveal_btn');
+    var disabled = left <= 0;
+    if (btn) btn.disabled = disabled;
+    bar.classList.toggle('is-disabled', disabled);
+  }
+
+  function revealOneWrongOption() {
+    var perks = getActivePerks();
+    if (!perks || !perks.spWrongRevealPerGame) return;
+    if (spRevealState.used >= spRevealState.max) { refreshSpHeroFeatureBar(); return; }
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('#options-container .option-button'));
+    if (!buttons.length) return;
+    var target = buttons.find(function (b) {
+      if (!b || b.disabled) return false;
+      if (isCorrectOption(b)) return false;
+      if (b.classList.contains('option-chosen')) return false;
+      if (b.classList.contains('nova-hero-revealed-wrong')) return false;
+      return true;
+    }) || null;
+    if (!target) return;
+    animateHeroToOptionAndDisable(target);
+  }
+
+  function isCorrectOption(btn) {
+    if (!btn) return false;
+    var v = btn.dataset.correct;
+    return v === 'true' || v === true || v === '1';
+  }
+
+  function finishRevealWrong(btn, fly) {
+    if (fly && fly.parentNode) fly.parentNode.removeChild(fly);
+    markOptionRevealedWrong(btn);
+    spRevealState.used++;
+    refreshSpHeroFeatureBar();
+  }
+
+  function animateHeroToOptionAndDisable(btn) {
+    var revealBtn = document.getElementById('nova_sp_hero_reveal_btn');
+    if (revealBtn) revealBtn.disabled = true;
+
+    try {
+      var barIcon = document.getElementById('nova_sp_hero_feat_icon');
+      var fromRect = barIcon ? barIcon.getBoundingClientRect() : null;
+      var toRect = btn.getBoundingClientRect();
+      if (!toRect || !toRect.width) {
+        finishRevealWrong(btn, null);
+        return;
+      }
+
+      var fly = document.createElement('div');
+      fly.className = 'nh-sp-fly-hero';
+      document.body.appendChild(fly);
+
+      var heroId = getEquippedHeroId();
+      if (heroId && typeof window.novaMountHeroInto === 'function') {
+        var host = document.createElement('div');
+        host.className = 'nova-hero-svg-host';
+        fly.appendChild(host);
+        window.novaMountHeroInto(host, heroId);
+      } else {
+        fly.textContent = '🦸';
+        fly.style.fontSize = '32px';
+      }
+
+      var sx = fromRect ? (fromRect.left + fromRect.width / 2) : (window.innerWidth * 0.5);
+      var sy = fromRect ? (fromRect.top + fromRect.height / 2) : (toRect.top - 40);
+      fly.style.left = (sx - 23) + 'px';
+      fly.style.top = (sy - 23) + 'px';
+
+      var tx = (toRect.left + toRect.width / 2) - sx;
+      var ty = (toRect.top + toRect.height / 2) - sy;
+
+      var done = false;
+      function complete() {
+        if (done) return;
+        done = true;
+        finishRevealWrong(btn, fly);
+      }
+
+      if (typeof fly.animate === 'function') {
+        var anim = fly.animate([
+          { transform: 'translate(0px, 0px) scale(1) rotate(-8deg)', opacity: 1 },
+          { transform: 'translate(' + (tx * 0.55) + 'px, ' + (ty * 0.55) + 'px) scale(1.12) rotate(6deg)', opacity: 1 },
+          { transform: 'translate(' + tx + 'px, ' + ty + 'px) scale(0.95) rotate(0deg)', opacity: 1 }
+        ], { duration: 580, easing: 'cubic-bezier(.2,.85,.25,1)', fill: 'forwards' });
+        anim.onfinish = complete;
+        anim.oncancel = complete;
+        setTimeout(complete, 700);
+      } else {
+        complete();
+      }
+    } catch (_) {
+      finishRevealWrong(btn, null);
+    }
   }
 
   function bindSpRevealOnOptions() {
-    var perks = getActivePerks();
-    if (!perks || !perks.spWrongRevealPerGame) return;
-    var qIdx = typeof currentQuestionIndex !== 'undefined' ? currentQuestionIndex : -1;
-    if (spRevealState.questionIndex !== qIdx) spRevealState.questionIndex = qIdx;
-    var buttons = document.querySelectorAll('#options-container .option-button');
-    buttons.forEach(function (btn) {
-      if (btn.dataset.novaRevealBound === '1') return;
-      btn.dataset.novaRevealBound = '1';
-      btn.addEventListener('click', function heroRevealClick(ev) {
-        if (btn.disabled || btn.classList.contains('option-chosen')) return;
-        if (spRevealState.used >= spRevealState.max) return;
-        if (btn.dataset.correct === 'true') return;
-        if (btn.classList.contains('nova-hero-revealed-wrong')) return;
-        ev.stopPropagation();
-        ev.preventDefault();
-        btn.classList.add('nova-hero-revealed-wrong');
-        spRevealState.used++;
-        refreshSpHeroFeatureBar();
-      }, true);
-    });
     refreshSpHeroFeatureBar();
+  }
+
+  function markOptionRevealedWrong(btn) {
+    if (!btn) return;
+    btn.classList.add('nova-hero-revealed-wrong');
+    btn.setAttribute('aria-disabled', 'true');
+    btn.disabled = true;
+    btn.style.pointerEvents = 'none';
+  }
+
+  function nhGlobalConfirm(message) {
+    return new Promise(function (resolve) {
+      var existing = document.getElementById('nh-global-confirm');
+      if (existing) existing.remove();
+      var host = document.createElement('div');
+      host.id = 'nh-global-confirm';
+      host.style.position = 'fixed';
+      host.style.inset = '0';
+      host.style.zIndex = '101350';
+      host.style.background = 'rgba(0,0,0,.62)';
+      host.style.display = 'flex';
+      host.style.alignItems = 'center';
+      host.style.justifyContent = 'center';
+      host.style.padding = '16px';
+      host.innerHTML =
+        '<div style="width:min(92vw,420px);border-radius:18px;border:1px solid rgba(255,255,255,.14);'
+        + 'background:linear-gradient(165deg,#1a2138 0%,#0e121f 52%,#141c2e 100%);'
+        + 'box-shadow:0 28px 70px rgba(0,0,0,.55);padding:16px 16px 14px;color:#e2e8f0;">'
+        + '<p style="margin:0 0 12px;font-weight:800;line-height:1.35;">' + message + '</p>'
+        + '<div style="display:flex;gap:10px;justify-content:flex-end;">'
+        + '<button type="button" id="nh_global_yes" style="padding:10px 12px;border-radius:12px;border:1px solid rgba(34,197,94,.45);'
+        + 'background:linear-gradient(135deg,#22c55e,#16a34a);color:#052e16;font-weight:900;cursor:pointer;">Evet</button>'
+        + '<button type="button" id="nh_global_no" style="padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);'
+        + 'background:rgba(15,23,42,.7);color:#e2e8f0;font-weight:900;cursor:pointer;">Vazgeç</button>'
+        + '</div></div>';
+      document.body.appendChild(host);
+      function done(v) { host.remove(); resolve(v); }
+      host.addEventListener('click', function (e) { if (e.target === host) done(false); });
+      host.querySelector('#nh_global_yes').addEventListener('click', function () { done(true); });
+      host.querySelector('#nh_global_no').addEventListener('click', function () { done(false); });
+    });
   }
 
   function patchStoreHub() {
@@ -728,6 +925,7 @@
     getEquippedHeroLevel: getEquippedHeroLevel,
     getActivePerks: getActivePerks,
     getPerksForLevel: getPerksForLevel,
+    getPerkSummaryLines: getPerkSummaryLines,
     parseHeroOwnership: parseHeroOwnership,
     listOwnedHeroes: listOwnedHeroes,
     openLevelOverlay: openLevelOverlay,

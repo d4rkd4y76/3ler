@@ -6026,6 +6026,7 @@ logoutButton.addEventListener('click', async () => {
                 return;
             }
             gameQuestions = ordered.slice(0, lim);
+            window.gameQuestions = gameQuestions;
             currentQuestionIndex = 0;
             score = 0;
             if (typeof window.novaHideSinglePlayerSelectForGame === 'function') {
@@ -6041,6 +6042,12 @@ logoutButton.addEventListener('click', async () => {
             }
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             scoreContainer.style.display = 'none';
+            try{
+              var spReset = document.getElementById('single-player-game-screen');
+              if(spReset) spReset.classList.remove('nova-sp-result-open');
+              var hudReset = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
+              if(hudReset) hudReset.style.display = '';
+            }catch(_){}
             displayCurrentQuestion();
             singlePlayerQuestionMusic.currentTime = 0;
             singlePlayerQuestionMusic.play().catch(function (err) {
@@ -6063,6 +6070,7 @@ logoutButton.addEventListener('click', async () => {
     pickAndLoadTopicQuestionsExact(classId, subjectId, topicId, qLimit).then(picked => {
         if (Array.isArray(picked) && picked.length >= qLimit) {
             gameQuestions = picked.slice(0, qLimit);
+            window.gameQuestions = gameQuestions;
             currentQuestionIndex = 0;
             score = 0;
 
@@ -6079,6 +6087,12 @@ logoutButton.addEventListener('click', async () => {
             }
             try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             scoreContainer.style.display = 'none';
+            try{
+              var spReset = document.getElementById('single-player-game-screen');
+              if(spReset) spReset.classList.remove('nova-sp-result-open');
+              var hudReset = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
+              if(hudReset) hudReset.style.display = '';
+            }catch(_){}
             displayCurrentQuestion();
 
             singlePlayerQuestionMusic.currentTime = 0;
@@ -6272,6 +6286,9 @@ function proceedToNextQuestion() {
     }
 }
 
+window.proceedToNextQuestion = proceedToNextQuestion;
+window.displayCurrentQuestion = displayCurrentQuestion;
+
 
         function endGame() {
             try{ if (timer) clearInterval(timer); }catch(_){}
@@ -6290,8 +6307,25 @@ function proceedToNextQuestion() {
             try{ var tc = document.querySelector('.timer-container'); if(tc) tc.style.display = 'none'; }catch(_){}
             try{ var qc = document.querySelector('.question-container'); if(qc) qc.style.display = 'none'; }catch(_){}
             try{ if (optionsContainer) optionsContainer.style.display = 'none'; }catch(_){}
+            try{ var explEnd = document.getElementById('explanation-container'); if(explEnd){ explEnd.style.display = 'none'; explEnd.innerHTML = ''; } }catch(_){}
+            try{ var hudEnd = document.querySelector('#single-player-game-screen .nova-sp-game-hud'); if(hudEnd) hudEnd.style.display = 'none'; }catch(_){}
+            try{ var heroBarEnd = document.getElementById('nova-sp-hero-feature-bar'); if(heroBarEnd) heroBarEnd.hidden = true; }catch(_){}
+            try{ document.querySelectorAll('.nh-sp-fly-hero').forEach(function(el){ el.remove(); }); }catch(_){}
+            try{
+              var arenaEnd = document.getElementById('nova-sp-hero-arena');
+              if(arenaEnd){
+                arenaEnd.classList.remove('is-active','is-centered','is-exiting','is-slamming','is-epic','is-caption-show');
+                arenaEnd.setAttribute('aria-hidden','true');
+              }
+            }catch(_){}
+            try{
+              var spGame = document.getElementById('single-player-game-screen');
+              if(spGame) spGame.classList.add('nova-sp-result-open');
+            }catch(_){}
 
 scoreContainer.style.display = 'flex';
+scoreContainer.style.visibility = 'visible';
+scoreContainer.style.opacity = '1';
 try{ var rb=document.getElementById('result-back-btn'); if(rb) rb.style.display='inline-flex'; }catch(_){}
 try{ window.scrollTo(0,0); }catch(_){}
 try{ (function prune(){ const sc=document.querySelector('.single-player-game-container .score-container'); if(sc){ sc.querySelectorAll('div').forEach(n=>{ if(n.id==='score-message'||n.id==='score'||n.id==='score-image') return; const hasChildren=n.children&&n.children.length>0; const t=(n.textContent||'').trim(); if(!hasChildren && !t) n.remove(); }); } })(); }catch(e){};
@@ -6408,6 +6442,8 @@ finally{
                 }
             } catch(_){}
 }
+
+        window.endGame = endGame;
 
         // "Geri Dön" butonu için event listener
         finalBackButton.addEventListener('click', () => {

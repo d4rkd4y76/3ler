@@ -1,0 +1,93 @@
+/* Mağaza — sol ışık kaldır, tam yükseklik, her satırda 2 ürün */
+
+.profile-change-overlay:has(.nova-store-shell)::before{
+  display: none !important;
+  animation: none !important;
+}
+
+.profile-change-content.nova-store-shell{
+  background: linear-gradient(168deg, #121a2e 0%, #0b0f18 42%, #0e1628 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 36px 90px rgba(0,0,0,.68) !important;
+}
+
+.nova-store-ambient{
+  display: none !important;
+}
+
+.nova-store-stage{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.profile-change-content .nova-store-products,
+.profile-change-content .profile-photos-container.nova-store-products{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-content: start;
+  gap: clamp(10px, 2.5vw, 14px) !important;
+  padding: 12px clamp(10px, 2.5vw, 16px) max(16px, env(safe-area-inset-bottom, 0px)) !important;
+  background: rgba(6, 9, 16, .55) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.profile-change-content .nova-store-products--heroes,
+.profile-change-content .nova-store-products:has(.nova-hero-store-card){
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  justify-items: stretch !important;
+}
+
+.profile-change-content .nova-hero-store-card{
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.profile-change-content .nova-hero-store-card .nova-hero-preview,
+.profile-change-content .nova-hero-store-card--blaze .nova-hero-preview,
+.profile-change-content .nova-hero-store-card--star .nova-hero-preview{
+  height: clamp(140px, 28vw, 186px);
+  min-height: clamp(140px, 28vw, 186px);
+  max-height: clamp(140px, 28vw, 186px);
+}
+
+.profile-change-content .nova-store-preview{
+  max-width: 100% !important;
+  min-height: clamp(108px, 22vw, 132px);
+}
+
+.profile-change-content .nova-store-preview img.nova-store-avatar-img,
+.profile-change-content .nova-store-preview > img.profile-photo{
+  width: min(100%, 120px) !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  max-height: 150px !important;
+}
+
+.profile-change-content .profile-photo-item.nova-store-card{
+  min-width: 0 !important;
+}
+
+@media (min-width: 480px){
+  .profile-change-content .nova-store-products,
+  .profile-change-content .profile-photos-container.nova-store-products{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 720px){
+  .profile-change-content .nova-store-products,
+  .profile-change-content .profile-photos-container.nova-store-products{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

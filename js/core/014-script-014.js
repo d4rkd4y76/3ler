@@ -32,11 +32,15 @@ function showExplanationAndNext(){
         expl.innerHTML='';
         try{
           if (isLast){
-            // Son soruda dogrudan sonuca gecis: once indeksi sona cek, sonra guvenli gecis.
-            if (Array.isArray(gameQuestions)) currentQuestionIndex = gameQuestions.length;
             setTimeout(function(){
-              try{ endGame(); }
-              catch(_){ try{ proceedToNextQuestion(); }catch(__){} }
+              try { proceedToNextQuestion(); }
+              catch (e1) {
+                console.error('Son soru sonuç geçişi', e1);
+                try {
+                  if (typeof window.endGame === 'function') window.endGame();
+                  else if (typeof endGame === 'function') endGame();
+                } catch (e2) { console.error('endGame', e2); }
+              }
             }, 0);
           } else {
             proceedToNextQuestion();
