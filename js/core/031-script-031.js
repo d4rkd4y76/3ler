@@ -87,14 +87,7 @@
 
   function boot(){
     render();
-    setTimeout(render, 200);
-    setTimeout(render, 600);
-    setTimeout(render, 1200);
-    var start = Date.now();
-    var iv = setInterval(function(){
-      render();
-      if (Date.now() - start > 10000) clearInterval(iv);
-    }, 500);
+    setTimeout(render, 250);
   }
 
   try{
@@ -109,11 +102,6 @@
     }
   }catch(e){}
 
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
 })();
 
 // === Nova Duel Result Decorator v2 ===

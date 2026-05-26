@@ -38,14 +38,8 @@
       '.medal','.badge','.rozet','.winner-message'
     ];
     selectors.forEach(sel => scope.querySelectorAll(sel).forEach(el=>el.remove()));
-    // Remove nodes whose visible text is a medal word
-    const words = /(bronze|silver|gold|gümüş|altın|bronz|rozet)/i;
-    scope.querySelectorAll('*').forEach(el=>{
-      try{
-        const t = (el.textContent||'').trim();
-        if(t && words.test(t) && el.children.length===0) el.remove();
-      }catch(_){}
-    });
+    // NOTE: Daha önce tüm DOM'u tarayan querySelectorAll('*') bazı cihazlarda
+    // sonuç ekranına geçişte tarayıcıyı kilitleyebiliyor. Bilerek kaldırıldı.
   }
 
   function renderRing(){
@@ -116,28 +110,8 @@
       };
       window.endGame.__novaPatched = true;
     }
-    // Also observe DOM in case results are shown other ways
-    let queued = false;
-    function scheduleRing(){
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(function(){
-        queued = false;
-        renderRing();
-      });
-    }
-    const obs = new MutationObserver(function(){
-      const sc = document.querySelector('.single-player-game-container .score-container');
-      if (!sc) return;
-      if (sc.dataset.novaRingBusy === '1') return;
-      if (getComputedStyle(sc).display !== 'none' && sc.offsetParent !== null){
-        if (!sc.querySelector('#novaCircular') || sc.dataset.novaRingRendered !== String(tryGetTotals().percent)){
-          scheduleRing();
-        }
-      }
-    });
-    const scoreRoot = document.getElementById('score-container') || document.querySelector('.single-player-game-container .score-container');
-    if (scoreRoot) obs.observe(scoreRoot, {attributes:true, attributeFilter:['style','class'], childList:true, subtree:true});
+    // MutationObserver kaldırıldı: bazı cihazlarda sonuç ekranında aşırı tetikleme yapıp
+    // tarayıcıyı kilitleyebiliyordu. endGame sonrası tek render yeterli.
   }
 
   document.addEventListener('DOMContentLoaded', attach);

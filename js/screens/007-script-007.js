@@ -5559,10 +5559,7 @@ function populateChampionSelect(data) {
                 classSelectEl.appendChild(option);
                 classSelectEl.value = bestId;
                 try { localStorage.removeItem('cachedLessons_' + bestId); } catch (_) {}
-                await fetchLessons(bestId, subEl);
-                if (subEl && typeof window.novaRefreshGameSelectMenu === 'function') {
-                    window.novaRefreshGameSelectMenu(subEl);
-                }
+                // Ders listesi enforceSinglePlayerClassLock / fetchLessons ile yüklenir (çift çağrı yok).
             })();
         } else {
             classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
@@ -5589,6 +5586,10 @@ function populateChampionSelect(data) {
 
 
 async function fetchLessons(classId, subjectSelectElement) {
+    if (!subjectSelectElement) return false;
+    if (!subjectSelectElement.__novaLessonsGen) subjectSelectElement.__novaLessonsGen = 0;
+    const myGen = ++subjectSelectElement.__novaLessonsGen;
+
     const CACHE_KEY = `cachedLessons_${classId}`;
     const CACHE_TIMESTAMP_KEY = `cachedLessonsTimestamp_${classId}`;
     const CACHE_DURATION = NOVA_CHAMPION_HEADINGS_TTL_MS;
@@ -5600,6 +5601,10 @@ async function fetchLessons(classId, subjectSelectElement) {
     // Select elementini temizle
     subjectSelectElement.innerHTML = '<option value="">Seçiniz</option>';
     if (!classId) return false;
+
+    function isStale() {
+        return myGen !== subjectSelectElement.__novaLessonsGen;
+    }
 
     try {
         // Önce seçimleri Firebase'den kontrol et (davet edilen için)
@@ -5615,6 +5620,7 @@ async function fetchLessons(classId, subjectSelectElement) {
 
                     if (cachedLessons && cachedTimestamp && (now - parseInt(cachedTimestamp, 10)) < CACHE_DURATION) {
                         const parsedLessons = JSON.parse(cachedLessons);
+                        if (isStale()) return false;
                         populateLessonsSelect(parsedLessons, subjectSelectElement);
                         subjectSelectElement.value = selections.subject;
                         return true;
@@ -5636,7 +5642,9 @@ async function fetchLessons(classId, subjectSelectElement) {
                     ? await resolveBest(list || [])
                     : '';
                 if (bestId && bestId !== classId && classSelect) {
+                    classSelect.dataset.novaSuppressChange = '1';
                     classSelect.value = bestId;
+                    delete classSelect.dataset.novaSuppressChange;
                     classId = bestId;
                     try { localStorage.removeItem(CACHE_KEY); } catch (_) {}
                     lessonsData = await novaFetchLessonsList(bestId);
@@ -5649,6 +5657,7 @@ async function fetchLessons(classId, subjectSelectElement) {
             localStorage.setItem(CACHE_KEY, JSON.stringify(lessonsData));
             localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
 
+            if (isStale()) return false;
             populateLessonsSelect(lessonsData, subjectSelectElement);
 
             // Davet edilen için seçili dersi ayarla
@@ -5735,13 +5744,30 @@ async function fetchTopics(classId, lessonId, topicSelectElement) {
 
 // populateSelect fonksiyonları aynı kalabilir
 function populateLessonsSelect(lessonsData, subjectSelectElement) {
-    lessonsData.forEach(lesson => {
-        const option = document.createElement('option');
-        option.value = lesson.id;
-        option.textContent = lesson.name;
-        subjectSelectElement.appendChild(option);
-    });
-    if (subjectSelectElement && typeof window.novaRefreshGameSelectMenu === 'function') {
+    if (!subjectSelectElement) return;
+    const wrap = subjectSelectElement.closest('.nova-game-select');
+    if (wrap) wrap.__novaMenuSyncing = true;
+    try {
+        subjectSelectElement.innerHTML = '<option value="">Seçiniz</option>';
+        const seenIds = Object.create(null);
+        const seenNames = Object.create(null);
+        (lessonsData || []).forEach(function (lesson) {
+            if (!lesson || !lesson.id) return;
+            const id = String(lesson.id);
+            const nameKey = String(lesson.name || '').trim().toLowerCase();
+            if (seenIds[id]) return;
+            if (nameKey && seenNames[nameKey]) return;
+            seenIds[id] = true;
+            if (nameKey) seenNames[nameKey] = true;
+            const option = document.createElement('option');
+            option.value = id;
+            option.textContent = lesson.name || id;
+            subjectSelectElement.appendChild(option);
+        });
+    } finally {
+        if (wrap) wrap.__novaMenuSyncing = false;
+    }
+    if (typeof window.novaRefreshGameSelectMenu === 'function') {
         window.novaRefreshGameSelectMenu(subjectSelectElement);
     }
 }
@@ -5808,13 +5834,11 @@ function checkLoginButtonState() {
 }
 
         classSelect.addEventListener('change', () => {
+            if (classSelect.dataset.novaSuppressChange === '1') return;
+            if (classSelect.disabled) return;
             const selectedClass = classSelect.value;
             if (topicSelect) topicSelect.innerHTML = '<option value="">Seçiniz</option>';
-            fetchLessons(selectedClass, subjectSelect).then(function () {
-                if (subjectSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
-                    window.novaRefreshGameSelectMenu(subjectSelect);
-                }
-            });
+            fetchLessons(selectedClass, subjectSelect);
         });
 
         subjectSelect.addEventListener('change', () => {
@@ -6291,6 +6315,9 @@ window.displayCurrentQuestion = displayCurrentQuestion;
 
 
         function endGame() {
+            if (window.__novaEndGameBusy) return;
+            window.__novaEndGameBusy = true;
+            try{
             try{ if (timer) clearInterval(timer); }catch(_){}
             try{ if (singlePlayerScreen) singlePlayerScreen.style.display = 'none'; }catch(_){}
             try{
@@ -6463,6 +6490,11 @@ finally{
                     })();
                 }
             } catch(_){}
+            } catch (e) {
+                console.error('endGame', e);
+            } finally {
+                setTimeout(function () { window.__novaEndGameBusy = false; }, 800);
+            }
 }
 
         window.endGame = endGame;

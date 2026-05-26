@@ -2,6 +2,8 @@
   if (window.__novaAdviceGuardInstalledV2) return;
   window.__novaAdviceGuardInstalledV2 = true;
 
+  var enforceTimer = null;
+
   function isVisible(el){
     if(!el) return false;
     var cs = getComputedStyle(el);
@@ -18,7 +20,6 @@
 
   function hideAdvice(){
     try{
-      // Remove both id and class variants if exist
       var byId = document.getElementById('teacher-advice-card');
       if (byId) byId.remove();
       document.querySelectorAll('.teacher-advice-card').forEach(function(el){ el.remove(); });
@@ -29,21 +30,27 @@
     if (!resultVisible()) hideAdvice();
   }
 
+  function scheduleEnforce(){
+    if (enforceTimer) return;
+    enforceTimer = setTimeout(function(){
+      enforceTimer = null;
+      enforce();
+    }, 150);
+  }
+
   function observeRoots(){
-    var roots = [
-      document.body,
-      document.querySelector('.question-container'),
-      document.querySelector('.single-player-game-container'),
-      document.querySelector('.duel-game-container'),
-      document.querySelector('.matchmaking-screen'),
-      document.getElementById('score-container')
-    ].filter(Boolean);
-    roots.forEach(function(el){
-      try{
-        var obs = new MutationObserver(enforce);
-        obs.observe(el, { attributes:true, childList:true, subtree:true });
-      }catch(_){}
-    });
+    // Sadece sonuç konteyneri — document.body + subtree her DOM değişiminde
+    // tarayıcıyı kilitleyebiliyordu.
+    var sc = document.getElementById('score-container');
+    if (!sc) return;
+    try{
+      var obs = new MutationObserver(scheduleEnforce);
+      obs.observe(sc, {
+        attributes: true,
+        attributeFilter: ['style', 'class'],
+        childList: true
+      });
+    }catch(_){}
   }
 
   function hook(name){
@@ -53,7 +60,7 @@
         var orig = fn;
         window[name] = function(){
           var r = orig.apply(this, arguments);
-          setTimeout(enforce, 0);
+          scheduleEnforce();
           return r;
         };
         window[name].__novaAdviceV2 = true;
@@ -72,7 +79,7 @@
     document.addEventListener('click', function(e){
       var t = e.target;
       if (t && (t.closest ? t.closest('.option-button, .option-btn, .answer-button, .next-question-button, .question-container, #start-game-button') : null)){
-        enforce();
+        scheduleEnforce();
       }
     }, true);
   }
