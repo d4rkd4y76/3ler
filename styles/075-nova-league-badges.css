@@ -1,0 +1,305 @@
+/* ═══ Nova League Badges — Mobile Legends tarzı premium rozetler ═══ */
+
+.nova-lig{
+  --lg-scale: 1;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  vertical-align: bottom;
+  width: 118px;
+  min-height: 78px;
+  margin: 0 auto;
+  padding-bottom: 2px;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.42));
+  user-select: none;
+  -webkit-user-select: none;
+  animation: nova-lig-enter .45s cubic-bezier(.2,.9,.25,1) both;
+}
+
+@keyframes nova-lig-enter{
+  0%{ opacity:0; transform: translateY(8px) scale(.88); filter: blur(3px); }
+  100%{ opacity:1; transform: translateY(0) scale(1); filter: none; }
+}
+
+.nova-lig__halo{
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 92px;
+  height: 92px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.nova-lig__frame{
+  position: relative;
+  width: 64px;
+  height: 64px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nova-lig__svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.nova-lig__shine{
+  position: absolute;
+  inset: 8% 12% 38% 18%;
+  border-radius: 50%;
+  background: linear-gradient(120deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 65%);
+  pointer-events: none;
+  z-index: 3;
+  animation: nova-lig-shine 3.2s ease-in-out infinite;
+}
+
+@keyframes nova-lig-shine{
+  0%, 100%{ opacity:.35; transform: translateX(0); }
+  50%{ opacity:.75; transform: translateX(4px); }
+}
+
+.nova-lig__ribbon{
+  position: relative;
+  z-index: 4;
+  margin-top: -6px;
+  min-width: 86px;
+  padding: 4px 10px 5px;
+  border-radius: 999px;
+  text-align: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 3px 10px rgba(0,0,0,.35);
+}
+
+.nova-lig__name{
+  display: block;
+  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.75),
+    0 0 10px rgba(0,0,0,.25);
+}
+
+/* Lig 1 — Hızlı (bronz) */
+.nova-lig--1 .nova-lig__halo{
+  background: radial-gradient(circle, rgba(180,83,9,.42) 0%, rgba(245,158,11,.08) 72%);
+}
+.nova-lig--1 .nova-lig__ribbon{
+  background: linear-gradient(180deg, #d97706 0%, #92400e 100%);
+  border: 1px solid #fde68a;
+}
+.nova-lig--1 .nova-lig__name{ color: #fff7ed; }
+
+/* Lig 2 — Cesur (gümüş) */
+.nova-lig--2 .nova-lig__halo{
+  background: radial-gradient(circle, rgba(56,189,248,.38) 0%, rgba(14,165,233,.08) 72%);
+}
+.nova-lig--2 .nova-lig__ribbon{
+  background: linear-gradient(180deg, #64748b 0%, #334155 100%);
+  border: 1px solid #e0f2fe;
+}
+.nova-lig--2 .nova-lig__name{ color: #f0f9ff; }
+
+/* Lig 3 — Güçlü (altın) */
+.nova-lig--3 .nova-lig__halo{
+  background: radial-gradient(circle, rgba(251,191,36,.42) 0%, rgba(245,158,11,.1) 72%);
+}
+.nova-lig--3 .nova-lig__ribbon{
+  background: linear-gradient(180deg, #fbbf24 0%, #b45309 100%);
+  border: 1px solid #fef3c7;
+  box-shadow: 0 0 16px rgba(245,158,11,.35), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.nova-lig--3 .nova-lig__name{
+  color: #fffbeb;
+  text-shadow: 0 0 8px rgba(180,83,9,.45);
+}
+
+/* Lig 4 — Kahraman (epik) */
+.nova-lig--4 .nova-lig__halo{
+  background: radial-gradient(circle, rgba(139,92,246,.45) 0%, rgba(124,58,237,.12) 72%);
+}
+.nova-lig--4 .nova-lig__ribbon{
+  background: linear-gradient(180deg, #a78bfa 0%, #5b21b6 100%);
+  border: 1px solid #ede9fe;
+  box-shadow: 0 0 18px rgba(124,58,237,.4);
+}
+.nova-lig--4 .nova-lig__name{
+  color: #faf5ff;
+  text-shadow: 0 0 10px rgba(91,33,182,.5);
+}
+
+/* Lig 5 — Efsane (mitik) */
+.nova-lig--5 .nova-lig__halo{
+  background: radial-gradient(circle, rgba(236,72,153,.48) 0%, rgba(168,85,247,.15) 72%);
+  animation: nova-lig-mythic-pulse 2.6s ease-in-out infinite;
+}
+.nova-lig--5 .nova-lig__ribbon{
+  background: linear-gradient(180deg, #e879f9 0%, #7e22ce 55%, #581c87 100%);
+  border: 1px solid #f5d0fe;
+  box-shadow: 0 0 22px rgba(192,38,211,.55);
+}
+.nova-lig--5 .nova-lig__name{
+  color: #fdf4ff;
+  text-shadow: 0 0 14px rgba(192,38,211,.65);
+}
+.nova-lig--5 .nova-lig__frame{
+  animation: nova-lig-float 2.8s ease-in-out infinite;
+}
+
+@keyframes nova-lig-mythic-pulse{
+  0%, 100%{ opacity:.55; transform: translateX(-50%) scale(1); }
+  50%{ opacity:.9; transform: translateX(-50%) scale(1.05); }
+}
+
+@keyframes nova-lig-float{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-2px); }
+}
+
+/* rank-label kapsayıcı — eski pill stilini kapat */
+.rank-label,
+#student-rank,
+#duel-inviter-rank,
+#duel-invited-rank,
+#duel-player-inviter-rank-ingame,
+#duel-player-invited-rank-ingame,
+#nova-pA-rank,
+#nova-pB-rank{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  animation: none !important;
+  text-transform: none !important;
+}
+
+/* Sıralama tablosu */
+.player-name-column .nova-lig{
+  margin-top: 2px;
+  transform: scale(.88);
+  transform-origin: center top;
+}
+
+.ranking-table .player-name-column .nova-lig{
+  min-height: 68px;
+  width: 104px;
+}
+
+.player-name-column .nova-lig:hover{
+  transform: scale(.95);
+}
+
+/* Ana ekran */
+#student-rank{
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+#student-rank .nova-lig{
+  transform: scale(0.98);
+}
+
+/* Düello intro / oyun içi */
+#duel-intro-overlay .player-meta > .rank-label,
+#duel-player-inviter-rank-ingame,
+#duel-player-invited-rank-ingame{
+  display: flex;
+  justify-content: center;
+}
+
+.nova-lig--compact{
+  width: 96px;
+  min-height: 62px;
+}
+
+.nova-lig--compact .nova-lig__frame{
+  width: 52px;
+  height: 52px;
+}
+
+.nova-lig--compact .nova-lig__halo{
+  width: 74px;
+  height: 74px;
+}
+
+.nova-lig--compact .nova-lig__ribbon{
+  min-width: 72px;
+  padding: 3px 8px 4px;
+}
+
+.nova-lig--compact .nova-lig__name{
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+/* Eski yıldız alanı */
+.star-frame,
+.star-badges,
+#student-stars,
+#duel-inviter-stars,
+#duel-invited-stars,
+#duel-player-inviter-stars-ingame,
+#duel-player-invited-stars-ingame,
+#nova-pA-stars,
+#nova-pB-stars{
+  display: none !important;
+}
+
+@media (max-width: 520px){
+  .nova-lig{
+    width: 104px;
+    min-height: 70px;
+  }
+  .nova-lig__name{
+    font-size: 10px;
+  }
+  .ranking-table .player-name-column .nova-lig{
+    transform: scale(.82);
+  }
+}
+
+/* Sezon sıralaması: rozet boyutunu küçült (daha rozet gibi) */
+.ranking-table .player-name-column .nova-lig{
+  width: 92px;
+  min-height: 58px;
+  transform: scale(.78);
+}
+.ranking-table .player-name-column .nova-lig__frame{
+  width: 48px;
+  height: 48px;
+}
+.ranking-table .player-name-column .nova-lig__halo{
+  width: 66px;
+  height: 66px;
+}
+.ranking-table .player-name-column .nova-lig__ribbon{
+  min-width: 68px;
+  padding: 3px 8px 4px;
+}
+.ranking-table .player-name-column .nova-lig__name{
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+/* Efsane ekstra premium glow */
+.nova-lig--5 .nova-lig__shine{
+  background: linear-gradient(120deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,0) 60%);
+}
+.nova-lig--5{
+  filter: drop-shadow(0 8px 22px rgba(192,38,211,.42)) drop-shadow(0 0 22px rgba(236,72,153,.25));
+}

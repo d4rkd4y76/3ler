@@ -4964,7 +4964,7 @@ async function displaySearchResults(results) {
         li.innerHTML = `
             <img src="${photo}" alt="${student.name}" class="player-photo">
             <span class="player-name">${renderNameWithFrame(student.name, student.nameFrame)} / (${className}) </span>
-            <div class="star-frame">${getStars(Number(student.gameCup) || 0)}</div>
+            ${getRankHTML(Number(student.gameCup) || 0, true)}
             ${actionHtml}
         `;
 
@@ -7002,6 +7002,18 @@ try {
             inviterCupValue = inviterCupSnap.exists() ? Number(inviterCupSnap.val() || 0) : 0;
             invitedCupValue = invitedCupSnap.exists() ? Number(invitedCupSnap.val() || 0) : 0;
         } catch(_){}
+
+        // Lig kuralı: sadece aynı ligdeki oyuncular eşleşebilir.
+        try{
+            if (typeof getLeagueFromCups === 'function') {
+                const leagueInviter = getLeagueFromCups(inviterCupValue);
+                const leagueInvited = getLeagueFromCups(invitedCupValue);
+                if (leagueInviter !== leagueInvited) {
+                    await showAlert('Düello sadece aynı ligdeki oyuncular arasında yapılır.');
+                    return;
+                }
+            }
+        }catch(_){}
         const inviteData = {
             invitedByName: selectedStudent.studentName,
             invitedByNameFrame: selectedStudent.nameFrame || 'default',
@@ -7457,6 +7469,21 @@ invitationAcceptButton.addEventListener('click', async () => {
                currentInvitation = null;
                return;
            }
+
+           // Lig uyumsuzluğu (eski davet / eşzamanlama): iptal et.
+           try{
+               if (typeof getLeagueFromCups === 'function' && currentInvitation) {
+                   const lInv = getLeagueFromCups(Number(currentInvitation.inviterCup || 0));
+                   const lInD = getLeagueFromCups(Number(currentInvitation.invitedCup || 0));
+                   if (lInv !== lInD) {
+                       await showAlert('Düello uygun değil (lig uyuşmuyor).');
+                       try { await database.ref(`invitations/${selectedStudent.studentId}`).remove(); } catch(_){}
+                       invitationOverlay.style.display = 'none';
+                       currentInvitation = null;
+                       return;
+                   }
+               }
+           }catch(_){}
 
            // Davet verisini hemen kopyala: remove() sonrası listener currentInvitation'ı null yapar
            const acceptedInvite = {
@@ -9122,6 +9149,22 @@ if (winnerId && loserId) {
             const it = raw || {};
             const id = String(it.id || it.studentId || it.userId || it.uid || fallbackId || '');
             if (!id) return null;
+            function parseHeroOwnership(val) {
+                if (!val) return { owned: false, level: 0 };
+                if (val === true) return { owned: true, level: 1 };
+                if (typeof val === 'object') {
+                    return { owned: true, level: Math.max(1, Number(val.level) || 1) };
+                }
+                return { owned: !!val, level: val ? 1 : 0 };
+            }
+            const heroId = String(it.battleHero || it.heroId || it.hero || '').trim();
+            let heroLevel = 0;
+            try {
+                if (it.heroLevel != null) heroLevel = Number(it.heroLevel) || 0;
+                if (!heroLevel && it.purchasedBattleHeroes && heroId) {
+                    heroLevel = parseHeroOwnership(it.purchasedBattleHeroes[heroId]).level || 0;
+                }
+            } catch (_) {}
             const resolvedNameFrame = (it.nameFrame || 'default');
             const rawAvatarFrame = (it.avatarFrame || 'default');
             const resolvedAvatarFrame = (resolvedNameFrame === 'deneme_champion') ? 'deneme_champion' : rawAvatarFrame;
@@ -9133,6 +9176,8 @@ if (winnerId && loserId) {
                 className: String(it.className || it.class || ''),
                 gameCup: Number(it.gameCup || it.cup || 0),
                 matchCount: Number(it.matchCount || it.duelCredits || 0),
+                heroId: heroId,
+                heroLevel: Math.max(0, Math.min(4, Number(heroLevel) || 0)),
                 photo: String(it.photo || 'https://via.placeholder.com/50')
             };
         }
@@ -9166,6 +9211,12 @@ if (winnerId && loserId) {
             if (!classesVal || typeof classesVal !== 'object') {
                 return { topPlayers: [], totalPlayers: 0, userRank: 0, userTrophy: 0 };
             }
+            function parseHeroOwnership(val) {
+                if (!val) return { owned: false, level: 0 };
+                if (val === true) return { owned: true, level: 1 };
+                if (typeof val === 'object') return { owned: true, level: Math.max(1, Number(val.level) || 1) };
+                return { owned: !!val, level: val ? 1 : 0 };
+            }
             for (const classSnap of Object.values(classesVal)) {
                 if (!classSnap || !classSnap.students) continue;
                 const className = classSnap.name || '';
@@ -9175,6 +9226,14 @@ if (winnerId && loserId) {
                     const resolvedAvatarFrame = (resolvedNameFrame === 'deneme_champion')
                         ? 'deneme_champion'
                         : rawAvatarFrame;
+                    const heroId = student && student.battleHero ? String(student.battleHero).trim() : '';
+                    let heroLevel = 0;
+                    try {
+                        if (student && student.heroLevel != null) heroLevel = Number(student.heroLevel) || 0;
+                        if (!heroLevel && student && student.purchasedBattleHeroes && heroId) {
+                            heroLevel = parseHeroOwnership(student.purchasedBattleHeroes[heroId]).level || 0;
+                        }
+                    } catch (_) {}
                     players.push({
                         id: String(studentId),
                         name: (student && student.name) || 'Anonim',
@@ -9183,6 +9242,8 @@ if (winnerId && loserId) {
                         className: className,
                         gameCup: (student && student.gameCup) || 0,
                         matchCount: (student && student.duelCredits) || 0,
+                        heroId: heroId,
+                        heroLevel: Math.max(0, Math.min(4, Number(heroLevel) || 0)),
                         photo: (student && student.photo) || 'https://via.placeholder.com/50'
                     });
                 }
@@ -9342,7 +9403,7 @@ if (winnerId && loserId) {
                 ? String(selectedStudent.studentId)
                 : '';
             const sig = JSON.stringify({
-              ids: list.map(p => `${p.id}:${p.gameCup}:${p.matchCount}:${p.avatarFrame || 'default'}`),
+              ids: list.map(p => `${p.id}:${p.gameCup}:${p.heroId || ''}:${p.heroLevel || 0}:${p.avatarFrame || 'default'}`),
               userRank, totalPlayers, userTrophy
             });
             if (sig === __rankingLastRenderSig) return;
@@ -9357,18 +9418,42 @@ if (winnerId && loserId) {
                 if (index < 3) tr.classList.add('top-' + (index + 1));
                 if (myId && player.id === myId) tr.classList.add('current-user-row');
 
+                function buildHeroSvgHtml(heroId) {
+                    try {
+                        var def = window.NOVA_HERO_REGISTRY && window.NOVA_HERO_REGISTRY[heroId];
+                        if (!def || !window[def.templateKey]) return '';
+                        var raw = window[def.templateKey];
+                        var uid = 'rh' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+                        return String(raw).split('__UID__').join(uid).replace('<svg ', '<svg class="nova-hero-svg nova-hero-svg--' + (def.theme || 'blaze') + '" ');
+                    } catch (_) {
+                        return '';
+                    }
+                }
+                function buildHeroStarsHtml(level) {
+                    var lvl = Math.max(0, Math.min(4, Number(level) || 0));
+                    var out = '';
+                    for (var i = 1; i <= 4; i++) out += '<span class="nova-rank-hero__star' + (i <= lvl ? ' is-on' : '') + '" aria-hidden="true">★</span>';
+                    return out;
+                }
+                function buildHeroCell(p) {
+                    var heroId = (p && p.heroId) ? String(p.heroId).trim() : '';
+                    var lvl = (p && p.heroLevel) ? Number(p.heroLevel) : 0;
+                    var svg = heroId ? buildHeroSvgHtml(heroId) : '';
+                    if (!svg) svg = '<div class="nova-rank-hero__fallback" aria-hidden="true">?</div>';
+                    return (
+                      '<div class="nova-rank-hero" title="Kahraman ve seviye">' +
+                        '<div class="nova-rank-hero__icon">' + svg + '</div>' +
+                        '<div class="nova-rank-hero__stars">' + buildHeroStarsHtml(lvl) + '</div>' +
+                      '</div>'
+                    );
+                }
                 tr.innerHTML = `
            <td class="rank-column">${index + 1}</td>
            <td><img src="${player.photo}" alt="" class="ranking-player-photo" loading="lazy" decoding="async" width="48" height="48"
                onerror="this.src='https://via.placeholder.com/50'"></td>
-          <td class="player-name-column"><div class="name-line">${renderRankingPlayerName(player)}</div><div class="star-frame">${getStars(Number(player.gameCup) || 0)}</div>${getRankHTML(Number(player.gameCup) || 0)}</td>
+          <td class="player-name-column"><div class="name-line">${renderRankingPlayerName(player)}</div>${getRankHTML(Number(player.gameCup) || 0, true)}</td>
            <td class="class-name-column">${player.className}</td>
-           <td class="match-count-column">
-   <div class="match-wrapper">
-       <span class="match-label">⚔️</span>
-       <span class="match-count">${player.matchCount}</span>
-   </div>
-</td>
+           <td class="hero-column">${buildHeroCell(player)}</td>
 <td class="trophy-column">
                <div class="trophy-wrapper">
                    <span class="trophy-icon">🏆</span>

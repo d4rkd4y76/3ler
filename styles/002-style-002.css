@@ -2040,7 +2040,7 @@ html, body {
 .ranking-table col.ranking-col-photo { width: 11%; }
 .ranking-table col.ranking-col-name { width: 30%; }
 .ranking-table col.ranking-col-class { width: 15%; }
-.ranking-table col.ranking-col-dk { width: 18%; }
+.ranking-table col.ranking-col-hero { width: 18%; }
 .ranking-table col.ranking-col-cup { width: 20%; }
 
         /* Float Animation */
@@ -2095,6 +2095,7 @@ html, body {
             hyphens: manual;
         }
         .ranking-table .match-count-column,
+        .ranking-table .hero-column,
         .ranking-table .trophy-column {
             white-space: nowrap;
             overflow: hidden;
@@ -2795,6 +2796,7 @@ html, body {
         transparent
     );
     transition: 0.5s;
+    pointer-events: none; /* Mağaza butonlarını engellemesin */
 }
 
 /* Profil Fotoğrafı */
@@ -4791,7 +4793,7 @@ animation: floatButton 1s ease infinite;
 
 /* --- Nova Stars (Frame Update) --- */
 .star-frame{
-  display:flex;
+  display:none !important;
   justify-content:center;
   align-items:center;
   gap:4px;

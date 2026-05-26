@@ -432,6 +432,25 @@ async function processAutoMatchPair(m) {
       });
    } catch (_) {}
 
+   // Lig kuralı (auto-match): sadece aynı ligdeki oyuncular eşleşebilir.
+   try{
+      if (typeof getLeagueFromCups === 'function') {
+         const cupsMe = cupMe.exists() ? Number(cupMe.val() || 0) : 0;
+         const cupsOth = cupOth.exists() ? Number(cupOth.val() || 0) : 0;
+         const leagueMe = getLeagueFromCups(cupsMe);
+         const leagueOth = getLeagueFromCups(cupsOth);
+         if (leagueMe !== leagueOth) {
+            await clearAutoMatchCoordinatorMatch(m.id, classId);
+            const t = document.getElementById('autoMatchTitle');
+            const s = document.getElementById('autoMatchSubtext');
+            if (t) t.textContent = 'Yeni rakip aranıyor';
+            if (s) s.textContent = 'Rakip lig uyuşmuyor, yeni rakip aranıyor...';
+            tryAutoMatchEnqueueTx();
+            return;
+         }
+      }
+   }catch(_){}
+
   const [eligMe, eligOth] = await Promise.all([
       checkDuelEligibility(mySid, classId, { cup: cupMe.exists() ? Number(cupMe.val()) : 0, credits: credMe.exists() ? Number(credMe.val()) : 0 }),
       checkDuelEligibility(other.sid, other.classId, { cup: cupOth.exists() ? Number(cupOth.val()) : 0, credits: credOth.exists() ? Number(credOth.val()) : 0 })

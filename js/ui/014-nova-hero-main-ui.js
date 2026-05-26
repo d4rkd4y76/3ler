@@ -30,20 +30,6 @@
     return [];
   }
 
-  function buildRankBadgeHtml(lvl) {
-    var pips = '';
-    for (var i = 1; i <= MAX_STARS; i++) {
-      pips += '<span class="nova-hero-rank-badge__pip' + (i <= lvl ? ' is-on' : '') + '" aria-hidden="true"></span>';
-    }
-    return '<div class="nova-hero-rank-badge" data-level="' + lvl + '">'
-      + '<div class="nova-hero-rank-badge__crest" aria-hidden="true">'
-      + '<span class="nova-hero-rank-badge__halo"></span>'
-      + '<span class="nova-hero-rank-badge__num">' + lvl + '</span>'
-      + '</div>'
-      + '<div class="nova-hero-rank-badge__pips">' + pips + '</div>'
-      + '</div>';
-  }
-
   function ensureHeroFloatWrap() {
     var zone = document.getElementById('nova-main-hero-zone');
     var slot = document.getElementById('nova-main-hero-slot');
@@ -85,7 +71,11 @@
       return;
     }
     stars.hidden = false;
-    stars.innerHTML = buildRankBadgeHtml(lvl);
+    var html = '';
+    for (var i = 1; i <= MAX_STARS; i++) {
+      html += '<span class="nova-main-hero-star ' + (i <= lvl ? 'is-on' : 'is-off') + '" aria-hidden="true">★</span>';
+    }
+    stars.innerHTML = html;
     stars.setAttribute('aria-label', 'Kahraman seviyesi ' + lvl + ' / ' + MAX_STARS);
   }
 
