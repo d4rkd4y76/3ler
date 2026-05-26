@@ -107,23 +107,53 @@ function isInsideOptions(node){
 
     function drawGauge(rate){
       const canvas = document.getElementById('nzGauge'); if(!canvas) return;
-      const ctx = canvas.getContext('2d'); const w=canvas.width, h=canvas.height; const cx=w/2, cy=h/2, r=Math.min(w,h)/2-10;
-      ctx.clearRect(0,0,w,h);
-      ctx.lineWidth=16; ctx.strokeStyle='#e5e7eb'; ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,2*Math.PI); ctx.stroke();
-      const end=Math.PI+(rate/100)*Math.PI; ctx.strokeStyle= rate>=75 ? '#10b981' : (rate>=60 ? '#f59e0b' : '#ef4444');
-      ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,end); ctx.stroke();
-      ctx.fillStyle='#111827'; ctx.font='800 28px system-ui,Segoe UI,Roboto'; ctx.textAlign='center'; ctx.fillText(`${Math.round(rate)}%`,cx,cy+8);
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2, r = Math.min(w, h) / 2 - 14;
+      const pct = Math.max(0, Math.min(100, Number(rate) || 0));
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 14;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#f472b6');
+      grad.addColorStop(0.5, '#a78bfa');
+      grad.addColorStop(1, '#38bdf8');
+      ctx.strokeStyle = grad;
+      const start = -Math.PI / 2;
+      const end = start + (pct / 100) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, start, end);
+      ctx.stroke();
+      ctx.fillStyle = '#111827';
+      ctx.font = '800 26px system-ui, Segoe UI, Roboto';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${Math.round(pct)}%`, cx, cy);
     }
 
     function renderSummary(){
       const wrap=document.getElementById('nova-summary'); if(!wrap) return;
+      try{
+        var prem=document.getElementById('premium-summary');
+        if (prem) prem.style.display='none';
+        document.querySelectorAll('.nova-end-wrapper').forEach(function(n){ n.remove(); });
+      }catch(_){}
       const {total, correctCount, items}=state; const rate= total>0 ? (correctCount/total)*100 : 0;
       const rateEl=document.getElementById('nz-kpi-rate');
       document.getElementById('nz-kpi-correct').textContent=String(correctCount);
       document.getElementById('nz-kpi-total').textContent=String(total);
       rateEl.textContent=`${Math.round(rate)}%`;
       rateEl.className = rate>=75 ? 'value ok' : (rate>=60 ? 'value warn' : 'value bad');
-      drawGauge(rate); document.getElementById('nzBadge').textContent=getBadge(rate);
+      if (document.querySelector('.nova-result-panel')) {
+        document.getElementById('nzBadge').textContent = getBadge(rate);
+      } else {
+        drawGauge(rate);
+        document.getElementById('nzBadge').textContent = getBadge(rate);
+      }
 
       const list=document.getElementById('nzWrongList'); list.innerHTML='';
       items.slice(0,8).forEach((it,idx)=>{
@@ -138,6 +168,17 @@ function isInsideOptions(node){
         list.appendChild(div);
       });
       wrap.classList.add('nz-show');
+      try {
+        if (typeof window.novaPolishSpResultScreen === 'function') {
+          setTimeout(window.novaPolishSpResultScreen, 80);
+          setTimeout(window.novaPolishSpResultScreen, 320);
+        } else if (typeof window.novaPlayResultArena === 'function') {
+          setTimeout(function () {
+            var m = window.novaGetSpResultMetrics ? window.novaGetSpResultMetrics() : null;
+            if (m) window.novaPlayResultArena(m.rate, m.correct, m.total);
+          }, 120);
+        }
+      } catch (_) {}
     }
 
     function openModal(){
@@ -177,32 +218,63 @@ function isInsideOptions(node){
             if(correctQ >= 8) window.novaQuestRecord('single_8plus', { total: totalQ, correct: correctQ, isHomework: isHw });
           }
         }catch(_){}
-        mountSummary(sc);
-        
         try {
           var backBtn = document.getElementById('result-back-btn');
           if (backBtn) { backBtn.style.display = 'inline-flex'; }
         } catch(_) {}
-        // Also remove legacy area if present
-        const wb=document.querySelector('.wrong-block'); if(wb) wb.style.display='none';
-        const actLesson=document.getElementById('act-lesson'); if(actLesson) actLesson.style.display='none';
-        const actReview=document.getElementById('act-review'); if(actReview) actReview.style.display='none';
-        const actPrint=document.getElementById('act-print'); if(actPrint) actPrint.style.display='none';
-        const lessonBtn=document.getElementById('lesson-video-button'); if(lessonBtn) lessonBtn.style.display='none';
+        mountSummary(sc);
         NovaTracker.renderSummary();
       }
     });
     obs.observe(sc,{attributes:true,attributeFilter:['style','class']});
   }
+
+  function hookEndGameRender(){
+    if (typeof window.endGame !== 'function' || window.endGame.__novaTrackerHook) return;
+    var orig = window.endGame;
+    window.endGame = function(){
+      var r = orig.apply(this, arguments);
+      setTimeout(function(){
+        try{
+          var sc = document.getElementById('score-container');
+          if (!sc || !window.NovaTracker) return;
+          var prem = document.getElementById('premium-summary');
+          if (prem) prem.style.display = 'none';
+          mountSummary(sc);
+          NovaTracker.renderSummary();
+          if (typeof window.novaPolishSpResultScreen === 'function') {
+            setTimeout(window.novaPolishSpResultScreen, 180);
+          } else if (typeof window.novaPlayResultArena === 'function') {
+            setTimeout(function () {
+              var st = window.NovaTracker.state;
+              var t = Number(st.total) || 0;
+              var c = Number(st.correctCount) || 0;
+              window.novaPlayResultArena(t > 0 ? (c / t) * 100 : 0, c, t);
+            }, 180);
+          }
+        }catch(_){}
+      }, 160);
+      return r;
+    };
+    window.endGame.__novaTrackerHook = true;
+  }
   function mountSummary(sc){
     const nova=document.getElementById('nova-summary');
-    if(nova){ sc.insertAdjacentElement('afterend', nova); }
+    if(!nova || !sc) return;
+    if (nova.parentElement === sc) {
+      sc.classList.add('nova-final-wrap');
+      return;
+    }
+    try {
+      if (nova.parentElement) nova.parentElement.removeChild(nova);
+    } catch (_) {}
+    sc.appendChild(nova);
+    sc.classList.add('nova-final-wrap');
   }
 
   window.addEventListener('DOMContentLoaded', ()=>{
-    const sc=document.querySelector('.score-container, #score-container');
-    const nova=document.getElementById('nova-summary'); if(sc && nova){ sc.insertAdjacentElement('afterend', nova); }
     observeScoreContainer();
+    hookEndGameRender();
 
     const rpt=document.getElementById('nzRepeatBtn');
     const vid=document.getElementById('nzVideoBtn');

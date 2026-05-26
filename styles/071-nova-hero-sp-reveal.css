@@ -5,6 +5,9 @@
   align-items: center;
   gap: 8px;
   margin-top: 8px;
+  position: relative;
+  z-index: 12;
+  grid-column: 1 / -1;
   padding: 8px 12px;
   border-radius: 12px;
   background: linear-gradient(90deg, rgba(124, 58, 237, .22), rgba(14, 165, 233, .15));

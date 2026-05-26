@@ -6073,10 +6073,26 @@ logoutButton.addEventListener('click', async () => {
               if(hudReset) hudReset.style.display = '';
             }catch(_){}
             displayCurrentQuestion();
+            novaSpRefreshHeroRevealAtGameStart();
             singlePlayerQuestionMusic.currentTime = 0;
             singlePlayerQuestionMusic.play().catch(function (err) {
                 console.error('Tek Kişilik Oyun Müziği Çalınamadı:', err);
             });
+        }
+
+        function novaSpRefreshHeroRevealAtGameStart() {
+            try {
+                if (typeof window.novaResetPremiumResultSession === 'function') {
+                    window.novaResetPremiumResultSession();
+                }
+                if (!window.NOVA_HERO_LEVEL) return;
+                if (typeof window.NOVA_HERO_LEVEL.resetSpRevealForGame === 'function') {
+                    window.NOVA_HERO_LEVEL.resetSpRevealForGame();
+                }
+                if (typeof window.NOVA_HERO_LEVEL.refreshSpHeroFeatureBar === 'function') {
+                    window.NOVA_HERO_LEVEL.refreshSpHeroFeatureBar();
+                }
+            } catch (_) {}
         }
 
         try {
@@ -6118,6 +6134,7 @@ logoutButton.addEventListener('click', async () => {
               if(hudReset) hudReset.style.display = '';
             }catch(_){}
             displayCurrentQuestion();
+            novaSpRefreshHeroRevealAtGameStart();
 
             singlePlayerQuestionMusic.currentTime = 0;
             singlePlayerQuestionMusic.play().catch(error => {
@@ -6371,13 +6388,16 @@ try{
 }catch(_){}
 try{ var rb=document.getElementById('result-back-btn'); if(rb) rb.style.display='inline-flex'; }catch(_){}
 try{ window.scrollTo(0,0); }catch(_){}
-try{ (function prune(){ const sc=document.querySelector('.single-player-game-container .score-container'); if(sc){ sc.querySelectorAll('div').forEach(n=>{ if(n.id==='score-message'||n.id==='score'||n.id==='score-image') return; const hasChildren=n.children&&n.children.length>0; const t=(n.textContent||'').trim(); if(!hasChildren && !t) n.remove(); }); } })(); }catch(e){};
+try{ (function prune(){ if(document.getElementById('nova-summary')) return; const sc=document.querySelector('.single-player-game-container .score-container'); if(sc){ sc.querySelectorAll('div').forEach(n=>{ if(n.id==='score-message'||n.id==='score'||n.id==='score-image'||n.id==='nova-summary'||n.id==='premium-summary') return; const hasChildren=n.children&&n.children.length>0; const t=(n.textContent||'').trim(); if(!hasChildren && !t) n.remove(); }); } })(); }catch(e){};
 
 const totalQ = Array.isArray(window.gameQuestions)
   ? window.gameQuestions.length
   : (window.NOVA_Q_LIMIT || 10);
 try{
-  if (__sd) __sd.textContent = `Doğru Sayısı: ${score}/${totalQ}`;
+  if (__sd){
+    __sd.textContent = `Doğru Sayısı: ${score}/${totalQ}`;
+    __sd.style.display = 'none';
+  }
 }catch(_){}
 
 try{ document.getElementById('score')?.setAttribute('data-score', String(score)); }catch(e){}
@@ -6387,7 +6407,7 @@ window.totalQuestions = totalQ; let message = '';
 
             let messageClass = '';
             let imageUrl = '';
-            try{ if (__sm) __sm.style.display = 'block'; }catch(_){}
+            try{ if (__sm){ __sm.style.display = 'none'; __sm.textContent = ''; } }catch(_){}
 
             if (score === 10) {
                 message = 'ŞAHANE';
@@ -6421,8 +6441,8 @@ window.totalQuestions = totalQ; let message = '';
 
             try{
               if (__si){
-                __si.src = imageUrl;
-                __si.style.display = 'block';
+                __si.removeAttribute('src');
+                __si.style.display = 'none';
               }
             }catch(_){}
 
@@ -6499,26 +6519,40 @@ finally{
 
         window.endGame = endGame;
 
-        // "Geri Dön" butonu için event listener
-        finalBackButton.addEventListener('click', () => {
-            // Müzikleri durdur
+        function novaSpResultGoBack() {
             stopAllMusic();
-
-            // Ekranları sıfırla ve ana ekrana dön
             if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
                 window.novaCloseSinglePlayerGameScreen();
             } else {
                 singlePlayerGameScreen.style.display = 'none';
                 mainScreen.style.removeProperty('display');
             }
-            try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
+            try { if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); } catch (_) {}
             resetGameScreens();
-            try{
-              if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
-              if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
-            }catch(_){}
+            try {
+                var spGame = document.getElementById('single-player-game-screen');
+                if (spGame) spGame.classList.remove('nova-sp-result-open');
+            } catch (_) {}
+            try {
+                if (window.NovaTracker && window.NovaTracker.state) {
+                    window.NovaTracker.state.finished = false;
+                }
+            } catch (_) {}
+            try {
+                if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
+                if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+            } catch (_) {}
             novaRequestHudFabRelayout();
-        });
+        }
+        window.novaSpResultGoBack = novaSpResultGoBack;
+
+        if (finalBackButton) {
+            finalBackButton.setAttribute('type', 'button');
+            finalBackButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                novaSpResultGoBack();
+            });
+        }
 
         // Tüm müzikleri durdurma fonksiyonu
         function stopAllMusic() {

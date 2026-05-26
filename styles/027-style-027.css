@@ -9,4 +9,7 @@
   border:0 !important; 
   overflow:hidden !important; 
 }
-#premium-summary, .metric-grid { display:none !important; } /* bottom premium block */
+/* Tek kişilik: nova-summary; 021 premium inject gizli */
+#score-container #premium-summary{
+  display: none !important;
+}

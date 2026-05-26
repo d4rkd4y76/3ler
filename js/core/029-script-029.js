@@ -43,6 +43,7 @@
   }
 
   function renderRing(){
+    if (document.getElementById('nova-summary')) return;
     const scope = document.querySelector('.single-player-game-container .score-container');
     if(!scope) return;
     const visible = (getComputedStyle(scope).display !== 'none') && (scope.offsetParent !== null);

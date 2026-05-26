@@ -24,40 +24,9 @@
   }
 }
 
-/* Mağaza önizleme — küçük, tam boy, uzaktan, sakin */
-.nova-hero-store-card .nova-hero-preview,
-.nova-hero-store-card--blaze .nova-hero-preview,
-.nova-hero-store-card--star .nova-hero-preview{
-  width: 100%;
-  height: 186px;
-  min-height: 186px;
-  max-height: 186px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 8px 6px 4px;
-  border-radius: 12px 12px 0 0;
+/* Mağaza vitrin — boyut 081-nova-store-detail.css içinde sabitlenir */
+.nova-hero-store-card{
   overflow: hidden;
-  position: relative;
-  box-sizing: border-box;
-}
-.nova-hero-store-card .nova-hero-svg-host{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-}
-.nova-hero-store-card .nova-hero-preview--store-live .nova-hero-svg,
-.nova-hero-store-card .nova-hero-svg{
-  max-width: 112px !important;
-  width: auto !important;
-  height: auto !important;
-  max-height: 162px !important;
-  margin: 0 auto;
-  flex-shrink: 0;
-  transform-origin: 50% 100%;
 }
 
 /* Alev Bot — ateş/ocak atölyesi */

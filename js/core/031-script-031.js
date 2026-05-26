@@ -62,14 +62,11 @@
       card.id = 'teacher-advice-card';
       card.className = 'advice-card';
       card.innerHTML = '<div class="advice-title">ÖĞRETMENİNDEN TAVSİYE 😊</div><div class="advice-text" id="teacher-advice-text"></div>';
-      var ring = sc.querySelector('.percent, .nova-percent-text, .nova-circular-wrap');
-      var anchor = document.getElementById('score-message');
-      if (ring && ring.parentNode) {
-        var parent = ring.closest ? (ring.closest('#score-container') || ring.parentNode) : ring.parentNode;
-        parent.parentNode.insertBefore(card, parent.nextSibling);
-      } else if (anchor && anchor.parentNode) {
-        anchor.parentNode.insertBefore(card, anchor.nextSibling);
-      } else {
+      var game = document.getElementById('single-player-game-screen');
+      var summary = document.getElementById('nova-summary');
+      if (game && summary && summary.classList.contains('nz-show')) {
+        game.appendChild(card);
+      } else if (sc) {
         sc.appendChild(card);
       }
     }

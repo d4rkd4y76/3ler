@@ -74,16 +74,6 @@
   // Patch existing NovaTracker render to update mini gauge & badges + inject Play Again button above wrong summary
   const patcher = setInterval(()=>{
     try{
-      // Ensure compact gauge card exists
-      ensureCompactGauge();
-      // Wire action buttons row: left side "Tekrar Oyna"
-      const actionsRow = q('#nzWrongList')?.parentElement?.querySelector('.nz-actions');
-      if(actionsRow && !q('#nzPlayBtn')){
-        const leftWrap = document.createElement('div'); leftWrap.className='nz-left-actions';
-        leftWrap.innerHTML = `<button id="nzPlayBtn" class="nz-btn nz-primary">Tekrar Oyna</button>`;
-        actionsRow.prepend(leftWrap);
-        q('#nzPlayBtn').addEventListener('click', clickPlayAgain);
-      }
       // Wire "Ders Videosu" button robustly
       const v = q('#nzVideoBtn'); if(v && !v.dataset.bound){ v.dataset.bound='1'; v.addEventListener('click', ()=>openLessonVideo({source:'nova'})); }
 
@@ -92,7 +82,7 @@
         const orig = window.NovaTracker.renderSummary;
         window.NovaTracker.renderSummary = function(){
           const res = orig.apply(window.NovaTracker, arguments);
-          // update rate text class & draw mini gauge
+          if (document.querySelector('.nova-result-panel')) return res;
           try{
             const total = window.NovaTracker.state.total || 0;
             const correct = window.NovaTracker.state.correctCount || 0;

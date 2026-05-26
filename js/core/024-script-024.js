@@ -1,11 +1,16 @@
 (function(){
-  // When score container becomes visible, move nova-summary INSIDE it and clear others
   function mountStrictlyInside(sc){
     const nova=document.getElementById('nova-summary');
-    if(!nova) return;
-    // wipe everything else so legacy UI disappears
-    try { sc.innerHTML=''; } catch(_){}
+    if(!nova || !sc) return;
+    if (nova.parentElement === sc) {
+      sc.classList.add('nova-final-wrap');
+      return;
+    }
+    try {
+      if (nova.parentElement) nova.parentElement.removeChild(nova);
+    } catch (_) {}
     sc.appendChild(nova);
+    sc.classList.add('nova-final-wrap');
   }
 
   function observeAndMount(){
@@ -13,11 +18,7 @@
     if(!sc) return;
     const once=()=>{
       mountStrictlyInside(sc);
-      if(!window.__novaStrictMounted){
-        window.__novaStrictMounted=true;
-      }
     };
-    // If already visible now, mount immediately
     const visible=(getComputedStyle(sc).display!=='none' && sc.offsetParent!==null) || sc.classList.contains('show') || sc.classList.contains('active');
     if(visible) once();
     const obs=new MutationObserver(()=>{

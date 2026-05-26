@@ -47,7 +47,7 @@
 <link rel="stylesheet" href="styles/059-login-premium.css" />
 <!-- === Nova: Result Screen Cleanup & Premium Summary (CSS v3) === -->
 <link rel="stylesheet" href="styles/025-style-025.css" />
-<link rel="stylesheet" href="styles/026-style-026.css" /><link rel="stylesheet" href="styles/027-style-027.css" />
+<link rel="stylesheet" href="styles/026-style-026.css" /><link rel="stylesheet" href="styles/027-style-027.css?v=20260526nova_result1" />
 <link rel="stylesheet" href="styles/028-style-028.css" />
 <link rel="stylesheet" href="styles/029-style-029.css" />
 <link rel="stylesheet" href="styles/030-style-030.css" />
@@ -61,6 +61,9 @@
 <!-- NOVA: Duel Screen Lighten + Orb Removal (scoped) -->
 <link rel="stylesheet" href="styles/033-nova-duel-lighten-overrides.css" />
 <script src="js/screens/001-nova-duel-lighten-script.js"></script>
+
+<!-- NOVA: Freeze guard (must load early) -->
+<script src="js/core/000-nova-freeze-guard.js?v=20260526freeze1"></script>
 
 <script src="js/core/002-script-002.js"></script>
 <script src="js/core/003-nova-matching-game.js"></script>
@@ -642,9 +645,11 @@
 <nav class="char-inv-tabs" role="tablist" aria-label="Envanter sekmeleri">
 <button type="button" role="tab" class="char-inv-tab active" id="char_tab_photos" data-char-tab="photos" aria-selected="true" aria-controls="char_inv_panel_photos">🎭 Avatarların</button>
 <button type="button" role="tab" class="char-inv-tab" id="char_tab_frames" data-char-tab="frames" aria-selected="false" aria-controls="char_inv_panel_frames">✨ Çerçeveler</button>
+<button type="button" role="tab" class="char-inv-tab char-inv-tab--heroes" id="char_tab_heroes" data-char-tab="heroes" aria-selected="false" aria-controls="char_inv_panel_heroes">🤖 Kahramanlar</button>
 </nav>
 <div class="char-inv-panel" id="char_inv_panel_photos" role="tabpanel" aria-labelledby="char_tab_photos"></div>
 <div class="char-inv-panel" id="char_inv_panel_frames" role="tabpanel" aria-labelledby="char_tab_frames" hidden></div>
+<div class="char-inv-panel" id="char_inv_panel_heroes" role="tabpanel" aria-labelledby="char_tab_heroes" hidden></div>
 <div class="char-lesson-status-panel" id="char_lesson_status_panel" hidden>
 <div class="char-lesson-status-head">
 <button type="button" class="char-lesson-back" id="char_lesson_status_back" aria-label="Geri">← Geri</button>
@@ -785,9 +790,9 @@
 <script src="js/ui/006-nova-game-select.js?v=20260522spfix2"></script>
 <script src="js/ui/007-nova-single-player-screen.js?v=20260522sp3"></script>
 <script src="js/ui/010-nova-duel-screen.js?v=20260522duel1"></script>
-<script src="js/screens/007-script-007.js?v=20260526sp_fix2"></script>
+<script src="js/screens/007-script-007.js?v=20260526nova_fix2"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
-<script src="js/core/008-script-008.js?v=20260522store3"></script>
+<script src="js/core/008-script-008.js?v=20260526store_inuse1"></script>
 <script src="js/core/009-script-009.js?v=20260526rank2"></script>
 <script src="js/core/010-script-010.js"></script>
 <script src="js/ui/011-script-011.js"></script>
@@ -821,37 +826,45 @@
 <script src="js/screens/019-script-019.js"></script>
 <link rel="stylesheet" href="styles/049-style-049.css" />
 <script src="js/core/020-script-020.js"></script>
-<script src="js/core/021-script-021.js"></script>
+<script src="js/core/021-script-021.js?v=20260526nova_result1"></script>
 <script src="js/screens/022-nova-kids-login-js.js"></script>
 <!-- === Nova: Premium Bitiş Özeti (HTML v3) === -->
-<div aria-live="polite" id="nova-summary">
-<div class="nz-row">
-<div class="nz-card">
-<div class="nz-kpi"><span class="label">Doğru</span><span class="value ok" id="nz-kpi-correct">0</span></div>
+<div aria-live="polite" id="nova-summary" class="nova-result-panel">
+<section aria-label="Başarı yüzdesi" class="nova-pct-show-wrap nz-gauge" id="novaResultArenaWrap">
+<div class="nova-pct-show" id="novaPctShow" data-tier="mid">
+<div aria-hidden="true" class="nova-pct-show__glow"></div>
+<div aria-hidden="true" class="nova-pct-show__orbit"></div>
+<div aria-hidden="true" class="nova-pct-show__track"></div>
+<div class="nova-pct-show__ring" id="novaPctRing"></div>
+<div aria-live="polite" class="nova-pct-show__core">
+<div class="nova-pct-show__label" id="novaResultPctLabel"><span id="novaResultPctNum">0</span><span class="nova-pct-show__sign">%</span></div>
+<span class="nova-pct-show__caption">Başarı</span>
 </div>
-<div class="nz-card">
-<div class="nz-kpi"><span class="label">Toplam</span><span class="value" id="nz-kpi-total">0</span></div>
+<div aria-hidden="true" class="nova-pct-show__burst" id="novaResultParticles"></div>
 </div>
-<div class="nz-card">
-<div class="nz-kpi"><span class="label">Yüzde</span><span class="value" id="nz-kpi-rate">0%</span></div>
+<canvas aria-hidden="true" hidden id="nzGauge" width="1" height="1"></canvas>
+<div class="nz-badge nova-result-tier" hidden id="nzBadge">BRONZ</div>
+</section>
+<section class="nova-result-stats nz-row" aria-label="Sonuç istatistikleri">
+<div class="nova-result-stat nz-card nz-kpi">
+<span class="label">Doğru</span><span class="value ok" id="nz-kpi-correct">0</span>
 </div>
+<div class="nova-result-stat nz-card nz-kpi">
+<span class="label">Toplam</span><span class="value" id="nz-kpi-total">0</span>
 </div>
-<div class="nz-gauge">
-<canvas aria-label="Başarı göstergesi" height="240" id="nzGauge" role="img" width="240"></canvas>
-<div class="nz-badge" id="nzBadge">BRONZ</div>
+<div class="nova-result-stat nz-card nz-kpi">
+<span class="label">Yüzde</span><span class="value" id="nz-kpi-rate">0%</span>
 </div>
-<div class="nz-row">
-<div class="nz-card" style="flex:1 1 100%">
-<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px">
-<strong style="font-size:1.05rem"></strong>
+</section>
+<section class="nova-result-actions-section">
+<div class="nova-result-actions-card nz-card">
 <div class="nz-actions">
-<button class="nz-btn nz-primary" id="nzRepeatBtn">Yanlışları Tekrar Et</button>
-<button class="nz-btn nz-secondary" id="nzVideoBtn">Ders Videosu</button>
+<button class="nz-btn nz-primary" id="nzRepeatBtn" type="button">Yanlışları Tekrar Et</button>
+<button class="nz-btn nz-video" id="nzVideoBtn" type="button"><span aria-hidden="true" class="nz-cta-icon">▶</span> Ders Videosu</button>
 </div>
 </div>
-<div class="nz-wrong-list" id="nzWrongList"></div>
-</div>
-</div>
+<div class="nz-wrong-list" hidden id="nzWrongList"></div>
+</section>
 </div>
 <!-- Modal -->
 <div id="nova-modal">
@@ -911,11 +924,11 @@
   </div>
 </div>
 <!-- === Nova: Premium Bitiş Özeti (JS v3) === -->
-<script src="js/core/023-script-023.js"></script>
+<script src="js/core/023-script-023.js?v=20260526nova_fix2"></script>
 <!-- === Nova: Responsive & Symmetric Layout Patch (v4 CSS) === -->
 <link rel="stylesheet" href="styles/050-style-050.css" />
 <!-- === Nova: Score Container Replace & Strict Single-UI (v4 JS) === -->
-<script src="js/core/024-script-024.js"></script>
+<script src="js/core/024-script-024.js?v=20260526nova_result1"></script>
 <!-- === Nova: Overlap Fix & Typography Tune (v5 CSS) === -->
 <link rel="stylesheet" href="styles/051-style-051.css" />
 <!-- === Nova: Question Stem Support & Safer Canvas Size (v5 JS) === -->
@@ -925,19 +938,19 @@
 <!-- === Nova: Mount Redraw & Robust Percentage (v6 JS) === -->
 <script src="js/core/026-script-026.js"></script>
 <!-- === Nova v7 CSS: Compact Gauge, Hide Bottom Gauge, CTA, Layout === -->
-<link rel="stylesheet" href="styles/053-style-053.css" />
+<link rel="stylesheet" href="styles/053-style-053.css?v=20260526nova_result1" />
 <!-- === Nova v7 JS: Compact Gauge, Play Again, Stronger Video Open, Percent Fix === -->
-<script src="js/core/027-script-027.js?v=20260522syntax1"></script>
-<script src="js/core/028-script-028.js?v=20260522syntax1"></script>
+<script src="js/core/027-script-027.js?v=20260526nova_premium1"></script>
+<script src="js/core/028-script-028.js?v=20260526result2"></script>
 <!-- === NOVA PATCH: Single Player Result Ring & Badge Cleanup === -->
-<script src="js/core/029-script-029.js?v=20260526sp_ringfix1"></script>
+<script src="js/core/029-script-029.js?v=20260526nova_result1"></script>
 <!-- === NOVA PATCH END === -->
 
 <script src="js/core/030-script-030.js"></script>
 
 
 <!-- Nova v5b: Teacher Advice Card -->
-<script src="js/core/031-script-031.js?v=20260526sp_fix2"></script>
+<script src="js/core/031-script-031.js?v=20260526nova_premium1"></script>
 
 <!-- NOVA_DUEL_ENHANCEMENTS_START -->
 <script src="js/core/032-script-032.js?v=20260522duelfix1"></script>
@@ -1009,7 +1022,7 @@
 </div>
 
 
-<script src="js/screens/039-script-039.js?v=20260522duelfix1"></script>
+<script src="js/screens/039-script-039.js?v=20260526sp_fix3"></script>
 
 
 <!-- Nova Advice Guard v2: show ONLY on result screen -->
@@ -1039,7 +1052,7 @@
 </div>
 
 
-<script src="js/core/042-nova-image-cap-js.js"></script>
+<script src="js/core/042-nova-image-cap-js.js?v=20260526sp_fix4"></script>
 
 
 <!-- === NOVA HOMEWORK MODULE === -->
@@ -1150,30 +1163,34 @@
 <script src="js/ui/049-nova-wait-script.js"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=20260413q1" />
 <link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=20260522sp3" />
-<link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=20260526hero_ui2" />
+<link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=20260526hero_store3" />
 <link rel="stylesheet" href="styles/068-nova-star-fairy-hero.css?v=20260522hero4" />
 <link rel="stylesheet" href="styles/069-nova-hero-premium-motion.css?v=20260522hero4" />
-<link rel="stylesheet" href="styles/070-nova-hero-level-system.css?v=20260522herolv3" />
-<link rel="stylesheet" href="styles/074-nova-hero-level-v4.css?v=20260526herolv5" />
-<link rel="stylesheet" href="styles/071-nova-hero-sp-reveal.css?v=20260526herolv5" />
+<link rel="stylesheet" href="styles/070-nova-hero-level-system.css?v=20260526herolv6" />
+<link rel="stylesheet" href="styles/074-nova-hero-level-v4.css?v=20260526herolv7" />
+<link rel="stylesheet" href="styles/081-nova-store-detail.css?v=20260526store_inuse1" />
+<link rel="stylesheet" href="styles/071-nova-hero-sp-reveal.css?v=20260526heroreveal1" />
 <link rel="stylesheet" href="styles/072-nova-hero-main-sheet.css?v=20260526hero_stars1" />
 <link rel="stylesheet" href="styles/073-nova-store-layout-fix.css?v=20260526storefix1" />
 <link rel="stylesheet" href="styles/075-nova-league-badges.css?v=20260526rank3" />
 <link rel="stylesheet" href="styles/067-nova-single-player-game-layout.css?v=20260526sp_result1" />
+<link rel="stylesheet" href="styles/079-nova-sp-result-premium.css?v=20260526nova_pct3" />
+<script src="js/core/055-nova-sp-result-premium.js?v=20260526nova_pct2"></script>
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=20260522duelfix1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
 <script src="js/screens/050-script-050.js"></script>
 <script src="js/ui/012-nova-store-hub.js?v=20260522store2"></script>
 <script src="js/ui/009-nova-blaze-bot-svg-data.js?v=20260522hero4"></script>
 <script src="js/ui/010-nova-star-fairy-svg-data.js?v=20260522hero4"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=20260522hero4"></script>
-<script src="js/ui/013-nova-hero-level-system.js?v=20260526herolv6"></script>
-<script src="js/ui/014-nova-hero-main-ui.js?v=20260526hero_stars1"></script>
+<script src="js/ui/015-nova-store-detail.js?v=20260526store_inuse1"></script>
+<script src="js/ui/008-nova-battle-hero.js?v=20260526store_inuse1"></script>
+<script src="js/ui/013-nova-hero-level-system.js?v=20260526herolv7"></script>
+<script src="js/ui/014-nova-hero-main-ui.js?v=20260526hero_stars3"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
 <script src="js/core/052-script-052.js"></script>
 <script src="js/features/053-script-053.js"></script>
-<script src="js/core/054-nova-single-result-screen-guard.js"></script>
+<script src="js/core/054-nova-single-result-screen-guard.js?v=20260526sp_fix3"></script>
 <link rel="stylesheet" href="styles/059-login-premium.css?v=2" />
 <style id="nova-login-final-override">
 #student-selection-screen.nova-kids-login .card{

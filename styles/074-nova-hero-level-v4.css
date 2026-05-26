@@ -42,12 +42,12 @@
 }
 .nh-level-hero-tab__thumb{
   width: 100%;
-  height: 72px;
+  height: 80px;
   border-radius: 10px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 .nh-level-hero-tab__thumb--blaze{
   background: linear-gradient(180deg, #1c1917, #7c2d12);
@@ -57,16 +57,17 @@
 }
 .nh-level-hero-tab__host{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  overflow: visible;
 }
 .nh-level-hero-tab__host .nova-hero-svg{
-  max-height: 68px;
+  max-height: 76px;
   width: auto;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,.4));
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.45));
 }
 .nh-level-hero-tab__name{
   font-size: 12px;
@@ -94,11 +95,12 @@
     rgba(8, 12, 28, .65);
   border: 1px solid rgba(148, 163, 184, .2);
   text-align: center;
-  min-height: 220px;
+  min-height: 268px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  overflow: visible;
 }
 .nh-level-arena__pedestal{
   position: absolute;
@@ -123,13 +125,14 @@
 .nh-level-hero-preview{
   position: relative;
   z-index: 2;
-  width: min(200px, 78vw);
-  height: 200px;
+  width: min(240px, 86vw);
+  height: 240px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  border-radius: 18px;
-  overflow: hidden;
+  border-radius: 20px;
+  overflow: visible;
+  box-shadow: 0 16px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
   transition: transform .35s cubic-bezier(.34, 1.15, .64, 1), filter .35s ease;
 }
 .nh-level-hero-preview.is-enter{
@@ -144,14 +147,17 @@
 }
 .nh-level-hero-preview__host{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 .nh-level-hero-preview__host .nova-hero-svg{
-  max-height: 188px;
+  max-height: 220px;
+  max-width: 100%;
   width: auto;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.5));
 }
 .nh-level-arena__stars{
   position: relative;
@@ -278,11 +284,61 @@
   line-height: 1.3;
 }
 
+.nh-level-perks-toggle{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(129, 140, 248, .45);
+  border-radius: 14px;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: left;
+  background: linear-gradient(135deg, rgba(30, 27, 75, .85), rgba(15, 23, 42, .9));
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.nh-level-perks-toggle:hover{
+  border-color: rgba(250, 204, 21, .5);
+  transform: translateY(-1px);
+}
+.nh-level-perks-toggle.is-open{
+  border-color: rgba(250, 204, 21, .65);
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, .15);
+}
+.nh-level-perks-toggle__chev{
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #fde68a;
+  border-bottom: 2px solid #fde68a;
+  transform: rotate(45deg);
+  transition: transform .25s ease;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+.nh-level-perks-toggle.is-open .nh-level-perks-toggle__chev{
+  transform: rotate(-135deg) translateY(2px);
+}
+.nh-level-perks-drawer{
+  margin-bottom: 12px;
+  animation: nhPerksDrawerIn .28s ease both;
+}
+.nh-level-perks-drawer[hidden]{
+  display: none !important;
+}
+@keyframes nhPerksDrawerIn{
+  from{ opacity: 0; transform: translateY(-6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
 .nh-level-perks-block{
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 12px;
 }
 .nh-level-perks-card{
   padding: 10px 12px;
@@ -302,5 +358,10 @@
 }
 
 .nh-level-panel{
-  width: min(420px, 100%) !important;
+  width: min(440px, 100%) !important;
+  border: 1px solid rgba(148, 163, 184, .25);
+  box-shadow: 0 24px 64px rgba(0,0,0,.55), 0 0 80px rgba(79, 70, 229, .15);
+}
+.nova-hero-store-card{
+  overflow: hidden;
 }

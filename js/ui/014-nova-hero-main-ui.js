@@ -12,8 +12,17 @@
   }
 
   function getHeroLevel() {
-    if (window.NOVA_HERO_LEVEL && typeof window.NOVA_HERO_LEVEL.getEquippedHeroLevel === 'function') {
-      return window.NOVA_HERO_LEVEL.getEquippedHeroLevel() || 0;
+    var s = getStudent();
+    if (!s || !s.battleHero) return 0;
+    var heroId = String(s.battleHero).trim();
+    if (window.NOVA_HERO_LEVEL) {
+      if (typeof window.NOVA_HERO_LEVEL.getHeroLevelFromData === 'function') {
+        var fromPb = window.NOVA_HERO_LEVEL.getHeroLevelFromData(s, heroId);
+        if (fromPb > 0) return fromPb;
+      }
+      if (typeof window.NOVA_HERO_LEVEL.getEquippedHeroLevel === 'function') {
+        return window.NOVA_HERO_LEVEL.getEquippedHeroLevel(s) || 0;
+      }
     }
     return 0;
   }
@@ -65,11 +74,56 @@
     if (!zone || !stars) return;
     var visible = zone.classList.contains('is-visible');
     var lvl = visible ? getHeroLevel() : 0;
-    if (!visible || lvl < 1) {
+    if (!visible) {
       stars.hidden = true;
       stars.innerHTML = '';
       return;
     }
+    if (lvl < 1) {
+      lvl = 0;
+      try {
+        if (!window.__novaMainHeroLevelFetchInFlight && typeof database !== 'undefined') {
+          var s = getStudent();
+          var heroId = s && s.battleHero ? String(s.battleHero).trim() : '';
+          if (s && s.classId && s.studentId && heroId) {
+            window.__novaMainHeroLevelFetchInFlight = true;
+            database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value')
+              .then(function (snap) {
+                var data = snap.val() || {};
+                var l2 = 0;
+                try {
+                  if (window.NOVA_HERO_LEVEL) {
+                    if (typeof window.NOVA_HERO_LEVEL.getHeroLevelFromData === 'function') {
+                      l2 = window.NOVA_HERO_LEVEL.getHeroLevelFromData(data, heroId) || 0;
+                    }
+                    if (l2 < 1 && typeof window.NOVA_HERO_LEVEL.getEquippedHeroLevel === 'function') {
+                      l2 = window.NOVA_HERO_LEVEL.getEquippedHeroLevel(data) || 0;
+                    }
+                  }
+                  if (data.purchasedBattleHeroes) {
+                    var loc = getStudent();
+                    if (loc) {
+                      loc.purchasedBattleHeroes = data.purchasedBattleHeroes;
+                      window.selectedStudent = loc;
+                      localStorage.setItem('selectedStudent', JSON.stringify(loc));
+                    }
+                  }
+                } catch (_) {}
+                window.__novaMainHeroLevelFetched = l2;
+                if (typeof window.novaRefreshMainHeroStars === 'function') window.novaRefreshMainHeroStars();
+              })
+              .catch(function () {})
+              .finally(function () { window.__novaMainHeroLevelFetchInFlight = false; });
+          }
+        }
+      } catch (_) {}
+    }
+    // Prefer fetched level if available
+    try {
+      if (typeof window.__novaMainHeroLevelFetched === 'number' && window.__novaMainHeroLevelFetched > 0) {
+        lvl = window.__novaMainHeroLevelFetched;
+      }
+    } catch (_) {}
     stars.hidden = false;
     var html = '';
     for (var i = 1; i <= MAX_STARS; i++) {

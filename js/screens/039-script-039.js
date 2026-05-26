@@ -328,8 +328,12 @@
   }
 
   function globalObserver(){
+    // NOTE: body subtree observer single-player ekranlarında da aşırı tetiklenip pahalı olabiliyor.
+    // Sadece duel seçim konteynerini izle.
+    const c = document.querySelector('.duel-selection-container') || document.getElementById('duel-selection-screen');
+    if (!c) return;
     const obs = new MutationObserver(()=> hideLegacySelectionPanel());
-    obs.observe(document.body, {childList:true, subtree:true});
+    obs.observe(c, {childList:true, subtree:true});
   }
 
   function init(){

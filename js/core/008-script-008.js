@@ -1328,6 +1328,21 @@ async function loadProfilePhotos(category = 'DünyaDevleri') {
    }
 }
 
+function novaStoreInUseMarkup() {
+  return '<span class="nova-store-in-use" role="status">Kullanımda</span>';
+}
+
+function isStoreAvatarActive(photoUrl) {
+  try {
+    const sp = document.getElementById('student-photo');
+    const cur = String((selectedStudent && selectedStudent.photo) || (sp && sp.src) || '').trim();
+    if (!cur || !photoUrl) return false;
+    return cur === photoUrl || cur.endsWith(photoUrl) || photoUrl.endsWith(cur);
+  } catch (_) {
+    return false;
+  }
+}
+
 function createPhotoCard(photo, purchasedPhotos, category, container, index) {
     const div = document.createElement('div');
     div.className = 'profile-photo-item nova-store-card';
@@ -1335,6 +1350,10 @@ function createPhotoCard(photo, purchasedPhotos, category, container, index) {
 
     const encodedUrl = btoa(photo.url);
     const isPurchased = purchasedPhotos[encodedUrl];
+    const isActive = isPurchased && isStoreAvatarActive(photo.url);
+    const actionHtml = isActive
+        ? novaStoreInUseMarkup()
+        : `<button type="button" class="profile-photo-button ${isPurchased ? 'use-button' : 'buy-button'}">${isPurchased ? 'Kullan' : 'Satın Al'}</button>`;
 
     div.innerHTML = `
         <div class="nova-store-preview">
@@ -1346,15 +1365,15 @@ function createPhotoCard(photo, purchasedPhotos, category, container, index) {
                 : `${photo.price} <span class="diamond-icon">💎</span>`
             }
         </div>
-        <button class="profile-photo-button ${isPurchased ? 'use-button' : 'buy-button'}">
-            ${isPurchased ? 'Kullan' : 'Satın Al'}
-        </button>
+        ${actionHtml}
     `;
 
     const button = div.querySelector('.profile-photo-button');
-    button.onclick = () => isPurchased 
-        ? useProfilePhoto(photo.url) 
+    if (button) {
+      button.onclick = () => isPurchased
+        ? useProfilePhoto(photo.url)
         : buyProfilePhoto(photo);
+    }
 
     
     return div;
@@ -1372,9 +1391,10 @@ async function renderNameFrameStore(userData, container){
       ${renderNameWithFrame(selectedStudent.studentName || 'Oyuncu', 'default')}
     </div>
     <div class="profile-photo-price"><span class="purchased-badge">Ucretsiz</span></div>
-    <button class="profile-photo-button use-button">${active === 'default' ? 'Kullanimda' : 'Kullan'}</button>
+    ${active === 'default' ? novaStoreInUseMarkup() : '<button type="button" class="profile-photo-button use-button">Kullan</button>'}
   `;
-  defaultCard.querySelector('button').onclick = () => useNameFrame('default');
+  const defaultBtn = defaultCard.querySelector('.profile-photo-button');
+  if (defaultBtn) defaultBtn.onclick = () => useNameFrame('default');
   container.appendChild(defaultCard);
 
   NAME_FRAME_ITEMS.forEach((item, index) => {
@@ -1390,12 +1410,10 @@ async function renderNameFrameStore(userData, container){
       <div class="profile-photo-price">
         ${isOwned ? '<span class="purchased-badge">✓ Satın Alındı</span>' : `${item.price} <span class="diamond-icon">💎</span>`}
       </div>
-      <button class="profile-photo-button ${isOwned ? 'use-button' : 'buy-button'}">
-        ${isActive ? 'Kullanimda' : (isOwned ? 'Kullan' : 'Satın Al')}
-      </button>
+      ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : 'buy-button'}">${isOwned ? 'Kullan' : 'Satın Al'}</button>`}
     `;
     const button = card.querySelector('.profile-photo-button');
-    button.onclick = () => isOwned ? useNameFrame(item.id) : buyNameFrame(item);
+    if (button) button.onclick = () => isOwned ? useNameFrame(item.id) : buyNameFrame(item);
     container.appendChild(card);
   });
 }
@@ -1494,9 +1512,10 @@ async function renderAvatarFrameStore(userData, container){
       </div>
     </div>
     <div class="profile-photo-price"><span class="purchased-badge">Ucretsiz</span></div>
-    <button class="profile-photo-button use-button">${active === 'default' ? 'Kullanimda' : 'Kullan'}</button>
+    ${active === 'default' ? novaStoreInUseMarkup() : '<button type="button" class="profile-photo-button use-button">Kullan</button>'}
   `;
-  defaultCard.querySelector('button').onclick = () => useAvatarFrame('default');
+  const defaultAfBtn = defaultCard.querySelector('.profile-photo-button');
+  if (defaultAfBtn) defaultAfBtn.onclick = () => useAvatarFrame('default');
   container.appendChild(defaultCard);
 
   SERIES_AVATAR_FRAME_ITEMS.forEach((item, index) => {
@@ -1538,13 +1557,13 @@ async function renderAvatarFrameStore(userData, container){
         <div style="font-size:11px;color:#a5b4fc;margin-bottom:3px">🧩 ${escapeHtml(progressLine)}</div>
         <div style="font-size:11px;color:#fcd34d">💳 Açılış bedeli: ${cost} düello kredisi</div>
       </div>
-      <button class="profile-photo-button ${isOwned ? 'use-button' : (canClaim ? 'use-button' : 'buy-button')}" ${!isOwned && !canClaim ? 'disabled' : ''}>
-        ${isActive ? 'Kullanimda' : (isOwned ? 'Kullan' : (canClaim ? `✨ ${cost} Kredi ile Aç` : 'Kilitli'))}
-      </button>
+      ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : (canClaim ? 'use-button' : 'buy-button')}" ${!isOwned && !canClaim ? 'disabled' : ''}>${isOwned ? 'Kullan' : (canClaim ? `✨ ${cost} Kredi ile Aç` : 'Kilitli')}</button>`}
     `;
     const button = card.querySelector('.profile-photo-button');
-    if (isOwned) button.onclick = () => useAvatarFrame(item.id);
-    else button.onclick = canClaim ? () => claimSeriesAvatarFrame(item) : null;
+    if (button) {
+      if (isOwned) button.onclick = () => useAvatarFrame(item.id);
+      else button.onclick = canClaim ? () => claimSeriesAvatarFrame(item) : null;
+    }
     container.appendChild(card);
   });
 }
@@ -2519,12 +2538,19 @@ function novaWireCharacterInventoryUi() {
       });
       const pPhotos = document.getElementById('char_inv_panel_photos');
       const pFrames = document.getElementById('char_inv_panel_frames');
+      const pHeroes = document.getElementById('char_inv_panel_heroes');
       if (tab === 'frames') {
         if (pPhotos) pPhotos.hidden = true;
         if (pFrames) pFrames.hidden = false;
+        if (pHeroes) pHeroes.hidden = true;
+      } else if (tab === 'heroes') {
+        if (pPhotos) pPhotos.hidden = true;
+        if (pFrames) pFrames.hidden = true;
+        if (pHeroes) pHeroes.hidden = false;
       } else {
         if (pPhotos) pPhotos.hidden = false;
         if (pFrames) pFrames.hidden = true;
+        if (pHeroes) pHeroes.hidden = true;
       }
     });
   });

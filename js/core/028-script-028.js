@@ -48,6 +48,9 @@
   };
 
   const enhance = () => {
+    // Resmi sonuç UI: #nova-summary (NovaTracker). Bu script ikinci katman ekleyip ekranı bozuyordu.
+    if (document.getElementById('nova-summary')) return;
+
     const sc = document.querySelector('#score-container, .score-container');
     if (!sc || getComputedStyle(sc).display === 'none') return;
 
@@ -178,13 +181,14 @@
 
   // Observe visibility/state changes
   const runWhenVisible = () => {
+    if (document.getElementById('nova-summary')) return;
     try{
       enhance();
     }catch(e){ console.warn('NOVA premium end-screen enhance failed:', e); }
   };
 
   const scoreRoot = document.getElementById('score-container') || document.querySelector('.single-player-game-container .score-container');
-  if (scoreRoot){
+  if (scoreRoot && !document.getElementById('nova-summary')){
     const mo = new MutationObserver(runWhenVisible);
     mo.observe(scoreRoot, { attributes: true, attributeFilter:['style','class'], childList: true, subtree: true });
   }

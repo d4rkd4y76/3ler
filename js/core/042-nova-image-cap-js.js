@@ -49,8 +49,29 @@
   }
 
   // Observe DOM changes (questions change dynamically)
-  var mo = new MutationObserver(scan);
-  mo.observe(document.body, { childList:true, subtree:true, attributes:true, attributeFilter:['src','class','style'] });
+  var scanTimer = null;
+  function scheduleScan(){
+    if (scanTimer) return;
+    scanTimer = setTimeout(function(){
+      scanTimer = null;
+      scan();
+    }, 120);
+  }
+
+  function getObserveRoot(){
+    return document.querySelector('.question-container')
+      || document.getElementById('single-player-game-screen')
+      || document.body;
+  }
+
+  // NOTE: body subtree observer bazı cihazlarda hâlâ ağır olabiliyor.
+  // Önce soru alanını izlemeyi dene.
+  var mo = new MutationObserver(scheduleScan);
+  try{
+    mo.observe(getObserveRoot(), { childList:true, subtree:true });
+  }catch(_){
+    mo.observe(document.body, { childList:true, subtree:true });
+  }
   window.addEventListener('resize', scan, { passive:true });
 
   if (document.readyState === 'loading'){

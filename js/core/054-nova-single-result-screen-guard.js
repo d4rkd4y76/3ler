@@ -34,7 +34,8 @@
     }
     window.addEventListener('load', enforce);
     document.addEventListener('visibilitychange', enforce);
-    setInterval(enforce, 500);
+    // NOTE: interval kaldırıldı (gereksiz ve bazı cihazlarda pahalı).
+    setTimeout(enforce, 0);
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
   else boot();

@@ -92,6 +92,9 @@
     if (Object.prototype.hasOwnProperty.call(data, 'battleHero')) {
       s.battleHero = data.battleHero || null;
     }
+    if (data.purchasedBattleHeroes) {
+      s.purchasedBattleHeroes = data.purchasedBattleHeroes;
+    }
     try {
       window.selectedStudent = s;
       localStorage.setItem('selectedStudent', JSON.stringify(s));
@@ -184,6 +187,13 @@
         clearMainHeroSlot(slot);
         return;
       }
+      try {
+        syncHeroToStudent({
+          battleHero: heroId,
+          purchasedBattleHeroes: data.purchasedBattleHeroes
+        });
+        window.__novaMainHeroLevelFetched = getHeroLevel(data, heroId);
+      } catch (_) {}
     } catch (_) {
       clearMainHeroSlot(slot);
       return;
@@ -447,11 +457,81 @@
     }
   }
 
-  function heroPreviewHtml(heroId) {
+  function heroPreviewHtml(heroId, theme) {
     var mount = heroId ? ' nova-hero-mount--' + heroId.replace(/_/g, '-') : '';
-    return '<div class="nova-hero-preview nova-hero-preview--store-live' + mount + '">'
+    var th = theme || (getHeroDef(heroId) && getHeroDef(heroId).theme) || 'blaze';
+    return '<div class="nova-store-preview nova-store-preview--hero nova-store-preview--' + th + ' nova-hero-preview--store-live' + mount + '">'
       + '<div class="nova-hero-svg-host" data-nova-hero-host="1" data-hero-id="' + (heroId || '') + '"></div>'
       + '</div>';
+  }
+
+  function heroLevelLabel(lvl) {
+    var labels = { 1: 'Giriş', 2: 'Usta', 3: 'Efsane', 4: 'Kozmik' };
+    return labels[lvl] || ('Seviye ' + lvl);
+  }
+
+  function openHeroStoreDetail(hero, userData) {
+    if (typeof window.novaOpenStoreDetail !== 'function') return;
+    var def = getHeroDef(hero.id);
+    if (!def) return;
+    var owned = ownsHero(userData, hero.id);
+    var equipped = userData && userData.battleHero === hero.id;
+    var diamonds = Number(userData && userData.diamond) || 0;
+    var cost = Number(hero.price) || def.price;
+    var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
+    var name = hero.name || def.name;
+    var desc = hero.desc || def.desc || '';
+    var extra = owned
+      ? '<span class="nova-hero-level-badge">★ Seviye ' + lvl + ' · ' + heroLevelLabel(lvl) + '</span>'
+      : '';
+    var btnClass = 'buy-button';
+    var btnText = 'Satın Al';
+    var btnDisabled = false;
+    if (owned && equipped) {
+      btnClass = 'use-button';
+      btnText = 'Kullanımda';
+      btnDisabled = true;
+    } else if (owned) {
+      btnClass = 'use-button';
+      btnText = 'Kullan';
+      btnDisabled = false;
+    } else if (diamonds < cost) {
+      btnText = 'Elmas yetersiz';
+      btnDisabled = true;
+    }
+    window.novaOpenStoreDetail({
+      kicker: 'Kahraman',
+      title: name,
+      meta: owned ? ('Aktif seviye: ' + lvl + ' / 4') : 'Savaş arkadaşın',
+      desc: desc,
+      extraHtml: extra,
+      priceHtml: owned ? '' : ('💎 ' + cost),
+      previewClass: 'nova-store-detail-preview--hero nova-store-detail-preview--' + def.theme,
+      previewHtml: '<div class="nova-store-preview nova-store-preview--hero nova-store-preview--' + def.theme + '" data-store-detail-host="1">'
+        + '<div class="nova-hero-svg-host" data-nova-hero-host="1"></div></div>',
+      mountPreview: function (host) {
+        var h = host.querySelector('[data-nova-hero-host]') || host;
+        mountHeroInto(h, hero.id);
+      },
+      btnClass: btnClass,
+      btnText: btnText,
+      btnDisabled: btnDisabled,
+      inUse: equipped && owned,
+      onAction: async function () {
+        if (!owned) {
+          if (await purchaseBattleHero(hero)) {
+            window.novaCloseStoreDetail();
+            await novaRenderBattleHeroStore();
+          }
+        } else if (!equipped) {
+          await equipBattleHero(hero);
+          window.novaCloseStoreDetail();
+          await novaRenderBattleHeroStore();
+        } else {
+          window.novaCloseStoreDetail();
+        }
+      }
+    });
   }
 
   async function purchaseBattleHero(hero) {
@@ -518,6 +598,14 @@
       await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: hero.id });
       syncHeroToStudent({ battleHero: hero.id });
       try { refreshMainScreenHero(); } catch (_) {}
+      try {
+        var eqLvl = 0;
+        if (window.NOVA_HERO_LEVEL && typeof window.NOVA_HERO_LEVEL.getHeroLevelFromData === 'function') {
+          eqLvl = window.NOVA_HERO_LEVEL.getHeroLevelFromData(s, hero.id) || 0;
+        }
+        window.__novaMainHeroLevelFetched = eqLvl;
+        if (typeof window.novaRefreshMainHeroStars === 'function') window.novaRefreshMainHeroStars();
+      } catch (_) {}
       await showAlert((def.equipEmoji || '✨') + ' ' + def.name + ' aktif! Doğru cevaplarda seni motive eder.');
     } catch (e) {
       console.error('equipBattleHero', e);
@@ -533,44 +621,54 @@
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
     var cost = Number(hero.price) || def.price;
+    var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
+    var heroName = hero.name || def.name;
 
     var card = document.createElement('div');
     card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme;
     card.style.animationDelay = (index * 0.06) + 's';
     card.innerHTML =
-      heroPreviewHtml(hero.id)
-      + '<div class="nova-hero-store-meta">'
-      + '<h4 class="nova-hero-store-name">' + (hero.name || def.name) + '</h4>'
-      + (owned ? '<span class="nova-hero-level-badge">★ Seviye ' + getHeroLevel(userData, hero.id) + '</span>' : '')
-      + '<p class="nova-hero-store-desc">' + (hero.desc || def.desc) + '</p>'
-      + '</div>'
+      heroPreviewHtml(hero.id, def.theme)
+      + '<div class="nova-hero-store-vitrine-name">' + heroName + '</div>'
+      + (owned ? '<span class="nova-hero-level-badge">★ Sv. ' + lvl + '</span>' : '')
       + '<div class="profile-photo-price">'
-      + (owned
-        ? '<span class="purchased-badge">Sende var</span>'
-        : '<span class="purchased-badge nova-hero-diamond-price">💎 ' + cost + '</span>')
+      + (owned ? '' : ('<span class="purchased-badge nova-hero-diamond-price">💎 ' + cost + '</span>'))
       + '</div>'
-      + '<button type="button" class="profile-photo-button"></button>';
+      + (equipped && owned
+        ? ((typeof window.novaStoreInUseMarkup === 'function')
+          ? window.novaStoreInUseMarkup()
+          : '<span class="nova-store-in-use" role="status">Kullanımda</span>')
+        : '<button type="button" class="profile-photo-button"></button>');
 
     var btn = card.querySelector('.profile-photo-button');
     if (!owned) {
       btn.className = 'profile-photo-button buy-button';
       btn.textContent = diamonds >= cost ? 'Satın Al' : 'Elmas yetersiz';
       btn.disabled = diamonds < cost;
-      btn.onclick = async function () {
+      btn.onclick = async function (e) {
+        e.stopPropagation();
         if (await purchaseBattleHero(hero)) await novaRenderBattleHeroStore();
       };
-    } else if (equipped) {
-      btn.className = 'profile-photo-button use-button';
-      btn.textContent = 'Kullanımda';
-      btn.disabled = true;
-    } else {
+    } else if (!equipped) {
       btn.className = 'profile-photo-button use-button';
       btn.textContent = 'Kullan';
-      btn.onclick = async function () {
+      btn.onclick = async function (e) {
+        e.stopPropagation();
         await equipBattleHero(hero);
         await novaRenderBattleHeroStore();
       };
     }
+
+    if (typeof window.novaBindStoreCardDetail === 'function') {
+      window.novaBindStoreCardDetail(card, async function () {
+        var fresh = userData;
+        try {
+          if (typeof getStoreStudentData === 'function') fresh = await getStoreStudentData(true);
+        } catch (_) {}
+        openHeroStoreDetail(hero, fresh || userData);
+      });
+    }
+
     container.appendChild(card);
     var host = card.querySelector('[data-nova-hero-host]');
     mountHeroInto(host, hero.id);
@@ -657,6 +755,119 @@
     }
   }
 
+  function renderHeroStarsHtml(lvl) {
+    var html = '<div class="char-inv-hero-stars">';
+    for (var i = 1; i <= 4; i++) {
+      html += '<span class="char-inv-hero-star ' + (i <= lvl ? 'is-on' : '') + '" aria-hidden="true">★</span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  async function novaFillCharacterInventoryHeroes() {
+    var panel = document.getElementById('char_inv_panel_heroes');
+    if (!panel) return;
+    var s = getStudent();
+    if (!s || !s.studentId || !s.classId) {
+      panel.innerHTML = '<p class="char-inv-warn">Önce giriş yapmalısın.</p>';
+      return;
+    }
+    var userData = {};
+    try {
+      if (typeof getCharacterInventoryStudentData === 'function') {
+        userData = await getCharacterInventoryStudentData() || {};
+      } else if (typeof database !== 'undefined') {
+        var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
+        userData = snap.val() || {};
+      }
+    } catch (_) {}
+    syncHeroToStudent(userData);
+
+    var catalog = await loadHeroCatalogFromDB();
+    var ownedList = catalog.filter(function (h) {
+      return ownsHero(userData, h.id);
+    });
+    var equippedId = String(userData.battleHero || s.battleHero || '').trim();
+    var html = '';
+
+    if (equippedId && ownsHero(userData, equippedId)) {
+      var eqDef = getHeroDef(equippedId);
+      var eqName = eqDef ? eqDef.name : equippedId;
+      var eqLvl = getHeroLevel(userData, equippedId);
+      html += '<div class="char-inv-hero-equipped">'
+        + '<div class="char-inv-hero-equipped__preview" data-char-inv-hero-host="' + equippedId + '"></div>'
+        + '<div class="char-inv-hero-equipped__info">'
+        + '<p class="char-inv-kicker" style="margin:0">Aktif kahraman</p>'
+        + '<h3>' + eqName + '</h3>'
+        + '<p style="margin:4px 0;font-size:12px;color:#94a3b8">Seviye ' + eqLvl + ' · ' + heroLevelLabel(eqLvl) + '</p>'
+        + renderHeroStarsHtml(eqLvl)
+        + '</div></div>';
+    }
+
+    if (!ownedList.length) {
+      html += '<div class="char-inv-empty">'
+        + '<div class="big" aria-hidden="true">🤖</div>'
+        + '<h3>Henüz kahramanın yok</h3>'
+        + '<p>Mağazadan kahraman satın alıp seviye atlayabilirsin.</p>'
+        + '<button type="button" class="char-inv-cta char-inv-cta-store">Mağazaya git 🛒</button>'
+        + '</div>';
+    } else {
+      html += '<div class="char-inv-grid" id="char_inv_grid_heroes">';
+      ownedList.forEach(function (hero) {
+        var def = getHeroDef(hero.id);
+        if (!def) return;
+        var lvl = getHeroLevel(userData, hero.id);
+        var eq = hero.id === equippedId;
+        html += '<div class="char-inv-card char-inv-hero-card' + (eq ? ' equipped' : '') + '">'
+          + (eq ? '<span class="char-inv-badge">Kullanımda</span>' : '')
+          + '<div class="char-inv-hero-thumb-host" data-char-inv-hero-host="' + hero.id + '"></div>'
+          + '<div class="char-inv-card-title">' + (hero.name || def.name) + '</div>'
+          + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">★ Sv. ' + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
+          + renderHeroStarsHtml(lvl)
+          + '<button type="button" class="char-inv-action' + (eq ? ' is-on' : '') + '" data-char-equip-hero="' + hero.id + '">'
+          + (eq ? '✨ Şu an bu' : '⚔️ Kullan') + '</button></div>';
+      });
+      html += '</div>';
+    }
+
+    panel.innerHTML = html;
+    panel.querySelectorAll('[data-char-inv-hero-host]').forEach(function (el) {
+      mountHeroInto(el, el.getAttribute('data-char-inv-hero-host'));
+    });
+    panel.querySelector('.char-inv-cta-store')?.addEventListener('click', function () {
+      if (typeof novaCloseCharacterInventory === 'function') novaCloseCharacterInventory();
+      if (typeof novaOpenStore === 'function') {
+        novaOpenStore();
+        setTimeout(function () {
+          if (typeof window.novaStoreHubSelectMainTab === 'function') window.novaStoreHubSelectMainTab('heroes');
+        }, 400);
+      }
+    });
+    panel.querySelectorAll('[data-char-equip-hero]').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        var hid = btn.getAttribute('data-char-equip-hero');
+        var h = catalog.find(function (x) { return x.id === hid; });
+        if (!h) return;
+        await equipBattleHero(h);
+        if (typeof novaRefreshCharacterInventoryIfOpen === 'function') {
+          await novaRefreshCharacterInventoryIfOpen();
+        } else {
+          await novaFillCharacterInventoryHeroes();
+        }
+      });
+    });
+  }
+
+  function patchCharacterInventory() {
+    if (typeof window.novaRenderCharacterInventory !== 'function' || window.novaRenderCharacterInventory.__novaHeroInvPatched) return;
+    var orig = window.novaRenderCharacterInventory;
+    window.novaRenderCharacterInventory = async function () {
+      await orig.apply(this, arguments);
+      await novaFillCharacterInventoryHeroes();
+    };
+    window.novaRenderCharacterInventory.__novaHeroInvPatched = true;
+  }
+
   function boot() {
     try {
       if (typeof photoCategories === 'object' && photoCategories) {
@@ -669,6 +880,7 @@
     patchStudentDataLoad();
     patchSpGameOpen();
     patchMainScreenHeroHooks();
+    patchCharacterInventory();
     try { refreshMainScreenHero(); } catch (_) {}
   }
 
@@ -681,6 +893,8 @@
   window.novaMountHeroInto = mountHeroInto;
   window.mountHeroInto = mountHeroInto;
   window.novaBuildHeroSvgHtml = buildHeroSvgHtml;
+  window.novaRenderBattleHeroStore = novaRenderBattleHeroStore;
+  window.novaFillCharacterInventoryHeroes = novaFillCharacterInventoryHeroes;
   window.NOVA_BATTLE_HERO_ID = 'blaze_robot';
 
   if (document.readyState === 'loading') {

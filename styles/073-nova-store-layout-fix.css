@@ -53,12 +53,8 @@
   margin: 0 !important;
 }
 
-.profile-change-content .nova-hero-store-card .nova-hero-preview,
-.profile-change-content .nova-hero-store-card--blaze .nova-hero-preview,
-.profile-change-content .nova-hero-store-card--star .nova-hero-preview{
-  height: clamp(140px, 28vw, 186px);
-  min-height: clamp(140px, 28vw, 186px);
-  max-height: clamp(140px, 28vw, 186px);
+.profile-change-content .nova-hero-store-card .nova-store-preview--hero{
+  overflow: hidden;
 }
 
 .profile-change-content .nova-store-preview{

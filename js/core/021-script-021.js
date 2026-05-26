@@ -36,7 +36,11 @@
       if (startBtn && !startBtn.__novaBound){ startBtn.__novaBound=true; startBtn.addEventListener('click', function(){ try{ sessionStorage.removeItem(WRONG_KEY);}catch(_){}}); }
     }catch(_){}
   }
-  bindReset(); new MutationObserver(bindReset).observe(document.documentElement,{childList:true,subtree:true});
+  // NOTE: documentElement subtree observer bazı cihazlarda sonuç ekranına geçişte
+  // aşırı tetiklenip tarayıcıyı kilitleyebiliyordu. Tek sefer + kısa retry yeterli.
+  bindReset();
+  setTimeout(bindReset, 600);
+  window.addEventListener('load', function(){ setTimeout(bindReset, 0); });
 
   function isVisible(el){ if(!el) return false; var s=window.getComputedStyle(el); return s && s.display!=='none' && s.visibility!=='hidden' && (el.offsetParent!==null || s.position==='fixed'); }
   function numberOr(s,f){ var m=(s||'').match(/(\d+[.,]?\d*)/g); if(!m) return f; var n=parseFloat(m[m.length-1].replace(',','.')); return isFinite(n)?n:f; }
@@ -101,34 +105,56 @@
     }
   }
 
-  function confettiBurst(){ try{ var c=document.createElement('canvas'); c.width=window.innerWidth; c.height=window.innerHeight; c.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:999998'; document.body.appendChild(c); var ctx=c.getContext('2d'); var parts=[],N=120; for (var i=0;i<N;i++){ parts.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.3,vx:(Math.random()-0.5)*2,vy:2+Math.random()*3,s:4+Math.random()*6,a:Math.random()*Math.PI*2}); } var t0=Date.now(); (function tick(){ var dt=(Date.now()-t0)/1000; ctx.clearRect(0,0,c.width,c.height); for (var i=0;i<parts.length;i++){ var p=parts[i]; p.x+=p.vx; p.y+=p.vy; p.a+=0.1; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a); ctx.fillStyle='hsl('+(i*17%360)+',85%,60%)'; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s); ctx.restore(); } if (dt<1.5) requestAnimationFrame(tick); else document.body.removeChild(c); })(); }catch(_){} }
+  // NOTE: Confetti bazı cihazlarda sonuç ekranında ciddi kasma/donma yapabiliyor.
+  // Donma problemi çözülene kadar kapalı.
+  function confettiBurst(){ /* disabled */ }
 
   function animateGauge(pct){ try{ var circ=2*Math.PI*54; var bar=document.getElementById('gauge-bar'); var txt=document.getElementById('gauge-pct'); var start=0,end=Math.max(0,Math.min(100,pct)); var t0=performance.now(); function step(now){ var k=Math.min(1,(now-t0)/800); var val=Math.round(start+(end-start)*k); if(bar) bar.style.strokeDashoffset=(circ*(1-val/100)).toFixed(3); if(txt) txt.textContent=val+'%'; if(k<1) requestAnimationFrame(step); } requestAnimationFrame(step);}catch(_){} }
 
   function fillWrongPreview(){ try{ var list=load(WRONG_KEY,[]); var box=document.getElementById('wrong-list'); if(!box) return; box.innerHTML=''; var lim=Math.min(MAX_LIST,list.length); for (var i=0;i<lim;i++){ var it=list[i]; var card=document.createElement('div'); card.className='wrong-card'; card.innerHTML='' + '<div class="q"><span class="qid">'+(i+1)+'</span><span>Soru:</span>&nbsp;'+(it.q||'')+'</div>' + '<div class="divider"></div>' + '<div class="row"><span class="k">Seçimin:</span>'+(it.chosen||'')+'</div>' + '<div class="row"><span class="k">Doğru Cevap:</span>'+(it.correct||'')+'</div>' + '<div class="row"><span class="k">Açıklama:</span>'+(it.exp||'')+'</div>'; box.appendChild(card);} }catch(_){} }
 
+  function hideLegacyResultChrome(){
+    try{
+      var nova=document.getElementById('nova-summary');
+      if (nova){ nova.classList.remove('nz-show'); nova.style.display='none'; }
+      var ring=document.getElementById('novaCircular');
+      if (ring) ring.style.display='none';
+      var si=document.getElementById('score-image');
+      var sm=document.getElementById('score-message');
+      if (si){ si.style.display='none'; si.removeAttribute('src'); }
+      if (sm){ sm.style.display='none'; sm.textContent=''; }
+    }catch(_){}
+  }
+
   function renderPremium(){
     try{
       var sc=document.querySelector('#score-container, .score-container'); if(!sc) return;
       ensurePremiumUI(sc);
+      hideLegacyResultChrome();
       var M=extractMetrics();
       var mc=document.getElementById('metric-correct'); if(mc) mc.textContent=M.correct;
       var mt=document.getElementById('metric-total'); if(mt) mt.textContent=M.total || (M.correct>0?M.correct:0);
       var mp=document.getElementById('metric-pct'); if(mp) mp.textContent=M.pct+'%';
       animateGauge(M.pct);
       var badge=computeBadge(M.pct); var bv=document.getElementById('badge-value'); if(bv) bv.textContent=badge.emoji+' '+badge.name;
-      if (M.pct>=75){ confettiBurst(); }
       fillWrongPreview();
       var host=document.getElementById('premium-summary'); if(host){ host.style.display='flex'; }
+      try{
+        var tekrar=document.getElementById('btnTekrar');
+        var lv=document.getElementById('lesson-video-button');
+        if (tekrar) tekrar.style.display='none';
+        if (lv) lv.style.display='none';
+      }catch(_){}
+      window.__novaPremiumRenderedOnce = true;
     }catch(_){}
   }
 
-  function watchScoreVisibility(){
-    var sc=document.querySelector('#score-container, .score-container'); if(!sc) return;
-    var lastVisible=false;
-    function check(){ var vis=isVisible(sc); if (vis && !lastVisible){ setTimeout(renderPremium,100); } lastVisible=vis; }
-    check(); var obs=new MutationObserver(check); obs.observe(sc,{attributes:true,childList:true,subtree:true}); window.addEventListener('resize',check);
-  }
-
-  try{ if (document.readyState==='complete' || document.readyState==='interactive'){ watchScoreVisibility(); } else { document.addEventListener('DOMContentLoaded', watchScoreVisibility); } }catch(_){}
+  // Tek kişilik sonuç: #nova-summary (023). Bu dosyanın premium inject'i SP'de kullanılmıyor.
+  window.novaResetPremiumResultSession = function(){
+    try{ sessionStorage.removeItem(WRONG_KEY); }catch(_){}
+    try{
+      var prem = document.getElementById('premium-summary');
+      if (prem) prem.style.display = 'none';
+    }catch(_){}
+  };
 })();

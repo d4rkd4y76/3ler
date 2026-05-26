@@ -100,10 +100,20 @@
     data = data || null;
     var heroId = data ? String(data.battleHero || '').trim() : getEquippedHeroId();
     if (!heroId) return 0;
-    if (data) return getHeroLevelFromData(data, heroId);
-    var s = getStudent();
-    if (s && s.purchasedBattleHeroes) return getHeroLevelFromData(s, heroId);
-    return 0;
+    var lvl = 0;
+    if (data) lvl = getHeroLevelFromData(data, heroId);
+    else {
+      var s = getStudent();
+      if (s && s.purchasedBattleHeroes) lvl = getHeroLevelFromData(s, heroId);
+    }
+    return lvl;
+  }
+
+  function getEquippedHeroLevelForPerks(data) {
+    var lvl = getEquippedHeroLevel(data);
+    var heroId = data ? String(data.battleHero || '').trim() : getEquippedHeroId();
+    if (lvl < 1 && heroId) return 1;
+    return lvl;
   }
 
   function getPerksForLevel(level) {
@@ -112,7 +122,7 @@
   }
 
   function getActivePerks(data) {
-    var lvl = getEquippedHeroLevel(data);
+    var lvl = getEquippedHeroLevelForPerks(data);
     if (lvl < 1) return null;
     return getPerksForLevel(lvl);
   }
@@ -216,16 +226,22 @@
       + '<div class="nh-level-stat" id="nh_level_cost"></div>'
       + '<div class="nh-level-stat nh-level-stat--chance" id="nh_level_chance"></div>'
       + '</section>'
+      + '<button type="button" class="nh-level-perks-toggle" id="nh_level_perks_toggle" aria-expanded="false">'
+      + '<span class="nh-level-perks-toggle__label">⚡ Kahraman güçlerini incele</span>'
+      + '<span class="nh-level-perks-toggle__chev" aria-hidden="true"></span>'
+      + '</button>'
+      + '<div class="nh-level-perks-drawer" id="nh_level_perks_drawer" hidden>'
       + '<section class="nh-level-perks-block">'
       + '<div class="nh-level-perks-card">'
-      + '<h4 class="nh-level-perks-title">⚡ Mevcut güçler</h4>'
+      + '<h4 class="nh-level-perks-title">Mevcut güçler</h4>'
       + '<ul class="nh-level-perks" id="nh_level_perks_now"></ul>'
       + '</div>'
       + '<div class="nh-level-perks-card nh-level-perks-card--next" id="nh_level_next_wrap">'
-      + '<h4 class="nh-level-perks-title">🔮 Sonraki seviye</h4>'
+      + '<h4 class="nh-level-perks-title">Sonraki seviye güçleri</h4>'
       + '<ul class="nh-level-perks nh-level-perks--next" id="nh_level_perks_next"></ul>'
       + '</div>'
       + '</section>'
+      + '</div>'
       + '<div class="nh-level-actions">'
       + '<button type="button" class="nh-level-btn nh-level-btn--roll" id="nh_level_roll" disabled>⬆️ Seviye Yükselt</button>'
       + '<button type="button" class="nh-level-btn nh-level-btn--ghost" id="nh_level_done">Kapat</button>'
@@ -239,6 +255,27 @@
       if (e.target === ov) closeLevelOverlay();
     });
     document.getElementById('nh_level_roll').addEventListener('click', onRollUpgrade);
+    var perksToggle = document.getElementById('nh_level_perks_toggle');
+    if (perksToggle) {
+      perksToggle.addEventListener('click', function () {
+        var drawer = document.getElementById('nh_level_perks_drawer');
+        if (!drawer) return;
+        var open = drawer.hidden;
+        drawer.hidden = !open;
+        perksToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        perksToggle.classList.toggle('is-open', open);
+      });
+    }
+  }
+
+  function closePerksDrawer() {
+    var drawer = document.getElementById('nh_level_perks_drawer');
+    var btn = document.getElementById('nh_level_perks_toggle');
+    if (drawer) drawer.hidden = true;
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.classList.remove('is-open');
+    }
   }
 
   function ensureStoreLevelBar() {
@@ -413,6 +450,7 @@
   }
 
   function selectHero(heroId) {
+    closePerksDrawer();
     uiState.heroId = heroId;
     var pick = document.getElementById('nh_level_hero_pick');
     if (pick) {
@@ -479,6 +517,7 @@
       existing.remove();
     }
     ensureLevelUi();
+    closePerksDrawer();
     var ov = document.getElementById('nova-hero-level-overlay');
     if (!ov) return;
     document.body.appendChild(ov);
@@ -505,6 +544,7 @@
   function closeLevelOverlay() {
     var ov = document.getElementById('nova-hero-level-overlay');
     if (!ov) return;
+    closePerksDrawer();
     ov.classList.remove('is-open');
     ov.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('nova-hero-level-open');
@@ -667,6 +707,14 @@
     try {
       if (typeof novaRenderBattleHeroStore === 'function') await novaRenderBattleHeroStore();
     } catch (_) {}
+    try {
+      window.__novaMainHeroLevelFetched = newLevel;
+      if (heroId === getEquippedHeroId()) {
+        window.__novaMainHeroLevelFetched = newLevel;
+      }
+      if (typeof window.novaRefreshMainHeroStars === 'function') window.novaRefreshMainHeroStars();
+      if (typeof window.refreshMainScreenHero === 'function') window.refreshMainScreenHero();
+    } catch (_) {}
   }
 
   function dailyRetryKey(activity) {
@@ -719,8 +767,17 @@
       + '<span class="nova-sp-hero-feature-bar__count" id="nova_sp_hero_feat_count"></span>'
       + '</button>';
     hud.appendChild(bar);
-    var btn = document.getElementById('nova_sp_hero_reveal_btn');
-    if (btn) btn.addEventListener('click', revealOneWrongOption);
+    bindSpRevealButton(btn);
+  }
+
+  function bindSpRevealButton(btn) {
+    if (!btn || btn.__novaRevealBound) return;
+    btn.__novaRevealBound = true;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      revealOneWrongOption(e);
+    });
   }
 
   function refreshSpHeroFeatureBar() {
@@ -750,15 +807,15 @@
   function revealOneWrongOption() {
     var perks = getActivePerks();
     if (!perks || !perks.spWrongRevealPerGame) return;
+    if (spRevealState.max < 1) resetSpRevealForGame();
     if (spRevealState.used >= spRevealState.max) { refreshSpHeroFeatureBar(); return; }
     var buttons = Array.prototype.slice.call(document.querySelectorAll('#options-container .option-button'));
     if (!buttons.length) return;
     var target = buttons.find(function (b) {
       if (!b || b.disabled) return false;
-      if (isCorrectOption(b)) return false;
       if (b.classList.contains('option-chosen')) return false;
       if (b.classList.contains('nova-hero-revealed-wrong')) return false;
-      return true;
+      return String(b.dataset.correct) !== 'true';
     }) || null;
     if (!target) return;
     animateHeroToOptionAndDisable(target);
@@ -774,6 +831,8 @@
     if (fly && fly.parentNode) fly.parentNode.removeChild(fly);
     markOptionRevealedWrong(btn);
     spRevealState.used++;
+    var revealBtn = document.getElementById('nova_sp_hero_reveal_btn');
+    if (revealBtn) revealBtn.disabled = false;
     refreshSpHeroFeatureBar();
   }
 
@@ -923,6 +982,7 @@
     getHeroLevelFromData: getHeroLevelFromData,
     ownsHeroLevel: ownsHeroLevel,
     getEquippedHeroLevel: getEquippedHeroLevel,
+    getHeroLevelFromData: getHeroLevelFromData,
     getActivePerks: getActivePerks,
     getPerksForLevel: getPerksForLevel,
     getPerkSummaryLines: getPerkSummaryLines,
@@ -961,10 +1021,23 @@
     return window.NOVA_HERO_LEVEL.getDailyDiamondMultiplier(d);
   };
 
+  if (!document.__novaSpRevealDelegated) {
+    document.__novaSpRevealDelegated = true;
+    document.addEventListener('click', function (e) {
+      var hit = e.target && e.target.closest ? e.target.closest('#nova_sp_hero_reveal_btn, .nova-sp-hero-reveal-btn') : null;
+      if (!hit || hit.disabled) return;
+      e.preventDefault();
+      e.stopPropagation();
+      revealOneWrongOption();
+    }, true);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     ensureStoreLevelBar();
     ensureLevelUi();
     patchStoreHub();
-    setTimeout(patchSinglePlayer, 800);
+    patchSinglePlayer();
+    setTimeout(patchSinglePlayer, 400);
+    setTimeout(patchSinglePlayer, 1200);
   });
 })();
