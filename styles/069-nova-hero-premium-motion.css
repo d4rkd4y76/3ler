@@ -465,6 +465,8 @@
   60%{ transform: rotate(4deg); }
 }
 
+/* Kaplumbağa Turbo → styles/084-nova-turbo-turtle-motion.css + 011b-nova-turbo-turtle-fx.js */
+
 @media (prefers-reduced-motion: reduce){
   .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__body,
   .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__core-glow,
@@ -483,7 +485,5 @@
   .nova-hero-store-card .nova-hero-preview--store-live .nova-hero-svg,
   #main-screen .nova-main-hero-zone.is-visible .nova-main-hero-slot,
   .nova-hero-mount--blaze-robot.nova-sp-fx-live,
-  .nova-hero-mount--star-fairy.nova-sp-fx-live{
-    animation: none !important;
-  }
+  .nova-hero-mount--star-fairy.nova-sp-fx-live,
 }

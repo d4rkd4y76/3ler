@@ -143,6 +143,7 @@
     } catch (_) {}
     if (heroId === 'blaze_robot') return 'Alev Bot';
     if (heroId === 'star_fairy') return 'Yıldız Perisi';
+    if (heroId === 'turbo_turtle') return 'Kaplumbağa Turbo';
     return heroId;
   }
 
@@ -150,7 +151,9 @@
     try {
       if (window.NOVA_HERO_REGISTRY && window.NOVA_HERO_REGISTRY[heroId]) return window.NOVA_HERO_REGISTRY[heroId].theme || 'blaze';
     } catch (_) {}
-    return heroId === 'star_fairy' ? 'star' : 'blaze';
+    if (heroId === 'star_fairy') return 'star';
+    if (heroId === 'turbo_turtle') return 'turbo';
+    return 'blaze';
   }
 
   function getUpgradeCost(targetLevel) {

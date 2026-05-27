@@ -1,0 +1,98 @@
+/* Kaplumbağa Turbo — yalnızca ona özel hareketler (JS + CSS destek) */
+
+/* Mağaza/ana ekran: genel float yok — WAAPI yüzgeç + kabuk */
+.nova-hero-store-card--turbo .nova-hero-preview--store-live .nova-hero-svg,
+#main-screen .nova-main-hero-zone--turbo.is-visible .nova-hero-svg{
+  animation: ttWaterFloat 5s ease-in-out infinite;
+  transform-origin: 50% 88%;
+}
+.nova-hero-store-card--turbo .nova-hero-preview--store-live .nova-hero__visor-shine,
+#main-screen .nova-main-hero-zone--turbo.is-visible .nova-hero__visor-shine{
+  animation: ttGoggleGlint 2.8s ease-in-out infinite;
+}
+.nova-hero-store-card--turbo .nova-hero-preview--store-live .nova-hero__smile,
+#main-screen .nova-main-hero-zone--turbo.is-visible .nova-hero__smile{
+  animation: ttSmileWiggle 4s ease-in-out infinite;
+  transform-origin: 120px 150px;
+}
+.nova-hero-store-card--turbo .nova-hero-preview--store-live .nova-hero__core,
+#main-screen .nova-main-hero-zone--turbo.is-visible .nova-hero__core{
+  animation: ttCoreTurboPulse 2.4s ease-in-out infinite;
+  transform-origin: 120px 210px;
+}
+.nova-hero-store-card--turbo .nova-hero-preview--store-live .nova-hero__jet-glow,
+#main-screen .nova-main-hero-zone--turbo.is-visible .nova-hero__jet-glow{
+  animation: ttJetGlow 1.8s ease-in-out infinite;
+}
+
+/* JS animasyonu aktifken CSS çakışmasın */
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__body,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__head,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__arm-l,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__arm-r,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__boost,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__turbo-streaks,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js .nova-hero__bubbles-burst{
+  animation: none !important;
+}
+
+.nova-hero-mount--turbo-turtle.nova-sp-fx-turbo-js{
+  will-change: transform;
+}
+
+/* Arena — turbo temalı dalga */
+.nova-sp-hero-arena.nova-sp-theme-turbo.is-slamming .nova-sp-hero-arena__burst{
+  animation: ttArenaBurst .55s ease-out both;
+}
+.nova-sp-hero-arena.nova-sp-theme-turbo.is-epic .nova-sp-hero-arena__burst{
+  animation: ttArenaBurstEpic .7s ease-out both;
+}
+.nova-sp-hero-arena.nova-sp-theme-turbo.is-slamming .nova-sp-hero-arena__ring,
+.nova-sp-hero-arena.nova-sp-theme-turbo.is-epic .nova-sp-hero-arena__ring{
+  animation: ttArenaRing .65s ease-out both;
+}
+
+@keyframes ttWaterFloat{
+  0%, 100%{ transform: translateY(0) rotate(0deg); }
+  35%{ transform: translateY(-5px) rotate(-0.8deg); }
+  70%{ transform: translateY(-2px) rotate(0.6deg); }
+}
+@keyframes ttGoggleGlint{
+  0%, 70%, 100%{ opacity: .45; transform: translateX(0); }
+  78%{ opacity: 1; transform: translateX(8px); }
+}
+@keyframes ttSmileWiggle{
+  0%, 100%{ transform: scaleX(1); }
+  50%{ transform: scaleX(1.08); }
+}
+@keyframes ttCoreTurboPulse{
+  0%, 100%{ transform: scale(1); filter: brightness(1); }
+  50%{ transform: scale(1.12); filter: brightness(1.25); }
+}
+@keyframes ttJetGlow{
+  0%, 100%{ opacity: .25; transform: scaleX(1); }
+  50%{ opacity: .55; transform: scaleX(1.15); }
+}
+@keyframes ttArenaBurst{
+  0%{ transform: scale(0.3); opacity: 0; }
+  40%{ opacity: 1; }
+  100%{ transform: scale(1.75); opacity: 0; }
+}
+@keyframes ttArenaBurstEpic{
+  0%{ transform: scale(0.2); opacity: 0; }
+  35%{ opacity: 1; }
+  100%{ transform: scale(2.1); opacity: 0; }
+}
+@keyframes ttArenaRing{
+  0%{ transform: scale(0.35); opacity: 1; border-width: 4px; }
+  100%{ transform: scale(2.4); opacity: 0; border-width: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nova-hero-store-card--turbo .nova-hero-preview--store-live .nova-hero-svg,
+  #main-screen .nova-main-hero-zone--turbo.is-visible .nova-hero-svg,
+  .nova-sp-hero-arena.nova-sp-theme-turbo.is-slamming .nova-sp-hero-arena__burst,
+  .nova-sp-hero-arena.nova-sp-theme-turbo.is-epic .nova-sp-hero-arena__burst{
+    animation: none !important;
+  }
+}

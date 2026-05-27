@@ -62,6 +62,37 @@
           '👑 {n}, YILDIZLARIN KRALİÇESİ!'
         ]
       }
+    },
+    turbo_turtle: {
+      id: 'turbo_turtle',
+      templateKey: 'NOVA_TURBO_TURTLE_SVG_TEMPLATE',
+      theme: 'turbo',
+      name: 'Kaplumbağa Turbo',
+      desc: 'Kabuğunda turbo gücü olan sevimli yarışçı. Doğru cevaplarda hızla seni kutlar!',
+      price: 5500,
+      order: 3,
+      equipEmoji: '🐢',
+      lines: {
+        cheer: [
+          '🐢 {n}, turbo hızında doğru cevap!',
+          '💨 Harika {n}! Turbo mod açık!',
+          '⭐ {n}, kabuğun parlıyor!',
+          '🏁 Bravo {n}! Bitiş çizgisine yakınsın!',
+          '✨ Süpersin {n}, turbo güç!',
+          '🚀 {n}, roket gibi gidiyorsun!',
+          '🐢 {n}, şampiyon kaplumbağa!'
+        ],
+        fire: [
+          '💨 {n}, TURBO PATLAMASI!',
+          '🐢 {n}, NİTRO MODU!',
+          '⚡ {n}, IŞIK HIZI!'
+        ],
+        epic: [
+          '🏆 {n} — TURBO ŞAMPİYON!',
+          '💨 {n}, EFSANE TUR!',
+          '👑 {n}, PİSTİN KRALI!'
+        ]
+      }
     }
   };
 
@@ -138,7 +169,7 @@
   function clearMainHeroSlot(slot) {
     var zone = document.getElementById('nova-main-hero-zone');
     if (zone) {
-      zone.classList.remove('is-visible', 'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star');
+      zone.classList.remove('is-visible', 'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star', 'nova-main-hero-zone--turbo');
       zone.setAttribute('aria-hidden', 'true');
     }
     if (!slot) slot = document.getElementById('nova-main-hero-slot');
@@ -286,9 +317,15 @@
     if (!host) return null;
     var id = heroId || getEquippedHeroId();
     host.innerHTML = buildHeroSvgHtml(id);
-    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy');
+    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle');
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
-    return host.querySelector('svg');
+    var svg = host.querySelector('svg');
+    if (id === 'turbo_turtle' && typeof window.novaTurboTurtlePlayStoreIdle === 'function') {
+      requestAnimationFrame(function () {
+        try { window.novaTurboTurtlePlayStoreIdle(host); } catch (_) {}
+      });
+    }
+    return svg;
   }
 
   function waitMs(ms) {
@@ -325,7 +362,7 @@
     if (!arena) return;
     arena.classList.remove(
       'is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show',
-      'nova-sp-theme-blaze', 'nova-sp-theme-star'
+      'nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo'
     );
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -392,7 +429,7 @@
       if (!def) { resolve(); return; }
 
       var arena = ensureArena();
-      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star');
+      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo');
       arena.classList.add('nova-sp-theme-' + def.theme);
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -419,20 +456,38 @@
 
   function runHeroSequence(arena, variant) {
     var host = arena.querySelector('.nova-sp-hero-arena__host');
+    var isTurbo = getEquippedHeroId() === 'turbo_turtle'
+      && typeof window.novaTurboTurtlePlaySpFx === 'function';
     return waitMs(40).then(function () {
       arena.classList.add('is-centered', 'is-caption-show');
       if (host) {
-        host.classList.add('nova-sp-fx-live', 'nova-sp-fx-' + variant);
+        host.classList.add('nova-sp-fx-live');
+        if (isTurbo) {
+          host.classList.add('nova-sp-fx-turbo-js');
+        } else {
+          host.classList.add('nova-sp-fx-' + variant);
+        }
       }
-      return waitMs(400);
+      return waitMs(isTurbo ? 60 : 400);
     }).then(function () {
       spawnArenaFx(arena, variant);
-      if (variant === 'epic') setTimeout(triggerGameShake, 260);
-      else if (variant === 'fire') setTimeout(triggerGameShake, 300);
-      return waitMs(850);
+      if (variant === 'epic') setTimeout(triggerGameShake, isTurbo ? 320 : 260);
+      else if (variant === 'fire') setTimeout(triggerGameShake, isTurbo ? 360 : 300);
+      var fxWait = isTurbo && host
+        ? window.novaTurboTurtlePlaySpFx(host, variant).then(function () { return waitMs(720); })
+        : waitMs(850);
+      return fxWait;
     }).then(function () {
       if (host) {
-        host.classList.remove('nova-sp-fx-live', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer');
+        host.classList.remove(
+          'nova-sp-fx-live', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer', 'nova-sp-fx-turbo-js'
+        );
+        if (typeof window.novaTurboTurtleResetSvg === 'function') {
+          try {
+            var svg = host.querySelector('svg');
+            window.novaTurboTurtleResetSvg(svg);
+          } catch (_) {}
+        }
       }
       return waitMs(180);
     }).then(function () {
