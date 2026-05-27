@@ -1,167 +1,211 @@
-/* Alev Bot — tek kişilik doğru cevap: özel WAAPI kutlama */
+/* Alev Bot — tek kişilik kutlama: 3×3 sekans, simetrik, nötr bitiş */
 (function () {
-  var EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)';
-  var EASE_SPRING = 'cubic-bezier(0.34, 1.35, 0.64, 1)';
+  var C = window.novaHeroSpFxCore;
+  if (!C) return;
 
-  function q(svg, sel) { return svg ? svg.querySelector(sel) : null; }
-
-  function anim(el, frames, opts) {
-    if (!el || typeof el.animate !== 'function') return { finished: Promise.resolve() };
-    try { return el.animate(frames, opts); } catch (_) { return { finished: Promise.resolve() }; }
+  function parts(svg) {
+    return {
+      body: C.q(svg, '.nova-hero__body'),
+      head: C.q(svg, '.nova-hero__head'),
+      legs: C.q(svg, '.nova-hero__legs'),
+      armL: C.q(svg, '.nova-hero__arm-l'),
+      armR: C.q(svg, '.nova-hero__arm-r'),
+      flames: C.q(svg, '.nova-hero__flames'),
+      flameC: C.q(svg, '.nova-hero__flame-c'),
+      glow: C.q(svg, '.nova-hero__core-glow'),
+      core: C.q(svg, '.nova-hero__core'),
+      visor: C.q(svg, '.nova-hero__visor'),
+      sparks: C.q(svg, '.nova-hero__sparks'),
+      chest: C.q(svg, '.nova-hero__chest-ring')
+    };
   }
 
-  function resetInline(svg) {
-    if (!svg) return;
-    svg.querySelectorAll('[style]').forEach(function (el) {
-      if (el.getAttribute('style') && el.getAttribute('style').indexOf('transform') >= 0) {
-        el.style.transform = '';
-      }
-    });
-    ['.nova-hero__flames', '.nova-hero__sparks'].forEach(function (sel) {
-      var g = svg.querySelector(sel);
-      if (g) g.style.opacity = '';
+  function sparksBurst(steps, p, delay) {
+    if (!p.sparks) return;
+    p.sparks.style.opacity = '1';
+    p.sparks.querySelectorAll('circle, ellipse').forEach(function (node, i) {
+      var side = i % 2 ? 1 : -1;
+      C.pushAnim(steps, node, [
+        { transform: 'none', opacity: 0 },
+        { transform: 'translate(' + (side * (10 + i * 2)) + 'px, -' + (14 + i * 3) + 'px)', opacity: 1 },
+        { transform: 'translate(' + (side * (18 + i * 2)) + 'px, -' + (28 + i * 4) + 'px)', opacity: 0 }
+      ], { duration: 720, delay: delay + i * 40, particle: true });
     });
   }
 
-  function playSpFx(host, variant) {
+  function flamesUp(steps, p, delay, epic) {
+    if (!p.flames) return;
+    p.flames.style.opacity = '1';
+    C.pushAnim(steps, p.flames, [
+      { transform: 'scale(0.4)', opacity: 0 },
+      { transform: 'scale(' + (epic ? '1.3' : '1.15') + ')', opacity: 1 },
+      { transform: 'scale(1)', opacity: epic ? 0.9 : 0.75 }
+    ], { duration: epic ? 800 : 620, delay: delay });
+  }
+
+  /* —— CHEER —— */
+  function cheer0(svg, host, steps) {
+    var p = parts(svg);
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 38, 22, 42, 0], { duration: 760, delay: 180 });
+    C.animBodySymmetric(steps, p.body, { duration: 640, delay: 260, lift: 9 });
+    C.animLegsSymmetric(steps, p.legs, { duration: 640, delay: 260, lift: 6 });
+    if (p.visor) {
+      C.pushAnim(steps, p.visor, [
+        { filter: 'brightness(1)' },
+        { filter: 'brightness(2.1)' },
+        { filter: 'brightness(1)' },
+        { filter: 'brightness(1.7)' },
+        { filter: 'brightness(1)' }
+      ], { duration: 820, delay: 200, keepStyle: true });
+    }
+    if (p.head) {
+      C.pushAnim(steps, p.head, [
+        { transform: 'none' },
+        { transform: 'translateY(-5px) rotate(-3deg)' },
+        { transform: 'translateY(-3px) rotate(3deg)' },
+        { transform: 'none' }
+      ], { duration: 700, delay: 300 });
+    }
+  }
+
+  function cheer1(svg, host, steps) {
+    var p = parts(svg);
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 52, 38, 55, 28, 0], { duration: 820, delay: 160, easing: C.EASE_SPRING });
+    C.pushAnim(steps, p.body, [
+      { transform: 'none' },
+      { transform: 'scale(1.05) translateY(-10px)' },
+      { transform: 'none' }
+    ], { duration: 680, delay: 240, easing: C.EASE_SPRING });
+    C.animLegsSymmetric(steps, p.legs, { duration: 680, delay: 240, lift: 8 });
+    if (p.core) {
+      C.pushAnim(steps, p.core, [
+        { transform: 'none' },
+        { transform: 'scale(1.35) rotate(90deg)' },
+        { transform: 'none' }
+      ], { duration: 700, delay: 320, easing: C.EASE_OUT });
+    }
+    if (p.flameC) {
+      C.pushAnim(steps, p.flameC, [
+        { transform: 'scaleY(0.75)' },
+        { transform: 'scaleY(1.2)' },
+        { transform: 'none' }
+      ], { duration: 520, delay: 380 });
+    }
+  }
+
+  function cheer2(svg, host, steps) {
+    var p = parts(svg);
+    C.pushAnim(steps, host, [
+      { transform: 'none' },
+      { transform: 'translateY(-6px) rotate(-2deg)' },
+      { transform: 'translateY(-6px) rotate(2deg)' },
+      { transform: 'translateY(-4px) rotate(-1deg)' },
+      { transform: 'none' }
+    ], { duration: 900, delay: 200, easing: 'ease-in-out' });
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 28, 18, 32, 0], { duration: 720, delay: 220 });
+    C.animLegsSymmetric(steps, p.legs, { duration: 720, delay: 220, lift: 5 });
+    if (p.chest) {
+      C.pushAnim(steps, p.chest, [
+        { transform: 'none' },
+        { transform: 'rotate(12deg)' },
+        { transform: 'rotate(-12deg)' },
+        { transform: 'none' }
+      ], { duration: 800, delay: 280 });
+    }
+    sparksBurst(steps, p, 360);
+  }
+
+  /* —— FIRE —— */
+  function fire0(svg, host, steps, epic) {
+    var p = parts(svg);
+    flamesUp(steps, p, 100, epic);
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, epic ? 58 : 48, epic ? 24 : 18, 0], { duration: 560, delay: 220, easing: C.EASE_OUT });
+    C.animBodySymmetric(steps, p.body, { duration: epic ? 620 : 500, delay: 200, lift: epic ? 12 : 8 });
+    C.animLegsSymmetric(steps, p.legs, { duration: 500, delay: 200, lift: 4 });
+    if (p.glow) {
+      p.glow.style.opacity = '1';
+      C.pushAnim(steps, p.glow, [
+        { transform: 'scale(0.5)', opacity: 0 },
+        { transform: 'scale(1.45)', opacity: 1 },
+        { transform: 'none', opacity: 0.35 }
+      ], { duration: 700, delay: 160 });
+    }
+    sparksBurst(steps, p, 300);
+  }
+
+  function fire1(svg, host, steps, epic) {
+    var p = parts(svg);
+    flamesUp(steps, p, 80, epic);
+    C.pushAnim(steps, host, [
+      { transform: 'none' },
+      { transform: 'scale(1.04) translateY(-' + (epic ? 14 : 10) + 'px)' },
+      { transform: 'none' }
+    ], { duration: 580, delay: 180, easing: C.EASE_SPRING });
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 35, 50, 30, 0], { duration: epic ? 780 : 640, delay: 240 });
+    C.animLegsSymmetric(steps, p.legs, { duration: 520, delay: 240, lift: 6 });
+    if (p.head) {
+      C.pushAnim(steps, p.head, [
+        { transform: 'none' },
+        { transform: 'translateY(-' + (epic ? 12 : 8) + 'px)' },
+        { transform: 'none' }
+      ], { duration: 520, delay: 260, easing: C.EASE_SPRING });
+    }
+  }
+
+  function fire2(svg, host, steps, epic) {
+    var p = parts(svg);
+    flamesUp(steps, p, 120, epic);
+    if (p.flameC) {
+      C.pushAnim(steps, p.flameC, [
+        { transform: 'scaleY(0.6)' },
+        { transform: 'scaleY(1.35)' },
+        { transform: 'scaleY(1)' },
+        { transform: 'none' }
+      ], { duration: epic ? 680 : 540, delay: 200 });
+    }
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 42, 0], { duration: 480, delay: 280 });
+    C.pushAnim(steps, p.body, [
+      { transform: 'none' },
+      { transform: 'scale(1.02)' },
+      { transform: 'none' }
+    ], { duration: 420, delay: 300 });
+    C.animLegsSymmetric(steps, p.legs, { duration: 480, delay: 280, lift: 7 });
+    sparksBurst(steps, p, 340);
+  }
+
+  /* —— EPIC aliases reuse fire with epic flag —— */
+  function epic0(s, h, st) { fire0(s, h, st, true); if (parts(s).core) C.pushAnim(st, parts(s).core, [{ transform: 'none' }, { transform: 'scale(1.4) rotate(180deg)' }, { transform: 'none' }], { duration: 720, delay: 360 }); }
+  function epic1(s, h, st) { fire1(s, h, st, true); sparksBurst(st, parts(s), 400); }
+  function epic2(s, h, st) {
+    fire2(s, h, st, true);
+    var p = parts(s);
+    C.pushAnim(st, h, [
+      { transform: 'none' },
+      { transform: 'scale(1.08) translateY(-16px)' },
+      { transform: 'none' }
+    ], { duration: 620, delay: 420, easing: C.EASE_SPRING });
+    if (p.head) C.pushAnim(st, p.head, [{ transform: 'none' }, { transform: 'translateY(-14px)' }, { transform: 'none' }], { duration: 560, delay: 380 });
+  }
+
+  var CHEER = [cheer0, cheer1, cheer2];
+  var FIRE = [fire0, fire1, fire2];
+  var EPIC = [epic0, epic1, epic2];
+
+  function playSpFx(host, variant, routine) {
     var svg = host && host.querySelector('svg');
     if (!svg) return Promise.resolve();
-    resetInline(svg);
-    var body = q(svg, '.nova-hero__body');
-    var head = q(svg, '.nova-hero__head');
-    var armL = q(svg, '.nova-hero__arm-l');
-    var armR = q(svg, '.nova-hero__arm-r');
-    var flames = q(svg, '.nova-hero__flames');
-    var flameC = q(svg, '.nova-hero__flame-c');
-    var glow = q(svg, '.nova-hero__core-glow');
-    var core = q(svg, '.nova-hero__core');
-    var visor = q(svg, '.nova-hero__visor');
-    var sparks = q(svg, '.nova-hero__sparks');
+    C.resetSvg(svg, ['.nova-hero__flames', '.nova-hero__sparks']);
     var steps = [];
-
-    steps.push(anim(host, [
-      { transform: 'scale(0.7) translateY(28px)', opacity: 0 },
-      { transform: 'scale(1.08) translateY(-8px)', opacity: 1 },
-      { transform: 'scale(1) translateY(0)', opacity: 1 }
-    ], { duration: 500, fill: 'forwards', easing: EASE_SPRING }));
-
-    if (variant === 'cheer') {
-      if (visor) {
-        steps.push(anim(visor, [
-          { filter: 'brightness(1)' },
-          { filter: 'brightness(2.2)' },
-          { filter: 'brightness(1)' },
-          { filter: 'brightness(1.8)' },
-          { filter: 'brightness(1)' }
-        ], { duration: 900, delay: 200, fill: 'forwards', easing: 'ease-in-out' }));
-      }
-      if (armL && armR) {
-        steps.push(anim(armL, [
-          { transform: 'rotate(0deg)' },
-          { transform: 'rotate(-42deg)' },
-          { transform: 'rotate(-18deg)' },
-          { transform: 'rotate(-38deg)' },
-          { transform: 'rotate(0deg)' }
-        ], { duration: 700, delay: 180, fill: 'forwards', easing: EASE_OUT }));
-        steps.push(anim(armR, [
-          { transform: 'rotate(0deg)' },
-          { transform: 'rotate(42deg)' },
-          { transform: 'rotate(18deg)' },
-          { transform: 'rotate(38deg)' },
-          { transform: 'rotate(0deg)' }
-        ], { duration: 700, delay: 180, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (head) {
-        steps.push(anim(head, [
-          { transform: 'rotate(0deg) translateY(0)' },
-          { transform: 'rotate(-8deg) translateY(-6px)' },
-          { transform: 'rotate(6deg) translateY(-3px)' },
-          { transform: 'rotate(0deg) translateY(0)' }
-        ], { duration: 620, delay: 260, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (body) {
-        steps.push(anim(body, [
-          { transform: 'scale(1) translateY(0)' },
-          { transform: 'scale(1.06) translateY(-8px)' },
-          { transform: 'scale(1.02) translateY(-4px)' },
-          { transform: 'scale(1) translateY(0)' }
-        ], { duration: 560, delay: 300, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (flameC) {
-        steps.push(anim(flameC, [
-          { transform: 'scaleY(0.7)', opacity: 0.5 },
-          { transform: 'scaleY(1.15)', opacity: 1 },
-          { transform: 'scaleY(0.95)', opacity: 0.8 }
-        ], { duration: 500, delay: 340, fill: 'forwards', easing: EASE_OUT }));
-      }
-    }
-
-    if (variant === 'fire' || variant === 'epic') {
-      if (flames) {
-        flames.style.opacity = '1';
-        steps.push(anim(flames, [
-          { transform: 'scale(0.5)', opacity: 0 },
-          { transform: 'scale(1.15)', opacity: 1 },
-          { transform: 'scale(1)', opacity: variant === 'epic' ? 0.95 : 0.85 }
-        ], { duration: variant === 'epic' ? 720 : 580, delay: 100, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (glow) {
-        glow.style.opacity = '1';
-        steps.push(anim(glow, [
-          { transform: 'scale(0.4)', opacity: 0 },
-          { transform: 'scale(1.5)', opacity: 1 },
-          { transform: 'scale(1.1)', opacity: 0.5 }
-        ], { duration: 680, delay: 160, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (body) {
-        steps.push(anim(body, [
-          { transform: 'translateY(0) scale(1)' },
-          { transform: 'translateY(-12px) scale(1.08)' },
-          { transform: 'translateY(4px) scale(0.98)' },
-          { transform: 'translateY(0) scale(1)' }
-        ], { duration: variant === 'epic' ? 620 : 500, delay: 200, fill: 'forwards', easing: EASE_SPRING }));
-      }
-      if (armL && armR) {
-        steps.push(anim(armL, [
-          { transform: 'rotate(0deg)' },
-          { transform: 'rotate(-55deg) translateY(-6px)' },
-          { transform: 'rotate(-20deg)' }
-        ], { duration: 480, delay: 220, fill: 'forwards', easing: EASE_OUT }));
-        steps.push(anim(armR, [
-          { transform: 'rotate(0deg)' },
-          { transform: 'rotate(55deg) translateY(-6px)' },
-          { transform: 'rotate(20deg)' }
-        ], { duration: 480, delay: 220, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (sparks) {
-        sparks.style.opacity = '1';
-        sparks.querySelectorAll('circle, ellipse').forEach(function (p, i) {
-          steps.push(anim(p, [
-            { transform: 'translate(0, 8px)', opacity: 0 },
-            { transform: 'translate(' + ((i % 2 ? 1 : -1) * (12 + i * 3)) + 'px, -' + (18 + i * 4) + 'px)', opacity: 1 },
-            { transform: 'translate(' + ((i % 2 ? 1 : -1) * (20 + i * 2)) + 'px, -' + (32 + i * 5) + 'px)', opacity: 0 }
-          ], { duration: 750, delay: 280 + i * 40, fill: 'forwards', easing: 'ease-out' }));
-        });
-      }
-      if (core && variant === 'epic') {
-        steps.push(anim(core, [
-          { transform: 'scale(1) rotate(0deg)' },
-          { transform: 'scale(1.5) rotate(180deg)' },
-          { transform: 'scale(1.15) rotate(360deg)' }
-        ], { duration: 700, delay: 320, fill: 'forwards', easing: EASE_OUT }));
-      }
-      if (head) {
-        steps.push(anim(head, [
-          { transform: 'translateY(0)' },
-          { transform: 'translateY(-14px) scale(1.05)' },
-          { transform: 'translateY(0) scale(1)' }
-        ], { duration: 520, delay: 260, fill: 'forwards', easing: EASE_SPRING }));
-      }
-    }
-
-    return Promise.all(steps.map(function (s) { return s.finished; })).catch(function () {});
+    C.animHostPop(steps, host, { delay: 0 });
+    var r = typeof routine === 'number' ? (routine % 3) : 0;
+    if (variant === 'cheer') CHEER[r](svg, host, steps);
+    else if (variant === 'epic') EPIC[r](svg, host, steps);
+    else FIRE[r](svg, host, steps, false);
+    return C.runAll(steps);
   }
 
   window.novaBlazeBotPlaySpFx = playSpFx;
-  window.novaBlazeBotResetSvg = resetInline;
+  window.novaBlazeBotResetSvg = function (svg) {
+    C.resetSvg(svg, ['.nova-hero__flames', '.nova-hero__sparks']);
+  };
 })();

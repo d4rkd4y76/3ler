@@ -422,17 +422,23 @@
     return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy';
   }
 
+  function pickFxRoutine(variant) {
+    var salt = variant === 'epic' ? 2 : (variant === 'fire' ? 1 : 0);
+    return (correctFxCount + salt) % 3;
+  }
+
   function playHeroSpFx(host, variant, heroId) {
     if (!host) return waitMs(850);
     host.classList.add('nova-sp-fx-js');
+    var routine = pickFxRoutine(variant);
     if (heroId === 'turbo_turtle' && typeof window.novaTurboTurtlePlaySpFx === 'function') {
-      return window.novaTurboTurtlePlaySpFx(host, variant);
+      return window.novaTurboTurtlePlaySpFx(host, variant, routine);
     }
     if (heroId === 'blaze_robot' && typeof window.novaBlazeBotPlaySpFx === 'function') {
-      return window.novaBlazeBotPlaySpFx(host, variant);
+      return window.novaBlazeBotPlaySpFx(host, variant, routine);
     }
     if (heroId === 'star_fairy' && typeof window.novaStarFairyPlaySpFx === 'function') {
-      return window.novaStarFairyPlaySpFx(host, variant);
+      return window.novaStarFairyPlaySpFx(host, variant, routine);
     }
     host.classList.remove('nova-sp-fx-js');
     return waitMs(850);
@@ -572,7 +578,7 @@
       spawnArenaFx(arena, variant);
       if (variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
       else if (variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
-      var tail = variant === 'epic' ? 780 : (variant === 'fire' ? 720 : 680);
+      var tail = variant === 'epic' ? 280 : (variant === 'fire' ? 240 : 200);
       var fxWait = jsFx && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
         : waitMs(850);
