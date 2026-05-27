@@ -296,25 +296,32 @@ body.nova-sp-game-open{
   100%{ opacity: 0; transform: scale(16); }
 }
 
-/* Soru ekranı FX — CSS ile (rAF yok, kasmaz) */
-.nova-sp-hero-arena__host.nova-sp-fx-live .nova-hero__arm-l{
+/* Soru ekranı FX — CSS ile (WAAPI aktifken kapalı) */
+.nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero__arm-l,
+.nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero__arm-r,
+.nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero__head,
+.nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero__flames,
+.nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero__core-glow{
+  animation: none !important;
+}
+.nova-sp-hero-arena__host.nova-sp-fx-live:not(.nova-sp-fx-js) .nova-hero__arm-l{
   animation: spFxArmL 0.55s ease-in-out 3;
   transform-origin: 88px 168px;
 }
-.nova-sp-hero-arena__host.nova-sp-fx-live .nova-hero__arm-r{
+.nova-sp-hero-arena__host.nova-sp-fx-live:not(.nova-sp-fx-js) .nova-hero__arm-r{
   animation: spFxArmR 0.55s ease-in-out 3;
   transform-origin: 152px 168px;
 }
-.nova-sp-hero-arena__host.nova-sp-fx-live .nova-hero__head{
+.nova-sp-hero-arena__host.nova-sp-fx-live:not(.nova-sp-fx-js) .nova-hero__head{
   animation: spFxHead 0.45s ease-in-out 4;
   transform-origin: 50% 85%;
 }
-.nova-sp-hero-arena__host.nova-sp-fx-epic .nova-hero__flames,
-.nova-sp-hero-arena__host.nova-sp-fx-fire .nova-hero__flames{
+.nova-sp-hero-arena__host.nova-sp-fx-epic:not(.nova-sp-fx-js) .nova-hero__flames,
+.nova-sp-hero-arena__host.nova-sp-fx-fire:not(.nova-sp-fx-js) .nova-hero__flames{
   animation: spFxFlame 0.7s ease-out 2;
 }
-.nova-sp-hero-arena__host.nova-sp-fx-epic .nova-hero__core-glow,
-.nova-sp-hero-arena__host.nova-sp-fx-fire .nova-hero__core-glow{
+.nova-sp-hero-arena__host.nova-sp-fx-epic:not(.nova-sp-fx-js) .nova-hero__core-glow,
+.nova-sp-hero-arena__host.nova-sp-fx-fire:not(.nova-sp-fx-js) .nova-hero__core-glow{
   animation: spFxCore 0.5s ease-in-out 4;
 }
 @keyframes spFxArmL{

@@ -12,23 +12,23 @@
       equipEmoji: '🔥',
       lines: {
         cheer: [
-          '🔥 {n}, tam isabet! Böyle devam!',
-          '⭐ {n}, zekân parlıyor!',
-          '💪 Harika cevap {n}!',
-          '🚀 {n}, süpersin şampiyon!',
-          '✨ Bravo {n}! İnanılmaz gidiyorsun!',
-          '🏆 {n}, sen bu işi biliyorsun!',
-          '🔥 Alev gibi güçlüsün {n}!'
+          { msg: 'Tam isabet! Robot onaylıyor — harikasın!', badge: '✓ DOĞRU' },
+          { msg: 'Beynin alev gibi çalışıyor, böyle devam!', badge: '✓ DOĞRU' },
+          { msg: 'İşte bu! Süper bir cevap verdin!', badge: '✓ DOĞRU' },
+          { msg: 'Doğru bildin — güç modun açıldı!', badge: '✓ DOĞRU' },
+          { msg: 'Vay canına, sen gerçek bir şampiyonsun!', badge: '✓ DOĞRU' },
+          { msg: 'Mükemmel! Bir sonraki soruya da hazırsın!', badge: '✓ DOĞRU' },
+          { msg: 'Robot gözleri parladı: bravo sana!', badge: '✓ DOĞRU' }
         ],
         fire: [
-          '💥 {n}, ALEV PATLAMASI!',
-          '🔥 {n}, GÜÇ MODU AÇIK!',
-          '⚡ {n}, ISINDIN!'
+          { msg: 'ALEV PATLAMASI! İnanılmaz bir cevap!', badge: '🔥 SÜPER GÜÇ' },
+          { msg: 'Isındın! Tam gaz devam et şampiyon!', badge: '🔥 SÜPER GÜÇ' },
+          { msg: 'GÜÇ MODU AÇIK — muhteşem vuruş!', badge: '🔥 SÜPER GÜÇ' }
         ],
         epic: [
-          '🔥 {n} — EFSANE CEVAP!',
-          '⚡ {n}, MUHTEŞEM VURUŞ!',
-          '👑 {n}, KRALİYORSUN!'
+          { msg: 'EFSANE CEVAP! Bugün sen kralsın!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Robot selam durdu sana!', badge: '👑 EFSANE' },
+          { msg: 'Tam puan hissi — inanılmazsın!', badge: '👑 EFSANE' }
         ]
       }
     },
@@ -43,23 +43,23 @@
       equipEmoji: '✨',
       lines: {
         cheer: [
-          '✨ {n}, yıldız gibi parladın!',
-          '⭐ Harika cevap {n}! Evren seninle!',
-          '💫 {n}, takımyıldızı kadar net!',
-          '🌟 Bravo {n}! Işığın göz kamaştırıyor!',
-          '✨ {n}, sihirli bir cevap!',
-          '🪄 Muhteşem {n}, peri onayladı!',
-          '⭐ {n}, gökyüzü seninle dans ediyor!'
+          { msg: 'Yıldız gibi parladın — peri çok mutlu!', badge: '✨ SİHİR' },
+          { msg: 'Harika cevap! Evren seninle dans ediyor!', badge: '✨ SİHİR' },
+          { msg: 'Takımyıldızı kadar net bildin, bravo!', badge: '✨ SİHİR' },
+          { msg: 'Işığın göz kamaştırıyor — süpersin!', badge: '✨ SİHİR' },
+          { msg: 'Sihirli bir cevap! Böyle devam et!', badge: '✨ SİHİR' },
+          { msg: 'Peri onayladı: sen harika öğrencisin!', badge: '✨ SİHİR' },
+          { msg: 'Gökyüzü bugün senin için parlıyor!', badge: '✨ SİHİR' }
         ],
         fire: [
-          '💫 {n}, YILDIZ PATLAMASI!',
-          '✨ {n}, KOZMİK GÜÇ AÇIK!',
-          '⭐ {n}, IŞILDIYORSUN!'
+          { msg: 'YILDIZ PATLAMASI! Kozmik bir cevap!', badge: '💫 KOZMİK' },
+          { msg: 'Kozmik güç açık — ışıldıyorsun!', badge: '💫 KOZMİK' },
+          { msg: 'Yıldız tozu saçıldı — muhteşemsin!', badge: '💫 KOZMİK' }
         ],
         epic: [
-          '✨ {n} — KOZMİK ZAFER!',
-          '🌟 {n}, GALAKSİ SEVİYESİ!',
-          '👑 {n}, YILDIZLARIN KRALİÇESİ!'
+          { msg: 'KOZMİK ZAFER! Galaksi seviyesindesin!', badge: '🌟 GALAKSİ' },
+          { msg: 'Yıldızların şampiyonusun bugün — muhteşem!', badge: '🌟 GALAKSİ' },
+          { msg: 'EFSANE! Peri seni alkışlıyor!', badge: '🌟 GALAKSİ' }
         ]
       }
     },
@@ -74,23 +74,23 @@
       equipEmoji: '🐢',
       lines: {
         cheer: [
-          '🐢 {n}, turbo hızında doğru cevap!',
-          '💨 Harika {n}! Turbo mod açık!',
-          '⭐ {n}, kabuğun parlıyor!',
-          '🏁 Bravo {n}! Bitiş çizgisine yakınsın!',
-          '✨ Süpersin {n}, turbo güç!',
-          '🚀 {n}, roket gibi gidiyorsun!',
-          '🐢 {n}, şampiyon kaplumbağa!'
+          { msg: 'Turbo hızında doğru cevap — vınn!', badge: '🏁 TURBO' },
+          { msg: 'Harika! Turbo modun açık, devam!', badge: '🏁 TURBO' },
+          { msg: 'Kabuğun parlıyor — süpersin!', badge: '🏁 TURBO' },
+          { msg: 'Bitiş çizgisine çok yakınsın, bravo!', badge: '🏁 TURBO' },
+          { msg: 'Roket gibi gidiyorsun, şampiyon!', badge: '🏁 TURBO' },
+          { msg: 'Kaplumbağa gücü + zeka = sen kazandın!', badge: '🏁 TURBO' },
+          { msg: 'Doğru cevap! Tekerlekler duman attı!', badge: '🏁 TURBO' }
         ],
         fire: [
-          '💨 {n}, TURBO PATLAMASI!',
-          '🐢 {n}, NİTRO MODU!',
-          '⚡ {n}, IŞIK HIZI!'
+          { msg: 'TURBO PATLAMASI! Nitro açıldı!', badge: '💨 NİTRO' },
+          { msg: 'Işık hızında doğru — inanılmaz!', badge: '💨 NİTRO' },
+          { msg: 'NİTRO MODU: pist senin!', badge: '💨 NİTRO' }
         ],
         epic: [
-          '🏆 {n} — TURBO ŞAMPİYON!',
-          '💨 {n}, EFSANE TUR!',
-          '👑 {n}, PİSTİN KRALI!'
+          { msg: 'TURBO ŞAMPİYON! Pistin kralı sensin!', badge: '🏆 PİST KRALI' },
+          { msg: 'EFSANE TUR! Herkes seni alkışlıyor!', badge: '🏆 PİST KRALI' },
+          { msg: 'Tam gaz zafer — muhteşem cevap!', badge: '🏆 PİST KRALI' }
         ]
       }
     }
@@ -340,14 +340,116 @@
     return n;
   }
 
-  function pickCaption(variant) {
+  function defaultVariantBadge(variant) {
+    if (variant === 'epic') return '⭐ EFSANE';
+    if (variant === 'fire') return '🔥 SÜPER';
+    return '✓ DOĞRU';
+  }
+
+  function pickCheerPayload(variant) {
     var def = getEquippedHeroDef() || HERO_REGISTRY.blaze_robot;
-    var name = heroDisplayName();
     var pool = def.lines.cheer;
     if (variant === 'epic') pool = def.lines.epic;
     else if (variant === 'fire') pool = def.lines.fire;
-    var line = pool[correctFxCount % pool.length];
-    return String(line).replace(/\{n\}/g, name);
+    var entry = pool[correctFxCount % pool.length];
+    var message = '';
+    var badge = defaultVariantBadge(variant);
+    if (entry && typeof entry === 'object') {
+      message = String(entry.msg || '');
+      if (entry.badge) badge = String(entry.badge);
+    } else {
+      message = String(entry || '').replace(/\{n\}/g, heroDisplayName()).trim();
+    }
+    return {
+      theme: def.theme,
+      heroId: def.id,
+      heroName: def.name,
+      heroEmoji: def.equipEmoji || '✨',
+      studentName: heroDisplayName(),
+      message: message,
+      variant: variant,
+      badge: badge
+    };
+  }
+
+  function getArenaInnerHtml() {
+    return '<div class="nova-sp-hero-arena__veil"></div>'
+      + '<div class="nova-sp-hero-arena__inner">'
+      + '<aside class="nova-sp-hero-speech" aria-live="polite">'
+      + '<div class="nova-sp-hero-speech__frame">'
+      + '<header class="nova-sp-hero-speech__head">'
+      + '<span class="nova-sp-hero-speech__avatar" aria-hidden="true"></span>'
+      + '<div class="nova-sp-hero-speech__who">'
+      + '<span class="nova-sp-hero-speech__hero-name"></span>'
+      + '<span class="nova-sp-hero-speech__to-you">sana diyor ki</span>'
+      + '</div></header>'
+      + '<p class="nova-sp-hero-speech__student"></p>'
+      + '<p class="nova-sp-hero-speech__message"></p>'
+      + '<span class="nova-sp-hero-speech__badge" hidden></span>'
+      + '</div></aside>'
+      + '<div class="nova-sp-hero-arena__host"></div>'
+      + '<div class="nova-sp-hero-arena__burst"></div>'
+      + '<div class="nova-sp-hero-arena__ring"></div>'
+      + '</div>';
+  }
+
+  function renderSpeechPanel(arena, payload) {
+    if (!arena || !payload) return;
+    var panel = arena.querySelector('.nova-sp-hero-speech');
+    if (!panel) return;
+    panel.className = 'nova-sp-hero-speech nova-sp-hero-speech--' + payload.theme
+      + ' nova-sp-hero-speech--' + payload.variant;
+    var avatar = panel.querySelector('.nova-sp-hero-speech__avatar');
+    var heroName = panel.querySelector('.nova-sp-hero-speech__hero-name');
+    var student = panel.querySelector('.nova-sp-hero-speech__student');
+    var message = panel.querySelector('.nova-sp-hero-speech__message');
+    var badge = panel.querySelector('.nova-sp-hero-speech__badge');
+    if (avatar) avatar.textContent = payload.heroEmoji;
+    if (heroName) heroName.textContent = payload.heroName;
+    if (student) student.textContent = payload.studentName;
+    if (message) message.textContent = payload.message;
+    if (badge) {
+      if (payload.badge) {
+        badge.textContent = payload.badge;
+        badge.hidden = false;
+      } else {
+        badge.hidden = true;
+      }
+    }
+  }
+
+  function usesJsSpFx(heroId) {
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy';
+  }
+
+  function playHeroSpFx(host, variant, heroId) {
+    if (!host) return waitMs(850);
+    host.classList.add('nova-sp-fx-js');
+    if (heroId === 'turbo_turtle' && typeof window.novaTurboTurtlePlaySpFx === 'function') {
+      return window.novaTurboTurtlePlaySpFx(host, variant);
+    }
+    if (heroId === 'blaze_robot' && typeof window.novaBlazeBotPlaySpFx === 'function') {
+      return window.novaBlazeBotPlaySpFx(host, variant);
+    }
+    if (heroId === 'star_fairy' && typeof window.novaStarFairyPlaySpFx === 'function') {
+      return window.novaStarFairyPlaySpFx(host, variant);
+    }
+    host.classList.remove('nova-sp-fx-js');
+    return waitMs(850);
+  }
+
+  function resetHeroSpFx(host, heroId) {
+    if (!host) return;
+    var svg = host.querySelector('svg');
+    try {
+      if (heroId === 'turbo_turtle' && typeof window.novaTurboTurtleResetSvg === 'function') {
+        window.novaTurboTurtleResetSvg(svg);
+      } else if (heroId === 'blaze_robot' && typeof window.novaBlazeBotResetSvg === 'function') {
+        window.novaBlazeBotResetSvg(svg);
+      } else if (heroId === 'star_fairy' && typeof window.novaStarFairyResetSvg === 'function') {
+        window.novaStarFairyResetSvg(svg);
+      }
+    } catch (_) {}
   }
 
   function pickVariant() {
@@ -367,8 +469,14 @@
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
     if (host) {
-      host.classList.remove('nova-sp-fx-live', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer');
+      host.classList.remove(
+        'nova-sp-fx-live', 'nova-sp-fx-js', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer', 'nova-sp-fx-turbo-js'
+      );
       host.innerHTML = '';
+    }
+    var speech = arena.querySelector('.nova-sp-hero-speech');
+    if (speech) {
+      speech.className = 'nova-sp-hero-speech';
     }
   }
 
@@ -379,15 +487,10 @@
       arena.id = 'nova-sp-hero-arena';
       arena.className = 'nova-sp-hero-arena';
       arena.setAttribute('aria-hidden', 'true');
-      arena.innerHTML =
-        '<div class="nova-sp-hero-arena__veil"></div>'
-        + '<div class="nova-sp-hero-arena__inner">'
-        + '<p class="nova-sp-hero-arena__caption"></p>'
-        + '<div class="nova-sp-hero-arena__host"></div>'
-        + '<div class="nova-sp-hero-arena__burst"></div>'
-        + '<div class="nova-sp-hero-arena__ring"></div>'
-        + '</div>';
+      arena.innerHTML = getArenaInnerHtml();
       document.body.appendChild(arena);
+    } else if (!arena.querySelector('.nova-sp-hero-speech')) {
+      arena.innerHTML = getArenaInnerHtml();
     }
     return arena;
   }
@@ -433,12 +536,12 @@
       arena.classList.add('nova-sp-theme-' + def.theme);
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
-      var cap = arena.querySelector('.nova-sp-hero-arena__caption');
+      var payload = pickCheerPayload(variant);
+      renderSpeechPanel(arena, payload);
       var svg = mountHeroInto(host, equippedId);
       if (!svg) { resolve(); return; }
 
       fxBusy = true;
-      if (cap) cap.textContent = pickCaption(variant);
 
       arena.setAttribute('aria-hidden', 'false');
       arena.classList.add('is-active');
@@ -456,38 +559,30 @@
 
   function runHeroSequence(arena, variant) {
     var host = arena.querySelector('.nova-sp-hero-arena__host');
-    var isTurbo = getEquippedHeroId() === 'turbo_turtle'
-      && typeof window.novaTurboTurtlePlaySpFx === 'function';
+    var heroId = getEquippedHeroId();
+    var jsFx = usesJsSpFx(heroId);
     return waitMs(40).then(function () {
       arena.classList.add('is-centered', 'is-caption-show');
       if (host) {
         host.classList.add('nova-sp-fx-live');
-        if (isTurbo) {
-          host.classList.add('nova-sp-fx-turbo-js');
-        } else {
-          host.classList.add('nova-sp-fx-' + variant);
-        }
+        if (!jsFx) host.classList.add('nova-sp-fx-' + variant);
       }
-      return waitMs(isTurbo ? 60 : 400);
+      return waitMs(jsFx ? 80 : 400);
     }).then(function () {
       spawnArenaFx(arena, variant);
-      if (variant === 'epic') setTimeout(triggerGameShake, isTurbo ? 320 : 260);
-      else if (variant === 'fire') setTimeout(triggerGameShake, isTurbo ? 360 : 300);
-      var fxWait = isTurbo && host
-        ? window.novaTurboTurtlePlaySpFx(host, variant).then(function () { return waitMs(720); })
+      if (variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
+      else if (variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
+      var tail = variant === 'epic' ? 780 : (variant === 'fire' ? 720 : 680);
+      var fxWait = jsFx && host
+        ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
         : waitMs(850);
       return fxWait;
     }).then(function () {
       if (host) {
         host.classList.remove(
-          'nova-sp-fx-live', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer', 'nova-sp-fx-turbo-js'
+          'nova-sp-fx-live', 'nova-sp-fx-js', 'nova-sp-fx-epic', 'nova-sp-fx-fire', 'nova-sp-fx-cheer', 'nova-sp-fx-turbo-js'
         );
-        if (typeof window.novaTurboTurtleResetSvg === 'function') {
-          try {
-            var svg = host.querySelector('svg');
-            window.novaTurboTurtleResetSvg(svg);
-          } catch (_) {}
-        }
+        resetHeroSpFx(host, heroId);
       }
       return waitMs(180);
     }).then(function () {

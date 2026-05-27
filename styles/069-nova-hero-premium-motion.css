@@ -11,6 +11,16 @@
   animation: none !important;
 }
 
+/* WAAPI kutlama — CSS çakışmasın */
+.nova-sp-hero-arena__host.nova-sp-fx-js,
+.nova-sp-hero-arena__host.nova-sp-fx-js *,
+.nova-sp-hero-arena__host.nova-sp-fx-js.nova-sp-fx-live,
+.nova-hero-mount--blaze-robot.nova-sp-fx-js,
+.nova-hero-mount--star-fairy.nova-sp-fx-js,
+.nova-hero-mount--turbo-turtle.nova-sp-fx-js{
+  animation: none !important;
+}
+
 /* ── Mağaza: rafine idle (parlama süpürgesi yok) ── */
 .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__sparks{
   opacity: 0 !important;

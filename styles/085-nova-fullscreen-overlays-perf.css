@@ -1,41 +1,40 @@
-/* Mağaza + Sezon Sıralaması — akıcı/iyi modda tam ekran (body zoom telafisi) */
+/* Mağaza + Sezon Sıralaması — akıcı mod: boyut aynı, alt kesik yok (counter-zoom YOK)
+   Body zoom (ör. 0.74) altında layout yüksekliği telafi edilir; görsel ölçek değişmez. */
 
-body.nova-perf-ultra:not(.nova-perf-hq-active) .nova-perf-fullscreen-scope,
-body.nova-perf-performance:not(.nova-perf-hq-active) .nova-perf-fullscreen-scope{
-  zoom: var(--nova-perf-counter-zoom, 1) !important;
+body.nova-perf-ultra:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
+body.nova-perf-ultra:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope{
+  /* zoom yok — içerik diğer ekranlarla aynı ölçekte kalır */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
+  height: calc(100svh / var(--nova-perf-scale, 1)) !important;
+  min-height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
+  min-height: calc(100svh / var(--nova-perf-scale, 1)) !important;
+  max-height: none !important;
+  overflow: hidden !important;
 }
 
 body.nova-perf-ultra:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
 body.nova-perf-performance:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope{
   position: fixed !important;
-  inset: 0 !important;
-  width: 100% !important;
-  min-height: 100dvh !important;
-  min-height: 100svh !important;
-  height: 100dvh !important;
-  height: 100svh !important;
-  max-height: none !important;
   align-items: stretch !important;
   justify-content: stretch !important;
   padding: 0 !important;
-  overflow: hidden !important;
 }
 
 body.nova-perf-ultra:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope,
 body.nova-perf-performance:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope{
   position: fixed !important;
-  inset: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  min-height: 100dvh !important;
-  min-height: 100svh !important;
-  height: 100dvh !important;
-  height: 100svh !important;
-  max-height: none !important;
-  overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)) !important;
 }
 
 body.nova-perf-ultra:not(.nova-perf-hq-active) .profile-change-content.nova-store-shell,
@@ -68,26 +67,16 @@ body.nova-perf-performance:not(.nova-perf-hq-active) .profile-change-content .pr
   #rankingPanel.nova-season-rank h2{
     margin-bottom: 8px !important;
     padding: 4px 4px 8px !important;
-    font-size: clamp(1.2rem, 5vw, 1.55rem) !important;
   }
 
   #rankingPanel.nova-season-rank .user-ranking-stats{
     padding: 10px 12px !important;
     margin-top: 4px !important;
-  }
-
-  #rankingPanel.nova-season-rank .stats-header{
-    font-size: 1.05em !important;
-    margin-bottom: 8px !important;
-  }
-
-  #rankingPanel.nova-season-rank .stats-content{
-    padding: 8px 10px !important;
+    flex-shrink: 0 !important;
   }
 
   #rankingPanel.nova-season-rank .ranking-back-button{
+    flex-shrink: 0 !important;
     margin-top: 6px !important;
-    padding: 11px 18px !important;
-    font-size: 1rem !important;
   }
 }
