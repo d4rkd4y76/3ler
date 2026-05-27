@@ -520,6 +520,16 @@
       existing.remove();
     }
     ensureLevelUi();
+    try {
+      var fx = document.getElementById('nh_level_roll_fx');
+      if (fx) {
+        fx.hidden = true;
+        fx.classList.remove('is-enter', 'is-win', 'is-fail');
+        fx.setAttribute('aria-hidden', 'true');
+        var t = fx.querySelector('.nh-level-roll-fx__txt');
+        if (t) t.textContent = 'Şans deneniyor…';
+      }
+    } catch (_) {}
     closePerksDrawer();
     var ov = document.getElementById('nova-hero-level-overlay');
     if (!ov) return;
@@ -627,8 +637,17 @@
     if (panel) panel.classList.add('is-rolling');
     if (arena) arena.classList.add('is-rolling');
     if (rollFx) {
+      rollFx.classList.remove('is-win', 'is-fail');
+      rollFx.classList.add('is-enter');
       rollFx.hidden = false;
       rollFx.setAttribute('aria-hidden', 'false');
+      try {
+        var t = rollFx.querySelector('.nh-level-roll-fx__txt');
+        if (t) t.textContent = 'Şans deneniyor…';
+      } catch (_) {}
+      requestAnimationFrame(function () {
+        try { rollFx.classList.remove('is-enter'); } catch (_) {}
+      });
     }
     await waitMs(1600);
 
@@ -668,7 +687,29 @@
 
     if (panel) panel.classList.remove('is-rolling');
     if (arena) arena.classList.remove('is-rolling');
-    if (rollFx) rollFx.hidden = true;
+    // Sonucu ortada göster (kısa süre), sonra kapat
+    if (rollFx) {
+      try {
+        var txt = rollFx.querySelector('.nh-level-roll-fx__txt');
+        if (success) {
+          rollFx.classList.add('is-win');
+          if (txt) txt.textContent = 'BAŞARILI!';
+        } else {
+          rollFx.classList.add('is-fail');
+          if (txt) txt.textContent = 'BAŞARISIZ';
+        }
+      } catch (_) {}
+      setTimeout(function () {
+        try {
+          rollFx.classList.remove('is-win', 'is-fail');
+          rollFx.hidden = true;
+          rollFx.setAttribute('aria-hidden', 'true');
+          var t2 = rollFx.querySelector('.nh-level-roll-fx__txt');
+          if (t2) t2.textContent = 'Şans deneniyor…';
+        } catch (_) {}
+      }, success ? 1100 : 900);
+    }
+    // no-op
 
     var fresh = await ref.once('value');
     user = fresh.val() || {};
