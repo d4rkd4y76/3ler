@@ -1,0 +1,93 @@
+/* Mağaza + Sezon Sıralaması — akıcı/iyi modda tam ekran (body zoom telafisi) */
+
+body.nova-perf-ultra:not(.nova-perf-hq-active) .nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) .nova-perf-fullscreen-scope{
+  zoom: var(--nova-perf-counter-zoom, 1) !important;
+}
+
+body.nova-perf-ultra:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope{
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
+  height: 100dvh !important;
+  height: 100svh !important;
+  max-height: none !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+body.nova-perf-ultra:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope{
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
+  height: 100dvh !important;
+  height: 100svh !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.nova-perf-ultra:not(.nova-perf-hq-active) .profile-change-content.nova-store-shell,
+body.nova-perf-performance:not(.nova-perf-hq-active) .profile-change-content.nova-store-shell{
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+body.nova-perf-ultra:not(.nova-perf-hq-active) .profile-change-content .nova-store-products,
+body.nova-perf-performance:not(.nova-perf-hq-active) .profile-change-content .nova-store-products,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .profile-change-content .profile-photos-container.nova-store-products,
+body.nova-perf-performance:not(.nova-perf-hq-active) .profile-change-content .profile-photos-container.nova-store-products{
+  max-height: none !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+@media (max-width: 768px){
+  #rankingPanel.nova-season-rank .ranking-table-container{
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 6px 0 4px !important;
+  }
+
+  #rankingPanel.nova-season-rank h2{
+    margin-bottom: 8px !important;
+    padding: 4px 4px 8px !important;
+    font-size: clamp(1.2rem, 5vw, 1.55rem) !important;
+  }
+
+  #rankingPanel.nova-season-rank .user-ranking-stats{
+    padding: 10px 12px !important;
+    margin-top: 4px !important;
+  }
+
+  #rankingPanel.nova-season-rank .stats-header{
+    font-size: 1.05em !important;
+    margin-bottom: 8px !important;
+  }
+
+  #rankingPanel.nova-season-rank .stats-content{
+    padding: 8px 10px !important;
+  }
+
+  #rankingPanel.nova-season-rank .ranking-back-button{
+    margin-top: 6px !important;
+    padding: 11px 18px !important;
+    font-size: 1rem !important;
+  }
+}

@@ -167,6 +167,12 @@
   border-radius: 22px !important;
   border: 1px solid rgba(255,255,255,.08) !important;
 }
+@media (max-width: 719px){
+  .profile-change-content .nova-store-products{
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+}
 @media (min-width: 640px){
   .profile-change-content .nova-store-products{
     grid-template-columns: repeat(auto-fill, minmax(198px, 1fr)) !important;
