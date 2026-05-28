@@ -1,0 +1,64 @@
+/* Parlak Pati — mağaza, ana ekran, seviye ekranı, arena */
+
+.nova-hero-store-card--simsek .nova-hero-preview{
+  background:
+    radial-gradient(1.5px 1.5px at 18% 22%, rgba(255, 255, 255, .78), transparent),
+    radial-gradient(1px 1px at 78% 18%, rgba(255, 255, 255, .55), transparent),
+    radial-gradient(1.5px 1.5px at 46% 12%, rgba(253, 224, 71, .95), transparent),
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(56, 189, 248, .26), transparent 72%),
+    radial-gradient(ellipse 52% 40% at 50% 0%, rgba(253, 224, 71, .14), transparent),
+    linear-gradient(180deg, #07051a 0%, #1e293b 45%, #0ea5e9 100%);
+}
+.nova-hero-store-card--simsek .nova-hero-preview::after{
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(253, 224, 71, .14), transparent 70%);
+  pointer-events: none;
+}
+.nova-hero-store-card--simsek .nova-hero-store-name{
+  color: #e0f2fe;
+}
+.nova-hero-store-card--simsek .nova-hero-svg{
+  filter: drop-shadow(0 8px 18px rgba(14, 165, 233, .25));
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--simsek{
+  background:
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(56, 189, 248, .30), transparent 72%),
+    linear-gradient(168deg, #07051a 0%, #1e293b 55%, #0ea5e9 100%);
+}
+.nova-store-detail-preview--hero .nova-store-preview--simsek{
+  background:
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(56, 189, 248, .30), transparent 72%),
+    linear-gradient(168deg, #07051a 0%, #1e293b 55%, #0ea5e9 100%);
+}
+.nh-level-hero-preview--simsek{
+  background: linear-gradient(180deg, #07051a, #1e293b 55%, #0ea5e9);
+}
+.nh-level-hero-tab__thumb--simsek{
+  background: linear-gradient(180deg, #07051a, #1e293b);
+}
+
+#main-screen .nova-main-hero-zone--simsek.is-visible .nova-main-hero-zone__pad{
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    rgba(253, 224, 71, 0.18),
+    rgba(56, 189, 248, 0.12) 52%,
+    transparent 70%);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.20);
+}
+
+.nova-hero-mount--simsek-sincap svg .nova-hero__orbits{
+  filter: drop-shadow(0 0 10px rgba(253, 224, 71, .18));
+}
+.nova-hero-mount--simsek-sincap svg .nova-hero__core-glow{
+  filter: blur(.2px) drop-shadow(0 0 18px rgba(56, 189, 248, .22));
+}
+.nova-hero-mount--simsek-sincap svg .nova-hero__crystal{
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, .95)) drop-shadow(0 0 14px rgba(56, 189, 248, .55));
+}
+

@@ -150,6 +150,7 @@
     if (heroId === 'turbo_turtle') return 'Kaplumbağa Turbo';
     if (heroId === 'mythic_wyvern') return 'Çılgın Kanat';
     if (heroId === 'bilge_hayalet') return 'Sihirli Buba';
+    if (heroId === 'simsek_sincap') return 'Parlak Pati';
     return heroId;
   }
 
@@ -277,16 +278,19 @@
       + '<h3 class="nh-level-arena__name" id="nh_level_hero_name">—</h3>'
       + '<div class="nh-level-hero-preview" id="nh_level_hero_preview"></div>'
       + '<div class="nh-level-arena__stars" id="nh_level_stars"></div>'
+      + '<section class="nh-level-stats nh-level-stats--arena">'
+      + '<div class="nh-level-stat" id="nh_level_cost"></div>'
+      + '<div class="nh-level-stat nh-level-stat--chance" id="nh_level_chance"></div>'
+      + '</section>'
+      + '<div class="nh-level-arena__upgrade">'
+      + '<button type="button" class="nh-level-btn nh-level-btn--roll" id="nh_level_roll" disabled>⬆️ Seviye Yükselt</button>'
+      + '</div>'
+      + '<div class="nh-level-banner" id="nh_level_result" hidden role="status"></div>'
       + '<div class="nh-level-roll-fx" id="nh_level_roll_fx" hidden aria-hidden="true">'
       + '<span class="nh-level-roll-fx__beams" aria-hidden="true"></span>'
       + '<span class="nh-level-roll-fx__scan" aria-hidden="true"></span>'
       + '<span class="nh-level-roll-fx__sparks" aria-hidden="true"></span>'
       + '<span class="nh-level-roll-fx__txt">Şans deneniyor…</span></div>'
-      + '</section>'
-      + '<div class="nh-level-banner" id="nh_level_result" hidden role="status"></div>'
-      + '<section class="nh-level-stats">'
-      + '<div class="nh-level-stat" id="nh_level_cost"></div>'
-      + '<div class="nh-level-stat nh-level-stat--chance" id="nh_level_chance"></div>'
       + '</section>'
       + '<button type="button" class="nh-level-perks-toggle" id="nh_level_perks_toggle" aria-expanded="false">'
       + '<span class="nh-level-perks-toggle__label">⚡ Kahraman güçlerini incele</span>'
@@ -305,7 +309,6 @@
       + '</section>'
       + '</div>'
       + '<div class="nh-level-actions">'
-      + '<button type="button" class="nh-level-btn nh-level-btn--roll" id="nh_level_roll" disabled>⬆️ Seviye Yükselt</button>'
       + '<button type="button" class="nh-level-btn nh-level-btn--ghost" id="nh_level_done">Kapat</button>'
       + '</div>'
       + '<div class="nh-level-victory" id="nh_level_victory" hidden aria-hidden="true"></div>'
@@ -575,7 +578,7 @@
 
   async function openLevelOverlay() {
     var existing = document.getElementById('nova-hero-level-overlay');
-    if (existing && !document.querySelector('.nh-level-tabs')) {
+    if (existing && (!document.querySelector('.nh-level-tabs') || !document.querySelector('.nh-level-arena__upgrade'))) {
       existing.remove();
     }
     ensureLevelUi();

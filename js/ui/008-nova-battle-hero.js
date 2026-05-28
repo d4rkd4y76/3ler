@@ -150,6 +150,35 @@
         ]
       }
     }
+    ,
+    simsek_sincap: {
+      id: 'simsek_sincap',
+      templateKey: 'NOVA_SIMSEK_SINCAP_SVG_TEMPLATE',
+      theme: 'simsek',
+      name: 'Parlak Pati',
+      desc: 'Parlak Pati patileriyle parlar! Doğru cevaplarda ışıl ışıl kutlama yapar!',
+      price: 9400,
+      order: 6,
+      equipEmoji: '🐾',
+      lines: {
+        cheer: [
+          { msg: 'Parladın! Harika bildin!', badge: '✨ PARLAK' },
+          { msg: 'Süper! Patilerin ışıldı!', badge: '✨ PARLAK' },
+          { msg: 'Bravo! Tam isabet!', badge: '✨ PARLAK' },
+          { msg: 'Aferin! Çok iyi gidiyorsun!', badge: '✨ PARLAK' }
+        ],
+        fire: [
+          { msg: 'IŞIL IŞIL! Müthiş cevap!', badge: '💫 GÜÇ' },
+          { msg: 'Parlak vuruş! Devam!', badge: '💫 GÜÇ' },
+          { msg: 'Çok güçlü! Harikasın!', badge: '💫 GÜÇ' }
+        ],
+        epic: [
+          { msg: 'EFSANE! Patilerin parlıyor!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Sen tam bir şampiyonsun!', badge: '👑 EFSANE' },
+          { msg: 'SÜPER! Bugün inanılmazsın!', badge: '👑 EFSANE' }
+        ]
+      }
+    }
   };
 
   var fxBusy = false;
@@ -373,7 +402,7 @@
     if (!host) return null;
     var id = heroId || getEquippedHeroId();
     host.innerHTML = buildHeroSvgHtml(id);
-    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet');
+    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet', 'nova-hero-mount--simsek-sincap');
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
     var svg = host.querySelector('svg');
     if (id === 'turbo_turtle' && typeof window.novaTurboTurtlePlayStoreIdle === 'function') {
@@ -389,6 +418,11 @@
     if (id === 'bilge_hayalet' && typeof window.novaBilgeHayaletPlayIdle === 'function') {
       requestAnimationFrame(function () {
         try { window.novaBilgeHayaletPlayIdle(host); } catch (_) {}
+      });
+    }
+    if (id === 'simsek_sincap' && typeof window.novaSimsekSincapPlayIdle === 'function') {
+      requestAnimationFrame(function () {
+        try { window.novaSimsekSincapPlayIdle(host); } catch (_) {}
       });
     }
     return svg;
@@ -481,7 +515,9 @@
     } catch (_) { perf = false; }
     var count = payload.variant === 'epic' ? 18 : (payload.variant === 'fire' ? 12 : 8);
     if (!perf) count = payload.variant === 'epic' ? 22 : (payload.variant === 'fire' ? 14 : 10);
-    var type = payload.theme === 'turbo' ? 'speed' : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember');
+    var type = payload.theme === 'turbo'
+      ? 'speed'
+      : (payload.theme === 'simsek' ? 'spark' : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember'));
     for (var i = 0; i < count; i++){
       var p = document.createElement('i');
       p.className = 'nova-sp-fx-particle p-' + type;
@@ -523,7 +559,7 @@
   }
 
   function usesJsSpFx(heroId) {
-    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet';
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap';
   }
 
   function pickFxRoutine(variant) {
@@ -555,6 +591,9 @@
     if (heroId === 'bilge_hayalet' && typeof window.novaBilgeHayaletPlaySpFx === 'function') {
       return window.novaBilgeHayaletPlaySpFx(host, variant, routine);
     }
+    if (heroId === 'simsek_sincap' && typeof window.novaSimsekSincapPlaySpFx === 'function') {
+      return window.novaSimsekSincapPlaySpFx(host, variant, routine);
+    }
     host.classList.remove('nova-sp-fx-js');
     return waitMs(850);
   }
@@ -574,6 +613,8 @@
         window.novaMythicWyvernResetSvg(svg);
       } else if (heroId === 'bilge_hayalet' && typeof window.novaBilgeHayaletResetSvg === 'function') {
         window.novaBilgeHayaletResetSvg(svg);
+      } else if (heroId === 'simsek_sincap' && typeof window.novaSimsekSincapResetSvg === 'function') {
+        window.novaSimsekSincapResetSvg(svg);
       }
     } catch (_) {}
   }
