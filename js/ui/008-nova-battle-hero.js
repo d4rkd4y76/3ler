@@ -98,11 +98,11 @@
       id: 'mythic_wyvern',
       templateKey: 'NOVA_MYTHIC_WYVERN_SVG_TEMPLATE',
       theme: 'mythic',
-      name: 'Gök Ejderi',
-      desc: 'Efsunlu bir gök ejderi. Mağaza ve ana ekranda süzülür; doğru cevaplarda destansı, sinematik kutlamalar yapar!',
+      name: 'Çılgın Kanat',
+      desc: 'Gökyüzünde süzülen süper hızlı kuş! Doğru cevaplarda renkli kutlamalar yapar!',
       price: 9900,
       order: 4,
-      equipEmoji: '🐉',
+      equipEmoji: '🪽',
       lines: {
         cheer: [
           { msg: 'Harika! Efsun yükseldi — devam!', badge: '✓ DOĞRU' },
@@ -110,14 +110,14 @@
           { msg: 'Mükemmel! Bir adım daha güçlendin!', badge: '✓ DOĞRU' }
         ],
         fire: [
-          { msg: 'GÜÇ DALGASI! Çok sağlam vuruş!', badge: '⚡ GÜÇ' },
-          { msg: 'Efsun alevlendi — müthişsin!', badge: '⚡ GÜÇ' },
-          { msg: 'Vayvern uyandı! Tam isabet!', badge: '⚡ GÜÇ' }
+          { msg: 'SÜPER GÜÇ! Harika vuruş!', badge: '⚡ SÜPER' },
+          { msg: 'Çok iyi! Hızın arttı!', badge: '⚡ SÜPER' },
+          { msg: 'Müthiş! Tam isabet!', badge: '⚡ SÜPER' }
         ],
         epic: [
-          { msg: 'DESTANSI! Efsun zirvesi!', badge: '👑 DESTAN' },
-          { msg: 'MUHTEŞEM! Gökyüzü seni alkışlıyor!', badge: '👑 DESTAN' },
-          { msg: 'EFSANE! Bugün seviye atladın!', badge: '👑 DESTAN' }
+          { msg: 'EFSANE! Kanatların uçuyor!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Gökyüzü senin!', badge: '👑 EFSANE' },
+          { msg: 'SÜPER! Bugün harikasın!', badge: '👑 EFSANE' }
         ]
       }
     }
@@ -126,27 +126,27 @@
       id: 'bilge_hayalet',
       templateKey: 'NOVA_BILGE_HAYALET_SVG_TEMPLATE',
       theme: 'bilge',
-      name: 'Bilge Hayalet Momo',
-      desc: 'Kadim rünleriyle sana akıl veren bilge hayalet. Doğru cevaplarda “bilgelik büyüsü” yapar!',
+      name: 'Sihirli Buba',
+      desc: 'Sihirli Buba sana “aferin!” der. Doğru cevaplarda ışık saçıp kutlama yapar!',
       price: 8800,
       order: 5,
       equipEmoji: '👻',
       lines: {
         cheer: [
-          { msg: 'Harika! Bilgeliğin parladı — devam!', badge: '📘 BİLGE' },
-          { msg: 'Doğru! Zihnin ışıl ışıl çalışıyor!', badge: '📘 BİLGE' },
-          { msg: 'Mükemmel! Bilge hayalet onayladı!', badge: '📘 BİLGE' },
-          { msg: 'Çok iyi! Bu cevap gerçekten ustaca!', badge: '📘 BİLGE' }
+          { msg: 'Aferin! Harika bildin!', badge: '✨ AFERİN' },
+          { msg: 'Doğru! Çok zekisin!', badge: '✨ AFERİN' },
+          { msg: 'Süper! Böyle devam!', badge: '✨ AFERİN' },
+          { msg: 'Bravo! Tam isabet!', badge: '✨ AFERİN' }
         ],
         fire: [
-          { msg: 'RÜN PATLAMASI! Zeka gücün yükseldi!', badge: '🧿 RÜN' },
-          { msg: 'Bilgelik dalgası! Tam isabet!', badge: '🧿 RÜN' },
-          { msg: 'Harika! Akıl büyüsü çalıştı!', badge: '🧿 RÜN' }
+          { msg: 'IŞIK PATLAMASI! Çok güçlü cevap!', badge: '💡 SÜPER' },
+          { msg: 'Parıldadın! Harikasın!', badge: '💡 SÜPER' },
+          { msg: 'Müthiş! Devam et!', badge: '💡 SÜPER' }
         ],
         epic: [
-          { msg: 'DESTANSI BİLGELİK! Bugün sen efsanesin!', badge: '👑 BİLGE' },
-          { msg: 'MUHTEŞEM! Rünler senin için döndü!', badge: '👑 BİLGE' },
-          { msg: 'EFSANE! Zihnin zirvede!', badge: '👑 BİLGE' }
+          { msg: 'EFSANE! Buba seninle gurur duyuyor!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Harika gidiyorsun!', badge: '👑 EFSANE' },
+          { msg: 'ŞAMPİYON! Bugün çok iyisin!', badge: '👑 EFSANE' }
         ]
       }
     }
@@ -475,7 +475,12 @@
     clearArenaFx(arena);
     fx.classList.add('is-on', 'fx-theme-' + payload.theme, 'fx-variant-' + payload.variant);
 
-    var count = payload.variant === 'epic' ? 26 : (payload.variant === 'fire' ? 18 : 12);
+    var perf = false;
+    try {
+      perf = document.body.classList.contains('nova-perf-performance') || document.body.classList.contains('nova-perf-ultra');
+    } catch (_) { perf = false; }
+    var count = payload.variant === 'epic' ? 18 : (payload.variant === 'fire' ? 12 : 8);
+    if (!perf) count = payload.variant === 'epic' ? 22 : (payload.variant === 'fire' ? 14 : 10);
     var type = payload.theme === 'turbo' ? 'speed' : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember');
     for (var i = 0; i < count; i++){
       var p = document.createElement('i');
@@ -531,7 +536,8 @@
     host.classList.add('nova-sp-fx-js');
     try{
       /* Daha yumuşak ve okunabilir tempo */
-      window.__novaHeroFxSlowFactor = (variant === 'epic') ? 1.55 : ((variant === 'fire') ? 1.35 : 1.22);
+      /* Daha akıcı: gereksiz uzatma yok */
+      window.__novaHeroFxSlowFactor = (variant === 'epic') ? 1.12 : ((variant === 'fire') ? 1.08 : 1.04);
     }catch(_){}
     var routine = pickFxRoutine(variant);
     if (heroId === 'turbo_turtle' && typeof window.novaTurboTurtlePlaySpFx === 'function') {
@@ -694,8 +700,8 @@
       spawnArenaFx(arena, variant);
       if (variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
       else if (variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
-      /* Okuma süresi + epik hissi: panel daha uzun kalsın */
-      var tail = variant === 'epic' ? 1650 : (variant === 'fire' ? 1350 : 1150);
+      /* JS FX kendi süresini döndürür; ekstra bekleme = donma hissi */
+      var tail = variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180);
       var fxWait = jsFx && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
         : waitMs(850);
@@ -708,11 +714,11 @@
         resetHeroSpFx(host, heroId);
       }
       try{ window.__novaHeroFxSlowFactor = 1; }catch(_){}
-      return waitMs(320);
+      return waitMs(180);
     }).then(function () {
       arena.classList.remove('is-centered', 'is-caption-show', 'is-slamming', 'is-epic');
       arena.classList.add('is-exiting');
-      return waitMs(560);
+      return waitMs(360);
     });
   }
 

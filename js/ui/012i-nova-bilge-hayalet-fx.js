@@ -1,4 +1,4 @@
-/* Bilge Hayalet — premium idle + tek kişilik FX */
+/* Sihirli Buba — premium idle + tek kişilik FX (akıcı/performans) */
 (function () {
   var C = window.novaHeroSpFxCore;
   if (!C) return;
@@ -66,7 +66,7 @@
     ], { duration: epic ? 1900 : 1400, delay: delay, easing: 'ease-in-out' });
   }
 
-  function runeSurge(steps, p, delay) {
+  function ringSurge(steps, p, delay) {
     if (!p.runes) return;
     C.pushAnim(steps, p.runes, [
       { transform: 'rotate(0deg) scale(0.9)', opacity: 0.2 },
@@ -78,7 +78,7 @@
 
   function epic0(svg, host, steps) {
     var p = parts(svg);
-    runeSurge(steps, p, 240);
+    ringSurge(steps, p, 240);
     if (p.glow) {
       p.glow.style.opacity = '1';
       C.pushAnim(steps, p.glow, [
@@ -96,26 +96,26 @@
   function epic1(svg, host, steps) {
     var p = parts(svg);
     C.pushAnim(steps, host, [{ transform: 'none' }, { transform: 'translateY(-24px) scale(1.06)' }, { transform: 'translateY(-10px) scale(1.03)' }, { transform: 'none' }], { duration: 1900, delay: 240, easing: 'ease-in-out' });
-    runeSurge(steps, p, 320);
+    ringSurge(steps, p, 320);
     beamCast(steps, p, 620, true);
     if (p.scroll) C.pushAnim(steps, p.scroll, [{ transform: 'none' }, { transform: 'translateY(-10px) rotate(-4deg)' }, { transform: 'translateY(-6px) rotate(2deg)' }, { transform: 'none' }], { duration: 1500, delay: 520, easing: 'ease-in-out' });
   }
 
   function epic2(svg, host, steps) {
     var p = parts(svg);
-    runeSurge(steps, p, 220);
+    ringSurge(steps, p, 220);
     if (p.body) C.pushAnim(steps, p.body, [{ transform: 'none' }, { transform: 'translateY(-16px) scale(1.04)' }, { transform: 'translateY(-8px) scale(1.02)' }, { transform: 'none' }], { duration: 1750, delay: 220, easing: 'ease-in-out' });
     beamCast(steps, p, 640, true);
     sparkWisdom(steps, p, 820);
   }
 
   function cheer0(svg, host, steps) { sparkWisdom(steps, parts(svg), 320); }
-  function cheer1(svg, host, steps) { runeSurge(steps, parts(svg), 240); }
+  function cheer1(svg, host, steps) { ringSurge(steps, parts(svg), 240); }
   function cheer2(svg, host, steps) { var p = parts(svg); beamCast(steps, p, 380, false); }
 
-  function fire0(svg, host, steps, epic) { var p = parts(svg); runeSurge(steps, p, 240); beamCast(steps, p, 420, epic); }
+  function fire0(svg, host, steps, epic) { var p = parts(svg); ringSurge(steps, p, 240); beamCast(steps, p, 420, epic); }
   function fire1(svg, host, steps, epic) { var p = parts(svg); beamCast(steps, p, 320, epic); sparkWisdom(steps, p, 520); }
-  function fire2(svg, host, steps, epic) { var p = parts(svg); runeSurge(steps, p, 240); beamCast(steps, p, 560, epic); }
+  function fire2(svg, host, steps, epic) { var p = parts(svg); ringSurge(steps, p, 240); beamCast(steps, p, 560, epic); }
 
   var CHEER = [cheer0, cheer1, cheer2];
   var FIRE = [fire0, fire1, fire2];
@@ -129,9 +129,10 @@
     C.animHostPop(steps, host);
     var r = typeof routine === 'number' ? (routine % 3) : 0;
 
-    if (variant === 'epic') { EPIC[r](svg, host, steps); return C.runAll(steps).then(function () { return waitMs(2600); }); }
-    if (variant === 'fire') { FIRE[r](svg, host, steps, false); return C.runAll(steps).then(function () { return waitMs(1800); }); }
-    CHEER[r](svg, host, steps); return C.runAll(steps).then(function () { return waitMs(1150); });
+    /* Süreleri kısalttık: gereksiz uzun kalmasın, donma hissi olmasın */
+    if (variant === 'epic') { EPIC[r](svg, host, steps); return C.runAll(steps).then(function () { return waitMs(1350); }); }
+    if (variant === 'fire') { FIRE[r](svg, host, steps, false); return C.runAll(steps).then(function () { return waitMs(950); }); }
+    CHEER[r](svg, host, steps); return C.runAll(steps).then(function () { return waitMs(720); });
   }
 
   function resetSvg(svg) { C.resetSvg(svg, OPACITY_RESET); if (svg) svg.__bgIdleOn = false; }

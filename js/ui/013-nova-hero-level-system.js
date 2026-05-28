@@ -148,8 +148,8 @@
     if (heroId === 'blaze_robot') return 'Alev Bot';
     if (heroId === 'star_fairy') return 'Yıldız Perisi';
     if (heroId === 'turbo_turtle') return 'Kaplumbağa Turbo';
-    if (heroId === 'mythic_wyvern') return 'Gök Ejderi';
-    if (heroId === 'bilge_hayalet') return 'Bilge Hayalet';
+    if (heroId === 'mythic_wyvern') return 'Çılgın Kanat';
+    if (heroId === 'bilge_hayalet') return 'Sihirli Buba';
     return heroId;
   }
 

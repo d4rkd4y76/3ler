@@ -185,16 +185,10 @@
     C.animHostPop(steps, host);
     var r = typeof routine === 'number' ? (routine % 3) : 0;
 
-    if (variant === 'epic') {
-      EPIC[r](svg, host, steps);
-      return C.runAll(steps).then(function () { return waitMs(2650); });
-    }
-    if (variant === 'fire') {
-      FIRE[r](svg, host, steps, false);
-      return C.runAll(steps).then(function () { return waitMs(1800); });
-    }
-    CHEER[r](svg, host, steps);
-    return C.runAll(steps).then(function () { return waitMs(1150); });
+    /* Süreleri kısalttık: daha akıcı */
+    if (variant === 'epic') { EPIC[r](svg, host, steps); return C.runAll(steps).then(function () { return waitMs(1400); }); }
+    if (variant === 'fire') { FIRE[r](svg, host, steps, false); return C.runAll(steps).then(function () { return waitMs(980); }); }
+    CHEER[r](svg, host, steps); return C.runAll(steps).then(function () { return waitMs(740); });
   }
 
   function resetSvg(svg) {

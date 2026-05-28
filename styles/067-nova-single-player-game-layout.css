@@ -199,15 +199,24 @@ body.nova-sp-game-open{
   justify-content: center;
   transform: translateY(110%) scale(.88);
   opacity: 0;
-  transition: transform .48s cubic-bezier(.22, 1, .36, 1), opacity .38s ease;
+  transition: transform .42s cubic-bezier(.22, 1, .36, 1), opacity .32s ease;
+  will-change: transform, opacity;
 }
 .nova-sp-hero-arena.is-centered .nova-sp-hero-arena__host{
   transform: translateY(0) scale(1);
   opacity: 1;
 }
 .nova-sp-hero-arena.is-exiting .nova-sp-hero-arena__host{
-  transform: translateY(115%) scale(.8);
+  /* Daha dinamik çıkış: hafif yana kay + hızlan */
+  transform: translateY(120%) translateX(18px) rotate(3deg) scale(.78);
   opacity: 0;
+}
+
+/* Çıkış anında panel de daha canlı kapansın */
+.nova-sp-hero-arena.is-exiting .nova-sp-hero-speech{
+  opacity: 0;
+  transform: translateY(10px) scale(.94);
+  transition: opacity .22s ease, transform .26s cubic-bezier(.22, 1.1, .36, 1);
 }
 .nova-sp-hero-arena__host .nova-hero-svg{
   width: min(150px, 44vw);

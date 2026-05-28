@@ -1,21 +1,21 @@
-/* Bilge Hayalet — premium vektör (aura + rune halo + scroll) */
+/* Sihirli Buba — premium vektör (aura + yıldız halkası + kitap) */
 window.NOVA_BILGE_HAYALET_SVG_TEMPLATE =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" fill="none" aria-hidden="true">'
   + '<defs>'
   + '<linearGradient id="bgBody__UID__" x1="0%" y1="0%" x2="0%" y2="100%">'
-  + '<stop offset="0%" stop-color="#d1fae5"/><stop offset="35%" stop-color="#5eead4"/><stop offset="70%" stop-color="#14b8a6"/><stop offset="100%" stop-color="#0f766e"/>'
+  + '<stop offset="0%" stop-color="#f5f3ff"/><stop offset="35%" stop-color="#c4b5fd"/><stop offset="70%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#1d4ed8"/>'
   + '</linearGradient>'
   + '<linearGradient id="bgEdge__UID__" x1="0%" y1="0%" x2="100%" y2="0%">'
-  + '<stop offset="0%" stop-color="#99f6e4"/><stop offset="55%" stop-color="#34d399"/><stop offset="100%" stop-color="#22d3ee"/>'
+  + '<stop offset="0%" stop-color="#e9d5ff"/><stop offset="55%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#60a5fa"/>'
   + '</linearGradient>'
   + '<radialGradient id="bgAura__UID__" cx="50%" cy="42%" r="62%">'
-  + '<stop offset="0%" stop-color="#e0f2fe" stop-opacity=".75"/><stop offset="38%" stop-color="#5eead4" stop-opacity=".38"/><stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>'
+  + '<stop offset="0%" stop-color="#e0f2fe" stop-opacity=".75"/><stop offset="38%" stop-color="#c4b5fd" stop-opacity=".36"/><stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>'
   + '</radialGradient>'
-  + '<linearGradient id="bgRune__UID__" x1="0%" y1="0%" x2="100%" y2="0%">'
-  + '<stop offset="0%" stop-color="#fffbeb"/><stop offset="45%" stop-color="#fde047"/><stop offset="100%" stop-color="#22d3ee"/>'
+  + '<linearGradient id="bgRing__UID__" x1="0%" y1="0%" x2="100%" y2="0%">'
+  + '<stop offset="0%" stop-color="#fffbeb"/><stop offset="45%" stop-color="#fde047"/><stop offset="100%" stop-color="#60a5fa"/>'
   + '</linearGradient>'
-  + '<linearGradient id="bgScroll__UID__" x1="0%" y1="0%" x2="0%" y2="100%">'
-  + '<stop offset="0%" stop-color="#fff7ed"/><stop offset="55%" stop-color="#fde68a"/><stop offset="100%" stop-color="#f59e0b"/>'
+  + '<linearGradient id="bgBook__UID__" x1="0%" y1="0%" x2="0%" y2="100%">'
+  + '<stop offset="0%" stop-color="#fffbeb"/><stop offset="55%" stop-color="#fde047"/><stop offset="100%" stop-color="#f59e0b"/>'
   + '</linearGradient>'
   + '<filter id="bgShadow__UID__" x="-55%" y="-25%" width="210%" height="210%">'
   + '<feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#020617" flood-opacity=".55"/>'
@@ -32,13 +32,13 @@ window.NOVA_BILGE_HAYALET_SVG_TEMPLATE =
   + '<circle class="nova-hero__core-glow" cx="120" cy="178" r="72" fill="url(#bgAura__UID__)" opacity=".22"/>'
   + '</g>'
 
-  /* Rune halo (rotate) */
+  /* Star halo (rotate) */
   + '<g class="nova-hero__runes" filter="url(#bgGlow__UID__)" style="transform-origin:120px 118px">'
-  + '<circle class="nova-hero__rune-ring" cx="120" cy="118" r="52" stroke="url(#bgRune__UID__)" stroke-width="2" opacity=".32" stroke-dasharray="6 10"/>'
+  + '<circle class="nova-hero__rune-ring" cx="120" cy="118" r="52" stroke="url(#bgRing__UID__)" stroke-width="2" opacity=".32" stroke-dasharray="6 10"/>'
   + '<circle class="nova-hero__rune-ring2" cx="120" cy="118" r="38" stroke="#e0f2fe" stroke-width="1.6" opacity=".18" stroke-dasharray="2 8"/>'
   + '<circle class="nova-hero__rune-dot" cx="120" cy="66" r="4" fill="#fde047" opacity=".75"/>'
-  + '<circle class="nova-hero__rune-dot" cx="82" cy="92" r="3" fill="#22d3ee" opacity=".55"/>'
-  + '<circle class="nova-hero__rune-dot" cx="158" cy="92" r="3" fill="#99f6e4" opacity=".55"/>'
+  + '<circle class="nova-hero__rune-dot" cx="82" cy="92" r="3" fill="#60a5fa" opacity=".55"/>'
+  + '<circle class="nova-hero__rune-dot" cx="158" cy="92" r="3" fill="#c4b5fd" opacity=".55"/>'
   + '</g>'
 
   /* Body */
@@ -69,14 +69,13 @@ window.NOVA_BILGE_HAYALET_SVG_TEMPLATE =
   + '<path d="M170 186 C188 186 200 194 206 206" stroke="#e0f2fe" stroke-width="4" opacity=".22" stroke-linecap="round"/>'
   + '</g>'
 
-  /* Scroll (wisdom prop) */
+  /* Book (kid-friendly prop) */
   + '<g class="nova-hero__scroll" filter="url(#bgShadow__UID__)" style="transform-origin:120px 232px">'
-  + '<rect x="84" y="218" width="72" height="30" rx="12" fill="url(#bgScroll__UID__)" opacity=".98"/>'
-  + '<rect x="90" y="224" width="60" height="18" rx="9" fill="#fff" opacity=".22"/>'
-  + '<circle cx="86" cy="233" r="10" fill="#92400e" opacity=".55"/>'
-  + '<circle cx="154" cy="233" r="10" fill="#92400e" opacity=".55"/>'
-  + '<path d="M102 234 H138" stroke="#7c2d12" stroke-width="3" opacity=".35" stroke-linecap="round"/>'
-  + '<path d="M104 228 H136" stroke="#7c2d12" stroke-width="2.4" opacity=".22" stroke-linecap="round"/>'
+  + '<rect x="82" y="216" width="76" height="34" rx="12" fill="url(#bgBook__UID__)" opacity=".98"/>'
+  + '<rect x="90" y="224" width="60" height="18" rx="9" fill="#fff" opacity=".18"/>'
+  + '<rect x="86" y="220" width="30" height="26" rx="9" fill="#1e293b" opacity=".25"/>'
+  + '<rect x="124" y="220" width="30" height="26" rx="9" fill="#1e293b" opacity=".25"/>'
+  + '<path d="M104 234 H136" stroke="#7c2d12" stroke-width="3" opacity=".28" stroke-linecap="round"/>'
   + '</g>'
 
   /* Particles */
@@ -86,11 +85,11 @@ window.NOVA_BILGE_HAYALET_SVG_TEMPLATE =
   + '<circle cx="34" cy="170" r="2.8" fill="#a7f3d0"/><circle cx="166" cy="116" r="2.2" fill="#fffbeb"/>'
   + '</g>'
 
-  /* Wisdom beam (shown in FX) */
+  /* Light beam (shown in FX) */
   + '<g class="nova-hero__beam" opacity="0">'
-  + '<path class="nova-hero__beam-c" d="M120 168 C112 204 114 256 120 332 C126 256 128 204 120 168 Z" fill="url(#bgRune__UID__)" opacity=".55"/>'
-  + '<path class="nova-hero__beam-l" d="M94 178 C74 216 70 264 66 330 C86 270 92 214 94 178 Z" fill="url(#bgRune__UID__)" opacity=".35"/>'
-  + '<path class="nova-hero__beam-r" d="M146 178 C166 216 170 264 174 330 C154 270 148 214 146 178 Z" fill="url(#bgRune__UID__)" opacity=".35"/>'
+  + '<path class="nova-hero__beam-c" d="M120 168 C112 204 114 256 120 332 C126 256 128 204 120 168 Z" fill="url(#bgRing__UID__)" opacity=".55"/>'
+  + '<path class="nova-hero__beam-l" d="M94 178 C74 216 70 264 66 330 C86 270 92 214 94 178 Z" fill="url(#bgRing__UID__)" opacity=".35"/>'
+  + '<path class="nova-hero__beam-r" d="M146 178 C166 216 170 264 174 330 C154 270 148 214 146 178 Z" fill="url(#bgRing__UID__)" opacity=".35"/>'
   + '</g>'
 
   + '</svg>';
