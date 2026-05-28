@@ -6,7 +6,49 @@
     }[m]));
   }
   function cleanupExplanation(s){
-    return String(s||'').replace(/^\s*Açıklama[:：]\s*/i,'').trim();
+    s = String(s || '');
+    // Remove repeated headers/labels coming from UI
+    s = s.replace(/^\s*AÇIKLAMA\s*/ig, '');
+    s = s.replace(/^\s*Açıklama[:：]?\s*/i, '');
+    // Remove common summary labels accidentally captured
+    s = s.replace(/^\s*(✅\s*)?DOĞRU\s*$/gim, '');
+    s = s.replace(/^\s*(❌\s*)?YANLIŞ\s*$/gim, '');
+    s = s.replace(/^\s*SENİN\s+CEVABIN\s*$/gim, '');
+    s = s.replace(/^\s*DOĞRU\s+CEVAP\s*$/gim, '');
+    s = s.replace(/^\s*YANLIŞ\s+CEVAP\s*$/gim, '');
+    // If UI included "Doğru cevap: ..." lines, strip those too
+    s = s.replace(/^\s*Doğru\s+cevap\s*:.*$/gim, '');
+    s = s.replace(/^\s*Senin\s+cevabın\s*:.*$/gim, '');
+    // Collapse extra blank lines
+    s = s.replace(/\n{3,}/g, '\n\n');
+    return s.trim();
+  }
+
+  function sanitizeExplanation(raw, chosen, correct){
+    var s = cleanupExplanation(raw || '');
+    if (!s) return '';
+    var c = String(chosen || '').trim();
+    var t = String(correct || '').trim();
+
+    // Some UIs include chosen/correct as plain lines without labels.
+    // Remove leading lines that exactly match chosen/correct.
+    var lines = s.split(/\r?\n/).map(function (l) { return String(l || '').trim(); });
+    // drop empty at start
+    while (lines.length && !lines[0]) lines.shift();
+    // remove up to 4 leading lines matching chosen/correct (order can vary)
+    for (var i = 0; i < 4 && lines.length; i++){
+      var head = lines[0];
+      if (!head) { lines.shift(); i--; continue; }
+      if (c && head === c) { lines.shift(); i--; continue; }
+      if (t && head === t) { lines.shift(); i--; continue; }
+      // Also handle prefixed bullets/markers
+      if (c && head.replace(/^[-•\u2022]\s+/, '') === c) { lines.shift(); i--; continue; }
+      if (t && head.replace(/^[-•\u2022]\s+/, '') === t) { lines.shift(); i--; continue; }
+      break;
+    }
+    // drop empties again
+    while (lines.length && !lines[0]) lines.shift();
+    return lines.join('\n').trim();
   }
   // Robust question finder
   function findQuestionText(){
@@ -159,11 +201,26 @@ function isInsideOptions(node){
       items.slice(0,8).forEach((it,idx)=>{
         const div=document.createElement('div'); div.className='nz-item';
         div.innerHTML=`
-          <div class="nz-q">${idx+1}. ${escapeHtml(it.q)}</div>
-          ${it.infoImage ? `<div class="nz-info"><img class="nz-info-img" src="${escapeHtml(it.infoImage)}" alt="Öncül"/></div>` : (it.infoText ? `<div class="nz-info nz-info-text">${escapeHtml(it.infoText)}</div>` : ``)}
-          <div class="nz-pair"><span class="nz-pill nz-you">Senin Cevabın</span><span>${escapeHtml(it.chosen||'-')}</span></div>
-          <div class="nz-pair"><span class="nz-pill nz-true">Doğru Cevap</span><span>${escapeHtml(it.correct||'-')}</span></div>
-          ${it.explanation?`<div class="nz-exp">${escapeHtml(it.explanation)}</div>`:''}
+          ${it.infoImage ? `<div class="nz-info"><div class="nz-info-label">Öncül</div><img class="nz-info-img" src="${escapeHtml(it.infoImage)}" alt="Öncül"/></div>` : (it.infoText ? `<div class="nz-info nz-info-text"><div class="nz-info-label">Öncül</div><div class="nz-info-body">${escapeHtml(it.infoText)}</div></div>` : ``)}
+          <div class="nz-head">
+            <span class="nz-qid">${idx+1}</span>
+            <div class="nz-head-text">
+              <div class="nz-head-title">Yanlış soru</div>
+              <div class="nz-q">${escapeHtml(it.q)}</div>
+            </div>
+            <span class="nz-badge">❌ YANLIŞ</span>
+          </div>
+          <div class="nz-rows">
+            <div class="nz-row nz-row--chosen">
+              <span class="nz-pill nz-you">Senin cevabın</span>
+              <span class="nz-val">${escapeHtml(it.chosen||'-')}</span>
+            </div>
+            <div class="nz-row nz-row--correct">
+              <span class="nz-pill nz-true">Doğru cevap</span>
+              <span class="nz-val">${escapeHtml(it.correct||'-')}</span>
+            </div>
+          </div>
+          ${it.explanation?`<div class="nz-exp"><div class="nz-exp-body">${escapeHtml(sanitizeExplanation(it.explanation, it.chosen, it.correct))}</div></div>`:''}
         `;
         list.appendChild(div);
       });
@@ -187,11 +244,26 @@ function isInsideOptions(node){
       state.items.forEach((it,idx)=>{
         const div=document.createElement('div'); div.className='nz-item';
         div.innerHTML=`
-          <div class="nz-q">${idx+1}. ${escapeHtml(it.q)}</div>
-          ${it.infoImage ? `<div class="nz-info"><img class="nz-info-img" src="${escapeHtml(it.infoImage)}" alt="Öncül"/></div>` : (it.infoText ? `<div class="nz-info nz-info-text">${escapeHtml(it.infoText)}</div>` : ``)}
-          <div class="nz-pair"><span class="nz-pill nz-you">Senin Cevabın</span><span>${escapeHtml(it.chosen||'-')}</span></div>
-          <div class="nz-pair"><span class="nz-pill nz-true">Doğru Cevap</span><span>${escapeHtml(it.correct||'-')}</span></div>
-          ${it.explanation?`<div class="nz-exp">${escapeHtml(it.explanation)}</div>`:''}
+          ${it.infoImage ? `<div class="nz-info"><div class="nz-info-label">Öncül</div><img class="nz-info-img" src="${escapeHtml(it.infoImage)}" alt="Öncül"/></div>` : (it.infoText ? `<div class="nz-info nz-info-text"><div class="nz-info-label">Öncül</div><div class="nz-info-body">${escapeHtml(it.infoText)}</div></div>` : ``)}
+          <div class="nz-head">
+            <span class="nz-qid">${idx+1}</span>
+            <div class="nz-head-text">
+              <div class="nz-head-title">Yanlış soru</div>
+              <div class="nz-q">${escapeHtml(it.q)}</div>
+            </div>
+            <span class="nz-badge">❌ YANLIŞ</span>
+          </div>
+          <div class="nz-rows">
+            <div class="nz-row nz-row--chosen">
+              <span class="nz-pill nz-you">Senin cevabın</span>
+              <span class="nz-val">${escapeHtml(it.chosen||'-')}</span>
+            </div>
+            <div class="nz-row nz-row--correct">
+              <span class="nz-pill nz-true">Doğru cevap</span>
+              <span class="nz-val">${escapeHtml(it.correct||'-')}</span>
+            </div>
+          </div>
+          ${it.explanation?`<div class="nz-exp"><div class="nz-exp-body">${escapeHtml(sanitizeExplanation(it.explanation, it.chosen, it.correct))}</div></div>`:''}
         `;
         list.appendChild(div);
       });

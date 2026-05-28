@@ -162,6 +162,184 @@ body.nova-sp-game-open{
   box-shadow: 0 16px 36px rgba(2, 6, 23, .28);
 }
 
+/* Açıklama kartı — profesyonel, tema uyumlu */
+#explanation-container,
+#single-player-game-screen .explanation-container{
+  display: none;
+}
+
+/* Not: `sp-exp-*` denemesi geri alındı. */
+#single-player-game-screen .explanation-container .explanation-card{
+  margin-top: 10px;
+  padding: 14px 14px 12px;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(253, 224, 71, .10), transparent 55%),
+    radial-gradient(ellipse 70% 55% at 90% 40%, rgba(34, 211, 238, .10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(15,23,42,.65));
+  border: 1px solid rgba(148, 163, 184, .28);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, .35), inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: spExpIn .22s ease-out both;
+}
+@keyframes spExpIn{
+  from{ opacity: 0; transform: translateY(8px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+#single-player-game-screen .explanation-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+#single-player-game-screen .explanation-sub{
+  font-family: "Comfortaa","Baloo 2",system-ui,sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  color: rgba(148,163,184,.95);
+  line-height: 1.25;
+  text-align: right;
+}
+#single-player-game-screen .explanation-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Baloo 2","Comfortaa",system-ui,sans-serif;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(226,232,240,.95);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(2,6,23,.28);
+}
+/* Açıklama kartında durum rozeti */
+#single-player-game-screen .explanation-status{
+  font-family: "Baloo 2","Comfortaa",system-ui,sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .08em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(2,6,23,.28);
+  color: rgba(224,231,255,.95);
+}
+#single-player-game-screen .explanation-card.is-correct .explanation-status{
+  background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(74,222,128,.14));
+  border-color: rgba(34,197,94,.35);
+  color: #bbf7d0;
+}
+#single-player-game-screen .explanation-card.is-wrong .explanation-status{
+  background: linear-gradient(135deg, rgba(239,68,68,.22), rgba(248,113,113,.12));
+  border-color: rgba(239,68,68,.35);
+  color: #fecaca;
+}
+
+#single-player-game-screen .explanation-row{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(2,6,23,.22);
+  margin-bottom: 8px;
+}
+@media (max-width: 480px){
+  #single-player-game-screen .explanation-row{ grid-template-columns: 1fr; gap: 6px; }
+}
+#single-player-game-screen .explanation-k{
+  font-family: "Baloo 2","Comfortaa",system-ui,sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,.95);
+}
+#single-player-game-screen .explanation-v{
+  font-family: "Comfortaa","Baloo 2",system-ui,sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(241,245,249,.96);
+  word-break: break-word;
+}
+#single-player-game-screen .explanation-row--correct{
+  border-color: rgba(34,197,94,.25);
+  background: linear-gradient(135deg, rgba(34,197,94,.14), rgba(2,6,23,.20));
+}
+/* Senin cevabın satırı */
+#single-player-game-screen .explanation-row--chosen{
+  border-color: rgba(99,102,241,.22);
+  background: linear-gradient(135deg, rgba(99,102,241,.14), rgba(2,6,23,.20));
+}
+#single-player-game-screen .explanation-card.is-wrong .explanation-row--chosen{
+  border-color: rgba(239,68,68,.25);
+  background: linear-gradient(135deg, rgba(239,68,68,.14), rgba(2,6,23,.20));
+}
+
+#single-player-game-screen .explanation-text{
+  margin-top: 8px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255,255,255,.18);
+  background: rgba(15,23,42,.35);
+  color: rgba(226,232,240,.96);
+  font-family: "Comfortaa","Baloo 2",system-ui,sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+/* Eski global stilleri ez (tema uyumu) */
+#explanation-container .explanation-card{
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(253, 224, 71, .10), transparent 55%),
+    radial-gradient(ellipse 70% 55% at 90% 40%, rgba(34, 211, 238, .10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(15,23,42,.65));
+  border: 1px solid rgba(148, 163, 184, .28);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, .35), inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+#single-player-game-screen .next-question-button{
+  width: 100%;
+  margin-top: 12px;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-family: "Baloo 2","Comfortaa",system-ui,sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  color: #111827;
+  background: linear-gradient(135deg, #fde047, #f59e0b);
+  box-shadow: 0 10px 26px rgba(245, 158, 11, .28);
+  transition: transform .14s ease, filter .14s ease, box-shadow .14s ease;
+}
+#single-player-game-screen .next-question-button:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 30px rgba(245, 158, 11, .32);
+}
+#single-player-game-screen .next-question-button:active{
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(245, 158, 11, .26);
+}
+#single-player-game-screen .next-question-button:disabled{
+  opacity: .65;
+  cursor: not-allowed;
+  filter: grayscale(.2);
+}
+
 /* Kahraman FX — doğru cevapta ortaya gelir, alev/hareket, çıkar */
 .nova-sp-hero-arena{
   display: none;

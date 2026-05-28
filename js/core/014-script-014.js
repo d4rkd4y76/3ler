@@ -16,10 +16,23 @@ function showExplanationAndNext(){
     const isLast = Array.isArray(gameQuestions) && (currentQuestionIndex >= (gameQuestions.length - 1));
     const correctText = currentQuestion && currentQuestion.correct ? String(currentQuestion.correct) : '';
     const maybeExplanation = getTextIfNotUrl(currentQuestion && (currentQuestion.explanation || currentQuestion.aciklama || currentQuestion["açıklama"] || currentQuestion.info));
+    const chosenBtn = document.querySelector('.option-button.option-chosen');
+    const chosenText = chosenBtn ? String((chosenBtn.innerText || chosenBtn.textContent || '')).trim() : '';
+    const isCorrect = chosenBtn ? chosenBtn.classList.contains('correct') : false;
     expl.innerHTML = `
-      <div class="explanation-card">
-        <div class="explanation-title">Açıklama</div>
-        <div class="explanation-correct">✅ <strong>Doğru Cevap:</strong> ${escapeHTML(correctText)}</div>
+      <div class="explanation-card ${isCorrect ? 'is-correct' : 'is-wrong'}">
+        <div class="explanation-head">
+          <div class="explanation-title">Açıklama</div>
+          <div class="explanation-status">${isCorrect ? '✅ DOĞRU' : '❌ YANLIŞ'}</div>
+        </div>
+        ${chosenText ? `<div class="explanation-row explanation-row--chosen">
+          <span class="explanation-k">Senin cevabın</span>
+          <span class="explanation-v">${escapeHTML(chosenText)}</span>
+        </div>` : ``}
+        <div class="explanation-row explanation-row--correct">
+          <span class="explanation-k">Doğru cevap</span>
+          <span class="explanation-v">${escapeHTML(correctText)}</span>
+        </div>
         ${maybeExplanation ? `<div class="explanation-text">${escapeHTML(maybeExplanation)}</div>` : ``}
         <button id="next-question-button" class="next-question-button">${isLast ? 'Sonuçları Gör' : 'Sonraki Soru'}</button>
       </div>`;
