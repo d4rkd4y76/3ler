@@ -98,7 +98,7 @@
       id: 'mythic_wyvern',
       templateKey: 'NOVA_MYTHIC_WYVERN_SVG_TEMPLATE',
       theme: 'mythic',
-      name: 'Efsunlu Vayvern',
+      name: 'Gök Ejderi',
       desc: 'Efsunlu bir gök ejderi. Mağaza ve ana ekranda süzülür; doğru cevaplarda destansı, sinematik kutlamalar yapar!',
       price: 9900,
       order: 4,
@@ -118,6 +118,35 @@
           { msg: 'DESTANSI! Efsun zirvesi!', badge: '👑 DESTAN' },
           { msg: 'MUHTEŞEM! Gökyüzü seni alkışlıyor!', badge: '👑 DESTAN' },
           { msg: 'EFSANE! Bugün seviye atladın!', badge: '👑 DESTAN' }
+        ]
+      }
+    }
+    ,
+    bilge_hayalet: {
+      id: 'bilge_hayalet',
+      templateKey: 'NOVA_BILGE_HAYALET_SVG_TEMPLATE',
+      theme: 'bilge',
+      name: 'Bilge Hayalet Momo',
+      desc: 'Kadim rünleriyle sana akıl veren bilge hayalet. Doğru cevaplarda “bilgelik büyüsü” yapar!',
+      price: 8800,
+      order: 5,
+      equipEmoji: '👻',
+      lines: {
+        cheer: [
+          { msg: 'Harika! Bilgeliğin parladı — devam!', badge: '📘 BİLGE' },
+          { msg: 'Doğru! Zihnin ışıl ışıl çalışıyor!', badge: '📘 BİLGE' },
+          { msg: 'Mükemmel! Bilge hayalet onayladı!', badge: '📘 BİLGE' },
+          { msg: 'Çok iyi! Bu cevap gerçekten ustaca!', badge: '📘 BİLGE' }
+        ],
+        fire: [
+          { msg: 'RÜN PATLAMASI! Zeka gücün yükseldi!', badge: '🧿 RÜN' },
+          { msg: 'Bilgelik dalgası! Tam isabet!', badge: '🧿 RÜN' },
+          { msg: 'Harika! Akıl büyüsü çalıştı!', badge: '🧿 RÜN' }
+        ],
+        epic: [
+          { msg: 'DESTANSI BİLGELİK! Bugün sen efsanesin!', badge: '👑 BİLGE' },
+          { msg: 'MUHTEŞEM! Rünler senin için döndü!', badge: '👑 BİLGE' },
+          { msg: 'EFSANE! Zihnin zirvede!', badge: '👑 BİLGE' }
         ]
       }
     }
@@ -344,7 +373,7 @@
     if (!host) return null;
     var id = heroId || getEquippedHeroId();
     host.innerHTML = buildHeroSvgHtml(id);
-    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern');
+    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet');
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
     var svg = host.querySelector('svg');
     if (id === 'turbo_turtle' && typeof window.novaTurboTurtlePlayStoreIdle === 'function') {
@@ -355,6 +384,11 @@
     if (id === 'mythic_wyvern' && typeof window.novaMythicWyvernPlayIdle === 'function') {
       requestAnimationFrame(function () {
         try { window.novaMythicWyvernPlayIdle(host); } catch (_) {}
+      });
+    }
+    if (id === 'bilge_hayalet' && typeof window.novaBilgeHayaletPlayIdle === 'function') {
+      requestAnimationFrame(function () {
+        try { window.novaBilgeHayaletPlayIdle(host); } catch (_) {}
       });
     }
     return svg;
@@ -484,7 +518,7 @@
   }
 
   function usesJsSpFx(heroId) {
-    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern';
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet';
   }
 
   function pickFxRoutine(variant) {
@@ -512,6 +546,9 @@
     if (heroId === 'mythic_wyvern' && typeof window.novaMythicWyvernPlaySpFx === 'function') {
       return window.novaMythicWyvernPlaySpFx(host, variant, routine);
     }
+    if (heroId === 'bilge_hayalet' && typeof window.novaBilgeHayaletPlaySpFx === 'function') {
+      return window.novaBilgeHayaletPlaySpFx(host, variant, routine);
+    }
     host.classList.remove('nova-sp-fx-js');
     return waitMs(850);
   }
@@ -529,6 +566,8 @@
         window.novaStarFairyResetSvg(svg);
       } else if (heroId === 'mythic_wyvern' && typeof window.novaMythicWyvernResetSvg === 'function') {
         window.novaMythicWyvernResetSvg(svg);
+      } else if (heroId === 'bilge_hayalet' && typeof window.novaBilgeHayaletResetSvg === 'function') {
+        window.novaBilgeHayaletResetSvg(svg);
       }
     } catch (_) {}
   }

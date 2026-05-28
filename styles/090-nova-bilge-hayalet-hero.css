@@ -1,0 +1,63 @@
+/* Bilge Hayalet Momo — mağaza, ana ekran, seviye ekranı, arena */
+
+.nova-hero-store-card--bilge .nova-hero-preview{
+  background:
+    radial-gradient(1.5px 1.5px at 18% 22%, rgba(255, 255, 255, .75), transparent),
+    radial-gradient(1px 1px at 78% 18%, rgba(255, 255, 255, .5), transparent),
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(34, 211, 238, .26), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(94, 234, 212, .18), transparent),
+    linear-gradient(180deg, #022c22 0%, #0f766e 45%, #22d3ee 100%);
+}
+.nova-hero-store-card--bilge .nova-hero-preview::after{
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 8%;
+  height: 26%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(253, 224, 71, .10), transparent 70%);
+  pointer-events: none;
+}
+.nova-hero-store-card--bilge .nova-hero-store-name{
+  color: #ecfeff;
+}
+.nova-hero-store-card--bilge .nova-hero-svg{
+  filter: drop-shadow(0 8px 18px rgba(2, 44, 34, .45));
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--bilge{
+  background:
+    radial-gradient(ellipse 90% 45% at 50% 100%, rgba(34, 211, 238, .30), transparent 72%),
+    linear-gradient(168deg, #022c22 0%, #0f766e 55%, #22d3ee 100%);
+}
+.nova-store-detail-preview--hero .nova-store-preview--bilge{
+  background:
+    radial-gradient(ellipse 90% 45% at 50% 100%, rgba(34, 211, 238, .30), transparent 72%),
+    linear-gradient(168deg, #022c22 0%, #0f766e 55%, #22d3ee 100%);
+}
+.nh-level-hero-preview--bilge{
+  background: linear-gradient(180deg, #022c22, #0f766e 55%, #22d3ee);
+}
+.nh-level-hero-tab__thumb--bilge{
+  background: linear-gradient(180deg, #022c22, #0f766e);
+}
+
+#main-screen .nova-main-hero-zone--bilge.is-visible .nova-main-hero-zone__pad{
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    rgba(253, 224, 71, 0.14),
+    rgba(34, 211, 238, 0.12) 52%,
+    transparent 70%);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.20);
+}
+
+.nova-hero-mount--bilge-hayalet svg .nova-hero__runes{
+  filter: drop-shadow(0 0 12px rgba(34, 211, 238, .22));
+}
+.nova-hero-mount--bilge-hayalet svg .nova-hero__core-glow{
+  filter: blur(.2px) drop-shadow(0 0 16px rgba(94, 234, 212, .22));
+}
+.nova-hero-mount--bilge-hayalet svg .nova-hero__ghost{
+  filter: drop-shadow(0 10px 18px rgba(2, 6, 23, .55));
+}
+

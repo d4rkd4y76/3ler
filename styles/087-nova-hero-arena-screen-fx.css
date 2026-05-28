@@ -44,6 +44,12 @@
     radial-gradient(ellipse 60% 45% at 50% 48%, rgba(96,165,250,.20), transparent 66%),
     radial-gradient(ellipse 52% 40% at 50% 42%, rgba(253,224,71,.10), transparent 62%);
 }
+.nova-sp-hero-arena__fx.fx-theme-bilge::before{
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 55%, rgba(13,148,136,.55), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 50% 48%, rgba(34,211,238,.20), transparent 66%),
+    radial-gradient(ellipse 52% 40% at 50% 42%, rgba(253,224,71,.08), transparent 62%);
+}
 
 /* EPIC: enerji halkaları */
 .nova-sp-hero-arena__fx::after{
@@ -87,6 +93,12 @@
     0 0 0 2px rgba(224,231,255,.48) inset,
     0 0 36px rgba(96,165,250,.30),
     0 0 90px rgba(124,58,237,.18);
+}
+.nova-sp-hero-arena__fx.fx-theme-bilge.fx-variant-epic::after{
+  box-shadow:
+    0 0 0 2px rgba(236,254,255,.50) inset,
+    0 0 36px rgba(34,211,238,.30),
+    0 0 90px rgba(20,184,166,.18);
 }
 
 @keyframes novaSpFxRings{

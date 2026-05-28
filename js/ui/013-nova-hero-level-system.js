@@ -130,7 +130,11 @@
   function listOwnedHeroes(data) {
     var out = [];
     var pb = (data && data.purchasedBattleHeroes) || {};
+    var reg = null;
+    try { reg = window.NOVA_HERO_REGISTRY || null; } catch (_) { reg = null; }
     Object.keys(pb).forEach(function (id) {
+      /* Kaldırılmış/olmayan kahramanlar (örn. anka_phoenix) UI'da boş görünmesin */
+      if (reg && !reg[id]) return;
       var o = parseHeroOwnership(pb[id]);
       if (o.owned) out.push({ id: id, level: o.level });
     });
@@ -144,6 +148,8 @@
     if (heroId === 'blaze_robot') return 'Alev Bot';
     if (heroId === 'star_fairy') return 'Yıldız Perisi';
     if (heroId === 'turbo_turtle') return 'Kaplumbağa Turbo';
+    if (heroId === 'mythic_wyvern') return 'Gök Ejderi';
+    if (heroId === 'bilge_hayalet') return 'Bilge Hayalet';
     return heroId;
   }
 
@@ -153,7 +159,57 @@
     } catch (_) {}
     if (heroId === 'star_fairy') return 'star';
     if (heroId === 'turbo_turtle') return 'turbo';
+    if (heroId === 'mythic_wyvern') return 'mythic';
+    if (heroId === 'bilge_hayalet') return 'bilge';
     return 'blaze';
+  }
+
+  async function sanitizePurchasedHeroes(data) {
+    var s = getStudent();
+    if (!s || !s.classId || !s.studentId || !data) return data;
+    var pb = (data && data.purchasedBattleHeroes) || null;
+    if (!pb) return data;
+    var reg = null;
+    try { reg = window.NOVA_HERO_REGISTRY || null; } catch (_) { reg = null; }
+    if (!reg) return data;
+
+    var updates = null;
+    Object.keys(pb).forEach(function (id) {
+      if (reg[id]) return;
+      if (!updates) updates = {};
+      updates['purchasedBattleHeroes/' + id] = null;
+    });
+    /* Equip edilmiş kahraman kaldırıldıysa temizle */
+    try {
+      var eq = data && data.battleHero ? String(data.battleHero).trim() : '';
+      if (eq && !reg[eq]) {
+        if (!updates) updates = {};
+        updates.battleHero = null;
+      }
+    } catch (_) {}
+
+    if (!updates) return data;
+    try {
+      await database.ref('classes/' + s.classId + '/students/' + s.studentId).update(updates);
+      // local cache
+      try {
+        Object.keys(updates).forEach(function (k) {
+          if (k.indexOf('purchasedBattleHeroes/') === 0) {
+            var id2 = k.split('/')[1];
+            if (data.purchasedBattleHeroes) delete data.purchasedBattleHeroes[id2];
+          }
+        });
+        if (Object.prototype.hasOwnProperty.call(updates, 'battleHero')) data.battleHero = null;
+        var loc = getStudent();
+        if (loc) {
+          loc.purchasedBattleHeroes = data.purchasedBattleHeroes;
+          if (Object.prototype.hasOwnProperty.call(updates, 'battleHero')) loc.battleHero = null;
+          window.selectedStudent = loc;
+          localStorage.setItem('selectedStudent', JSON.stringify(loc));
+        }
+      } catch (_) {}
+    } catch (_) {}
+    return data;
   }
 
   function getUpgradeCost(targetLevel) {
@@ -542,6 +598,8 @@
     if (typeof getStoreStudentData === 'function') {
       uiState.data = await getStoreStudentData(true);
     }
+    /* Kaldırılan kahramanlar (örn. Anka) için migrasyon/temizlik */
+    uiState.data = await sanitizePurchasedHeroes(uiState.data);
     var owned = listOwnedHeroes(uiState.data);
     if (!owned.length) {
       if (typeof showAlert === 'function') await showAlert('Önce mağazadan bir kahraman satın almalısın.');

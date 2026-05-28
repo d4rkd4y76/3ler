@@ -230,6 +230,27 @@
   color: #1e1b4b;
 }
 
+/* —— Bilge Hayalet —— */
+.nova-sp-hero-speech--bilge .nova-sp-hero-speech__frame{
+  background: linear-gradient(155deg, #0f766e 0%, #14b8a6 42%, #22d3ee 100%);
+  border-color: rgba(153, 246, 228, .6);
+}
+.nova-sp-hero-speech--bilge .nova-sp-hero-speech__frame::before{
+  background: #14b8a6;
+}
+.nova-sp-hero-speech--bilge .nova-sp-hero-speech__student{
+  background: rgba(13, 148, 136, .52);
+  color: #ecfeff;
+}
+.nova-sp-hero-speech--bilge .nova-sp-hero-speech__message{
+  color: #f0fdfa;
+}
+.nova-sp-hero-speech--bilge.nova-sp-hero-speech--epic .nova-sp-hero-speech__badge,
+.nova-sp-hero-speech--bilge.nova-sp-hero-speech--fire .nova-sp-hero-speech__badge{
+  background: linear-gradient(135deg, #fffbeb, #fde047, #22d3ee);
+  color: #134e4a;
+}
+
 .nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero-svg{
   filter: drop-shadow(0 12px 28px rgba(15, 23, 42, .55));
 }
