@@ -208,6 +208,25 @@
         { transform: 'translateY(-24px) scale(1.06)' },
         { transform: 'none' }
       ], { duration: 880, delay: 380, easing: C.EASE_SPRING });
+      /* EPIC: “büyü çizimi” hissi — asa geniş yay, hale çift tur */
+      if (p.wand) {
+        C.pushAnim(steps, p.wand, [
+          { transform: 'none' },
+          { transform: 'rotate(-62deg) translate(-10px, -14px) scale(1.12)' },
+          { transform: 'rotate(22deg) translate(4px, -18px) scale(1.06)' },
+          { transform: 'rotate(-48deg) translate(-6px, -12px) scale(1.1)' },
+          { transform: 'rotate(8deg) translate(0, -8px) scale(1.04)' },
+          { transform: 'none' }
+        ], { duration: 1450, delay: 340, easing: 'ease-in-out' });
+      }
+      if (p.halo) {
+        C.pushAnim(steps, p.halo, [
+          { transform: 'scale(0.75) rotate(0deg)', opacity: 0.6 },
+          { transform: 'scale(1.35) rotate(720deg)', opacity: 1 },
+          { transform: 'scale(1.05) rotate(720deg)', opacity: 1 },
+          { transform: 'none', opacity: 1 }
+        ], { duration: 1600, delay: 260, easing: C.EASE_OUT });
+      }
     }
     if (p.core) {
       C.pushAnim(steps, p.core, [

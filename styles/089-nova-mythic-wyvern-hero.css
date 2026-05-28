@@ -1,0 +1,33 @@
+/* Efsunlu Vayvern — tema (mağaza + ana ekran + arena) */
+
+.nova-store-card.nova-hero-mount--mythic-wyvern,
+.nova-hero-mount--mythic-wyvern {
+  --mw-a: #7c3aed;
+  --mw-b: #60a5fa;
+  --mw-c: #c4b5fd;
+  --mw-g: #fde047;
+}
+
+/* Store card / preview */
+.nova-store-card.nova-hero-mount--mythic-wyvern .nova-store-card__thumb,
+.nova-hero-mount--mythic-wyvern .nova-hero-card__thumb {
+  background:
+    radial-gradient(80% 60% at 50% 35%, rgba(124, 58, 237, .35) 0%, rgba(96, 165, 250, .10) 45%, rgba(2, 6, 23, .0) 70%),
+    linear-gradient(180deg, rgba(30, 27, 75, .85) 0%, rgba(2, 6, 23, .9) 70%);
+  border: 1px solid rgba(196, 181, 253, .16);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, .55);
+}
+
+/* SVG glow polish */
+.nova-hero-mount--mythic-wyvern svg .nova-hero__orbits {
+  filter: drop-shadow(0 0 10px rgba(124, 58, 237, .22));
+}
+.nova-hero-mount--mythic-wyvern svg .nova-hero__core-glow {
+  filter: blur(.2px) drop-shadow(0 0 16px rgba(96, 165, 250, .26));
+}
+.nova-hero-mount--mythic-wyvern svg .nova-hero__wings {
+  filter: drop-shadow(0 10px 18px rgba(2, 6, 23, .55));
+}
+
+/* Speech panel theme is handled in `086-nova-hero-sp-speech-panel.css` via `.nova-sp-hero-speech--mythic` */
+

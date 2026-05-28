@@ -164,7 +164,27 @@
 
   function fire0(svg, host, steps, epic) {
     var p = parts(svg);
-    nitroDash(steps, host, epic ? 260 : 160, epic);
+    /* EPIC: önce “şarj” sonra hız patlaması */
+    if (epic && p.glow) {
+      p.glow.style.opacity = '1';
+      C.pushAnim(steps, p.glow, [
+        { transform: 'scale(0.4)', opacity: 0 },
+        { transform: 'scale(1.35)', opacity: 0.65 },
+        { transform: 'scale(1.85)', opacity: 0.95 },
+        { transform: 'scale(1.2)', opacity: 0.35 },
+        { transform: 'none', opacity: 0.2 }
+      ], { duration: 1250, delay: 140, easing: 'ease-in-out' });
+    }
+    if (epic && p.core) {
+      C.pushAnim(steps, p.core, [
+        { transform: 'scale(1) rotate(0deg)' },
+        { transform: 'scale(1.55) rotate(220deg)' },
+        { transform: 'scale(1.15) rotate(360deg)' },
+        { transform: 'scale(1.7) rotate(540deg)' },
+        { transform: 'none' }
+      ], { duration: 1350, delay: 220, easing: C.EASE_SPRING });
+    }
+    nitroDash(steps, host, epic ? 420 : 160, epic);
     streaksOn(steps, p, 100, epic);
     turboJets(steps, p, 140, epic);
     C.animArmsSymmetric(steps, p.armL, p.armR, [0, epic ? 42 : 34, 0], { duration: 520, delay: 280 });
@@ -189,7 +209,17 @@
         { transform: 'none', opacity: 1 }
       ], { duration: 900, delay: 50, easing: C.EASE_SNAP });
     }
+    /* EPIC: “wheelie” hissi — kabuk yükselir, jetler 2 dalga */
+    if (epic && p.shell) {
+      C.pushAnim(steps, p.shell, [
+        { transform: 'none' },
+        { transform: 'scale(1.06) translateY(-6px) rotate(-2deg)' },
+        { transform: 'scale(1.03) translateY(-3px) rotate(2deg)' },
+        { transform: 'none' }
+      ], { duration: 1200, delay: 220, easing: 'ease-in-out' });
+    }
     turboJets(steps, p, 120, epic);
+    turboJets(steps, p, epic ? 520 : 0, epic);
     streaksOn(steps, p, 80, epic);
     C.animBodySymmetric(steps, p.body, { duration: epic ? 640 : 520, delay: 200, lift: epic ? 10 : 7 });
     C.animLegsSymmetric(steps, p.legs, { duration: 520, delay: 200, lift: 5 });
@@ -226,6 +256,13 @@
         { transform: 'scale(1.1) translateY(-14px)' },
         { transform: 'none' }
       ], { duration: 520, delay: 480, easing: C.EASE_SPRING });
+      /* EPIC: final “şampiyon inişi” — daha uzun, daha ağır */
+      C.pushAnim(steps, host, [
+        { transform: 'none' },
+        { transform: 'translateY(-18px) scale(1.06)' },
+        { transform: 'translateY(-8px) scale(1.03)' },
+        { transform: 'none' }
+      ], { duration: 1100, delay: 720, easing: 'ease-in-out' });
     }
   }
 

@@ -36,9 +36,15 @@
     opts = opts || {};
     cancelEl(el);
     var useFrames = opts.noRest ? frames : withNeutralEnd(frames, opts);
+    /* Global yavaşlatma: okuma + epik his için */
+    var slow = 1;
+    try {
+      slow = Number(window.__novaHeroFxSlowFactor) || 1;
+    } catch (_) { slow = 1; }
+    if (!(slow > 0.25 && slow < 6)) slow = 1;
     var animOpts = {
-      duration: opts.duration || 600,
-      delay: opts.delay || 0,
+      duration: Math.round((opts.duration || 600) * slow),
+      delay: Math.round((opts.delay || 0) * slow),
       easing: opts.easing || EASE_OUT,
       fill: 'forwards'
     };
@@ -107,7 +113,7 @@
       { transform: 'scale(0.68) translateY(28px)', opacity: 0 },
       { transform: 'scale(1.06) translateY(-8px)', opacity: 1 },
       { transform: 'none', opacity: 1 }
-    ], Object.assign({ duration: 480, easing: EASE_SPRING }, opts));
+    ], Object.assign({ duration: 620, easing: EASE_SPRING }, opts));
   }
 
   function resetSvg(svg, opacitySelectors) {

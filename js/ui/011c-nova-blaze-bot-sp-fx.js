@@ -173,18 +173,115 @@
     sparksBurst(steps, p, 340);
   }
 
-  /* —— EPIC aliases reuse fire with epic flag —— */
-  function epic0(s, h, st) { fire0(s, h, st, true); if (parts(s).core) C.pushAnim(st, parts(s).core, [{ transform: 'none' }, { transform: 'scale(1.4) rotate(180deg)' }, { transform: 'none' }], { duration: 720, delay: 360 }); }
-  function epic1(s, h, st) { fire1(s, h, st, true); sparksBurst(st, parts(s), 400); }
-  function epic2(s, h, st) {
-    fire2(s, h, st, true);
-    var p = parts(s);
-    C.pushAnim(st, h, [
-      { transform: 'none' },
-      { transform: 'scale(1.08) translateY(-16px)' },
-      { transform: 'none' }
-    ], { duration: 620, delay: 420, easing: C.EASE_SPRING });
-    if (p.head) C.pushAnim(st, p.head, [{ transform: 'none' }, { transform: 'translateY(-14px)' }, { transform: 'none' }], { duration: 560, delay: 380 });
+  /* —— EPIC: koreografi (hazırlık → şarj → imza patlama → sakin iniş) —— */
+  function epic0(svg, host, steps) {
+    var p = parts(svg);
+    /* Hazırlık: omuzlar sabit, kollar simetrik kalkar */
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 28, 46, 58, 58, 0], { duration: 980, delay: 220, easing: C.EASE_SPRING });
+    C.animLegsSymmetric(steps, p.legs, { duration: 780, delay: 260, lift: 6 });
+    /* Şarj: çekirdek döner + parlama büyür */
+    if (p.core) {
+      C.pushAnim(steps, p.core, [
+        { transform: 'none' },
+        { transform: 'scale(1.15) rotate(120deg)' },
+        { transform: 'scale(1.35) rotate(260deg)' },
+        { transform: 'scale(1.55) rotate(420deg)' },
+        { transform: 'none' }
+      ], { duration: 1200, delay: 320, easing: C.EASE_OUT });
+    }
+    if (p.glow) {
+      p.glow.style.opacity = '1';
+      C.pushAnim(steps, p.glow, [
+        { transform: 'scale(0.35)', opacity: 0 },
+        { transform: 'scale(1.25)', opacity: 0.55 },
+        { transform: 'scale(1.75)', opacity: 0.95 },
+        { transform: 'scale(1.35)', opacity: 0.5 },
+        { transform: 'none', opacity: 0.25 }
+      ], { duration: 1350, delay: 260, easing: 'ease-in-out' });
+    }
+    /* İmza: Alev sütunu + kıvılcım spiral */
+    flamesUp(steps, p, 520, true);
+    if (p.flameC) {
+      C.pushAnim(steps, p.flameC, [
+        { transform: 'scaleY(0.55)' },
+        { transform: 'scaleY(1.55)' },
+        { transform: 'scaleY(1.15)' },
+        { transform: 'none' }
+      ], { duration: 980, delay: 600, easing: C.EASE_SPRING });
+    }
+    sparksBurst(steps, p, 680);
+    if (p.sparks) {
+      p.sparks.querySelectorAll('circle, ellipse').forEach(function (node, i) {
+        var side = i % 2 ? 1 : -1;
+        C.pushAnim(steps, node, [
+          { transform: 'none', opacity: 0 },
+          { transform: 'translate(' + (side * (10 + i * 2)) + 'px, -' + (10 + i * 2) + 'px) rotate(' + (side * 90) + 'deg)', opacity: 1 },
+          { transform: 'translate(' + (side * (24 + i * 2)) + 'px, -' + (26 + i * 3) + 'px) rotate(' + (side * 220) + 'deg)', opacity: 0 }
+        ], { duration: 1100, delay: 720 + i * 55, particle: true, easing: C.EASE_OUT });
+      });
+    }
+    /* Sakin iniş: kafa hafif onay */
+    if (p.head) {
+      C.pushAnim(steps, p.head, [
+        { transform: 'none' },
+        { transform: 'translateY(-10px) rotate(-4deg)' },
+        { transform: 'translateY(-6px) rotate(3deg)' },
+        { transform: 'none' }
+      ], { duration: 980, delay: 680, easing: 'ease-in-out' });
+    }
+  }
+
+  function epic1(svg, host, steps) {
+    var p = parts(svg);
+    /* “Güç kalkanı”: gövde yükselir, çekirdek şok dalgası */
+    C.animBodySymmetric(steps, p.body, { duration: 980, delay: 260, lift: 14 });
+    C.animLegsSymmetric(steps, p.legs, { duration: 980, delay: 260, lift: 7 });
+    C.animArmsSymmetric(steps, p.armL, p.armR, [0, 22, 44, 44, 18, 0], { duration: 940, delay: 240 });
+    if (p.glow) {
+      p.glow.style.opacity = '1';
+      C.pushAnim(steps, p.glow, [
+        { transform: 'scale(0.45)', opacity: 0 },
+        { transform: 'scale(1.95)', opacity: 0.95 },
+        { transform: 'scale(1.1)', opacity: 0.25 },
+        { transform: 'none', opacity: 0.15 }
+      ], { duration: 1250, delay: 260, easing: C.EASE_OUT });
+    }
+    flamesUp(steps, p, 480, true);
+    sparksBurst(steps, p, 650);
+  }
+
+  function epic2(svg, host, steps) {
+    var p = parts(svg);
+    /* “Üç vuruş”: vizör tarama + çekirdek vuruş + alev final */
+    if (p.visor) {
+      C.pushAnim(steps, p.visor, [
+        { filter: 'brightness(1)' },
+        { filter: 'brightness(2.2)' },
+        { filter: 'brightness(1)' },
+        { filter: 'brightness(2.4)' },
+        { filter: 'brightness(1)' }
+      ], { duration: 1200, delay: 260, keepStyle: true, easing: 'ease-in-out' });
+    }
+    if (p.core) {
+      C.pushAnim(steps, p.core, [
+        { transform: 'scale(1) rotate(0deg)' },
+        { transform: 'scale(1.6) rotate(140deg)' },
+        { transform: 'scale(1.25) rotate(260deg)' },
+        { transform: 'scale(1.8) rotate(420deg)' },
+        { transform: 'none' }
+      ], { duration: 1400, delay: 340, easing: C.EASE_SPRING });
+    }
+    if (p.body) {
+      C.pushAnim(steps, p.body, [
+        { transform: 'none' },
+        { transform: 'translateY(-10px) scale(1.04)' },
+        { transform: 'translateY(-6px) scale(1.02)' },
+        { transform: 'translateY(-12px) scale(1.05)' },
+        { transform: 'none' }
+      ], { duration: 1300, delay: 360, easing: 'ease-in-out' });
+    }
+    flamesUp(steps, p, 620, true);
+    sparksBurst(steps, p, 760);
   }
 
   var CHEER = [cheer0, cheer1, cheer2];

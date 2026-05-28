@@ -210,6 +210,26 @@
   color: #064e3b;
 }
 
+.nova-sp-hero-speech--mythic .nova-sp-hero-speech__frame{
+  background: linear-gradient(155deg, #1e1b4b 0%, #7c3aed 40%, #60a5fa 100%);
+  border-color: rgba(196, 181, 253, .55);
+}
+.nova-sp-hero-speech--mythic .nova-sp-hero-speech__frame::before{
+  background: #7c3aed;
+}
+.nova-sp-hero-speech--mythic .nova-sp-hero-speech__student{
+  background: rgba(30, 27, 75, .55);
+  color: #eef2ff;
+}
+.nova-sp-hero-speech--mythic .nova-sp-hero-speech__message{
+  color: #f5f3ff;
+}
+.nova-sp-hero-speech--mythic.nova-sp-hero-speech--epic .nova-sp-hero-speech__badge,
+.nova-sp-hero-speech--mythic.nova-sp-hero-speech--fire .nova-sp-hero-speech__badge{
+  background: linear-gradient(135deg, #fef08a, #60a5fa);
+  color: #1e1b4b;
+}
+
 .nova-sp-hero-arena__host.nova-sp-fx-js .nova-hero-svg{
   filter: drop-shadow(0 12px 28px rgba(15, 23, 42, .55));
 }
@@ -222,6 +242,9 @@
 }
 .nova-sp-hero-arena.nova-sp-theme-turbo .nova-sp-hero-arena__host .nova-hero-svg{
   filter: drop-shadow(0 12px 32px rgba(16, 185, 129, .5));
+}
+.nova-sp-hero-arena.nova-sp-theme-mythic .nova-sp-hero-arena__host .nova-hero-svg{
+  filter: drop-shadow(0 12px 34px rgba(124, 58, 237, .52));
 }
 
 .nova-sp-hero-arena__host .nova-hero-svg{
