@@ -527,8 +527,12 @@
   padding: 0;
   min-height: 24px;
 }
+.nh-hero-sheet__arena--buz-sprite{
+  min-height: 228px;
+  padding-bottom: 8px;
+}
 .nh-hero-sheet__arena--buz-sprite .nh-hero-sheet__hero-host{
-  min-height: 172px;
+  min-height: 200px;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -541,18 +545,18 @@
   justify-content: center;
   width: 100%;
   height: auto;
-  min-height: 150px;
+  min-height: 188px;
 }
 .nh-hero-sheet__arena--buz-sprite .nova-hero-buz-sprite--main{
-  width: clamp(118px, 36vw, 148px);
-  height: clamp(100px, 32vw, 128px);
-  min-width: 118px;
-  min-height: 100px;
-  max-width: 148px;
+  width: clamp(168px, 54vw, 220px);
+  height: clamp(148px, 48vw, 196px);
+  min-width: 168px;
+  min-height: 148px;
+  max-width: 220px;
   flex: 0 0 auto;
   margin-left: auto;
   margin-right: auto;
-  transform: scale(1.22);
+  transform: scale(1.42);
   transform-origin: 50% 100%;
 }
 .nh-hero-sheet__arena--buz-sprite .nova-hero-buz-sprite--main .nova-hero-buz-sprite__canvas{
