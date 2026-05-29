@@ -494,6 +494,59 @@
   50%{ opacity: .78; transform: scale(1.1); }
 }
 
+/* EPİK rozeti — ana ekran dışı bağlamlar */
+.nova-main-hero-epic-label--sheet,
+.nova-main-hero-epic-label--inv,
+.nova-main-hero-epic-label--level,
+.nova-main-hero-epic-label--rank{
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  flex-shrink: 0;
+}
+.nh-hero-sheet__stars--epic,
+.nh-level-arena__stars--epic{
+  flex-direction: column;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.char-inv-hero-epic-slot,
+.nsr-hero-epic-slot{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+}
+.nsr-hero-stars--epic{
+  border: none;
+  background: transparent;
+  padding: 0;
+  min-height: 24px;
+}
+.nh-hero-sheet__arena--buz-sprite .nh-hero-sheet__hero-host{
+  min-height: 172px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.nh-hero-sheet__arena--buz-sprite .nova-hero-buz-sprite--main{
+  width: clamp(118px, 36vw, 148px);
+  height: clamp(100px, 32vw, 128px);
+  min-width: 118px;
+  min-height: 100px;
+  transform: scale(1.22);
+  transform-origin: 50% 100%;
+}
+.nh-hero-sheet__arena--buz-sprite .nova-hero-buz-sprite--main .nova-hero-buz-sprite__canvas{
+  max-width: 100%;
+  max-height: 100%;
+}
+
 @media (prefers-reduced-motion: reduce){
   .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-buz-stack,
   .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-buz-stack,

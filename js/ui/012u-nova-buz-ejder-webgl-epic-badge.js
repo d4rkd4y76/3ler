@@ -1,41 +1,49 @@
-/* Buz Ejderi — ana ekran EPİK rozeti (premium CSS) */
+/* Buz Ejderi — EPİK rozeti (ana ekran + ilgili paneller) */
 (function () {
   'use strict';
 
-  var BADGE_ID = 'nova-main-hero-epic-badge';
+  var BADGE_CLASS = 'nova-hero-epic-badge';
 
-  function unmount(floatEl) {
-    if (!floatEl) return;
-    var el = floatEl.querySelector('#' + BADGE_ID);
-    if (el) el.remove();
-  }
-
-  function mount(floatEl) {
-    if (!floatEl) return null;
-    unmount(floatEl);
-    var wrap = document.createElement('div');
-    wrap.id = BADGE_ID;
-    wrap.className = 'nova-main-hero-epic-label';
-    wrap.setAttribute('aria-hidden', 'true');
-    wrap.innerHTML =
+  function badgeHtml(mod) {
+    var m = mod ? ' nova-main-hero-epic-label--' + mod : '';
+    return (
       '<span class="nova-main-hero-epic-label__halo" aria-hidden="true"></span>' +
       '<span class="nova-main-hero-epic-label__wing nova-main-hero-epic-label__wing--l" aria-hidden="true"></span>' +
       '<span class="nova-main-hero-epic-label__wing nova-main-hero-epic-label__wing--r" aria-hidden="true"></span>' +
       '<span class="nova-main-hero-epic-label__core">' +
       '<span class="nova-main-hero-epic-label__text">EPİK</span>' +
-      '</span>';
-    floatEl.insertBefore(wrap, floatEl.firstChild);
+      '</span>'
+    );
+  }
+
+  function unmountParent(parent) {
+    if (!parent) return;
+    var el = parent.querySelector('.' + BADGE_CLASS);
+    if (el) el.remove();
+  }
+
+  function mountParent(parent, mod) {
+    if (!parent) return null;
+    unmountParent(parent);
+    var wrap = document.createElement('div');
+    wrap.className = BADGE_CLASS + ' nova-main-hero-epic-label' + (mod ? ' nova-main-hero-epic-label--' + mod : '');
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = badgeHtml(mod);
+    parent.insertBefore(wrap, parent.firstChild);
     return wrap;
   }
 
-  function refreshForBuz(isBuz, visible) {
+  function refreshMain(isBuz, visible) {
     var float = document.getElementById('nova-main-hero-float');
     if (!float) return;
-    if (isBuz && visible) mount(float);
-    else unmount(float);
+    if (isBuz && visible) mountParent(float, 'main');
+    else unmountParent(float);
   }
 
-  window.novaBuzEjderMountMainEpicBadge = mount;
-  window.novaBuzEjderUnmountMainEpicBadge = unmount;
-  window.novaBuzEjderRefreshMainEpicBadge = refreshForBuz;
+  window.novaBuzEjderEpicBadgeHtml = badgeHtml;
+  window.novaBuzEjderMountEpicBadge = mountParent;
+  window.novaBuzEjderUnmountEpicBadge = unmountParent;
+  window.novaBuzEjderMountMainEpicBadge = function (p) { return mountParent(p, 'main'); };
+  window.novaBuzEjderUnmountMainEpicBadge = unmountParent;
+  window.novaBuzEjderRefreshMainEpicBadge = refreshMain;
 })();

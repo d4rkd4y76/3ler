@@ -1190,13 +1190,23 @@
     }
   }
 
-  function renderHeroStarsHtml(lvl) {
+  function renderHeroStarsHtml(heroId, lvl) {
+    if (heroId === 'buz_ejder') {
+      return '<div class="char-inv-hero-epic-slot" data-buz-epic-slot="1"></div>';
+    }
     var html = '<div class="char-inv-hero-stars">';
     for (var i = 1; i <= 4; i++) {
       html += '<span class="char-inv-hero-star ' + (i <= lvl ? 'is-on' : '') + '" aria-hidden="true">★</span>';
     }
     html += '</div>';
     return html;
+  }
+
+  function mountCharInvEpicBadges(root) {
+    if (!root || typeof window.novaBuzEjderMountEpicBadge !== 'function') return;
+    root.querySelectorAll('[data-buz-epic-slot]').forEach(function (slot) {
+      window.novaBuzEjderMountEpicBadge(slot, 'inv');
+    });
   }
 
   async function novaFillCharacterInventoryHeroes() {
@@ -1235,7 +1245,7 @@
         + '<p class="char-inv-kicker" style="margin:0">Aktif kahraman</p>'
         + '<h3>' + eqName + '</h3>'
         + '<p style="margin:4px 0;font-size:12px;color:#94a3b8">Seviye ' + eqLvl + ' · ' + heroLevelLabel(eqLvl) + '</p>'
-        + renderHeroStarsHtml(eqLvl)
+        + renderHeroStarsHtml(equippedId, eqLvl)
         + '</div></div>';
     }
 
@@ -1257,8 +1267,8 @@
           + (eq ? '<span class="char-inv-badge">Takılı</span>' : '')
           + '<div class="char-inv-hero-thumb-host" data-char-inv-hero-host="' + hero.id + '"></div>'
           + '<div class="char-inv-card-title">' + (hero.name || def.name) + '</div>'
-          + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">★ Sv. ' + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
-          + renderHeroStarsHtml(lvl)
+          + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">' + (hero.id === 'buz_ejder' ? 'EPİK · ' : '★ Sv. ') + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
+          + renderHeroStarsHtml(hero.id, lvl)
           + (eq
             ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
             : '<button type="button" class="char-inv-action" data-char-equip-hero="' + hero.id + '">⚔️ Kullan</button>')
@@ -1268,6 +1278,7 @@
     }
 
     panel.innerHTML = html;
+    mountCharInvEpicBadges(panel);
     panel.querySelectorAll('[data-char-inv-hero-host]').forEach(function (el) {
       mountHeroInto(el, el.getAttribute('data-char-inv-hero-host'));
     });

@@ -1,9 +1,12 @@
-/* Buz Ejderi — video sprite (mağaza/ana ekran). SVG yedek YOK — arena ayrı. */
+/* Buz Ejderi — sprite (mağaza + ana ekran ayrı sheet). */
 (function () {
   'use strict';
 
   var engines = new WeakMap();
-  var assetCache = { promise: null, manifest: null, img: null, sheetUrl: '' };
+  var sheetCache = {
+    store: { promise: null, manifest: null, img: null },
+    main: { promise: null, manifest: null, img: null }
+  };
 
   function scriptBase() {
     var scripts = document.getElementsByTagName('script');
@@ -28,6 +31,29 @@
     }
   }
 
+  function profileManifest(root, profile) {
+    if (!root) return null;
+    if (profile === 'main' && root.main) {
+      return {
+        base: root.base || 'hero/ice_dragon/sprite/',
+        sheet: root.main.sheet,
+        frameWidth: root.main.frameWidth,
+        frameHeight: root.main.frameHeight,
+        cols: root.main.cols,
+        rows: root.main.rows,
+        frameCount: root.main.frameCount,
+        loopEnd: root.main.loopEnd,
+        fps: root.main.fps || root.fps || 12,
+        blendFrames: root.main.blendFrames || 0,
+        sheetWidth: root.main.sheetWidth,
+        sheetHeight: root.main.sheetHeight,
+        anchor: root.main.anchor || 'bottom',
+        scale: root.scale
+      };
+    }
+    return root;
+  }
+
   function sheetUrlCandidates(manifest) {
     var file = manifest.sheet || 'buz-ejder-idle.webp';
     var bases = [];
@@ -48,7 +74,7 @@
     return out;
   }
 
-  function getManifest() {
+  function getRootManifest() {
     if (window.NOVA_BUZ_EJDER_SPRITE_MANIFEST) {
       return Promise.resolve(window.NOVA_BUZ_EJDER_SPRITE_MANIFEST);
     }
@@ -78,18 +104,23 @@
     });
   }
 
-  function loadAssets(force) {
-    if (assetCache.promise && !force) return assetCache.promise;
-    assetCache.promise = getManifest().then(function (manifest) {
-      assetCache.manifest = manifest;
+  function loadAssets(profile, force) {
+    var p = profile === 'main' ? 'main' : 'store';
+    var cache = sheetCache[p];
+    if (cache.promise && !force) return cache.promise;
+    cache.promise = getRootManifest().then(function (root) {
+      var manifest = profileManifest(root, p);
+      if (!manifest || !manifest.sheet) {
+        return Promise.reject(new Error('buz-manifest-profile:' + p));
+      }
+      cache.manifest = manifest;
       var urls = sheetUrlCandidates(manifest);
       return loadSheetFromUrls(urls, 0).then(function (res) {
-        assetCache.img = res.img;
-        assetCache.sheetUrl = res.url;
+        cache.img = res.img;
         return manifest;
       });
     });
-    return assetCache.promise;
+    return cache.promise;
   }
 
   function frameRect(manifest, index) {
@@ -108,7 +139,7 @@
     this.manifest = manifest;
     this.img = img;
     this.profile = (opts && opts.profile) || 'store';
-    this.anchorBottom = this.profile === 'main';
+    this.anchorBottom = this.profile === 'main' || manifest.anchor === 'bottom';
     var sc = manifest.scale && manifest.scale[this.profile];
     var def = { store: 1.14, detail: 1.16, main: 1.32 };
     this.scaleMul = (opts && opts.scale) || sc || def[this.profile] || 1.12;
@@ -118,12 +149,30 @@
     this.resizeObs = null;
     this.lastCw = 0;
     this.lastCh = 0;
-    this.startTime = performance.now() - Math.random() * 3000;
     this.fps = manifest.fps || 12;
-    this.loopFrames = manifest.frameCount || 42;
+    this.frameMs = 1000 / this.fps;
+    this.frameIndex = 0;
+    this.accum = 0;
+    this.lastTick = 0;
+    this.playFrames = manifest.frameCount || manifest.loopEnd || 36;
     this.loop = this.loop.bind(this);
     this.resize = this.resize.bind(this);
+    this.tick = this.tick.bind(this);
   }
+
+  SpriteEngine.prototype.tick = function () {
+    var now = performance.now();
+    if (!this.lastTick) this.lastTick = now;
+    var delta = now - this.lastTick;
+    this.lastTick = now;
+    if (delta > this.frameMs * 4) delta = this.frameMs;
+    this.accum += delta;
+    while (this.accum >= this.frameMs) {
+      this.frameIndex += 1;
+      if (this.frameIndex >= this.playFrames) this.frameIndex = 0;
+      this.accum -= this.frameMs;
+    }
+  };
 
   SpriteEngine.prototype.resize = function () {
     var rect = this.wrap.getBoundingClientRect();
@@ -143,10 +192,10 @@
 
   SpriteEngine.prototype.draw = function () {
     if (this.dead || !this.img || !this.manifest) return;
+    this.tick();
     var m = this.manifest;
     if (!m.frameWidth || !m.frameHeight) return;
-    var elapsed = (performance.now() - this.startTime) / 1000;
-    var fi = Math.floor(elapsed * this.fps) % this.loopFrames;
+    var fi = this.frameIndex;
     var r = frameRect(m, fi);
     var ctx = this.ctx;
     var cw = this.canvas.width;
@@ -208,8 +257,8 @@
     host.classList.remove('nova-hero-buz-vitrin-ready', 'nova-hero-buz-sprite-ready', 'nova-hero-buz-vitrin-fallback');
   }
 
-  function startEngine(host, wrap, canvas, manifest, opts) {
-    var eng = new SpriteEngine(wrap, canvas, manifest, assetCache.img, opts);
+  function startEngine(host, wrap, canvas, manifest, img, opts) {
+    var eng = new SpriteEngine(wrap, canvas, manifest, img, opts);
     engines.set(host, eng);
     if (eng.dead) return;
     host.classList.add('nova-hero-buz-vitrin-ready', 'nova-hero-buz-sprite-ready');
@@ -246,11 +295,13 @@
     var tries = 0;
     function tryLoad() {
       tries += 1;
-      loadAssets(tries > 1).then(function (manifest) {
+      loadAssets(profile, tries > 1).then(function (manifest) {
         if (!document.body.contains(host)) return;
-        startEngine(host, wrap, canvas, manifest, opts);
+        var p = profile === 'main' ? 'main' : 'store';
+        var img = sheetCache[p].img;
+        startEngine(host, wrap, canvas, manifest, img, opts);
       }).catch(function (err) {
-        console.error('[buz sprite] yüklenemedi — eski SVG gösterilmez. Deneme:', tries, err);
+        console.error('[buz sprite] yüklenemedi. Profil:', profile, 'Deneme:', tries, err);
         if (tries < 4) {
           setTimeout(tryLoad, 400 * tries);
           return;
@@ -266,13 +317,18 @@
   window.novaBuzEjderUnmountSprite = unmount;
   window.novaBuzEjderMountVitrinVideo = mount;
   window.novaBuzEjderUnmountVitrinVideo = unmount;
-  window.novaBuzEjderPreloadSprite = function () { return loadAssets(false); };
+  window.novaBuzEjderPreloadSprite = function () {
+    return Promise.all([
+      loadAssets('store', false).catch(function () {}),
+      loadAssets('main', false).catch(function () {})
+    ]);
+  };
   window.novaBuzEjderIsSpriteReady = function () {
-    return !!(assetCache.img && assetCache.manifest);
+    return !!(sheetCache.store.img && sheetCache.main.img);
   };
 
   function bootPreload() {
-    try { loadAssets(false); } catch (e) {
+    try { window.novaBuzEjderPreloadSprite(); } catch (e) {
       console.warn('[buz sprite] preload', e);
     }
   }

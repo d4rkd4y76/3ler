@@ -205,6 +205,17 @@
   function closeHeroSheet() {
     var ov = document.getElementById('nh-hero-sheet-overlay');
     if (!ov) return;
+    var heroHost = document.getElementById('nh_hero_sheet_hero_host');
+    if (heroHost) {
+      var mountHost = heroHost.querySelector('.nova-hero-svg-host');
+      if (mountHost && typeof window.novaBuzEjderUnmountSprite === 'function') {
+        window.novaBuzEjderUnmountSprite(mountHost);
+      }
+    }
+    var sheetStars = document.getElementById('nh_hero_sheet_stars');
+    if (sheetStars && typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
+      window.novaBuzEjderUnmountEpicBadge(sheetStars);
+    }
     ov.classList.remove('is-open');
     ov.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -239,11 +250,31 @@
     var heroHost = document.getElementById('nh_hero_sheet_hero_host');
 
     if (title) title.textContent = def.name;
-    if (levelEl) levelEl.textContent = 'Seviye ' + lvl + ' · ' + getLevelLabel(lvl);
+    if (levelEl) {
+      levelEl.textContent = heroId === 'buz_ejder'
+        ? ('EPİK · Seviye ' + lvl + ' · ' + getLevelLabel(lvl))
+        : ('Seviye ' + lvl + ' · ' + getLevelLabel(lvl));
+    }
     if (desc) desc.textContent = def.desc || '';
-    if (sheetStars) sheetStars.innerHTML = buildSheetStarsHtml(lvl);
+    if (sheetStars) {
+      if (heroId === 'buz_ejder') {
+        sheetStars.innerHTML = '';
+        sheetStars.classList.add('nh-hero-sheet__stars--epic');
+        if (typeof window.novaBuzEjderMountEpicBadge === 'function') {
+          window.novaBuzEjderMountEpicBadge(sheetStars, 'sheet');
+        }
+      } else {
+        sheetStars.classList.remove('nh-hero-sheet__stars--epic');
+        if (typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
+          window.novaBuzEjderUnmountEpicBadge(sheetStars);
+        }
+        sheetStars.innerHTML = buildSheetStarsHtml(lvl);
+      }
+    }
     if (arena) {
       arena.className = 'nh-hero-sheet__arena nh-hero-sheet__arena--' + (def.theme || 'blaze');
+      if (heroId === 'buz_ejder') arena.classList.add('nh-hero-sheet__arena--buz-sprite');
+      else arena.classList.remove('nh-hero-sheet__arena--buz-sprite');
     }
     if (heroHost) {
       heroHost.innerHTML = '';
@@ -251,7 +282,7 @@
       host.className = 'nova-hero-svg-host nova-hero-mount--' + heroId.replace(/_/g, '-');
       heroHost.appendChild(host);
       if (heroId === 'buz_ejder' && typeof window.novaBuzEjderMountSprite === 'function') {
-        window.novaBuzEjderMountSprite(host, { profile: 'store' });
+        window.novaBuzEjderMountSprite(host, { profile: 'main' });
       } else {
         mountHeroSvg(host, heroId);
       }

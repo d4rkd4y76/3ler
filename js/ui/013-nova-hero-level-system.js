@@ -473,8 +473,24 @@
     var nextWrap = document.getElementById('nh_level_next_wrap');
 
     if (stars) {
-      stars.innerHTML = renderStars(lvl)
-        + '<span class="nh-level-arena__rank">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>';
+      if (heroId === 'buz_ejder') {
+        stars.classList.add('nh-level-arena__stars--epic');
+        stars.innerHTML = '';
+        if (typeof window.novaBuzEjderMountEpicBadge === 'function') {
+          window.novaBuzEjderMountEpicBadge(stars, 'level');
+        }
+        var rankEpic = document.createElement('span');
+        rankEpic.className = 'nh-level-arena__rank';
+        rankEpic.textContent = 'EPİK · Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '');
+        stars.appendChild(rankEpic);
+      } else {
+        stars.classList.remove('nh-level-arena__stars--epic');
+        if (typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
+          window.novaBuzEjderUnmountEpicBadge(stars);
+        }
+        stars.innerHTML = renderStars(lvl)
+          + '<span class="nh-level-arena__rank">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>';
+      }
     }
     renderPerkList(document.getElementById('nh_level_perks_now'), lvl);
 

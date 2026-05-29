@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "base": "hero/ice_dragon/sprite/",
   "sheet": "buz-ejder-idle.webp",
   "frameWidth": 371,
@@ -12,5 +12,24 @@
   "blendFrames": 6,
   "sheetWidth": 2226,
   "sheetHeight": 1876,
-  "anchor": "center"
+  "anchor": "center",
+  "main": {
+    "sheet": "buz-ejder-main.webp",
+    "frameWidth": 374,
+    "frameHeight": 296,
+    "cols": 7,
+    "rows": 9,
+    "frameCount": 62,
+    "loopEnd": 48,
+    "fps": 12,
+    "blendFrames": 14,
+    "sheetWidth": 2618,
+    "sheetHeight": 2664,
+    "anchor": "bottom"
+  },
+  "scale": {
+    "store": 1.14,
+    "detail": 1.16,
+    "main": 1.32
+  }
 }

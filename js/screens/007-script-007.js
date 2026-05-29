@@ -9494,14 +9494,20 @@ if (winnerId && loserId) {
         function buildNsrHeroCell(player) {
             var heroId = (player && player.heroId) ? String(player.heroId).trim() : '';
             var lvl = Math.max(0, Math.min(4, Number(player && player.heroLevel) || 0));
-            var stars = '';
-            for (var i = 1; i <= 4; i++) {
-                stars += '<span class="nsr-star' + (i <= lvl ? ' is-on' : '') + '" aria-hidden="true">★</span>';
+            var starsBlock;
+            if (heroId === 'buz_ejder') {
+                starsBlock = '<div class="nsr-hero-stars nsr-hero-stars--epic"><div class="nsr-hero-epic-slot" data-buz-epic-slot="1"></div></div>';
+            } else {
+                var stars = '';
+                for (var i = 1; i <= 4; i++) {
+                    stars += '<span class="nsr-star' + (i <= lvl ? ' is-on' : '') + '" aria-hidden="true">★</span>';
+                }
+                starsBlock = '<div class="nsr-hero-stars">' + stars + '</div>';
             }
             return (
                 '<div class="nsr-hero-wrap">' +
                 '<div class="nsr-hero-pic" data-hero-id="' + (heroId ? heroId.replace(/"/g, '') : '') + '"></div>' +
-                '<div class="nsr-hero-stars">' + stars + '</div>' +
+                starsBlock +
                 '</div>'
             );
         }
@@ -9527,6 +9533,11 @@ if (winnerId && loserId) {
                 } catch (_) {}
                 el.innerHTML = '<span class="nsr-hero-fallback">?</span>';
             });
+            if (typeof window.novaBuzEjderMountEpicBadge === 'function') {
+                root.querySelectorAll('[data-buz-epic-slot]').forEach(function (slot) {
+                    window.novaBuzEjderMountEpicBadge(slot, 'rank');
+                });
+            }
         }
 
         async function displayRankingData(players, meta) {
