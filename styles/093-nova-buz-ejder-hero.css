@@ -534,17 +534,32 @@
   align-items: flex-end;
   justify-content: center;
 }
+/* Özellik paneli: host %100 genişlikte blok olduğu için sprite sola kayıyordu */
+.nh-hero-sheet__arena--buz-sprite .nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--buz-ejder{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+}
 .nh-hero-sheet__arena--buz-sprite .nova-hero-buz-sprite--main{
   width: clamp(118px, 36vw, 148px);
   height: clamp(100px, 32vw, 128px);
   min-width: 118px;
   min-height: 100px;
+  max-width: 148px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   transform: scale(1.22);
   transform-origin: 50% 100%;
 }
 .nh-hero-sheet__arena--buz-sprite .nova-hero-buz-sprite--main .nova-hero-buz-sprite__canvas{
   max-width: 100%;
   max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (prefers-reduced-motion: reduce){
