@@ -497,14 +497,15 @@
     return host.querySelector('svg');
   }
 
-  function mountHeroStorePreview(host, heroId) {
+  function mountHeroStorePreview(host, heroId, opts) {
     if (!host) return null;
     var id = heroId || '';
+    var profile = (opts && opts.profile) || 'store';
     clearMountClasses(host);
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       return typeof window.novaEpicDragonMountSprite === 'function'
-        ? window.novaEpicDragonMountSprite(host, id, { profile: 'store' })
+        ? window.novaEpicDragonMountSprite(host, id, { profile: profile })
         : null;
     }
     return mountHeroInto(host, heroId);
@@ -983,7 +984,7 @@
             requestAnimationFrame(function () { mountWhenReady(attempt + 1); });
             return;
           }
-          mountHeroStorePreview(h, hero.id);
+          mountHeroStorePreview(h, hero.id, { profile: 'detail' });
         }
         requestAnimationFrame(function () { mountWhenReady(0); });
       },

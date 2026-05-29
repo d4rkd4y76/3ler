@@ -433,43 +433,54 @@
   overflow: visible;
 }
 .nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-svg-host,
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-svg-host,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-svg-host{
   min-height: 168px;
-  padding: 4px 14px 6px;
+  padding: 8px 18px 10px;
   overflow: visible;
   box-sizing: border-box;
   animation: none;
-  align-items: flex-end;
-  justify-content: center;
 }
 .nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-alev-sprite,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-alev-sprite{
-  min-height: 156px;
-  max-height: 178px;
+  min-height: 148px;
+  max-height: 172px;
   width: 100%;
-  max-width: 182px;
+  max-width: 176px;
   margin: 0 auto;
   overflow: visible;
-  padding: 0 4px;
+  padding: 0 6px;
   box-sizing: border-box;
-  align-items: flex-end;
+}
+.nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-svg-host{
+  align-items: center;
+  justify-content: center;
 }
 .nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-svg-host{
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  padding: 4px 18px 8px;
+  padding: 4px 16px 6px;
+  min-height: 200px;
 }
 .nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-alev-sprite{
   min-height: 0;
   max-height: none;
   width: 100%;
-  max-width: 252px;
-  height: 96%;
-  max-height: 228px;
+  max-width: 236px;
+  height: 92%;
+  max-height: 212px;
   overflow: visible;
-  padding: 0 6px;
+  padding: 0 8px;
   box-sizing: border-box;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-alev-sprite__canvas{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
 }
 #main-screen .nova-main-hero-zone--alev .nova-hero-alev-sprite{
   min-height: 0;

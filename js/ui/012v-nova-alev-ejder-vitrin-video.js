@@ -151,10 +151,13 @@
     this.lastCh = 0;
     this.fps = manifest.fps || 12;
     this.frameMs = 1000 / this.fps;
+    this.contentFrames = manifest.loopEnd || manifest.frameCount || 36;
+    this.blendFrames = manifest.blendFrames || 0;
+    this.playFrames = this.contentFrames;
     this.frameIndex = 0;
     this.accum = 0;
     this.lastTick = 0;
-    this.playFrames = manifest.frameCount || manifest.loopEnd || 36;
+    this.drawScale = 0;
     this.loop = this.loop.bind(this);
     this.resize = this.resize.bind(this);
     this.tick = this.tick.bind(this);
@@ -168,9 +171,9 @@
     if (delta > this.frameMs * 4) delta = this.frameMs;
     this.accum += delta;
     while (this.accum >= this.frameMs) {
+      this.accum -= this.frameMs;
       this.frameIndex += 1;
       if (this.frameIndex >= this.playFrames) this.frameIndex = 0;
-      this.accum -= this.frameMs;
     }
   };
 
@@ -188,6 +191,19 @@
     this.canvas.height = ch;
     this.canvas.style.width = w + 'px';
     this.canvas.style.height = h + 'px';
+    this.drawScale = 0;
+  };
+
+  SpriteEngine.prototype.computeDrawScale = function () {
+    var m = this.manifest;
+    var cw = this.canvas.width;
+    var ch = this.canvas.height;
+    var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
+    var scale = fit * this.scaleMul;
+    var dw = m.frameWidth * scale;
+    var dh = m.frameHeight * scale;
+    if (dw > cw * 0.97 || dh > ch * 0.97) scale = fit;
+    return scale;
   };
 
   SpriteEngine.prototype.draw = function () {
@@ -200,17 +216,10 @@
     var ctx = this.ctx;
     var cw = this.canvas.width;
     var ch = this.canvas.height;
-    var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
-    var scale = fit * this.scaleMul;
-    var dw = m.frameWidth * scale;
-    var dh = m.frameHeight * scale;
-    if (dw > cw * 0.97 || dh > ch * 0.97) {
-      scale = fit;
-      dw = m.frameWidth * scale;
-      dh = m.frameHeight * scale;
-    }
-    dw = Math.round(dw);
-    dh = Math.round(dh);
+    if (!this.drawScale) this.drawScale = this.computeDrawScale();
+    var scale = this.drawScale;
+    var dw = Math.round(m.frameWidth * scale);
+    var dh = Math.round(m.frameHeight * scale);
     var dx = Math.round((cw - dw) * 0.5);
     var dy = this.anchorBottom ? Math.round(ch - dh) : Math.round((ch - dh) * 0.5);
     ctx.clearRect(0, 0, cw, ch);

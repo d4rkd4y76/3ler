@@ -20,7 +20,7 @@ STORE_MANIFEST = os.path.join(OUT_DIR, "manifest.json")
 MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012t-nova-buz-ejder-sprite-manifest.js")
 
 TARGET_FPS = 12
-BLEND_FRAMES = 14
+BLEND_FRAMES = 8
 TARGET_H = 296
 MAX_SHEET_W = 4096
 PAD = 6

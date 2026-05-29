@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Alev Ejderi vitrin: premium alpha, ayak hizalı, Buz Ejderi ile eş boy."""
+"""Alev Ejderi vitrin — gradyan arka plan, kanat/kuyruk koruma, Buz ile eş boy."""
 from __future__ import annotations
 
 import json
@@ -22,48 +22,54 @@ MANIFEST_JSON = os.path.join(OUT_DIR, "manifest.json")
 TARGET_FPS = 12
 MAX_FRAMES = 36
 BLEND_FRAMES = 8
-TARGET_H = 280
-TARGET_FILL_W = 372
+TARGET_H = 278
 MAX_SHEET_W = 3600
-PAD = 4
+PAD = 14
 
 
-def sample_key_rgb(frame: np.ndarray) -> tuple[int, int, int]:
-    h, w = frame.shape[:2]
-    m = 10
-    strips = [
-        frame[:m, :, :3],
-        frame[h - m :, :, :3],
-        frame[:, :m, :3],
-        frame[:, w - m :, :3],
-    ]
-    px = np.concatenate([s.reshape(-1, 3) for s in strips], axis=0)
-    return tuple(int(x) for x in np.median(px, axis=0))
+def sample_bg_keys(frames: list[np.ndarray]) -> tuple[tuple[int, int, int], tuple[int, int, int]]:
+    tops, bots = [], []
+    for f in frames[:8]:
+        h, w = f.shape[:2]
+        tops.append(np.median(f[: max(12, h // 10), :, :3].reshape(-1, 3), axis=0))
+        bots.append(np.median(f[h - max(12, h // 10) :, :, :3].reshape(-1, 3), axis=0))
+    top = tuple(int(x) for x in np.median(tops, axis=0))
+    bot = tuple(int(x) for x in np.median(bots, axis=0))
+    return top, bot
 
 
-def alpha_from_key(rgb: np.ndarray, key: np.ndarray, tol: float, soft: float) -> np.ndarray:
-    rgbf = rgb.astype(np.float32) / 255.0
-    d = np.sqrt(np.sum((rgbf - key) ** 2, axis=2))
-    a = np.clip((d - tol) / max(soft, 1e-5), 0.0, 1.0)
-    mx = np.max(rgbf, axis=2)
-    mn = np.min(rgbf, axis=2)
-    sat = mx - mn
-    lum = 0.299 * rgbf[:, :, 0] + 0.587 * rgbf[:, :, 1] + 0.114 * rgbf[:, :, 2]
-    gray = (sat < 0.09) & (lum > 0.12) & (lum < 0.97) & (d < tol + soft + 0.04)
-    a[gray] = 0.0
-    green_edge = (rgbf[:, :, 1] > rgbf[:, :, 0] + 0.06) & (rgbf[:, :, 1] > rgbf[:, :, 2] + 0.06) & (d < tol + soft + 0.12)
-    a[green_edge] = np.minimum(a[green_edge], 0.15)
-    return a
+def color_dist(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    kr, kg, kb = key
+    return np.sqrt((r - kr) ** 2 + (g - kg) ** 2 * 1.2 + (b - kb) ** 2)
 
 
-def flood_erase_background(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+def is_warm_dragon_pixel(rgb: np.ndarray) -> np.ndarray:
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    warm = (r > b + 6) & (r > g * 0.68) & (lum > 24)
+    very_dark = lum < 28
+    ember = (r > 95) & (g > 40) & (g < 165) & (b < 90)
+    return warm | very_dark | ember
+
+
+def bg_candidate_mask(rgb: np.ndarray, key_top: tuple[int, int, int], key_bot: tuple[int, int, int]) -> np.ndarray:
+    d = np.minimum(color_dist(rgb, key_top), color_dist(rgb, key_bot))
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    greenish = (g > r + 10) & (g > b + 6) & (g > 50)
+    dragon = is_warm_dragon_pixel(rgb)
+    return (d < 68) & greenish & ~dragon
+
+
+def flood_border_bg(rgba: np.ndarray, bg: np.ndarray) -> np.ndarray:
     out = rgba.copy()
     h, w = out.shape[:2]
-    rgb = out[:, :, :3].astype(np.float32)
-    kr, kg, kb = key
-    dist = np.sqrt((rgb[:, :, 0] - kr) ** 2 + (rgb[:, :, 1] - kg) ** 2 + (rgb[:, :, 2] - kb) ** 2)
-    sat = rgb.max(axis=2) - rgb.min(axis=2)
-    bg = (dist < 55) | ((sat < 32) & (dist < 82))
     seen = np.zeros((h, w), dtype=bool)
     q: deque[tuple[int, int]] = deque()
     for x in range(w):
@@ -87,40 +93,52 @@ def flood_erase_background(rgba: np.ndarray, key: tuple[int, int, int]) -> np.nd
     return out
 
 
-def despill_rgba(rgba: np.ndarray, key: np.ndarray) -> np.ndarray:
+def despill_soft(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = rgba.copy()
     a = out[:, :, 3].astype(np.float32) / 255.0
-    edge = (a > 0.02) & (a < 0.98)
+    edge = (a > 0.04) & (a < 0.92)
     if not np.any(edge):
         return out
-    k = key.astype(np.float32)
     rgb = out[:, :, :3].astype(np.float32)
-    spill_g = np.maximum(0.0, rgb[:, :, 1] - k[1])
-    spill_all = np.maximum(0.0, np.sum((rgb - k) * np.array([0.333, 0.333, 0.334]), axis=2))
-    for c in range(3):
-        ch = rgb[:, :, c]
-        excess = np.maximum(0.0, ch - k[c])
-        cut = excess * spill_all * 0.82 + (spill_g * 0.35 if c == 1 else 0.0)
-        rgb[:, :, c] = np.where(edge, ch - cut, ch)
+    kg = float(key[1])
+    spill = np.maximum(0.0, rgb[:, :, 1] - kg)
+    rgb[:, :, 1] = np.where(edge, rgb[:, :, 1] - spill * 0.55, rgb[:, :, 1])
+    rgb[:, :, 0] = np.where(edge, rgb[:, :, 0] + spill * 0.06, rgb[:, :, 0])
+    rgb[:, :, 2] = np.where(edge, rgb[:, :, 2] + spill * 0.06, rgb[:, :, 2])
     out[:, :, :3] = np.clip(rgb, 0, 255).astype(np.uint8)
     return out
 
 
-def chroma_frame(frame: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
-    key_arr = np.array(key, dtype=np.float32)
+def refine_alpha(rgba: np.ndarray) -> np.ndarray:
+    out = rgba.copy()
+    a = out[:, :, 3].astype(np.float32)
+    seed = a > 85
+    keep = is_warm_dragon_pixel(out[:, :, :3]) & seed
+    a[keep] = np.maximum(a[keep], 245.0)
+    out[:, :, 3] = np.clip(a, 0, 255).astype(np.uint8)
+    return out
+
+
+def chroma_frame(frame: np.ndarray, key_top: tuple[int, int, int], key_bot: tuple[int, int, int]) -> np.ndarray:
     rgb = frame[:, :, :3]
-    a = alpha_from_key(rgb, key_arr / 255.0, tol=0.045, soft=0.065)
+    d = np.minimum(color_dist(rgb, key_top), color_dist(rgb, key_bot))
+    a = np.clip((d - 26.0) / 36.0, 0.0, 1.0)
+    keep = is_warm_dragon_pixel(rgb)
+    a[keep & (a > 0.35)] = np.maximum(a[keep & (a > 0.35)], 0.96)
     rgba = np.zeros((frame.shape[0], frame.shape[1], 4), dtype=np.uint8)
     rgba[:, :, :3] = rgb
     rgba[:, :, 3] = (a * 255).astype(np.uint8)
-    rgba = flood_erase_background(rgba, key)
-    rgba = despill_rgba(rgba, key_arr)
-    rgba[rgba[:, :, 3] < 36, 3] = 0
-    rgba[rgba[:, :, 3] < 36, :3] = 0
+    bg = bg_candidate_mask(rgb, key_top, key_bot)
+    rgba = flood_border_bg(rgba, bg)
+    rgba = refine_alpha(rgba)
+    mid_key = tuple(int((key_top[i] + key_bot[i]) / 2) for i in range(3))
+    rgba = despill_soft(rgba, mid_key)
+    rgba[rgba[:, :, 3] < 18, 3] = 0
+    rgba[rgba[:, :, 3] < 18, :3] = 0
     return rgba
 
 
-def alpha_bbox(rgba: np.ndarray, thr: int = 30) -> tuple[int, int, int, int]:
+def alpha_bbox(rgba: np.ndarray, thr: int = 24) -> tuple[int, int, int, int]:
     ys, xs = np.where(rgba[:, :, 3] > thr)
     if len(xs) == 0:
         h, w = rgba.shape[:2]
@@ -133,81 +151,13 @@ def resize_h(rgba: np.ndarray, h: int) -> np.ndarray:
     return np.array(Image.fromarray(rgba, "RGBA").resize((w, h), Image.Resampling.LANCZOS))
 
 
-def scale_to_fill_w(rgba: np.ndarray, target_w: int) -> np.ndarray:
-    fh, fw = rgba.shape[:2]
-    if fw >= target_w * 0.92:
-        return rgba
-    scale = min(1.28, (target_w * 0.94) / max(fw, 1))
-    nw = max(1, int(round(fw * scale)))
-    nh = max(1, int(round(fh * scale)))
-    return np.array(Image.fromarray(rgba, "RGBA").resize((nw, nh), Image.Resampling.LANCZOS))
-
-
-def scrub_floor_shadow(crop: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
-    out = crop.copy()
-    h = out.shape[0]
-    y0 = int(h * 0.7)
-    band = out[y0:, :, :]
-    r = band[:, :, 0].astype(np.float32)
-    g = band[:, :, 1].astype(np.float32)
-    b = band[:, :, 2].astype(np.float32)
-    a = band[:, :, 3].astype(np.float32)
-    kr, kg, kb = key
-    dist = np.sqrt((r - kr) ** 2 + (g - kg) ** 2 + (b - kb) ** 2)
-    sat = np.maximum(np.maximum(r, g), b) - np.minimum(np.minimum(r, g), b)
-    kill = (a < 210) | (dist < 78) | ((sat < 44) & (dist < 96))
-    band[kill, 3] = 0
-    band[kill, :3] = 0
-    out[y0:, :, :] = band
-    return out
-
-
-def align_crops_foot(crops: list[np.ndarray]) -> tuple[list[np.ndarray], int, int]:
-    ch = max(c.shape[0] for c in crops)
-    cw = max(c.shape[1] for c in crops)
-    aligned: list[np.ndarray] = []
-    for crop in crops:
-        cell = np.zeros((ch, cw, 4), dtype=np.uint8)
-        fh, fw = crop.shape[:2]
-        ox = (cw - fw) // 2
-        oy = ch - fh
-        cell[oy : oy + fh, ox : ox + fw] = crop
-        aligned.append(cell)
-    return aligned, cw, ch
-
-
-def trim_sheet_width(cells: list[np.ndarray], pad: int = 3) -> tuple[list[np.ndarray], int, int]:
-    ch = cells[0].shape[0]
-    x0 = cells[0].shape[1]
-    x1 = 0
-    for cell in cells:
-        ys, xs = np.where(cell[:, :, 3] > 28)
-        if len(xs) == 0:
-            continue
-        x0 = min(x0, int(xs.min()))
-        x1 = max(x1, int(xs.max()) + 1)
-    x0 = max(0, x0 - pad)
-    x1 = min(cells[0].shape[1], x1 + pad)
-    cw = max(8, x1 - x0)
-    trimmed = [cell[:, x0:x1].copy() for cell in cells]
-    return trimmed, cw, ch
-
-
-def scrub_cell(cell: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
-    out = cell.copy()
-    r = out[:, :, 0].astype(np.float32)
-    g = out[:, :, 1].astype(np.float32)
-    b = out[:, :, 2].astype(np.float32)
-    a = out[:, :, 3].astype(np.float32)
-    kr, kg, kb = key
-    dist = np.sqrt((r - kr) ** 2 + (g - kg) ** 2 + (b - kb) ** 2)
-    mx = np.maximum(np.maximum(r, g), b)
-    mn = np.minimum(np.minimum(r, g), b)
-    sat = mx - mn
-    mask = (a < 64) | (dist < 62) | ((sat < 38) & (a < 220))
-    out[mask, 3] = 0
-    out[mask, :3] = 0
-    return out
+def place_in_cell(crop: np.ndarray, cw: int, ch: int) -> np.ndarray:
+    cell = np.zeros((ch, cw, 4), dtype=np.uint8)
+    fh, fw = crop.shape[:2]
+    ox = (cw - fw) // 2
+    oy = (ch - fh) // 2
+    cell[oy : oy + fh, ox : ox + fw] = crop
+    return cell
 
 
 def smoothstep(t: float) -> float:
@@ -265,31 +215,36 @@ def main() -> int:
         print("Too few frames", file=sys.stderr)
         return 1
 
-    keys = [sample_key_rgb(f) for f in raw_frames]
-    key = tuple(int(np.median([k[i] for k in keys])) for i in range(3))
-    print("key rgb", key)
+    key_top, key_bot = sample_bg_keys(raw_frames)
+    print("bg keys top", key_top, "bot", key_bot)
 
-    chroma = [chroma_frame(f, key) for f in raw_frames]
+    chroma = [chroma_frame(f, key_top, key_bot) for f in raw_frames]
     boxes = [alpha_bbox(c) for c in chroma]
     gx0 = max(0, min(b[0] for b in boxes) - PAD)
     gy0 = max(0, min(b[1] for b in boxes) - PAD)
     gx1 = min(chroma[0].shape[1], max(b[2] for b in boxes) + PAD)
     gy1 = min(chroma[0].shape[0], max(b[3] for b in boxes) + PAD)
 
-    crops = []
-    for c in chroma:
-        crop = resize_h(c[gy0:gy1, gx0:gx1], TARGET_H)
-        crop = scale_to_fill_w(crop, TARGET_FILL_W)
-        crops.append(scrub_floor_shadow(crop, key))
-
-    cells, cell_w, cell_h = align_crops_foot(crops)
-    cells, cell_w, cell_h = trim_sheet_width(cells)
-    cells = [scrub_cell(c, key) for c in cells]
+    crops = [resize_h(c[gy0:gy1, gx0:gx1], TARGET_H) for c in chroma]
+    # Buz ile eş görünüm: geniş hücreyi hedef genişliğe ölçekle
+    target_w = 378
+    scaled = []
+    for crop in crops:
+        fh, fw = crop.shape[:2]
+        if fw > target_w:
+            nh = max(1, int(round(fh * target_w / fw)))
+            scaled.append(np.array(Image.fromarray(crop, "RGBA").resize((target_w, nh), Image.Resampling.LANCZOS)))
+        else:
+            scaled.append(crop)
+    crops = scaled
+    cell_h = max(c.shape[0] for c in crops)
+    cell_w = max(c.shape[1] for c in crops)
+    cells = [place_in_cell(c, cell_w, cell_h) for c in crops]
 
     first, last = cells[0], cells[-1]
     for bi in range(1, BLEND_FRAMES + 1):
         t = bi / (BLEND_FRAMES + 1)
-        cells.append(scrub_cell(blend_cells(last, first, t), key))
+        cells.append(blend_cells(last, first, t))
 
     n = len(cells)
     cols = pick_cols(n, cell_w, cell_h)
@@ -303,7 +258,7 @@ def main() -> int:
         sheet[y : y + cell_h, x : x + cell_w] = cell
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    Image.fromarray(sheet, "RGBA").save(SHEET_WEBP, quality=92, method=6, lossless=False)
+    Image.fromarray(sheet, "RGBA").save(SHEET_WEBP, quality=93, method=6, lossless=False)
 
     loop_end = len(crops)
     manifest = {
@@ -320,13 +275,16 @@ def main() -> int:
         "blendFrames": BLEND_FRAMES,
         "sheetWidth": sheet_w,
         "sheetHeight": sheet_h,
-        "anchor": "bottom",
+        "anchor": "center",
     }
     with open(MANIFEST_JSON, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
 
     mb = os.path.getsize(SHEET_WEBP) / (1024 * 1024)
+    cell0 = sheet[:cell_h, :cell_w]
+    cov = (cell0[:, :, 3] > 80).mean()
     print("frames", loop_end, "+ blend", BLEND_FRAMES, "cell", cell_w, "x", cell_h)
+    print("opaque coverage", round(cov * 100, 1), "%")
     print("sheet", sheet_w, "x", sheet_h, "webp", round(mb, 2), "MB")
     return 0
 

@@ -151,10 +151,13 @@
     this.lastCh = 0;
     this.fps = manifest.fps || 12;
     this.frameMs = 1000 / this.fps;
+    this.contentFrames = manifest.loopEnd || manifest.frameCount || 36;
+    this.blendFrames = manifest.blendFrames || 0;
+    this.playFrames = this.contentFrames;
     this.frameIndex = 0;
     this.accum = 0;
     this.lastTick = 0;
-    this.playFrames = manifest.frameCount || manifest.loopEnd || 36;
+    this.drawScale = 0;
     this.loop = this.loop.bind(this);
     this.resize = this.resize.bind(this);
     this.tick = this.tick.bind(this);
@@ -168,9 +171,9 @@
     if (delta > this.frameMs * 4) delta = this.frameMs;
     this.accum += delta;
     while (this.accum >= this.frameMs) {
+      this.accum -= this.frameMs;
       this.frameIndex += 1;
       if (this.frameIndex >= this.playFrames) this.frameIndex = 0;
-      this.accum -= this.frameMs;
     }
   };
 
