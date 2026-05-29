@@ -9,11 +9,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   background: transparent !important;
 }
 .nova-hero-buz-sprite--main{
   align-items: flex-end;
+  overflow: visible;
 }
 .nova-hero-buz-sprite__canvas{
   display: block !important;
@@ -98,12 +99,12 @@
   background: linear-gradient(180deg, #042f2e, #0e7490);
 }
 
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-zone__pad,
 #main-screen .nova-main-hero-zone--buz.is-visible .nova-main-hero-zone__pad{
-  background: radial-gradient(ellipse 100% 100% at 50% 50%,
-    rgba(103, 232, 249, .26),
-    rgba(165, 243, 252, .1) 52%,
-    transparent 70%);
-  box-shadow: 0 0 20px rgba(34, 211, 238, .22);
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden;
+  animation: none;
 }
 
 .nova-hero-svg-host:has(.nova-hero-buz-stack),
@@ -174,12 +175,39 @@
 
 #main-screen .nova-main-hero-zone--buz{
   z-index: 2;
+  width: clamp(84px, 20vw, 102px);
+  height: clamp(94px, 21vw, 108px);
+}
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-float{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-epic-label{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 62px;
+  z-index: 15;
+  margin: 0;
 }
 #main-screen .nova-main-hero-zone--buz .nova-main-hero-slot{
-  overflow: hidden;
-  inset: 10% 10% 2% 10%;
+  position: relative !important;
+  inset: auto !important;
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
   align-items: flex-end;
-  justify-items: center;
+  justify-content: center;
 }
 #main-screen .nova-main-hero-zone--buz .nova-hero-svg-host,
 #main-screen .nova-main-hero-zone--buz .nova-hero-buz-stack,
@@ -187,8 +215,9 @@
   width: 100%;
   height: 100%;
   max-height: 100%;
-  overflow: hidden;
-  padding: 0;
+  overflow: visible;
+  padding: 0 3px;
+  box-sizing: border-box;
 }
 #main-screen .nova-main-hero-zone--buz .nova-hero-buz-stack .nova-hero-svg{
   max-width: 100%;
@@ -202,8 +231,170 @@
 #main-screen .nova-main-hero-zone--buz .nova-main-hero-slot .nova-main-hero-host,
 #main-screen .nova-main-hero-zone--buz .nova-main-hero-slot .nova-hero-svg,
 #main-screen .nova-main-hero-zone--buz .nova-main-hero-slot .nova-hero-buz-sprite{
-  max-width: 52px;
-  max-height: 58px;
+  width: 92px;
+  height: 88px;
+  max-width: 92px;
+  max-height: 88px;
+  min-width: 92px;
+  min-height: 88px;
+}
+#main-screen .nova-main-hero-zone--buz .nova-hero-buz-sprite--main{
+  width: 92px;
+  height: 88px;
+}
+.nova-main-hero-epic-label{
+  position: relative;
+  z-index: 12;
+  flex-shrink: 0;
+  width: auto;
+  margin: 0;
+  height: 22px;
+  min-width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  isolation: isolate;
+}
+.nova-main-hero-epic-label__halo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 78px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(192, 132, 252, .4), rgba(103, 232, 249, .1) 50%, transparent 72%);
+  filter: blur(4px);
+  animation: novaBuzEpicHalo 2.8s ease-in-out infinite;
+  z-index: 0;
+}
+.nova-main-hero-epic-label__wing{
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 15px;
+  transform: translateY(-50%);
+  opacity: .9;
+  z-index: 1;
+}
+.nova-main-hero-epic-label__wing--l{
+  left: 0;
+  background: linear-gradient(135deg, rgba(103, 232, 249, .15), rgba(232, 121, 249, .6));
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  filter: drop-shadow(-2px 0 8px rgba(192, 132, 252, .55));
+}
+.nova-main-hero-epic-label__wing--r{
+  right: 0;
+  background: linear-gradient(225deg, rgba(103, 232, 249, .15), rgba(232, 121, 249, .6));
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  filter: drop-shadow(2px 0 8px rgba(192, 132, 252, .55));
+}
+.nova-main-hero-epic-label__core{
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  padding: 4px 15px 5px;
+  border-radius: 999px;
+  overflow: hidden;
+  background:
+    linear-gradient(165deg, rgba(22, 8, 40, .98) 0%, rgba(8, 6, 22, .99) 50%, rgba(18, 10, 36, .98) 100%);
+  border: 1px solid rgba(244, 114, 182, .5);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .1) inset,
+    0 0 22px rgba(192, 132, 252, .55),
+    0 0 10px rgba(103, 232, 249, .22),
+    0 3px 14px rgba(0, 0, 0, .6),
+    inset 0 1px 0 rgba(255, 255, 255, .3);
+  backdrop-filter: blur(6px);
+}
+.nova-main-hero-epic-label__core::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .22), transparent);
+  animation: novaBuzEpicShineSweep 3s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+.nova-main-hero-epic-label__core::before{
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    115deg,
+    #67e8f9 0%,
+    #f472b6 28%,
+    #e879f9 50%,
+    #c084fc 72%,
+    #a5f3fc 100%
+  );
+  background-size: 260% 100%;
+  animation: novaBuzEpicNeonFlow 2.8s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  opacity: .98;
+  filter: drop-shadow(0 0 8px rgba(232, 121, 249, .65));
+}
+.nova-main-hero-epic-label__text{
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #f8fafc;
+  -webkit-text-fill-color: #f8fafc;
+  text-shadow:
+    0 0 10px rgba(192, 132, 252, .95),
+    0 0 16px rgba(103, 232, 249, .75),
+    0 0 6px rgba(255, 255, 255, .85),
+    0 1px 3px rgba(0, 0, 0, .92);
+  animation: novaBuzEpicTextShine 2.2s ease-in-out infinite;
+}
+@keyframes novaBuzEpicNeonFlow{
+  0%{ background-position: 0% 50%; }
+  100%{ background-position: 200% 50%; }
+}
+@keyframes novaBuzEpicHalo{
+  0%, 100%{ opacity: .75; transform: translate(-50%, -50%) scale(1); }
+  50%{ opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+@keyframes novaBuzEpicShineSweep{
+  0%, 28%{ left: -120%; opacity: 0; }
+  42%{ opacity: 1; }
+  58%{ left: 140%; opacity: 0; }
+  100%{ left: 140%; opacity: 0; }
+}
+@keyframes novaBuzEpicTextShine{
+  0%, 100%{
+    text-shadow:
+      0 0 9px rgba(192, 132, 252, .9),
+      0 0 15px rgba(103, 232, 249, .65),
+      0 0 5px rgba(255, 255, 255, .8),
+      0 1px 3px rgba(0, 0, 0, .9);
+  }
+  50%{
+    text-shadow:
+      0 0 14px rgba(232, 121, 249, 1),
+      0 0 22px rgba(103, 232, 249, .9),
+      0 0 10px rgba(255, 255, 255, .95),
+      0 1px 3px rgba(0, 0, 0, .9);
+  }
 }
 
 .nova-sp-hero-arena__host.nova-hero-mount--buz-ejder .nova-hero-buz-stack{
@@ -235,37 +426,45 @@
 .nova-hero-mount--buz-ejder svg .nova-hero__tail-ice-burst{
   transform-origin: 228px 352px;
 }
-.nova-hero-store-card--buz .nova-hero-preview{
-  overflow: hidden;
+.nova-hero-store-card--buz .nova-hero-preview--store-live{
+  overflow: visible;
 }
 .nova-store-detail-preview--hero .nova-store-preview--buz{
-  overflow: hidden;
+  overflow: visible;
 }
 .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-svg-host,
 .nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-svg-host,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{
   min-height: 168px;
-  padding: 4% 2% 6%;
+  padding: 8px 18px 10px;
+  overflow: visible;
+  box-sizing: border-box;
   animation: none;
 }
 .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-buz-sprite,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-buz-sprite{
-  min-height: 140px;
-  max-height: 162px;
-  width: 86%;
-  max-width: 148px;
+  min-height: 148px;
+  max-height: 172px;
+  width: 100%;
+  max-width: 176px;
   margin: 0 auto;
+  overflow: visible;
+  padding: 0 6px;
+  box-sizing: border-box;
 }
 .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-svg-host,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{
   align-items: center;
   justify-content: center;
-  padding: 6px 4px 8px;
 }
 .nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-buz-sprite{
   min-height: 0;
   max-height: none;
-  width: 70%;
+  width: 100%;
+  max-width: 236px;
+  overflow: visible;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 #main-screen .nova-main-hero-zone--buz .nova-hero-buz-sprite{
   min-height: 0;
@@ -278,7 +477,7 @@
 }
 .nova-hero-store-card--buz .nova-hero-preview{
   min-height: 180px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: stretch;

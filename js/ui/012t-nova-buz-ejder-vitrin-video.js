@@ -109,6 +109,9 @@
     this.img = img;
     this.profile = (opts && opts.profile) || 'store';
     this.anchorBottom = this.profile === 'main';
+    var sc = manifest.scale && manifest.scale[this.profile];
+    var def = { store: 1.14, detail: 1.16, main: 1.32 };
+    this.scaleMul = (opts && opts.scale) || sc || def[this.profile] || 1.12;
     this.dead = !this.ctx;
     this.running = false;
     this.raf = 0;
@@ -148,11 +151,19 @@
     var ctx = this.ctx;
     var cw = this.canvas.width;
     var ch = this.canvas.height;
-    var scale = Math.min(cw / m.frameWidth, ch / m.frameHeight);
-    var dw = Math.round(m.frameWidth * scale);
-    var dh = Math.round(m.frameHeight * scale);
+    var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
+    var scale = fit * this.scaleMul;
+    var dw = m.frameWidth * scale;
+    var dh = m.frameHeight * scale;
+    if (dw > cw * 0.97 || dh > ch * 0.97) {
+      scale = fit;
+      dw = m.frameWidth * scale;
+      dh = m.frameHeight * scale;
+    }
+    dw = Math.round(dw);
+    dh = Math.round(dh);
     var dx = Math.round((cw - dw) * 0.5);
-    var dy = this.anchorBottom ? (ch - dh) : Math.round((ch - dh) * 0.5);
+    var dy = this.anchorBottom ? Math.round(ch - dh) : Math.round((ch - dh) * 0.5);
     ctx.clearRect(0, 0, cw, ch);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';

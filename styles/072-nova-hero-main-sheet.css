@@ -30,6 +30,9 @@
   flex-shrink: 0;
 }
 .nova-main-hero-stars[hidden]{ display: none !important; }
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-stars{
+  display: none !important;
+}
 .nova-main-hero-star{
   font-size: clamp(10px, 2.8vw, 12px);
   line-height: 1;

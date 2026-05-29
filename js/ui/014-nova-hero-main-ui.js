@@ -77,6 +77,9 @@
     if (!visible) {
       stars.hidden = true;
       stars.innerHTML = '';
+      if (typeof window.novaBuzEjderRefreshMainEpicBadge === 'function') {
+        window.novaBuzEjderRefreshMainEpicBadge(false, false);
+      }
       return;
     }
     if (lvl < 1) {
@@ -124,13 +127,25 @@
         lvl = window.__novaMainHeroLevelFetched;
       }
     } catch (_) {}
-    stars.hidden = false;
-    var html = '';
-    for (var i = 1; i <= MAX_STARS; i++) {
-      html += '<span class="nova-main-hero-star ' + (i <= lvl ? 'is-on' : 'is-off') + '" aria-hidden="true">★</span>';
+    var s = getStudent();
+    var heroId = s && s.battleHero ? String(s.battleHero).trim() : '';
+    var isBuz = heroId === 'buz_ejder';
+    if (isBuz) {
+      stars.hidden = true;
+      stars.innerHTML = '';
+      stars.removeAttribute('aria-label');
+    } else {
+      stars.hidden = false;
+      var html = '';
+      for (var i = 1; i <= MAX_STARS; i++) {
+        html += '<span class="nova-main-hero-star ' + (i <= lvl ? 'is-on' : 'is-off') + '" aria-hidden="true">★</span>';
+      }
+      stars.innerHTML = html;
+      stars.setAttribute('aria-label', 'Kahraman seviyesi ' + lvl + ' / ' + MAX_STARS);
     }
-    stars.innerHTML = html;
-    stars.setAttribute('aria-label', 'Kahraman seviyesi ' + lvl + ' / ' + MAX_STARS);
+    if (typeof window.novaBuzEjderRefreshMainEpicBadge === 'function') {
+      window.novaBuzEjderRefreshMainEpicBadge(isBuz, visible);
+    }
   }
 
   function buildHeroSvgHtml(heroId) {
