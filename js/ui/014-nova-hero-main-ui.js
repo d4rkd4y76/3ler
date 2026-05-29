@@ -77,8 +77,8 @@
     if (!visible) {
       stars.hidden = true;
       stars.innerHTML = '';
-      if (typeof window.novaBuzEjderRefreshMainEpicBadge === 'function') {
-        window.novaBuzEjderRefreshMainEpicBadge(false, false);
+      if (typeof window.novaEpicDragonRefreshMainBadge === 'function') {
+        window.novaEpicDragonRefreshMainBadge('', false);
       }
       return;
     }
@@ -129,8 +129,8 @@
     } catch (_) {}
     var s = getStudent();
     var heroId = s && s.battleHero ? String(s.battleHero).trim() : '';
-    var isBuz = heroId === 'buz_ejder';
-    if (isBuz) {
+    var isEpic = typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId);
+    if (isEpic) {
       stars.hidden = true;
       stars.innerHTML = '';
       stars.removeAttribute('aria-label');
@@ -143,8 +143,8 @@
       stars.innerHTML = html;
       stars.setAttribute('aria-label', 'Kahraman seviyesi ' + lvl + ' / ' + MAX_STARS);
     }
-    if (typeof window.novaBuzEjderRefreshMainEpicBadge === 'function') {
-      window.novaBuzEjderRefreshMainEpicBadge(isBuz, visible);
+    if (typeof window.novaEpicDragonRefreshMainBadge === 'function') {
+      window.novaEpicDragonRefreshMainBadge(heroId, visible);
     }
   }
 
@@ -208,13 +208,15 @@
     var heroHost = document.getElementById('nh_hero_sheet_hero_host');
     if (heroHost) {
       var mountHost = heroHost.querySelector('.nova-hero-svg-host');
-      if (mountHost && typeof window.novaBuzEjderUnmountSprite === 'function') {
-        window.novaBuzEjderUnmountSprite(mountHost);
+      var s2 = getStudent();
+      var hid = s2 && s2.battleHero ? String(s2.battleHero).trim() : '';
+      if (mountHost && typeof window.novaEpicDragonUnmountSprite === 'function') {
+        window.novaEpicDragonUnmountSprite(mountHost, hid);
       }
     }
     var sheetStars = document.getElementById('nh_hero_sheet_stars');
-    if (sheetStars && typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
-      window.novaBuzEjderUnmountEpicBadge(sheetStars);
+    if (sheetStars && typeof window.novaEpicDragonUnmountBadge === 'function') {
+      window.novaEpicDragonUnmountBadge(sheetStars);
     }
     ov.classList.remove('is-open');
     ov.setAttribute('aria-hidden', 'true');
@@ -250,39 +252,40 @@
     var heroHost = document.getElementById('nh_hero_sheet_hero_host');
 
     if (title) title.textContent = def.name;
+    var isEpicDragon = typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId);
     if (levelEl) {
-      levelEl.textContent = heroId === 'buz_ejder'
+      levelEl.textContent = isEpicDragon
         ? ('EPİK · Seviye ' + lvl + ' · ' + getLevelLabel(lvl))
         : ('Seviye ' + lvl + ' · ' + getLevelLabel(lvl));
     }
     if (desc) desc.textContent = def.desc || '';
     if (sheetStars) {
-      if (heroId === 'buz_ejder') {
+      if (isEpicDragon) {
         sheetStars.innerHTML = '';
         sheetStars.classList.add('nh-hero-sheet__stars--epic');
-        if (typeof window.novaBuzEjderMountEpicBadge === 'function') {
-          window.novaBuzEjderMountEpicBadge(sheetStars, 'sheet');
+        if (typeof window.novaEpicDragonMountBadge === 'function') {
+          window.novaEpicDragonMountBadge(sheetStars, heroId, 'sheet');
         }
       } else {
         sheetStars.classList.remove('nh-hero-sheet__stars--epic');
-        if (typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
-          window.novaBuzEjderUnmountEpicBadge(sheetStars);
+        if (typeof window.novaEpicDragonUnmountBadge === 'function') {
+          window.novaEpicDragonUnmountBadge(sheetStars);
         }
         sheetStars.innerHTML = buildSheetStarsHtml(lvl);
       }
     }
     if (arena) {
       arena.className = 'nh-hero-sheet__arena nh-hero-sheet__arena--' + (def.theme || 'blaze');
-      if (heroId === 'buz_ejder') arena.classList.add('nh-hero-sheet__arena--buz-sprite');
-      else arena.classList.remove('nh-hero-sheet__arena--buz-sprite');
+      arena.classList.remove('nh-hero-sheet__arena--buz-sprite', 'nh-hero-sheet__arena--alev-sprite');
+      if (isEpicDragon) arena.classList.add('nh-hero-sheet__arena--' + (def.theme || 'buz') + '-sprite');
     }
     if (heroHost) {
       heroHost.innerHTML = '';
       var host = document.createElement('div');
       host.className = 'nova-hero-svg-host nova-hero-mount--' + heroId.replace(/_/g, '-');
       heroHost.appendChild(host);
-      if (heroId === 'buz_ejder' && typeof window.novaBuzEjderMountSprite === 'function') {
-        window.novaBuzEjderMountSprite(host, { profile: 'main' });
+      if (isEpicDragon && typeof window.novaEpicDragonMountSprite === 'function') {
+        window.novaEpicDragonMountSprite(host, heroId, { profile: 'main' });
       } else {
         mountHeroSvg(host, heroId);
       }

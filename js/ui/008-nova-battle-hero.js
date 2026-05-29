@@ -207,6 +207,35 @@
           { msg: 'SÜPER! Kar fırtınası seninle!', badge: '👑 EFSANE' }
         ]
       }
+    },
+    alev_ejder: {
+      id: 'alev_ejder',
+      templateKey: 'NOVA_ALEV_EJDER_SVG_TEMPLATE',
+      sprite: 'hero/flame_dragon/sprite',
+      theme: 'alev',
+      name: 'Alev Ejderi',
+      desc: 'Alev pulları ve ateş nefesiyle yakıcı güç! Doğru cevaplarda alev fırtınası kopar!',
+      price: 13200,
+      order: 9,
+      equipEmoji: '🔥',
+      lines: {
+        cheer: [
+          { msg: 'Harika! Alev Ejderi seninle gurur duyuyor!', badge: '🔥 ALEV' },
+          { msg: 'Doğru cevap! Alevler parladı!', badge: '🔥 ALEV' },
+          { msg: 'Bravo! Kızgın kesinlikle doğru!', badge: '🔥 ALEV' },
+          { msg: 'Süper! Ateş nefesi onayladı!', badge: '🔥 ALEV' }
+        ],
+        fire: [
+          { msg: 'ALEV FIRTINASI! Muhteşem cevap!', badge: '🔥 GÜÇ' },
+          { msg: 'Alev patlaması! Devam şampiyon!', badge: '🔥 GÜÇ' },
+          { msg: 'Yakıcı isabet! İnanılmazsın!', badge: '🔥 GÜÇ' }
+        ],
+        epic: [
+          { msg: 'EFSANE! Alev tacı senin!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Ateş krallığı açıldı!', badge: '👑 EFSANE' },
+          { msg: 'SÜPER! Alev fırtınası seninle!', badge: '👑 EFSANE' }
+        ]
+      }
     }
   };
 
@@ -287,7 +316,7 @@
         'is-visible',
         'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star', 'nova-main-hero-zone--turbo',
         'nova-main-hero-zone--mythic', 'nova-main-hero-zone--bilge', 'nova-main-hero-zone--simsek',
-        'nova-main-hero-zone--buz'
+        'nova-main-hero-zone--buz', 'nova-main-hero-zone--alev'
       );
       zone.setAttribute('aria-hidden', 'true');
     }
@@ -297,7 +326,7 @@
     slot.classList.remove(
       'nova-main-hero-slot--blaze', 'nova-main-hero-slot--star', 'nova-main-hero-slot--turbo',
       'nova-main-hero-slot--mythic', 'nova-main-hero-slot--bilge', 'nova-main-hero-slot--simsek',
-      'nova-main-hero-slot--buz'
+      'nova-main-hero-slot--buz', 'nova-main-hero-slot--alev'
     );
   }
 
@@ -429,21 +458,54 @@
 
   function heroHasStoreArt(def) {
     if (!def) return false;
-    if (def.sprite && typeof window.novaBuzEjderMountSprite === 'function') return true;
+    if (def.sprite && typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(def.id)) {
+      return typeof window.novaEpicDragonMountSprite === 'function';
+    }
     return !!(def.templateKey && window[def.templateKey]);
+  }
+
+  var MOUNT_CLASS_LIST = 'nova-hero-mount--blaze-robot nova-hero-mount--star-fairy nova-hero-mount--turbo-turtle nova-hero-mount--mythic-wyvern nova-hero-mount--bilge-hayalet nova-hero-mount--simsek-sincap nova-hero-mount--buz-ejder nova-hero-mount--alev-ejder';
+
+  function clearMountClasses(host) {
+    if (!host) return;
+    MOUNT_CLASS_LIST.split(' ').forEach(function (c) { host.classList.remove(c); });
+  }
+
+  function epicDragonUseSpriteHost(host) {
+    if (!host || !host.closest) return true;
+    return !host.closest('.nova-sp-hero-arena__host');
+  }
+
+  function mountEpicDragonSvg(host, heroId) {
+    if (!host) return null;
+    host.removeAttribute('data-buz-sprite');
+    host.removeAttribute('data-alev-sprite');
+    host.innerHTML = buildHeroSvgHtml(heroId);
+    if (heroId === 'buz_ejder') {
+      if (typeof window.novaBuzEjderMountWebGL === 'function') window.novaBuzEjderMountWebGL(host);
+      if (typeof window.novaBuzEjderPlayIdle === 'function') {
+        requestAnimationFrame(function () { try { window.novaBuzEjderPlayIdle(host); } catch (_) {} });
+      }
+      return host.querySelector('.nova-hero-buz-stack') || host.querySelector('svg');
+    }
+    if (heroId === 'alev_ejder') {
+      if (typeof window.novaAlevEjderPlayIdle === 'function') {
+        requestAnimationFrame(function () { try { window.novaAlevEjderPlayIdle(host); } catch (_) {} });
+      }
+      return host.querySelector('.nova-hero-alev-stack') || host.querySelector('svg');
+    }
+    return host.querySelector('svg');
   }
 
   function mountHeroStorePreview(host, heroId) {
     if (!host) return null;
     var id = heroId || '';
-    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet', 'nova-hero-mount--simsek-sincap', 'nova-hero-mount--buz-ejder');
+    clearMountClasses(host);
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
-    if (id === 'buz_ejder') {
-      if (typeof window.novaBuzEjderMountSprite === 'function') {
-        return window.novaBuzEjderMountSprite(host, { profile: 'store' });
-      }
-      console.error('[buz] sprite modülü yok — 012t script yüklü mü?');
-      return null;
+    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
+      return typeof window.novaEpicDragonMountSprite === 'function'
+        ? window.novaEpicDragonMountSprite(host, id, { profile: 'store' })
+        : null;
     }
     return mountHeroInto(host, heroId);
   }
@@ -457,37 +519,17 @@
     return raw.split('__UID__').join(uid).replace('<svg ', '<svg class="nova-hero-svg nova-hero-svg--' + def.theme + '" ');
   }
 
-  function mountBuzEjderSvg(host) {
-    if (!host) return null;
-    host.removeAttribute('data-buz-sprite');
-    host.innerHTML = buildHeroSvgHtml('buz_ejder');
-    if (typeof window.novaBuzEjderMountWebGL === 'function') {
-      window.novaBuzEjderMountWebGL(host);
-    }
-    if (typeof window.novaBuzEjderPlayIdle === 'function') {
-      requestAnimationFrame(function () {
-        try { window.novaBuzEjderPlayIdle(host); } catch (_) {}
-      });
-    }
-    return host.querySelector('.nova-hero-buz-stack') || host.querySelector('svg');
-  }
-
-  function buzUseSpriteHost(host) {
-    if (!host || !host.closest) return true;
-    return !host.closest('.nova-sp-hero-arena__host');
-  }
-
   function mountHeroInto(host, heroId) {
     if (!host) return null;
     var id = heroId || getEquippedHeroId();
-    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet', 'nova-hero-mount--simsek-sincap', 'nova-hero-mount--buz-ejder');
+    clearMountClasses(host);
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
-    if (id === 'buz_ejder') {
-      if (buzUseSpriteHost(host) && typeof window.novaBuzEjderMountSprite === 'function') {
+    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
+      if (epicDragonUseSpriteHost(host) && typeof window.novaEpicDragonMountSprite === 'function') {
         var profile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
-        return window.novaBuzEjderMountSprite(host, { profile: profile });
+        return window.novaEpicDragonMountSprite(host, id, { profile: profile });
       }
-      return mountBuzEjderSvg(host);
+      return mountEpicDragonSvg(host, id);
     }
     host.innerHTML = buildHeroSvgHtml(id);
     var svg = host.querySelector('svg');
@@ -605,7 +647,8 @@
       ? 'speed'
       : (payload.theme === 'simsek' ? 'spark'
         : (payload.theme === 'buz' ? 'frost'
-          : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember')));
+          : (payload.theme === 'alev' ? 'ember'
+            : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember'))));
     for (var i = 0; i < count; i++){
       var p = document.createElement('i');
       p.className = 'nova-sp-fx-particle p-' + type;
@@ -647,7 +690,7 @@
   }
 
   function usesJsSpFx(heroId) {
-    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'buz_ejder';
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'buz_ejder' || heroId === 'alev_ejder';
   }
 
   function pickFxRoutine(variant) {
@@ -685,6 +728,9 @@
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPlaySpFx === 'function') {
       return window.novaBuzEjderPlaySpFx(host, variant, routine);
     }
+    if (heroId === 'alev_ejder' && typeof window.novaAlevEjderPlaySpFx === 'function') {
+      return window.novaAlevEjderPlaySpFx(host, variant, routine);
+    }
     host.classList.remove('nova-sp-fx-js');
     return waitMs(850);
   }
@@ -708,6 +754,8 @@
         window.novaSimsekSincapResetSvg(svg);
       } else if (heroId === 'buz_ejder' && typeof window.novaBuzEjderResetHost === 'function') {
         window.novaBuzEjderResetHost(host);
+      } else if (heroId === 'alev_ejder' && typeof window.novaAlevEjderResetHost === 'function') {
+        window.novaAlevEjderResetHost(host);
       }
     } catch (_) {}
   }
@@ -725,7 +773,7 @@
     arena.classList.remove(
       'is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show',
       'nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic',
-      'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz'
+      'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev'
     );
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -794,7 +842,7 @@
       if (!def) { resolve(); return; }
 
       var arena = ensureArena();
-      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz');
+      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev');
       arena.classList.add('nova-sp-theme-' + def.theme);
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -1191,8 +1239,8 @@
   }
 
   function renderHeroStarsHtml(heroId, lvl) {
-    if (heroId === 'buz_ejder') {
-      return '<div class="char-inv-hero-epic-slot" data-buz-epic-slot="1"></div>';
+    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
+      return '<div class="char-inv-hero-epic-slot" data-epic-dragon-slot="1" data-hero-id="' + heroId + '"></div>';
     }
     var html = '<div class="char-inv-hero-stars">';
     for (var i = 1; i <= 4; i++) {
@@ -1203,9 +1251,10 @@
   }
 
   function mountCharInvEpicBadges(root) {
-    if (!root || typeof window.novaBuzEjderMountEpicBadge !== 'function') return;
-    root.querySelectorAll('[data-buz-epic-slot]').forEach(function (slot) {
-      window.novaBuzEjderMountEpicBadge(slot, 'inv');
+    if (!root || typeof window.novaEpicDragonMountBadge !== 'function') return;
+    root.querySelectorAll('[data-epic-dragon-slot]').forEach(function (slot) {
+      var hid = slot.getAttribute('data-hero-id') || 'buz_ejder';
+      window.novaEpicDragonMountBadge(slot, hid, 'inv');
     });
   }
 
@@ -1267,7 +1316,7 @@
           + (eq ? '<span class="char-inv-badge">Takılı</span>' : '')
           + '<div class="char-inv-hero-thumb-host" data-char-inv-hero-host="' + hero.id + '"></div>'
           + '<div class="char-inv-card-title">' + (hero.name || def.name) + '</div>'
-          + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">' + (hero.id === 'buz_ejder' ? 'EPİK · ' : '★ Sv. ') + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
+          + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">' + ((typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(hero.id)) ? 'EPİK · ' : '★ Sv. ') + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
           + renderHeroStarsHtml(hero.id, lvl)
           + (eq
             ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'

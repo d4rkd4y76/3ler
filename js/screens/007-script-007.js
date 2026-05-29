@@ -9495,8 +9495,8 @@ if (winnerId && loserId) {
             var heroId = (player && player.heroId) ? String(player.heroId).trim() : '';
             var lvl = Math.max(0, Math.min(4, Number(player && player.heroLevel) || 0));
             var starsBlock;
-            if (heroId === 'buz_ejder') {
-                starsBlock = '<div class="nsr-hero-stars nsr-hero-stars--epic"><div class="nsr-hero-epic-slot" data-buz-epic-slot="1"></div></div>';
+            if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
+                starsBlock = '<div class="nsr-hero-stars nsr-hero-stars--epic"><div class="nsr-hero-epic-slot" data-epic-dragon-slot="1" data-hero-id="' + heroId + '"></div></div>';
             } else {
                 var stars = '';
                 for (var i = 1; i <= 4; i++) {
@@ -9533,9 +9533,10 @@ if (winnerId && loserId) {
                 } catch (_) {}
                 el.innerHTML = '<span class="nsr-hero-fallback">?</span>';
             });
-            if (typeof window.novaBuzEjderMountEpicBadge === 'function') {
-                root.querySelectorAll('[data-buz-epic-slot]').forEach(function (slot) {
-                    window.novaBuzEjderMountEpicBadge(slot, 'rank');
+            if (typeof window.novaEpicDragonMountBadge === 'function') {
+                root.querySelectorAll('[data-epic-dragon-slot]').forEach(function (slot) {
+                    var hid = slot.getAttribute('data-hero-id') || 'buz_ejder';
+                    window.novaEpicDragonMountBadge(slot, hid, 'rank');
                 });
             }
         }

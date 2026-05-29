@@ -1,0 +1,35 @@
+{
+  "version": 5,
+  "base": "hero/flame_dragon/sprite/",
+  "sheet": "alev-ejder-idle.webp",
+  "frameWidth": 393,
+  "frameHeight": 280,
+  "cols": 6,
+  "rows": 8,
+  "frameCount": 44,
+  "loopEnd": 36,
+  "fps": 12,
+  "blendFrames": 8,
+  "sheetWidth": 2358,
+  "sheetHeight": 2240,
+  "anchor": "bottom",
+  "main": {
+    "sheet": "alev-ejder-main.webp",
+    "frameWidth": 414,
+    "frameHeight": 300,
+    "cols": 7,
+    "rows": 9,
+    "frameCount": 62,
+    "loopEnd": 48,
+    "fps": 12,
+    "blendFrames": 14,
+    "sheetWidth": 2898,
+    "sheetHeight": 2700,
+    "anchor": "bottom"
+  },
+  "scale": {
+    "store": 1.14,
+    "detail": 1.18,
+    "main": 1.32
+  }
+}

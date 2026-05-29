@@ -33,6 +33,9 @@
 #main-screen .nova-main-hero-zone--buz .nova-main-hero-stars{
   display: none !important;
 }
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-stars{
+  display: none !important;
+}
 .nova-main-hero-star{
   font-size: clamp(10px, 2.8vw, 12px);
   line-height: 1;
@@ -159,6 +162,12 @@
     radial-gradient(ellipse 90% 50% at 50% 100%, rgba(34, 211, 238, .32), transparent 72%),
     radial-gradient(ellipse 55% 38% at 50% 12%, rgba(165, 243, 252, .14), transparent 70%),
     linear-gradient(168deg, #020617 0%, #042f2e 55%, #0e7490 100%);
+}
+.nh-hero-sheet__arena--alev{
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(249, 115, 22, .36), transparent 72%),
+    radial-gradient(ellipse 55% 38% at 50% 12%, rgba(254, 215, 170, .16), transparent 70%),
+    linear-gradient(168deg, #1a0500 0%, #431407 55%, #c2410c 100%);
 }
 .nh-hero-sheet__stars{
   display: flex;

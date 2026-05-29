@@ -152,6 +152,7 @@
     if (heroId === 'bilge_hayalet') return 'Sihirli Buba';
     if (heroId === 'simsek_sincap') return 'Parlak Pati';
     if (heroId === 'buz_ejder') return 'Buz Ejderi';
+    if (heroId === 'alev_ejder') return 'Alev Ejderi';
     return heroId;
   }
 
@@ -165,6 +166,7 @@
     if (heroId === 'bilge_hayalet') return 'bilge';
     if (heroId === 'simsek_sincap') return 'simsek';
     if (heroId === 'buz_ejder') return 'buz';
+    if (heroId === 'alev_ejder') return 'alev';
     return 'blaze';
   }
 
@@ -448,8 +450,8 @@
     var host = document.createElement('div');
     host.className = 'nh-level-hero-preview__host nova-hero-mount--' + heroId.replace(/_/g, '-');
     box.appendChild(host);
-    if (heroId === 'buz_ejder' && typeof window.novaBuzEjderMountSprite === 'function') {
-      window.novaBuzEjderMountSprite(host, { profile: 'store' });
+    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId) && typeof window.novaEpicDragonMountSprite === 'function') {
+      window.novaEpicDragonMountSprite(host, heroId, { profile: 'store' });
     } else if (typeof window.novaMountHeroInto === 'function') {
       window.novaMountHeroInto(host, heroId);
     }
@@ -473,11 +475,11 @@
     var nextWrap = document.getElementById('nh_level_next_wrap');
 
     if (stars) {
-      if (heroId === 'buz_ejder') {
+      if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
         stars.classList.add('nh-level-arena__stars--epic');
         stars.innerHTML = '';
-        if (typeof window.novaBuzEjderMountEpicBadge === 'function') {
-          window.novaBuzEjderMountEpicBadge(stars, 'level');
+        if (typeof window.novaEpicDragonMountBadge === 'function') {
+          window.novaEpicDragonMountBadge(stars, heroId, 'level');
         }
         var rankEpic = document.createElement('span');
         rankEpic.className = 'nh-level-arena__rank';
@@ -485,8 +487,8 @@
         stars.appendChild(rankEpic);
       } else {
         stars.classList.remove('nh-level-arena__stars--epic');
-        if (typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
-          window.novaBuzEjderUnmountEpicBadge(stars);
+        if (typeof window.novaEpicDragonUnmountBadge === 'function') {
+          window.novaEpicDragonUnmountBadge(stars);
         }
         stars.innerHTML = renderStars(lvl)
           + '<span class="nh-level-arena__rank">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>';
