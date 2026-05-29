@@ -264,7 +264,7 @@
   height: 26px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(251, 146, 60, .4), rgba(251, 146, 60, .1) 50%, transparent 72%);
+  background: radial-gradient(ellipse, rgba(167, 139, 250, .32), rgba(109, 40, 217, .08) 50%, transparent 72%);
   filter: blur(4px);
   animation: novaGeceEpicHalo 2.8s ease-in-out infinite;
   z-index: 0;
@@ -546,6 +546,48 @@
 .nh-hero-sheet__arena--gece-sprite{
   min-height: 228px;
   padding-bottom: 8px;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(109, 40, 217, .28), transparent 74%),
+    linear-gradient(168deg, #0c0418 0%, #2e1065 55%, #4c1d95 100%);
+}
+.nh-hero-sheet__arena--gece-sprite .nh-hero-sheet__stars--epic{
+  margin-bottom: 14px;
+  isolation: isolate;
+  z-index: 3;
+  contain: layout style;
+}
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__halo{
+  animation: none;
+  opacity: .42;
+  width: 68px;
+  height: 22px;
+  background: radial-gradient(ellipse, rgba(109, 40, 217, .28), transparent 72%);
+  filter: blur(3px);
+}
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core{
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .1) inset,
+    0 0 10px rgba(109, 40, 217, .32),
+    0 3px 12px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .28);
+}
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core::before{
+  animation: none;
+  background-position: 50% 50%;
+  opacity: .82;
+  filter: none;
+}
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core::after{
+  animation: none;
+  opacity: 0;
+}
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__text{
+  animation: none;
+}
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__wing--l,
+.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__wing--r{
+  filter: none;
+  opacity: .75;
 }
 .nh-hero-sheet__arena--gece-sprite .nh-hero-sheet__hero-host{
   min-height: 200px;
@@ -580,6 +622,7 @@
   max-height: 100%;
   margin-left: auto;
   margin-right: auto;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .42)) drop-shadow(0 0 6px rgba(109, 40, 217, .12));
 }
 
 @media (prefers-reduced-motion: reduce){
