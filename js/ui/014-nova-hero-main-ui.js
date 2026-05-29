@@ -276,7 +276,7 @@
     }
     if (arena) {
       arena.className = 'nh-hero-sheet__arena nh-hero-sheet__arena--' + (def.theme || 'blaze');
-      arena.classList.remove('nh-hero-sheet__arena--buz-sprite', 'nh-hero-sheet__arena--alev-sprite');
+      arena.classList.remove('nh-hero-sheet__arena--buz-sprite', 'nh-hero-sheet__arena--alev-sprite', 'nh-hero-sheet__arena--gece-sprite');
       if (isEpicDragon) arena.classList.add('nh-hero-sheet__arena--' + (def.theme || 'buz') + '-sprite');
     }
     if (heroHost) {

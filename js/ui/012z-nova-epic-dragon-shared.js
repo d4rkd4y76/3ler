@@ -1,9 +1,9 @@
-/* Epik ejder kahramanları — ortak yardımcılar (Buz + Alev) */
+/* Epik ejder kahramanları — ortak yardımcılar (Buz + Alev + Gece) */
 (function () {
   'use strict';
 
   function isEpic(id) {
-    return id === 'buz_ejder' || id === 'alev_ejder';
+    return id === 'buz_ejder' || id === 'alev_ejder' || id === 'gece_ejder';
   }
 
   function mountSprite(host, id, opts) {
@@ -13,6 +13,9 @@
     if (id === 'alev_ejder' && typeof window.novaAlevEjderMountSprite === 'function') {
       return window.novaAlevEjderMountSprite(host, opts);
     }
+    if (id === 'gece_ejder' && typeof window.novaGeceEjderMountSprite === 'function') {
+      return window.novaGeceEjderMountSprite(host, opts);
+    }
     return null;
   }
 
@@ -21,6 +24,8 @@
       window.novaBuzEjderUnmountSprite(host);
     } else if (id === 'alev_ejder' && typeof window.novaAlevEjderUnmountSprite === 'function') {
       window.novaAlevEjderUnmountSprite(host);
+    } else if (id === 'gece_ejder' && typeof window.novaGeceEjderUnmountSprite === 'function') {
+      window.novaGeceEjderUnmountSprite(host);
     }
   }
 
@@ -30,6 +35,9 @@
     }
     if (id === 'alev_ejder' && typeof window.novaAlevEjderMountEpicBadge === 'function') {
       return window.novaAlevEjderMountEpicBadge(parent, mod);
+    }
+    if (id === 'gece_ejder' && typeof window.novaGeceEjderMountEpicBadge === 'function') {
+      return window.novaGeceEjderMountEpicBadge(parent, mod);
     }
     return null;
   }
@@ -41,6 +49,9 @@
     if (typeof window.novaAlevEjderUnmountEpicBadge === 'function') {
       window.novaAlevEjderUnmountEpicBadge(parent);
     }
+    if (typeof window.novaGeceEjderUnmountEpicBadge === 'function') {
+      window.novaGeceEjderUnmountEpicBadge(parent);
+    }
   }
 
   function refreshMainBadge(heroId, visible) {
@@ -49,6 +60,9 @@
     }
     if (typeof window.novaAlevEjderRefreshMainEpicBadge === 'function') {
       window.novaAlevEjderRefreshMainEpicBadge(heroId === 'alev_ejder', visible);
+    }
+    if (typeof window.novaGeceEjderRefreshMainEpicBadge === 'function') {
+      window.novaGeceEjderRefreshMainEpicBadge(heroId === 'gece_ejder', visible);
     }
   }
 

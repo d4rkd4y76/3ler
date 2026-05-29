@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-gece-ejder-main-sprite.py */
+window.NOVA_GECE_EJDER_SPRITE_BASE="hero/dark_dragon/sprite/";
+window.NOVA_GECE_EJDER_SPRITE_MANIFEST = {"version":5,"base":"hero/dark_dragon/sprite/","sheet":"gece-ejder-idle.webp","frameWidth":318,"frameHeight":278,"cols":6,"rows":8,"frameCount":44,"loopEnd":36,"fps":12,"blendFrames":8,"sheetWidth":1908,"sheetHeight":2224,"anchor":"center","main":{"sheet":"gece-ejder-main.webp","frameWidth":423,"frameHeight":300,"cols":6,"rows":8,"frameCount":46,"loopEnd":46,"fps":12,"blendFrames":0,"sheetWidth":2538,"sheetHeight":2400,"anchor":"bottom"},"scale":{"store":1.14,"detail":1.38,"main":1.32}};

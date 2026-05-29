@@ -612,7 +612,7 @@ window.NovaAdminExport = (function(){
             </div>
             <div class="sticky-actions">
               <button class="btn ok" id="btnAddStoreHero" type="button">➕ Kahraman ekle</button>
-              <span class="hint">Animasyonlu kahramanlar: <span class="mono">blaze_robot</span>, <span class="mono">star_fairy</span>, <span class="mono">turbo_turtle</span>, <span class="mono">mythic_wyvern</span>, <span class="mono">bilge_hayalet</span>, <span class="mono">simsek_sincap</span>, <span class="mono">buz_ejder</span>, <span class="mono">alev_ejder</span> (ID bu anahtarlarla eşleşmeli).</span>
+              <span class="hint">Animasyonlu kahramanlar: <span class="mono">blaze_robot</span>, <span class="mono">star_fairy</span>, <span class="mono">turbo_turtle</span>, <span class="mono">mythic_wyvern</span>, <span class="mono">bilge_hayalet</span>, <span class="mono">simsek_sincap</span>, <span class="mono">buz_ejder</span>, <span class="mono">alev_ejder</span>, <span class="mono">gece_ejder</span> (ID bu anahtarlarla eşleşmeli).</span>
             </div>
           </div>
         </div>
@@ -2830,7 +2830,8 @@ btnAddHeading.addEventListener('click', async ()=>{
     { id:'bilge_hayalet', name:'Sihirli Buba', price:8800, desc:'Sihirli Buba sana “aferin!” der. Doğru cevaplarda ışık saçıp kutlama yapar!', order:5, active:true },
     { id:'simsek_sincap', name:'Parlak Pati', price:9400, desc:'Parlak Pati patileriyle parlar! Doğru cevaplarda ışıl ışıl kutlama yapar!', order:6, active:true },
     { id:'buz_ejder', name:'Buz Ejderi', price:12800, desc:'Kristal pulları ve buz nefesiyle dondurucu güç! Doğru cevaplarda kar fırtınası kopar!', order:8, active:true },
-    { id:'alev_ejder', name:'Alev Ejderi', price:13200, desc:'Alev pulları ve ateş nefesiyle yakıcı güç! Doğru cevaplarda alev fırtınası kopar!', order:9, active:true }
+    { id:'alev_ejder', name:'Alev Ejderi', price:13200, desc:'Alev pulları ve ateş nefesiyle yakıcı güç! Doğru cevaplarda alev fırtınası kopar!', order:9, active:true },
+    { id:'gece_ejder', name:'Gece Ejderi', price:13600, desc:'Gece pulları ve gölge nefesiyle karanlık güç! Doğru cevaplarda ay fırtınası kopar!', order:10, active:true }
   ];
   async function ensureBattleHeroesSeeded(){
     const snap = await rdb.ref('store/battleHeroes').get();

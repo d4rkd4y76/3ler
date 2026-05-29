@@ -153,6 +153,7 @@
     if (heroId === 'simsek_sincap') return 'Parlak Pati';
     if (heroId === 'buz_ejder') return 'Buz Ejderi';
     if (heroId === 'alev_ejder') return 'Alev Ejderi';
+    if (heroId === 'gece_ejder') return 'Gece Ejderi';
     return heroId;
   }
 
@@ -167,6 +168,7 @@
     if (heroId === 'simsek_sincap') return 'simsek';
     if (heroId === 'buz_ejder') return 'buz';
     if (heroId === 'alev_ejder') return 'alev';
+    if (heroId === 'gece_ejder') return 'gece';
     return 'blaze';
   }
 

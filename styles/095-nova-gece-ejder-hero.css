@@ -1,0 +1,615 @@
+/* Gece Ejderi — epik mağaza, ana ekran, seviye, arena */
+
+/* Sprite sheet — şeffaf PNG/WebP, kesintisiz döngü */
+.nova-hero-gece-sprite{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background: transparent !important;
+}
+.nova-hero-gece-sprite--main{
+  align-items: flex-end;
+  overflow: visible;
+}
+.nova-hero-gece-sprite__canvas{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(109, 40, 217, .45)) drop-shadow(0 0 20px rgba(167, 139, 250, .22));
+}
+.nova-hero-gece-sprite--main .nova-hero-gece-sprite__canvas{
+  filter: drop-shadow(0 4px 12px rgba(109, 40, 217, .4)) drop-shadow(0 0 10px rgba(167, 139, 250, .18));
+}
+/* Mağaza/vitrin: eski SVG asla üstte kalmasın */
+.nova-hero-store-card--gece .nova-hero-gece-stack,
+.nova-hero-store-card--gece .nova-hero-svg.nova-hero-svg--gece,
+.profile-change-content .nova-store-preview--gece .nova-hero-gece-stack,
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-gece-stack,
+.nova-hero-svg-host[data-gece-sprite="1"] .nova-hero-gece-stack,
+.nova-hero-svg-host[data-gece-sprite="1"] > svg{
+  display: none !important;
+}
+.nova-hero-store-card--gece .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-svg-host{
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+.nova-hero-svg-host.nova-hero-gece-vitrin-ready{
+  min-height: 150px;
+}
+.nova-hero-store-card--gece .nova-hero-preview,
+.nova-store-preview--hero.nova-store-preview--gece{
+  background:
+    radial-gradient(1.5px 1.5px at 18% 14%, rgba(255,255,255,.85), transparent),
+    radial-gradient(1px 1px at 82% 20%, rgba(236,254,255,.6), transparent),
+    radial-gradient(ellipse 92% 50% at 50% 100%, rgba(34,211,238,.32), transparent 72%),
+    radial-gradient(ellipse 60% 42% at 50% 0%, rgba(165,243,252,.18), transparent),
+    linear-gradient(180deg, #0c0418 0%, #2e1065 38%, #4c1d95 72%, #1e1b4b 100%) !important;
+}
+.nova-hero-store-card--gece .nova-hero-preview::after,
+.nova-store-preview--hero.nova-store-preview--gece::after{
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 5%;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(165,243,252,.2), transparent 72%);
+  pointer-events: none;
+  z-index: 1;
+}
+.nova-hero-store-card--gece .nova-hero-store-vitrine-name,
+.nova-hero-store-card--gece .nova-hero-store-name{
+  background: linear-gradient(135deg, #ede9fe, #a78bfa, #67e8f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece,
+.nova-store-detail-preview--hero .nova-store-preview--gece{
+  background:
+    radial-gradient(ellipse 92% 50% at 50% 100%, rgba(34,211,238,.3), transparent 72%),
+    linear-gradient(168deg, #0c0418 0%, #2e1065 52%, #4c1d95 100%);
+}
+.nh-level-hero-preview--gece{
+  background: linear-gradient(180deg, #0c0418, #2e1065 55%, #4c1d95);
+}
+.nh-level-hero-tab__thumb--gece{
+  background: linear-gradient(180deg, #2e1065, #4c1d95);
+}
+
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-zone__pad,
+#main-screen .nova-main-hero-zone--gece.is-visible .nova-main-hero-zone__pad{
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden;
+  animation: none;
+}
+
+.nova-hero-svg-host:has(.nova-hero-gece-stack),
+.nova-hero-svg-host.nova-hero-mount--gece-ejder,
+.nh-level-hero-preview__host:has(.nova-hero-gece-stack),
+.nh-level-hero-preview__host.nova-hero-mount--gece-ejder,
+.nh-hero-sheet__hero-host .nova-hero-svg-host:has(.nova-hero-gece-stack),
+.nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--gece-ejder{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+.nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--gece-ejder{
+  min-height: 150px;
+}
+
+.nova-hero-gece-stack{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10% 8% 12%;
+  box-sizing: border-box;
+}
+.nova-hero-gece-stack .nova-hero-svg{
+  position: relative;
+  z-index: 2;
+  display: block;
+  max-width: 78%;
+  max-height: 78%;
+  width: auto;
+  height: auto;
+  min-width: 80px;
+  min-height: 110px;
+  transform-origin: center center;
+  filter: drop-shadow(0 12px 28px rgba(109, 40, 217, .48)) drop-shadow(0 0 18px rgba(167, 139, 250, .24));
+}
+.nova-hero-gece-frost{
+  position: absolute;
+  inset: 12% 14% 16%;
+  width: auto;
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  clip-path: ellipse(42% 48% at 50% 46%);
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-svg-host{
+  min-height: 100%;
+}
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-svg-host{
+  min-height: 0;
+  height: 100%;
+}
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-gece-stack,
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-gece-stack,
+.nova-hero-store-card--gece .nova-hero-preview--store-live .nova-hero-gece-stack{
+  animation: nhStoreFloat 6s cubic-bezier(.45, 0, .55, 1) infinite;
+  transform-origin: center center;
+}
+
+#main-screen .nova-main-hero-zone--gece{
+  z-index: 2;
+  width: clamp(84px, 20vw, 102px);
+  height: clamp(94px, 21vw, 108px);
+}
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-float{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-epic-label{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 62px;
+  z-index: 15;
+  margin: 0;
+}
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-slot{
+  position: relative !important;
+  inset: auto !important;
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+#main-screen .nova-main-hero-zone--gece .nova-hero-svg-host,
+#main-screen .nova-main-hero-zone--gece .nova-hero-gece-stack,
+#main-screen .nova-main-hero-zone--gece .nova-hero-gece-sprite{
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: visible;
+  padding: 0 3px;
+  box-sizing: border-box;
+}
+#main-screen .nova-main-hero-zone--gece .nova-hero-gece-stack .nova-hero-svg{
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  transform: scale(0.78);
+  transform-origin: center bottom;
+  filter: drop-shadow(0 4px 10px rgba(251, 146, 60, .4));
+}
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-slot .nova-hero-svg,
+#main-screen .nova-main-hero-zone--gece .nova-main-hero-slot .nova-hero-gece-sprite{
+  width: 92px;
+  height: 88px;
+  max-width: 92px;
+  max-height: 88px;
+  min-width: 92px;
+  min-height: 88px;
+}
+#main-screen .nova-main-hero-zone--gece .nova-hero-gece-sprite--main{
+  width: 92px;
+  height: 88px;
+}
+.nova-main-hero-epic-label{
+  position: relative;
+  z-index: 12;
+  flex-shrink: 0;
+  width: auto;
+  margin: 0;
+  height: 22px;
+  min-width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  isolation: isolate;
+}
+.nova-main-hero-epic-label__halo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 78px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(251, 146, 60, .4), rgba(251, 146, 60, .1) 50%, transparent 72%);
+  filter: blur(4px);
+  animation: novaGeceEpicHalo 2.8s ease-in-out infinite;
+  z-index: 0;
+}
+.nova-main-hero-epic-label__wing{
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 15px;
+  transform: translateY(-50%);
+  opacity: .9;
+  z-index: 1;
+}
+.nova-main-hero-epic-label__wing--l{
+  left: 0;
+  background: linear-gradient(135deg, rgba(251, 146, 60, .15), rgba(253, 186, 116, .6));
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  filter: drop-shadow(-2px 0 8px rgba(251, 146, 60, .55));
+}
+.nova-main-hero-epic-label__wing--r{
+  right: 0;
+  background: linear-gradient(225deg, rgba(251, 146, 60, .15), rgba(253, 186, 116, .6));
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  filter: drop-shadow(2px 0 8px rgba(251, 146, 60, .55));
+}
+.nova-main-hero-epic-label__core{
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  padding: 4px 15px 5px;
+  border-radius: 999px;
+  overflow: hidden;
+  background:
+    linear-gradient(165deg, rgba(22, 8, 40, .98) 0%, rgba(8, 6, 22, .99) 50%, rgba(18, 10, 36, .98) 100%);
+  border: 1px solid rgba(239, 68, 68, .5);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .1) inset,
+    0 0 22px rgba(251, 146, 60, .55),
+    0 0 10px rgba(251, 146, 60, .22),
+    0 3px 14px rgba(0, 0, 0, .6),
+    inset 0 1px 0 rgba(255, 255, 255, .3);
+  backdrop-filter: blur(6px);
+}
+.nova-main-hero-epic-label__core::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .22), transparent);
+  animation: novaGeceEpicShineSweep 3s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+.nova-main-hero-epic-label__core::before{
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    115deg,
+    #a78bfa 0%,
+    #7c3aed 28%,
+    #c4b5fd 50%,
+    #6d28d9 72%,
+    #ede9fe 100%
+  );
+  background-size: 260% 100%;
+  animation: novaGeceEpicNeonFlow 2.8s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  opacity: .98;
+  filter: drop-shadow(0 0 8px rgba(253, 186, 116, .65));
+}
+.nova-main-hero-epic-label__text{
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #f8fafc;
+  -webkit-text-fill-color: #f8fafc;
+  text-shadow:
+    0 0 10px rgba(251, 146, 60, .95),
+    0 0 16px rgba(251, 146, 60, .75),
+    0 0 6px rgba(255, 255, 255, .85),
+    0 1px 3px rgba(0, 0, 0, .92);
+  animation: novaGeceEpicTextShine 2.2s ease-in-out infinite;
+}
+@keyframes novaGeceEpicNeonFlow{
+  0%{ background-position: 0% 50%; }
+  100%{ background-position: 200% 50%; }
+}
+@keyframes novaGeceEpicHalo{
+  0%, 100%{ opacity: .75; transform: translate(-50%, -50%) scale(1); }
+  50%{ opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+@keyframes novaGeceEpicShineSweep{
+  0%, 28%{ left: -120%; opacity: 0; }
+  42%{ opacity: 1; }
+  58%{ left: 140%; opacity: 0; }
+  100%{ left: 140%; opacity: 0; }
+}
+@keyframes novaGeceEpicTextShine{
+  0%, 100%{
+    text-shadow:
+      0 0 9px rgba(251, 146, 60, .9),
+      0 0 15px rgba(251, 146, 60, .65),
+      0 0 5px rgba(255, 255, 255, .8),
+      0 1px 3px rgba(0, 0, 0, .9);
+  }
+  50%{
+    text-shadow:
+      0 0 14px rgba(253, 186, 116, 1),
+      0 0 22px rgba(251, 146, 60, .9),
+      0 0 10px rgba(255, 255, 255, .95),
+      0 1px 3px rgba(0, 0, 0, .9);
+  }
+}
+
+.nova-sp-hero-arena__host.nova-hero-mount--gece-ejder .nova-hero-gece-stack{
+  min-height: 180px;
+}
+
+.nova-hero-mount--gece-ejder svg .nova-hero__frost-rings{
+  transform-style: preserve-3d;
+  perspective: 420px;
+}
+.nova-hero-mount--gece-ejder svg .nova-hero__chest-gem{
+  animation: novaBuzGemPulse 2.6s ease-in-out infinite;
+}
+.nova-hero-mount--gece-ejder svg .nova-hero__eye-l,
+.nova-hero-mount--gece-ejder svg .nova-hero__eye-r{
+  animation: novaBuzEyeGlow 2.8s ease-in-out infinite;
+}
+@keyframes novaBuzEyeGlow{
+  0%, 100%{ opacity: .92; }
+  50%{ opacity: 1; }
+}
+.nova-hero-mount--gece-ejder svg .nova-hero__wings-upper{
+  opacity: 1;
+}
+@keyframes novaBuzGemPulse{
+  0%, 100%{ opacity: .26; }
+  50%{ opacity: .58; }
+}
+.nova-hero-mount--gece-ejder svg .nova-hero__tail-ice-burst{
+  transform-origin: 228px 352px;
+}
+.nova-hero-store-card--gece .nova-hero-preview--store-live{
+  overflow: visible;
+}
+.nova-store-detail-preview--hero .nova-store-preview--gece{
+  overflow: visible;
+}
+.nova-hero-store-card--gece .nova-hero-preview--store-live .nova-hero-svg-host,
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-svg-host{
+  min-height: 168px;
+  padding: 8px 18px 10px;
+  overflow: visible;
+  box-sizing: border-box;
+  animation: none;
+}
+.nova-hero-store-card--gece .nova-hero-preview--store-live .nova-hero-gece-sprite,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-gece-sprite{
+  min-height: 148px;
+  max-height: 172px;
+  width: 100%;
+  max-width: 176px;
+  margin: 0 auto;
+  overflow: visible;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+.nova-hero-store-card--gece .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-svg-host{
+  align-items: center;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-svg-host{
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px 6px;
+  min-height: 200px;
+}
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-gece-sprite{
+  min-height: 0;
+  max-height: none;
+  width: 100%;
+  max-width: 236px;
+  height: 92%;
+  max-height: 212px;
+  overflow: visible;
+  padding: 0 8px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-gece-sprite__canvas{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+#main-screen .nova-main-hero-zone--gece .nova-hero-gece-sprite{
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+#main-screen .nova-main-hero-zone--gece .nova-hero-gece-sprite__canvas{
+  max-width: 100%;
+  max-height: 100%;
+}
+.nova-hero-store-card--gece .nova-hero-preview{
+  min-height: 180px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--gece .nova-hero-svg-host{
+  min-height: 200px;
+}
+.nova-hero-mount--gece-ejder svg .nova-hero__tail-ice-glow{
+  animation: novaBuzTailIcePulse 2.4s ease-in-out infinite;
+}
+@keyframes novaBuzTailIcePulse{
+  0%, 100%{ opacity: .45; transform: scale(0.94); }
+  50%{ opacity: .78; transform: scale(1.1); }
+}
+
+/* EPİK rozeti — ana ekran dışı bağlamlar */
+.nova-main-hero-epic-label--sheet,
+.nova-main-hero-epic-label--inv,
+.nova-main-hero-epic-label--level,
+.nova-main-hero-epic-label--rank{
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  flex-shrink: 0;
+}
+.nh-hero-sheet__stars--epic,
+.nh-level-arena__stars--epic{
+  flex-direction: column;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.char-inv-hero-epic-slot,
+.nsr-hero-epic-slot{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+}
+.nsr-hero-stars--epic{
+  border: none;
+  background: transparent;
+  padding: 0;
+  min-height: 24px;
+}
+.nh-hero-sheet__arena--gece-sprite{
+  min-height: 228px;
+  padding-bottom: 8px;
+}
+.nh-hero-sheet__arena--gece-sprite .nh-hero-sheet__hero-host{
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+/* Özellik paneli: host %100 genişlikte blok olduğu için sprite sola kayıyordu */
+.nh-hero-sheet__arena--gece-sprite .nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--gece-ejder{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 188px;
+}
+.nh-hero-sheet__arena--gece-sprite .nova-hero-gece-sprite--main{
+  width: clamp(168px, 54vw, 220px);
+  height: clamp(148px, 48vw, 196px);
+  min-width: 168px;
+  min-height: 148px;
+  max-width: 220px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  transform: scale(1.42);
+  transform-origin: 50% 100%;
+}
+.nh-hero-sheet__arena--gece-sprite .nova-hero-gece-sprite--main .nova-hero-gece-sprite__canvas{
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .profile-change-content .nova-store-preview--hero.nova-store-preview--gece .nova-hero-gece-stack,
+  .nova-hero-store-card--gece .nova-hero-preview--store-live .nova-hero-gece-stack,
+  .nova-hero-mount--gece-ejder svg .nova-hero__chest-gem{
+    animation: none;
+  }
+}
+
+.nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core{
+  border-color: rgba(239, 68, 68, .55);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .1) inset,
+    0 0 22px rgba(109, 40, 217, .58),
+    0 0 10px rgba(253, 186, 116, .22),
+    0 3px 14px rgba(0, 0, 0, .6),
+    inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+.nova-main-hero-epic-label--gece .nova-main-hero-epic-label__text{
+  background: linear-gradient(180deg, #fff7ed 0%, #fdba74 45%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.nova-hero-mount--gece-ejder svg .nova-hero__wings-upper{
+  animation: novaGeceWingIdle 2.8s ease-in-out infinite;
+  transform-origin: 120px 130px;
+}
+@keyframes novaGeceWingIdle{
+  0%, 100%{ transform: scaleY(1) rotate(0deg); }
+  50%{ transform: scaleY(1.06) rotate(-2deg); }
+}
