@@ -146,6 +146,17 @@
     radial-gradient(ellipse 90% 50% at 50% 100%, rgba(167, 139, 250, .35), transparent 72%),
     linear-gradient(168deg, #312e81 0%, #1e1b4b 68%, #0f172a 100%);
 }
+.nh-hero-sheet__arena--simsek{
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(56, 189, 248, .28), transparent 72%),
+    linear-gradient(168deg, #07051a 0%, #1e293b 68%, #0f172a 100%);
+}
+.nh-hero-sheet__arena--buz{
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(34, 211, 238, .32), transparent 72%),
+    radial-gradient(ellipse 55% 38% at 50% 12%, rgba(165, 243, 252, .14), transparent 70%),
+    linear-gradient(168deg, #020617 0%, #042f2e 55%, #0e7490 100%);
+}
 .nh-hero-sheet__stars{
   display: flex;
   align-items: center;

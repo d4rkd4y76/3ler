@@ -151,6 +151,7 @@
     if (heroId === 'mythic_wyvern') return 'Çılgın Kanat';
     if (heroId === 'bilge_hayalet') return 'Sihirli Buba';
     if (heroId === 'simsek_sincap') return 'Parlak Pati';
+    if (heroId === 'buz_ejder') return 'Buz Ejderi';
     return heroId;
   }
 
@@ -162,6 +163,8 @@
     if (heroId === 'turbo_turtle') return 'turbo';
     if (heroId === 'mythic_wyvern') return 'mythic';
     if (heroId === 'bilge_hayalet') return 'bilge';
+    if (heroId === 'simsek_sincap') return 'simsek';
+    if (heroId === 'buz_ejder') return 'buz';
     return 'blaze';
   }
 
@@ -445,7 +448,9 @@
     var host = document.createElement('div');
     host.className = 'nh-level-hero-preview__host nova-hero-mount--' + heroId.replace(/_/g, '-');
     box.appendChild(host);
-    if (typeof window.novaMountHeroInto === 'function') {
+    if (heroId === 'buz_ejder' && typeof window.novaBuzEjderMountSprite === 'function') {
+      window.novaBuzEjderMountSprite(host, { profile: 'store' });
+    } else if (typeof window.novaMountHeroInto === 'function') {
       window.novaMountHeroInto(host, heroId);
     }
     var nameEl = document.getElementById('nh_level_hero_name');

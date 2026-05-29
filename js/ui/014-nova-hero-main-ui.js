@@ -235,7 +235,11 @@
       var host = document.createElement('div');
       host.className = 'nova-hero-svg-host nova-hero-mount--' + heroId.replace(/_/g, '-');
       heroHost.appendChild(host);
-      mountHeroSvg(host, heroId);
+      if (heroId === 'buz_ejder' && typeof window.novaBuzEjderMountSprite === 'function') {
+        window.novaBuzEjderMountSprite(host, { profile: 'store' });
+      } else {
+        mountHeroSvg(host, heroId);
+      }
     }
     if (perks) {
       var lines = getPerkSummaryLines(lvl);

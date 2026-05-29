@@ -1,0 +1,304 @@
+/* Buz Ejderi — epik mağaza, ana ekran, seviye, arena */
+
+/* Sprite sheet — şeffaf PNG/WebP, kesintisiz döngü */
+.nova-hero-buz-sprite{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent !important;
+}
+.nova-hero-buz-sprite--main{
+  align-items: flex-end;
+}
+.nova-hero-buz-sprite__canvas{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(14, 165, 233, .42)) drop-shadow(0 0 20px rgba(103, 232, 249, .2));
+}
+.nova-hero-buz-sprite--main .nova-hero-buz-sprite__canvas{
+  filter: drop-shadow(0 4px 12px rgba(14, 165, 233, .38)) drop-shadow(0 0 10px rgba(103, 232, 249, .18));
+}
+/* Mağaza/vitrin: eski SVG asla üstte kalmasın */
+.nova-hero-store-card--buz .nova-hero-buz-stack,
+.nova-hero-store-card--buz .nova-hero-svg.nova-hero-svg--buz,
+.profile-change-content .nova-store-preview--buz .nova-hero-buz-stack,
+.nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-buz-stack,
+.nova-hero-svg-host[data-buz-sprite="1"] .nova-hero-buz-stack,
+.nova-hero-svg-host[data-buz-sprite="1"] > svg{
+  display: none !important;
+}
+.nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+.nova-hero-svg-host.nova-hero-buz-vitrin-ready{
+  min-height: 150px;
+}
+.nova-hero-store-card--buz .nova-hero-preview,
+.nova-store-preview--hero.nova-store-preview--buz{
+  background:
+    radial-gradient(1.5px 1.5px at 18% 14%, rgba(255,255,255,.85), transparent),
+    radial-gradient(1px 1px at 82% 20%, rgba(236,254,255,.6), transparent),
+    radial-gradient(ellipse 92% 50% at 50% 100%, rgba(34,211,238,.32), transparent 72%),
+    radial-gradient(ellipse 60% 42% at 50% 0%, rgba(165,243,252,.18), transparent),
+    linear-gradient(180deg, #020617 0%, #042f2e 38%, #0e7490 72%, #164e63 100%) !important;
+}
+.nova-hero-store-card--buz .nova-hero-preview::after,
+.nova-store-preview--hero.nova-store-preview--buz::after{
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 5%;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(165,243,252,.2), transparent 72%);
+  pointer-events: none;
+  z-index: 1;
+}
+.nova-hero-store-card--buz .nova-hero-store-vitrine-name,
+.nova-hero-store-card--buz .nova-hero-store-name{
+  background: linear-gradient(135deg, #ecfeff, #67e8f9, #a5b3fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz,
+.nova-store-detail-preview--hero .nova-store-preview--buz{
+  background:
+    radial-gradient(ellipse 92% 50% at 50% 100%, rgba(34,211,238,.3), transparent 72%),
+    linear-gradient(168deg, #020617 0%, #042f2e 52%, #0e7490 100%);
+}
+.nh-level-hero-preview--buz{
+  background: linear-gradient(180deg, #020617, #042f2e 55%, #0e7490);
+}
+.nh-level-hero-tab__thumb--buz{
+  background: linear-gradient(180deg, #042f2e, #0e7490);
+}
+
+#main-screen .nova-main-hero-zone--buz.is-visible .nova-main-hero-zone__pad{
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    rgba(103, 232, 249, .26),
+    rgba(165, 243, 252, .1) 52%,
+    transparent 70%);
+  box-shadow: 0 0 20px rgba(34, 211, 238, .22);
+}
+
+.nova-hero-svg-host:has(.nova-hero-buz-stack),
+.nova-hero-svg-host.nova-hero-mount--buz-ejder,
+.nh-level-hero-preview__host:has(.nova-hero-buz-stack),
+.nh-level-hero-preview__host.nova-hero-mount--buz-ejder,
+.nh-hero-sheet__hero-host .nova-hero-svg-host:has(.nova-hero-buz-stack),
+.nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--buz-ejder{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+.nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--buz-ejder{
+  min-height: 150px;
+}
+
+.nova-hero-buz-stack{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10% 8% 12%;
+  box-sizing: border-box;
+}
+.nova-hero-buz-stack .nova-hero-svg{
+  position: relative;
+  z-index: 2;
+  display: block;
+  max-width: 78%;
+  max-height: 78%;
+  width: auto;
+  height: auto;
+  min-width: 80px;
+  min-height: 110px;
+  transform-origin: center center;
+  filter: drop-shadow(0 12px 28px rgba(14, 165, 233, .45)) drop-shadow(0 0 18px rgba(103, 232, 249, .22));
+}
+.nova-hero-buz-frost{
+  position: absolute;
+  inset: 12% 14% 16%;
+  width: auto;
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  clip-path: ellipse(42% 48% at 50% 46%);
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{
+  min-height: 100%;
+}
+.nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-svg-host{
+  min-height: 0;
+  height: 100%;
+}
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-buz-stack,
+.nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-buz-stack,
+.nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-buz-stack{
+  animation: nhStoreFloat 6s cubic-bezier(.45, 0, .55, 1) infinite;
+  transform-origin: center center;
+}
+
+#main-screen .nova-main-hero-zone--buz{
+  z-index: 2;
+}
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-slot{
+  overflow: hidden;
+  inset: 10% 10% 2% 10%;
+  align-items: flex-end;
+  justify-items: center;
+}
+#main-screen .nova-main-hero-zone--buz .nova-hero-svg-host,
+#main-screen .nova-main-hero-zone--buz .nova-hero-buz-stack,
+#main-screen .nova-main-hero-zone--buz .nova-hero-buz-sprite{
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+#main-screen .nova-main-hero-zone--buz .nova-hero-buz-stack .nova-hero-svg{
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  transform: scale(0.78);
+  transform-origin: center bottom;
+  filter: drop-shadow(0 4px 10px rgba(34, 211, 238, .4));
+}
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-slot .nova-hero-svg,
+#main-screen .nova-main-hero-zone--buz .nova-main-hero-slot .nova-hero-buz-sprite{
+  max-width: 52px;
+  max-height: 58px;
+}
+
+.nova-sp-hero-arena__host.nova-hero-mount--buz-ejder .nova-hero-buz-stack{
+  min-height: 180px;
+}
+
+.nova-hero-mount--buz-ejder svg .nova-hero__frost-rings{
+  transform-style: preserve-3d;
+  perspective: 420px;
+}
+.nova-hero-mount--buz-ejder svg .nova-hero__chest-gem{
+  animation: novaBuzGemPulse 2.6s ease-in-out infinite;
+}
+.nova-hero-mount--buz-ejder svg .nova-hero__eye-l,
+.nova-hero-mount--buz-ejder svg .nova-hero__eye-r{
+  animation: novaBuzEyeGlow 2.8s ease-in-out infinite;
+}
+@keyframes novaBuzEyeGlow{
+  0%, 100%{ opacity: .92; }
+  50%{ opacity: 1; }
+}
+.nova-hero-mount--buz-ejder svg .nova-hero__wings-upper{
+  opacity: 1;
+}
+@keyframes novaBuzGemPulse{
+  0%, 100%{ opacity: .26; }
+  50%{ opacity: .58; }
+}
+.nova-hero-mount--buz-ejder svg .nova-hero__tail-ice-burst{
+  transform-origin: 228px 352px;
+}
+.nova-hero-store-card--buz .nova-hero-preview{
+  overflow: hidden;
+}
+.nova-store-detail-preview--hero .nova-store-preview--buz{
+  overflow: hidden;
+}
+.nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-svg-host,
+.nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{
+  min-height: 168px;
+  padding: 4% 2% 6%;
+  animation: none;
+}
+.nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-buz-sprite,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-buz-sprite{
+  min-height: 140px;
+  max-height: 162px;
+  width: 86%;
+  max-width: 148px;
+  margin: 0 auto;
+}
+.nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px 8px;
+}
+.nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-buz-sprite{
+  min-height: 0;
+  max-height: none;
+  width: 70%;
+}
+#main-screen .nova-main-hero-zone--buz .nova-hero-buz-sprite{
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+#main-screen .nova-main-hero-zone--buz .nova-hero-buz-sprite__canvas{
+  max-width: 100%;
+  max-height: 100%;
+}
+.nova-hero-store-card--buz .nova-hero-preview{
+  min-height: 180px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--buz .nova-hero-svg-host{
+  min-height: 200px;
+}
+.nova-hero-mount--buz-ejder svg .nova-hero__tail-ice-glow{
+  animation: novaBuzTailIcePulse 2.4s ease-in-out infinite;
+}
+@keyframes novaBuzTailIcePulse{
+  0%, 100%{ opacity: .45; transform: scale(0.94); }
+  50%{ opacity: .78; transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-buz-stack,
+  .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-buz-stack,
+  .nova-hero-mount--buz-ejder svg .nova-hero__chest-gem{
+    animation: none;
+  }
+}

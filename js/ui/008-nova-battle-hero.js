@@ -178,6 +178,35 @@
           { msg: 'SÜPER! Bugün inanılmazsın!', badge: '👑 EFSANE' }
         ]
       }
+    },
+    buz_ejder: {
+      id: 'buz_ejder',
+      templateKey: 'NOVA_BUZ_EJDER_SVG_TEMPLATE',
+      sprite: 'hero/ice_dragon/sprite',
+      theme: 'buz',
+      name: 'Buz Ejderi',
+      desc: 'Kristal pulları ve buz nefesiyle dondurucu güç! Doğru cevaplarda kar fırtınası kopar!',
+      price: 12800,
+      order: 8,
+      equipEmoji: '🐲',
+      lines: {
+        cheer: [
+          { msg: 'Harika! Buz Ejderi seninle gurur duyuyor!', badge: '❄️ BUZ' },
+          { msg: 'Doğru cevap! Kristaller parladı!', badge: '❄️ BUZ' },
+          { msg: 'Bravo! Donmuş kesinlikle doğru!', badge: '❄️ BUZ' },
+          { msg: 'Süper! Buz nefesi onayladı!', badge: '❄️ BUZ' }
+        ],
+        fire: [
+          { msg: 'BUZ FIRTINASI! Muhteşem cevap!', badge: '❄️ GÜÇ' },
+          { msg: 'Kristal patlaması! Devam şampiyon!', badge: '❄️ GÜÇ' },
+          { msg: 'Dondurucu isabet! İnanılmazsın!', badge: '❄️ GÜÇ' }
+        ],
+        epic: [
+          { msg: 'EFSANE! Kutup tacı senin!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Buz krallığı açıldı!', badge: '👑 EFSANE' },
+          { msg: 'SÜPER! Kar fırtınası seninle!', badge: '👑 EFSANE' }
+        ]
+      }
     }
   };
 
@@ -254,13 +283,22 @@
   function clearMainHeroSlot(slot) {
     var zone = document.getElementById('nova-main-hero-zone');
     if (zone) {
-      zone.classList.remove('is-visible', 'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star', 'nova-main-hero-zone--turbo');
+      zone.classList.remove(
+        'is-visible',
+        'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star', 'nova-main-hero-zone--turbo',
+        'nova-main-hero-zone--mythic', 'nova-main-hero-zone--bilge', 'nova-main-hero-zone--simsek',
+        'nova-main-hero-zone--buz'
+      );
       zone.setAttribute('aria-hidden', 'true');
     }
     if (!slot) slot = document.getElementById('nova-main-hero-slot');
     if (!slot) return;
     slot.innerHTML = '';
-    slot.classList.remove('nova-main-hero-slot--blaze', 'nova-main-hero-slot--star');
+    slot.classList.remove(
+      'nova-main-hero-slot--blaze', 'nova-main-hero-slot--star', 'nova-main-hero-slot--turbo',
+      'nova-main-hero-slot--mythic', 'nova-main-hero-slot--bilge', 'nova-main-hero-slot--simsek',
+      'nova-main-hero-slot--buz'
+    );
   }
 
   function mountMainScreenHero(heroId) {
@@ -268,7 +306,7 @@
     var zone = document.getElementById('nova-main-hero-zone');
     var slot = document.getElementById('nova-main-hero-slot');
     if (!def || !zone || !slot) return;
-    if (!window[def.templateKey]) return;
+    if (!heroHasStoreArt(def)) return;
     clearMainHeroSlot(slot);
     zone.setAttribute('aria-hidden', 'false');
     zone.classList.add('is-visible', 'nova-main-hero-zone--' + def.theme);
@@ -389,6 +427,27 @@
     return heroCatalogCache;
   }
 
+  function heroHasStoreArt(def) {
+    if (!def) return false;
+    if (def.sprite && typeof window.novaBuzEjderMountSprite === 'function') return true;
+    return !!(def.templateKey && window[def.templateKey]);
+  }
+
+  function mountHeroStorePreview(host, heroId) {
+    if (!host) return null;
+    var id = heroId || '';
+    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet', 'nova-hero-mount--simsek-sincap', 'nova-hero-mount--buz-ejder');
+    if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
+    if (id === 'buz_ejder') {
+      if (typeof window.novaBuzEjderMountSprite === 'function') {
+        return window.novaBuzEjderMountSprite(host, { profile: 'store' });
+      }
+      console.error('[buz] sprite modülü yok — 012t script yüklü mü?');
+      return null;
+    }
+    return mountHeroInto(host, heroId);
+  }
+
   function buildHeroSvgHtml(heroId) {
     var def = getHeroDef(heroId);
     if (!def) return '';
@@ -398,12 +457,39 @@
     return raw.split('__UID__').join(uid).replace('<svg ', '<svg class="nova-hero-svg nova-hero-svg--' + def.theme + '" ');
   }
 
+  function mountBuzEjderSvg(host) {
+    if (!host) return null;
+    host.removeAttribute('data-buz-sprite');
+    host.innerHTML = buildHeroSvgHtml('buz_ejder');
+    if (typeof window.novaBuzEjderMountWebGL === 'function') {
+      window.novaBuzEjderMountWebGL(host);
+    }
+    if (typeof window.novaBuzEjderPlayIdle === 'function') {
+      requestAnimationFrame(function () {
+        try { window.novaBuzEjderPlayIdle(host); } catch (_) {}
+      });
+    }
+    return host.querySelector('.nova-hero-buz-stack') || host.querySelector('svg');
+  }
+
+  function buzUseSpriteHost(host) {
+    if (!host || !host.closest) return true;
+    return !host.closest('.nova-sp-hero-arena__host');
+  }
+
   function mountHeroInto(host, heroId) {
     if (!host) return null;
     var id = heroId || getEquippedHeroId();
-    host.innerHTML = buildHeroSvgHtml(id);
-    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet', 'nova-hero-mount--simsek-sincap');
+    host.classList.remove('nova-hero-mount--blaze-robot', 'nova-hero-mount--star-fairy', 'nova-hero-mount--turbo-turtle', 'nova-hero-mount--mythic-wyvern', 'nova-hero-mount--bilge-hayalet', 'nova-hero-mount--simsek-sincap', 'nova-hero-mount--buz-ejder');
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
+    if (id === 'buz_ejder') {
+      if (buzUseSpriteHost(host) && typeof window.novaBuzEjderMountSprite === 'function') {
+        var profile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
+        return window.novaBuzEjderMountSprite(host, { profile: profile });
+      }
+      return mountBuzEjderSvg(host);
+    }
+    host.innerHTML = buildHeroSvgHtml(id);
     var svg = host.querySelector('svg');
     if (id === 'turbo_turtle' && typeof window.novaTurboTurtlePlayStoreIdle === 'function') {
       requestAnimationFrame(function () {
@@ -517,7 +603,9 @@
     if (!perf) count = payload.variant === 'epic' ? 22 : (payload.variant === 'fire' ? 14 : 10);
     var type = payload.theme === 'turbo'
       ? 'speed'
-      : (payload.theme === 'simsek' ? 'spark' : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember'));
+      : (payload.theme === 'simsek' ? 'spark'
+        : (payload.theme === 'buz' ? 'frost'
+          : ((payload.theme === 'star' || payload.theme === 'mythic') ? 'star' : 'ember')));
     for (var i = 0; i < count; i++){
       var p = document.createElement('i');
       p.className = 'nova-sp-fx-particle p-' + type;
@@ -559,7 +647,7 @@
   }
 
   function usesJsSpFx(heroId) {
-    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap';
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'buz_ejder';
   }
 
   function pickFxRoutine(variant) {
@@ -594,6 +682,9 @@
     if (heroId === 'simsek_sincap' && typeof window.novaSimsekSincapPlaySpFx === 'function') {
       return window.novaSimsekSincapPlaySpFx(host, variant, routine);
     }
+    if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPlaySpFx === 'function') {
+      return window.novaBuzEjderPlaySpFx(host, variant, routine);
+    }
     host.classList.remove('nova-sp-fx-js');
     return waitMs(850);
   }
@@ -615,6 +706,8 @@
         window.novaBilgeHayaletResetSvg(svg);
       } else if (heroId === 'simsek_sincap' && typeof window.novaSimsekSincapResetSvg === 'function') {
         window.novaSimsekSincapResetSvg(svg);
+      } else if (heroId === 'buz_ejder' && typeof window.novaBuzEjderResetHost === 'function') {
+        window.novaBuzEjderResetHost(host);
       }
     } catch (_) {}
   }
@@ -631,7 +724,8 @@
     if (!arena) return;
     arena.classList.remove(
       'is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show',
-      'nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic'
+      'nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic',
+      'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz'
     );
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -700,7 +794,7 @@
       if (!def) { resolve(); return; }
 
       var arena = ensureArena();
-      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic');
+      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz');
       arena.classList.add('nova-sp-theme-' + def.theme);
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -832,8 +926,18 @@
       mountPreview: function (box) {
         if (!box || !hero.id) return;
         box.innerHTML = heroPreviewHtml(hero.id, def.theme);
-        var h = box.querySelector('[data-nova-hero-host]');
-        if (h) mountHeroInto(h, hero.id);
+        var stage = box.querySelector('.nova-store-preview--' + def.theme) || box;
+        function mountWhenReady(attempt) {
+          var h = stage.querySelector('[data-nova-hero-host]');
+          if (!h) return;
+          var rect = h.getBoundingClientRect();
+          if ((!rect.width || !rect.height) && attempt < 14) {
+            requestAnimationFrame(function () { mountWhenReady(attempt + 1); });
+            return;
+          }
+          mountHeroStorePreview(h, hero.id);
+        }
+        requestAnimationFrame(function () { mountWhenReady(0); });
       },
       btnClass: btnClass,
       btnText: btnText,
@@ -937,7 +1041,7 @@
 
   function renderHeroStoreCard(hero, userData, container, index) {
     var def = getHeroDef(hero.id);
-    if (!def || !window[def.templateKey]) return;
+    if (!def || !heroHasStoreArt(def)) return;
 
     var owned = ownsHero(userData, hero.id);
     var equipped = userData && userData.battleHero === hero.id;
@@ -993,7 +1097,16 @@
 
     container.appendChild(card);
     var host = card.querySelector('[data-nova-hero-host]');
-    mountHeroInto(host, hero.id);
+    function mountWhenReady(attempt) {
+      if (!host) return;
+      var rect = host.getBoundingClientRect();
+      if ((!rect.width || !rect.height) && attempt < 12) {
+        requestAnimationFrame(function () { mountWhenReady(attempt + 1); });
+        return;
+      }
+      mountHeroStorePreview(host, hero.id);
+    }
+    requestAnimationFrame(function () { mountWhenReady(0); });
   }
 
   async function novaRenderBattleHeroStore() {

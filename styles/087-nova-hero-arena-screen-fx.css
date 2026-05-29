@@ -50,6 +50,12 @@
     radial-gradient(ellipse 60% 45% at 50% 48%, rgba(14,165,233,.22), transparent 66%),
     radial-gradient(ellipse 52% 40% at 50% 42%, rgba(253,224,71,.12), transparent 62%);
 }
+.nova-sp-hero-arena__fx.fx-theme-buz::before{
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 55%, rgba(2,6,23,.68), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 50% 48%, rgba(34,211,238,.26), transparent 66%),
+    radial-gradient(ellipse 52% 40% at 50% 42%, rgba(236,254,255,.16), transparent 62%);
+}
 .nova-sp-hero-arena__fx.fx-theme-bilge::before{
   background:
     radial-gradient(ellipse 70% 55% at 50% 55%, rgba(13,148,136,.55), transparent 70%),
@@ -106,6 +112,12 @@
     0 0 36px rgba(253,224,71,.26),
     0 0 90px rgba(14,165,233,.18);
 }
+.nova-sp-hero-arena__fx.fx-theme-buz.fx-variant-epic::after{
+  box-shadow:
+    0 0 0 2px rgba(236,254,255,.52) inset,
+    0 0 42px rgba(34,211,238,.34),
+    0 0 100px rgba(129,140,248,.22);
+}
 .nova-sp-hero-arena__fx.fx-theme-bilge.fx-variant-epic::after{
   box-shadow:
     0 0 0 2px rgba(236,254,255,.50) inset,
@@ -156,6 +168,15 @@
   border-radius: 999px;
   background: radial-gradient(circle, rgba(255,255,255,.95), rgba(253,224,71,.85) 42%, rgba(14,165,233,.35) 62%, rgba(2,6,23,0) 78%);
   filter: blur(.15px);
+}
+.nova-sp-fx-particle.p-frost{
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: radial-gradient(circle, rgba(255,255,255,.98), rgba(165,243,252,.9) 40%, rgba(34,211,238,.45) 65%, rgba(2,6,23,0) 80%);
+  transform: translate(-50%, -50%) rotate(45deg) scale(var(--p-s, 1));
+  filter: blur(.12px);
+  box-shadow: 0 0 6px rgba(236,254,255,.35);
 }
 
 @keyframes novaSpFxParticle{
