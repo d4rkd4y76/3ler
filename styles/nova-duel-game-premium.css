@@ -102,7 +102,6 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   object-fit: cover;
   object-position: center center;
   opacity: 0;
-  will-change: opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -110,6 +109,28 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
 
 #duel-game-screen .ndg-arena-video.is-front {
   opacity: 1;
+}
+
+#duel-game-screen.ndg-arena-video-lite .ndg-arena-video-b {
+  display: none !important;
+}
+
+#duel-game-screen.ndg-arena-video-lite .ndg-arena-video.is-front {
+  opacity: 1;
+}
+
+#duel-game-screen .ndg-arena-video-layer.ndg-arena-loop-mask .ndg-arena-video-scrim {
+  opacity: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 15, 28, 0.78) 0%,
+      rgba(10, 15, 28, 0.48) 38%,
+      rgba(10, 15, 28, 0.52) 62%,
+      rgba(10, 15, 28, 0.74) 100%
+    ),
+    radial-gradient(ellipse 95% 75% at 50% 50%, rgba(10, 15, 28, 0.28), rgba(10, 15, 28, 0.55));
+  transition: background 0.18s ease;
 }
 
 #duel-game-screen .ndg-arena-video-scrim {
@@ -205,6 +226,13 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
     radial-gradient(ellipse 80% 45% at 90% 100%, rgba(168, 85, 247, 0.12), transparent 55%),
     linear-gradient(168deg, #0c1224 0%, #151f3a 45%, #0a0f1c 100%) !important;
   animation: ndg-arena-bg 8s ease-in-out infinite alternate;
+}
+
+@media (pointer: coarse) {
+  #duel-game-screen[style*='flex'],
+  #duel-game-screen.nova-duel-game-visible {
+    animation: none !important;
+  }
 }
 
 @keyframes ndg-arena-bg {
@@ -735,17 +763,39 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   border-radius: 12px;
 }
 
-/* +10 uçuş animasyonu — mobilde GPU, yüksek görünürlük */
+/* +10 uçuş animasyonu — mobilde hafif CSS, masaüstünde WAAPI */
 .ndg-fly-plus {
   position: fixed;
   z-index: 2147483001;
   left: 0;
   top: 0;
-  transform: translate(-50%, -50%) scale(0.2);
+  transform: translate3d(-50%, -50%, 0) scale(0.2);
   pointer-events: none;
   opacity: 0;
-  will-change: transform, opacity;
   contain: layout style;
+}
+
+.ndg-fly-plus.ndg-fly-lite {
+  animation: ndg-fly-lite 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ndg-fly-lite {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.45);
+    opacity: 0;
+  }
+  18% {
+    transform: translate3d(-50%, -50%, 0) scale(1.12);
+    opacity: 1;
+  }
+  72% {
+    transform: translate3d(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)), 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)), 0) scale(0.55);
+    opacity: 0;
+  }
 }
 
 .ndg-fly-plus__num {

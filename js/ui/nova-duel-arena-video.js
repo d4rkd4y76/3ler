@@ -1,12 +1,13 @@
-/* Düello soru ekranı — duelloarka.mp4 görünmez crossfade loop */
+/* Düello soru ekranı — duelloarka.mp4 arka plan (mobil: tek loop, masaüstü: crossfade) */
 (function () {
   if (window.__novaDuelArenaVideoInstalled) return;
   window.__novaDuelArenaVideoInstalled = true;
 
   var SRC = 'duelloarka.mp4';
-  var layer, vA, vB, front, back, crossfading, rafId, crossfadeRaf, running;
+  var layer, vA, vB, front, back, crossfading, rafId, crossfadeRaf, running, liteMode;
   var crossfadeSec = 1.35;
   var crossfadeStarted = false;
+  var liteTimeBound = false;
 
   function prefersReducedMotion() {
     try {
@@ -14,6 +15,17 @@
     } catch (_) {
       return false;
     }
+  }
+
+  function isArenaVideoLite() {
+    if (prefersReducedMotion()) return true;
+    var perf = window.__novaPerfMode || 'normal';
+    if (perf === 'performance' || perf === 'ultra') return true;
+    try {
+      if (window.matchMedia('(pointer: coarse)').matches) return true;
+      if (navigator.deviceMemory && navigator.deviceMemory <= 4) return true;
+    } catch (_) {}
+    return false;
   }
 
   function getGameScreen() {
@@ -97,8 +109,32 @@
     crossfadeStarted = false;
   }
 
+  function onLiteTimeupdate() {
+    if (!running || !liteMode || !vA || !layer) return;
+    var d = vA.duration;
+    if (!d || !isFinite(d)) return;
+    var remain = d - vA.currentTime;
+    if (remain < 0.28 && remain > 0.02) {
+      layer.classList.add('ndg-arena-loop-mask');
+    } else if (remain > 0.32 || vA.currentTime < 0.12) {
+      layer.classList.remove('ndg-arena-loop-mask');
+    }
+  }
+
+  function bindLiteTimeupdate() {
+    if (!vA || liteTimeBound) return;
+    liteTimeBound = true;
+    vA.addEventListener('timeupdate', onLiteTimeupdate, { passive: true });
+  }
+
+  function unbindLiteTimeupdate() {
+    if (!vA || !liteTimeBound) return;
+    liteTimeBound = false;
+    vA.removeEventListener('timeupdate', onLiteTimeupdate);
+  }
+
   function runCrossfade() {
-    if (crossfading || !running || !front || !back) return;
+    if (crossfading || !running || !front || !back || liteMode) return;
     crossfading = true;
     crossfadeStarted = true;
     if (layer) layer.classList.add('ndg-arena-crossfade');
@@ -109,7 +145,6 @@
       back.currentTime = 0;
     } catch (_) {}
     back.style.opacity = '0';
-    back.style.filter = 'blur(0px)';
     var playP = back.play();
     if (playP && playP.catch) playP.catch(function () {});
 
@@ -123,12 +158,9 @@
       }
       var raw = Math.min(1, (now - t0) / durMs);
       var ease = easeInOutCubic(raw);
-      var blur = Math.sin(raw * Math.PI) * 5;
 
       back.style.opacity = String(ease);
       front.style.opacity = String(1 - ease);
-      back.style.filter = 'blur(' + blur.toFixed(2) + 'px)';
-      front.style.filter = 'blur(' + blur.toFixed(2) + 'px)';
 
       if (raw < 1) {
         crossfadeRaf = requestAnimationFrame(frame);
@@ -151,7 +183,12 @@
   }
 
   function tickLoop() {
-    if (!running || !front) {
+    if (!running || liteMode) {
+      rafId = null;
+      return;
+    }
+
+    if (!front) {
       rafId = requestAnimationFrame(tickLoop);
       return;
     }
@@ -189,38 +226,13 @@
     if (!v || v.dataset.ndepEndedBound) return;
     v.dataset.ndepEndedBound = '1';
     v.addEventListener('ended', function () {
-      if (!running || crossfading) return;
+      if (!running || crossfading || liteMode) return;
       runCrossfade();
     });
   }
 
-  window.novaDuelArenaVideoStart = function novaDuelArenaVideoStart() {
-    if (prefersReducedMotion()) return;
-    var game = getGameScreen();
-    if (!game) return;
-
-    ensureLayer();
-    if (!vA || !vB) return;
-
-    bindEndedFallback(vA);
-    bindEndedFallback(vB);
-
-    running = true;
-    crossfading = false;
-    crossfadeStarted = false;
-    game.classList.add('ndg-arena-video-on');
-
-    vA.pause();
-    vB.pause();
-    try {
-      vA.currentTime = 0;
-      vB.currentTime = 0;
-    } catch (_) {}
-
-    setFront(vA);
-    back.style.opacity = '0';
-
-    var playPromise = front.play();
+  function playWithGestureFallback(video) {
+    var playPromise = video.play();
     if (playPromise && playPromise.catch) {
       playPromise.catch(function () {
         var retry = function () {
@@ -233,15 +245,78 @@
         document.addEventListener('pointerdown', retry, true);
       });
     }
+  }
+
+  function startLite(game) {
+    liteMode = true;
+    game.classList.add('ndg-arena-video-on', 'ndg-arena-video-lite');
+    if (layer) layer.classList.add('ndg-arena-video-lite');
+
+    vA.loop = true;
+    vB.loop = false;
+    vB.pause();
+    vB.style.display = 'none';
+
+    vA.classList.add('is-front');
+    vA.style.opacity = '1';
+    front = vA;
+
+    bindLiteTimeupdate();
+    playWithGestureFallback(vA);
+  }
+
+  function startFull(game) {
+    liteMode = false;
+    game.classList.remove('ndg-arena-video-lite');
+    if (layer) layer.classList.remove('ndg-arena-video-lite', 'ndg-arena-loop-mask');
+
+    vA.loop = false;
+    vB.loop = false;
+    vB.style.display = '';
+
+    bindEndedFallback(vA);
+    bindEndedFallback(vB);
+
+    vA.pause();
+    vB.pause();
+    try {
+      vA.currentTime = 0;
+      vB.currentTime = 0;
+    } catch (_) {}
+
+    setFront(vA);
+    back.style.opacity = '0';
+
+    playWithGestureFallback(front);
 
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(tickLoop);
+  }
+
+  window.novaDuelArenaVideoStart = function novaDuelArenaVideoStart() {
+    if (prefersReducedMotion()) return;
+    var game = getGameScreen();
+    if (!game) return;
+
+    ensureLayer();
+    if (!vA || !vB) return;
+
+    running = true;
+    crossfading = false;
+    crossfadeStarted = false;
+
+    if (isArenaVideoLite()) startLite(game);
+    else startFull(game);
   };
 
   window.novaDuelArenaVideoStop = function novaDuelArenaVideoStop() {
     running = false;
     crossfading = false;
     crossfadeStarted = false;
+    liteMode = false;
+
+    unbindLiteTimeupdate();
+
     if (rafId) {
       cancelAnimationFrame(rafId);
       rafId = null;
@@ -250,9 +325,19 @@
       cancelAnimationFrame(crossfadeRaf);
       crossfadeRaf = null;
     }
+
     var game = getGameScreen();
-    if (game) game.classList.remove('ndg-arena-video-on');
-    if (layer) layer.classList.remove('ndg-arena-crossfade');
+    if (game) {
+      game.classList.remove('ndg-arena-video-on', 'ndg-arena-video-lite');
+    }
+    if (layer) {
+      layer.classList.remove('ndg-arena-crossfade', 'ndg-arena-video-lite', 'ndg-arena-loop-mask');
+    }
+
+    if (vB) vB.style.display = '';
+    if (vA) vA.loop = false;
+    if (vB) vB.loop = false;
+
     try {
       if (vA) vA.pause();
       if (vB) vB.pause();

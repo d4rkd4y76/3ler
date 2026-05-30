@@ -67,6 +67,17 @@
     }
   }
 
+  function isLiteFx() {
+    if (prefersReducedMotion()) return true;
+    var perf = window.__novaPerfMode || 'normal';
+    if (perf === 'performance' || perf === 'ultra') return true;
+    try {
+      if (window.matchMedia('(pointer: coarse)').matches) return true;
+      if (navigator.deviceMemory && navigator.deviceMemory <= 4) return true;
+    } catch (_) {}
+    return false;
+  }
+
   function pulseScoreTarget(target) {
     if (!target) return;
     target.classList.remove('ndg-score-pulse');
@@ -119,10 +130,16 @@
       var dx = endX - startX;
       var dy = endY - startY;
 
+      var lite = isLiteFx();
       var fly = document.createElement('div');
-      fly.className = 'ndg-fly-plus' + (isCorrect ? '' : ' ndg-fly-wrong');
+      fly.className =
+        'ndg-fly-plus' +
+        (isCorrect ? '' : ' ndg-fly-wrong') +
+        (lite ? ' ndg-fly-lite' : '');
       fly.innerHTML =
-        '<span class="ndg-fly-plus__ring" aria-hidden="true"></span>' +
+        (lite
+          ? ''
+          : '<span class="ndg-fly-plus__ring" aria-hidden="true"></span>') +
         '<span class="ndg-fly-plus__num">' +
         (isCorrect ? '+' + points : '✕') +
         '</span>';
@@ -131,7 +148,7 @@
       document.body.appendChild(fly);
 
       if (prefersReducedMotion()) {
-        fly.style.transform = 'translate(-50%, -50%) scale(1)';
+        fly.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
         fly.style.opacity = '1';
         pulseScoreTarget(target);
         setTimeout(function () {
@@ -142,48 +159,63 @@
         return;
       }
 
+      if (lite) {
+        fly.style.setProperty('--dx', dx + 'px');
+        fly.style.setProperty('--dy', dy + 'px');
+        requestAnimationFrame(function () {
+          fly.classList.add('ndg-fly-go');
+          setTimeout(function () {
+            pulseScoreTarget(target);
+          }, 340);
+          setTimeout(function () {
+            try {
+              fly.remove();
+            } catch (_) {}
+          }, 520);
+        });
+        return;
+      }
+
       requestAnimationFrame(function () {
         fly.classList.add('ndg-fly-go');
         var anim = fly.animate(
           [
             {
-              transform: 'translate(-50%, -50%) scale(0.2)',
+              transform: 'translate3d(-50%, -50%, 0) scale(0.2)',
               opacity: 0,
-              filter: 'blur(4px)',
             },
             {
-              transform: 'translate(-50%, -50%) scale(1.35)',
+              transform: 'translate3d(-50%, -50%, 0) scale(1.35)',
               opacity: 1,
-              filter: 'blur(0px)',
               offset: 0.12,
             },
             {
               transform:
-                'translate(calc(-50% + ' +
+                'translate3d(calc(-50% + ' +
                 dx * 0.55 +
                 'px), calc(-50% + ' +
                 dy * 0.55 +
-                'px)) scale(1.08)',
+                'px), 0) scale(1.08)',
               opacity: 1,
               offset: 0.55,
             },
             {
               transform:
-                'translate(calc(-50% + ' +
+                'translate3d(calc(-50% + ' +
                 dx +
                 'px), calc(-50% + ' +
                 dy +
-                'px)) scale(0.72)',
+                'px), 0) scale(0.72)',
               opacity: 0.85,
               offset: 0.88,
             },
             {
               transform:
-                'translate(calc(-50% + ' +
+                'translate3d(calc(-50% + ' +
                 dx +
                 'px), calc(-50% + ' +
                 dy +
-                'px)) scale(0.35)',
+                'px), 0) scale(0.35)',
               opacity: 0,
             },
           ],
@@ -194,7 +226,7 @@
           }
         );
 
-        spawnSparks(startX, startY, window.matchMedia('(pointer: coarse)').matches ? 10 : 14);
+        spawnSparks(startX, startY, 8);
 
         setTimeout(function () {
           pulseScoreTarget(target);
