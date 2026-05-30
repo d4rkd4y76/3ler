@@ -205,7 +205,8 @@
     var dw = Math.round(clip.frameWidth * scale);
     var dh = Math.round(clip.frameHeight * scale);
     var dx = ((cw - dw) / 2) | 0;
-    var dy = (ch - dh) | 0;
+    var lift = Math.round(ch * 0.13);
+    var dy = Math.max(0, (ch - dh) - lift);
     var r = frameRect(clip, this.frameIndex);
 
     ctx.clearRect(0, 0, cw, ch);
