@@ -382,6 +382,9 @@
   function playSpFx(host, variant, routine) {
     if (!host) return waitMs(680);
     if (typeof window.novaBuzEjderPlayTrueClip === 'function' && window.novaBuzEjderHasTrueClips && window.novaBuzEjderHasTrueClips()) {
+      if (typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
+        window.novaBuzEjderEnsureTrueClipsReady();
+      }
       if (typeof window.novaBuzEjderPickTrueClipRoutine === 'function') {
         routine = window.novaBuzEjderPickTrueClipRoutine();
       }

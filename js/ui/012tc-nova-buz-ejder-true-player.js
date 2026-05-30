@@ -1,11 +1,11 @@
-/* Buz Ejderi — tek kişilik doğru cevap sprite klipleri (tek seferlik oynat) */
+/* Buz Ejderi — tek kişilik doğru cevap sprite klipleri */
 (function () {
   'use strict';
 
   var engines = new WeakMap();
   var sheetCache = {};
   var preloadAllPromise = null;
-  var lastTrueRoutine = -1;
+  var shuffleDeck = [];
 
   function rootManifest() {
     return window.NOVA_BUZ_EJDER_TRUE_MANIFEST || null;
@@ -43,41 +43,34 @@
     }
   }
 
-  function clipCount() {
+  function refillShuffleDeck() {
+    shuffleDeck = [];
     var root = rootManifest();
-    return root && root.clips ? root.clips.length : 0;
+    if (!root || !root.clips) return;
+    for (var i = 0; i < root.clips.length; i++) {
+      shuffleDeck.push(root.clips[i].routine);
+    }
+    for (var j = shuffleDeck.length - 1; j > 0; j--) {
+      var k = Math.floor(Math.random() * (j + 1));
+      var tmp = shuffleDeck[j];
+      shuffleDeck[j] = shuffleDeck[k];
+      shuffleDeck[k] = tmp;
+    }
+  }
+
+  function pickTrueClipRoutine() {
+    if (!shuffleDeck.length) refillShuffleDeck();
+    if (!shuffleDeck.length) return 0;
+    return shuffleDeck.pop();
   }
 
   function clipForRoutine(routine) {
     var root = rootManifest();
     if (!root || !root.clips || !root.clips.length) return null;
-    var n = root.clips.length;
-    if (typeof routine === 'number' && routine >= 0 && routine < n) {
-      for (var i = 0; i < root.clips.length; i++) {
-        if (root.clips[i].routine === routine) return root.clips[i];
-      }
-      return root.clips[routine];
-    }
-    routine = ((routine == null ? 0 : routine) % n + n) % n;
-    for (var j = 0; j < root.clips.length; j++) {
-      if (root.clips[j].routine === routine) return root.clips[j];
+    for (var i = 0; i < root.clips.length; i++) {
+      if (root.clips[i].routine === routine) return root.clips[i];
     }
     return root.clips[routine] || root.clips[0];
-  }
-
-  function pickTrueClipRoutine() {
-    var n = clipCount();
-    if (n < 1) return 0;
-    if (n === 1) return rootManifest().clips[0].routine || 0;
-    var r;
-    var tries = 0;
-    do {
-      r = Math.floor(Math.random() * n);
-      tries += 1;
-    } while (r === lastTrueRoutine && tries < 8);
-    lastTrueRoutine = r;
-    var clip = rootManifest().clips[r];
-    return clip && typeof clip.routine === 'number' ? clip.routine : r;
   }
 
   function loadImage(url) {
@@ -109,7 +102,10 @@
     var clips = rootManifest().clips;
     preloadAllPromise = Promise.all(clips.map(function (clip) {
       return loadClipAssets(clip);
-    })).then(function () { return true; }).catch(function () { return false; });
+    })).then(function () {
+      refillShuffleDeck();
+      return true;
+    }).catch(function () { return false; });
     return preloadAllPromise;
   }
 
@@ -140,15 +136,14 @@
     this.raf = 0;
     this.frameIndex = 0;
     this.totalFrames = clip.frameCount || clip.loopEnd || 48;
-    this.fps = clip.fps || 18;
+    this.fps = clip.fps || 20;
     this.frameMs = 1000 / this.fps;
     this.accum = 0;
     this.lastTick = 0;
     this.onComplete = null;
-    this.lastCw = 0;
-    this.lastCh = 0;
     this.layoutW = 0;
     this.layoutH = 0;
+    this.dest = null;
     this.scaleMul = (rootManifest().scale && rootManifest().scale.sp) || 1;
     this.loop = this.loop.bind(this);
     this.resize = this.resize.bind(this);
@@ -157,26 +152,37 @@
   TrueClipEngine.prototype.resize = function () {
     var rect = this.wrap.getBoundingClientRect();
     var parent = this.wrap.parentElement ? this.wrap.parentElement.getBoundingClientRect() : rect;
-    var w = Math.max(120, Math.round(rect.width || parent.width || this.wrap.clientWidth || 280));
-    var h = Math.max(160, Math.round(rect.height || parent.height || this.wrap.clientHeight || 320));
-    if (w < 80 && parent.width > w) w = Math.round(parent.width);
-    if (h < 80 && parent.height > h) h = Math.round(parent.height);
+    var w = Math.max(200, Math.round(rect.width || parent.width || 944));
+    var h = Math.max(240, Math.round(rect.height || parent.height || 944));
     if (w === this.layoutW && h === this.layoutH) return;
     this.layoutW = w;
     this.layoutH = h;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var cw = Math.max(8, Math.round(w * dpr));
-    var ch = Math.max(8, Math.round(h * dpr));
-    this.lastCw = cw;
-    this.lastCh = ch;
-    this.canvas.width = cw;
-    this.canvas.height = ch;
+    this.canvas.width = Math.max(8, Math.round(w * dpr));
+    this.canvas.height = Math.max(8, Math.round(h * dpr));
     this.canvas.style.width = w + 'px';
     this.canvas.style.height = h + 'px';
+    this.updateDestRect();
+  };
+
+  TrueClipEngine.prototype.updateDestRect = function () {
+    var clip = this.clip;
+    var cw = this.canvas.width;
+    var ch = this.canvas.height;
+    var fit = Math.min(cw / clip.frameWidth, ch / clip.frameHeight) * this.scaleMul;
+    var dw = clip.frameWidth * fit;
+    var dh = clip.frameHeight * fit;
+    var lift = ch * 0.16;
+    this.dest = {
+      dx: (cw - dw) * 0.5,
+      dy: Math.max(0, ch - dh - lift),
+      dw: dw,
+      dh: dh
+    };
   };
 
   TrueClipEngine.prototype.advance = function (delta) {
-    if (delta > this.frameMs * 2) {
+    if (delta > this.frameMs * 2.5) {
       this.accum = 0;
       return;
     }
@@ -187,34 +193,26 @@
         this.frameIndex += 1;
       } else {
         this.done = true;
-        break;
+        return;
       }
     }
   };
 
   TrueClipEngine.prototype.draw = function (delta) {
-    if (!this.ctx || !this.img || !this.clip) return;
+    if (!this.ctx || !this.img || !this.clip || !this.dest) return;
     if (typeof delta === 'number') this.advance(delta);
 
-    var clip = this.clip;
+    var r = frameRect(this.clip, this.frameIndex);
+    var d = this.dest;
     var ctx = this.ctx;
-    var cw = this.canvas.width;
-    var ch = this.canvas.height;
-    var fit = Math.min(cw / clip.frameWidth, ch / clip.frameHeight);
-    var scale = fit * this.scaleMul;
-    var dw = Math.round(clip.frameWidth * scale);
-    var dh = Math.round(clip.frameHeight * scale);
-    var dx = ((cw - dw) / 2) | 0;
-    var lift = Math.round(ch * 0.16);
-    var dy = Math.max(0, (ch - dh) - lift);
-    var r = frameRect(clip, this.frameIndex);
 
-    ctx.clearRect(0, 0, cw, ch);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+    ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, d.dx, d.dy, d.dw, d.dh);
   };
 
   TrueClipEngine.prototype.loop = function (now) {
@@ -267,64 +265,51 @@
     return new Promise(function (r) { setTimeout(r, ms); });
   }
 
-  function waitForHostLayout(host, attempt) {
-    attempt = attempt || 0;
+  function mountAndPlay(host, assets) {
+    var wrap = document.createElement('div');
+    wrap.className = 'nova-hero-buz-true-wrap';
+    var canvas = document.createElement('canvas');
+    canvas.className = 'nova-hero-buz-true-sprite__canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    wrap.appendChild(canvas);
+    host.appendChild(wrap);
+    host.classList.add('nova-hero-buz-true-ready');
+
     return new Promise(function (resolve) {
-      if (!host || !document.body.contains(host)) {
-        resolve(false);
-        return;
-      }
-      var rect = host.getBoundingClientRect();
-      if ((rect.width >= 48 && rect.height >= 48) || attempt > 36) {
-        resolve(rect.width >= 20 && rect.height >= 20);
-        return;
-      }
-      requestAnimationFrame(function () {
-        waitForHostLayout(host, attempt + 1).then(resolve);
-      });
+      var eng = new TrueClipEngine(wrap, canvas, assets.clip, assets.img);
+      engines.set(host, eng);
+      eng.onComplete = function () { resolve(); };
+      eng.resize();
+      eng.draw(0);
+      eng.start();
     });
   }
 
   function playTrueClip(host, routine) {
-    if (!host || !rootManifest()) return waitMs(680);
-    var clipMeta = clipForRoutine(typeof routine === 'number' ? routine : pickTrueClipRoutine());
-    if (!clipMeta) return waitMs(680);
+    if (!host || !rootManifest()) return waitMs(400);
+    var routineId = typeof routine === 'number' ? routine : pickTrueClipRoutine();
+    var clipMeta = clipForRoutine(routineId);
+    if (!clipMeta) return waitMs(400);
 
     unmount(host);
     host.classList.add('nova-sp-fx-true-sprite', 'nova-hero-mount--buz-ejder');
 
-    var ready = preloadAllTrueClips().then(function () {
-      return loadClipAssets(clipMeta);
-    });
-
-    return ready.then(function (assets) {
-      return waitForHostLayout(host).then(function (ok) {
-        if (!ok || !document.body.contains(host)) return waitMs(400);
-
-        var wrap = document.createElement('div');
-        wrap.className = 'nova-hero-buz-true-wrap';
-        var canvas = document.createElement('canvas');
-        canvas.className = 'nova-hero-buz-true-sprite__canvas';
-        canvas.setAttribute('aria-hidden', 'true');
-        wrap.appendChild(canvas);
-        host.appendChild(wrap);
-        host.classList.add('nova-hero-buz-true-ready');
-
-        return new Promise(function (resolve) {
-          var eng = new TrueClipEngine(wrap, canvas, assets.clip, assets.img);
-          engines.set(host, eng);
-          eng.onComplete = function () { resolve(); };
-          requestAnimationFrame(function () {
-            if (!document.body.contains(host)) { resolve(); return; }
-            eng.resize();
-            eng.draw(0);
-            eng.start();
-          });
-        });
+    var cached = sheetCache[clipMeta.sheet];
+    if (cached && typeof cached.then === 'function') {
+      return cached.then(function (assets) {
+        if (!document.body.contains(host)) return waitMs(0);
+        return mountAndPlay(host, assets);
       });
+    }
+
+    return preloadAllTrueClips().then(function () {
+      return loadClipAssets(clipMeta);
+    }).then(function (assets) {
+      if (!document.body.contains(host)) return waitMs(0);
+      return mountAndPlay(host, assets);
     }).catch(function (err) {
       console.warn('buz true clip', err);
-      return waitMs(400);
+      return waitMs(300);
     });
   }
 
@@ -335,6 +320,8 @@
   function preloadTrueClips() {
     return preloadTrueClipsIfEquipped(false);
   }
+
+  if (hasTrueClips()) refillShuffleDeck();
 
   window.novaBuzEjderHasTrueClips = hasTrueClips;
   window.novaBuzEjderPlayTrueClip = playTrueClip;

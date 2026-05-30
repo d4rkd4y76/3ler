@@ -18,15 +18,15 @@ TRUE_DIR = os.path.join(ROOT, "hero", "ice_dragon", "true")
 OUT_DIR = os.path.join(ROOT, "hero", "ice_dragon", "sprite", "true")
 MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012tb-nova-buz-ejder-true-manifest.js")
 
-TARGET_FPS = 18
-TARGET_FRAME_COUNT = 64
+TARGET_FPS = 20
+TARGET_FRAME_COUNT = 96
 TARGET_H = 300
 MAX_SHEET_W = 4096
 BBOX_THR = 4
 H_MARGIN = 0.0
 PAD_TOP = 32
 PAD_BOTTOM = 52
-WEBP_QUALITY = 89
+WEBP_QUALITY = 91
 
 CLIP_SPECS = [
     ("cok_iyiydi", "cok_iyiydi.mp4", "buz-ejder-true-cok-iyiydi.webp", 0),
@@ -113,7 +113,8 @@ def is_buz_foreground(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     sat = np.maximum(np.maximum(r, g), b) - np.minimum(np.minimum(r, g), b)
     green_dom = g - np.maximum(r, b)
 
-    light_text = (lum > 125) & (green_dom < 22) & ~green
+    light_text = (lum > 82) & (green_dom < 38) & ~green
+    ice_text = (lum > 115) & (sat < 90) & (green_dom < 42) & ~green
     ice_dragon = (
         (b > r + 4)
         & (sat > 16)
@@ -124,7 +125,7 @@ def is_buz_foreground(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     colored = (sat > 24) & (green_dom < 18) & (lum > 35) & ~green
     dark_ink = (lum < 92) & (sat > 10) & (green_dom < 12) & ~green
     frost = (b > 70) & (g > 50) & (r < 180) & ~green
-    return light_text | ice_dragon | colored | dark_ink | frost
+    return light_text | ice_text | ice_dragon | colored | dark_ink | frost
 
 
 def alpha_green(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
@@ -171,6 +172,51 @@ def scrub_remaining_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.nda
     return out
 
 
+def scrub_text_green_fringe(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    """Yazı ve buz kenarındaki yeşil hale — opak metne dokunmadan temizle."""
+    out = rgba.copy()
+    rgb = out[:, :, :3].astype(np.float32)
+    r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
+    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    sat = np.maximum(np.maximum(r, g), b) - np.minimum(np.minimum(r, g), b)
+    gd = g - np.maximum(r, b)
+    d = color_dist(out[:, :, :3], key)
+    fg = is_buz_foreground(out[:, :, :3], key)
+    fringe = (
+        (out[:, :, 3] > 12)
+        & (lum > 68)
+        & (gd > 3)
+        & (gd < 62)
+        & (d < 92)
+        & ~fg
+    )
+    if not np.any(fringe):
+        return out
+    t = np.clip(gd / 48.0, 0.15, 0.92)[:, :, np.newaxis]
+    ice = np.stack(
+        [
+            np.clip(lum * 0.88 + b * 0.06, 0, 255),
+            np.clip(lum * 0.94 + g * 0.02, 0, 255),
+            np.clip(lum * 0.9 + b * 0.22, 0, 255),
+        ],
+        axis=-1,
+    )
+    rgb = np.where(fringe[:, :, np.newaxis], rgb * (1 - t) + ice * t, rgb)
+    out[:, :, :3] = np.clip(rgb, 0, 255).astype(np.uint8)
+    spill_kill = (
+        (out[:, :, 3] > 0)
+        & (lum > 55)
+        & (gd > 8)
+        & (g > r + 6)
+        & (d < 75)
+        & ~fg
+        & (sat < 100)
+    )
+    out[spill_kill, 3] = 0
+    out[spill_kill, :3] = 0
+    return out
+
+
 def scrub_green_spill(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = rgba.copy()
     rgb = out[:, :, :3].astype(np.float32)
@@ -197,12 +243,12 @@ def despill_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
         return out
     rgb = out[:, :, :3].astype(np.float32)
     kg = float(key[1])
-    excess_g = np.maximum(0.0, rgb[:, :, 1] - kg)
+    excess_g = np.maximum(0.0, rgb[:, :, 1] - np.maximum(kg * 0.92, rgb[:, :, 1] * 0.55))
     for c in range(3):
         if c == 1:
-            rgb[:, :, 1] = np.where(edge, rgb[:, :, 1] - excess_g * 0.82, rgb[:, :, 1])
+            rgb[:, :, 1] = np.where(edge, rgb[:, :, 1] - excess_g * 0.92, rgb[:, :, 1])
         else:
-            rgb[:, :, c] = np.where(edge, rgb[:, :, c] + excess_g * 0.07, rgb[:, :, c])
+            rgb[:, :, c] = np.where(edge, rgb[:, :, c] + excess_g * 0.1, rgb[:, :, c])
     out[:, :, :3] = np.clip(rgb, 0, 255).astype(np.uint8)
     return out
 
@@ -216,6 +262,7 @@ def chroma_frame(frame: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     rgba = flood_green(rgba, key)
     rgba = scrub_remaining_green(rgba, key)
     rgba = scrub_green_spill(rgba, key)
+    rgba = scrub_text_green_fringe(rgba, key)
     rgba = despill_green(rgba, key)
     rgba[rgba[:, :, 3] < 24, 3] = 0
     rgba[rgba[:, :, 3] < 24, :3] = 0

@@ -925,6 +925,10 @@
 
       fxBusy = true;
 
+      if (spriteOnly && typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
+        window.novaBuzEjderEnsureTrueClipsReady();
+      }
+
       arena.setAttribute('aria-hidden', 'false');
       arena.classList.add('is-active');
       ['is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show'].forEach(function (c) {
@@ -944,14 +948,14 @@
     var heroId = getEquippedHeroId();
     var jsFx = usesJsSpFx(heroId);
     var spriteOnly = heroUsesTrueSpriteClips(heroId);
-    return waitMs(40).then(function () {
+    return waitMs(spriteOnly ? 16 : 40).then(function () {
       arena.classList.add('is-centered');
       if (!spriteOnly) arena.classList.add('is-caption-show');
       if (host) {
         host.classList.add('nova-sp-fx-live');
         if (!jsFx) host.classList.add('nova-sp-fx-' + variant);
       }
-      return waitMs(spriteOnly ? 520 : (jsFx ? 80 : 400));
+      return waitMs(spriteOnly ? 48 : (jsFx ? 80 : 400));
     }).then(function () {
       if (!spriteOnly) spawnArenaFx(arena, variant);
       if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
