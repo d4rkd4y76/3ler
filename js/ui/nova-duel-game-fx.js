@@ -11,8 +11,11 @@
       if (!img.naturalWidth || !img.naturalHeight) return;
       var boxW = container.clientWidth - 28;
       if (boxW < 80) boxW = container.clientWidth - 12;
-      var availH = Math.max(120, window.innerHeight - 340);
-      if (window.innerHeight <= 640) availH = Math.max(100, window.innerHeight - 300);
+      var availH = Math.max(100, container.clientHeight - 16);
+      if (availH < 80) {
+        availH = Math.max(80, window.innerHeight - 340);
+        if (window.innerHeight <= 640) availH = Math.max(72, window.innerHeight - 300);
+      }
       var ratio = img.naturalWidth / img.naturalHeight;
       var maxH = Math.min(availH * 0.58, 340);
       var maxW = boxW;
@@ -41,6 +44,61 @@
     }
   };
 
+  window.ndgFitDuelQuestionLayout = function ndgFitDuelQuestionLayout(container) {
+    if (!container) return;
+    var game = document.getElementById('duel-game-screen');
+    var meta = game && game.querySelector('.ndg-meta-row');
+    var opts = document.getElementById('duel-options-container');
+    if (!opts) return;
+
+    container.style.setProperty('--ndg-q-font-scale', '1');
+    container.style.maxHeight = '';
+    container.style.height = '';
+    container.style.overflowY = '';
+
+    function apply() {
+      var gap = 10;
+      var avail;
+
+      if (meta) {
+        var metaR = meta.getBoundingClientRect();
+        var optsR = opts.getBoundingClientRect();
+        avail = Math.floor(optsR.top - metaR.bottom - gap);
+      } else {
+        avail = Math.floor(window.innerHeight * 0.36);
+      }
+
+      if (!isFinite(avail) || avail < 72) {
+        avail = Math.max(72, Math.floor(window.innerHeight * 0.3));
+      }
+
+      container.style.maxHeight = 'none';
+      var natural = container.scrollHeight;
+      var target = Math.min(avail, natural);
+      container.style.maxHeight = target + 'px';
+
+      var scale = 1;
+      var i;
+      for (i = 0; i < 9; i++) {
+        if (container.scrollHeight <= container.clientHeight + 4) break;
+        scale = Math.max(0.78, scale * 0.94);
+        container.style.setProperty('--ndg-q-font-scale', scale.toFixed(3));
+      }
+
+      if (container.scrollHeight > container.clientHeight + 2) {
+        container.style.overflowY = 'auto';
+      } else {
+        container.style.overflowY = 'hidden';
+      }
+
+      window.ndgFitDuelQuestionMedia(container);
+    }
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(apply);
+    });
+  };
+
   if (!window.__ndgMediaResizeBound) {
     window.__ndgMediaResizeBound = true;
     window.addEventListener(
@@ -48,7 +106,9 @@
       function () {
         if (!document.body.classList.contains('nova-duel-game-open')) return;
         var c = document.querySelector('#duel-game-screen .question-container');
-        if (c) window.ndgFitDuelQuestionMedia(c);
+        if (c) {
+          window.ndgFitDuelQuestionLayout(c);
+        }
       },
       { passive: true }
     );

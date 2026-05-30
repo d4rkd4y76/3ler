@@ -8903,9 +8903,6 @@ async function updateDuelSelection(field, value) {
     }
 
     try {
-        if (typeof window.ndgFitDuelQuestionMedia === 'function') {
-            window.ndgFitDuelQuestionMedia(questionContainer);
-        }
         if (typeof window.onNewQuestionLoaded === 'function') {
             window.onNewQuestionLoaded();
         }
@@ -8935,6 +8932,14 @@ async function updateDuelSelection(field, value) {
                 el.classList.add('ndep-hide-generic');
             }
         });
+    } catch (_) {}
+
+    try {
+        if (typeof window.ndgFitDuelQuestionLayout === 'function') {
+            window.ndgFitDuelQuestionLayout(questionContainer);
+        } else if (typeof window.ndgFitDuelQuestionMedia === 'function') {
+            window.ndgFitDuelQuestionMedia(questionContainer);
+        }
     } catch (_) {}
 
     resetDuelTimer();
