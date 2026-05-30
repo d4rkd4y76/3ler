@@ -151,6 +151,12 @@
       if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-game-screen');
       if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime();
     } catch (_) {}
+
+    try {
+      if (typeof window.novaDuelArenaVideoStart === 'function') {
+        window.novaDuelArenaVideoStart();
+      }
+    } catch (_) {}
   }
 
   function novaCloseDuelScreens() {
@@ -189,8 +195,13 @@
     try {
       if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime();
     } catch (_) {}
-  }
 
+    try {
+      if (typeof window.novaDuelArenaVideoStop === 'function') {
+        window.novaDuelArenaVideoStop();
+      }
+    } catch (_) {}
+  }
   window.novaOpenDuelSelectionScreen = novaOpenDuelSelectionScreen;
   window.novaOpenDuelGameScreen = novaOpenDuelGameScreen;
   window.novaCloseDuelScreens = novaCloseDuelScreens;

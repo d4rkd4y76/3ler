@@ -67,7 +67,9 @@
         if (btn.classList.contains('option-chosen')) {
           if (btn.classList.contains('correct')) {
             showJudge(true);
-            runPlusToMyScore(btn);
+            if (typeof window.novaDuelFlyPlusOne !== 'function') {
+              runPlusToMyScore(btn);
+            }
           } else if (btn.classList.contains('wrong')) {
             showJudge(false);
           }
@@ -172,7 +174,7 @@ function runPlusToMyScore(sourceBtn){
   function spawnPlus(sx, sy, tx, ty){
     const plus = d.createElement('div');
     plus.className = 'nova-plus';
-    plus.textContent = '+1';
+    plus.textContent = '+' + (window.NovaDuelPointsPerCorrect || 10);
 
     const dx = (sx - window.innerWidth/2) * -1 + (tx - sx) * .45;
     const dy = (sy - window.innerHeight/2) * -1 + (ty - sy) * .45;

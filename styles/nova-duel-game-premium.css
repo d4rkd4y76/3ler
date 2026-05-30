@@ -81,11 +81,92 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   overflow: hidden !important;
   overscroll-behavior: none;
   isolation: isolate;
+  position: relative;
 }
 
-/* Arka plan “top” / dış hale — kapat */
+/* —— Arena video arka plan (duelloarka.mp4 seamless loop) —— */
+#duel-game-screen .ndg-arena-video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0a0f1c;
+}
+
+#duel-game-screen .ndg-arena-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#duel-game-screen .ndg-arena-video.is-front {
+  opacity: 1;
+}
+
+#duel-game-screen .ndg-arena-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 15, 28, 0.62) 0%,
+      rgba(10, 15, 28, 0.22) 38%,
+      rgba(10, 15, 28, 0.28) 62%,
+      rgba(10, 15, 28, 0.55) 100%
+    ),
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(10, 15, 28, 0.08), rgba(10, 15, 28, 0.35));
+  transition: opacity 0.4s ease, background 0.5s ease;
+}
+
+/* Geçiş anında ekstra maskeleme — loop sıçraması gizlenir */
+#duel-game-screen .ndg-arena-video-layer.ndg-arena-crossfade .ndg-arena-video-scrim {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 15, 28, 0.72) 0%,
+      rgba(10, 15, 28, 0.38) 38%,
+      rgba(10, 15, 28, 0.42) 62%,
+      rgba(10, 15, 28, 0.68) 100%
+    ),
+    radial-gradient(ellipse 95% 75% at 50% 50%, rgba(10, 15, 28, 0.18), rgba(10, 15, 28, 0.48));
+}
+
+#duel-game-screen.ndg-arena-video-on {
+  background-color: #0a0f1c !important;
+  background-image: none !important;
+  animation: none !important;
+}
+
+#duel-game-screen.ndg-arena-video-on > :not(.ndg-arena-video-layer) {
+  position: relative;
+  z-index: 2;
+}
+
+#duel-game-screen.ndg-duel-finished .ndg-arena-video-layer {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #duel-game-screen .ndg-arena-video-layer {
+    display: none !important;
+  }
+}
+
+/* Arka plan “top” / dış hale — kapat (soru kutusu animasyonlu çerçeve hariç) */
 #duel-game-screen::before,
-#duel-game-screen .question-container::before,
 #duel-game-screen .question-container::after {
   display: none !important;
   content: none !important;
@@ -119,9 +200,16 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   box-sizing: border-box !important;
   background-color: #0a0f1c !important;
   background-image:
-    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
-    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(99, 102, 241, 0.15), transparent 50%),
+    radial-gradient(ellipse 100% 55% at 50% -8%, rgba(56, 189, 248, 0.18), transparent 58%),
+    radial-gradient(ellipse 80% 45% at 10% 100%, rgba(251, 191, 36, 0.1), transparent 55%),
+    radial-gradient(ellipse 80% 45% at 90% 100%, rgba(168, 85, 247, 0.12), transparent 55%),
     linear-gradient(168deg, #0c1224 0%, #151f3a 45%, #0a0f1c 100%) !important;
+  animation: ndg-arena-bg 8s ease-in-out infinite alternate;
+}
+
+@keyframes ndg-arena-bg {
+  from { filter: brightness(1) saturate(1); }
+  to { filter: brightness(1.06) saturate(1.08); }
 }
 
 #duel-game-screen .players-info-row,
@@ -245,8 +333,23 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
 
 #nova-vs-hud .nova-hp-count {
   font-weight: 900 !important;
-  font-size: 12px !important;
+  font-size: clamp(11px, 3vw, 13px) !important;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+#nova-vs-hud .nova-hp-count.ndg-score-pulse {
+  animation: ndg-score-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  color: #bbf7d0 !important;
+  text-shadow:
+    0 0 14px rgba(74, 222, 128, 0.95),
+    0 0 28px rgba(34, 197, 94, 0.55) !important;
+}
+
+@keyframes ndg-score-pop {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  35% { transform: translate(-50%, -50%) scale(1.45); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 /* —— Soru sayacı + bar —— */
@@ -271,12 +374,12 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   display: block !important;
   font-size: clamp(12px, 3.2vw, 14px) !important;
   font-weight: 900 !important;
-  letter-spacing: 0.14em !important;
+  letter-spacing: 0.16em !important;
   text-transform: uppercase !important;
   color: #fde68a !important;
   opacity: 1 !important;
   margin: 0 0 6px !important;
-  text-shadow: 0 0 12px rgba(251, 191, 36, 0.45);
+  text-shadow: 0 0 14px rgba(251, 191, 36, 0.55);
 }
 
 #duel-game-screen .progress-bar {
@@ -288,12 +391,19 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
 }
 
 #duel-game-screen #duel-progress-bar-inner {
-  background: linear-gradient(90deg, #0ea5e9, #22d3ee, #67e8f9) !important;
-  box-shadow: 0 0 14px rgba(34, 211, 238, 0.5);
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fde68a, #22d3ee) !important;
+  background-size: 200% 100% !important;
+  animation: ndg-progress-flow 2.2s linear infinite;
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.55);
+}
+
+@keyframes ndg-progress-flow {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
 }
 
 
-/* —— Soru kutusu: içeriğe göre boyut, devasa değil —— */
+/* —— Soru kutusu — metin / resimli soruya göre ölçeklenir —— */
 #duel-game-screen .question-container {
   grid-row: 3;
   align-self: center;
@@ -301,24 +411,89 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   height: auto !important;
   min-height: 0 !important;
   max-height: min(38vh, 260px) !important;
-  /* 002-style responsive patch --q-min-h devasa kutuyu kapatır */
   --q-min-h: 0 !important;
   margin: 0 !important;
   padding: clamp(12px, 2vh, 16px) clamp(14px, 3vw, 18px) !important;
   overflow: hidden !important;
   display: block !important;
   box-sizing: border-box !important;
-  border-radius: 16px !important;
-  background: linear-gradient(165deg, rgba(17, 24, 39, 0.97), rgba(8, 12, 24, 0.99)) !important;
-  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(165deg, rgba(17, 24, 39, 0.98), rgba(8, 12, 24, 0.99)) !important;
+  border: 1px solid rgba(251, 191, 36, 0.35) !important;
   box-shadow:
-    0 0 0 1px rgba(125, 211, 252, 0.12) inset,
-    0 12px 32px rgba(0, 0, 0, 0.45) !important;
+    0 0 0 1px rgba(56, 189, 248, 0.2) inset,
+    0 0 28px rgba(56, 189, 248, 0.12),
+    0 14px 36px rgba(0, 0, 0, 0.48) !important;
   backdrop-filter: none !important;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Resimli soru — kutu büyür, resim kesilmez */
+#duel-game-screen .question-container.ndg-has-image,
+#duel-game-screen .question-container.ndg-has-info-image,
+#duel-game-screen .question-container:has(.question-image),
+#duel-game-screen .question-container:has(.question-info-image) {
+  max-height: min(calc(100dvh - 300px), 440px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  text-align: center;
+}
+
+#duel-game-screen .resimli-soru-banner {
+  flex-shrink: 0;
+  width: 100%;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em;
+  padding: 6px 12px !important;
+  margin: 0 0 4px !important;
+  border-radius: 10px !important;
+}
+
+#duel-game-screen .question-container::before {
+  display: block !important;
+  content: '' !important;
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    rgba(56, 189, 248, 0.55),
+    rgba(251, 191, 36, 0.65),
+    rgba(168, 85, 247, 0.45),
+    rgba(56, 189, 248, 0.55)
+  );
+  background-size: 220% 100%;
+  animation: ndg-q-border 3.5s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ndg-q-border {
+  from { background-position: 0% 50%; }
+  to { background-position: 220% 50%; }
 }
 
 #duel-game-screen .question-container.nova-q-enter {
   animation: ndg-q-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#duel-game-screen .question-container > * {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes ndg-q-pop {
@@ -393,12 +568,38 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   display: none !important;
 }
 
-#duel-game-screen .question-image {
-  max-height: min(20vh, 120px) !important;
+#duel-game-screen .question-image,
+#duel-game-screen .question-info-image {
+  display: block !important;
   width: auto !important;
+  height: auto !important;
   max-width: 100% !important;
-  margin: 0 auto 8px !important;
-  border-radius: 8px;
+  max-height: min(calc(100dvh - 360px), 320px) !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+#duel-game-screen .question-container.ndg-has-image .question-image,
+#duel-game-screen .question-container:has(.question-image) .question-image {
+  max-height: min(calc(100dvh - 380px), 300px) !important;
+}
+
+#duel-game-screen .ndg-q-image-caption,
+#duel-game-screen .question-container.ndg-has-image .question-text {
+  flex-shrink: 0;
+  width: 100%;
+  font-size: clamp(13px, 3.2vw, 15px) !important;
+  line-height: 1.4 !important;
+  color: #f1f5f9 !important;
+  text-align: center;
+}
+
+#duel-game-screen .question-text-container {
+  width: 100%;
 }
 
 /* —— Şıklar — tam metin, kesilmez —— */
@@ -435,7 +636,6 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   padding: 10px 12px !important;
   white-space: normal !important;
   word-break: break-word !important;
-  overflow: visible !important;
   text-overflow: unset !important;
   display: flex !important;
   align-items: center !important;
@@ -445,11 +645,37 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   font-size: clamp(12px, 3vw, 14px) !important;
   font-weight: 700 !important;
   border-radius: 14px !important;
-  border: 1px solid rgba(56, 189, 248, 0.35) !important;
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)) !important;
+  border: 1px solid rgba(56, 189, 248, 0.42) !important;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.99)) !important;
   color: #f8fafc !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
-  transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease !important;
+  will-change: transform;
+}
+
+#duel-game-screen .option-button:active:not(.option-locked) {
+  transform: scale(0.97) !important;
+}
+
+#duel-game-screen .option-button.nova-opt-enter {
+  animation: ndg-opt-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ndg-opt-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 #duel-game-screen .option-button .q-markup {
@@ -509,39 +735,99 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   border-radius: 12px;
 }
 
-/* +1 uçuş animasyonu */
+/* +10 uçuş animasyonu — mobilde GPU, yüksek görünürlük */
 .ndg-fly-plus {
   position: fixed;
   z-index: 2147483001;
-  left: 50%;
-  top: 42%;
-  transform: translate(-50%, -50%) scale(0.4);
-  font-size: clamp(22px, 6vw, 32px);
-  font-weight: 900;
-  color: #4ade80;
-  text-shadow:
-    0 0 16px rgba(74, 222, 128, 0.8),
-    0 2px 8px rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) scale(0.2);
   pointer-events: none;
   opacity: 0;
-  transition:
-    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.65s ease;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
-.ndg-fly-plus.ndg-fly-go {
-  opacity: 1;
+.ndg-fly-plus__num {
+  position: relative;
+  z-index: 2;
+  display: block;
+  font-size: clamp(28px, 8vw, 42px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #4ade80;
+  text-shadow:
+    0 0 20px rgba(74, 222, 128, 0.95),
+    0 0 40px rgba(34, 197, 94, 0.65),
+    0 2px 10px rgba(0, 0, 0, 0.55);
+  -webkit-text-stroke: 1px rgba(20, 83, 45, 0.35);
 }
 
-.ndg-fly-plus.ndg-fly-wrong {
+.ndg-fly-plus__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140%;
+  height: 140%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(74, 222, 128, 0.55);
+  box-shadow: 0 0 24px rgba(74, 222, 128, 0.45);
+  animation: ndg-fly-ring 0.9s ease-out forwards;
+}
+
+@keyframes ndg-fly-ring {
+  from { transform: translate(-50%, -50%) scale(0.4); opacity: 0.9; }
+  to { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+.ndg-fly-plus.ndg-fly-wrong .ndg-fly-plus__num {
   color: #f87171;
-  text-shadow: 0 0 12px rgba(248, 113, 113, 0.7);
+  font-size: clamp(24px, 7vw, 36px);
+  text-shadow:
+    0 0 16px rgba(248, 113, 113, 0.85),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.ndg-fly-spark {
+  position: fixed;
+  z-index: 2147483000;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fde68a;
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.9);
+  pointer-events: none;
+  animation: ndg-spark-fly 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ndg-spark-fly {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy))) scale(0);
+    opacity: 0;
+  }
 }
 
 @media (max-height: 640px) {
-  #duel-game-screen .question-container {
+  #duel-game-screen .question-container:not(.ndg-has-image):not(.ndg-has-info-image) {
     max-height: min(32vh, 200px) !important;
     padding: 10px 12px !important;
+  }
+
+  #duel-game-screen .question-container.ndg-has-image,
+  #duel-game-screen .question-container.ndg-has-info-image,
+  #duel-game-screen .question-container:has(.question-image),
+  #duel-game-screen .question-container:has(.question-info-image) {
+    max-height: min(calc(100dvh - 270px), 340px) !important;
+  }
+
+  #duel-game-screen .question-image,
+  #duel-game-screen .question-info-image {
+    max-height: min(calc(100dvh - 320px), 240px) !important;
   }
 
   #duel-game-screen .option-button {

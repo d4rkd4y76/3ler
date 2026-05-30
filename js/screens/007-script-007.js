@@ -8812,22 +8812,24 @@ async function updateDuelSelection(field, value) {
     const questionContainer = document.querySelector('#duel-game-screen .question-container');
     questionContainer.innerHTML = '';
     questionContainer.classList.add('nova-duel-q-panel');
-    questionContainer.classList.remove('nova-q-enter');
+    questionContainer.classList.remove('nova-q-enter', 'ndg-has-image', 'ndg-has-info-image');
     void questionContainer.offsetWidth;
     questionContainer.classList.add('nova-q-enter');
 
     if (currentQuestion.question.startsWith('http')) {
+        questionContainer.classList.add('ndg-has-image');
         // Eğer soru resim URL'siyse
         const questionImage = document.createElement('img');
         questionImage.src = currentQuestion.question;
         questionImage.className = 'question-image';
         questionImage.style.display = 'block';
         questionImage.alt = "Soru resmi";
+        questionImage.decoding = 'async';
         questionContainer.appendChild(questionImage);
 
         if (currentQuestion.actualQuestion) {
             const questionTextDiv = document.createElement('div');
-            questionTextDiv.className = 'question-text q-markup';
+            questionTextDiv.className = 'question-text q-markup ndg-q-image-caption';
             const mqD = window.NovaQuestionMarkup;
             if (mqD) mqD.fillMarkupElement(questionTextDiv, currentQuestion.actualQuestion);
             else questionTextDiv.textContent = currentQuestion.actualQuestion;
@@ -8845,6 +8847,9 @@ async function updateDuelSelection(field, value) {
                 infoItems: currentQuestion.infoItems,
                 question: qText,
             });
+            if (/^https?:\/\/\S+\.(png|jpe?g|gif|webp)(\?\S*)?$/i.test(qInfo)) {
+                questionContainer.classList.add('ndg-has-info-image');
+            }
         } else {
         const textContainer = document.createElement('div');
         textContainer.className = 'question-text-container';
@@ -8854,6 +8859,7 @@ async function updateDuelSelection(field, value) {
         const hasInfoText = !!infoValue && !hasInfoImage && !isGenericPrompt;
 
         if (hasInfoImage) {
+            questionContainer.classList.add('ndg-has-info-image');
             const infoImage = document.createElement('img');
             infoImage.src = infoValue;
             infoImage.alt = 'Öncül görseli';
@@ -8882,6 +8888,15 @@ async function updateDuelSelection(field, value) {
         questionContainer.appendChild(textContainer);
         }
     }
+
+    try {
+        if (typeof window.ndgFitDuelQuestionMedia === 'function') {
+            window.ndgFitDuelQuestionMedia(questionContainer);
+        }
+        if (typeof window.onNewQuestionLoaded === 'function') {
+            window.onNewQuestionLoaded();
+        }
+    } catch (_) {}
 
     duelOptionsContainer.innerHTML = '';
     duelOptionsContainer.classList.remove('nova-duel-reveal', 'nova-duel-waiting-opponent');
@@ -8984,8 +8999,12 @@ function listenToResponses() {
                         let inTotal = 0;
                         Object.keys(data || {}).forEach((qk)=>{
                             const row = data[qk] || {};
-                            if (row[inviterId] && row[inviterId].correct === true) invTotal++;
-                            if (row[invitedId] && row[invitedId].correct === true) inTotal++;
+                            if (row[inviterId] && row[inviterId].correct === true) {
+                                invTotal += window.NovaDuelPointsPerCorrect || 10;
+                            }
+                            if (row[invitedId] && row[invitedId].correct === true) {
+                                inTotal += window.NovaDuelPointsPerCorrect || 10;
+                            }
                         });
                         if (invTotal > duelLiveInviterCorrect) {
                             inviterCorrectCountEl.classList.add('score-flash');
@@ -9032,7 +9051,7 @@ function listenToResponses() {
             if (!scoreElement) return;
             const plusOne = document.createElement('div');
             plusOne.className = 'score-increment-effect';
-            plusOne.textContent = '+1';
+            plusOne.textContent = '+' + (window.NovaDuelPointsPerCorrect || 10);
             plusOne.style.cssText = 'position:absolute;color:#22c55e;font-weight:900;font-size:1.1em;pointer-events:none;animation:scorePop .55s ease-out forwards;text-shadow:0 2px 8px rgba(34,197,94,.45);';
             const parent = scoreElement.parentElement || scoreElement;
             const prevPos = parent.style.position;
@@ -9068,8 +9087,12 @@ function listenToResponses() {
                     const invResp = responses[invId] || null;
                     const inResp = responses[inId] || null;
 
-                    if (invResp && invResp.correct) duelInviterScore++;
-                    if (inResp && inResp.correct) duelInvitedScore++;
+                    if (invResp && invResp.correct) {
+                        duelInviterScore += window.NovaDuelPointsPerCorrect || 10;
+                    }
+                    if (inResp && inResp.correct) {
+                        duelInvitedScore += window.NovaDuelPointsPerCorrect || 10;
+                    }
 
                     if (typeof window.novaDuelFeedbackForAnswer === 'function') {
                         if (invResp) {
@@ -9198,8 +9221,8 @@ function endDuelGame() {
             const row = resp[k] || {};
             const a = row[inviterIdCalc];
             const b = row[invitedIdCalc];
-            if (a && a.correct === true) invCalc++;
-            if (b && b.correct === true) inCalc++;
+            if (a && a.correct === true) invCalc += window.NovaDuelPointsPerCorrect || 10;
+            if (b && b.correct === true) inCalc += window.NovaDuelPointsPerCorrect || 10;
           });
           if (Number.isFinite(invCalc) && Number.isFinite(inCalc)) {
             duelInviterScore = invCalc;
