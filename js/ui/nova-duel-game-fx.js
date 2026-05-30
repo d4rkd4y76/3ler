@@ -49,39 +49,48 @@
     var game = document.getElementById('duel-game-screen');
     var meta = game && game.querySelector('.ndg-meta-row');
     var opts = document.getElementById('duel-options-container');
-    if (!opts) return;
+    if (!game || !opts) return;
 
     container.style.setProperty('--ndg-q-font-scale', '1');
     container.style.maxHeight = '';
     container.style.height = '';
     container.style.overflowY = '';
 
-    function apply() {
-      var gap = 10;
+    function measureAvail() {
+      var gap = 12;
+      var metaR = meta ? meta.getBoundingClientRect() : null;
+      var optsR = opts.getBoundingClientRect();
       var avail;
 
-      if (meta) {
-        var metaR = meta.getBoundingClientRect();
-        var optsR = opts.getBoundingClientRect();
+      if (metaR && optsR.top > metaR.bottom + 8) {
         avail = Math.floor(optsR.top - metaR.bottom - gap);
       } else {
-        avail = Math.floor(window.innerHeight * 0.36);
+        var cs = window.getComputedStyle(game);
+        var padTop = parseFloat(cs.paddingTop) || 0;
+        var padBottom = parseFloat(cs.paddingBottom) || 0;
+        var hud = game.querySelector('.nova-vs-hud');
+        var hudH = hud ? hud.offsetHeight : 0;
+        var metaH = meta ? meta.offsetHeight : 0;
+        var optsH = opts.offsetHeight || 0;
+        var gaps = gap * 3;
+        avail = Math.floor(game.clientHeight - padTop - padBottom - hudH - metaH - optsH - gaps);
       }
 
       if (!isFinite(avail) || avail < 72) {
-        avail = Math.max(72, Math.floor(window.innerHeight * 0.3));
+        avail = Math.max(72, Math.floor(window.innerHeight * 0.28));
       }
+      return avail;
+    }
 
-      container.style.maxHeight = 'none';
-      var natural = container.scrollHeight;
-      var target = Math.min(avail, natural);
-      container.style.maxHeight = target + 'px';
+    function apply() {
+      var avail = measureAvail();
+      container.style.maxHeight = avail + 'px';
 
       var scale = 1;
       var i;
-      for (i = 0; i < 9; i++) {
+      for (i = 0; i < 10; i++) {
         if (container.scrollHeight <= container.clientHeight + 4) break;
-        scale = Math.max(0.78, scale * 0.94);
+        scale = Math.max(0.76, scale * 0.93);
         container.style.setProperty('--ndg-q-font-scale', scale.toFixed(3));
       }
 
@@ -95,7 +104,10 @@
     }
 
     requestAnimationFrame(function () {
-      requestAnimationFrame(apply);
+      requestAnimationFrame(function () {
+        apply();
+        requestAnimationFrame(apply);
+      });
     });
   };
 
