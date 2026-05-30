@@ -6092,6 +6092,9 @@ logoutButton.addEventListener('click', async () => {
                 if (typeof window.NOVA_HERO_LEVEL.refreshSpHeroFeatureBar === 'function') {
                     window.NOVA_HERO_LEVEL.refreshSpHeroFeatureBar();
                 }
+                if (typeof window.novaBuzEjderPreloadTrueClips === 'function') {
+                    window.novaBuzEjderPreloadTrueClips();
+                }
             } catch (_) {}
         }
 

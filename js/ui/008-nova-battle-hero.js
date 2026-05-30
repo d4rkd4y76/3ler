@@ -414,11 +414,17 @@
   }
 
   function isHeroEquipped(data) {
-    var heroId = data ? String(data.battleHero || '').trim() : getEquippedHeroId();
+    var localId = getEquippedHeroId();
+    var dbId = data && data.battleHero ? String(data.battleHero).trim() : '';
+    var heroId = localId || dbId;
     if (!heroId || !getHeroDef(heroId)) return false;
-    if (data) return data.battleHero === heroId && ownsHero(data, heroId);
+
     var s = getStudent();
-    return !!(s && s.battleHero === heroId && ownsHero({ purchasedBattleHeroes: s.purchasedBattleHeroes }, heroId));
+    var purchases = (data && data.purchasedBattleHeroes) || (s && s.purchasedBattleHeroes) || {};
+    if (!ownsHero({ purchasedBattleHeroes: purchases }, heroId)) return false;
+
+    if (dbId && localId && dbId !== localId) return localId === heroId;
+    return true;
   }
 
   function parseHeroOwn(val) {
@@ -609,6 +615,12 @@
     if (variant === 'epic') return '⭐ EFSANE';
     if (variant === 'fire') return '🔥 SÜPER';
     return '✓ DOĞRU';
+  }
+
+  function heroUsesTrueSpriteClips(heroId) {
+    return heroId === 'buz_ejder'
+      && typeof window.novaBuzEjderHasTrueClips === 'function'
+      && window.novaBuzEjderHasTrueClips();
   }
 
   function pickCheerPayload(variant) {
@@ -826,6 +838,7 @@
       );
       host.innerHTML = '';
     }
+    arena.classList.remove('nova-sp-hero-arena--sprite-only');
     var speech = arena.querySelector('.nova-sp-hero-speech');
     if (speech) {
       speech.className = 'nova-sp-hero-speech';
@@ -842,8 +855,13 @@
       arena.setAttribute('aria-hidden', 'true');
       arena.innerHTML = getArenaInnerHtml();
       document.body.appendChild(arena);
-    } else if (!arena.querySelector('.nova-sp-hero-speech')) {
-      arena.innerHTML = getArenaInnerHtml();
+    } else {
+      if (arena.parentElement && arena.parentElement !== document.body) {
+        document.body.appendChild(arena);
+      }
+      if (!arena.querySelector('.nova-sp-hero-speech')) {
+        arena.innerHTML = getArenaInnerHtml();
+      }
     }
     return arena;
   }
@@ -869,11 +887,12 @@
   function isSinglePlayerGameVisible() {
     var el = document.getElementById('single-player-game-screen');
     if (!el) return false;
+    if (document.body.classList.contains('nova-sp-game-open')) return true;
     try {
       var st = window.getComputedStyle(el);
       return st.display !== 'none' && st.visibility !== 'hidden';
     } catch (_) {
-      return el.style.display === 'flex';
+      return el.style.display === 'flex' || el.classList.contains('nova-sp-game-visible');
     }
   }
 
@@ -890,10 +909,16 @@
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
       var payload = pickCheerPayload(variant);
-      renderSpeechPanel(arena, payload);
-      spawnScreenFx(arena, payload);
-      var svg = mountHeroInto(host, equippedId);
-      if (!svg) { resolve(); return; }
+      var spriteOnly = heroUsesTrueSpriteClips(equippedId);
+      if (spriteOnly) {
+        arena.classList.add('nova-sp-hero-arena--sprite-only');
+        if (host) host.innerHTML = '';
+      } else {
+        renderSpeechPanel(arena, payload);
+        spawnScreenFx(arena, payload);
+        var svg = mountHeroInto(host, equippedId);
+        if (!svg) { resolve(); return; }
+      }
 
       fxBusy = true;
 
@@ -915,22 +940,23 @@
     var host = arena.querySelector('.nova-sp-hero-arena__host');
     var heroId = getEquippedHeroId();
     var jsFx = usesJsSpFx(heroId);
+    var spriteOnly = heroUsesTrueSpriteClips(heroId);
     return waitMs(40).then(function () {
-      arena.classList.add('is-centered', 'is-caption-show');
+      arena.classList.add('is-centered');
+      if (!spriteOnly) arena.classList.add('is-caption-show');
       if (host) {
         host.classList.add('nova-sp-fx-live');
         if (!jsFx) host.classList.add('nova-sp-fx-' + variant);
       }
-      return waitMs(jsFx ? 80 : 400);
+      return waitMs(spriteOnly ? 60 : (jsFx ? 80 : 400));
     }).then(function () {
-      spawnArenaFx(arena, variant);
-      if (variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
-      else if (variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
-      /* JS FX kendi süresini döndürür; ekstra bekleme = donma hissi */
-      var tail = variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180);
+      if (!spriteOnly) spawnArenaFx(arena, variant);
+      if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
+      else if (!spriteOnly && variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
+      var tail = spriteOnly ? 120 : (variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180));
       var fxWait = jsFx && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
-        : waitMs(850);
+        : waitMs(spriteOnly ? 4200 : 850);
       return fxWait;
     }).then(function () {
       if (host) {
@@ -940,26 +966,28 @@
         resetHeroSpFx(host, heroId);
       }
       try{ window.__novaHeroFxSlowFactor = 1; }catch(_){}
-      return waitMs(180);
+      return waitMs(spriteOnly ? 80 : 180);
     }).then(function () {
       arena.classList.remove('is-centered', 'is-caption-show', 'is-slamming', 'is-epic');
       arena.classList.add('is-exiting');
-      return waitMs(360);
+      return waitMs(spriteOnly ? 280 : 360);
     });
   }
 
   async function novaTryPlayBattleHeroFx() {
     try {
+      var data = null;
       if (typeof getStoreStudentData === 'function') {
-        var data = await getStoreStudentData();
-        if (!isHeroEquipped(data)) return;
-      } else if (!isHeroEquipped()) {
-        return;
+        try {
+          data = await getStoreStudentData();
+        } catch (_) {}
       }
+      if (!isHeroEquipped(data)) return;
       correctFxCount++;
       await playHeroFx(pickVariant());
     } catch (e) {
       console.warn('battle hero fx', e);
+      fxBusy = false;
     }
   }
 

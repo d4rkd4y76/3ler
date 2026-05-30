@@ -381,6 +381,9 @@
 
   function playSpFx(host, variant, routine) {
     if (!host) return waitMs(680);
+    if (typeof window.novaBuzEjderPlayTrueClip === 'function' && window.novaBuzEjderHasTrueClips && window.novaBuzEjderHasTrueClips()) {
+      return window.novaBuzEjderPlayTrueClip(host, routine);
+    }
     if (typeof window.novaBuzEjderMountWebGL === 'function') {
       window.novaBuzEjderMountWebGL(host);
     }
@@ -399,6 +402,9 @@
   }
 
   function resetHost(host) {
+    if (typeof window.novaBuzEjderTrueUnmount === 'function') {
+      window.novaBuzEjderTrueUnmount(host);
+    }
     if (typeof window.novaBuzEjderUnmountWebGL === 'function') {
       window.novaBuzEjderUnmountWebGL(host);
     }
