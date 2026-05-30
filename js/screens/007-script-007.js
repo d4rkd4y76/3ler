@@ -44,7 +44,9 @@ async function novaWaitUntilMs(targetMs) {
 try { window.novaWaitUntilMs = novaWaitUntilMs; } catch (_) {}
 
 const NOVA_DUEL_INTRO_MS = 3200;
-const NOVA_DUEL_SYNC_ENTER_MS = 3500;
+const NOVA_DUEL_MATCH_FOUND_MS = 2800;
+const NOVA_DUEL_PREP_MS = 10000;
+const NOVA_DUEL_SYNC_ENTER_MS = NOVA_DUEL_MATCH_FOUND_MS;
 
         // Audio Elementlerini Seçme
         const duelMusic = document.getElementById('duelBackgroundMusic');
@@ -7738,7 +7740,9 @@ async function createDuelSession(inviterId, inviterClassId, inviterName, inviter
         let createdAtMs = Date.now();
         const cs = await duelRef.child('createdAt').once('value');
         if (cs.exists()) createdAtMs = Number(cs.val()) || createdAtMs;
-        await duelRef.child('syncEnterAt').set(createdAtMs + NOVA_DUEL_SYNC_ENTER_MS);
+        const prepStartAt = createdAtMs + NOVA_DUEL_MATCH_FOUND_MS;
+        await duelRef.child('syncEnterAt').set(prepStartAt);
+        await duelRef.child('prepEndAt').set(prepStartAt + NOVA_DUEL_PREP_MS);
     } catch (e) {
         console.warn('syncEnterAt yazılamadı:', e);
     }
@@ -7839,7 +7843,9 @@ async function finishAutoDuelTopics(classId, lessonId, selectedLessonName) {
   if (isInviter) updateDuelSelection('topic', randomTopic.value);
   const selectedTopicName = randomTopic.textContent;
   animateDuelSelection(selectedLessonName, selectedTopicName);
-  startDuelAutoCountdown();
+  if (!window.__novaEpicDuelFlow && !window.__novaDuelPrepBlocking) {
+    startDuelAutoCountdown();
+  }
 }
 
 // ----- 2. Seçimi animasyonlu gösterme fonksiyonu -----
@@ -7849,6 +7855,7 @@ function animateDuelSelection(lessonName, topicName) {
 
 // ----- 3. Tek geri sayım: davet eden otomatik başlatır (switchToDuelScreen içindeki eski çift sayaç kaldırıldı) -----
 function startDuelAutoCountdown() {
+  if (window.__novaEpicDuelFlow || window.__novaDuelPrepBlocking) return;
   const countdownEl = document.getElementById('duelCountdown');
   const startBtn = document.getElementById('duel-start-button');
   if (!countdownEl) return;
@@ -7892,6 +7899,7 @@ function startDuelAutoCountdown() {
 
 
 function switchToDuelScreen(duelKey) {
+    try { window.__novaActiveDuelKey = duelKey; } catch (_) {}
     clearPendingInviteSenderUI();
     try {
         const mm = document.getElementById('matchmakingScreen');
@@ -7922,15 +7930,30 @@ function switchToDuelScreen(duelKey) {
     }
     if (playersOverlay) playersOverlay.style.display = 'none';
     
+    if (window.__novaEpicDuelFlow || window.__novaAutoMatchFlow) {
+        document.body.classList.add('nova-duel-epic-active');
+    }
     if (typeof window.novaOpenDuelSelectionScreen === 'function') {
         window.novaOpenDuelSelectionScreen();
     } else {
         duelSelectionScreen.style.display = 'flex';
         duelSelectionScreen.classList.add('container');
     }
+    if (window.__novaEpicDuelFlow || window.__novaAutoMatchFlow) {
+        const selHide = document.getElementById('duel-selection-screen');
+        if (selHide) selHide.style.setProperty('display', 'none', 'important');
+        const banner = document.getElementById('selecting-student-banner');
+        if (banner) banner.style.display = 'none';
+        const cd = document.getElementById('duelCountdown');
+        if (cd) cd.style.display = 'none';
+    }
+    try {
+        if (window.__novaAutoMatchFlow && typeof hideWaitOverlay === 'function') hideWaitOverlay();
+    } catch (_) {}
 
     const duelRef = database.ref(`duels/${duelKey}`);
     currentDuelRef = duelRef;
+    try { window.currentDuelRef = currentDuelRef; } catch (_) {}
     // Yeni düello ekranına her girişte bayrakları temizle; eski oturum state'i kilitlenmeye yol açabiliyor.
     duelGameStarted = false;
     duelEnded = false;
@@ -7950,16 +7973,28 @@ function switchToDuelScreen(duelKey) {
             }
             const ce = document.getElementById('duelCountdown');
             if (ce) ce.style.display = 'none';
-            if (window.__novaStartDuelGameLock === duelKey) return;
+            if (window.__novaStartDuelGameLock === duelKey) {
+                try {
+                    const ge = document.getElementById('duel-game-screen');
+                    if (ge && getComputedStyle(ge).display !== 'none') return;
+                } catch (_) {}
+                window.__novaStartDuelGameLock = null;
+            }
             window.__novaStartDuelGameLock = duelKey;
             duelGameStarted = true;
             duelRef.once('value').then(function (s) {
                 if (!s.exists()) return;
                 const d = s.val() || {};
                 if (!d.gameStarted) return;
-                if (Array.isArray(d.questions) && d.questions.length >= 10) {
-                    startDuelGame(d);
+                if (!Array.isArray(d.questions) || d.questions.length < 10) return;
+                try { if (typeof hideWaitOverlay === 'function') hideWaitOverlay(); } catch (_) {}
+                if (window.__novaDuelPrepBlocking) {
+                    window.__novaQueuedDuelStart = d;
+                    return;
                 }
+                if (window.__novaStartDuelGameLock === duelKey) return;
+                window.__novaStartDuelGameLock = duelKey;
+                startDuelGame(d);
             }).catch(function () {});
         }
     });
@@ -8255,11 +8290,15 @@ duelRef.on('value', async (snap) => {
         }
 
         // Oyun durumu kontrolü
-        if (data.gameStarted && window.__novaStartDuelGameLock !== duelKey) {
-            window.__novaStartDuelGameLock = duelKey;
-            duelGameStarted = true;
-            duelEnded = false;
-            startDuelGame(data);
+        if (data.gameStarted && Array.isArray(data.questions) && data.questions.length >= 10) {
+            if (window.__novaDuelPrepBlocking) {
+                window.__novaQueuedDuelStart = data;
+            } else if (window.__novaStartDuelGameLock !== duelKey) {
+                window.__novaStartDuelGameLock = duelKey;
+                duelGameStarted = true;
+                duelEnded = false;
+                startDuelGame(data);
+            }
         }
 
         // Düello başlatma butonu kontrolü
@@ -8457,6 +8496,88 @@ async function updateDuelSelection(field, value) {
             }
         }
 
+        function formatDuelQuestionsChosen(pickedDuelQs) {
+            return pickedDuelQs.slice(0, 10).map(function (q) {
+                var infoText = String(q.info || '').trim();
+                var infoItems = q.infoItems || null;
+                var questionText = '';
+                if (typeof q.question === 'object' && q.question !== null) {
+                    if (!infoText) infoText = String(q.question.info || '').trim();
+                    questionText = String(q.question.text || q.actualQuestion || '').trim();
+                    if (!infoItems && Array.isArray(q.question.infoItems)) {
+                        infoItems = q.question.infoItems;
+                    }
+                } else {
+                    questionText = String(q.question || q.actualQuestion || '').trim();
+                }
+                return {
+                    info: infoText,
+                    infoItems: infoItems,
+                    actualQuestion: questionText,
+                    question: questionText,
+                    correct: q.correct,
+                    wrong1: q.wrong1,
+                    wrong2: q.wrong2,
+                    options: shuffleArray([
+                        { text: q.correct, correct: true },
+                        { text: q.wrong1, correct: false },
+                        { text: q.wrong2, correct: false }
+                    ])
+                };
+            });
+        }
+
+        async function novaEpicInviterCommitStart() {
+            if (!isInviter || !currentDuelRef) return false;
+            try {
+                const classId = String(
+                    duelClassSelect.value || (selectedStudent && selectedStudent.classId) || ''
+                );
+                if (!classId) return false;
+
+                const lessonIds = await novaChampionChildKeys(
+                    'championData/headings/' + classId + '/lessons'
+                );
+                if (!lessonIds || !lessonIds.length) return false;
+                const subjectId = lessonIds[Math.floor(Math.random() * lessonIds.length)];
+                const topicIds = await novaChampionChildKeys(
+                    'championData/headings/' + classId + '/lessons/' + subjectId + '/topics'
+                );
+                if (!topicIds || !topicIds.length) return false;
+                const topicId = topicIds[Math.floor(Math.random() * topicIds.length)];
+
+                await currentDuelRef.child('selections').set({
+                    class: classId,
+                    subject: subjectId,
+                    topic: topicId
+                });
+
+                const picked = await pickAndLoadTopicQuestionsExact(
+                    classId,
+                    subjectId,
+                    topicId,
+                    10
+                );
+                if (!picked || picked.length < 10) return false;
+
+                duelClassId = classId;
+                duelSubjectId = subjectId;
+                duelTopicId = topicId;
+
+                await currentDuelRef.update({
+                    questions: formatDuelQuestionsChosen(picked),
+                    playAt: firebase.database.ServerValue.TIMESTAMP,
+                    gameStarted: true
+                });
+                return true;
+            } catch (e) {
+                console.warn('novaEpicInviterCommitStart', e);
+                return false;
+            }
+        }
+        try { window.novaEpicInviterCommitStart = novaEpicInviterCommitStart; } catch (_) {}
+        try { window.startDuelGame = startDuelGame; } catch (_) {}
+
         duelStartButton.addEventListener('click', async () => {
             duelClassId = duelClassSelect.value;
             duelSubjectId = duelSubjectSelect.value;
@@ -8480,48 +8601,42 @@ async function updateDuelSelection(field, value) {
 
             const pickedDuelQs = await pickAndLoadTopicQuestionsExact(duelClassId, duelSubjectId, duelTopicId, 10);
             if (pickedDuelQs && pickedDuelQs.length >= 10) {
-let chosen = pickedDuelQs.slice(0, 10).map(q => {
-    let infoText = "";
-    let questionText = "";
-    // Eğer soru nesne formatındaysa:
-    if (typeof q.question === 'object' && q.question !== null) {
-        infoText = q.question.info || "";
-        questionText = q.question.text || "";
-        var infoItems = Array.isArray(q.question.infoItems) ? q.question.infoItems : null;
-    } else {
-        // Eğer soru doğrudan metin olarak saklanmışsa:
-        questionText = q.question;
-    }
-    return {
-        info: infoText,
-        infoItems: typeof infoItems !== 'undefined' ? infoItems : null,
-        actualQuestion: questionText,
-        question: questionText,
-        correct: q.correct,
-        wrong1: q.wrong1,
-        wrong2: q.wrong2,
-        options: shuffleArray([
-            { text: q.correct, correct: true },
-            { text: q.wrong1, correct: false },
-            { text: q.wrong2, correct: false }
-        ])
-    };
-});
-
-await currentDuelRef.update({
-                    questions: chosen,
+                await currentDuelRef.update({
+                    questions: formatDuelQuestionsChosen(pickedDuelQs),
                     playAt: firebase.database.ServerValue.TIMESTAMP,
                     gameStarted: true
                 });
-                
             } else {
                 showAlert("Bu konuya ait yeterli soru yok veya soru id listesi bulunamadı.");
             }
         });
 
         function startDuelGame(data) {
-            if (window.__novaDuelGameActiveKey === duelKey) return;
-            window.__novaDuelGameActiveKey = duelKey;
+            const activeDuelKey =
+                (currentDuelRef && currentDuelRef.key) ||
+                window.__novaActiveDuelKey ||
+                '';
+            if (window.__novaDuelPrepBlocking) {
+                window.__novaQueuedDuelStart = data;
+                return;
+            }
+            try {
+                if (typeof hideWaitOverlay === 'function') hideWaitOverlay();
+                if (typeof window.novaEpicHideAll === 'function') window.novaEpicHideAll();
+            } catch (_) {}
+            if (activeDuelKey && window.__novaDuelGameActiveKey === activeDuelKey) {
+                try {
+                    const ge = document.getElementById('duel-game-screen');
+                    if (ge && getComputedStyle(ge).display === 'none' && typeof window.novaOpenDuelGameScreen === 'function') {
+                        window.__novaDuelGameActiveKey = null;
+                    } else {
+                        return;
+                    }
+                } catch (_) {
+                    return;
+                }
+            }
+            if (activeDuelKey) window.__novaDuelGameActiveKey = activeDuelKey;
             try {
                 if (data && data.playAt) {
                     window.__novaDuelPlayAt = Number(data.playAt) || 0;
@@ -8546,6 +8661,26 @@ await currentDuelRef.update({
             // Düello başlarken final ekranı ve skorları resetleyelim
             duelFinalContainer.style.display='none';
             winnerMessage.textContent = '';
+            winnerMessage.style.display = '';
+            const gameRootReset = document.getElementById('duel-game-screen');
+            if (gameRootReset) gameRootReset.classList.remove('ndg-duel-finished');
+            const hudReset = document.getElementById('nova-vs-hud');
+            if (hudReset) hudReset.style.display = '';
+            const metaReset = document.querySelector('#duel-game-screen .ndg-meta-row');
+            if (metaReset) metaReset.style.display = '';
+            const qReset = document.querySelector('#duel-game-screen .question-container');
+            if (qReset) {
+              qReset.style.display = '';
+              qReset.innerHTML = '';
+              qReset.classList.remove('nova-duel-q-panel', 'nova-q-enter');
+            }
+            const timerReset = document.querySelector('#duel-game-screen .ndg-timer-ring');
+            if (timerReset) timerReset.style.display = '';
+            duelOptionsContainer.style.display = '';
+            const old038 = duelFinalContainer.querySelector('.nova-duel-result');
+            if (old038) old038.remove();
+            duelFinalContainer.dataset.enhanced = '';
+            window.__novaDuelNoConfetti = false;
 
             if (typeof window.novaOpenDuelGameScreen === 'function') {
                 window.novaOpenDuelGameScreen();
@@ -8660,8 +8795,6 @@ await currentDuelRef.update({
                 console.error("Müzik çalınamadı:", error);
             });
         }
-        try { window.startDuelGame = startDuelGame; } catch (_) {}
-
         function loadDuelQuestion() {
     if (duelCurrentQuestionIndex >= 10) {
         endDuelGame();
@@ -8678,6 +8811,7 @@ await currentDuelRef.update({
     // Soru konteynerini düello oyun ekranından seçiyoruz
     const questionContainer = document.querySelector('#duel-game-screen .question-container');
     questionContainer.innerHTML = '';
+    questionContainer.classList.add('nova-duel-q-panel');
     questionContainer.classList.remove('nova-q-enter');
     void questionContainer.offsetWidth;
     questionContainer.classList.add('nova-q-enter');
@@ -8701,11 +8835,15 @@ await currentDuelRef.update({
         }
     } else {
         const mqDuel = window.NovaQuestionMarkup;
+        const qText = String(
+            currentQuestion.actualQuestion || currentQuestion.question || ''
+        ).trim();
+        const qInfo = String(currentQuestion.info || '').trim();
         if (mqDuel) {
             mqDuel.mountQuestionText(questionContainer, {
-                info: currentQuestion.info,
+                info: qInfo,
                 infoItems: currentQuestion.infoItems,
-                question: currentQuestion.question,
+                question: qText,
             });
         } else {
         const textContainer = document.createElement('div');
@@ -8738,7 +8876,7 @@ await currentDuelRef.update({
 
         const questionText = document.createElement('div');
         questionText.className = 'question-actual-text';
-        questionText.textContent = currentQuestion.question;
+        questionText.textContent = qText;
         textContainer.appendChild(questionText);
 
         questionContainer.appendChild(textContainer);
@@ -8746,6 +8884,7 @@ await currentDuelRef.update({
     }
 
     duelOptionsContainer.innerHTML = '';
+    duelOptionsContainer.classList.remove('nova-duel-reveal', 'nova-duel-waiting-opponent');
     currentQuestion.options.forEach((option, idx) => {
         const button = document.createElement('button');
         button.classList.add('option-button');
@@ -8759,6 +8898,16 @@ await currentDuelRef.update({
     duelOptionsContainer.querySelectorAll('.option-button.nova-opt-enter').forEach((btn, idx)=>{
         btn.style.animationDelay = (idx * 60) + 'ms';
     });
+
+    try {
+        questionContainer.querySelectorAll(
+            '.question-actual-text, .question-info-text, .question-text'
+        ).forEach(function (el) {
+            if (/doğru seçeneği işaretleyin\.?/i.test(String(el.textContent || '').trim())) {
+                el.classList.add('ndep-hide-generic');
+            }
+        });
+    } catch (_) {}
 
     resetDuelTimer();
     startDuelTimer();
@@ -8786,21 +8935,30 @@ function startDuelTimer() {
     }, 1000);
 }
 
+function novaLockAllDuelOptions(selectedButton) {
+    duelOptionsContainer.querySelectorAll('.option-button').forEach(function (b) {
+        b.disabled = true;
+        b.classList.add('option-locked');
+        b.style.pointerEvents = 'none';
+        b.setAttribute('aria-disabled', 'true');
+        if (selectedButton && b === selectedButton) {
+            b.classList.add('option-chosen');
+        } else {
+            b.classList.add('option-faded');
+        }
+    });
+}
+
 function duelSelectOption(e) {
     if (duelQuestionLocked) return;
-    const selectedButton = e.target;
-    const chosenOptionText = selectedButton.textContent;
+    const selectedButton = e.currentTarget;
+    if (!selectedButton || !selectedButton.classList.contains('option-button')) return;
+    const chosenOptionText = selectedButton.textContent.trim();
     const isCorrect = selectedButton.dataset.correct === 'true';
     const playerId = selectedStudent.studentId;
 
-    duelOptionsContainer.querySelectorAll('.option-button').forEach(b => {
-        b.disabled = true;
-        if (b !== selectedButton) {
-            b.classList.add('option-faded');
-        } else {
-            b.classList.add('option-chosen');
-        }
-    });
+    novaLockAllDuelOptions(selectedButton);
+    duelOptionsContainer.classList.add('nova-duel-waiting-opponent');
 
     currentDuelRef.child('responses').child(duelCurrentQuestionIndex).child(playerId).set({
         chosen: chosenOptionText,
@@ -8849,9 +9007,20 @@ function listenToResponses() {
                     }
                 } catch(_){}
             }
+            if (answeredCount === 1 && !duelQuestionLocked) {
+                const myId = String(selectedStudent.studentId);
+                const row = data[duelCurrentQuestionIndex] || {};
+                if (row[myId]) {
+                    novaLockAllDuelOptions(
+                        duelOptionsContainer.querySelector('.option-button.option-chosen')
+                    );
+                    duelOptionsContainer.classList.add('nova-duel-waiting-opponent');
+                }
+            }
             if (answeredCount >= 2 && !duelQuestionLocked) {
                 duelQuestionLocked = true;
                 clearInterval(duelTimer);
+                duelOptionsContainer.classList.remove('nova-duel-waiting-opponent');
                 revealDuelAnswerAfterTimeout();
             }
         }
@@ -8889,8 +9058,40 @@ function listenToResponses() {
                     const invId = ddata.inviter.studentId;
                     const inId = ddata.invited.studentId;
 
+                    novaLockAllDuelOptions(null);
+                    duelOptionsContainer.classList.remove('nova-duel-waiting-opponent');
+                    duelOptionsContainer.classList.add('nova-duel-reveal');
+
                     const optionButtons = duelOptionsContainer.querySelectorAll('.option-button');
+                    let inviterOldScore = duelInviterScore;
+                    let invitedOldScore = duelInvitedScore;
+                    const invResp = responses[invId] || null;
+                    const inResp = responses[inId] || null;
+
+                    if (invResp && invResp.correct) duelInviterScore++;
+                    if (inResp && inResp.correct) duelInvitedScore++;
+
+                    if (typeof window.novaDuelFeedbackForAnswer === 'function') {
+                        if (invResp) {
+                            window.novaDuelFeedbackForAnswer(
+                                invId,
+                                !!invResp.correct,
+                                ddata,
+                                invResp.chosen
+                            );
+                        }
+                        if (inResp) {
+                            window.novaDuelFeedbackForAnswer(
+                                inId,
+                                !!inResp.correct,
+                                ddata,
+                                inResp.chosen
+                            );
+                        }
+                    }
+
                     optionButtons.forEach(btn => {
+                        btn.classList.remove('option-chosen', 'option-faded');
                         if (btn.dataset.correct === 'true') {
                             btn.classList.add('correct');
                         } else {
@@ -8898,32 +9099,48 @@ function listenToResponses() {
                         }
                     });
 
-                    let inviterOldScore = duelInviterScore;
-                    let invitedOldScore = duelInvitedScore;
+                    const flyDelay =
+                        (invResp && invResp.correct) || (inResp && inResp.correct) ? 700 : 0;
 
-                    if (responses[invId] && responses[invId].correct) duelInviterScore++;
-                    if (responses[inId] && responses[inId].correct) duelInvitedScore++;
-
-                    if (duelInviterScore > inviterOldScore) {
-                        inviterCorrectCountEl.textContent = duelInviterScore;
-                        inviterCorrectCountEl.classList.add('score-flash');
-                        showScoreIncrementEffect(inviterCorrectCountEl);
-                        setTimeout(()=>inviterCorrectCountEl.classList.remove('score-flash'),1000);
-                    }
-
-                    if (duelInvitedScore > invitedOldScore) {
-                        invitedCorrectCountEl.textContent = duelInvitedScore;
-                        invitedCorrectCountEl.classList.add('score-flash');
-                        showScoreIncrementEffect(invitedCorrectCountEl);
-                        setTimeout(()=>invitedCorrectCountEl.classList.remove('score-flash'),1000);
-                    try{ novaUpdateDuelHud(duelInviterScore, duelInvitedScore, inviterOldScore, invitedOldScore); }catch(e){}
-
-                    }
+                    const applyScoreAndHud = function () {
+                        if (duelInviterScore > inviterOldScore) {
+                            inviterCorrectCountEl.textContent = duelInviterScore;
+                            inviterCorrectCountEl.classList.add('score-flash');
+                            setTimeout(
+                                () => inviterCorrectCountEl.classList.remove('score-flash'),
+                                600
+                            );
+                        }
+                        if (duelInvitedScore > invitedOldScore) {
+                            invitedCorrectCountEl.textContent = duelInvitedScore;
+                            invitedCorrectCountEl.classList.add('score-flash');
+                            setTimeout(
+                                () => invitedCorrectCountEl.classList.remove('score-flash'),
+                                600
+                            );
+                        }
+                        try {
+                            if (typeof window.novaApplyDuelPowerFromRound === 'function') {
+                                window.novaApplyDuelPowerFromRound(invResp, inResp);
+                            }
+                            if (typeof window.novaUpdateDuelHud === 'function') {
+                                window.novaUpdateDuelHud(
+                                    duelInviterScore,
+                                    duelInvitedScore,
+                                    inviterOldScore,
+                                    invitedOldScore,
+                                    invResp,
+                                    inResp
+                                );
+                            }
+                        } catch (e) {}
+                    };
+                    setTimeout(applyScoreAndHud, flyDelay);
 
                     setTimeout(() => {
                         duelCurrentQuestionIndex++;
                         loadDuelQuestion();
-                    }, 1500);
+                    }, 2200);
                 };
                 const memo = (window.__currentDuelData && window.__currentDuelData.inviter && window.__currentDuelData.invited) ? window.__currentDuelData : null;
                 if (memo) {
@@ -8937,12 +9154,35 @@ function listenToResponses() {
 function endDuelGame() {
     currentDuelRef.off('value');
     currentDuelRef.child('responses').off('value');
-    
+
+    window.__novaDuelNoConfetti = true;
+    try {
+        var oldConf = document.getElementById('duel-confetti');
+        if (oldConf) oldConf.remove();
+        document.querySelectorAll('body > .confetti').forEach(function (c) {
+            try { c.remove(); } catch (_) {}
+        });
+    } catch (_) {}
+
+    try {
+        if (typeof window.novaEpicHideAll === 'function') window.novaEpicHideAll();
+    } catch (_) {}
+    const gameRoot = document.getElementById('duel-game-screen');
+    if (gameRoot) gameRoot.classList.add('ndg-duel-finished');
+
+    const hud = document.getElementById('nova-vs-hud');
+    if (hud) hud.style.display = 'none';
     duelQuestionNumber.style.display = 'none';
-    document.querySelector('#duel-game-screen .progress-container').style.display = 'none';
-    document.querySelector('#duel-game-screen .timer-container').style.display = 'none';
-    document.querySelector('#duel-game-screen .question-container').style.display = 'none';
+    const metaRow = document.querySelector('#duel-game-screen .ndg-meta-row');
+    if (metaRow) metaRow.style.display = 'none';
+    const qBox = document.querySelector('#duel-game-screen .question-container');
+    if (qBox) qBox.style.display = 'none';
+    const timerBox = document.querySelector('#duel-game-screen .ndg-timer-ring');
+    if (timerBox) timerBox.style.display = 'none';
+    const playersRow = document.querySelector('#duel-game-screen .players-info-row');
+    if (playersRow) playersRow.style.display = 'none';
     duelOptionsContainer.style.display = 'none';
+    if (winnerMessage) winnerMessage.style.display = 'none';
     duelFinalContainer.style.display = 'flex';
 
     const useEndDuelData = async (ddata) => {
@@ -9029,16 +9269,29 @@ function endDuelGame() {
         else if (localLost) duelFinalContainer.classList.add('nova-duel-final-lose');
         else duelFinalContainer.classList.add('nova-duel-final-tie');
 
-        const oldEpic = duelFinalContainer.querySelector('.nova-duel-epic-result');
-        if (oldEpic) oldEpic.remove();
-        const epic = document.createElement('div');
-        epic.className = 'nova-duel-epic-result';
-        epic.innerHTML = `
-          <div class="nova-duel-epic-glow" aria-hidden="true"></div>
-          <div class="nova-duel-epic-title">${winnerId ? (localWon ? 'ZAFER!' : (localLost ? 'MÜCADELE TAMAMLANDI' : 'MAÇ SONUCU')) : 'BERABERE'}</div>
-          <section class="nova-duel-report" id="nova_duel_local_delta"></section>
-        `;
-        duelFinalContainer.appendChild(epic);
+        duelFinalContainer
+            .querySelectorAll('.nova-duel-epic-result, .ndg-final-premium, .nova-duel-result')
+            .forEach(function (n) {
+                try { n.remove(); } catch (_) {}
+            });
+        const backBtn = document.getElementById('duel-final-back-button');
+        if (typeof window.novaBuildDuelFinalPremium === 'function') {
+            const premium = window.novaBuildDuelFinalPremium({
+                ddata: ddata,
+                invScore: duelInviterScore,
+                inScore: duelInvitedScore,
+                winnerId: winnerId,
+                localWon: localWon,
+                localLost: localLost,
+            });
+            if (backBtn) duelFinalContainer.insertBefore(premium, backBtn);
+            else duelFinalContainer.appendChild(premium);
+        }
+        if (backBtn) {
+            backBtn.style.display = 'block';
+            backBtn.textContent = 'Ana Menü';
+        }
+        duelFinalContainer.dataset.enhanced = 'premium';
 
         function animateNumber(el, from, to, opts){
           const options = opts || {};

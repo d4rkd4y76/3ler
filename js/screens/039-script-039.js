@@ -248,6 +248,7 @@
   }
 
   function showIntro(seconds=10){
+    if (window.__novaSkipDuelIntro039 || window.__novaAutoMatchFlow) return;
     if (novaIntroShown) return;
     const domData = collectPlayersFromDOM();
     populateFromDOM(domData);
@@ -284,16 +285,22 @@
 
   function startNow(){
     if (novaTimer) cancelAnimationFrame(novaTimer);
-    try{showWaitOverlay();}catch(e){}; hideIntro();
+    try{ hideWaitOverlay(); }catch(e){}
+    hideIntro();
     const btn = findStartButton();
-    if (btn && btn.classList.contains('active')) btn.click();
-    else document.dispatchEvent(new CustomEvent('nova:duelIntroDone'));
+    if (btn && btn.classList.contains('active') && !btn.disabled) {
+      btn.click();
+    } else if (typeof window.novaNudgeInviterStartDuel === 'function') {
+      window.novaNudgeInviterStartDuel();
+    }
+    document.dispatchEvent(new CustomEvent('nova:duelIntroDone'));
   }
 
   function interceptStartButton(){
     const btn = findStartButton();
     if (!btn) return;
     btn.addEventListener('click', function(ev){
+      if (window.__novaSkipDuelIntro039 || window.__novaAutoMatchFlow) return;
       if (!novaIntroShown && btn.classList.contains('active')){
         ev.preventDefault(); ev.stopPropagation();
         showIntro(10);
@@ -306,7 +313,14 @@
     const btn = findStartButton();
     if (!btn) return;
     const obs = new MutationObserver(()=>{
-      if (btn.classList.contains('active') && !novaIntroShown) showIntro(10);
+      if (!btn.classList.contains('active') || novaIntroShown) return;
+      if (window.__novaSkipDuelIntro039 || window.__novaAutoMatchFlow) {
+        if (!window.__novaDuelPrepBlocking && typeof window.novaNudgeInviterStartDuel === 'function') {
+          window.novaNudgeInviterStartDuel();
+        }
+        return;
+      }
+      showIntro(10);
     });
     obs.observe(btn, {attributes:true, attributeFilter:['class']});
   }
@@ -318,7 +332,13 @@
       const style = getComputedStyle(c);
       if (style.display !== 'none'){
         const infos = document.querySelectorAll('.duel-bottom-info .duel-player-info');
-        if (infos.length >= 2 && !novaIntroShown && !window.__novaAutoDuelSelecting) {
+        if (
+          infos.length >= 2 &&
+          !novaIntroShown &&
+          !window.__novaAutoDuelSelecting &&
+          !window.__novaSkipDuelIntro039 &&
+          !window.__novaAutoMatchFlow
+        ) {
           setTimeout(()=> showIntro(10), 300);
         }
       }

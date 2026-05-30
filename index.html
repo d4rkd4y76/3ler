@@ -107,6 +107,7 @@
 <link rel="stylesheet" href="styles/045-nova-duel-intro-column.css" />
 
 <link rel="stylesheet" href="styles/046-nova-duel-intro-wrap.css" />
+<link rel="stylesheet" href="styles/nova-duel-epic-flow.css?v=20260529epic10" />
 
 <link rel="stylesheet" href="styles/047-nova-available-name-color.css" />
 <button id="result-back-btn" aria-label="Geri Dön"><span class="ico">←</span>Geri Dön</button>
@@ -554,7 +555,12 @@
       <div class="nova-hp-count" id="novaLeftCount">0</div>
     </div>
   </div>
-  <div class="nova-center-badge" title="Düello">VS</div>
+  <div class="nova-hud-center">
+    <div class="nova-center-badge" title="Düello">VS</div>
+    <div class="ndg-timer-ring" aria-label="Süre">
+      <span id="duel-timer" class="ndg-timer-num">45</span>
+    </div>
+  </div>
   <div class="nova-hud-side right">
     <div class="nova-name" id="novaRightName">Oyuncu 2</div>
     <div class="nova-hp mirror">
@@ -566,19 +572,15 @@
 </div>
 <!-- /NOVA VS HUD -->
 
-<div class="progress-container">
+<div class="ndg-meta-row">
+<div class="ndg-meta-left">
 <div class="question-number" id="duel-question-number">Soru 1/10</div>
 <div class="progress-bar">
 <div class="progress-bar-inner" id="duel-progress-bar-inner"></div>
 </div>
 </div>
-<div class="timer-container">
-<div class="timer" id="duel-timer">45</div>
 </div>
-<div class="question-container">
-<img alt="Soru Resmi" class="question-image" id="duel-question-image" src="" style="display: none;"/>
-<div class="question-text" id="duel-question-text">Soru metni burada olacak.</div>
-</div>
+<div class="question-container"></div>
 <div class="options-container" id="duel-options-container"></div>
 <div class="players-info-row">
 <div class="duel-player-score" id="duel-player-inviter-score">
@@ -748,12 +750,14 @@
 <script src="js/core/nova-question-markup.js?v=1"></script>
 <script src="js/ui/006-nova-game-select.js?v=20260522spfix2"></script>
 <script src="js/ui/007-nova-single-player-screen.js?v=20260522sp3"></script>
-<script src="js/ui/010-nova-duel-screen.js?v=20260522duel1"></script>
-<script src="js/screens/007-script-007.js?v=20260601rankepic1"></script>
+<script src="js/ui/nova-duel-game-fx.js?v=20260529duelgame5"></script>
+<script src="js/screens/007-script-007.js?v=20260529duelgame5"></script>
+<script src="js/ui/010-nova-duel-screen.js?v=20260529duelgame6"></script>
+<script src="js/ui/nova-duel-epic-flow.js?v=20260529epic10"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
-<script src="js/core/008-script-008.js?v=20260526store_chip1"></script>
+<script src="js/core/008-script-008.js?v=20260529epic4"></script>
 <script src="js/core/009-script-009.js?v=20260526rank2"></script>
-<script src="js/core/010-script-010.js"></script>
+<script src="js/core/010-script-010.js?v=20260529resimli1"></script>
 <script src="js/ui/011-script-011.js"></script>
 <script src="js/core/012-script-012.js"></script>
 <script src="js/core/013-nova-defer-init.js"></script>
@@ -928,7 +932,7 @@
 <script src="js/screens/034-nova-duel-space-upgrade-script.js"></script>
 <!-- === /NOVA Space Upgrade v2 === -->
 
-<script src="js/core/035-script-035.js"></script>
+<script src="js/core/035-script-035.js?v=20260529duelgame1"></script>
 
 <script src="js/screens/036-nova-matchmaking-boot.js"></script>
 
@@ -981,7 +985,7 @@
 </div>
 
 
-<script src="js/screens/039-script-039.js?v=20260526sp_fix3"></script>
+<script src="js/screens/039-script-039.js?v=20260529duelwait1"></script>
 
 
 <!-- Nova Advice Guard v2: show ONLY on result screen -->
@@ -993,7 +997,7 @@
 
 
 <!-- NOVA: Duel Scale Script v3 (no wrapper; scale element directly) -->
-<script src="js/screens/041-nova-duel-scale-script.js"></script>
+<script src="js/screens/041-nova-duel-scale-script.js?v=20260529duelgame4"></script>
 
 
 <!-- NOVA: Duel Scale Toolbar -->
@@ -1113,13 +1117,100 @@
 
 <script src="js/features/048-script-048.js"></script>
 
+<!-- Nova Epic Duel Flow: lig → eşleşme → hazırlık -->
+<div id="nova-duel-epic-root" class="nova-duel-arena" hidden aria-hidden="true">
+  <div class="ndep-backdrop" aria-hidden="true"></div>
+  <div class="ndep-stars" aria-hidden="true"></div>
+  <div id="nova-duel-league-phase" class="ndep-phase">
+    <div class="ndep-league-glow" aria-hidden="true"></div>
+    <div id="ndep-league-badge" class="ndep-league-badge"></div>
+    <div id="ndep-league-name" class="ndep-league-name">Lig</div>
+    <p class="ndep-league-sub">Düello arenasına hazırlanıyorsun…</p>
+  </div>
+  <div id="nova-duel-found-phase" class="ndep-phase">
+    <div class="ndep-found-burst" aria-hidden="true"></div>
+    <h2>RAKİP BULUNDU!</h2>
+    <div id="ndep-found-count">3</div>
+    <p class="ndep-found-sub">Hazırlık alanına senkron geçiliyor…</p>
+  </div>
+  <div id="nova-duel-prep-phase" class="ndep-phase">
+    <div class="ndep-prep-flares" aria-hidden="true"></div>
+    <div class="ndep-prep-vignette" aria-hidden="true"></div>
+    <div class="ndep-prep-gridlines" aria-hidden="true"></div>
+    <div class="ndep-prep-shell">
+      <header class="ndep-prep-header">
+        <div class="ndep-prep-title">
+          <span class="ndep-prep-title-main" id="ndep-prep-title-main">DÜELLO</span>
+          <span class="ndep-prep-title-sub" id="ndep-prep-title-sub">HAZIRLIĞI</span>
+        </div>
+        <div class="ndep-prep-header-line" aria-hidden="true"></div>
+      </header>
+
+      <div class="ndep-prep-arena">
+        <article class="ndep-prep-side ndep-prep-side--a">
+          <div class="ndep-prep-side-glow ndep-prep-side-glow--a" aria-hidden="true"></div>
+          <div class="ndep-avatar-wrap"><img id="ndep-pA-photo" src="" alt="" /></div>
+          <div class="ndep-name" id="ndep-pA-name">Sen</div>
+          <div class="ndep-cups" id="ndep-pA-cups"><span class="ndep-cup-val">0</span></div>
+        </article>
+        <div class="ndep-prep-center">
+          <div class="ndep-vs-wrap">
+            <span class="ndep-vs">VS</span>
+          </div>
+          <div class="ndep-ring-wrap">
+            <div class="ndep-ring-glow" aria-hidden="true"></div>
+            <div class="ndep-ring" id="ndep-ring" style="--ndep-pct:0%"></div>
+            <span id="ndep-count">10</span>
+          </div>
+        </div>
+        <article class="ndep-prep-side ndep-prep-side--b">
+          <div class="ndep-prep-side-glow ndep-prep-side-glow--b" aria-hidden="true"></div>
+          <div class="ndep-avatar-wrap"><img id="ndep-pB-photo" src="" alt="" /></div>
+          <div class="ndep-name" id="ndep-pB-name">Rakip</div>
+          <div class="ndep-cups" id="ndep-pB-cups"><span class="ndep-cup-val">0</span></div>
+        </article>
+      </div>
+
+      <section class="ndep-prep-heroes-dock" aria-label="Kahramanlar">
+        <div class="ndep-heroes-dock-head">
+          <span class="ndep-heroes-dock-line" aria-hidden="true"></span>
+          <span class="ndep-heroes-dock-title" id="ndep-heroes-dock-title">KAHRAMANLAR</span>
+          <span class="ndep-heroes-dock-line" aria-hidden="true"></span>
+        </div>
+        <div class="ndep-prep-heroes-row">
+          <div class="ndep-heroes-mid" aria-hidden="true">
+            <span class="ndep-heroes-mid-ring"></span>
+            <span class="ndep-heroes-mid-ico">⚔</span>
+          </div>
+          <div class="ndep-hero-panel ndep-hero-panel--a">
+            <div class="ndep-hero-panel-tag" id="ndep-pA-hero-tag">Sen</div>
+            <div class="ndep-hero-block">
+              <div class="ndep-hero-box" id="ndep-pA-hero"></div>
+              <div class="ndep-hero-badge-out" id="ndep-pA-hero-badge" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="ndep-hero-panel ndep-hero-panel--b">
+            <div class="ndep-hero-panel-tag" id="ndep-pB-hero-tag">Rakip</div>
+            <div class="ndep-hero-block">
+              <div class="ndep-hero-box" id="ndep-pB-hero"></div>
+              <div class="ndep-hero-badge-out" id="ndep-pB-hero-badge" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="ndep-prep-hint">Geri sayım bitince düello başlayacak</p>
+    </div>
+  </div>
+</div>
+
 <!-- NOVA: Duel Wait Overlay (covers gap between 10s intro and 3-2-1 intro) -->
 <link rel="stylesheet" href="styles/057-nova-wait-style.css" />
 <div id="duel-wait-overlay" role="alert" aria-live="polite" aria-label="Lütfen bekleyiniz">
   <div class="wait-spinner"></div>
   <div class="wait-text">LÜTFEN BEKLEYİNİZ...</div>
 </div>
-<script src="js/ui/049-nova-wait-script.js"></script>
+<script src="js/ui/049-nova-wait-script.js?v=20260529duelwait1"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=20260413q1" />
 <link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=20260522sp3" />
 <link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=20260526hero_store3" />
@@ -1146,6 +1237,7 @@
 <link rel="stylesheet" href="styles/079-nova-sp-result-premium.css?v=20260526nova_pct3" />
 <script src="js/core/055-nova-sp-result-premium.js?v=20260526nova_pct2"></script>
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=20260522duelfix1" />
+<link rel="stylesheet" href="styles/nova-duel-game-premium.css?v=20260529duelgame6" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
 <script src="js/screens/050-script-050.js"></script>
 <script src="js/ui/012-nova-store-hub.js?v=20260601herocat1"></script>

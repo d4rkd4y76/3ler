@@ -36,7 +36,7 @@
   }
 
   function tierFor(mod) {
-    if (mod === 'rank' || mod === 'inv') return 'compact';
+    if (mod === 'rank' || mod === 'inv' || mod === 'prep') return 'compact';
     if (mod === 'main') return 'hero';
     if (mod === 'store' || mod === 'detail' || mod === 'level' || mod === 'sheet') return 'standard';
     return 'standard';

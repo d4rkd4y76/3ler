@@ -104,6 +104,7 @@
 // === Nova Duel Result Decorator v2 ===
 (function(){
   function launchConfetti(durationMs){
+    if (window.__novaDuelNoConfetti) return;
     try{
       const old = document.getElementById('duel-confetti');
       if (old) old.remove();

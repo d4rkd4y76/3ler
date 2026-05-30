@@ -1,52 +1,100 @@
-// === NOVA VS HUD logic ===
-(function(){
-  function clamp(v,min,max){ return v<min?min:(v>max?max:v); }
-  window.novaInitDuelHud = function(data){
-    try{
+// === NOVA VS HUD — düello kazanma çubukları ===
+(function () {
+  function clamp(v, min, max) {
+    return v < min ? min : v > max ? max : v;
+  }
+
+  function setBar(el, pct, boost, hit) {
+    if (!el) return;
+    el.style.width = clamp(pct, 4, 96) + '%';
+    const wrap = el.closest('.nova-hp');
+    if (!wrap) return;
+    wrap.classList.remove('nova-boost', 'nova-hit');
+    if (boost) wrap.classList.add('nova-boost');
+    if (hit) wrap.classList.add('nova-hit');
+    if (boost || hit) {
+      setTimeout(function () {
+        wrap.classList.remove('nova-boost', 'nova-hit');
+      }, 750);
+    }
+  }
+
+  window.__duelInvPower = 50;
+  window.__duelInPower = 50;
+
+  window.novaInitDuelHud = function (data) {
+    try {
+      window.__duelInvPower = 50;
+      window.__duelInPower = 50;
       const hud = document.getElementById('nova-vs-hud');
-      if(!hud) return;
+      if (!hud) return;
       setNameWithFrame(
         document.getElementById('novaLeftName'),
-        (data && data.inviter && data.inviter.name) ? data.inviter.name : 'Oyuncu 1',
-        (data && data.inviter && data.inviter.nameFrame) ? data.inviter.nameFrame : 'default'
+        data && data.inviter && data.inviter.name ? data.inviter.name : 'Oyuncu 1',
+        data && data.inviter && data.inviter.nameFrame ? data.inviter.nameFrame : 'default'
       );
       setNameWithFrame(
         document.getElementById('novaRightName'),
-        (data && data.invited && data.invited.name) ? data.invited.name : 'Oyuncu 2',
-        (data && data.invited && data.invited.nameFrame) ? data.invited.nameFrame : 'default'
+        data && data.invited && data.invited.name ? data.invited.name : 'Oyuncu 2',
+        data && data.invited && data.invited.nameFrame ? data.invited.nameFrame : 'default'
       );
-      document.getElementById('novaLeftHP').style.width = '50%';
-      document.getElementById('novaRightHP').style.width = '50%';
-      try{ document.getElementById('novaLeftCount').textContent='0'; document.getElementById('novaRightCount').textContent='0'; }catch(e){}
-    }catch(e){ console.warn('HUD init error', e); }
+      setBar(document.getElementById('novaLeftHP'), 50, false, false);
+      setBar(document.getElementById('novaRightHP'), 50, false, false);
+      const lc = document.getElementById('novaLeftCount');
+      const rc = document.getElementById('novaRightCount');
+      if (lc) lc.textContent = '0';
+      if (rc) rc.textContent = '0';
+    } catch (e) {
+      console.warn('HUD init error', e);
+    }
   };
-  window.novaUpdateDuelHud = function(leftScore, rightScore, leftOld, rightOld){
-    try{
+
+  window.novaApplyDuelPowerFromRound = function (invResp, inResp) {
+    const gain = 11;
+    const loss = 13;
+    if (invResp) {
+      window.__duelInvPower = clamp(
+        window.__duelInvPower + (invResp.correct ? gain : -loss),
+        6,
+        94
+      );
+    }
+    if (inResp) {
+      window.__duelInPower = clamp(
+        window.__duelInPower + (inResp.correct ? gain : -loss),
+        6,
+        94
+      );
+    }
+  };
+
+  window.novaUpdateDuelHud = function (
+    leftScore,
+    rightScore,
+    leftOld,
+    rightOld,
+    invResp,
+    inResp
+  ) {
+    try {
       const left = document.getElementById('novaLeftHP');
       const right = document.getElementById('novaRightHP');
-      if(!left || !right) return;
-      const diff = (Number(leftScore)||0) - (Number(rightScore)||0);
-      const leftPct = Math.max(0, Math.min(100, 50 + diff*5));
-      const rightPct = 100 - leftPct;
-      left.style.width  = leftPct + '%';
-      right.style.width = rightPct + '%';
-      const lc = document.getElementById('novaLeftCount'); const rc = document.getElementById('novaRightCount');
-      if(lc) lc.textContent = String(leftScore||0);
-      if(rc) rc.textContent = String(rightScore||0);
-      const leftGain  = (Number(leftScore)||0)  > (Number(leftOld)||0);
-      const rightGain = (Number(rightScore)||0) > (Number(rightOld)||0);
-      const leftEl  = document.querySelector('.nova-hud-side.left .nova-hp');
-      const rightEl = document.querySelector('.nova-hud-side.right .nova-hp');
-      if(leftEl && rightEl){
-        if(leftGain && !rightGain){ leftEl.classList.add('nova-boost'); rightEl.classList.add('nova-hit');
-          setTimeout(()=>{ leftEl.classList.remove('nova-boost'); rightEl.classList.remove('nova-hit'); }, 800);
-        }else if(rightGain && !leftGain){ rightEl.classList.add('nova-boost'); leftEl.classList.add('nova-hit');
-          setTimeout(()=>{ rightEl.classList.remove('nova-boost'); leftEl.classList.remove('nova-hit'); }, 800);
-        }else{
-          [leftEl,rightEl].forEach(el=>{ el.classList.add('nova-boost'); setTimeout(()=>el.classList.remove('nova-boost'), 600); });
-        }
-      }
-    }catch(e){ console.warn('HUD update error', e); }
+      if (!left || !right) return;
+
+      const lc = document.getElementById('novaLeftCount');
+      const rc = document.getElementById('novaRightCount');
+      if (lc) lc.textContent = String(leftScore || 0);
+      if (rc) rc.textContent = String(rightScore || 0);
+
+      const invBoost = invResp && invResp.correct === true;
+      const invHit = invResp && invResp.correct === false;
+      const inBoost = inResp && inResp.correct === true;
+      const inHit = inResp && inResp.correct === false;
+
+      setBar(left, window.__duelInvPower, invBoost, invHit);
+      setBar(right, window.__duelInPower, inBoost, inHit);
+    } catch (e) {
+      console.warn('HUD update error', e);
+    }
   };
 })();
-// === /NOVA VS HUD logic ===

@@ -18,6 +18,10 @@
       function buildResultUI(){
         const root = document.getElementById('duel-final-container');
         if(!root || root.dataset.enhanced) return;
+        if (root.querySelector('.nova-duel-epic-result, .ndg-final-premium')) {
+          root.dataset.enhanced = 'premium';
+          return;
+        }
         // pull data from existing DOM (non-breaking)
         const invBox = document.getElementById('duel-player-inviter-score');
         const inBox  = document.getElementById('duel-player-invited-score');

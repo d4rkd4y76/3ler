@@ -43,6 +43,11 @@
   function showToolbar(show){
     const t = getEl(TOOL_ID);
     if (!t) return;
+    const fullscreen =
+      document.body.classList.contains('nova-duel-game-open') ||
+      document.body.classList.contains('nova-duel-epic-active') ||
+      !!(window.__novaEpicDuelFlow || window.__novaAutoMatchFlow);
+    if (fullscreen) show = false;
     t.style.display = show ? 'flex' : 'none';
     t.setAttribute('aria-hidden', show ? 'false' : 'true');
   }

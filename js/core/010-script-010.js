@@ -1,8 +1,37 @@
-(function(){
-  function ensureBanner(container){
-    if(!container) return null;
-    let banner = container.querySelector('.resimli-soru-banner');
-    if(!banner){
+(function () {
+  function isMeaningfulImage(el) {
+    if (!el || el.tagName !== 'IMG') return false;
+    var src = String(el.getAttribute('src') || el.src || '').trim();
+    if (!src || src === 'about:blank' || src === '#') return false;
+    try {
+      var st = window.getComputedStyle(el);
+      if (st.display === 'none' || st.visibility === 'hidden') return false;
+      if (parseFloat(st.opacity || '1') < 0.05) return false;
+      var r = el.getBoundingClientRect();
+      if (r.width < 4 || r.height < 4) return false;
+    } catch (_) {}
+    return true;
+  }
+
+  function elementHasVisibleBackgroundImage(el) {
+    if (!el || el.nodeType !== 1) return false;
+    try {
+      var st = window.getComputedStyle(el);
+      if (st.display === 'none' || st.visibility === 'hidden') return false;
+      var bg = st.backgroundImage;
+      if (!bg || bg === 'none' || bg.indexOf('url(') < 0) return false;
+      var r = el.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) return false;
+    } catch (_) {
+      return false;
+    }
+    return true;
+  }
+
+  function ensureBanner(container) {
+    if (!container) return null;
+    var banner = container.querySelector('.resimli-soru-banner');
+    if (!banner) {
       banner = document.createElement('div');
       banner.className = 'resimli-soru-banner';
       banner.textContent = '📷 RESİMLİ SORU';
@@ -11,60 +40,65 @@
     return banner;
   }
 
-  function containerHasImage(container){
-    if(!container) return false;
-    // 1) Any <img> inside (regardless of class)
-    if(container.querySelector('img')) return true;
-    // 2) Inline background url (cheap check before full scan)
-    if(container.querySelector('[style*="url("]')) return true;
-    // 3) Any element with background-image url()
-    const nodes = container.querySelectorAll('*');
-    for(const el of nodes){
-      const bg = getComputedStyle(el).backgroundImage;
-      if(bg && bg !== 'none' && bg.includes('url(')) return true;
-      // data attributes commonly used
-      if(el.dataset){
-        if(el.dataset.info || el.dataset.image || el.dataset.img) return true;
-      }
+  function containerHasImage(container) {
+    if (!container) return false;
+
+    var imgs = container.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+      if (isMeaningfulImage(imgs[i])) return true;
     }
-    // 4) Try global question object patterns
-    try {
-      if(window.currentQuestion){
-        const cq = window.currentQuestion;
-        if(cq.info || (cq.question && cq.question.info)) return true;
-      }
-      if(window.activeQuestion && (activeQuestion.info || (activeQuestion.question && activeQuestion.question.info))) return true;
-    } catch(e){}
+
+    var nodes = container.querySelectorAll('*');
+    for (var j = 0; j < nodes.length; j++) {
+      if (elementHasVisibleBackgroundImage(nodes[j])) return true;
+    }
+
     return false;
   }
 
-  function updateAllBanners(){
-    document.querySelectorAll('.question-container').forEach(container => {
-      const banner = ensureBanner(container);
-      const hasImg = containerHasImage(container);
-      banner.style.display = hasImg ? 'block' : 'none';
+  function shouldShowBannerForContainer(container, hasImg) {
+    if (!hasImg) return false;
+    var duelRoot = container.closest('#duel-game-screen');
+    if (duelRoot && !container.classList.contains('nova-duel-q-panel')) {
+      return false;
+    }
+    return true;
+  }
+
+  function updateAllBanners() {
+    document.querySelectorAll('.question-container').forEach(function (container) {
+      var banner = ensureBanner(container);
+      var hasImg = containerHasImage(container);
+      banner.style.display = shouldShowBannerForContainer(container, hasImg)
+        ? 'block'
+        : 'none';
     });
   }
 
   var _bannerDebounce = null;
-  function scheduleUpdateAllBanners(){
+  function scheduleUpdateAllBanners() {
     if (_bannerDebounce !== null) clearTimeout(_bannerDebounce);
-    _bannerDebounce = setTimeout(function(){
+    _bannerDebounce = setTimeout(function () {
       _bannerDebounce = null;
       updateAllBanners();
     }, 150);
   }
 
-  // Public hook so you can call after DB fetch
-  window.onNewQuestionLoaded = function(){ updateAllBanners(); };
+  window.onNewQuestionLoaded = function () {
+    updateAllBanners();
+  };
 
-  // Initial
-  document.addEventListener('DOMContentLoaded', updateAllBanners, {once:true});
+  document.addEventListener('DOMContentLoaded', updateAllBanners, { once: true });
 
-  // Observe DOM changes (new questions, attribute changes incl. src/style)
-  const obs = new MutationObserver(function(){ scheduleUpdateAllBanners(); });
-  obs.observe(document.documentElement, {subtree:true, childList:true, attributes:true, attributeFilter:['src','style','data-info','data-image','data-img']});
+  var obs = new MutationObserver(function () {
+    scheduleUpdateAllBanners();
+  });
+  obs.observe(document.documentElement, {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    attributeFilter: ['src', 'style', 'class', 'data-info', 'data-image', 'data-img'],
+  });
 
-  // Nadir yedek (async img load vb.; saniyelik tarama kaldırıldı — lag azaltır)
   setInterval(updateAllBanners, 8000);
 })();

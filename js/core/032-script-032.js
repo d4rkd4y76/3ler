@@ -187,7 +187,11 @@
       let __finalVisible = false;
       const fo = new MutationObserver(()=>{
         const visible = window.getComputedStyle(finalC).display !== 'none';
-        if(visible && !__finalVisible) spawnConfetti();
+        if(visible && !__finalVisible){
+          var dg = document.getElementById('duel-game-screen');
+          if (dg && dg.classList.contains('ndg-duel-finished')) { __finalVisible = visible; return; }
+          spawnConfetti();
+        }
         __finalVisible = visible;
       });
       fo.observe(finalC, { attributes:true, attributeFilter:['style','class'] });

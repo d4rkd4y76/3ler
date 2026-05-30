@@ -133,6 +133,14 @@
   }
   function applyBodyScale(scale){
     if (!document.body) return;
+    if (document.body.classList.contains('nova-duel-game-open')) {
+      try {
+        document.body.style.zoom = '1';
+        document.body.style.transform = 'none';
+        document.body.style.width = '100%';
+      } catch (_) {}
+      return;
+    }
     try{
       const supportsZoom = (typeof CSS !== 'undefined' && CSS.supports && CSS.supports('zoom','1'));
       if (supportsZoom){

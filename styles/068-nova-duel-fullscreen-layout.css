@@ -94,7 +94,7 @@ body:has(#duel-game-screen.nova-duel-game-visible) #main-screen{
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
-  padding: clamp(10px, 2.2vw, 22px) clamp(10px, 3vw, 18px) clamp(16px, 3vh, 28px) !important;
+  padding: 0 !important;
   border: none !important;
   border-radius: 0 !important;
   box-sizing: border-box !important;
@@ -104,19 +104,10 @@ body:has(#duel-game-screen.nova-duel-game-visible) #main-screen{
     radial-gradient(ellipse 90% 55% at 50% -8%, rgba(251, 191, 36, .14), transparent 52%),
     radial-gradient(ellipse 70% 45% at 12% 88%, rgba(99, 102, 241, .18), transparent 50%),
     linear-gradient(165deg, #2a1848 0%, #1a2748 38%, #12203a 72%, #0b1224 100%) !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden !important;
 }
 
-#duel-game-screen[style*="flex"],
-#duel-game-screen.nova-duel-game-visible{
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: clamp(10px, 1.8vw, 16px) !important;
-}
+/* Layout: nova-duel-game-premium.css (grid, tam ekran) */
 
 #duel-game-screen > *{
   position: relative;
@@ -136,30 +127,10 @@ body:has(#duel-game-screen.nova-duel-game-visible) #main-screen{
   top: auto !important;
 }
 
-#duel-game-screen #duel-timer{
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-width: clamp(52px, 14vw, 72px) !important;
-  min-height: clamp(52px, 14vw, 72px) !important;
-  padding: 0 10px !important;
-  border-radius: 50% !important;
-  font-size: clamp(1.35rem, 5vw, 1.85rem) !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  color: #fff !important;
-  background: radial-gradient(circle at 50% 40%, #ff8a8a, #ef4444 58%, #b91c1c 100%) !important;
-  box-shadow: 0 0 14px rgba(239, 68, 68, .55), 0 6px 18px rgba(2, 6, 23, .35) !important;
-  animation: novaDuelTimerPulse 1.1s ease-in-out infinite !important;
-}
-
-@keyframes novaDuelTimerPulse{
-  0%, 100%{ transform: scale(1); }
-  50%{ transform: scale(1.06); }
-}
+/* Timer boyutu: nova-duel-game-premium.css */
 
 #duel-game-screen .nova-vs-hud,
-#duel-game-screen .progress-container,
+#duel-game-screen .ndg-meta-row,
 #duel-game-screen .question-container,
 #duel-game-screen .options-container,
 #duel-game-screen .explanation-container,

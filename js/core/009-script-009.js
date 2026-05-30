@@ -27,11 +27,11 @@ function getLeagueShortName(league) {
 
 function getLeagueFullName(league) {
   switch (league) {
-    case 1: return 'Hızlı Lig';
-    case 2: return 'Cesur Lig';
-    case 3: return 'Güçlü Lig';
-    case 4: return 'Kahraman Lig';
-    case 5: return 'Efsane Lig';
+    case 1: return 'Hızlı Ligi';
+    case 2: return 'Cesur Ligi';
+    case 3: return 'Güçlü Ligi';
+    case 4: return 'Kahraman Ligi';
+    case 5: return 'Efsane Ligi';
     default: return 'Lig';
   }
 }
