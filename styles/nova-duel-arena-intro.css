@@ -1,0 +1,315 @@
+/* YILDIZ ARENASI — soru öncesi premium açılış */
+#duel-game-screen.ndg-arena-intro-active #nova-vs-hud,
+#duel-game-screen.ndg-arena-intro-active .ndg-meta-row,
+#duel-game-screen.ndg-arena-intro-active .question-container,
+#duel-game-screen.ndg-arena-intro-active .options-container,
+#duel-game-screen.ndg-arena-intro-active .players-info-row,
+#duel-game-screen.ndg-arena-intro-active .score-container {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#duel-game-screen .ndg-arena-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+#duel-game-screen .ndg-arena-intro.ndg-arena-intro--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#duel-game-screen .ndg-arena-intro.ndg-arena-intro--exit {
+  opacity: 0;
+  transition: opacity 0.78s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#duel-game-screen .ndg-arena-intro__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 42%, rgba(8, 12, 24, 0.28), rgba(4, 7, 16, 0.62)),
+    linear-gradient(180deg, rgba(4, 7, 16, 0.35) 0%, rgba(4, 7, 16, 0.48) 100%);
+  opacity: 0.92;
+}
+
+#duel-game-screen .ndg-arena-intro__neon {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  width: 3px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: scaleY(0.35);
+  filter: blur(0.4px);
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__neon {
+  animation: ndg-intro-neon-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+#duel-game-screen .ndg-arena-intro__neon--left {
+  left: max(14px, env(safe-area-inset-left));
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.15) 12%,
+    rgba(34, 211, 238, 0.95) 50%,
+    rgba(56, 189, 248, 0.15) 88%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 18px rgba(34, 211, 238, 0.55),
+    0 0 36px rgba(56, 189, 248, 0.28);
+}
+
+#duel-game-screen .ndg-arena-intro__neon--right {
+  right: max(14px, env(safe-area-inset-right));
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(251, 191, 36, 0.12) 12%,
+    rgba(250, 204, 21, 0.92) 50%,
+    rgba(251, 191, 36, 0.12) 88%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 18px rgba(250, 204, 21, 0.5),
+    0 0 34px rgba(251, 191, 36, 0.24);
+}
+
+@keyframes ndg-intro-neon-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+#duel-game-screen .ndg-arena-intro__spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fef9c3;
+  box-shadow: 0 0 10px rgba(254, 240, 138, 0.9);
+  opacity: 0;
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__spark--a {
+  top: 22%;
+  left: 18%;
+  animation: ndg-intro-spark 2.2s ease-in-out 0.2s infinite;
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__spark--b {
+  top: 34%;
+  right: 22%;
+  animation: ndg-intro-spark 2.6s ease-in-out 0.55s infinite;
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__spark--c {
+  bottom: 28%;
+  left: 42%;
+  animation: ndg-intro-spark 2.4s ease-in-out 0.9s infinite;
+}
+
+@keyframes ndg-intro-spark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  45% {
+    opacity: 0.85;
+    transform: scale(1.2);
+  }
+}
+
+#duel-game-screen .ndg-arena-intro__panel {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: clamp(22px, 5vw, 34px) clamp(28px, 7vw, 48px);
+  max-width: min(92vw, 420px);
+  border-radius: 22px;
+  background:
+    linear-gradient(165deg, rgba(15, 23, 42, 0.72) 0%, rgba(8, 12, 24, 0.55) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 48px rgba(56, 189, 248, 0.08),
+    0 0 48px rgba(251, 191, 36, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__panel {
+  animation: ndg-intro-panel-in 0.82s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+#duel-game-screen .ndg-arena-intro--exit .ndg-arena-intro__panel {
+  animation: ndg-intro-panel-out 0.78s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes ndg-intro-panel-in {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.92);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes ndg-intro-panel-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(1.03);
+    filter: blur(4px);
+  }
+}
+
+#duel-game-screen .ndg-arena-intro__kicker {
+  font-size: clamp(10px, 2.6vw, 12px);
+  font-weight: 900;
+  letter-spacing: 0.48em;
+  text-indent: 0.48em;
+  color: rgba(196, 181, 253, 0.92);
+  margin-bottom: 10px;
+  opacity: 0;
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__kicker {
+  animation: ndg-intro-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
+}
+
+#duel-game-screen .ndg-arena-intro__title {
+  margin: 0;
+  font-size: clamp(26px, 7.2vw, 38px);
+  font-weight: 950;
+  line-height: 1.08;
+  letter-spacing: 0.06em;
+  background: linear-gradient(
+    110deg,
+    #fff9e6 0%,
+    #fde68a 22%,
+    #fbbf24 48%,
+    #fef3c7 72%,
+    #fde68a 100%
+  );
+  background-size: 180% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 16px rgba(251, 191, 36, 0.42));
+  opacity: 0;
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__title {
+  animation:
+    ndg-intro-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.22s forwards,
+    ndg-intro-title-shine 3.2s ease-in-out 0.5s infinite;
+}
+
+@keyframes ndg-intro-title-shine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+#duel-game-screen .ndg-arena-intro__divider {
+  width: min(180px, 52vw);
+  height: 1px;
+  margin: 14px auto 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.05) 0%,
+    rgba(34, 211, 238, 0.55) 22%,
+    rgba(250, 204, 21, 0.75) 50%,
+    rgba(34, 211, 238, 0.55) 78%,
+    rgba(34, 211, 238, 0.05) 100%
+  );
+  opacity: 0;
+  transform: scaleX(0.4);
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__divider {
+  animation: ndg-intro-divider 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.38s forwards;
+}
+
+@keyframes ndg-intro-divider {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+#duel-game-screen .ndg-arena-intro__wish {
+  margin: 0;
+  font-size: clamp(15px, 4vw, 19px);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  text-transform: uppercase;
+  color: rgba(224, 242, 254, 0.94);
+  text-shadow: 0 0 20px rgba(125, 211, 252, 0.35);
+  opacity: 0;
+}
+
+#duel-game-screen .ndg-arena-intro--visible .ndg-arena-intro__wish {
+  animation: ndg-intro-fade-up 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.48s forwards;
+}
+
+@keyframes ndg-intro-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #duel-game-screen .ndg-arena-intro__panel,
+  #duel-game-screen .ndg-arena-intro__kicker,
+  #duel-game-screen .ndg-arena-intro__title,
+  #duel-game-screen .ndg-arena-intro__divider,
+  #duel-game-screen .ndg-arena-intro__wish,
+  #duel-game-screen .ndg-arena-intro__neon,
+  #duel-game-screen .ndg-arena-intro__spark {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

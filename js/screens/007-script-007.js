@@ -8681,6 +8681,7 @@ async function updateDuelSelection(field, value) {
             if (old038) old038.remove();
             duelFinalContainer.dataset.enhanced = '';
             window.__novaDuelNoConfetti = false;
+            if (typeof window.novaDuelHideArenaIntro === 'function') window.novaDuelHideArenaIntro();
 
             if (typeof window.novaOpenDuelGameScreen === 'function') {
                 window.novaOpenDuelGameScreen();
@@ -8741,6 +8742,12 @@ async function updateDuelSelection(field, value) {
                     const playAt = Number(data.playAt) || Number(window.__novaDuelPlayAt) || 0;
                     const introPad = window.__novaSkipDuelIntro032 ? 700 : NOVA_DUEL_INTRO_MS;
                     if (playAt) await novaWaitUntilMs(playAt + introPad);
+                    if (typeof window.novaDuelShowArenaIntro === 'function') {
+                        await window.novaDuelShowArenaIntro({
+                            title: 'YILDIZ ARENASI',
+                            wish: 'Başarılar',
+                        });
+                    }
                     loadDuelQuestion();
                 })();
             } else {
@@ -8773,6 +8780,12 @@ async function updateDuelSelection(field, value) {
                                     const playAt = Number(dVal.playAt) || 0;
                                     const introPad = window.__novaSkipDuelIntro032 ? 700 : NOVA_DUEL_INTRO_MS;
                                     if (playAt) await novaWaitUntilMs(playAt + introPad);
+                                    if (typeof window.novaDuelShowArenaIntro === 'function') {
+                                        await window.novaDuelShowArenaIntro({
+                                            title: 'YILDIZ ARENASI',
+                                            wish: 'Başarılar',
+                                        });
+                                    }
                                     loadDuelQuestion();
                                 })();
                             }

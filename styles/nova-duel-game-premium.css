@@ -84,53 +84,32 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   position: relative;
 }
 
-/* —— Arena video arka plan (duelloarka.mp4 seamless loop) —— */
+/* —— Arena video arka plan (duello-bg-loop.mp4 seamless loop) —— */
 #duel-game-screen .ndg-arena-video-layer {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #0a0f1c;
+  background: #060912;
 }
 
 #duel-game-screen .ndg-arena-video {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: -1%;
+  width: 102%;
+  height: 102%;
   object-fit: cover;
   object-position: center center;
   opacity: 0;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform-origin: center center;
 }
 
 #duel-game-screen .ndg-arena-video.is-front {
   opacity: 1;
-}
-
-#duel-game-screen.ndg-arena-video-lite .ndg-arena-video-b {
-  display: none !important;
-}
-
-#duel-game-screen.ndg-arena-video-lite .ndg-arena-video.is-front {
-  opacity: 1;
-}
-
-#duel-game-screen .ndg-arena-video-layer.ndg-arena-loop-mask .ndg-arena-video-scrim {
-  opacity: 1;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10, 15, 28, 0.78) 0%,
-      rgba(10, 15, 28, 0.48) 38%,
-      rgba(10, 15, 28, 0.52) 62%,
-      rgba(10, 15, 28, 0.74) 100%
-    ),
-    radial-gradient(ellipse 95% 75% at 50% 50%, rgba(10, 15, 28, 0.28), rgba(10, 15, 28, 0.55));
-  transition: background 0.18s ease;
 }
 
 #duel-game-screen .ndg-arena-video-scrim {
@@ -141,26 +120,12 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   background:
     linear-gradient(
       180deg,
-      rgba(10, 15, 28, 0.62) 0%,
-      rgba(10, 15, 28, 0.22) 38%,
-      rgba(10, 15, 28, 0.28) 62%,
-      rgba(10, 15, 28, 0.55) 100%
+      rgba(6, 9, 18, 0.58) 0%,
+      rgba(6, 9, 18, 0.12) 36%,
+      rgba(6, 9, 18, 0.14) 64%,
+      rgba(6, 9, 18, 0.52) 100%
     ),
-    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(10, 15, 28, 0.08), rgba(10, 15, 28, 0.35));
-  transition: opacity 0.4s ease, background 0.5s ease;
-}
-
-/* Geçiş anında ekstra maskeleme — loop sıçraması gizlenir */
-#duel-game-screen .ndg-arena-video-layer.ndg-arena-crossfade .ndg-arena-video-scrim {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10, 15, 28, 0.72) 0%,
-      rgba(10, 15, 28, 0.38) 38%,
-      rgba(10, 15, 28, 0.42) 62%,
-      rgba(10, 15, 28, 0.68) 100%
-    ),
-    radial-gradient(ellipse 95% 75% at 50% 50%, rgba(10, 15, 28, 0.18), rgba(10, 15, 28, 0.48));
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(6, 9, 18, 0.06), rgba(6, 9, 18, 0.3));
 }
 
 #duel-game-screen.ndg-arena-video-on {
