@@ -117,11 +117,77 @@
     }
   }
 
+  var _ndepPrepScaleBound = false;
+
+  var NDEP_PREP_MOBILE_MAX = 520;
+  var NDEP_PREP_DESIGN_W = 400;
+
+  function ndepFitPrepScale() {
+    if (!prepPhase || !prepPhase.classList.contains('ndep-active')) return;
+    var shell = prepPhase.querySelector('.ndep-prep-shell');
+    if (!shell) return;
+
+    shell.style.transform = 'none';
+    shell.style.transformOrigin = 'center center';
+
+    var vw = window.innerWidth;
+    var pad = 16;
+    var availW = Math.max(280, vw - pad * 2);
+    var availH = Math.max(360, window.innerHeight - pad * 2);
+
+    if (vw > NDEP_PREP_MOBILE_MAX) {
+      shell.style.width = '';
+      shell.style.maxWidth = '';
+      prepPhase.style.setProperty('--ndep-prep-scale', '1');
+      return;
+    }
+
+    shell.style.width = NDEP_PREP_DESIGN_W + 'px';
+    shell.style.maxWidth = NDEP_PREP_DESIGN_W + 'px';
+    var w = shell.offsetWidth || NDEP_PREP_DESIGN_W;
+    var h = shell.offsetHeight || 640;
+    var scale = Math.min(1, availW / w, availH / h);
+    scale = Math.max(0.58, Math.min(1, scale));
+    if (scale >= 0.98) {
+      shell.style.transform = 'none';
+    } else {
+      shell.style.transform = 'scale(' + scale + ')';
+    }
+    prepPhase.style.setProperty('--ndep-prep-scale', String(scale));
+  }
+
+  function ndepBindPrepScale() {
+    if (_ndepPrepScaleBound) return;
+    _ndepPrepScaleBound = true;
+    window.addEventListener('resize', ndepFitPrepScale, { passive: true });
+    window.addEventListener(
+      'orientationchange',
+      function () {
+        setTimeout(ndepFitPrepScale, 80);
+        setTimeout(ndepFitPrepScale, 280);
+      },
+      { passive: true }
+    );
+    try {
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', ndepFitPrepScale, {
+          passive: true,
+        });
+      }
+    } catch (_) {}
+  }
+
   function showPhase(phase) {
     [leaguePhase, foundPhase, prepPhase].forEach(function (p) {
       if (p) p.classList.toggle('ndep-active', p === phase);
     });
     openRoot();
+    if (phase === prepPhase) {
+      ndepBindPrepScale();
+      requestAnimationFrame(ndepFitPrepScale);
+      setTimeout(ndepFitPrepScale, 50);
+      setTimeout(ndepFitPrepScale, 200);
+    }
   }
 
   async function serverNow() {
@@ -463,6 +529,8 @@
 
     await populatePrepPlayers(duelKey, duelData);
     ndepEnsurePrepTitle();
+    ndepBindPrepScale();
+    ndepFitPrepScale();
 
     if (typeof window.novaWaitUntilMs === 'function') {
       await window.novaWaitUntilMs(syncAt);
@@ -472,6 +540,8 @@
     }
 
     showPhase(prepPhase);
+    setTimeout(ndepFitPrepScale, 400);
+    setTimeout(ndepFitPrepScale, 900);
     var ring = $('ndep-ring');
     var countEl = $('ndep-count');
     var total = Math.max(1000, prepEnd - syncAt);

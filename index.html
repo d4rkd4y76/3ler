@@ -107,7 +107,7 @@
 <link rel="stylesheet" href="styles/045-nova-duel-intro-column.css" />
 
 <link rel="stylesheet" href="styles/046-nova-duel-intro-wrap.css" />
-<link rel="stylesheet" href="styles/nova-duel-epic-flow.css?v=20260529epic10" />
+<link rel="stylesheet" href="styles/nova-duel-epic-flow.css?v=20260529epic12" />
 
 <link rel="stylesheet" href="styles/047-nova-available-name-color.css" />
 <button id="result-back-btn" aria-label="Geri Dön"><span class="ico">←</span>Geri Dön</button>
@@ -753,7 +753,7 @@
 <script src="js/ui/nova-duel-game-fx.js?v=20260529duelgame5"></script>
 <script src="js/screens/007-script-007.js?v=20260529duelgame5"></script>
 <script src="js/ui/010-nova-duel-screen.js?v=20260529duelgame6"></script>
-<script src="js/ui/nova-duel-epic-flow.js?v=20260529epic10"></script>
+<script src="js/ui/nova-duel-epic-flow.js?v=20260529epic12"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
 <script src="js/core/008-script-008.js?v=20260529epic4"></script>
 <script src="js/core/009-script-009.js?v=20260526rank2"></script>
@@ -1137,6 +1137,7 @@
     <div class="ndep-prep-flares" aria-hidden="true"></div>
     <div class="ndep-prep-vignette" aria-hidden="true"></div>
     <div class="ndep-prep-gridlines" aria-hidden="true"></div>
+    <div class="ndep-prep-viewport">
     <div class="ndep-prep-shell">
       <header class="ndep-prep-header">
         <div class="ndep-prep-title">
@@ -1178,16 +1179,16 @@
           <span class="ndep-heroes-dock-line" aria-hidden="true"></span>
         </div>
         <div class="ndep-prep-heroes-row">
-          <div class="ndep-heroes-mid" aria-hidden="true">
-            <span class="ndep-heroes-mid-ring"></span>
-            <span class="ndep-heroes-mid-ico">⚔</span>
-          </div>
           <div class="ndep-hero-panel ndep-hero-panel--a">
             <div class="ndep-hero-panel-tag" id="ndep-pA-hero-tag">Sen</div>
             <div class="ndep-hero-block">
               <div class="ndep-hero-box" id="ndep-pA-hero"></div>
               <div class="ndep-hero-badge-out" id="ndep-pA-hero-badge" aria-hidden="true"></div>
             </div>
+          </div>
+          <div class="ndep-heroes-mid" aria-hidden="true">
+            <span class="ndep-heroes-mid-ring"></span>
+            <span class="ndep-heroes-mid-ico">⚔</span>
           </div>
           <div class="ndep-hero-panel ndep-hero-panel--b">
             <div class="ndep-hero-panel-tag" id="ndep-pB-hero-tag">Rakip</div>
@@ -1200,6 +1201,7 @@
       </section>
 
       <p class="ndep-prep-hint">Geri sayım bitince düello başlayacak</p>
+    </div>
     </div>
   </div>
 </div>

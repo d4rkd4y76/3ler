@@ -9,6 +9,15 @@ body.nova-duel-epic-active #duelCountdown {
   opacity: 0 !important;
 }
 
+/* Performans zoom’u hazırlık/lig ekranını dağıtmasın */
+body.nova-duel-epic-active {
+  zoom: 1 !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
 #nova-duel-epic-root {
   position: fixed;
   inset: 0;
@@ -171,12 +180,32 @@ body.nova-duel-epic-active #duelCountdown {
   opacity: 0.9;
 }
 
-/* —— Hazırlık VS (premium) —— */
+/* —— Hazırlık VS (premium, mobilde aynı düzen — ölçeklenir) —— */
 #nova-duel-prep-phase {
-  width: min(98vw, 820px);
-  max-height: 98vh;
-  padding: clamp(10px, 2vh, 18px) clamp(12px, 3vw, 20px);
-  justify-content: flex-end;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ndep-prep-viewport {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding:
+    max(8px, env(safe-area-inset-top, 0px))
+    max(8px, env(safe-area-inset-right, 0px))
+    max(8px, env(safe-area-inset-bottom, 0px))
+    max(8px, env(safe-area-inset-left, 0px));
+  box-sizing: border-box;
 }
 
 .ndep-prep-flares {
@@ -211,18 +240,21 @@ body.nova-duel-epic-active #duelCountdown {
 }
 
 @keyframes ndep-flare-shift {
-  from { opacity: 0.7; transform: scale(1) translateY(0); }
-  to { opacity: 1; transform: scale(1.04) translateY(-2%); }
+  from { opacity: 0.72; }
+  to { opacity: 1; }
 }
 
 .ndep-prep-shell {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: min(96vw, 640px);
+  max-width: 640px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: clamp(12px, 2.5vh, 18px);
+  gap: 14px;
+  transform-origin: center center;
 }
 
 .ndep-prep-header {
@@ -282,8 +314,8 @@ body.nova-duel-epic-active #duelCountdown {
 
 .ndep-prep-arena {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: clamp(10px, 2.5vw, 20px);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 12px;
   align-items: stretch;
   width: 100%;
 }
@@ -293,7 +325,8 @@ body.nova-duel-epic-active #duelCountdown {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 14px 12px 16px;
+  padding: 12px 8px 14px;
+  min-width: 0;
   border-radius: 20px;
   background:
     linear-gradient(165deg, rgba(51, 65, 85, 0.45) 0%, rgba(15, 23, 42, 0.92) 55%, rgba(2, 6, 23, 0.98) 100%);
@@ -382,7 +415,8 @@ body.nova-duel-epic-active #duelCountdown {
 .ndep-avatar-wrap {
   position: relative;
   z-index: 1;
-  width: clamp(92px, 26vw, 118px);
+  width: clamp(88px, 24%, 108px);
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -481,17 +515,18 @@ body.nova-duel-epic-active #duelCountdown {
 /* —— Alt kahraman bölümü (simetrik dock) —— */
 .ndep-prep-heroes-dock {
   width: 100%;
-  padding: clamp(14px, 3vh, 18px) clamp(12px, 3vw, 16px) clamp(16px, 3.5vh, 20px);
+  padding: 14px 14px 16px;
   border-radius: 22px;
   background:
     linear-gradient(180deg, rgba(30, 41, 59, 0.62) 0%, rgba(15, 23, 42, 0.94) 42%, rgba(2, 6, 23, 0.99) 100%);
   border: 1px solid rgba(251, 191, 36, 0.32);
   box-shadow:
     0 0 0 1px rgba(56, 189, 248, 0.14) inset,
-    0 0 48px rgba(56, 189, 248, 0.1),
-    0 28px 64px rgba(0, 0, 0, 0.55);
+    0 0 32px rgba(56, 189, 248, 0.08),
+    0 20px 48px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   animation: ndep-dock-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -500,12 +535,13 @@ body.nova-duel-epic-active #duelCountdown {
 .ndep-prep-heroes-dock::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(251, 191, 36, 0.14), transparent 55%),
-    radial-gradient(ellipse 40% 30% at 0% 100%, rgba(56, 189, 248, 0.08), transparent 50%),
-    radial-gradient(ellipse 40% 30% at 100% 100%, rgba(56, 189, 248, 0.08), transparent 50%);
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 42%;
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(251, 191, 36, 0.1), transparent 72%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .ndep-prep-heroes-dock::after {
@@ -520,8 +556,8 @@ body.nova-duel-epic-active #duelCountdown {
 }
 
 @keyframes ndep-dock-rise {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .ndep-heroes-dock-head {
@@ -552,8 +588,8 @@ body.nova-duel-epic-active #duelCountdown {
 
 .ndep-prep-heroes-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(10px, 2.5vw, 14px);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
   align-items: stretch;
   position: relative;
   z-index: 1;
@@ -564,8 +600,9 @@ body.nova-duel-epic-active #duelCountdown {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 12px 10px 14px;
-  min-height: 196px;
+  padding: 10px 8px 12px;
+  min-height: 188px;
+  min-width: 0;
   border-radius: 18px;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.88));
   border: 1px solid rgba(56, 189, 248, 0.28);
@@ -638,34 +675,32 @@ body.nova-duel-epic-active #duelCountdown {
 }
 
 .ndep-heroes-mid {
-  position: absolute;
-  left: 50%;
-  top: 54%;
-  transform: translate(-50%, -50%);
-  z-index: 4;
-  width: 44px;
-  height: 44px;
+  position: relative;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  margin-bottom: 24px;
+  z-index: 2;
 }
 
 .ndep-heroes-mid-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 2px solid rgba(251, 191, 36, 0.45);
-  background: radial-gradient(circle, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
-  box-shadow:
-    0 0 20px rgba(251, 191, 36, 0.35),
-    inset 0 0 12px rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.99));
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.25);
   animation: ndep-mid-ring 2.4s ease-in-out infinite;
 }
 
 @keyframes ndep-mid-ring {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.06); opacity: 1; }
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
 }
 
 .ndep-heroes-mid-ico {
@@ -677,7 +712,7 @@ body.nova-duel-epic-active #duelCountdown {
 
 .ndep-hero-block {
   width: 100%;
-  max-width: 156px;
+  max-width: 148px;
   margin: 0 auto;
   flex: 1;
   display: flex;
@@ -898,8 +933,11 @@ body.nova-duel-epic-active #duelCountdown {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   padding: 4px 0;
+  flex-shrink: 0;
+  width: auto;
+  min-width: 80px;
 }
 
 .ndep-vs-wrap {
@@ -925,8 +963,8 @@ body.nova-duel-epic-active #duelCountdown {
 
 .ndep-ring-wrap {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -959,7 +997,7 @@ body.nova-duel-epic-active #duelCountdown {
 #ndep-count {
   position: relative;
   z-index: 1;
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 900;
   color: #fff;
   text-shadow: 0 0 16px rgba(255, 138, 0, 0.65);
@@ -992,64 +1030,4 @@ body.nova-duel-epic-active #duelCountdown {
   align-self: center;
 }
 
-@media (max-width: 520px) {
-  #nova-duel-prep-phase {
-    width: 100%;
-    padding: 8px 10px 12px;
-  }
-
-  .ndep-prep-arena {
-    grid-template-columns: 1fr auto 1fr;
-    gap: 6px;
-  }
-
-  .ndep-prep-side {
-    padding: 10px 6px 12px;
-  }
-
-  .ndep-avatar-wrap {
-    width: clamp(72px, 22vw, 92px);
-  }
-
-  .ndep-hero-panel {
-    min-height: 188px;
-  }
-
-  .ndep-hero-box {
-    height: 100px;
-    min-height: 100px;
-    max-height: 100px;
-  }
-
-  .ndep-heroes-mid {
-    width: 38px;
-    height: 38px;
-    top: 56%;
-  }
-}
-
-@media (max-width: 380px) {
-  .ndep-prep-arena {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-  }
-
-  .ndep-prep-center {
-    order: -1;
-    flex-direction: row;
-    gap: 14px;
-  }
-
-  .ndep-prep-heroes-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .ndep-heroes-mid {
-    display: none;
-  }
-
-  .ndep-hero-panel {
-    min-height: 0;
-  }
-}
+/* Hazırlık: mobilde düzen değişmez — ndepFitPrepScale() ile ölçeklenir */
