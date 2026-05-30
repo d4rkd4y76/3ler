@@ -59,6 +59,40 @@ def resize_max_h(rgba: np.ndarray, max_h: int) -> np.ndarray:
     return np.array(Image.fromarray(rgba, "RGBA").resize((nw, max_h), Image.Resampling.LANCZOS))
 
 
+def content_bbox_rgba(rgba: np.ndarray, thr: int = 22) -> tuple[int, int, int, int]:
+    rgb = rgba[:, :, :3]
+    mx = np.max(rgb, axis=2)
+    mask = mx > thr
+    if not np.any(mask):
+        h, w = rgba.shape[:2]
+        return 0, 0, w, h
+    ys, xs = np.where(mask)
+    return int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1
+
+
+def union_content_bbox(frames: list[np.ndarray], pad: int = 6) -> tuple[int, int, int, int]:
+    x0, y0, x1, y1 = 10**9, 10**9, 0, 0
+    fh, fw = frames[0].shape[:2]
+    for frame in frames:
+        bx0, by0, bx1, by1 = content_bbox_rgba(frame)
+        x0 = min(x0, bx0)
+        y0 = min(y0, by0)
+        x1 = max(x1, bx1)
+        y1 = max(y1, by1)
+    x0 = max(0, x0 - pad)
+    y0 = max(0, y0 - pad)
+    x1 = min(fw, x1 + pad)
+    y1 = min(fh, y1 + pad)
+    if x1 <= x0 or y1 <= y0:
+        return 0, 0, fw, fh
+    return x0, y0, x1, y1
+
+
+def crop_frame(rgba: np.ndarray, box: tuple[int, int, int, int]) -> np.ndarray:
+    x0, y0, x1, y1 = box
+    return rgba[y0:y1, x0:x1].copy()
+
+
 def place_cell(crop: np.ndarray, cw: int, ch: int) -> np.ndarray:
     cell = np.zeros((ch, cw, 4), dtype=np.uint8)
     fh, fw = crop.shape[:2]
@@ -96,7 +130,9 @@ def main() -> int:
         return 1
 
     raw = subsample_frames(all_raw, TARGET_FRAME_COUNT)
-    crops = [resize_max_h(f, TARGET_MAX_H) for f in raw]
+    sized = [resize_max_h(f, TARGET_MAX_H) for f in raw]
+    trim_box = union_content_bbox(sized)
+    crops = [crop_frame(f, trim_box) for f in sized]
     cell_h = max(c.shape[0] for c in crops)
     cell_w = max(c.shape[1] for c in crops)
     cells = [place_cell(c, cell_w, cell_h) for c in crops]

@@ -9,6 +9,22 @@
     return window.NOVA_BUZ_EJDER_SONUC_MANIFEST || null;
   }
 
+  function getEquippedHeroId() {
+    if (typeof window.novaGetEquippedBattleHeroId === 'function') {
+      return window.novaGetEquippedBattleHeroId();
+    }
+    try {
+      var s = JSON.parse(localStorage.getItem('selectedStudent') || '{}');
+      return String(s.battleHero || '').trim();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function isBuzEquipped() {
+    return getEquippedHeroId() === 'buz_ejder';
+  }
+
   function baseUrl() {
     if (window.NOVA_BUZ_EJDER_SONUC_BASE) return window.NOVA_BUZ_EJDER_SONUC_BASE;
     return 'hero/ice_dragon/sprite/sonuc/';
@@ -46,12 +62,41 @@
   function frameRect(m, index) {
     var col = index % m.cols;
     var row = (index / m.cols) | 0;
+    var crop = m.crop;
+    var sx = col * m.frameWidth + (crop ? crop.x : 0);
+    var sy = row * m.frameHeight + (crop ? crop.y : 0);
+    var sw = crop ? crop.w : m.frameWidth;
+    var sh = crop ? crop.h : m.frameHeight;
+    return { sx: sx, sy: sy, sw: sw, sh: sh };
+  }
+
+  function readViewport() {
+    var vv = window.visualViewport;
+    if (vv) {
+      return {
+        w: Math.max(1, Math.round(vv.width)),
+        h: Math.max(1, Math.round(vv.height)),
+        top: Math.max(0, vv.offsetTop),
+        left: Math.max(0, vv.offsetLeft)
+      };
+    }
     return {
-      sx: col * m.frameWidth,
-      sy: row * m.frameHeight,
-      sw: m.frameWidth,
-      sh: m.frameHeight
+      w: Math.max(1, window.innerWidth || document.documentElement.clientWidth || 1),
+      h: Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1),
+      top: 0,
+      left: 0
     };
+  }
+
+  function syncOverlayBox(overlay) {
+    var vp = readViewport();
+    overlay.style.top = vp.top + 'px';
+    overlay.style.left = vp.left + 'px';
+    overlay.style.width = vp.w + 'px';
+    overlay.style.height = vp.h + 'px';
+    overlay.style.right = 'auto';
+    overlay.style.bottom = 'auto';
+    return vp;
   }
 
   function ensureOverlay() {
@@ -86,38 +131,49 @@
       var last = 0;
       var raf = 0;
       var done = false;
+      var viewW = 1;
+      var viewH = 1;
+      var dpr = 1;
 
       function layout() {
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        canvas.width = Math.max(1, Math.round(w * dpr));
-        canvas.height = Math.max(1, Math.round(h * dpr));
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
+        var vp = syncOverlayBox(overlay);
+        viewW = vp.w;
+        viewH = vp.h;
+        dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+        canvas.width = Math.max(1, Math.round(viewW * dpr));
+        canvas.height = Math.max(1, Math.round(viewH * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
       function drawFrame() {
-        var cw = canvas.width;
-        var ch = canvas.height;
         var r = frameRect(m, frameIndex);
-        var scale = Math.max(cw / r.sw, ch / r.sh);
+        var scale = Math.max(viewW / r.sw, viewH / r.sh);
         var dw = r.sw * scale;
         var dh = r.sh * scale;
-        var dx = (cw - dw) * 0.5;
-        var dy = (ch - dh) * 0.5;
+        var dx = (viewW - dw) * 0.5;
+        var dy = (viewH - dh) * 0.5;
         ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, cw, ch);
+        ctx.fillRect(0, 0, viewW, viewH);
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+      }
+
+      function onViewportChange() {
+        layout();
+        if (!done) drawFrame();
       }
 
       function finish() {
         if (done) return;
         done = true;
         if (raf) cancelAnimationFrame(raf);
-        window.removeEventListener('resize', layout);
+        window.removeEventListener('resize', onViewportChange);
+        window.removeEventListener('orientationchange', onViewportChange);
+        if (window.visualViewport) {
+          window.visualViewport.removeEventListener('resize', onViewportChange);
+          window.visualViewport.removeEventListener('scroll', onViewportChange);
+        }
         overlay.classList.remove('is-visible');
         overlay.classList.add('is-fading-out');
         setTimeout(function () {
@@ -152,8 +208,15 @@
       overlay.classList.remove('is-fading-out');
       overlay.classList.add('is-visible');
       drawFrame();
-      window.addEventListener('resize', layout, { passive: true });
+      window.addEventListener('resize', onViewportChange, { passive: true });
+      window.addEventListener('orientationchange', onViewportChange, { passive: true });
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', onViewportChange, { passive: true });
+        window.visualViewport.addEventListener('scroll', onViewportChange, { passive: true });
+      }
       requestAnimationFrame(function () {
+        layout();
+        drawFrame();
         last = 0;
         raf = requestAnimationFrame(loop);
       });
@@ -161,7 +224,7 @@
   }
 
   function hasSonucTransition() {
-    return !!(manifest() && manifest().sheet);
+    return isBuzEquipped() && !!(manifest() && manifest().sheet);
   }
 
   function preloadSonucTransition() {
