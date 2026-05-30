@@ -21,11 +21,10 @@ MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012y-nova-gece-ejder-sprite-manife
 
 TARGET_FPS = 12
 MIN_LOOP_FRAMES = 28
-TARGET_H = 300
-TARGET_FILL_W = 374
+TARGET_H = 296
 MAX_SHEET_W = 4096
 PAD = 6
-GREEN_KEY = (0, 177, 64)
+WEBP_QUALITY = 92
 
 
 def sample_green_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
@@ -40,15 +39,52 @@ def sample_green_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
     return tuple(int(x) for x in med)
 
 
-def alpha_green(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+def color_dist(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     r = rgb[:, :, 0].astype(np.float32)
     g = rgb[:, :, 1].astype(np.float32)
     b = rgb[:, :, 2].astype(np.float32)
     kr, kg, kb = key
-    dist = np.sqrt((r - kr) ** 2 + (g - kg) ** 2 * 1.35 + (b - kb) ** 2)
-    a = np.clip((dist - 26.0) / 38.0, 0.0, 1.0)
+    return np.sqrt((r - kr) ** 2 + (g - kg) ** 2 * 1.35 + (b - kb) ** 2)
+
+
+def is_pure_green_bg(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    d = color_dist(rgb, key)
+    return (g > r + 16) & (g > b + 12) & (g > 54) & (d < 98)
+
+
+def is_dragon_eye(rgb: np.ndarray) -> np.ndarray:
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    return (g > 88) & (b > 55) & (r < 130) & ((g > r + 4) | (b > r + 8))
+
+
+def is_gece_dragon_pixel(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    """Ejder parçası — asla düz yeşil arka plan değil."""
+    pure = is_pure_green_bg(rgb, key)
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    dark_body = (lum < 128) & ~pure
+    purple = (b > 52) & (r > 18) & (b > g * 0.68) & ~pure
+    return dark_body | purple | is_dragon_eye(rgb)
+
+
+def alpha_green(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    d = color_dist(rgb, key)
+    r = rgb[:, :, 0].astype(np.float32)
+    g = rgb[:, :, 1].astype(np.float32)
+    b = rgb[:, :, 2].astype(np.float32)
+    a = np.clip((d - 26.0) / 38.0, 0.0, 1.0)
     green_dom = (g > r + 28) & (g > b + 28) & (g > 80)
-    a[green_dom & (dist < 95)] = 0.0
+    a[green_dom & (d < 95)] = 0.0
+    dragon = is_gece_dragon_pixel(rgb, key)
+    keep = dragon & (a > 0.14)
+    a[keep] = np.maximum(a[keep], 0.94)
     return a
 
 
@@ -56,9 +92,13 @@ def flood_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = rgba.copy()
     h, w = out.shape[:2]
     rgb = out[:, :, :3].astype(np.float32)
-    kr, kg, kb = key
-    dist = np.sqrt((rgb[:, :, 0] - kr) ** 2 + (rgb[:, :, 1] - kg) ** 2 + (rgb[:, :, 2] - kb) ** 2)
-    bg = (dist < 72) | ((rgb[:, :, 1] > rgb[:, :, 0] + 20) & (rgb[:, :, 1] > rgb[:, :, 2] + 20) & (dist < 110))
+    d = color_dist(rgb, key)
+    bg = (d < 72) | (
+        (rgb[:, :, 1] > rgb[:, :, 0] + 20)
+        & (rgb[:, :, 1] > rgb[:, :, 2] + 20)
+        & (d < 110)
+    )
+    bg = bg & ~is_gece_dragon_pixel(out[:, :, :3], key)
     seen = np.zeros((h, w), dtype=bool)
     q: deque[tuple[int, int]] = deque()
     for x in range(w):
@@ -79,6 +119,35 @@ def flood_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
             if 0 <= ny < h and 0 <= nx < w and bg[ny, nx] and not seen[ny, nx]:
                 seen[ny, nx] = True
                 q.append((ny, nx))
+    return out
+
+
+def scrub_remaining_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    out = rgba.copy()
+    rgb = out[:, :, :3]
+    kill = is_pure_green_bg(rgb, key) & (out[:, :, 3] > 0)
+    out[kill, 3] = 0
+    out[kill, :3] = 0
+    return out
+
+
+def scrub_green_spill(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+    """Ayak/kuyruk yeşil yansıması — gözleri koru."""
+    out = rgba.copy()
+    rgb = out[:, :, :3].astype(np.float32)
+    r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
+    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    eyes = is_dragon_eye(out[:, :, :3])
+    spill = (
+        (g > r + 10)
+        & (g > b + 6)
+        & (lum > 32)
+        & (lum < 145)
+        & ~eyes
+        & (out[:, :, 3] > 0)
+    )
+    out[spill, 3] = 0
+    out[spill, :3] = 0
     return out
 
 
@@ -107,6 +176,8 @@ def chroma_frame(frame: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     rgba[:, :, :3] = rgb
     rgba[:, :, 3] = (a * 255).astype(np.uint8)
     rgba = flood_green(rgba, key)
+    rgba = scrub_remaining_green(rgba, key)
+    rgba = scrub_green_spill(rgba, key)
     rgba = despill_green(rgba, key)
     rgba[rgba[:, :, 3] < 24, 3] = 0
     rgba[rgba[:, :, 3] < 24, :3] = 0
@@ -126,11 +197,6 @@ def resize_h(rgba: np.ndarray, h: int) -> np.ndarray:
     return np.array(Image.fromarray(rgba, "RGBA").resize((w, h), Image.Resampling.LANCZOS))
 
 
-def smoothstep(t: float) -> float:
-    t = max(0.0, min(1.0, t))
-    return t * t * (3.0 - 2.0 * t)
-
-
 def align_crops_foot(crops: list[np.ndarray]) -> tuple[list[np.ndarray], int, int]:
     ch = max(c.shape[0] for c in crops)
     cw = max(c.shape[1] for c in crops)
@@ -145,33 +211,7 @@ def align_crops_foot(crops: list[np.ndarray]) -> tuple[list[np.ndarray], int, in
     return aligned, cw, ch
 
 
-def blend_cells(a: np.ndarray, b: np.ndarray, t: float) -> np.ndarray:
-    t = smoothstep(t)
-    af = a.astype(np.float32)
-    bf = b.astype(np.float32)
-    aa = af[:, :, 3:4] / 255.0
-    ba = bf[:, :, 3:4] / 255.0
-    out_a = aa * (1.0 - t) + ba * t
-    out_rgb = (
-        af[:, :, :3] * aa * (1.0 - t) + bf[:, :, :3] * ba * t
-    ) / np.maximum(out_a, 1e-4)
-    out = np.zeros_like(af)
-    out[:, :, :3] = np.clip(out_rgb, 0, 255)
-    out[:, :, 3] = np.clip(out_a[:, :, 0] * 255.0, 0, 255)
-    return out.astype(np.uint8)
-
-
-def scale_to_fill_w(rgba: np.ndarray, target_w: int) -> np.ndarray:
-    fh, fw = rgba.shape[:2]
-    if fw >= target_w * 0.92:
-        return rgba
-    scale = min(1.22, (target_w * 0.94) / max(fw, 1))
-    nw = max(1, int(round(fw * scale)))
-    nh = max(1, int(round(fh * scale)))
-    return np.array(Image.fromarray(rgba, "RGBA").resize((nw, nh), Image.Resampling.LANCZOS))
-
-
-def trim_sheet_width(cells: list[np.ndarray], pad: int = 3) -> tuple[list[np.ndarray], int, int]:
+def trim_cells_width(cells: list[np.ndarray], pad: int = 4) -> tuple[list[np.ndarray], int, int]:
     ch = cells[0].shape[0]
     x0 = cells[0].shape[1]
     x1 = 0
@@ -186,15 +226,6 @@ def trim_sheet_width(cells: list[np.ndarray], pad: int = 3) -> tuple[list[np.nda
     cw = max(8, x1 - x0)
     trimmed = [cell[:, x0:x1].copy() for cell in cells]
     return trimmed, cw, ch
-
-
-def scrub_cell(cell: np.ndarray) -> np.ndarray:
-    out = cell.copy()
-    a = out[:, :, 3].astype(np.float32)
-    mask = a < 48
-    out[mask, 3] = 0
-    out[mask, :3] = 0
-    return out
 
 
 def pick_cols(n: int, cw: int, ch: int) -> int:
@@ -242,6 +273,14 @@ def find_loop_window(cells: list[np.ndarray]) -> tuple[int, int, float]:
     return best_start, best_end, best_score
 
 
+def green_opaque_count(cell: np.ndarray) -> int:
+    a = cell[:, :, 3]
+    r = cell[:, :, 0].astype(int)
+    g = cell[:, :, 1].astype(int)
+    b = cell[:, :, 2].astype(int)
+    return int(((g > r + 14) & (g > b + 10) & (a > 80)).sum())
+
+
 def build_main_sheet() -> dict:
     if not os.path.isfile(VIDEO):
         print("Video missing:", VIDEO, file=sys.stderr)
@@ -264,7 +303,7 @@ def build_main_sheet() -> dict:
         raise SystemExit(1)
 
     key = sample_green_key(raw)
-    print("main key rgb", key, "(ref", GREEN_KEY, ")")
+    print("main key rgb", key)
 
     chroma = [chroma_frame(f, key) for f in raw]
     boxes = [alpha_bbox(c) for c in chroma]
@@ -275,9 +314,13 @@ def build_main_sheet() -> dict:
 
     crops = [resize_h(c[gy0:gy1, gx0:gx1], TARGET_H) for c in chroma]
     cells, cell_w, cell_h = align_crops_foot(crops)
+    cells, cell_w, cell_h = trim_cells_width(cells)
 
     loop_start, loop_end_idx, closure = find_loop_window(cells)
     cells = cells[loop_start:loop_end_idx]
+
+    green_px = sum(green_opaque_count(c) for c in cells)
+    opaque_px = sum(int((c[:, :, 3] > 80).sum()) for c in cells)
     print(
         "main loop window",
         loop_start,
@@ -288,9 +331,7 @@ def build_main_sheet() -> dict:
         "closure",
         round(closure, 6),
     )
-
-    blend_count = 0
-    print("main seamless loop — content-only playback")
+    print("green opaque px", green_px, "of", opaque_px)
 
     n = len(cells)
     cols = pick_cols(n, cell_w, cell_h)
@@ -302,9 +343,10 @@ def build_main_sheet() -> dict:
         sheet[y : y + cell_h, x : x + cell_w] = cell
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    Image.fromarray(sheet, "RGBA").save(SHEET_WEBP, quality=92, method=6, lossless=False)
+    Image.fromarray(sheet, "RGBA").save(
+        SHEET_WEBP, quality=WEBP_QUALITY, method=6, lossless=False
+    )
 
-    loop_end = len(cells) - blend_count
     main = {
         "sheet": "gece-ejder-main.webp",
         "frameWidth": cell_w,
@@ -312,15 +354,15 @@ def build_main_sheet() -> dict:
         "cols": cols,
         "rows": rows,
         "frameCount": n,
-        "loopEnd": loop_end,
+        "loopEnd": n,
         "fps": TARGET_FPS,
-        "blendFrames": blend_count,
+        "blendFrames": 0,
         "sheetWidth": cols * cell_w,
         "sheetHeight": rows * cell_h,
         "anchor": "bottom",
     }
     mb = os.path.getsize(SHEET_WEBP) / (1024 * 1024)
-    print("main frames", loop_end, "+ blend", blend_count, "cell", cell_w, "x", cell_h)
+    print("main frames", n, "cell", cell_w, "x", cell_h)
     print("main sheet", main["sheetWidth"], "x", main["sheetHeight"], "webp", round(mb, 2), "MB")
     return main
 
@@ -330,16 +372,16 @@ def write_manifest(main: dict) -> None:
         "version": 4,
         "base": "hero/dark_dragon/sprite/",
         "sheet": "gece-ejder-idle.webp",
-        "frameWidth": 371,
-        "frameHeight": 268,
+        "frameWidth": 318,
+        "frameHeight": 278,
         "cols": 6,
-        "rows": 7,
-        "frameCount": 42,
+        "rows": 8,
+        "frameCount": 44,
         "loopEnd": 36,
         "fps": 12,
-        "blendFrames": 6,
-        "sheetWidth": 2226,
-        "sheetHeight": 1876,
+        "blendFrames": 8,
+        "sheetWidth": 1908,
+        "sheetHeight": 2224,
         "anchor": "center",
     }
     if os.path.isfile(STORE_MANIFEST):
@@ -357,7 +399,7 @@ def write_manifest(main: dict) -> None:
         "frameCount": store["frameCount"],
         "loopEnd": store["loopEnd"],
         "fps": store.get("fps", 12),
-        "blendFrames": store.get("blendFrames", 6),
+        "blendFrames": store.get("blendFrames", 8),
         "sheetWidth": store["sheetWidth"],
         "sheetHeight": store["sheetHeight"],
         "anchor": store.get("anchor", "center"),

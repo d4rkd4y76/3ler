@@ -189,14 +189,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-#main-screen .nova-main-hero-zone--gece .nova-main-hero-epic-label{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 62px;
-  z-index: 15;
-  margin: 0;
-}
 #main-screen .nova-main-hero-zone--gece .nova-main-hero-slot{
   position: relative !important;
   inset: auto !important;
@@ -242,160 +234,7 @@
   width: 92px;
   height: 88px;
 }
-.nova-main-hero-epic-label{
-  position: relative;
-  z-index: 12;
-  flex-shrink: 0;
-  width: auto;
-  margin: 0;
-  height: 22px;
-  min-width: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  isolation: isolate;
-}
-.nova-main-hero-epic-label__halo{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 78px;
-  height: 26px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(167, 139, 250, .32), rgba(109, 40, 217, .08) 50%, transparent 72%);
-  filter: blur(4px);
-  animation: novaGeceEpicHalo 2.8s ease-in-out infinite;
-  z-index: 0;
-}
-.nova-main-hero-epic-label__wing{
-  position: absolute;
-  top: 50%;
-  width: 11px;
-  height: 15px;
-  transform: translateY(-50%);
-  opacity: .9;
-  z-index: 1;
-}
-.nova-main-hero-epic-label__wing--l{
-  left: 0;
-  background: linear-gradient(135deg, rgba(251, 146, 60, .15), rgba(253, 186, 116, .6));
-  clip-path: polygon(100% 0, 0 50%, 100% 100%);
-  filter: drop-shadow(-2px 0 8px rgba(251, 146, 60, .55));
-}
-.nova-main-hero-epic-label__wing--r{
-  right: 0;
-  background: linear-gradient(225deg, rgba(251, 146, 60, .15), rgba(253, 186, 116, .6));
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  filter: drop-shadow(2px 0 8px rgba(251, 146, 60, .55));
-}
-.nova-main-hero-epic-label__core{
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 54px;
-  padding: 4px 15px 5px;
-  border-radius: 999px;
-  overflow: hidden;
-  background:
-    linear-gradient(165deg, rgba(22, 8, 40, .98) 0%, rgba(8, 6, 22, .99) 50%, rgba(18, 10, 36, .98) 100%);
-  border: 1px solid rgba(239, 68, 68, .5);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, .1) inset,
-    0 0 22px rgba(251, 146, 60, .55),
-    0 0 10px rgba(251, 146, 60, .22),
-    0 3px 14px rgba(0, 0, 0, .6),
-    inset 0 1px 0 rgba(255, 255, 255, .3);
-  backdrop-filter: blur(6px);
-}
-.nova-main-hero-epic-label__core::after{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 45%;
-  height: 100%;
-  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .22), transparent);
-  animation: novaGeceEpicShineSweep 3s ease-in-out infinite;
-  z-index: 1;
-  pointer-events: none;
-}
-.nova-main-hero-epic-label__core::before{
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(
-    115deg,
-    #a78bfa 0%,
-    #7c3aed 28%,
-    #c4b5fd 50%,
-    #6d28d9 72%,
-    #ede9fe 100%
-  );
-  background-size: 260% 100%;
-  animation: novaGeceEpicNeonFlow 2.8s linear infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-  opacity: .98;
-  filter: drop-shadow(0 0 8px rgba(253, 186, 116, .65));
-}
-.nova-main-hero-epic-label__text{
-  position: relative;
-  z-index: 3;
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-indent: 0.14em;
-  line-height: 1.05;
-  text-transform: uppercase;
-  color: #f8fafc;
-  -webkit-text-fill-color: #f8fafc;
-  text-shadow:
-    0 0 10px rgba(251, 146, 60, .95),
-    0 0 16px rgba(251, 146, 60, .75),
-    0 0 6px rgba(255, 255, 255, .85),
-    0 1px 3px rgba(0, 0, 0, .92);
-  animation: novaGeceEpicTextShine 2.2s ease-in-out infinite;
-}
-@keyframes novaGeceEpicNeonFlow{
-  0%{ background-position: 0% 50%; }
-  100%{ background-position: 200% 50%; }
-}
-@keyframes novaGeceEpicHalo{
-  0%, 100%{ opacity: .75; transform: translate(-50%, -50%) scale(1); }
-  50%{ opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
-}
-@keyframes novaGeceEpicShineSweep{
-  0%, 28%{ left: -120%; opacity: 0; }
-  42%{ opacity: 1; }
-  58%{ left: 140%; opacity: 0; }
-  100%{ left: 140%; opacity: 0; }
-}
-@keyframes novaGeceEpicTextShine{
-  0%, 100%{
-    text-shadow:
-      0 0 9px rgba(251, 146, 60, .9),
-      0 0 15px rgba(251, 146, 60, .65),
-      0 0 5px rgba(255, 255, 255, .8),
-      0 1px 3px rgba(0, 0, 0, .9);
-  }
-  50%{
-    text-shadow:
-      0 0 14px rgba(253, 186, 116, 1),
-      0 0 22px rgba(251, 146, 60, .9),
-      0 0 10px rgba(255, 255, 255, .95),
-      0 1px 3px rgba(0, 0, 0, .9);
-  }
-}
+/* EPİK rozeti → styles/096-nova-epic-dragon-badge.css */
 
 .nova-sp-hero-arena__host.nova-hero-mount--gece-ejder .nova-hero-gece-stack{
   min-height: 180px;
@@ -510,39 +349,6 @@
   50%{ opacity: .78; transform: scale(1.1); }
 }
 
-/* EPİK rozeti — ana ekran dışı bağlamlar */
-.nova-main-hero-epic-label--sheet,
-.nova-main-hero-epic-label--inv,
-.nova-main-hero-epic-label--level,
-.nova-main-hero-epic-label--rank{
-  position: relative;
-  bottom: auto;
-  left: auto;
-  transform: none;
-  flex-shrink: 0;
-}
-.nh-hero-sheet__stars--epic,
-.nh-level-arena__stars--epic{
-  flex-direction: column;
-  gap: 6px;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-}
-.char-inv-hero-epic-slot,
-.nsr-hero-epic-slot{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 26px;
-}
-.nsr-hero-stars--epic{
-  border: none;
-  background: transparent;
-  padding: 0;
-  min-height: 24px;
-}
 .nh-hero-sheet__arena--gece-sprite{
   min-height: 228px;
   padding-bottom: 8px;
@@ -555,39 +361,6 @@
   isolation: isolate;
   z-index: 3;
   contain: layout style;
-}
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__halo{
-  animation: none;
-  opacity: .42;
-  width: 68px;
-  height: 22px;
-  background: radial-gradient(ellipse, rgba(109, 40, 217, .28), transparent 72%);
-  filter: blur(3px);
-}
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core{
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, .1) inset,
-    0 0 10px rgba(109, 40, 217, .32),
-    0 3px 12px rgba(0, 0, 0, .55),
-    inset 0 1px 0 rgba(255, 255, 255, .28);
-}
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core::before{
-  animation: none;
-  background-position: 50% 50%;
-  opacity: .82;
-  filter: none;
-}
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core::after{
-  animation: none;
-  opacity: 0;
-}
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__text{
-  animation: none;
-}
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__wing--l,
-.nh-hero-sheet__stars--epic .nova-main-hero-epic-label--gece .nova-main-hero-epic-label__wing--r{
-  filter: none;
-  opacity: .75;
 }
 .nh-hero-sheet__arena--gece-sprite .nh-hero-sheet__hero-host{
   min-height: 200px;
@@ -633,21 +406,6 @@
   }
 }
 
-.nova-main-hero-epic-label--gece .nova-main-hero-epic-label__core{
-  border-color: rgba(239, 68, 68, .55);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, .1) inset,
-    0 0 22px rgba(109, 40, 217, .58),
-    0 0 10px rgba(253, 186, 116, .22),
-    0 3px 14px rgba(0, 0, 0, .6),
-    inset 0 1px 0 rgba(255, 255, 255, .3);
-}
-.nova-main-hero-epic-label--gece .nova-main-hero-epic-label__text{
-  background: linear-gradient(180deg, #fff7ed 0%, #fdba74 45%, #ea580c 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 .nova-hero-mount--gece-ejder svg .nova-hero__wings-upper{
   animation: novaGeceWingIdle 2.8s ease-in-out infinite;
   transform-origin: 120px 130px;

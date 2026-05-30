@@ -30,39 +30,21 @@
   }
 
   function mountBadge(parent, id, mod) {
-    if (id === 'buz_ejder' && typeof window.novaBuzEjderMountEpicBadge === 'function') {
-      return window.novaBuzEjderMountEpicBadge(parent, mod);
-    }
-    if (id === 'alev_ejder' && typeof window.novaAlevEjderMountEpicBadge === 'function') {
-      return window.novaAlevEjderMountEpicBadge(parent, mod);
-    }
-    if (id === 'gece_ejder' && typeof window.novaGeceEjderMountEpicBadge === 'function') {
-      return window.novaGeceEjderMountEpicBadge(parent, mod);
+    if (typeof window.novaEpicDragonBadgeMount === 'function') {
+      return window.novaEpicDragonBadgeMount(parent, id, mod);
     }
     return null;
   }
 
   function unmountBadge(parent) {
-    if (typeof window.novaBuzEjderUnmountEpicBadge === 'function') {
-      window.novaBuzEjderUnmountEpicBadge(parent);
-    }
-    if (typeof window.novaAlevEjderUnmountEpicBadge === 'function') {
-      window.novaAlevEjderUnmountEpicBadge(parent);
-    }
-    if (typeof window.novaGeceEjderUnmountEpicBadge === 'function') {
-      window.novaGeceEjderUnmountEpicBadge(parent);
+    if (typeof window.novaEpicDragonBadgeUnmount === 'function') {
+      window.novaEpicDragonBadgeUnmount(parent);
     }
   }
 
   function refreshMainBadge(heroId, visible) {
-    if (typeof window.novaBuzEjderRefreshMainEpicBadge === 'function') {
-      window.novaBuzEjderRefreshMainEpicBadge(heroId === 'buz_ejder', visible);
-    }
-    if (typeof window.novaAlevEjderRefreshMainEpicBadge === 'function') {
-      window.novaAlevEjderRefreshMainEpicBadge(heroId === 'alev_ejder', visible);
-    }
-    if (typeof window.novaGeceEjderRefreshMainEpicBadge === 'function') {
-      window.novaGeceEjderRefreshMainEpicBadge(heroId === 'gece_ejder', visible);
+    if (typeof window.novaEpicDragonBadgeRefreshMain === 'function') {
+      window.novaEpicDragonBadgeRefreshMain(heroId, visible);
     }
   }
 
