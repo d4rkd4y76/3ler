@@ -373,41 +373,31 @@
 }
 
 /* Tek kişilik — doğru cevap true sprite klipleri */
-.nova-sp-hero-arena--sprite-only{
-  overflow: visible;
-}
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-speech,
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__fx{
   display: none !important;
 }
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__inner{
-  width: auto !important;
-  max-width: none;
-  overflow: visible;
+  width: min(360px, 94vw);
 }
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__host{
-  width: auto;
-  height: auto;
-  min-height: 0;
-  max-height: none;
-  overflow: visible;
+  width: 100%;
+  min-height: min(360px, 46vh);
+  height: min(360px, 46vh);
 }
 .nova-sp-hero-arena__host .nova-hero-buz-true-wrap{
-  width: auto;
-  height: auto;
-  min-height: 0;
+  width: 100%;
+  height: 100%;
+  min-height: min(360px, 46vh);
   display: flex;
   align-items: flex-end;
   justify-content: center;
   background: transparent;
   pointer-events: none;
-  overflow: visible;
 }
 .nova-sp-hero-arena__host .nova-hero-buz-true-sprite__canvas{
   display: block;
-  width: auto;
-  height: auto;
-  max-width: min(94vw, 720px);
+  max-width: 100%;
   background: transparent;
   filter: drop-shadow(0 10px 24px rgba(103, 232, 249, .38));
 }

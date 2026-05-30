@@ -95,22 +95,22 @@
   }
 
   TrueClipEngine.prototype.resize = function () {
-    var clip = this.clip;
-    var maxCssW = Math.min(window.innerWidth * 0.94, 720);
-    var cssW = Math.max(200, Math.round(maxCssW));
-    var cssH = Math.max(120, Math.round(cssW * (clip.frameHeight / clip.frameWidth)));
+    var rect = this.wrap.getBoundingClientRect();
+    var parent = this.wrap.parentElement ? this.wrap.parentElement.getBoundingClientRect() : rect;
+    var w = Math.max(120, Math.round(rect.width || parent.width || this.wrap.clientWidth || 280));
+    var h = Math.max(160, Math.round(rect.height || parent.height || this.wrap.clientHeight || 320));
+    if (w < 80 && parent.width > w) w = Math.round(parent.width);
+    if (h < 80 && parent.height > h) h = Math.round(parent.height);
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var cw = Math.max(8, Math.round(cssW * dpr));
-    var ch = Math.max(8, Math.round(cssH * dpr));
+    var cw = Math.max(8, Math.round(w * dpr));
+    var ch = Math.max(8, Math.round(h * dpr));
     if (cw === this.lastCw && ch === this.lastCh) return;
     this.lastCw = cw;
     this.lastCh = ch;
     this.canvas.width = cw;
     this.canvas.height = ch;
-    this.canvas.style.width = cssW + 'px';
-    this.canvas.style.height = cssH + 'px';
-    this.wrap.style.width = cssW + 'px';
-    this.wrap.style.height = cssH + 'px';
+    this.canvas.style.width = w + 'px';
+    this.canvas.style.height = h + 'px';
   };
 
   TrueClipEngine.prototype.tick = function () {
@@ -142,11 +142,17 @@
     var ctx = this.ctx;
     var cw = this.canvas.width;
     var ch = this.canvas.height;
+    var fit = Math.min(cw / clip.frameWidth, ch / clip.frameHeight);
+    var scale = fit * this.scaleMul;
+    var dw = Math.round(clip.frameWidth * scale);
+    var dh = Math.round(clip.frameHeight * scale);
+    var dx = Math.round((cw - dw) * 0.5);
+    var dy = Math.round(ch - dh);
     ctx.clearRect(0, 0, cw, ch);
     ctx.globalCompositeOperation = 'source-over';
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, 0, 0, cw, ch);
+    ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
   };
 
   TrueClipEngine.prototype.loop = function () {

@@ -954,7 +954,7 @@
       if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
       else if (!spriteOnly && variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
       var tail = spriteOnly ? 120 : (variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180));
-      var fxWait = jsFx && host
+      var fxWait = (jsFx || spriteOnly) && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
         : waitMs(spriteOnly ? 4200 : 850);
       return fxWait;

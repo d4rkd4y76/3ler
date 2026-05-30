@@ -21,7 +21,7 @@ MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012tb-nova-buz-ejder-true-manifest
 TARGET_FPS = 20
 TARGET_H = 340
 MAX_SHEET_W = 4096
-PAD = 24
+PAD = 4
 
 CLIP_SPECS = [
     ("cok_iyiydi", "cok_iyiydi.mp4", "buz-ejder-true-cok-iyiydi.webp", 0),
@@ -212,16 +212,6 @@ def alpha_bbox(rgba: np.ndarray, thr: int = 28) -> tuple[int, int, int, int]:
     return int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1
 
 
-def crop_chroma_frame(rgba: np.ndarray, pad: int = PAD) -> np.ndarray:
-    fh, fw = rgba.shape[:2]
-    x0, y0, x1, y1 = alpha_bbox(rgba, thr=12)
-    x0 = max(0, x0 - pad)
-    y0 = max(0, y0 - pad)
-    x1 = min(fw, x1 + pad)
-    y1 = min(fh, y1 + pad)
-    return rgba[y0:y1, x0:x1]
-
-
 def resize_h(rgba: np.ndarray, h: int) -> np.ndarray:
     w = max(1, int(round(rgba.shape[1] * h / rgba.shape[0])))
     return np.array(Image.fromarray(rgba, "RGBA").resize((w, h), Image.Resampling.LANCZOS))
@@ -281,7 +271,13 @@ def build_clip(spec: tuple[str, str, str, int], key_hint: tuple[int, int, int] |
     key = key_hint or sample_green_key(raw)
     chroma = [chroma_frame(f, key) for f in raw]
 
-    crops = [resize_h(crop_chroma_frame(c), TARGET_H) for c in chroma]
+    boxes = [alpha_bbox(c) for c in chroma]
+    gx0 = max(0, min(b[0] for b in boxes) - PAD)
+    gy0 = max(0, min(b[1] for b in boxes) - PAD)
+    gx1 = min(chroma[0].shape[1], max(b[2] for b in boxes) + PAD)
+    gy1 = min(chroma[0].shape[0], max(b[3] for b in boxes) + PAD)
+
+    crops = [resize_h(c[gy0:gy1, gx0:gx1], TARGET_H) for c in chroma]
     cell_h = max(c.shape[0] for c in crops)
     cell_w = max(c.shape[1] for c in crops)
     cells = [finalize_cell(place_cell(c, cell_w, cell_h), key) for c in crops]
