@@ -1287,6 +1287,9 @@
       if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
         window.novaBuzEjderPreloadTrueClipsIfEquipped();
       }
+      if (typeof window.novaBuzEjderPreloadSonucTransition === 'function') {
+        window.novaBuzEjderPreloadSonucTransition();
+      }
     };
     window.novaOpenSinglePlayerGameScreen.__novaHeroPatched = true;
     var close = window.novaCloseSinglePlayerGameScreen;

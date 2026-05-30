@@ -6095,6 +6095,9 @@ logoutButton.addEventListener('click', async () => {
                 if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
                     window.novaBuzEjderPreloadTrueClipsIfEquipped();
                 }
+                if (typeof window.novaBuzEjderPreloadSonucTransition === 'function') {
+                    window.novaBuzEjderPreloadSonucTransition();
+                }
             } catch (_) {}
         }
 
@@ -6336,6 +6339,24 @@ window.displayCurrentQuestion = displayCurrentQuestion;
 
         function endGame() {
             if (window.__novaEndGameBusy) return;
+            if (!window.__novaEndGameAfterSonuc && typeof window.novaBuzEjderHasSonucTransition === 'function' && window.novaBuzEjderHasSonucTransition() && typeof window.novaBuzEjderPlaySonucTransition === 'function') {
+                window.__novaEndGameBusy = true;
+                document.body.classList.add('nova-buz-sonuc-active');
+                window.novaBuzEjderPlaySonucTransition().then(function () {
+                    document.body.classList.remove('nova-buz-sonuc-active');
+                    window.__novaEndGameAfterSonuc = true;
+                    window.__novaEndGameBusy = false;
+                    endGame();
+                    window.__novaEndGameAfterSonuc = false;
+                }).catch(function () {
+                    document.body.classList.remove('nova-buz-sonuc-active');
+                    window.__novaEndGameAfterSonuc = true;
+                    window.__novaEndGameBusy = false;
+                    endGame();
+                    window.__novaEndGameAfterSonuc = false;
+                });
+                return;
+            }
             window.__novaEndGameBusy = true;
             try{
             try{ if (timer) clearInterval(timer); }catch(_){}

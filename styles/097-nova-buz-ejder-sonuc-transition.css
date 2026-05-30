@@ -1,0 +1,32 @@
+/* Buz Ejderi — sonuç ekranı öncesi tam ekran geçiş */
+.nova-buz-sonuc-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 1005000;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #000;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity .28s ease;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.nova-buz-sonuc-overlay.is-visible{
+  opacity: 1;
+}
+.nova-buz-sonuc-overlay.is-fading-out{
+  opacity: 0;
+  transition: opacity .52s ease;
+}
+.nova-buz-sonuc-overlay__canvas{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body.nova-buz-sonuc-active{
+  overflow: hidden !important;
+}
