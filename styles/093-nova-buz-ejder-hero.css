@@ -282,14 +282,16 @@
 }
 .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-buz-sprite,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-buz-sprite{
-  min-height: 148px;
-  max-height: 172px;
+  min-height: 150px;
+  max-height: 178px;
   width: 100%;
-  max-width: 176px;
+  max-width: 182px;
   margin: 0 auto;
   overflow: visible;
-  padding: 0 6px;
+  padding: 0 5px;
   box-sizing: border-box;
+  transform: scale(1.05);
+  transform-origin: center center;
 }
 .nova-hero-store-card--buz .nova-hero-preview--store-live .nova-hero-svg-host,
 .profile-change-content .nova-store-preview--hero.nova-store-preview--buz .nova-hero-svg-host{

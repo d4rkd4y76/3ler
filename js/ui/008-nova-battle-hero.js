@@ -181,6 +181,7 @@
     },
     buz_ejder: {
       id: 'buz_ejder',
+      epic: true,
       templateKey: 'NOVA_BUZ_EJDER_SVG_TEMPLATE',
       sprite: 'hero/ice_dragon/sprite',
       theme: 'buz',
@@ -210,6 +211,7 @@
     },
     alev_ejder: {
       id: 'alev_ejder',
+      epic: true,
       templateKey: 'NOVA_ALEV_EJDER_SVG_TEMPLATE',
       sprite: 'hero/flame_dragon/sprite',
       theme: 'alev',
@@ -239,6 +241,7 @@
     },
     gece_ejder: {
       id: 'gece_ejder',
+      epic: true,
       templateKey: 'NOVA_GECE_EJDER_SVG_TEMPLATE',
       sprite: 'hero/dark_dragon/sprite',
       theme: 'gece',
@@ -276,6 +279,25 @@
   function getHeroDef(heroId) {
     if (!heroId) return null;
     return HERO_REGISTRY[String(heroId).trim()] || null;
+  }
+
+  function isEpicStoreHero(heroOrId) {
+    var id = typeof heroOrId === 'string' ? heroOrId : (heroOrId && heroOrId.id);
+    if (!id) return false;
+    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) return true;
+    var def = getHeroDef(id);
+    return !!(def && def.epic);
+  }
+
+  function filterHeroCatalogByStoreCategory(catalog, category) {
+    if (!Array.isArray(catalog)) return [];
+    if (category === '__battleHeroesEpik') {
+      return catalog.filter(function (h) { return isEpicStoreHero(h); });
+    }
+    if (category === '__battleHeroesTemel') {
+      return catalog.filter(function (h) { return !isEpicStoreHero(h); });
+    }
+    return catalog.slice();
   }
 
   function getStudent() {
@@ -1011,6 +1033,18 @@
     return labels[lvl] || ('Seviye ' + lvl);
   }
 
+  function epicBadgeSlotHtml(heroId) {
+    return '<div class="nova-hero-store-epic-slot char-inv-hero-epic-slot" data-epic-dragon-slot="1" data-hero-id="' + heroId + '"></div>';
+  }
+
+  function mountEpicBadgesIn(root, heroId, mod) {
+    if (!root || !heroId || !isEpicStoreHero(heroId)) return;
+    if (typeof window.novaEpicDragonMountBadge !== 'function') return;
+    root.querySelectorAll('[data-epic-dragon-slot]').forEach(function (slot) {
+      window.novaEpicDragonMountBadge(slot, heroId, mod || 'store');
+    });
+  }
+
   function openHeroStoreDetail(hero, userData) {
     if (typeof window.novaOpenStoreDetail !== 'function') return;
     var def = getHeroDef(hero.id);
@@ -1019,12 +1053,18 @@
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
     var cost = Number(hero.price) || def.price;
+    var epic = isEpicStoreHero(hero);
     var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
     var name = hero.name || def.name;
     var desc = hero.desc || def.desc || '';
-    var extra = owned
-      ? '<span class="nova-hero-level-badge">★ Seviye ' + lvl + ' · ' + heroLevelLabel(lvl) + '</span>'
-      : '';
+    var extra = '';
+    if (owned) {
+      extra = epic
+        ? epicBadgeSlotHtml(hero.id)
+        : '<span class="nova-hero-level-badge">★ Seviye ' + lvl + ' · ' + heroLevelLabel(lvl) + '</span>';
+    } else if (epic) {
+      extra = epicBadgeSlotHtml(hero.id);
+    }
     var btnClass = 'buy-button';
     var btnText = 'Satın Al';
     var btnDisabled = false;
@@ -1046,6 +1086,11 @@
       meta: '',
       desc: desc,
       extraHtml: extra,
+      onOpened: function () {
+        if (!epic) return;
+        var extraEl = document.getElementById('nova_store_detail_extra');
+        mountEpicBadgesIn(extraEl, hero.id, 'store');
+      },
       priceHtml: owned ? '' : ('💎 ' + cost),
       previewClass: 'nova-store-detail-preview--hero nova-store-detail-preview--' + def.theme,
       previewHtml: '',
@@ -1173,16 +1218,24 @@
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
     var cost = Number(hero.price) || def.price;
+    var epic = isEpicStoreHero(hero);
     var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
     var heroName = hero.name || def.name;
 
     var card = document.createElement('div');
-    card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme;
+    card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme
+      + (epic ? ' nova-hero-store-card--epic-tier' : '');
     card.style.animationDelay = (index * 0.06) + 's';
+    var badgeRow = '';
+    if (epic) {
+      badgeRow = epicBadgeSlotHtml(hero.id);
+    } else if (owned) {
+      badgeRow = '<span class="nova-hero-level-badge">★ Sv. ' + lvl + '</span>';
+    }
     card.innerHTML =
       heroPreviewHtml(hero.id, def.theme)
       + '<div class="nova-hero-store-vitrine-name">' + heroName + '</div>'
-      + (owned ? '<span class="nova-hero-level-badge">★ Sv. ' + lvl + '</span>' : '')
+      + badgeRow
       + '<div class="profile-photo-price">'
       + (owned ? '' : ('<span class="purchased-badge nova-hero-diamond-price">💎 ' + cost + '</span>'))
       + '</div>'
@@ -1233,9 +1286,10 @@
       mountHeroStorePreview(host, hero.id);
     }
     requestAnimationFrame(function () { mountWhenReady(0); });
+    if (epic) mountEpicBadgesIn(card, hero.id, 'store');
   }
 
-  async function novaRenderBattleHeroStore() {
+  async function novaRenderBattleHeroStore(category) {
     if (typeof getStoreStudentData !== 'function') return;
     var container = document.getElementById('profilePhotosContainer');
     var duelStore = document.getElementById('duelCreditsStore');
@@ -1245,10 +1299,14 @@
     container.innerHTML = '';
     container.classList.add('nova-store-products--heroes');
 
-    var catalog = await loadHeroCatalogFromDB();
+    var cat = category || '__battleHeroesTemel';
+    var catalog = filterHeroCatalogByStoreCategory(await loadHeroCatalogFromDB(), cat);
     var userData = await getStoreStudentData(true);
     if (!catalog.length) {
-      container.innerHTML = '<div class="no-champion">Henüz kahraman eklenmedi</div>';
+      var emptyMsg = cat === '__battleHeroesEpik'
+        ? 'Epik kahramanlar yakında'
+        : 'Henüz temel kahraman eklenmedi';
+      container.innerHTML = '<div class="no-champion">' + emptyMsg + '</div>';
       return;
     }
     catalog.forEach(function (hero, i) {
@@ -1260,7 +1318,9 @@
     if (typeof loadProfilePhotos !== 'function' || loadProfilePhotos.__novaHeroPatched) return;
     var orig = loadProfilePhotos;
     window.loadProfilePhotos = async function (category) {
-      if (category === '__battleHeroes') return novaRenderBattleHeroStore();
+      if (category === '__battleHeroes' || category === '__battleHeroesTemel' || category === '__battleHeroesEpik') {
+        return novaRenderBattleHeroStore(category === '__battleHeroes' ? '__battleHeroesTemel' : category);
+      }
       return orig.apply(this, arguments);
     };
     window.loadProfilePhotos.__novaHeroPatched = true;
@@ -1372,12 +1432,13 @@
       var eqDef = getHeroDef(equippedId);
       var eqName = eqDef ? eqDef.name : equippedId;
       var eqLvl = getHeroLevel(userData, equippedId);
+      var eqEpic = isEpicStoreHero(equippedId);
       html += '<div class="char-inv-hero-equipped">'
         + '<div class="char-inv-hero-equipped__preview" data-char-inv-hero-host="' + equippedId + '"></div>'
         + '<div class="char-inv-hero-equipped__info">'
         + '<p class="char-inv-kicker" style="margin:0">Aktif kahraman</p>'
         + '<h3>' + eqName + '</h3>'
-        + '<p style="margin:4px 0;font-size:12px;color:#94a3b8">Seviye ' + eqLvl + ' · ' + heroLevelLabel(eqLvl) + '</p>'
+        + (eqEpic ? '' : ('<p style="margin:4px 0;font-size:12px;color:#94a3b8">Seviye ' + eqLvl + ' · ' + heroLevelLabel(eqLvl) + '</p>'))
         + renderHeroStarsHtml(equippedId, eqLvl)
         + '</div></div>';
     }
@@ -1396,11 +1457,12 @@
         if (!def) return;
         var lvl = getHeroLevel(userData, hero.id);
         var eq = hero.id === equippedId;
-        html += '<div class="char-inv-card char-inv-hero-card' + (eq ? ' equipped' : '') + '">'
+        var cardEpic = isEpicStoreHero(hero);
+        html += '<div class="char-inv-card char-inv-hero-card' + (eq ? ' equipped' : '') + (cardEpic ? ' char-inv-hero-card--epic' : '') + '">'
           + (eq ? '<span class="char-inv-badge">Takılı</span>' : '')
           + '<div class="char-inv-hero-thumb-host" data-char-inv-hero-host="' + hero.id + '"></div>'
           + '<div class="char-inv-card-title">' + (hero.name || def.name) + '</div>'
-          + '<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">' + ((typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(hero.id)) ? 'EPİK · ' : '★ Sv. ') + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'
+          + (cardEpic ? '' : ('<p style="margin:0 0 6px;font-size:11px;color:#a5b4fc">★ Sv. ' + lvl + ' · ' + heroLevelLabel(lvl) + '</p>'))
           + renderHeroStarsHtml(hero.id, lvl)
           + (eq
             ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
@@ -1420,7 +1482,9 @@
       if (typeof novaOpenStore === 'function') {
         novaOpenStore();
         setTimeout(function () {
-          if (typeof window.novaStoreHubSelectMainTab === 'function') window.novaStoreHubSelectMainTab('heroes');
+          if (typeof window.novaStoreHubSelectMainTab === 'function') {
+            window.novaStoreHubSelectMainTab('heroes', '__battleHeroesTemel');
+          }
         }, 400);
       }
     });
@@ -1476,6 +1540,8 @@
   window.mountHeroInto = mountHeroInto;
   window.novaBuildHeroSvgHtml = buildHeroSvgHtml;
   window.novaRenderBattleHeroStore = novaRenderBattleHeroStore;
+  window.novaIsEpicStoreHero = isEpicStoreHero;
+  window.novaFilterHeroCatalogByStoreCategory = filterHeroCatalogByStoreCategory;
   window.novaFillCharacterInventoryHeroes = novaFillCharacterInventoryHeroes;
   window.NOVA_BATTLE_HERO_ID = 'blaze_robot';
 

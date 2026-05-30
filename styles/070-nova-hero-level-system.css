@@ -71,7 +71,7 @@
   font-weight: 300;
 }
 
-/* Mağazanın üstünde (takas modal ~100500) */
+/* Mağaza açıkken seviye overlay */
 body.nova-hero-level-open .profile-change-overlay{
   pointer-events: none;
 }

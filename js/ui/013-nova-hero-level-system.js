@@ -110,8 +110,9 @@
   }
 
   function getEquippedHeroLevelForPerks(data) {
-    var lvl = getEquippedHeroLevel(data);
     var heroId = data ? String(data.battleHero || '').trim() : getEquippedHeroId();
+    if (isEpicHeroId(heroId)) return 0;
+    var lvl = getEquippedHeroLevel(data);
     if (lvl < 1 && heroId) return 1;
     return lvl;
   }
@@ -127,6 +128,13 @@
     return getPerksForLevel(lvl);
   }
 
+  function isEpicHeroId(heroId) {
+    if (!heroId) return false;
+    if (typeof window.novaIsEpicStoreHero === 'function') return window.novaIsEpicStoreHero(heroId);
+    if (typeof window.novaIsEpicDragonHero === 'function') return window.novaIsEpicDragonHero(heroId);
+    return false;
+  }
+
   function listOwnedHeroes(data) {
     var out = [];
     var pb = (data && data.purchasedBattleHeroes) || {};
@@ -139,6 +147,12 @@
       if (o.owned) out.push({ id: id, level: o.level });
     });
     return out;
+  }
+
+  function listLevelableOwnedHeroes(data) {
+    return listOwnedHeroes(data).filter(function (h) {
+      return !isEpicHeroId(h.id);
+    });
   }
 
   function heroName(heroId) {
@@ -273,13 +287,9 @@
       + '<div class="nh-level-panel__glow" aria-hidden="true"></div>'
       + '<header class="nh-level-head">'
       + '<div><h2 id="nh_level_title">Kahraman Seviye Artışı</h2>'
-      + '<p class="nh-level-sub">Üstten kahramanını seç · ortada yükselt</p></div>'
+      + '<p class="nh-level-sub">Yalnızca kuşandığın Temel kahraman için deneme yapılır</p></div>'
       + '<button type="button" class="nh-level-close" id="nh_level_close" aria-label="Kapat">✕</button>'
       + '</header>'
-      + '<div class="nh-level-tabs-wrap">'
-      + '<p class="nh-level-pick-label">Kahramanların</p>'
-      + '<div class="nh-level-tabs" id="nh_level_hero_pick" role="tablist"></div>'
-      + '</div>'
       + '<section class="nh-level-arena" id="nh_level_stage">'
       + '<div class="nh-level-arena__pedestal" aria-hidden="true"></div>'
       + '<h3 class="nh-level-arena__name" id="nh_level_hero_name">—</h3>'
@@ -362,7 +372,7 @@
       + '<span class="nova-store-hero-level-btn__icon">⬆️</span>'
       + '<span class="nova-store-hero-level-btn__text">'
       + '<span class="nova-store-hero-level-btn__title">Kahraman Seviye Artışı</span>'
-      + '<span class="nova-store-hero-level-btn__sub">Şansını dene · 4 seviyeye kadar</span>'
+      + '<span class="nova-store-hero-level-btn__sub">Kahramanı kuşan · şansını dene</span>'
       + '</span>'
       + '<span class="nova-store-hero-level-btn__arrow" aria-hidden="true">›</span>'
       + '</button>';
@@ -458,7 +468,7 @@
       window.novaMountHeroInto(host, heroId);
     }
     var nameEl = document.getElementById('nh_level_hero_name');
-    if (nameEl) nameEl.textContent = heroName(heroId);
+    if (nameEl) nameEl.textContent = heroName(heroId) + ' · Kuşanılıyor';
     requestAnimationFrame(function () {
       box.classList.remove('is-enter');
     });
@@ -476,25 +486,34 @@
     var rollBtn = document.getElementById('nh_level_roll');
     var nextWrap = document.getElementById('nh_level_next_wrap');
 
-    if (stars) {
-      if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
+    if (isEpicHeroId(heroId)) {
+      if (costEl) {
+        costEl.innerHTML = '<span class="nh-level-stat__label">Epik kahraman</span><span class="nh-level-stat__value nh-level-maxed">👑 Seviye yükseltilemez</span>';
+      }
+      if (chanceEl) chanceEl.innerHTML = '';
+      if (nextWrap) nextWrap.hidden = true;
+      if (rollBtn) {
+        rollBtn.disabled = true;
+        rollBtn.textContent = 'Epik kahramanlar yükseltilemez';
+      }
+      if (stars) {
         stars.classList.add('nh-level-arena__stars--epic');
         stars.innerHTML = '';
         if (typeof window.novaEpicDragonMountBadge === 'function') {
           window.novaEpicDragonMountBadge(stars, heroId, 'level');
         }
-        var rankEpic = document.createElement('span');
-        rankEpic.className = 'nh-level-arena__rank';
-        rankEpic.textContent = 'EPİK · Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '');
-        stars.appendChild(rankEpic);
-      } else {
-        stars.classList.remove('nh-level-arena__stars--epic');
-        if (typeof window.novaEpicDragonUnmountBadge === 'function') {
-          window.novaEpicDragonUnmountBadge(stars);
-        }
-        stars.innerHTML = renderStars(lvl)
-          + '<span class="nh-level-arena__rank">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>';
       }
+      renderPerkList(document.getElementById('nh_level_perks_now'), 0);
+      return;
+    }
+
+    if (stars) {
+      stars.classList.remove('nh-level-arena__stars--epic');
+      if (typeof window.novaEpicDragonUnmountBadge === 'function') {
+        window.novaEpicDragonUnmountBadge(stars);
+      }
+      stars.innerHTML = renderStars(lvl)
+        + '<span class="nh-level-arena__rank">Seviye ' + lvl + ' · ' + (LEVEL_LABELS[lvl] || '') + '</span>';
     }
     renderPerkList(document.getElementById('nh_level_perks_now'), lvl);
 
@@ -539,18 +558,25 @@
     }
   }
 
-  function selectHero(heroId) {
-    closePerksDrawer();
-    uiState.heroId = heroId;
-    var pick = document.getElementById('nh_level_hero_pick');
-    if (pick) {
-      pick.querySelectorAll('.nh-level-hero-tab').forEach(function (tab) {
-        tab.classList.toggle('is-active', tab.getAttribute('data-hero-id') === heroId);
-      });
+  function resolveEquippedLevelTarget(data) {
+    data = data || uiState.data || null;
+    var eq = '';
+    if (data && data.battleHero) eq = String(data.battleHero).trim();
+    if (!eq) eq = getEquippedHeroId();
+    if (!eq) return { ok: false, reason: 'no_equip' };
+    if (isEpicHeroId(eq)) return { ok: false, reason: 'epic', heroId: eq };
+    if (!ownsHeroLevel(data, eq)) return { ok: false, reason: 'not_owned', heroId: eq };
+    return { ok: true, heroId: eq };
+  }
+
+  function levelOverlayBlockedMessage(reason) {
+    if (reason === 'epic') {
+      return 'Epik ejderler seviye atlamaz. Mağazadan bir Temel kahraman seçip Kullan ile kuşanmalısın.';
     }
-    hideResultBanner();
-    mountHeroPreview(heroId);
-    updatePanelStats();
+    if (reason === 'not_owned') {
+      return 'Kuşandığın kahraman hesabında bulunamadı. Mağazadan Temel bir kahraman kuşanıp tekrar dene.';
+    }
+    return 'Seviye yükseltmek için önce mağazadan bir Temel kahraman satın alıp Kullan ile kuşanmalısın.';
   }
 
   async function refreshLevelPanel() {
@@ -559,51 +585,23 @@
       data = await getStoreStudentData(true);
       uiState.data = data;
     }
-    var heroId = uiState.heroId;
-    if (!heroId) {
-      var owned = listOwnedHeroes(data);
-      heroId = owned.length ? owned[0].id : '';
-      uiState.heroId = heroId;
+    var target = resolveEquippedLevelTarget(data);
+    if (!target.ok) {
+      closeLevelOverlay();
+      if (typeof showAlert === 'function') {
+        await showAlert(levelOverlayBlockedMessage(target.reason));
+      }
+      return;
     }
-    var lvl = getHeroLevelFromData(data, heroId);
-    var next = Math.min(MAX_LEVEL, lvl + 1);
-    renderHeroPick(data);
-    mountHeroPreview(heroId);
+    uiState.heroId = target.heroId;
+    mountHeroPreview(target.heroId);
     hideResultBanner();
     updatePanelStats();
   }
 
-  function renderHeroPick(data) {
-    var pick = document.getElementById('nh_level_hero_pick');
-    if (!pick) return;
-    var owned = listOwnedHeroes(data);
-    pick.innerHTML = '';
-    owned.forEach(function (h) {
-      var tab = document.createElement('button');
-      tab.type = 'button';
-      tab.className = 'nh-level-hero-tab nh-level-hero-tab--' + heroTheme(h.id)
-        + (h.id === uiState.heroId ? ' is-active' : '');
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('data-hero-id', h.id);
-      tab.setAttribute('aria-selected', h.id === uiState.heroId ? 'true' : 'false');
-      tab.innerHTML =
-        '<span class="nh-level-hero-tab__thumb nh-level-hero-tab__thumb--' + heroTheme(h.id) + '">'
-        + '<span class="nh-level-hero-tab__host" data-hero-pick="' + h.id + '"></span>'
-        + '</span>'
-        + '<span class="nh-level-hero-tab__name">' + heroName(h.id) + '</span>'
-        + '<span class="nh-level-hero-tab__lvl">Sv. ' + h.level + '</span>';
-      tab.addEventListener('click', function () { selectHero(h.id); });
-      pick.appendChild(tab);
-      var host = tab.querySelector('[data-hero-pick]');
-      if (host && typeof window.novaMountHeroInto === 'function') {
-        window.novaMountHeroInto(host, h.id);
-      }
-    });
-  }
-
   async function openLevelOverlay() {
     var existing = document.getElementById('nova-hero-level-overlay');
-    if (existing && (!document.querySelector('.nh-level-tabs') || !document.querySelector('.nh-level-arena__upgrade'))) {
+    if (existing && !document.querySelector('.nh-level-arena__upgrade')) {
       existing.remove();
     }
     ensureLevelUi();
@@ -628,14 +626,14 @@
     }
     /* Kaldırılan kahramanlar (örn. Anka) için migrasyon/temizlik */
     uiState.data = await sanitizePurchasedHeroes(uiState.data);
-    var owned = listOwnedHeroes(uiState.data);
-    if (!owned.length) {
-      if (typeof showAlert === 'function') await showAlert('Önce mağazadan bir kahraman satın almalısın.');
+    var target = resolveEquippedLevelTarget(uiState.data);
+    if (!target.ok) {
+      if (typeof showAlert === 'function') {
+        await showAlert(levelOverlayBlockedMessage(target.reason));
+      }
       return;
     }
-    uiState.heroId = (uiState.data && uiState.data.battleHero && ownsHeroLevel(uiState.data, uiState.data.battleHero))
-      ? uiState.data.battleHero
-      : owned[0].id;
+    uiState.heroId = target.heroId;
     ov.classList.add('is-open');
     ov.setAttribute('aria-hidden', 'false');
     document.body.classList.add('nova-hero-level-open');
@@ -691,12 +689,25 @@
   async function onRollUpgrade() {
     var s = getStudent();
     if (!s || !s.classId || !s.studentId) return;
-    var heroId = uiState.heroId;
-    if (!heroId) return;
 
     var ref = database.ref('classes/' + s.classId + '/students/' + s.studentId);
     var snap = await ref.once('value');
     var user = snap.val() || {};
+    uiState.data = user;
+    var target = resolveEquippedLevelTarget(user);
+    if (!target.ok) {
+      if (typeof showAlert === 'function') {
+        await showAlert(levelOverlayBlockedMessage(target.reason));
+      }
+      closeLevelOverlay();
+      return;
+    }
+    var heroId = target.heroId;
+    uiState.heroId = heroId;
+    if (String(user.battleHero || '').trim() !== heroId) {
+      showResultBanner('fail', 'BAŞARISIZ', 'Seviye denemesi yalnızca kuşandığın kahraman için yapılabilir.');
+      return;
+    }
     var lvl = getHeroLevelFromData(user, heroId);
     if (lvl >= MAX_LEVEL) return;
     var target = lvl + 1;
@@ -834,14 +845,15 @@
       }
     }
 
-    // Not: animasyonların görünmesi için preview'ı hemen yeniden mount etmiyoruz.
-    renderHeroPick(user);
+  // Not: animasyonların görünmesi için preview'ı hemen yeniden mount etmiyoruz.
     updatePanelStats();
     setTimeout(function () {
       try { mountHeroPreview(heroId); } catch (_) {}
     }, success ? 1200 : 800);
     try {
-      if (typeof novaRenderBattleHeroStore === 'function') await novaRenderBattleHeroStore();
+      if (typeof novaRenderBattleHeroStore === 'function') {
+        await novaRenderBattleHeroStore('__battleHeroesTemel');
+      }
     } catch (_) {}
     try {
       window.__novaMainHeroLevelFetched = newLevel;

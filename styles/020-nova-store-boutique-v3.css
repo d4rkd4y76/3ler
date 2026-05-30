@@ -226,10 +226,6 @@
     justify-content: stretch !important;
     width: 100%;
   }
-  .profile-change-content .nova-store-actions #openExchangeButton{
-    flex: 1 1 auto;
-    text-align: center;
-  }
   .profile-change-content .nova-store-wallet{ flex: 1 1 auto; justify-content: center; }
 }
 

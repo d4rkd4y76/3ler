@@ -7,8 +7,6 @@
 .store-controls{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .current-diamonds{ display:flex; align-items:center; gap:6px; padding:6px 10px; border-radius:12px;
   background:rgba(255,255,255,.6); backdrop-filter: blur(4px); font-weight:700; }
-#openExchangeButton{ padding:8px 12px; border-radius:10px; border:0; cursor:pointer;
-  background:#2d6cdf; color:#fff; font-weight:700; }
 #profileCloseButton{ padding:8px 10px; border-radius:10px; border:0; cursor:pointer;
   background:#f6465d; color:#fff; font-weight:800; }
 @media(max-width:600px){

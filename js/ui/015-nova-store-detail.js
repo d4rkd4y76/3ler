@@ -166,6 +166,11 @@
     ov.setAttribute('aria-hidden', 'false');
     document.body.classList.add('nova-store-detail-open');
     document.body.style.overflow = 'hidden';
+    if (typeof opts.onOpened === 'function') {
+      requestAnimationFrame(function () {
+        try { opts.onOpened(); } catch (_) {}
+      });
+    }
   }
 
   function bindCardOpenDetail(card, openFn) {

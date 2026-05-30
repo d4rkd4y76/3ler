@@ -65,12 +65,9 @@
     // Olası başlık-seçenek yapılarının kapsayıcısını yakala
     var title = document.querySelector('.store-title, .magaza-title, .shop-title');
     var diamond = document.querySelector('.diamond-value, .diamond-display, #diamondDisplay');
-    var exchange = document.querySelector('.diamond-exchange, .diamond-takas, #diamondExchange');
 
-    // Eğer üçlüden en az ikisi varsa grid uygula
-    if (title || diamond || exchange){
-      // En uygun kapsayıcıyı seç
-      var host = (title && title.parentElement) || (diamond && diamond.parentElement) || (exchange && exchange.parentElement);
+    if (title || diamond){
+      var host = (title && title.parentElement) || (diamond && diamond.parentElement);
       if (host && !host.classList.contains('store-header-grid')){
         host.classList.add('store-header-grid');
         if (title) title.classList.add('store-title');
@@ -79,7 +76,6 @@
           wrap.className = 'diamond-wrap';
           diamond.parentElement.insertBefore(wrap, diamond);
           wrap.appendChild(diamond);
-          if (exchange) wrap.appendChild(exchange);
         }
       }
     }

@@ -254,9 +254,8 @@
     if (title) title.textContent = def.name;
     var isEpicDragon = typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId);
     if (levelEl) {
-      levelEl.textContent = isEpicDragon
-        ? ('EPİK · Seviye ' + lvl + ' · ' + getLevelLabel(lvl))
-        : ('Seviye ' + lvl + ' · ' + getLevelLabel(lvl));
+      levelEl.textContent = isEpicDragon ? '' : ('Seviye ' + lvl + ' · ' + getLevelLabel(lvl));
+      levelEl.hidden = !!isEpicDragon;
     }
     if (desc) desc.textContent = def.desc || '';
     if (sheetStars) {

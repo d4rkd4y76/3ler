@@ -9,7 +9,17 @@
     { id: '__nameFrames', label: 'İsim Çerçevesi' },
     { id: '__avatarFrames', label: 'Avatar Çerçevesi' }
   ];
-  var PSEUDO_KEYS = { __nameFrames: 1, __avatarFrames: 1, __battleHeroes: 1 };
+  var HERO_SUB = [
+    { id: '__battleHeroesTemel', label: 'Temel' },
+    { id: '__battleHeroesEpik', label: 'Epik' }
+  ];
+  var PSEUDO_KEYS = {
+    __nameFrames: 1,
+    __avatarFrames: 1,
+    __battleHeroes: 1,
+    __battleHeroesTemel: 1,
+    __battleHeroesEpik: 1
+  };
 
   var state = { main: 'avatar', sub: null };
 
@@ -65,6 +75,11 @@
     var duelStore = document.getElementById('duelCreditsStore');
     var photosContainer = document.getElementById('profilePhotosContainer');
     if (!duelStore || !photosContainer) return;
+    if (cat === '__battleHeroesTemel' || cat === '__battleHeroesEpik' || cat === '__battleHeroes') {
+      duelStore.style.display = 'none';
+      photosContainer.style.display = 'grid';
+      return;
+    }
     if (cat === 'duel') {
       duelStore.style.display = 'block';
       photosContainer.style.display = 'none';
@@ -95,6 +110,12 @@
     state.sub = cat;
     setPanelsForCategory(cat);
     activateSubButton(cat);
+    try {
+      if (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.setStoreLevelBarVisible) {
+        var showLevelBar = state.main === 'heroes' && cat === '__battleHeroesTemel';
+        window.NOVA_HERO_LEVEL.setStoreLevelBarVisible(showLevelBar);
+      }
+    } catch (_) {}
     if (typeof loadProfilePhotos === 'function') {
       loadProfilePhotos(cat);
     }
@@ -104,14 +125,17 @@
     var sub = document.getElementById('novaStoreSubNav');
     if (!sub) return;
     sub.innerHTML = '';
-    if (state.main === 'heroes') {
-      sub.classList.add('is-hidden');
-      return;
-    }
     sub.classList.remove('is-hidden');
-    var items = state.main === 'frames' ? FRAME_SUB.slice() : collectAvatarKeys().map(function (k) {
+    var items;
+    if (state.main === 'heroes') {
+      items = HERO_SUB.slice();
+    } else if (state.main === 'frames') {
+      items = FRAME_SUB.slice();
+    } else {
+      items = collectAvatarKeys().map(function (k) {
       return { id: k, label: labelForKey(k) };
-    });
+      });
+    }
     items.forEach(function (item, i) {
       var btn = document.createElement('button');
       btn.type = 'button';
@@ -122,6 +146,10 @@
       if (item.id === 'EFSANE') {
         btn.classList.add('nova-store-sub-btn--legend');
         btn.title = '🔥 Efsane Seçkisi';
+      }
+      if (item.id === '__battleHeroesEpik') {
+        btn.classList.add('nova-store-sub-btn--epic');
+        btn.title = '👑 Epik kahramanlar';
       }
       btn.addEventListener('click', function () {
         loadCategory(item.id);
@@ -136,7 +164,7 @@
     renderSubNav();
     var cat;
     if (mainId === 'heroes') {
-      cat = '__battleHeroes';
+      cat = preferredSub || '__battleHeroesTemel';
     } else if (mainId === 'frames') {
       cat = preferredSub || '__nameFrames';
     } else {
@@ -146,7 +174,8 @@
     loadCategory(cat);
     try {
       if (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.setStoreLevelBarVisible) {
-        window.NOVA_HERO_LEVEL.setStoreLevelBarVisible(mainId === 'heroes');
+        var showLevelBar = mainId === 'heroes' && cat === '__battleHeroesTemel';
+        window.NOVA_HERO_LEVEL.setStoreLevelBarVisible(showLevelBar);
       }
     } catch (_) {}
   }

@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="styles/013-nova-ranking-table-photo-override.css?v=20260526rank1" />
 <link rel="stylesheet" href="styles/060-nova-ranking-player-names.css?v=20260526rank1" />
 <link rel="stylesheet" href="styles/077-nova-season-ranking-v2.css?v=20260530rank1" />
+<link rel="stylesheet" href="styles/098-nova-rank-epic-dragon.css?v=20260601rankepic1" />
 <link rel="stylesheet" href="styles/014-nova-store-fix.css" />
 <link rel="stylesheet" href="styles/015-style-015.css" />
 <link rel="stylesheet" href="styles/016-style-016.css" />
@@ -39,7 +40,7 @@
 <link rel="stylesheet" href="styles/018-nova-storebar-fix-20251002.css" />
 <link rel="stylesheet" href="styles/019-nova-store-premium-ui.css?v=20260526store_chip1" />
 <link rel="stylesheet" href="styles/020-nova-store-boutique-v3.css" />
-<link rel="stylesheet" href="styles/022-nova-store-hub.css?v=20260522store3" />
+<link rel="stylesheet" href="styles/022-nova-store-hub.css?v=20260601epicbadge1" />
 <link rel="stylesheet" href="styles/021-nova-name-frame-styles.css" />
 <link rel="stylesheet" href="styles/022-style-022.css" />
 <link rel="stylesheet" href="styles/023-style-023.css" />
@@ -661,48 +662,6 @@
 </div>
 </div>
 <div class="profile-change-overlay nova-perf-fullscreen-scope" id="profileChangeOverlay">
-<!-- Elmas Takas Modal -->
-<div id="diamondExchangeModal" class="nova-exchange-modal" style="display:none;" aria-hidden="true">
-<div class="nova-exchange-modal__backdrop" onclick="closeDiamondExchangeModal()"></div>
-<div class="nova-exchange-modal__panel" role="dialog" aria-labelledby="novaExchangeTitle">
-<header class="nova-exchange-modal__head">
-<div>
-<p class="nova-exchange-modal__kicker">NASK GAMES</p>
-<h3 id="novaExchangeTitle" class="nova-exchange-modal__title">💱 Elmas Takas</h3>
-</div>
-<button type="button" class="nova-exchange-modal__close" aria-label="Kapat" onclick="closeDiamondExchangeModal()">✖</button>
-</header>
-<p class="nova-exchange-modal__lead">Elmaslarını kupa veya düello kredisine çevir. Her <strong>adet</strong> bir pakettir (2 adet = 200 💎). Günde en fazla <strong>3 adet</strong> takas yapabilirsin.</p>
-<div id="exchange-daily-takas" class="nova-exchange-modal__daily">Bugün takas: …</div>
-<div class="nova-exchange-modal__balances">
-<span id="exchange-current-diamonds">💎 Elmas: …</span>
-<span id="exchange-current-cups">🏆 Kupa: …</span>
-<span id="exchange-current-credits">⚔️ Düello kredisi: …</span>
-</div>
-<div class="nova-exchange-modal__field">
-<label for="exchange-type-select">Ne almak istiyorsun?</label>
-<select id="exchange-type-select">
-<option value="diamond_to_cup">🏆 Kupa — 100 💎 karşılığı 5 kupa</option>
-<option value="diamond_to_credits">⚔️ Düello kredisi — 100 💎 karşılığı 30 kredi</option>
-</select>
-</div>
-<div class="nova-exchange-modal__field nova-exchange-modal__field--qty">
-<label for="exchange-count-input">Kaç adet?</label>
-<div class="nova-exchange-qty-row">
-<button type="button" class="nova-exchange-qty-btn" data-exchange-delta="-1" aria-label="Azalt">−</button>
-<input id="exchange-count-input" min="1" type="number" value="1" inputmode="numeric"/>
-<button type="button" class="nova-exchange-qty-btn" data-exchange-delta="1" aria-label="Artır">+</button>
-</div>
-</div>
-<div class="nova-exchange-preview" id="nova-exchange-preview">
-<span class="nova-exchange-preview__cost" id="exchange-preview-cost">100 💎</span>
-<span class="nova-exchange-preview__arrow" aria-hidden="true">→</span>
-<span class="nova-exchange-preview__gain" id="exchange-preview-gain">5 🏆</span>
-</div>
-<button type="button" id="diamond_exchange_btn" class="nova-exchange-modal__submit" onclick="handleDiamondExchangeModal()">Takası Onayla</button>
-<p class="nova-exchange-modal__foot">Onaydan sonra bakiyen anında güncellenir.</p>
-</div>
-</div>
 <div class="profile-change-content nova-store-shell">
 <div class="nova-store-ambient" aria-hidden="true"></div>
 <header class="profile-change-header nova-store-header">
@@ -716,7 +675,6 @@
 <span class="diamond-icon" aria-hidden="true">💎</span>
 <span class="diamond-amount" id="currentDiamonds">0</span>
 </div>
-<button type="button" id="openExchangeButton" onclick="openDiamondExchangeModal()">💱 Elmas Takas</button>
 <button type="button" id="profileCloseButton" aria-label="Mağazayı kapat">✖</button>
 </div>
 </header>
@@ -791,7 +749,7 @@
 <script src="js/ui/006-nova-game-select.js?v=20260522spfix2"></script>
 <script src="js/ui/007-nova-single-player-screen.js?v=20260522sp3"></script>
 <script src="js/ui/010-nova-duel-screen.js?v=20260522duel1"></script>
-<script src="js/screens/007-script-007.js?v=20260531buztrue23"></script>
+<script src="js/screens/007-script-007.js?v=20260601rankepic1"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
 <script src="js/core/008-script-008.js?v=20260526store_chip1"></script>
 <script src="js/core/009-script-009.js?v=20260526rank2"></script>
@@ -1173,7 +1131,7 @@
 <link rel="stylesheet" href="styles/090-nova-bilge-hayalet-hero.css?v=20260528bilge1" />
 <link rel="stylesheet" href="styles/091-nova-simsek-sincap-hero.css?v=20260528pp3" />
 <link rel="stylesheet" href="styles/097-nova-buz-ejder-sonuc-transition.css?v=20260531buzsonuc7" />
-<link rel="stylesheet" href="styles/093-nova-buz-ejder-hero.css?v=20260531buztrue23" />
+<link rel="stylesheet" href="styles/093-nova-buz-ejder-hero.css?v=20260601buzstore2" />
 <link rel="stylesheet" href="styles/070-nova-hero-level-system.css?v=20260528orbitclip1" />
 <link rel="stylesheet" href="styles/074-nova-hero-level-v4.css?v=20260528herolv12" />
 <link rel="stylesheet" href="styles/081-nova-store-detail.css?v=20260529buz17" />
@@ -1190,7 +1148,7 @@
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=20260522duelfix1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
 <script src="js/screens/050-script-050.js"></script>
-<script src="js/ui/012-nova-store-hub.js?v=20260522store2"></script>
+<script src="js/ui/012-nova-store-hub.js?v=20260601herocat1"></script>
 <script src="js/ui/009-nova-blaze-bot-svg-data.js?v=20260522hero4"></script>
 <script src="js/ui/010-nova-star-fairy-svg-data.js?v=20260522hero4"></script>
 <script src="js/ui/011-nova-turbo-turtle-svg-data.js?v=20260527turbo2"></script>
@@ -1204,14 +1162,14 @@
 <script src="js/ui/012g-nova-mythic-wyvern-fx.js?v=20260528myth1"></script>
 <script src="js/ui/012i-nova-bilge-hayalet-fx.js?v=20260528bilge1"></script>
 <script src="js/ui/012k-nova-simsek-sincap-fx.js?v=20260528pp3"></script>
-<link rel="stylesheet" href="styles/096-nova-epic-dragon-badge.css?v=20260530epic5" />
-<script src="js/ui/012aa-nova-epic-dragon-badge.js?v=20260530epic5"></script>
+<link rel="stylesheet" href="styles/096-nova-epic-dragon-badge.css?v=20260601epicbadge1" />
+<script src="js/ui/012aa-nova-epic-dragon-badge.js?v=20260601epicbadge1"></script>
 <script src="js/ui/012q-nova-buz-ejder-svg-data.js?v=20260529buz11"></script>
 <script src="js/ui/012r-nova-buz-ejder-webgl-frost.js?v=20260529buz11"></script>
 <script src="js/ui/012s-nova-buz-ejder-fx.js?v=20260531buztrue23"></script>
 <link rel="preload" href="hero/ice_dragon/sprite/buz-ejder-idle.webp" as="image" type="image/webp" />
 <link rel="preload" href="hero/ice_dragon/sprite/buz-ejder-main.webp" as="image" type="image/webp" />
-<script src="js/ui/012t-nova-buz-ejder-sprite-manifest.js?v=20260529buz31"></script>
+<script src="js/ui/012t-nova-buz-ejder-sprite-manifest.js?v=20260601buzstore2"></script>
 <script src="js/ui/012t-nova-buz-ejder-vitrin-video.js?v=20260531buztrue23"></script>
 <script src="js/ui/012tb-nova-buz-ejder-true-manifest.js?v=20260531buztrue23"></script>
 <script src="js/ui/012tc-nova-buz-ejder-true-player.js?v=20260531buztrue23"></script>
@@ -1231,10 +1189,10 @@
 <script src="js/ui/012y-nova-gece-ejder-sprite-manifest.js?v=20260530gece6"></script>
 <script src="js/ui/012y-nova-gece-ejder-vitrin-video.js?v=20260530gece6"></script>
 <script src="js/ui/012z-nova-epic-dragon-shared.js?v=20260530epic1"></script>
-<script src="js/ui/015-nova-store-detail.js?v=20260527store_detail3"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=20260531buztrue23"></script>
-<script src="js/ui/013-nova-hero-level-system.js?v=20260530gece1"></script>
-<script src="js/ui/014-nova-hero-main-ui.js?v=20260530gece1"></script>
+<script src="js/ui/008-nova-battle-hero.js?v=20260601epicbadge1"></script>
+<script src="js/ui/013-nova-hero-level-system.js?v=20260601levelquip1"></script>
+<script src="js/ui/014-nova-hero-main-ui.js?v=20260601epicbadge1"></script>
+<script src="js/ui/015-nova-store-detail.js?v=20260601epicbadge1"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
 <script src="js/core/052-script-052.js"></script>

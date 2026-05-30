@@ -9515,11 +9515,19 @@ if (winnerId && loserId) {
             return '<div class="nsr-lig-wrap"></div>';
         }
 
+        function nsrEpicDragonThemeKey(heroId) {
+            if (heroId === 'buz_ejder') return 'buz';
+            if (heroId === 'alev_ejder') return 'alev';
+            if (heroId === 'gece_ejder') return 'gece';
+            return '';
+        }
+
         function buildNsrHeroCell(player) {
             var heroId = (player && player.heroId) ? String(player.heroId).trim() : '';
             var lvl = Math.max(0, Math.min(4, Number(player && player.heroLevel) || 0));
             var starsBlock;
-            if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
+            var isEpic = typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId);
+            if (isEpic) {
                 starsBlock = '<div class="nsr-hero-stars nsr-hero-stars--epic"><div class="nsr-hero-epic-slot" data-epic-dragon-slot="1" data-hero-id="' + heroId + '"></div></div>';
             } else {
                 var stars = '';
@@ -9528,9 +9536,21 @@ if (winnerId && loserId) {
                 }
                 starsBlock = '<div class="nsr-hero-stars">' + stars + '</div>';
             }
+            var safeId = heroId ? heroId.replace(/"/g, '') : '';
+            if (isEpic) {
+                var theme = nsrEpicDragonThemeKey(heroId);
+                return (
+                    '<div class="nsr-hero-wrap nsr-hero-wrap--epic nsr-hero-wrap--' + theme + '">' +
+                    '<div class="nsr-hero-frame nsr-hero-frame--' + theme + '">' +
+                    '<div class="nsr-hero-pic nsr-hero-pic--epic" data-hero-id="' + safeId + '"></div>' +
+                    '</div>' +
+                    starsBlock +
+                    '</div>'
+                );
+            }
             return (
                 '<div class="nsr-hero-wrap">' +
-                '<div class="nsr-hero-pic" data-hero-id="' + (heroId ? heroId.replace(/"/g, '') : '') + '"></div>' +
+                '<div class="nsr-hero-pic" data-hero-id="' + safeId + '"></div>' +
                 starsBlock +
                 '</div>'
             );
@@ -9546,9 +9566,15 @@ if (winnerId && loserId) {
                     return;
                 }
                 try {
+                    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
+                        if (typeof window.novaEpicDragonMountSprite === 'function') {
+                            window.novaEpicDragonMountSprite(el, id, { profile: 'store', scale: 1.08 });
+                            return;
+                        }
+                    }
                     if (typeof window.novaMountHeroInto === 'function') {
                         window.novaMountHeroInto(el, id);
-                        if (el.querySelector('svg')) return;
+                        if (el.querySelector('svg') || el.querySelector('canvas')) return;
                     }
                     if (typeof window.novaBuildHeroSvgHtml === 'function') {
                         var html = window.novaBuildHeroSvgHtml(id);

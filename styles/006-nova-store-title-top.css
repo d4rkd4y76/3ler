@@ -22,10 +22,6 @@
   font-weight:900; background:linear-gradient(90deg,#0ea5e9,#3b82f6);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
-#openExchangeButton{
-  background:linear-gradient(135deg,#0ea5e9,#2563eb); color:#fff; border:none;
-  border-radius:999px; padding:8px 14px; font-weight:800; cursor:pointer;
-}
 #profileCloseButton{
   background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.28);
   border-radius:10px; padding:6px 10px; color:#b91c1c; font-weight:900; cursor:pointer;
