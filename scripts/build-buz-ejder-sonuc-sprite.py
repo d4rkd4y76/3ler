@@ -19,9 +19,10 @@ MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012td-nova-buz-ejder-sonuc-manifes
 
 TARGET_FPS = 18
 TARGET_FRAME_COUNT = 72
-TARGET_MAX_H = 420
+TARGET_FRAME_H = 840
 MAX_SHEET_W = 4096
-WEBP_QUALITY = 86
+MAX_SHEET_H = 15800
+WEBP_QUALITY = 92
 
 
 def resolve_video() -> str:
@@ -51,12 +52,12 @@ def to_rgba(frame: np.ndarray) -> np.ndarray:
     return rgba
 
 
-def resize_max_h(rgba: np.ndarray, max_h: int) -> np.ndarray:
+def resize_to_h(rgba: np.ndarray, target_h: int) -> np.ndarray:
     h, w = rgba.shape[:2]
-    if h <= max_h:
+    nw = max(1, int(round(w * target_h / h)))
+    if h == target_h and w == nw:
         return rgba
-    nw = max(1, int(round(w * max_h / h)))
-    return np.array(Image.fromarray(rgba, "RGBA").resize((nw, max_h), Image.Resampling.LANCZOS))
+    return np.array(Image.fromarray(rgba, "RGBA").resize((nw, target_h), Image.Resampling.LANCZOS))
 
 
 def content_bbox_rgba(rgba: np.ndarray, thr: int = 22) -> tuple[int, int, int, int]:
@@ -102,14 +103,15 @@ def place_cell(crop: np.ndarray, cw: int, ch: int) -> np.ndarray:
     return cell
 
 
-def pick_cols(n: int, cw: int) -> int:
-    best, score = 4, 1e18
-    for cols in range(3, 13):
+def pick_cols(n: int, cw: int, ch: int) -> int:
+    best, score = 6, 1e18
+    for cols in range(4, 13):
         rows = int(math.ceil(n / cols))
         sw = cols * cw
-        if sw > MAX_SHEET_W:
+        sh = rows * ch
+        if sw > MAX_SHEET_W or sh > MAX_SHEET_H:
             continue
-        s = sw * rows * cw
+        s = sw * sh
         if s < score:
             score, best = s, cols
     return best
@@ -130,7 +132,7 @@ def main() -> int:
         return 1
 
     raw = subsample_frames(all_raw, TARGET_FRAME_COUNT)
-    sized = [resize_max_h(f, TARGET_MAX_H) for f in raw]
+    sized = [resize_to_h(f, TARGET_FRAME_H) for f in raw]
     trim_box = union_content_bbox(sized)
     crops = [crop_frame(f, trim_box) for f in sized]
     cell_h = max(c.shape[0] for c in crops)
@@ -138,7 +140,7 @@ def main() -> int:
     cells = [place_cell(c, cell_w, cell_h) for c in crops]
 
     n = len(cells)
-    cols = pick_cols(n, cell_w)
+    cols = pick_cols(n, cell_w, cell_h)
     rows = int(math.ceil(n / cols))
     sheet_w, sheet_h = cols * cell_w, rows * cell_h
     sheet = np.zeros((sheet_h, sheet_w, 4), dtype=np.uint8)

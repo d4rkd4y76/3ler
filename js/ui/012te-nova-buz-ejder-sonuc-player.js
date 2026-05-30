@@ -70,38 +70,28 @@
     return { sx: sx, sy: sy, sw: sw, sh: sh };
   }
 
-  function readViewport() {
-    var vv = window.visualViewport;
-    if (vv) {
-      return {
-        w: Math.max(1, Math.round(vv.width)),
-        h: Math.max(1, Math.round(vv.height)),
-        top: Math.max(0, vv.offsetTop),
-        left: Math.max(0, vv.offsetLeft)
-      };
-    }
+  function readScreenSize() {
+    var w = window.innerWidth || document.documentElement.clientWidth || 1;
+    var h = window.innerHeight || document.documentElement.clientHeight || 1;
     return {
-      w: Math.max(1, window.innerWidth || document.documentElement.clientWidth || 1),
-      h: Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1),
-      top: 0,
-      left: 0
+      w: Math.max(1, Math.round(w)),
+      h: Math.max(1, Math.round(h))
     };
   }
 
-  function syncOverlayBox(overlay) {
-    var vp = readViewport();
-    overlay.style.top = vp.top + 'px';
-    overlay.style.left = vp.left + 'px';
-    overlay.style.width = vp.w + 'px';
-    overlay.style.height = vp.h + 'px';
-    overlay.style.right = 'auto';
-    overlay.style.bottom = 'auto';
-    return vp;
+  function mountOverlayRoot(el) {
+    var root = document.documentElement;
+    if (el.parentNode !== root) {
+      root.appendChild(el);
+    }
   }
 
   function ensureOverlay() {
     var el = document.getElementById('nova-buz-sonuc-overlay');
-    if (el) return el;
+    if (el) {
+      mountOverlayRoot(el);
+      return el;
+    }
     el = document.createElement('div');
     el.id = 'nova-buz-sonuc-overlay';
     el.className = 'nova-buz-sonuc-overlay';
@@ -109,7 +99,7 @@
     var canvas = document.createElement('canvas');
     canvas.className = 'nova-buz-sonuc-overlay__canvas';
     el.appendChild(canvas);
-    document.body.appendChild(el);
+    mountOverlayRoot(el);
     return el;
   }
 
@@ -131,31 +121,30 @@
       var last = 0;
       var raf = 0;
       var done = false;
-      var viewW = 1;
-      var viewH = 1;
-      var dpr = 1;
+      var bufW = 1;
+      var bufH = 1;
 
       function layout() {
-        var vp = syncOverlayBox(overlay);
-        viewW = vp.w;
-        viewH = vp.h;
-        dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-        canvas.width = Math.max(1, Math.round(viewW * dpr));
-        canvas.height = Math.max(1, Math.round(viewH * dpr));
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var screen = readScreenSize();
+        var dpr = Math.max(1, window.devicePixelRatio || 1);
+        bufW = Math.max(1, Math.round(screen.w * dpr));
+        bufH = Math.max(1, Math.round(screen.h * dpr));
+        canvas.width = bufW;
+        canvas.height = bufH;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
       }
 
       function drawFrame() {
         var r = frameRect(m, frameIndex);
-        var scale = Math.max(viewW / r.sw, viewH / r.sh);
+        var scale = Math.max(bufW / r.sw, bufH / r.sh);
         var dw = r.sw * scale;
         var dh = r.sh * scale;
-        var dx = (viewW - dw) * 0.5;
-        var dy = (viewH - dh) * 0.5;
+        var dx = (bufW - dw) * 0.5;
+        var dy = (bufH - dh) * 0.5;
         ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, viewW, viewH);
+        ctx.fillRect(0, 0, bufW, bufH);
         ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
+        if (ctx.imageSmoothingQuality) ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
       }
 
