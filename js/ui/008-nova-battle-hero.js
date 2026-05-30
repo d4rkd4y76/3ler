@@ -411,6 +411,9 @@
       return;
     }
     mountMainScreenHero(heroId);
+    if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
+      window.novaBuzEjderPreloadTrueClipsIfEquipped();
+    }
   }
 
   function isHeroEquipped(data) {
@@ -948,7 +951,7 @@
         host.classList.add('nova-sp-fx-live');
         if (!jsFx) host.classList.add('nova-sp-fx-' + variant);
       }
-      return waitMs(spriteOnly ? 60 : (jsFx ? 80 : 400));
+      return waitMs(spriteOnly ? 520 : (jsFx ? 80 : 400));
     }).then(function () {
       if (!spriteOnly) spawnArenaFx(arena, variant);
       if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
@@ -970,7 +973,7 @@
     }).then(function () {
       arena.classList.remove('is-centered', 'is-caption-show', 'is-slamming', 'is-epic');
       arena.classList.add('is-exiting');
-      return waitMs(spriteOnly ? 280 : 360);
+      return waitMs(spriteOnly ? 480 : 280);
     });
   }
 
@@ -1277,6 +1280,9 @@
     window.novaOpenSinglePlayerGameScreen = function () {
       open.apply(this, arguments);
       hideArena();
+      if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
+        window.novaBuzEjderPreloadTrueClipsIfEquipped();
+      }
     };
     window.novaOpenSinglePlayerGameScreen.__novaHeroPatched = true;
     var close = window.novaCloseSinglePlayerGameScreen;
@@ -1452,6 +1458,7 @@
     try { refreshMainScreenHero(); } catch (_) {}
   }
 
+  window.novaGetEquippedBattleHeroId = getEquippedHeroId;
   window.novaTryPlayBattleHeroFx = novaTryPlayBattleHeroFx;
   window.novaTryPlayKnightCorrectFx = novaTryPlayBattleHeroFx;
   window.novaRefreshMainScreenHero = refreshMainScreenHero;

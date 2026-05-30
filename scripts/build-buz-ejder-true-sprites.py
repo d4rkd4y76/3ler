@@ -24,28 +24,44 @@ TARGET_H = 300
 MAX_SHEET_W = 4096
 BBOX_THR = 4
 H_MARGIN = 0.0
-PAD_TOP = 12
-PAD_BOTTOM = 32
+PAD_TOP = 32
+PAD_BOTTOM = 52
 WEBP_QUALITY = 89
 
 CLIP_SPECS = [
     ("cok_iyiydi", "cok_iyiydi.mp4", "buz-ejder-true-cok-iyiydi.webp", 0),
     ("iste_bu", "iste_bu.mp4", "buz-ejder-true-iste-bu.webp", 1),
     ("mukemmel", "mukemmel.mp4", "buz-ejder-true-mukemmel.webp", 2),
+    ("sen_dahi", "sen_dahi", "buz-ejder-true-sen-dahi.webp", 3),
 ]
 
 
+def norm_name(s: str) -> str:
+    s = s.lower()
+    for a, b in (
+        ("ü", "u"), ("ö", "o"), ("ı", "i"), ("ş", "s"), ("ğ", "g"), ("ç", "c"),
+        ("â", "a"), ("î", "i"), ("û", "u"), (" ", "_"), ("-", "_"),
+    ):
+        s = s.replace(a, b)
+    return s
+
+
 def resolve_video(name: str) -> str:
+    if not name.endswith(".mp4"):
+        name = name + ".mp4"
     exact = os.path.join(TRUE_DIR, name)
     if os.path.isfile(exact):
         return exact
-    stem = os.path.splitext(name)[0]
-    hits = glob.glob(os.path.join(TRUE_DIR, stem + ".mp4"))
-    if hits:
-        return hits[0]
-    for h in glob.glob(os.path.join(TRUE_DIR, "*.mp4")):
-        if stem in os.path.basename(h).lower().replace("ü", "u").replace("ö", "o"):
-            return h
+    stem = norm_name(os.path.splitext(name)[0])
+    hits = glob.glob(os.path.join(TRUE_DIR, "*.mp4"))
+    for path in hits:
+        base = norm_name(os.path.splitext(os.path.basename(path))[0])
+        if base == stem or stem in base or base.startswith(stem):
+            return path
+    for path in hits:
+        base = norm_name(os.path.splitext(os.path.basename(path))[0])
+        if stem[:6] and stem[:6] in base:
+            return path
     return exact
 
 

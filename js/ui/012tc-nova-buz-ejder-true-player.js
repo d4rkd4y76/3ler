@@ -4,6 +4,8 @@
 
   var engines = new WeakMap();
   var sheetCache = {};
+  var preloadAllPromise = null;
+  var lastTrueRoutine = -1;
 
   function rootManifest() {
     return window.NOVA_BUZ_EJDER_TRUE_MANIFEST || null;
@@ -12,6 +14,22 @@
   function scriptBase() {
     if (window.NOVA_BUZ_EJDER_TRUE_BASE) return window.NOVA_BUZ_EJDER_TRUE_BASE;
     return 'hero/ice_dragon/sprite/true/';
+  }
+
+  function getEquippedHeroId() {
+    if (typeof window.novaGetEquippedBattleHeroId === 'function') {
+      return window.novaGetEquippedBattleHeroId();
+    }
+    try {
+      var s = JSON.parse(localStorage.getItem('selectedStudent') || '{}');
+      return String(s.battleHero || '').trim();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function isBuzEquipped() {
+    return getEquippedHeroId() === 'buz_ejder';
   }
 
   function resolveUrl(file) {
@@ -25,14 +43,41 @@
     }
   }
 
+  function clipCount() {
+    var root = rootManifest();
+    return root && root.clips ? root.clips.length : 0;
+  }
+
   function clipForRoutine(routine) {
     var root = rootManifest();
-    if (!root || !root.clips) return null;
-    routine = ((routine == null ? 0 : routine) % 3 + 3) % 3;
-    for (var i = 0; i < root.clips.length; i++) {
-      if (root.clips[i].routine === routine) return root.clips[i];
+    if (!root || !root.clips || !root.clips.length) return null;
+    var n = root.clips.length;
+    if (typeof routine === 'number' && routine >= 0 && routine < n) {
+      for (var i = 0; i < root.clips.length; i++) {
+        if (root.clips[i].routine === routine) return root.clips[i];
+      }
+      return root.clips[routine];
+    }
+    routine = ((routine == null ? 0 : routine) % n + n) % n;
+    for (var j = 0; j < root.clips.length; j++) {
+      if (root.clips[j].routine === routine) return root.clips[j];
     }
     return root.clips[routine] || root.clips[0];
+  }
+
+  function pickTrueClipRoutine() {
+    var n = clipCount();
+    if (n < 1) return 0;
+    if (n === 1) return rootManifest().clips[0].routine || 0;
+    var r;
+    var tries = 0;
+    do {
+      r = Math.floor(Math.random() * n);
+      tries += 1;
+    } while (r === lastTrueRoutine && tries < 8);
+    lastTrueRoutine = r;
+    var clip = rootManifest().clips[r];
+    return clip && typeof clip.routine === 'number' ? clip.routine : r;
   }
 
   function loadImage(url) {
@@ -58,6 +103,21 @@
     return sheetCache[clip.sheet];
   }
 
+  function preloadAllTrueClips(force) {
+    if (!hasTrueClips()) return Promise.resolve(false);
+    if (preloadAllPromise && !force) return preloadAllPromise;
+    var clips = rootManifest().clips;
+    preloadAllPromise = Promise.all(clips.map(function (clip) {
+      return loadClipAssets(clip);
+    })).then(function () { return true; }).catch(function () { return false; });
+    return preloadAllPromise;
+  }
+
+  function preloadTrueClipsIfEquipped(force) {
+    if (!isBuzEquipped() || !hasTrueClips()) return Promise.resolve(false);
+    return preloadAllTrueClips(force);
+  }
+
   function frameRect(clip, index) {
     var col = index % clip.cols;
     var row = (index / clip.cols) | 0;
@@ -78,19 +138,20 @@
     this.running = false;
     this.done = false;
     this.raf = 0;
-    this.frameFloat = 0;
+    this.frameIndex = 0;
     this.totalFrames = clip.frameCount || clip.loopEnd || 48;
     this.fps = clip.fps || 18;
     this.frameMs = 1000 / this.fps;
+    this.accum = 0;
     this.lastTick = 0;
     this.onComplete = null;
-    this.resizeObs = null;
     this.lastCw = 0;
     this.lastCh = 0;
+    this.layoutW = 0;
+    this.layoutH = 0;
     this.scaleMul = (rootManifest().scale && rootManifest().scale.sp) || 1;
     this.loop = this.loop.bind(this);
     this.resize = this.resize.bind(this);
-    this.draw = this.draw.bind(this);
   }
 
   TrueClipEngine.prototype.resize = function () {
@@ -100,10 +161,12 @@
     var h = Math.max(160, Math.round(rect.height || parent.height || this.wrap.clientHeight || 320));
     if (w < 80 && parent.width > w) w = Math.round(parent.width);
     if (h < 80 && parent.height > h) h = Math.round(parent.height);
+    if (w === this.layoutW && h === this.layoutH) return;
+    this.layoutW = w;
+    this.layoutH = h;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var cw = Math.max(8, Math.round(w * dpr));
     var ch = Math.max(8, Math.round(h * dpr));
-    if (cw === this.lastCw && ch === this.lastCh) return;
     this.lastCw = cw;
     this.lastCh = ch;
     this.canvas.width = cw;
@@ -113,16 +176,20 @@
   };
 
   TrueClipEngine.prototype.advance = function (delta) {
-    if (delta > this.frameMs * 3) delta = this.frameMs;
-    this.frameFloat = Math.min(this.totalFrames - 1, this.frameFloat + delta / this.frameMs);
-    if (this.frameFloat >= this.totalFrames - 1) this.done = true;
-  };
-
-  TrueClipEngine.prototype.drawFrame = function (index, alpha, dx, dy, dw, dh) {
-    if (alpha <= 0.001 || index < 0 || index >= this.totalFrames) return;
-    var r = frameRect(this.clip, index);
-    this.ctx.globalAlpha = alpha;
-    this.ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+    if (delta > this.frameMs * 2) {
+      this.accum = 0;
+      return;
+    }
+    this.accum += delta;
+    while (this.accum >= this.frameMs) {
+      this.accum -= this.frameMs;
+      if (this.frameIndex < this.totalFrames - 1) {
+        this.frameIndex += 1;
+      } else {
+        this.done = true;
+        break;
+      }
+    }
   };
 
   TrueClipEngine.prototype.draw = function (delta) {
@@ -137,23 +204,16 @@
     var scale = fit * this.scaleMul;
     var dw = Math.round(clip.frameWidth * scale);
     var dh = Math.round(clip.frameHeight * scale);
-    var dx = Math.round((cw - dw) * 0.5);
-    var dy = Math.round(ch - dh);
-    var fi = Math.floor(this.frameFloat);
-    var frac = this.frameFloat - fi;
+    var dx = ((cw - dw) / 2) | 0;
+    var dy = (ch - dh) | 0;
+    var r = frameRect(clip, this.frameIndex);
 
     ctx.clearRect(0, 0, cw, ch);
     ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 1;
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-
-    if (frac > 0.02 && fi < this.totalFrames - 1) {
-      this.drawFrame(fi, 1 - frac, dx, dy, dw, dh);
-      this.drawFrame(fi + 1, frac, dx, dy, dw, dh);
-    } else {
-      this.drawFrame(fi, 1, dx, dy, dw, dh);
-    }
-    ctx.globalAlpha = 1;
+    ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
   };
 
   TrueClipEngine.prototype.loop = function (now) {
@@ -176,16 +236,12 @@
     if (this.running || !this.ctx) return;
     this.running = true;
     this.done = false;
-    this.frameFloat = 0;
+    this.frameIndex = 0;
+    this.accum = 0;
     this.lastTick = 0;
     this.resize();
     this.draw(0);
     this.raf = requestAnimationFrame(this.loop);
-    if (typeof ResizeObserver !== 'undefined' && !this.resizeObs) {
-      var self = this;
-      this.resizeObs = new ResizeObserver(function () { self.resize(); });
-      this.resizeObs.observe(this.wrap);
-    }
   };
 
   TrueClipEngine.prototype.stop = function () {
@@ -193,10 +249,6 @@
     this.done = true;
     if (this.raf) cancelAnimationFrame(this.raf);
     this.raf = 0;
-    if (this.resizeObs) {
-      try { this.resizeObs.disconnect(); } catch (_) {}
-      this.resizeObs = null;
-    }
   };
 
   function unmount(host) {
@@ -234,13 +286,17 @@
 
   function playTrueClip(host, routine) {
     if (!host || !rootManifest()) return waitMs(680);
-    var clipMeta = clipForRoutine(routine);
+    var clipMeta = clipForRoutine(typeof routine === 'number' ? routine : pickTrueClipRoutine());
     if (!clipMeta) return waitMs(680);
 
     unmount(host);
     host.classList.add('nova-sp-fx-true-sprite', 'nova-hero-mount--buz-ejder');
 
-    return loadClipAssets(clipMeta).then(function (assets) {
+    var ready = preloadAllTrueClips().then(function () {
+      return loadClipAssets(clipMeta);
+    });
+
+    return ready.then(function (assets) {
       return waitForHostLayout(host).then(function (ok) {
         if (!ok || !document.body.contains(host)) return waitMs(400);
 
@@ -276,21 +332,14 @@
   }
 
   function preloadTrueClips() {
-    if (!rootManifest() || !rootManifest().clips) return;
-    var clips = rootManifest().clips;
-    if (clips[0] && clips[0].sheet && !sheetCache[clips[0].sheet]) {
-      loadClipAssets(clips[0]).catch(function () {});
-    }
-    setTimeout(function () {
-      for (var i = 1; i < clips.length; i++) {
-        if (!clips[i] || !clips[i].sheet || sheetCache[clips[i].sheet]) continue;
-        loadClipAssets(clips[i]).catch(function () {});
-      }
-    }, 2000);
+    return preloadTrueClipsIfEquipped(false);
   }
 
   window.novaBuzEjderHasTrueClips = hasTrueClips;
   window.novaBuzEjderPlayTrueClip = playTrueClip;
   window.novaBuzEjderTrueUnmount = unmount;
   window.novaBuzEjderPreloadTrueClips = preloadTrueClips;
+  window.novaBuzEjderPreloadTrueClipsIfEquipped = preloadTrueClipsIfEquipped;
+  window.novaBuzEjderEnsureTrueClipsReady = preloadAllTrueClips;
+  window.novaBuzEjderPickTrueClipRoutine = pickTrueClipRoutine;
 })();
