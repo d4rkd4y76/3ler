@@ -30,7 +30,7 @@ WEBP_QUALITY = 89
 
 CLIP_SPECS = [
     ("cok_iyiydi", "cok_iyiydi.mp4", "buz-ejder-true-cok-iyiydi.webp", 0),
-    ("iste_bu", "iste_bu.mp4", "buz-ejder-true-iste-bu.webp", 1),
+    ("iste_bu", "iste_bu", "buz-ejder-true-iste-bu.webp", 1),
     ("mukemmel", "mukemmel.mp4", "buz-ejder-true-mukemmel.webp", 2),
     ("sen_dahi", "sen_dahi", "buz-ejder-true-sen-dahi.webp", 3),
 ]
@@ -365,7 +365,9 @@ def main() -> int:
         print("Missing:", TRUE_DIR, file=sys.stderr)
         return 1
 
-    sample_video = resolve_video(CLIP_SPECS[0][1])
+    sample_video = resolve_video("sen_dahi")
+    if not os.path.isfile(sample_video):
+        sample_video = resolve_video(CLIP_SPECS[0][1])
     probe = []
     for i, frame in enumerate(iio.imiter(sample_video, plugin="pyav")):
         if i >= 10:

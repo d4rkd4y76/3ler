@@ -387,16 +387,16 @@
 .nova-sp-hero-arena--sprite-only.is-active{
   align-items: center;
   justify-content: center;
-  padding-bottom: min(18vh, 156px);
+  padding-bottom: min(23vh, 200px);
 }
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__inner{
-  width: min(726px, 96vw);
+  width: min(944px, 96vw);
   overflow: visible;
 }
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__host{
   width: 100%;
-  min-height: min(726px, 94vh);
-  height: min(726px, 94vh);
+  min-height: min(944px, 96vh);
+  height: min(944px, 96vh);
   overflow: visible;
   transform: translateY(18%) scale(.94);
   opacity: 0;
@@ -414,11 +414,11 @@
 .nova-sp-hero-arena__host .nova-hero-buz-true-wrap{
   width: 100%;
   height: 100%;
-  min-height: min(726px, 94vh);
+  min-height: min(944px, 96vh);
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 16%;
+  padding-bottom: 11%;
   box-sizing: border-box;
   background: transparent;
   pointer-events: none;
@@ -428,7 +428,7 @@
 }
 .nova-sp-hero-arena--sprite-only.is-centered .nova-hero-buz-true-ready .nova-hero-buz-true-wrap{
   opacity: 1;
-  transform: translateY(-4%);
+  transform: translateY(-7%);
 }
 .nova-sp-hero-arena--sprite-only.is-exiting .nova-hero-buz-true-wrap{
   opacity: 0;
