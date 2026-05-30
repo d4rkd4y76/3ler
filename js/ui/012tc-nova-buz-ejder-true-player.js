@@ -78,11 +78,10 @@
     this.running = false;
     this.done = false;
     this.raf = 0;
-    this.frameIndex = 0;
+    this.frameFloat = 0;
     this.totalFrames = clip.frameCount || clip.loopEnd || 48;
-    this.fps = clip.fps || 20;
+    this.fps = clip.fps || 18;
     this.frameMs = 1000 / this.fps;
-    this.accum = 0;
     this.lastTick = 0;
     this.onComplete = null;
     this.resizeObs = null;
@@ -91,7 +90,7 @@
     this.scaleMul = (rootManifest().scale && rootManifest().scale.sp) || 1;
     this.loop = this.loop.bind(this);
     this.resize = this.resize.bind(this);
-    this.tick = this.tick.bind(this);
+    this.draw = this.draw.bind(this);
   }
 
   TrueClipEngine.prototype.resize = function () {
@@ -113,32 +112,24 @@
     this.canvas.style.height = h + 'px';
   };
 
-  TrueClipEngine.prototype.tick = function () {
-    var now = performance.now();
-    if (!this.lastTick) this.lastTick = now;
-    var delta = now - this.lastTick;
-    this.lastTick = now;
-    if (delta > this.frameMs * 3) {
-      this.accum = 0;
-      this.lastTick = now;
-      delta = 0;
-    }
-    this.accum += delta;
-    if (this.accum >= this.frameMs) {
-      this.accum -= this.frameMs;
-      if (this.frameIndex < this.totalFrames - 1) {
-        this.frameIndex += 1;
-      } else {
-        this.done = true;
-      }
-    }
+  TrueClipEngine.prototype.advance = function (delta) {
+    if (delta > this.frameMs * 3) delta = this.frameMs;
+    this.frameFloat = Math.min(this.totalFrames - 1, this.frameFloat + delta / this.frameMs);
+    if (this.frameFloat >= this.totalFrames - 1) this.done = true;
   };
 
-  TrueClipEngine.prototype.draw = function () {
+  TrueClipEngine.prototype.drawFrame = function (index, alpha, dx, dy, dw, dh) {
+    if (alpha <= 0.001 || index < 0 || index >= this.totalFrames) return;
+    var r = frameRect(this.clip, index);
+    this.ctx.globalAlpha = alpha;
+    this.ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+  };
+
+  TrueClipEngine.prototype.draw = function (delta) {
     if (!this.ctx || !this.img || !this.clip) return;
-    this.tick();
+    if (typeof delta === 'number') this.advance(delta);
+
     var clip = this.clip;
-    var r = frameRect(clip, this.frameIndex);
     var ctx = this.ctx;
     var cw = this.canvas.width;
     var ch = this.canvas.height;
@@ -148,16 +139,29 @@
     var dh = Math.round(clip.frameHeight * scale);
     var dx = Math.round((cw - dw) * 0.5);
     var dy = Math.round(ch - dh);
+    var fi = Math.floor(this.frameFloat);
+    var frac = this.frameFloat - fi;
+
     ctx.clearRect(0, 0, cw, ch);
     ctx.globalCompositeOperation = 'source-over';
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+
+    if (frac > 0.02 && fi < this.totalFrames - 1) {
+      this.drawFrame(fi, 1 - frac, dx, dy, dw, dh);
+      this.drawFrame(fi + 1, frac, dx, dy, dw, dh);
+    } else {
+      this.drawFrame(fi, 1, dx, dy, dw, dh);
+    }
+    ctx.globalAlpha = 1;
   };
 
-  TrueClipEngine.prototype.loop = function () {
+  TrueClipEngine.prototype.loop = function (now) {
     if (!this.running) return;
-    this.draw();
+    if (!this.lastTick) this.lastTick = now;
+    var delta = now - this.lastTick;
+    this.lastTick = now;
+    this.draw(delta);
     if (this.done) {
       this.running = false;
       if (this.raf) cancelAnimationFrame(this.raf);
@@ -172,12 +176,11 @@
     if (this.running || !this.ctx) return;
     this.running = true;
     this.done = false;
-    this.frameIndex = 0;
-    this.accum = 0;
+    this.frameFloat = 0;
     this.lastTick = 0;
     this.resize();
-    this.draw();
-    this.loop();
+    this.draw(0);
+    this.raf = requestAnimationFrame(this.loop);
     if (typeof ResizeObserver !== 'undefined' && !this.resizeObs) {
       var self = this;
       this.resizeObs = new ResizeObserver(function () { self.resize(); });
@@ -257,7 +260,7 @@
           requestAnimationFrame(function () {
             if (!document.body.contains(host)) { resolve(); return; }
             eng.resize();
-            eng.draw();
+            eng.draw(0);
             eng.start();
           });
         });
@@ -274,10 +277,16 @@
 
   function preloadTrueClips() {
     if (!rootManifest() || !rootManifest().clips) return;
-    rootManifest().clips.forEach(function (clip) {
-      if (!clip || !clip.sheet || sheetCache[clip.sheet]) return;
-      loadClipAssets(clip).catch(function () {});
-    });
+    var clips = rootManifest().clips;
+    if (clips[0] && clips[0].sheet && !sheetCache[clips[0].sheet]) {
+      loadClipAssets(clips[0]).catch(function () {});
+    }
+    setTimeout(function () {
+      for (var i = 1; i < clips.length; i++) {
+        if (!clips[i] || !clips[i].sheet || sheetCache[clips[i].sheet]) continue;
+        loadClipAssets(clips[i]).catch(function () {});
+      }
+    }, 2000);
   }
 
   window.novaBuzEjderHasTrueClips = hasTrueClips;

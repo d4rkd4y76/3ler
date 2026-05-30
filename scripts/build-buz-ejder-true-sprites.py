@@ -18,10 +18,15 @@ TRUE_DIR = os.path.join(ROOT, "hero", "ice_dragon", "true")
 OUT_DIR = os.path.join(ROOT, "hero", "ice_dragon", "sprite", "true")
 MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012tb-nova-buz-ejder-true-manifest.js")
 
-TARGET_FPS = 20
-TARGET_H = 340
+TARGET_FPS = 18
+TARGET_FRAME_COUNT = 64
+TARGET_H = 300
 MAX_SHEET_W = 4096
-PAD = 4
+BBOX_THR = 4
+H_MARGIN = 0.0
+PAD_TOP = 12
+PAD_BOTTOM = 32
+WEBP_QUALITY = 89
 
 CLIP_SPECS = [
     ("cok_iyiydi", "cok_iyiydi.mp4", "buz-ejder-true-cok-iyiydi.webp", 0),
@@ -84,9 +89,6 @@ def is_greenish(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
 
 
 def is_buz_foreground(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
-    """Ejder + yazı — asla düz yeşil arka plan değil."""
-    if is_greenish(rgb, key).any() is False:
-        pass
     green = is_greenish(rgb, key)
     r = rgb[:, :, 0].astype(np.float32)
     g = rgb[:, :, 1].astype(np.float32)
@@ -212,6 +214,23 @@ def alpha_bbox(rgba: np.ndarray, thr: int = 28) -> tuple[int, int, int, int]:
     return int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1
 
 
+def stage_frames(chroma: list[np.ndarray]) -> list[np.ndarray]:
+    """Tek global sahne: yatayda tam genişlik, dikeyde birleşik kırpma."""
+    fh, fw = chroma[0].shape[:2]
+    mx = max(0, int(fw * H_MARGIN))
+    boxes = [alpha_bbox(c, thr=BBOX_THR) for c in chroma]
+    y0 = max(0, min(b[1] for b in boxes) - PAD_TOP)
+    y1 = min(fh, max(b[3] for b in boxes) + PAD_BOTTOM)
+    return [c[y0:y1, mx : fw - mx] for c in chroma]
+
+
+def subsample_frames(frames: list[np.ndarray], target: int) -> list[np.ndarray]:
+    if len(frames) <= target:
+        return frames
+    idx = np.linspace(0, len(frames) - 1, target)
+    return [frames[int(round(i))] for i in idx]
+
+
 def resize_h(rgba: np.ndarray, h: int) -> np.ndarray:
     w = max(1, int(round(rgba.shape[1] * h / rgba.shape[0])))
     return np.array(Image.fromarray(rgba, "RGBA").resize((w, h), Image.Resampling.LANCZOS))
@@ -254,30 +273,21 @@ def build_clip(spec: tuple[str, str, str, int], key_hint: tuple[int, int, int] |
         raise FileNotFoundError(video)
 
     meta = iio.immeta(video, plugin="pyav")
-    src_fps = float(meta.get("fps", 24) or 24)
-    step = max(1, int(round(src_fps / TARGET_FPS)))
 
-    raw: list[np.ndarray] = []
-    for i, frame in enumerate(iio.imiter(video, plugin="pyav")):
-        if i % step != 0:
-            continue
+    all_raw: list[np.ndarray] = []
+    for frame in iio.imiter(video, plugin="pyav"):
         if frame.shape[2] == 4:
             frame = frame[:, :, :3]
-        raw.append(frame)
+        all_raw.append(frame)
 
+    raw = subsample_frames(all_raw, TARGET_FRAME_COUNT)
     if len(raw) < 4:
         raise RuntimeError("too few frames: " + video)
 
     key = key_hint or sample_green_key(raw)
     chroma = [chroma_frame(f, key) for f in raw]
-
-    boxes = [alpha_bbox(c) for c in chroma]
-    gx0 = max(0, min(b[0] for b in boxes) - PAD)
-    gy0 = max(0, min(b[1] for b in boxes) - PAD)
-    gx1 = min(chroma[0].shape[1], max(b[2] for b in boxes) + PAD)
-    gy1 = min(chroma[0].shape[0], max(b[3] for b in boxes) + PAD)
-
-    crops = [resize_h(c[gy0:gy1, gx0:gx1], TARGET_H) for c in chroma]
+    staged = stage_frames(chroma)
+    crops = [resize_h(c, TARGET_H) for c in staged]
     cell_h = max(c.shape[0] for c in crops)
     cell_w = max(c.shape[1] for c in crops)
     cells = [finalize_cell(place_cell(c, cell_w, cell_h), key) for c in crops]
@@ -294,7 +304,9 @@ def build_clip(spec: tuple[str, str, str, int], key_hint: tuple[int, int, int] |
 
     os.makedirs(OUT_DIR, exist_ok=True)
     out_path = os.path.join(OUT_DIR, out_name)
-    Image.fromarray(sheet, "RGBA").save(out_path, lossless=True, method=6)
+    Image.fromarray(sheet, "RGBA").save(
+        out_path, quality=WEBP_QUALITY, method=6, lossless=False
+    )
 
     mb = os.path.getsize(out_path) / (1024 * 1024)
     sample = cells[0]
@@ -351,7 +363,7 @@ def main() -> int:
         clips.append(build_clip(spec, key))
 
     manifest = {
-        "version": 2,
+        "version": 3,
         "base": "hero/ice_dragon/sprite/true/",
         "fps": TARGET_FPS,
         "scale": {"sp": 1.0},

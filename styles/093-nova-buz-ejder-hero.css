@@ -378,12 +378,14 @@
   display: none !important;
 }
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__inner{
-  width: min(360px, 94vw);
+  width: min(400px, 96vw);
+  overflow: visible;
 }
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-arena__host{
   width: 100%;
   min-height: min(360px, 46vh);
   height: min(360px, 46vh);
+  overflow: visible;
 }
 .nova-sp-hero-arena__host .nova-hero-buz-true-wrap{
   width: 100%;
