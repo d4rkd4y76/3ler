@@ -130,6 +130,7 @@
     star_fairy: ['novaYildizPerisiUnmountSprite', 'novaYildizPerisiUnmountVitrinVideo'],
     firtina_okcu: ['novaFirtinaOkcuUnmountSprite', 'novaFirtinaOkcuUnmountVitrinVideo'],
     tas_muhafiz: ['novaTasMuhafizUnmountSprite', 'novaTasMuhafizUnmountVitrinVideo'],
+    golge_parsi: ['novaGolgeParsiUnmountSprite', 'novaGolgeParsiUnmountVitrinVideo'],
     buz_ejder: ['novaBuzEjderUnmountSprite', 'novaEpicDragonUnmountSprite'],
     alev_ejder: ['novaAlevEjderUnmountSprite', 'novaEpicDragonUnmountSprite'],
     gece_ejder: ['novaGeceEjderUnmountSprite', 'novaEpicDragonUnmountSprite']
@@ -190,6 +191,9 @@
     }
     if (id === 'tas_muhafiz' && typeof window.novaTasMuhafizPreloadSprite === 'function') {
       jobs.push(window.novaTasMuhafizPreloadSprite());
+    }
+    if (id === 'golge_parsi' && typeof window.novaGolgeParsiPreloadSprite === 'function') {
+      jobs.push(window.novaGolgeParsiPreloadSprite());
     }
     if (id && typeof window.novaEpicDragonPreloadSprite === 'function') {
       jobs.push(window.novaEpicDragonPreloadSprite(id));

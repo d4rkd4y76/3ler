@@ -220,6 +220,20 @@
   height: min(240px, 42vh);
   margin: 0 auto;
 }
+.nh-hero-sheet__arena--golge-sprite{
+  min-height: clamp(200px, 34vh, 320px);
+}
+.nh-hero-sheet__arena--golge-sprite .nh-hero-sheet__hero-host{
+  width: 100%;
+  max-width: 280px;
+  min-height: 160px;
+}
+.nh-hero-sheet__arena--golge-sprite .nova-hero-golge-sprite{
+  width: 100%;
+  max-width: 280px;
+  height: min(240px, 42vh);
+  margin: 0 auto;
+}
 .nh-hero-sheet__stars{
   display: flex;
   align-items: center;

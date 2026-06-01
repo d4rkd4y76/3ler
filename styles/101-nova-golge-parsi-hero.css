@@ -1,0 +1,260 @@
+﻿/* Gölge Parsı — sprite kahraman (Temel, yıldız sistemi) */
+
+.nova-hero-golge-sprite {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.nova-hero-golge-sprite--main {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.nova-hero-golge-sprite--detail {
+  align-items: center;
+  justify-content: center;
+}
+
+.nova-hero-golge-sprite__canvas {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 22px rgba(168, 85, 247, 0.42))
+    drop-shadow(0 0 16px rgba(139, 92, 246, 0.35));
+}
+
+.nova-hero-golge-sprite--main .nova-hero-golge-sprite__canvas {
+  filter: drop-shadow(0 4px 14px rgba(168, 85, 247, 0.4))
+    drop-shadow(0 0 12px rgba(87, 83, 78, 0.28));
+}
+
+.nova-hero-store-card--golge .nova-hero-svg-host[data-golge-sprite='1'] > svg,
+.nova-hero-svg-host[data-golge-sprite='1'] .nova-hero-golge-stack {
+  display: none !important;
+}
+
+.nova-hero-store-card--golge .nova-hero-preview,
+.nova-store-preview--hero.nova-store-preview--golge {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 100%, rgba(168, 85, 247, 0.26), transparent 70%),
+    radial-gradient(ellipse 70% 45% at 20% 0%, rgba(139, 92, 246, 0.22), transparent 55%),
+    linear-gradient(180deg, #1a0a2e 0%, #2e1065 42%, #4c1d95 100%) !important;
+}
+
+.nova-hero-svg-host.nova-hero-golge-vitrin-ready {
+  min-height: 150px;
+}
+
+/* —— Ana ekran: yıldızlar EPİK rozet hizasında, kahraman hemen altında (ejder düzeni) —— */
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-zone__pad,
+#main-screen .nova-main-hero-zone--golge.is-visible .nova-main-hero-zone__pad {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden;
+}
+
+#main-screen .nova-main-hero-zone--golge {
+  z-index: 2;
+  width: clamp(84px, 20vw, 102px);
+  height: clamp(94px, 21vw, 108px);
+  overflow: visible;
+}
+
+#main-screen .nova-main-hero-zone--golge.is-visible {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-float {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-stars {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 62px;
+  z-index: 15;
+  margin: 0;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-slot {
+  position: relative !important;
+  inset: auto !important;
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-slot .nova-hero-svg,
+#main-screen .nova-main-hero-zone--golge .nova-main-hero-host,
+#main-screen .nova-main-hero-zone--golge .nova-hero-golge-sprite {
+  width: 92px;
+  height: 88px;
+  max-width: 92px;
+  max-height: 88px;
+  min-width: 92px;
+  min-height: 88px;
+  margin: 0 auto;
+  pointer-events: none;
+  transform: translateX(8px);
+}
+
+#main-screen .nova-main-hero-zone--golge.is-visible .nova-main-hero-float {
+  animation: none;
+}
+
+#main-screen .nova-main-hero-zone--golge .nova-hero-golge-sprite--main {
+  width: 92px;
+  height: 88px;
+}
+
+#main-screen .nova-main-hero-zone--golge .nova-hero-golge-sprite__canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Detay vitrin paneli */
+.nova-store-detail-preview--hero .nova-store-preview--golge {
+  overflow: hidden;
+}
+
+.nova-store-detail-preview--hero .nova-store-preview--golge .nova-hero-svg-host {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Kahraman özellik sayfası (Fırtına Okçusu ile aynı) */
+.nh-hero-sheet__arena--golge-sprite {
+  min-height: clamp(200px, 34vh, 320px);
+}
+
+.nh-hero-sheet__arena--golge-sprite .nova-hero-golge-sprite {
+  min-height: 160px;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.nh-hero-sheet__arena--golge {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(168, 85, 247, 0.3), transparent 72%),
+    radial-gradient(ellipse 55% 38% at 50% 12%, rgba(163, 163, 163, 0.14), transparent 70%),
+    linear-gradient(168deg, #1a0a2e 0%, #2e1065 55%, #4c1d95 100%);
+}
+
+/* Seviye / envanter küçük önizleme */
+.nh-level-hero-preview--golge .nh-level-hero-preview__host,
+.char-inv-hero-card .nova-hero-mount--golge-parsi .nova-hero-golge-sprite {
+  min-height: 120px;
+}
+
+.nh-level-hero-preview--golge .nova-hero-golge-sprite {
+  max-height: 200px;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+/* Düello hazırlık */
+.ndep-hero-box.ndep-has-hero .nova-hero-mount--golge-parsi .nova-hero-golge-sprite,
+.ndep-hero-box.ndep-has-hero .nova-hero-mount--golge-parsi .nova-hero-golge-sprite__canvas {
+  transform-origin: center bottom;
+}
+
+/* Doğru cevap — tek kişilik (styles/093 sprite-only + buz ile aynı ölçek) */
+.nova-sp-hero-arena__host .nova-hero-golge-true-wrap {
+  width: 100%;
+  height: 100%;
+  min-height: min(944px, 96vh);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 11%;
+  box-sizing: border-box;
+  background: transparent;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.42s ease 0.08s, transform 0.48s cubic-bezier(0.22, 1, 0.34, 1) 0.08s;
+}
+
+.nova-sp-hero-arena--sprite-only.is-centered .nova-hero-golge-true-ready .nova-hero-golge-true-wrap {
+  opacity: 1;
+  transform: translateY(-7%);
+}
+
+.nova-sp-hero-arena--sprite-only.is-exiting .nova-hero-golge-true-wrap,
+.nova-hero-golge-true-wrap--done {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.32s ease, transform 0.36s ease;
+}
+
+.nova-sp-hero-arena__host .nova-hero-golge-true-sprite__canvas {
+  display: block;
+  max-width: 100%;
+  background: transparent;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(168, 85, 247, 0.36));
+}
+
+.nova-sp-hero-arena--sprite-only .nova-sp-hero-speech {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nova-sp-fx-true-sprite.nova-hero-mount--golge-parsi .nova-hero-golge-sprite {
+  display: none !important;
+}
+
+/* Sezon sıralaması — sprite + yıldızlar */
+#rankingPanel.nova-season-rank .nsr-hero-pic .nova-hero-golge-sprite {
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic .nova-hero-golge-sprite__canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  filter: drop-shadow(0 2px 5px rgba(168, 85, 247, 0.4));
+}

@@ -216,6 +216,8 @@
         window.novaYildizPerisiUnmountSprite(mountHost);
       } else if (mountHost && hid === 'tas_muhafiz' && typeof window.novaTasMuhafizUnmountSprite === 'function') {
         window.novaTasMuhafizUnmountSprite(mountHost);
+      } else if (mountHost && hid === 'golge_parsi' && typeof window.novaGolgeParsiUnmountSprite === 'function') {
+        window.novaGolgeParsiUnmountSprite(mountHost);
       } else if (mountHost && typeof window.novaEpicDragonUnmountSprite === 'function') {
         window.novaEpicDragonUnmountSprite(mountHost, hid);
       }
@@ -287,12 +289,14 @@
         'nh-hero-sheet__arena--gece-sprite',
         'nh-hero-sheet__arena--firtina-sprite',
         'nh-hero-sheet__arena--star-sprite',
-        'nh-hero-sheet__arena--tas-sprite'
+        'nh-hero-sheet__arena--tas-sprite',
+        'nh-hero-sheet__arena--golge-sprite'
       );
       if (isEpicDragon) arena.classList.add('nh-hero-sheet__arena--' + (def.theme || 'buz') + '-sprite');
       if (heroId === 'firtina_okcu') arena.classList.add('nh-hero-sheet__arena--firtina-sprite');
       if (heroId === 'star_fairy') arena.classList.add('nh-hero-sheet__arena--star-sprite');
       if (heroId === 'tas_muhafiz') arena.classList.add('nh-hero-sheet__arena--tas-sprite');
+      if (heroId === 'golge_parsi') arena.classList.add('nh-hero-sheet__arena--golge-sprite');
     }
     if (heroHost) {
       heroHost.innerHTML = '';
@@ -305,6 +309,8 @@
         window.novaYildizPerisiMountSprite(host, { profile: 'main' });
       } else if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizMountSprite === 'function') {
         window.novaTasMuhafizMountSprite(host, { profile: 'main' });
+      } else if (heroId === 'golge_parsi' && typeof window.novaGolgeParsiMountSprite === 'function') {
+        window.novaGolgeParsiMountSprite(host, { profile: 'main' });
       } else if (isEpicDragon && typeof window.novaEpicDragonMountSprite === 'function') {
         window.novaEpicDragonMountSprite(host, heroId, { profile: 'main' });
       } else {

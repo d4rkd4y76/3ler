@@ -369,7 +369,7 @@
     var epic = ndepIsEpicHero(id);
     var scale = epic ? 1.22 : 0.78;
     if (!epic) {
-      if (id === 'firtina_okcu' || id === 'star_fairy' || id === 'tas_muhafiz') scale = 1.22;
+      if (id === 'firtina_okcu' || id === 'star_fairy' || id === 'tas_muhafiz' || id === 'golge_parsi') scale = 1.22;
       else if (id.indexOf('turbo') >= 0) scale = 0.68;
       else if (id.indexOf('fairy') >= 0 || id === 'star_fairy') scale = 0.74;
       else if (id.indexOf('robot') >= 0 || id === 'blaze_robot') scale = 0.76;

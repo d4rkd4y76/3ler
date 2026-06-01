@@ -612,7 +612,7 @@ window.NovaAdminExport = (function(){
             </div>
             <div class="sticky-actions">
               <button class="btn ok" id="btnAddStoreHero" type="button">➕ Kahraman ekle</button>
-              <span class="hint">Animasyonlu kahramanlar: <span class="mono">blaze_robot</span>, <span class="mono">star_fairy</span>, <span class="mono">turbo_turtle</span>, <span class="mono">mythic_wyvern</span>, <span class="mono">bilge_hayalet</span>, <span class="mono">simsek_sincap</span>, <span class="mono">buz_ejder</span>, <span class="mono">alev_ejder</span>, <span class="mono">gece_ejder</span>, <span class="mono">firtina_okcu</span>, <span class="mono">tas_muhafiz</span> (ID bu anahtarlarla eşleşmeli).</span>
+              <span class="hint">Animasyonlu kahramanlar: <span class="mono">blaze_robot</span>, <span class="mono">star_fairy</span>, <span class="mono">turbo_turtle</span>, <span class="mono">mythic_wyvern</span>, <span class="mono">bilge_hayalet</span>, <span class="mono">simsek_sincap</span>, <span class="mono">buz_ejder</span>, <span class="mono">alev_ejder</span>, <span class="mono">gece_ejder</span>, <span class="mono">firtina_okcu</span>, <span class="mono">tas_muhafiz</span>, <span class="mono">golge_parsi</span> (ID bu anahtarlarla eşleşmeli).</span>
             </div>
           </div>
         </div>
@@ -2832,7 +2832,8 @@ btnAddHeading.addEventListener('click', async ()=>{
     { id:'buz_ejder', name:'Buz Ejderi', price:12800, desc:'Kristal pulları ve buz nefesiyle dondurucu güç! Doğru cevaplarda kar fırtınası kopar!', order:8, active:true },
     { id:'alev_ejder', name:'Alev Ejderi', price:13200, desc:'Alev pulları ve ateş nefesiyle yakıcı güç! Doğru cevaplarda alev fırtınası kopar!', order:9, active:true },
     { id:'gece_ejder', name:'Gece Ejderi', price:13600, desc:'Gece pulları ve gölge nefesiyle karanlık güç! Doğru cevaplarda ay fırtınası kopar!', order:10, active:true },
-    { id:'tas_muhafiz', name:'Taş Muhafız', price:10800, desc:'Taştan dövülmüş koruyucu! Mağazada, ana ekranda ve doğru cevaplarda seni kutlar.', order:11, active:true }
+    { id:'tas_muhafiz', name:'Taş Muhafız', price:10800, desc:'Taştan dövülmüş koruyucu! Mağazada, ana ekranda ve doğru cevaplarda seni kutlar.', order:11, active:true },
+    { id:'golge_parsi', name:'Gölge Parsı', price:11200, desc:'Gölgelerden süzülen çevik avcı! Mağazada, ana ekranda ve doğru cevaplarda seni kutlar.', order:12, active:true }
   ];
   async function ensureBattleHeroesSeeded(){
     const snap = await rdb.ref('store/battleHeroes').get();
