@@ -1,12 +1,6 @@
 (function(){
   var idle = window.requestIdleCallback || function(cb){ return setTimeout(cb,0); };
-  idle(function(){
-    // Non-critical: activate subtle pulses only for active surprise box
-    var sb = document.getElementById('surprise-box');
-    if(sb && sb.classList.contains('active')){
-      sb.style.animationPlayState = 'running';
-    }
-  });
+  idle(function(){});
   // Prevent audio fetching until first user gesture
   function primeAudio(){
     ['duelBackgroundMusic','winnerMusic','singlePlayerQuestionMusic'].forEach(function(id){

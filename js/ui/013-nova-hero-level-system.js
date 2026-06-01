@@ -861,8 +861,10 @@
       try { mountHeroPreview(heroId); } catch (_) {}
     }, success ? 1200 : 800);
     try {
-      if (typeof novaRenderBattleHeroStore === 'function') {
-        await novaRenderBattleHeroStore('__battleHeroesTemel');
+      if (typeof window.novaRefreshBattleHeroStoreInPlace === 'function') {
+        await window.novaRefreshBattleHeroStoreInPlace();
+      } else if (typeof novaRenderBattleHeroStore === 'function') {
+        await novaRenderBattleHeroStore();
       }
     } catch (_) {}
     try {

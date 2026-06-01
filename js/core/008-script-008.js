@@ -1242,6 +1242,12 @@ async function useProfilePhoto(photoUrl) {
 
         saveToCache('currentUserPhoto', photoUrl);
         try { await novaRefreshCharacterInventoryIfOpen(); } catch (_) {}
+        try {
+          const ov = document.getElementById('profileChangeOverlay');
+          if (ov && ov.style.display !== 'none' && typeof window.novaRefreshStoreInPlace === 'function') {
+            await window.novaRefreshStoreInPlace();
+          }
+        } catch (_) {}
         await showAlert('✨ Profil fotoğrafı başarıyla değiştirildi!');
     } catch (error) {
         console.error('Fotoğraf değiştirme hatası:', error);
@@ -1249,7 +1255,28 @@ async function useProfilePhoto(photoUrl) {
     }
 }
 
-async function loadProfilePhotos(category = 'DünyaDevleri') {
+function novaRestoreStoreProductsScroll(container, scrollTop) {
+  if (!container) return;
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      container.scrollTop = scrollTop || 0;
+    });
+  });
+}
+
+function novaResolveStoreCategory(category) {
+  let cat = category;
+  if (cat == null || cat === '') {
+    cat = (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || '';
+  }
+  if (!cat) cat = 'DünyaDevleri';
+  try {
+    if (typeof window.novaStoreHubSyncSubCategory === 'function') window.novaStoreHubSyncSubCategory(cat);
+  } catch (_) {}
+  return cat;
+}
+
+async function loadProfilePhotos(category) {
   const seq = ++__storeLoadSeq;
   if (!window.selectedStudent) {
     // localStorage fallback
@@ -1260,6 +1287,8 @@ async function loadProfilePhotos(category = 'DünyaDevleri') {
     if (c) c.innerHTML = '<div class="error">Öğrenci seçimi bulunamadı. Lütfen giriş yapın.</div>';
     return;
   }
+
+  category = novaResolveStoreCategory(category);
 
   const now = Date.now();
   if (__storeLastCategory === category && (now - __storeLastCategoryTs) < 250) return;
@@ -1327,22 +1356,27 @@ async function loadProfilePhotos(category = 'DünyaDevleri') {
 
   if (category === '__nameFrames') {
       const containerNF = document.getElementById('profilePhotosContainer');
+      const scrollNF = containerNF ? containerNF.scrollTop : 0;
       containerNF.style.display = 'grid';
       document.getElementById('duelCreditsStore').style.display = 'none';
       await loadNameFrameCatalogFromDB();
       await renderNameFrameStore(userData, containerNF);
+      if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(containerNF, scrollNF);
       return;
   }
 
   if (category === '__avatarFrames') {
       const containerAF = document.getElementById('profilePhotosContainer');
+      const scrollAF = containerAF ? containerAF.scrollTop : 0;
       containerAF.style.display = 'grid';
       document.getElementById('duelCreditsStore').style.display = 'none';
       await renderAvatarFrameStore(userData, containerAF);
+      if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(containerAF, scrollAF);
       return;
   }
 
    const container = document.getElementById('profilePhotosContainer');
+   const scrollTop = container ? container.scrollTop : 0;
    container.style.display = 'grid';
    document.getElementById('duelCreditsStore').style.display = 'none';
    container.innerHTML = '';
@@ -1361,6 +1395,7 @@ async function loadProfilePhotos(category = 'DünyaDevleri') {
 
        if (category === 'EFSANE' && (photoCategories['EFSANE']?.length || 0) === 0) {
            container.innerHTML = '<div class="no-champion">Bu kategori sizin için henüz aktif değil</div>';
+           if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(container, scrollTop);
            return;
        }
        if (seq !== __storeLoadSeq) return;
@@ -1376,18 +1411,22 @@ async function loadProfilePhotos(category = 'DünyaDevleri') {
        });
        if (!cards.length) {
          container.innerHTML = '<div class="no-champion">Bu kategoride henüz ürün yok veya sana özel görünür ürün bulunmuyor.</div>';
+         if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(container, scrollTop);
          return;
        }
        await appendCardsProgressively(container, cards, seq);
+       if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(container, scrollTop);
    } catch (error) {
        console.error('Fotoğraf listesi yükleme hatası:', error);
        container.innerHTML = '<div class="error">Fotoğraflar yüklenirken bir hata oluştu</div>';
+       if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(container, scrollTop);
    }
 }
 
 function novaStoreInUseMarkup() {
-  return '<span class="nova-store-in-use" role="status">Kullanımda</span>';
+  return '<button type="button" class="profile-photo-button use-button nova-store-in-use-btn" disabled aria-disabled="true">Kullanılıyor</button>';
 }
+window.novaStoreInUseMarkup = novaStoreInUseMarkup;
 
 function isStoreAvatarActive(photoUrl) {
   try {
@@ -1428,10 +1467,7 @@ function createPhotoCard(photo, purchasedPhotos, category, container, index) {
         <img src="${photo.url}" class="profile-photo nova-store-avatar-img" alt="${photo.name || 'Avatar'}" loading="lazy" decoding="async" onerror="this.style.opacity=0.35;this.alt='Görsel yüklenemedi'">
         </div>
         <div class="profile-photo-price">
-            ${isPurchased 
-                ? '<span class="purchased-badge">✓ Satın Alındı</span>'
-                : `${photo.price} <span class="diamond-icon">💎</span>`
-            }
+            ${isPurchased ? '' : `${photo.price} <span class="diamond-icon">💎</span>`}
         </div>
         ${actionHtml}
     `;
@@ -1476,7 +1512,7 @@ async function renderNameFrameStore(userData, container){
         ${renderNameWithFrame(selectedStudent.studentName || 'Oyuncu', item.id)}
       </div>
       <div class="profile-photo-price">
-        ${isOwned ? '<span class="purchased-badge">✓ Satın Alındı</span>' : `${item.price} <span class="diamond-icon">💎</span>`}
+        ${isOwned ? '' : `${item.price} <span class="diamond-icon">💎</span>`}
       </div>
       ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : 'buy-button'}">${isOwned ? 'Kullan' : 'Satın Al'}</button>`}
     `;
@@ -1551,8 +1587,8 @@ async function useAvatarFrame(frameId){
     localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent));
     applyOwnAvatarFrame();
     try { if (loggedinPlayerRef) await loggedinPlayerRef.update({ avatarFrame: selectedStudent.avatarFrame }); } catch(_){}
-    const catBtn = document.querySelector('.category-button.active');
-    if (catBtn && catBtn.dataset.category === '__avatarFrames') {
+    const storeCat = (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || '';
+    if (storeCat === '__avatarFrames') {
       const snap = await studentRef.once('value');
       await renderAvatarFrameStore(snap.val() || {}, document.getElementById('profilePhotosContainer'));
     }
@@ -1613,7 +1649,7 @@ async function renderAvatarFrameStore(userData, container){
       </div>
       <div class="profile-photo-price">
         ${isOwned
-          ? '<span class="purchased-badge">✓ Satın Alındı</span>'
+          ? ''
           : (canClaim
               ? `<span class="purchased-badge">🔥 Seri Tamamlandı • ${cost} kredi</span>`
               : `<span class="series-lock-note">${escapeHtml(item.unlockRuleText || 'Seriyi tamamla')}<br>${unlock.owned}/${unlock.total}</span>`)}
@@ -1684,8 +1720,8 @@ async function useNameFrame(frameId){
     syncSelectedNameFrame(selectedStudent.nameFrame);
     applyOwnNameFrame();
     try { if (loggedinPlayerRef) await loggedinPlayerRef.update({ nameFrame: selectedStudent.nameFrame }); } catch(_){}
-    const catBtn = document.querySelector('.category-button.active');
-    if (catBtn && catBtn.dataset.category === '__nameFrames') {
+    const storeCat = (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || '';
+    if (storeCat === '__nameFrames') {
       const snap = await studentRef.once('value');
       await renderNameFrameStore(snap.val() || {}, document.getElementById('profilePhotosContainer'));
     }
@@ -1735,9 +1771,9 @@ async function buyProfilePhoto(photo){
     document.getElementById('currentDiamonds').textContent = currentDiamonds - cost;
     await showAlert('✅ Satın alındı! Artık bu resmi kullanabilirsiniz.');
 
-    // Bulunduğumuz kategori butonu aktifse yeniden yükleyelim
-    const activeBtn = document.querySelector('.category-button.active');
-    const cat = activeBtn ? activeBtn.dataset.category : 'DünyaDevleri';
+    const cat = novaResolveStoreCategory(
+      (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || ''
+    );
     await loadProfilePhotos(cat);
     try { await novaRefreshCharacterInventoryIfOpen(); } catch (_) {}
   } catch(e){

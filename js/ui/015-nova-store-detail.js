@@ -52,7 +52,14 @@
     document.body.style.overflow = '';
     state.onAction = null;
     var prev = document.getElementById('nova_store_detail_preview');
-    if (prev) prev.innerHTML = '';
+    if (prev) {
+      var h = prev.querySelector('[data-nova-hero-host]');
+      if (h && typeof window.novaSpriteUnmountHost === 'function') {
+        window.novaSpriteUnmountHost(h, h.getAttribute('data-hero-id') || '');
+      } else if (prev) {
+        prev.innerHTML = '';
+      }
+    }
   }
 
   async function onDetailAction() {
@@ -67,10 +74,6 @@
     btn.disabled = false;
   }
 
-  function storeInUseMarkup() {
-    return '<span class="nova-store-in-use" role="status">Kullanımda</span>';
-  }
-
   function applyButton(btnType, text, disabled, inUse) {
     var btn = document.getElementById('nova_store_detail_action');
     var label = document.getElementById('nova_store_detail_inuse');
@@ -80,18 +83,18 @@
       label.style.display = 'none';
     }
     if (inUse) {
-      btn.hidden = true;
+      btn.hidden = false;
+      btn.style.display = '';
+      btn.className = 'nova-store-detail-action profile-photo-button use-button nova-store-in-use-btn';
+      btn.textContent = 'Kullanılıyor';
       btn.disabled = true;
-      if (label) {
-        label.hidden = false;
-        label.style.display = 'flex';
-        label.textContent = 'Kullanımda';
-      }
+      btn.setAttribute('aria-disabled', 'true');
       state.onAction = null;
       return;
     }
     btn.hidden = false;
     btn.style.display = '';
+    btn.removeAttribute('aria-disabled');
     btn.className = 'nova-store-detail-action profile-photo-button ' + (btnType || 'buy-button');
     btn.textContent = text || 'Tamam';
     btn.disabled = !!disabled;
@@ -220,7 +223,11 @@
             if (livePurchased) await useProfilePhoto(photo.url);
             else await buyProfilePhoto(photo);
             closeStoreDetail();
-            if (typeof loadProfilePhotos === 'function') loadProfilePhotos(category);
+            if (typeof window.novaRefreshStoreInPlace === 'function') {
+              window.novaRefreshStoreInPlace();
+            } else if (typeof loadProfilePhotos === 'function') {
+              loadProfilePhotos(category);
+            }
           }
         });
       });
@@ -258,5 +265,4 @@
   window.novaOpenStoreDetail = openStoreDetail;
   window.novaCloseStoreDetail = closeStoreDetail;
   window.novaBindStoreCardDetail = bindCardOpenDetail;
-  window.novaStoreInUseMarkup = storeInUseMarkup;
 })();

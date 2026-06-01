@@ -227,7 +227,7 @@
     }
     ctx.clearRect(0, 0, cw, ch);
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
+    ctx.imageSmoothingQuality = (window.novaSpritePerfIsUltra && window.novaSpritePerfIsUltra()) ? 'medium' : 'high';
     ctx.drawImage(this.img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
   };
 
@@ -339,10 +339,18 @@
     return !!(sheetCache.store.img && sheetCache.main.img);
   };
 
+  if (window.novaSpritePerfInstall) window.novaSpritePerfInstall(SpriteEngine);
+
   function bootPreload() {
-    try { window.novaYildizPerisiPreloadSprite(); } catch (e) {
-      console.warn('[yildiz sprite] preload', e);
+    if (!window.novaSpriteDefer) {
+      try { window.novaYildizPerisiPreloadSprite(); } catch (e) { console.warn('[yildiz sprite] preload', e); }
+      return;
     }
+    window.novaSpriteDefer(function () {
+      var hid = window.__novaEquippedHeroId;
+      if (hid && hid !== 'star_fairy') return;
+      try { window.novaYildizPerisiPreloadSprite(); } catch (e) { console.warn('[yildiz sprite] preload', e); }
+    }, 3200);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootPreload);

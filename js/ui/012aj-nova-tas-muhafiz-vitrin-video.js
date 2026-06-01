@@ -339,10 +339,18 @@
     return !!(sheetCache.store.img && sheetCache.main.img);
   };
 
+  if (window.novaSpritePerfInstall) window.novaSpritePerfInstall(SpriteEngine);
+
   function bootPreload() {
-    try { window.novaTasMuhafizPreloadSprite(); } catch (e) {
-      console.warn('[tas sprite] preload', e);
+    if (!window.novaSpriteDefer) {
+      try { window.novaTasMuhafizPreloadSprite(); } catch (e) { console.warn('[tas sprite] preload', e); }
+      return;
     }
+    window.novaSpriteDefer(function () {
+      var hid = window.__novaEquippedHeroId;
+      if (hid && hid !== 'tas_muhafiz') return;
+      try { window.novaTasMuhafizPreloadSprite(); } catch (e) { console.warn('[tas sprite] preload', e); }
+    }, 3200);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootPreload);

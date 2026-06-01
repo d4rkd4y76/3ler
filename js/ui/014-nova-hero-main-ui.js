@@ -368,6 +368,10 @@
     ensureSheetUi();
     patchRefreshMainHero();
     setTimeout(refreshMainHeroStars, 1200);
-    setInterval(refreshMainHeroStars, 4000);
+    setInterval(function () {
+      var main = document.getElementById('main-screen');
+      if (main && main.style.display === 'none') return;
+      refreshMainHeroStars();
+    }, 6500);
   });
 })();

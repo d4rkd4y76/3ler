@@ -33,7 +33,6 @@
       var qw = document.getElementById('quest_fab_wrap');
       var fbw = document.getElementById('fillblank_fab_wrap');
       var pzw = document.getElementById('puzzle_fab_wrap');
-      var sb = document.getElementById('surprise-box');
       if(dnw && denemeSlot && dnw.parentNode !== denemeSlot){ denemeSlot.appendChild(dnw); }
       if(hw && questSlot && hw.parentNode !== questSlot){ questSlot.appendChild(hw); }
       if(qw && questSlot){
@@ -41,7 +40,6 @@
       } else if(qw && hudL && qw.parentNode !== hudL){
         hudL.appendChild(qw);
       }
-      if(sb && questSlot && sb.parentNode !== questSlot){ questSlot.appendChild(sb); }
       if(pzw && hudL && pzw.parentNode !== hudL){ hudL.appendChild(pzw); }
       if(fbw && hudL && fbw.parentNode !== hudL){ hudL.appendChild(fbw); }
       if(hudL){

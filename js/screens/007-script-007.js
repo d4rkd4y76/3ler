@@ -1341,8 +1341,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             injectStyles();
             if (document.getElementById('nova_tournament_fab')) return;
             var slot = document.getElementById('main-screen-quest-slot');
-            var sb = document.getElementById('surprise-box');
-            if (!slot || !sb) {
+            if (!slot) {
               if (typeof window.__novaTourFabAttempts !== 'number') window.__novaTourFabAttempts = 0;
               if (window.__novaTourFabAttempts < 25) {
                 window.__novaTourFabAttempts++;
@@ -4430,8 +4429,6 @@ function novaRequestHudFabRelayout(){
 function onMainScreenLoad() {
     try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
     try { if (typeof window.novaRefreshMainScreenHero === 'function') window.novaRefreshMainScreenHero(); } catch (_) {}
-    // NOVA: Sürpriz kutuyu başlat
-    try{ initSurpriseBox(); }catch(e){ console.warn(e); }
     // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; güvenli reflow tetikle.
     novaRequestHudFabRelayout();
 
@@ -9460,11 +9457,6 @@ if (winnerId && loserId) {
     });
 
     renderLocalDelta();
-
-    // ✅ Kazanan için sürpriz kutuyu hazırla (tek galibiyet → hazır)
-    await database
-      .ref(`classes/${winnerClassId}/students/${winnerId}/surpriseReady`)
-      .set(true);
 
     // Puanları görsel olarak güncelle (kupa + düello kredisi)
     if (selectedStudent.studentId === winnerId || selectedStudent.studentId === loserId) {

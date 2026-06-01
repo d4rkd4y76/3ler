@@ -3,6 +3,7 @@
   var HERO_REGISTRY = {
     blaze_robot: {
       id: 'blaze_robot',
+      retired: true,
       templateKey: 'NOVA_BLAZE_BOT_SVG_TEMPLATE',
       theme: 'blaze',
       name: 'Alev Bot',
@@ -65,6 +66,7 @@
     },
     turbo_turtle: {
       id: 'turbo_turtle',
+      retired: true,
       templateKey: 'NOVA_TURBO_TURTLE_SVG_TEMPLATE',
       theme: 'turbo',
       name: 'Kaplumbağa Turbo',
@@ -96,6 +98,7 @@
     },
     mythic_wyvern: {
       id: 'mythic_wyvern',
+      retired: true,
       templateKey: 'NOVA_MYTHIC_WYVERN_SVG_TEMPLATE',
       theme: 'mythic',
       name: 'Çılgın Kanat',
@@ -124,6 +127,7 @@
     ,
     bilge_hayalet: {
       id: 'bilge_hayalet',
+      retired: true,
       templateKey: 'NOVA_BILGE_HAYALET_SVG_TEMPLATE',
       theme: 'bilge',
       name: 'Sihirli Buba',
@@ -153,6 +157,7 @@
     ,
     simsek_sincap: {
       id: 'simsek_sincap',
+      retired: true,
       templateKey: 'NOVA_SIMSEK_SINCAP_SVG_TEMPLATE',
       theme: 'simsek',
       name: 'Parlak Pati',
@@ -331,6 +336,63 @@
   var correctFxCount = 0;
   var uidSeq = 0;
   var heroCatalogCache = null;
+  var mainHeroRefreshTimer = null;
+  var mainHeroRefreshGen = 0;
+  var mainHeroMounting = false;
+
+  /** Eski SVG temel kahramanlar — performans için devre dışı (sprite kahramanlar kalır). */
+  var RETIRED_SVG_HERO_IDS = {
+    blaze_robot: true,
+    turbo_turtle: true,
+    mythic_wyvern: true,
+    bilge_hayalet: true,
+    simsek_sincap: true
+  };
+
+  var SPRITE_HERO_ORDER = [
+    'star_fairy', 'tas_muhafiz', 'firtina_okcu',
+    'buz_ejder', 'alev_ejder', 'gece_ejder'
+  ];
+
+  function isRetiredSvgHero(heroId) {
+    return !!RETIRED_SVG_HERO_IDS[String(heroId || '').trim()];
+  }
+
+  function isSpriteHeroDef(def) {
+    if (!def || isRetiredSvgHero(def.id)) return false;
+    if (def.sprite) return true;
+    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(def.id)) {
+      return typeof window.novaEpicDragonMountSprite === 'function';
+    }
+    return false;
+  }
+
+  function isHeroEquippedOnData(heroId, data) {
+    var hid = String(heroId || '').trim();
+    if (!hid || !data) return false;
+    return String(data.battleHero || '').trim() === hid;
+  }
+
+  function canShowEquippedHero(heroId, data) {
+    if (!heroId || !isSpriteHeroDef(getHeroDef(heroId))) return false;
+    if (ownsHero(data, heroId)) return true;
+    if (isHeroEquippedOnData(heroId, data)) return true;
+    var s = getStudent();
+    return !!(s && String(s.battleHero || '').trim() === String(heroId).trim());
+  }
+
+  function resolvePlayableHeroId(heroId, userData) {
+    var id = String(heroId || '').trim();
+    if (id && !isRetiredSvgHero(id) && isSpriteHeroDef(getHeroDef(id))) {
+      if (!userData || ownsHero(userData, id) || isHeroEquippedOnData(id, userData)) return id;
+    }
+    var i;
+    for (i = 0; i < SPRITE_HERO_ORDER.length; i++) {
+      var cand = SPRITE_HERO_ORDER[i];
+      if (userData && ownsHero(userData, cand) && isSpriteHeroDef(getHeroDef(cand))) return cand;
+    }
+    return 'star_fairy';
+  }
 
   function getHeroDef(heroId) {
     if (!heroId) return null;
@@ -348,12 +410,14 @@
   function filterHeroCatalogByStoreCategory(catalog, category) {
     if (!Array.isArray(catalog)) return [];
     if (category === '__battleHeroesEpik') {
-      return catalog.filter(function (h) { return isEpicStoreHero(h); });
+      return catalog.filter(function (h) { return isEpicStoreHero(h) && isSpriteHeroDef(getHeroDef(h.id)); });
     }
     if (category === '__battleHeroesTemel') {
-      return catalog.filter(function (h) { return !isEpicStoreHero(h); });
+      return catalog.filter(function (h) {
+        return !isEpicStoreHero(h) && isSpriteHeroDef(getHeroDef(h.id));
+      });
     }
-    return catalog.slice();
+    return catalog.filter(function (h) { return isSpriteHeroDef(getHeroDef(h.id)); });
   }
 
   function getStudent() {
@@ -426,9 +490,15 @@
         'nova-main-hero-zone--firtina', 'nova-main-hero-zone--tas', 'nova-main-hero-zone--buz', 'nova-main-hero-zone--alev', 'nova-main-hero-zone--gece'
       );
       zone.setAttribute('aria-hidden', 'true');
+      zone.querySelectorAll('[data-nova-hero-host], [data-nova-main-hero]').forEach(function (h) {
+        unmountHeroFromHost(h);
+      });
     }
     if (!slot) slot = document.getElementById('nova-main-hero-slot');
     if (!slot) return;
+    slot.querySelectorAll('[data-nova-hero-host], [data-nova-main-hero]').forEach(function (h) {
+      unmountHeroFromHost(h);
+    });
     slot.innerHTML = '';
     slot.classList.remove(
       'nova-main-hero-slot--blaze', 'nova-main-hero-slot--star', 'nova-main-hero-slot--turbo',
@@ -442,22 +512,40 @@
     var zone = document.getElementById('nova-main-hero-zone');
     var slot = document.getElementById('nova-main-hero-slot');
     if (!def || !zone || !slot) return;
-    if (!heroHasStoreArt(def)) return;
-    clearMainHeroSlot(slot);
-    zone.setAttribute('aria-hidden', 'false');
-    zone.classList.add('is-visible', 'nova-main-hero-zone--' + def.theme);
-    slot.classList.add('nova-main-hero-slot--' + def.theme);
-    var host = document.createElement('div');
-    host.className = 'nova-hero-svg-host nova-main-hero-host nova-hero-mount--' + heroId.replace(/_/g, '-');
-    host.setAttribute('data-nova-main-hero', heroId);
-    slot.appendChild(host);
-    mountHeroInto(host, heroId);
+    if (!isSpriteHeroDef(def)) return;
+    if (mainHeroMounting) return;
+
+    var existing = slot.querySelector(':scope > [data-nova-main-hero]');
+    if (existing && existing.getAttribute('data-nova-main-hero') === heroId) {
+      var c = existing.querySelector('canvas');
+      if (c && c.width > 0 && c.height > 0) return;
+      unmountHeroFromHost(existing);
+    }
+
+    mainHeroMounting = true;
+    try {
+      clearMainHeroSlot(slot);
+      zone.setAttribute('aria-hidden', 'false');
+      zone.classList.add('is-visible', 'nova-main-hero-zone--' + def.theme);
+      slot.classList.add('nova-main-hero-slot--' + def.theme);
+      var host = document.createElement('div');
+      host.className = 'nova-hero-svg-host nova-main-hero-host nova-hero-mount--' + heroId.replace(/_/g, '-');
+      host.setAttribute('data-nova-main-hero', heroId);
+      slot.appendChild(host);
+      window.__novaEquippedHeroId = heroId;
+      mountHeroInto(host, heroId);
+    } finally {
+      mainHeroMounting = false;
+    }
   }
 
-  async function refreshMainScreenHero() {
+  async function refreshMainScreenHeroCore() {
     var slot = document.getElementById('nova-main-hero-slot');
     if (!slot) return;
-    if (!isMainScreenVisible()) return;
+    if (!isMainScreenVisible()) {
+      clearMainHeroSlot(slot);
+      return;
+    }
     var s = getStudent();
     if (!s || !s.classId || !s.studentId) {
       clearMainHeroSlot(slot);
@@ -465,18 +553,24 @@
     }
     var heroId = getEquippedHeroId();
     if (!heroId) heroId = await loadBattleHeroFromDb();
-    var def = getHeroDef(heroId);
-    if (!heroId || !def) {
-      clearMainHeroSlot(slot);
-      return;
-    }
     try {
       var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
       var data = snap.val() || {};
-      if (!ownsHero(data, heroId) || data.battleHero !== heroId) {
+      var dbEquipped = String(data.battleHero || '').trim();
+      if (!heroId && dbEquipped) heroId = dbEquipped;
+      heroId = resolvePlayableHeroId(heroId, data);
+      if (isRetiredSvgHero(data.battleHero) && heroId && data.battleHero !== heroId) {
+        try {
+          await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: heroId });
+          syncHeroToStudent({ battleHero: heroId });
+        } catch (_) {}
+      }
+      var def = getHeroDef(heroId);
+      if (!heroId || !def || !canShowEquippedHero(heroId, data)) {
         clearMainHeroSlot(slot);
         return;
       }
+      window.__novaEquippedHeroId = heroId;
       try {
         syncHeroToStudent({
           battleHero: heroId,
@@ -484,23 +578,38 @@
         });
         window.__novaMainHeroLevelFetched = getHeroLevel(data, heroId);
       } catch (_) {}
+      mountMainScreenHero(heroId);
+      if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
+        window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
+      }
+      if (heroId === 'star_fairy' && typeof window.novaYildizPerisiPreloadTrueClipsIfEquipped === 'function') {
+        window.novaYildizPerisiPreloadTrueClipsIfEquipped();
+      }
+      if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizPreloadTrueClipsIfEquipped === 'function') {
+        window.novaTasMuhafizPreloadTrueClipsIfEquipped();
+      }
+      if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
+        window.novaBuzEjderPreloadTrueClipsIfEquipped();
+      }
     } catch (_) {
       clearMainHeroSlot(slot);
-      return;
     }
-    mountMainScreenHero(heroId);
-    if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
-      window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
-    }
-    if (heroId === 'star_fairy' && typeof window.novaYildizPerisiPreloadTrueClipsIfEquipped === 'function') {
-      window.novaYildizPerisiPreloadTrueClipsIfEquipped();
-    }
-    if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizPreloadTrueClipsIfEquipped === 'function') {
-      window.novaTasMuhafizPreloadTrueClipsIfEquipped();
-    }
-    if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
-      window.novaBuzEjderPreloadTrueClipsIfEquipped();
-    }
+  }
+
+  async function refreshMainScreenHero() {
+    var myGen = ++mainHeroRefreshGen;
+    if (mainHeroRefreshTimer) clearTimeout(mainHeroRefreshTimer);
+    return new Promise(function (resolve) {
+      mainHeroRefreshTimer = setTimeout(async function () {
+        mainHeroRefreshTimer = null;
+        if (myGen !== mainHeroRefreshGen) {
+          resolve();
+          return;
+        }
+        await refreshMainScreenHeroCore();
+        resolve();
+      }, 100);
+    });
   }
 
   function isHeroEquipped(data) {
@@ -533,7 +642,9 @@
 
   function ownsHero(data, heroId) {
     if (!heroId) return false;
-    return parseHeroOwn(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).owned;
+    if (parseHeroOwn(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).owned) return true;
+    if (isHeroEquippedOnData(heroId, data)) return true;
+    return false;
   }
 
   function defaultCatalog() {
@@ -547,6 +658,8 @@
         order: h.order,
         theme: h.theme
       };
+    }).filter(function (h) {
+      return isSpriteHeroDef(HERO_REGISTRY[h.id]);
     }).sort(function (a, b) { return a.order - b.order; });
   }
 
@@ -576,26 +689,16 @@
       console.warn('loadHeroCatalogFromDB', e);
     }
     heroCatalogCache = Object.keys(merged).map(function (k) { return merged[k]; })
-      .filter(function (h) { return !!HERO_REGISTRY[h.id]; })
+      .filter(function (h) {
+        var loc = HERO_REGISTRY[h.id];
+        return !!loc && isSpriteHeroDef(loc);
+      })
       .sort(function (a, b) { return a.order - b.order; });
     return heroCatalogCache;
   }
 
   function heroHasStoreArt(def) {
-    if (!def) return false;
-    if (def.sprite && def.id === 'firtina_okcu') {
-      return typeof window.novaFirtinaOkcuMountSprite === 'function';
-    }
-    if (def.sprite && def.id === 'star_fairy') {
-      return typeof window.novaYildizPerisiMountSprite === 'function';
-    }
-    if (def.sprite && def.id === 'tas_muhafiz') {
-      return typeof window.novaTasMuhafizMountSprite === 'function';
-    }
-    if (def.sprite && typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(def.id)) {
-      return typeof window.novaEpicDragonMountSprite === 'function';
-    }
-    return !!(def.templateKey && window[def.templateKey]);
+    return isSpriteHeroDef(def);
   }
 
   var MOUNT_CLASS_LIST = 'nova-hero-mount--blaze-robot nova-hero-mount--star-fairy nova-hero-mount--turbo-turtle nova-hero-mount--mythic-wyvern nova-hero-mount--bilge-hayalet nova-hero-mount--simsek-sincap nova-hero-mount--firtina-okcu nova-hero-mount--tas-muhafiz nova-hero-mount--buz-ejder nova-hero-mount--alev-ejder nova-hero-mount--gece-ejder';
@@ -603,6 +706,16 @@
   function clearMountClasses(host) {
     if (!host) return;
     MOUNT_CLASS_LIST.split(' ').forEach(function (c) { host.classList.remove(c); });
+  }
+
+  function unmountHeroFromHost(host) {
+    if (!host) return;
+    var id = host.getAttribute('data-hero-id') || host.getAttribute('data-nova-main-hero') || '';
+    if (typeof window.novaSpriteUnmountHost === 'function') {
+      window.novaSpriteUnmountHost(host, id);
+      return;
+    }
+    try { host.innerHTML = ''; } catch (_) {}
   }
 
   function epicDragonUseSpriteHost(host) {
@@ -673,6 +786,7 @@
   function mountHeroInto(host, heroId) {
     if (!host) return null;
     var id = heroId || getEquippedHeroId();
+    if (isRetiredSvgHero(id) || !isSpriteHeroDef(getHeroDef(id))) return null;
     clearMountClasses(host);
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
     if (id === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
@@ -756,7 +870,7 @@
   }
 
   function pickCheerPayload(variant) {
-    var def = getEquippedHeroDef() || HERO_REGISTRY.blaze_robot;
+    var def = getEquippedHeroDef() || HERO_REGISTRY.star_fairy;
     var pool = def.lines.cheer;
     if (variant === 'epic') pool = def.lines.epic;
     else if (variant === 'fire') pool = def.lines.fire;
@@ -1197,7 +1311,7 @@
     var btnDisabled = false;
     if (owned && equipped) {
       btnClass = 'use-button';
-      btnText = 'Kullanımda';
+      btnText = 'Kullanılıyor';
       btnDisabled = true;
     } else if (owned) {
       btnClass = 'use-button';
@@ -1245,12 +1359,12 @@
         if (!owned) {
           if (await purchaseBattleHero(hero)) {
             window.novaCloseStoreDetail();
-            await novaRenderBattleHeroStore();
+            await refreshBattleHeroStoreInPlace();
           }
         } else if (!equipped) {
           await equipBattleHero(hero);
           window.novaCloseStoreDetail();
-          await novaRenderBattleHeroStore();
+          await refreshBattleHeroStoreInPlace();
         } else {
           window.novaCloseStoreDetail();
         }
@@ -1265,7 +1379,10 @@
       return false;
     }
     var def = getHeroDef(hero.id);
-    if (!def) return false;
+    if (!def || !isSpriteHeroDef(def)) {
+      await showAlert('Bu kahraman mağazada artık satılmıyor.');
+      return false;
+    }
     var heroId = hero.id;
     var cost = Number(hero.price) || def.price;
     var heroName = hero.name || def.name;
@@ -1317,7 +1434,12 @@
     var s = getStudent();
     if (!s || !s.classId || !s.studentId || !hero) return;
     var def = getHeroDef(hero.id);
-    if (!def) return;
+    if (!def || !isSpriteHeroDef(def)) {
+      if (typeof showAlert === 'function') {
+        await showAlert('Bu kahraman artık kullanılmıyor. Mağazadan sprite kahraman seç.');
+      }
+      return;
+    }
     try {
       await database.ref('classes/' + s.classId + '/students/' + s.studentId).update({ battleHero: hero.id });
       syncHeroToStudent({ battleHero: hero.id });
@@ -1369,7 +1491,7 @@
       + (equipped && owned
         ? ((typeof window.novaStoreInUseMarkup === 'function')
           ? window.novaStoreInUseMarkup()
-          : '<span class="nova-store-in-use" role="status">Kullanımda</span>')
+          : '<button type="button" class="profile-photo-button use-button nova-store-in-use-btn" disabled aria-disabled="true">Kullanılıyor</button>')
         : '<button type="button" class="profile-photo-button"></button>');
 
     var btn = card.querySelector('.profile-photo-button');
@@ -1379,7 +1501,7 @@
       btn.disabled = diamonds < cost;
       btn.onclick = async function (e) {
         e.stopPropagation();
-        if (await purchaseBattleHero(hero)) await novaRenderBattleHeroStore();
+        if (await purchaseBattleHero(hero)) await refreshBattleHeroStoreInPlace();
       };
     } else if (!equipped) {
       btn.className = 'profile-photo-button use-button';
@@ -1387,7 +1509,7 @@
       btn.onclick = async function (e) {
         e.stopPropagation();
         await equipBattleHero(hero);
-        await novaRenderBattleHeroStore();
+        await refreshBattleHeroStoreInPlace();
       };
     }
 
@@ -1403,17 +1525,43 @@
 
     container.appendChild(card);
     var host = card.querySelector('[data-nova-hero-host]');
-    function mountWhenReady(attempt) {
-      if (!host) return;
-      var rect = host.getBoundingClientRect();
-      if ((!rect.width || !rect.height) && attempt < 12) {
-        requestAnimationFrame(function () { mountWhenReady(attempt + 1); });
-        return;
+    if (typeof window.novaStoreLazyMountHero === 'function') {
+      window.novaStoreLazyMountHero(host, hero.id, function (h) {
+        mountHeroStorePreview(h, hero.id);
+      });
+    } else {
+      function mountWhenReady(attempt) {
+        if (!host) return;
+        var rect = host.getBoundingClientRect();
+        if ((!rect.width || !rect.height) && attempt < 12) {
+          requestAnimationFrame(function () { mountWhenReady(attempt + 1); });
+          return;
+        }
+        mountHeroStorePreview(host, hero.id);
       }
-      mountHeroStorePreview(host, hero.id);
+      requestAnimationFrame(function () { mountWhenReady(0); });
     }
-    requestAnimationFrame(function () { mountWhenReady(0); });
     if (epic) mountEpicBadgesIn(card, hero.id, 'store');
+  }
+
+  function getActiveHeroStoreCategory() {
+    try {
+      if (typeof window.novaStoreHubGetSubCategory === 'function') {
+        var sub = window.novaStoreHubGetSubCategory();
+        if (sub === '__battleHeroesEpik' || sub === '__battleHeroesTemel') return sub;
+        if (sub === '__battleHeroes') return '__battleHeroesTemel';
+      }
+    } catch (_) {}
+    var active = document.querySelector('#novaStoreSubNav .nova-store-sub-btn.active');
+    if (active) {
+      var c = active.getAttribute('data-category') || active.dataset.category;
+      if (c === '__battleHeroesEpik' || c === '__battleHeroesTemel') return c;
+    }
+    return '__battleHeroesTemel';
+  }
+
+  function refreshBattleHeroStoreInPlace() {
+    return novaRenderBattleHeroStore(getActiveHeroStoreCategory());
   }
 
   async function novaRenderBattleHeroStore(category) {
@@ -1422,11 +1570,24 @@
     var duelStore = document.getElementById('duelCreditsStore');
     if (duelStore) duelStore.style.display = 'none';
     if (!container) return;
+
+    var cat = category;
+    if (!cat || cat === '__battleHeroes') {
+      cat = getActiveHeroStoreCategory();
+    }
+    if (typeof window.novaStoreHubSyncSubCategory === 'function') {
+      window.novaStoreHubSyncSubCategory(cat);
+    }
+
+    var scrollTop = container.scrollTop || 0;
     container.style.display = 'grid';
-    container.innerHTML = '';
+    if (typeof window.novaSpriteUnmountContainer === 'function') {
+      window.novaSpriteUnmountContainer(container);
+    } else {
+      container.innerHTML = '';
+    }
     container.classList.add('nova-store-products--heroes');
 
-    var cat = category || '__battleHeroesTemel';
     var catalog = filterHeroCatalogByStoreCategory(await loadHeroCatalogFromDB(), cat);
     var userData = await getStoreStudentData(true);
     if (!catalog.length) {
@@ -1434,10 +1595,18 @@
         ? 'Epik kahramanlar yakında'
         : 'Henüz temel kahraman eklenmedi';
       container.innerHTML = '<div class="no-champion">' + emptyMsg + '</div>';
+      requestAnimationFrame(function () {
+        container.scrollTop = scrollTop;
+      });
       return;
     }
     catalog.forEach(function (hero, i) {
       renderHeroStoreCard(hero, userData, container, i);
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        container.scrollTop = scrollTop;
+      });
     });
   }
 
@@ -1459,7 +1628,9 @@
     window.getStoreStudentData = async function (force) {
       var data = await orig.apply(this, arguments);
       syncHeroToStudent(data);
-      try { refreshMainScreenHero(); } catch (_) {}
+      try {
+        if (isMainScreenVisible()) refreshMainScreenHero();
+      } catch (_) {}
       return data;
     };
     window.getStoreStudentData.__novaHeroPatched = true;
@@ -1515,9 +1686,14 @@
     }
     var main = document.getElementById('main-screen');
     if (main && !main.__novaHeroObs) {
+      var moTimer = null;
       var obs = new MutationObserver(function () {
-        if (isMainScreenVisible()) refreshMainScreenHero();
-        else clearMainHeroSlot(document.getElementById('nova-main-hero-slot'));
+        if (moTimer) clearTimeout(moTimer);
+        moTimer = setTimeout(function () {
+          moTimer = null;
+          if (isMainScreenVisible()) refreshMainScreenHero();
+          else clearMainHeroSlot(document.getElementById('nova-main-hero-slot'));
+        }, 150);
       });
       obs.observe(main, { attributes: true, attributeFilter: ['style', 'class'] });
       main.__novaHeroObs = obs;
@@ -1668,6 +1844,12 @@
     patchSpGameOpen();
     patchMainScreenHeroHooks();
     patchCharacterInventory();
+    if (!document.__novaMainHeroVisibleBound) {
+      document.__novaMainHeroVisibleBound = true;
+      document.addEventListener('nova:main-screen-visible', function () {
+        try { refreshMainScreenHero(); } catch (_) {}
+      });
+    }
     try { refreshMainScreenHero(); } catch (_) {}
   }
 
@@ -1682,10 +1864,13 @@
   window.mountHeroInto = mountHeroInto;
   window.novaBuildHeroSvgHtml = buildHeroSvgHtml;
   window.novaRenderBattleHeroStore = novaRenderBattleHeroStore;
+  window.novaRefreshBattleHeroStoreInPlace = refreshBattleHeroStoreInPlace;
+  window.novaGetActiveHeroStoreCategory = getActiveHeroStoreCategory;
   window.novaIsEpicStoreHero = isEpicStoreHero;
   window.novaFilterHeroCatalogByStoreCategory = filterHeroCatalogByStoreCategory;
   window.novaFillCharacterInventoryHeroes = novaFillCharacterInventoryHeroes;
-  window.NOVA_BATTLE_HERO_ID = 'blaze_robot';
+  window.NOVA_BATTLE_HERO_ID = 'star_fairy';
+  window.NOVA_RETIRED_SVG_HERO_IDS = RETIRED_SVG_HERO_IDS;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot, { once: true });

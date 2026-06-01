@@ -260,7 +260,7 @@
     window.__novaPerfWatchStarted = true;
     setInterval(function(){
       if ((window.__novaPerfMode || getDefaultMode()) === 'ultra') schedulePerfSync();
-    }, 700);
+    }, 2500);
     window.addEventListener('resize', schedulePerfSync);
     window.addEventListener('orientationchange', schedulePerfSync);
     window.addEventListener('pageshow', schedulePerfSync);

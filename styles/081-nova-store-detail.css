@@ -81,11 +81,54 @@
 .nova-hero-store-card .nova-hero-store-desc{
   display: none !important;
 }
+/* Mağaza kartı — Kullan / Satın Al / Kullanılıyor aynı ölçü ve hizada */
+.profile-change-content .profile-photo-item.nova-store-card{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+.profile-change-content .profile-photo-item.nova-store-card > .profile-photo-price{
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 40px;
+  margin: auto 0 0 !important;
+  padding: 8px 12px !important;
+  box-sizing: border-box;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.profile-change-content .profile-photo-item.nova-store-card > .profile-photo-price:empty{
+  opacity: 0;
+  pointer-events: none;
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.profile-change-content .profile-photo-item.nova-store-card > .profile-photo-button,
+.profile-change-content .profile-photo-item.nova-store-card > .nova-store-in-use-btn{
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 44px;
+  margin: 8px 0 0 !important;
+  padding: 11px 16px !important;
+  box-sizing: border-box;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 1.2;
+  border-radius: 12px !important;
+  flex-shrink: 0;
+  align-self: stretch;
+}
 .nova-hero-store-card .profile-photo-price:empty{
-  display: none;
-  min-height: 0;
-  padding: 0;
-  margin: 0;
+  display: flex !important;
+  min-height: 40px;
+  opacity: 0;
+  pointer-events: none;
+  border-color: transparent !important;
+  background: transparent !important;
+  margin: auto 0 0 !important;
 }
 
 .nova-store-detail-overlay{
@@ -599,6 +642,21 @@
 .profile-change-content .profile-photo-item .nova-store-in-use{
   margin: 8px 8px 10px;
   width: calc(100% - 16px);
+}
+.profile-change-content .profile-photo-button.nova-store-in-use-btn,
+.nova-store-detail-action.nova-store-in-use-btn{
+  opacity: .78;
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #cbd5e1 !important;
+  background: rgba(15, 23, 42, .88) !important;
+  border-color: rgba(100, 116, 139, .5) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.profile-change-content .profile-photo-button.nova-store-in-use-btn:hover,
+.nova-store-detail-action.nova-store-in-use-btn:hover{
+  transform: none !important;
 }
 
 /* Karakter sandığı — kahramanlar */

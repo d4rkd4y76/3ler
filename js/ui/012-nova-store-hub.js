@@ -215,5 +215,42 @@
     selectMainTab('avatar');
   };
 
+  function getActiveStoreCategory() {
+    if (state.sub) return state.sub;
+    var subBtn = document.querySelector('#novaStoreSubNav .nova-store-sub-btn.active');
+    if (subBtn && subBtn.dataset.category) return subBtn.dataset.category;
+    var legRoot = document.getElementById('novaStoreLegacyCategories');
+    var legVisible = legRoot && !legRoot.hidden && legRoot.getAttribute('aria-hidden') !== 'true';
+    if (legVisible) {
+      var legBtn = legRoot.querySelector('.category-button.active');
+      if (legBtn) return legBtn.dataset.categoryRaw || legBtn.dataset.category || null;
+    }
+    return null;
+  }
+
+  function refreshStoreInPlace() {
+    var cat = getActiveStoreCategory();
+    if (!cat) return Promise.resolve();
+    syncSubCategory(cat);
+    if (typeof loadProfilePhotos === 'function') return loadProfilePhotos(cat);
+    return Promise.resolve();
+  }
+
+  function syncSubCategory(cat) {
+    if (!cat) return;
+    state.sub = cat;
+    activateSubButton(cat);
+    try {
+      if (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.setStoreLevelBarVisible) {
+        window.NOVA_HERO_LEVEL.setStoreLevelBarVisible(state.main === 'heroes' && cat === '__battleHeroesTemel');
+      }
+    } catch (_) {}
+  }
+
+  window.novaStoreHubGetSubCategory = function () { return state.sub; };
+  window.novaStoreHubGetMainTab = function () { return state.main; };
+  window.novaStoreHubSyncSubCategory = syncSubCategory;
+  window.novaGetActiveStoreCategory = getActiveStoreCategory;
+  window.novaRefreshStoreInPlace = refreshStoreInPlace;
   window.novaStoreHubSelectMainTab = selectMainTab;
 })();

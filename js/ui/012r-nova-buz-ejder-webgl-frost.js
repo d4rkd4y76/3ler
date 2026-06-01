@@ -249,10 +249,13 @@
 
   FrostEngine.prototype.loop = function (now) {
     if (!this.running) return;
+    if (this.host && window.novaSpritePerfCanAnimate && !window.novaSpritePerfCanAnimate(this.host)) {
+      this.raf = requestAnimationFrame(this.loop);
+      return;
+    }
     if (!this.last) this.last = now;
     var dt = Math.min(0.032, (now - this.last) / 1000);
     this.last = now;
-    this.resize();
     this.tick(dt);
     this.draw();
     this.raf = requestAnimationFrame(this.loop);
@@ -307,6 +310,7 @@
     var old = engines.get(host);
     if (old) old.stop();
     var eng = new FrostEngine(canvas);
+    eng.host = host;
     engines.set(host, eng);
     if (!eng.dead) {
       eng.syncOriginFromHost(host);
