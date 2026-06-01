@@ -179,6 +179,34 @@
         ]
       }
     },
+    firtina_okcu: {
+      id: 'firtina_okcu',
+      sprite: 'hero/firtina_okcusu/sprite',
+      theme: 'firtina',
+      name: 'Fırtına Okçusu',
+      desc: 'Yıldırım hızında ok atan efsane okçu! Mağazada, ana ekranda ve doğru cevaplarda seni kutlar.',
+      price: 10200,
+      order: 7,
+      equipEmoji: '🏹',
+      lines: {
+        cheer: [
+          { msg: 'Tam isabet! Okçu onaylıyor — harikasın!', badge: '✓ DOĞRU' },
+          { msg: 'Yıldırım gibi doğru cevap — süpersin!', badge: '✓ DOĞRU' },
+          { msg: 'Bravo! Hedefi on ikiden vurdun!', badge: '✓ DOĞRU' },
+          { msg: 'Mükemmel nişan — böyle devam!', badge: '✓ DOĞRU' }
+        ],
+        fire: [
+          { msg: 'FIRTINA VURUŞU! Muhteşem cevap!', badge: '⚡ SÜPER' },
+          { msg: 'Yıldırım hızında doğru — inanılmaz!', badge: '⚡ SÜPER' },
+          { msg: 'Ok fırtınası! Tam gaz devam!', badge: '⚡ SÜPER' }
+        ],
+        epic: [
+          { msg: 'EFSANE OK! Bugün sen kralsın!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Fırtına seninle!', badge: '👑 EFSANE' },
+          { msg: 'SÜPER! Okçu tacı senin!', badge: '👑 EFSANE' }
+        ]
+      }
+    },
     buz_ejder: {
       id: 'buz_ejder',
       epic: true,
@@ -367,7 +395,7 @@
         'is-visible',
         'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star', 'nova-main-hero-zone--turbo',
         'nova-main-hero-zone--mythic', 'nova-main-hero-zone--bilge', 'nova-main-hero-zone--simsek',
-        'nova-main-hero-zone--buz', 'nova-main-hero-zone--alev', 'nova-main-hero-zone--gece'
+        'nova-main-hero-zone--firtina', 'nova-main-hero-zone--buz', 'nova-main-hero-zone--alev', 'nova-main-hero-zone--gece'
       );
       zone.setAttribute('aria-hidden', 'true');
     }
@@ -377,7 +405,7 @@
     slot.classList.remove(
       'nova-main-hero-slot--blaze', 'nova-main-hero-slot--star', 'nova-main-hero-slot--turbo',
       'nova-main-hero-slot--mythic', 'nova-main-hero-slot--bilge', 'nova-main-hero-slot--simsek',
-      'nova-main-hero-slot--buz', 'nova-main-hero-slot--alev', 'nova-main-hero-slot--gece'
+      'nova-main-hero-slot--firtina', 'nova-main-hero-slot--buz', 'nova-main-hero-slot--alev', 'nova-main-hero-slot--gece'
     );
   }
 
@@ -433,6 +461,9 @@
       return;
     }
     mountMainScreenHero(heroId);
+    if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
+      window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
+    }
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
       window.novaBuzEjderPreloadTrueClipsIfEquipped();
     }
@@ -518,13 +549,16 @@
 
   function heroHasStoreArt(def) {
     if (!def) return false;
+    if (def.sprite && def.id === 'firtina_okcu') {
+      return typeof window.novaFirtinaOkcuMountSprite === 'function';
+    }
     if (def.sprite && typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(def.id)) {
       return typeof window.novaEpicDragonMountSprite === 'function';
     }
     return !!(def.templateKey && window[def.templateKey]);
   }
 
-  var MOUNT_CLASS_LIST = 'nova-hero-mount--blaze-robot nova-hero-mount--star-fairy nova-hero-mount--turbo-turtle nova-hero-mount--mythic-wyvern nova-hero-mount--bilge-hayalet nova-hero-mount--simsek-sincap nova-hero-mount--buz-ejder nova-hero-mount--alev-ejder nova-hero-mount--gece-ejder';
+  var MOUNT_CLASS_LIST = 'nova-hero-mount--blaze-robot nova-hero-mount--star-fairy nova-hero-mount--turbo-turtle nova-hero-mount--mythic-wyvern nova-hero-mount--bilge-hayalet nova-hero-mount--simsek-sincap nova-hero-mount--firtina-okcu nova-hero-mount--buz-ejder nova-hero-mount--alev-ejder nova-hero-mount--gece-ejder';
 
   function clearMountClasses(host) {
     if (!host) return;
@@ -570,6 +604,9 @@
     var profile = (opts && opts.profile) || 'store';
     clearMountClasses(host);
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
+    if (id === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
+      return window.novaFirtinaOkcuMountSprite(host, { profile: profile, scale: opts && opts.scale });
+    }
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       return typeof window.novaEpicDragonMountSprite === 'function'
         ? window.novaEpicDragonMountSprite(host, id, { profile: profile })
@@ -592,6 +629,10 @@
     var id = heroId || getEquippedHeroId();
     clearMountClasses(host);
     if (id) host.classList.add('nova-hero-mount--' + id.replace(/_/g, '-'));
+    if (id === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
+      var fProfile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
+      return window.novaFirtinaOkcuMountSprite(host, { profile: fProfile });
+    }
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       if (epicDragonUseSpriteHost(host) && typeof window.novaEpicDragonMountSprite === 'function') {
         var profile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
@@ -643,6 +684,10 @@
   }
 
   function heroUsesTrueSpriteClips(heroId) {
+    if (heroId === 'firtina_okcu') {
+      return typeof window.novaFirtinaOkcuHasTrueClips === 'function'
+        && window.novaFirtinaOkcuHasTrueClips();
+    }
     return heroId === 'buz_ejder'
       && typeof window.novaBuzEjderHasTrueClips === 'function'
       && window.novaBuzEjderHasTrueClips();
@@ -765,7 +810,7 @@
   }
 
   function usesJsSpFx(heroId) {
-    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'buz_ejder' || heroId === 'alev_ejder' || heroId === 'gece_ejder';
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'firtina_okcu' || heroId === 'buz_ejder' || heroId === 'alev_ejder' || heroId === 'gece_ejder';
   }
 
   function pickFxRoutine(variant) {
@@ -800,6 +845,9 @@
     if (heroId === 'simsek_sincap' && typeof window.novaSimsekSincapPlaySpFx === 'function') {
       return window.novaSimsekSincapPlaySpFx(host, variant, routine);
     }
+    if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPlaySpFx === 'function') {
+      return window.novaFirtinaOkcuPlaySpFx(host, variant, routine);
+    }
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPlaySpFx === 'function') {
       return window.novaBuzEjderPlaySpFx(host, variant, routine);
     }
@@ -830,6 +878,11 @@
         window.novaBilgeHayaletResetSvg(svg);
       } else if (heroId === 'simsek_sincap' && typeof window.novaSimsekSincapResetSvg === 'function') {
         window.novaSimsekSincapResetSvg(svg);
+      } else if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuTrueUnmount === 'function') {
+        window.novaFirtinaOkcuTrueUnmount(host);
+        if (typeof window.novaFirtinaOkcuMountSprite === 'function') {
+          window.novaFirtinaOkcuMountSprite(host, { profile: 'store' });
+        }
       } else if (heroId === 'buz_ejder' && typeof window.novaBuzEjderResetHost === 'function') {
         window.novaBuzEjderResetHost(host);
       } else if (heroId === 'alev_ejder' && typeof window.novaAlevEjderResetHost === 'function') {
@@ -947,8 +1000,12 @@
 
       fxBusy = true;
 
-      if (spriteOnly && typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
-        window.novaBuzEjderEnsureTrueClipsReady();
+      if (spriteOnly) {
+        if (equippedId === 'firtina_okcu' && typeof window.novaFirtinaOkcuEnsureTrueClipsReady === 'function') {
+          window.novaFirtinaOkcuEnsureTrueClipsReady();
+        } else if (typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
+          window.novaBuzEjderEnsureTrueClipsReady();
+        }
       }
 
       arena.setAttribute('aria-hidden', 'false');
@@ -1344,6 +1401,9 @@
     window.novaOpenSinglePlayerGameScreen = function () {
       open.apply(this, arguments);
       hideArena();
+      if (typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
+        window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
+      }
       if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
         window.novaBuzEjderPreloadTrueClipsIfEquipped();
       }

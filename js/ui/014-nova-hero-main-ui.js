@@ -210,7 +210,9 @@
       var mountHost = heroHost.querySelector('.nova-hero-svg-host');
       var s2 = getStudent();
       var hid = s2 && s2.battleHero ? String(s2.battleHero).trim() : '';
-      if (mountHost && typeof window.novaEpicDragonUnmountSprite === 'function') {
+      if (mountHost && hid === 'firtina_okcu' && typeof window.novaFirtinaOkcuUnmountSprite === 'function') {
+        window.novaFirtinaOkcuUnmountSprite(mountHost);
+      } else if (mountHost && typeof window.novaEpicDragonUnmountSprite === 'function') {
         window.novaEpicDragonUnmountSprite(mountHost, hid);
       }
     }
@@ -275,15 +277,23 @@
     }
     if (arena) {
       arena.className = 'nh-hero-sheet__arena nh-hero-sheet__arena--' + (def.theme || 'blaze');
-      arena.classList.remove('nh-hero-sheet__arena--buz-sprite', 'nh-hero-sheet__arena--alev-sprite', 'nh-hero-sheet__arena--gece-sprite');
+      arena.classList.remove(
+        'nh-hero-sheet__arena--buz-sprite',
+        'nh-hero-sheet__arena--alev-sprite',
+        'nh-hero-sheet__arena--gece-sprite',
+        'nh-hero-sheet__arena--firtina-sprite'
+      );
       if (isEpicDragon) arena.classList.add('nh-hero-sheet__arena--' + (def.theme || 'buz') + '-sprite');
+      if (heroId === 'firtina_okcu') arena.classList.add('nh-hero-sheet__arena--firtina-sprite');
     }
     if (heroHost) {
       heroHost.innerHTML = '';
       var host = document.createElement('div');
       host.className = 'nova-hero-svg-host nova-hero-mount--' + heroId.replace(/_/g, '-');
       heroHost.appendChild(host);
-      if (isEpicDragon && typeof window.novaEpicDragonMountSprite === 'function') {
+      if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
+        window.novaFirtinaOkcuMountSprite(host, { profile: 'main' });
+      } else if (isEpicDragon && typeof window.novaEpicDragonMountSprite === 'function') {
         window.novaEpicDragonMountSprite(host, heroId, { profile: 'main' });
       } else {
         mountHeroSvg(host, heroId);
@@ -309,13 +319,19 @@
     zone.setAttribute('role', 'button');
     zone.setAttribute('tabindex', '0');
     zone.setAttribute('aria-label', 'Kahraman detaylarını aç');
-    zone.addEventListener('click', function () { openHeroSheet(); });
-    zone.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openHeroSheet();
-      }
-    });
+    function onHeroActivate(e) {
+      if (e && e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+      if (e && e.type === 'keydown') e.preventDefault();
+      if (!zone.classList.contains('is-visible')) return;
+      openHeroSheet();
+    }
+    zone.addEventListener('click', onHeroActivate);
+    zone.addEventListener('keydown', onHeroActivate);
+    var slot = document.getElementById('nova-main-hero-slot');
+    if (slot && slot.dataset.nhSheetBound !== '1') {
+      slot.dataset.nhSheetBound = '1';
+      slot.addEventListener('click', onHeroActivate);
+    }
   }
 
   function patchRefreshMainHero() {

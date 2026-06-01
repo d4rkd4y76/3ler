@@ -168,6 +168,7 @@
     if (heroId === 'buz_ejder') return 'Buz Ejderi';
     if (heroId === 'alev_ejder') return 'Alev Ejderi';
     if (heroId === 'gece_ejder') return 'Gece Ejderi';
+    if (heroId === 'firtina_okcu') return 'Fırtına Okçusu';
     return heroId;
   }
 
@@ -183,6 +184,7 @@
     if (heroId === 'buz_ejder') return 'buz';
     if (heroId === 'alev_ejder') return 'alev';
     if (heroId === 'gece_ejder') return 'gece';
+    if (heroId === 'firtina_okcu') return 'firtina';
     return 'blaze';
   }
 
@@ -462,7 +464,9 @@
     var host = document.createElement('div');
     host.className = 'nh-level-hero-preview__host nova-hero-mount--' + heroId.replace(/_/g, '-');
     box.appendChild(host);
-    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId) && typeof window.novaEpicDragonMountSprite === 'function') {
+    if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
+      window.novaFirtinaOkcuMountSprite(host, { profile: 'store', scale: 1.28 });
+    } else if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId) && typeof window.novaEpicDragonMountSprite === 'function') {
       window.novaEpicDragonMountSprite(host, heroId, { profile: 'store' });
     } else if (typeof window.novaMountHeroInto === 'function') {
       window.novaMountHeroInto(host, heroId);

@@ -369,7 +369,8 @@
     var epic = ndepIsEpicHero(id);
     var scale = epic ? 1.22 : 0.78;
     if (!epic) {
-      if (id.indexOf('turbo') >= 0) scale = 0.68;
+      if (id === 'firtina_okcu') scale = 1.22;
+      else if (id.indexOf('turbo') >= 0) scale = 0.68;
       else if (id.indexOf('fairy') >= 0 || id === 'star_fairy') scale = 0.74;
       else if (id.indexOf('robot') >= 0 || id === 'blaze_robot') scale = 0.76;
       else if (id.indexOf('wyvern') >= 0 || id.indexOf('mythic') >= 0) scale = 0.7;

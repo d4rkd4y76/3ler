@@ -178,6 +178,20 @@
     radial-gradient(ellipse 55% 38% at 50% 12%, rgba(167, 139, 250, .16), transparent 70%),
     linear-gradient(168deg, #0c0418 0%, #2e1065 55%, #4c1d95 100%);
 }
+.nh-hero-sheet__arena--firtina-sprite{
+  min-height: clamp(200px, 34vh, 320px);
+}
+.nh-hero-sheet__arena--firtina-sprite .nh-hero-sheet__hero-host{
+  width: 100%;
+  max-width: 280px;
+  min-height: 160px;
+}
+.nh-hero-sheet__arena--firtina-sprite .nova-hero-firtina-sprite{
+  width: 100%;
+  max-width: 280px;
+  height: min(240px, 42vh);
+  margin: 0 auto;
+}
 .nh-hero-sheet__stars{
   display: flex;
   align-items: center;

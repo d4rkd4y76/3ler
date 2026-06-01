@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-firtina-okcu-sprites.py */
+window.NOVA_FIRTINA_OKCU_SPRITE_BASE="hero/firtina_okcusu/sprite/";
+window.NOVA_FIRTINA_OKCU_SPRITE_MANIFEST = {"version":1,"base":"hero/firtina_okcusu/sprite/","sheet":"firtina-okcu-idle.webp","frameWidth":149,"frameHeight":290,"cols":9,"rows":5,"frameCount":44,"loopEnd":36,"fps":12,"blendFrames":8,"sheetWidth":1341,"sheetHeight":1450,"anchor":"center","main":{"sheet":"firtina-okcu-main.webp","frameWidth":301,"frameHeight":300,"cols":7,"rows":8,"frameCount":56,"loopEnd":48,"fps":12,"blendFrames":8,"sheetWidth":2107,"sheetHeight":2400,"anchor":"bottom"},"scale":{"store":1.12,"detail":1.5,"main":1.42}};
