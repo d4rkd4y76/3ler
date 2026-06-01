@@ -1,4 +1,4 @@
-﻿/* Firtina Okcusu — tek kişilik doğru cevap sprite klipleri */
+/* yildiz Okcusu — tek kişilik doğru cevap sprite klipleri */
 (function () {
   'use strict';
 
@@ -8,12 +8,12 @@
   var shuffleDeck = [];
 
   function rootManifest() {
-    return window.NOVA_FIRTINA_OKCU_TRUE_MANIFEST || null;
+    return window.NOVA_YILDIZ_PERISI_TRUE_MANIFEST || null;
   }
 
   function scriptBase() {
-    if (window.NOVA_FIRTINA_OKCU_TRUE_BASE) return window.NOVA_FIRTINA_OKCU_TRUE_BASE;
-    return 'hero/firtina_okcusu/sprite/true/';
+    if (window.NOVA_YILDIZ_PERISI_TRUE_BASE) return window.NOVA_YILDIZ_PERISI_TRUE_BASE;
+    return 'hero/yildiz_perisi/sprite/true/';
   }
 
   function getEquippedHeroId() {
@@ -28,8 +28,8 @@
     }
   }
 
-  function isFirtinaEquipped() {
-    return getEquippedHeroId() === 'firtina_okcu';
+  function isStarFairyEquipped() {
+    return getEquippedHeroId() === 'star_fairy';
   }
 
   function resolveUrl(file) {
@@ -110,7 +110,7 @@
   }
 
   function preloadTrueClipsIfEquipped(force) {
-    if (!isFirtinaEquipped() || !hasTrueClips()) return Promise.resolve(false);
+    if (!isStarFairyEquipped() || !hasTrueClips()) return Promise.resolve(false);
     return preloadAllTrueClips(force);
   }
 
@@ -233,7 +233,7 @@
       this.running = false;
       if (this.raf) cancelAnimationFrame(this.raf);
       this.raf = 0;
-      if (this.wrap) this.wrap.classList.add('nova-hero-firtina-true-wrap--done');
+      if (this.wrap) this.wrap.classList.add('nova-hero-yildiz-true-wrap--done');
       if (typeof this.onComplete === 'function') this.onComplete();
       return;
     }
@@ -268,7 +268,7 @@
       engines.delete(host);
     }
     host.innerHTML = '';
-    host.classList.remove('nova-hero-firtina-true-ready', 'nova-sp-fx-true-sprite', 'nova-hero-mount--firtina-okcu');
+    host.classList.remove('nova-hero-yildiz-true-ready', 'nova-sp-fx-true-sprite', 'nova-hero-mount--star-fairy');
   }
 
   function waitMs(ms) {
@@ -277,13 +277,13 @@
 
   function mountAndPlay(host, assets) {
     var wrap = document.createElement('div');
-    wrap.className = 'nova-hero-firtina-true-wrap';
+    wrap.className = 'nova-hero-yildiz-true-wrap';
     var canvas = document.createElement('canvas');
-    canvas.className = 'nova-hero-firtina-true-sprite__canvas';
+    canvas.className = 'nova-hero-yildiz-true-sprite__canvas';
     canvas.setAttribute('aria-hidden', 'true');
     wrap.appendChild(canvas);
     host.appendChild(wrap);
-    host.classList.add('nova-hero-firtina-true-ready');
+    host.classList.add('nova-hero-yildiz-true-ready');
 
     return new Promise(function (resolve) {
       var eng = new TrueClipEngine(wrap, canvas, assets.clip, assets.img);
@@ -302,7 +302,7 @@
     if (!clipMeta) return waitMs(400);
 
     unmount(host);
-    host.classList.add('nova-sp-fx-true-sprite', 'nova-hero-mount--firtina-okcu');
+    host.classList.add('nova-sp-fx-true-sprite', 'nova-hero-mount--star-fairy');
 
     var cached = sheetCache[clipMeta.sheet];
     if (cached && typeof cached.then === 'function') {
@@ -318,7 +318,7 @@
       if (!document.body.contains(host)) return waitMs(0);
       return mountAndPlay(host, assets);
     }).catch(function (err) {
-      console.warn('firtina true clip', err);
+      console.warn('yildiz true clip', err);
       return waitMs(300);
     });
   }
@@ -333,16 +333,16 @@
 
   if (hasTrueClips()) refillShuffleDeck();
 
-  window.novaFirtinaOkcuHasTrueClips = hasTrueClips;
-  window.novaFirtinaOkcuPlayTrueClip = playTrueClip;
-  window.novaFirtinaOkcuTrueUnmount = unmount;
-  window.novaFirtinaOkcuPreloadTrueClips = preloadTrueClips;
-  window.novaFirtinaOkcuPreloadTrueClipsIfEquipped = preloadTrueClipsIfEquipped;
-  window.novaFirtinaOkcuEnsureTrueClipsReady = preloadAllTrueClips;
-  window.novaFirtinaOkcuPickTrueClipRoutine = pickTrueClipRoutine;
+  window.novaYildizPerisiHasTrueClips = hasTrueClips;
+  window.novaYildizPerisiPlayTrueClip = playTrueClip;
+  window.novaYildizPerisiTrueUnmount = unmount;
+  window.novaYildizPerisiPreloadTrueClips = preloadTrueClips;
+  window.novaYildizPerisiPreloadTrueClipsIfEquipped = preloadTrueClipsIfEquipped;
+  window.novaYildizPerisiEnsureTrueClipsReady = preloadAllTrueClips;
+  window.novaYildizPerisiPickTrueClipRoutine = pickTrueClipRoutine;
 
   function playSpFx(host, variant, routine) {
     return playTrueClip(host, typeof routine === 'number' ? routine : 0);
   }
-  window.novaFirtinaOkcuPlaySpFx = playSpFx;
+  window.novaYildizPerisiPlaySpFx = playSpFx;
 })();

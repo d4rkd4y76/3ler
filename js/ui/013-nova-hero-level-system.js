@@ -466,6 +466,8 @@
     box.appendChild(host);
     if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
       window.novaFirtinaOkcuMountSprite(host, { profile: 'store', scale: 1.28 });
+    } else if (heroId === 'star_fairy' && typeof window.novaYildizPerisiMountSprite === 'function') {
+      window.novaYildizPerisiMountSprite(host, { profile: 'store', scale: 1.28 });
     } else if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId) && typeof window.novaEpicDragonMountSprite === 'function') {
       window.novaEpicDragonMountSprite(host, heroId, { profile: 'store' });
     } else if (typeof window.novaMountHeroInto === 'function') {

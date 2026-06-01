@@ -203,22 +203,41 @@
   transform-origin: center bottom;
 }
 
-/* Doğru cevap */
-.nova-hero-firtina-true-wrap {
-  position: absolute;
-  inset: 0;
+/* Doğru cevap — tek kişilik (styles/093 sprite-only + buz ile aynı ölçek) */
+.nova-sp-hero-arena__host .nova-hero-firtina-true-wrap {
+  width: 100%;
+  height: 100%;
+  min-height: min(944px, 96vh);
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  padding-bottom: 11%;
+  box-sizing: border-box;
+  background: transparent;
   pointer-events: none;
-  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.42s ease 0.08s, transform 0.48s cubic-bezier(0.22, 1, 0.34, 1) 0.08s;
 }
 
-.nova-hero-firtina-true-sprite__canvas {
+.nova-sp-hero-arena--sprite-only.is-centered .nova-hero-firtina-true-ready .nova-hero-firtina-true-wrap {
+  opacity: 1;
+  transform: translateY(-7%);
+}
+
+.nova-sp-hero-arena--sprite-only.is-exiting .nova-hero-firtina-true-wrap,
+.nova-hero-firtina-true-wrap--done {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.32s ease, transform 0.36s ease;
+}
+
+.nova-sp-hero-arena__host .nova-hero-firtina-true-sprite__canvas {
   display: block;
   max-width: 100%;
-  max-height: 100%;
+  background: transparent;
   pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(56, 189, 248, 0.38));
 }
 
 .nova-sp-hero-arena--sprite-only .nova-sp-hero-speech {
@@ -227,7 +246,7 @@
 }
 
 .nova-sp-fx-true-sprite.nova-hero-mount--firtina-okcu .nova-hero-firtina-sprite {
-  display: none;
+  display: none !important;
 }
 
 /* Sezon sıralaması — sprite + yıldızlar */

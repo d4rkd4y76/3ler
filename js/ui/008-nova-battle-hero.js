@@ -34,10 +34,10 @@
     },
     star_fairy: {
       id: 'star_fairy',
-      templateKey: 'NOVA_STAR_FAIRY_SVG_TEMPLATE',
+      sprite: 'hero/yildiz_perisi/sprite',
       theme: 'star',
       name: 'Yıldız Perisi',
-      desc: 'Kozmik güçle seni kutlayan yıldız perisi. Doğru cevaplarda yıldız yağmuru ve sihirli motivasyon!',
+      desc: 'Kozmik güçle seni kutlayan yıldız perisi. Mağazada, ana ekranda ve doğru cevaplarda seni kutlar!',
       price: 6500,
       order: 2,
       equipEmoji: '✨',
@@ -464,6 +464,9 @@
     if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
       window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
     }
+    if (heroId === 'star_fairy' && typeof window.novaYildizPerisiPreloadTrueClipsIfEquipped === 'function') {
+      window.novaYildizPerisiPreloadTrueClipsIfEquipped();
+    }
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
       window.novaBuzEjderPreloadTrueClipsIfEquipped();
     }
@@ -552,6 +555,9 @@
     if (def.sprite && def.id === 'firtina_okcu') {
       return typeof window.novaFirtinaOkcuMountSprite === 'function';
     }
+    if (def.sprite && def.id === 'star_fairy') {
+      return typeof window.novaYildizPerisiMountSprite === 'function';
+    }
     if (def.sprite && typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(def.id)) {
       return typeof window.novaEpicDragonMountSprite === 'function';
     }
@@ -607,6 +613,9 @@
     if (id === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
       return window.novaFirtinaOkcuMountSprite(host, { profile: profile, scale: opts && opts.scale });
     }
+    if (id === 'star_fairy' && typeof window.novaYildizPerisiMountSprite === 'function') {
+      return window.novaYildizPerisiMountSprite(host, { profile: profile, scale: opts && opts.scale });
+    }
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       return typeof window.novaEpicDragonMountSprite === 'function'
         ? window.novaEpicDragonMountSprite(host, id, { profile: profile })
@@ -632,6 +641,10 @@
     if (id === 'firtina_okcu' && typeof window.novaFirtinaOkcuMountSprite === 'function') {
       var fProfile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
       return window.novaFirtinaOkcuMountSprite(host, { profile: fProfile });
+    }
+    if (id === 'star_fairy' && typeof window.novaYildizPerisiMountSprite === 'function') {
+      var sProfile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
+      return window.novaYildizPerisiMountSprite(host, { profile: sProfile });
     }
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       if (epicDragonUseSpriteHost(host) && typeof window.novaEpicDragonMountSprite === 'function') {
@@ -687,6 +700,10 @@
     if (heroId === 'firtina_okcu') {
       return typeof window.novaFirtinaOkcuHasTrueClips === 'function'
         && window.novaFirtinaOkcuHasTrueClips();
+    }
+    if (heroId === 'star_fairy') {
+      return typeof window.novaYildizPerisiHasTrueClips === 'function'
+        && window.novaYildizPerisiHasTrueClips();
     }
     return heroId === 'buz_ejder'
       && typeof window.novaBuzEjderHasTrueClips === 'function'
@@ -833,9 +850,6 @@
     if (heroId === 'blaze_robot' && typeof window.novaBlazeBotPlaySpFx === 'function') {
       return window.novaBlazeBotPlaySpFx(host, variant, routine);
     }
-    if (heroId === 'star_fairy' && typeof window.novaStarFairyPlaySpFx === 'function') {
-      return window.novaStarFairyPlaySpFx(host, variant, routine);
-    }
     if (heroId === 'mythic_wyvern' && typeof window.novaMythicWyvernPlaySpFx === 'function') {
       return window.novaMythicWyvernPlaySpFx(host, variant, routine);
     }
@@ -847,6 +861,9 @@
     }
     if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPlaySpFx === 'function') {
       return window.novaFirtinaOkcuPlaySpFx(host, variant, routine);
+    }
+    if (heroId === 'star_fairy' && typeof window.novaYildizPerisiPlaySpFx === 'function') {
+      return window.novaYildizPerisiPlaySpFx(host, variant, routine);
     }
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPlaySpFx === 'function') {
       return window.novaBuzEjderPlaySpFx(host, variant, routine);
@@ -870,8 +887,6 @@
         window.novaTurboTurtleResetSvg(svg);
       } else if (heroId === 'blaze_robot' && typeof window.novaBlazeBotResetSvg === 'function') {
         window.novaBlazeBotResetSvg(svg);
-      } else if (heroId === 'star_fairy' && typeof window.novaStarFairyResetSvg === 'function') {
-        window.novaStarFairyResetSvg(svg);
       } else if (heroId === 'mythic_wyvern' && typeof window.novaMythicWyvernResetSvg === 'function') {
         window.novaMythicWyvernResetSvg(svg);
       } else if (heroId === 'bilge_hayalet' && typeof window.novaBilgeHayaletResetSvg === 'function') {
@@ -880,9 +895,8 @@
         window.novaSimsekSincapResetSvg(svg);
       } else if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuTrueUnmount === 'function') {
         window.novaFirtinaOkcuTrueUnmount(host);
-        if (typeof window.novaFirtinaOkcuMountSprite === 'function') {
-          window.novaFirtinaOkcuMountSprite(host, { profile: 'store' });
-        }
+      } else if (heroId === 'star_fairy' && typeof window.novaYildizPerisiTrueUnmount === 'function') {
+        window.novaYildizPerisiTrueUnmount(host);
       } else if (heroId === 'buz_ejder' && typeof window.novaBuzEjderResetHost === 'function') {
         window.novaBuzEjderResetHost(host);
       } else if (heroId === 'alev_ejder' && typeof window.novaAlevEjderResetHost === 'function') {
@@ -906,7 +920,7 @@
     arena.classList.remove(
       'is-active', 'is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show',
       'nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic',
-      'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece'
+      'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece', 'nova-sp-theme-firtina'
     );
     arena.setAttribute('aria-hidden', 'true');
     var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -982,7 +996,7 @@
       if (!def) { resolve(); return; }
 
       var arena = ensureArena();
-      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece');
+      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece', 'nova-sp-theme-firtina');
       arena.classList.add('nova-sp-theme-' + def.theme);
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -1003,6 +1017,8 @@
       if (spriteOnly) {
         if (equippedId === 'firtina_okcu' && typeof window.novaFirtinaOkcuEnsureTrueClipsReady === 'function') {
           window.novaFirtinaOkcuEnsureTrueClipsReady();
+        } else if (equippedId === 'star_fairy' && typeof window.novaYildizPerisiEnsureTrueClipsReady === 'function') {
+          window.novaYildizPerisiEnsureTrueClipsReady();
         } else if (typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
           window.novaBuzEjderEnsureTrueClipsReady();
         }
@@ -1039,7 +1055,9 @@
       if (!spriteOnly) spawnArenaFx(arena, variant);
       if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
       else if (!spriteOnly && variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
-      var tail = spriteOnly ? 120 : (variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180));
+      var tail = spriteOnly
+        ? (heroId === 'firtina_okcu' || heroId === 'star_fairy' || heroId === 'buz_ejder' ? 280 : 120)
+        : (variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180));
       var fxWait = (jsFx || spriteOnly) && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
         : waitMs(spriteOnly ? 4200 : 850);
@@ -1403,6 +1421,12 @@
       hideArena();
       if (typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
         window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
+      }
+      if (typeof window.novaYildizPerisiPreloadTrueClipsIfEquipped === 'function') {
+        window.novaYildizPerisiPreloadTrueClipsIfEquipped();
+      }
+      if (typeof window.novaYildizPerisiPreloadSprite === 'function') {
+        window.novaYildizPerisiPreloadSprite();
       }
       if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
         window.novaBuzEjderPreloadTrueClipsIfEquipped();

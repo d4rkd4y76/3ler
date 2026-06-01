@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fırtına Okçusu — vitrin, ana ekran, DOĞRU -> seamless WebP sprite sheets."""
+"""Yıldız Perisi — vitrin, ana ekran, DOĞRU -> seamless WebP sprite sheets."""
 from __future__ import annotations
 
 import glob
@@ -14,12 +14,24 @@ import numpy as np
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HERO_DIR = os.path.join(ROOT, "hero", "firtina_okcusu")
-OUT_DIR = os.path.join(HERO_DIR, "sprite")
+
+
+def find_source_hero_dir() -> str:
+    hero_root = os.path.join(ROOT, "hero")
+    for name in os.listdir(hero_root):
+        low = name.lower()
+        if "perisi" in low or "yildiz" in low or "yild" in low:
+            return os.path.join(hero_root, name)
+    raise SystemExit("hero/yildiz_perisi kaynak klasoru bulunamadi")
+
+
+SOURCE_DIR = find_source_hero_dir()
+OUT_DIR = os.path.join(ROOT, "hero", "yildiz_perisi", "sprite")
 TRUE_DIR = os.path.join(OUT_DIR, "true")
-MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012aa-nova-firtina-okcu-sprite-manifest.js")
-TRUE_MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012ac-nova-firtina-okcu-true-manifest.js")
+MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012ae-nova-yildiz-perisi-sprite-manifest.js")
+TRUE_MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012ag-nova-yildiz-perisi-true-manifest.js")
 MANIFEST_JSON = os.path.join(OUT_DIR, "manifest.json")
+SPRITE_BASE = "hero/yildiz_perisi/sprite/"
 
 MAX_SHEET_W = 4096
 WEBP_QUALITY = 93
@@ -27,14 +39,14 @@ WEBP_QUALITY = 93
 
 def find_video(*patterns: str) -> str:
     for pat in patterns:
-        hits = glob.glob(os.path.join(HERO_DIR, pat))
+        hits = glob.glob(os.path.join(SOURCE_DIR, pat))
         if hits:
             return hits[0]
-    return os.path.join(HERO_DIR, patterns[0])
+    return os.path.join(SOURCE_DIR, patterns[0])
 
 
-VITRIN_VIDEO = find_video("firtina_okcusu_vitrin.mp4", "*vitrin*.mp4")
-MAIN_VIDEO = find_video("firtina_okcusu_ana_ekran.mp4", "*ana_ekran*.mp4")
+VITRIN_VIDEO = find_video("yildiz_perisi_vitrin.mp4", "*vitrin*.mp4", "*perisi*vitrin*")
+MAIN_VIDEO = find_video("yildiz_perisi_ana_ekran.mp4", "*ana_ekran*.mp4", "*perisi*ana*")
 TRUE_VIDEO = find_video("DOGRU.mp4", "DO?RU.mp4", "*dogru*.mp4", "*DO*RU*.mp4")
 
 
@@ -403,21 +415,21 @@ def main() -> int:
     if true_only:
         true_clip = build_true_sheet(
             TRUE_VIDEO,
-            os.path.join(TRUE_DIR, "firtina-okcu-true-dogru.webp"),
+            os.path.join(TRUE_DIR, "yildiz-perisi-true-dogru.webp"),
         )
         true_root = {
             "version": 1,
-            "base": "hero/firtina_okcusu/sprite/true/",
+            "base": "hero/yildiz_perisi/sprite/true/",
             "scale": {"sp": 1},
             "holdMs": 520,
             "clips": [true_clip],
         }
         write_js(
             TRUE_MANIFEST_JS,
-            "/* AUTO: scripts/build-firtina-okcu-sprites.py */",
+            "/* AUTO: scripts/build-yildiz-perisi-sprites.py */",
             [
-                'window.NOVA_FIRTINA_OKCU_TRUE_BASE="hero/firtina_okcusu/sprite/true/";',
-                "window.NOVA_FIRTINA_OKCU_TRUE_MANIFEST = "
+                'window.NOVA_YILDIZ_PERISI_TRUE_BASE="hero/yildiz_perisi/sprite/true/";',
+                "window.NOVA_YILDIZ_PERISI_TRUE_MANIFEST = "
                 + json.dumps(true_root, separators=(",", ":"))
                 + ";",
             ],
@@ -427,7 +439,7 @@ def main() -> int:
 
     idle = build_loop_sheet(
         VITRIN_VIDEO,
-        os.path.join(OUT_DIR, "firtina-okcu-idle.webp"),
+        os.path.join(OUT_DIR, "yildiz-perisi-idle.webp"),
         target_fps=12,
         max_frames=36,
         blend_frames=8,
@@ -438,7 +450,7 @@ def main() -> int:
 
     main_data = build_loop_sheet(
         MAIN_VIDEO,
-        os.path.join(OUT_DIR, "firtina-okcu-main.webp"),
+        os.path.join(OUT_DIR, "yildiz-perisi-main.webp"),
         target_fps=12,
         max_frames=None,
         blend_frames=8,
@@ -449,12 +461,16 @@ def main() -> int:
 
     true_clip = build_true_sheet(
         TRUE_VIDEO,
-        os.path.join(TRUE_DIR, "firtina-okcu-true-dogru.webp"),
+        os.path.join(TRUE_DIR, "yildiz-perisi-true-dogru.webp"),
     )
+
+    main_data["mainFit"] = "height"
+    main_data["mainOffsetX"] = -0.04
+    main_data["mainPadLeft"] = 14
 
     combined = {
         "version": 1,
-        "base": "hero/firtina_okcusu/sprite/",
+        "base": "hero/yildiz_perisi/sprite/",
         "sheet": idle["sheet"],
         "frameWidth": idle["frameWidth"],
         "frameHeight": idle["frameHeight"],
@@ -473,7 +489,7 @@ def main() -> int:
 
     true_root = {
         "version": 1,
-        "base": "hero/firtina_okcusu/sprite/true/",
+        "base": "hero/yildiz_perisi/sprite/true/",
         "scale": {"sp": 1},
         "holdMs": 520,
         "clips": [true_clip],
@@ -485,10 +501,10 @@ def main() -> int:
 
     write_js(
         MANIFEST_JS,
-        "/* AUTO: scripts/build-firtina-okcu-sprites.py */",
+        "/* AUTO: scripts/build-yildiz-perisi-sprites.py */",
         [
-            'window.NOVA_FIRTINA_OKCU_SPRITE_BASE="hero/firtina_okcusu/sprite/";',
-            "window.NOVA_FIRTINA_OKCU_SPRITE_MANIFEST = "
+            'window.NOVA_YILDIZ_PERISI_SPRITE_BASE="hero/yildiz_perisi/sprite/";',
+            "window.NOVA_YILDIZ_PERISI_SPRITE_MANIFEST = "
             + json.dumps(combined, separators=(",", ":"))
             + ";",
         ],
@@ -496,10 +512,10 @@ def main() -> int:
 
     write_js(
         TRUE_MANIFEST_JS,
-        "/* AUTO: scripts/build-firtina-okcu-sprites.py */",
+        "/* AUTO: scripts/build-yildiz-perisi-sprites.py */",
         [
-            'window.NOVA_FIRTINA_OKCU_TRUE_BASE="hero/firtina_okcusu/sprite/true/";',
-            "window.NOVA_FIRTINA_OKCU_TRUE_MANIFEST = "
+            'window.NOVA_YILDIZ_PERISI_TRUE_BASE="hero/yildiz_perisi/sprite/true/";',
+            "window.NOVA_YILDIZ_PERISI_TRUE_MANIFEST = "
             + json.dumps(true_root, separators=(",", ":"))
             + ";",
         ],
