@@ -82,6 +82,15 @@
   display: none !important;
 }
 /* Mağaza kartı — Kullan / Satın Al / Kullanılıyor aynı ölçü ve hizada */
+/* Eski kart parlama şeridi (002 ::before shine) — taşmayı kes */
+.profile-change-content .profile-photo-item::before,
+.profile-change-content .profile-photo-item:hover::before{
+  display: none !important;
+  content: none !important;
+  animation: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 .profile-change-content .profile-photo-item.nova-store-card{
   display: flex !important;
   flex-direction: column !important;
@@ -416,15 +425,15 @@
 }
 .nova-store-detail-preview--hero .nova-store-preview--firtina .nova-hero-firtina-sprite{
   width: 100%;
-  max-width: 280px;
-  height: 96%;
-  max-height: 218px;
+  max-width: 260px;
+  height: 92%;
+  max-height: 200px;
   margin: 0 auto;
-  padding: 0 6px;
+  padding: 0 8px 10px;
   box-sizing: border-box;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
 }
 .nova-store-detail-preview--hero .nova-store-preview--firtina .nova-hero-firtina-sprite__canvas{
   width: 100% !important;

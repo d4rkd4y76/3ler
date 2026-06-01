@@ -141,7 +141,7 @@
     this.profile = (opts && opts.profile) || 'store';
     this.anchorBottom = this.profile === 'main';
     var sc = manifest.scale && manifest.scale[this.profile];
-    var def = { store: 1.12, detail: 1.5, main: 1.42 };
+    var def = { store: 1.12, detail: 1.18, main: 1.42 };
     this.scaleMul = (opts && opts.scale) || sc || def[this.profile] || 1.12;
     this.dead = !this.ctx;
     this.running = false;
@@ -205,7 +205,7 @@
     var ch = this.canvas.height;
     var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
     var isDetail = this.profile === 'detail';
-    var maxFill = isDetail ? 1.14 : 0.97;
+    var maxFill = isDetail ? 0.88 : 0.97;
     var scale = fit * this.scaleMul;
     var dw = m.frameWidth * scale;
     var dh = m.frameHeight * scale;
@@ -222,6 +222,9 @@
     dh = Math.round(dh);
     var dx = Math.round((cw - dw) * 0.5);
     var dy = this.anchorBottom ? Math.round(ch - dh) : Math.round((ch - dh) * 0.5);
+    if (isDetail) {
+      dy = Math.round(ch - dh - Math.max(6, ch * 0.04));
+    }
     ctx.clearRect(0, 0, cw, ch);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';

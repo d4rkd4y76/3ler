@@ -19,8 +19,10 @@
 }
 
 .nova-hero-firtina-sprite--detail {
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-bottom: 6px;
+  box-sizing: border-box;
 }
 
 .nova-hero-firtina-sprite__canvas {
@@ -157,12 +159,14 @@
 
 .nova-store-detail-preview--hero .nova-store-preview--firtina .nova-hero-firtina-sprite {
   width: 100%;
-  max-width: 280px;
-  height: 96%;
-  max-height: 218px;
+  max-width: 260px;
+  height: 92%;
+  max-height: 200px;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-bottom: 8px;
+  box-sizing: border-box;
 }
 
 /* Kahraman detay sayfası */
