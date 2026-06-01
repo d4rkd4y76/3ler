@@ -48,9 +48,6 @@
         sheetWidth: root.main.sheetWidth,
         sheetHeight: root.main.sheetHeight,
         anchor: root.main.anchor || 'bottom',
-        mainFit: root.main.mainFit,
-        mainOffsetX: root.main.mainOffsetX,
-        mainPadLeft: root.main.mainPadLeft,
         scale: root.scale
       };
     }
@@ -206,13 +203,7 @@
     var ctx = this.ctx;
     var cw = this.canvas.width;
     var ch = this.canvas.height;
-    var aspect = m.frameWidth / m.frameHeight;
-    var useHeightFit = this.profile === 'main' && (
-      m.mainFit === 'height' || (m.mainFit !== 'contain' && aspect > 1.2)
-    );
-    var fit = useHeightFit
-      ? (ch / m.frameHeight)
-      : Math.min(cw / m.frameWidth, ch / m.frameHeight);
+    var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
     var isDetail = this.profile === 'detail';
     var maxFill = isDetail ? 0.9 : 0.97;
     var scale = fit * this.scaleMul;
@@ -221,8 +212,6 @@
     if (dw > cw * maxFill || dh > ch * maxFill) {
       if (isDetail) {
         scale = Math.min((cw * maxFill) / m.frameWidth, (ch * maxFill) / m.frameHeight);
-      } else if (useHeightFit) {
-        scale = (ch * maxFill) / m.frameHeight;
       } else {
         scale = fit;
       }
@@ -231,16 +220,7 @@
     }
     dw = Math.round(dw);
     dh = Math.round(dh);
-    var offFrac = (this.profile === 'main' && m.mainOffsetX) ? Number(m.mainOffsetX) : 0;
-    if (!isFinite(offFrac)) offFrac = 0;
-    offFrac = Math.max(-0.35, Math.min(0.35, offFrac));
-    var padL = 0;
-    if (this.profile === 'main' && m.mainPadLeft != null) {
-      padL = Number(m.mainPadLeft);
-      if (!isFinite(padL)) padL = 0;
-      padL = Math.max(0, Math.min(48, padL));
-    }
-    var dx = Math.round((cw - dw) * 0.5 + offFrac * dw + padL);
+    var dx = Math.round((cw - dw) * 0.5);
     var dy = this.anchorBottom ? Math.round(ch - dh) : Math.round((ch - dh) * 0.5);
     if (isDetail) {
       dy = Math.round((ch - dh) * 0.52);

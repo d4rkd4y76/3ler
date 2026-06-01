@@ -29,7 +29,10 @@ TARGET_LOOP_FRAMES = 36
 
 def find_video(*patterns: str) -> str:
     for pat in patterns:
-        hits = glob.glob(os.path.join(HERO_DIR, pat))
+        exact = os.path.join(HERO_DIR, pat)
+        if os.path.isfile(exact):
+            return exact
+        hits = sorted(glob.glob(os.path.join(HERO_DIR, pat)))
         if hits:
             return hits[0]
     return os.path.join(HERO_DIR, patterns[0])
@@ -40,7 +43,7 @@ MAIN_VIDEO = find_video("tas_muhafiz_ana_ekran.mp4", "*ana_ekran*.mp4", "*muhafi
 TRUE_VIDEO = find_video("DOGRU.mp4", "DO?RU.mp4", "*dogru*.mp4", "*DO*RU*.mp4")
 
 
-def sample_green_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
+def sample_border_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
     keys = []
     for f in frames[:8]:
         h, w = f.shape[:2]
@@ -51,6 +54,9 @@ def sample_green_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
     return tuple(int(x) for x in np.median(keys, axis=0))
 
 
+sample_green_key = sample_border_key
+
+
 def color_dist(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     r = rgb[:, :, 0].astype(np.float32)
     g = rgb[:, :, 1].astype(np.float32)
@@ -59,37 +65,39 @@ def color_dist(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     return np.sqrt((r - kr) ** 2 + (g - kg) ** 2 * 1.4 + (b - kb) ** 2)
 
 
-def is_greenish(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
-    r = rgb[:, :, 0].astype(np.float32)
-    g = rgb[:, :, 1].astype(np.float32)
-    b = rgb[:, :, 2].astype(np.float32)
-    d = color_dist(rgb, key)
-    return (g > r + 12) & (g > b + 8) & (g > 42) & (d < 105)
+def is_key_color(rgb: np.ndarray, key: tuple[int, int, int], tol: float = 108.0) -> np.ndarray:
+    return color_dist(rgb, key) < tol
+
+
+is_greenish = is_key_color
 
 
 def is_foreground(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
-    green = is_greenish(rgb, key)
+    keyish = is_key_color(rgb, key)
     r = rgb[:, :, 0].astype(np.float32)
     g = rgb[:, :, 1].astype(np.float32)
     b = rgb[:, :, 2].astype(np.float32)
     lum = 0.299 * r + 0.587 * g + 0.114 * b
     sat = np.maximum(np.maximum(r, g), b) - np.minimum(np.minimum(r, g), b)
-    return (~green) & ((lum > 32) | (sat > 18))
+    return (~keyish) & ((lum > 32) | (sat > 18))
 
 
-def alpha_green(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+def alpha_chroma(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     d = color_dist(rgb, key)
-    a = np.clip((d - 22.0) / 38.0, 0.0, 1.0)
-    a[is_greenish(rgb, key)] = 0.0
+    a = np.clip((d - 20.0) / 36.0, 0.0, 1.0)
+    a[is_key_color(rgb, key)] = 0.0
     fg = is_foreground(rgb, key)
     a[fg] = np.maximum(a[fg], 0.95)
     return a
 
 
-def flood_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+alpha_green = alpha_chroma
+
+
+def flood_screen(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = rgba.copy()
     h, w = out.shape[:2]
-    bg = is_greenish(out[:, :, :3], key) & ~is_foreground(out[:, :, :3], key)
+    bg = is_key_color(out[:, :, :3], key) & ~is_foreground(out[:, :, :3], key)
     seen = np.zeros((h, w), dtype=bool)
     q: deque[tuple[int, int]] = deque()
     for x in range(w):
@@ -113,32 +121,38 @@ def flood_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     return out
 
 
-def despill_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+flood_green = flood_screen
+
+
+def despill_key(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = rgba.copy()
     a = out[:, :, 3].astype(np.float32) / 255.0
     edge = (a > 0.03) & (a < 0.96)
     if not np.any(edge):
         return out
     rgb = out[:, :, :3].astype(np.float32)
-    kg = float(key[1])
-    excess = np.maximum(0.0, rgb[:, :, 1] - kg)
-    rgb[:, :, 1] = np.where(edge, rgb[:, :, 1] - excess * 0.88, rgb[:, :, 1])
-    rgb[:, :, 0] = np.where(edge, rgb[:, :, 0] + excess * 0.08, rgb[:, :, 0])
-    rgb[:, :, 2] = np.where(edge, rgb[:, :, 2] + excess * 0.08, rgb[:, :, 2])
+    kr, kg, kb = float(key[0]), float(key[1]), float(key[2])
+    dominant = int(np.argmax([kr, kg, kb]))
+    kvals = [kr, kg, kb]
+    kv = kvals[dominant]
+    excess = np.maximum(0.0, rgb[:, :, dominant] - kv)
+    rgb[:, :, dominant] = np.where(edge, rgb[:, :, dominant] - excess * 0.9, rgb[:, :, dominant])
+    for ch in range(3):
+        if ch == dominant:
+            continue
+        rgb[:, :, ch] = np.where(edge, rgb[:, :, ch] + excess * 0.09, rgb[:, :, ch])
     out[:, :, :3] = np.clip(rgb, 0, 255).astype(np.uint8)
     return out
 
 
-def scrub_green_spill(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
+despill_green = despill_key
+
+
+def scrub_key_spill(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = rgba.copy()
-    rgb = out[:, :, :3].astype(np.float32)
-    r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
-    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    d = color_dist(out[:, :, :3], key)
     spill = (
-        (g > r + 8)
-        & (g > b + 5)
-        & (lum > 28)
-        & (lum < 165)
+        (d < 92)
         & (out[:, :, 3] > 0)
         & ~is_foreground(out[:, :, :3], key)
     )
@@ -147,9 +161,12 @@ def scrub_green_spill(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray
     return out
 
 
+scrub_green_spill = scrub_key_spill
+
+
 def finalize_cell(cell: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     out = cell.copy()
-    kill = is_greenish(out[:, :, :3], key) | (out[:, :, 3] < 28)
+    kill = is_key_color(out[:, :, :3], key) | (out[:, :, 3] < 28)
     out[kill, 3] = 0
     out[kill, :3] = 0
     return out
@@ -161,9 +178,9 @@ def chroma_frame(frame: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     rgba = np.zeros((frame.shape[0], frame.shape[1], 4), dtype=np.uint8)
     rgba[:, :, :3] = rgb
     rgba[:, :, 3] = (a * 255).astype(np.uint8)
-    rgba = flood_green(rgba, key)
-    rgba = scrub_green_spill(rgba, key)
-    rgba = despill_green(rgba, key)
+    rgba = flood_screen(rgba, key)
+    rgba = scrub_key_spill(rgba, key)
+    rgba = despill_key(rgba, key)
     rgba[rgba[:, :, 3] < 22, 3] = 0
     rgba[rgba[:, :, 3] < 22, :3] = 0
     return rgba
@@ -267,6 +284,82 @@ def find_loop_window(cells: list[np.ndarray]) -> tuple[int, int, float]:
     return best_start, best_end, best_score
 
 
+def refine_loop_start(cells: list[np.ndarray]) -> tuple[list[np.ndarray], float]:
+    """İlk kareyi, son kareye en yakın içerik karesine kaydır (döngü sıçramasını azalt)."""
+    n = len(cells)
+    if n < MIN_LOOP_FRAMES + 2:
+        return cells, 0.0
+    sigs = [frame_sig(c) for c in cells]
+    last = sigs[-1]
+    best_i, best_score = 0, 1e18
+    for i in range(0, n - MIN_LOOP_FRAMES + 1):
+        score = float(np.mean((sigs[i] - last) ** 2))
+        if score < best_score:
+            best_score = score
+            best_i = i
+    if best_i > 0:
+        cells = cells[best_i:]
+        print("  loop refine start", best_i, "closure", round(best_score, 5))
+    return cells, best_score
+
+
+def find_seamless_cycle(cells: list[np.ndarray]) -> tuple[list[np.ndarray], float]:
+    """Başlangıç ve bitiş karesi en yakın döngü dilimini seç; blend yok."""
+    n = len(cells)
+    if n <= MIN_LOOP_FRAMES:
+        return cells, 0.0
+    sigs = [frame_sig(c) for c in cells]
+    best_score = 1e18
+    best_start, best_end = 0, n - 1
+    for start in range(0, n - MIN_LOOP_FRAMES + 1):
+        for end in range(start + MIN_LOOP_FRAMES - 1, n):
+            closure = float(np.mean((sigs[start] - sigs[end]) ** 2))
+            length = end - start + 1
+            len_pen = 0.00008 * (length - TARGET_LOOP_FRAMES) ** 2
+            motion = 0.0
+            if end > start + 1:
+                va = sigs[start + 1] - sigs[start]
+                vb = sigs[end] - sigs[end - 1]
+                motion = float(np.mean((va - vb) ** 2)) * 0.22
+            score = closure + len_pen + motion
+            if score < best_score:
+                best_score = score
+                best_start, best_end = start, end
+    out = [np.array(c, copy=True) for c in cells[best_start : best_end + 1]]
+    print(
+        "  seamless cycle",
+        best_start,
+        "->",
+        best_end,
+        "len",
+        len(out),
+        "closure",
+        round(best_score, 5),
+    )
+    if best_score > 0.006:
+        out[-1] = np.array(out[0], copy=True)
+        print("  snap last=first (closure still > 0.006)")
+    return out, best_score
+
+
+def lock_cell_grid(
+    cells: list[np.ndarray], target_w: int, target_h: int
+) -> tuple[list[np.ndarray], int, int]:
+    """Mevcut vitrin boyutlarına sabitle (254x290 vb.)."""
+    out = []
+    for cell in cells:
+        fh, fw = cell.shape[:2]
+        scale = min(target_w / max(fw, 1), target_h / max(fh, 1), 1.0)
+        if scale < 0.999:
+            nh = max(1, int(round(fh * scale)))
+            nw = max(1, int(round(fw * scale)))
+            cell = np.array(
+                Image.fromarray(cell, "RGBA").resize((nw, nh), Image.Resampling.LANCZOS)
+            )
+        out.append(place_center(cell, target_w, target_h))
+    return out, target_w, target_h
+
+
 def pick_cols(n: int, cw: int, ch: int) -> int:
     best, score = 6, 1e18
     for cols in range(4, 10):
@@ -292,13 +385,22 @@ def pack_sheet(cells: list[np.ndarray], cell_w: int, cell_h: int) -> tuple[np.nd
     return sheet, cols, rows
 
 
-def read_frames(video: str, target_fps: int, max_frames: int | None) -> list[np.ndarray]:
+def read_frames(
+    video: str,
+    target_fps: int,
+    max_frames: int | None,
+    *,
+    native_fps: bool = False,
+) -> tuple[list[np.ndarray], int]:
     if not os.path.isfile(video):
         print("Missing:", video, file=sys.stderr)
         raise SystemExit(1)
     meta = iio.immeta(video, plugin="pyav")
     src_fps = float(meta.get("fps", 24) or 24)
-    step = max(1, int(round(src_fps / target_fps)))
+    out_fps = max(12, int(round(src_fps)))
+    step = 1 if native_fps else max(1, int(round(src_fps / max(target_fps, 1))))
+    if not native_fps:
+        out_fps = target_fps
     raw: list[np.ndarray] = []
     for i, frame in enumerate(iio.imiter(video, plugin="pyav")):
         if i % step != 0:
@@ -311,7 +413,7 @@ def read_frames(video: str, target_fps: int, max_frames: int | None) -> list[np.
     if len(raw) < 4:
         print("Too few frames in", video, file=sys.stderr)
         raise SystemExit(1)
-    return raw
+    return raw, out_fps
 
 
 def build_loop_sheet(
@@ -326,10 +428,23 @@ def build_loop_sheet(
     foot_align: bool = False,
     anchor: str = "center",
     optimize_loop: bool = True,
+    lock_cell: tuple[int, int] | None = None,
+    hard_seam: bool = False,
+    native_fps: bool = False,
 ) -> dict:
-    raw = read_frames(video, target_fps, max_frames)
-    key = sample_green_key(raw)
-    print("  key", key, "frames", len(raw), "from", os.path.basename(video))
+    raw, out_fps = read_frames(video, target_fps, max_frames, native_fps=native_fps)
+    key = sample_border_key(raw)
+    print(
+        "  key",
+        key,
+        "frames",
+        len(raw),
+        "fps",
+        out_fps,
+        "native" if native_fps else "sampled",
+        "from",
+        os.path.basename(video),
+    )
 
     chroma = [chroma_frame(f, key) for f in raw]
     boxes = [alpha_bbox(c) for c in chroma]
@@ -346,8 +461,12 @@ def build_loop_sheet(
         cell_w = max(c.shape[1] for c in crops)
         cells = [place_center(c, cell_w, cell_h) for c in crops]
 
-    cells = drop_empty_cells(cells)
-    if optimize_loop and len(cells) >= MIN_LOOP_FRAMES + 4:
+    if not native_fps:
+        cells = drop_empty_cells(cells)
+    if hard_seam and len(cells) >= MIN_LOOP_FRAMES:
+        cells, _ = find_seamless_cycle(cells)
+        blend_frames = 0
+    elif optimize_loop and len(cells) >= MIN_LOOP_FRAMES + 4:
         loop_start, loop_end_idx, closure = find_loop_window(cells)
         cells = cells[loop_start:loop_end_idx]
         print(
@@ -360,13 +479,24 @@ def build_loop_sheet(
             "closure",
             round(closure, 5),
         )
+        cells, _ = refine_loop_start(cells)
 
     cells = [finalize_cell(c, key) for c in cells]
+
+    if lock_cell and lock_cell[0] and lock_cell[1]:
+        cells, cell_w, cell_h = lock_cell_grid(cells, int(lock_cell[0]), int(lock_cell[1]))
+        cells = [finalize_cell(c, key) for c in cells]
+    elif not foot_align:
+        cell_h = max(c.shape[0] for c in cells)
+        cell_w = max(c.shape[1] for c in cells)
+        cells = [place_center(c, cell_w, cell_h) for c in cells]
+
     loop_end = len(cells)
-    first, last = cells[0], cells[-1]
-    for bi in range(1, blend_frames + 1):
-        t = bi / (blend_frames + 1)
-        cells.append(blend_cells(last, first, t))
+    if blend_frames > 0 and not hard_seam:
+        first, last = cells[0], cells[-1]
+        for bi in range(1, blend_frames + 1):
+            t = bi / (blend_frames + 1)
+            cells.append(blend_cells(last, first, t))
 
     sheet, cols, rows = pack_sheet(cells, cell_w, cell_h)
     os.makedirs(os.path.dirname(out_webp), exist_ok=True)
@@ -394,7 +524,7 @@ def build_loop_sheet(
         "rows": rows,
         "frameCount": len(cells),
         "loopEnd": loop_end,
-        "fps": target_fps,
+        "fps": out_fps,
         "blendFrames": blend_frames,
         "sheetWidth": cols * cell_w,
         "sheetHeight": rows * cell_h,
@@ -406,7 +536,7 @@ def build_true_sheet(video: str, out_webp: str) -> dict:
     """Buz Ejder doğru klipleriyle aynı süre: 96 kare @ 20fps (~4.8sn)."""
     target_fps = 20
     target_count = 96
-    raw = read_frames(video, target_fps, None)
+    raw, _ = read_frames(video, target_fps, None)
     if len(raw) > target_count:
         idx = np.linspace(0, len(raw) - 1, target_count)
         raw = [raw[int(round(i))] for i in idx]
@@ -489,16 +619,32 @@ def main() -> int:
         return 0
 
     if idle_only:
+        vitrin_path = os.path.abspath(VITRIN_VIDEO)
+        print("  VITRIN SOURCE:", vitrin_path)
+        if "vitrin" not in os.path.basename(vitrin_path).lower():
+            print("  WARN: vitrin dosya adi beklenmiyor", file=sys.stderr)
+        lock_cell: tuple[int, int] | None = (254, 290)
+        manifest_path = os.path.join(OUT_DIR, "manifest.json")
+        if os.path.isfile(manifest_path):
+            with open(manifest_path, encoding="utf-8") as f:
+                prev = json.load(f)
+            w, h = int(prev.get("frameWidth") or 0), int(prev.get("frameHeight") or 0)
+            if w > 0 and h > 0:
+                lock_cell = (w, h)
         idle = build_loop_sheet(
             VITRIN_VIDEO,
             os.path.join(OUT_DIR, "tas-muhafiz-idle.webp"),
             target_fps=12,
-            max_frames=52,
-            blend_frames=12,
+            max_frames=None,
+            blend_frames=0,
             target_h=290,
+            pad=8,
             foot_align=False,
             anchor="center",
-            optimize_loop=True,
+            optimize_loop=False,
+            hard_seam=False,
+            native_fps=True,
+            lock_cell=lock_cell,
         )
         manifest_path = os.path.join(OUT_DIR, "manifest.json")
         if os.path.isfile(manifest_path):
@@ -528,12 +674,16 @@ def main() -> int:
         VITRIN_VIDEO,
         os.path.join(OUT_DIR, "tas-muhafiz-idle.webp"),
         target_fps=12,
-        max_frames=36,
-        blend_frames=8,
+        max_frames=None,
+        blend_frames=0,
         target_h=290,
+        pad=8,
         foot_align=False,
         anchor="center",
-        optimize_loop=True,
+        optimize_loop=False,
+        hard_seam=False,
+        native_fps=True,
+        lock_cell=(254, 290),
     )
 
     main_data = build_loop_sheet(

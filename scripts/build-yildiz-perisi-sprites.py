@@ -16,16 +16,27 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def find_source_hero_dir() -> str:
+def candidate_source_dirs() -> list[str]:
     hero_root = os.path.join(ROOT, "hero")
+    dirs: list[str] = []
     for name in os.listdir(hero_root):
         low = name.lower()
         if "perisi" in low or "yildiz" in low or "yild" in low:
-            return os.path.join(hero_root, name)
-    raise SystemExit("hero/yildiz_perisi kaynak klasoru bulunamadi")
+            path = os.path.join(hero_root, name)
+            if os.path.isdir(path):
+                dirs.append(path)
+    if not dirs:
+        raise SystemExit("hero/yildiz_perisi kaynak klasoru bulunamadi")
+    # Prefer folder that actually has MP4 sources (e.g. yıldız_perisi vs empty yildiz_perisi).
+    def score(d: str) -> tuple[int, str]:
+        mp4s = glob.glob(os.path.join(d, "*.mp4"))
+        return (len(mp4s), d)
+
+    return sorted(dirs, key=score, reverse=True)
 
 
-SOURCE_DIR = find_source_hero_dir()
+SOURCE_DIRS = candidate_source_dirs()
+SOURCE_DIR = SOURCE_DIRS[0]
 OUT_DIR = os.path.join(ROOT, "hero", "yildiz_perisi", "sprite")
 TRUE_DIR = os.path.join(OUT_DIR, "true")
 MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012ae-nova-yildiz-perisi-sprite-manifest.js")
@@ -38,14 +49,25 @@ WEBP_QUALITY = 93
 
 
 def find_video(*patterns: str) -> str:
-    for pat in patterns:
-        hits = glob.glob(os.path.join(SOURCE_DIR, pat))
-        if hits:
-            return hits[0]
+    for src in SOURCE_DIRS:
+        for pat in patterns:
+            exact = os.path.join(src, pat)
+            if os.path.isfile(exact):
+                return exact
+            hits = sorted(glob.glob(os.path.join(src, pat)))
+            if hits:
+                return hits[0]
     return os.path.join(SOURCE_DIR, patterns[0])
 
 
-VITRIN_VIDEO = find_video("yildiz_perisi_vitrin.mp4", "*vitrin*.mp4", "*perisi*vitrin*")
+VITRIN_VIDEO = find_video(
+    "YILDIZ_VITRIN.mp4",
+    "YILDIZ_VİTRİN.mp4",
+    "yildiz_perisi_vitrin.mp4",
+    "*VITRIN*.mp4",
+    "*vitrin*.mp4",
+    "*perisi*vitrin*",
+)
 MAIN_VIDEO = find_video("yildiz_perisi_ana_ekran.mp4", "*ana_ekran*.mp4", "*perisi*ana*")
 TRUE_VIDEO = find_video("DOGRU.mp4", "DO?RU.mp4", "*dogru*.mp4", "*DO*RU*.mp4")
 
@@ -259,13 +281,22 @@ def pack_sheet(cells: list[np.ndarray], cell_w: int, cell_h: int) -> tuple[np.nd
     return sheet, cols, rows
 
 
-def read_frames(video: str, target_fps: int, max_frames: int | None) -> list[np.ndarray]:
+def read_frames(
+    video: str,
+    target_fps: int,
+    max_frames: int | None,
+    *,
+    native_fps: bool = False,
+) -> tuple[list[np.ndarray], int]:
     if not os.path.isfile(video):
         print("Missing:", video, file=sys.stderr)
         raise SystemExit(1)
     meta = iio.immeta(video, plugin="pyav")
     src_fps = float(meta.get("fps", 24) or 24)
-    step = max(1, int(round(src_fps / target_fps)))
+    out_fps = max(12, int(round(src_fps)))
+    step = 1 if native_fps else max(1, int(round(src_fps / max(target_fps, 1))))
+    if not native_fps:
+        out_fps = target_fps
     raw: list[np.ndarray] = []
     for i, frame in enumerate(iio.imiter(video, plugin="pyav")):
         if i % step != 0:
@@ -278,7 +309,24 @@ def read_frames(video: str, target_fps: int, max_frames: int | None) -> list[np.
     if len(raw) < 4:
         print("Too few frames in", video, file=sys.stderr)
         raise SystemExit(1)
-    return raw
+    return raw, out_fps
+
+
+def lock_cell_grid(
+    cells: list[np.ndarray], target_w: int, target_h: int
+) -> tuple[list[np.ndarray], int, int]:
+    out = []
+    for cell in cells:
+        fh, fw = cell.shape[:2]
+        scale = min(target_w / max(fw, 1), target_h / max(fh, 1), 1.0)
+        if scale < 0.999:
+            nh = max(1, int(round(fh * scale)))
+            nw = max(1, int(round(fw * scale)))
+            cell = np.array(
+                Image.fromarray(cell, "RGBA").resize((nw, nh), Image.Resampling.LANCZOS)
+            )
+        out.append(place_center(cell, target_w, target_h))
+    return out, target_w, target_h
 
 
 def build_loop_sheet(
@@ -286,16 +334,28 @@ def build_loop_sheet(
     out_webp: str,
     *,
     target_fps: int = 12,
-    max_frames: int = 36,
+    max_frames: int | None = 36,
     blend_frames: int = 8,
     target_h: int = 288,
     pad: int = 8,
     foot_align: bool = False,
     anchor: str = "center",
+    native_fps: bool = False,
+    lock_cell: tuple[int, int] | None = None,
 ) -> dict:
-    raw = read_frames(video, target_fps, max_frames)
+    raw, out_fps = read_frames(video, target_fps, max_frames, native_fps=native_fps)
     key = sample_green_key(raw)
-    print("  key", key, "frames", len(raw), "from", os.path.basename(video))
+    print(
+        "  key",
+        key,
+        "frames",
+        len(raw),
+        "fps",
+        out_fps,
+        "native" if native_fps else "sampled",
+        "from",
+        os.path.basename(video),
+    )
 
     chroma = [chroma_frame(f, key) for f in raw]
     boxes = [alpha_bbox(c) for c in chroma]
@@ -312,16 +372,22 @@ def build_loop_sheet(
         cell_w = max(c.shape[1] for c in crops)
         cells = [place_center(c, cell_w, cell_h) for c in crops]
 
-    first, last = cells[0], cells[-1]
-    for bi in range(1, blend_frames + 1):
-        t = bi / (blend_frames + 1)
-        cells.append(blend_cells(last, first, t))
+    cells = [finalize_cell(c, key) for c in cells]
+    if lock_cell and lock_cell[0] and lock_cell[1]:
+        cells, cell_w, cell_h = lock_cell_grid(cells, int(lock_cell[0]), int(lock_cell[1]))
+        cells = [finalize_cell(c, key) for c in cells]
+
+    loop_end = len(cells)
+    if blend_frames > 0:
+        first, last = cells[0], cells[-1]
+        for bi in range(1, blend_frames + 1):
+            t = bi / (blend_frames + 1)
+            cells.append(blend_cells(last, first, t))
 
     sheet, cols, rows = pack_sheet(cells, cell_w, cell_h)
     os.makedirs(os.path.dirname(out_webp), exist_ok=True)
     Image.fromarray(sheet, "RGBA").save(out_webp, quality=WEBP_QUALITY, method=6, lossless=False)
 
-    loop_end = len(crops)
     mb = os.path.getsize(out_webp) / (1024 * 1024)
     print(
         "  ->",
@@ -344,7 +410,7 @@ def build_loop_sheet(
         "rows": rows,
         "frameCount": len(cells),
         "loopEnd": loop_end,
-        "fps": target_fps,
+        "fps": out_fps,
         "blendFrames": blend_frames,
         "sheetWidth": cols * cell_w,
         "sheetHeight": rows * cell_h,
@@ -356,7 +422,7 @@ def build_true_sheet(video: str, out_webp: str) -> dict:
     """Buz Ejder doğru klipleriyle aynı süre: 96 kare @ 20fps (~4.8sn)."""
     target_fps = 20
     target_count = 96
-    raw = read_frames(video, target_fps, None)
+    raw, _ = read_frames(video, target_fps, None)
     if len(raw) > target_count:
         idx = np.linspace(0, len(raw) - 1, target_count)
         raw = [raw[int(round(i))] for i in idx]
@@ -408,6 +474,8 @@ def write_js(path: str, preamble: str, assignments: list[str]) -> None:
 
 def main() -> int:
     true_only = "--true-only" in sys.argv
+    idle_only = "--idle-only" in sys.argv
+    main_only = "--main-only" in sys.argv
     print("Vitrin:", VITRIN_VIDEO)
     print("Ana ekran:", MAIN_VIDEO)
     print("DOGRU:", TRUE_VIDEO)
@@ -437,6 +505,95 @@ def main() -> int:
         print("Done (true-only).")
         return 0
 
+    if idle_only:
+        vitrin_path = os.path.abspath(VITRIN_VIDEO)
+        print("  VITRIN SOURCE:", vitrin_path)
+        lock_cell: tuple[int, int] | None = (247, 290)
+        if os.path.isfile(MANIFEST_JSON):
+            with open(MANIFEST_JSON, encoding="utf-8") as f:
+                prev = json.load(f)
+            w, h = int(prev.get("frameWidth") or 0), int(prev.get("frameHeight") or 0)
+            if w > 0 and h > 0:
+                lock_cell = (w, h)
+        idle = build_loop_sheet(
+            VITRIN_VIDEO,
+            os.path.join(OUT_DIR, "yildiz-perisi-idle.webp"),
+            target_fps=12,
+            max_frames=None,
+            blend_frames=0,
+            target_h=290,
+            pad=8,
+            foot_align=False,
+            anchor="center",
+            native_fps=True,
+            lock_cell=lock_cell,
+        )
+        if os.path.isfile(MANIFEST_JSON):
+            with open(MANIFEST_JSON, encoding="utf-8") as f:
+                combined = json.load(f)
+        else:
+            combined = {
+                "version": 1,
+                "base": SPRITE_BASE,
+                "scale": {"store": 1.12, "detail": 1.28, "main": 1.42},
+            }
+        for k, v in idle.items():
+            if k != "main":
+                combined[k] = v
+        write_js(
+            MANIFEST_JS,
+            "/* AUTO: scripts/build-yildiz-perisi-sprites.py */",
+            [
+                'window.NOVA_YILDIZ_PERISI_SPRITE_BASE="hero/yildiz_perisi/sprite/";',
+                "window.NOVA_YILDIZ_PERISI_SPRITE_MANIFEST = "
+                + json.dumps(combined, separators=(",", ":"))
+                + ";",
+            ],
+        )
+        with open(MANIFEST_JSON, "w", encoding="utf-8") as f:
+            json.dump(combined, f, indent=2)
+        print("Done (idle-only).")
+        return 0
+
+    if main_only:
+        main_data = build_loop_sheet(
+            MAIN_VIDEO,
+            os.path.join(OUT_DIR, "yildiz-perisi-main.webp"),
+            target_fps=12,
+            max_frames=None,
+            blend_frames=8,
+            target_h=300,
+            foot_align=True,
+            anchor="bottom",
+            lock_cell=(343, 300),
+        )
+        if os.path.isfile(MANIFEST_JSON):
+            with open(MANIFEST_JSON, encoding="utf-8") as f:
+                combined = json.load(f)
+        else:
+            combined = {
+                "version": 1,
+                "base": SPRITE_BASE,
+                "scale": {"store": 1.12, "detail": 1.28, "main": 1.42},
+            }
+        combined["main"] = main_data
+        for k in ("mainFit", "mainOffsetX", "mainPadLeft"):
+            combined["main"].pop(k, None)
+        write_js(
+            MANIFEST_JS,
+            "/* AUTO: scripts/build-yildiz-perisi-sprites.py */",
+            [
+                'window.NOVA_YILDIZ_PERISI_SPRITE_BASE="hero/yildiz_perisi/sprite/";',
+                "window.NOVA_YILDIZ_PERISI_SPRITE_MANIFEST = "
+                + json.dumps(combined, separators=(",", ":"))
+                + ";",
+            ],
+        )
+        with open(MANIFEST_JSON, "w", encoding="utf-8") as f:
+            json.dump(combined, f, indent=2)
+        print("Done (main-only).")
+        return 0
+
     idle = build_loop_sheet(
         VITRIN_VIDEO,
         os.path.join(OUT_DIR, "yildiz-perisi-idle.webp"),
@@ -457,16 +614,13 @@ def main() -> int:
         target_h=300,
         foot_align=True,
         anchor="bottom",
+        lock_cell=(343, 300),
     )
 
     true_clip = build_true_sheet(
         TRUE_VIDEO,
         os.path.join(TRUE_DIR, "yildiz-perisi-true-dogru.webp"),
     )
-
-    main_data["mainFit"] = "height"
-    main_data["mainOffsetX"] = -0.04
-    main_data["mainPadLeft"] = 14
 
     combined = {
         "version": 1,
@@ -484,7 +638,7 @@ def main() -> int:
         "sheetHeight": idle["sheetHeight"],
         "anchor": idle["anchor"],
         "main": main_data,
-        "scale": {"store": 1.12, "detail": 1.5, "main": 1.42},
+        "scale": {"store": 1.12, "detail": 1.28, "main": 1.42},
     }
 
     true_root = {

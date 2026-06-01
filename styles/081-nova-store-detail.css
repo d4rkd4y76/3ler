@@ -486,11 +486,11 @@
 }
 .nova-store-detail-preview--hero .nova-store-preview--tas .nova-hero-tas-sprite{
   width: 100%;
-  max-width: 252px;
-  height: 88%;
-  max-height: 188px;
+  max-width: 228px;
+  height: 84%;
+  max-height: 168px;
   margin: 0 auto;
-  padding: 0 8px;
+  padding: 0 10px;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -498,9 +498,9 @@
 }
 .nova-store-detail-preview--hero .nova-store-preview--tas .nova-hero-tas-sprite--detail{
   width: 100%;
-  max-width: 252px;
-  height: 88%;
-  max-height: 188px;
+  max-width: 228px;
+  height: 84%;
+  max-height: 168px;
   min-height: 0;
 }
 .nova-store-detail-preview--hero .nova-store-preview--tas .nova-hero-tas-sprite__canvas{

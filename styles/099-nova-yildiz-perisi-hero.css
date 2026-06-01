@@ -58,7 +58,7 @@
   min-height: 150px;
 }
 
-/* —— Ana ekran: yıldızlar EPİK rozet hizasında, kahraman hemen altında (ejder düzeni) —— */
+/* —— Ana ekran: Taş Muhafız ile aynı düzen (yıldız + kahraman hizası) —— */
 #main-screen .nova-main-hero-zone--star .nova-main-hero-zone__pad,
 #main-screen .nova-main-hero-zone--star.is-visible .nova-main-hero-zone__pad {
   display: none !important;
@@ -70,12 +70,6 @@
   z-index: 2;
   width: clamp(84px, 20vw, 102px);
   height: clamp(94px, 21vw, 108px);
-  overflow: visible;
-}
-
-/* Ana ekran sprite: sol tarafta animasyon kırpılmasın */
-#main-screen .nova-main-hero-zone--star:has([data-yildiz-sprite='1']) {
-  width: clamp(96px, 22vw, 116px);
   overflow: visible;
 }
 
@@ -141,7 +135,6 @@
   animation: none;
 }
 
-/* Sprite: eski SVG yüzme animasyonunu kapat (Fırtına Okçusu ile aynı sabit düzen) */
 #main-screen .nova-main-hero-zone--star.is-visible:has([data-yildiz-sprite='1']) .nova-main-hero-slot {
   animation: none !important;
   transform: none !important;
@@ -152,26 +145,9 @@
   height: 88px;
 }
 
-#main-screen .nova-main-hero-zone--star:has([data-yildiz-sprite='1']) .nova-main-hero-slot .nova-main-hero-host,
-#main-screen .nova-main-hero-zone--star:has([data-yildiz-sprite='1']) .nova-main-hero-host,
-#main-screen .nova-main-hero-zone--star:has([data-yildiz-sprite='1']) .nova-hero-yildiz-sprite,
-#main-screen .nova-main-hero-zone--star:has([data-yildiz-sprite='1']) .nova-hero-yildiz-sprite--main {
-  width: 110px;
-  max-width: 110px;
-  min-width: 110px;
-  margin-left: -12px;
-  margin-right: auto;
-  overflow: visible;
-}
-
 #main-screen .nova-main-hero-zone--star .nova-hero-yildiz-sprite__canvas {
   max-width: 100%;
   max-height: 100%;
-}
-
-#main-screen .nova-main-hero-zone--star:has([data-yildiz-sprite='1']) .nova-hero-yildiz-sprite__canvas {
-  max-width: none;
-  overflow: visible;
 }
 
 /* Detay vitrin paneli */
@@ -194,34 +170,16 @@
   justify-content: center;
 }
 
-/* Kahraman detay sayfası */
+/* Kahraman özellik sayfası (Taş Muhafız ile aynı) */
 .nh-hero-sheet__arena--star-sprite {
   min-height: clamp(200px, 34vh, 320px);
-}
-
-.nh-hero-sheet__arena--star-sprite .nh-hero-sheet__hero-host {
-  padding-left: 18px;
-  overflow: visible;
-  box-sizing: border-box;
 }
 
 .nh-hero-sheet__arena--star-sprite .nova-hero-yildiz-sprite {
   min-height: 160px;
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   margin: 0 auto;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: visible;
-}
-
-.nh-hero-sheet__arena--star-sprite .nova-hero-yildiz-sprite--main {
-  height: min(240px, 42vh);
-}
-
-.nh-hero-sheet__arena--star-sprite .nova-hero-yildiz-sprite__canvas {
-  max-width: none;
-  overflow: visible;
 }
 
 .nh-hero-sheet__arena--star {
