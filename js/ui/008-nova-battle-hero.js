@@ -207,6 +207,34 @@
         ]
       }
     },
+    tas_muhafiz: {
+      id: 'tas_muhafiz',
+      sprite: 'hero/tas_muhafiz/sprite',
+      theme: 'tas',
+      name: 'Taş Muhafız',
+      desc: 'Taştan dövülmüş koruyucu! Mağazada, ana ekranda ve doğru cevaplarda seni kutlar.',
+      price: 10800,
+      order: 11,
+      equipEmoji: '🗿',
+      lines: {
+        cheer: [
+          { msg: 'Sağlam cevap! Muhafız onayladı — harikasın!', badge: '✓ DOĞRU' },
+          { msg: 'Kaya gibi sağlam bildin — süpersin!', badge: '✓ DOĞRU' },
+          { msg: 'Bravo! Savunma hattın çelik gibi!', badge: '✓ DOĞRU' },
+          { msg: 'Mükemmel! Böyle devam et!', badge: '✓ DOĞRU' }
+        ],
+        fire: [
+          { msg: 'TAŞ DARBESİ! Muhteşem cevap!', badge: '💎 SÜPER' },
+          { msg: 'Yer sarsıldı — doğru cevap!', badge: '💎 SÜPER' },
+          { msg: 'Granit güç! Tam gaz devam!', badge: '💎 SÜPER' }
+        ],
+        epic: [
+          { msg: 'EFSANE MUHAFIZ! Bugün sen kralsın!', badge: '👑 EFSANE' },
+          { msg: 'MUHTEŞEM! Taş kale senin!', badge: '👑 EFSANE' },
+          { msg: 'SÜPER! Koruyucu tacı senin!', badge: '👑 EFSANE' }
+        ]
+      }
+    },
     buz_ejder: {
       id: 'buz_ejder',
       epic: true,
@@ -395,7 +423,7 @@
         'is-visible',
         'nova-main-hero-zone--blaze', 'nova-main-hero-zone--star', 'nova-main-hero-zone--turbo',
         'nova-main-hero-zone--mythic', 'nova-main-hero-zone--bilge', 'nova-main-hero-zone--simsek',
-        'nova-main-hero-zone--firtina', 'nova-main-hero-zone--buz', 'nova-main-hero-zone--alev', 'nova-main-hero-zone--gece'
+        'nova-main-hero-zone--firtina', 'nova-main-hero-zone--tas', 'nova-main-hero-zone--buz', 'nova-main-hero-zone--alev', 'nova-main-hero-zone--gece'
       );
       zone.setAttribute('aria-hidden', 'true');
     }
@@ -405,7 +433,7 @@
     slot.classList.remove(
       'nova-main-hero-slot--blaze', 'nova-main-hero-slot--star', 'nova-main-hero-slot--turbo',
       'nova-main-hero-slot--mythic', 'nova-main-hero-slot--bilge', 'nova-main-hero-slot--simsek',
-      'nova-main-hero-slot--firtina', 'nova-main-hero-slot--buz', 'nova-main-hero-slot--alev', 'nova-main-hero-slot--gece'
+      'nova-main-hero-slot--firtina', 'nova-main-hero-slot--tas', 'nova-main-hero-slot--buz', 'nova-main-hero-slot--alev', 'nova-main-hero-slot--gece'
     );
   }
 
@@ -466,6 +494,9 @@
     }
     if (heroId === 'star_fairy' && typeof window.novaYildizPerisiPreloadTrueClipsIfEquipped === 'function') {
       window.novaYildizPerisiPreloadTrueClipsIfEquipped();
+    }
+    if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizPreloadTrueClipsIfEquipped === 'function') {
+      window.novaTasMuhafizPreloadTrueClipsIfEquipped();
     }
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
       window.novaBuzEjderPreloadTrueClipsIfEquipped();
@@ -558,13 +589,16 @@
     if (def.sprite && def.id === 'star_fairy') {
       return typeof window.novaYildizPerisiMountSprite === 'function';
     }
+    if (def.sprite && def.id === 'tas_muhafiz') {
+      return typeof window.novaTasMuhafizMountSprite === 'function';
+    }
     if (def.sprite && typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(def.id)) {
       return typeof window.novaEpicDragonMountSprite === 'function';
     }
     return !!(def.templateKey && window[def.templateKey]);
   }
 
-  var MOUNT_CLASS_LIST = 'nova-hero-mount--blaze-robot nova-hero-mount--star-fairy nova-hero-mount--turbo-turtle nova-hero-mount--mythic-wyvern nova-hero-mount--bilge-hayalet nova-hero-mount--simsek-sincap nova-hero-mount--firtina-okcu nova-hero-mount--buz-ejder nova-hero-mount--alev-ejder nova-hero-mount--gece-ejder';
+  var MOUNT_CLASS_LIST = 'nova-hero-mount--blaze-robot nova-hero-mount--star-fairy nova-hero-mount--turbo-turtle nova-hero-mount--mythic-wyvern nova-hero-mount--bilge-hayalet nova-hero-mount--simsek-sincap nova-hero-mount--firtina-okcu nova-hero-mount--tas-muhafiz nova-hero-mount--buz-ejder nova-hero-mount--alev-ejder nova-hero-mount--gece-ejder';
 
   function clearMountClasses(host) {
     if (!host) return;
@@ -616,6 +650,9 @@
     if (id === 'star_fairy' && typeof window.novaYildizPerisiMountSprite === 'function') {
       return window.novaYildizPerisiMountSprite(host, { profile: profile, scale: opts && opts.scale });
     }
+    if (id === 'tas_muhafiz' && typeof window.novaTasMuhafizMountSprite === 'function') {
+      return window.novaTasMuhafizMountSprite(host, { profile: profile, scale: opts && opts.scale });
+    }
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       return typeof window.novaEpicDragonMountSprite === 'function'
         ? window.novaEpicDragonMountSprite(host, id, { profile: profile })
@@ -645,6 +682,10 @@
     if (id === 'star_fairy' && typeof window.novaYildizPerisiMountSprite === 'function') {
       var sProfile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
       return window.novaYildizPerisiMountSprite(host, { profile: sProfile });
+    }
+    if (id === 'tas_muhafiz' && typeof window.novaTasMuhafizMountSprite === 'function') {
+      var tProfile = (host.classList && host.classList.contains('nova-main-hero-host')) ? 'main' : 'store';
+      return window.novaTasMuhafizMountSprite(host, { profile: tProfile });
     }
     if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(id)) {
       if (epicDragonUseSpriteHost(host) && typeof window.novaEpicDragonMountSprite === 'function') {
@@ -704,6 +745,10 @@
     if (heroId === 'star_fairy') {
       return typeof window.novaYildizPerisiHasTrueClips === 'function'
         && window.novaYildizPerisiHasTrueClips();
+    }
+    if (heroId === 'tas_muhafiz') {
+      return typeof window.novaTasMuhafizHasTrueClips === 'function'
+        && window.novaTasMuhafizHasTrueClips();
     }
     return heroId === 'buz_ejder'
       && typeof window.novaBuzEjderHasTrueClips === 'function'
@@ -827,7 +872,7 @@
   }
 
   function usesJsSpFx(heroId) {
-    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'firtina_okcu' || heroId === 'buz_ejder' || heroId === 'alev_ejder' || heroId === 'gece_ejder';
+    return heroId === 'turbo_turtle' || heroId === 'blaze_robot' || heroId === 'star_fairy' || heroId === 'mythic_wyvern' || heroId === 'bilge_hayalet' || heroId === 'simsek_sincap' || heroId === 'firtina_okcu' || heroId === 'tas_muhafiz' || heroId === 'buz_ejder' || heroId === 'alev_ejder' || heroId === 'gece_ejder';
   }
 
   function pickFxRoutine(variant) {
@@ -865,6 +910,9 @@
     if (heroId === 'star_fairy' && typeof window.novaYildizPerisiPlaySpFx === 'function') {
       return window.novaYildizPerisiPlaySpFx(host, variant, routine);
     }
+    if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizPlaySpFx === 'function') {
+      return window.novaTasMuhafizPlaySpFx(host, variant, routine);
+    }
     if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPlaySpFx === 'function') {
       return window.novaBuzEjderPlaySpFx(host, variant, routine);
     }
@@ -897,6 +945,8 @@
         window.novaFirtinaOkcuTrueUnmount(host);
       } else if (heroId === 'star_fairy' && typeof window.novaYildizPerisiTrueUnmount === 'function') {
         window.novaYildizPerisiTrueUnmount(host);
+      } else if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizTrueUnmount === 'function') {
+        window.novaTasMuhafizTrueUnmount(host);
       } else if (heroId === 'buz_ejder' && typeof window.novaBuzEjderResetHost === 'function') {
         window.novaBuzEjderResetHost(host);
       } else if (heroId === 'alev_ejder' && typeof window.novaAlevEjderResetHost === 'function') {
@@ -996,7 +1046,7 @@
       if (!def) { resolve(); return; }
 
       var arena = ensureArena();
-      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece', 'nova-sp-theme-firtina');
+      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece', 'nova-sp-theme-firtina', 'nova-sp-theme-tas');
       arena.classList.add('nova-sp-theme-' + def.theme);
 
       var host = arena.querySelector('.nova-sp-hero-arena__host');
@@ -1019,6 +1069,8 @@
           window.novaFirtinaOkcuEnsureTrueClipsReady();
         } else if (equippedId === 'star_fairy' && typeof window.novaYildizPerisiEnsureTrueClipsReady === 'function') {
           window.novaYildizPerisiEnsureTrueClipsReady();
+        } else if (equippedId === 'tas_muhafiz' && typeof window.novaTasMuhafizEnsureTrueClipsReady === 'function') {
+          window.novaTasMuhafizEnsureTrueClipsReady();
         } else if (typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
           window.novaBuzEjderEnsureTrueClipsReady();
         }
@@ -1056,7 +1108,7 @@
       if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
       else if (!spriteOnly && variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
       var tail = spriteOnly
-        ? (heroId === 'firtina_okcu' || heroId === 'star_fairy' || heroId === 'buz_ejder' ? 280 : 120)
+        ? (heroId === 'firtina_okcu' || heroId === 'star_fairy' || heroId === 'tas_muhafiz' || heroId === 'buz_ejder' ? 280 : 120)
         : (variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180));
       var fxWait = (jsFx || spriteOnly) && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
@@ -1427,6 +1479,12 @@
       }
       if (typeof window.novaYildizPerisiPreloadSprite === 'function') {
         window.novaYildizPerisiPreloadSprite();
+      }
+      if (typeof window.novaTasMuhafizPreloadTrueClipsIfEquipped === 'function') {
+        window.novaTasMuhafizPreloadTrueClipsIfEquipped();
+      }
+      if (typeof window.novaTasMuhafizPreloadSprite === 'function') {
+        window.novaTasMuhafizPreloadSprite();
       }
       if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
         window.novaBuzEjderPreloadTrueClipsIfEquipped();

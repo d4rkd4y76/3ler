@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "base": "hero/tas_muhafiz/sprite/",
+  "sheet": "tas-muhafiz-idle.webp",
+  "frameWidth": 254,
+  "frameHeight": 290,
+  "cols": 7,
+  "rows": 7,
+  "frameCount": 44,
+  "loopEnd": 36,
+  "fps": 12,
+  "blendFrames": 8,
+  "sheetWidth": 1778,
+  "sheetHeight": 2030,
+  "anchor": "center",
+  "main": {
+    "sheet": "tas-muhafiz-main.webp",
+    "frameWidth": 343,
+    "frameHeight": 300,
+    "cols": 7,
+    "rows": 8,
+    "frameCount": 56,
+    "loopEnd": 48,
+    "fps": 12,
+    "blendFrames": 8,
+    "sheetWidth": 2401,
+    "sheetHeight": 2400,
+    "anchor": "bottom"
+  },
+  "scale": {
+    "store": 1.12,
+    "detail": 1.5,
+    "main": 1.42
+  }
+}

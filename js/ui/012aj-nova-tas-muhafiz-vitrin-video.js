@@ -1,4 +1,4 @@
-/* yildiz Okcusu — sprite (mağaza + ana ekran ayrı sheet). */
+/* Tas Muhafiz — sprite (mağaza + ana ekran ayrı sheet). */
 (function () {
   'use strict';
 
@@ -13,15 +13,15 @@
     var i, src;
     for (i = scripts.length - 1; i >= 0; i--) {
       src = scripts[i].src || '';
-      if (src.indexOf('012ab-nova-yildiz-perisi') !== -1) {
-        return src.replace(/js\/ui\/[^?#]+$/, 'hero/yildiz_perisi/sprite/');
+      if (src.indexOf('012aj-nova-tas-muhafiz') !== -1) {
+        return src.replace(/js\/ui\/[^?#]+$/, 'hero/tas_muhafiz/sprite/');
       }
     }
-    return 'hero/yildiz_perisi/sprite/';
+    return 'hero/tas_muhafiz/sprite/';
   }
 
   function resolveUrl(base, file) {
-    var b = base || 'hero/yildiz_perisi/sprite/';
+    var b = base || 'hero/tas_muhafiz/sprite/';
     if (b.charAt(b.length - 1) !== '/') b += '/';
     var path = b + file;
     try {
@@ -35,7 +35,7 @@
     if (!root) return null;
     if (profile === 'main' && root.main) {
       return {
-        base: root.base || 'hero/yildiz_perisi/sprite/',
+        base: root.base || 'hero/tas_muhafiz/sprite/',
         sheet: root.main.sheet,
         frameWidth: root.main.frameWidth,
         frameHeight: root.main.frameHeight,
@@ -48,9 +48,6 @@
         sheetWidth: root.main.sheetWidth,
         sheetHeight: root.main.sheetHeight,
         anchor: root.main.anchor || 'bottom',
-        mainFit: root.main.mainFit,
-        mainOffsetX: root.main.mainOffsetX,
-        mainPadLeft: root.main.mainPadLeft,
         scale: root.scale
       };
     }
@@ -58,13 +55,13 @@
   }
 
   function sheetUrlCandidates(manifest) {
-    var file = manifest.sheet || 'yildiz-perisi-idle.webp';
+    var file = manifest.sheet || 'tas-muhafiz-idle.webp';
     var bases = [];
-    if (window.NOVA_YILDIZ_PERISI_SPRITE_BASE) bases.push(window.NOVA_YILDIZ_PERISI_SPRITE_BASE);
+    if (window.NOVA_TAS_MUHAFIZ_SPRITE_BASE) bases.push(window.NOVA_TAS_MUHAFIZ_SPRITE_BASE);
     if (manifest.base) bases.push(manifest.base);
     bases.push(scriptBase());
-    bases.push('hero/yildiz_perisi/sprite/');
-    bases.push('./hero/yildiz_perisi/sprite/');
+    bases.push('hero/tas_muhafiz/sprite/');
+    bases.push('./hero/tas_muhafiz/sprite/');
     var out = [];
     var seen = {};
     bases.forEach(function (b) {
@@ -78,10 +75,10 @@
   }
 
   function getRootManifest() {
-    if (window.NOVA_YILDIZ_PERISI_SPRITE_MANIFEST) {
-      return Promise.resolve(window.NOVA_YILDIZ_PERISI_SPRITE_MANIFEST);
+    if (window.NOVA_TAS_MUHAFIZ_SPRITE_MANIFEST) {
+      return Promise.resolve(window.NOVA_TAS_MUHAFIZ_SPRITE_MANIFEST);
     }
-    return Promise.reject(new Error('yildiz-manifest-missing'));
+    return Promise.reject(new Error('tas-manifest-missing'));
   }
 
   function loadImage(url) {
@@ -100,7 +97,7 @@
 
   function loadSheetFromUrls(urls, idx) {
     if (idx >= urls.length) {
-      return Promise.reject(new Error('yildiz-sheet-all-failed'));
+      return Promise.reject(new Error('tas-sheet-all-failed'));
     }
     return loadImage(urls[idx]).catch(function () {
       return loadSheetFromUrls(urls, idx + 1);
@@ -114,7 +111,7 @@
     cache.promise = getRootManifest().then(function (root) {
       var manifest = profileManifest(root, p);
       if (!manifest || !manifest.sheet) {
-        return Promise.reject(new Error('yildiz-manifest-profile:' + p));
+        return Promise.reject(new Error('tas-manifest-profile:' + p));
       }
       cache.manifest = manifest;
       var urls = sheetUrlCandidates(manifest);
@@ -144,7 +141,7 @@
     this.profile = (opts && opts.profile) || 'store';
     this.anchorBottom = this.profile === 'main';
     var sc = manifest.scale && manifest.scale[this.profile];
-    var def = { store: 1.12, detail: 1.28, main: 1.42 };
+    var def = { store: 1.12, detail: 1.5, main: 1.42 };
     this.scaleMul = (opts && opts.scale) || sc || def[this.profile] || 1.12;
     this.dead = !this.ctx;
     this.running = false;
@@ -206,23 +203,15 @@
     var ctx = this.ctx;
     var cw = this.canvas.width;
     var ch = this.canvas.height;
-    var aspect = m.frameWidth / m.frameHeight;
-    var useHeightFit = this.profile === 'main' && (
-      m.mainFit === 'height' || (m.mainFit !== 'contain' && aspect > 1.2)
-    );
-    var fit = useHeightFit
-      ? (ch / m.frameHeight)
-      : Math.min(cw / m.frameWidth, ch / m.frameHeight);
+    var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
     var isDetail = this.profile === 'detail';
-    var maxFill = isDetail ? 0.9 : 0.97;
+    var maxFill = isDetail ? 1.14 : 0.97;
     var scale = fit * this.scaleMul;
     var dw = m.frameWidth * scale;
     var dh = m.frameHeight * scale;
     if (dw > cw * maxFill || dh > ch * maxFill) {
       if (isDetail) {
         scale = Math.min((cw * maxFill) / m.frameWidth, (ch * maxFill) / m.frameHeight);
-      } else if (useHeightFit) {
-        scale = (ch * maxFill) / m.frameHeight;
       } else {
         scale = fit;
       }
@@ -231,20 +220,8 @@
     }
     dw = Math.round(dw);
     dh = Math.round(dh);
-    var offFrac = (this.profile === 'main' && m.mainOffsetX) ? Number(m.mainOffsetX) : 0;
-    if (!isFinite(offFrac)) offFrac = 0;
-    offFrac = Math.max(-0.35, Math.min(0.35, offFrac));
-    var padL = 0;
-    if (this.profile === 'main' && m.mainPadLeft != null) {
-      padL = Number(m.mainPadLeft);
-      if (!isFinite(padL)) padL = 0;
-      padL = Math.max(0, Math.min(48, padL));
-    }
-    var dx = Math.round((cw - dw) * 0.5 + offFrac * dw + padL);
+    var dx = Math.round((cw - dw) * 0.5);
     var dy = this.anchorBottom ? Math.round(ch - dh) : Math.round((ch - dh) * 0.5);
-    if (isDetail) {
-      dy = Math.round((ch - dh) * 0.52);
-    }
     ctx.clearRect(0, 0, cw, ch);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
@@ -286,14 +263,14 @@
       engines.delete(host);
     }
     host.innerHTML = '';
-    host.classList.remove('nova-hero-yildiz-vitrin-ready', 'nova-hero-yildiz-sprite-ready', 'nova-hero-yildiz-vitrin-fallback');
+    host.classList.remove('nova-hero-tas-vitrin-ready', 'nova-hero-tas-sprite-ready', 'nova-hero-tas-vitrin-fallback');
   }
 
   function startEngine(host, wrap, canvas, manifest, img, opts) {
     var eng = new SpriteEngine(wrap, canvas, manifest, img, opts);
     engines.set(host, eng);
     if (eng.dead) return;
-    host.classList.add('nova-hero-yildiz-vitrin-ready', 'nova-hero-yildiz-sprite-ready');
+    host.classList.add('nova-hero-tas-vitrin-ready', 'nova-hero-tas-sprite-ready');
     function ready(attempt) {
       if (!document.body.contains(host)) return;
       var rect = host.getBoundingClientRect();
@@ -311,16 +288,16 @@
   function mount(host, opts) {
     if (!host) return null;
     unmount(host);
-    host.classList.add('nova-hero-mount--star-fairy');
-    host.setAttribute('data-yildiz-sprite', '1');
+    host.classList.add('nova-hero-mount--tas-muhafiz');
+    host.setAttribute('data-tas-sprite', '1');
 
     var profile = (opts && opts.profile) || 'store';
     var wrap = document.createElement('div');
-    wrap.className = 'nova-hero-yildiz-sprite nova-hero-yildiz-sprite--' + profile;
+    wrap.className = 'nova-hero-tas-sprite nova-hero-tas-sprite--' + profile;
     var canvas = document.createElement('canvas');
-    canvas.className = 'nova-hero-yildiz-sprite__canvas';
+    canvas.className = 'nova-hero-tas-sprite__canvas';
     canvas.setAttribute('role', 'img');
-    canvas.setAttribute('aria-label', 'yildiz Okcusu');
+    canvas.setAttribute('aria-label', 'Taş Muhafız');
     wrap.appendChild(canvas);
     host.appendChild(wrap);
 
@@ -333,35 +310,35 @@
         var img = sheetCache[p].img;
         startEngine(host, wrap, canvas, manifest, img, opts);
       }).catch(function (err) {
-        console.error('[yildiz sprite] yüklenemedi. Profil:', profile, 'Deneme:', tries, err);
+        console.error('[tas sprite] yüklenemedi. Profil:', profile, 'Deneme:', tries, err);
         if (tries < 4) {
           setTimeout(tryLoad, 400 * tries);
           return;
         }
-        wrap.classList.add('nova-hero-yildiz-sprite--error');
+        wrap.classList.add('nova-hero-tas-sprite--error');
       });
     }
     tryLoad();
     return wrap;
   }
 
-  window.novaYildizPerisiMountSprite = mount;
-  window.novaYildizPerisiUnmountSprite = unmount;
-  window.novaYildizPerisiMountVitrinVideo = mount;
-  window.novaYildizPerisiUnmountVitrinVideo = unmount;
-  window.novaYildizPerisiPreloadSprite = function () {
+  window.novaTasMuhafizMountSprite = mount;
+  window.novaTasMuhafizUnmountSprite = unmount;
+  window.novaTasMuhafizMountVitrinVideo = mount;
+  window.novaTasMuhafizUnmountVitrinVideo = unmount;
+  window.novaTasMuhafizPreloadSprite = function () {
     return Promise.all([
       loadAssets('store', false).catch(function () {}),
       loadAssets('main', false).catch(function () {})
     ]);
   };
-  window.novaYildizPerisiIsSpriteReady = function () {
+  window.novaTasMuhafizIsSpriteReady = function () {
     return !!(sheetCache.store.img && sheetCache.main.img);
   };
 
   function bootPreload() {
-    try { window.novaYildizPerisiPreloadSprite(); } catch (e) {
-      console.warn('[yildiz sprite] preload', e);
+    try { window.novaTasMuhafizPreloadSprite(); } catch (e) {
+      console.warn('[tas sprite] preload', e);
     }
   }
   if (document.readyState === 'loading') {

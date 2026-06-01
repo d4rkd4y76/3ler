@@ -214,6 +214,8 @@
         window.novaFirtinaOkcuUnmountSprite(mountHost);
       } else if (mountHost && hid === 'star_fairy' && typeof window.novaYildizPerisiUnmountSprite === 'function') {
         window.novaYildizPerisiUnmountSprite(mountHost);
+      } else if (mountHost && hid === 'tas_muhafiz' && typeof window.novaTasMuhafizUnmountSprite === 'function') {
+        window.novaTasMuhafizUnmountSprite(mountHost);
       } else if (mountHost && typeof window.novaEpicDragonUnmountSprite === 'function') {
         window.novaEpicDragonUnmountSprite(mountHost, hid);
       }
@@ -284,11 +286,13 @@
         'nh-hero-sheet__arena--alev-sprite',
         'nh-hero-sheet__arena--gece-sprite',
         'nh-hero-sheet__arena--firtina-sprite',
-        'nh-hero-sheet__arena--star-sprite'
+        'nh-hero-sheet__arena--star-sprite',
+        'nh-hero-sheet__arena--tas-sprite'
       );
       if (isEpicDragon) arena.classList.add('nh-hero-sheet__arena--' + (def.theme || 'buz') + '-sprite');
       if (heroId === 'firtina_okcu') arena.classList.add('nh-hero-sheet__arena--firtina-sprite');
       if (heroId === 'star_fairy') arena.classList.add('nh-hero-sheet__arena--star-sprite');
+      if (heroId === 'tas_muhafiz') arena.classList.add('nh-hero-sheet__arena--tas-sprite');
     }
     if (heroHost) {
       heroHost.innerHTML = '';
@@ -299,6 +303,8 @@
         window.novaFirtinaOkcuMountSprite(host, { profile: 'main' });
       } else if (heroId === 'star_fairy' && typeof window.novaYildizPerisiMountSprite === 'function') {
         window.novaYildizPerisiMountSprite(host, { profile: 'main' });
+      } else if (heroId === 'tas_muhafiz' && typeof window.novaTasMuhafizMountSprite === 'function') {
+        window.novaTasMuhafizMountSprite(host, { profile: 'main' });
       } else if (isEpicDragon && typeof window.novaEpicDragonMountSprite === 'function') {
         window.novaEpicDragonMountSprite(host, heroId, { profile: 'main' });
       } else {
