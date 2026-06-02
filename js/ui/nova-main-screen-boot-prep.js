@@ -1,12 +1,6 @@
-/* Yükleme ekranı sırasında ana ekranı arkada tam hazırla */
+/* Yükleme ekranı sırasında yalnızca ana ekran UI — sprite/kahraman sonradan */
 (function () {
   'use strict';
-
-  function sleep(ms) {
-    return new Promise(function (r) {
-      setTimeout(r, ms);
-    });
-  }
 
   function getStoredStudent() {
     try {
@@ -36,7 +30,7 @@
         done = true;
         resolve();
       }
-      var t = setTimeout(finish, maxMs || 22000);
+      var t = setTimeout(finish, maxMs || 8000);
       document.addEventListener(
         'nova:app-onload-done',
         function () {
@@ -45,66 +39,6 @@
         },
         { once: true }
       );
-    });
-  }
-
-  function waitMainHeroReady(timeoutMs) {
-    var deadline = performance.now() + (timeoutMs || 15000);
-    return new Promise(function (resolve) {
-      function tick() {
-        var student = getStoredStudent();
-        if (!student || !student.classId) {
-          resolve(true);
-          return;
-        }
-        var main = document.getElementById('main-screen');
-        if (!main || main.style.display === 'none') {
-          if (performance.now() < deadline) {
-            setTimeout(tick, 100);
-            return;
-          }
-          resolve(false);
-          return;
-        }
-        var slot = document.getElementById('nova-main-hero-slot');
-        if (!slot) {
-          if (performance.now() < deadline) {
-            setTimeout(tick, 100);
-            return;
-          }
-          resolve(false);
-          return;
-        }
-        var host = slot.querySelector('[data-nova-main-hero], [data-nova-hero-host]');
-        if (!host) {
-          if (typeof window.novaRefreshMainScreenHero === 'function') {
-            try {
-              window.novaRefreshMainScreenHero();
-            } catch (_) {}
-          }
-          if (performance.now() < deadline) {
-            setTimeout(tick, 120);
-            return;
-          }
-          resolve(false);
-          return;
-        }
-        var canvas = host.querySelector('canvas');
-        if (canvas && canvas.width > 8 && canvas.height > 8) {
-          resolve(true);
-          return;
-        }
-        if (host.querySelector('svg')) {
-          resolve(true);
-          return;
-        }
-        if (performance.now() >= deadline) {
-          resolve(false);
-          return;
-        }
-        setTimeout(tick, 100);
-      }
-      tick();
     });
   }
 
@@ -125,7 +59,7 @@
         try {
           if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
         } catch (_) {}
-        if (passes >= 6) {
+        if (passes >= 2) {
           resolve();
           return;
         }
@@ -150,7 +84,7 @@
       }
 
       status('Sistem başlatılıyor…');
-      await waitAppOnload(24000);
+      await waitAppOnload(8000);
 
       var student = getStoredStudent();
       if (!student) {
@@ -180,25 +114,7 @@
           } catch (_) {}
         }
 
-        if (typeof window.novaRefreshMainScreenHero === 'function') {
-          try {
-            await window.novaRefreshMainScreenHero();
-          } catch (_) {}
-        }
-
-        var heroId =
-          student.battleHero ||
-          window.__novaEquippedHeroId ||
-          '';
-        if (heroId && typeof window.novaSpritePreloadForHero === 'function') {
-          status('Kahraman hazırlanıyor…');
-          try {
-            await window.novaSpritePreloadForHero(heroId);
-          } catch (_) {}
-        }
-
         status('Arayüz yerleşiyor…');
-        await waitMainHeroReady(16000);
         await ensureMainScreenLayout();
 
         try {

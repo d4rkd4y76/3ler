@@ -344,16 +344,16 @@
         min-height: 28px;
       }
       #fillblank_fab_wrap{display:inline-flex;position:relative;z-index:80;pointer-events:auto;margin-top:8px}
-      #main-screen-hud-left{
+      #nova_bonus_drawer_panel{
         display:flex !important;
         flex-direction:column !important;
-        align-items:flex-start !important;
-        justify-content:flex-start !important;
+        align-items:stretch !important;
         gap:8px !important;
         overflow:visible !important;
       }
-      #main-screen-hud-left #puzzle_fab_wrap,
-      #main-screen-hud-left #fillblank_fab_wrap{
+      #nova_bonus_drawer_panel #puzzle_fab_wrap,
+      #nova_bonus_drawer_panel #fillblank_fab_wrap,
+      #nova_bonus_drawer_panel #match_fab_wrap{
         position:relative !important;
         left:auto !important;
         right:auto !important;
@@ -361,13 +361,13 @@
         bottom:auto !important;
         transform:none !important;
         margin:0 !important;
-        align-self:flex-start !important;
+        width:100% !important;
       }
-      #main-screen-hud-left #puzzle_fab_wrap{order:1 !important}
-      #main-screen-hud-left #fillblank_fab_wrap{order:2 !important;margin-top:0 !important}
-      #main-screen-hud-left #match_fab_wrap{order:3 !important;margin-top:0 !important}
-      #main-screen-hud-left #fillblank_fab{margin:0 !important}
-      #main-screen-hud-left #match_fab{margin:0 !important}
+      #nova_bonus_drawer_panel #puzzle_fab_wrap{order:1 !important}
+      #nova_bonus_drawer_panel #fillblank_fab_wrap{order:2 !important;margin-top:0 !important}
+      #nova_bonus_drawer_panel #match_fab_wrap{order:3 !important;margin-top:0 !important}
+      #nova_bonus_drawer_panel #fillblank_fab{margin:0 !important}
+      #nova_bonus_drawer_panel #match_fab{margin:0 !important}
       #main-screen-quest-slot{
         display:flex !important;
         flex-direction:column !important;
@@ -398,8 +398,9 @@
       }
       #main-screen-quest-slot #homework_fab{order:1 !important}
       #main-screen-quest-slot #quest_fab_wrap{order:2 !important}
-      #main-screen-quest-slot .surprise-box{order:3 !important}
-      #main-screen-quest-slot .nova-tour-fab-wrap{order:4 !important}
+      #main-screen-quest-slot #nova-bonus-drawer{order:3 !important}
+      #main-screen-quest-slot .surprise-box{order:4 !important}
+      #main-screen-quest-slot .nova-tour-fab-wrap{order:5 !important}
       #fillblank_fab .fb-fab-label{display:block;max-width:100%;overflow:visible;text-overflow:clip;white-space:nowrap;padding:0 1px}
       #fillblank_fab:hover{transform:translateY(-1px);filter:brightness(1.04)}
       #fillblank-screen{display:none;position:fixed;inset:0;z-index:100001;padding:max(10px, env(safe-area-inset-top, 0px)) max(10px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px));background:
@@ -496,12 +497,12 @@
     rewardTag.textContent = '+100 💎';
     wrapBtn.appendChild(rewardTag);
     btn.setAttribute('title', 'Doğru cevapta +100 elmas');
+    const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
     const questWrap = document.getElementById('quest_fab_wrap');
     const questSlot = document.getElementById('main-screen-quest-slot');
-    const hudL = document.getElementById('main-screen-hud-left');
     const puzWrap = document.getElementById('puzzle_fab_wrap');
     const ms = document.getElementById('main-screen');
-    const parent = hudL || (questWrap && questWrap.parentNode) || questSlot || ms || document.body;
+    const parent = bonusPanel || (puzWrap && puzWrap.parentNode) || (questWrap && questWrap.parentNode) || questSlot || ms || document.body;
     if (puzWrap && puzWrap.parentNode === parent && parent.contains(puzWrap)){
       if (wrapBtn.previousElementSibling !== puzWrap){ parent.insertBefore(wrapBtn, puzWrap.nextSibling); }
     } else if (questWrap && questWrap.parentNode === parent) {
@@ -529,21 +530,28 @@
     }
     function placeAndSizeLikeQuest(){
       try{
-        const qbtn = document.getElementById('quest_fab');
+        const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
         const puzW = document.getElementById('puzzle_fab_wrap');
-        const hudLeft = document.getElementById('main-screen-hud-left');
-        if (hudLeft && wrapBtn.parentNode !== hudLeft){ hudLeft.appendChild(wrapBtn); }
-        if (puzW && hudLeft && wrapBtn.parentNode === hudLeft && wrapBtn.previousElementSibling !== puzW){
-          hudLeft.insertBefore(wrapBtn, puzW.nextSibling);
+        if (bonusPanel && wrapBtn.parentNode !== bonusPanel){
+          if (puzW && puzW.parentNode === bonusPanel){
+            bonusPanel.insertBefore(wrapBtn, puzW.nextSibling);
+          } else {
+            bonusPanel.appendChild(wrapBtn);
+          }
+        } else if (bonusPanel && puzW && wrapBtn.parentNode === bonusPanel && wrapBtn.previousElementSibling !== puzW){
+          bonusPanel.insertBefore(wrapBtn, puzW.nextSibling);
         }
+        const hudLeft = document.getElementById('main-screen-hud-left');
+        if (hudLeft && wrapBtn.parentNode === hudLeft && bonusPanel){
+          bonusPanel.appendChild(wrapBtn);
+        }
+        const qbtn = document.getElementById('quest_fab');
         if (!qbtn) return;
         const qW = Math.round(Number(qbtn.offsetWidth || 0));
         const qH = Math.round(Number(qbtn.offsetHeight || 0));
-        // Hidden/transition states can report tiny sizes; ignore those.
         if (qW < 40 || qH < 24){
           return;
         }
-        // Sizing is controlled by responsive CSS for all side FABs.
         wrapBtn.style.pointerEvents = 'auto';
         btn.style.pointerEvents = 'auto';
         fitFabText();

@@ -103,7 +103,7 @@
 
 <link rel="stylesheet" href="styles/044-nova-homework-above-photo.css" />
 
-<link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=20260602boot6" />
+<link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=20260602boot9" />
 <link rel="preload" href="yeni_loading.mp4" as="video" type="video/mp4" fetchpriority="high" />
 </head>
 <body data-nova-back='1'>
@@ -256,20 +256,28 @@
 </div>
 </div>
 <div class="main-profile-hero" id="main-profile-hero">
-<div class="main-screen-hero-left" id="main-screen-hud-left">
-<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde +100 elmas">🧩 BULMACA</button>
-<span class="nova-fab-reward-tag" aria-hidden="true">+100 💎</span>
-</span>
+<div class="main-screen-hero-left main-screen-hero-left--showcase" id="main-screen-hud-left">
+<div class="nova-main-hero-showcase-wrap">
+<div class="nova-main-hero-showcase__title" aria-hidden="false">KAHRAMANIN</div>
+<div class="nova-main-hero-showcase" id="nova-main-hero-showcase" aria-hidden="true">
+<div class="nova-main-hero-showcase__frame">
+<div class="nova-main-hero-showcase__head" id="nova-main-hero-showcase-head">
+<div class="nova-main-hero-showcase__level" id="nova-main-hero-showcase-level" hidden></div>
+</div>
+<div class="nova-main-hero-showcase__body">
+<div class="nova-main-hero-zone" id="nova-main-hero-zone" aria-hidden="true">
+<div class="nova-main-hero-zone__pad" aria-hidden="true"></div>
+<div class="nova-main-hero-slot" id="nova-main-hero-slot"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="main-screen-hero-center">
 <div class="student-info">
 <img alt="Öğrenci Fotoğrafı" class="student-photo" id="student-photo" src="" style="display: none;"/>
 <div class="student-name-stage" id="student-name-stage">
-<div class="nova-main-hero-zone" id="nova-main-hero-zone" aria-hidden="true">
-<div class="nova-main-hero-zone__pad" aria-hidden="true"></div>
-<div class="nova-main-hero-slot" id="nova-main-hero-slot"></div>
-</div>
 <div class="student-name" id="student-name"></div>
 </div>
 <div class="star-frame" id="student-stars"></div>
@@ -296,7 +304,21 @@
 </div>
 </div>
 </div>
-<div class="main-screen-hero-right" id="main-screen-quest-slot"></div>
+<div class="main-screen-hero-right" id="main-screen-quest-slot">
+<div class="nova-bonus-drawer" id="nova-bonus-drawer">
+<button type="button" class="nova-bonus-drawer__toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
+<span class="nova-bonus-drawer__toggle-icon" aria-hidden="true">✨</span>
+<span class="nova-bonus-drawer__toggle-label">BONUS ETKİNLİKLER</span>
+<span class="nova-bonus-drawer__chevron" aria-hidden="true">▼</span>
+</button>
+<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
+<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
+<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde +100 elmas">🧩 BULMACA</button>
+<span class="nova-fab-reward-tag" aria-hidden="true">+100 💎</span>
+</span>
+</div>
+</div>
+</div>
 </div>
 <div class="buttons">
 <button class="single-player" type="button"><span class="main-menu-icon" aria-hidden="true">▶</span><span class="main-menu-label">Tek Kişilik Oyun</span></button>
@@ -1136,7 +1158,8 @@
 
 <script src="js/core/045-nova-weekly-quests.js"></script>
 
-<script src="js/features/046-nova-move-homework-above-photo.js"></script>
+<script src="js/features/046-nova-move-homework-above-photo.js?v=20260602bonus2"></script>
+<script src="js/features/047-nova-bonus-drawer.js?v=20260602bonus1"></script>
 <script src="js/ui/004-nova-perf-settings-script.js?v=20260527overlay1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
@@ -1299,8 +1322,8 @@
 <script src="js/ui/012ar-nova-bilge-baykus-vitrin-video.js?v=20260602baykus3"></script>
 <script src="js/ui/012as-nova-bilge-baykus-true-manifest.js?v=20260602baykus3"></script>
 <script src="js/ui/012at-nova-bilge-baykus-true-player.js?v=20260602baykus3"></script>
-<link rel="stylesheet" href="styles/096-nova-epic-dragon-badge.css?v=20260601epicbadge1" />
-<script src="js/ui/012aa-nova-epic-dragon-badge.js?v=20260601epicbadge1"></script>
+<link rel="stylesheet" href="styles/096-nova-epic-dragon-badge.css?v=20260602epichead1" />
+<script src="js/ui/012aa-nova-epic-dragon-badge.js?v=20260602epichead1"></script>
 <script src="js/ui/012q-nova-buz-ejder-svg-data.js?v=20260529buz11"></script>
 <script src="js/ui/012r-nova-buz-ejder-webgl-frost.js?v=20260529buz11"></script>
 <script src="js/ui/012s-nova-buz-ejder-fx.js?v=20260531buztrue23"></script>
@@ -1324,10 +1347,10 @@
 <script src="js/ui/012yh-nova-gece-ejder-true-player.js?v=20260602gecetrue1"></script>
 <script src="js/ui/012z-nova-epic-dragon-shared.js?v=20260530epic1"></script>
 <script src="js/ui/008-nova-battle-hero.js?v=20260602baykus2"></script>
-<script src="js/ui/nova-main-screen-boot-prep.js?v=20260602mainprep1"></script>
-<script src="js/ui/nova-sprite-preload-boot.js?v=20260602boot7"></script>
+<script src="js/ui/nova-main-screen-boot-prep.js?v=20260602mainprep2"></script>
+<script src="js/ui/nova-sprite-preload-boot.js?v=20260602boot9"></script>
 <script src="js/ui/013-nova-hero-level-system.js?v=20260603tas1"></script>
-<script src="js/ui/014-nova-hero-main-ui.js?v=20260603tas1"></script>
+<script src="js/ui/014-nova-hero-main-ui.js?v=20260602epichead1"></script>
 <script src="js/ui/015-nova-store-detail.js?v=20260604storebtn1"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
@@ -1335,6 +1358,7 @@
 <script src="js/features/053-script-053.js"></script>
 <script src="js/core/054-nova-single-result-screen-guard.js?v=20260526sp_fix3"></script>
 <link rel="stylesheet" href="styles/059-login-premium.css?v=2" />
+<link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=20260602epichead1" />
 <style id="nova-login-final-override">
 #student-selection-screen.nova-kids-login .card{
   border:1px solid rgba(255,255,255,.78) !important;

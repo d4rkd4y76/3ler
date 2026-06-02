@@ -56,16 +56,54 @@
 
   function ensureStarsEl() {
     ensureHeroFloatWrap();
+    var head = document.getElementById('nova-main-hero-showcase-head');
     var float = document.getElementById('nova-main-hero-float');
-    if (!float) return null;
+    var parent = head || float;
+    if (!parent) return null;
     var stars = document.getElementById('nova-main-hero-stars');
     if (!stars) {
       stars = document.createElement('div');
       stars.id = 'nova-main-hero-stars';
       stars.className = 'nova-main-hero-stars';
-      float.insertBefore(stars, float.firstChild);
+      parent.insertBefore(stars, parent.firstChild);
+    } else if (stars.parentElement !== parent) {
+      parent.insertBefore(stars, parent.firstChild);
     }
     return stars;
+  }
+
+  function refreshShowcaseShell(heroId, visible, theme, isEpic) {
+    var shell = document.getElementById('nova-main-hero-showcase');
+    var levelEl = document.getElementById('nova-main-hero-showcase-level');
+    if (!shell) return;
+    var themes = ['buz', 'alev', 'gece', 'firtina', 'star', 'tas', 'golge', 'baykus', 'blaze', 'bilge', 'simsek', 'mythic', 'turbo'];
+    themes.forEach(function (t) {
+      shell.classList.remove('nova-main-hero-showcase--' + t);
+    });
+    shell.classList.toggle('is-visible', !!visible);
+    shell.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    if (theme) shell.classList.add('nova-main-hero-showcase--' + theme);
+    shell.classList.toggle('nova-main-hero-showcase--epic', !!isEpic);
+    if (!levelEl) return;
+    if (!visible) {
+      levelEl.hidden = true;
+      levelEl.textContent = '';
+      levelEl.classList.remove('is-epic');
+      return;
+    }
+    var lvl = getHeroLevel();
+    if (typeof window.__novaMainHeroLevelFetched === 'number' && window.__novaMainHeroLevelFetched > 0) {
+      lvl = window.__novaMainHeroLevelFetched;
+    }
+    if (isEpic) {
+      levelEl.hidden = true;
+      levelEl.textContent = '';
+      levelEl.classList.remove('is-epic');
+      return;
+    }
+    levelEl.textContent = lvl > 0 ? getLevelLabel(lvl) : 'Kahraman';
+    levelEl.classList.remove('is-epic');
+    levelEl.hidden = false;
   }
 
   function refreshMainHeroStars() {
@@ -77,6 +115,7 @@
     if (!visible) {
       stars.hidden = true;
       stars.innerHTML = '';
+      refreshShowcaseShell('', false, '', false);
       if (typeof window.novaEpicDragonRefreshMainBadge === 'function') {
         window.novaEpicDragonRefreshMainBadge('', false);
       }
@@ -146,6 +185,8 @@
     if (typeof window.novaEpicDragonRefreshMainBadge === 'function') {
       window.novaEpicDragonRefreshMainBadge(heroId, visible);
     }
+    var def = heroId && window.NOVA_HERO_REGISTRY ? window.NOVA_HERO_REGISTRY[heroId] : null;
+    refreshShowcaseShell(heroId, visible, def && def.theme ? def.theme : '', isEpic);
   }
 
   function buildHeroSvgHtml(heroId) {

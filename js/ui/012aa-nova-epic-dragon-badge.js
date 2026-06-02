@@ -37,6 +37,7 @@
 
   function tierFor(mod) {
     if (mod === 'rank' || mod === 'inv' || mod === 'prep') return 'compact';
+    if (mod === 'showcase') return 'compact';
     if (mod === 'main') return 'hero';
     if (mod === 'store' || mod === 'detail' || mod === 'level' || mod === 'sheet') return 'standard';
     return 'standard';
@@ -95,10 +96,12 @@
   }
 
   function refreshMain(heroId, visible) {
+    var head = document.getElementById('nova-main-hero-showcase-head');
     var float = document.getElementById('nova-main-hero-float');
-    if (!float) return;
-    if (visible && THEMES[heroId]) mountParent(float, heroId, 'main');
-    else unmountParent(float);
+    if (float) unmountParent(float);
+    if (!head) return;
+    if (visible && THEMES[heroId]) mountParent(head, heroId, 'showcase');
+    else unmountParent(head);
   }
 
   window.novaEpicDragonBadgeMount = mountParent;

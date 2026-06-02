@@ -320,6 +320,13 @@
   z-index: 15;
 }
 
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--buz .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--alev .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--gece .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase .nova-main-hero-float .nova-main-hero-epic-label{
+  display: none !important;
+}
+
 .nh-hero-sheet__stars--epic,
 .nh-level-arena__stars--epic{
   display: inline-flex;

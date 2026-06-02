@@ -471,7 +471,8 @@
     rewardTag.setAttribute('aria-hidden', 'true');
     rewardTag.textContent = '+100 💎';
     wrap.appendChild(rewardTag);
-    const hudLeft = document.getElementById('main-screen-hud-left') || document.getElementById('main-screen');
+    const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
+    const hudLeft = bonusPanel || document.getElementById('main-screen-quest-slot') || document.getElementById('main-screen');
     const fbWrap = document.getElementById('fillblank_fab_wrap');
     if (hudLeft){
       if (fbWrap && fbWrap.parentNode === hudLeft) hudLeft.insertBefore(wrap, fbWrap.nextSibling);
