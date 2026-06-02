@@ -171,6 +171,7 @@
     if (heroId === 'firtina_okcu') return 'Fırtına Okçusu';
     if (heroId === 'tas_muhafiz') return 'Taş Muhafız';
     if (heroId === 'golge_parsi') return 'Gölge Parsı';
+    if (heroId === 'bilge_baykus') return 'Bilge Baykuş';
     return heroId;
   }
 
@@ -189,6 +190,7 @@
     if (heroId === 'firtina_okcu') return 'firtina';
     if (heroId === 'tas_muhafiz') return 'tas';
     if (heroId === 'golge_parsi') return 'golge';
+    if (heroId === 'bilge_baykus') return 'baykus';
     return 'blaze';
   }
 
@@ -476,6 +478,8 @@
       window.novaTasMuhafizMountSprite(host, { profile: 'store', scale: 1.28 });
     } else if (heroId === 'golge_parsi' && typeof window.novaGolgeParsiMountSprite === 'function') {
       window.novaGolgeParsiMountSprite(host, { profile: 'store', scale: 1.28 });
+    } else if (heroId === 'bilge_baykus' && typeof window.novaBilgeBaykusMountSprite === 'function') {
+      window.novaBilgeBaykusMountSprite(host, { profile: 'store', scale: 1.28 });
     } else if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId) && typeof window.novaEpicDragonMountSprite === 'function') {
       window.novaEpicDragonMountSprite(host, heroId, { profile: 'store' });
     } else if (typeof window.novaMountHeroInto === 'function') {

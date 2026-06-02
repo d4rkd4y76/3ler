@@ -1805,6 +1805,9 @@ async function novaOpenStore() {
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   try {
+    if (!window.__novaSpriteAssetsReady && typeof window.novaSpritePreloadAll === 'function') {
+      try { await window.novaSpritePreloadAll(); } catch (_) {}
+    }
     if (typeof window.novaShowScreenLoader === 'function') window.novaShowScreenLoader('store');
     await novaOpenStoreFlow();
   } catch(e) {

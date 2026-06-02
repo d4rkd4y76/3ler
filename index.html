@@ -101,8 +101,37 @@
 
 <link rel="stylesheet" href="styles/044-nova-homework-above-photo.css" />
 
+<link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=20260602boot2" />
+<link rel="preload" href="kaynaklar_yukleniyor.mp4" as="video" type="video/mp4" />
 </head>
 <body data-nova-back='1'>
+
+<div id="nova_sprite_boot_overlay" class="nova-sprite-boot-overlay" role="status" aria-live="polite" aria-busy="true">
+  <div class="nova-sprite-boot-bg" aria-hidden="true"></div>
+  <div class="nova-sprite-boot-flash" aria-hidden="true"></div>
+  <div class="nova-sprite-boot-vignette" aria-hidden="true"></div>
+  <div class="nova-sprite-boot-stage">
+    <div class="nova-sprite-boot-video-wrap">
+      <video class="nova-sprite-boot-video-src" src="kaynaklar_yukleniyor.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+      <canvas id="nova_sprite_boot_canvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="nova-sprite-boot-copy">
+      <p class="nova-sprite-boot-logo">NASK GAMES</p>
+      <h1 class="nova-sprite-boot-title">Kaynaklar yükleniyor</h1>
+      <p class="nova-sprite-boot-sub">Kahramanlar ve dünyalar hazırlanıyor…</p>
+      <div class="nova-sprite-boot-meter">
+        <div class="nova-sprite-boot-bar-wrap" aria-hidden="true">
+          <span class="nova-sprite-boot-bar"></span>
+          <span class="nova-sprite-boot-bar-glow"></span>
+        </div>
+        <div class="nova-sprite-boot-pct-row">
+          <p class="nova-sprite-boot-pct">0%</p>
+          <p class="nova-sprite-boot-status">Başlatılıyor…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <link rel="stylesheet" href="styles/045-nova-duel-intro-column.css" />
 
@@ -1245,7 +1274,7 @@
 <script src="js/ui/011e-nova-hero-sp-fx-core.js?v=20260528epic1"></script>
 <link rel="stylesheet" href="styles/098-nova-firtina-okcu-hero.css?v=20260604firtinadet1" />
 <link rel="stylesheet" href="styles/099-nova-yildiz-perisi-hero.css?v=20260603yildiztas1" />
-<script src="js/ui/nova-sprite-perf-core.js?v=20260604perf1"></script>
+<script src="js/ui/nova-sprite-perf-core.js?v=20260602perf2"></script>
 <script src="js/ui/012ae-nova-yildiz-perisi-sprite-manifest.js?v=20260603yildiztas1"></script>
 <script src="js/ui/012ae-nova-yildiz-perisi-vitrin-video.js?v=20260603yildiztas1"></script>
 <script src="js/ui/012ag-nova-yildiz-perisi-true-manifest.js?v=20260602yildiz2"></script>
@@ -1264,6 +1293,11 @@
 <script src="js/ui/012an-nova-golge-parsi-vitrin-video.js?v=20260601golgev1"></script>
 <script src="js/ui/012ao-nova-golge-parsi-true-manifest.js?v=20260601golgev1"></script>
 <script src="js/ui/012ap-nova-golge-parsi-true-player.js?v=20260601golgev1"></script>
+<link rel="stylesheet" href="styles/102-nova-bilge-baykus-hero.css?v=20260602baykus2" />
+<script src="js/ui/012aq-nova-bilge-baykus-sprite-manifest.js?v=20260602baykus2"></script>
+<script src="js/ui/012ar-nova-bilge-baykus-vitrin-video.js?v=20260602baykus2"></script>
+<script src="js/ui/012as-nova-bilge-baykus-true-manifest.js?v=20260602baykus2"></script>
+<script src="js/ui/012at-nova-bilge-baykus-true-player.js?v=20260602baykus2"></script>
 <link rel="stylesheet" href="styles/096-nova-epic-dragon-badge.css?v=20260601epicbadge1" />
 <script src="js/ui/012aa-nova-epic-dragon-badge.js?v=20260601epicbadge1"></script>
 <script src="js/ui/012q-nova-buz-ejder-svg-data.js?v=20260529buz11"></script>
@@ -1284,7 +1318,8 @@
 <script src="js/ui/012y-nova-gece-ejder-sprite-manifest.js?v=20260530gece6"></script>
 <script src="js/ui/012y-nova-gece-ejder-vitrin-video.js?v=20260530gece6"></script>
 <script src="js/ui/012z-nova-epic-dragon-shared.js?v=20260530epic1"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=20260604golgestore3"></script>
+<script src="js/ui/008-nova-battle-hero.js?v=20260602baykus2"></script>
+<script src="js/ui/nova-sprite-preload-boot.js?v=20260602boot2"></script>
 <script src="js/ui/013-nova-hero-level-system.js?v=20260603tas1"></script>
 <script src="js/ui/014-nova-hero-main-ui.js?v=20260603tas1"></script>
 <script src="js/ui/015-nova-store-detail.js?v=20260604storebtn1"></script>

@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-bilge-baykus-sprites.py */
+window.NOVA_BILGE_BAYKUS_SPRITE_BASE="hero/bilge_baykus/sprite/";
+window.NOVA_BILGE_BAYKUS_SPRITE_MANIFEST = {"version":1,"base":"hero/bilge_baykus/sprite/","sheet":"bilge-baykus-idle.webp","frameWidth":254,"frameHeight":290,"cols":9,"rows":11,"frameCount":96,"loopEnd":96,"fps":24,"blendFrames":0,"sheetWidth":2286,"sheetHeight":3190,"anchor":"center","main":{"sheet":"bilge-baykus-main.webp","frameWidth":533,"frameHeight":300,"cols":6,"rows":10,"frameCount":56,"loopEnd":48,"fps":12,"blendFrames":8,"sheetWidth":3198,"sheetHeight":3000,"anchor":"bottom"},"scale":{"store":1.12,"detail":1.28,"main":1.42}};

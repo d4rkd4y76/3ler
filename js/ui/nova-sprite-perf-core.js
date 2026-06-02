@@ -1,9 +1,43 @@
-/* Sprite / mağaza / ana ekran — görünürlük, FPS sınırı, güvenli unmount (boyut değiştirmez). */
+/* Sprite / mağaza / ana ekran — global RAF, ön yükleme, görünürlük, güvenli unmount. */
 (function () {
   'use strict';
 
   var storeIo = null;
   var observedHosts = new WeakMap();
+  var globalRegistry = new Set();
+  var globalRaf = 0;
+  var globalLoopRunning = false;
+
+  var STORE_HERO_IDS = [
+    'star_fairy',
+    'firtina_okcu',
+    'tas_muhafiz',
+    'golge_parsi',
+    'bilge_baykus',
+    'buz_ejder',
+    'alev_ejder',
+    'gece_ejder'
+  ];
+
+  var PRELOAD_FN = {
+    star_fairy: 'novaYildizPerisiPreloadSprite',
+    firtina_okcu: 'novaFirtinaOkcuPreloadSprite',
+    tas_muhafiz: 'novaTasMuhafizPreloadSprite',
+    golge_parsi: 'novaGolgeParsiPreloadSprite',
+    bilge_baykus: 'novaBilgeBaykusPreloadSprite',
+    buz_ejder: 'novaBuzEjderPreloadSprite',
+    alev_ejder: 'novaAlevEjderPreloadSprite',
+    gece_ejder: 'novaGeceEjderPreloadSprite'
+  };
+
+  function isPhoneDevice() {
+    try {
+      if (window.matchMedia) {
+        return window.matchMedia('(max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse)').matches;
+      }
+    } catch (_) {}
+    return (window.innerWidth || 0) <= 768;
+  }
 
   function isVisibleEl(el) {
     if (!el || !el.isConnected) return false;
@@ -44,6 +78,21 @@
     return r.bottom > -m && r.top < h + m && r.right > -m && r.left < w + m;
   }
 
+  window.novaSpritePerfIsPhone = isPhoneDevice;
+
+  window.novaSpritePerfGetDpr = function (wrap, profile) {
+    var p = profile || 'store';
+    var inStore = wrap && wrap.closest && wrap.closest('#profileChangeOverlay, #nova-store-detail-overlay');
+    var inMain = wrap && wrap.closest && wrap.closest('#main-screen, .nova-main-hero-host');
+    if (inMain || p === 'main' || p === 'detail') {
+      return Math.min(window.devicePixelRatio || 1, isPhoneDevice() ? 1.75 : 2);
+    }
+    if (inStore || p === 'store') {
+      return Math.min(window.devicePixelRatio || 1, isPhoneDevice() ? 1.35 : 1.85);
+    }
+    return Math.min(window.devicePixelRatio || 1, 2);
+  };
+
   window.novaSpritePerfCanAnimate = function (wrap) {
     if (document.hidden) return false;
     if (!wrap || !wrap.isConnected) return false;
@@ -74,33 +123,126 @@
     }
   };
 
+  function globalAnimationLoop(now) {
+    globalRaf = requestAnimationFrame(globalAnimationLoop);
+    if (!globalRegistry.size) {
+      globalLoopRunning = false;
+      globalRaf = 0;
+      return;
+    }
+    var t = now || performance.now();
+    globalRegistry.forEach(function (eng) {
+      if (!eng.running) return;
+      if (!document.body.contains(eng.wrap)) {
+        eng.stop();
+        return;
+      }
+      if (!window.novaSpritePerfCanAnimate(eng.wrap)) return;
+
+      if (typeof eng._novaPerfTick === 'function') eng._novaPerfTick(t);
+
+      var gap = (eng.frameMs || 83) * 0.92;
+      if (!eng._novaLastPaint || t - eng._novaLastPaint >= gap) {
+        eng._novaLastPaint = t;
+        eng._novaTickPaused = true;
+        try {
+          if (typeof eng.draw === 'function') eng.draw();
+        } catch (_) {}
+        eng._novaTickPaused = false;
+      }
+    });
+  }
+
+  function ensureGlobalLoop() {
+    if (globalLoopRunning) return;
+    globalLoopRunning = true;
+    globalRaf = requestAnimationFrame(globalAnimationLoop);
+  }
+
+  function registerEngine(eng) {
+    globalRegistry.add(eng);
+    ensureGlobalLoop();
+  }
+
+  function unregisterEngine(eng) {
+    globalRegistry.delete(eng);
+  }
+
   window.novaSpritePerfInstall = function (Engine) {
     if (!Engine || Engine.__novaPerfInstalled) return;
     Engine.__novaPerfInstalled = true;
     var p = Engine.prototype;
 
+    p._novaPerfTick = function (now) {
+      if (this._novaTickPaused) return;
+      if (!this.lastTick) this.lastTick = now;
+      var delta = now - this.lastTick;
+      this.lastTick = now;
+      var frameMs = this.frameMs || 83;
+      var maxDelta = frameMs * 10;
+      if (delta > maxDelta) delta = maxDelta;
+      this.accum = (this.accum || 0) + delta;
+      var cap = 8;
+      while (this.accum >= frameMs && cap-- > 0) {
+        this.accum -= frameMs;
+        this.frameIndex += 1;
+        if (this.frameIndex >= this.playFrames) this.frameIndex = 0;
+      }
+    };
+
+    var baseTick = p.tick;
+    if (typeof baseTick === 'function') {
+      p.tick = function () {
+        if (this._novaTickPaused) return;
+        return this._novaPerfTick(performance.now());
+      };
+    }
+
+    var baseStart = p.start;
+    p.start = function () {
+      if (this.dead || this.running) return;
+      this.running = true;
+      registerEngine(this);
+      if (typeof baseStart === 'function') {
+        var self = this;
+        var origLoop = this.loop;
+        this.loop = function () {};
+        try {
+          baseStart.call(this);
+        } finally {
+          this.loop = origLoop;
+          if (this.raf) {
+            cancelAnimationFrame(this.raf);
+            this.raf = 0;
+          }
+        }
+      }
+    };
+
+    var baseStop = p.stop;
+    p.stop = function () {
+      this.running = false;
+      unregisterEngine(this);
+      if (this.raf) {
+        cancelAnimationFrame(this.raf);
+        this.raf = 0;
+      }
+      if (typeof baseStop === 'function') baseStop.call(this);
+    };
+
     p.loop = function () {
       if (!this.running) return;
-      if (!document.body.contains(this.wrap)) {
-        this.stop();
-        return;
-      }
-      if (!window.novaSpritePerfCanAnimate(this.wrap)) {
-        this.raf = requestAnimationFrame(this.loop);
-        return;
-      }
-      var now = performance.now();
-      var gap = (this.frameMs || 83) * 0.92;
-      if (!this._novaLastPaint || now - this._novaLastPaint >= gap) {
-        this._novaLastPaint = now;
-        if (typeof this.draw === 'function') this.draw();
-      }
-      this.raf = requestAnimationFrame(this.loop);
+      ensureGlobalLoop();
     };
 
     var baseDraw = p.draw;
     if (typeof baseDraw === 'function') {
       p.draw = function () {
+        var wasPaused = this._novaTickPaused;
+        if (!wasPaused && typeof this._novaPerfTick === 'function') {
+          this._novaPerfTick(performance.now());
+        }
+        this._novaTickPaused = true;
         if (this.ctx) {
           try {
             this.ctx.imageSmoothingEnabled = true;
@@ -109,7 +251,11 @@
               : 'high';
           } catch (_) {}
         }
-        return baseDraw.apply(this, arguments);
+        try {
+          return baseDraw.apply(this, arguments);
+        } finally {
+          this._novaTickPaused = wasPaused;
+        }
       };
     }
 
@@ -118,7 +264,29 @@
       p.resize = function () {
         var ow = this.lastCw;
         var oh = this.lastCh;
+        var wrap = this.wrap;
+        var profile = this.profile || 'store';
+        var rect = wrap ? wrap.getBoundingClientRect() : null;
+        var w = rect ? Math.max(40, Math.round(rect.width || 0)) : 0;
+        var h = rect ? Math.max(40, Math.round(rect.height || 0)) : 0;
+        if (w && h && typeof window.novaSpritePerfGetDpr === 'function') {
+          this._novaPerfDpr = window.novaSpritePerfGetDpr(wrap, profile);
+        }
         baseResize.apply(this, arguments);
+        if (this._novaPerfDpr && wrap && w && h) {
+          var dpr = this._novaPerfDpr;
+          var cw = Math.max(4, Math.round(w * dpr));
+          var ch = Math.max(4, Math.round(h * dpr));
+          if (cw !== this.lastCw || ch !== this.lastCh) {
+            this.lastCw = cw;
+            this.lastCh = ch;
+            this.canvas.width = cw;
+            this.canvas.height = ch;
+            this.canvas.style.width = w + 'px';
+            this.canvas.style.height = h + 'px';
+            this._novaLastPaint = 0;
+          }
+        }
         if (this.lastCw !== ow || this.lastCh !== oh) {
           this._novaLastPaint = 0;
         }
@@ -131,6 +299,7 @@
     firtina_okcu: ['novaFirtinaOkcuUnmountSprite', 'novaFirtinaOkcuUnmountVitrinVideo'],
     tas_muhafiz: ['novaTasMuhafizUnmountSprite', 'novaTasMuhafizUnmountVitrinVideo'],
     golge_parsi: ['novaGolgeParsiUnmountSprite', 'novaGolgeParsiUnmountVitrinVideo'],
+    bilge_baykus: ['novaBilgeBaykusUnmountSprite', 'novaBilgeBaykusUnmountVitrinVideo'],
     buz_ejder: ['novaBuzEjderUnmountSprite', 'novaEpicDragonUnmountSprite'],
     alev_ejder: ['novaAlevEjderUnmountSprite', 'novaEpicDragonUnmountSprite'],
     gece_ejder: ['novaGeceEjderUnmountSprite', 'novaEpicDragonUnmountSprite']
@@ -170,7 +339,13 @@
     try { container.innerHTML = ''; } catch (_) {}
   };
 
+  var deferQueue = [];
+
   window.novaSpriteDefer = function (fn, timeoutMs) {
+    if (window.__novaSpriteBootManaged && !window.__novaSpriteBootDone) {
+      if (typeof fn === 'function') deferQueue.push(fn);
+      return;
+    }
     var t = timeoutMs == null ? 2400 : timeoutMs;
     if (typeof fn !== 'function') return;
     if (typeof requestIdleCallback === 'function') {
@@ -180,26 +355,71 @@
     }
   };
 
+  function flushDeferQueue() {
+    var q = deferQueue.splice(0, deferQueue.length);
+    q.forEach(function (fn) {
+      try { fn(); } catch (e) { console.warn('[nova perf defer flush]', e); }
+    });
+  }
+
   window.novaSpritePreloadForHero = function (heroId) {
     var id = heroId || window.__novaEquippedHeroId || '';
-    var jobs = [];
-    if (id === 'star_fairy' && typeof window.novaYildizPerisiPreloadSprite === 'function') {
-      jobs.push(window.novaYildizPerisiPreloadSprite());
+    var fn = PRELOAD_FN[id];
+    if (fn && typeof window[fn] === 'function') {
+      return window[fn]().catch(function () {});
     }
-    if (id === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadSprite === 'function') {
-      jobs.push(window.novaFirtinaOkcuPreloadSprite());
-    }
-    if (id === 'tas_muhafiz' && typeof window.novaTasMuhafizPreloadSprite === 'function') {
-      jobs.push(window.novaTasMuhafizPreloadSprite());
-    }
-    if (id === 'golge_parsi' && typeof window.novaGolgeParsiPreloadSprite === 'function') {
-      jobs.push(window.novaGolgeParsiPreloadSprite());
-    }
-    if (id && typeof window.novaEpicDragonPreloadSprite === 'function') {
-      jobs.push(window.novaEpicDragonPreloadSprite(id));
-    }
-    return jobs.length ? Promise.all(jobs.map(function (p) { return p.catch(function () {}); })) : Promise.resolve();
+    return Promise.resolve();
   };
+
+  window.novaEpicDragonPreloadSprite = function (heroId) {
+    return window.novaSpritePreloadForHero(heroId);
+  };
+
+  var preloadAllPromise = null;
+
+  window.novaSpritePreloadAll = function (onProgress) {
+    if (preloadAllPromise && !window.__novaSpriteForcePreload) return preloadAllPromise;
+
+    var total = STORE_HERO_IDS.length;
+    var done = 0;
+
+    function report() {
+      if (typeof onProgress === 'function') {
+        try { onProgress(Math.min(1, done / total), done, total); } catch (_) {}
+      }
+    }
+
+    preloadAllPromise = Promise.all(
+      STORE_HERO_IDS.map(function (id) {
+        var fnName = PRELOAD_FN[id];
+        var p =
+          fnName && typeof window[fnName] === 'function'
+            ? Promise.resolve(window[fnName]())
+            : Promise.resolve();
+        return p
+          .catch(function () {})
+          .then(function () {
+            done += 1;
+            report();
+          });
+      })
+    ).then(function () {
+      window.__novaSpriteAssetsReady = true;
+      try {
+        document.dispatchEvent(new CustomEvent('nova:sprite-assets-ready'));
+      } catch (_) {}
+      return true;
+    });
+
+    report();
+    return preloadAllPromise;
+  };
+
+  window.novaSpriteBootFlushDefer = flushDeferQueue;
+
+  function storeIoMargin() {
+    return isPhoneDevice() ? '48px 0px' : '72px 0px';
+  }
 
   function ensureStoreIo() {
     if (storeIo || typeof IntersectionObserver === 'undefined') return storeIo;
@@ -222,7 +442,7 @@
           }
         });
       },
-      { root: root || null, rootMargin: '100px 0px', threshold: 0.08 }
+      { root: root || null, rootMargin: storeIoMargin(), threshold: 0.12 }
     );
     return storeIo;
   }
@@ -253,7 +473,7 @@
       }
     });
     io.observe(host);
-    if (isInViewport(host, 80) && isStoreOpen()) {
+    if (isInViewport(host, 60) && isStoreOpen()) {
       var st = observedHosts.get(host);
       if (st && !st.mounted) {
         st.mounted = true;
@@ -262,7 +482,35 @@
     }
   };
 
+  window.novaStoreRemountVisibleHeroes = function () {
+    if (!isStoreOpen()) return;
+    var container = document.getElementById('profilePhotosContainer');
+    if (!container) return;
+    container.querySelectorAll('[data-nova-hero-host]').forEach(function (host) {
+      var st = observedHosts.get(host);
+      if (st && st.mounted && typeof st.mount === 'function') {
+        var heroId = host.getAttribute('data-hero-id') || '';
+        window.novaSpriteUnmountHost(host, heroId);
+        st.mounted = false;
+        requestAnimationFrame(function () {
+          if (isInViewport(host, 40) && isStoreOpen()) {
+            st.mounted = true;
+            st.mount(host, heroId);
+          }
+        });
+      }
+    });
+  };
+
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) return;
+    if (!document.hidden) ensureGlobalLoop();
+  });
+
+  document.addEventListener('nova:sprite-assets-ready', function () {
+    if (isStoreOpen() && typeof window.novaStoreRemountVisibleHeroes === 'function') {
+      requestAnimationFrame(function () {
+        try { window.novaStoreRemountVisibleHeroes(); } catch (_) {}
+      });
+    }
   });
 })();

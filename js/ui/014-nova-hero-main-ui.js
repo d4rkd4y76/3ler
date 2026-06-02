@@ -218,6 +218,8 @@
         window.novaTasMuhafizUnmountSprite(mountHost);
       } else if (mountHost && hid === 'golge_parsi' && typeof window.novaGolgeParsiUnmountSprite === 'function') {
         window.novaGolgeParsiUnmountSprite(mountHost);
+      } else if (mountHost && hid === 'bilge_baykus' && typeof window.novaBilgeBaykusUnmountSprite === 'function') {
+        window.novaBilgeBaykusUnmountSprite(mountHost);
       } else if (mountHost && typeof window.novaEpicDragonUnmountSprite === 'function') {
         window.novaEpicDragonUnmountSprite(mountHost, hid);
       }
@@ -290,13 +292,15 @@
         'nh-hero-sheet__arena--firtina-sprite',
         'nh-hero-sheet__arena--star-sprite',
         'nh-hero-sheet__arena--tas-sprite',
-        'nh-hero-sheet__arena--golge-sprite'
+        'nh-hero-sheet__arena--golge-sprite',
+        'nh-hero-sheet__arena--baykus-sprite'
       );
       if (isEpicDragon) arena.classList.add('nh-hero-sheet__arena--' + (def.theme || 'buz') + '-sprite');
       if (heroId === 'firtina_okcu') arena.classList.add('nh-hero-sheet__arena--firtina-sprite');
       if (heroId === 'star_fairy') arena.classList.add('nh-hero-sheet__arena--star-sprite');
       if (heroId === 'tas_muhafiz') arena.classList.add('nh-hero-sheet__arena--tas-sprite');
       if (heroId === 'golge_parsi') arena.classList.add('nh-hero-sheet__arena--golge-sprite');
+      if (heroId === 'bilge_baykus') arena.classList.add('nh-hero-sheet__arena--baykus-sprite');
     }
     if (heroHost) {
       heroHost.innerHTML = '';
@@ -311,6 +315,8 @@
         window.novaTasMuhafizMountSprite(host, { profile: 'main' });
       } else if (heroId === 'golge_parsi' && typeof window.novaGolgeParsiMountSprite === 'function') {
         window.novaGolgeParsiMountSprite(host, { profile: 'main' });
+      } else if (heroId === 'bilge_baykus' && typeof window.novaBilgeBaykusMountSprite === 'function') {
+        window.novaBilgeBaykusMountSprite(host, { profile: 'main' });
       } else if (isEpicDragon && typeof window.novaEpicDragonMountSprite === 'function') {
         window.novaEpicDragonMountSprite(host, heroId, { profile: 'main' });
       } else {
