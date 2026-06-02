@@ -4148,8 +4148,6 @@ window.onload = async () => {
             try { window.selectedStudent = selectedStudent; } catch (_) {}
             applyStudentSessionIsolation(selectedStudent);
             
-            // Ana ekranı göster
-            mainScreen.style.removeProperty('display');
             studentSelectionScreen.style.display = 'none';
             studentSelectionError.textContent = '';
             studentPasswordInput.value = '';
@@ -4188,12 +4186,22 @@ window.onload = async () => {
             setNameWithFrame(studentName, selectedStudent.studentName, selectedStudent.nameFrame);
             try { applyOwnAvatarFrame(); } catch(_) {}
             try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch(_) {}
-            // Sırasıyla sistemleri başlat
+            if (typeof window.novaStartSpriteBoot === 'function' && !window.__novaSpriteBootDone) {
+              if (!window.__novaSpriteBootActive) {
+                await window.novaStartSpriteBoot({ trigger: 'remembered' });
+              } else if (typeof window.novaWaitSpriteBootComplete === 'function') {
+                await window.novaWaitSpriteBootComplete();
+              }
+            } else {
+              mainScreen.style.removeProperty('display');
+            }
+
             await addLoggedInPlayer(selectedStudent);
             startInvitationListener(selectedStudent.studentId);
             await fetchAndDisplayGameCup();
-            onMainScreenLoad(); // Elmas sistemini başlat
-            // Reddedilen davet temizliği: startRejectedInvitesCleanup (window.onload) yeterli; çift interval kaldırıldı.
+            if (!window.__novaMainScreenBootReady) {
+              onMainScreenLoad();
+            }
             try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
             try { novaBindAdminPortalBtnOnce(); } catch(_) {}
             try { await novaSyncAdminPortalFlag(); } catch(_) {}
@@ -4587,13 +4595,12 @@ async function handleLogin() {
             } catch (_) {}
         }
 
-        // Ana ekrana geçiş ve diğer işlemler
-        mainScreen.style.removeProperty('display');
+        try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch (_) {}
+
         studentSelectionScreen.style.display = 'none';
         studentSelectionError.textContent = '';
         studentPasswordInput.value = '';
 
-        // Fotoğraf ve diğer bilgileri yükle
         if (studentInfo.photo) {
             studentPhoto.src = studentInfo.photo;
             studentPhoto.style.display = 'block';
@@ -4602,11 +4609,19 @@ async function handleLogin() {
         }
         applyOwnAvatarFrame();
 
+        if (typeof window.novaStartSpriteBoot === 'function') {
+            await window.novaStartSpriteBoot({ trigger: 'login' });
+        } else {
+            mainScreen.style.removeProperty('display');
+        }
+
         setNameWithFrame(studentName, studentInfo.name, selectedStudent.nameFrame);
         await addLoggedInPlayer(selectedStudent);
         startInvitationListener(selectedStudent.studentId);
         fetchAndDisplayGameCup();
-        onMainScreenLoad();
+        if (!window.__novaMainScreenBootReady) {
+            onMainScreenLoad();
+        }
         enforceSinglePlayerClassLock();
 
         await novaSyncAdminPortalFlag();
@@ -5918,6 +5933,9 @@ logoutButton.addEventListener('click', async () => {
 
        // localStorage'ı temizle
        localStorage.removeItem('selectedStudent');
+       try {
+         if (typeof window.novaSpriteBootReset === 'function') window.novaSpriteBootReset();
+       } catch (_) {}
 
        // Loggedin player'ı kaldır
        if (loggedinPlayerRef) {

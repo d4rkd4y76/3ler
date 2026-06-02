@@ -11,8 +11,14 @@
   ];
   var TARGET_DURATION_MS = 6000;
   var MAX_WAIT_MS = 50000;
-  var EXIT_HOLD_MS = 90;
+  var FINISH_MSG_MS = 7000;
   var VIDEO_BUFFER_TIMEOUT_MS = 42000;
+  var FINISH_WAIT_MESSAGES = [
+    'Neredeyse bitti, bekle…',
+    'Son hazırlıklar yapılıyor…',
+    'Ana ekran açılıyor…',
+    'Biraz daha, bitiyor…'
+  ];
 
   window.__novaSpriteBootManaged = true;
 
@@ -23,7 +29,12 @@
     exiting: false,
     smoothPct: 0,
     bootFrameParity: 0,
-    lastChromaCanvas: null
+    lastChromaCanvas: null,
+    finishingPulse: false,
+    finishingMsgIdx: 0,
+    finishingTimer: 0,
+    heavyPreloadDone: false,
+    heavyMainDone: false
   };
 
   function isPhoneBoot() {
@@ -33,11 +44,33 @@
     return (window.innerWidth || 0) <= 768;
   }
 
+  function hasStoredStudentSession() {
+    try {
+      var raw = localStorage.getItem('selectedStudent');
+      if (!raw) return false;
+      var o = JSON.parse(raw);
+      return !!(o && o.studentId && o.classId);
+    } catch (_) {
+      return false;
+    }
+  }
+
   function shouldRunBoot() {
     try {
       if (sessionStorage.getItem(SESSION_KEY) === '1') return false;
     } catch (_) {}
     return true;
+  }
+
+  function hideOverlayInitially() {
+    var ov = getOverlay();
+    if (ov) {
+      ov.hidden = true;
+      ov.classList.remove('is-exiting');
+    }
+    try {
+      document.body.classList.remove('nova-sprite-boot-active');
+    } catch (_) {}
   }
 
   function markBootDone() {
@@ -56,9 +89,25 @@
     return document.getElementById('nova_sprite_boot_overlay');
   }
 
-  function setProgress(ratio, statusText) {
+  function applyBootGameTitle() {
+    var h1 = document.querySelector('.nova-sprite-boot-game');
+    if (!h1) return;
+    var title = 'D\u00dcELLOX';
+    try {
+      if (typeof window.NOVA_GAME_NAME === 'string' && window.NOVA_GAME_NAME) {
+        title = window.NOVA_GAME_NAME.toLocaleUpperCase('tr');
+      }
+    } catch (_) {}
+    h1.textContent = title;
+    h1.setAttribute('lang', 'tr');
+    h1.style.textTransform = 'none';
+    h1.style.fontVariant = 'normal';
+  }
+
+  function setProgress(ratio, statusText, opts) {
     var ov = getOverlay();
     if (!ov) return;
+    opts = opts || {};
     var pct = Math.max(0, Math.min(100, Math.round((ratio || 0) * 100)));
     state.smoothPct = pct;
     var bar = ov.querySelector('.nova-sprite-boot-bar');
@@ -69,16 +118,63 @@
     if (bar) {
       bar.style.width = pct + '%';
       bar.classList.toggle('is-full', pct >= 100);
+      bar.classList.toggle('is-waiting', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
     }
     if (glow) glow.style.left = pct + '%';
     if (wrap) wrap.classList.toggle('has-progress', pct > 2);
     if (label) label.textContent = pct + '%';
-    if (status && statusText) status.textContent = statusText;
+    if (status && statusText) {
+      status.textContent = statusText;
+      status.classList.toggle('is-finishing', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
+    }
+    ov.classList.toggle('is-finishing-wait', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
+  }
+
+  function stopFinishingPulse() {
+    state.finishingPulse = false;
+    if (state.finishingTimer) {
+      clearTimeout(state.finishingTimer);
+      state.finishingTimer = 0;
+    }
+    var ov = getOverlay();
+    if (ov) ov.classList.remove('is-finishing-wait');
+    var status = ov && ov.querySelector('.nova-sprite-boot-status');
+    if (status) status.classList.remove('is-finishing');
+    var bar = ov && ov.querySelector('.nova-sprite-boot-bar');
+    if (bar) bar.classList.remove('is-waiting');
+  }
+
+  function startFinishingPulse(ratio) {
+    if (state.finishingPulse) return;
+    var pctRatio = ratio == null ? state.smoothPct / 100 : ratio;
+    state.finishingPulse = true;
+    state.finishingMsgIdx = 0;
+
+    function tick() {
+      if (!state.finishingPulse) return;
+      var msg = FINISH_WAIT_MESSAGES[state.finishingMsgIdx % FINISH_WAIT_MESSAGES.length];
+      state.finishingMsgIdx += 1;
+      setProgress(pctRatio >= 1 ? 1 : Math.min(0.99, pctRatio), msg, { finishingWait: true });
+      state.finishingTimer = setTimeout(tick, FINISH_MSG_MS);
+    }
+    tick();
+  }
+
+  function holdFinishingAt100() {
+    if (!state.finishingPulse) startFinishingPulse(1);
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        stopFinishingPulse();
+        setProgress(1, 'Hazır!');
+        setTimeout(resolve, 480);
+      }, FINISH_MSG_MS);
+    });
   }
 
   function hideOverlayImmediate() {
     var ov = getOverlay();
     if (!ov) return;
+    stopFinishingPulse();
     stopRenderLoop();
     window.__novaBootVideoPhase = false;
     ov.hidden = true;
@@ -93,6 +189,7 @@
     state.exiting = true;
     window.__novaBootVideoPhase = false;
     var ov = getOverlay();
+    stopFinishingPulse();
     setProgress(1, 'Hazır!');
     stopRenderLoop();
     if (ov) {
@@ -111,6 +208,7 @@
       state._bootBlobUrl = null;
     }
     setTimeout(function () {
+      stopFinishingPulse();
       if (ov) ov.hidden = true;
       try {
         document.body.classList.remove('nova-sprite-boot-active');
@@ -329,7 +427,7 @@
         );
 
         if (performance.now() - start >= maxMs + 120 || (video.ended && t > 0.1)) {
-          setProgress(0.98, 'Hazır!');
+          setProgress(0.97, 'Neredeyse bitti, bekle…', { finishingWait: true });
           done();
           return;
         }
@@ -436,7 +534,7 @@
   }
 
   function ensureVideoFullyBuffered(video) {
-    setProgress(0, 'Video hazırlanıyor…');
+    setProgress(0, 'Kaynaklar hazırlanıyor…');
     window.__novaBootVideoPhase = false;
 
     return loadBootVideoSource(video, 0).then(function (src) {
@@ -455,7 +553,7 @@
             if (settled) return;
             settled = true;
             cleanup();
-            setProgress(0, 'Video hazır, başlıyor…');
+            setProgress(0, 'Kaynaklar hazırlanıyor…');
             resolve(playSrc || src);
           }
 
@@ -548,17 +646,56 @@
       });
   }
 
+  function updateHeavyBootProgress(preloadRatio) {
+    var pr = Math.max(0, Math.min(1, preloadRatio || 0));
+    var base = state.videoDone ? 0.88 : 0.82;
+    var capWhileVideo = 0.92;
+
+    if (!state.heavyPreloadDone) {
+      var p = base + pr * (0.94 - base);
+      if (!state.videoDone) p = Math.min(capWhileVideo, p);
+      setProgress(p, pr < 0.45 ? 'Kaynaklar hazırlanıyor…' : 'Kahramanlar yükleniyor…');
+      return;
+    }
+
+    if (!state.heavyMainDone) {
+      if (state.videoDone) {
+        startFinishingPulse(1);
+      } else {
+        setProgress(Math.min(capWhileVideo, 0.9), 'Kahramanlar yükleniyor…');
+      }
+      return;
+    }
+
+    stopFinishingPulse();
+    setProgress(1, 'Hazır!');
+  }
+
   function runHeavyBootWork(onAssetRatio) {
+    state.heavyPreloadDone = false;
+    state.heavyMainDone = false;
+
     var mainPrepPromise = runMainScreenPrep(function (msg) {
-      if (!msg) return;
-      var ov = getOverlay();
-      if (!ov) return;
-      var st = ov.querySelector('.nova-sprite-boot-status');
-      if (st) st.textContent = msg;
+      if (!state.heavyPreloadDone && msg && !state.finishingPulse) {
+        var ov = getOverlay();
+        var st = ov && ov.querySelector('.nova-sprite-boot-status');
+        if (st) st.textContent = msg;
+        return;
+      }
+      if (state.videoDone && state.heavyPreloadDone) startFinishingPulse(1);
+    }).then(function () {
+      state.heavyMainDone = true;
+      updateHeavyBootProgress(1);
     });
+
     var preloadPromise = runAssetPreload(function (ratio) {
       if (typeof onAssetRatio === 'function') onAssetRatio(ratio);
+      updateHeavyBootProgress(ratio);
+    }).then(function () {
+      state.heavyPreloadDone = true;
+      updateHeavyBootProgress(1);
     });
+
     return Promise.all([preloadPromise, mainPrepPromise]);
   }
 
@@ -570,22 +707,21 @@
   }
 
   function runPostVideoAssetPhase() {
-    var base = state.videoDone ? 0.88 : 0.82;
-    setProgress(base, 'Kaynaklar hazırlanıyor…');
-    return runHeavyBootWork(function (ratio) {
-      var blend = base + (1 - base) * Math.min(1, ratio || 0) * 0.98;
-      setProgress(blend, 'Kahramanlar yükleniyor…');
-    });
+    setProgress(0.9, 'Kaynaklar hazırlanıyor…');
+    return runHeavyBootWork();
   }
 
   function runCinematicBoot() {
     var ov = getOverlay();
     if (!ov) return Promise.resolve();
 
+    var login = document.getElementById('student-selection-screen');
+    if (login) login.style.display = 'none';
+
     document.body.classList.add('nova-sprite-boot-active');
     ov.hidden = false;
     ov.classList.remove('is-exiting');
-    setProgress(0, 'Başlatılıyor…');
+    setProgress(0, 'Kaynaklar hazırlanıyor…');
 
     var phone = isPhoneBoot();
 
@@ -595,10 +731,7 @@
           return runPostVideoAssetPhase();
         })
         .then(function () {
-          setProgress(1, 'Hazır!');
-          return new Promise(function (r) {
-            setTimeout(r, EXIT_HOLD_MS);
-          });
+          return holdFinishingAt100();
         });
     }
 
@@ -614,47 +747,100 @@
         return heavyPromise;
       })
       .then(function () {
-        setProgress(1, 'Hazır!');
-        return new Promise(function (r) {
-          setTimeout(r, EXIT_HOLD_MS);
-        });
+        return holdFinishingAt100();
       });
   }
 
-  function startBoot() {
+  var bootRunPromise = null;
+
+  function dispatchBootComplete() {
+    try {
+      document.dispatchEvent(new CustomEvent('nova:sprite-boot-complete'));
+    } catch (_) {}
+  }
+
+  function runBootPipeline() {
+    applyBootGameTitle();
     if (!shouldRunBoot()) {
       markBootDone();
       hideOverlayImmediate();
       if (typeof window.novaSpritePreloadAll === 'function') {
         window.novaSpritePreloadAll().catch(function () {});
       }
-      return;
+      dispatchBootComplete();
+      return Promise.resolve();
     }
 
     var timeout = setTimeout(function () {
       markBootDone();
       playExitTransition(function () {
-        try {
-          document.dispatchEvent(new CustomEvent('nova:sprite-boot-complete'));
-        } catch (_) {}
+        dispatchBootComplete();
       });
     }, MAX_WAIT_MS);
 
-    runCinematicBoot()
+    return runCinematicBoot()
       .then(function () {
         clearTimeout(timeout);
         markBootDone();
-        playExitTransition(function () {
-          try {
-            document.dispatchEvent(new CustomEvent('nova:sprite-boot-complete'));
-          } catch (_) {}
+        return new Promise(function (resolve) {
+          playExitTransition(function () {
+            dispatchBootComplete();
+            resolve();
+          });
         });
       })
       .catch(function () {
         clearTimeout(timeout);
         markBootDone();
         playExitTransition();
+        dispatchBootComplete();
       });
+  }
+
+  window.novaStartSpriteBoot = function (opts) {
+    if (bootRunPromise) return bootRunPromise;
+    opts = opts || {};
+    window.__novaSpriteBootTriggered = opts.trigger || 'manual';
+    window.__novaSpriteBootActive = true;
+
+    bootRunPromise = runBootPipeline().finally(function () {
+      window.__novaSpriteBootActive = false;
+      bootRunPromise = null;
+    });
+    return bootRunPromise;
+  };
+
+  window.novaWaitSpriteBootComplete = function (maxMs) {
+    if (window.__novaSpriteBootDone) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+        resolve();
+      }
+      var t = setTimeout(finish, maxMs || MAX_WAIT_MS);
+      document.addEventListener(
+        'nova:sprite-boot-complete',
+        function () {
+          clearTimeout(t);
+          finish();
+        },
+        { once: true }
+      );
+    });
+  };
+
+  function tryAutoStartForRememberedSession() {
+    if (!hasStoredStudentSession()) return;
+    if (!shouldRunBoot()) {
+      markBootDone();
+      if (typeof window.novaSpritePreloadAll === 'function') {
+        window.novaSpritePreloadAll().catch(function () {});
+      }
+      return;
+    }
+    window.novaStartSpriteBoot({ trigger: 'remembered' });
   }
 
   window.novaSpriteBootReset = function () {
@@ -670,19 +856,30 @@
       } catch (_) {}
       state._bootBlobUrl = null;
     }
+    bootRunPromise = null;
     window.__novaSpriteBootDone = false;
     window.__novaSpriteAssetsReady = false;
     window.__novaBootVideoPhase = false;
+    window.__novaSpriteBootActive = false;
+    window.__novaMainScreenBootPromise = null;
+    window.__novaMainScreenBootReady = false;
     state.exiting = false;
     state.preloadDone = false;
     state.videoDone = false;
+    state.heavyPreloadDone = false;
+    state.heavyMainDone = false;
+    stopFinishingPulse();
   };
 
+  window.novaSpriteBootHasSession = hasStoredStudentSession;
+
+  hideOverlayInitially();
   warmVideoCache();
+  applyBootGameTitle();
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startBoot, { once: true });
+    document.addEventListener('DOMContentLoaded', tryAutoStartForRememberedSession, { once: true });
   } else {
-    startBoot();
+    tryAutoStartForRememberedSession();
   }
 })();
