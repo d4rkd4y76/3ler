@@ -34,6 +34,7 @@ CLIP_SPECS = [
     ("alev_sahane", "alev_sahane.mp4", "alev-ejder-true-alev-sahane.webp", 1),
     ("mutlak_guc", "mutlak_guc", "alev-ejder-true-mutlak-guc.webp", 2),
     ("bilgece_cevap", "bilgece_cevap.mp4", "alev-ejder-true-bilgece-cevap.webp", 3),
+    ("ice_super", "yeni_dogru.mp4", "alev-ejder-true-ice-super.webp", 4),
 ]
 
 
@@ -409,12 +410,53 @@ def build_clip(spec: tuple[str, str, str, int], key_hint: tuple[int, int, int] |
     }
 
 
+def load_manifest_from_js() -> dict | None:
+    if not os.path.isfile(MANIFEST_JS):
+        return None
+    try:
+        text = open(MANIFEST_JS, encoding="utf-8").read()
+        marker = "window.NOVA_ALEV_EJDER_TRUE_MANIFEST="
+        i = text.find(marker)
+        if i < 0:
+            return None
+        raw = text[i + len(marker) :].strip()
+        if raw.endswith(";"):
+            raw = raw[:-1]
+        return json.loads(raw)
+    except Exception:
+        return None
+
+
+def write_manifest(manifest: dict) -> None:
+    js = "/* AUTO: scripts/build-alev-ejder-true-sprites.py */\n"
+    js += "window.NOVA_ALEV_EJDER_TRUE_BASE=" + json.dumps(manifest["base"]) + ";\n"
+    js += "window.NOVA_ALEV_EJDER_TRUE_MANIFEST="
+    js += json.dumps(manifest, separators=(",", ":")) + ";\n"
+    with open(MANIFEST_JS, "w", encoding="utf-8") as f:
+        f.write(js)
+
+
 def main() -> int:
     if not os.path.isdir(TRUE_DIR):
         print("Missing:", TRUE_DIR, file=sys.stderr)
         return 1
 
-    sample_video = resolve_video("bilgece_cevap")
+    append_ids: set[str] = set()
+    if "--append" in sys.argv:
+        for arg in sys.argv[1:]:
+            if arg != "--append" and not arg.startswith("-"):
+                append_ids.add(arg)
+
+    specs = CLIP_SPECS
+    if append_ids:
+        specs = [s for s in CLIP_SPECS if s[0] in append_ids]
+        if not specs:
+            print("No matching clip ids:", append_ids, file=sys.stderr)
+            return 1
+
+    sample_video = resolve_video("yeni_dogru.mp4")
+    if not os.path.isfile(sample_video):
+        sample_video = resolve_video("bilgece_cevap.mp4")
     if not os.path.isfile(sample_video):
         sample_video = resolve_video(CLIP_SPECS[0][1])
     probe = []
@@ -425,9 +467,37 @@ def main() -> int:
     key = sample_green_key(probe)
     print("green key", key)
 
-    clips = []
-    for spec in CLIP_SPECS:
-        clips.append(build_clip(spec, key))
+    built: list[dict] = []
+    for spec in specs:
+        if not os.path.isfile(resolve_video(spec[1])):
+            print("SKIP missing source:", spec[0], spec[1])
+            continue
+        built.append(build_clip(spec, key))
+
+    if append_ids:
+        prev = load_manifest_from_js() or {
+            "version": 3,
+            "base": "hero/flame_dragon/sprite/true/",
+            "fps": TARGET_FPS,
+            "scale": {"sp": 1.0},
+            "clips": [],
+        }
+        by_id = {c["id"]: c for c in prev.get("clips") or []}
+        for clip in built:
+            by_id[clip["id"]] = clip
+        clips = sorted(by_id.values(), key=lambda c: int(c.get("routine", 0)))
+    else:
+        clips = built
+        if len(clips) < len(CLIP_SPECS):
+            prev = load_manifest_from_js()
+            if prev and prev.get("clips"):
+                by_id = {c["id"]: c for c in clips}
+                for c in prev["clips"]:
+                    if c["id"] not in by_id and os.path.isfile(
+                        os.path.join(OUT_DIR, c.get("sheet", ""))
+                    ):
+                        by_id[c["id"]] = c
+                clips = sorted(by_id.values(), key=lambda c: int(c.get("routine", 0)))
 
     manifest = {
         "version": 3,
@@ -437,14 +507,8 @@ def main() -> int:
         "clips": clips,
     }
 
-    js = "/* AUTO: scripts/build-alev-ejder-true-sprites.py */\n"
-    js += "window.NOVA_ALEV_EJDER_TRUE_BASE=" + json.dumps(manifest["base"]) + ";\n"
-    js += "window.NOVA_ALEV_EJDER_TRUE_MANIFEST="
-    js += json.dumps(manifest, separators=(",", ":")) + ";\n"
-    with open(MANIFEST_JS, "w", encoding="utf-8") as f:
-        f.write(js)
-
-    print("manifest", MANIFEST_JS)
+    write_manifest(manifest)
+    print("manifest", MANIFEST_JS, "clips", len(clips))
     return 0
 
 
