@@ -4223,8 +4223,12 @@ window.onload = async () => {
     } catch (error) {
         console.error("Uygulama başlatma hatası:", error);
         try { showAlert('Bir hata oluştu. Lütfen sayfayı yenileyin.'); } catch (_) {}
+    } finally {
+        window.__novaAppOnloadDone = true;
+        try { document.dispatchEvent(new CustomEvent('nova:app-onload-done')); } catch (_) {}
     }
 };
+try { window.onMainScreenLoad = onMainScreenLoad; } catch (_) {}
 window.addEventListener('pageshow', ()=>{ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} });
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden){ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} } });
 

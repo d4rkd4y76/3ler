@@ -598,7 +598,7 @@
   async function refreshMainScreenHeroCore() {
     var slot = document.getElementById('nova-main-hero-slot');
     if (!slot) return;
-    if (!isMainScreenVisible()) {
+    if (!isMainScreenVisible() && !window.__novaBootMainPrep) {
       clearMainHeroSlot(slot);
       return;
     }

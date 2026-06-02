@@ -123,6 +123,18 @@
     }
   };
 
+  function bootVideoBlocksSprites() {
+    try {
+      return (
+        window.__novaBootVideoPhase === true &&
+        isPhoneDevice() &&
+        document.body.classList.contains('nova-sprite-boot-active')
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
   function globalAnimationLoop(now) {
     globalRaf = requestAnimationFrame(globalAnimationLoop);
     if (!globalRegistry.size) {
@@ -130,6 +142,7 @@
       globalRaf = 0;
       return;
     }
+    if (bootVideoBlocksSprites()) return;
     var t = now || performance.now();
     globalRegistry.forEach(function (eng) {
       if (!eng.running) return;
