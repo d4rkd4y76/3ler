@@ -2,10 +2,16 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'nova_sprite_boot_done_v2';
-  var VIDEO_SRC = 'kaynaklar_yukleniyor.mp4';
+  var SESSION_KEY = 'nova_sprite_boot_done_v4';
+  var VIDEO_CANDIDATES = [
+    'yeni_loading.mp4',
+    './yeni_loading.mp4',
+    'kaynaklar_yukleniyor.mp4',
+    'kaynaklar_y\u00fckleniyor.mp4'
+  ];
   var TARGET_DURATION_MS = 6000;
-  var MAX_WAIT_MS = 50000;
+  var MAX_WAIT_MS = 35000;
+  var EXIT_HOLD_MS = 90;
 
   window.__novaSpriteBootManaged = true;
 
@@ -123,29 +129,34 @@
     });
   }
 
-  /* Yeşil / parlak arka plan temizleme (canvas) */
-  function applyChromaKey(imageData, opts) {
+  /* Yeşil ekran — agresif key + kenar yumuşatma + green spill düzeltme */
+  function applyChromaKey(imageData) {
     var d = imageData.data;
     var len = d.length;
-    var minG = (opts && opts.minGreen) || 90;
-    var spill = (opts && opts.spill) || 0.42;
-
     for (var i = 0; i < len; i += 4) {
       var r = d[i];
       var g = d[i + 1];
       var b = d[i + 2];
-      var dg = g - Math.max(r, b);
-      if (g > minG && dg > 24) {
-        var alpha = 1 - Math.min(1, dg / 110);
-        if (g > 200 && r < 80 && b < 80) alpha = 0;
-        d[i + 3] = Math.round(alpha * 255);
-        if (alpha > 0 && alpha < 1) {
-          d[i + 1] = Math.round(g * (1 - spill * (1 - alpha)));
-        }
+      var maxRB = Math.max(r, b);
+      var greenDom = g - maxRB;
+      var alpha = 255;
+
+      if (g > 30 && greenDom > 8) {
+        var keyAmt = Math.min(1, greenDom / 58);
+        if (g > 140 && r < 120 && b < 120) keyAmt = Math.max(keyAmt, 0.94);
+        if (g > 190 && greenDom > 32) keyAmt = 1;
+        alpha = Math.round(255 * (1 - keyAmt));
       }
-      /* Siyah arka plan (ikinci katman) */
-      if (r < 28 && g < 28 && b < 28) {
-        d[i + 3] = 0;
+
+      if (r < 22 && g < 22 && b < 22) alpha = 0;
+
+      d[i + 3] = alpha;
+
+      if (alpha > 8 && alpha < 245) {
+        var spillFix = greenDom / 255;
+        d[i + 1] = Math.round(g - spillFix * (g - maxRB) * 0.92);
+        d[i] = Math.round(r + spillFix * (maxRB - r) * 0.15);
+        d[i + 2] = Math.round(b + spillFix * (maxRB - b) * 0.15);
       }
     }
     return imageData;
@@ -158,16 +169,26 @@
 
     var ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return null;
+    try {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+    } catch (_) {}
 
     var chromaBuffer = document.createElement('canvas');
     var chromaCtx = chromaBuffer.getContext('2d', { alpha: true });
+    try {
+      chromaCtx.imageSmoothingEnabled = true;
+      chromaCtx.imageSmoothingQuality = 'high';
+    } catch (_) {}
 
     function resizeCanvas() {
-      var wrap = ov.querySelector('.nova-sprite-boot-video-wrap');
-      var rect = wrap ? wrap.getBoundingClientRect() : { width: 360, height: 360 };
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var w = Math.max(120, Math.round(rect.width * dpr));
-      var h = Math.max(120, Math.round(rect.height * dpr));
+      var layer = ov.querySelector('.nova-sprite-boot-video-layer');
+      var rect = layer
+        ? layer.getBoundingClientRect()
+        : { width: window.innerWidth, height: window.innerHeight };
+      var dpr = Math.min(window.devicePixelRatio || 1, 3);
+      var w = Math.max(160, Math.round(rect.width * dpr));
+      var h = Math.max(160, Math.round(rect.height * dpr));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
@@ -183,7 +204,7 @@
         var h = canvas.height;
         var vw = video.videoWidth || w;
         var vh = video.videoHeight || h;
-        var scale = Math.min(w / vw, h / vh);
+        var scale = Math.max(w / vw, h / vh);
         var dw = vw * scale;
         var dh = vh * scale;
         var dx = (w - dw) * 0.5;
@@ -196,13 +217,22 @@
           applyChromaKey(frame);
           chromaCtx.putImageData(frame, 0, 0);
         } catch (_) {
+          chromaCtx.clearRect(0, 0, w, h);
           chromaCtx.drawImage(video, dx, dy, dw, dh);
         }
         ctx.clearRect(0, 0, w, h);
-        ctx.drawImage(chromaBuffer, 0, 0);
+        ctx.drawImage(chromaBuffer, 0, 0, w, h);
       }
       state.raf = requestAnimationFrame(drawFrame);
     }
+
+    function onResize() {
+      resizeCanvas();
+    }
+    window.addEventListener('resize', onResize);
+    state._bootResizeOff = function () {
+      window.removeEventListener('resize', onResize);
+    };
 
     state.raf = requestAnimationFrame(drawFrame);
     return video;
@@ -211,6 +241,10 @@
   function stopRenderLoop() {
     if (state.raf) cancelAnimationFrame(state.raf);
     state.raf = 0;
+    if (typeof state._bootResizeOff === 'function') {
+      try { state._bootResizeOff(); } catch (_) {}
+      state._bootResizeOff = null;
+    }
   }
 
   function waitForVideoEnd(video, durationMs) {
@@ -257,6 +291,61 @@
     });
   }
 
+  function resolveVideoUrl(file) {
+    try {
+      return new URL(file, window.location.href).href;
+    } catch (_) {
+      return file;
+    }
+  }
+
+  function warmVideoCache() {
+    if (window.__novaBootVideoWarm) return;
+    window.__novaBootVideoWarm = true;
+    try {
+      var link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'video';
+      link.href = resolveVideoUrl(VIDEO_CANDIDATES[0]);
+      link.type = 'video/mp4';
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    } catch (_) {}
+  }
+
+  function loadBootVideoSource(video, index) {
+    return new Promise(function (resolve, reject) {
+      if (index >= VIDEO_CANDIDATES.length) {
+        reject(new Error('video-not-found'));
+        return;
+      }
+      var src = resolveVideoUrl(VIDEO_CANDIDATES[index]);
+      function cleanup() {
+        video.removeEventListener('canplay', onOk);
+        video.removeEventListener('loadeddata', onOk);
+        video.removeEventListener('error', onErr);
+      }
+      function onOk() {
+        if (video.readyState < 2) return;
+        cleanup();
+        resolve(src);
+      }
+      function onErr() {
+        cleanup();
+        loadBootVideoSource(video, index + 1).then(resolve, reject);
+      }
+      video.addEventListener('canplay', onOk, { once: true });
+      video.addEventListener('loadeddata', onOk, { once: true });
+      video.addEventListener('error', onErr, { once: true });
+      video.src = src;
+      try {
+        video.load();
+      } catch (e) {
+        onErr();
+      }
+    });
+  }
+
   function playBootVideo(ov) {
     var video = ov.querySelector('.nova-sprite-boot-video-src');
     if (!video) return Promise.resolve();
@@ -266,40 +355,41 @@
     video.muted = true;
     video.playsInline = true;
     video.preload = 'auto';
+    video.removeAttribute('src');
 
     startVideoRender(ov);
+    ov.classList.remove('nova-sprite-boot--no-video');
 
-    return new Promise(function (resolve) {
-      function startPlay() {
-        var p;
-        try {
-          p = video.play();
-        } catch (_) {
-          p = null;
-        }
-        if (p && typeof p.then === 'function') {
-          p.catch(function () {
-            /* Autoplay engeli — yine de süreyi işlet */
-          });
-        }
-        waitForVideoEnd(video, TARGET_DURATION_MS).then(resolve);
-      }
-
-      if (video.readyState >= 2) {
-        startPlay();
-        return;
-      }
-      video.addEventListener('loadeddata', startPlay, { once: true });
-      video.addEventListener('error', function () {
-        setProgress(0.15, 'Video yüklenemedi, kaynaklar alınıyor…');
-        waitForVideoEnd(null, TARGET_DURATION_MS).then(resolve);
-      }, { once: true });
-      try {
-        video.load();
-      } catch (_) {
-        waitForVideoEnd(null, TARGET_DURATION_MS).then(resolve);
-      }
-    });
+    return loadBootVideoSource(video, 0)
+      .then(function () {
+        setProgress(0.08, 'Dünyalar hazırlanıyor…');
+        return new Promise(function (resolve) {
+          function startPlay() {
+            var p;
+            try {
+              p = video.play();
+            } catch (_) {
+              p = null;
+            }
+            if (p && typeof p.then === 'function') {
+              p.catch(function () {});
+            }
+            waitForVideoEnd(video, TARGET_DURATION_MS).then(resolve);
+          }
+          if (video.readyState >= 3) startPlay();
+          else if (video.readyState >= 2) {
+            startPlay();
+          } else {
+            video.addEventListener('canplay', startPlay, { once: true });
+            video.addEventListener('loadeddata', startPlay, { once: true });
+          }
+        });
+      })
+      .catch(function () {
+        ov.classList.add('nova-sprite-boot--no-video');
+        setProgress(0.1, 'Kahramanlar hazırlanıyor…');
+        return waitForVideoEnd(null, TARGET_DURATION_MS);
+      });
   }
 
   function runCinematicBoot() {
@@ -320,7 +410,7 @@
       })
       .then(function () {
         return new Promise(function (r) {
-          setTimeout(r, 280);
+          setTimeout(r, EXIT_HOLD_MS);
         });
       });
   }
@@ -365,6 +455,8 @@
     try {
       sessionStorage.removeItem(SESSION_KEY);
       sessionStorage.removeItem('nova_sprite_boot_done_v1');
+      sessionStorage.removeItem('nova_sprite_boot_done_v2');
+      sessionStorage.removeItem('nova_sprite_boot_done_v3');
     } catch (_) {}
     window.__novaSpriteBootDone = false;
     window.__novaSpriteAssetsReady = false;
@@ -372,6 +464,11 @@
     state.preloadDone = false;
     state.videoDone = false;
   };
+
+  warmVideoCache();
+  if (shouldRunBoot() && typeof window.novaSpritePreloadAll === 'function') {
+    window.novaSpritePreloadAll().catch(function () {});
+  }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startBoot, { once: true });

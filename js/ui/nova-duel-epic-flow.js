@@ -382,7 +382,7 @@
   function ndepEnsurePrepTitle() {
     var main = $('ndep-prep-title-main');
     var sub = $('ndep-prep-title-sub');
-    if (main) main.textContent = 'DÜELLO';
+    if (main) main.textContent = 'Düellox';
     if (sub) sub.textContent = 'HAZIRLIĞI';
     var heroesTitle = $('ndep-heroes-dock-title');
     if (heroesTitle) heroesTitle.textContent = 'KAHRAMANLAR';
