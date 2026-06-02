@@ -6116,6 +6116,12 @@ logoutButton.addEventListener('click', async () => {
                 if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
                     window.novaBuzEjderPreloadTrueClipsIfEquipped();
                 }
+                if (typeof window.novaAlevEjderPreloadTrueClipsIfEquipped === 'function') {
+                    window.novaAlevEjderPreloadTrueClipsIfEquipped();
+                }
+                if (typeof window.novaGeceEjderPreloadTrueClipsIfEquipped === 'function') {
+                    window.novaGeceEjderPreloadTrueClipsIfEquipped();
+                }
                 if (typeof window.novaBuzEjderPreloadSonucTransition === 'function') {
                     window.novaBuzEjderPreloadSonucTransition();
                 }

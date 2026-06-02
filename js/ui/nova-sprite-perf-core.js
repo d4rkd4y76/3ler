@@ -82,12 +82,15 @@
 
   window.novaSpritePerfGetDpr = function (wrap, profile) {
     var p = profile || 'store';
+    var ultra = window.novaSpritePerfIsUltra && window.novaSpritePerfIsUltra();
     var inStore = wrap && wrap.closest && wrap.closest('#profileChangeOverlay, #nova-store-detail-overlay');
     var inMain = wrap && wrap.closest && wrap.closest('#main-screen, .nova-main-hero-host');
     if (inMain || p === 'main' || p === 'detail') {
+      if (ultra && isPhoneDevice()) return Math.min(window.devicePixelRatio || 1, 1.5);
       return Math.min(window.devicePixelRatio || 1, isPhoneDevice() ? 1.75 : 2);
     }
     if (inStore || p === 'store') {
+      if (ultra && isPhoneDevice()) return Math.min(window.devicePixelRatio || 1, 1.2);
       return Math.min(window.devicePixelRatio || 1, isPhoneDevice() ? 1.35 : 1.85);
     }
     return Math.min(window.devicePixelRatio || 1, 2);
@@ -154,7 +157,7 @@
 
       if (typeof eng._novaPerfTick === 'function') eng._novaPerfTick(t);
 
-      var gap = (eng.frameMs || 83) * 0.92;
+      var gap = (eng.frameMs || 83) * (window.novaSpritePerfIsUltra() && isPhoneDevice() ? 0.98 : 0.92);
       if (!eng._novaLastPaint || t - eng._novaLastPaint >= gap) {
         eng._novaLastPaint = t;
         eng._novaTickPaused = true;
@@ -428,10 +431,32 @@
     return preloadAllPromise;
   };
 
+  window.novaSpritePreloadHero = function (heroId) {
+    var fnName = PRELOAD_FN[heroId];
+    if (fnName && typeof window[fnName] === 'function') {
+      return Promise.resolve(window[fnName]()).catch(function () {});
+    }
+    return Promise.resolve();
+  };
+
   window.novaSpriteBootFlushDefer = flushDeferQueue;
 
   function storeIoMargin() {
     return isPhoneDevice() ? '48px 0px' : '72px 0px';
+  }
+
+  window.novaStoreShouldEagerMount = function () {
+    try {
+      return window.novaSpritePerfIsUltra && window.novaSpritePerfIsUltra();
+    } catch (_) {
+      return false;
+    }
+  };
+
+  function storeHostHasLivePreview(host) {
+    if (!host) return false;
+    var c = host.querySelector('canvas');
+    return !!(c && c.width > 8 && c.height > 8);
   }
 
   function ensureStoreIo() {
@@ -449,7 +474,7 @@
               st.mounted = true;
               st.mount(host, heroId);
             }
-          } else if (st.mounted) {
+          } else if (st.mounted && !st.keepMounted) {
             st.mounted = false;
             window.novaSpriteUnmountHost(host, heroId);
           }
@@ -460,31 +485,46 @@
     return storeIo;
   }
 
+  function registerStoreHost(host, heroId, mountFn) {
+    observedHosts.set(host, {
+      mounted: false,
+      keepMounted: true,
+      mount: function (h) {
+        if (storeHostHasLivePreview(h)) {
+          return;
+        }
+        requestAnimationFrame(function () {
+          if (!h.isConnected || !isStoreOpen()) return;
+          mountFn(h, heroId);
+        });
+      }
+    });
+  }
+
   window.novaStoreLazyMountHero = function (host, heroId, mountFn) {
     if (!host || typeof mountFn !== 'function') return;
     if (!isStoreOpen()) return;
 
-    function run() {
-      if (!host.isConnected || !isStoreOpen()) return;
-      var rect = host.getBoundingClientRect();
-      if (rect.width < 8 || rect.height < 8) {
-        requestAnimationFrame(run);
-        return;
+    registerStoreHost(host, heroId, mountFn);
+
+    if (window.novaStoreShouldEagerMount()) {
+      var stEager = observedHosts.get(host);
+      if (stEager && !stEager.mounted) {
+        stEager.mounted = true;
+        stEager.mount(host, heroId);
       }
-      mountFn(host, heroId);
+      return;
     }
 
     var io = ensureStoreIo();
     if (!io) {
-      requestAnimationFrame(run);
+      var stDirect = observedHosts.get(host);
+      if (stDirect && !stDirect.mounted) {
+        stDirect.mounted = true;
+        stDirect.mount(host, heroId);
+      }
       return;
     }
-    observedHosts.set(host, {
-      mounted: false,
-      mount: function (h) {
-        requestAnimationFrame(function () { mountFn(h, heroId); });
-      }
-    });
     io.observe(host);
     if (isInViewport(host, 60) && isStoreOpen()) {
       var st = observedHosts.get(host);
@@ -495,24 +535,28 @@
     }
   };
 
-  window.novaStoreRemountVisibleHeroes = function () {
+  window.novaStoreMountAllHeroCards = function (container) {
     if (!isStoreOpen()) return;
-    var container = document.getElementById('profilePhotosContainer');
-    if (!container) return;
-    container.querySelectorAll('[data-nova-hero-host]').forEach(function (host) {
+    var root = container || document.getElementById('profilePhotosContainer');
+    if (!root) return;
+    var eager = window.novaStoreShouldEagerMount();
+    root.querySelectorAll('[data-nova-hero-host]').forEach(function (host) {
       var st = observedHosts.get(host);
-      if (st && st.mounted && typeof st.mount === 'function') {
-        var heroId = host.getAttribute('data-hero-id') || '';
-        window.novaSpriteUnmountHost(host, heroId);
-        st.mounted = false;
-        requestAnimationFrame(function () {
-          if (isInViewport(host, 40) && isStoreOpen()) {
-            st.mounted = true;
-            st.mount(host, heroId);
-          }
-        });
+      if (!st || st.mounted) return;
+      if (eager || isInViewport(host, 96)) {
+        st.mounted = true;
+        st.mount(host, host.getAttribute('data-hero-id') || '');
       }
     });
+  };
+
+  window.novaStoreMountPendingHeroes = function () {
+    if (!isStoreOpen()) return;
+    window.novaStoreMountAllHeroCards();
+  };
+
+  window.novaStoreRemountVisibleHeroes = function () {
+    window.novaStoreMountPendingHeroes();
   };
 
   document.addEventListener('visibilitychange', function () {
@@ -520,9 +564,11 @@
   });
 
   document.addEventListener('nova:sprite-assets-ready', function () {
-    if (isStoreOpen() && typeof window.novaStoreRemountVisibleHeroes === 'function') {
+    if (isStoreOpen()) {
       requestAnimationFrame(function () {
-        try { window.novaStoreRemountVisibleHeroes(); } catch (_) {}
+        try {
+          window.novaStoreMountPendingHeroes();
+        } catch (_) {}
       });
     }
   });

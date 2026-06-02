@@ -22,26 +22,26 @@
   const SINGLE_PLAYER_ULTRA_SCALE = 0.86;
   const MODES = [
     {
-      value: 'normal',
-      title: 'Yüksek çözünürlük',
-      tag: 'Tablet',
-      desc: 'Büyük ekranlarda en net görüntü.'
-    },
-    {
-      value: 'performance',
-      title: 'İyi çözünürlük',
-      tag: 'Telefon',
-      desc: 'Dengeli kalite ve akıcılık.'
-    },
-    {
       value: 'ultra',
       title: 'Akıcı',
-      tag: 'Önerilen',
+      tag: 'Telefon',
       tagClass: 'nova-perf-tag--recommended',
-      desc: 'Telefonda en hızlı deneyim.',
+      desc: 'En akıcı deneyim; mağaza ve ana ekranda takılma olmaz.',
       recommended: true
+    },
+    {
+      value: 'normal',
+      title: 'Yüksek çözünürlük',
+      tag: 'Tablet / PC',
+      desc: 'Tablet ve bilgisayarda en net görüntü.'
     }
   ];
+
+  function normalizeMode(mode){
+    if (mode === 'performance') return 'ultra';
+    if (mode === 'ultra' || mode === 'normal') return mode;
+    return null;
+  }
 
   let lastRuntimeKey = '';
   let syncTimer = null;
@@ -56,8 +56,8 @@
   }
   function getSavedMode(){
     try{
-      const v = localStorage.getItem(KEY);
-      if (v === 'normal' || v === 'performance' || v === 'ultra') return v;
+      const v = normalizeMode(localStorage.getItem(KEY));
+      if (v) return v;
     }catch(_){}
     return null;
   }
@@ -67,7 +67,7 @@
     return isPhoneDevice() ? 'ultra' : 'normal';
   }
   function modeScale(mode){
-    if (mode === 'performance') return 0.86;
+    mode = normalizeMode(mode) || 'normal';
     if (mode === 'ultra') return ULTRA_SCALE;
     return 1;
   }
@@ -207,19 +207,26 @@
     }, 80);
   }
   function applyMode(mode){
-    mode = mode || getDefaultMode();
+    mode = normalizeMode(mode) || getDefaultMode();
     window.__novaPerfMode = mode;
     lastRuntimeKey = '';
     try{ localStorage.setItem(KEY, mode); }catch(_){}
     if (!document.body) return;
     document.body.classList.remove('nova-perf-performance','nova-perf-ultra','nova-perf-hq-active','nova-perf-sp-medium-active','nova-perf-duel-medium-active');
-    if (mode === 'performance') document.body.classList.add('nova-perf-performance');
     if (mode === 'ultra') document.body.classList.add('nova-perf-ultra');
     ensureHighResScopeMarkers();
     ensureSinglePlayerScopeMarkers();
     ensureFullscreenScopeMarkers();
     updatePerfCssVars(mode, modeScale(mode));
     syncPerfRuntime();
+    try {
+      if (typeof window.novaStoreMountPendingHeroes === 'function') {
+        window.novaStoreMountPendingHeroes();
+      }
+    } catch (_) {}
+    try {
+      document.dispatchEvent(new CustomEvent('nova:perf-mode-changed', { detail: { mode: mode } }));
+    } catch (_) {}
   }
   function buildOptionsHtml(){
     return MODES.map(function(m){
@@ -292,7 +299,7 @@
       + '<header class="nova-perf-header">'
       + '<div class="nova-perf-header-text">'
       + '<h3 class="nova-perf-title">Görüntü Kalitesi</h3>'
-      + '<p class="nova-perf-lead">Cihazınıza uygun modu seçin. Telefonda ilk açılışta <strong>Akıcı</strong> seçilir.</p>'
+      + '<p class="nova-perf-lead">Telefonda ilk açılışta <strong>Akıcı</strong>, tablet ve bilgisayarda <strong>Yüksek çözünürlük</strong> seçilir. İstediğiniz zaman değiştirebilirsiniz.</p>'
       + '</div>'
       + '<button type="button" class="nova-perf-close" id="nova_perf_close" aria-label="Kapat">×</button>'
       + '</header>'

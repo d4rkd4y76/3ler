@@ -151,13 +151,18 @@ def resize_h(rgba: np.ndarray, h: int) -> np.ndarray:
     return np.array(Image.fromarray(rgba, "RGBA").resize((w, h), Image.Resampling.LANCZOS))
 
 
-def place_in_cell(crop: np.ndarray, cw: int, ch: int) -> np.ndarray:
-    cell = np.zeros((ch, cw, 4), dtype=np.uint8)
-    fh, fw = crop.shape[:2]
-    ox = (cw - fw) // 2
-    oy = (ch - fh) // 2
-    cell[oy : oy + fh, ox : ox + fw] = crop
-    return cell
+def align_crops_foot(crops: list[np.ndarray]) -> tuple[list[np.ndarray], int, int]:
+    ch = max(c.shape[0] for c in crops)
+    cw = max(c.shape[1] for c in crops)
+    aligned: list[np.ndarray] = []
+    for crop in crops:
+        cell = np.zeros((ch, cw, 4), dtype=np.uint8)
+        fh, fw = crop.shape[:2]
+        ox = (cw - fw) // 2
+        oy = ch - fh
+        cell[oy : oy + fh, ox : ox + fw] = crop
+        aligned.append(cell)
+    return aligned, cw, ch
 
 
 def smoothstep(t: float) -> float:
@@ -237,9 +242,8 @@ def main() -> int:
         else:
             scaled.append(crop)
     crops = scaled
-    cell_h = max(c.shape[0] for c in crops)
-    cell_w = max(c.shape[1] for c in crops)
-    cells = [place_in_cell(c, cell_w, cell_h) for c in crops]
+    cells, cell_w, cell_h = align_crops_foot(crops)
+    content_n = len(cells)
 
     first, last = cells[0], cells[-1]
     for bi in range(1, BLEND_FRAMES + 1):
@@ -260,7 +264,7 @@ def main() -> int:
     os.makedirs(OUT_DIR, exist_ok=True)
     Image.fromarray(sheet, "RGBA").save(SHEET_WEBP, quality=93, method=6, lossless=False)
 
-    loop_end = len(crops)
+    loop_end = content_n
     manifest = {
         "version": 4,
         "base": "hero/flame_dragon/sprite/",

@@ -572,15 +572,20 @@
     if (mainHeroMounting) return;
 
     var existing = slot.querySelector(':scope > [data-nova-main-hero]');
-    if (existing && existing.getAttribute('data-nova-main-hero') === heroId) {
-      var c = existing.querySelector('canvas');
-      if (c && c.width > 0 && c.height > 0) return;
-      unmountHeroFromHost(existing);
+    if (existing) {
+      if (existing.getAttribute('data-nova-main-hero') === heroId) {
+        var c = existing.querySelector('canvas');
+        if (c && c.width > 0 && c.height > 0) return;
+        if (existing.querySelector('svg')) return;
+        unmountHeroFromHost(existing);
+        existing.remove();
+      } else {
+        clearMainHeroSlot(slot);
+      }
     }
 
     mainHeroMounting = true;
     try {
-      clearMainHeroSlot(slot);
       zone.setAttribute('aria-hidden', 'false');
       zone.classList.add('is-visible', 'nova-main-hero-zone--' + def.theme);
       slot.classList.add('nova-main-hero-slot--' + def.theme);
@@ -634,6 +639,9 @@
         });
         window.__novaMainHeroLevelFetched = getHeroLevel(data, heroId);
       } catch (_) {}
+      if (typeof window.novaSpritePreloadHero === 'function') {
+        try { window.novaSpritePreloadHero(heroId); } catch (_) {}
+      }
       mountMainScreenHero(heroId);
       if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
         window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
@@ -652,6 +660,12 @@
       }
       if (heroId === 'buz_ejder' && typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
         window.novaBuzEjderPreloadTrueClipsIfEquipped();
+      }
+      if (heroId === 'alev_ejder' && typeof window.novaAlevEjderPreloadTrueClipsIfEquipped === 'function') {
+        window.novaAlevEjderPreloadTrueClipsIfEquipped();
+      }
+      if (heroId === 'gece_ejder' && typeof window.novaGeceEjderPreloadTrueClipsIfEquipped === 'function') {
+        window.novaGeceEjderPreloadTrueClipsIfEquipped();
       }
     } catch (_) {
       clearMainHeroSlot(slot);
@@ -967,9 +981,19 @@
       return typeof window.novaBilgeBaykusHasTrueClips === 'function'
         && window.novaBilgeBaykusHasTrueClips();
     }
-    return heroId === 'buz_ejder'
-      && typeof window.novaBuzEjderHasTrueClips === 'function'
-      && window.novaBuzEjderHasTrueClips();
+    if (heroId === 'buz_ejder') {
+      return typeof window.novaBuzEjderHasTrueClips === 'function'
+        && window.novaBuzEjderHasTrueClips();
+    }
+    if (heroId === 'alev_ejder') {
+      return typeof window.novaAlevEjderHasTrueClips === 'function'
+        && window.novaAlevEjderHasTrueClips();
+    }
+    if (heroId === 'gece_ejder') {
+      return typeof window.novaGeceEjderHasTrueClips === 'function'
+        && window.novaGeceEjderHasTrueClips();
+    }
+    return false;
   }
 
   function pickCheerPayload(variant) {
@@ -1037,7 +1061,7 @@
 
     var perf = false;
     try {
-      perf = document.body.classList.contains('nova-perf-performance') || document.body.classList.contains('nova-perf-ultra');
+      perf = document.body.classList.contains('nova-perf-ultra');
     } catch (_) { perf = false; }
     var count = payload.variant === 'epic' ? 18 : (payload.variant === 'fire' ? 12 : 8);
     if (!perf) count = payload.variant === 'epic' ? 22 : (payload.variant === 'fire' ? 14 : 10);
@@ -1302,8 +1326,12 @@
           window.novaGolgeParsiEnsureTrueClipsReady();
         } else if (equippedId === 'bilge_baykus' && typeof window.novaBilgeBaykusEnsureTrueClipsReady === 'function') {
           window.novaBilgeBaykusEnsureTrueClipsReady();
-        } else if (typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
+        } else if (equippedId === 'buz_ejder' && typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
           window.novaBuzEjderEnsureTrueClipsReady();
+        } else if (equippedId === 'alev_ejder' && typeof window.novaAlevEjderEnsureTrueClipsReady === 'function') {
+          window.novaAlevEjderEnsureTrueClipsReady();
+        } else if (equippedId === 'gece_ejder' && typeof window.novaGeceEjderEnsureTrueClipsReady === 'function') {
+          window.novaGeceEjderEnsureTrueClipsReady();
         }
       }
 
@@ -1339,7 +1367,7 @@
       if (!spriteOnly && variant === 'epic') setTimeout(triggerGameShake, jsFx ? 300 : 260);
       else if (!spriteOnly && variant === 'fire') setTimeout(triggerGameShake, jsFx ? 340 : 300);
       var tail = spriteOnly
-        ? (heroId === 'firtina_okcu' || heroId === 'star_fairy' || heroId === 'tas_muhafiz' || heroId === 'golge_parsi' || heroId === 'bilge_baykus' || heroId === 'buz_ejder' ? 280 : 120)
+        ? (heroId === 'firtina_okcu' || heroId === 'star_fairy' || heroId === 'tas_muhafiz' || heroId === 'golge_parsi' || heroId === 'bilge_baykus' || heroId === 'buz_ejder' || heroId === 'alev_ejder' ? 280 : 120)
         : (variant === 'epic' ? 360 : (variant === 'fire' ? 260 : 180));
       var fxWait = (jsFx || spriteOnly) && host
         ? playHeroSpFx(host, variant, heroId).then(function () { return waitMs(tail); })
@@ -1720,9 +1748,9 @@
     catalog.forEach(function (hero, i) {
       renderHeroStoreCard(hero, userData, container, i);
     });
-    if (typeof window.novaStoreRemountVisibleHeroes === 'function') {
+    if (typeof window.novaStoreMountAllHeroCards === 'function') {
       requestAnimationFrame(function () {
-        try { window.novaStoreRemountVisibleHeroes(); } catch (_) {}
+        try { window.novaStoreMountAllHeroCards(container); } catch (_) {}
       });
     }
     requestAnimationFrame(function () {
@@ -1793,6 +1821,12 @@
       }
       if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
         window.novaBuzEjderPreloadTrueClipsIfEquipped();
+      }
+      if (typeof window.novaAlevEjderPreloadTrueClipsIfEquipped === 'function') {
+        window.novaAlevEjderPreloadTrueClipsIfEquipped();
+      }
+      if (typeof window.novaGeceEjderPreloadTrueClipsIfEquipped === 'function') {
+        window.novaGeceEjderPreloadTrueClipsIfEquipped();
       }
       if (typeof window.novaBuzEjderPreloadSonucTransition === 'function') {
         window.novaBuzEjderPreloadSonucTransition();

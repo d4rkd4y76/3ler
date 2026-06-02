@@ -38,9 +38,24 @@ def find_video(*patterns: str) -> str:
     return os.path.join(HERO_DIR, patterns[0])
 
 
-VITRIN_VIDEO = find_video("bilge_baykus_vitrin.mp4", "*vitrin*.mp4", "*baykus*vitrin*")
-MAIN_VIDEO = find_video("bilge_baykus_ana_ekran.mp4", "*ana_ekran*.mp4", "*baykus*ana*")
-TRUE_VIDEO = find_video("DOGRU.mp4", "DO?RU.mp4", "*dogru*.mp4", "*DO*RU*.mp4")
+# Tek kaynak: ana ekran + mağaza + vitrin + özellik ekranı
+VITRIN_VIDEO = find_video(
+    "ana ekran_vitrin_magaza.mp4",
+    "*ana*ekran*vitrin*magaza*",
+    "*vitrin*magaza*",
+    "bilge_baykus_vitrin.mp4",
+    "*vitrin*.mp4",
+    "*baykus*vitrin*",
+)
+MAIN_VIDEO = VITRIN_VIDEO
+TRUE_VIDEO = find_video(
+    "doğru.mp4",
+    "dogru.mp4",
+    "DOGRU.mp4",
+    "DO?RU.mp4",
+    "*dogru*.mp4",
+    "*DO*RU*.mp4",
+)
 
 
 def sample_border_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
@@ -686,6 +701,7 @@ def main() -> int:
         lock_cell=(254, 290),
     )
 
+    # Taş Muhafız ana ekran hücresi (343×300) — aynı yerleşim / ölçek
     main_data = build_loop_sheet(
         MAIN_VIDEO,
         os.path.join(OUT_DIR, "bilge-baykus-main.webp"),
@@ -696,6 +712,7 @@ def main() -> int:
         foot_align=True,
         anchor="bottom",
         optimize_loop=True,
+        lock_cell=(343, 300),
     )
 
     true_clip = build_true_sheet(

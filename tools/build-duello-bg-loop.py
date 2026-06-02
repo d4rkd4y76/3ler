@@ -14,7 +14,8 @@ candidates = sorted(
     key=lambda p: p.stat().st_mtime,
     reverse=True,
 )
-SRC = candidates[0] if candidates else ROOT / "sonduelloarka.mp4"
+# Kaynak video: köke yeni bir *2026*.mp4 koyun veya duello-bg-loop.mp4 üzerine yazın.
+SRC = candidates[0] if candidates else ROOT / "duello-bg-loop.mp4"
 
 # Kare analizi: 2.5s -> 5.958s en uyumlu segment (frame 60-143)
 START_F = 60

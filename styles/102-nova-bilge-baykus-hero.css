@@ -177,7 +177,7 @@
 
 /* Seviye / envanter küçük önizleme */
 .nh-level-hero-preview--baykus .nh-level-hero-preview__host,
-.char-inv-hero-card .nova-hero-mount--baykus-muhafiz .nova-hero-baykus-sprite {
+.char-inv-hero-card .nova-hero-mount--bilge-baykus .nova-hero-baykus-sprite {
   min-height: 120px;
 }
 
@@ -189,8 +189,8 @@
 }
 
 /* Düello hazırlık */
-.ndep-hero-box.ndep-has-hero .nova-hero-mount--baykus-muhafiz .nova-hero-baykus-sprite,
-.ndep-hero-box.ndep-has-hero .nova-hero-mount--baykus-muhafiz .nova-hero-baykus-sprite__canvas {
+.ndep-hero-box.ndep-has-hero .nova-hero-mount--bilge-baykus .nova-hero-baykus-sprite,
+.ndep-hero-box.ndep-has-hero .nova-hero-mount--bilge-baykus .nova-hero-baykus-sprite__canvas {
   transform-origin: center bottom;
 }
 
@@ -236,7 +236,7 @@
   pointer-events: none;
 }
 
-.nova-sp-fx-true-sprite.nova-hero-mount--baykus-muhafiz .nova-hero-baykus-sprite {
+.nova-sp-fx-true-sprite.nova-hero-mount--bilge-baykus .nova-hero-baykus-sprite {
   display: none !important;
 }
 

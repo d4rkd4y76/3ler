@@ -153,7 +153,7 @@
     this.frameMs = 1000 / this.fps;
     this.contentFrames = manifest.loopEnd || manifest.frameCount || 36;
     this.blendFrames = manifest.blendFrames || 0;
-    this.playFrames = this.contentFrames;
+    this.playFrames = this.contentFrames + this.blendFrames;
     this.frameIndex = 0;
     this.accum = 0;
     this.lastTick = 0;
@@ -287,11 +287,38 @@
 
   function mount(host, opts) {
     if (!host) return null;
+    opts = opts || {};
+    var profile = opts.profile || 'store';
+    var cacheKey = profile === 'main' ? 'main' : 'store';
+    var eng = engines.get(host);
+
+    if (eng && eng.profile === profile && eng.running && sheetCache[cacheKey].img && !opts.force) {
+      eng.resize();
+      if (!eng.running) eng.start();
+      else eng.draw();
+      return eng.wrap;
+    }
+
+    if (sheetCache[cacheKey].img && sheetCache[cacheKey].manifest && !opts.force) {
+      unmount(host);
+      host.classList.add('nova-hero-mount--alev-ejder');
+      host.setAttribute('data-alev-sprite', '1');
+      var wrapFast = document.createElement('div');
+      wrapFast.className = 'nova-hero-alev-sprite nova-hero-alev-sprite--' + profile;
+      var canvasFast = document.createElement('canvas');
+      canvasFast.className = 'nova-hero-alev-sprite__canvas';
+      canvasFast.setAttribute('role', 'img');
+      canvasFast.setAttribute('aria-label', 'Alev Ejderi');
+      wrapFast.appendChild(canvasFast);
+      host.appendChild(wrapFast);
+      startEngine(host, wrapFast, canvasFast, sheetCache[cacheKey].manifest, sheetCache[cacheKey].img, opts);
+      return wrapFast;
+    }
+
     unmount(host);
     host.classList.add('nova-hero-mount--alev-ejder');
     host.setAttribute('data-alev-sprite', '1');
 
-    var profile = (opts && opts.profile) || 'store';
     var wrap = document.createElement('div');
     wrap.className = 'nova-hero-alev-sprite nova-hero-alev-sprite--' + profile;
     var canvas = document.createElement('canvas');
@@ -306,13 +333,12 @@
       tries += 1;
       loadAssets(profile, tries > 1).then(function (manifest) {
         if (!document.body.contains(host)) return;
-        var p = profile === 'main' ? 'main' : 'store';
-        var img = sheetCache[p].img;
+        var img = sheetCache[cacheKey].img;
         startEngine(host, wrap, canvas, manifest, img, opts);
       }).catch(function (err) {
         console.error('[alev sprite] yüklenemedi. Profil:', profile, 'Deneme:', tries, err);
-        if (tries < 4) {
-          setTimeout(tryLoad, 400 * tries);
+        if (tries < 3) {
+          setTimeout(tryLoad, 180 * tries);
           return;
         }
         wrap.classList.add('nova-hero-alev-sprite--error');
@@ -339,15 +365,18 @@
   if (window.novaSpritePerfInstall) window.novaSpritePerfInstall(SpriteEngine);
 
   function bootPreload() {
-    if (!window.novaSpriteDefer) {
+    var run = function () {
       try { window.novaAlevEjderPreloadSprite(); } catch (e) { console.warn('[alev sprite] preload', e); }
+    };
+    if (!window.novaSpriteDefer) {
+      run();
       return;
     }
     window.novaSpriteDefer(function () {
       var hid = window.__novaEquippedHeroId;
       if (hid && hid !== 'alev_ejder') return;
-      try { window.novaAlevEjderPreloadSprite(); } catch (e) { console.warn('[alev sprite] preload', e); }
-    }, 3200);
+      run();
+    }, 800);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootPreload);

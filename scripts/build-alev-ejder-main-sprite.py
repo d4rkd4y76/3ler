@@ -20,7 +20,7 @@ STORE_MANIFEST = os.path.join(OUT_DIR, "manifest.json")
 MANIFEST_JS = os.path.join(ROOT, "js", "ui", "012v-nova-alev-ejder-sprite-manifest.js")
 
 TARGET_FPS = 12
-MIN_LOOP_FRAMES = 28
+BLEND_FRAMES = 8
 TARGET_H = 300
 TARGET_FILL_W = 374
 MAX_SHEET_W = 4096
@@ -210,38 +210,6 @@ def pick_cols(n: int, cw: int, ch: int) -> int:
     return best
 
 
-def frame_sig(cell: np.ndarray) -> np.ndarray:
-    a = cell[:, :, 3].astype(np.float32) / 255.0
-    rgb = cell[:, :, :3].astype(np.float32)
-    weighted = (rgb * a[..., None]).sum(axis=2)
-    small = Image.fromarray(weighted.clip(0, 255).astype(np.uint8)).resize(
-        (56, 56), Image.Resampling.BILINEAR
-    )
-    return np.array(small, dtype=np.float32) / 255.0
-
-
-def find_loop_window(cells: list[np.ndarray]) -> tuple[int, int, float]:
-    n = len(cells)
-    sigs = [frame_sig(c) for c in cells]
-    best_start, best_end, best_score = 0, n, 1e18
-    for start in range(0, max(1, n - MIN_LOOP_FRAMES)):
-        for end in range(start + MIN_LOOP_FRAMES, n + 1):
-            length = end - start
-            closure = float(np.mean((sigs[start] - sigs[end - 1]) ** 2))
-            if end - start >= 3:
-                vel_in = sigs[start + 1] - sigs[start]
-                vel_out = sigs[end - 1] - sigs[end - 2]
-                motion = float(np.mean((vel_in - vel_out) ** 2))
-            else:
-                motion = 0.0
-            length_penalty = 0.00008 * max(0, 44 - length) ** 2
-            score = closure + motion * 0.35 + length_penalty
-            if score < best_score:
-                best_score = score
-                best_start, best_end = start, end
-    return best_start, best_end, best_score
-
-
 def build_main_sheet() -> dict:
     if not os.path.isfile(VIDEO):
         print("Video missing:", VIDEO, file=sys.stderr)
@@ -275,22 +243,12 @@ def build_main_sheet() -> dict:
 
     crops = [resize_h(c[gy0:gy1, gx0:gx1], TARGET_H) for c in chroma]
     cells, cell_w, cell_h = align_crops_foot(crops)
+    content_n = len(cells)
 
-    loop_start, loop_end_idx, closure = find_loop_window(cells)
-    cells = cells[loop_start:loop_end_idx]
-    print(
-        "main loop window",
-        loop_start,
-        "->",
-        loop_end_idx,
-        "len",
-        len(cells),
-        "closure",
-        round(closure, 6),
-    )
-
-    blend_count = 0
-    print("main seamless loop — content-only playback")
+    first, last = cells[0], cells[-1]
+    for bi in range(1, BLEND_FRAMES + 1):
+        t = bi / (BLEND_FRAMES + 1)
+        cells.append(blend_cells(last, first, t))
 
     n = len(cells)
     cols = pick_cols(n, cell_w, cell_h)
@@ -304,7 +262,7 @@ def build_main_sheet() -> dict:
     os.makedirs(OUT_DIR, exist_ok=True)
     Image.fromarray(sheet, "RGBA").save(SHEET_WEBP, quality=92, method=6, lossless=False)
 
-    loop_end = len(cells) - blend_count
+    loop_end = content_n
     main = {
         "sheet": "alev-ejder-main.webp",
         "frameWidth": cell_w,
@@ -314,13 +272,13 @@ def build_main_sheet() -> dict:
         "frameCount": n,
         "loopEnd": loop_end,
         "fps": TARGET_FPS,
-        "blendFrames": blend_count,
+        "blendFrames": BLEND_FRAMES,
         "sheetWidth": cols * cell_w,
         "sheetHeight": rows * cell_h,
         "anchor": "bottom",
     }
     mb = os.path.getsize(SHEET_WEBP) / (1024 * 1024)
-    print("main frames", loop_end, "+ blend", blend_count, "cell", cell_w, "x", cell_h)
+    print("main frames", loop_end, "+ blend", BLEND_FRAMES, "cell", cell_w, "x", cell_h)
     print("main sheet", main["sheetWidth"], "x", main["sheetHeight"], "webp", round(mb, 2), "MB")
     return main
 

@@ -48,13 +48,25 @@
   }
 
   function resetHost(host) {
+    if (typeof window.novaGeceEjderTrueUnmount === 'function') {
+      window.novaGeceEjderTrueUnmount(host);
+    }
     if (!host) return;
     var svg = host.querySelector('svg');
     if (!svg) return;
     svg.querySelectorAll('[style]').forEach(function (el) { el.removeAttribute('style'); });
   }
 
-  function playSpFx(host, variant) {
+  function playSpFx(host, variant, routine) {
+    if (typeof window.novaGeceEjderPlayTrueClip === 'function' && window.novaGeceEjderHasTrueClips && window.novaGeceEjderHasTrueClips()) {
+      if (typeof window.novaGeceEjderEnsureTrueClipsReady === 'function') {
+        window.novaGeceEjderEnsureTrueClipsReady();
+      }
+      if (typeof window.novaGeceEjderPickTrueClipRoutine === 'function') {
+        routine = window.novaGeceEjderPickTrueClipRoutine();
+      }
+      return window.novaGeceEjderPlayTrueClip(host, routine);
+    }
     var svg = host && host.querySelector('svg');
     if (svg) {
       var gem = q(svg, '.nova-hero__chest-gem');
