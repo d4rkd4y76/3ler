@@ -58,7 +58,8 @@
       }
 
       if (questSlot) {
-        [hw, qw, bonusDrawer, sb].filter(Boolean).forEach(function (el) {
+        var toolsBtn = document.getElementById('tools-open-button');
+        [toolsBtn, hw, qw, bonusDrawer, sb].filter(Boolean).forEach(function (el) {
           try { questSlot.appendChild(el); } catch (_) {}
         });
       }
