@@ -3468,7 +3468,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
         /** Deneme liderlik özeti; tamamlamalar sık olabilir → orta TTL. */
         const NOVA_DENEME_LEADERBOARD_TTL_MS = 90 * 1000;
         /** loggedinPlayers tam ağaç okuması — paylaşımlı bellek önbelleği (TTL). */
-        const NOVA_LOGGEDIN_PLAYERS_LIST_TTL_MS = 25 * 1000;
+        const NOVA_LOGGEDIN_PLAYERS_LIST_TTL_MS = 90 * 1000;
         /** Tam classes ağacı (ağır); varsayılan önbellek süresi. */
         const NOVA_CLASSES_TREE_CACHE_MS = 5 * 60 * 1000;
 
@@ -5411,6 +5411,7 @@ function showConfirmation(message) {
                     if (currentScreen && currentScreen.id === 'single-player-screen' && typeof window.novaCloseSinglePlayerSelectScreen === 'function') {
                         window.novaCloseSinglePlayerSelectScreen();
                     } else {
+                        try { if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen(); } catch (_) {}
                         currentScreen.style.display = 'none';
                         mainScreen.style.removeProperty('display');
                     }
@@ -5425,12 +5426,11 @@ function showConfirmation(message) {
             if (typeof window.novaOpenSinglePlayerSelectScreen === 'function') {
                 window.novaOpenSinglePlayerSelectScreen();
             } else {
+                try { if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-screen'); } catch (_) {}
                 mainScreen.style.setProperty('display', 'none', 'important');
                 if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
                 singlePlayerScreen.style.display = 'flex';
             }
-            try{ if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-screen'); }catch(_){}
-            try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
             try{ if (window.novaEnhanceGameSelects) window.novaEnhanceGameSelects(singlePlayerScreen); }catch(_){}
             try {
                 await fetchChampionData();
@@ -7332,18 +7332,7 @@ async function __cachedInviteCheck(cacheMap, key, ttlMs, fetcher) {
                }
                
                // Davet gönderenin online durumunu kontrol et (precomputed varsa ek read yapma)
-               let inviterOnline = (data && typeof data.inviterOnline === 'boolean') ? data.inviterOnline : null;
-               if (inviterOnline === null) {
-                   try {
-                       const lpVal = await fetchLoggedInPlayersMapLimited();
-                       const tid = String(data.invitedByStudentId);
-                       inviterOnline = Object.values(lpVal || {}).some(function (p) {
-                           return p && String(p.studentId) === tid;
-                       });
-                   } catch (_) {
-                       inviterOnline = false;
-                   }
-               }
+               let inviterOnline = (data && typeof data.inviterOnline === 'boolean') ? data.inviterOnline : true;
                if (!inviterOnline) {
                    await invitationRef.remove();
                    invitationOverlay.style.display = 'none';
@@ -7442,16 +7431,8 @@ async function __cachedInviteCheck(cacheMap, key, ttlMs, fetcher) {
        }
    });
 
-   // Düello silinme dinleyicisi (tek listener)
-   if (window.__inviteListenerState.duelRemovedListener) {
-       database.ref('duels').off('child_removed', window.__inviteListenerState.duelRemovedListener);
-   }
-   window.__inviteListenerState.duelRemovedListener = (snapshot) => {
-       if (currentDuelRef && snapshot.key === currentDuelRef.key && !duelEnded) {
-           showAlert('...').then(() => window.location.reload());
-       }
-   };
-   database.ref('duels').on('child_removed', window.__inviteListenerState.duelRemovedListener);
+   /* Düello silinme: global duels/child_removed kaldırıldı (RTDB trafik optimizasyonu).
+      switchToDuelScreen içinde createdAt yaprak listener kullanılır. */
 }
 
 async function showInvitationModal(data) {
@@ -7923,9 +7904,262 @@ function startDuelAutoCountdown() {
 
 
 
+// ----- RTDB optimizasyonu: düello listener yardımcıları (üst path yerine yaprak dinleyiciler) -----
+window.__novaDuelListeners = window.__novaDuelListeners || [];
+
+function novaDuelTrackUnsub(fn) {
+    if (typeof fn === 'function') window.__novaDuelListeners.push(fn);
+}
+
+function novaDuelTeardownListeners() {
+    try {
+        (window.__novaDuelListeners || []).forEach(function (fn) {
+            try { fn(); } catch (_) {}
+        });
+    } catch (_) {}
+    window.__novaDuelListeners = [];
+    try {
+        if (typeof window.__novaDuelResponsesUnsub === 'function') window.__novaDuelResponsesUnsub();
+    } catch (_) {}
+    window.__novaDuelResponsesUnsub = null;
+    try {
+        if (typeof window.__novaEpicGameWatchUnsub === 'function') window.__novaEpicGameWatchUnsub();
+    } catch (_) {}
+    window.__novaEpicGameWatchUnsub = null;
+    const gsRef = window.__novaDuelGameStartedRef;
+    const gsFn = window.__novaDuelGameStartedFn;
+    if (gsRef && gsFn) {
+        try { gsRef.off('value', gsFn); } catch (_) {}
+    }
+    window.__novaDuelGameStartedRef = null;
+    window.__novaDuelGameStartedFn = null;
+}
+
+async function novaBuildDuelStartData(duelRef) {
+    if (!duelRef) return null;
+    const parts = await Promise.all([
+        duelRef.child('questions').once('value'),
+        duelRef.child('inviter').once('value'),
+        duelRef.child('invited').once('value'),
+        duelRef.child('playAt').once('value'),
+        duelRef.child('gameStarted').once('value')
+    ]);
+    if (!parts[4].exists() || parts[4].val() !== true) return null;
+    const questions = parts[0].val();
+    if (!Array.isArray(questions) || questions.length < 10) return null;
+    return {
+        gameStarted: true,
+        questions: questions,
+        inviter: parts[1].val() || {},
+        invited: parts[2].val() || {},
+        playAt: parts[3].val()
+    };
+}
+try { window.novaBuildDuelStartData = novaBuildDuelStartData; } catch (_) {}
+
+function novaMergeDuelPartyIntoCurrent(side, val) {
+    if (!window.__currentDuelData) window.__currentDuelData = {};
+    window.__currentDuelData[side] = val || {};
+    window.__currentDuelData[side].nameFrame = window.__currentDuelData[side].nameFrame || 'default';
+}
+
+async function novaRefreshDuelMetaUi(duelKey, data) {
+    if (!data) return;
+    data.inviter = data.inviter || {};
+    data.invited = data.invited || {};
+    data.inviter.nameFrame = data.inviter.nameFrame || 'default';
+    data.invited.nameFrame = data.invited.nameFrame || 'default';
+    try { window.__currentDuelData = data; } catch (_) {}
+    try {
+        window.__lastDuelNameFrames = {
+            inviter: { name: data.inviter.name, frame: data.inviter.nameFrame || 'default' },
+            invited: { name: data.invited.name, frame: data.invited.nameFrame || 'default' }
+        };
+    } catch (_) {}
+
+    if (window.__novaDuelDigestKey !== duelKey) {
+        window.__novaDuelDigestKey = duelKey;
+        window.__novaDuelRefDigest = null;
+    }
+    const sel = data.selections || {};
+    const gCup = function (x) { return (x != null && x !== '') ? String(x) : ''; };
+    const duelUiDigest = [
+        data.gameStarted ? '1' : '0',
+        data.inviter.name || '', data.inviter.photo || '', gCup(data.inviter.gameCup),
+        data.inviter.nameFrame || '', data.inviter.avatarFrame || '',
+        data.invited.name || '', data.invited.photo || '', gCup(data.invited.gameCup),
+        data.invited.nameFrame || '', data.invited.avatarFrame || '',
+        sel.class || '', sel.subject || '', sel.topic || ''
+    ].join('\x1e');
+    const skipHeavyUi = (window.__novaDuelRefDigest === duelUiDigest);
+
+    if (!skipHeavyUi) {
+        window.__novaDuelRefDigest = duelUiDigest;
+        duelInviterPhoto.src = data.inviter.photo || 'https://via.placeholder.com/80';
+        setNameWithFrame(duelInviterName, data.inviter.name, data.inviter.nameFrame || 'default');
+        duelInvitedPhoto.src = data.invited.photo || 'https://via.placeholder.com/80';
+        setNameWithFrame(duelInvitedName, data.invited.name, data.invited.nameFrame || 'default');
+        try {
+            applyAvatarFrameToImage(duelInviterPhoto, data.inviter.avatarFrame || 'default');
+            applyAvatarFrameToImage(duelInvitedPhoto, data.invited.avatarFrame || 'default');
+        } catch (_) {}
+
+        const inviterInfo = document.getElementById('duel-inviter-info');
+        const invitedInfo = document.getElementById('duel-invited-info');
+        document.querySelectorAll('.duel-player-cup').forEach(function (cup) { cup.remove(); });
+
+        if (inviterInfo) {
+            const inviterCup = document.createElement('div');
+            inviterCup.className = 'duel-player-cup';
+            inviterCup.innerHTML = '<span class="cup-icon">🏆</span><span class="cup-value">' + data.inviter.gameCup + '</span>';
+            inviterInfo.appendChild(inviterCup);
+        }
+        if (invitedInfo) {
+            const invitedCup = document.createElement('div');
+            invitedCup.className = 'duel-player-cup';
+            invitedCup.innerHTML = '<span class="cup-icon">🏆</span><span class="cup-value">' + data.invited.gameCup + '</span>';
+            invitedInfo.appendChild(invitedCup);
+        }
+
+        [duelClassSelect, duelSubjectSelect, duelTopicSelect].forEach(function (select) {
+            select.disabled = true;
+            select.style.pointerEvents = 'none';
+            select.style.cursor = 'not-allowed';
+            select.style.opacity = '0.7';
+        });
+
+        if (data.selections) {
+            try {
+                if (data.selections.class) {
+                    duelClassSelect.value = data.selections.class;
+                    const lessonsLoaded = await fetchLessons(data.selections.class, duelSubjectSelect);
+                    if (lessonsLoaded && data.selections.subject) {
+                        duelSubjectSelect.value = data.selections.subject;
+                        const topicsLoaded = await fetchTopics(data.selections.class, data.selections.subject, duelTopicSelect);
+                        if (topicsLoaded && data.selections.topic) {
+                            duelTopicSelect.value = data.selections.topic;
+                        }
+                    }
+                }
+                if (!isInviter) {
+                    const [classOptions, subjectOptions, topicOptions] = await Promise.all([
+                        data.selections.class ? getClassOptions() : null,
+                        data.selections.subject ? getLessonOptions(data.selections.class) : null,
+                        data.selections.topic ? getTopicOptions(data.selections.class, data.selections.subject) : null
+                    ]);
+                    if (classOptions) {
+                        duelClassSelect.innerHTML = classOptions;
+                        duelClassSelect.value = data.selections.class;
+                    }
+                    if (subjectOptions) {
+                        duelSubjectSelect.innerHTML = subjectOptions;
+                        duelSubjectSelect.value = data.selections.subject;
+                    }
+                    if (topicOptions) {
+                        duelTopicSelect.innerHTML = topicOptions;
+                        duelTopicSelect.value = data.selections.topic;
+                    }
+                }
+            } catch (error) {
+                console.error('Seçimler senkronize edilirken hata:', error);
+            }
+        }
+    }
+
+    if (!isInviter) {
+        duelStartButton.disabled = true;
+    } else {
+        checkDuelSelections();
+    }
+}
+
+async function novaHandleDuelNodeRemoved(partyIds) {
+    if (duelEnded) return;
+    const p = partyIds || window.__novaDuelPartyIds || {};
+    try {
+        const currentPlayerId = selectedStudent.studentId;
+        await updateDuelScore('DISCONNECTED', {
+            inviterId: p.inviterId,
+            inviterClassId: p.inviterClassId,
+            invitedId: p.invitedId,
+            invitedClassId: p.invitedClassId,
+            disconnectedId: currentPlayerId === p.inviterId ? p.invitedId : p.inviterId,
+            disconnectedClassId: currentPlayerId === p.inviterId ? p.invitedClassId : p.inviterClassId
+        });
+        await Promise.all([
+            database.ref('classes/' + p.inviterClassId + '/students/' + p.inviterId + '/inDuel').set(false),
+            database.ref('classes/' + p.invitedClassId + '/students/' + p.invitedId + '/inDuel').set(false)
+        ]);
+        await setLoggedInPlayerInDuel(false);
+        window.location.reload();
+    } catch (error) {
+        console.error('Oyun sonlandırma hatası:', error);
+        await showAlert('Oyun sonlandırılırken bir hata oluştu');
+        window.location.reload();
+    }
+}
+
+function novaAttachOptimizedDuelListeners(duelRef, duelKey) {
+    window.__novaDuelSelectionDigest = window.__novaDuelSelectionDigest || '';
+
+    function onPartySide(side, snap) {
+        if (!snap.exists()) return;
+        novaMergeDuelPartyIntoCurrent(side, snap.val() || {});
+        novaRefreshDuelMetaUi(duelKey, window.__currentDuelData);
+    }
+
+    ['inviter', 'invited'].forEach(function (side) {
+        const r = duelRef.child(side);
+        const fn = function (snap) { onPartySide(side, snap); };
+        r.on('value', fn);
+        novaDuelTrackUnsub(function () { try { r.off('value', fn); } catch (_) {} });
+    });
+
+    const selRef = duelRef.child('selections');
+    const selFn = async function (selectionsSnapshot) {
+        if (!window.__currentDuelData) window.__currentDuelData = {};
+        const sv = selectionsSnapshot.exists() ? (selectionsSnapshot.val() || {}) : {};
+        window.__currentDuelData.selections = sv;
+        const digest = (sv.class || '') + '|' + (sv.subject || '') + '|' + (sv.topic || '');
+        if (digest === window.__novaDuelSelectionDigest) return;
+        window.__novaDuelSelectionDigest = digest;
+        await novaRefreshDuelMetaUi(duelKey, window.__currentDuelData);
+        if (!isInviter && selectionsSnapshot.exists() && sv.subject && sv.class) {
+            try {
+                if (duelSubjectSelect.value !== sv.subject) {
+                    await fetchLessons(sv.class, duelSubjectSelect);
+                    duelSubjectSelect.value = sv.subject;
+                }
+                if (sv.topic) {
+                    if (duelTopicSelect.value !== sv.topic) {
+                        await fetchTopics(sv.class, sv.subject, duelTopicSelect);
+                        duelTopicSelect.value = sv.topic;
+                    }
+                } else {
+                    duelTopicSelect.value = '';
+                }
+            } catch (_) {}
+        }
+    };
+    selRef.on('value', selFn);
+    novaDuelTrackUnsub(function () { try { selRef.off('value', selFn); } catch (_) {} });
+
+    const leafRef = duelRef.child('createdAt');
+    const delFn = function (snap) {
+        if (snap.exists()) return;
+        novaHandleDuelNodeRemoved(window.__novaDuelPartyIds);
+    };
+    leafRef.on('value', delFn);
+    novaDuelTrackUnsub(function () { try { leafRef.off('value', delFn); } catch (_) {} });
+}
+try { window.novaDuelTeardownListeners = novaDuelTeardownListeners; } catch (_) {}
+
 function switchToDuelScreen(duelKey) {
     try { window.__novaActiveDuelKey = duelKey; } catch (_) {}
     clearPendingInviteSenderUI();
+    try {
+        if (typeof novaDuelTeardownListeners === 'function') novaDuelTeardownListeners();
+    } catch (_) {}
     try {
         const mm = document.getElementById('matchmakingScreen');
         if (mm) mm.style.display = 'none';
@@ -7942,7 +8176,7 @@ function switchToDuelScreen(duelKey) {
         singlePlayerScreen.style.display = 'none';
     }
     if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
-        window.novaCloseSinglePlayerGameScreen();
+        window.novaCloseSinglePlayerGameScreen({ showMain: false });
     } else {
         document.body.classList.remove('nova-sp-screen-open', 'nova-sp-game-open');
         if (singlePlayerGameScreen) singlePlayerGameScreen.style.display = 'none';
@@ -7989,48 +8223,69 @@ function switchToDuelScreen(duelKey) {
     let inviterId, inviterClassId, invitedId, invitedClassId;
 
     const gameStartedRef = duelRef.child('gameStarted');
-    gameStartedRef.off('value');
-    gameStartedRef.on('value', snapshot => {
-        if (snapshot.val() === true) {
-            if (window.__duelSelectionCountdownInterval) {
-                clearInterval(window.__duelSelectionCountdownInterval);
-                window.__duelSelectionCountdownInterval = null;
-            }
-            const ce = document.getElementById('duelCountdown');
-            if (ce) ce.style.display = 'none';
-            if (window.__novaStartDuelGameLock === duelKey) {
-                try {
-                    const ge = document.getElementById('duel-game-screen');
-                    if (ge && getComputedStyle(ge).display !== 'none') return;
-                } catch (_) {}
-                window.__novaStartDuelGameLock = null;
-            }
-            window.__novaStartDuelGameLock = duelKey;
-            duelGameStarted = true;
-            duelRef.once('value').then(function (s) {
-                if (!s.exists()) return;
-                const d = s.val() || {};
-                if (!d.gameStarted) return;
-                if (!Array.isArray(d.questions) || d.questions.length < 10) return;
-                try { if (typeof hideWaitOverlay === 'function') hideWaitOverlay(); } catch (_) {}
-                if (window.__novaDuelPrepBlocking) {
-                    window.__novaQueuedDuelStart = d;
-                    return;
-                }
-                if (window.__novaStartDuelGameLock === duelKey) return;
-                window.__novaStartDuelGameLock = duelKey;
-                startDuelGame(d);
-            }).catch(function () {});
+    const gameStartedFn = function (snapshot) {
+        if (snapshot.val() !== true) return;
+        if (window.__duelSelectionCountdownInterval) {
+            clearInterval(window.__duelSelectionCountdownInterval);
+            window.__duelSelectionCountdownInterval = null;
         }
+        const ce = document.getElementById('duelCountdown');
+        if (ce) ce.style.display = 'none';
+        if (window.__novaStartDuelGameLock === duelKey) {
+            try {
+                const ge = document.getElementById('duel-game-screen');
+                if (ge && getComputedStyle(ge).display !== 'none') return;
+            } catch (_) {}
+            window.__novaStartDuelGameLock = null;
+        }
+        window.__novaStartDuelGameLock = duelKey;
+        duelGameStarted = true;
+        novaBuildDuelStartData(duelRef).then(function (d) {
+            if (!d) return;
+            try { if (typeof hideWaitOverlay === 'function') hideWaitOverlay(); } catch (_) {}
+            if (window.__novaDuelPrepBlocking) {
+                window.__novaQueuedDuelStart = d;
+                return;
+            }
+            if (window.__novaStartDuelGameLock === duelKey) return;
+            window.__novaStartDuelGameLock = duelKey;
+            startDuelGame(d);
+        }).catch(function () {});
+    };
+    gameStartedRef.off('value', window.__novaDuelGameStartedFn);
+    gameStartedRef.on('value', gameStartedFn);
+    window.__novaDuelGameStartedRef = gameStartedRef;
+    window.__novaDuelGameStartedFn = gameStartedFn;
+    novaDuelTrackUnsub(function () {
+        try { gameStartedRef.off('value', gameStartedFn); } catch (_) {}
     });
 
-    duelRef.once('value').then(initialSnap => {
-        if (initialSnap.exists()) {
-            const initialData = initialSnap.val();
-            inviterId = initialData.inviter.studentId;
-            inviterClassId = initialData.inviter.classId;
-            invitedId = initialData.invited.studentId;
-            invitedClassId = initialData.invited.classId;
+    Promise.all([
+        duelRef.child('inviter').once('value'),
+        duelRef.child('invited').once('value'),
+        duelRef.child('selections').once('value')
+    ]).then(function (parts) {
+        const invSnap = parts[0];
+        const inSnap = parts[1];
+        const selSnap = parts[2];
+        if (!invSnap.exists() && !inSnap.exists()) return;
+        const initialData = {
+            inviter: invSnap.exists() ? (invSnap.val() || {}) : {},
+            invited: inSnap.exists() ? (inSnap.val() || {}) : {},
+            selections: selSnap.exists() ? (selSnap.val() || {}) : {}
+        };
+        inviterId = initialData.inviter.studentId;
+        inviterClassId = initialData.inviter.classId;
+        invitedId = initialData.invited.studentId;
+        invitedClassId = initialData.invited.classId;
+        window.__novaDuelPartyIds = {
+            inviterId: inviterId,
+            inviterClassId: inviterClassId,
+            invitedId: invitedId,
+            invitedClassId: invitedClassId
+        };
+        window.__currentDuelData = initialData;
+        novaRefreshDuelMetaUi(duelKey, initialData);
 
             if (!isInviter) {
                 const ce = document.getElementById('duelCountdown');
@@ -8085,34 +8340,6 @@ function switchToDuelScreen(duelKey) {
                             if (isInviter) {
                                 fetchLessons(classId, duelSubjectSelect);
                                 autoSelectDuelSelections();
-                            } else {
-                                currentDuelRef.child('selections').off('value');
-                                let lastSelectionDigest = '';
-                                currentDuelRef.child('selections').on('value', async selectionsSnapshot => {
-                                    const sv = selectionsSnapshot.val() || {};
-                                    const digest = `${classId}|${sv.subject||''}|${sv.topic||''}`;
-                                    if (digest === lastSelectionDigest) return;
-                                    lastSelectionDigest = digest;
-                                    console.log("Selections changed:", sv);
-                                    if (selectionsSnapshot.exists() && sv.subject) {
-                                        if (duelSubjectSelect.value !== sv.subject) {
-                                            await fetchLessons(classId, duelSubjectSelect);
-                                            duelSubjectSelect.value = sv.subject;
-                                        }
-
-                                        if (sv.topic) {
-                                            if (duelTopicSelect.value !== sv.topic) {
-                                                await fetchTopics(classId, sv.subject, duelTopicSelect);
-                                                duelTopicSelect.value = sv.topic;
-                                            }
-                                        } else {
-                                            duelTopicSelect.value = "";
-                                        }
-                                    } else {
-                                        duelSubjectSelect.value = "";
-                                        duelTopicSelect.value = "";
-                                    }
-                                });
                             }
                         });
                     }).catch(function(e){ console.warn('Düello sınıf eşlemesi (headings) okunamadı:', e); });
@@ -8128,7 +8355,6 @@ function switchToDuelScreen(duelKey) {
         const selectingStudentBanner = document.getElementById('selecting-student-banner');
         selectingStudentBanner.textContent = `Düello Başlıyor`;
         selectingStudentBanner.style.display = 'block';
-    }
 });
 
     if (isInviter && window.__novaDuelDisconnectKey !== duelKey) {
@@ -8146,6 +8372,27 @@ function switchToDuelScreen(duelKey) {
 
 
 
+
+
+    novaAttachOptimizedDuelListeners(duelRef, duelKey);
+
+    const hiddenPlayButton = document.createElement('button');
+    hiddenPlayButton.style.display = 'none';
+    hiddenPlayButton.id = 'hiddenPlayButton';
+    duelSelectionScreen.appendChild(hiddenPlayButton);
+
+    hiddenPlayButton.addEventListener('click', () => {
+        duelMusic.play().then(() => {
+            duelMusic.loop = true;
+        }).catch(error => {
+            console.error("Müzik çalınamadı:", error);
+        });
+    });
+
+    setTimeout(() => {
+        hiddenPlayButton.click();
+    }, 1000);
+}
 
 async function syncDuelSelections(data) {
     if (!data.selections) return;
@@ -8189,184 +8436,6 @@ async function syncDuelSelections(data) {
 
 
 
-duelRef.off('value');
-duelRef.on('value', async (snap) => {
-    if (snap.exists()) {
-        const data = snap.val();
-        data.inviter = data.inviter || {};
-        data.invited = data.invited || {};
-        data.inviter.nameFrame = data.inviter.nameFrame || 'default';
-        data.invited.nameFrame = data.invited.nameFrame || 'default';
-        try { window.__currentDuelData = data; } catch(_) {}
-        try{
-          window.__lastDuelNameFrames = {
-            inviter: { name: data.inviter.name, frame: data.inviter.nameFrame || 'default' },
-            invited: { name: data.invited.name, frame: data.invited.nameFrame || 'default' }
-          };
-        }catch(_){}
-
-        if (window.__novaDuelDigestKey !== duelKey) {
-            window.__novaDuelDigestKey = duelKey;
-            window.__novaDuelRefDigest = null;
-        }
-        const sel = data.selections || {};
-        const gCup = function (x) { return (x != null && x !== '') ? String(x) : ''; };
-        const duelUiDigest = [
-            data.gameStarted ? '1' : '0',
-            data.inviter.name || '', data.inviter.photo || '', gCup(data.inviter.gameCup),
-            data.inviter.nameFrame || '', data.inviter.avatarFrame || '',
-            data.invited.name || '', data.invited.photo || '', gCup(data.invited.gameCup),
-            data.invited.nameFrame || '', data.invited.avatarFrame || '',
-            sel.class || '', sel.subject || '', sel.topic || ''
-        ].join('\x1e');
-        const skipHeavyUi = (window.__novaDuelRefDigest === duelUiDigest);
-
-        if (!skipHeavyUi) {
-            window.__novaDuelRefDigest = duelUiDigest;
-        // Oyuncu bilgilerini güncelle
-        duelInviterPhoto.src = data.inviter.photo || "https://via.placeholder.com/80";
-        setNameWithFrame(duelInviterName, data.inviter.name, data.inviter.nameFrame || 'default');
-        duelInvitedPhoto.src = data.invited.photo || "https://via.placeholder.com/80";
-        setNameWithFrame(duelInvitedName, data.invited.name, data.invited.nameFrame || 'default');
-        try{
-          applyAvatarFrameToImage(duelInviterPhoto, data.inviter.avatarFrame || 'default');
-          applyAvatarFrameToImage(duelInvitedPhoto, data.invited.avatarFrame || 'default');
-        }catch(_){}
-
-        // Kupa değerlerini güncelle
-        const inviterInfo = document.getElementById('duel-inviter-info');
-        const invitedInfo = document.getElementById('duel-invited-info');
-
-        // Mevcut kupaları temizle
-        const existingCups = document.querySelectorAll('.duel-player-cup');
-        existingCups.forEach(cup => cup.remove());
-
-        // Yeni kupa elementlerini ekle
-        const inviterCup = document.createElement('div');
-        inviterCup.className = 'duel-player-cup';
-        inviterCup.innerHTML = `
-            <span class="cup-icon">🏆</span>
-            <span class="cup-value">${data.inviter.gameCup}</span>
-        `;
-        inviterInfo.appendChild(inviterCup);
-
-        const invitedCup = document.createElement('div');
-        invitedCup.className = 'duel-player-cup';
-        invitedCup.innerHTML = `
-            <span class="cup-icon">🏆</span>
-            <span class="cup-value">${data.invited.gameCup}</span>
-        `;
-        invitedInfo.appendChild(invitedCup);
-
-        // Select elementlerini devre dışı bırak
-        [duelClassSelect, duelSubjectSelect, duelTopicSelect].forEach(select => {
-            select.disabled = true;
-            select.style.pointerEvents = 'none';
-            select.style.cursor = 'not-allowed';
-            select.style.opacity = '0.7';
-        });
-
-        // Seçimleri senkronize et
-        if (data.selections) {
-            try {
-                // Sınıf seçimini güncelle
-                if (data.selections.class) {
-                    duelClassSelect.value = data.selections.class;
-                    
-                    // Dersleri yükle ve senkronize et
-                    const lessonsLoaded = await fetchLessons(data.selections.class, duelSubjectSelect);
-                    if (lessonsLoaded && data.selections.subject) {
-                        duelSubjectSelect.value = data.selections.subject;
-                        
-                        // Konuları yükle ve senkronize et
-                        const topicsLoaded = await fetchTopics(data.selections.class, data.selections.subject, duelTopicSelect);
-                        if (topicsLoaded && data.selections.topic) {
-                            duelTopicSelect.value = data.selections.topic;
-                        }
-                    }
-                }
-
-                // Davet edilen oyuncu için seçenekleri doldur
-                if (!isInviter) {
-                    const [classOptions, subjectOptions, topicOptions] = await Promise.all([
-                        data.selections.class ? getClassOptions() : null,
-                        data.selections.subject ? getLessonOptions(data.selections.class) : null,
-                        data.selections.topic ? getTopicOptions(data.selections.class, data.selections.subject) : null
-                    ]);
-
-                    if (classOptions) {
-                        duelClassSelect.innerHTML = classOptions;
-                        duelClassSelect.value = data.selections.class;
-                    }
-                    if (subjectOptions) {
-                        duelSubjectSelect.innerHTML = subjectOptions;
-                        duelSubjectSelect.value = data.selections.subject;
-                    }
-                    if (topicOptions) {
-                        duelTopicSelect.innerHTML = topicOptions;
-                        duelTopicSelect.value = data.selections.topic;
-                    }
-                }
-
-            } catch (error) {
-                console.error("Seçimler senkronize edilirken hata:", error);
-            }
-        }
-        }
-
-        // Oyun durumu kontrolü
-        if (data.gameStarted && Array.isArray(data.questions) && data.questions.length >= 10) {
-            if (window.__novaDuelPrepBlocking) {
-                window.__novaQueuedDuelStart = data;
-            } else if (window.__novaStartDuelGameLock !== duelKey) {
-                window.__novaStartDuelGameLock = duelKey;
-                duelGameStarted = true;
-                duelEnded = false;
-                startDuelGame(data);
-            }
-        }
-
-        // Düello başlatma butonu kontrolü
-        if (!isInviter) {
-            duelStartButton.disabled = true;
-        } else {
-            checkDuelSelections();
-        }
-
-    } else {
-        if (!duelEnded) { try { } catch(e){}
-            try {
-                const currentPlayerId = selectedStudent.studentId;
-                
-                await updateDuelScore('DISCONNECTED', {
-                    inviterId,
-                    inviterClassId,
-                    invitedId,
-                    invitedClassId,
-                    disconnectedId: currentPlayerId === inviterId ? invitedId : inviterId,
-                    disconnectedClassId: currentPlayerId === inviterId ? invitedClassId : inviterClassId
-                });
-
-                // inDuel durumlarını güncelle
-                await Promise.all([
-                    database.ref(`classes/${inviterClassId}/students/${inviterId}/inDuel`).set(false),
-                    database.ref(`classes/${invitedClassId}/students/${invitedId}/inDuel`).set(false)
-                ]);
-                await setLoggedInPlayerInDuel(false);
-
-                window.location.reload();
-
-            } catch (error) {
-                console.error("Oyun sonlandırma hatası:", error);
-                await showAlert('Oyun sonlandırılırken bir hata oluştu');
-                window.location.reload();
-            }
-        }
-    }
-});
-
-
-// Select elementleri için yardımcı fonksiyonlar
 async function getClassOptions() {
    const fetchHeadings = window.novaFetchChampionHeadingList;
    const list = novaSortClassGradeRowsLocal(
@@ -8403,24 +8472,6 @@ async function getTopicOptions(classId, lessonId) {
    return options;
 }
 
-
-    const hiddenPlayButton = document.createElement('button');
-    hiddenPlayButton.style.display = 'none';
-    hiddenPlayButton.id = 'hiddenPlayButton';
-    duelSelectionScreen.appendChild(hiddenPlayButton);
-
-    hiddenPlayButton.addEventListener('click', () => {
-        duelMusic.play().then(() => {
-            duelMusic.loop = true;
-        }).catch(error => {
-            console.error("Müzik çalınamadı:", error);
-        });
-    });
-
-    setTimeout(() => {
-        hiddenPlayButton.click();
-    }, 1000);
-}
 
       function resetDuelGameState() {
             duelQuestionNumber.textContent = 'Soru 1/10';
@@ -8823,8 +8874,6 @@ async function updateDuelSelection(field, value) {
                 } catch (_) {}
             }
 
-            listenToResponses();
-
             // Düello oyunu başladığında arka plan müziğini çal
             duelMusic.currentTime = 0;
             duelMusic.play().then(() => {
@@ -8969,7 +9018,10 @@ async function updateDuelSelection(field, value) {
 
     resetDuelTimer();
     startDuelTimer();
-    currentDuelRef.child('responses').child(duelCurrentQuestionIndex).remove();
+    const qIdx = String(duelCurrentQuestionIndex);
+    currentDuelRef.child('responses').child(qIdx).remove().finally(function () {
+        listenToResponses();
+    });
 }
 
 
@@ -9013,80 +9065,108 @@ function duelSelectOption(e) {
     if (!selectedButton || !selectedButton.classList.contains('option-button')) return;
     const chosenOptionText = selectedButton.textContent.trim();
     const isCorrect = selectedButton.dataset.correct === 'true';
-    const playerId = selectedStudent.studentId;
+    const playerId = String(selectedStudent.studentId);
 
     novaLockAllDuelOptions(selectedButton);
     duelOptionsContainer.classList.add('nova-duel-waiting-opponent');
 
-    currentDuelRef.child('responses').child(duelCurrentQuestionIndex).child(playerId).set({
+    currentDuelRef.child('responses').child(String(duelCurrentQuestionIndex)).child(playerId).set({
         chosen: chosenOptionText,
         correct: isCorrect
     });
 }
 
+function novaCountDuelAnswersForRow(row) {
+    if (!row || typeof row !== 'object') return 0;
+    const memo = window.__currentDuelData;
+    if (memo && memo.inviter && memo.invited) {
+        let n = 0;
+        const invId = String(memo.inviter.studentId);
+        const inId = String(memo.invited.studentId);
+        if (row[invId]) n++;
+        if (row[inId]) n++;
+        return n;
+    }
+    return Object.keys(row).length;
+}
+
 function listenToResponses() {
-    currentDuelRef.child('responses').off('value');
-    currentDuelRef.child('responses').on('value', snap => {
-        if (snap.exists()) {
-            const data = snap.val();
-            const answeredCount = Object.keys(data[duelCurrentQuestionIndex] || {}).length;
-            if (answeredCount >= 2) {
-                try {
-                    const memo = (window.__currentDuelData && window.__currentDuelData.inviter && window.__currentDuelData.invited)
-                      ? window.__currentDuelData
-                      : null;
-                    if (memo) {
-                        const inviterId = memo.inviter.studentId;
-                        const invitedId = memo.invited.studentId;
-                        let invTotal = 0;
-                        let inTotal = 0;
-                        Object.keys(data || {}).forEach((qk)=>{
-                            const row = data[qk] || {};
-                            if (row[inviterId] && row[inviterId].correct === true) {
-                                invTotal += window.NovaDuelPointsPerCorrect || 10;
-                            }
-                            if (row[invitedId] && row[invitedId].correct === true) {
-                                inTotal += window.NovaDuelPointsPerCorrect || 10;
-                            }
-                        });
-                        if (invTotal > duelLiveInviterCorrect) {
-                            inviterCorrectCountEl.classList.add('score-flash');
-                            showScoreIncrementEffect(inviterCorrectCountEl);
-                            setTimeout(()=>inviterCorrectCountEl.classList.remove('score-flash'), 600);
-                        }
-                        if (inTotal > duelLiveInvitedCorrect) {
-                            invitedCorrectCountEl.classList.add('score-flash');
-                            showScoreIncrementEffect(invitedCorrectCountEl);
-                            setTimeout(()=>invitedCorrectCountEl.classList.remove('score-flash'), 600);
-                        }
-                        const oldInv = duelLiveInviterCorrect;
-                        const oldIn = duelLiveInvitedCorrect;
-                        duelLiveInviterCorrect = invTotal;
-                        duelLiveInvitedCorrect = inTotal;
-                        inviterCorrectCountEl.textContent = String(invTotal);
-                        invitedCorrectCountEl.textContent = String(inTotal);
-                        try{ novaUpdateDuelHud(invTotal, inTotal, oldInv, oldIn); }catch(_){}
+    if (typeof window.__novaDuelResponsesUnsub === 'function') {
+        try { window.__novaDuelResponsesUnsub(); } catch (_) {}
+        window.__novaDuelResponsesUnsub = null;
+    }
+    if (!currentDuelRef) return;
+    const idx = String(duelCurrentQuestionIndex);
+    const qRef = currentDuelRef.child('responses').child(idx);
+
+    function processRow(row) {
+        if (!row || typeof row !== 'object') return;
+        const answeredCount = novaCountDuelAnswersForRow(row);
+        if (answeredCount >= 2) {
+            try {
+                const memo = (window.__currentDuelData && window.__currentDuelData.inviter && window.__currentDuelData.invited)
+                  ? window.__currentDuelData
+                  : null;
+                if (memo) {
+                    const inviterId = String(memo.inviter.studentId);
+                    const invitedId = String(memo.invited.studentId);
+                    let invTotal = duelLiveInviterCorrect;
+                    let inTotal = duelLiveInvitedCorrect;
+                    if (row[inviterId] && row[inviterId].correct === true) {
+                        invTotal += window.NovaDuelPointsPerCorrect || 10;
                     }
-                } catch(_){}
-            }
-            if (answeredCount === 1 && !duelQuestionLocked) {
-                const myId = String(selectedStudent.studentId);
-                const row = data[duelCurrentQuestionIndex] || {};
-                if (row[myId]) {
-                    novaLockAllDuelOptions(
-                        duelOptionsContainer.querySelector('.option-button.option-chosen')
-                    );
-                    duelOptionsContainer.classList.add('nova-duel-waiting-opponent');
+                    if (row[invitedId] && row[invitedId].correct === true) {
+                        inTotal += window.NovaDuelPointsPerCorrect || 10;
+                    }
+                    if (invTotal > duelLiveInviterCorrect) {
+                        inviterCorrectCountEl.classList.add('score-flash');
+                        showScoreIncrementEffect(inviterCorrectCountEl);
+                        setTimeout(()=>inviterCorrectCountEl.classList.remove('score-flash'), 600);
+                    }
+                    if (inTotal > duelLiveInvitedCorrect) {
+                        invitedCorrectCountEl.classList.add('score-flash');
+                        showScoreIncrementEffect(invitedCorrectCountEl);
+                        setTimeout(()=>invitedCorrectCountEl.classList.remove('score-flash'), 600);
+                    }
+                    const oldInv = duelLiveInviterCorrect;
+                    const oldIn = duelLiveInvitedCorrect;
+                    duelLiveInviterCorrect = invTotal;
+                    duelLiveInvitedCorrect = inTotal;
+                    inviterCorrectCountEl.textContent = String(invTotal);
+                    invitedCorrectCountEl.textContent = String(inTotal);
+                    try{ novaUpdateDuelHud(invTotal, inTotal, oldInv, oldIn); }catch(_){}
                 }
-            }
-            if (answeredCount >= 2 && !duelQuestionLocked) {
-                duelQuestionLocked = true;
-                clearInterval(duelTimer);
-                duelOptionsContainer.classList.remove('nova-duel-waiting-opponent');
-                revealDuelAnswerAfterTimeout();
+            } catch(_){}
+        }
+        if (answeredCount === 1 && !duelQuestionLocked) {
+            const myId = String(selectedStudent.studentId);
+            if (row[myId]) {
+                novaLockAllDuelOptions(
+                    duelOptionsContainer.querySelector('.option-button.option-chosen')
+                );
+                duelOptionsContainer.classList.add('nova-duel-waiting-opponent');
             }
         }
-    });
+        if (answeredCount >= 2 && !duelQuestionLocked) {
+            duelQuestionLocked = true;
+            clearInterval(duelTimer);
+            duelOptionsContainer.classList.remove('nova-duel-waiting-opponent');
+            revealDuelAnswerAfterTimeout();
+        }
+    }
+
+    const handler = snap => {
+        if (!snap.exists()) return;
+        processRow(snap.val() || {});
+    };
+    qRef.on('value', handler);
+    window.__novaDuelResponsesUnsub = function () {
+        try { qRef.off('value', handler); } catch (_) {}
+    };
+    /* İlk snapshot + remove().finally sonrası geç gelen cevaplar için yedek kontrol */
+    qRef.once('value').then(function (snap) {
+        if (snap.exists()) processRow(snap.val() || {});
+    }).catch(function () {});
 }
 
         // Yeni +1 Efekti Fonksiyonu
@@ -9113,7 +9193,7 @@ function listenToResponses() {
         }
 
         function revealDuelAnswer() {
-            currentDuelRef.child('responses').child(duelCurrentQuestionIndex).once('value').then(resSnap => {
+            currentDuelRef.child('responses').child(String(duelCurrentQuestionIndex)).once('value').then(resSnap => {
                 const responses = resSnap.val() || {};
                 const useDuelData = (ddata) => {
                     if (!ddata || !ddata.inviter || !ddata.invited) return;
@@ -9218,8 +9298,7 @@ function listenToResponses() {
         }
 
 function endDuelGame() {
-    currentDuelRef.off('value');
-    currentDuelRef.child('responses').off('value');
+    if (typeof novaDuelTeardownListeners === 'function') novaDuelTeardownListeners();
 
     window.__novaDuelNoConfetti = true;
     try {
@@ -9512,14 +9591,27 @@ if (winnerId && loserId) {
 
         duelEnded = true;
     };
-    const memo = (window.__currentDuelData && window.__currentDuelData.inviter && window.__currentDuelData.invited) ? window.__currentDuelData : null;
-    if (memo) {
-      useEndDuelData(memo);
-    } else {
-      currentDuelRef.once('value').then(async (dSnap) => {
-        useEndDuelData(dSnap.val() || {});
-      });
-    }
+    (async function () {
+        let ddata = (window.__currentDuelData && window.__currentDuelData.inviter && window.__currentDuelData.invited)
+            ? Object.assign({}, window.__currentDuelData)
+            : null;
+        if (currentDuelRef) {
+            try {
+                const parts = await Promise.all([
+                    currentDuelRef.child('inviter').once('value'),
+                    currentDuelRef.child('invited').once('value'),
+                    currentDuelRef.child('responses').once('value')
+                ]);
+                ddata = ddata || {};
+                if (parts[0].exists()) ddata.inviter = parts[0].val();
+                if (parts[1].exists()) ddata.invited = parts[1].val();
+                ddata.responses = parts[2].exists() ? (parts[2].val() || {}) : {};
+            } catch (_) {}
+        }
+        if (ddata && ddata.inviter && ddata.invited) {
+            useEndDuelData(ddata);
+        }
+    })();
 }
 
         // Fetch and display gameCup for the logged-in student

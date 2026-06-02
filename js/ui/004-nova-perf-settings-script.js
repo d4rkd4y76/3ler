@@ -196,6 +196,17 @@
     updatePerfCssVars(mode, 1);
     applyBodyScale(1);
   }
+  function novaPerfBeforeMainScreen(){
+    ensureHighResScopeMarkers();
+    ensureSinglePlayerScopeMarkers();
+    ensureFullscreenScopeMarkers();
+    const mode = window.__novaPerfMode || getDefaultMode();
+    lastRuntimeKey = '';
+    document.body.classList.remove('nova-perf-hq-active', 'nova-perf-sp-medium-active', 'nova-perf-duel-medium-active');
+    const scale = modeScale(mode);
+    updatePerfCssVars(mode, scale);
+    applyBodyScale(scale);
+  }
   function schedulePerfSync(){
     if (syncTimer) return;
     syncTimer = setTimeout(function(){
@@ -343,6 +354,7 @@
     schedulePerfSync();
   }
   window.novaPerfBeforeGameScreen = novaPerfBeforeGameScreen;
+  window.novaPerfBeforeMainScreen = novaPerfBeforeMainScreen;
   window.novaSyncPerfRuntime = function(){
     lastRuntimeKey = '';
     ensureHighResScopeMarkers();

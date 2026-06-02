@@ -310,7 +310,7 @@
     }
     document.body.style.overflow = '';
     dailyState = null;
-    try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
+    try{ if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen(); }catch(_){}
   }
 
   function runDpWinFx(totalReward, rewardMul){

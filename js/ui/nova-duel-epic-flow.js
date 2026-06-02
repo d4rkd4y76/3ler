@@ -84,22 +84,8 @@
   }
 
   window.novaEpicStartGameWatcher = function novaEpicStartGameWatcher(duelKey) {
-    if (!window.database || !duelKey) return;
     stopEpicGameWatcher();
-    var ref = window.database.ref('duels/' + duelKey);
-    var handler = function (snap) {
-      if (!snap.exists()) return;
-      tryLaunchDuelGame(snap.val() || {});
-    };
-    ref.on('value', handler);
-    window.__novaEpicGameWatchUnsub = function () {
-      try {
-        ref.off('value', handler);
-      } catch (_) {}
-    };
-    ref.once('value').then(function (s) {
-      if (s.exists()) tryLaunchDuelGame(s.val() || {});
-    }).catch(function () {});
+    /* gameStarted dinleyicisi switchToDuelScreen / novaBuildDuelStartData ile kurulur (RTDB optimizasyonu). */
   };
 
   async function amDuelInviter(duelKey) {

@@ -106,9 +106,6 @@ async function novaEnterDuelWithSyncDelay(duelKey, duelData) {
       }
 
       switchToDuelScreen(duelKey);
-      if (typeof window.novaEpicStartGameWatcher === 'function') {
-         window.novaEpicStartGameWatcher(duelKey);
-      }
 
       if (typeof window.novaEpicRunPrepCountdown === 'function') {
          await window.novaEpicRunPrepCountdown(duelKey, duelData);
@@ -136,6 +133,22 @@ function stopAutoMatchCoordinator() {
       clearInterval(window.__autoMatchEnqueueInterval);
       window.__autoMatchEnqueueInterval = null;
    }
+}
+
+if (!window.__novaMatchVisibilityBound) {
+   document.addEventListener('visibilitychange', function () {
+      try {
+         if (document.hidden) {
+            stopAutoMatchCoordinator();
+            return;
+         }
+         var mm = document.getElementById('matchmakingScreen');
+         if (mm && mm.style.display === 'flex' && typeof startAutoMatchCoordinator === 'function') {
+            startAutoMatchCoordinator();
+         }
+      } catch (_) {}
+   });
+   window.__novaMatchVisibilityBound = true;
 }
 
 function buildAutoMatchPoolPayload() {
@@ -617,6 +630,9 @@ document.getElementById('findDuelButton').addEventListener('click', async () => 
 
 function showMatchmakingScreen() {
    const matchmakingScreen = document.getElementById('matchmakingScreen');
+   try {
+      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('matchmakingScreen');
+   } catch (_) {}
    matchmakingScreen.style.display = 'flex';
    novaAutoMatchUiReset();
    startAutoMatchCoordinator();
@@ -685,6 +701,9 @@ function cleanupMatchmakingListeners() {
 document.getElementById('cancelSearchButton').addEventListener('click', () => {
    const matchmakingScreen = document.getElementById('matchmakingScreen');
    matchmakingScreen.style.display = 'none';
+   try {
+      if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
+   } catch (_) {}
    mainScreen.style.removeProperty('display');
    removeSelfFromAutoMatchPool();
    database.ref(`matchmaking/${selectedStudent.classId}/${selectedStudent.studentId}`).remove();
@@ -1007,9 +1026,8 @@ async function getSeriesAvatarFrameUnlockState(userData){
 
 async function claimSeriesAvatarFrame(item){
   try{
+    const userData = (await getStoreStudentData(true)) || {};
     const studentRef = database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`);
-    const snap = await studentRef.once('value');
-    const userData = snap.exists() ? (snap.val() || {}) : {};
     const seriesState = await getSeriesAvatarFrameUnlockState(userData);
     const unlock = seriesState[item.id] || { done:false };
     if (!unlock.done){
@@ -1219,8 +1237,15 @@ async function getStoreStudentData(force = false){
   if (!force && __storeStudentCache.key === key && __storeStudentCache.data && (now - __storeStudentCache.ts) < 6000){
     return __storeStudentCache.data;
   }
-  const snap = await database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`).once('value');
-  const data = snap.exists() ? (snap.val() || {}) : {};
+  const base = `classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`;
+  const fields = ['diamond', 'duelCredits', 'gameCup', 'photo', 'nameFrame', 'avatarFrame', 'battleHero', 'purchasedPhotos', 'purchasedAvatarFrames', 'purchasedBattleHeroes', 'heroLevel'];
+  const snaps = await Promise.all(fields.map(function (f) {
+    return database.ref(base + '/' + f).once('value');
+  }));
+  const data = {};
+  fields.forEach(function (f, i) {
+    if (snaps[i].exists()) data[f] = snaps[i].val();
+  });
   __storeStudentCache = { key, ts: now, data };
   return data;
 }
@@ -1589,8 +1614,8 @@ async function useAvatarFrame(frameId){
     try { if (loggedinPlayerRef) await loggedinPlayerRef.update({ avatarFrame: selectedStudent.avatarFrame }); } catch(_){}
     const storeCat = (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || '';
     if (storeCat === '__avatarFrames') {
-      const snap = await studentRef.once('value');
-      await renderAvatarFrameStore(snap.val() || {}, document.getElementById('profilePhotosContainer'));
+      const userData = (await getStoreStudentData(true)) || {};
+      await renderAvatarFrameStore(userData, document.getElementById('profilePhotosContainer'));
     }
     try { await novaRefreshCharacterInventoryIfOpen(); } catch (_) {}
     await showAlert('✨ Avatar çerçevesi uygulandı!');
@@ -2710,6 +2735,8 @@ function novaSyncMainScreenScrollLock(){
   try{
     const root = document.documentElement;
     const mainVisible = novaIsElementVisibleById('main-screen');
+    document.body.classList.toggle('nova-main-screen-visible', mainVisible);
+    root.classList.toggle('nova-main-screen-visible', mainVisible);
     if (!mainVisible){
       root.classList.remove('nova-lock-main-scroll');
       document.body.classList.remove('nova-lock-main-scroll');

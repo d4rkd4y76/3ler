@@ -13,6 +13,9 @@
   function novaCloseSinglePlayerSelectScreen() {
     var sp = getEl('single-player-screen');
     var main = getEl('main-screen');
+    try {
+      if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
+    } catch (_) {}
     document.body.classList.remove('nova-sp-screen-open');
     if (!document.body.classList.contains('nova-sp-game-open')) {
       try {
@@ -33,6 +36,9 @@
     var sp = getEl('single-player-screen');
     var main = getEl('main-screen');
     var student = getEl('student-selection-screen');
+    try {
+      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-screen');
+    } catch (_) {}
     document.body.classList.add('nova-sp-screen-open');
     try {
       document.body.style.overflow = 'hidden';
@@ -63,6 +69,9 @@
   function novaOpenSinglePlayerGameScreen() {
     var game = getEl('single-player-game-screen');
     var main = getEl('main-screen');
+    try {
+      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-game-screen');
+    } catch (_) {}
     document.body.classList.remove('nova-sp-screen-open');
     document.body.classList.add('nova-sp-game-open');
     try {
@@ -80,9 +89,15 @@
     }
   }
 
-  function novaCloseSinglePlayerGameScreen() {
+  function novaCloseSinglePlayerGameScreen(opts) {
+    var showMain = !opts || opts.showMain !== false;
     var game = getEl('single-player-game-screen');
     var main = getEl('main-screen');
+    if (showMain) {
+      try {
+        if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
+      } catch (_) {}
+    }
     document.body.classList.remove('nova-sp-game-open');
     try {
       document.body.style.overflow = '';
@@ -92,7 +107,7 @@
       game.classList.remove('nova-sp-game-visible');
       game.setAttribute('aria-hidden', 'true');
     }
-    if (main) main.style.removeProperty('display');
+    if (main && showMain) main.style.removeProperty('display');
   }
 
   window.novaOpenSinglePlayerSelectScreen = novaOpenSinglePlayerSelectScreen;

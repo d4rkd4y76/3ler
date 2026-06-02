@@ -3,10 +3,26 @@
   var MAX_LEVEL = 4;
   var Z_OVERLAY = 101200;
 
+  /** Test: seviye yükseltme 1 elmas + 1 düello kredisi (prod öncesi kapat) */
+  var NOVA_TEST_HERO_ECONOMY = true;
+  try {
+    if (typeof window.NOVA_TEST_HERO_ECONOMY === 'boolean') {
+      NOVA_TEST_HERO_ECONOMY = window.NOVA_TEST_HERO_ECONOMY;
+    } else {
+      window.NOVA_TEST_HERO_ECONOMY = NOVA_TEST_HERO_ECONOMY;
+    }
+  } catch (_) {}
+
   var UPGRADE_COSTS = {
     2: { diamonds: 5000, duelCredits: 1000 },
     3: { diamonds: 5000, duelCredits: 2000 },
     4: { diamonds: 5000, duelCredits: 2500 }
+  };
+
+  var UPGRADE_COSTS_TEST = {
+    2: { diamonds: 1, duelCredits: 1 },
+    3: { diamonds: 1, duelCredits: 1 },
+    4: { diamonds: 1, duelCredits: 1 }
   };
 
   var UPGRADE_CHANCE = {
@@ -243,6 +259,9 @@
   }
 
   function getUpgradeCost(targetLevel) {
+    if (NOVA_TEST_HERO_ECONOMY) {
+      return UPGRADE_COSTS_TEST[targetLevel] || null;
+    }
     return UPGRADE_COSTS[targetLevel] || null;
   }
 

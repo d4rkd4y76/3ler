@@ -37,8 +37,12 @@
       window.novaHideSinglePlayerSelectForGame();
     }
     if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
-      window.novaCloseSinglePlayerGameScreen();
+      window.novaCloseSinglePlayerGameScreen({ showMain: false });
     }
+
+    try {
+      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-selection-screen');
+    } catch (_) {}
 
     if (duel) {
       moveToBody(duel);
@@ -59,7 +63,6 @@
     }
 
     try {
-      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-selection-screen');
       if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime();
     } catch (_) {}
   }
@@ -130,6 +133,10 @@
       mm.classList.remove('nova-duel-mm-visible');
     }
 
+    try {
+      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-game-screen');
+    } catch (_) {}
+
     if (game) {
       moveToBody(game);
       game.classList.add('nova-duel-game-visible');
@@ -148,7 +155,6 @@
     }
 
     try {
-      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-game-screen');
       if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime();
     } catch (_) {}
 
@@ -163,6 +169,10 @@
     var duelSel = getEl('duel-selection-screen');
     var game = getEl('duel-game-screen');
     var main = getEl('main-screen');
+
+    try {
+      if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
+    } catch (_) {}
 
     document.body.classList.remove('nova-duel-select-open', 'nova-duel-game-open');
     try {

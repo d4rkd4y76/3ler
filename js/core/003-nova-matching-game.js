@@ -537,7 +537,7 @@
       const el = document.getElementById('match-screen');
       if (el) el.style.display = 'none';
       document.body.style.overflow = '';
-      try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
+      try{ if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen(); }catch(_){}
     });
     document.getElementById('match_check_btn').addEventListener('click', function(){ checkMatching().catch(function(e){ console.warn(e); }); });
     window.addEventListener('resize', function(){ requestAnimationFrame(drawLines); });

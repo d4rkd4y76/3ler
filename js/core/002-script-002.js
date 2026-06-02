@@ -183,7 +183,7 @@
     closeBtn.onclick = () => {
       screen.style.display='none';
       document.body.style.overflow='';
-      try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
+      try{ if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen(); }catch(_){}
     };
 
     let answeredOnce = false;

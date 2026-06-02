@@ -1,5 +1,14 @@
 /* Savaş kahramanları — mağaza, ana ekran, tek kişilik doğru cevap FX */
 (function () {
+  /** Test: tüm kahraman satın alma fiyatı 1 elmas (prod öncesi kapat) */
+  var NOVA_TEST_HERO_ECONOMY = true;
+  try { window.NOVA_TEST_HERO_ECONOMY = NOVA_TEST_HERO_ECONOMY; } catch (_) {}
+
+  function heroPurchaseCost(raw) {
+    if (NOVA_TEST_HERO_ECONOMY) return 1;
+    return Math.max(0, Number(raw) || 0);
+  }
+
   var HERO_REGISTRY = {
     blaze_robot: {
       id: 'blaze_robot',
@@ -729,7 +738,7 @@
       return {
         id: h.id,
         name: h.name,
-        price: h.price,
+        price: heroPurchaseCost(h.price),
         desc: h.desc,
         order: h.order,
         theme: h.theme
@@ -754,7 +763,7 @@
           merged[k] = {
             id: k,
             name: String(row.name || (local && local.name) || k),
-            price: Math.max(0, Number(row.price) || (local && local.price) || 0),
+            price: heroPurchaseCost(Number(row.price) || (local && local.price) || 0),
             desc: String(row.desc || (local && local.desc) || ''),
             order: Number(row.order) || (local && local.order) || 1e9,
             theme: (local && local.theme) || 'blaze'
@@ -768,6 +777,10 @@
       .filter(function (h) {
         var loc = HERO_REGISTRY[h.id];
         return !!loc && isSpriteHeroDef(loc);
+      })
+      .map(function (h) {
+        h.price = heroPurchaseCost(h.price);
+        return h;
       })
       .sort(function (a, b) { return a.order - b.order; });
     return heroCatalogCache;
@@ -1438,7 +1451,7 @@
     var owned = ownsHero(userData, hero.id);
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
-    var cost = Number(hero.price) || def.price;
+    var cost = heroPurchaseCost(Number(hero.price) || def.price);
     var epic = isEpicStoreHero(hero);
     var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
     var name = hero.name || def.name;
@@ -1529,7 +1542,7 @@
       return false;
     }
     var heroId = hero.id;
-    var cost = Number(hero.price) || def.price;
+    var cost = heroPurchaseCost(Number(hero.price) || def.price);
     var heroName = hero.name || def.name;
     try {
       var ref = database.ref('classes/' + s.classId + '/students/' + s.studentId);
@@ -1611,7 +1624,7 @@
     var owned = ownsHero(userData, hero.id);
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
-    var cost = Number(hero.price) || def.price;
+    var cost = heroPurchaseCost(Number(hero.price) || def.price);
     var epic = isEpicStoreHero(hero);
     var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
     var heroName = hero.name || def.name;

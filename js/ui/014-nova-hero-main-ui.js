@@ -129,9 +129,15 @@
           var heroId = s && s.battleHero ? String(s.battleHero).trim() : '';
           if (s && s.classId && s.studentId && heroId) {
             window.__novaMainHeroLevelFetchInFlight = true;
-            database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value')
-              .then(function (snap) {
-                var data = snap.val() || {};
+            var base = 'classes/' + s.classId + '/students/' + s.studentId;
+            Promise.all([
+              database.ref(base + '/battleHero').once('value'),
+              database.ref(base + '/purchasedBattleHeroes').once('value')
+            ]).then(function (parts) {
+                var data = {
+                  battleHero: parts[0].exists() ? parts[0].val() : '',
+                  purchasedBattleHeroes: parts[1].exists() ? (parts[1].val() || {}) : {}
+                };
                 var l2 = 0;
                 try {
                   if (window.NOVA_HERO_LEVEL) {
@@ -285,8 +291,15 @@
     var lvl = getHeroLevel();
     if (lvl < 1 && s && s.classId && s.studentId && typeof database !== 'undefined') {
       try {
-        var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
-        var data = snap.val() || {};
+        var base = 'classes/' + s.classId + '/students/' + s.studentId;
+        var parts = await Promise.all([
+          database.ref(base + '/battleHero').once('value'),
+          database.ref(base + '/purchasedBattleHeroes').once('value')
+        ]);
+        var data = {
+          battleHero: parts[0].exists() ? parts[0].val() : '',
+          purchasedBattleHeroes: parts[1].exists() ? (parts[1].val() || {}) : {}
+        };
         if (window.NOVA_HERO_LEVEL) lvl = window.NOVA_HERO_LEVEL.getEquippedHeroLevel(data);
       } catch (_) { /* ignore */ }
     }
