@@ -19,28 +19,6 @@
   html, body { background: #020611 !important; animation: none !important; }
   html, body { --nova-perf-scale: 1 !important; --nova-perf-counter-zoom: 1 !important; }
 </style>
-<script>
-(function(){
-  try{
-    var m=localStorage.getItem('novaPerfMode');
-    if(m==='performance')m='ultra';
-    if(!m){
-      var phone=window.matchMedia&&window.matchMedia('(max-width:768px),(max-width:1024px) and (hover:none) and (pointer:coarse)').matches;
-      if(phone||(window.innerWidth||0)<=768)m='ultra';
-    }
-    if(m==='ultra'&&document.documentElement){
-      document.documentElement.classList.add('nova-perf-ultra-early');
-    }
-  }catch(_){}
-})();
-</script>
-<style>
-  html.nova-perf-ultra-early body{
-    zoom:1!important;
-    transform:none!important;
-    width:100%!important;
-  }
-</style>
 <title>Düellox</title>
 <!-- Comfortaa Font -->
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -96,7 +74,7 @@
 
 <script src="js/core/002-script-002.js?v=20260527hero_retry1"></script>
 <script src="js/core/003-nova-matching-game.js?v=20260527hero_retry1"></script>
-<link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=20260602nozoom1" />
+<link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=20260602nozoom2" />
 <script src="js/core/005-nova-daily-puzzle.js?v=20260527hero_retry1"></script>
 <script src="js/core/006-script-006.js"></script>
 
@@ -255,7 +233,7 @@
 </div>
 </div>
 </div>
-<div class="main-screen-top-bar nova-main-top-dock" id="main-screen-top-bar">
+<div class="main-screen-top-bar" id="main-screen-top-bar">
 <div class="main-screen-odev-anchor" id="main-screen-odev-slot">
 <button type="button" class="nova-character-chip" id="nova_character_open_btn" aria-label="Karakter sandığı — avatarlar ve çerçeveler">
 <span class="char-chip-ring" aria-hidden="true"></span>
@@ -1188,7 +1166,7 @@
 
 <script src="js/features/046-nova-move-homework-above-photo.js?v=20260602tools1"></script>
 <script src="js/features/047-nova-bonus-drawer.js?v=20260602bonus1"></script>
-<script src="js/ui/004-nova-perf-settings-script.js?v=20260602nozoom1"></script>
+<script src="js/ui/004-nova-perf-settings-script.js?v=20260602nozoom2"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
 <script src="js/screens/047-script-047.js"></script>
@@ -1309,7 +1287,7 @@
 <link rel="stylesheet" href="styles/071-nova-hero-sp-reveal.css?v=20260526heroreveal1" />
 <link rel="stylesheet" href="styles/072-nova-hero-main-sheet.css?v=20260601tasv2" />
 <link rel="stylesheet" href="styles/073-nova-store-layout-fix.css?v=20260526storefix1" />
-<link rel="stylesheet" href="styles/085-nova-fullscreen-overlays-perf.css?v=20260602nozoom1" />
+<link rel="stylesheet" href="styles/085-nova-fullscreen-overlays-perf.css?v=20260602nozoom2" />
 <link rel="stylesheet" href="styles/086-nova-hero-sp-speech-panel.css?v=20260529buz2" />
 <link rel="stylesheet" href="styles/087-nova-hero-arena-screen-fx.css?v=20260529buz2" />
 <link rel="stylesheet" href="styles/075-nova-league-badges.css?v=20260526rank3" />
@@ -1389,8 +1367,7 @@
 <link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=20260602framefit1" />
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=20260602nozoom1" />
 <link rel="stylesheet" href="styles/107-nova-main-hud-frame-fit.css?v=20260602framefit1" />
-<link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=20260602nozoom1" />
-<link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=20260602topdock1" />
+<link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=20260602nozoom2" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=20260602adminfoot1" />
 <style id="nova-login-final-override">
 #student-selection-screen.nova-kids-login .card{

@@ -51,10 +51,4 @@ body.nova-main-screen-visible #main-screen.container {
     justify-content: flex-start !important;
   }
 
-  /* Akıcı mod: body zoom sonrası da viewport'u doldur */
-  body.nova-main-screen-visible #main-screen {
-    width: 100% !important;
-    min-height: 100dvh !important;
-    min-height: 100svh !important;
-  }
 }

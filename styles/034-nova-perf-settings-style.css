@@ -256,7 +256,7 @@
   .nova-perf-option-title{ font-size:.88rem; }
 }
 
-/* —— Performans modları: sabit ölçek (counter-zoom / body zoom kaldırıldı) —— */
+/* —— Performans modları: sabit ölçek (geçişte zoom yok) —— */
 body.nova-perf-ultra .nova-perf-hq-scope,
 body.nova-perf-ultra .nova-perf-sp-scope,
 body.nova-perf-ultra #duel-selection-screen,

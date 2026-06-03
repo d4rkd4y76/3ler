@@ -18,7 +18,7 @@
     'duel-game-screen',
     'matchmakingScreen'
   ];
-  /* Görsel ölçek her zaman 1 — Akıcı modda body zoom / counter-zoom kaldırıldı */
+  /* Akıcı mod: sabit ölçek 1 — geçişte büyüyüp küçülme yok (performans efektleri CSS ile) */
   const RUNTIME_SCALE = 1;
   const MODES = [
     {
@@ -70,7 +70,6 @@
   }
   function updatePerfCssVars(mode, scale){
     if (!document.body) return;
-    scale = RUNTIME_SCALE;
     document.body.style.setProperty('--nova-perf-scale', '1');
     document.body.style.setProperty('--nova-perf-counter-zoom', '1');
   }
@@ -202,9 +201,6 @@
     if (!document.body) return;
     document.body.classList.remove('nova-perf-performance','nova-perf-ultra','nova-perf-hq-active','nova-perf-sp-medium-active','nova-perf-duel-medium-active');
     if (mode === 'ultra') document.body.classList.add('nova-perf-ultra');
-    try {
-      document.documentElement.classList.toggle('nova-perf-ultra-early', mode === 'ultra');
-    } catch (_) {}
     ensureHighResScopeMarkers();
     ensureSinglePlayerScopeMarkers();
     ensureFullscreenScopeMarkers();
