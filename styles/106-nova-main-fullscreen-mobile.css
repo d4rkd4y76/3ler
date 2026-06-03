@@ -51,4 +51,9 @@ body.nova-main-screen-visible #main-screen.container {
     justify-content: flex-start !important;
   }
 
+  body.nova-perf-ultra.nova-main-screen-visible #main-screen {
+    width: calc(100vw / var(--nova-perf-scale, 1)) !important;
+    min-height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
+    min-height: calc(100svh / var(--nova-perf-scale, 1)) !important;
+  }
 }

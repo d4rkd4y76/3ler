@@ -633,6 +633,7 @@ function showMatchmakingScreen() {
    try {
       if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('matchmakingScreen');
    } catch (_) {}
+   matchmakingScreen.classList.add('nova-duel-mm-visible');
    matchmakingScreen.style.display = 'flex';
    novaAutoMatchUiReset();
    startAutoMatchCoordinator();
@@ -700,6 +701,7 @@ function cleanupMatchmakingListeners() {
 // Aramayı iptal et
 document.getElementById('cancelSearchButton').addEventListener('click', () => {
    const matchmakingScreen = document.getElementById('matchmakingScreen');
+   matchmakingScreen.classList.remove('nova-duel-mm-visible');
    matchmakingScreen.style.display = 'none';
    try {
       if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
