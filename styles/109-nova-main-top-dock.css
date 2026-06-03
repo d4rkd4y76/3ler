@@ -1,4 +1,4 @@
-/* Üst HUD şeridi — premium oyun hissi, GPU dostu (blur/animasyon yok) */
+/* Üst HUD şeridi — profesyonel cam panel (saydam, blur yok = akıcı) */
 
 #main-screen .main-screen-top-bar.nova-main-top-dock {
   position: relative;
@@ -6,77 +6,67 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  width: calc(100% - clamp(8px, 3vw, 18px));
-  max-width: min(100%, 560px);
+  width: calc(100% - clamp(10px, 3.2vw, 20px));
+  max-width: min(100%, 540px);
   margin: 0 auto clamp(10px, 2.4vw, 14px);
   padding:
-    max(clamp(10px, 2.5vw, 13px), env(safe-area-inset-top, 0px))
-    clamp(11px, 3vw, 16px)
-    clamp(9px, 2.2vw, 12px);
-  gap: clamp(6px, 1.8vw, 12px);
+    max(clamp(11px, 2.8vw, 14px), env(safe-area-inset-top, 0px))
+    clamp(14px, 3.4vw, 18px)
+    clamp(10px, 2.4vw, 13px);
+  gap: clamp(8px, 2vw, 12px);
   box-sizing: border-box;
   flex-shrink: 0;
-  border-radius: clamp(14px, 3.6vw, 20px);
-  border: 1px solid rgba(201, 162, 39, 0.5);
-  /* Tek katman gradient — repaint ucuz */
-  background-color: #12182a;
+  border-radius: clamp(16px, 4vw, 22px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(8, 12, 26, 0.42);
   background-image:
     linear-gradient(
-      90deg,
-      rgba(251, 191, 36, 0.12) 0%,
-      transparent 14%,
-      transparent 86%,
-      rgba(251, 191, 36, 0.12) 100%
-    ),
-    linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(42, 52, 82, 0.98) 18%,
-      rgba(14, 18, 32, 0.99) 72%,
-      rgba(6, 8, 18, 1) 100%
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.05) 24%,
+      rgba(12, 18, 36, 0.28) 62%,
+      rgba(6, 10, 22, 0.48) 100%
     );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12);
   contain: layout style;
   isolation: isolate;
   overflow: visible;
 }
 
-/* İnce üst highlight (statik, animasyonsuz) */
+/* Üst cam parıltısı */
 #main-screen .nova-main-top-dock::before {
   content: "";
   position: absolute;
-  left: 10px;
-  right: 10px;
-  top: 1px;
-  height: 1px;
-  border-radius: 1px;
+  inset: 1px;
+  border-radius: calc(clamp(16px, 4vw, 22px) - 1px);
   pointer-events: none;
   z-index: 0;
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.35) 35%,
-    rgba(253, 224, 71, 0.5) 50%,
-    rgba(255, 255, 255, 0.35) 65%,
-    transparent
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.02) 38%,
+    transparent 72%
   );
 }
 
-/* Alt altın çizgi */
+/* Alt ince vurgu — abartısız altın */
 #main-screen .nova-main-top-dock::after {
   content: "";
   position: absolute;
-  left: 14%;
-  right: 14%;
+  left: 18%;
+  right: 18%;
   bottom: 0;
-  height: 2px;
+  height: 1px;
   pointer-events: none;
   z-index: 0;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(234, 179, 8, 0.65) 22%,
-    rgba(253, 224, 71, 0.9) 50%,
-    rgba(234, 179, 8, 0.65) 78%,
+    rgba(212, 175, 55, 0.35) 30%,
+    rgba(253, 224, 71, 0.55) 50%,
+    rgba(212, 175, 55, 0.35) 70%,
     transparent
   );
 }
@@ -86,13 +76,19 @@
   z-index: 1;
 }
 
-/* Akıcı mod: global box-shadow kapalı — şerit sadece border+gradient ile derinlik */
+/* Normal mod: hafif dış gölge */
 body:not(.nova-perf-ultra) #main-screen .main-screen-top-bar.nova-main-top-dock {
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
+/* Akıcı mod: yalnızca inset — dış gölge yok */
 body.nova-perf-ultra #main-screen .main-screen-top-bar.nova-main-top-dock {
-  box-shadow: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
 #main-screen .nova-main-top-dock .main-screen-deneme-column {
@@ -105,12 +101,13 @@ body.nova-perf-ultra #main-screen .main-screen-top-bar.nova-main-top-dock {
 
 @media (max-width: 768px) {
   #main-screen .main-screen-top-bar.nova-main-top-dock {
-    width: calc(100% - clamp(6px, 2.4vw, 12px));
+    width: calc(100% - clamp(8px, 2.8vw, 14px));
     margin-bottom: clamp(8px, 2vw, 10px);
-    padding-left: clamp(9px, 2.6vw, 13px);
-    padding-right: clamp(9px, 2.6vw, 13px);
-    gap: clamp(4px, 1.2vw, 8px);
-    border-radius: clamp(13px, 3.4vw, 17px);
+    border-radius: clamp(14px, 3.6vw, 18px);
+  }
+
+  #main-screen .nova-main-top-dock::before {
+    border-radius: calc(clamp(14px, 3.6vw, 18px) - 1px);
   }
 
   #main-screen .nova-main-top-dock .main-screen-deneme-column {
