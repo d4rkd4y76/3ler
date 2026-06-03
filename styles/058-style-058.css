@@ -377,6 +377,47 @@
   bottom: clamp(-4px, -.3vh, 6px);
   background: radial-gradient(circle at 35% 35%, #93c5fd, #6366f1);
 }
+#single-player-game-screen .question-preamble-wrap{
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: clamp(10px, 1.5vh, 14px) clamp(12px, 2vw, 18px);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 48%, #ffedd5 100%);
+  border: 1px solid rgba(251, 191, 36, 0.42);
+  box-shadow:
+    0 10px 24px rgba(217, 119, 6, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+#single-player-game-screen .question-preamble-block--text,
+#single-player-game-screen .question-info-text{
+  width: 100%;
+  margin: 0;
+  padding: clamp(6px, 1vh, 10px) clamp(8px, 1.4vw, 12px);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #334155;
+  font-size: clamp(.92rem, 1.8vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.5;
+  border: 1px solid rgba(251, 191, 36, 0.22);
+  box-shadow: none;
+}
+
+#single-player-game-screen .question-preamble-item{
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08);
+}
+
+#single-player-game-screen .question-preamble-label{
+  color: #b45309;
+}
+
+#single-player-game-screen .question-preamble-body{
+  color: #1e293b;
+}
+
 #single-player-game-screen .question-info-text{
   width: min(860px, 100%);
   margin: 0 auto;
@@ -398,10 +439,39 @@
   box-shadow: 0 10px 26px rgba(30,41,59,.16);
 }
 #single-player-game-screen .question-divider{
-  width: min(520px, 82%);
-  height: 1px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, rgba(59,130,246,0), rgba(59,130,246,.35), rgba(168,85,247,.38), rgba(59,130,246,0));
+  position: relative;
+  width: min(560px, 88%);
+  height: 3px;
+  margin: clamp(14px, 2vh, 18px) auto;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0) 0%,
+    rgba(251, 191, 36, 0.35) 15%,
+    rgba(245, 158, 11, 0.95) 50%,
+    rgba(251, 191, 36, 0.35) 85%,
+    rgba(251, 191, 36, 0) 100%
+  );
+  box-shadow: 0 1px 8px rgba(245, 158, 11, 0.25);
+}
+
+#single-player-game-screen .question-divider::after{
+  content: "Soru";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b45309;
+  background: #fffbeb;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.12);
 }
 #single-player-game-screen .question-text,
 #single-player-game-screen .question-actual-text{
@@ -507,7 +577,8 @@
   padding: clamp(12px, 2.4vw, 22px) !important;
 }
 .single-player-game-container .question-divider{
-  height: 1px !important;
+  height: 3px !important;
+  margin: clamp(14px, 2vh, 18px) auto !important;
 }
 .single-player-game-container .question-text-container.no-preamble .question-divider{
   display: none !important;

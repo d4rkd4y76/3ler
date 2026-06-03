@@ -1,79 +1,100 @@
 (function () {
   function isMeaningfulImage(el) {
-    if (!el || el.tagName !== 'IMG') return false;
-    var src = String(el.getAttribute('src') || el.src || '').trim();
-    if (!src || src === 'about:blank' || src === '#') return false;
-    try {
-      var st = window.getComputedStyle(el);
-      if (st.display === 'none' || st.visibility === 'hidden') return false;
-      if (parseFloat(st.opacity || '1') < 0.05) return false;
-      var r = el.getBoundingClientRect();
-      if (r.width < 4 || r.height < 4) return false;
-    } catch (_) {}
+    if (!el || el.tagName !== "IMG") return false;
+    if (el.closest(".q-bunny-video")) return false;
+    var src = String(el.getAttribute("src") || el.src || "").trim();
+    if (!src || src === "about:blank" || src === "#") return false;
     return true;
   }
 
-  function elementHasVisibleBackgroundImage(el) {
-    if (!el || el.nodeType !== 1) return false;
-    try {
-      var st = window.getComputedStyle(el);
-      if (st.display === 'none' || st.visibility === 'hidden') return false;
-      var bg = st.backgroundImage;
-      if (!bg || bg === 'none' || bg.indexOf('url(') < 0) return false;
-      var r = el.getBoundingClientRect();
-      if (r.width < 8 || r.height < 8) return false;
-    } catch (_) {
-      return false;
+  function containerHasVideo(container) {
+    if (!container) return false;
+    if (container.getAttribute("data-q-has-video") === "1") return true;
+    if (
+      container.querySelector(
+        ".question-preamble-block--video, .q-bunny-video[data-qbunny], .q-bunny-video iframe, .q-bunny-video video"
+      )
+    ) {
+      return true;
     }
-    return true;
-  }
-
-  function ensureBanner(container) {
-    if (!container) return null;
-    var banner = container.querySelector('.resimli-soru-banner');
-    if (!banner) {
-      banner = document.createElement('div');
-      banner.className = 'resimli-soru-banner';
-      banner.textContent = '📷 RESİMLİ SORU';
-      container.insertBefore(banner, container.firstChild);
-    }
-    return banner;
+    if (container.querySelector('iframe[src*="mediadelivery.net"]')) return true;
+    return false;
   }
 
   function containerHasImage(container) {
     if (!container) return false;
-
-    var imgs = container.querySelectorAll('img');
+    if (container.getAttribute("data-q-has-image") === "1") return true;
+    if (
+      container.querySelector(
+        ".question-preamble-block--image, .question-image, .question-info-image"
+      )
+    ) {
+      return true;
+    }
+    var imgs = container.querySelectorAll("img");
     for (var i = 0; i < imgs.length; i++) {
       if (isMeaningfulImage(imgs[i])) return true;
     }
-
-    var nodes = container.querySelectorAll('*');
-    for (var j = 0; j < nodes.length; j++) {
-      if (elementHasVisibleBackgroundImage(nodes[j])) return true;
-    }
-
     return false;
   }
 
-  function shouldShowBannerForContainer(container, hasImg) {
-    if (!hasImg) return false;
-    var duelRoot = container.closest('#duel-game-screen');
-    if (duelRoot && !container.classList.contains('nova-duel-q-panel')) {
+  function ensureBadgeRow(container) {
+    if (!container) return null;
+    var row = container.querySelector(".nova-q-type-badges");
+    if (!row) {
+      row = document.createElement("div");
+      row.className = "nova-q-type-badges";
+      row.setAttribute("aria-hidden", "true");
+      container.insertBefore(row, container.firstChild);
+    }
+    var legacy = container.querySelector(".resimli-soru-banner");
+    if (legacy) legacy.style.display = "none";
+    return row;
+  }
+
+  function shouldShowBadgesForContainer(container) {
+    var duelRoot = container.closest("#duel-game-screen");
+    if (duelRoot && !container.classList.contains("nova-duel-q-panel")) {
       return false;
     }
     return true;
   }
 
-  function updateAllBanners() {
-    document.querySelectorAll('.question-container').forEach(function (container) {
-      var banner = ensureBanner(container);
-      var hasImg = containerHasImage(container);
-      banner.style.display = shouldShowBannerForContainer(container, hasImg)
-        ? 'block'
-        : 'none';
-    });
+  function updateContainerBadges(container) {
+    if (!container) return;
+    var row = ensureBadgeRow(container);
+    if (!row) return;
+
+    var show = shouldShowBadgesForContainer(container);
+    var hasVideo = show && containerHasVideo(container);
+    var hasImg = show && !hasVideo && containerHasImage(container);
+
+    var wantVideo = hasVideo;
+    var wantImage = hasImg;
+
+    row.innerHTML = "";
+    if (wantVideo) {
+      var vb = document.createElement("span");
+      vb.className = "nova-q-type-badge nova-q-type-badge--video";
+      vb.textContent = "Videolu soru";
+      row.appendChild(vb);
+    } else if (wantImage) {
+      var ib = document.createElement("span");
+      ib.className = "nova-q-type-badge nova-q-type-badge--image";
+      ib.textContent = "Resimli soru";
+      row.appendChild(ib);
+    }
+
+    row.style.display = row.children.length ? "flex" : "none";
+    container.classList.toggle("nova-q-has-video", wantVideo);
+    container.classList.toggle("nova-q-has-image-badge", wantImage);
   }
+
+  function updateAllBanners() {
+    document.querySelectorAll(".question-container").forEach(updateContainerBadges);
+  }
+
+  window.novaUpdateQuestionTypeBadges = updateContainerBadges;
 
   var _bannerDebounce = null;
   function scheduleUpdateAllBanners() {
@@ -81,14 +102,24 @@
     _bannerDebounce = setTimeout(function () {
       _bannerDebounce = null;
       updateAllBanners();
-    }, 150);
+    }, 40);
   }
 
   window.onNewQuestionLoaded = function () {
     updateAllBanners();
+    if (typeof requestAnimationFrame === "function") {
+      requestAnimationFrame(updateAllBanners);
+    }
+    try {
+      if (window.NovaQuestionMarkup && window.NovaQuestionMarkup.initBunnyVideos) {
+        document.querySelectorAll(".question-container").forEach(function (c) {
+          window.NovaQuestionMarkup.initBunnyVideos(c);
+        });
+      }
+    } catch (_) {}
   };
 
-  document.addEventListener('DOMContentLoaded', updateAllBanners, { once: true });
+  document.addEventListener("DOMContentLoaded", updateAllBanners, { once: true });
 
   var obs = new MutationObserver(function () {
     scheduleUpdateAllBanners();
@@ -97,8 +128,6 @@
     subtree: true,
     childList: true,
     attributes: true,
-    attributeFilter: ['src', 'style', 'class', 'data-info', 'data-image', 'data-img'],
+    attributeFilter: ["src", "style", "class", "data-info", "data-image", "data-img", "data-q-has-image", "data-q-has-video"],
   });
-
-  setInterval(updateAllBanners, 8000);
 })();

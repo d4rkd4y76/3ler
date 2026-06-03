@@ -344,9 +344,10 @@
 
     const info = q.info || '';
     const infoItems = q.infoItems || null;
+    const infoBlocks = q.infoBlocks || null;
     const mq = window.NovaQuestionMarkup;
     if (mq) {
-      mq.mountDenemePreamble(card, info, infoItems);
+      mq.mountDenemePreamble(card, info, infoItems, infoBlocks);
     } else {
     const isInfoImg = info && /^https?:\/\/.*\.(png|jpg|jpeg|gif|webp)$/i.test(info);
     if(isInfoImg){
@@ -978,11 +979,13 @@
         var qtext = (typeof d.question === 'object') ? (d.question.text||'') : (d.question||'');
         var qinfo = (typeof d.question === 'object') ? (d.question.info||'') : (d.info||'');
         var qinfoItems = (typeof d.question === 'object' && Array.isArray(d.question.infoItems)) ? d.question.infoItems : null;
+        var qinfoBlocks = (typeof d.question === 'object' && Array.isArray(d.question.infoBlocks)) ? d.question.infoBlocks : null;
         return {
           qid: k,
           questionText: qtext,
           info: qinfo || '',
           infoItems: qinfoItems,
+          infoBlocks: qinfoBlocks,
           imageUrl: (d.url || d.image || '').trim(),
           correct: d.correct || '',
           wrong1: d.wrong1 || '',

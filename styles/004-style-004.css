@@ -1,18 +1,69 @@
-/* === RESİMLİ SORU (robust) === */
+/* === Soru tipi rozeti (küçük, şık) === */
 .resimli-soru-banner {
-  display: none;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #ff5722;
-  background: linear-gradient(90deg, #ffecd2, #fcb69f, #ffecd2);
-  padding: 10px 18px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  animation: rsbPulse 1.5s infinite alternate;
+  display: none !important;
 }
-@keyframes rsbPulse { from{ transform:scale(1); opacity:.85 } to{ transform:scale(1.05); opacity:1 } }
+
+.nova-q-type-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  flex-shrink: 0;
+  min-height: 22px;
+  animation: novaBadgeIn 0.18s ease-out both;
+}
+
+@keyframes novaBadgeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nova-q-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  line-height: 1.2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.nova-q-type-badge--image {
+  color: #c2410c;
+  background: linear-gradient(135deg, rgba(255, 237, 213, 0.95), rgba(254, 215, 170, 0.88));
+  border-color: rgba(251, 146, 60, 0.35);
+}
+
+.nova-q-type-badge--video {
+  color: #6d28d9;
+  background: linear-gradient(135deg, rgba(237, 233, 254, 0.95), rgba(221, 214, 254, 0.88));
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+.nova-q-type-badge--video::before {
+  content: "▶";
+  font-size: 8px;
+  opacity: 0.85;
+}
+
+.nova-q-type-badge--image::before {
+  content: "◆";
+  font-size: 7px;
+  opacity: 0.75;
+}
 
 /* === Nova: Rank Labels === */
 .rank-label{

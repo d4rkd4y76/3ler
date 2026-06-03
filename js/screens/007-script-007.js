@@ -5973,9 +5973,14 @@ logoutButton.addEventListener('click', async () => {
               qField && typeof qField === 'object' && Array.isArray(qField.infoItems)
                 ? qField.infoItems
                 : null;
+            const infoBlocks =
+              qField && typeof qField === 'object' && Array.isArray(qField.infoBlocks)
+                ? qField.infoBlocks
+                : null;
             return {
                 info: (qField && typeof qField === 'object' && qField.info) ? qField.info : '',
                 infoItems: infoItems,
+                infoBlocks: infoBlocks,
                 actualQuestion: (qField && typeof qField === 'object' && qField.text) ? qField.text : qField,
                 question: (qField && typeof qField === 'object' && qField.text) ? qField.text : qField,
                 correct: questionData.correct,
@@ -5987,11 +5992,13 @@ logoutButton.addEventListener('click', async () => {
 
         function novaFillOptionButton(button, text) {
             const mq = window.NovaQuestionMarkup;
+            const raw = String(text == null ? '' : text);
             if (mq) {
-                mq.fillMarkupElement(button, text);
+                mq.fillMarkupElement(button, raw);
             } else {
-                button.textContent = text;
+                button.textContent = raw;
             }
+            try { button.setAttribute('data-opt-text', raw); } catch (_) {}
         }
 
         function novaNormalizeHomeworkQuestionIds(raw) {
@@ -6222,11 +6229,17 @@ logoutButton.addEventListener('click', async () => {
 // Soru konteynerini temizle
 const questionContainer = document.querySelector('.question-container');
 questionContainer.innerHTML = '';
-questionContainer.classList.remove('nova-q-enter');
+questionContainer.removeAttribute('data-q-has-image');
+questionContainer.removeAttribute('data-q-has-video');
+questionContainer.classList.remove('nova-q-enter', 'nova-q-has-image-badge', 'nova-q-has-video');
 void questionContainer.offsetWidth;
 questionContainer.classList.add('nova-q-enter');
 
 if (currentQuestion.question.startsWith('http')) {
+  questionContainer.setAttribute('data-q-has-image', '1');
+  if (typeof window.novaUpdateQuestionTypeBadges === 'function') {
+    window.novaUpdateQuestionTypeBadges(questionContainer);
+  }
   // Eğer soru resim URL'siyse
   const questionImage = document.createElement('img');
   questionImage.src = currentQuestion.question;
@@ -6249,6 +6262,7 @@ if (currentQuestion.question.startsWith('http')) {
     mqMain.mountQuestionText(questionContainer, {
       info: currentQuestion.info,
       infoItems: currentQuestion.infoItems,
+      infoBlocks: currentQuestion.infoBlocks,
       question: currentQuestion.question,
     });
   } else {
@@ -6322,10 +6336,15 @@ questionContainer.appendChild(textContainer);
             // Timer'ı sıfırla ve başlat
             resetTimer();
             startTimer();
+
+            if (typeof window.onNewQuestionLoaded === 'function') {
+                window.onNewQuestionLoaded();
+            }
         }
 
         function selectOption(e) {
-            const selectedButton = e.target;
+            const selectedButton = e.currentTarget || (e.target && e.target.closest && e.target.closest('.option-button'));
+            if (!selectedButton) return;
             const isCorrect = selectedButton.dataset.correct === 'true';
 
             document.querySelectorAll('.option-button').forEach(button => {
@@ -8589,6 +8608,7 @@ async function updateDuelSelection(field, value) {
             return pickedDuelQs.slice(0, 10).map(function (q) {
                 var infoText = String(q.info || '').trim();
                 var infoItems = q.infoItems || null;
+                var infoBlocks = q.infoBlocks || null;
                 var questionText = '';
                 if (typeof q.question === 'object' && q.question !== null) {
                     if (!infoText) infoText = String(q.question.info || '').trim();
@@ -8596,12 +8616,16 @@ async function updateDuelSelection(field, value) {
                     if (!infoItems && Array.isArray(q.question.infoItems)) {
                         infoItems = q.question.infoItems;
                     }
+                    if (!infoBlocks && Array.isArray(q.question.infoBlocks)) {
+                        infoBlocks = q.question.infoBlocks;
+                    }
                 } else {
                     questionText = String(q.question || q.actualQuestion || '').trim();
                 }
                 return {
                     info: infoText,
                     infoItems: infoItems,
+                    infoBlocks: infoBlocks,
                     actualQuestion: questionText,
                     question: questionText,
                     correct: q.correct,
@@ -8911,12 +8935,18 @@ async function updateDuelSelection(field, value) {
     // Soru konteynerini düello oyun ekranından seçiyoruz
     const questionContainer = document.querySelector('#duel-game-screen .question-container');
     questionContainer.innerHTML = '';
+    questionContainer.removeAttribute('data-q-has-image');
+    questionContainer.removeAttribute('data-q-has-video');
     questionContainer.classList.add('nova-duel-q-panel');
-    questionContainer.classList.remove('nova-q-enter', 'ndg-has-image', 'ndg-has-info-image');
+    questionContainer.classList.remove('nova-q-enter', 'ndg-has-image', 'ndg-has-info-image', 'nova-q-has-image-badge', 'nova-q-has-video');
     void questionContainer.offsetWidth;
     questionContainer.classList.add('nova-q-enter');
 
     if (currentQuestion.question.startsWith('http')) {
+        questionContainer.setAttribute('data-q-has-image', '1');
+        if (typeof window.novaUpdateQuestionTypeBadges === 'function') {
+            window.novaUpdateQuestionTypeBadges(questionContainer);
+        }
         questionContainer.classList.add('ndg-has-image');
         // Eğer soru resim URL'siyse
         const questionImage = document.createElement('img');
@@ -8945,9 +8975,16 @@ async function updateDuelSelection(field, value) {
             mqDuel.mountQuestionText(questionContainer, {
                 info: qInfo,
                 infoItems: currentQuestion.infoItems,
+                infoBlocks: currentQuestion.infoBlocks,
                 question: qText,
             });
-            if (/^https?:\/\/\S+\.(png|jpe?g|gif|webp)(\?\S*)?$/i.test(qInfo)) {
+            var hasPreambleImage = mqDuel.isImageUrl(qInfo);
+            if (!hasPreambleImage && Array.isArray(currentQuestion.infoBlocks)) {
+                hasPreambleImage = currentQuestion.infoBlocks.some(function (b) {
+                    return b && b.type === 'image' && b.url;
+                });
+            }
+            if (hasPreambleImage) {
                 questionContainer.classList.add('ndg-has-info-image');
             }
         } else {

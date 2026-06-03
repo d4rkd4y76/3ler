@@ -296,6 +296,60 @@
   margin-bottom: 10px;
 }
 
+.q-live-preview .question-preamble-wrap {
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 48%, #ffedd5 100%);
+  border: 1px solid rgba(251, 191, 36, 0.42);
+  box-shadow:
+    0 8px 20px rgba(217, 119, 6, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.q-live-preview .question-preamble-item {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+}
+
+.q-live-preview .question-preamble-label {
+  color: #b45309;
+}
+
+.q-live-preview .question-divider {
+  position: relative;
+  width: min(480px, 92%);
+  height: 3px;
+  margin: 12px auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0) 0%,
+    rgba(251, 191, 36, 0.35) 15%,
+    rgba(245, 158, 11, 0.95) 50%,
+    rgba(251, 191, 36, 0.35) 85%,
+    rgba(251, 191, 36, 0) 100%
+  );
+}
+
+.q-live-preview .question-divider::after {
+  content: "Soru";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b45309;
+  background: #fffbeb;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+}
+
 .q-editor-hint {
   font-size: 12px;
   color: var(--muted, #9aa3c7);
@@ -334,4 +388,591 @@
   .q-info-item-label {
     padding-top: 0;
   }
+}
+
+/* Dikey çarpma / bölme */
+.q-vmath {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25em 0.5em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.q-vmath__row {
+  display: block;
+  padding: 0 0.15em;
+  white-space: nowrap;
+}
+
+.q-vmath__col {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 2.5em;
+}
+
+.q-vmath--mul .q-vmath__sign {
+  margin-right: 0.25em;
+  opacity: 0.85;
+}
+
+.q-vmath--mul .q-vmath__bar {
+  display: block;
+  width: 100%;
+  min-width: 2.2em;
+  height: 3px;
+  margin-top: 3px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+/* Türk ilkokul bölme: bölünen solda, bölen sağ üstte, ┌─ köşe */
+.q-vmath--div .q-vmath__long {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.q-vmath--div .q-vmath__dividend {
+  padding-right: 0.45em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.q-vmath--div .q-vmath__bracket {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-left: 3px solid currentColor;
+  border-top: 3px solid currentColor;
+  padding: 0.1em 0.55em 0.3em 0.4em;
+  min-width: 2em;
+  min-height: 2.1em;
+  opacity: 0.95;
+}
+
+.q-vmath--div .q-vmath__divisor {
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.q-vmath--div .q-vmath__work {
+  flex: 1;
+  min-height: 0.35em;
+}
+
+/* Geometri SVG */
+.q-geo {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.35em 0.5em;
+}
+
+.q-geo-svg {
+  display: block;
+  width: min(240px, 92vw);
+  height: auto;
+  max-height: 200px;
+}
+
+/* Soru alanında büyük matematik / geometri */
+#single-player-game-screen .question-container .q-markup,
+#duel-game-screen .question-container .q-markup,
+.deneme-q-card .q-markup {
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  line-height: 1.55;
+}
+
+#single-player-game-screen .question-container .q-vmath,
+#duel-game-screen .question-container .q-vmath {
+  font-size: clamp(1.45rem, 5vw, 2.15rem);
+  margin: 0.35em 0.5em;
+}
+
+#single-player-game-screen .question-container .q-frac,
+#duel-game-screen .question-container .q-frac {
+  font-size: 1.15em;
+  min-width: 1.6em;
+}
+
+#single-player-game-screen .question-container .q-geo-svg,
+#duel-game-screen .question-container .q-geo-svg {
+  width: min(260px, 90vw);
+  max-height: 210px;
+}
+
+#single-player-game-screen .question-container .q-geo-label,
+#duel-game-screen .question-container .q-geo-label {
+  fill: #c2410c;
+  stroke: #fff;
+  stroke-width: 2.5px;
+  font-size: 15px;
+}
+
+.q-geo-fill {
+  fill: rgba(14, 165, 233, 0.18);
+  stroke: none;
+}
+
+.q-geo-edge {
+  stroke: #0ea5e9;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.q-geo-measure {
+  stroke: #64748b;
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.q-geo-label {
+  fill: #ea580c;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
+}
+
+/* Koyu arka plan: açıklama, sonuç kartı */
+.q-markup--readable .q-geo-label,
+#single-player-game-screen .explanation-container .q-geo-label,
+#explanation-container .q-geo-label,
+.option-button .q-geo-label {
+  fill: #fde047;
+  stroke: #0f172a;
+  stroke-width: 3px;
+  font-size: 15px;
+}
+
+.q-markup--readable .q-geo-fill,
+#single-player-game-screen .explanation-container .q-geo-fill,
+#explanation-container .q-geo-fill {
+  fill: rgba(56, 189, 248, 0.42);
+}
+
+.q-markup--readable .q-geo-edge,
+#single-player-game-screen .explanation-container .q-geo-edge,
+#explanation-container .q-geo-edge {
+  stroke: #7dd3fc;
+  stroke-width: 3.5;
+}
+
+.q-markup--readable .q-geo-measure,
+#single-player-game-screen .explanation-container .q-geo-measure,
+#explanation-container .q-geo-measure {
+  stroke: #fbbf24;
+  stroke-width: 2.5;
+}
+
+.q-markup--readable .q-geo-solid-top,
+.q-markup--readable .q-geo-solid-left,
+.q-markup--readable .q-geo-solid-right,
+.q-markup--readable .q-geo-solid-body,
+.q-markup--readable .q-geo-solid-base,
+.q-markup--readable .q-geo-solid-ring,
+.q-markup--readable .q-geo-solid-cone,
+#explanation-container .q-geo-solid-top,
+#explanation-container .q-geo-solid-left,
+#explanation-container .q-geo-solid-right {
+  fill: rgba(56, 189, 248, 0.38);
+  stroke: #7dd3fc;
+}
+
+.q-geo-solid-top {
+  fill: rgba(14, 165, 233, 0.35);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-left {
+  fill: rgba(14, 165, 233, 0.22);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-right {
+  fill: rgba(14, 165, 233, 0.28);
+  stroke: #0369a1;
+  stroke-width: 2;
+}
+
+.q-geo-solid-body {
+  fill: rgba(14, 165, 233, 0.2);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-base,
+.q-geo-solid-ring {
+  fill: rgba(14, 165, 233, 0.15);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-cone {
+  fill: rgba(14, 165, 233, 0.25);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+/* Bunny video öncül */
+.q-bunny-video {
+  position: relative;
+  width: 100%;
+  max-width: min(480px, 100%);
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.q-bunny-video__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+}
+
+.q-bunny-video iframe,
+.q-bunny-video__mp4 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+}
+
+.q-bunny-replay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 12px;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.92);
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.q-bunny-replay:hover {
+  background: rgba(30, 41, 59, 0.98);
+}
+
+.q-bunny-replay:active {
+  transform: scale(0.99);
+}
+
+.q-bunny-video--missing {
+  display: block;
+  padding: 12px;
+  color: #94a3b8;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Öncül blokları (oyun + önizleme) */
+.question-preamble-block {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.question-preamble-block:last-child {
+  margin-bottom: 0;
+}
+
+.question-preamble-block--image {
+  text-align: center;
+}
+
+.question-preamble-block--video {
+  display: flex;
+  justify-content: center;
+}
+
+#single-player-game-screen .question-preamble-block--image .question-info-image,
+#duel-game-screen .question-preamble-block--image .question-info-image,
+.deneme-q-pre .question-preamble-block--image img {
+  max-width: min(100%, 360px);
+  max-height: 220px;
+  border-radius: 10px;
+}
+
+/* Admin — blok editörü */
+.q-preamble-head {
+  margin-bottom: 8px;
+}
+
+.q-blocks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 40px;
+}
+
+.q-blocks-empty {
+  margin: 0;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  color: var(--muted, #9aa3c7);
+  font-size: 12px;
+  text-align: center;
+}
+
+.q-block-card {
+  border-radius: 12px;
+  border: 1px solid var(--border, #263056);
+  background: rgba(11, 17, 48, 0.5);
+  overflow: hidden;
+}
+
+.q-block-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(30, 39, 86, 0.55);
+  border-bottom: 1px solid rgba(38, 48, 86, 0.8);
+}
+
+.q-block-card__badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--acc-2, #22d3ee);
+}
+
+.q-block-card__actions {
+  display: flex;
+  gap: 4px;
+}
+
+.q-block-card__body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.q-block-add-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(38, 48, 86, 0.6);
+}
+
+.q-block-add-bar__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted, #9aa3c7);
+}
+
+.q-block-video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.q-block-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.q-editor-tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.q-editor-tool-group__title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted, #9aa3c7);
+}
+
+.q-math-toolbar--wrap {
+  max-width: 280px;
+}
+
+.q-editor-math-bar {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.q-editor-math-bar > .q-editor-tool-group,
+.q-editor-math-bar > .q-math-toolbar {
+  flex: none;
+}
+
+@media (min-width: 900px) {
+  .q-editor-math-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+    align-items: start;
+  }
+
+  .q-editor-math-bar__title {
+    grid-column: 1 / -1;
+  }
+
+  .q-editor-hint--inline {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .q-block-video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Aktif alan göstergesi */
+.q-editor-active-field {
+  margin: 0;
+  font-size: 12px;
+  color: var(--acc-2, #22d3ee);
+  grid-column: 1 / -1;
+}
+
+.q-editor-active-field strong {
+  color: var(--ink, #e8ecff);
+}
+
+.q-insert-target.q-field-focus {
+  outline: 2px solid rgba(34, 211, 238, 0.55);
+  outline-offset: 1px;
+}
+
+/* Admin önizleme — şıklar & açıklama */
+.q-live-preview__opts,
+.q-live-preview__exp {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.q-preview-opts-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.q-preview-opt {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.q-preview-opt--ok {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.q-preview-opt__label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+  min-width: 52px;
+  padding-top: 2px;
+}
+
+.q-preview-opt__body {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.q-preview-exp-body {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px dashed #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Şık & açıklama içinde kompakt geometri/işlem */
+.option-button .q-markup,
+.explanation-v.q-markup,
+.explanation-text.q-markup,
+.q-preview-opt__body.q-markup,
+.q-preview-exp-body.q-markup {
+  display: inline;
+  line-height: 1.45;
+}
+
+.option-button .q-geo-svg,
+.q-preview-opt__body .q-geo-svg {
+  width: min(140px, 100%);
+  max-height: 100px;
+}
+
+.option-button .q-vmath {
+  font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+}
+
+/* Açıklama — okunaklı markup */
+.q-markup--readable .q-vmath {
+  font-size: clamp(1.15rem, 4vw, 1.55rem);
+}
+
+.q-markup--readable .q-geo-svg {
+  width: min(180px, 100%);
+  max-height: 130px;
+}
+
+.explanation-v .q-markup--readable,
+.explanation-note__body .q-markup--readable {
+  display: inline-block;
+  width: 100%;
+}
+
+#single-player-game-screen .option-button .q-markup,
+#single-player-game-screen .explanation-v.q-markup,
+#single-player-game-screen .explanation-text.q-markup {
+  word-break: break-word;
+}
+
+#single-player-game-screen .option-button {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#single-player-game-screen .option-button .q-geo {
+  display: inline-block;
+  vertical-align: middle;
 }
