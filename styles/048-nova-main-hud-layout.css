@@ -956,33 +956,6 @@
   100%{ opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--r)); }
 }
 
-/* Yönetici paneli (sadece tanımlı hesaplarda) */
-#main-screen .main-screen-odev-anchor .nova-admin-portal-btn{
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: clamp(40px, 10vw, 50px);
-  padding: 0 clamp(10px, 2.2vw, 16px);
-  border-radius: 999px;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  background: linear-gradient(160deg, rgba(120, 53, 15, 0.95), rgba(30, 20, 10, 0.98));
-  color: #fef3c7;
-  font-weight: 900;
-  font-size: clamp(10px, 2.4vw, 12px);
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  touch-action: manipulation;
-  flex-shrink: 0;
-}
-#main-screen .main-screen-odev-anchor .nova-admin-portal-btn:not([hidden]){
-  display: inline-flex;
-}
-#main-screen .main-screen-odev-anchor .nova-admin-portal-btn:active{
-  transform: translateY(1px);
-}
-
 /* --- Main HUD professional side actions --- */
 #main-screen .main-profile-hero{
   grid-template-columns: minmax(120px, 1fr) minmax(0, min(88vw, 420px)) minmax(120px, 1fr);

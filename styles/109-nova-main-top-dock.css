@@ -1,0 +1,115 @@
+/* Ana ekran üst şerit — Karakter | Sonuç/Deneme | Mağaza (ayrı üst katman blok) */
+
+#main-screen .main-screen-top-bar.nova-main-top-dock {
+  position: relative;
+  z-index: 14;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  width: calc(100% - clamp(8px, 3vw, 20px));
+  max-width: min(100%, 560px);
+  margin: 0 auto clamp(10px, 2.4vw, 16px);
+  padding:
+    max(clamp(10px, 2.6vw, 14px), env(safe-area-inset-top, 0px))
+    clamp(12px, 3.2vw, 18px)
+    clamp(10px, 2.4vw, 14px);
+  gap: clamp(6px, 2vw, 14px);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border-radius: clamp(16px, 4.2vw, 22px);
+  border: 1px solid rgba(212, 175, 55, 0.42);
+  background:
+    linear-gradient(165deg, rgba(38, 46, 72, 0.94) 0%, rgba(16, 20, 36, 0.97) 48%, rgba(8, 10, 22, 0.98) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.07) inset,
+    0 14px 36px rgba(0, 0, 0, 0.48),
+    0 4px 14px rgba(79, 70, 229, 0.14),
+    0 0 24px rgba(251, 191, 36, 0.06);
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Üst parlak çizgi + iç vignette */
+#main-screen .nova-main-top-dock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 28%, transparent 55%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.22) 0%, transparent 42%);
+}
+
+/* Alt altın şerit vurgusu */
+#main-screen .nova-main-top-dock::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(251, 191, 36, 0.55) 20%,
+    rgba(253, 224, 71, 0.85) 50%,
+    rgba(251, 191, 36, 0.55) 80%,
+    transparent
+  );
+  opacity: 0.75;
+}
+
+#main-screen .nova-main-top-dock > * {
+  position: relative;
+  z-index: 1;
+}
+
+#main-screen .nova-main-top-dock .main-screen-odev-anchor,
+#main-screen .nova-main-top-dock .main-screen-deneme-column,
+#main-screen .nova-main-top-dock .main-screen-store-anchor {
+  min-width: 0;
+}
+
+#main-screen .nova-main-top-dock .main-screen-odev-anchor {
+  justify-self: start;
+}
+
+#main-screen .nova-main-top-dock .main-screen-deneme-column {
+  justify-self: center;
+  max-width: min(200px, 40vw);
+}
+
+#main-screen .nova-main-top-dock .main-screen-store-anchor {
+  justify-self: end;
+}
+
+/* Deneme / Sonuç orta hizası */
+#main-screen .nova-main-top-dock .deneme-fab-wrap {
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  #main-screen .main-screen-top-bar.nova-main-top-dock {
+    width: calc(100% - clamp(6px, 2.5vw, 14px));
+    margin-bottom: clamp(8px, 2vw, 12px);
+    padding-left: clamp(10px, 2.8vw, 14px);
+    padding-right: clamp(10px, 2.8vw, 14px);
+    gap: clamp(4px, 1.2vw, 8px);
+    border-radius: clamp(14px, 3.8vw, 18px);
+  }
+
+  #main-screen .nova-main-top-dock .main-screen-deneme-column {
+    max-width: min(168px, 38vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen .nova-main-top-dock::after {
+    opacity: 0.5;
+  }
+}

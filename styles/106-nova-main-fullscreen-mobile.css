@@ -52,9 +52,9 @@ body.nova-main-screen-visible #main-screen.container {
   }
 
   /* Akıcı mod: body zoom sonrası da viewport'u doldur */
-  body.nova-perf-ultra.nova-main-screen-visible #main-screen {
-    width: calc(100vw / var(--nova-perf-scale, 1)) !important;
-    min-height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
-    min-height: calc(100svh / var(--nova-perf-scale, 1)) !important;
+  body.nova-main-screen-visible #main-screen {
+    width: 100% !important;
+    min-height: 100dvh !important;
+    min-height: 100svh !important;
   }
 }

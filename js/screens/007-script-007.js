@@ -4504,9 +4504,10 @@ try { window.novaEnsureLoggedInUi = novaEnsureLoggedInUi; } catch(_) {}
 function novaUpdateAdminPortalBtn(){
   try{
     const btn = document.getElementById('nova_admin_portal_btn');
-    if (!btn) return;
+    const slot = document.getElementById('nova_admin_portal_slot');
     const ok = !!(typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId && selectedStudent.classId && selectedStudent.adminPortal);
-    btn.hidden = !ok;
+    if (slot) slot.hidden = !ok;
+    if (btn) btn.hidden = !ok;
   }catch(_){}
 }
 async function novaSyncAdminPortalFlag(){

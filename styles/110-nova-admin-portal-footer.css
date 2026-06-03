@@ -1,0 +1,80 @@
+/* Yönetici — yalnızca yetkili hesapta, çıkışın altında; gizliyken yer kaplamaz */
+
+#main-screen .nova-admin-portal-slot[hidden] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#main-screen .nova-admin-portal-slot:not([hidden]) {
+  display: block;
+  width: 100%;
+  max-width: min(560px, 100%);
+  margin: clamp(10px, 2.4vw, 14px) auto clamp(6px, 1.6vw, 10px);
+  padding: 0 clamp(0px, 0vw, 0px);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+#main-screen .nova-admin-portal-slot .nova-admin-portal-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(250, 204, 21, 0.5);
+  background: linear-gradient(180deg, rgba(120, 53, 15, 0.94), rgba(57, 35, 12, 0.98));
+  color: #fef3c7;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 750;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+#main-screen .nova-admin-portal-slot .nova-admin-portal-btn .main-menu-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+#main-screen .nova-admin-portal-slot .nova-admin-portal-btn .main-menu-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+#main-screen .nova-admin-portal-slot .nova-admin-portal-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(253, 224, 71, 0.65);
+  filter: brightness(1.06);
+}
+
+#main-screen .nova-admin-portal-slot .nova-admin-portal-btn:active {
+  transform: translateY(0);
+}
