@@ -1,0 +1,77 @@
+/* Üst sıra (kahraman | foto | sağ butonlar) — kemer çerçevesine hafif büyütme */
+
+@media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  #main-screen .main-profile-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(48vw, 248px)) minmax(0, 1fr) !important;
+    column-gap: clamp(5px, 1.4vw, 8px) !important;
+    padding-left: max(2px, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(2px, env(safe-area-inset-right, 0px)) !important;
+  }
+
+  #main-screen .main-screen-hero-left--showcase,
+  #main-screen .main-screen-hero-left {
+    max-width: var(--nova-left-showcase-w) !important;
+    width: var(--nova-left-showcase-w) !important;
+    min-width: var(--nova-left-showcase-w) !important;
+  }
+
+  #main-screen .main-screen-hero-right {
+    max-width: clamp(110px, 27.5vw, 144px) !important;
+    width: 100% !important;
+  }
+
+  #main-screen #main-screen-quest-slot {
+    width: 100% !important;
+    max-width: clamp(110px, 27.5vw, 144px) !important;
+    gap: clamp(8px, 2vw, 11px) !important;
+  }
+
+  #main-screen .main-screen-hero-left .puzzle-fab-wrap,
+  #main-screen #fillblank_fab_wrap,
+  #main-screen #match_fab_wrap,
+  #main-screen #homework_fab.homework-fab,
+  #main-screen .main-screen-hero-right .quest-fab-wrap,
+  #main-screen #main-screen-quest-slot #tools-open-button,
+  #main-screen #main-screen-quest-slot #homework_fab,
+  #main-screen #main-screen-quest-slot #quest_fab_wrap,
+  #main-screen #main-screen-quest-slot .nova-bonus-drawer {
+    width: clamp(110px, 27.5vw, 144px) !important;
+    max-width: 100% !important;
+  }
+
+  #main-screen #tools-open-button.profile-tools-button,
+  #main-screen #tools-open-button.nova-tools-rail-btn,
+  #main-screen #homework_fab.homework-fab,
+  #main-screen #quest_fab.quest-fab,
+  #main-screen .nova-bonus-drawer__toggle,
+  #main-screen #puzzle_fab,
+  #main-screen #fillblank_fab,
+  #main-screen #match_fab {
+    min-height: clamp(38px, 9.2vw, 46px) !important;
+    height: clamp(38px, 9.2vw, 46px) !important;
+    font-size: clamp(8.5px, 2.15vw, 10.5px) !important;
+    padding: clamp(7px, 1.8vw, 10px) clamp(9px, 2.3vw, 11px) !important;
+    border-radius: clamp(11px, 2.5vw, 15px) !important;
+  }
+
+  #main-screen #tools-open-button .profile-tools-icon {
+    width: clamp(18px, 4.6vw, 22px) !important;
+    height: clamp(18px, 4.6vw, 22px) !important;
+    font-size: clamp(10px, 2.6vw, 12px) !important;
+  }
+
+  #main-screen .main-screen-hero-center .student-photo {
+    width: min(182px, 44vw) !important;
+    max-height: min(54vh, 328px) !important;
+  }
+
+  #main-screen .nova-main-hero-showcase__title {
+    font-size: clamp(8.5px, 2.25vw, 11px);
+    letter-spacing: 0.2em;
+  }
+
+  #main-screen .nova-main-hero-showcase__frame {
+    border-radius: clamp(19px, 4.8vw, 24px);
+    min-height: var(--nova-left-showcase-h);
+  }
+}
