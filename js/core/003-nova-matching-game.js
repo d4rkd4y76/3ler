@@ -387,7 +387,9 @@
     const st = document.createElement('style');
     st.id = 'match-style';
     st.textContent = `
-      #match_fab_wrap{display:inline-flex;position:relative;z-index:80;pointer-events:auto;margin-top:8px}
+      #match_fab_wrap{display:inline-flex;position:relative;z-index:80;margin-top:8px}
+      #nova-bonus-drawer.is-open #match_fab_wrap{pointer-events:auto}
+      #nova-bonus-drawer:not(.is-open) #match_fab_wrap{pointer-events:none !important}
       #match_fab{border-radius:14px;padding:0 4px;font-weight:900;color:#fff;cursor:pointer;
         background:linear-gradient(145deg,#14b8a6 0%,#06b6d4 52%,#3b82f6 100%);
         border:1px solid rgba(186,230,253,.68);

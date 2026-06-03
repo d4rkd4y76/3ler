@@ -334,6 +334,7 @@ window.NovaAdminExport = (function(){
       <div class="tab" data-view="storeView">🛍️ Mağaza</div>
       <div class="tab" data-view="announcementView">📢 Ana ekran duyurusu</div>
       <div class="tab" data-view="girisPanosuView">🖥️ Giriş panosu</div>
+      <div class="tab" data-view="hikayeVideoView">📖 Hikaye</div>
       <div class="tab" data-view="tournamentView">🏆 Turnuva</div>
       <div class="tab" data-view="resetView">♻️ Sıfırlama</div>
     </div>
@@ -675,6 +676,37 @@ window.NovaAdminExport = (function(){
           <button type="button" class="btn acc" id="tour_new_start">Yeni turnuva başlat</button>
         </div>
         <div class="hint mt8" id="tour_danger_status"></div>
+      </div>
+    </div>
+
+    <div id="hikayeVideoView" class="view">
+      <h2>Hikaye videosu</h2>
+      <div class="sub">Yükleme bittikten ve ana ekran hazır olduktan sonra öğrenciye tam ekran Bunny Stream videosu oynatılır. Veritabanı: <span class="mono">/platformMeta/hikayeVideo</span> (yedek: <span class="mono">/hikayeVideo</span>). <b>Kütüphane adı</b> = Bunny CDN hostname (<span class="mono">vz-xxxxx</span>), <b>Video ID</b> = GUID. <b>Kütüphane ID</b> = embed yedek.</div>
+      <div class="card">
+        <label class="flex mt8" style="gap:10px;align-items:center">
+          <input type="checkbox" id="hikaye_video_show" />
+          <span>Hikaye videosunu göster</span>
+        </label>
+        <div class="grid cols-2 mt8">
+          <div>
+            <label>Bunny kütüphane adı (CDN hostname)</label>
+            <input type="text" id="hikaye_library_name" placeholder="vz-xxxxxxxx" />
+          </div>
+          <div>
+            <label>Bunny video ID (GUID)</label>
+            <input type="text" id="hikaye_video_id" placeholder="00000000-0000-0000-0000-000000000000" />
+          </div>
+          <div>
+            <label>Bunny kütüphane ID (opsiyonel — embed)</label>
+            <input type="text" id="hikaye_library_id" placeholder="123456" />
+          </div>
+        </div>
+        <div class="soft small mt8" id="hikaye_video_preview_hint">Önizleme URL’si kayıttan sonra görünür.</div>
+        <div class="toolbar mt12">
+          <button type="button" class="btn acc" id="hikaye_video_save">Kaydet</button>
+          <button type="button" class="btn" id="hikaye_video_reload">Yeniden yükle</button>
+        </div>
+        <div class="hint mt8" id="hikaye_video_status"></div>
       </div>
     </div>
 
@@ -1190,6 +1222,7 @@ window.NovaAdminExport = (function(){
     if(target==='dailyPuzzlesView'){ try{ window.novaLoadDailyPuzzlesAdmin && window.novaLoadDailyPuzzlesAdmin(); }catch(e){ console.warn(e);} }
     if(target==='announcementView'){ try{ window.novaLoadAppDuyuruAdmin && window.novaLoadAppDuyuruAdmin(); }catch(e){ console.warn(e);} }
     if(target==='girisPanosuView'){ try{ window.novaLoadGirisPanosuAdmin && window.novaLoadGirisPanosuAdmin(); }catch(e){ console.warn(e);} }
+    if(target==='hikayeVideoView'){ try{ window.novaLoadHikayeVideoAdmin && window.novaLoadHikayeVideoAdmin(); }catch(e){ console.warn(e);} }
     if(target==='tournamentView'){ try{ window.novaLoadTournamentAdmin && window.novaLoadTournamentAdmin(); }catch(e){ console.warn(e);} }
     $$('.tab').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
@@ -1289,6 +1322,110 @@ window.NovaAdminExport = (function(){
   if(girisPanosuReload){
     girisPanosuReload.addEventListener('click', ()=> window.novaLoadGirisPanosuAdmin && window.novaLoadGirisPanosuAdmin());
   }
+
+  const hikayeVideoShow = $('#hikaye_video_show');
+  const hikayeLibraryName = $('#hikaye_library_name');
+  const hikayeLibraryId = $('#hikaye_library_id');
+  const hikayeVideoId = $('#hikaye_video_id');
+  const hikayeVideoSave = $('#hikaye_video_save');
+  const hikayeVideoReload = $('#hikaye_video_reload');
+  const hikayeVideoStatus = $('#hikaye_video_status');
+  const hikayeVideoPreviewHint = $('#hikaye_video_preview_hint');
+
+  function normalizeBunnyLibraryNameAdmin(name){
+    let n = String(name || '').trim();
+    if(!n) return '';
+    n = n.replace(/^https?:\/\//i, '');
+    n = n.replace(/\.b-cdn\.net.*$/i, '');
+    n = n.replace(/\/+$/g, '');
+    return n;
+  }
+
+  function buildHikayePreviewLines(cfg){
+    const libName = normalizeBunnyLibraryNameAdmin(cfg.libraryName);
+    const vid = String(cfg.videoId || '').trim();
+    const libId = String(cfg.libraryId || '').trim();
+    const lines = [];
+    if(libName && vid){
+      lines.push('MP4: https://' + libName + '.b-cdn.net/' + vid + '/play_720p.mp4');
+    }
+    if(libId && vid){
+      lines.push('Embed: https://iframe.mediadelivery.net/embed/' + libId + '/' + vid);
+    }
+    return lines.length ? lines.join(' · ') : 'Kütüphane adı + Video ID veya Kütüphane ID + Video ID girin.';
+  }
+
+  function updateHikayePreviewFromInputs(){
+    if(!hikayeVideoPreviewHint) return;
+    hikayeVideoPreviewHint.textContent = buildHikayePreviewLines({
+      libraryName: hikayeLibraryName ? hikayeLibraryName.value : '',
+      libraryId: hikayeLibraryId ? hikayeLibraryId.value : '',
+      videoId: hikayeVideoId ? hikayeVideoId.value : ''
+    });
+  }
+
+  window.novaLoadHikayeVideoAdmin = async function(){
+    if(!rdb || !hikayeVideoStatus){ return; }
+    hikayeVideoStatus.textContent = 'Yükleniyor…';
+    try{
+      let snap = await rdb.ref('platformMeta/hikayeVideo').get();
+      if(!snap.exists()) snap = await rdb.ref('hikayeVideo').get();
+      const v = snap.exists() ? (snap.val() || {}) : {};
+      if(hikayeLibraryName) hikayeLibraryName.value = typeof v.libraryName === 'string' ? v.libraryName : '';
+      if(hikayeLibraryId) hikayeLibraryId.value = typeof v.libraryId === 'string' ? v.libraryId : (v.libraryId != null ? String(v.libraryId) : '');
+      if(hikayeVideoId) hikayeVideoId.value = typeof v.videoId === 'string' ? v.videoId : '';
+      if(hikayeVideoShow) hikayeVideoShow.checked = v.show !== false;
+      updateHikayePreviewFromInputs();
+      hikayeVideoStatus.textContent = v.updatedAt ? ('Son kayıt: ' + fmtTime(v.updatedAt)) : 'Kayıt yok veya ilk kez düzenleniyor.';
+    }catch(e){
+      hikayeVideoStatus.textContent = 'Okuma hatası: ' + (e && e.message ? e.message : e);
+    }
+  };
+
+  if(hikayeVideoSave){
+    hikayeVideoSave.addEventListener('click', async ()=>{
+      if(!rdb){ hikayeVideoStatus.textContent = 'RTDB yok.'; return; }
+      const libraryName = normalizeBunnyLibraryNameAdmin(hikayeLibraryName && hikayeLibraryName.value);
+      const libraryId = String(hikayeLibraryId && hikayeLibraryId.value || '').trim();
+      const videoId = String(hikayeVideoId && hikayeVideoId.value || '').trim();
+      const show = !!(hikayeVideoShow && hikayeVideoShow.checked);
+      if(show && !videoId){
+        hikayeVideoStatus.textContent = 'Video ID zorunludur.';
+        return;
+      }
+      if(show && !libraryName && !libraryId){
+        hikayeVideoStatus.textContent = 'Kütüphane adı (vz-…) veya kütüphane ID girin.';
+        return;
+      }
+      hikayeVideoStatus.textContent = 'Kaydediliyor…';
+      const payload = {
+        show: show,
+        libraryName: libraryName,
+        libraryId: libraryId,
+        videoId: videoId,
+        updatedAt: Date.now()
+      };
+      try{
+        await rdb.ref('platformMeta/hikayeVideo').set(payload);
+        try{ await rdb.ref('hikayeVideo').remove(); }catch(_){}
+        updateHikayePreviewFromInputs();
+        hikayeVideoStatus.textContent = 'Kaydedildi. Öğrenciler yükleme sonrası ana ekranda videoyu görür (oturum başına bir kez).';
+      }catch(e){
+        const msg = (e && e.message) ? String(e.message) : String(e);
+        if(/PERMISSION_DENIED/i.test(msg)){
+          hikayeVideoStatus.textContent = 'Kayıt hatası: Firebase kuralları yazmaya izin vermiyor. platformMeta/hikayeVideo için .write açık olmalı (firebase-rules-class-scope-example.json → Console → Publish).';
+        }else{
+          hikayeVideoStatus.textContent = 'Kayıt hatası: ' + msg;
+        }
+      }
+    });
+  }
+  if(hikayeVideoReload){
+    hikayeVideoReload.addEventListener('click', ()=> window.novaLoadHikayeVideoAdmin && window.novaLoadHikayeVideoAdmin());
+  }
+  [hikayeLibraryName, hikayeLibraryId, hikayeVideoId].forEach(function(el){
+    if(el) el.addEventListener('input', updateHikayePreviewFromInputs);
+  });
 
   function tourShuffle(arr){
     const a = arr.slice();

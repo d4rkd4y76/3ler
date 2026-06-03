@@ -347,10 +347,12 @@
   border-color: rgba(167, 139, 250, 0.65);
 }
 
-/* — Bonus etkinlikler — kapalıyken içerik gizli — */
+/* — Bonus etkinlikler — kapalıyken içerik gizli ve tıklanamaz — */
 #main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel,
 #main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel * {
   visibility: hidden;
+  pointer-events: none !important;
+  touch-action: none !important;
 }
 
 #main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel,
@@ -420,8 +422,8 @@
   padding-bottom: 2px;
 }
 
-#main-screen .nova-bonus-drawer__panel[hidden] {
-  display: flex !important;
+#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel[hidden] {
+  display: none !important;
 }
 
 #main-screen .nova-bonus-drawer__panel .puzzle-fab-wrap,

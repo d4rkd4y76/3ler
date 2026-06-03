@@ -334,9 +334,21 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                     var url = String(v.url || '').trim();
                     if (!url) return;
                     var kind = v.kind || 'auto';
-                    setTimeout(function () {
-                        openGirisPanosuOverlay({ url: url, kind: kind });
-                    }, 80);
+                    function scheduleGiris() {
+                        setTimeout(function () {
+                            openGirisPanosuOverlay({ url: url, kind: kind });
+                        }, 80);
+                    }
+                    if (typeof window.novaHikayeStoryWillPlay === 'function') {
+                        window.novaHikayeStoryWillPlay().then(function (hikayeActive) {
+                            if (hikayeActive) return;
+                            scheduleGiris();
+                        }).catch(function () {
+                            scheduleGiris();
+                        });
+                        return;
+                    }
+                    scheduleGiris();
                 } catch (_e) {}
             }
             function fetchOnce() {

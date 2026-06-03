@@ -5,7 +5,15 @@
     var toggle = document.getElementById('nova_bonus_drawer_toggle');
     var panel = document.getElementById('nova_bonus_drawer_panel');
     if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (panel) panel.hidden = !open;
+    if (panel) {
+      panel.hidden = !open;
+      if (open) panel.removeAttribute('inert');
+      else panel.setAttribute('inert', '');
+      var buttons = panel.querySelectorAll('button');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = !open;
+      }
+    }
   }
 
   function setDrawerOpen(open) {

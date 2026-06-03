@@ -343,8 +343,10 @@
         min-width: 60px;
         min-height: 28px;
       }
-      #fillblank_fab_wrap{display:inline-flex;position:relative;z-index:80;pointer-events:auto;margin-top:8px}
-      #nova_bonus_drawer_panel{
+      #fillblank_fab_wrap{display:inline-flex;position:relative;z-index:80;margin-top:8px}
+      #nova-bonus-drawer.is-open #fillblank_fab_wrap{pointer-events:auto}
+      #nova-bonus-drawer:not(.is-open) #fillblank_fab_wrap{pointer-events:none !important}
+      #nova-bonus-drawer.is-open #nova_bonus_drawer_panel{
         display:flex !important;
         flex-direction:column !important;
         align-items:stretch !important;
