@@ -516,6 +516,8 @@
       }
     },
     "topicVideoUrls": {
+      ".read": true,
+      ".write": true,
       "$topicId": {
         ".read": true,
         ".write": true,
@@ -1009,6 +1011,31 @@
         "updatedAt": {
           ".validate": "(!newData.exists()) || newData.isNumber()"
         }
+      },
+      "mainScreenBgVideo": {
+        "show": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        },
+        "libraryName": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 128)"
+        },
+        "libraryId": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 32)"
+        },
+        "videoId": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 80)"
+        },
+        "updatedAt": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        }
+      },
+      "cdn": {
+        ".read": true,
+        ".write": true
+      },
+      "tymmCurriculum": {
+        ".read": true,
+        ".write": true
       }
     }
   }

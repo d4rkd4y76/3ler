@@ -3456,6 +3456,28 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 } catch (_) {}
             }
 
+            if (typeof window.novaCdnFetchByPath === 'function') {
+                try {
+                    const cdnVal = await window.novaCdnFetchByPath(path, ttlMs);
+                    if (cdnVal !== undefined) {
+                        const cdnPayload = { ts: now, val: cdnVal };
+                        NOVA_READ_CACHE_MEM[path] = cdnPayload;
+                        setSessionCache(storageKey, cdnPayload);
+                        if (path === 'championData/headings') {
+                            try {
+                                localStorage.setItem(
+                                    'nova_read_cache_ls_championData_headings',
+                                    JSON.stringify(cdnPayload)
+                                );
+                            } catch (_) {}
+                        }
+                        return cdnVal;
+                    }
+                } catch (cdnErr) {
+                    console.warn('CDN read fallback RTDB:', path, cdnErr && cdnErr.message ? cdnErr.message : cdnErr);
+                }
+            }
+
             const snap = await database.ref(path).once('value');
             const val = snap.exists() ? snap.val() : null;
             const payload = { ts: now, val: val };
@@ -3569,8 +3591,29 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
         try {
             window.novaFetchChampionHeadingList = novaFetchChampionHeadingList;
             window.novaFetchLessonsList = novaFetchLessonsList;
+            window.novaFetchLessonsListFromRtdb = novaFetchLessonsListFromRtdb;
             window.novaFetchTopicsList = novaFetchTopicsList;
         } catch (_) {}
+
+        async function novaFetchLessonsListFromRtdb(classId) {
+            if (!classId) return [];
+            try {
+                const snap = await database.ref('championData/headings/' + classId + '/lessons').once('value');
+                if (!snap.exists()) return [];
+                const lessonsVal = snap.val() || {};
+                return Object.keys(lessonsVal).map(function (lessonId) {
+                    const lv = lessonsVal[lessonId] || {};
+                    return {
+                        id: lessonId,
+                        name: lv.name ? String(lv.name) : lessonId,
+                        order: lv.order
+                    };
+                });
+            } catch (e) {
+                console.warn('RTDB ders listesi:', classId, e);
+                return [];
+            }
+        }
 
         async function novaFetchLessonsList(classId) {
             if (!classId) return [];
@@ -3586,29 +3629,59 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 });
                 return out;
             };
+            if (/^SINIF[1-4]$/i.test(String(classId))) {
+                const rtdbFirst = await novaFetchLessonsListFromRtdb(classId);
+                if (rtdbFirst && rtdbFirst.length) {
+                    return window.NovaCurriculumSort
+                        ? window.NovaCurriculumSort.sortLessons(dedupeLessons(rtdbFirst))
+                        : dedupeLessons(rtdbFirst);
+                }
+            }
             let ids = await novaChampionChildKeys('championData/headings/' + classId + '/lessons');
             if (ids === null || !ids.length) {
                 const lessonsVal = await readValCached('championData/headings/' + classId + '/lessons', NOVA_CHAMPION_HEADINGS_TTL_MS);
                 if (!lessonsVal || typeof lessonsVal !== 'object') return [];
                 const rows = Object.keys(lessonsVal).map(function (lessonId) {
+                    var lv = lessonsVal[lessonId] || {};
                     return {
                         id: lessonId,
-                        name: (lessonsVal[lessonId] && lessonsVal[lessonId].name) ? String(lessonsVal[lessonId].name) : lessonId
+                        name: lv.name ? String(lv.name) : lessonId,
+                        order: lv.order
                     };
                 });
-                return dedupeLessons(rows);
+                return window.NovaCurriculumSort
+                    ? window.NovaCurriculumSort.sortLessons(dedupeLessons(rows))
+                    : dedupeLessons(rows);
             }
             const out = [];
             const base = 'championData/headings/' + classId + '/lessons/';
             for (let i = 0; i < ids.length; i += NOVA_CHAMPION_SHALLOW_BATCH) {
                 const chunk = ids.slice(i, i + NOVA_CHAMPION_SHALLOW_BATCH);
                 const rows = await Promise.all(chunk.map(async function (lessonId) {
-                    const nameVal = await novaReadChampionLeaf(base + lessonId + '/name');
-                    return { id: lessonId, name: (nameVal != null && nameVal !== '') ? String(nameVal) : lessonId };
+                    const pfx = base + lessonId + '/';
+                    const [nameVal, orderVal] = await Promise.all([
+                        novaReadChampionLeaf(pfx + 'name'),
+                        novaReadChampionLeaf(pfx + 'order')
+                    ]);
+                    return {
+                        id: lessonId,
+                        name: (nameVal != null && nameVal !== '') ? String(nameVal) : lessonId,
+                        order: orderVal
+                    };
                 }));
                 out.push.apply(out, rows);
             }
-            return dedupeLessons(out);
+            var deduped = dedupeLessons(out);
+            var sorted = window.NovaCurriculumSort
+                ? window.NovaCurriculumSort.sortLessons(deduped)
+                : deduped;
+            if (!sorted.length) {
+                const direct = await novaFetchLessonsListFromRtdb(classId);
+                sorted = window.NovaCurriculumSort
+                    ? window.NovaCurriculumSort.sortLessons(dedupeLessons(direct))
+                    : dedupeLessons(direct);
+            }
+            return sorted;
         }
 
         async function novaFetchTopicsList(classId, lessonId) {
@@ -3621,9 +3694,15 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 Object.keys(topicsVal).forEach(function (topicId) {
                     const v = topicsVal[topicId] || {};
                     if (v.active === false) return;
-                    topicsData.push({ id: topicId, name: v.name ? String(v.name) : topicId });
+                    topicsData.push({
+                        id: topicId,
+                        name: v.name ? String(v.name) : topicId,
+                        order: v.order
+                    });
                 });
-                return topicsData;
+                return window.NovaCurriculumSort
+                    ? window.NovaCurriculumSort.sortTopics(topicsData)
+                    : topicsData;
             }
             const topicsData = [];
             const base = 'championData/headings/' + classId + '/lessons/' + lessonId + '/topics/';
@@ -3636,11 +3715,18 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                         novaReadChampionLeaf(pfx + 'name')
                     ]);
                     if (activeVal === false) return null;
-                    return { id: topicId, name: (nameVal != null && nameVal !== '') ? String(nameVal) : topicId };
+                    const orderVal = await novaReadChampionLeaf(pfx + 'order');
+                    return {
+                        id: topicId,
+                        name: (nameVal != null && nameVal !== '') ? String(nameVal) : topicId,
+                        order: orderVal
+                    };
                 }));
                 rows.forEach(function (r) { if (r) topicsData.push(r); });
             }
-            return topicsData;
+            return window.NovaCurriculumSort
+                ? window.NovaCurriculumSort.sortTopics(topicsData)
+                : topicsData;
         }
 
         // Diğer değişkenler
@@ -3799,6 +3885,14 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             });
         }
         async function resolveBestHeadingFromList(headingsList) {
+            const scopedLabel = getScopedClassLabel();
+            if (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.resolveStudentHeadingId === 'function') {
+                const canonical = window.NovaCurriculumSort.resolveStudentHeadingId(scopedLabel, headingsList);
+                if (canonical) {
+                    const lessons = await novaFetchLessonsList(canonical);
+                    if (lessons && lessons.length) return canonical;
+                }
+            }
             const matches = filterHeadingsForStudent(headingsList);
             const pool = matches.length ? matches : (headingsList || []);
             if (!pool.length) return '';
@@ -5436,6 +5530,9 @@ function showConfirmation(message) {
         });
 
         singlePlayerButton.addEventListener('click', async () => {
+            if (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.clearChampionUiCaches === 'function') {
+                window.NovaCurriculumSort.clearChampionUiCaches();
+            }
             if (typeof window.novaOpenSinglePlayerSelectScreen === 'function') {
                 window.novaOpenSinglePlayerSelectScreen();
             } else {
@@ -5590,7 +5687,13 @@ function populateChampionSelect(data) {
                 classSelectEl.appendChild(option);
                 classSelectEl.value = bestId;
                 try { localStorage.removeItem('cachedLessons_' + bestId); } catch (_) {}
-                // Ders listesi enforceSinglePlayerClassLock / fetchLessons ile yüklenir (çift çağrı yok).
+                try { localStorage.removeItem('cachedLessonsTimestamp_' + bestId); } catch (_) {}
+                if (subEl && bestId) {
+                    await fetchLessons(bestId, subEl);
+                    if (typeof window.novaRefreshGameSelectMenu === 'function') {
+                        window.novaRefreshGameSelectMenu(subEl);
+                    }
+                }
             })();
         } else {
             classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
@@ -5620,6 +5723,23 @@ async function fetchLessons(classId, subjectSelectElement) {
     if (!subjectSelectElement) return false;
     if (!subjectSelectElement.__novaLessonsGen) subjectSelectElement.__novaLessonsGen = 0;
     const myGen = ++subjectSelectElement.__novaLessonsGen;
+
+    try {
+        if (window.NovaCurriculumSort) {
+            let label = '';
+            const st = window.selectedStudent;
+            if (st) label = String(st.className || st.class || '').trim();
+            if (!label && classSelect && classSelect.options && classSelect.options.length) {
+                const op = classSelect.options[classSelect.selectedIndex] || classSelect.options[0];
+                label = String((op && op.textContent) || '').trim();
+            }
+            if (!label && classSelect) label = String(classSelect.value || '').trim();
+            const list = window.__novaChampionHeadingsList || [];
+            const canonical = window.NovaCurriculumSort.resolveStudentHeadingId(label, list);
+            if (canonical) classId = canonical;
+            else if (/^SINIF[1-4]$/i.test(String(classId))) classId = String(classId).toUpperCase();
+        }
+    } catch (_) {}
 
     const CACHE_KEY = `cachedLessons_${classId}`;
     const CACHE_TIMESTAMP_KEY = `cachedLessonsTimestamp_${classId}`;
@@ -5661,7 +5781,24 @@ async function fetchLessons(classId, subjectSelectElement) {
         }
 
         let lessonsData = await novaFetchLessonsList(classId);
-        if ((!lessonsData || !lessonsData.length) && subjectSelectElement && subjectSelectElement.id === 'subject-select') {
+        if (!lessonsData || !lessonsData.length) {
+            try {
+                const directFn = window.novaFetchLessonsListFromRtdb;
+                if (typeof directFn === 'function') {
+                    const direct = await directFn(classId);
+                    if (direct && direct.length) {
+                        lessonsData = window.NovaCurriculumSort
+                            ? window.NovaCurriculumSort.sortLessons(direct)
+                            : direct;
+                    }
+                }
+            } catch (rtdbLessonsErr) {
+                console.warn('Doğrudan RTDB ders yedeği:', rtdbLessonsErr);
+            }
+        }
+        if ((!lessonsData || !lessonsData.length) && subjectSelectElement && (
+            subjectSelectElement.id === 'subject-select' || subjectSelectElement.id === 'duel-subject-select'
+        )) {
             try {
                 const resolveBest = window.__novaResolveBestHeadingFromList || window.__novaResolveBestSinglePlayerHeadingId;
                 let list = window.__novaChampionHeadingsList;
@@ -5709,6 +5846,26 @@ async function fetchLessons(classId, subjectSelectElement) {
 }
 
 async function fetchTopics(classId, lessonId, topicSelectElement) {
+  try {
+    if (window.NovaCurriculumSort) {
+      let label = '';
+      const st = window.selectedStudent;
+      if (st) label = String(st.className || st.class || '').trim();
+      if (!label && duelClassSelect && duelClassSelect.options && duelClassSelect.options.length) {
+        const op = duelClassSelect.options[duelClassSelect.selectedIndex] || duelClassSelect.options[0];
+        label = String((op && op.textContent) || '').trim();
+      }
+      if (!label && classSelect && classSelect.options && classSelect.options.length) {
+        const op = classSelect.options[classSelect.selectedIndex] || classSelect.options[0];
+        label = String((op && op.textContent) || '').trim();
+      }
+      const list = window.__novaChampionHeadingsList || [];
+      const canonical = window.NovaCurriculumSort.resolveStudentHeadingId(label, list);
+      if (canonical) classId = canonical;
+      else if (/^SINIF[1-4]$/i.test(String(classId))) classId = String(classId).toUpperCase();
+    }
+  } catch (_) {}
+
   const CACHE_KEY = `cachedTopics_${classId}_${lessonId}`;
   const CACHE_TIMESTAMP_KEY = `cachedTopicsTimestamp_${classId}_${lessonId}`;
   const CACHE_DURATION = NOVA_CHAMPION_HEADINGS_TTL_MS;
@@ -5739,17 +5896,8 @@ async function fetchTopics(classId, lessonId, topicSelectElement) {
     let topicsData = await novaFetchTopicsList(classId, lessonId);
     if (!topicsData || !topicsData.length) return false;
 
-    // *** YENİ: Tek kişilik ekranda (#topic-select) baştaki sayıya göre sırala ***
-    if (topicSelectElement && topicSelectElement.id === 'topic-select') {
-      const getNum = (s) => {
-        const m = String(s || '').trim().match(/^(\d+)\s*[-.)]/);
-        return m ? parseInt(m[1], 10) : Number.POSITIVE_INFINITY;
-      };
-      topicsData.sort((a, b) => {
-        const na = getNum(a.name), nb = getNum(b.name);
-        if (na !== nb) return na - nb; // 1-), 2-), 3.) ... sıraya göre
-        return (a.name || '').localeCompare(b.name || '', 'tr', { numeric: true, sensitivity: 'base' });
-      });
+    if (window.NovaCurriculumSort) {
+      topicsData = window.NovaCurriculumSort.sortTopics(topicsData);
     }
 
     // Cache ve select doldurma
@@ -5776,6 +5924,7 @@ async function fetchTopics(classId, lessonId, topicSelectElement) {
 // populateSelect fonksiyonları aynı kalabilir
 function populateLessonsSelect(lessonsData, subjectSelectElement) {
     if (!subjectSelectElement) return;
+    try { subjectSelectElement.dataset.novaCurriculumOrder = '1'; } catch (_) {}
     const wrap = subjectSelectElement.closest('.nova-game-select');
     if (wrap) wrap.__novaMenuSyncing = true;
     try {
@@ -5804,12 +5953,20 @@ function populateLessonsSelect(lessonsData, subjectSelectElement) {
 }
 
 function populateTopicsSelect(topicsData, topicSelectElement) {
+    if (!topicSelectElement) return;
+    try { topicSelectElement.dataset.novaCurriculumOrder = '1'; } catch (_) {}
+    const wrap = topicSelectElement.closest('.nova-game-select');
+    if (wrap) wrap.__novaMenuSyncing = true;
+    try {
     topicsData.forEach(topic => {
         const option = document.createElement('option');
         option.value = topic.id;
         option.textContent = topic.name;
         topicSelectElement.appendChild(option);
     });
+    } finally {
+        if (wrap) wrap.__novaMenuSyncing = false;
+    }
     if (topicSelectElement && typeof window.novaRefreshGameSelectMenu === 'function') {
         window.novaRefreshGameSelectMenu(topicSelectElement);
     }
@@ -8665,23 +8822,42 @@ async function updateDuelSelection(field, value) {
                     topic: topicId
                 });
 
-                const picked = await pickAndLoadTopicQuestionsExact(
-                    classId,
-                    subjectId,
-                    topicId,
-                    10
-                );
-                if (!picked || picked.length < 10) return false;
+                const topicIdsList = await listTopicQuestionIdsExact(classId, subjectId, topicId);
+                if (!topicIdsList || topicIdsList.length < 10) return false;
+                const selectedIds = shuffleArray(topicIdsList.slice()).slice(0, 10);
 
                 duelClassId = classId;
                 duelSubjectId = subjectId;
                 duelTopicId = topicId;
 
-                await currentDuelRef.update({
-                    questions: formatDuelQuestionsChosen(picked),
+                var duelUpdate = {
                     playAt: firebase.database.ServerValue.TIMESTAMP,
                     gameStarted: true
-                });
+                };
+                if (
+                    typeof window.novaCdnShouldWriteDuelRefsOnly === 'function' &&
+                    window.novaCdnShouldWriteDuelRefsOnly() &&
+                    typeof window.novaCdnBuildDuelQuestionSource === 'function'
+                ) {
+                    duelUpdate.questionSource = window.novaCdnBuildDuelQuestionSource(
+                        classId,
+                        subjectId,
+                        topicId,
+                        selectedIds
+                    );
+                    duelUpdate.questions = null;
+                } else {
+                    const picked = await pickAndLoadTopicQuestionsExact(
+                        classId,
+                        subjectId,
+                        topicId,
+                        10
+                    );
+                    if (!picked || picked.length < 10) return false;
+                    duelUpdate.questions = formatDuelQuestionsChosen(picked);
+                }
+
+                await currentDuelRef.update(duelUpdate);
                 return true;
             } catch (e) {
                 console.warn('novaEpicInviterCommitStart', e);
@@ -8712,16 +8888,37 @@ async function updateDuelSelection(field, value) {
         return;
     }
 
-            const pickedDuelQs = await pickAndLoadTopicQuestionsExact(duelClassId, duelSubjectId, duelTopicId, 10);
-            if (pickedDuelQs && pickedDuelQs.length >= 10) {
-                await currentDuelRef.update({
-                    questions: formatDuelQuestionsChosen(pickedDuelQs),
-                    playAt: firebase.database.ServerValue.TIMESTAMP,
-                    gameStarted: true
-                });
-            } else {
+            const duelIdsList = await listTopicQuestionIdsExact(duelClassId, duelSubjectId, duelTopicId);
+            if (!duelIdsList || duelIdsList.length < 10) {
                 showAlert("Bu konuya ait yeterli soru yok veya soru id listesi bulunamadı.");
+                return;
             }
+            const duelSelectedIds = shuffleArray(duelIdsList.slice()).slice(0, 10);
+            var manualDuelUpdate = {
+                playAt: firebase.database.ServerValue.TIMESTAMP,
+                gameStarted: true
+            };
+            if (
+                typeof window.novaCdnShouldWriteDuelRefsOnly === 'function' &&
+                window.novaCdnShouldWriteDuelRefsOnly() &&
+                typeof window.novaCdnBuildDuelQuestionSource === 'function'
+            ) {
+                manualDuelUpdate.questionSource = window.novaCdnBuildDuelQuestionSource(
+                    duelClassId,
+                    duelSubjectId,
+                    duelTopicId,
+                    duelSelectedIds
+                );
+                manualDuelUpdate.questions = null;
+            } else {
+                const pickedDuelQs = await pickAndLoadTopicQuestionsExact(duelClassId, duelSubjectId, duelTopicId, 10);
+                if (!pickedDuelQs || pickedDuelQs.length < 10) {
+                    showAlert("Bu konuya ait yeterli soru yok veya soru id listesi bulunamadı.");
+                    return;
+                }
+                manualDuelUpdate.questions = formatDuelQuestionsChosen(pickedDuelQs);
+            }
+            await currentDuelRef.update(manualDuelUpdate);
         });
 
         function startDuelGame(data) {
@@ -8848,9 +9045,10 @@ async function updateDuelSelection(field, value) {
             invitedCorrectCountEl.textContent = "0";
 
             duelCurrentQuestionIndex = 0;
-            const hasEnoughQuestions = Array.isArray(data.questions) && data.questions.length >= 10;
-            if (hasEnoughQuestions) {
-                duelQuestions = data.questions;
+            var hasEnoughQuestions = Array.isArray(data.questions) && data.questions.length >= 10;
+            var duelQuestionsResolved = hasEnoughQuestions ? data.questions : null;
+
+            function runDuelAfterQuestionsReady() {
                 (async function () {
                     const playAt = Number(data.playAt) || Number(window.__novaDuelPlayAt) || 0;
                     const introPad = window.__novaSkipDuelIntro032 ? 700 : NOVA_DUEL_INTRO_MS;
@@ -8863,7 +9061,36 @@ async function updateDuelSelection(field, value) {
                     }
                     loadDuelQuestion();
                 })();
+            }
+
+            if (!hasEnoughQuestions && typeof window.novaCdnResolveDuelQuestions === 'function') {
+                (async function () {
+                    try {
+                        const fromCdn = await window.novaCdnResolveDuelQuestions(
+                            data,
+                            NOVA_TOPIC_QUESTIONS_TTL_MS
+                        );
+                        if (fromCdn && fromCdn.length >= 10) {
+                            duelQuestions = fromCdn;
+                            hasEnoughQuestions = true;
+                            runDuelAfterQuestionsReady();
+                            return;
+                        }
+                    } catch (cdnDuelErr) {
+                        console.warn('Düello CDN soru çözümleme', cdnDuelErr);
+                    }
+                    if (!hasEnoughQuestions) {
+                        waitForDuelQuestionsPayload();
+                    }
+                })();
+            } else if (hasEnoughQuestions) {
+                duelQuestions = duelQuestionsResolved;
+                runDuelAfterQuestionsReady();
             } else {
+                waitForDuelQuestionsPayload();
+            }
+
+            function waitForDuelQuestionsPayload() {
                 // gameStarted sinyali sorulardan önce gelebilir; soruları beklerken kullanıcıyı boş ekranda bırakma.
                 try {
                     duelOptionsContainer.innerHTML = '';
@@ -8881,16 +9108,25 @@ async function updateDuelSelection(field, value) {
                 try {
                     const qRef = currentDuelRef && currentDuelRef.child ? currentDuelRef.child('questions') : null;
                     if (qRef) {
-                        const fn = qRef.on('value', function (qsnap) {
-                            const qv = qsnap && qsnap.val ? (qsnap.val() || []) : [];
+                        const fn = qRef.on('value', async function (qsnap) {
+                            const dSnapFull = await currentDuelRef.once('value');
+                            const dValFull = dSnapFull.exists() ? (dSnapFull.val() || {}) : {};
+                            let qv = qsnap && qsnap.val ? (qsnap.val() || []) : [];
+                            if (!Array.isArray(qv) || qv.length < 10) {
+                                if (typeof window.novaCdnResolveDuelQuestions === 'function') {
+                                    const fromCdn = await window.novaCdnResolveDuelQuestions(
+                                        dValFull,
+                                        NOVA_TOPIC_QUESTIONS_TTL_MS
+                                    );
+                                    if (fromCdn && fromCdn.length >= 10) qv = fromCdn;
+                                }
+                            }
                             if (Array.isArray(qv) && qv.length >= 10) {
                                 duelQuestions = qv;
                                 try { qRef.off('value', fn); } catch (_) {}
                                 window.__duelQuestionsWaitUnsub = null;
                                 (async function () {
-                                    const dSnap = await currentDuelRef.once('value');
-                                    const dVal = dSnap.exists() ? (dSnap.val() || {}) : {};
-                                    const playAt = Number(dVal.playAt) || 0;
+                                    const playAt = Number(dValFull.playAt) || 0;
                                     const introPad = window.__novaSkipDuelIntro032 ? 700 : NOVA_DUEL_INTRO_MS;
                                     if (playAt) await novaWaitUntilMs(playAt + introPad);
                                     if (typeof window.novaDuelShowArenaIntro === 'function') {

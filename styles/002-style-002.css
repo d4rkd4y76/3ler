@@ -598,9 +598,9 @@ html, body {
     width: min(96vw, 1400px); /* Cihazda taşmadan geniş görünüm */
     max-width: 1400px; /* Maksimum genişlik */
     min-height: 300px; /* Minimum yükseklik */
-    background: url('https://i.ibb.co/nqP0MpJx/Gemini-Generated-mage-ws3firws3firws3f.jpg') center center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* Arka plan: Bunny video katmanı (nova-main-bg-video); eski foto URL kaldırıldı */
+    background: #020611;
+    background-image: none;
     border: 5px solid transparent;
     border-radius: 20px; /* Köşe yuvarlama */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Yumuşak gölge */

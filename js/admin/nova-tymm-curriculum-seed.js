@@ -1,0 +1,387 @@
+/**
+ * TYMM video konu müfredatı — championData/headings tam yenileme.
+ * Admin: Sorular sekmesi → "TYMM müfredatını yükle"
+ */
+(function (global) {
+  'use strict';
+
+  function slugAscii(text, maxLen) {
+    var tr = {
+      ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u',
+      Ç: 'c', Ğ: 'g', İ: 'i', Ö: 'o', Ş: 's', Ü: 'u'
+    };
+    var s = String(text || '')
+      .split('')
+      .map(function (ch) {
+        return tr[ch] != null ? tr[ch] : ch;
+      })
+      .join('')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+    if (!s) s = 'konu';
+    return s.slice(0, maxLen || 48);
+  }
+
+  function buildTopic(name, order) {
+    return {
+      name: name,
+      active: true,
+      order: order,
+      questions: {},
+      questionIds: {}
+    };
+  }
+
+  function buildLesson(id, name, topicNames, lessonOrder) {
+    var topics = {};
+    topicNames.forEach(function (tn, i) {
+      var tid = 't' + String(i + 1).padStart(2, '0');
+      topics[tid] = buildTopic(tn, i + 1);
+    });
+    return { name: name, order: lessonOrder, topics: topics };
+  }
+
+  /** Kaynak: data/tymm-curriculum.json ile senkron tutun */
+  var TYMM_GRADES = [
+    {
+      grade: 1,
+      headingName: '1.SINIF',
+      lessons: [
+        { id: 'lesson_turkce', name: 'TÜRKÇE', topics: [
+          'Kalem Tutma ve Temel Çizgi Çalışmaları',
+          'Ses Gruplarını Tanıma ve Harf Yazımı (Güncel TYMM Ses Gruplarına Göre)',
+          'Harflerden Hece, Hecelerden Kelime Oluşturma',
+          'Kelimelerden Kurallı Cümleler Oluşturma',
+          'Akıcı Okuma ve Okuduğunu Anlama Çalışmaları',
+          'Cümle Başı ve Özel İsimlerde Büyük Harf Kullanımı',
+          'Temel Noktalama İşaretleri (Nokta, Virgül, Soru İşareti)',
+          'Görsel Okuma (Resimlere bakarak hikaye anlatma) ve Dinleme Kuralları'
+        ]},
+        { id: 'lesson_matematik', name: 'MATEMATİK', topics: [
+          'Rakamları Tanıma, Okuma ve Yazma (0-9)',
+          "1'den 100'e Kadar İleri ve Geri Sayma",
+          'Çoklukları Karşılaştırma (Az, Çok, Eşit) ve Sıralama',
+          "Toplama İşleminin Anlamı ve 20'ye Kadar Toplama",
+          "Çıkarma İşleminin Anlamı ve 20'ye Kadar Çıkarma",
+          'Zaman Ölçme: Tam ve Yarım Saatler',
+          'Zaman Ölçme: Günler, Haftalar, Aylar',
+          'Uzamsal İlişkiler (Altında-Üstünde, Sağında-Solunda, İçinde-Dışında)',
+          'Geometrik Şekiller (Kare, Dikdörtgen, Üçgen, Çember) ve Geometrik Cisimler',
+          'Standart Olmayan Ölçü Birimleriyle Uzunluk Ölçme (Adım, Karış, Kulaç)',
+          'Paralarımızı Tanıyalım',
+          'Veri Toplama: Basit Tablo Okuma ve Yorumlama'
+        ]},
+        { id: 'lesson_hayat_bilgisi', name: 'HAYAT BİLGİSİ', topics: [
+          'Ben ve Yaşam Alanım: Sınıfımız, Okulumuz ve Okul Kuralları',
+          'Ben ve Toplum: Kendimi Tanıtıyorum, Nezaket İfadeleri',
+          'Ben ve Ailem: Evimiz, Aile Bireyleri ve Ev Adresimiz',
+          'Ben ve Sağlığım: Kişisel Bakım, Temizlik ve Düzenli Beslenme',
+          'Ben ve Güvenliğim: Trafik Kurallarına Giriş ve Güvenli Oyun Alanları',
+          "Ben ve Ülkem: Bayrağımız, İstiklal Marşımız ve Atatürk'ün Hayatına Giriş",
+          'Ben ve Doğam: Mevsimler, Çevremizdeki Bitkiler ve Hayvanlar'
+        ]}
+      ]
+    },
+    {
+      grade: 2,
+      headingName: '2.SINIF',
+      lessons: [
+        { id: 'lesson_turkce', name: 'TÜRKÇE', topics: [
+          'Alfabetik Sıralama ve Harf (Ses) Bilgisi',
+          'Hece Bilgisi (Kelimeleri Hecelerine Doğru Ayırma)',
+          'Sözcükte Anlam: Eş Anlamlı ve Zıt Anlamlı Kelimeler',
+          'Cümle Bilgisi (Kurallı ve Anlamlı Cümle Oluşturma, Soru Cümlesi)',
+          'Okuduğunu Anlama (5N1K Soruları: Kim, Ne, Nerede, Ne Zaman, Nasıl, Niçin)',
+          'Metnin Konusu ve Ana Fikrini Bulma',
+          'Yazım Kuralları (Büyük harflerin yazımı, satır sonuna sığmayan kelimeler)',
+          'Noktalama İşaretleri (Nokta, Virgül, Soru İşareti, Ünlem, Kesme İşareti)'
+        ]},
+        { id: 'lesson_matematik', name: 'MATEMATİK', topics: [
+          "100'e Kadar Doğal Sayılar (Basamak Adları, Basamak Değeri ve Deste-Düzine)",
+          'Sayıları En Yakın Onluğa Yuvarlama ve Sıralama',
+          'Eldesiz ve Eldeli Toplama İşlemi',
+          'Onluk Bozarak Çıkarma İşlemi ve Zihinden İşlemler',
+          "Çarpma İşlemine Giriş (Çarpım Tablosu: 1, 2, 3, 4 ve 5'ler)",
+          'Bölme İşlemine Giriş (Gruplama ve Paylaştırma)',
+          'Kesirler (Bütün, Yarım ve Çeyrek Kavramları)',
+          'Saatleri Okuma (Çeyrek geçiyor, çeyrek var kavramları)',
+          'Paralarımız (Kuruş ve Lira ilişkisi, para problemleri)',
+          'Uzunluk Ölçme (Metre ve Santimetre)',
+          'Tartma ve Sıvı Ölçme (Kilogram ve Litre kavramlarına giriş)',
+          'Geometri (Şekillerin Kenar ve Köşe Özellikleri, Simetriye giriş)'
+        ]},
+        { id: 'lesson_hayat_bilgisi', name: 'HAYAT BİLGİSİ', topics: [
+          'Okulumuzda Hayat (Okul kaynaklarının bilinçli kullanımı, iletişim)',
+          'Evimizde Hayat (Akrabalık ilişkileri, evdeki sorumluluklarımız ve planlı yaşam)',
+          'Sağlıklı Hayat (Mevsimine göre beslenme, hastalıklardan korunma)',
+          'Güvenli Hayat (Ulaşım araçları, trafik kuralları, 112 Acil Çağrı Merkezi)',
+          'Ülkemizde Hayat (Ülkemizin haritadaki yeri, milli/dini bayramlar, üretim faaliyetleri)',
+          'Doğada Hayat (Yönler, doğa olayları, geri dönüşümün önemi)'
+        ]},
+        { id: 'lesson_ingilizce', name: 'İNGİLİZCE', topics: [
+          'Words (Temel Kelimeler, Selamlaşma / Hello, Good morning)',
+          'Friends (Kendini tanıtma, isim ve yaş sorma)',
+          'In the Classroom (Sınıf eşyaları, basit komutlar / Stand up, Sit down)',
+          "Numbers (1'den 10'a kadar sayılar)",
+          'Colors (Renkler)',
+          "At the Playground (Oyun alanında / Let's...)",
+          'Body Parts (Vücudumuzun bölümleri)',
+          'Pets (Evcil Hayvanlar ve "in, on, under" kavramları)',
+          "Fruit (Meyveler / I like, I don't like)",
+          "Animals (Doğadaki hayvanlar / can, can't yetenekleri)"
+        ]}
+      ]
+    },
+    {
+      grade: 3,
+      headingName: '3.SINIF',
+      lessons: [
+        { id: 'lesson_turkce', name: 'TÜRKÇE', topics: [
+          'Metin Türleri (Hikâye edici metinler, bilgilendirici metinler ve şiir)',
+          'Kelime Dağarcığı (Eş ve zıt anlamlı kelimeler, Eş Sesli/Sesteş kelimeler)',
+          'Paragrafta Anlam (Metnin konusu, ana düşüncesi, şiirin ana duygusu)',
+          'Olayların Oluş Sırası ve Hikâye Unsurları (Kahraman, yer, zaman, olay)',
+          'Cümlede Anlam (Sebep-Sonuç İlişkileri)',
+          'Dilbilgisi Temelleri (Özel isim, cins isim, tekil ve çoğul isimler)',
+          'Yazım Kuralları ("de, da, ki, mi" bağlaç ve eklerinin yazımı)',
+          'Noktalama İşaretleri (İki nokta, kısa çizgi ve tırnak işaretinin eklenmesi)'
+        ]},
+        { id: 'lesson_matematik', name: 'MATEMATİK', topics: [
+          'Üç Basamaklı Doğal Sayılar (Okuma, yazma, basamak değeri)',
+          'Sayıları Yuvarlama, Sıralama ve Romen Rakamları',
+          'Tek ve Çift Doğal Sayılar',
+          'Toplama İşlemi (Üç basamaklı sayılarla)',
+          'Çıkarma İşlemi (Onluk ve yüzlük bozarak çıkarma)',
+          'Çarpma İşlemi (Çarpım tablosunun tamamlanması, iki basamaklıyla bir basamaklıyı çarpma)',
+          'Bölme İşlemi (Kalanlı ve kalansız bölme)',
+          'Kesirler (Birim kesirler, pay ve payda kavramı, kesri sayı doğrusunda gösterme)',
+          'Zaman Ölçme (Saat ve dakika ilişkisi, problem çözme)',
+          'Paralarımız ve Tartma Ölçüleri (Gram, Kilogram problemleri)',
+          'Geometri (Nokta, doğru, ışın, doğru parçası ve açı kavramları)',
+          'Çevre ve Alan Ölçmeye Giriş',
+          'Veri Toplama (Çetele tablosu, sıklık tablosu, şekil grafiği)'
+        ]},
+        { id: 'lesson_fen_bilimleri', name: 'FEN BİLİMLERİ', topics: [
+          'Gezegenimizi Tanıyalım (Dünyanın şekli ve katmanları)',
+          'Beş Duyumuz (Duyu organları ve görevleri)',
+          'Kuvveti Tanıyalım (İtme-çekme kuvveti, hareket çeşitleri)',
+          'Maddenin Hâlleri (Katı, sıvı ve gaz maddelerin özellikleri)',
+          'Çevremizdeki Işık ve Sesler (Doğal ve yapay kaynaklar)',
+          'Canlılar Dünyasına Yolculuk (Canlı/cansız varlıklar ve doğal çevre)',
+          'Elektrikli Araçlar (Elektriğin kaynakları, piller ve elektrik güvenliği)'
+        ]},
+        { id: 'lesson_hayat_bilgisi', name: 'HAYAT BİLGİSİ', topics: [
+          'Okulumuzda Hayat (Okul krokisi çizimi, okulda demokrasi ve meslekler)',
+          'Evimizde Hayat (Komşuluk ilişkileri, teknolojik aletlerin güvenli kullanımı)',
+          'Sağlıklı Hayat (Kişisel hijyen, temizlik malzemeleri, bilinçli tüketici)',
+          'Güvenli Hayat (Trafik işaret levhaları, afetlere hazırlık ve deprem çantası)',
+          'Ülkemizde Hayat (Yönetim birimleri: Muhtar, Belediye, Kaymakam; tarihi güzelliklerimiz)',
+          'Doğada Hayat (Yön bulma yöntemleri: Güneş, yosun, kutup yıldızı; çevre kirliliği)'
+        ]},
+        { id: 'lesson_ingilizce', name: 'İNGİLİZCE', topics: [
+          'Greeting (Selamlaşma, alfabe, nasılsın sorma)',
+          'My Family (Aile üyeleri / Who is this?)',
+          'People I Love (Kişisel/Fiziksel özellikler / tall, short, young, old)',
+          'Feelings (Duygular / happy, sad, angry, energetic)',
+          'Toys and Games (Oyuncaklar / How many?)',
+          'My House (Evin bölümleri ve odalar)',
+          'In My City (Şehrimizdeki yerler / bank, hospital, park)',
+          'Transportation (Ulaşım araçları)',
+          'Weather (Hava durumu / sunny, rainy, cold)',
+          'Nature (Doğadaki kelimeler)'
+        ]}
+      ]
+    },
+    {
+      grade: 4,
+      headingName: '4.SINIF',
+      lessons: [
+        { id: 'lesson_turkce', name: 'TÜRKÇE', topics: [
+          'Sözcükte Anlam Derinleşiyor (Gerçek, Mecaz ve Terim Anlam)',
+          'Eş Anlamlı, Zıt Anlamlı ve Sesteş Kelimeler',
+          'Deyimler ve Atasözleri',
+          'Cümlede Anlam (Neden-Sonuç, Karşılaştırma, Benzetme, Örneklendirme)',
+          'Öznel ve Nesnel Yargılı Cümleler',
+          'Paragrafta Anlam ve Metin Karşılaştırma',
+          'Görsel ve Grafik Okuma (Tablo, grafik ve sembolleri yorumlama)',
+          'İleri Yazım Kuralları (Sayıların, tarihlerin ve kısaltmaların yazımı)',
+          'Noktalama İşaretleri Detaylı Analizi'
+        ]},
+        { id: 'lesson_matematik', name: 'MATEMATİK', topics: [
+          '4, 5 ve 6 Basamaklı Doğal Sayılar (Bölükler, Çözümleme)',
+          'Doğal Sayılarla Dört İşlem (Çok basamaklı sayılarla toplama, çıkarma)',
+          'Doğal Sayılarla Çarpma İşlemi (Üç basamaklı ile iki basamaklıyı çarpma)',
+          'Doğal Sayılarla Bölme İşlemi (Üç basamaklıyı iki basamaklıya bölme)',
+          'Kesirler (Basit, Bileşik, Tam Sayılı Kesirler ve Kesirleri Sıralama)',
+          'Kesirlerle Toplama ve Çıkarma İşlemleri',
+          'Zaman Ölçme (Saat, dakika, saniye, yıl, ay, hafta dönüşümleri)',
+          'Geometri (Üçgen Çeşitleri, Kare, Dikdörtgen, Simetri ve Açıölçer Kullanımı)',
+          'Uzunluk Ölçme (Milimetre ve Kilometre dönüşümleri)',
+          'Çevre ve Alan Ölçme (Kare ve dikdörtgenin çevresi ve alanı)',
+          'Tartma (Ton ve Miligram) / Sıvı Ölçme (Mililitre)',
+          'Veri Okuma: Sütun Grafiği Çizme ve Yorumlama'
+        ]},
+        { id: 'lesson_fen_bilimleri', name: 'FEN BİLİMLERİ', topics: [
+          'Yer Kabuğu ve Dünyamızın Hareketleri (Kayaçlar, fosiller, Dünyanın dönme/dolanma hareketleri)',
+          'Besinlerimiz (Karbonhidrat, protein, yağ, vitaminler; alkol ve sigaranın zararları)',
+          'Kuvvetin Etkileri (Mıknatıslar, kuvvetin hızlandırıcı, yavaşlatıcı, yön değiştirici etkileri)',
+          'Maddenin Özellikleri (Maddenin ölçülebilir özellikleri: kütle ve hacim, Karışımlar ve ayırma yöntemleri)',
+          'Aydınlatma ve Ses Teknolojileri (Geçmişten günümüze teknolojiler, ışık ve ses kirliliği)',
+          'İnsan ve Çevre (Bilinçli tüketim, geri dönüşüm)',
+          'Basit Elektrik Devreleri (Devre elemanları: anahtar, pil, ampul, duy)'
+        ]},
+        { id: 'lesson_sosyal_bilgiler', name: 'SOSYAL BİLGİLER', topics: [
+          'Birey ve Toplum (Resmî kimlik belgemiz, bireysel farklılıklara saygı, kişisel kronoloji)',
+          'Kültür ve Miras (Aile tarihi, millî kültür öğelerimiz, Millî Mücadele dönemi kahramanları)',
+          'İnsanlar, Yerler ve Çevreler (Yönler, kroki çizimi, doğal afetler, yaşadığımız yerin yeryüzü şekilleri)',
+          'Bilim, Teknoloji ve Toplum (Teknolojik ürünlerin geçmişi, mucitler, güvenli internet)',
+          'Üretim, Dağıtım ve Tüketim (İstek ve ihtiyaç, bütçe yapma, israf)',
+          'Etkin Vatandaşlık (Sosyal kulüpler, yerel yönetimler, sorumluluklarımız)',
+          "Küresel Bağlantılar (Dünya ülkeleri, Türkiye'nin komşuları, farklı kültürler)"
+        ]},
+        { id: 'lesson_ingilizce', name: 'İNGİLİZCE', topics: [
+          'Classroom Rules (Sınıf kuralları / May I come in?)',
+          'Nationality (Ülkeler ve milliyetler / Where are you from?)',
+          "Cartoon Characters (Yetenekler / can, can't, ride a bike)",
+          'Free Time (Boş zaman etkinlikleri / like, dislike)',
+          'My Day (Günlük rutinler / What time is it?)',
+          'Fun with Science (Bilimsel komutlar ve yer edatları / in front of, behind)',
+          'Jobs (Meslekler / What do you do?)',
+          'My Clothes (Kıyafetler ve hava durumu ilişkisi)',
+          'My Friends (Fiziksel görünüm / has got, have got)',
+          'Food and Drinks (Yiyecekler, açlık ve susuzluk)'
+        ]}
+      ]
+    }
+  ];
+
+  function buildHeadings() {
+    var headings = {};
+    TYMM_GRADES.forEach(function (g) {
+      var hid = 'SINIF' + g.grade;
+      var lessons = {};
+      g.lessons.forEach(function (les, idx) {
+        lessons[les.id] = buildLesson(les.id, les.name, les.topics, idx + 1);
+      });
+      headings[hid] = { name: g.headingName, lessons: lessons };
+    });
+    return headings;
+  }
+
+  function countStats(headings) {
+    var lessons = 0;
+    var topics = 0;
+    Object.keys(headings).forEach(function (hid) {
+      var ls = headings[hid].lessons || {};
+      Object.keys(ls).forEach(function (lid) {
+        lessons += 1;
+        topics += Object.keys((ls[lid].topics) || {}).length;
+      });
+    });
+    return { headings: Object.keys(headings).length, lessons: lessons, topics: topics };
+  }
+
+  /** Kök düğüme yazma kuralı yoksa çocukları tek tek siler */
+  async function clearRtdbChildren(rdb, basePath) {
+    var snap = await rdb.ref(basePath).get();
+    if (!snap.exists()) return;
+    var patch = {};
+    snap.forEach(function (ch) {
+      patch[ch.key] = null;
+    });
+    if (Object.keys(patch).length) {
+      await rdb.ref(basePath).update(patch);
+    }
+  }
+
+  async function clearClassContentQuestions(rdb) {
+    var ccSnap = await rdb.ref('classContent').get();
+    if (!ccSnap.exists()) return;
+    var cc = ccSnap.val() || {};
+    var updates = {};
+    Object.keys(cc).forEach(function (key) {
+      if (key.indexOf('sinif') !== 0 && key.indexOf('class_') !== 0) return;
+      var block = cc[key];
+      if (!block || typeof block !== 'object') return;
+      ['fillBlanks', 'dailyPuzzles', 'matchingGame'].forEach(function (game) {
+        if (block[game]) {
+          updates['classContent/' + key + '/' + game + '/questions'] = {};
+          updates['classContent/' + key + '/' + game + '/questionIds'] = {};
+        }
+      });
+      if (block.denemeQuestions) {
+        updates['classContent/' + key + '/denemeQuestions'] = {};
+      }
+    });
+    if (Object.keys(updates).length) {
+      await rdb.ref().update(updates);
+    }
+  }
+
+  /**
+   * @param {object} rdb Firebase database ref root
+   * @param {{ clearClassQuestions?: boolean }} opts
+   */
+  async function applyTymmCurriculum(rdb, opts) {
+    opts = opts || {};
+    if (!rdb) throw new Error('RTDB yok');
+
+    var headings = buildHeadings();
+    var st = countStats(headings);
+    var warnings = [];
+
+    try {
+      await rdb.ref('championData/headings').set(headings);
+    } catch (e) {
+      var msg = e && e.message ? e.message : String(e);
+      if (/PERMISSION_DENIED/i.test(msg)) {
+        throw new Error(
+          'championData/headings yazılamadı. Firebase Console → Realtime Database → Rules bölümünde ' +
+            '"championData": { ".read": true, ".write": true } olduğundan emin olun ve Publish edin.'
+        );
+      }
+      throw e;
+    }
+
+    try {
+      await clearRtdbChildren(rdb, 'lessonVideoLookup');
+    } catch (e) {
+      warnings.push('lessonVideoLookup temizlenemedi');
+    }
+    try {
+      await clearRtdbChildren(rdb, 'topicVideoUrls');
+    } catch (e) {
+      warnings.push('topicVideoUrls temizlenemedi');
+    }
+
+    if (opts.clearClassQuestions) {
+      try {
+        await clearClassContentQuestions(rdb);
+      } catch (e) {
+        warnings.push('classContent soruları temizlenemedi (kutuyu kaldırıp tekrar deneyin)');
+      }
+    }
+
+    try {
+      await rdb.ref('platformMeta/tymmCurriculum').set({
+        version: 1,
+        appliedAt: Date.now(),
+        stats: st
+      });
+    } catch (e) {
+      warnings.push('platformMeta/tymmCurriculum kaydı atlandı');
+    }
+
+    if (warnings.length) {
+      st.warnings = warnings;
+    }
+    return st;
+  }
+
+  global.NovaTymmCurriculum = {
+    buildHeadings: buildHeadings,
+    apply: applyTymmCurriculum,
+    grades: TYMM_GRADES
+  };
+})(typeof window !== 'undefined' ? window : globalThis);

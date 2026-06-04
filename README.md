@@ -12,3 +12,7 @@ Bu klasör, `düello.html` dosyasının modülerleştirilmiş çıktısını iç
 
 ## Çalıştırma
 `index.html` dosyasını tarayıcıda açın.
+
+## Bunny CDN (isteğe bağlı)
+Sıfırdan kurulum rehberi: **`ADIM-ADIM-BUNNY.md`** (önce bunu okuyun).  
+Teknik özet: `BUNNY-MIGRATION.md`

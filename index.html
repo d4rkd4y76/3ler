@@ -70,6 +70,8 @@
 <!-- NOVA: Freeze guard (must load early) -->
 <script src="js/core/000-nova-freeze-guard.js?v=30260526freeze1"></script>
 <script src="js/core/nova-game-brand.js?v=30260602brand1"></script>
+<script src="js/core/nova-cdn-config.js?v=30260604cdn1"></script>
+<script src="js/core/nova-cdn-fetch.js?v=30260604cdn1"></script>
 
 <script src="js/core/002-script-002.js?v=30260602bonushit1"></script>
 <script src="js/core/003-nova-matching-game.js?v=30260602bonushit1"></script>
@@ -225,6 +227,13 @@
 <link rel="stylesheet" href="styles/063-nova-screen-loader.css" />
 <!-- Ana Ekran -->
 <div class="container" id="main-screen" style="display: none; position: relative;">
+<div id="nova-main-bg-video-layer" class="nova-main-bg-video-layer" aria-hidden="true">
+  <video id="nova-main-bg-video" class="nova-main-bg-video" muted loop playsinline webkit-playsinline autoplay preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-hidden="true" tabindex="-1"></video>
+  <div id="nova-main-bg-video-iframe-wrap" class="nova-main-bg-video-iframe-wrap" hidden>
+    <iframe id="nova-main-bg-video-iframe" class="nova-main-bg-video-iframe" title="" tabindex="-1" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <div class="nova-main-bg-video-scrim" aria-hidden="true"></div>
+</div>
 <div class="app-duyuru-strip" id="app-duyuru-strip" hidden>
 <div class="app-duyuru-strip__viewport">
 <div class="app-duyuru-strip__track" id="app-duyuru-track">
@@ -802,12 +811,13 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=8" />
 <script src="js/core/nova-question-markup.js?v=8"></script>
-<script src="js/ui/006-nova-game-select.js?v=30260522spfix2"></script>
+<script src="js/ui/006-nova-game-select.js?v=30260604curorder1"></script>
 <script src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
 <script src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
 <script src="js/ui/nova-duel-arena-intro.js?v=30260531arenaintro1"></script>
 <script src="js/ui/nova-duel-game-fx.js?v=30260531pin1"></script>
-<script src="js/screens/007-script-007.js?v=30260602adminfoot1"></script>
+<script src="js/core/nova-curriculum-sort.js?v=30260604sort2"></script>
+<script src="js/screens/007-script-007.js?v=30260604currbind2"></script>
 <script src="js/ui/010-nova-duel-screen.js?v=30260602perfflash1"></script>
 <script src="js/ui/nova-duel-epic-flow.js?v=30260602rtdb1"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
@@ -1364,6 +1374,7 @@
 <script src="js/ui/nova-main-screen-boot-prep.js?v=30260602mainprep2"></script>
 <script src="js/ui/nova-sprite-preload-boot.js?v=30260602boot9"></script>
 <script src="js/ui/nova-hikaye-story-video.js?v=30260602hikaye4"></script>
+<script src="js/ui/nova-main-screen-bg-video.js?v=30260604mainbg4"></script>
 <script src="js/ui/013-nova-hero-level-system.js?v=30260602testeco1"></script>
 <script src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
 <script src="js/ui/015-nova-store-detail.js?v=30260604storebtn1"></script>
@@ -1380,6 +1391,7 @@
 <link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=30260602topdock3" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260602adminfoot1" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260602hikaye2" />
+<link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260604mainbg3" />
 <style id="nova-login-final-override">
 #student-selection-screen.nova-kids-login .card{
   border:1px solid rgba(255,255,255,.78) !important;

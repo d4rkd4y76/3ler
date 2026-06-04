@@ -41,6 +41,18 @@
     return sel && (sel.id === 'selection-class-select' || sel.id === 'registerClassSelect' || sel.id === 'class-select');
   }
 
+  /** Ders/konu listeleri TYMM order sırasıyla gelir; alfabetik sıralama yapılmaz. */
+  function isCurriculumOrderSelect(sel){
+    if (!sel) return false;
+    if (sel.dataset.novaCurriculumOrder === '1') return true;
+    return (
+      sel.id === 'subject-select' ||
+      sel.id === 'topic-select' ||
+      sel.id === 'duel-subject-select' ||
+      sel.id === 'duel-topic-select'
+    );
+  }
+
   function sortNativeClassSelect(sel){
     if (!sel || !sel.options || sel.dataset.novaClassSortLock === '1') return;
     sel.dataset.novaClassSortLock = '1';
@@ -176,17 +188,26 @@
         sortNativeClassSelect(sel);
       }
       menu.innerHTML = '';
-      const sorted = Array.from(sel.options).slice().sort(function(a, b){
-        if (!a.value) return -1;
-        if (!b.value) return 1;
-        if (isClassGradeSelect(sel)) {
-          const ga = gradeFromClassLabel(a.textContent || '');
-          const gb = gradeFromClassLabel(b.textContent || '');
-          if (ga !== gb) return ga - gb;
-        }
-        return (a.textContent || '').localeCompare(b.textContent || '', 'tr');
-      });
-      sorted.forEach(function(opt){
+      var options = Array.from(sel.options);
+      if (!isCurriculumOrderSelect(sel)) {
+        options.sort(function(a, b){
+          if (!a.value) return -1;
+          if (!b.value) return 1;
+          if (isClassGradeSelect(sel)) {
+            const ga = gradeFromClassLabel(a.textContent || '');
+            const gb = gradeFromClassLabel(b.textContent || '');
+            if (ga !== gb) return ga - gb;
+          }
+          return (a.textContent || '').localeCompare(b.textContent || '', 'tr');
+        });
+      } else {
+        options.sort(function(a, b){
+          if (!a.value) return -1;
+          if (!b.value) return 1;
+          return 0;
+        });
+      }
+      options.forEach(function(opt){
         const idx = Array.prototype.indexOf.call(sel.options, opt);
         const btn = document.createElement('button');
         btn.type = 'button';

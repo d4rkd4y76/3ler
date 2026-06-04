@@ -334,6 +334,8 @@ window.NovaAdminExport = (function(){
       <div class="tab" data-view="storeView">🛍️ Mağaza</div>
       <div class="tab" data-view="announcementView">📢 Ana ekran duyurusu</div>
       <div class="tab" data-view="girisPanosuView">🖥️ Giriş panosu</div>
+      <div class="tab" data-view="cdnView">☁️ CDN Yayın</div>
+      <div class="tab" data-view="mainScreenBgView">🎬 Ana ekran arka plan</div>
       <div class="tab" data-view="hikayeVideoView">📖 Hikaye</div>
       <div class="tab" data-view="tournamentView">🏆 Turnuva</div>
       <div class="tab" data-view="resetView">♻️ Sıfırlama</div>
@@ -403,6 +405,18 @@ window.NovaAdminExport = (function(){
     <div id="questionsView" class="view">
       <h2>2) Sorular</h2>
       <div class="sub">Yapı: <span class="mono">championData/headings/{headingId}/lessons/{lessonId}/topics/{topicId}/questions/{qid}</span> ve videoUrl. Ayrıca <span class="mono">/lessonVideoLookup/DERS/KONU</span> yedeği destekleniyor.</div>
+      <div class="card mt12" style="border-color:rgba(251,191,36,.45)">
+        <h3>TYMM müfredat (1–4. sınıf)</h3>
+        <div class="sub">Tüm mevcut <b>ders / konu / düello sorularını</b> siler; TYMM’deki <b>sırayla</b> konu başlıklarını oluşturur (her konuda <span class="mono">order</span>: 1, 2, 3…). Soru gövdeleri boş. Sıra bozuksa müfredatı bir kez daha yükleyin. Geri alınamaz — önce yedek alın.</div>
+        <div class="toolbar mt8">
+          <button type="button" class="btn warn" id="btn_apply_tymm_curriculum">📚 TYMM müfredatını yükle</button>
+          <label class="flex" style="gap:8px;align-items:center;margin:0">
+            <input type="checkbox" id="tymm_clear_class_questions" />
+            <span class="small">Günlük bulmaca / boşluk / eşleştirme / deneme sorularını da sil</span>
+          </label>
+        </div>
+        <div class="hint mt8" id="tymm_curriculum_status"></div>
+      </div>
       <div class="row">
         <div class="col">
           <div class="card">
@@ -676,6 +690,96 @@ window.NovaAdminExport = (function(){
           <button type="button" class="btn acc" id="tour_new_start">Yeni turnuva başlat</button>
         </div>
         <div class="hint mt8" id="tour_danger_status"></div>
+      </div>
+    </div>
+
+    <div id="cdnView" class="view">
+      <h2>CDN yayın (Bunny Storage)</h2>
+      <div class="sub">Soru, mağaza, deneme ve konu verileri kaydedildiğinde otomatik olarak Bunny Storage’a yazılır. Öğrenci uygulaması <span class="mono">platformMeta/cdn</span> ayarıyla CDN’den okur. Storage şifresi yalnızca bu tarayıcıda saklanır.</div>
+      <div class="card">
+        <h3>Öğrenci CDN adresi (Firebase)</h3>
+        <div class="grid cols-2 mt8">
+          <div>
+            <label>Pull Zone adresi (https://….b-cdn.net)</label>
+            <input type="text" id="cdn_meta_base" placeholder="https://duellox-cdn.b-cdn.net" />
+          </div>
+          <div>
+            <label>İçerik sürümü (version)</label>
+            <input type="number" id="cdn_meta_version" min="1" value="1" />
+          </div>
+        </div>
+        <label class="flex mt8" style="gap:10px;align-items:center">
+          <input type="checkbox" id="cdn_meta_enabled" />
+          <span>Öğrenci uygulamasında CDN’i aç (enabled)</span>
+        </label>
+        <label class="flex mt8" style="gap:10px;align-items:center">
+          <input type="checkbox" id="cdn_meta_duel_refs" checked />
+          <span>Düelloda yalnız soru id listesi yaz (duelRefsOnly)</span>
+        </label>
+        <div class="toolbar mt12">
+          <button type="button" class="btn acc" id="cdn_meta_save">CDN ayarını Firebase’e kaydet</button>
+        </div>
+        <div class="hint mt8" id="cdn_meta_status"></div>
+      </div>
+      <div class="card mt12">
+        <h3>Admin yükleme anahtarı (Bunny Storage)</h3>
+        <div class="grid cols-2 mt8">
+          <div>
+            <label>Storage zone adı</label>
+            <input type="text" id="cdn_storage_zone" placeholder="duellox-assets" />
+          </div>
+          <div>
+            <label>Bölge</label>
+            <select id="cdn_storage_region">
+              <option value="de">Avrupa (DE)</option>
+              <option value="ny">Kuzey Amerika (NY)</option>
+              <option value="la">LA</option>
+              <option value="sg">Asya (SG)</option>
+              <option value="syd">Sydney</option>
+            </select>
+          </div>
+          <div style="grid-column:1/-1">
+            <label>Storage zone Password (API)</label>
+            <input type="password" id="cdn_storage_key" placeholder="Bunny → Storage → Access → Password" autocomplete="off" />
+          </div>
+        </div>
+        <div class="toolbar mt12" style="flex-wrap:wrap;gap:8px">
+          <button type="button" class="btn acc" id="cdn_storage_save">Anahtarı bu tarayıcıya kaydet</button>
+          <button type="button" class="btn" id="cdn_test_btn">Bağlantıyı test et</button>
+          <button type="button" class="btn" id="cdn_rebuild_store_btn">Mağaza manifest’ini yenile</button>
+        </div>
+        <div class="hint mt8" id="cdn_storage_status">Kayıt sonrası soru / mağaza kayıtları otomatik CDN’e gider.</div>
+      </div>
+    </div>
+
+    <div id="mainScreenBgView" class="view">
+      <h2>Ana ekran arka plan videosu</h2>
+      <div class="sub">Ana ekranda <b>döngü</b> arka plan (sessiz). Bunny Stream’e yükleyin; <b>kütüphane adı</b> = CDN hostname (<span class="mono">vz-…</span> veya Pull Zone), <b>video ID</b> = GUID. Veritabanı: <span class="mono">/platformMeta/mainScreenBgVideo</span>. Önerilen: kısa loop (~4 sn), ~1 MB altı, baş/son kare uyumlu.</div>
+      <div class="card">
+        <label class="flex mt8" style="gap:10px;align-items:center">
+          <input type="checkbox" id="main_bg_video_show" checked />
+          <span>Ana ekranda arka plan videosunu göster</span>
+        </label>
+        <div class="grid cols-2 mt8">
+          <div>
+            <label>Bunny kütüphane adı (CDN hostname)</label>
+            <input type="text" id="main_bg_library_name" placeholder="duellox-cdn veya vz-xxxxxxxx" />
+          </div>
+          <div>
+            <label>Bunny video ID (GUID)</label>
+            <input type="text" id="main_bg_video_id" placeholder="00000000-0000-0000-0000-000000000000" />
+          </div>
+          <div>
+            <label>Bunny kütüphane ID (opsiyonel — embed yedek)</label>
+            <input type="text" id="main_bg_library_id" placeholder="123456" />
+          </div>
+        </div>
+        <div class="soft small mt8" id="main_bg_video_preview_hint">Önizleme URL’si kayıttan sonra görünür.</div>
+        <div class="toolbar mt12">
+          <button type="button" class="btn acc" id="main_bg_video_save">Kaydet</button>
+          <button type="button" class="btn" id="main_bg_video_reload">Yeniden yükle</button>
+        </div>
+        <div class="hint mt8" id="main_bg_video_status"></div>
       </div>
     </div>
 
@@ -1107,9 +1211,13 @@ window.NovaAdminExport = (function(){
 <!-- Firebase v8 (compatible with existing app). Fill config below if needed. -->
 <script src="js/core/nova-question-markup.js?v=8"></script>
 <script src="js/core/nova-admin-question-editor.js?v=8"></script>
+<script src="js/core/nova-cdn-config.js?v=30260604cdn1"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="js/core/nova-admin-cdn.js?v=30260604cdn1"></script>
+<script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
+<script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
 <script>
 /** =============================
  * NASK ADMİN PANEL – RTDB bağlayıcı
@@ -1137,6 +1245,18 @@ window.NovaAdminExport = (function(){
   }
   const rdb = firebase && firebase.database ? firebase.database() : null;
   if(!rdb){ setConn('Bağlanamadı (Firebase). Konfigürasyon gerekli.'); } else { setConn('RTDB bağlı'); }
+
+  (function initNovaAdminCdn(){
+    if (!rdb || !window.NovaAdminCdn) return;
+    NovaAdminCdn.init(rdb).then(function(st){
+      var el = document.getElementById('cdn_storage_status');
+      if (el) {
+        el.textContent = st.ready
+          ? 'CDN otomatik yayın AÇIK — soru ve mağaza kayıtları Bunny\'ye yazılır.'
+          : 'CDN otomatik yayın kapalı — Storage zone + şifre girin (CDN Yayın sekmesi).';
+      }
+    }).catch(function(e){ console.warn('NovaAdminCdn.init', e); });
+  })();
 
   // ---- UI helpers ----
   const $ = sel => document.querySelector(sel);
@@ -1222,6 +1342,8 @@ window.NovaAdminExport = (function(){
     if(target==='dailyPuzzlesView'){ try{ window.novaLoadDailyPuzzlesAdmin && window.novaLoadDailyPuzzlesAdmin(); }catch(e){ console.warn(e);} }
     if(target==='announcementView'){ try{ window.novaLoadAppDuyuruAdmin && window.novaLoadAppDuyuruAdmin(); }catch(e){ console.warn(e);} }
     if(target==='girisPanosuView'){ try{ window.novaLoadGirisPanosuAdmin && window.novaLoadGirisPanosuAdmin(); }catch(e){ console.warn(e);} }
+    if(target==='cdnView'){ try{ window.novaLoadCdnAdmin && window.novaLoadCdnAdmin(); }catch(e){ console.warn(e);} }
+    if(target==='mainScreenBgView'){ try{ window.novaLoadMainScreenBgAdmin && window.novaLoadMainScreenBgAdmin(); }catch(e){ console.warn(e);} }
     if(target==='hikayeVideoView'){ try{ window.novaLoadHikayeVideoAdmin && window.novaLoadHikayeVideoAdmin(); }catch(e){ console.warn(e);} }
     if(target==='tournamentView'){ try{ window.novaLoadTournamentAdmin && window.novaLoadTournamentAdmin(); }catch(e){ console.warn(e);} }
     $$('.tab').forEach(x=>x.classList.remove('active'));
@@ -1363,6 +1485,217 @@ window.NovaAdminExport = (function(){
       videoId: hikayeVideoId ? hikayeVideoId.value : ''
     });
   }
+
+  window.novaLoadCdnAdmin = async function(){
+    var baseEl = $('#cdn_meta_base');
+    var verEl = $('#cdn_meta_version');
+    var enEl = $('#cdn_meta_enabled');
+    var duelEl = $('#cdn_meta_duel_refs');
+    var zoneEl = $('#cdn_storage_zone');
+    var keyEl = $('#cdn_storage_key');
+    var regEl = $('#cdn_storage_region');
+    var metaSt = $('#cdn_meta_status');
+    var storSt = $('#cdn_storage_status');
+    if (!rdb || !window.NovaAdminCdn) return;
+    try {
+      await NovaAdminCdn.loadPlatformCdnConfig(rdb);
+      var st = NovaAdminCdn.getState();
+      if (baseEl) baseEl.value = st.cdn.base || '';
+      if (verEl) verEl.value = String(st.cdn.version || 1);
+      if (enEl) enEl.checked = !!st.cdn.enabled;
+      if (duelEl) duelEl.checked = st.cdn.duelRefsOnly !== false;
+      NovaAdminCdn.loadLocalStorageCreds();
+      st = NovaAdminCdn.getState();
+      if (zoneEl) zoneEl.value = st.storage.zone || 'duellox-assets';
+      if (regEl) regEl.value = st.storage.region || 'de';
+      if (storSt) {
+        storSt.textContent = NovaAdminCdn.storageReady()
+          ? 'Otomatik yayın hazır. Soru / mağaza kaydı CDN\'e gider.'
+          : 'Storage zone + şifre girin, kaydedin.';
+      }
+      if (metaSt) metaSt.textContent = 'platformMeta/cdn yüklendi.';
+    } catch (e) {
+      if (metaSt) metaSt.textContent = 'Yükleme hatası: ' + (e && e.message ? e.message : e);
+    }
+  };
+
+  var cdnMetaSave = $('#cdn_meta_save');
+  if (cdnMetaSave) {
+    cdnMetaSave.addEventListener('click', async function () {
+      var metaSt = $('#cdn_meta_status');
+      if (!rdb || !window.NovaAdminCdn) return;
+      try {
+        var base = String($('#cdn_meta_base') && $('#cdn_meta_base').value || '').trim().replace(/\/+$/, '');
+        var version = Number($('#cdn_meta_version') && $('#cdn_meta_version').value) || 1;
+        await NovaAdminCdn.savePlatformCdnConfig(rdb, {
+          enabled: !!($('#cdn_meta_enabled') && $('#cdn_meta_enabled').checked),
+          base: base,
+          version: version,
+          duelRefsOnly: !!($('#cdn_meta_duel_refs') && $('#cdn_meta_duel_refs').checked)
+        });
+        if (metaSt) metaSt.textContent = 'Kaydedildi. Öğrenci uygulaması bu ayarı okur.';
+      } catch (e) {
+        if (metaSt) metaSt.textContent = 'Kayıt hatası: ' + (e && e.message ? e.message : e);
+      }
+    });
+  }
+
+  var cdnStorageSave = $('#cdn_storage_save');
+  if (cdnStorageSave) {
+    cdnStorageSave.addEventListener('click', function () {
+      var storSt = $('#cdn_storage_status');
+      if (!window.NovaAdminCdn) return;
+      NovaAdminCdn.saveLocalStorageCreds(
+        $('#cdn_storage_zone') && $('#cdn_storage_zone').value,
+        $('#cdn_storage_key') && $('#cdn_storage_key').value,
+        $('#cdn_storage_region') && $('#cdn_storage_region').value
+      );
+      NovaAdminCdn.init(rdb).then(function (st) {
+        if (storSt) {
+          storSt.textContent = st.ready
+            ? 'Anahtar kaydedildi — otomatik CDN yayını açık.'
+            : 'Zone adı ve şifre gerekli.';
+        }
+      });
+    });
+  }
+
+  var cdnTestBtn = $('#cdn_test_btn');
+  if (cdnTestBtn) {
+    cdnTestBtn.addEventListener('click', async function () {
+      var storSt = $('#cdn_storage_status');
+      if (!window.NovaAdminCdn) return;
+      try {
+        NovaAdminCdn.saveLocalStorageCreds(
+          $('#cdn_storage_zone') && $('#cdn_storage_zone').value,
+          $('#cdn_storage_key') && $('#cdn_storage_key').value,
+          $('#cdn_storage_region') && $('#cdn_storage_region').value
+        );
+        await NovaAdminCdn.init(rdb);
+        await NovaAdminCdn.testConnection();
+        if (storSt) storSt.textContent = 'Bağlantı OK — Bunny Storage yazılabiliyor.';
+      } catch (e) {
+        if (storSt) storSt.textContent = 'Test hatası: ' + (e && e.message ? e.message : e);
+      }
+    });
+  }
+
+  var cdnRebuildStore = $('#cdn_rebuild_store_btn');
+  if (cdnRebuildStore) {
+    cdnRebuildStore.addEventListener('click', async function () {
+      var storSt = $('#cdn_storage_status');
+      if (!rdb || !window.NovaAdminCdn) return;
+      try {
+        if (storSt) storSt.textContent = 'Mağaza manifest yenileniyor…';
+        await NovaAdminCdn.rebuildStoreManifest(rdb);
+        if (storSt) storSt.textContent = 'store/manifest.json CDN\'e yazıldı.';
+      } catch (e) {
+        if (storSt) storSt.textContent = 'Hata: ' + (e && e.message ? e.message : e);
+      }
+    });
+  }
+
+  const mainBgVideoShow = $('#main_bg_video_show');
+  const mainBgLibraryName = $('#main_bg_library_name');
+  const mainBgLibraryId = $('#main_bg_library_id');
+  const mainBgVideoId = $('#main_bg_video_id');
+  const mainBgVideoSave = $('#main_bg_video_save');
+  const mainBgVideoReload = $('#main_bg_video_reload');
+  const mainBgVideoStatus = $('#main_bg_video_status');
+  const mainBgVideoPreviewHint = $('#main_bg_video_preview_hint');
+
+  function buildMainBgPreviewLines(cfg) {
+    if (!cfg || !cfg.videoId) return 'Video ID girilmedi.';
+    var libName = normalizeBunnyLibraryNameAdmin(cfg.libraryName);
+    var vid = String(cfg.videoId || '').trim();
+    var lines = [];
+    if (libName) {
+      lines.push('MP4 (720p): https://' + libName + '.b-cdn.net/' + vid + '/play_720p.mp4');
+    }
+    if (cfg.libraryId) {
+      lines.push('Embed: https://iframe.mediadelivery.net/embed/' + cfg.libraryId + '/' + vid);
+    }
+    return lines.length ? lines.join(' · ') : 'Kütüphane adı veya kütüphane ID gerekli.';
+  }
+
+  function updateMainBgPreviewFromInputs() {
+    if (!mainBgVideoPreviewHint) return;
+    mainBgVideoPreviewHint.textContent = buildMainBgPreviewLines({
+      libraryName: mainBgLibraryName ? mainBgLibraryName.value : '',
+      libraryId: mainBgLibraryId ? mainBgLibraryId.value : '',
+      videoId: mainBgVideoId ? mainBgVideoId.value : ''
+    });
+  }
+
+  window.novaLoadMainScreenBgAdmin = async function () {
+    if (!rdb || !mainBgVideoStatus) return;
+    mainBgVideoStatus.textContent = 'Yükleniyor…';
+    try {
+      const snap = await rdb.ref('platformMeta/mainScreenBgVideo').get();
+      const v = snap.exists() ? snap.val() || {} : {};
+      if (mainBgLibraryName) mainBgLibraryName.value = typeof v.libraryName === 'string' ? v.libraryName : '';
+      if (mainBgLibraryId) mainBgLibraryId.value = typeof v.libraryId === 'string' ? v.libraryId : (v.libraryId != null ? String(v.libraryId) : '');
+      if (mainBgVideoId) mainBgVideoId.value = typeof v.videoId === 'string' ? v.videoId : '';
+      if (mainBgVideoShow) mainBgVideoShow.checked = v.show !== false;
+      updateMainBgPreviewFromInputs();
+      mainBgVideoStatus.textContent = v.updatedAt
+        ? 'Son kayıt: ' + fmtTime(v.updatedAt)
+        : 'Kayıt yok — ilk kez doldurup kaydedin.';
+    } catch (e) {
+      mainBgVideoStatus.textContent = 'Okuma hatası: ' + (e && e.message ? e.message : e);
+    }
+  };
+
+  if (mainBgVideoSave) {
+    mainBgVideoSave.addEventListener('click', async () => {
+      if (!rdb) {
+        mainBgVideoStatus.textContent = 'RTDB yok.';
+        return;
+      }
+      const libraryName = normalizeBunnyLibraryNameAdmin(mainBgLibraryName && mainBgLibraryName.value);
+      const libraryId = String((mainBgLibraryId && mainBgLibraryId.value) || '').trim();
+      const videoId = String((mainBgVideoId && mainBgVideoId.value) || '').trim();
+      const show = !!(mainBgVideoShow && mainBgVideoShow.checked);
+      if (show && !videoId) {
+        mainBgVideoStatus.textContent = 'Video ID zorunludur.';
+        return;
+      }
+      if (show && !libraryName && !libraryId) {
+        mainBgVideoStatus.textContent = 'Kütüphane adı (Pull Zone / vz-…) veya kütüphane ID girin.';
+        return;
+      }
+      mainBgVideoStatus.textContent = 'Kaydediliyor…';
+      const payload = {
+        show: show,
+        libraryName: libraryName,
+        libraryId: libraryId,
+        videoId: videoId,
+        updatedAt: Date.now()
+      };
+      try {
+        await rdb.ref('platformMeta/mainScreenBgVideo').set(payload);
+        updateMainBgPreviewFromInputs();
+        mainBgVideoStatus.textContent =
+          'Kaydedildi. Öğrenciler ana ekranda döngü videoyu görür (tarayıcı önbelleğinden tekrar oynatır).';
+      } catch (e) {
+        const msg = e && e.message ? String(e.message) : String(e);
+        if (/PERMISSION_DENIED/i.test(msg)) {
+          mainBgVideoStatus.textContent =
+            'Kayıt hatası: platformMeta/mainScreenBgVideo için Firebase yazma izni gerekir.';
+        } else {
+          mainBgVideoStatus.textContent = 'Kayıt hatası: ' + msg;
+        }
+      }
+    });
+  }
+  if (mainBgVideoReload) {
+    mainBgVideoReload.addEventListener('click', () => {
+      if (window.novaLoadMainScreenBgAdmin) window.novaLoadMainScreenBgAdmin();
+    });
+  }
+  [mainBgLibraryName, mainBgLibraryId, mainBgVideoId].forEach(function (el) {
+    if (el) el.addEventListener('input', updateMainBgPreviewFromInputs);
+  });
 
   window.novaLoadHikayeVideoAdmin = async function(){
     if(!rdb || !hikayeVideoStatus){ return; }
@@ -2407,6 +2740,56 @@ window.NovaAdminExport = (function(){
   const headingSelect = $('#headingSelect');
   const lessonSelect = $('#lessonSelect');
   const topicSelect = $('#topicSelect');
+  const btnApplyTymm = $('#btn_apply_tymm_curriculum');
+  const tymmClearClassQ = $('#tymm_clear_class_questions');
+  const tymmStatus = $('#tymm_curriculum_status');
+
+  if (btnApplyTymm && window.NovaTymmCurriculum) {
+    btnApplyTymm.addEventListener('click', async function () {
+      if (!rdb) {
+        if (tymmStatus) tymmStatus.textContent = 'RTDB yok.';
+        return;
+      }
+      var alsoClass = !!(tymmClearClassQ && tymmClearClassQ.checked);
+      var msg =
+        'Tüm championData ders/konu/sorular silinip TYMM konu listesi yüklenecek.' +
+        (alsoClass ? ' Ek olarak sınıf oyunları ve deneme soruları da silinecek.' : '') +
+        '\n\nDevam?';
+      if (!confirm(msg)) return;
+      btnApplyTymm.disabled = true;
+      if (tymmStatus) tymmStatus.textContent = 'Yükleniyor…';
+      try {
+        var st = await NovaTymmCurriculum.apply(rdb, { clearClassQuestions: alsoClass });
+        if (tymmStatus) {
+          var line =
+            'Tamam: ' +
+            st.headings +
+            ' sınıf, ' +
+            st.lessons +
+            ' ders, ' +
+            st.topics +
+            ' konu (sorular boş). Video URL’lerini konu başına ekleyin.';
+          if (st.warnings && st.warnings.length) {
+            line += ' Uyarı: ' + st.warnings.join('; ');
+          }
+          tymmStatus.textContent = line;
+        }
+        await loadHeadings();
+        await loadLessons();
+        await loadTopics();
+        try {
+          reloadQuestions();
+        } catch (_) {}
+      } catch (e) {
+        if (tymmStatus) {
+          tymmStatus.textContent = 'Hata: ' + (e && e.message ? e.message : e);
+        }
+      } finally {
+        btnApplyTymm.disabled = false;
+      }
+    });
+  }
+
   const btnAddHeading = $('#btnAddHeading');
   const btnAddLesson = $('#btnAddLesson');
   const btnAddTopic = $('#btnAddTopic');
@@ -2473,10 +2856,10 @@ window.NovaAdminExport = (function(){
     const h = headingSelect.value; if(!h){ lessonSelect.innerHTML=''; topicSelect.innerHTML=''; return; }
     const snap = await rdb.ref(`championData/headings/${h}/lessons`).get();
     const data = snap.exists() ? snap.val() : {};
-    const arr = Object.entries(data).map(([k,v])=>({id:k, name:(v&&v.name)||('Ders '+k.slice(-4))}));
-    arr.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
-    lessonSelect.innerHTML = arr.map(o=>`<option value="${o.id}">${o.name}</option>`).join('');
-    if(arr.length){ lessonSelect.value = arr[0].id; }
+    const arr = Object.entries(data).map(([k,v])=>({id:k, name:(v&&v.name)||('Ders '+k.slice(-4)), order:v&&v.order}));
+    const sorted = window.NovaCurriculumSort ? window.NovaCurriculumSort.sortLessons(arr) : arr.slice().sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
+    lessonSelect.innerHTML = sorted.map(o=>`<option value="${o.id}">${o.name}</option>`).join('');
+    if(sorted.length){ lessonSelect.value = sorted[0].id; }
     await loadTopics();
   }
   async function loadTopics(){
@@ -2484,10 +2867,10 @@ window.NovaAdminExport = (function(){
     if(!h||!l){ topicSelect.innerHTML=''; return; }
     const snap = await rdb.ref(`championData/headings/${h}/lessons/${l}/topics`).get();
     const data = snap.exists() ? snap.val() : {};
-    const arr = Object.entries(data).map(([k,v])=>({id:k, name:(v&&v.name)||('Konu '+k.slice(-4)), videoUrl:(v&&v.videoUrl)||''}));
-    arr.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
-    topicSelect.innerHTML = arr.map(o=>`<option value="${o.id}" data-video="${o.videoUrl||''}">${o.name}</option>`).join('');
-    if(arr.length){ topicSelect.value = arr[0].id; }
+    const arr = Object.entries(data).map(([k,v])=>({id:k, name:(v&&v.name)||('Konu '+k.slice(-4)), videoUrl:(v&&v.videoUrl)||'', order:v&&v.order}));
+    const sorted = window.NovaCurriculumSort ? window.NovaCurriculumSort.sortTopics(arr) : arr.slice().sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
+    topicSelect.innerHTML = sorted.map(o=>`<option value="${o.id}" data-video="${o.videoUrl||''}">${o.name}</option>`).join('');
+    if(sorted.length){ topicSelect.value = sorted[0].id; }
     topicVideoUrl.value = (topicSelect.selectedOptions[0] && topicSelect.selectedOptions[0].getAttribute('data-video')) || '';
     await reloadQuestions();
   }
@@ -6152,10 +6535,10 @@ Doğru şık: C
     const items = [];
     s.forEach(ch => {
       const v = ch.val()||{};
-      items.push({ id: ch.key, name: pickName(v, ch.key, 'Ders') });
+      items.push({ id: ch.key, name: pickName(v, ch.key, 'Ders'), order: v.order });
     });
-    items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
-    items.forEach(it=>{
+    const sorted = window.NovaCurriculumSort ? window.NovaCurriculumSort.sortLessons(items) : items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
+    sorted.forEach(it=>{
       const o=document.createElement('option'); o.value=it.id; o.textContent=it.name; sel.appendChild(o);
     });
     loadTopics();
@@ -6168,10 +6551,10 @@ Doğru şık: C
     const items = [];
     s.forEach(ch => {
       const v = ch.val()||{};
-      items.push({ id: ch.key, name: pickName(v, ch.key, 'Konu') });
+      items.push({ id: ch.key, name: pickName(v, ch.key, 'Konu'), order: v.order });
     });
-    items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
-    items.forEach(it=>{
+    const sorted = window.NovaCurriculumSort ? window.NovaCurriculumSort.sortTopics(items) : items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
+    sorted.forEach(it=>{
       const o=document.createElement('option'); o.value=it.id; o.textContent=it.name; sel.appendChild(o);
     });
   }
@@ -6523,10 +6906,10 @@ byId('hw_assign').addEventListener('click', async ()=>{
     const items = [];
     snap.forEach(ch=>{
       const v = ch.val()||{};
-      items.push({id:ch.key, name:pickName(v, ch.key, 'Ders')});
+      items.push({id:ch.key, name:pickName(v, ch.key, 'Ders'), order:v.order});
     });
-    items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
-    items.forEach(it=>{
+    const sortedL = window.NovaCurriculumSort ? window.NovaCurriculumSort.sortLessons(items) : items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
+    sortedL.forEach(it=>{
       const o = document.createElement('option'); o.value=it.id; o.textContent=it.name; sel.appendChild(o);
     });
     await loadTopicsLA();
@@ -6542,16 +6925,23 @@ byId('hw_assign').addEventListener('click', async ()=>{
     const frag = document.createDocumentFragment();
     let total=0, active=0;
     if(snap.exists()){
+      const topicRows = [];
       snap.forEach(ch=>{
-        total++;
         const id = ch.key;
         const v = ch.val()||{};
-        const name = pickName(v, id, 'Konu');
+        topicRows.push({ id: id, name: pickName(v, id, 'Konu'), order: v.order, v: v });
+      });
+      const sortedT = window.NovaCurriculumSort ? window.NovaCurriculumSort.sortTopics(topicRows) : topicRows;
+      sortedT.forEach(function(row){
+        total++;
+        const id = row.id;
+        const v = row.v || {};
+        const name = row.name;
         const checked = (v.active !== false); // default visible
         if(checked) active++;
-        const row = document.createElement('label');
-        row.className = 'row'; row.style.alignItems='center'; row.style.justifyContent='space-between'; row.style.padding='8px 6px';
-        row.innerHTML = '<span>'+ name + '</span>';
+        const labelRow = document.createElement('label');
+        labelRow.className = 'row'; labelRow.style.alignItems='center'; labelRow.style.justifyContent='space-between'; labelRow.style.padding='8px 6px';
+        labelRow.innerHTML = '<span>'+ name + '</span>';
         const cb = document.createElement('input'); cb.type='checkbox'; cb.checked = checked; cb.dataset.topicId = id;
         cb.addEventListener('change', async ()=>{
           try{
@@ -6561,8 +6951,8 @@ byId('hw_assign').addEventListener('click', async ()=>{
         });
         const right = document.createElement('div'); right.appendChild(cb);
         right.style.display='flex'; right.style.alignItems='center'; right.style.gap='8px';
-        row.appendChild(right);
-        frag.appendChild(row);
+        labelRow.appendChild(right);
+        frag.appendChild(labelRow);
       });
       list.innerHTML='';
       list.appendChild(frag);

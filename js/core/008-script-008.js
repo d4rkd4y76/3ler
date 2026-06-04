@@ -947,11 +947,27 @@ function resolveSeriesCategoryKey(seriesKey){
   return '';
 }
 
+function novaMapStoreCategoryObject(o) {
+  return Object.keys(o || {})
+    .filter(id => id !== '_meta' && o[id] && typeof o[id].url === 'string' && typeof o[id].price === 'number')
+    .map(id => ({
+      id,
+      url: o[id].url,
+      price: o[id].price,
+      name: o[id].name || id,
+      allowedStudents: o[id].allowedStudents || null
+    }));
+}
+
 async function ensureSeriesCategoryLoaded(category){
   const c = String(category || '').trim();
   if (!c) return;
   if (Array.isArray(photoCategories[c]) && photoCategories[c].length) return;
   try{
+    if (window.__novaStoreCdnPhotos && window.__novaStoreCdnPhotos[c]) {
+      photoCategories[c] = novaMapStoreCategoryObject(window.__novaStoreCdnPhotos[c]);
+      return;
+    }
     let ids = null;
     try {
       if (typeof window.novaRtdbShallowKeys === 'function') {
@@ -1175,6 +1191,28 @@ async function fetchStoreCategoriesFromDB() {
     if (window.__storeCatsFetchTs && Object.keys(photoCategories || {}).length && (Date.now() - window.__storeCatsFetchTs) < NOVA_STORE_CAT_INDEX_TTL_MS) {
       return;
     }
+    if (typeof window.novaCdnFetchStoreManifest === 'function') {
+      const manifest = await window.novaCdnFetchStoreManifest();
+      if (manifest && typeof manifest === 'object') {
+        const indexData = manifest.profilePhotosIndex || {};
+        window.storeCategoryMeta = manifest.categoryMeta || {};
+        window.__novaStoreCdnPhotos = manifest.profilePhotos || {};
+        window.__novaStoreCdnNameFrames = manifest.nameFrames || {};
+        window.__novaStoreCdnBattleHeroes = manifest.battleHeroes || {};
+        const allKeys = new Set([
+          ...Object.keys(indexData),
+          ...Object.keys(window.storeCategoryMeta || {})
+        ]);
+        photoCategories = {};
+        allKeys.forEach(k => {
+          if (!k || k === '_meta') return;
+          if (!photoCategories[k]) photoCategories[k] = [];
+        });
+        window.__storeCatsFetchTs = Date.now();
+        try { renderStoreCategoryButtons(); } catch (e) {}
+        return;
+      }
+    }
     const [snapI, snapM] = await Promise.all([
       database.ref('store/profilePhotosIndex').once('value'),
       database.ref('store/categoryMeta').once('value')
@@ -1332,17 +1370,13 @@ async function loadProfilePhotos(category) {
   // İstenen kategorinin detayları yoksa sadece o dalı çek (full tree çekme)
   if (!Array.isArray(photoCategories[category]) || !photoCategories[category].length) {
     try {
+      if (window.__novaStoreCdnPhotos && window.__novaStoreCdnPhotos[category]) {
+        photoCategories[category] = novaMapStoreCategoryObject(window.__novaStoreCdnPhotos[category]);
+      } else {
       const catSnap = await database.ref(`store/profilePhotos/${category}`).once('value');
       const o = catSnap.exists() ? (catSnap.val() || {}) : {};
-      photoCategories[category] = Object.keys(o)
-        .filter(id => id !== '_meta' && o[id] && typeof o[id].url === 'string' && typeof o[id].price === 'number')
-        .map(id => ({
-          id,
-          url: o[id].url,
-          price: o[id].price,
-          name: o[id].name || id,
-          allowedStudents: o[id].allowedStudents || null
-        }));
+      photoCategories[category] = novaMapStoreCategoryObject(o);
+      }
     } catch (e) {
       console.warn('Kategori detay çekimi uyarısı:', e);
       if (!photoCategories[category]) photoCategories[category] = [];

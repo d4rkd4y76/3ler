@@ -1,0 +1,99 @@
+/* Ana ekran — Bunny arka plan videosu (döngü, muted) */
+#main-screen,
+#main-screen.container {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+#main-screen {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.nova-main-bg-video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #020611;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.nova-main-bg-video-layer.is-active {
+  opacity: 1;
+}
+
+.nova-main-bg-video {
+  position: absolute;
+  inset: -1%;
+  width: 102%;
+  height: 102%;
+  object-fit: cover;
+  object-position: center center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+}
+
+/* Tarayıcı oynatıcı kontrolleri / ortadaki play — asla görünmesin */
+.nova-main-bg-video::-webkit-media-controls {
+  display: none !important;
+}
+.nova-main-bg-video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+.nova-main-bg-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.nova-main-bg-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 17, 0.55) 0%, rgba(2, 6, 17, 0.2) 35%, rgba(2, 6, 17, 0.35) 100%),
+    radial-gradient(ellipse 90% 70% at 50% 40%, transparent 0%, rgba(2, 6, 17, 0.45) 100%);
+}
+
+.nova-main-bg-video-iframe-wrap {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nova-main-bg-video-iframe {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;
+}
+
+#main-screen > :not(.nova-main-bg-video-layer) {
+  position: relative;
+  z-index: 2;
+}
+
+body.nova-main-bg-video-on #main-screen.container {
+  background: transparent !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-main-bg-video-layer {
+    display: none !important;
+  }
+}
