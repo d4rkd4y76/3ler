@@ -1,4 +1,5 @@
 (function(){
+  function bonusUnlimited(){ return window.NOVA_BONUS_UNLIMITED === true; }
   function db(){ try { return (typeof firebase !== 'undefined' && firebase.database) ? firebase.database() : (window.database || null); } catch(_) { return null; } }
   async function dbGet(refObj){
     if (!refObj) return null;
@@ -180,6 +181,7 @@
   }
 
   function applyMatchFabLock(locked){
+    if (bonusUnlimited()) locked = false;
     const fab = document.getElementById('match_fab');
     const wrap = document.getElementById('match_fab_wrap');
     if (!fab) return;
@@ -187,7 +189,7 @@
     fab.classList.toggle('nova-daily-locked', !!locked);
     fab.setAttribute('aria-disabled', locked ? 'true' : 'false');
     if (wrap) wrap.classList.toggle('nova-daily-locked-wrap', !!locked);
-    fab.title = locked ? 'Bugünkü hakkını kullandın. Yarın tekrar açılır.' : 'Günlük eşleştirme oyunu (+100 elmas)';
+    fab.title = locked ? 'Bugünkü hakkını kullandın. Yarın tekrar açılır.' : 'Doğru eşleştirmede rastgele ejderha yumurtası';
   }
 
   async function refreshMatchFabState(){
@@ -219,7 +221,9 @@
     const rootPath = matchRootForStudent(s);
     const attemptRef = rdb.ref(`${rootPath}/attempts/${s.studentId}/${dKey}`);
     const attemptSnap = await dbGet(attemptRef);
-    if (attemptSnap && attemptSnap.exists()){
+    if (bonusUnlimited()) {
+      try { await attemptRef.remove(); } catch (_) {}
+    } else if (attemptSnap && attemptSnap.exists()){
       if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
       refreshMatchFabState();
       return;
@@ -259,7 +263,7 @@
   }
 
   async function checkMatching(){
-    if (!mState || mState.checked) return;
+    if (!mState || (!bonusUnlimited() && mState.checked)) return;
     const msg = document.getElementById('match_msg');
     const needed = 5;
     if (Object.keys(mState.picks).length !== needed){
@@ -268,93 +272,40 @@
     }
     const payload = { questionId: mState.qid, picks: mState.picks, at: Date.now() };
     let committed = false;
-    await mState.attemptRef.transaction(curr => curr ? curr : payload, function(err, c){ committed = !!c; });
+    if (bonusUnlimited()) {
+      try { await mState.attemptRef.set(payload); committed = true; } catch (_) { committed = false; }
+    } else {
+      await mState.attemptRef.transaction(curr => curr ? curr : payload, function(err, c){ committed = !!c; });
+    }
     if (!committed){
       if (msg){ msg.textContent = 'Bugünkü hakkın zaten kullanılmış.'; msg.className = 'match-msg fail'; }
       refreshMatchFabState();
       return;
     }
     refreshMatchFabState();
-    mState.checked = true;
+    if (!bonusUnlimited()) mState.checked = true;
     const allCorrect = Object.keys(mState.picks).every(function(k){
       return Number(mState.picks[k]) === Number(mState.pairMap[k]);
     });
     renderMatchBoard();
     if (allCorrect){
-      let matchRewardBase = 100;
-      let matchRewardMul = 1;
-      let matchRewardTotal = 100;
-      const runMatchWinFx = () => {
-        const card = document.querySelector('#match-screen .match-card');
-        if (!card) return;
-        card.classList.add('fb-win-glow');
-        const oldFx = card.querySelector('.fb-win-fx');
-        if (oldFx) oldFx.remove();
-        const fx = document.createElement('div');
-        fx.className = 'fb-win-fx';
-        fx.innerHTML = `
-          <div class="fb-win-core">
-            <div class="fb-win-title">MÜKEMMEL EŞLEŞTİRME</div>
-            <div class="fb-win-amount" data-win-amount>+0 💎</div>
-            <div class="fb-win-sub">${matchRewardMul > 1 ? ('Şampiyonluk Rozeti x'+matchRewardMul+' bonusu!') : ''}${matchRewardMul > 1 ? '<br/>' : ''}${matchRewardTotal} elmas hesabına eklendi</div>
-          </div>
-        `;
-        card.appendChild(fx);
-        const amountEl = fx.querySelector('[data-win-amount]');
-        const total = matchRewardTotal;
-        const t0 = performance.now();
-        const dur = 920;
-        const tick = (now) => {
-          const p = Math.min(1, (now - t0) / dur);
-          const eased = 1 - Math.pow(1 - p, 3);
-          const cur = Math.round(total * eased);
-          if (amountEl) amountEl.textContent = `+${cur} 💎`;
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        const colors = ['#fde047','#34d399','#60a5fa','#f472b6','#f97316','#a78bfa'];
-        for (let i = 0; i < 34; i++){
-          const c = document.createElement('span');
-          c.className = 'fb-confetti';
-          c.style.background = colors[i % colors.length];
-          const ang = (Math.PI * 2 * i) / 34;
-          const dist = 120 + Math.random() * 130;
-          c.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
-          c.style.setProperty('--y', `${Math.sin(ang) * dist}px`);
-          c.style.setProperty('--r', `${(Math.random() * 520 - 260).toFixed(0)}deg`);
-          c.style.animationDelay = `${(Math.random() * 0.15).toFixed(2)}s`;
-          fx.appendChild(c);
-        }
-        setTimeout(()=>{
-          fx.remove();
-          card.classList.remove('fb-win-glow');
-        }, 2300);
-      };
-      const stuRef = db().ref(`classes/${mState.student.classId}/students/${mState.student.studentId}`);
-      await stuRef.transaction(stu => {
-        stu = stu || {};
-        const gain = computeChampionDiamondGain(matchRewardBase, stu);
-        matchRewardMul = Number(gain.multiplier || 1);
-        matchRewardTotal = Number(gain.total || matchRewardBase);
-        var heroMul = (typeof window.novaHeroGetDailyDiamondMultiplier === 'function')
-          ? window.novaHeroGetDailyDiamondMultiplier(stu) : 1;
-        if (heroMul > 1) matchRewardTotal = Math.round(matchRewardTotal * heroMul);
-        stu.diamond = Math.min(25000, Number(stu.diamond||0) + matchRewardTotal);
-        stu.lastDiamondUpdate = Date.now();
-        return stu;
-      });
+      let eggReward = null;
+      if (typeof window.novaBonusAwardDragonEgg === 'function') {
+        try { eggReward = await window.novaBonusAwardDragonEgg(); } catch (_) {}
+      }
+      const card = document.querySelector('#match-screen .match-card');
+      if (eggReward && card && typeof window.novaBonusEggWinFx === 'function') {
+        window.novaBonusEggWinFx(card, eggReward, { title: 'MÜKEMMEL EŞLEŞTİRME' });
+      }
       if (typeof window.novaPlayDiamondRewardSfx === 'function'){
         window.novaPlayDiamondRewardSfx();
       }
-      runMatchWinFx();
-      const d1 = document.getElementById('diamond-value');
-      const d2 = document.getElementById('currentDiamonds');
-      [d1, d2].forEach(function(el){
-        if (!el) return;
-        const base = Number(String(el.textContent||'').replace(/[^\d]/g,'')) || 0;
-        el.textContent = String(base + matchRewardTotal);
-      });
-      if (msg){ msg.textContent = 'Harika! Tüm eşleşmeler doğru. +' + matchRewardTotal + ' 💎' + (matchRewardMul > 1 ? (' (Rozet x'+matchRewardMul+')') : ''); msg.className = 'match-msg ok'; }
+      if (msg){
+        msg.textContent = eggReward
+          ? ('Harika! ' + eggReward.label + ' ejderha yumurtası kazandın!')
+          : 'Harika! Ödül verilemedi — tekrar dene.';
+        msg.className = 'match-msg ok';
+      }
     } else {
       if (msg) {
         msg.textContent = 'Yanlış eşleşme! Kartları kontrol et.';
@@ -364,6 +315,15 @@
       if (matchShell) {
         matchShell.classList.add('match-wrong-flash');
         setTimeout(() => matchShell.classList.remove('match-wrong-flash'), 700);
+      }
+      if (bonusUnlimited()) {
+        try { await mState.attemptRef.remove(); } catch (_) {}
+        mState.checked = false;
+        mState.picks = {};
+        mState.activeLeft = null;
+        renderMatchBoard();
+        refreshMatchFabState();
+        return;
       }
       if (typeof window.novaHeroOfferDailyRetry === 'function') {
         const retry = await window.novaHeroOfferDailyRetry('matching');
@@ -465,13 +425,13 @@
     const btn = document.createElement('button');
     btn.id = 'match_fab';
     btn.innerHTML = '<span>🔗 Eşleştir</span>';
-    btn.setAttribute('title', 'Günlük eşleştirme oyunu (+100 elmas)');
+    btn.setAttribute('title', 'Doğru eşleştirmede rastgele ejderha yumurtası');
     btn.addEventListener('click', function(){ openMatchScreen().catch(function(e){ console.warn(e); }); });
     wrap.appendChild(btn);
     const rewardTag = document.createElement('span');
-    rewardTag.className = 'nova-fab-reward-tag';
+    rewardTag.className = 'nova-fab-reward-tag nova-fab-reward-tag--egg';
     rewardTag.setAttribute('aria-hidden', 'true');
-    rewardTag.textContent = '+100 💎';
+    rewardTag.textContent = '🥚 YUMURTA';
     wrap.appendChild(rewardTag);
     const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
     const hudLeft = bonusPanel || document.getElementById('main-screen-quest-slot') || document.getElementById('main-screen');

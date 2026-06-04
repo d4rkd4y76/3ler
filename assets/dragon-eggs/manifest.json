@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "base": "assets/dragon-eggs/",
+  "eggs": {
+    "fire": {
+      "base": "assets/dragon-eggs/fire/",
+      "sheet": "fire-crack.webp",
+      "frameWidth": 569,
+      "frameHeight": 320,
+      "cols": 7,
+      "rows": 14,
+      "frameCount": 96,
+      "loopEnd": 96,
+      "fps": 24,
+      "blendFrames": 0,
+      "sheetWidth": 3983,
+      "sheetHeight": 4480,
+      "anchor": "center",
+      "playOnce": true
+    },
+    "ice": {
+      "base": "assets/dragon-eggs/ice/",
+      "sheet": "ice-crack.webp",
+      "frameWidth": 569,
+      "frameHeight": 320,
+      "cols": 7,
+      "rows": 14,
+      "frameCount": 96,
+      "loopEnd": 96,
+      "fps": 24,
+      "blendFrames": 0,
+      "sheetWidth": 3983,
+      "sheetHeight": 4480,
+      "anchor": "center",
+      "playOnce": true
+    },
+    "night": {
+      "base": "assets/dragon-eggs/night/",
+      "sheet": "night-crack.webp",
+      "frameWidth": 569,
+      "frameHeight": 320,
+      "cols": 7,
+      "rows": 14,
+      "frameCount": 96,
+      "loopEnd": 96,
+      "fps": 24,
+      "blendFrames": 0,
+      "sheetWidth": 3983,
+      "sheetHeight": 4480,
+      "anchor": "center",
+      "playOnce": true
+    },
+    "hub": {
+      "base": "assets/dragon-eggs/hub/",
+      "sheet": "hub-main.webp",
+      "frameWidth": 541,
+      "frameHeight": 280,
+      "cols": 6,
+      "rows": 10,
+      "frameCount": 56,
+      "loopEnd": 48,
+      "fps": 12,
+      "blendFrames": 8,
+      "sheetWidth": 3246,
+      "sheetHeight": 2800,
+      "anchor": "center",
+      "playOnce": false
+    }
+  }
+}

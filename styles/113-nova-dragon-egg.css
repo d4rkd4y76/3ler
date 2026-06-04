@@ -1,0 +1,498 @@
+/* Ejderha Yumurtası — ana ekran giriş + kırma ekranı */
+
+/* — Ana ekran: sadece 3 yumurtaya tıklanır — */
+#main-screen .nova-dragon-egg-wrap {
+  margin-top: 6px;
+  width: 100%;
+  max-width: 100%;
+}
+
+#main-screen .nova-dragon-egg-panel {
+  position: relative;
+  border-radius: 14px;
+  padding: 4px 8px 6px;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(30, 27, 75, 0.88)),
+    radial-gradient(120% 80% at 50% 0%, rgba(251, 191, 36, 0.12), transparent 55%);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  box-shadow:
+    0 10px 28px rgba(2, 6, 23, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+#main-screen .nova-dragon-egg-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  transform: translateX(-120%);
+  animation: nova-degg-shine 4.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes nova-degg-shine {
+  0%, 72% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+#main-screen .nova-dragon-egg-panel__title {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fde68a;
+  text-shadow: 0 0 12px rgba(251, 191, 36, 0.45);
+  margin-bottom: 2px;
+  line-height: 1.1;
+}
+
+#main-screen .nova-dragon-egg-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0 4px 2px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#main-screen .nova-dragon-egg-entry:hover,
+#main-screen .nova-dragon-egg-entry:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.35);
+}
+
+#main-screen .nova-dragon-egg-hub {
+  position: relative;
+  width: 100%;
+  height: clamp(58px, 15vw, 78px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#main-screen .nova-dragon-egg-hub__canvas {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+}
+
+#main-screen .nova-dragon-egg-entry__total {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-top: 0;
+  line-height: 1.15;
+}
+
+/* — Tam ekran kırma — */
+.nova-degg-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100125;
+  align-items: center;
+  justify-content: center;
+  padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+}
+
+.nova-degg-screen.is-open {
+  display: flex;
+}
+
+body.nova-degg-screen-open {
+  overflow: hidden;
+}
+
+.nova-degg-screen__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124, 58, 237, 0.25), transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.98));
+  pointer-events: none;
+}
+
+.nova-degg-screen__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 440px);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 14px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  background: linear-gradient(165deg, rgba(30, 27, 75, 0.94), rgba(15, 23, 42, 0.96));
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden auto;
+}
+
+.nova-degg-screen__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nova-degg-screen__back {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  color: #fde68a;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.nova-degg-screen__title {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fde68a;
+  text-shadow: 0 0 16px rgba(251, 191, 36, 0.4);
+}
+
+.nova-degg-screen__sub {
+  font-size: 0.72rem;
+  color: #cbd5e1;
+  margin-top: 2px;
+}
+
+.nova-degg-screen__body {
+  position: relative;
+  min-height: min(48vh, 300px);
+  width: 100%;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at 50% 55%, rgba(0, 0, 0, 0.38), transparent 72%);
+  overflow: hidden;
+}
+
+.nova-degg-screen__preview,
+.nova-degg-screen__crack-host,
+.nova-degg-screen__reward {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#nova_degg_screen_body[data-phase="pick"] .nova-degg-screen__preview {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+#nova_degg_screen_body[data-phase="pick"] .nova-degg-screen__crack-host,
+#nova_degg_screen_body[data-phase="pick"] .nova-degg-screen__reward,
+#nova_degg_screen_body[data-phase="crack"] .nova-degg-screen__preview,
+#nova_degg_screen_body[data-phase="crack"] .nova-degg-screen__reward {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#nova_degg_screen_body[data-phase="crack"] .nova-degg-screen__crack-host {
+  display: flex !important;
+  opacity: 1;
+  visibility: visible;
+}
+
+#nova_degg_screen_body[data-phase="reward"] .nova-degg-screen__preview,
+#nova_degg_screen_body[data-phase="reward"] .nova-degg-screen__crack-host {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#nova_degg_screen_body[data-phase="reward"] .nova-degg-screen__reward {
+  display: flex !important;
+  opacity: 1;
+  visibility: visible;
+  animation: nova-degg-reward-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nova-degg-screen__preview-img {
+  width: min(68vw, 200px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+  animation: nova-degg-preview-float 3s ease-in-out infinite;
+}
+
+@keyframes nova-degg-preview-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.nova-degg-screen__crack-host canvas {
+  max-width: 96%;
+  max-height: 96%;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.5));
+}
+
+.nova-degg-screen__reward {
+  gap: 10px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.nova-degg-screen__reward[hidden] {
+  display: none !important;
+}
+
+@keyframes nova-degg-reward-in {
+  from { opacity: 0; transform: scale(0.82) translateY(18px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.nova-degg-screen__reward-title {
+  font-size: clamp(1rem, 4.2vw, 1.35rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fde68a;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+}
+
+.nova-degg-screen__reward-sub {
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  text-align: center;
+  line-height: 1.35;
+  max-width: 300px;
+}
+
+.nova-degg-screen__card-slot {
+  width: min(88vw, 200px);
+}
+
+.nova-degg-screen__card-slot .nova-hero-store-card {
+  animation: none !important;
+  pointer-events: none;
+}
+
+.nova-degg-screen__diamond-burst {
+  font-size: clamp(1.5rem, 6.5vw, 2rem);
+  font-weight: 900;
+  color: #67e8f9;
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.65);
+}
+
+.nova-degg-screen__reward-ok {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 4px auto 0;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #0f172a;
+  background: linear-gradient(180deg, #fde047, #f59e0b);
+  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.45);
+  cursor: pointer;
+}
+
+.nova-degg-screen__reward-ok[hidden] {
+  display: none !important;
+}
+
+.nova-degg-screen__stock {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 6px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 23, 42, 0.55);
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip.is-selected {
+  border-color: rgba(250, 204, 21, 0.85);
+  box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.35), 0 8px 18px rgba(250, 204, 21, 0.2);
+  transform: translateY(-2px) scale(1.03);
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip.is-empty {
+  opacity: 0.45;
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip__img {
+  width: 100%;
+  max-width: 72px;
+  height: 56px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip__label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  margin-top: 2px;
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip__count {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #f8fafc;
+}
+
+#nova-dragon-egg-screen .nova-dragon-egg-chip--fire.is-selected {
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.35);
+}
+#nova-dragon-egg-screen .nova-dragon-egg-chip--ice.is-selected {
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+}
+#nova-dragon-egg-screen .nova-dragon-egg-chip--night.is-selected {
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.35);
+}
+
+.nova-degg-screen__crack-btn {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f172a;
+  background: linear-gradient(180deg, #fde047, #f59e0b);
+  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.45);
+  cursor: pointer;
+}
+
+.nova-degg-screen__crack-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.nova-degg-screen__pity {
+  font-size: 0.68rem;
+  color: rgba(226, 232, 240, 0.85);
+  text-align: center;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Kazanma toast */
+.nova-degg-earn-toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transform: translateX(-50%) translateY(120%);
+  z-index: 100115;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.96), rgba(15, 23, 42, 0.96));
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.55);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: min(92vw, 360px);
+}
+
+.nova-degg-earn-toast.is-visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.nova-degg-earn-toast__img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.nova-degg-earn-toast__txt strong {
+  display: block;
+  color: #fde68a;
+  font-size: 0.85rem;
+}
+
+.nova-degg-earn-toast__txt span {
+  color: #cbd5e1;
+  font-size: 0.72rem;
+}
+
+.nova-hero-trial-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #0f172a;
+  background: linear-gradient(90deg, #a7f3d0, #34d399);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.35);
+}
+
+.nova-degg-bonus-win__egg {
+  width: min(42vw, 120px);
+  height: auto;
+  object-fit: contain;
+  margin: 8px auto 4px;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+  animation: nova-degg-preview-float 2.4s ease-in-out infinite;
+}
+
+.nova-degg-bonus-win .fb-win-amount {
+  font-size: 0.95rem !important;
+  letter-spacing: 0.04em;
+}
+
+.nova-hero-trial-remaining {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #6ee7b7;
+  margin-top: 2px;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .nova-degg-screen__inner {
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+    max-height: 96vh;
+  }
+}

@@ -42,6 +42,11 @@
   gap: clamp(5px, 1.4vw, 7px);
 }
 
+#main-screen .nova-dragon-egg-wrap {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* — KAHRAMANIN başlığı — */
 #main-screen .nova-main-hero-showcase__title {
   width: 100%;

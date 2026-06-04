@@ -1,6 +1,8 @@
 // === NOVA: Fill In The Blank Daily Mode ===
 (function(){
-  const FILLBLANK_TEST_UNLIMITED = false;
+  const FILLBLANK_TEST_UNLIMITED = true; /* geçici: bonus sınırsız */
+  try { window.NOVA_BONUS_UNLIMITED = true; } catch (_) {}
+  function bonusUnlimited() { return !!(window.NOVA_BONUS_UNLIMITED || FILLBLANK_TEST_UNLIMITED); }
   function db(){ try { return (typeof firebase !== 'undefined' && firebase.database) ? firebase.database() : (window.database || null); } catch(_) { return null; } }
   async function dbGet(refObj){
     if (!refObj) return null;
@@ -88,6 +90,7 @@
   }
 
   function applyFillFabLock(locked){
+    if (bonusUnlimited()) locked = false;
     const fab = document.getElementById('fillblank_fab');
     const wrap = document.getElementById('fillblank_fab_wrap');
     if (!fab) return;
@@ -95,7 +98,7 @@
     fab.classList.toggle('nova-daily-locked', !!locked);
     fab.setAttribute('aria-disabled', locked ? 'true' : 'false');
     if (wrap) wrap.classList.toggle('nova-daily-locked-wrap', !!locked);
-    fab.title = locked ? 'Bugünkü hakkını kullandın. Yarın tekrar açılır.' : 'Doğru cevapta +100 elmas';
+    fab.title = locked ? 'Bugünkü hakkını kullandın. Yarın tekrar açılır.' : 'Doğru cevapta rastgele ejderha yumurtası';
   }
 
   async function refreshFillFabState(){
@@ -128,7 +131,9 @@
     const rootPath = fillRootForStudent(s);
     const attemptRef = rdb.ref(`${rootPath}/attempts/${s.studentId}/${dKey}`);
     const attemptSnap = await dbGet(attemptRef);
-    if (attemptSnap.exists()){
+    if (bonusUnlimited()) {
+      try { await attemptRef.remove(); } catch (_) {}
+    } else if (attemptSnap.exists()){
       if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
       refreshFillFabState();
       return;
@@ -188,14 +193,13 @@
 
     let answeredOnce = false;
     checkBtn.onclick = async () => {
-      if (answeredOnce){
+      if (!bonusUnlimited() && answeredOnce){
         resultEl.textContent = 'Bugün için kontrol hakkını kullandın.';
         resultEl.className = 'fb-result fail';
         return;
       }
       const userAns = inputEl.value.trim();
       if (!userAns){ resultEl.textContent = 'Cevap yazmalısın.'; return; }
-      answeredOnce = true;
       checkBtn.disabled = true;
       const isCorrect = norm(userAns) === norm(q.answerNorm || q.answer || '');
       const payload = {
@@ -206,94 +210,35 @@
       };
 
       let committed = false;
-      await attemptRef.transaction(curr => curr ? curr : payload, (err, c)=>{ committed = !!c; });
+      if (bonusUnlimited()) {
+        try { await attemptRef.set(payload); committed = true; } catch (_) { committed = false; }
+      } else {
+        await attemptRef.transaction(curr => curr ? curr : payload, (err, c)=>{ committed = !!c; });
+      }
       if (!committed){
         resultEl.textContent = 'Bugünkü hakkını zaten kullandın.';
         resultEl.className = 'fb-result fail';
         refreshFillFabState();
         return;
       }
+      if (!bonusUnlimited()) answeredOnce = true;
       refreshFillFabState();
 
       if (isCorrect){
-        const stuRef = rdb.ref(`classes/${s.classId}/students/${s.studentId}`);
-        var fbRewardBase = 100;
-        var fbRewardMul = 1;
-        var fbRewardTotal = 100;
-        await stuRef.transaction(stu => {
-          stu = stu || {};
-          var gain = computeChampionDiamondGain(fbRewardBase, stu);
-          fbRewardMul = Number(gain.multiplier || 1);
-          fbRewardTotal = Number(gain.total || fbRewardBase);
-          var heroMul = (typeof window.novaHeroGetDailyDiamondMultiplier === 'function')
-            ? window.novaHeroGetDailyDiamondMultiplier(stu) : 1;
-          if (heroMul > 1) fbRewardTotal = Math.round(fbRewardTotal * heroMul);
-          stu.diamond = Math.min(25000, Number(stu.diamond||0) + fbRewardTotal);
-          stu.lastDiamondUpdate = Date.now();
-          return stu;
-        });
-        const runWinFx = () => {
-          const card = screen.querySelector('.fb-card');
-          if (!card) return;
-          card.classList.add('fb-win-glow');
-          const oldFx = card.querySelector('.fb-win-fx');
-          if (oldFx) oldFx.remove();
-          const fx = document.createElement('div');
-          fx.className = 'fb-win-fx';
-          fx.innerHTML = `
-            <div class="fb-win-core">
-              <div class="fb-win-title">MUKEMMEL HAMLE</div>
-              <div class="fb-win-amount" data-win-amount>+0 💎</div>
-              <div class="fb-win-sub">${fbRewardMul > 1 ? ('Şampiyonluk Rozeti x'+fbRewardMul+' bonusu aktif!') : ''}${fbRewardMul > 1 ? '<br/>' : ''}${fbRewardTotal} elmas hesabına eklendi</div>
-            </div>
-          `;
-          card.appendChild(fx);
-          const amountEl = fx.querySelector('[data-win-amount]');
-          const total = fbRewardTotal;
-          const t0 = performance.now();
-          const dur = 920;
-          const tick = (now) => {
-            const p = Math.min(1, (now - t0) / dur);
-            const eased = 1 - Math.pow(1 - p, 3);
-            const cur = Math.round(total * eased);
-            if (amountEl) amountEl.textContent = `+${cur} 💎`;
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-          const colors = ['#fde047','#34d399','#60a5fa','#f472b6','#f97316','#a78bfa'];
-          for (let i = 0; i < 34; i++){
-            const c = document.createElement('span');
-            c.className = 'fb-confetti';
-            c.style.background = colors[i % colors.length];
-            const ang = (Math.PI * 2 * i) / 34;
-            const dist = 120 + Math.random() * 130;
-            c.style.setProperty('--x', `${Math.cos(ang) * dist}px`);
-            c.style.setProperty('--y', `${Math.sin(ang) * dist}px`);
-            c.style.setProperty('--r', `${(Math.random() * 520 - 260).toFixed(0)}deg`);
-            c.style.animationDelay = `${(Math.random() * 0.15).toFixed(2)}s`;
-            fx.appendChild(c);
-          }
-          const d1 = document.getElementById('diamond-value');
-          const d2 = document.getElementById('currentDiamonds');
-          [d1, d2].forEach(el=>{
-            if(!el) return;
-            const base = Number(String(el.textContent||'').replace(/[^\d]/g,'')) || 0;
-            el.textContent = String(base + fbRewardTotal);
-            el.style.transition = 'transform .2s ease, text-shadow .2s ease';
-            el.style.transform = 'scale(1.18)';
-            el.style.textShadow = '0 0 16px rgba(250,204,21,.75)';
-            setTimeout(()=>{ el.style.transform=''; el.style.textShadow=''; }, 520);
-          });
-          setTimeout(()=>{
-            fx.remove();
-            card.classList.remove('fb-win-glow');
-          }, 2300);
-        };
-        if (typeof window.novaPlayDiamondRewardSfx === 'function'){
+        var eggReward = null;
+        if (typeof window.novaBonusAwardDragonEgg === 'function') {
+          try { eggReward = await window.novaBonusAwardDragonEgg(); } catch (_) {}
+        }
+        const card = screen.querySelector('.fb-card');
+        if (eggReward && card && typeof window.novaBonusEggWinFx === 'function') {
+          window.novaBonusEggWinFx(card, eggReward, { title: 'MÜKEMMEL HAMLE' });
+        }
+        if (typeof window.novaPlayDiamondRewardSfx === 'function') {
           window.novaPlayDiamondRewardSfx();
         }
-        runWinFx();
-        resultEl.textContent = 'Doğru! +' + fbRewardTotal + ' 💎' + (fbRewardMul > 1 ? (' (Rozet x'+fbRewardMul+')') : '');
+        resultEl.textContent = eggReward
+          ? ('Doğru! ' + eggReward.label + ' ejderha yumurtası kazandın!')
+          : 'Doğru! Ödül verilemedi — tekrar dene.';
         resultEl.className = 'fb-result ok';
         screen.classList.remove('fb-shake');
         screen.classList.add('fb-pop');
@@ -304,6 +249,13 @@
         screen.classList.remove('fb-pop');
         screen.classList.add('fb-shake');
         setTimeout(() => screen.classList.remove('fb-shake'), 700);
+        if (bonusUnlimited()) {
+          try { await attemptRef.remove(); } catch (_) {}
+          checkBtn.disabled = false;
+          resultEl.textContent = 'Yanlış cevap! Tekrar dene.';
+          resultEl.className = 'fb-result fail';
+          return;
+        }
         if (typeof window.novaHeroOfferDailyRetry === 'function') {
           const retry = await window.novaHeroOfferDailyRetry('fillblank');
           if (retry) {
@@ -494,11 +446,11 @@
     btn.addEventListener('click', ()=>{ openFillBlankScreen().catch(e=>{ console.warn(e); if(typeof showAlert==='function') showAlert('Boşluğu Doldur açılamadı.'); }); });
     wrapBtn.appendChild(btn);
     var rewardTag = document.createElement('span');
-    rewardTag.className = 'nova-fab-reward-tag';
+    rewardTag.className = 'nova-fab-reward-tag nova-fab-reward-tag--egg';
     rewardTag.setAttribute('aria-hidden', 'true');
-    rewardTag.textContent = '+100 💎';
+    rewardTag.textContent = '🥚 YUMURTA';
     wrapBtn.appendChild(rewardTag);
-    btn.setAttribute('title', 'Doğru cevapta +100 elmas');
+    btn.setAttribute('title', 'Doğru cevapta rastgele ejderha yumurtası');
     const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
     const questWrap = document.getElementById('quest_fab_wrap');
     const questSlot = document.getElementById('main-screen-quest-slot');

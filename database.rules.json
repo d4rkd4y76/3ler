@@ -82,6 +82,46 @@
               "$heroId": {
                 ".validate": "newData.val() === true || (newData.hasChildren() && newData.child('level').isNumber() && newData.child('level').val() >= 1 && newData.child('level').val() <= 4)"
               }
+            },
+            "dragonEggs": {
+              ".read": true,
+              ".write": true,
+              "fire": {
+                ".read": true,
+                ".write": true,
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              },
+              "ice": {
+                ".read": true,
+                ".write": true,
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              },
+              "night": {
+                ".read": true,
+                ".write": true,
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              }
+            },
+            "dragonEggMeta": {
+              ".read": true,
+              ".write": true,
+              "cracksSinceDragonTrial": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              }
+            },
+            "heroTrials": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0"
+              }
+            },
+            "dragonTrials": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0"
+              }
             }
           }
         }

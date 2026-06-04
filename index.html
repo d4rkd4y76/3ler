@@ -324,8 +324,8 @@
 </button>
 <div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
 <span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde +100 elmas">🧩 BULMACA</button>
-<span class="nova-fab-reward-tag" aria-hidden="true">+100 💎</span>
+<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">🧩 BULMACA</button>
+<span class="nova-fab-reward-tag nova-fab-reward-tag--egg" aria-hidden="true">🥚 YUMURTA</span>
 </span>
 </div>
 </div>
@@ -360,6 +360,49 @@
       <iframe id="giris-panosu-iframe" title="Giriş videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
   </div>
+</div>
+<!-- === NOVA: Ejderha Yumurtası kırma ekranı === -->
+<div class="nova-degg-screen" id="nova-dragon-egg-screen" aria-hidden="true" hidden>
+<div class="nova-degg-screen__veil" aria-hidden="true"></div>
+<div class="nova-degg-screen__inner">
+<header class="nova-degg-screen__head">
+<button type="button" class="nova-degg-screen__back" id="nova_degg_screen_close" aria-label="Ana ekrana dön">←</button>
+<div class="nova-degg-screen__head-txt">
+<div class="nova-degg-screen__title">Ejderha Yumurtası</div>
+<div class="nova-degg-screen__sub" id="nova_degg_screen_sub">Kırmak istediğin yumurtayı seç</div>
+</div>
+</header>
+<div class="nova-degg-screen__body" id="nova_degg_screen_body" data-phase="pick">
+<div class="nova-degg-screen__preview" id="nova_degg_screen_preview"></div>
+<div class="nova-degg-screen__crack-host" id="nova_degg_screen_crack_host"></div>
+<div class="nova-degg-screen__reward" id="nova_degg_screen_reward">
+<div class="nova-degg-screen__reward-title" id="nova_degg_screen_reward_title"></div>
+<div class="nova-degg-screen__reward-sub" id="nova_degg_screen_reward_sub"></div>
+<div class="nova-degg-screen__card-slot" id="nova_degg_screen_reward_card"></div>
+<div class="nova-degg-screen__diamond-burst" id="nova_degg_screen_reward_diamond" hidden></div>
+</div>
+</div>
+<button type="button" class="nova-degg-screen__reward-ok" id="nova_degg_screen_reward_ok" hidden>Harika!</button>
+<div class="nova-degg-screen__stock">
+<button type="button" class="nova-dragon-egg-chip nova-dragon-egg-chip--fire" data-egg="fire">
+<img class="nova-dragon-egg-chip__img" src="egg_open/fire_dragon_egg.png" alt="Alev yumurta" loading="lazy" decoding="async"/>
+<span class="nova-dragon-egg-chip__label">Alev</span>
+<span class="nova-dragon-egg-chip__count">x0</span>
+</button>
+<button type="button" class="nova-dragon-egg-chip nova-dragon-egg-chip--ice" data-egg="ice">
+<img class="nova-dragon-egg-chip__img" src="egg_open/ice_dragon_egg.png" alt="Buz yumurta" loading="lazy" decoding="async"/>
+<span class="nova-dragon-egg-chip__label">Buz</span>
+<span class="nova-dragon-egg-chip__count">x0</span>
+</button>
+<button type="button" class="nova-dragon-egg-chip nova-dragon-egg-chip--night" data-egg="night">
+<img class="nova-dragon-egg-chip__img" src="egg_open/night_dragon_egg.png" alt="Gece yumurta" loading="lazy" decoding="async"/>
+<span class="nova-dragon-egg-chip__label">Gece</span>
+<span class="nova-dragon-egg-chip__count">x0</span>
+</button>
+</div>
+<button type="button" class="nova-degg-screen__crack-btn" id="nova_dragon_egg_crack_btn" disabled>Yumurtayı Kır</button>
+<p class="nova-degg-screen__pity" id="nova_dragon_egg_pity"></p>
+</div>
 </div>
 <!-- === NOVA: Günün bulmacası === -->
 <div class="nova-perf-hq-scope" id="daily-puzzle-screen" aria-hidden="true">
@@ -1370,7 +1413,9 @@
 <script src="js/ui/012yg-nova-gece-ejder-true-manifest.js?v=30260602gecetrue1"></script>
 <script src="js/ui/012yh-nova-gece-ejder-true-player.js?v=30260602gecetrue1"></script>
 <script src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=30260602testeco1"></script>
+<script src="js/ui/008-nova-battle-hero.js?v=30260604degg1"></script>
+<script src="js/ui/nova-dragon-egg-manifest.js?v=30260604degg2"></script>
+<script src="js/ui/nova-dragon-egg.js?v=30260604degg7"></script>
 <script src="js/ui/nova-main-screen-boot-prep.js?v=30260602mainprep2"></script>
 <script src="js/ui/nova-sprite-preload-boot.js?v=30260602boot9"></script>
 <script src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
@@ -1392,6 +1437,7 @@
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260602adminfoot1" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260604mainbg5" />
+<link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260604degg7" />
 <style id="nova-login-final-override">
 #student-selection-screen.nova-kids-login .card{
   border:1px solid rgba(255,255,255,.78) !important;

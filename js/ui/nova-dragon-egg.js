@@ -1,0 +1,955 @@
+/* Ejderha Yumurtası — envanter, kırma animasyonu, ödül */
+(function () {
+  'use strict';
+
+  var EGG_TYPES = ['fire', 'ice', 'night'];
+  var EGG_PNG = {
+    fire: 'egg_open/fire_dragon_egg.png',
+    ice: 'egg_open/ice_dragon_egg.png',
+    night: 'egg_open/night_dragon_egg.png'
+  };
+  var EGG_LABEL = { fire: 'Alev', ice: 'Buz', night: 'Gece' };
+  var DRAGON_BY_EGG = { fire: 'alev_ejder', ice: 'buz_ejder', night: 'gece_ejder' };
+  var BASIC_HEROES = ['star_fairy', 'firtina_okcu', 'tas_muhafiz', 'golge_parsi', 'bilge_baykus'];
+  var MS_DAY = 86400000;
+
+  var sheetCache = {};
+  var hubEngine = null;
+  var selectedType = 'fire';
+  var uiBound = false;
+  var screenBound = false;
+  var cracking = false;
+  var eggScreenOpen = false;
+
+  function getStudent() {
+    try {
+      if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId) {
+        return selectedStudent;
+      }
+      return JSON.parse(localStorage.getItem('selectedStudent') || 'null');
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function getDb() {
+    try {
+      if (window.database && typeof window.database.ref === 'function') return window.database;
+      if (typeof firebase !== 'undefined' && firebase.database) return firebase.database();
+    } catch (_) {}
+    return null;
+  }
+
+  function studentRef() {
+    var s = getStudent();
+    var db = getDb();
+    if (!s || !s.classId || !s.studentId || !db) return null;
+    return db.ref('classes/' + s.classId + '/students/' + s.studentId);
+  }
+
+  function normalizeEggBag(raw) {
+    var bag = raw && typeof raw === 'object' ? raw : {};
+    var out = { fire: 0, ice: 0, night: 0 };
+    EGG_TYPES.forEach(function (t) {
+      out[t] = Math.max(0, Number(bag[t]) || 0);
+    });
+    return out;
+  }
+
+  async function readEggBag(ref) {
+    var snap = await ref.child('dragonEggs').once('value');
+    return normalizeEggBag(snap.val());
+  }
+
+  async function writeEggBag(ref, bag) {
+    await ref.child('dragonEggs').set(normalizeEggBag(bag));
+  }
+
+  async function refreshEggsFromServer() {
+    var ref = studentRef();
+    if (!ref) return { fire: 0, ice: 0, night: 0 };
+    try {
+      var bag = await readEggBag(ref);
+      var metaSnap = await ref.child('dragonEggMeta').once('value');
+      var meta = metaSnap.val() || { cracksSinceDragonTrial: 0 };
+      if (metaSnap.val() == null) {
+        await ref.child('dragonEggMeta/cracksSinceDragonTrial').set(0);
+        meta = { cracksSinceDragonTrial: 0 };
+      }
+      syncStudentPatch({ dragonEggs: bag, dragonEggMeta: meta });
+      return bag;
+    } catch (e) {
+      console.warn('refreshEggsFromServer', e);
+      var empty = { fire: 0, ice: 0, night: 0 };
+      syncStudentPatch({ dragonEggs: empty });
+      return empty;
+    }
+  }
+
+  function buildRewardUpdates(stu, reward) {
+    var updates = {};
+    if (!reward) return updates;
+    if (reward.kind === 'diamond') {
+      updates.diamond = Math.min(25000, (Number(stu.diamond) || 0) + (Number(reward.amount) || 0));
+      updates.lastDiamondUpdate = Date.now();
+      return updates;
+    }
+    var days = Number(reward.days) || 3;
+    var until = Date.now() + days * MS_DAY;
+    var hid = reward.heroId;
+    if (reward.kind === 'dragon_trial') {
+      var prevD = Number(stu.dragonTrials && stu.dragonTrials[hid]) || 0;
+      updates['dragonTrials/' + hid] = Math.max(prevD, until);
+    } else if (reward.kind === 'hero_trial') {
+      var prevH = Number(stu.heroTrials && stu.heroTrials[hid]) || 0;
+      updates['heroTrials/' + hid] = Math.max(prevH, until);
+    }
+    updates.battleHero = hid;
+    return updates;
+  }
+
+  function syncStudentPatch(patch) {
+    var s = getStudent();
+    if (!s || !patch) return;
+    Object.keys(patch).forEach(function (k) { s[k] = patch[k]; });
+    try {
+      window.selectedStudent = s;
+      localStorage.setItem('selectedStudent', JSON.stringify(s));
+    } catch (_) {}
+  }
+
+  function manifestFor(key) {
+    var root = window.NOVA_DRAGON_EGG_MANIFEST;
+    return root && root.eggs && root.eggs[key] ? root.eggs[key] : null;
+  }
+
+  function resolveUrl(base, file) {
+    var b = base || 'assets/dragon-eggs/';
+    if (b.charAt(b.length - 1) !== '/') b += '/';
+    var path = b + file;
+    try {
+      return new URL(path, window.location.href).href;
+    } catch (_) {
+      return path;
+    }
+  }
+
+  function loadImage(url) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.decoding = 'async';
+      img.onload = function () {
+        var done = function () { resolve(img); };
+        if (img.decode) img.decode().then(done).catch(done);
+        else done();
+      };
+      img.onerror = function () { reject(new Error('img:' + url)); };
+      img.src = url;
+    });
+  }
+
+  function loadSheet(key) {
+    if (sheetCache[key] && sheetCache[key].img) return Promise.resolve(sheetCache[key]);
+    var m = manifestFor(key);
+    if (!m) return Promise.reject(new Error('manifest:' + key));
+    var url = resolveUrl(m.base, m.sheet);
+    return loadImage(url).then(function (img) {
+      sheetCache[key] = { manifest: m, img: img };
+      return sheetCache[key];
+    });
+  }
+
+  function frameRect(m, index) {
+    var col = index % m.cols;
+    var row = (index / m.cols) | 0;
+    return {
+      sx: col * m.frameWidth,
+      sy: row * m.frameHeight,
+      sw: m.frameWidth,
+      sh: m.frameHeight
+    };
+  }
+
+  function playSpriteOnce(host, key, onDone) {
+    if (!host) return;
+    host.innerHTML = '';
+    var wrap = document.createElement('div');
+    wrap.className = 'nova-degg-sprite-wrap';
+    wrap.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;';
+    var canvas = document.createElement('canvas');
+    canvas.className = 'nova-degg-sprite-canvas';
+    wrap.appendChild(canvas);
+    host.appendChild(wrap);
+
+    loadSheet(key).then(function (pack) {
+      var m = pack.manifest;
+      var img = pack.img;
+      var ctx = canvas.getContext('2d', { alpha: true });
+      var frames = m.loopEnd || m.frameCount || 96;
+      var fps = m.fps || 24;
+      var frameMs = 1000 / fps;
+      var fi = 0;
+      var accum = 0;
+      var last = 0;
+      var running = true;
+
+      function resize() {
+        var rect = wrap.getBoundingClientRect();
+        var w = Math.max(80, Math.round(rect.width || 300));
+        var h = Math.max(80, Math.round(rect.height || 280));
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        return { w: canvas.width, h: canvas.height, dpr: dpr };
+      }
+
+      function draw(now) {
+        if (!running) return;
+        if (!last) last = now;
+        var delta = now - last;
+        last = now;
+        if (delta > frameMs * 4) delta = frameMs;
+        accum += delta;
+        while (accum >= frameMs) {
+          accum -= frameMs;
+          fi += 1;
+          if (fi >= frames) {
+            running = false;
+            if (typeof onDone === 'function') onDone();
+            return;
+          }
+        }
+        var dim = resize();
+        var r = frameRect(m, fi);
+        var cw = dim.w;
+        var ch = dim.h;
+        var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight) * 0.96;
+        var dw = Math.round(m.frameWidth * fit);
+        var dh = Math.round(m.frameHeight * fit);
+        var dx = Math.round((cw - dw) * 0.5);
+        var dy = Math.round((ch - dh) * 0.5);
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+        if (running) requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    }).catch(function () {
+      if (typeof onDone === 'function') onDone();
+    });
+  }
+
+  function playHubLoop(host) {
+    if (!host) return;
+    host.innerHTML = '';
+    var canvas = document.createElement('canvas');
+    canvas.className = 'nova-dragon-egg-hub__canvas';
+    host.appendChild(canvas);
+    loadSheet('hub').then(function (pack) {
+      var m = pack.manifest;
+      var img = pack.img;
+      var ctx = canvas.getContext('2d', { alpha: true });
+      var loopEnd = m.loopEnd || 48;
+      var fi = 0;
+      var accum = 0;
+      var last = 0;
+      var fps = m.fps || 12;
+      var frameMs = 1000 / fps;
+
+      function tick(now) {
+        if (!document.body.contains(host)) return;
+        if (!last) last = now;
+        var delta = now - last;
+        last = now;
+        accum += delta;
+        while (accum >= frameMs) {
+          accum -= frameMs;
+          fi = (fi + 1) % loopEnd;
+        }
+        var rect = host.getBoundingClientRect();
+        var w = Math.max(60, Math.round(rect.width || 120));
+        var h = Math.max(50, Math.round(rect.height || 80));
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        var r = frameRect(m, fi);
+        var cw = canvas.width;
+        var ch = canvas.height;
+        var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight) * 0.92;
+        var dw = Math.round(m.frameWidth * fit);
+        var dh = Math.round(m.frameHeight * fit);
+        var dx = Math.round((cw - dw) * 0.5);
+        var dy = Math.round((ch - dh) * 0.5);
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
+        hubEngine = requestAnimationFrame(tick);
+      }
+      if (hubEngine) cancelAnimationFrame(hubEngine);
+      hubEngine = requestAnimationFrame(tick);
+    }).catch(function () {});
+  }
+
+  function parseOwn(val) {
+    if (!val) return false;
+    if (val === true) return true;
+    if (typeof val === 'object' && val.level) return true;
+    return !!val;
+  }
+
+  function ownsHeroPermanent(stu, heroId) {
+    if (!stu || !heroId) return false;
+    return parseOwn(stu.purchasedBattleHeroes && stu.purchasedBattleHeroes[heroId]);
+  }
+
+  function trialUntil(stu, mapKey, heroId) {
+    if (!stu || !heroId) return 0;
+    var map = stu[mapKey];
+    var t = map && map[heroId];
+    return t && Number(t) > Date.now() ? Number(t) : 0;
+  }
+
+  function formatRemaining(ms) {
+    if (ms <= 0) return '';
+    var h = Math.ceil(ms / 3600000);
+    if (h >= 48) return Math.ceil(h / 24) + ' gün kaldı';
+    if (h >= 2) return h + ' saat kaldı';
+    return '1 saatten az';
+  }
+
+  window.novaGetHeroTrialUntil = function (data, heroId) {
+    var t1 = trialUntil(data, 'heroTrials', heroId);
+    var t2 = trialUntil(data, 'dragonTrials', heroId);
+    return Math.max(t1, t2);
+  };
+
+  window.novaFormatHeroTrialRemaining = function (data, heroId) {
+    var until = window.novaGetHeroTrialUntil(data, heroId);
+    if (!until) return '';
+    return formatRemaining(until - Date.now());
+  };
+
+  function pickUnownedBasic(stu) {
+    var pool = BASIC_HEROES.filter(function (id) {
+      return !ownsHeroPermanent(stu, id);
+    });
+    if (!pool.length) return null;
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function dragonOwned(stu, eggType) {
+    return ownsHeroPermanent(stu, DRAGON_BY_EGG[eggType]);
+  }
+
+  function rollReward(stu, eggType) {
+    var meta = stu.dragonEggMeta || {};
+    var pity = Number(meta.cracksSinceDragonTrial) || 0;
+    var dragonId = DRAGON_BY_EGG[eggType];
+
+    if (pity >= 10 && !dragonOwned(stu, eggType)) {
+      var days = [1, 3, 5][Math.floor(Math.random() * 3)];
+      return { kind: 'dragon_trial', heroId: dragonId, days: days, pity: true };
+    }
+
+    var r = Math.random() * 100;
+    if (!dragonOwned(stu, eggType)) {
+      if (r < 5) return { kind: 'dragon_trial', heroId: dragonId, days: 5 };
+      if (r < 13) return { kind: 'dragon_trial', heroId: dragonId, days: 3 };
+      if (r < 23) return { kind: 'dragon_trial', heroId: dragonId, days: 1 };
+    }
+
+    if (r < 38) {
+      var hero = pickUnownedBasic(stu);
+      if (hero) return { kind: 'hero_trial', heroId: hero, days: 3 };
+    }
+
+    if (r < 83) return { kind: 'diamond', amount: 50 };
+    if (r < 93) return { kind: 'diamond', amount: 100 };
+    if (r < 98) return { kind: 'diamond', amount: 250 };
+    return { kind: 'diamond', amount: 500 };
+  }
+
+  function applyReward(stu, reward) {
+    if (!reward) return;
+    if (reward.kind === 'diamond') {
+      stu.diamond = Math.min(25000, (Number(stu.diamond) || 0) + (Number(reward.amount) || 0));
+      stu.lastDiamondUpdate = Date.now();
+      return;
+    }
+    var days = Number(reward.days) || 3;
+    var until = Date.now() + days * MS_DAY;
+    var hid = reward.heroId;
+    if (reward.kind === 'dragon_trial') {
+      stu.dragonTrials = stu.dragonTrials || {};
+      var prev = Number(stu.dragonTrials[hid]) || 0;
+      stu.dragonTrials[hid] = Math.max(prev, until);
+    } else if (reward.kind === 'hero_trial') {
+      stu.heroTrials = stu.heroTrials || {};
+      var prevH = Number(stu.heroTrials[hid]) || 0;
+      stu.heroTrials[hid] = Math.max(prevH, until);
+    }
+    stu.battleHero = hid;
+  }
+
+  function rewardTitle(reward) {
+    if (!reward) return 'Ödül';
+    if (reward.kind === 'diamond') return '+' + reward.amount + ' ELMAS';
+    var reg = window.NOVA_HERO_REGISTRY || window.NOVA_BATTLE_HERO_REGISTRY || {};
+    var def = reg[reward.heroId];
+    var name = def ? def.name : reward.heroId;
+    if (reward.kind === 'dragon_trial') {
+      return name + ' — ' + reward.days + ' Gün Deneme';
+    }
+    return name + ' — 3 Gün Deneme';
+  }
+
+  function rewardSub(reward) {
+    if (reward.kind === 'diamond') {
+      return 'Elmaslar hesabına eklendi. Mağazadan harcayabilirsin!';
+    }
+    return 'Deneme aktif! Mağazada direkt kullanılabilir — kalan süre kartında görünür.';
+  }
+
+  function eggScreenEl() {
+    return document.getElementById('nova-dragon-egg-screen');
+  }
+
+  function setScreenPhase(phase) {
+    phase = phase || 'pick';
+    var body = document.getElementById('nova_degg_screen_body');
+    var okBtn = document.getElementById('nova_degg_screen_reward_ok');
+    var sub = document.getElementById('nova_degg_screen_sub');
+    if (body) body.setAttribute('data-phase', phase);
+    if (okBtn) okBtn.hidden = phase !== 'reward';
+    if (sub) {
+      sub.textContent = phase === 'reward'
+        ? 'Ödülün hazır!'
+        : (phase === 'crack' ? 'Yumurta kırılıyor…' : 'Kırmak istediğin yumurtayı seç');
+    }
+  }
+
+  function resetScreenPickPhase() {
+    var crackHost = document.getElementById('nova_degg_screen_crack_host');
+    var card = document.getElementById('nova_degg_screen_reward_card');
+    var title = document.getElementById('nova_degg_screen_reward_title');
+    var sub = document.getElementById('nova_degg_screen_reward_sub');
+    var dia = document.getElementById('nova_degg_screen_reward_diamond');
+    if (crackHost) crackHost.innerHTML = '';
+    if (card) card.innerHTML = '';
+    if (title) title.textContent = '';
+    if (sub) sub.textContent = '';
+    if (dia) { dia.hidden = true; dia.textContent = ''; }
+    setScreenPhase('pick');
+    updateScreenPreview();
+  }
+
+  function closeRewardPhase() {
+    resetScreenPickPhase();
+    renderScreenInventory(getStudent());
+    renderMainHubSummary(getStudent());
+  }
+
+  function openEggScreen() {
+    var screen = eggScreenEl();
+    if (!screen) return;
+    eggScreenOpen = true;
+    screen.hidden = false;
+    screen.setAttribute('aria-hidden', 'false');
+    screen.classList.add('is-open');
+    document.body.classList.add('nova-degg-screen-open');
+    resetScreenPickPhase();
+    refreshEggsFromServer().then(function (bag) {
+      var first = EGG_TYPES.find(function (t) {
+        return (Number(bag && bag[t]) || 0) > 0;
+      });
+      if (first) selectedType = first;
+      renderScreenInventory(getStudent());
+      document.querySelectorAll('#nova-dragon-egg-screen .nova-dragon-egg-chip').forEach(function (c) {
+        c.classList.toggle('is-selected', c.getAttribute('data-egg') === selectedType);
+      });
+      updateScreenPreview();
+      updateCrackButton();
+    });
+  }
+
+  function closeEggScreen() {
+    var screen = eggScreenEl();
+    if (!screen) return;
+    eggScreenOpen = false;
+    screen.classList.remove('is-open');
+    screen.hidden = true;
+    screen.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nova-degg-screen-open');
+    resetScreenPickPhase();
+    renderMainHubSummary(getStudent());
+    var hub = document.getElementById('nova_dragon_egg_hub');
+    if (hub && !hub.querySelector('canvas')) playHubLoop(hub);
+  }
+
+  window.novaOpenDragonEggScreen = openEggScreen;
+  window.novaCloseDragonEggScreen = closeEggScreen;
+
+  function updateScreenPreview() {
+    var preview = document.getElementById('nova_degg_screen_preview');
+    if (!preview) return;
+    preview.innerHTML =
+      '<img class="nova-degg-screen__preview-img" src="' + EGG_PNG[selectedType] + '" alt="' + EGG_LABEL[selectedType] + '"/>';
+  }
+
+  function showRewardUi(reward, stu) {
+    setScreenPhase('reward');
+    document.getElementById('nova_degg_screen_reward_title').textContent = rewardTitle(reward);
+    document.getElementById('nova_degg_screen_reward_sub').textContent = rewardSub(reward);
+    var cardSlot = document.getElementById('nova_degg_screen_reward_card');
+    var dia = document.getElementById('nova_degg_screen_reward_diamond');
+    cardSlot.innerHTML = '';
+    if (reward.kind === 'diamond') {
+      dia.hidden = false;
+      dia.textContent = '💎 +' + reward.amount;
+      if (typeof window.novaPlayDiamondRewardSfx === 'function') {
+        window.novaPlayDiamondRewardSfx();
+      }
+      var d1 = document.getElementById('diamond-value');
+      var d2 = document.getElementById('currentDiamonds');
+      [d1, d2].forEach(function (el) {
+        if (!el) return;
+        el.textContent = String(Number(stu.diamond) || 0);
+      });
+    } else {
+      dia.hidden = true;
+      var reg = window.NOVA_HERO_REGISTRY || {};
+      var hero = {
+        id: reward.heroId,
+        name: (reg[reward.heroId] && reg[reward.heroId].name) || reward.heroId,
+        price: 1,
+        theme: (reg[reward.heroId] && reg[reward.heroId].theme) || 'star'
+      };
+      if (typeof window.novaRenderHeroStoreCardClone === 'function') {
+        window.novaRenderHeroStoreCardClone(hero, stu, cardSlot);
+      } else {
+        cardSlot.innerHTML = '<div class="nova-degg-screen__diamond-burst">🦸 ' + hero.name + '</div>';
+      }
+    }
+  }
+
+  async function crackSelectedEgg() {
+    if (cracking) return;
+    var s = getStudent();
+    if (!s) return;
+    var ref = studentRef();
+    if (!ref) return;
+
+    cracking = true;
+    var crackBtn = document.getElementById('nova_dragon_egg_crack_btn');
+    if (crackBtn) crackBtn.disabled = true;
+
+    if (!eggScreenOpen) openEggScreen();
+    setScreenPhase('crack');
+    var crackHostEarly = document.getElementById('nova_degg_screen_crack_host');
+    if (crackHostEarly) crackHostEarly.innerHTML = '';
+
+    var committedReward = null;
+    var committedStu = null;
+
+    try {
+      var bag = await refreshEggsFromServer();
+      if ((Number(bag && bag[selectedType]) || 0) < 1) {
+        resetScreenPickPhase();
+        if (typeof showAlert === 'function') {
+          await showAlert('Bu yumurtadan kalmadı. Bonus etkinliklerden kazanabilirsin!');
+        }
+        return;
+      }
+
+      var bagNow = await readEggBag(ref);
+      if ((Number(bagNow[selectedType]) || 0) < 1) {
+        await refreshEggsFromServer();
+        resetScreenPickPhase();
+        if (typeof showAlert === 'function') {
+          await showAlert('Yumurta sunucuda yok. Önce bonus etkinlikten kazan (Bulmaca / Boşluk / Eşleştir).');
+        }
+        return;
+      }
+      bagNow[selectedType] = bagNow[selectedType] - 1;
+      await writeEggBag(ref, bagNow);
+
+      var stuSnap = await ref.once('value');
+      var stu = stuSnap.val() || {};
+      stu.dragonEggs = await readEggBag(ref);
+
+      var reward = rollReward(stu, selectedType);
+      var meta = stu.dragonEggMeta || {};
+      if (reward.kind === 'dragon_trial') meta.cracksSinceDragonTrial = 0;
+      else meta.cracksSinceDragonTrial = (Number(meta.cracksSinceDragonTrial) || 0) + 1;
+
+      var updates = buildRewardUpdates(stu, reward);
+      updates['dragonEggMeta/cracksSinceDragonTrial'] = meta.cracksSinceDragonTrial;
+
+      await ref.update(updates);
+
+      applyReward(stu, reward);
+      stu.dragonEggMeta = meta;
+      committedReward = reward;
+      committedStu = {
+        diamond: stu.diamond,
+        dragonEggs: stu.dragonEggs,
+        dragonEggMeta: meta,
+        heroTrials: stu.heroTrials || {},
+        dragonTrials: stu.dragonTrials || {},
+        battleHero: stu.battleHero,
+        purchasedBattleHeroes: stu.purchasedBattleHeroes
+      };
+
+      syncStudentPatch(committedStu);
+      renderScreenInventory(committedStu);
+      renderMainHubSummary(committedStu);
+
+      var host = document.getElementById('nova_degg_screen_crack_host');
+      playSpriteOnce(host, selectedType, function () {
+        showRewardUi(committedReward, committedStu);
+        try {
+          if (typeof window.novaRefreshMainScreenHero === 'function') {
+            window.novaRefreshMainScreenHero();
+          }
+        } catch (_) {}
+        try {
+          if (typeof window.novaRefreshBattleHeroStoreInPlace === 'function') {
+            window.novaRefreshBattleHeroStoreInPlace();
+          }
+        } catch (_) {}
+      });
+    } catch (e) {
+      console.error('crackEgg', e);
+      resetScreenPickPhase();
+      var msg = 'Yumurta kırılırken hata oluştu.';
+      if (e && (e.code === 'PERMISSION_DENIED' || e.message && e.message.indexOf('permission') !== -1)) {
+        msg = 'Firebase izin hatası: database.rules.json dosyasındaki ejderha yumurtası kurallarını sunucuya yüklemen gerekiyor.';
+      }
+      if (typeof showAlert === 'function') await showAlert(msg);
+    } finally {
+      cracking = false;
+      if (crackBtn) crackBtn.disabled = false;
+      updateCrackButton();
+    }
+  }
+
+  function updateCrackButton() {
+    var btn = document.getElementById('nova_dragon_egg_crack_btn');
+    var s = getStudent();
+    if (!btn || !s) return;
+    var n = Number((s.dragonEggs || {})[selectedType]) || 0;
+    btn.disabled = n < 1 || cracking;
+    btn.textContent = n < 1 ? 'Yumurta yok' : 'Yumurtayı Kır';
+  }
+
+  function totalEggCount(eggs) {
+    eggs = eggs || {};
+    return EGG_TYPES.reduce(function (sum, t) {
+      return sum + (Number(eggs[t]) || 0);
+    }, 0);
+  }
+
+  function renderMainHubSummary(stu) {
+    stu = stu || getStudent() || {};
+    var total = totalEggCount(stu.dragonEggs);
+    var el = document.getElementById('nova_dragon_egg_total');
+    if (el) {
+      el.textContent = total === 1 ? '1 yumurta' : (total + ' yumurta');
+    }
+    var entry = document.getElementById('nova_dragon_egg_open');
+    if (entry) entry.classList.toggle('has-eggs', total > 0);
+  }
+
+  function renderScreenInventory(stu) {
+    stu = stu || getStudent() || {};
+    var eggs = stu.dragonEggs || {};
+    var meta = stu.dragonEggMeta || {};
+    var pity = Number(meta.cracksSinceDragonTrial) || 0;
+    var pityEl = document.getElementById('nova_dragon_egg_pity');
+    if (pityEl) {
+      var left = Math.max(0, 10 - pity);
+      pityEl.textContent = left > 0
+        ? ('Ejder denemesi garantisi: ' + left + ' kırma kaldı')
+        : 'Sonraki ejder denemesi garanti!';
+    }
+    EGG_TYPES.forEach(function (t) {
+      var chip = document.querySelector('#nova-dragon-egg-screen .nova-dragon-egg-chip[data-egg="' + t + '"]');
+      if (!chip) return;
+      var cnt = Number(eggs[t]) || 0;
+      var countEl = chip.querySelector('.nova-dragon-egg-chip__count');
+      if (countEl) countEl.textContent = 'x' + cnt;
+      chip.classList.toggle('is-empty', cnt < 1);
+      chip.classList.toggle('is-selected', t === selectedType);
+    });
+    updateCrackButton();
+    if (eggScreenOpen) updateScreenPreview();
+  }
+
+  function renderHubInventory(stu) {
+    renderMainHubSummary(stu);
+    renderScreenInventory(stu);
+  }
+
+  function bindMainEntry() {
+    if (uiBound) return;
+    uiBound = true;
+    var openBtn = document.getElementById('nova_dragon_egg_open');
+    if (openBtn) {
+      openBtn.addEventListener('click', function () {
+        openEggScreen();
+      });
+    }
+  }
+
+  function bindScreenUi() {
+    if (screenBound) return;
+    screenBound = true;
+    var closeBtn = document.getElementById('nova_degg_screen_close');
+    if (closeBtn) closeBtn.addEventListener('click', closeEggScreen);
+    var okBtn = document.getElementById('nova_degg_screen_reward_ok');
+    if (okBtn) okBtn.addEventListener('click', closeRewardPhase);
+    EGG_TYPES.forEach(function (t) {
+      var chip = document.querySelector('#nova-dragon-egg-screen .nova-dragon-egg-chip[data-egg="' + t + '"]');
+      if (!chip) return;
+      chip.addEventListener('click', function () {
+        var s = getStudent();
+        var cnt = Number((s && s.dragonEggs || {})[t]) || 0;
+        selectedType = t;
+        document.querySelectorAll('#nova-dragon-egg-screen .nova-dragon-egg-chip').forEach(function (c) {
+          c.classList.toggle('is-selected', c.getAttribute('data-egg') === t);
+        });
+        updateScreenPreview();
+        updateCrackButton();
+        if (cnt < 1 && typeof showAlert === 'function') {
+          showAlert(EGG_LABEL[t] + ' yumurtası yok. Bonus etkinliklerden kazan!');
+        }
+      });
+    });
+    var btn = document.getElementById('nova_dragon_egg_crack_btn');
+    if (btn) btn.addEventListener('click', function () { crackSelectedEgg(); });
+  }
+
+  function ensureHubMarkup() {
+    var wrap = document.getElementById('nova-dragon-egg-wrap');
+    if (wrap && wrap.querySelector('.nova-dragon-egg-stock')) {
+      wrap.remove();
+      wrap = null;
+    }
+    if (wrap) {
+      var oldHint = wrap.querySelector('.nova-dragon-egg-entry__hint');
+      if (oldHint) oldHint.remove();
+      return wrap;
+    }
+    var anchor = document.querySelector('#main-screen-hud-left .nova-main-hero-showcase-wrap');
+    if (!anchor) return null;
+    wrap = document.createElement('div');
+    wrap.id = 'nova-dragon-egg-wrap';
+    wrap.className = 'nova-dragon-egg-wrap';
+    wrap.innerHTML =
+      '<div class="nova-dragon-egg-panel">' +
+      '<div class="nova-dragon-egg-panel__title">Ejderha Yumurtası</div>' +
+      '<button type="button" class="nova-dragon-egg-entry" id="nova_dragon_egg_open" aria-label="Ejderha yumurtası ekranını aç">' +
+      '<div class="nova-dragon-egg-hub" id="nova_dragon_egg_hub"></div>' +
+      '<span class="nova-dragon-egg-entry__total" id="nova_dragon_egg_total">0 yumurta</span>' +
+      '</button></div>';
+    anchor.insertAdjacentElement('afterend', wrap);
+    return wrap;
+  }
+
+  function showEarnToast(type, count) {
+    var old = document.getElementById('nova-degg-earn-toast');
+    if (old) old.remove();
+    var toast = document.createElement('div');
+    toast.id = 'nova-degg-earn-toast';
+    toast.className = 'nova-degg-earn-toast';
+    toast.innerHTML =
+      '<img class="nova-degg-earn-toast__img" src="' + EGG_PNG[type] + '" alt=""/>' +
+      '<div class="nova-degg-earn-toast__txt"><strong>' + EGG_LABEL[type] + ' Ejderha Yumurtası!</strong>' +
+      '<span>+' + count + ' — Ejderha bölümünden kırabilirsin</span></div>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function () {
+      toast.classList.add('is-visible');
+    });
+    setTimeout(function () {
+      toast.classList.remove('is-visible');
+      setTimeout(function () { toast.remove(); }, 450);
+    }, 3200);
+  }
+
+  window.novaGrantDragonEgg = async function (type, count, opts) {
+    type = String(type || 'fire').trim();
+    if (EGG_TYPES.indexOf(type) < 0) type = 'fire';
+    count = Math.max(1, Math.min(20, Number(count) || 1));
+    opts = opts || {};
+    var ref = studentRef();
+    if (!ref) return false;
+    try {
+      var bag = await readEggBag(ref);
+      bag[type] = (Number(bag[type]) || 0) + count;
+      await writeEggBag(ref, bag);
+      var verify = await readEggBag(ref);
+      if ((Number(verify[type]) || 0) < (Number(bag[type]) || 0)) {
+        console.error('novaGrantDragonEgg verify failed', type, verify);
+        return false;
+      }
+      var metaSnap = await ref.child('dragonEggMeta/cracksSinceDragonTrial').once('value');
+      if (metaSnap.val() == null) {
+        await ref.child('dragonEggMeta/cracksSinceDragonTrial').set(0);
+      }
+      syncStudentPatch({ dragonEggs: verify });
+      renderHubInventory(getStudent());
+      if (!opts.suppressToast) showEarnToast(type, count);
+      return true;
+    } catch (e) {
+      console.error('novaGrantDragonEgg', e);
+      return false;
+    }
+  };
+
+  /** Bonus etkinlik — doğru cevapta garanti rastgele yumurta */
+  window.novaBonusAwardDragonEgg = async function () {
+    var type = EGG_TYPES[Math.floor(Math.random() * EGG_TYPES.length)];
+    var ok = await window.novaGrantDragonEgg(type, 1, { suppressToast: true });
+    if (!ok) return null;
+    return { type: type, label: EGG_LABEL[type], png: EGG_PNG[type] };
+  };
+
+  window.novaBonusTryAwardDragonEgg = window.novaBonusAwardDragonEgg;
+
+  window.novaBonusEggWinFx = function (hostEl, reward, options) {
+    if (!hostEl || !reward) return;
+    options = options || {};
+    var title = options.title || 'SÜPER';
+    hostEl.classList.add('fb-win-glow');
+    var oldFx = hostEl.querySelector('.fb-win-fx');
+    if (oldFx) oldFx.remove();
+    var fx = document.createElement('div');
+    fx.className = 'fb-win-fx';
+    fx.innerHTML =
+      '<div class="fb-win-core nova-degg-bonus-win">' +
+      '<div class="fb-win-title">' + title + '</div>' +
+      '<img class="nova-degg-bonus-win__egg" src="' + reward.png + '" alt="' + reward.label + ' yumurta"/>' +
+      '<div class="fb-win-amount">' + reward.label + ' Ejderha Yumurtası</div>' +
+      '<div class="fb-win-sub">+1 yumurta — Ejderha bölümünden kırabilirsin</div>' +
+      '</div>';
+    if (getComputedStyle(hostEl).position === 'static') hostEl.style.position = 'relative';
+    hostEl.appendChild(fx);
+    var colors = ['#fde047', '#34d399', '#60a5fa', '#f472b6', '#f97316', '#a78bfa'];
+    for (var i = 0; i < 30; i++) {
+      var c = document.createElement('span');
+      c.className = 'fb-confetti';
+      c.style.background = colors[i % colors.length];
+      var ang = (Math.PI * 2 * i) / 30;
+      var dist = 110 + Math.random() * 120;
+      c.style.setProperty('--x', Math.cos(ang) * dist + 'px');
+      c.style.setProperty('--y', Math.sin(ang) * dist + 'px');
+      c.style.setProperty('--r', (Math.random() * 520 - 260).toFixed(0) + 'deg');
+      c.style.animationDelay = (Math.random() * 0.12).toFixed(2) + 's';
+      fx.appendChild(c);
+    }
+    setTimeout(function () {
+      fx.remove();
+      hostEl.classList.remove('fb-win-glow');
+    }, 2300);
+  };
+
+  window.novaRenderHeroStoreCardClone = function (hero, userData, container) {
+    if (!container || !hero) return;
+    var catalogFn = window.novaRenderBattleHeroStore;
+    if (typeof catalogFn !== 'function') return;
+    var card = document.createElement('div');
+    container.appendChild(card);
+    try {
+      var reg = window.NOVA_HERO_REGISTRY || {};
+      var def = reg[hero.id];
+      if (!def) return;
+      var owned = true;
+      var equipped = userData && userData.battleHero === hero.id;
+      var trialLeft = window.novaFormatHeroTrialRemaining(userData, hero.id);
+      card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme;
+      if (typeof window.novaIsEpicStoreHero === 'function' && window.novaIsEpicStoreHero(hero.id)) {
+        card.classList.add('nova-hero-store-card--epic-tier');
+      }
+      var preview = '';
+      if (typeof window.novaHeroPreviewHtml === 'function') {
+        preview = window.novaHeroPreviewHtml(hero.id, def.theme);
+      } else if (typeof window.heroPreviewHtml === 'function') {
+        preview = window.heroPreviewHtml(hero.id, def.theme);
+      }
+      card.innerHTML =
+        preview +
+        '<div class="nova-hero-store-vitrine-name">' + (hero.name || def.name) + '</div>' +
+        '<span class="nova-hero-trial-badge">Deneme aktif</span>' +
+        '<span class="nova-hero-trial-remaining">' + (trialLeft || '') + '</span>' +
+        '<div class="profile-photo-price"></div>' +
+        '<button type="button" class="profile-photo-button use-button">Mağazada kullanılabilir</button>';
+      var host = card.querySelector('[data-nova-hero-host]');
+      if (host && typeof window.novaStoreLazyMountHero === 'function') {
+        window.novaStoreLazyMountHero(host, hero.id, function (h) {
+          if (typeof window.mountHeroStorePreview === 'function') {
+            window.mountHeroStorePreview(h, hero.id);
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('storeCardClone', e);
+    }
+  };
+
+  async function loadStudentEggFields() {
+    var ref = studentRef();
+    if (!ref) return;
+    try {
+      await refreshEggsFromServer();
+      var stuSnap = await ref.once('value');
+      var stu = stuSnap.val() || {};
+      syncStudentPatch({
+        heroTrials: stu.heroTrials || {},
+        dragonTrials: stu.dragonTrials || {}
+      });
+    } catch (e) {
+      console.warn('loadStudentEggFields', e);
+    }
+  }
+
+  function boot() {
+    if (!document.getElementById('main-screen')) return;
+    ensureHubMarkup();
+    bindMainEntry();
+    bindScreenUi();
+    var hub = document.getElementById('nova_dragon_egg_hub');
+    if (hub) playHubLoop(hub);
+    loadStudentEggFields().then(function () {
+      renderHubInventory(getStudent());
+    });
+    if (!document.__novaDragonEggVisibleBound) {
+      document.__novaDragonEggVisibleBound = true;
+      document.addEventListener('nova:main-screen-visible', function () {
+        if (!eggScreenOpen) {
+          renderHubInventory(getStudent());
+          var h = document.getElementById('nova_dragon_egg_hub');
+          if (h && !h.querySelector('canvas')) playHubLoop(h);
+        }
+      });
+    }
+    try {
+      loadSheet('fire');
+      loadSheet('ice');
+      loadSheet('night');
+      loadSheet('hub');
+    } catch (_) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
+  window.addEventListener('load', boot, { once: true });
+  setTimeout(boot, 1200);
+})();

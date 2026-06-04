@@ -1,4 +1,5 @@
 (function(){
+  function bonusUnlimited(){ return window.NOVA_BONUS_UNLIMITED === true; }
   function db(){ try { return (typeof firebase !== 'undefined' && firebase.database) ? firebase.database() : (window.database || null); } catch(_) { return null; } }
   async function dbGet(refObj){
     if (!refObj) return null;
@@ -204,6 +205,7 @@
   }
 
   function applyDailyFabLock(locked){
+    if (bonusUnlimited()) locked = false;
     var fab = document.getElementById('puzzle_fab');
     var wrap = document.getElementById('puzzle_fab_wrap');
     if (!fab) return;
@@ -212,7 +214,7 @@
     fab.setAttribute('aria-disabled', locked ? 'true' : 'false');
     if (wrap) wrap.classList.toggle('nova-daily-locked-wrap', !!locked);
     if (locked) fab.title = 'Bugünkü hakkını kullandın. Yarın tekrar açılır.';
-    else fab.title = 'Doğru çözümde +100 elmas';
+    else fab.title = 'Doğru çözümde rastgele ejderha yumurtası';
   }
 
   async function refreshDailyFabState(){
@@ -250,7 +252,9 @@
     if (!screen || !play || !done) return;
 
     if (dateLabel) dateLabel.textContent = dKey.split('-').reverse().join('.');
-    if (attemptSnap && attemptSnap.exists()){
+    if (bonusUnlimited()) {
+      try { await attemptRef.remove(); } catch (_) {}
+    } else if (attemptSnap && attemptSnap.exists()){
       if (typeof showAlert === 'function') showAlert('ℹ️ Bilgilendirme\nBugünkü günlük etkinlik hakkını zaten kullandın. Yarın yeni etkinlikte tekrar devam edebilirsin.');
       dailyState = null;
       refreshDailyFabState();
@@ -387,41 +391,38 @@
     var isCorrect = norm(guess) === norm(st.solution);
     var payload = { guess: guess, correct: !!isCorrect, at: Date.now() };
     var committed = false;
-    await st.attemptRef.transaction(function(curr){ return curr ? curr : payload; }, function(err, c){
-      committed = !!c;
-    });
+    if (bonusUnlimited()) {
+      try { await st.attemptRef.set(payload); committed = true; } catch (_) { committed = false; }
+    } else {
+      await st.attemptRef.transaction(function(curr){ return curr ? curr : payload; }, function(err, c){
+        committed = !!c;
+      });
+    }
     if (!committed){
       if (msg) msg.textContent = 'Bugünkü hakkın zaten kullanıldı.';
       if (checkBtn) checkBtn.disabled = true;
       refreshDailyFabState();
       return;
     }
-    if (checkBtn) checkBtn.disabled = true;
+    if (checkBtn && !bonusUnlimited()) checkBtn.disabled = true;
     refreshDailyFabState();
     var rdb = db();
     if (isCorrect && rdb){
-      var stuRef = rdb.ref('classes/' + st.classId + '/students/' + st.studentId);
-      var dpRewardBase = 100;
-      var dpRewardMul = 1;
-      var dpRewardTotal = 100;
-      await stuRef.transaction(function(stu){
-        stu = stu || {};
-        var gain = computeChampionDiamondGain(dpRewardBase, stu);
-        dpRewardMul = Number(gain.multiplier || 1);
-        dpRewardTotal = Number(gain.total || dpRewardBase);
-        var heroMul = (typeof window.novaHeroGetDailyDiamondMultiplier === 'function')
-          ? window.novaHeroGetDailyDiamondMultiplier(stu) : 1;
-        if (heroMul > 1) dpRewardTotal = Math.round(dpRewardTotal * heroMul);
-        stu.diamond = Math.min(25000, Number(stu.diamond||0) + dpRewardTotal);
-        stu.lastDiamondUpdate = Date.now();
-        return stu;
-      });
+      var eggReward = null;
+      if (typeof window.novaBonusAwardDragonEgg === 'function') {
+        try { eggReward = await window.novaBonusAwardDragonEgg(); } catch (_) {}
+      }
+      var dpCard = document.getElementById('daily_puzzle_card');
+      if (eggReward && dpCard && typeof window.novaBonusEggWinFx === 'function') {
+        window.novaBonusEggWinFx(dpCard, eggReward, { title: 'SÜPER' });
+      }
       if (typeof window.novaPlayDiamondRewardSfx === 'function'){
         window.novaPlayDiamondRewardSfx();
       }
-      runDpWinFx(dpRewardTotal, dpRewardMul);
       if (msg){
-        msg.textContent = 'Doğru! +' + dpRewardTotal + ' 💎' + (dpRewardMul > 1 ? (' (Rozet x'+dpRewardMul+')') : '');
+        msg.textContent = eggReward
+          ? ('Doğru! ' + eggReward.label + ' ejderha yumurtası kazandın!')
+          : 'Doğru! Ödül verilemedi — tekrar dene.';
         msg.style.color = '#059669';
       }
     } else {
@@ -433,6 +434,12 @@
       if (dpShell) {
         dpShell.classList.add('dp-wrong-flash');
         setTimeout(function () { dpShell.classList.remove('dp-wrong-flash'); }, 700);
+      }
+      if (bonusUnlimited()) {
+        try { await st.attemptRef.remove(); } catch (_) {}
+        if (checkBtn) checkBtn.disabled = false;
+        refreshDailyFabState();
+        return;
       }
       if (typeof window.novaHeroOfferDailyRetry === 'function') {
         var retry = await window.novaHeroOfferDailyRetry('dailyPuzzle');
@@ -452,6 +459,7 @@
         msg.style.color = '#b45309';
       }
     }
+    if (bonusUnlimited() && !isCorrect) return;
     var delay = isCorrect ? 2400 : 1200;
     setTimeout(function(){
       var play = document.getElementById('dp_play_area');

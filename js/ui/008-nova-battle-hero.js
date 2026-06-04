@@ -505,6 +505,11 @@
     if (data.purchasedBattleHeroes) {
       s.purchasedBattleHeroes = data.purchasedBattleHeroes;
     }
+    if (data.heroTrials) s.heroTrials = data.heroTrials;
+    if (data.dragonTrials) s.dragonTrials = data.dragonTrials;
+    if (data.dragonEggs) s.dragonEggs = data.dragonEggs;
+    if (data.dragonEggMeta) s.dragonEggMeta = data.dragonEggMeta;
+    if (Object.prototype.hasOwnProperty.call(data, 'diamond')) s.diamond = data.diamond;
     try {
       window.selectedStudent = s;
       localStorage.setItem('selectedStudent', JSON.stringify(s));
@@ -725,9 +730,22 @@
     return parseHeroOwn(data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).level;
   }
 
+  function heroTrialUntilMs(data, heroId) {
+    if (!data || !heroId) return 0;
+    var now = Date.now();
+    var maps = [data.heroTrials, data.dragonTrials];
+    var best = 0;
+    maps.forEach(function (map) {
+      var t = map && map[heroId];
+      if (t && Number(t) > now) best = Math.max(best, Number(t));
+    });
+    return best;
+  }
+
   function ownsHero(data, heroId) {
     if (!heroId) return false;
     if (parseHeroOwn(data && data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).owned) return true;
+    if (heroTrialUntilMs(data, heroId) > Date.now()) return true;
     if (isHeroEquippedOnData(heroId, data)) return true;
     return false;
   }
@@ -1622,6 +1640,10 @@
     if (!def || !heroHasStoreArt(def)) return;
 
     var owned = ownsHero(userData, hero.id);
+    var trialUntil = heroTrialUntilMs(userData, hero.id);
+    var onTrial = trialUntil > Date.now() && !parseHeroOwn(userData && userData.purchasedBattleHeroes && userData.purchasedBattleHeroes[hero.id]).owned;
+    var trialLeft = (typeof window.novaFormatHeroTrialRemaining === 'function')
+      ? window.novaFormatHeroTrialRemaining(userData, hero.id) : '';
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
     var cost = heroPurchaseCost(Number(hero.price) || def.price);
@@ -1638,6 +1660,10 @@
       badgeRow = epicBadgeSlotHtml(hero.id);
     } else if (owned) {
       badgeRow = '<span class="nova-hero-level-badge">★ Sv. ' + lvl + '</span>';
+    }
+    if (onTrial) {
+      badgeRow += '<span class="nova-hero-trial-badge">Deneme aktif</span>'
+        + '<span class="nova-hero-trial-remaining">' + (trialLeft || '') + '</span>';
     }
     card.innerHTML =
       heroPreviewHtml(hero.id, def.theme)
@@ -1663,7 +1689,7 @@
       };
     } else if (!equipped) {
       btn.className = 'profile-photo-button use-button';
-      btn.textContent = 'Kullan';
+      btn.textContent = onTrial ? 'Mağazada kullanılabilir' : 'Kullan';
       btn.onclick = async function (e) {
         e.stopPropagation();
         await equipBattleHero(hero);
@@ -2043,11 +2069,14 @@
   window.novaGetHeroLevel = getHeroLevel;
   window.novaMountHeroInto = mountHeroInto;
   window.mountHeroInto = mountHeroInto;
+  window.mountHeroStorePreview = mountHeroStorePreview;
   window.novaBuildHeroSvgHtml = buildHeroSvgHtml;
   window.novaRenderBattleHeroStore = novaRenderBattleHeroStore;
   window.novaRefreshBattleHeroStoreInPlace = refreshBattleHeroStoreInPlace;
   window.novaGetActiveHeroStoreCategory = getActiveHeroStoreCategory;
   window.novaIsEpicStoreHero = isEpicStoreHero;
+  window.novaHeroTrialUntilMs = heroTrialUntilMs;
+  window.novaHeroPreviewHtml = heroPreviewHtml;
   window.novaFilterHeroCatalogByStoreCategory = filterHeroCatalogByStoreCategory;
   window.novaFillCharacterInventoryHeroes = novaFillCharacterInventoryHeroes;
   window.NOVA_BATTLE_HERO_ID = 'star_fairy';
