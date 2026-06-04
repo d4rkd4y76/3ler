@@ -34,7 +34,8 @@ body.nova-main-bg-video-on .nova-main-bg-video-layer.is-active {
   opacity: 1;
 }
 
-.nova-main-bg-video {
+.nova-main-bg-video,
+.nova-main-bg-image {
   position: absolute;
   inset: -1%;
   width: 102%;
@@ -45,6 +46,10 @@ body.nova-main-bg-video-on .nova-main-bg-video-layer.is-active {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   pointer-events: none;
+}
+
+.nova-main-bg-image[hidden] {
+  display: none !important;
 }
 
 /* Tarayıcı oynatıcı kontrolleri / ortadaki play — asla görünmesin */

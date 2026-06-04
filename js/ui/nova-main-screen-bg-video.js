@@ -36,6 +36,10 @@
     return document.getElementById('nova-main-bg-video');
   }
 
+  function getImage() {
+    return document.getElementById('nova-main-bg-image');
+  }
+
   function revokeBlobUrl() {
     if (!state.blobUrl) return;
     try {
@@ -153,8 +157,35 @@
       });
   }
 
+  function resolveImageUrl(cfg) {
+    if (!cfg) return '';
+    var direct = String(cfg.imageUrl || '').trim();
+    if (direct) return direct;
+    var path = String(cfg.imageAssetPath || '').trim();
+    if (!path) return '';
+    try {
+      if (typeof window.novaCdnAssetUrl === 'function') {
+        var asset = window.novaCdnAssetUrl(path);
+        if (asset) return asset;
+      }
+    } catch (_) {}
+    if (cfg.libraryName && path) {
+      var host = normalizeLibraryName(cfg.libraryName);
+      if (host) {
+        return 'https://' + host + '.b-cdn.net/' + path.replace(/^\//, '');
+      }
+    }
+    return '';
+  }
+
   function pickPlayback(cfg, host) {
     if (!cfg || cfg.show === false) return null;
+    var mediaType = String(cfg.mediaType || 'video').toLowerCase();
+    if (mediaType === 'image') {
+      var imgUrl = resolveImageUrl(cfg);
+      if (!imgUrl) return null;
+      return { mode: 'image', src: imgUrl };
+    }
     var videoId = String(cfg.videoId || '').trim();
     if (!videoId) return null;
     if (host) {
@@ -171,6 +202,50 @@
       };
     }
     return null;
+  }
+
+  function hideBackgroundImage() {
+    var img = getImage();
+    if (!img) return;
+    img.hidden = true;
+    img.setAttribute('hidden', '');
+    img.removeAttribute('src');
+  }
+
+  function applyBackgroundImage(src) {
+    var img = getImage();
+    var video = getVideo();
+    hideIframeLayer();
+    if (video) {
+      try {
+        video.pause();
+        video.hidden = true;
+        video.setAttribute('hidden', '');
+      } catch (_) {}
+    }
+    if (!img || !src) return Promise.resolve();
+    return new Promise(function (resolve) {
+      function show() {
+        img.hidden = false;
+        img.removeAttribute('hidden');
+        state.currentMode = 'image';
+        state.currentSrc = src;
+        markVideoReady(img);
+        resolve(src);
+      }
+      if (img.src === src && img.complete && img.naturalWidth > 0) {
+        show();
+        return;
+      }
+      img.onload = function () {
+        show();
+      };
+      img.onerror = function () {
+        resolve();
+      };
+      img.src = src;
+      if (img.complete && img.naturalWidth > 0) show();
+    });
   }
 
   function fetchConfig(force) {
@@ -401,6 +476,7 @@
       } catch (_) {}
     }
     hideIframeLayer();
+    hideBackgroundImage();
     state.currentMode = '';
   }
 
@@ -411,6 +487,7 @@
     var iframe = document.getElementById('nova-main-bg-video-iframe');
     if (!layer || !wrap || !iframe || !play || !play.src) return false;
     revokeBlobUrl();
+    hideBackgroundImage();
     if (video) {
       try {
         video.pause();
@@ -459,6 +536,10 @@
             return;
           }
 
+          if (play.mode === 'image') {
+            return applyBackgroundImage(play.src);
+          }
+
           if (play.mode === 'iframe') {
             hideIframeLayer();
             if (applyIframeFallback(play)) return;
@@ -467,6 +548,7 @@
           }
 
           hideIframeLayer();
+          hideBackgroundImage();
           state.currentMode = 'video';
           video.hidden = false;
           video.removeAttribute('hidden');
@@ -568,88 +650,12 @@
     });
   }
 
-  function isMainBgPlaybackReady() {
-    if (!isMainScreenVisible()) return false;
-    if (state.currentMode === 'iframe') {
-      var wrap = document.getElementById('nova-main-bg-video-iframe-wrap');
-      var iframe = document.getElementById('nova-main-bg-video-iframe');
-      return !!(wrap && !wrap.hidden && iframe && iframe.src);
-    }
-    if (state.currentMode === 'video') {
-      var video = getVideo();
-      return !!(video && video.readyState >= 2);
-    }
-    return !!state._bootSyncResolved;
-  }
-
-  window.novaPrepareMainScreenBgVideoForBoot = function (maxMs) {
-    maxMs = maxMs || 16000;
-    var layer = getLayer();
-    var video = getVideo();
-    if (!layer || !video) return Promise.resolve('skip');
-
-    return new Promise(function (resolve) {
-      var settled = false;
-      function done(tag) {
-        if (settled) return;
-        settled = true;
-        resolve(tag || 'done');
-      }
-
-      var deadline = performance.now() + maxMs;
-      var timeout = setTimeout(function () {
-        var v = getVideo();
-        if (v && v.readyState >= 2) {
-          tryPlay(v);
-          markVideoReady(v);
-        }
-        done('timeout');
-      }, maxMs);
-
-      state._bootSyncResolved = false;
-      syncMainBgVideo(true)
-        .then(function () {
-          state._bootSyncResolved = true;
-          poll();
-        })
-        .catch(function () {
-          state._bootSyncResolved = true;
-          done('error');
-        });
-
-      function poll() {
-        if (isMainBgPlaybackReady()) {
-          if (state.currentMode === 'video') {
-            var v = getVideo();
-            if (v && v.readyState >= 2) {
-              tryPlay(v);
-              markVideoReady(v);
-              clearTimeout(timeout);
-              done('video-ready');
-              return;
-            }
-          } else {
-            clearTimeout(timeout);
-            done(state.currentMode || 'ready');
-            return;
-          }
-        }
-        if (performance.now() >= deadline) {
-          clearTimeout(timeout);
-          done('deadline');
-          return;
-        }
-        requestAnimationFrame(poll);
-      }
-    });
-  };
-
   window.novaSyncMainScreenBgVideo = syncMainBgVideo;
   window.novaFetchMainScreenBgVideoConfig = fetchConfig;
   window.novaPickMainScreenBgPlayback = function (cfg) {
     return pickPlayback(cfg, resolveBunnyPullZoneHost(cfg));
   };
-  window.novaIsMainScreenBgVideoReady = isMainBgPlaybackReady;
+  window.novaResolveMainScreenBgImageUrl = resolveImageUrl;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bindEvents, { once: true });

@@ -757,19 +757,6 @@
         return runLightBootWork();
       })
       .then(function () {
-        if (!state.heavyMainDone) {
-          return runLightBootWork();
-        }
-      })
-      .then(function () {
-        if (typeof window.novaWaitMainScreenFullyReady === 'function' && !window.__novaMainScreenFullyReady) {
-          startFinishingPulse(0.99);
-          return window.novaWaitMainScreenFullyReady(function (msg) {
-            setProgress(0.99, msg || 'Ana ekran açılıyor…', { finishingWait: true });
-          });
-        }
-      })
-      .then(function () {
         return exitAt100Immediately();
       });
   }
@@ -856,6 +843,9 @@
     if (!hasStoredStudentSession()) return;
     if (!shouldRunBoot()) {
       markBootDone();
+      if (typeof window.novaStabilizeMainScreen === 'function') {
+        window.novaStabilizeMainScreen();
+      }
       return;
     }
     window.novaStartSpriteBoot({ trigger: 'remembered' });
@@ -881,7 +871,6 @@
     window.__novaSpriteBootActive = false;
     window.__novaMainScreenBootPromise = null;
     window.__novaMainScreenBootReady = false;
-    window.__novaMainScreenFullyReady = false;
     state.exiting = false;
     state.preloadDone = false;
     state.videoDone = false;

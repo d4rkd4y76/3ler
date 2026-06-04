@@ -4305,7 +4305,9 @@ window.onload = async () => {
             await addLoggedInPlayer(selectedStudent);
             startInvitationListener(selectedStudent.studentId);
             await fetchAndDisplayGameCup();
-            if (!window.__novaMainScreenBootReady) {
+            if (typeof window.novaStabilizeMainScreen === 'function') {
+              try { await window.novaStabilizeMainScreen(); } catch (_) {}
+            } else if (!window.__novaMainScreenBootReady) {
               onMainScreenLoad();
             }
             try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}

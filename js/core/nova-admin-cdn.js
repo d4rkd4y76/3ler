@@ -381,6 +381,45 @@
     return next;
   }
 
+  function assetStorageUrl(relativePath) {
+    var ver = Number(state.cdn.version) || 1;
+    return (
+      'https://' +
+      state.host +
+      '/' +
+      encodeURIComponent(state.storage.zone) +
+      '/v' +
+      ver +
+      '/assets/' +
+      quotePath(relativePath)
+    );
+  }
+
+  function assetPublicUrl(relativePath) {
+    var base = normalizeBase(state.cdn.base);
+    if (!base) return null;
+    var ver = Number(state.cdn.version) || 1;
+    return base + '/v' + ver + '/assets/' + quotePath(relativePath);
+  }
+
+  async function uploadAsset(relativePath, file) {
+    if (!file) throw new Error('Dosya seçilmedi.');
+    if (!storageReady()) throw new Error('Storage zone ve API şifresi gerekli (CDN Yayın sekmesi).');
+    var rel = String(relativePath || '')
+      .replace(/\\/g, '/')
+      .replace(/^\/+/, '');
+    if (!rel) throw new Error('Dosya yolu boş.');
+    var url = assetStorageUrl(rel);
+    var bytes = new Uint8Array(await file.arrayBuffer());
+    var ct = String(file.type || 'application/octet-stream');
+    await bunnyPut(url, bytes, ct);
+    var publicUrl = assetPublicUrl(rel);
+    if (!publicUrl) {
+      throw new Error('CDN base URL yok — önce CDN Yayın ayarlarını kaydedin.');
+    }
+    return { path: rel, publicUrl: publicUrl };
+  }
+
   async function testConnection() {
     if (!storageReady()) throw new Error('Storage zone ve API şifresi gerekli.');
     var ver = Number(state.cdn.version) || 1;
@@ -408,6 +447,8 @@
     loadPlatformCdnConfig: loadPlatformCdnConfig,
     rebuildStoreManifest: rebuildStoreManifest,
     publishPath: publishPath,
+    uploadAsset: uploadAsset,
+    assetPublicUrl: assetPublicUrl,
     testConnection: testConnection,
     isContentPath: isContentPath,
     storageReady: storageReady,

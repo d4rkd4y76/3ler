@@ -83,11 +83,31 @@
     );
   }
 
+  function assetUrl(relativePath) {
+    if (!isEnabled()) return null;
+    var segs = String(relativePath || '')
+      .replace(/\\/g, '/')
+      .split('/')
+      .filter(Boolean)
+      .map(function (s) {
+        return encodeURIComponent(s);
+      });
+    if (!segs.length) return null;
+    return (
+      normalizeBase(global.NOVA_CDN.base) +
+      '/v' +
+      String(global.NOVA_CDN.version || 1) +
+      '/assets/' +
+      segs.join('/')
+    );
+  }
+
   global.novaCdnIsEnabled = isEnabled;
   global.novaCdnIsContentPath = isContentPath;
   global.novaCdnRtdbPathToUrl = rtdbPathToCdnUrl;
   global.novaCdnStoreManifestUrl = storeManifestUrl;
   global.novaCdnApplyMeta = applyMeta;
+  global.novaCdnAssetUrl = assetUrl;
 
   function bootstrapFromRtdb() {
     try {
