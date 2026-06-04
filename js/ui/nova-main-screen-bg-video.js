@@ -1,19 +1,21 @@
-/* Ana ekran arka plan — Bunny MP4 döngü (sessiz, otomatik); iframe/player UI yok */
+/* Ana ekran arka plan — Bunny MP4 döngü (sessiz, otomatik); masaüstü + mobil */
 (function () {
   'use strict';
 
   var CONFIG_PATH = 'platformMeta/mainScreenBgVideo';
   var CONFIG_TTL_MS = 120000;
-  var PLAY_RETRY_MS = 450;
-  var PLAY_RETRY_MAX_MS = 12000;
+  var PLAY_RETRY_MS = 400;
+  var PLAY_RETRY_MAX_MS = 20000;
 
   var state = {
     config: null,
     configAt: 0,
     currentSrc: '',
+    currentMode: '',
     bound: false,
     playRetryTimer: null,
-    unlockBound: false
+    unlockBound: false,
+    blobUrl: ''
   };
 
   function getDatabase() {
@@ -34,12 +36,21 @@
     return document.getElementById('nova-main-bg-video');
   }
 
+  function revokeBlobUrl() {
+    if (!state.blobUrl) return;
+    try {
+      URL.revokeObjectURL(state.blobUrl);
+    } catch (_) {}
+    state.blobUrl = '';
+  }
+
   function hideIframeLayer() {
     var wrap = document.getElementById('nova-main-bg-video-iframe-wrap');
     var iframe = document.getElementById('nova-main-bg-video-iframe');
     if (wrap) {
       wrap.hidden = true;
       wrap.setAttribute('hidden', '');
+      wrap.classList.remove('is-bg-fallback');
     }
     if (iframe) {
       try {
@@ -52,7 +63,10 @@
     var main = document.getElementById('main-screen');
     if (!main) return false;
     try {
-      return window.getComputedStyle(main).display !== 'none';
+      var st = window.getComputedStyle(main);
+      if (st.display === 'none' || st.visibility === 'hidden') return false;
+      if (parseFloat(st.opacity || '1') < 0.05) return false;
+      return true;
     } catch (_) {
       return main.style.display !== 'none';
     }
@@ -96,14 +110,24 @@
   function buildBunnyMp4Candidates(host, videoId) {
     var base = 'https://' + host + '.b-cdn.net/' + videoId + '/';
     return [
-      base + 'play_720p.mp4',
       base + 'play_480p.mp4',
       base + 'play_360p.mp4',
-      base + 'play_1080p.mp4',
+      base + 'play_720p.mp4',
       base + 'play_240p.mp4',
+      base + 'play_1080p.mp4',
       base + 'original.mp4',
       base + 'play.mp4'
     ];
+  }
+
+  function buildBunnyEmbedBgUrl(libraryId, videoId) {
+    return (
+      'https://player.mediadelivery.net/embed/' +
+      libraryId +
+      '/' +
+      videoId +
+      '?autoplay=true&loop=true&muted=true&preload=true&playsinline=true&responsive=true&rememberPosition=false'
+    );
   }
 
   function ensurePullZoneHost(cfg) {
@@ -132,11 +156,21 @@
   function pickPlayback(cfg, host) {
     if (!cfg || cfg.show === false) return null;
     var videoId = String(cfg.videoId || '').trim();
-    if (!videoId || !host) return null;
-    return {
-      mode: 'video',
-      srcList: buildBunnyMp4Candidates(host, videoId)
-    };
+    if (!videoId) return null;
+    if (host) {
+      return {
+        mode: 'video',
+        srcList: buildBunnyMp4Candidates(host, videoId)
+      };
+    }
+    var libraryId = String(cfg.libraryId || '').trim();
+    if (libraryId) {
+      return {
+        mode: 'iframe',
+        src: buildBunnyEmbedBgUrl(libraryId, videoId)
+      };
+    }
+    return null;
   }
 
   function fetchConfig(force) {
@@ -163,7 +197,7 @@
     var layer = getLayer();
     if (!layer) return;
     layer.classList.toggle('is-active', !!on);
-    document.body.classList.toggle('nova-main-bg-video-on', !!on);
+    document.body.classList.toggle('nova-main-bg-video-on', !!on && isMainScreenVisible());
   }
 
   function enforceSilent(video) {
@@ -214,22 +248,16 @@
     video.addEventListener('canplay', relock, { passive: true });
   }
 
-  function loadVideoSource(video, srcList) {
-    var list = Array.isArray(srcList) ? srcList.slice() : [srcList];
+  function tryAssignVideoSrc(video, src) {
     return new Promise(function (resolve, reject) {
-      if (!video || !list.length) {
-        reject(new Error('no-video'));
+      if (!video || !src) {
+        reject(new Error('no-src'));
         return;
       }
       prepareVideoElement(video);
-      var idx = 0;
-      function tryNext() {
-        if (idx >= list.length) {
-          reject(new Error('video-error'));
-          return;
-        }
-        var src = list[idx];
-        idx += 1;
+      revokeBlobUrl();
+
+      function attachDirect() {
         function cleanup() {
           video.removeEventListener('canplay', onOk);
           video.removeEventListener('loadeddata', onOk);
@@ -242,7 +270,7 @@
         }
         function onErr() {
           cleanup();
-          tryNext();
+          reject(new Error('video-error'));
         }
         video.addEventListener('canplay', onOk, { once: true });
         video.addEventListener('loadeddata', onOk, { once: true });
@@ -253,6 +281,32 @@
         } catch (e) {
           onErr();
         }
+      }
+
+      attachDirect();
+    });
+  }
+
+  function loadVideoSource(video, srcList) {
+    var list = Array.isArray(srcList) ? srcList.slice() : [srcList];
+    return new Promise(function (resolve, reject) {
+      if (!video || !list.length) {
+        reject(new Error('no-video'));
+        return;
+      }
+      var idx = 0;
+      function tryNext() {
+        if (idx >= list.length) {
+          reject(new Error('video-error'));
+          return;
+        }
+        var src = list[idx];
+        idx += 1;
+        tryAssignVideoSrc(video, src)
+          .then(resolve)
+          .catch(function () {
+            tryNext();
+          });
       }
       tryNext();
     });
@@ -265,11 +319,20 @@
     }
   }
 
+  function markVideoReady(video) {
+    setLayerActive(true);
+    if (video) {
+      video.hidden = false;
+      video.removeAttribute('hidden');
+    }
+  }
+
   function tryPlay(video) {
     if (!video || !isMainScreenVisible()) return;
     prepareVideoElement(video);
     bindSilentGuards(video);
     enforceSilent(video);
+    if (video.readyState >= 2) markVideoReady(video);
     var p;
     try {
       p = video.play();
@@ -278,8 +341,12 @@
     }
     if (p && typeof p.then === 'function') {
       p.then(function () {
-        setLayerActive(true);
-      }).catch(function () {});
+        markVideoReady(video);
+      }).catch(function () {
+        if (video.readyState >= 2) markVideoReady(video);
+      });
+    } else if (video.readyState >= 2) {
+      markVideoReady(video);
     }
   }
 
@@ -294,6 +361,7 @@
       }
       if (!isMainScreenVisible()) return;
       if (!video.paused && video.readyState >= 2) {
+        markVideoReady(video);
         clearPlayRetries();
         return;
       }
@@ -306,9 +374,13 @@
     state.unlockBound = true;
     function unlock() {
       var video = getVideo();
-      if (video && isMainScreenVisible()) tryPlay(video);
+      if (video && isMainScreenVisible()) {
+        if (state.currentMode === 'iframe') syncMainBgVideo(false);
+        else tryPlay(video);
+      }
     }
     document.addEventListener('pointerdown', unlock, { passive: true, once: false });
+    document.addEventListener('click', unlock, { passive: true, once: false });
     document.addEventListener('touchstart', unlock, { passive: true, once: false });
     document.addEventListener(
       'visibilitychange',
@@ -317,15 +389,46 @@
       },
       { passive: true }
     );
+    window.addEventListener('focus', unlock, { passive: true });
   }
 
   function stopPlayback() {
     clearPlayRetries();
     var video = getVideo();
-    if (!video) return;
-    try {
-      video.pause();
-    } catch (_) {}
+    if (video) {
+      try {
+        video.pause();
+      } catch (_) {}
+    }
+    hideIframeLayer();
+    state.currentMode = '';
+  }
+
+  function applyIframeFallback(play) {
+    var layer = getLayer();
+    var video = getVideo();
+    var wrap = document.getElementById('nova-main-bg-video-iframe-wrap');
+    var iframe = document.getElementById('nova-main-bg-video-iframe');
+    if (!layer || !wrap || !iframe || !play || !play.src) return false;
+    revokeBlobUrl();
+    if (video) {
+      try {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        video.hidden = true;
+        video.setAttribute('hidden', '');
+      } catch (_) {}
+    }
+    wrap.hidden = false;
+    wrap.removeAttribute('hidden');
+    wrap.classList.add('is-bg-fallback');
+    iframe.src = play.src;
+    iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture');
+    state.currentMode = 'iframe';
+    state.currentSrc = play.src;
+    setLayerActive(true);
+    return true;
   }
 
   function syncMainBgVideo(forceConfig) {
@@ -333,12 +436,10 @@
     var video = getVideo();
     if (!layer || !video) return Promise.resolve();
 
-    hideIframeLayer();
-    prepareVideoElement(video);
-
     if (!isMainScreenVisible()) {
       setLayerActive(false);
       stopPlayback();
+      document.body.classList.remove('nova-main-bg-video-on');
       return Promise.resolve();
     }
 
@@ -354,15 +455,25 @@
               video.load();
             } catch (_) {}
             state.currentSrc = '';
+            state.currentMode = '';
             return;
           }
 
+          if (play.mode === 'iframe') {
+            hideIframeLayer();
+            if (applyIframeFallback(play)) return;
+            setLayerActive(false);
+            return;
+          }
+
+          hideIframeLayer();
+          state.currentMode = 'video';
           video.hidden = false;
           video.removeAttribute('hidden');
 
           var primary = play.srcList[0];
           if (state.currentSrc === primary && video.readyState >= 2) {
-            setLayerActive(true);
+            markVideoReady(video);
             tryPlay(video);
             schedulePlayRetries(video);
             return;
@@ -371,11 +482,19 @@
           return loadVideoSource(video, play.srcList)
             .then(function (src) {
               state.currentSrc = src;
-              setLayerActive(true);
+              markVideoReady(video);
               tryPlay(video);
               schedulePlayRetries(video);
             })
             .catch(function () {
+              var libraryId = String((cfg && cfg.libraryId) || '').trim();
+              var videoId = String((cfg && cfg.videoId) || '').trim();
+              if (libraryId && videoId && applyIframeFallback({
+                mode: 'iframe',
+                src: buildBunnyEmbedBgUrl(libraryId, videoId)
+              })) {
+                return;
+              }
               setLayerActive(false);
               stopPlayback();
             });
@@ -391,6 +510,20 @@
     if (video) {
       prepareVideoElement(video);
       bindSilentGuards(video);
+      video.addEventListener(
+        'playing',
+        function () {
+          markVideoReady(video);
+        },
+        { passive: true }
+      );
+      video.addEventListener(
+        'loadeddata',
+        function () {
+          if (isMainScreenVisible()) markVideoReady(video);
+        },
+        { passive: true }
+      );
     }
 
     document.addEventListener(
@@ -414,23 +547,25 @@
     var main = document.getElementById('main-screen');
     if (main && typeof MutationObserver !== 'undefined') {
       var mo = new MutationObserver(function () {
-        if (isMainScreenVisible()) syncMainBgVideo(false);
-        else {
+        if (isMainScreenVisible()) {
+          document.body.classList.add('nova-main-screen-visible');
+          syncMainBgVideo(false);
+        } else {
           setLayerActive(false);
           stopPlayback();
+          document.body.classList.remove('nova-main-bg-video-on');
         }
       });
       mo.observe(main, { attributes: true, attributeFilter: ['style', 'class'] });
     }
 
     function kick() {
-      syncMainBgVideo(false);
+      if (isMainScreenVisible()) syncMainBgVideo(false);
     }
     kick();
-    setTimeout(kick, 600);
-    setTimeout(function () {
-      syncMainBgVideo(true);
-    }, 2000);
+    [400, 1200, 2500, 5000, 10000].forEach(function (ms) {
+      setTimeout(kick, ms);
+    });
   }
 
   window.novaSyncMainScreenBgVideo = syncMainBgVideo;

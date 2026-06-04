@@ -53,6 +53,63 @@
     }
   }
 
+  function isBootIdle() {
+    if (window.__novaSpriteBootActive) return false;
+    try {
+      if (document.body.classList.contains('nova-sprite-boot-active')) return false;
+      if (document.body.classList.contains('nova-screen-loader-active')) return false;
+    } catch (_) {}
+    var ov = document.getElementById('nova_sprite_boot_overlay');
+    if (!ov) return true;
+    if (ov.hidden) return true;
+    try {
+      if (ov.classList.contains('is-exiting')) return false;
+      var st = window.getComputedStyle(ov);
+      if (st.visibility === 'hidden' || parseFloat(st.opacity || '1') < 0.05) return true;
+    } catch (_) {}
+    return false;
+  }
+
+  function waitForBootIdle(maxMs) {
+    return new Promise(function (resolve) {
+      var start = Date.now();
+      function tick() {
+        if (isBootIdle()) {
+          resolve();
+          return;
+        }
+        if (Date.now() - start >= (maxMs || 12000)) {
+          resolve();
+          return;
+        }
+        setTimeout(tick, 80);
+      }
+      tick();
+    });
+  }
+
+  function setSkipVisible(els, on) {
+    if (!els.skip) return;
+    if (on) {
+      els.skip.hidden = false;
+      els.skip.removeAttribute('hidden');
+    } else {
+      els.skip.hidden = true;
+      els.skip.setAttribute('hidden', '');
+    }
+  }
+
+  function setOverlayReady(els, on) {
+    if (!els.overlay) return;
+    if (on) {
+      els.overlay.classList.add('is-ready');
+      setSkipVisible(els, true);
+    } else {
+      els.overlay.classList.remove('is-ready');
+      setSkipVisible(els, false);
+    }
+  }
+
   function normalizeLibraryName(name) {
     var n = String(name || '').trim();
     if (!n) return '';
@@ -222,10 +279,11 @@
     var els = getElements();
     if (!els.overlay) return;
     state.active = false;
-    els.overlay.classList.remove('open');
+    els.overlay.classList.remove('open', 'is-ready');
     els.overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('nova-hikaye-video-active');
     document.body.removeEventListener('keydown', onEscapeKey);
+    setSkipVisible(els, false);
     if (els.skip) els.skip.onclick = null;
     if (els.video) {
       try {
@@ -347,6 +405,11 @@
 
   function showHikayeStoryVideo() {
     if (state.active) return Promise.resolve(false);
+    if (!isBootIdle()) {
+      return waitForBootIdle(12000).then(function () {
+        return showHikayeStoryVideo();
+      });
+    }
 
     return shouldPlayStory().then(function (ok) {
       if (!ok) return false;
@@ -372,11 +435,18 @@
             done();
           };
           document.body.addEventListener('keydown', onEscapeKey);
-          document.body.classList.add('nova-hikaye-video-active');
-          els.overlay.classList.add('open');
-          els.overlay.setAttribute('aria-hidden', 'false');
+          setOverlayReady(els, false);
           setLoadingVisible(els, true);
           hideAllPlayers(els);
+
+          function revealStoryUi() {
+            if (finished) return;
+            setLoadingVisible(els, false);
+            document.body.classList.add('nova-hikaye-video-active');
+            els.overlay.classList.add('open');
+            els.overlay.setAttribute('aria-hidden', 'false');
+            setOverlayReady(els, true);
+          }
 
           if (play.mode === 'iframe') {
             if (els.iframeWrap) {
@@ -389,17 +459,17 @@
                 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen'
               );
               els.iframe.onload = function () {
-                setLoadingVisible(els, false);
+                revealStoryUi();
               };
               els.iframe.onerror = function () {
-                setLoadingVisible(els, false);
+                revealStoryUi();
               };
               els.iframe.src = play.src;
             } else {
-              setLoadingVisible(els, false);
+              revealStoryUi();
             }
             setTimeout(function () {
-              setLoadingVisible(els, false);
+              revealStoryUi();
             }, 4500);
             return;
           }
@@ -410,7 +480,7 @@
           }
 
           function onReady() {
-            setLoadingVisible(els, false);
+            revealStoryUi();
             els.video.onended = function () {
               done();
             };
@@ -459,10 +529,13 @@
   function queueStoryAfterBoot() {
     if (state.queued || state.active) return;
     state.queued = true;
-    setTimeout(function () {
+    waitForBootIdle(14000).then(function () {
       state.queued = false;
-      showHikayeStoryVideo();
-    }, 380);
+      if (!isBootIdle() || !isMainScreenReady()) return;
+      setTimeout(function () {
+        showHikayeStoryVideo();
+      }, 350);
+    });
   }
 
   function bindEvents() {

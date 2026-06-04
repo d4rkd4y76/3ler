@@ -81,6 +81,18 @@
     });
   }
 
+  /** "Başlık (alt açıklama)" → başlık ve parantezli kısım ayrı */
+  function splitCurriculumLabel(name) {
+    var s = String(name || '').trim();
+    if (!s) return { title: '', detail: '' };
+    var open = s.indexOf('(');
+    if (open <= 0) return { title: s, detail: '' };
+    return {
+      title: s.slice(0, open).trim(),
+      detail: s.slice(open).trim()
+    };
+  }
+
   function extractGradeNumber(label) {
     var m = String(label || '').match(/([1-4])\s*\.?\s*S[ıi]N[ıi]F/i);
     if (m && m[1]) return Number(m[1]);
@@ -174,6 +186,7 @@
     extractGradeNumber: extractGradeNumber,
     canonicalHeadingIdForGrade: canonicalHeadingIdForGrade,
     resolveStudentHeadingId: resolveStudentHeadingId,
-    clearChampionUiCaches: clearChampionUiCaches
+    clearChampionUiCaches: clearChampionUiCaches,
+    splitLabel: splitCurriculumLabel
   };
 })(typeof window !== 'undefined' ? window : globalThis);

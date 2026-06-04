@@ -59,6 +59,14 @@
 }
 
 #nova-hikaye-video-overlay .nova-hikaye-video-overlay__skip {
+  display: none;
+}
+
+#nova-hikaye-video-overlay.open.is-ready .nova-hikaye-video-overlay__skip {
+  display: block;
+}
+
+#nova-hikaye-video-overlay .nova-hikaye-video-overlay__skip {
   position: absolute;
   top: max(12px, env(safe-area-inset-top, 0px));
   right: max(12px, env(safe-area-inset-right, 0px));

@@ -12,7 +12,7 @@
 }
 
 .nova-main-bg-video-layer {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
@@ -20,6 +20,14 @@
   background: #020611;
   opacity: 0;
   transition: opacity 0.35s ease;
+}
+
+body.nova-main-bg-video-on .nova-main-bg-video-layer {
+  opacity: 1;
+}
+
+body.nova-main-bg-video-on .nova-main-bg-video-layer.is-active {
+  opacity: 1;
 }
 
 .nova-main-bg-video-layer.is-active {
@@ -83,6 +91,10 @@
   pointer-events: none;
 }
 
+#main-screen {
+  z-index: 1;
+}
+
 #main-screen > :not(.nova-main-bg-video-layer) {
   position: relative;
   z-index: 2;
@@ -92,8 +104,32 @@ body.nova-main-bg-video-on #main-screen.container {
   background: transparent !important;
 }
 
+/* Windows “animasyonları azalt” açık olsa bile arka plan videosu kalsın */
 @media (prefers-reduced-motion: reduce) {
   .nova-main-bg-video-layer {
-    display: none !important;
+    transition: none;
   }
+}
+
+/* Masaüstü: Bunny iframe yedek — play düğmesi kırpılır */
+.nova-main-bg-video-iframe-wrap.is-bg-fallback {
+  display: block !important;
+  visibility: visible !important;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 1;
+}
+.nova-main-bg-video-iframe-wrap.is-bg-fallback .nova-main-bg-video-iframe {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180vmax;
+  height: 180vmax;
+  max-width: none;
+  max-height: none;
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;
 }

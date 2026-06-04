@@ -245,6 +245,54 @@
   font-style: italic;
 }
 
+/* Konu: başlık belirgin, parantez içi ikincil */
+.nova-game-select__option--curriculum{
+  font-weight: 400;
+  text-align: left;
+}
+.nova-game-select__opt-title{
+  display: block;
+  font-weight: 800;
+  font-size: 1.02em;
+  line-height: 1.25;
+  color: #f8fafc;
+  letter-spacing: 0.01em;
+}
+.nova-game-select__opt-detail{
+  display: block;
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 0.8em;
+  line-height: 1.35;
+  color: #94a3b8;
+}
+.nova-game-select--arena .nova-game-select__option--curriculum[aria-selected="true"] .nova-game-select__opt-title{
+  color: #fff;
+}
+.nova-game-select--arena .nova-game-select__option--curriculum[aria-selected="true"] .nova-game-select__opt-detail{
+  color: rgba(226, 232, 240, 0.88);
+}
+.nova-game-select--curriculum-value .nova-game-select__value{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  line-height: 1.2;
+  text-align: left;
+}
+.nova-game-select__val-title{
+  font-weight: 800;
+  font-size: 0.95em;
+  color: #f8fafc;
+}
+.nova-game-select__val-detail{
+  font-weight: 500;
+  font-size: 0.72em;
+  line-height: 1.25;
+  color: #94a3b8;
+  max-width: 100%;
+}
+
 /* Giriş tonu */
 .nova-game-select--login{
   margin-bottom: 0;

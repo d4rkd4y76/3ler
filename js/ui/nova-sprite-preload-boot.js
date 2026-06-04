@@ -799,8 +799,9 @@
       .catch(function () {
         clearTimeout(timeout);
         markBootDone();
-        playExitTransition();
-        dispatchBootComplete();
+        playExitTransition(function () {
+          dispatchBootComplete();
+        });
       });
   }
 

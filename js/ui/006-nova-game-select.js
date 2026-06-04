@@ -41,6 +41,63 @@
     return sel && (sel.id === 'selection-class-select' || sel.id === 'registerClassSelect' || sel.id === 'class-select');
   }
 
+  function splitCurriculumLabel(text, opt) {
+    if (opt) {
+      var t = opt.getAttribute('data-nova-title');
+      var d = opt.getAttribute('data-nova-detail');
+      if (t) return { title: t, detail: d || '' };
+    }
+    if (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.splitLabel === 'function') {
+      return window.NovaCurriculumSort.splitLabel(text);
+    }
+    var s = String(text || '').trim();
+    var open = s.indexOf('(');
+    if (open <= 0) return { title: s, detail: '' };
+    return { title: s.slice(0, open).trim(), detail: s.slice(open).trim() };
+  }
+
+  function isTopicSelect(sel) {
+    return sel && (sel.id === 'topic-select' || sel.id === 'duel-topic-select');
+  }
+
+  function fillOptionButtonContent(btn, opt, sel) {
+    var label = (opt.textContent || '').trim() || '—';
+    if (!isTopicSelect(sel)) {
+      btn.textContent = label;
+      return;
+    }
+    var parts = splitCurriculumLabel(label, opt);
+    if (!parts.detail) {
+      btn.textContent = parts.title || label;
+      return;
+    }
+    btn.classList.add('nova-game-select__option--curriculum');
+    btn.innerHTML =
+      '<span class="nova-game-select__opt-title"></span>' +
+      '<span class="nova-game-select__opt-detail"></span>';
+    btn.querySelector('.nova-game-select__opt-title').textContent = parts.title;
+    btn.querySelector('.nova-game-select__opt-detail').textContent = parts.detail;
+  }
+
+  function fillTriggerValue(valEl, opt, sel, wrap) {
+    if (!valEl || !opt) return;
+    var label = (opt.textContent || '').trim();
+    if (isTopicSelect(sel)) {
+      var parts = splitCurriculumLabel(label, opt);
+      if (parts.detail) {
+        if (wrap) wrap.classList.add('nova-game-select--curriculum-value');
+        valEl.innerHTML =
+          '<span class="nova-game-select__val-title"></span>' +
+          '<span class="nova-game-select__val-detail"></span>';
+        valEl.querySelector('.nova-game-select__val-title').textContent = parts.title;
+        valEl.querySelector('.nova-game-select__val-detail').textContent = parts.detail;
+        return;
+      }
+    }
+    if (wrap) wrap.classList.remove('nova-game-select--curriculum-value');
+    valEl.textContent = label || 'Seçiniz';
+  }
+
   /** Ders/konu listeleri TYMM order sırasıyla gelir; alfabetik sıralama yapılmaz. */
   function isCurriculumOrderSelect(sel){
     if (!sel) return false;
@@ -173,8 +230,12 @@
   function syncTrigger(wrap, sel){
     const valEl = wrap.querySelector('.nova-game-select__value');
     const opt = sel.options[sel.selectedIndex];
-    const text = opt ? (opt.textContent || '').trim() : 'Seçiniz';
-    if (valEl) valEl.textContent = text || 'Seçiniz';
+    if (!opt || !opt.value) {
+      if (wrap) wrap.classList.remove('nova-game-select--curriculum-value');
+      if (valEl) valEl.textContent = 'Seçiniz';
+    } else {
+      fillTriggerValue(valEl, opt, sel, wrap);
+    }
     wrap.classList.toggle('nova-game-select--empty', !sel.value);
     wrap.classList.toggle('nova-game-select--filled', !!sel.value);
   }
@@ -215,7 +276,7 @@
         btn.setAttribute('role', 'option');
         btn.dataset.index = String(idx);
         btn.dataset.value = opt.value;
-        btn.textContent = (opt.textContent || '').trim() || '—';
+        fillOptionButtonContent(btn, opt, sel);
         if (opt.value === sel.value) btn.setAttribute('aria-selected', 'true');
         if (!opt.value) btn.classList.add('nova-game-select__option--placeholder');
         btn.addEventListener('click', function(e){

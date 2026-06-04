@@ -5960,8 +5960,14 @@ function populateTopicsSelect(topicsData, topicSelectElement) {
     try {
     topicsData.forEach(topic => {
         const option = document.createElement('option');
+        const rawName = String((topic && topic.name) || '').trim();
+        const parts = (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.splitLabel === 'function')
+            ? window.NovaCurriculumSort.splitLabel(rawName)
+            : { title: rawName, detail: '' };
         option.value = topic.id;
-        option.textContent = topic.name;
+        option.textContent = parts.detail ? parts.title + ' ' + parts.detail : parts.title;
+        if (parts.title) option.dataset.novaTitle = parts.title;
+        if (parts.detail) option.dataset.novaDetail = parts.detail;
         topicSelectElement.appendChild(option);
     });
     } finally {
