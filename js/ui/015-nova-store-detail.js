@@ -29,6 +29,7 @@
       + '<div class="nova-store-detail-price" id="nova_store_detail_price"></div>'
       + '<div class="nova-store-detail-actions">'
       + '<span class="nova-store-in-use nova-store-detail-in-use" id="nova_store_detail_inuse" hidden role="status">Kullanımda</span>'
+      + '<button type="button" class="nova-store-detail-action nova-store-detail-action--secondary profile-photo-button buy-button" id="nova_store_detail_action_secondary" hidden></button>'
       + '<button type="button" class="nova-store-detail-action" id="nova_store_detail_action"></button>'
       + '</div>'
       + '</div>'
@@ -39,9 +40,25 @@
     });
     document.getElementById('nova_store_detail_close').addEventListener('click', closeStoreDetail);
     document.getElementById('nova_store_detail_action').addEventListener('click', onDetailAction);
+    var sec = document.getElementById('nova_store_detail_action_secondary');
+    if (sec) sec.addEventListener('click', onDetailSecondaryAction);
   }
 
-  var state = { onAction: null, closing: false };
+  function ensureSecondaryButton() {
+    var actions = document.querySelector('#nova-store-detail-overlay .nova-store-detail-actions');
+    if (!actions || document.getElementById('nova_store_detail_action_secondary')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'nova_store_detail_action_secondary';
+    btn.className = 'nova-store-detail-action nova-store-detail-action--secondary profile-photo-button buy-button';
+    btn.hidden = true;
+    var primary = document.getElementById('nova_store_detail_action');
+    if (primary) actions.insertBefore(btn, primary);
+    else actions.appendChild(btn);
+    btn.addEventListener('click', onDetailSecondaryAction);
+  }
+
+  var state = { onAction: null, onSecondaryAction: null, closing: false };
 
   function closeStoreDetail() {
     var ov = document.getElementById('nova-store-detail-overlay');
@@ -51,6 +68,7 @@
     document.body.classList.remove('nova-store-detail-open');
     document.body.style.overflow = '';
     state.onAction = null;
+    state.onSecondaryAction = null;
     var prev = document.getElementById('nova_store_detail_preview');
     if (prev) {
       var h = prev.querySelector('[data-nova-hero-host]');
@@ -66,12 +84,30 @@
     var btn = document.getElementById('nova_store_detail_action');
     if (!btn || btn.disabled || typeof state.onAction !== 'function') return;
     btn.disabled = true;
+    var sec = document.getElementById('nova_store_detail_action_secondary');
+    if (sec) sec.disabled = true;
     try {
       await state.onAction();
     } catch (e) {
       console.error('store detail action', e);
     }
     btn.disabled = false;
+    if (sec) sec.disabled = !!sec.getAttribute('data-nova-sec-disabled');
+  }
+
+  async function onDetailSecondaryAction() {
+    var btn = document.getElementById('nova_store_detail_action_secondary');
+    if (!btn || btn.hidden || btn.disabled || typeof state.onSecondaryAction !== 'function') return;
+    btn.disabled = true;
+    var primary = document.getElementById('nova_store_detail_action');
+    if (primary) primary.disabled = true;
+    try {
+      await state.onSecondaryAction();
+    } catch (e) {
+      console.error('store detail secondary', e);
+    }
+    btn.disabled = !!btn.getAttribute('data-nova-sec-disabled');
+    if (primary) primary.disabled = !!primary.getAttribute('data-nova-primary-disabled');
   }
 
   function applyButton(btnType, text, disabled, inUse) {
@@ -98,12 +134,35 @@
     btn.className = 'nova-store-detail-action profile-photo-button ' + (btnType || 'buy-button');
     btn.textContent = text || 'Tamam';
     btn.disabled = !!disabled;
+    if (disabled) btn.setAttribute('data-nova-primary-disabled', '1');
+    else btn.removeAttribute('data-nova-primary-disabled');
+  }
+
+  function applySecondaryButton(btnType, text, disabled) {
+    ensureSecondaryButton();
+    var btn = document.getElementById('nova_store_detail_action_secondary');
+    if (!btn) return;
+    if (!text) {
+      btn.hidden = true;
+      btn.style.display = 'none';
+      state.onSecondaryAction = null;
+      return;
+    }
+    btn.hidden = false;
+    btn.style.display = '';
+    btn.className = 'nova-store-detail-action nova-store-detail-action--secondary profile-photo-button ' + (btnType || 'buy-button');
+    btn.textContent = text;
+    btn.disabled = !!disabled;
+    if (disabled) btn.setAttribute('data-nova-sec-disabled', '1');
+    else btn.removeAttribute('data-nova-sec-disabled');
   }
 
   function openStoreDetail(opts) {
     opts = opts || {};
     ensureOverlay();
+    ensureSecondaryButton();
     state.onAction = opts.onAction || null;
+    state.onSecondaryAction = opts.onSecondaryAction || null;
 
     var resetBtn = document.getElementById('nova_store_detail_action');
     var resetLabel = document.getElementById('nova_store_detail_inuse');
@@ -162,6 +221,7 @@
     }
 
     applyButton(opts.btnClass, opts.btnText, opts.btnDisabled, !!opts.inUse);
+    applySecondaryButton(opts.secondaryBtnClass, opts.secondaryBtnText, opts.secondaryBtnDisabled);
 
     document.body.appendChild(ov);
     ov.style.zIndex = String(Z);

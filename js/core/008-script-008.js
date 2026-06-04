@@ -1233,6 +1233,10 @@ async function fetchStoreCategoriesFromDB() {
 }
 
 let __storeStudentCache = { key: '', ts: 0, data: null };
+
+window.novaInvalidateStoreStudentCache = function () {
+  __storeStudentCache = { key: __storeStudentCache.key || '', ts: 0, data: null };
+};
 let __storeLoadSeq = 0;
 let __storeLastCategory = '';
 let __storeLastCategoryTs = 0;
@@ -1278,7 +1282,7 @@ async function getStoreStudentData(force = false){
     return __storeStudentCache.data;
   }
   const base = `classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`;
-  const fields = ['diamond', 'duelCredits', 'gameCup', 'photo', 'nameFrame', 'avatarFrame', 'battleHero', 'purchasedPhotos', 'purchasedAvatarFrames', 'purchasedBattleHeroes', 'heroLevel'];
+  const fields = ['diamond', 'duelCredits', 'gameCup', 'photo', 'nameFrame', 'avatarFrame', 'battleHero', 'purchasedPhotos', 'purchasedAvatarFrames', 'purchasedBattleHeroes', 'heroLevel', 'heroTrials', 'dragonTrials', 'heroTrialPending', 'dragonTrialPending'];
   const snaps = await Promise.all(fields.map(function (f) {
     return database.ref(base + '/' + f).once('value');
   }));
@@ -1286,6 +1290,20 @@ async function getStoreStudentData(force = false){
   fields.forEach(function (f, i) {
     if (snaps[i].exists()) data[f] = snaps[i].val();
   });
+  try {
+    var ls = window.selectedStudent;
+    if (!ls) {
+      var raw = localStorage.getItem('selectedStudent');
+      if (raw) ls = JSON.parse(raw);
+    }
+    if (ls) {
+      ['heroTrials', 'dragonTrials', 'heroTrialPending', 'dragonTrialPending'].forEach(function (k) {
+        if (ls[k] && typeof ls[k] === 'object') {
+          data[k] = Object.assign({}, data[k] || {}, ls[k]);
+        }
+      });
+    }
+  } catch (_) {}
   __storeStudentCache = { key, ts: now, data };
   return data;
 }

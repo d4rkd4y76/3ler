@@ -10,6 +10,7 @@
   };
   var EGG_LABEL = { fire: 'Alev', ice: 'Buz', night: 'Gece' };
   var DRAGON_BY_EGG = { fire: 'alev_ejder', ice: 'buz_ejder', night: 'gece_ejder' };
+  var DRAGON_HERO_IDS = { alev_ejder: true, buz_ejder: true, gece_ejder: true };
   var BASIC_HEROES = ['star_fairy', 'firtina_okcu', 'tas_muhafiz', 'golge_parsi', 'bilge_baykus'];
   var MS_DAY = 86400000;
 
@@ -86,6 +87,28 @@
     }
   }
 
+  function isDragonHero(heroId) {
+    return !!DRAGON_HERO_IDS[String(heroId || '').trim()];
+  }
+
+  function pendingKeyForHero(heroId) {
+    return isDragonHero(heroId) ? 'dragonTrialPending' : 'heroTrialPending';
+  }
+
+  function activeTrialKeyForHero(heroId) {
+    return isDragonHero(heroId) ? 'dragonTrials' : 'heroTrials';
+  }
+
+  function addPendingTrialDays(stu, reward) {
+    if (!reward || !reward.heroId) return 0;
+    var days = Math.max(1, Number(reward.days) || 3);
+    var hid = reward.heroId;
+    var key = pendingKeyForHero(hid);
+    stu[key] = stu[key] || {};
+    stu[key][hid] = (Number(stu[key][hid]) || 0) + days;
+    return stu[key][hid];
+  }
+
   function buildRewardUpdates(stu, reward) {
     var updates = {};
     if (!reward) return updates;
@@ -94,17 +117,10 @@
       updates.lastDiamondUpdate = Date.now();
       return updates;
     }
-    var days = Number(reward.days) || 3;
-    var until = Date.now() + days * MS_DAY;
     var hid = reward.heroId;
-    if (reward.kind === 'dragon_trial') {
-      var prevD = Number(stu.dragonTrials && stu.dragonTrials[hid]) || 0;
-      updates['dragonTrials/' + hid] = Math.max(prevD, until);
-    } else if (reward.kind === 'hero_trial') {
-      var prevH = Number(stu.heroTrials && stu.heroTrials[hid]) || 0;
-      updates['heroTrials/' + hid] = Math.max(prevH, until);
-    }
-    updates.battleHero = hid;
+    var key = pendingKeyForHero(hid);
+    var total = Number(stu[key] && stu[key][hid]) || 0;
+    updates[key + '/' + hid] = total;
     return updates;
   }
 
@@ -116,6 +132,9 @@
       window.selectedStudent = s;
       localStorage.setItem('selectedStudent', JSON.stringify(s));
     } catch (_) {}
+    if (typeof window.novaInvalidateStoreStudentCache === 'function') {
+      window.novaInvalidateStoreStudentCache();
+    }
   }
 
   function manifestFor(key) {
@@ -334,6 +353,54 @@
     return formatRemaining(until - Date.now());
   };
 
+  window.novaGetHeroTrialPendingDays = function (data, heroId) {
+    if (!data || !heroId) return 0;
+    var h = Number(data.heroTrialPending && data.heroTrialPending[heroId]) || 0;
+    var d = Number(data.dragonTrialPending && data.dragonTrialPending[heroId]) || 0;
+    return Math.max(0, Math.round(h + d));
+  };
+
+  window.novaStartHeroTrial = async function (heroId) {
+    heroId = String(heroId || '').trim();
+    if (!heroId) return false;
+    var ref = studentRef();
+    if (!ref) return false;
+    var pendingKey = pendingKeyForHero(heroId);
+    var activeKey = activeTrialKeyForHero(heroId);
+    try {
+      var snap = await ref.once('value');
+      var stu = snap.val() || {};
+      var pending = Number(stu[pendingKey] && stu[pendingKey][heroId]) || 0;
+      if (pending < 1) {
+        if (typeof showAlert === 'function') await showAlert('Bu kahraman için bekleyen deneme yok.');
+        return false;
+      }
+      var now = Date.now();
+      var curUntil = Number(stu[activeKey] && stu[activeKey][heroId]) || 0;
+      var base = curUntil > now ? curUntil : now;
+      var newUntil = base + pending * MS_DAY;
+      var updates = {};
+      updates[activeKey + '/' + heroId] = newUntil;
+      updates[pendingKey + '/' + heroId] = 0;
+      await ref.update(updates);
+      stu[activeKey] = stu[activeKey] || {};
+      stu[activeKey][heroId] = newUntil;
+      stu[pendingKey] = stu[pendingKey] || {};
+      stu[pendingKey][heroId] = 0;
+      syncStudentPatch({
+        heroTrials: stu.heroTrials || {},
+        dragonTrials: stu.dragonTrials || {},
+        heroTrialPending: stu.heroTrialPending || {},
+        dragonTrialPending: stu.dragonTrialPending || {}
+      });
+      return true;
+    } catch (e) {
+      console.error('novaStartHeroTrial', e);
+      if (typeof showAlert === 'function') await showAlert('Deneme başlatılamadı.');
+      return false;
+    }
+  };
+
   function pickUnownedBasic(stu) {
     var pool = BASIC_HEROES.filter(function (id) {
       return !ownsHeroPermanent(stu, id);
@@ -346,18 +413,18 @@
     return ownsHeroPermanent(stu, DRAGON_BY_EGG[eggType]);
   }
 
-  function rollReward(stu, eggType) {
+  function rollRewardOnce(stu, eggType) {
     var meta = stu.dragonEggMeta || {};
     var pity = Number(meta.cracksSinceDragonTrial) || 0;
     var dragonId = DRAGON_BY_EGG[eggType];
 
-    if (pity >= 10 && !dragonOwned(stu, eggType)) {
+    if (pity >= 10 && !ownsHeroPermanent(stu, dragonId)) {
       var days = [1, 3, 5][Math.floor(Math.random() * 3)];
       return { kind: 'dragon_trial', heroId: dragonId, days: days, pity: true };
     }
 
     var r = Math.random() * 100;
-    if (!dragonOwned(stu, eggType)) {
+    if (!ownsHeroPermanent(stu, dragonId)) {
       if (r < 5) return { kind: 'dragon_trial', heroId: dragonId, days: 5 };
       if (r < 13) return { kind: 'dragon_trial', heroId: dragonId, days: 3 };
       if (r < 23) return { kind: 'dragon_trial', heroId: dragonId, days: 1 };
@@ -374,6 +441,18 @@
     return { kind: 'diamond', amount: 500 };
   }
 
+  function rollReward(stu, eggType) {
+    var reward;
+    var i;
+    for (i = 0; i < 12; i++) {
+      reward = rollRewardOnce(stu, eggType);
+      if (reward.kind === 'diamond') return reward;
+      if (ownsHeroPermanent(stu, reward.heroId)) continue;
+      return reward;
+    }
+    return { kind: 'diamond', amount: 100 };
+  }
+
   function applyReward(stu, reward) {
     if (!reward) return;
     if (reward.kind === 'diamond') {
@@ -381,19 +460,7 @@
       stu.lastDiamondUpdate = Date.now();
       return;
     }
-    var days = Number(reward.days) || 3;
-    var until = Date.now() + days * MS_DAY;
-    var hid = reward.heroId;
-    if (reward.kind === 'dragon_trial') {
-      stu.dragonTrials = stu.dragonTrials || {};
-      var prev = Number(stu.dragonTrials[hid]) || 0;
-      stu.dragonTrials[hid] = Math.max(prev, until);
-    } else if (reward.kind === 'hero_trial') {
-      stu.heroTrials = stu.heroTrials || {};
-      var prevH = Number(stu.heroTrials[hid]) || 0;
-      stu.heroTrials[hid] = Math.max(prevH, until);
-    }
-    stu.battleHero = hid;
+    addPendingTrialDays(stu, reward);
   }
 
   function rewardTitle(reward) {
@@ -402,17 +469,16 @@
     var reg = window.NOVA_HERO_REGISTRY || window.NOVA_BATTLE_HERO_REGISTRY || {};
     var def = reg[reward.heroId];
     var name = def ? def.name : reward.heroId;
-    if (reward.kind === 'dragon_trial') {
-      return name + ' — ' + reward.days + ' Gün Deneme';
-    }
-    return name + ' — 3 Gün Deneme';
+    var days = Math.max(1, Number(reward.days) || 3);
+    return name + ' — ' + days + ' Gün Deneme Hakkı';
   }
 
   function rewardSub(reward) {
     if (reward.kind === 'diamond') {
       return 'Elmaslar hesabına eklendi. Mağazadan harcayabilirsin!';
     }
-    return 'Deneme aktif! Mağazada direkt kullanılabilir — kalan süre kartında görünür.';
+    var days = Math.max(1, Number(reward.days) || 3);
+    return days + ' gün deneme kazandın. Mağazada «Denemeyi Başlat» ile başlat.';
   }
 
   function eggScreenEl() {
@@ -422,9 +488,11 @@
   function setScreenPhase(phase) {
     phase = phase || 'pick';
     var body = document.getElementById('nova_degg_screen_body');
+    var screen = eggScreenEl();
     var okBtn = document.getElementById('nova_degg_screen_reward_ok');
     var sub = document.getElementById('nova_degg_screen_sub');
     if (body) body.setAttribute('data-phase', phase);
+    if (screen) screen.classList.toggle('is-reward-phase', phase === 'reward');
     if (okBtn) okBtn.hidden = phase !== 'reward';
     if (sub) {
       sub.textContent = phase === 'reward'
@@ -503,14 +571,24 @@
 
   function showRewardUi(reward, stu) {
     setScreenPhase('reward');
-    document.getElementById('nova_degg_screen_reward_title').textContent = rewardTitle(reward);
-    document.getElementById('nova_degg_screen_reward_sub').textContent = rewardSub(reward);
+    var rewardRoot = document.getElementById('nova_degg_screen_reward');
     var cardSlot = document.getElementById('nova_degg_screen_reward_card');
     var dia = document.getElementById('nova_degg_screen_reward_diamond');
-    cardSlot.innerHTML = '';
+    var titleEl = document.getElementById('nova_degg_screen_reward_title');
+    var subEl = document.getElementById('nova_degg_screen_reward_sub');
+    if (rewardRoot) {
+      rewardRoot.classList.toggle('is-diamond', reward.kind === 'diamond');
+      rewardRoot.classList.toggle('is-hero', reward.kind !== 'diamond');
+    }
+    if (titleEl) titleEl.textContent = rewardTitle(reward);
+    if (subEl) subEl.textContent = rewardSub(reward);
+    if (cardSlot) cardSlot.innerHTML = '';
+    if (dia) dia.hidden = true;
     if (reward.kind === 'diamond') {
-      dia.hidden = false;
-      dia.textContent = '💎 +' + reward.amount;
+      if (dia) {
+        dia.hidden = false;
+        dia.textContent = '💎 +' + reward.amount;
+      }
       if (typeof window.novaPlayDiamondRewardSfx === 'function') {
         window.novaPlayDiamondRewardSfx();
       }
@@ -521,7 +599,6 @@
         el.textContent = String(Number(stu.diamond) || 0);
       });
     } else {
-      dia.hidden = true;
       var reg = window.NOVA_HERO_REGISTRY || {};
       var hero = {
         id: reward.heroId,
@@ -530,7 +607,10 @@
         theme: (reg[reward.heroId] && reg[reward.heroId].theme) || 'star'
       };
       if (typeof window.novaRenderHeroStoreCardClone === 'function') {
-        window.novaRenderHeroStoreCardClone(hero, stu, cardSlot);
+        window.novaRenderHeroStoreCardClone(hero, stu, cardSlot, {
+          rewardMode: true,
+          rewardDays: Math.max(1, Number(reward.days) || 3)
+        });
       } else {
         cardSlot.innerHTML = '<div class="nova-degg-screen__diamond-burst">🦸 ' + hero.name + '</div>';
       }
@@ -587,12 +667,11 @@
       if (reward.kind === 'dragon_trial') meta.cracksSinceDragonTrial = 0;
       else meta.cracksSinceDragonTrial = (Number(meta.cracksSinceDragonTrial) || 0) + 1;
 
+      applyReward(stu, reward);
       var updates = buildRewardUpdates(stu, reward);
       updates['dragonEggMeta/cracksSinceDragonTrial'] = meta.cracksSinceDragonTrial;
 
       await ref.update(updates);
-
-      applyReward(stu, reward);
       stu.dragonEggMeta = meta;
       committedReward = reward;
       committedStu = {
@@ -601,6 +680,8 @@
         dragonEggMeta: meta,
         heroTrials: stu.heroTrials || {},
         dragonTrials: stu.dragonTrials || {},
+        heroTrialPending: stu.heroTrialPending || {},
+        dragonTrialPending: stu.dragonTrialPending || {},
         battleHero: stu.battleHero,
         purchasedBattleHeroes: stu.purchasedBattleHeroes
       };
@@ -858,44 +939,68 @@
     }, 2300);
   };
 
-  window.novaRenderHeroStoreCardClone = function (hero, userData, container) {
+  function mountEggRewardHeroPreview(host, heroId) {
+    if (!host || !heroId) return;
+    function tryMount(attempt) {
+      if (!host.isConnected) return;
+      var rect = host.getBoundingClientRect();
+      if ((!rect.width || !rect.height) && attempt < 18) {
+        requestAnimationFrame(function () { tryMount(attempt + 1); });
+        return;
+      }
+      if (typeof window.mountHeroStorePreview === 'function') {
+        window.mountHeroStorePreview(host, heroId, { profile: 'store' });
+      }
+    }
+    requestAnimationFrame(function () { tryMount(0); });
+  }
+
+  window.novaRenderHeroStoreCardClone = function (hero, userData, container, opts) {
     if (!container || !hero) return;
-    var catalogFn = window.novaRenderBattleHeroStore;
-    if (typeof catalogFn !== 'function') return;
+    opts = opts || {};
     var card = document.createElement('div');
     container.appendChild(card);
     try {
-      var reg = window.NOVA_HERO_REGISTRY || {};
+      var reg = window.NOVA_HERO_REGISTRY || window.NOVA_BATTLE_HERO_REGISTRY || {};
       var def = reg[hero.id];
       if (!def) return;
-      var owned = true;
-      var equipped = userData && userData.battleHero === hero.id;
-      var trialLeft = window.novaFormatHeroTrialRemaining(userData, hero.id);
-      card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme;
+      var rewardMode = !!opts.rewardMode;
+      var pendingDays = window.novaGetHeroTrialPendingDays
+        ? window.novaGetHeroTrialPendingDays(userData, hero.id) : 0;
+      var showDays = rewardMode
+        ? Math.max(1, Number(opts.rewardDays) || pendingDays || 3)
+        : pendingDays;
+      card.className = 'profile-photo-item nova-store-card nova-hero-store-card nova-hero-store-card--' + def.theme
+        + (rewardMode ? ' nova-degg-reward-hero-card' : '');
       if (typeof window.novaIsEpicStoreHero === 'function' && window.novaIsEpicStoreHero(hero.id)) {
         card.classList.add('nova-hero-store-card--epic-tier');
+        if (hero.id === 'alev_ejder') card.classList.add('nova-hero-store-card--alev');
+        if (hero.id === 'buz_ejder') card.classList.add('nova-hero-store-card--buz');
+        if (hero.id === 'gece_ejder') card.classList.add('nova-hero-store-card--gece');
       }
       var preview = '';
       if (typeof window.novaHeroPreviewHtml === 'function') {
         preview = window.novaHeroPreviewHtml(hero.id, def.theme);
-      } else if (typeof window.heroPreviewHtml === 'function') {
+      }
+      if (!preview && typeof window.heroPreviewHtml === 'function') {
         preview = window.heroPreviewHtml(hero.id, def.theme);
       }
-      card.innerHTML =
-        preview +
-        '<div class="nova-hero-store-vitrine-name">' + (hero.name || def.name) + '</div>' +
-        '<span class="nova-hero-trial-badge">Deneme aktif</span>' +
-        '<span class="nova-hero-trial-remaining">' + (trialLeft || '') + '</span>' +
-        '<div class="profile-photo-price"></div>' +
-        '<button type="button" class="profile-photo-button use-button">Mağazada kullanılabilir</button>';
-      var host = card.querySelector('[data-nova-hero-host]');
-      if (host && typeof window.novaStoreLazyMountHero === 'function') {
-        window.novaStoreLazyMountHero(host, hero.id, function (h) {
-          if (typeof window.mountHeroStorePreview === 'function') {
-            window.mountHeroStorePreview(h, hero.id);
-          }
-        });
+      if (rewardMode) {
+        card.innerHTML =
+          preview +
+          '<div class="nova-hero-store-vitrine-name">' + (hero.name || def.name) + '</div>' +
+          '<span class="nova-hero-trial-badge">' + showDays + ' gün deneme</span>';
+      } else {
+        card.innerHTML =
+          preview +
+          '<div class="nova-hero-store-vitrine-name">' + (hero.name || def.name) + '</div>' +
+          '<span class="nova-hero-trial-badge">' + showDays + ' Gün Deneme Kazandın</span>' +
+          '<span class="nova-hero-trial-remaining">Mağazada «Denemeyi Başlat»</span>' +
+          '<div class="profile-photo-price"></div>' +
+          '<button type="button" class="profile-photo-button use-button">Denemeyi Başlat</button>';
       }
+      var host = card.querySelector('[data-nova-hero-host]');
+      if (host) mountEggRewardHeroPreview(host, hero.id);
     } catch (e) {
       console.warn('storeCardClone', e);
     }
@@ -910,7 +1015,9 @@
       var stu = stuSnap.val() || {};
       syncStudentPatch({
         heroTrials: stu.heroTrials || {},
-        dragonTrials: stu.dragonTrials || {}
+        dragonTrials: stu.dragonTrials || {},
+        heroTrialPending: stu.heroTrialPending || {},
+        dragonTrialPending: stu.dragonTrialPending || {}
       });
     } catch (e) {
       console.warn('loadStudentEggFields', e);

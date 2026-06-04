@@ -10,9 +10,10 @@ from collections import deque
 
 import imageio.v3 as iio
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+EGG_OPEN = os.path.join(ROOT, "egg_open")
 OUT_BASE = os.path.join(ROOT, "assets", "dragon-eggs")
 MANIFEST_JS = os.path.join(ROOT, "js", "ui", "nova-dragon-egg-manifest.js")
 
@@ -21,13 +22,22 @@ TARGET_FPS_HUB = 12
 TARGET_H_CRACK = 320
 TARGET_H_HUB = 280
 MAX_SHEET_W = 4096
-PAD = 8
+PAD = 10
 BLEND_HUB = 8
+
+
+def pick_video(*names: str) -> str:
+    for name in names:
+        path = os.path.join(EGG_OPEN, name)
+        if os.path.isfile(path):
+            return path
+    return os.path.join(EGG_OPEN, names[-1])
+
 
 JOBS = [
     {
         "key": "fire",
-        "video": os.path.join(ROOT, "egg_open", "firedragon_egg_open.mp4"),
+        "video": pick_video("alevejderi.mp4", "firedragon_egg_open.mp4"),
         "out_dir": os.path.join(OUT_BASE, "fire"),
         "sheet": "fire-crack.webp",
         "profile": "crack",
@@ -37,7 +47,7 @@ JOBS = [
     },
     {
         "key": "ice",
-        "video": os.path.join(ROOT, "egg_open", "icedragon_egg_open.mp4"),
+        "video": pick_video("buzejderi.mp4", "icedragon_egg_open.mp4"),
         "out_dir": os.path.join(OUT_BASE, "ice"),
         "sheet": "ice-crack.webp",
         "profile": "crack",
@@ -47,7 +57,7 @@ JOBS = [
     },
     {
         "key": "night",
-        "video": os.path.join(ROOT, "egg_open", "night_egg_open.mp4"),
+        "video": pick_video("geceejderi.mp4", "night_egg_open.mp4"),
         "out_dir": os.path.join(OUT_BASE, "night"),
         "sheet": "night-crack.webp",
         "profile": "crack",
@@ -69,12 +79,22 @@ JOBS = [
 
 
 def sample_green_key(frames: list[np.ndarray]) -> tuple[int, int, int]:
-    keys = []
-    for f in frames[:8]:
+    """Kenar yeşil piksellerden anahtar renk — merkez içeriği hariç."""
+    keys: list[np.ndarray] = []
+    for f in frames[:10]:
         h, w = f.shape[:2]
-        m = 14
-        strips = [f[:m, :, :3], f[h - m :, :, :3], f[:, :m, :3], f[:, w - m :, :3]]
-        px = np.concatenate([s.reshape(-1, 3) for s in strips], axis=0)
+        m = max(18, int(min(h, w) * 0.04))
+        strips = [
+            f[:m, :, :3],
+            f[h - m :, :, :3],
+            f[:, :m, :3],
+            f[:, w - m :, :3],
+        ]
+        px = np.concatenate([s.reshape(-1, 3) for s in strips], axis=0).astype(np.float32)
+        r, g, b = px[:, 0], px[:, 1], px[:, 2]
+        greenish = (g > r + 12) & (g > b + 12) & (g > 80)
+        if np.any(greenish):
+            px = px[greenish]
         keys.append(np.median(px, axis=0))
     med = np.median(keys, axis=0)
     return tuple(int(x) for x in med)
@@ -85,10 +105,13 @@ def alpha_green(rgb: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     g = rgb[:, :, 1].astype(np.float32)
     b = rgb[:, :, 2].astype(np.float32)
     kr, kg, kb = key
-    dist = np.sqrt((r - kr) ** 2 + (g - kg) ** 2 * 1.35 + (b - kb) ** 2)
-    a = np.clip((dist - 24.0) / 36.0, 0.0, 1.0)
-    green_dom = (g > r + 24) & (g > b + 24) & (g > 72)
-    a[green_dom & (dist < 92)] = 0.0
+    dist = np.sqrt((r - kr) ** 2 + (g - kg) ** 2 * 1.42 + (b - kb) ** 2)
+    a = np.clip((dist - 18.0) / 32.0, 0.0, 1.0)
+    green_dom = (g > r + 20) & (g > b + 20) & (g > 68)
+    a[green_dom & (dist < 100)] = 0.0
+    max_rb = np.maximum(r, b)
+    hue_green = (g > max_rb + 14) & (g > 55)
+    a[hue_green & (dist < 115)] *= 0.08
     return a
 
 
@@ -98,7 +121,11 @@ def flood_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     rgb = out[:, :, :3].astype(np.float32)
     kr, kg, kb = key
     dist = np.sqrt((rgb[:, :, 0] - kr) ** 2 + (rgb[:, :, 1] - kg) ** 2 + (rgb[:, :, 2] - kb) ** 2)
-    bg = (dist < 72) | ((rgb[:, :, 1] > rgb[:, :, 0] + 18) & (rgb[:, :, 1] > rgb[:, :, 2] + 18) & (dist < 108))
+    bg = (dist < 68) | (
+        (rgb[:, :, 1] > rgb[:, :, 0] + 16)
+        & (rgb[:, :, 1] > rgb[:, :, 2] + 16)
+        & (dist < 102)
+    )
     seen = np.zeros((h, w), dtype=bool)
     q: deque[tuple[int, int]] = deque()
     for x in range(w):
@@ -122,6 +149,23 @@ def flood_green(rgba: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     return out
 
 
+def despill_green(rgba: np.ndarray) -> np.ndarray:
+    out = rgba.astype(np.float32)
+    a = out[:, :, 3] / 255.0
+    edge = (a > 0.04) & (a < 0.96)
+    g_excess = np.maximum(0.0, out[:, :, 1] - np.maximum(out[:, :, 0], out[:, :, 2]))
+    out[:, :, 1] = np.where(edge, out[:, :, 1] - g_excess * 0.72, out[:, :, 1])
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
+def refine_alpha(rgba: np.ndarray) -> np.ndarray:
+    img = Image.fromarray(rgba, "RGBA")
+    r, g, b, a = img.split()
+    a = a.filter(ImageFilter.GaussianBlur(radius=0.6))
+    a = a.point(lambda p: 0 if p < 14 else (255 if p > 242 else int(p * 1.02)))
+    return np.array(Image.merge("RGBA", (r, g, b, a)), dtype=np.uint8)
+
+
 def chroma_frame(frame: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     rgb = frame[:, :, :3]
     a = alpha_green(rgb, key)
@@ -129,12 +173,14 @@ def chroma_frame(frame: np.ndarray, key: tuple[int, int, int]) -> np.ndarray:
     rgba[:, :, :3] = rgb
     rgba[:, :, 3] = (a * 255).astype(np.uint8)
     rgba = flood_green(rgba, key)
-    rgba[rgba[:, :, 3] < 20, 3] = 0
-    rgba[rgba[:, :, 3] < 20, :3] = 0
+    rgba = despill_green(rgba)
+    rgba = refine_alpha(rgba)
+    rgba[rgba[:, :, 3] < 16, 3] = 0
+    rgba[rgba[:, :, 3] < 16, :3] = 0
     return rgba
 
 
-def alpha_bbox(rgba: np.ndarray, thr: int = 22) -> tuple[int, int, int, int]:
+def alpha_bbox(rgba: np.ndarray, thr: int = 20) -> tuple[int, int, int, int]:
     ys, xs = np.where(rgba[:, :, 3] > thr)
     if len(xs) == 0:
         h, w = rgba.shape[:2]
@@ -216,7 +262,7 @@ def build_job(job: dict) -> dict:
         raise SystemExit(1)
 
     key = sample_green_key(raw)
-    print(job["key"], "key", key, "frames", len(raw))
+    print(job["key"], os.path.basename(video), "key", key, "frames", len(raw))
 
     chroma = [chroma_frame(f, key) for f in raw]
     boxes = [alpha_bbox(c) for c in chroma]
@@ -246,7 +292,7 @@ def build_job(job: dict) -> dict:
 
     os.makedirs(job["out_dir"], exist_ok=True)
     out_path = os.path.join(job["out_dir"], job["sheet"])
-    Image.fromarray(sheet, "RGBA").save(out_path, quality=91, method=6)
+    Image.fromarray(sheet, "RGBA").save(out_path, quality=92, method=6)
 
     loop_end = content_n if not job.get("loop") else content_n
     manifest = {
@@ -271,7 +317,7 @@ def build_job(job: dict) -> dict:
 
 
 def write_manifest_js(all_manifests: dict) -> None:
-    payload = {"version": 1, "base": "assets/dragon-eggs/", "eggs": all_manifests}
+    payload = {"version": 2, "base": "assets/dragon-eggs/", "eggs": all_manifests}
     js = "/* AUTO: scripts/build-dragon-egg-sprites.py */\n"
     js += "window.NOVA_DRAGON_EGG_MANIFEST = " + json.dumps(payload, separators=(",", ":")) + ";\n"
     with open(MANIFEST_JS, "w", encoding="utf-8") as f:
@@ -285,6 +331,7 @@ def main() -> int:
     for job in JOBS:
         out[job["key"]] = build_job(job)
     write_manifest_js(out)
+    print("OK manifest ->", MANIFEST_JS)
     return 0
 
 

@@ -100,11 +100,29 @@
   function getHeroLevelFromData(data, heroId) {
     if (!data || !heroId) return 0;
     var raw = data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId];
-    return parseHeroOwnership(raw).level;
+    var lvl = parseHeroOwnership(raw).level;
+    if (lvl >= 1) return lvl;
+    if (typeof window.novaHeroTrialUntilMs === 'function') {
+      if (window.novaHeroTrialUntilMs(data, heroId) > Date.now()) return 1;
+    }
+    return 0;
+  }
+
+  function isHeroPermanentlyOwned(data, heroId) {
+    if (!data || !heroId) return false;
+    return parseHeroOwnership(data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).owned;
+  }
+
+  function isHeroTrialOnly(data, heroId) {
+    if (!data || !heroId || isHeroPermanentlyOwned(data, heroId)) return false;
+    if (typeof window.novaHeroTrialUntilMs === 'function') {
+      return window.novaHeroTrialUntilMs(data, heroId) > Date.now();
+    }
+    return false;
   }
 
   function ownsHeroLevel(data, heroId) {
-    return getHeroLevelFromData(data, heroId) >= 1;
+    return isHeroPermanentlyOwned(data, heroId);
   }
 
   function getEquippedHeroId() {
@@ -523,6 +541,25 @@
     var rollBtn = document.getElementById('nh_level_roll');
     var nextWrap = document.getElementById('nh_level_next_wrap');
 
+    if (isHeroTrialOnly(data, heroId)) {
+      if (costEl) {
+        costEl.innerHTML = '<span class="nh-level-stat__label">Deneme kahramanı</span><span class="nh-level-stat__value nh-level-maxed">⏳ Seviye yükseltilemez</span>';
+      }
+      if (chanceEl) chanceEl.innerHTML = '';
+      if (nextWrap) nextWrap.hidden = true;
+      if (rollBtn) {
+        rollBtn.disabled = true;
+        rollBtn.textContent = 'Denenen kahraman seviye arttırılamaz';
+      }
+      if (stars) {
+        stars.classList.remove('nh-level-arena__stars--epic');
+        stars.innerHTML = renderStars(lvl)
+          + '<span class="nh-level-arena__rank">Deneme · Seviye ' + lvl + '</span>';
+      }
+      renderPerkList(document.getElementById('nh_level_perks_now'), lvl);
+      return;
+    }
+
     if (isEpicHeroId(heroId)) {
       if (costEl) {
         costEl.innerHTML = '<span class="nh-level-stat__label">Epik kahraman</span><span class="nh-level-stat__value nh-level-maxed">👑 Seviye yükseltilemez</span>';
@@ -602,11 +639,15 @@
     if (!eq) eq = getEquippedHeroId();
     if (!eq) return { ok: false, reason: 'no_equip' };
     if (isEpicHeroId(eq)) return { ok: false, reason: 'epic', heroId: eq };
+    if (isHeroTrialOnly(data, eq)) return { ok: false, reason: 'trial', heroId: eq };
     if (!ownsHeroLevel(data, eq)) return { ok: false, reason: 'not_owned', heroId: eq };
     return { ok: true, heroId: eq };
   }
 
   function levelOverlayBlockedMessage(reason) {
+    if (reason === 'trial') {
+      return 'Denenen kahraman seviye arttırılamaz. Kalıcı satın almak için mağazadan Satın Al.';
+    }
     if (reason === 'epic') {
       return 'Epik ejderler seviye atlamaz. Mağazadan bir Temel kahraman seçip Kullan ile kuşanmalısın.';
     }
@@ -741,6 +782,12 @@
     }
     var heroId = target.heroId;
     uiState.heroId = heroId;
+    if (isHeroTrialOnly(user, heroId)) {
+      if (typeof showAlert === 'function') {
+        await showAlert('Denenen kahraman seviye arttırılamaz.');
+      }
+      return;
+    }
     if (String(user.battleHero || '').trim() !== heroId) {
       showResultBanner('fail', 'BAŞARISIZ', 'Seviye denemesi yalnızca kuşandığın kahraman için yapılabilir.');
       return;

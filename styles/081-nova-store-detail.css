@@ -737,6 +737,9 @@
 }
 .nova-store-detail-actions{
   margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .nova-store-detail-action{
   width: 100%;
@@ -744,6 +747,12 @@
   border-radius: 14px;
   font-size: 15px;
   font-weight: 900;
+}
+.nova-store-detail-action--secondary{
+  order: 2;
+}
+.nova-store-detail-action:not(.nova-store-detail-action--secondary){
+  order: 1;
 }
 .nova-store-in-use,
 .nova-store-detail-in-use[hidden]{

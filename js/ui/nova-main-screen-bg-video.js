@@ -568,11 +568,88 @@
     });
   }
 
+  function isMainBgPlaybackReady() {
+    if (!isMainScreenVisible()) return false;
+    if (state.currentMode === 'iframe') {
+      var wrap = document.getElementById('nova-main-bg-video-iframe-wrap');
+      var iframe = document.getElementById('nova-main-bg-video-iframe');
+      return !!(wrap && !wrap.hidden && iframe && iframe.src);
+    }
+    if (state.currentMode === 'video') {
+      var video = getVideo();
+      return !!(video && video.readyState >= 2);
+    }
+    return !!state._bootSyncResolved;
+  }
+
+  window.novaPrepareMainScreenBgVideoForBoot = function (maxMs) {
+    maxMs = maxMs || 16000;
+    var layer = getLayer();
+    var video = getVideo();
+    if (!layer || !video) return Promise.resolve('skip');
+
+    return new Promise(function (resolve) {
+      var settled = false;
+      function done(tag) {
+        if (settled) return;
+        settled = true;
+        resolve(tag || 'done');
+      }
+
+      var deadline = performance.now() + maxMs;
+      var timeout = setTimeout(function () {
+        var v = getVideo();
+        if (v && v.readyState >= 2) {
+          tryPlay(v);
+          markVideoReady(v);
+        }
+        done('timeout');
+      }, maxMs);
+
+      state._bootSyncResolved = false;
+      syncMainBgVideo(true)
+        .then(function () {
+          state._bootSyncResolved = true;
+          poll();
+        })
+        .catch(function () {
+          state._bootSyncResolved = true;
+          done('error');
+        });
+
+      function poll() {
+        if (isMainBgPlaybackReady()) {
+          if (state.currentMode === 'video') {
+            var v = getVideo();
+            if (v && v.readyState >= 2) {
+              tryPlay(v);
+              markVideoReady(v);
+              clearTimeout(timeout);
+              done('video-ready');
+              return;
+            }
+          } else {
+            clearTimeout(timeout);
+            done(state.currentMode || 'ready');
+            return;
+          }
+        }
+        if (performance.now() >= deadline) {
+          clearTimeout(timeout);
+          done('deadline');
+          return;
+        }
+        requestAnimationFrame(poll);
+      }
+    });
+  };
+
   window.novaSyncMainScreenBgVideo = syncMainBgVideo;
   window.novaFetchMainScreenBgVideoConfig = fetchConfig;
   window.novaPickMainScreenBgPlayback = function (cfg) {
     return pickPlayback(cfg, resolveBunnyPullZoneHost(cfg));
   };
+  window.novaIsMainScreenBgVideoReady = isMainBgPlaybackReady;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bindEvents, { once: true });

@@ -507,6 +507,8 @@
     }
     if (data.heroTrials) s.heroTrials = data.heroTrials;
     if (data.dragonTrials) s.dragonTrials = data.dragonTrials;
+    if (data.heroTrialPending) s.heroTrialPending = data.heroTrialPending;
+    if (data.dragonTrialPending) s.dragonTrialPending = data.dragonTrialPending;
     if (data.dragonEggs) s.dragonEggs = data.dragonEggs;
     if (data.dragonEggMeta) s.dragonEggMeta = data.dragonEggMeta;
     if (Object.prototype.hasOwnProperty.call(data, 'diamond')) s.diamond = data.diamond;
@@ -727,7 +729,10 @@
 
   function getHeroLevel(data, heroId) {
     if (!data || !heroId) return 0;
-    return parseHeroOwn(data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).level;
+    var lvl = parseHeroOwn(data.purchasedBattleHeroes && data.purchasedBattleHeroes[heroId]).level;
+    if (lvl >= 1) return lvl;
+    if (heroTrialUntilMs(data, heroId) > Date.now()) return 1;
+    return 0;
   }
 
   function heroTrialUntilMs(data, heroId) {
@@ -1466,7 +1471,11 @@
     if (typeof window.novaOpenStoreDetail !== 'function') return;
     var def = getHeroDef(hero.id);
     if (!def) return;
-    var owned = ownsHero(userData, hero.id);
+    var permanentOwned = parseHeroOwn(userData && userData.purchasedBattleHeroes && userData.purchasedBattleHeroes[hero.id]).owned;
+    var onTrial = heroTrialUntilMs(userData, hero.id) > Date.now() && !permanentOwned;
+    var pendingDays = (typeof window.novaGetHeroTrialPendingDays === 'function')
+      ? window.novaGetHeroTrialPendingDays(userData, hero.id) : 0;
+    var owned = permanentOwned || onTrial;
     var equipped = userData && userData.battleHero === hero.id;
     var diamonds = Number(userData && userData.diamond) || 0;
     var cost = heroPurchaseCost(Number(hero.price) || def.price);
@@ -1474,6 +1483,8 @@
     var lvl = owned ? getHeroLevel(userData, hero.id) : 0;
     var name = hero.name || def.name;
     var desc = hero.desc || def.desc || '';
+    var trialLeft = (typeof window.novaFormatHeroTrialRemaining === 'function')
+      ? window.novaFormatHeroTrialRemaining(userData, hero.id) : '';
     var extra = '';
     if (owned) {
       extra = epic
@@ -1482,10 +1493,23 @@
     } else if (epic) {
       extra = epicBadgeSlotHtml(hero.id);
     }
+    if (onTrial && trialLeft) {
+      extra += '<span class="nova-hero-trial-badge">Deneme aktif · ' + trialLeft + '</span>';
+    }
+    if (pendingDays > 0 && !permanentOwned) {
+      extra += '<span class="nova-hero-trial-badge nova-hero-trial-badge--pending">'
+        + (onTrial ? '+' : '') + pendingDays + ' gün deneme hakkı</span>';
+    }
     var btnClass = 'buy-button';
     var btnText = 'Satın Al';
     var btnDisabled = false;
-    if (owned && equipped) {
+    var startPendingTrial = false;
+    if (!permanentOwned && pendingDays > 0) {
+      btnClass = 'use-button';
+      btnText = 'Denemeyi Başlat';
+      btnDisabled = false;
+      startPendingTrial = true;
+    } else if (owned && equipped) {
       btnClass = 'use-button';
       btnText = 'Kullanılıyor';
       btnDisabled = true;
@@ -1496,6 +1520,20 @@
     } else if (diamonds < cost) {
       btnText = 'Elmas yetersiz';
       btnDisabled = true;
+    }
+    var showBuySecondary = !permanentOwned && (onTrial || pendingDays > 0);
+    var secondaryBtnText = null;
+    var secondaryBtnDisabled = false;
+    var onSecondaryAction = null;
+    if (showBuySecondary) {
+      secondaryBtnText = diamonds >= cost ? 'Satın Al' : 'Elmas yetersiz';
+      secondaryBtnDisabled = diamonds < cost;
+      onSecondaryAction = async function () {
+        if (await purchaseBattleHero(hero)) {
+          window.novaCloseStoreDetail();
+          await refreshBattleHeroStoreInPlace();
+        }
+      };
     }
     window.novaOpenStoreDetail({
       kicker: 'Kahraman',
@@ -1508,7 +1546,7 @@
         var extraEl = document.getElementById('nova_store_detail_extra');
         mountEpicBadgesIn(extraEl, hero.id, 'store');
       },
-      priceHtml: owned ? '' : ('💎 ' + cost),
+      priceHtml: permanentOwned ? '' : ('💎 ' + cost),
       previewClass: 'nova-store-detail-preview--hero nova-store-detail-preview--' + def.theme,
       previewHtml: '',
       mountPreview: function (box) {
@@ -1530,9 +1568,21 @@
       btnClass: btnClass,
       btnText: btnText,
       btnDisabled: btnDisabled,
+      secondaryBtnClass: 'buy-button',
+      secondaryBtnText: secondaryBtnText,
+      secondaryBtnDisabled: secondaryBtnDisabled,
+      onSecondaryAction: onSecondaryAction,
       inUse: equipped && owned,
       onAction: async function () {
-        if (!owned) {
+        if (startPendingTrial) {
+          if (typeof window.novaStartHeroTrial === 'function') {
+            var ok = await window.novaStartHeroTrial(hero.id);
+            if (!ok) return;
+          }
+          await equipBattleHero(hero);
+          window.novaCloseStoreDetail();
+          await refreshBattleHeroStoreInPlace();
+        } else if (!owned) {
           if (await purchaseBattleHero(hero)) {
             window.novaCloseStoreDetail();
             await refreshBattleHeroStoreInPlace();
@@ -1639,9 +1689,12 @@
     var def = getHeroDef(hero.id);
     if (!def || !heroHasStoreArt(def)) return;
 
-    var owned = ownsHero(userData, hero.id);
+    var permanentOwned = parseHeroOwn(userData && userData.purchasedBattleHeroes && userData.purchasedBattleHeroes[hero.id]).owned;
     var trialUntil = heroTrialUntilMs(userData, hero.id);
-    var onTrial = trialUntil > Date.now() && !parseHeroOwn(userData && userData.purchasedBattleHeroes && userData.purchasedBattleHeroes[hero.id]).owned;
+    var onTrial = trialUntil > Date.now() && !permanentOwned;
+    var pendingDays = (typeof window.novaGetHeroTrialPendingDays === 'function')
+      ? window.novaGetHeroTrialPendingDays(userData, hero.id) : 0;
+    var owned = permanentOwned || onTrial;
     var trialLeft = (typeof window.novaFormatHeroTrialRemaining === 'function')
       ? window.novaFormatHeroTrialRemaining(userData, hero.id) : '';
     var equipped = userData && userData.battleHero === hero.id;
@@ -1665,6 +1718,12 @@
       badgeRow += '<span class="nova-hero-trial-badge">Deneme aktif</span>'
         + '<span class="nova-hero-trial-remaining">' + (trialLeft || '') + '</span>';
     }
+    if (pendingDays > 0 && !permanentOwned) {
+      badgeRow += '<span class="nova-hero-trial-badge nova-hero-trial-badge--pending">'
+        + (onTrial ? '+' : '') + pendingDays + ' gün deneme</span>'
+        + '<span class="nova-hero-trial-remaining">'
+        + (onTrial ? 'Üst üste eklemek için başlat' : 'Henüz başlamadı') + '</span>';
+    }
     card.innerHTML =
       heroPreviewHtml(hero.id, def.theme)
       + '<div class="nova-hero-store-vitrine-name">' + heroName + '</div>'
@@ -1679,7 +1738,20 @@
         : '<button type="button" class="profile-photo-button"></button>');
 
     var btn = card.querySelector('.profile-photo-button');
-    if (!owned) {
+    if (!permanentOwned && pendingDays > 0) {
+      btn.className = 'profile-photo-button use-button nova-hero-trial-start-btn';
+      btn.textContent = 'Denemeyi Başlat';
+      btn.disabled = false;
+      btn.onclick = async function (e) {
+        e.stopPropagation();
+        if (typeof window.novaStartHeroTrial === 'function') {
+          var ok = await window.novaStartHeroTrial(hero.id);
+          if (!ok) return;
+        }
+        await equipBattleHero(hero);
+        await refreshBattleHeroStoreInPlace();
+      };
+    } else if (!owned) {
       btn.className = 'profile-photo-button buy-button';
       btn.textContent = diamonds >= cost ? 'Satın Al' : 'Elmas yetersiz';
       btn.disabled = diamonds < cost;
@@ -1689,7 +1761,7 @@
       };
     } else if (!equipped) {
       btn.className = 'profile-photo-button use-button';
-      btn.textContent = onTrial ? 'Mağazada kullanılabilir' : 'Kullan';
+      btn.textContent = 'Kullan';
       btn.onclick = async function (e) {
         e.stopPropagation();
         await equipBattleHero(hero);

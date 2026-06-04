@@ -122,6 +122,20 @@
               "$heroId": {
                 ".validate": "newData.isNumber() && newData.val() >= 0"
               }
+            },
+            "heroTrialPending": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 30"
+              }
+            },
+            "dragonTrialPending": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 30"
+              }
             }
           }
         }
