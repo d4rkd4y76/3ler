@@ -92,7 +92,7 @@
       window.novaPrefetchMainScreenAssets();
     }
 
-    function run() {
+    function runAllHeroSprites() {
       if (typeof window.novaSpritePreloadAll !== 'function') return;
       window.novaSpritePreloadAll().catch(function () {}).finally(function () {
         window.__novaSpriteAssetsReady = true;
@@ -102,24 +102,46 @@
       });
     }
 
-    run();
+    function runEquippedHero() {
+      var student = null;
+      try {
+        var raw = localStorage.getItem('selectedStudent');
+        if (raw) student = JSON.parse(raw);
+      } catch (_) {}
+      var heroId = student && (student.battleHero || window.__novaEquippedHeroId);
+      if (heroId && typeof window.novaSpritePreloadForHero === 'function') {
+        try {
+          window.novaSpritePreloadForHero(heroId);
+        } catch (_) {}
+      }
+      if (typeof window.novaRefreshMainScreenHero === 'function') {
+        try {
+          window.novaRefreshMainScreenHero({ urgent: true });
+        } catch (_) {}
+      }
+    }
 
-    var student = null;
-    try {
-      var raw = localStorage.getItem('selectedStudent');
-      if (raw) student = JSON.parse(raw);
-    } catch (_) {}
-    var heroId = student && (student.battleHero || window.__novaEquippedHeroId);
-    if (heroId && typeof window.novaSpritePreloadForHero === 'function') {
-      try {
-        window.novaSpritePreloadForHero(heroId);
-      } catch (_) {}
+    runEquippedHero();
+
+    function scheduleBackgroundHeroPreload() {
+      if (window.__novaMainScreenReadyDone) {
+        runAllHeroSprites();
+        return;
+      }
+      document.addEventListener(
+        'nova:main-screen-ready',
+        function () {
+          window.__novaMainScreenReadyDone = true;
+          runAllHeroSprites();
+        },
+        { once: true }
+      );
+      setTimeout(function () {
+        if (!window.__novaSpriteAssetsReady) runAllHeroSprites();
+      }, 12000);
     }
-    if (typeof window.novaRefreshMainScreenHero === 'function') {
-      try {
-        window.novaRefreshMainScreenHero({ urgent: true });
-      } catch (_) {}
-    }
+
+    scheduleBackgroundHeroPreload();
   }
 
   function getOverlay() {
@@ -853,7 +875,9 @@
     }
     if (!shouldRunBoot()) {
       markBootDone();
-      if (typeof window.novaStabilizeMainScreen === 'function') {
+      if (typeof window.novaEnsureMainScreenReady === 'function') {
+        window.novaEnsureMainScreenReady({ force: true });
+      } else if (typeof window.novaStabilizeMainScreen === 'function') {
         window.novaStabilizeMainScreen({ force: true });
       }
       return;

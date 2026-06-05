@@ -21,6 +21,7 @@
   var screenBound = false;
   var cracking = false;
   var eggScreenOpen = false;
+  var eggPreloadPromise = null;
 
   function getStudent() {
     try {
@@ -157,6 +158,9 @@
     return new Promise(function (resolve, reject) {
       var img = new Image();
       img.decoding = 'async';
+      try {
+        img.fetchPriority = 'high';
+      } catch (_) {}
       img.onload = function () {
         var done = function () { resolve(img); };
         if (img.decode) img.decode().then(done).catch(done);
@@ -166,6 +170,21 @@
       img.src = url;
     });
   }
+
+  function preloadAllEggAssets() {
+    if (eggPreloadPromise) return eggPreloadPromise;
+    var sheetKeys = ['fire', 'ice', 'night', 'hub'];
+    var tasks = sheetKeys.map(function (k) {
+      return loadSheet(k).catch(function () {});
+    });
+    EGG_TYPES.forEach(function (t) {
+      tasks.push(loadImage(EGG_PNG[t]).catch(function () {}));
+    });
+    eggPreloadPromise = Promise.all(tasks);
+    return eggPreloadPromise;
+  }
+
+  window.novaPreloadDragonEggAssets = preloadAllEggAssets;
 
   function loadSheet(key) {
     if (sheetCache[key] && sheetCache[key].img) return Promise.resolve(sheetCache[key]);
@@ -491,14 +510,32 @@
     var screen = eggScreenEl();
     var okBtn = document.getElementById('nova_degg_screen_reward_ok');
     var sub = document.getElementById('nova_degg_screen_sub');
+    var crackBtn = document.getElementById('nova_dragon_egg_crack_btn');
     if (body) body.setAttribute('data-phase', phase);
-    if (screen) screen.classList.toggle('is-reward-phase', phase === 'reward');
+    if (screen) {
+      screen.classList.toggle('is-reward-phase', phase === 'reward');
+      screen.classList.toggle('is-loading-phase', phase === 'loading');
+    }
     if (okBtn) okBtn.hidden = phase !== 'reward';
     if (sub) {
-      sub.textContent = phase === 'reward'
-        ? 'Ödülün hazır!'
-        : (phase === 'crack' ? 'Yumurta kırılıyor…' : 'Kırmak istediğin yumurtayı seç');
+      sub.textContent =
+        phase === 'loading'
+          ? 'Hazırlanıyor…'
+          : phase === 'reward'
+            ? 'Ödülün hazır!'
+            : phase === 'crack'
+              ? 'Yumurta kırılıyor…'
+              : 'Kırmak istediğin yumurtayı seç';
     }
+    document.querySelectorAll('#nova-dragon-egg-screen .nova-dragon-egg-chip').forEach(function (chip) {
+      chip.disabled = phase === 'loading' || phase === 'crack';
+    });
+    if (crackBtn && phase === 'loading') crackBtn.disabled = true;
+  }
+
+  function setEggScreenBusy(busy) {
+    var closeBtn = document.getElementById('nova_degg_screen_close');
+    if (closeBtn) closeBtn.disabled = !!busy;
   }
 
   function resetScreenPickPhase() {
@@ -522,7 +559,7 @@
     renderMainHubSummary(getStudent());
   }
 
-  function openEggScreen() {
+  async function openEggScreen() {
     var screen = eggScreenEl();
     if (!screen) return;
     eggScreenOpen = true;
@@ -530,8 +567,12 @@
     screen.setAttribute('aria-hidden', 'false');
     screen.classList.add('is-open');
     document.body.classList.add('nova-degg-screen-open');
-    resetScreenPickPhase();
-    refreshEggsFromServer().then(function (bag) {
+    setScreenPhase('loading');
+    setEggScreenBusy(true);
+    try {
+      await preloadAllEggAssets();
+      resetScreenPickPhase();
+      var bag = await refreshEggsFromServer();
       var first = EGG_TYPES.find(function (t) {
         return (Number(bag && bag[t]) || 0) > 0;
       });
@@ -542,7 +583,12 @@
       });
       updateScreenPreview();
       updateCrackButton();
-    });
+    } catch (e) {
+      console.warn('openEggScreen', e);
+      resetScreenPickPhase();
+    } finally {
+      setEggScreenBusy(false);
+    }
   }
 
   function closeEggScreen() {
@@ -691,6 +737,7 @@
       renderMainHubSummary(committedStu);
 
       var host = document.getElementById('nova_degg_screen_crack_host');
+      await loadSheet(selectedType);
       playSpriteOnce(host, selectedType, function () {
         showRewardUi(committedReward, committedStu);
         try {
@@ -785,6 +832,7 @@
         openEggScreen();
       });
     }
+    preloadAllEggAssets();
   }
 
   function bindScreenUi() {
@@ -1045,10 +1093,7 @@
       });
     }
     try {
-      loadSheet('fire');
-      loadSheet('ice');
-      loadSheet('night');
-      loadSheet('hub');
+      preloadAllEggAssets();
     } catch (_) {}
   }
 

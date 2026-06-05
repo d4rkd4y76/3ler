@@ -4262,12 +4262,19 @@ window.onload = async () => {
             window.__novaAppMainReady = true;
             try { document.dispatchEvent(new CustomEvent('nova:app-main-ready')); } catch (_) {}
             try {
+              if (typeof window.novaApplyMainScreenHudInstant === 'function') {
+                window.novaApplyMainScreenHudInstant();
+              }
+            } catch (_) {}
+            try {
               if (typeof window.novaPrefetchMainScreenAssets === 'function') {
                 window.novaPrefetchMainScreenAssets();
               }
             } catch (_) {}
             try {
-              if (typeof window.novaStabilizeMainScreen === 'function') {
+              if (typeof window.novaEnsureMainScreenReady === 'function') {
+                window.novaEnsureMainScreenReady({ force: true });
+              } else if (typeof window.novaStabilizeMainScreen === 'function') {
                 window.novaStabilizeMainScreen({ force: true });
               }
             } catch (_) {}
@@ -4319,7 +4326,9 @@ window.onload = async () => {
             addLoggedInPlayer(selectedStudent).catch(function(e){ console.error('addLoggedInPlayer', e); });
             startInvitationListener(selectedStudent.studentId);
             fetchAndDisplayGameCup().catch(function(e){ console.error('fetchAndDisplayGameCup', e); });
-            if (typeof window.novaStabilizeMainScreen === 'function' && !window.__novaMainScreenBootReady) {
+            if (typeof window.novaEnsureMainScreenReady === 'function' && !window.__novaMainScreenBootReady) {
+              try { window.novaEnsureMainScreenReady(); } catch (_) {}
+            } else if (typeof window.novaStabilizeMainScreen === 'function' && !window.__novaMainScreenBootReady) {
               try { window.novaStabilizeMainScreen(); } catch (_) {}
             } else if (!window.__novaMainScreenBootReady) {
               onMainScreenLoad();
@@ -4359,7 +4368,7 @@ window.onload = async () => {
     }
 };
 try { window.onMainScreenLoad = onMainScreenLoad; } catch (_) {}
-window.addEventListener('pageshow', ()=>{ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} });
+window.addEventListener('pageshow', ()=>{ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); if(window.novaEnsureMainScreenReady) window.novaEnsureMainScreenReady({ force: true }); }catch(_){} });
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden){ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} } });
 
         // Sınıf adları: fetchClassesForSelection + populateClassSelect içinde classNameMap doldurulur (çift tam okuma yok).
@@ -4561,6 +4570,7 @@ function novaRequestHudFabRelayout(){
 
 // Ana ekrana gelindiğinde elmas sayısını güncelle
 function onMainScreenLoad() {
+    try { if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant(); } catch(_) {}
     try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
     try { if (typeof window.novaRefreshMainScreenHero === 'function') window.novaRefreshMainScreenHero(); } catch (_) {}
     // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; güvenli reflow tetikle.
@@ -9934,9 +9944,19 @@ if (winnerId && loserId) {
 }
 
         // Fetch and display gameCup for the logged-in student
-        function fetchAndDisplayGameCup() {
+        function fetchAndDisplayGameCup(force) {
+            if (!selectedStudent?.studentId) return;
+            try {
+              if (typeof window.novaApplyGameCupLeague === 'function') {
+                if (window.__novaCachedGameCup != null) {
+                  window.novaApplyGameCupLeague(window.__novaCachedGameCup);
+                } else if (selectedStudent.gameCup != null) {
+                  window.novaApplyGameCupLeague(Number(selectedStudent.gameCup) || 0);
+                }
+              }
+            } catch (_) {}
             const now = Date.now();
-            if (__cupFetchInFlight || (now - __cupFetchLastTs) < 900) return;
+            if (__cupFetchInFlight || (!force && (now - __cupFetchLastTs) < 900)) return;
             __cupFetchInFlight = true;
             __cupFetchLastTs = now;
             database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).once('value').then(snapshot => {
@@ -9950,10 +9970,14 @@ if (winnerId && loserId) {
                     if (cupEl) cupEl.textContent = '0';
                 }
                 try {
-                    var st = document.getElementById('student-stars');
-                    var rk = document.getElementById('student-rank');
-                    if (st && typeof getStars === 'function') st.innerHTML = getStars(cnt);
-                    if (rk && typeof getRankHTML === 'function') rk.innerHTML = getRankHTML(cnt);
+                    if (typeof window.novaApplyGameCupLeague === 'function') {
+                      window.novaApplyGameCupLeague(cnt);
+                    } else {
+                      var st = document.getElementById('student-stars');
+                      var rk = document.getElementById('student-rank');
+                      if (st && typeof getStars === 'function') st.innerHTML = getStars(cnt);
+                      if (rk && typeof getRankHTML === 'function') rk.innerHTML = getRankHTML(cnt);
+                    }
                 } catch (e) { console.warn('Yıldız/rütbe (kupa) güncellenemedi:', e); }
                 try { refreshDuelEntryGateNote(); } catch(_){}
                 __cupFetchInFlight = false;
@@ -9961,10 +9985,14 @@ if (winnerId && loserId) {
                 console.error("gameCup çekilirken hata:", error);
                 var cupEl = document.getElementById('game-cup-score');
                 if (cupEl) cupEl.textContent = '0';
+                try {
+                  if (typeof window.novaApplyGameCupLeague === 'function') window.novaApplyGameCupLeague(0);
+                } catch (_) {}
                 try { refreshDuelEntryGateNote(); } catch(_){}
                 __cupFetchInFlight = false;
             });
         }
+        try { window.fetchAndDisplayGameCup = fetchAndDisplayGameCup; } catch (_) {}
 
         const RANKING_CACHE_KEY = 'rankingCacheV4';
         const RANKING_SUMMARY_ROOT = 'seasonRanking';

@@ -1,8 +1,9 @@
-/* Ana ekran — tüm kritik varlıkları paralel indir (boot + yenileme) */
+/* Ana ekran — HUD/lig/kupa/kahraman öncelikli paralel indirme */
 (function () {
   'use strict';
 
   var prefetchPromise = null;
+  var CUP_CACHE_KEY = 'nova_main_game_cup_v1';
 
   function getStoredStudent() {
     try {
@@ -32,6 +33,115 @@
     } catch (_) {}
     return null;
   }
+
+  function cupCacheKey(student) {
+    if (!student) return '';
+    return String(student.classId || '') + ':' + String(student.studentId || '');
+  }
+
+  function readCupCache(student) {
+    try {
+      var raw = localStorage.getItem(CUP_CACHE_KEY);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || o.key !== cupCacheKey(student)) return null;
+      return Number(o.cups);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function writeCupCache(student, cups) {
+    try {
+      localStorage.setItem(
+        CUP_CACHE_KEY,
+        JSON.stringify({ key: cupCacheKey(student), cups: Number(cups) || 0, at: Date.now() })
+      );
+    } catch (_) {}
+  }
+
+  window.novaApplyGameCupLeague = function (cups) {
+    var cnt = Number(cups);
+    if (!isFinite(cnt) || cnt < 0) cnt = 0;
+    window.__novaCachedGameCup = cnt;
+    var cupEl = document.getElementById('game-cup-score');
+    if (cupEl) cupEl.textContent = String(cnt);
+    try {
+      var st = document.getElementById('student-stars');
+      var rk = document.getElementById('student-rank');
+      if (st && typeof getStars === 'function') st.innerHTML = getStars(cnt);
+      if (rk && typeof getRankHTML === 'function') rk.innerHTML = getRankHTML(cnt);
+    } catch (_) {}
+    try {
+      if (typeof refreshDuelEntryGateNote === 'function') refreshDuelEntryGateNote();
+    } catch (_) {}
+    var student = getStoredStudent();
+    if (student) {
+      student.gameCup = cnt;
+      try {
+        if (typeof selectedStudent !== 'undefined') selectedStudent.gameCup = cnt;
+      } catch (_) {}
+      try {
+        window.selectedStudent = student;
+        localStorage.setItem('selectedStudent', JSON.stringify(student));
+      } catch (_) {}
+      writeCupCache(student, cnt);
+    }
+  };
+
+  function applyDiamondUi(value) {
+    var dia = Number(value);
+    if (!isFinite(dia)) return;
+    var el = document.getElementById('diamond-value');
+    if (el) el.textContent = String(dia);
+    var el2 = document.getElementById('currentDiamonds');
+    if (el2) el2.textContent = String(dia);
+  }
+
+  function applyCreditsPrefetch() {
+    var pref = window.__novaMainScreenCreditsPrefetch;
+    if (!pref || !pref.at) return;
+    if (typeof applyMainScreenCreditsState === 'function') {
+      try {
+        applyMainScreenCreditsState({
+          duelCredits: pref.duelCredits,
+          unlimitedCreditsUntil: pref.unlimitedCreditsUntil
+        });
+      } catch (_) {}
+    }
+  }
+
+  window.novaApplyMainScreenHudFromData = function (data, student) {
+    data = data || {};
+    student = student || getStoredStudent();
+    if (!student) return;
+
+    var cups =
+      data.gameCup != null
+        ? Number(data.gameCup)
+        : student.gameCup != null
+          ? Number(student.gameCup)
+          : readCupCache(student);
+    if (cups != null && isFinite(cups)) {
+      window.novaApplyGameCupLeague(cups);
+    }
+
+    var dia =
+      data.diamond != null ? Number(data.diamond) : student.diamond != null ? Number(student.diamond) : null;
+    if (dia != null && isFinite(dia)) applyDiamondUi(dia);
+
+    applyCreditsPrefetch();
+  };
+
+  window.novaApplyMainScreenHudInstant = function () {
+    var student = getStoredStudent();
+    if (!student) return;
+    window.novaApplyMainScreenHudFromData(window.__novaMainScreenStudentCache, student);
+    if (student.gameCup == null) {
+      var cached = readCupCache(student);
+      if (cached != null) window.novaApplyGameCupLeague(cached);
+    }
+  };
 
   function prefetchImageUrl(url) {
     return new Promise(function (resolve) {
@@ -65,7 +175,27 @@
         var data = snap.exists() ? snap.val() || {} : {};
         window.__novaMainScreenStudentCache = data;
         window.__novaMainScreenStudentCacheAt = Date.now();
+        window.novaApplyMainScreenHudFromData(data, student);
         return data;
+      })
+      .catch(function () {
+        window.novaApplyMainScreenHudInstant();
+        return null;
+      });
+  }
+
+  function prefetchGameCupDirect(student) {
+    var db = getDatabase();
+    if (!db || !student || !student.classId || !student.studentId) {
+      return Promise.resolve(null);
+    }
+    return db
+      .ref('classes/' + student.classId + '/students/' + student.studentId + '/gameCup')
+      .once('value')
+      .then(function (snap) {
+        var cnt = snap.exists() ? Number(snap.val()) || 0 : 0;
+        window.novaApplyGameCupLeague(cnt);
+        return cnt;
       })
       .catch(function () {
         return null;
@@ -126,6 +256,7 @@
           unlimitedCreditsUntil: snaps[1].exists() ? Number(snaps[1].val() || 0) : 0,
           at: Date.now()
         };
+        applyCreditsPrefetch();
       })
       .catch(function () {});
   }
@@ -136,13 +267,19 @@
     var student = getStoredStudent();
     if (!student) return Promise.resolve(false);
 
+    window.novaApplyMainScreenHudInstant();
+
     window.__novaMainScreenPrefetchStarted = true;
     prefetchPromise = Promise.all([
       prefetchStudentSnapshot(student),
+      prefetchGameCupDirect(student),
       prefetchMainScreenCredits(student),
       prefetchImageUrl(student.photo),
       typeof window.novaPrefetchMainScreenBgMedia === 'function'
         ? window.novaPrefetchMainScreenBgMedia()
+        : Promise.resolve(),
+      typeof window.novaPreloadDragonEggAssets === 'function'
+        ? window.novaPreloadDragonEggAssets()
         : Promise.resolve()
     ])
       .then(function (results) {
@@ -153,6 +290,7 @@
       })
       .then(function () {
         window.__novaMainScreenPrefetchDone = true;
+        window.novaApplyMainScreenHudInstant();
         try {
           document.dispatchEvent(new CustomEvent('nova:main-screen-prefetch-done'));
         } catch (_) {}
@@ -160,6 +298,7 @@
       })
       .catch(function () {
         window.__novaMainScreenPrefetchDone = true;
+        window.novaApplyMainScreenHudInstant();
         try {
           document.dispatchEvent(new CustomEvent('nova:main-screen-prefetch-done'));
         } catch (_) {}
@@ -171,6 +310,7 @@
 
   function maybeStartEarly() {
     if (!getStoredStudent()) return;
+    window.novaApplyMainScreenHudInstant();
     window.novaPrefetchMainScreenAssets();
   }
 
