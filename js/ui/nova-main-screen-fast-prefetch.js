@@ -5,6 +5,12 @@
   var prefetchPromise = null;
   var CUP_CACHE_KEY = 'nova_main_game_cup_v1';
 
+  window.novaResetMainScreenPrefetch = function () {
+    prefetchPromise = null;
+    window.__novaMainScreenPrefetchDone = false;
+    window.__novaMainScreenPrefetchStarted = false;
+  };
+
   function getStoredStudent() {
     try {
       if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId) {
@@ -267,24 +273,33 @@
     var student = getStoredStudent();
     if (!student) return Promise.resolve(false);
 
+    var bootActive = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
+
     window.novaApplyMainScreenHudInstant();
 
     window.__novaMainScreenPrefetchStarted = true;
-    prefetchPromise = Promise.all([
+    var tasks = [
       prefetchStudentSnapshot(student),
       prefetchGameCupDirect(student),
       prefetchMainScreenCredits(student),
-      prefetchImageUrl(student.photo),
-      typeof window.novaPrefetchMainScreenBgMedia === 'function'
-        ? window.novaPrefetchMainScreenBgMedia()
-        : Promise.resolve(),
-      typeof window.novaPreloadBootSheet === 'function'
-        ? window.novaPreloadBootSheet().catch(function () {})
-        : Promise.resolve(),
-      typeof window.novaPreloadDragonEggAssets === 'function'
-        ? window.novaPreloadDragonEggAssets()
-        : Promise.resolve()
-    ])
+      prefetchImageUrl(student.photo)
+    ];
+
+    if (!bootActive) {
+      tasks.push(
+        typeof window.novaPrefetchMainScreenBgMedia === 'function'
+          ? window.novaPrefetchMainScreenBgMedia()
+          : Promise.resolve(),
+        typeof window.novaPreloadBootSheet === 'function'
+          ? window.novaPreloadBootSheet().catch(function () {})
+          : Promise.resolve(),
+        typeof window.novaPreloadDragonEggAssets === 'function'
+          ? window.novaPreloadDragonEggAssets()
+          : Promise.resolve()
+      );
+    }
+
+    prefetchPromise = Promise.all(tasks)
       .then(function (results) {
         var data = results[0];
         var heroId = resolveHeroId(student, data);
@@ -309,6 +324,19 @@
       });
 
     return prefetchPromise;
+  };
+
+  window.novaPrefetchMainScreenDeferredExtras = function () {
+    var student = getStoredStudent();
+    if (!student) return Promise.resolve();
+    return Promise.all([
+      typeof window.novaPrefetchMainScreenBgMedia === 'function'
+        ? window.novaPrefetchMainScreenBgMedia()
+        : Promise.resolve(),
+      typeof window.novaPreloadDragonEggAssets === 'function'
+        ? window.novaPreloadDragonEggAssets()
+        : Promise.resolve()
+    ]).catch(function () {});
   };
 
   function maybeStartEarly() {

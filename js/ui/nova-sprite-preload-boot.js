@@ -2,12 +2,13 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'nova_sprite_boot_done_v5';
+  var SESSION_KEY = 'nova_sprite_boot_done_v6';
   var VIDEO_FALLBACK = ['yeni_loading.mp4', 'kaynaklar_yukleniyor.mp4', 'kaynaklar_y\u00fckleniyor.mp4'];
   var TARGET_DURATION_MS = 6000;
   var MAX_WAIT_MS = 90000;
-  var EXIT_HOLD_MS = 420;
-  var HANDOFF_PAINT_MS = 120;
+  var EXIT_HOLD_MS = 380;
+  var HANDOFF_PAINT_MS = 64;
+  var POST_ANIM_VISUAL_MS = 5200;
 
   window.__novaSpriteBootManaged = true;
 
@@ -24,6 +25,8 @@
     bootAnimStarted: false,
     bootDownloadPhase: false,
     handoffReady: false,
+    postAnimTicker: 0,
+    postAnimStarted: false,
     _bootResizeOff: null,
     _bootBlobUrl: null
   };
@@ -48,7 +51,26 @@
     }
   }
 
+  function isHardReload() {
+    try {
+      var nav = performance.getEntriesByType('navigation')[0];
+      if (nav && nav.type === 'reload') return true;
+    } catch (_) {}
+    try {
+      if (performance.navigation && performance.navigation.type === 1) return true;
+    } catch (_) {}
+    return false;
+  }
+
   function shouldRunBoot() {
+    if (isHardReload()) {
+      try {
+        sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem('nova_sprite_boot_done_v5');
+        sessionStorage.removeItem('nova_sprite_boot_done_v4');
+      } catch (_) {}
+      return true;
+    }
     try {
       if (sessionStorage.getItem(SESSION_KEY) === '1') return false;
     } catch (_) {}
@@ -84,6 +106,9 @@
 
     if (typeof window.novaPrefetchMainScreenAssets === 'function') {
       window.novaPrefetchMainScreenAssets();
+    }
+    if (typeof window.novaPrefetchMainScreenDeferredExtras === 'function') {
+      window.novaPrefetchMainScreenDeferredExtras().catch(function () {});
     }
 
     function runAllHeroSprites() {
@@ -201,6 +226,47 @@
     if (status) status.classList.remove('is-finishing');
     var bar = ov && ov.querySelector('.nova-sprite-boot-bar');
     if (bar) bar.classList.remove('is-waiting');
+  }
+
+  function stopPostAnimProgress() {
+    if (state.postAnimTicker) cancelAnimationFrame(state.postAnimTicker);
+    state.postAnimTicker = 0;
+    state.postAnimStarted = false;
+  }
+
+  function startPostAnimProgress(statusText) {
+    if (state.postAnimStarted) return;
+    state.postAnimStarted = true;
+    var start = performance.now();
+    var startPct = 0.88;
+    var endPct = 0.985;
+
+    function tick(now) {
+      if (state.exiting || state.handoffReady) {
+        stopPostAnimProgress();
+        return;
+      }
+      var elapsed = now - start;
+      var t = Math.min(1, elapsed / POST_ANIM_VISUAL_MS);
+      var ratio = startPct + t * (endPct - startPct);
+      if (state.heavyMainDone) ratio = Math.min(0.99, ratio + 0.008);
+      var msg =
+        statusText ||
+        (state.heavyMainDone ? 'Ana ekran açılıyor…' : 'Ana ekran hazırlanıyor…');
+      setProgress(ratio, msg, { allowDuringDownload: true });
+      if (!state.handoffReady) state.postAnimTicker = requestAnimationFrame(tick);
+    }
+
+    state.postAnimTicker = requestAnimationFrame(tick);
+  }
+
+  function mainElementsReadyNow() {
+    if (typeof window.novaMainScreenElementsReady === 'function') {
+      try {
+        return window.novaMainScreenElementsReady();
+      } catch (_) {}
+    }
+    return !!window.__novaMainScreenBootReady;
   }
 
   function stopRenderLoop() {
@@ -540,14 +606,14 @@
         state.videoDone = true;
         state.animDone = true;
         stopRenderLoop();
-        setProgress(0.96, 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
+        startPostAnimProgress('Ana ekran hazırlanıyor…');
         resolve();
       }
 
       startBootSpriteRender(
         ov,
         function (ratio) {
-          var display = Math.min(0.94, 0.08 + ratio * 0.86);
+          var display = Math.min(0.88, 0.05 + ratio * 0.83);
           setProgress(
             display,
             ratio < 0.35
@@ -673,15 +739,15 @@
     if (!state.animDone) return;
 
     var pr = Math.max(0, Math.min(1, ratio || 0));
-    var base = 0.94;
+    var base = 0.88;
     var p = base + pr * (0.99 - base);
 
     if (!state.heavyMainDone) {
-      setProgress(p, pr < 0.5 ? 'Ana ekran hazırlanıyor…' : 'Son dokunuş…', { allowDuringDownload: true });
+      if (!state.postAnimStarted) startPostAnimProgress('Ana ekran hazırlanıyor…');
       return;
     }
 
-    stopFinishingPulse();
+    stopPostAnimProgress();
     setProgress(0.99, 'Hazır!', { allowDuringDownload: true });
   }
 
@@ -689,12 +755,10 @@
     state.heavyMainDone = false;
     return runMainScreenPrep(function (msg) {
       if (!state.animDone) return;
-      var ov = getOverlay();
-      var st = ov && ov.querySelector('.nova-sprite-boot-status');
-      if (st && msg) st.textContent = msg;
-      updateLightBootProgress(state.heavyMainDone ? 1 : 0.65);
+      startPostAnimProgress(msg || 'Ana ekran hazırlanıyor…');
     }).then(function () {
       state.heavyMainDone = true;
+      stopPostAnimProgress();
       updateLightBootProgress(1);
     });
   }
@@ -757,23 +821,26 @@
   function finishBootHandoff() {
     return new Promise(function (resolve) {
       (async function () {
+        stopPostAnimProgress();
         setProgress(0.97, 'Ana ekran açılıyor…', { allowDuringDownload: true });
 
-        if (typeof window.novaEnsureMainScreenReady === 'function') {
+        var needsEnsure = !state.heavyMainDone || !mainElementsReadyNow();
+        if (needsEnsure && typeof window.novaEnsureMainScreenReady === 'function') {
           try {
-            await window.novaEnsureMainScreenReady({ force: true });
+            await window.novaEnsureMainScreenReady({ force: true, boot: true, fast: true });
           } catch (_) {}
-        } else if (typeof window.novaStabilizeMainScreen === 'function') {
+        } else if (needsEnsure && typeof window.novaStabilizeMainScreen === 'function') {
           try {
-            await window.novaStabilizeMainScreen({ force: true });
+            await window.novaStabilizeMainScreen({ force: true, boot: true });
           } catch (_) {}
         }
 
         revealMainScreenUnderOverlay();
-        await waitForMainScreenPaint(8000);
+        await waitForMainScreenPaint(3500);
 
         state.handoffReady = true;
         stopFinishingPulse();
+        stopPostAnimProgress();
         setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
 
         await new Promise(function (r) {
@@ -783,6 +850,7 @@
       })().catch(function () {
         revealMainScreenUnderOverlay();
         state.handoffReady = true;
+        stopPostAnimProgress();
         setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
         resolve();
       });
@@ -807,13 +875,20 @@
     state.heavyMainDone = false;
     state.handoffReady = false;
     state.exiting = false;
+    state.postAnimStarted = false;
+    stopPostAnimProgress();
+    window.__novaMainScreenBootPromise = null;
+    window.__novaMainScreenBootReady = false;
+    if (typeof window.novaResetMainScreenPrefetch === 'function') {
+      window.novaResetMainScreenPrefetch();
+    }
     setProgress(0, 'Açılış animasyonu indiriliyor…');
 
     if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-      window.novaPrefetchMainScreenAssets();
+      window.novaPrefetchMainScreenAssets(true);
     }
 
-    var prepPromise = null;
+    var prepPromise = runLightBootWork();
 
     return waitBootSheetFullyReady(60000)
       .then(function () {
@@ -822,11 +897,9 @@
       })
       .then(function () {
         setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
-        prepPromise = runLightBootWork();
         return playBootSprite(ov);
       })
       .then(function () {
-        if (!prepPromise) prepPromise = runLightBootWork();
         return prepPromise;
       })
       .then(function () {
@@ -835,7 +908,7 @@
       .catch(function () {
         state.bootDownloadPhase = false;
         setProgress(0, 'Yedek video yükleniyor…', { allowDuringDownload: true });
-        prepPromise = runLightBootWork();
+        if (!prepPromise) prepPromise = runLightBootWork();
         return playBootVideoPlain(ov)
           .then(function () {
             return prepPromise;
@@ -967,6 +1040,7 @@
   window.novaSpriteBootReset = function () {
     try {
       sessionStorage.removeItem(SESSION_KEY);
+      sessionStorage.removeItem('nova_sprite_boot_done_v5');
       sessionStorage.removeItem('nova_sprite_boot_done_v4');
     } catch (_) {}
     bootRunPromise = null;
@@ -979,6 +1053,9 @@
     window.__novaSpriteBootActive = false;
     window.__novaMainScreenBootPromise = null;
     window.__novaMainScreenBootReady = false;
+    if (typeof window.novaResetMainScreenPrefetch === 'function') {
+      window.novaResetMainScreenPrefetch();
+    }
     state.exiting = false;
     state.videoDone = false;
     state.animDone = false;
@@ -987,6 +1064,8 @@
     state.bootAnimStarted = false;
     state.bootDownloadPhase = false;
     state.handoffReady = false;
+    state.postAnimStarted = false;
+    stopPostAnimProgress();
     stopFinishingPulse();
     stopRenderLoop();
   };
