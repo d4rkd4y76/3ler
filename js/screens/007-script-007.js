@@ -4325,7 +4325,9 @@ window.onload = async () => {
 
             addLoggedInPlayer(selectedStudent).catch(function(e){ console.error('addLoggedInPlayer', e); });
             startInvitationListener(selectedStudent.studentId);
-            fetchAndDisplayGameCup().catch(function(e){ console.error('fetchAndDisplayGameCup', e); });
+            if (typeof window.fetchAndDisplayGameCup === 'function') {
+              window.fetchAndDisplayGameCup(true);
+            }
             if (typeof window.novaEnsureMainScreenReady === 'function' && !window.__novaMainScreenBootReady) {
               try { window.novaEnsureMainScreenReady(); } catch (_) {}
             } else if (typeof window.novaStabilizeMainScreen === 'function' && !window.__novaMainScreenBootReady) {
@@ -4361,7 +4363,6 @@ window.onload = async () => {
 
     } catch (error) {
         console.error("Uygulama başlatma hatası:", error);
-        try { showAlert('Bir hata oluştu. Lütfen sayfayı yenileyin.'); } catch (_) {}
     } finally {
         window.__novaAppOnloadDone = true;
         try { document.dispatchEvent(new CustomEvent('nova:app-onload-done')); } catch (_) {}
@@ -4455,7 +4456,7 @@ loginButton.addEventListener('click', async () => {
             try {
                 await addLoggedInPlayer(selectedStudent);
                 startInvitationListener(selectedStudent.studentId);
-                fetchAndDisplayGameCup();
+                if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup();
                 onMainScreenLoad();
                 localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent));
             } catch (e) {
@@ -4526,6 +4527,53 @@ let __mainScreenCreditsFetchTs = 0;
 let __mainScreenCreditsCache = null;
 let __cupFetchInFlight = false;
 let __cupFetchLastTs = 0;
+
+function fetchAndDisplayGameCup(force) {
+    if (!selectedStudent?.studentId) return;
+    try {
+      if (typeof window.novaApplyGameCupLeague === 'function') {
+        if (window.__novaCachedGameCup != null) {
+          window.novaApplyGameCupLeague(window.__novaCachedGameCup);
+        } else if (selectedStudent.gameCup != null) {
+          window.novaApplyGameCupLeague(Number(selectedStudent.gameCup) || 0);
+        }
+      }
+    } catch (_) {}
+    const now = Date.now();
+    if (__cupFetchInFlight || (!force && (now - __cupFetchLastTs) < 900)) return;
+    __cupFetchInFlight = true;
+    __cupFetchLastTs = now;
+    database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).once('value').then(snapshot => {
+        var cnt = 0;
+        if (snapshot.exists()) {
+            cnt = Number(snapshot.val()) || 0;
+        } else {
+            database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).set(0);
+        }
+        try {
+            if (typeof window.novaApplyGameCupLeague === 'function') {
+              window.novaApplyGameCupLeague(cnt);
+            } else {
+              var cupEl = document.getElementById('game-cup-score');
+              if (cupEl) cupEl.textContent = String(cnt);
+              var st = document.getElementById('student-stars');
+              var rk = document.getElementById('student-rank');
+              if (st && typeof getStars === 'function') st.innerHTML = getStars(cnt);
+              if (rk && typeof getRankHTML === 'function') rk.innerHTML = getRankHTML(cnt);
+            }
+        } catch (e) { console.warn('Yıldız/rütbe (kupa) güncellenemedi:', e); }
+        try { if (typeof refreshDuelEntryGateNote === 'function') refreshDuelEntryGateNote(); } catch(_){}
+        __cupFetchInFlight = false;
+    }).catch(error => {
+        console.error("gameCup çekilirken hata:", error);
+        try {
+          if (typeof window.novaApplyGameCupLeague === 'function') window.novaApplyGameCupLeague(0);
+        } catch (_) {}
+        try { if (typeof refreshDuelEntryGateNote === 'function') refreshDuelEntryGateNote(); } catch(_){}
+        __cupFetchInFlight = false;
+    });
+}
+try { window.fetchAndDisplayGameCup = fetchAndDisplayGameCup; } catch (_) {}
 
 function applyMainScreenCreditsState(userData){
     try{
@@ -4762,7 +4810,7 @@ async function handleLogin() {
         setNameWithFrame(studentName, studentInfo.name, selectedStudent.nameFrame);
         await addLoggedInPlayer(selectedStudent);
         startInvitationListener(selectedStudent.studentId);
-        fetchAndDisplayGameCup();
+        if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup();
         if (!window.__novaMainScreenBootReady) {
             onMainScreenLoad();
         }
@@ -9896,7 +9944,7 @@ if (winnerId && loserId) {
 
     // Puanları görsel olarak güncelle (kupa + düello kredisi)
     if (selectedStudent.studentId === winnerId || selectedStudent.studentId === loserId) {
-      fetchAndDisplayGameCup();
+      if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup();
       // Sonuc ekrani acikken ana ekrani zorla gostermeyelim.
       // onMainScreenLoad -> novaEnsureLoggedInUi zinciri, bazi cihazlarda
       // sonucu acarken main-screen'in solda gorunmesine neden olabiliyor.
@@ -9943,56 +9991,7 @@ if (winnerId && loserId) {
     })();
 }
 
-        // Fetch and display gameCup for the logged-in student
-        function fetchAndDisplayGameCup(force) {
-            if (!selectedStudent?.studentId) return;
-            try {
-              if (typeof window.novaApplyGameCupLeague === 'function') {
-                if (window.__novaCachedGameCup != null) {
-                  window.novaApplyGameCupLeague(window.__novaCachedGameCup);
-                } else if (selectedStudent.gameCup != null) {
-                  window.novaApplyGameCupLeague(Number(selectedStudent.gameCup) || 0);
-                }
-              }
-            } catch (_) {}
-            const now = Date.now();
-            if (__cupFetchInFlight || (!force && (now - __cupFetchLastTs) < 900)) return;
-            __cupFetchInFlight = true;
-            __cupFetchLastTs = now;
-            database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).once('value').then(snapshot => {
-                var cupEl = document.getElementById('game-cup-score');
-                var cnt = 0;
-                if (snapshot.exists()) {
-                    cnt = Number(snapshot.val()) || 0;
-                    if (cupEl) cupEl.textContent = String(cnt);
-                } else {
-                    database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).set(0);
-                    if (cupEl) cupEl.textContent = '0';
-                }
-                try {
-                    if (typeof window.novaApplyGameCupLeague === 'function') {
-                      window.novaApplyGameCupLeague(cnt);
-                    } else {
-                      var st = document.getElementById('student-stars');
-                      var rk = document.getElementById('student-rank');
-                      if (st && typeof getStars === 'function') st.innerHTML = getStars(cnt);
-                      if (rk && typeof getRankHTML === 'function') rk.innerHTML = getRankHTML(cnt);
-                    }
-                } catch (e) { console.warn('Yıldız/rütbe (kupa) güncellenemedi:', e); }
-                try { refreshDuelEntryGateNote(); } catch(_){}
-                __cupFetchInFlight = false;
-            }).catch(error => {
-                console.error("gameCup çekilirken hata:", error);
-                var cupEl = document.getElementById('game-cup-score');
-                if (cupEl) cupEl.textContent = '0';
-                try {
-                  if (typeof window.novaApplyGameCupLeague === 'function') window.novaApplyGameCupLeague(0);
-                } catch (_) {}
-                try { refreshDuelEntryGateNote(); } catch(_){}
-                __cupFetchInFlight = false;
-            });
-        }
-        try { window.fetchAndDisplayGameCup = fetchAndDisplayGameCup; } catch (_) {}
+        // Fetch and display gameCup — tanım üstte (fetchAndDisplayGameCup)
 
         const RANKING_CACHE_KEY = 'rankingCacheV4';
         const RANKING_SUMMARY_ROOT = 'seasonRanking';

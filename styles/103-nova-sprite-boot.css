@@ -79,6 +79,19 @@ body.nova-sprite-boot-active{
   pointer-events: none;
 }
 
+#nova_sprite_boot_overlay.nova-sprite-boot--plain-video .nova-sprite-boot-video-src{
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  object-fit: contain;
+  z-index: 4;
+}
+
+#nova_sprite_boot_overlay.nova-sprite-boot--plain-video #nova_sprite_boot_canvas{
+  display: none !important;
+}
+
 .nova-sprite-boot-scanline{
   position: absolute;
   inset: 0;

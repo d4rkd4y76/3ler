@@ -278,6 +278,9 @@
       typeof window.novaPrefetchMainScreenBgMedia === 'function'
         ? window.novaPrefetchMainScreenBgMedia()
         : Promise.resolve(),
+      typeof window.novaPreloadBootSheet === 'function'
+        ? window.novaPreloadBootSheet().catch(function () {})
+        : Promise.resolve(),
       typeof window.novaPreloadDragonEggAssets === 'function'
         ? window.novaPreloadDragonEggAssets()
         : Promise.resolve()

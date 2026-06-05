@@ -161,8 +161,7 @@
       if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
     } catch (_) {}
     try {
-      if (typeof fetchAndDisplayGameCup === 'function') fetchAndDisplayGameCup(true);
-      else if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup(true);
+      if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup(true);
     } catch (_) {}
 
     if (typeof window.novaSyncMainScreenBgVideo === 'function') {
