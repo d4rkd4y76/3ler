@@ -151,6 +151,16 @@
   window.novaMainScreenElementsReady = mainScreenElementsReady;
   window.novaMainScreenReadinessRatio = mainScreenReadinessRatio;
 
+  function heroDisplayReady() {
+    var slot = document.getElementById('nova-main-hero-slot');
+    if (!slot) return true;
+    var host = slot.querySelector('[data-nova-main-hero]');
+    if (!host) return false;
+    var c = host.querySelector('canvas');
+    if (c && c.width > 8 && c.height > 8) return true;
+    return !!host.querySelector('svg');
+  }
+
   window.novaMainScreenSlotStatus = function () {
     return {
       photo: profilePhotoReady(),
@@ -158,7 +168,7 @@
       rank: leagueBadgeReady(),
       cup: cupHudReady(),
       credits: creditsReady(),
-      hero: heroReady(),
+      hero: heroDisplayReady(),
       diamond: (function () {
         var el = document.getElementById('diamond-value');
         if (!el) return true;
@@ -420,9 +430,9 @@
       function () {
         if (!getStoredStudent() || window.__novaMainScreenBootReady) return;
         window.novaEnsureMainScreenReady({ afterBoot: true });
-        if (isPhoneBoot() && typeof window.novaBonusDrawerSetOpen === 'function') {
+        if (typeof window.novaBonusDrawerSetOpen === 'function') {
           try {
-            window.novaBonusDrawerSetOpen(true);
+            window.novaBonusDrawerSetOpen(false);
           } catch (_) {}
         }
       },

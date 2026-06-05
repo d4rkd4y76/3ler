@@ -48,9 +48,16 @@
   --nova-slot-min-h: 1.1rem;
   --nova-slot-min-w: 4rem;
 }
-#nova-main-hero-slot.nova-slot-pending{
-  --nova-slot-min-h: 140px;
-  --nova-slot-min-w: 120px;
+#nova-main-hero-slot.nova-slot-pending,
+#nova-main-hero-slot.nova-slot-pending--hero{
+  --nova-slot-min-h: 148px;
+  --nova-slot-min-w: 128px;
+}
+#nova-main-hero-slot.nova-slot-pending--hero > .nova-slot-loading-label{
+  font-size: .58rem;
+  letter-spacing: .03em;
+  text-align: center;
+  padding: 0 8px;
 }
 .trophy-stats.nova-slot-pending,
 .credits-stats.nova-slot-pending,

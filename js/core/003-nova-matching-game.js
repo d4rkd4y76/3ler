@@ -431,7 +431,7 @@
     const rewardTag = document.createElement('span');
     rewardTag.className = 'nova-fab-reward-tag nova-fab-reward-tag--egg';
     rewardTag.setAttribute('aria-hidden', 'true');
-    rewardTag.textContent = '🥚 YUMURTA';
+    rewardTag.textContent = '🐉 EJDER YUMURTASI';
     wrap.appendChild(rewardTag);
     const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
     const hudLeft = bonusPanel || document.getElementById('main-screen-quest-slot') || document.getElementById('main-screen');

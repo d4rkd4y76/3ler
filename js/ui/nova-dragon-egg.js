@@ -172,20 +172,49 @@
     });
   }
 
-  function preloadAllEggAssets() {
-    if (eggPreloadPromise) return eggPreloadPromise;
+  function verifyEggAssetsReady() {
+    var sheetKeys = ['fire', 'ice', 'night', 'hub'];
+    for (var i = 0; i < sheetKeys.length; i++) {
+      var k = sheetKeys[i];
+      var pack = sheetCache[k];
+      if (!pack || !pack.img || !pack.img.naturalWidth) return false;
+    }
+    for (var j = 0; j < EGG_TYPES.length; j++) {
+      var t = EGG_TYPES[j];
+      var img = sheetCache['_png_' + t];
+      if (!img || !img.naturalWidth) return false;
+    }
+    return true;
+  }
+
+  function preloadAllEggAssets(force) {
+    if (eggPreloadPromise && !force) return eggPreloadPromise;
+    if (force) eggPreloadPromise = null;
     var sheetKeys = ['fire', 'ice', 'night', 'hub'];
     var tasks = sheetKeys.map(function (k) {
-      return loadSheet(k).catch(function () {});
+      return loadSheet(k);
     });
     EGG_TYPES.forEach(function (t) {
-      tasks.push(loadImage(EGG_PNG[t]).catch(function () {}));
+      tasks.push(
+        loadImage(EGG_PNG[t]).then(function (img) {
+          sheetCache['_png_' + t] = img;
+          return img;
+        })
+      );
     });
-    eggPreloadPromise = Promise.all(tasks);
+    eggPreloadPromise = Promise.all(tasks).then(function () {
+      if (!verifyEggAssetsReady()) throw new Error('egg-assets-incomplete');
+      window.__novaEggAssetsReady = true;
+      return true;
+    });
     return eggPreloadPromise;
   }
 
-  window.novaPreloadDragonEggAssets = preloadAllEggAssets;
+  window.novaPreloadDragonEggAssets = function (force) {
+    return preloadAllEggAssets(!!force).catch(function () {
+      return preloadAllEggAssets(true);
+    });
+  };
 
   function loadSheet(key) {
     if (sheetCache[key] && sheetCache[key].img) return Promise.resolve(sheetCache[key]);
@@ -521,7 +550,7 @@
     if (sub) {
       sub.textContent =
         phase === 'loading'
-          ? 'Hazırlanıyor…'
+          ? 'Yumurtalar hazırlanıyor…'
           : phase === 'reward'
             ? 'Ödülün hazır!'
             : phase === 'crack'
@@ -568,19 +597,52 @@
     } catch (_) {}
   }
 
+  function showEggPrepOverlay(msg) {
+    var el = document.getElementById('nova_egg_prep_overlay');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'nova_egg_prep_overlay';
+      el.className = 'nova-egg-prep-overlay';
+      el.setAttribute('role', 'status');
+      el.setAttribute('aria-live', 'polite');
+      el.innerHTML =
+        '<div class="nova-egg-prep-overlay__card">' +
+        '<p class="nova-egg-prep-overlay__text"></p>' +
+        '</div>';
+      document.body.appendChild(el);
+    }
+    var txt = el.querySelector('.nova-egg-prep-overlay__text');
+    if (txt) txt.textContent = msg || 'Yumurtalar hazırlanıyor…';
+    el.hidden = false;
+    el.removeAttribute('hidden');
+    document.body.classList.add('nova-egg-prep-active');
+  }
+
+  function hideEggPrepOverlay() {
+    var el = document.getElementById('nova_egg_prep_overlay');
+    if (el) {
+      el.hidden = true;
+      el.setAttribute('hidden', '');
+    }
+    document.body.classList.remove('nova-egg-prep-active');
+  }
+
   async function openEggScreen() {
+    if (eggScreenOpen) return;
     var screen = eggScreenEl();
     if (!screen) return;
-    eggScreenOpen = true;
-    pushEggHistory();
-    screen.hidden = false;
-    screen.setAttribute('aria-hidden', 'false');
-    screen.classList.add('is-open');
-    document.body.classList.add('nova-degg-screen-open');
-    setScreenPhase('loading');
+
+    showEggPrepOverlay('Yumurtalar hazırlanıyor…');
     setEggScreenBusy(true);
     try {
-      await preloadAllEggAssets();
+      await preloadAllEggAssets(true);
+      eggScreenOpen = true;
+      pushEggHistory();
+      screen.hidden = false;
+      screen.removeAttribute('hidden');
+      screen.setAttribute('aria-hidden', 'false');
+      screen.classList.add('is-open');
+      document.body.classList.add('nova-degg-screen-open');
       resetScreenPickPhase();
       var bag = await refreshEggsFromServer();
       var first = EGG_TYPES.find(function (t) {
@@ -595,8 +657,12 @@
       updateCrackButton();
     } catch (e) {
       console.warn('openEggScreen', e);
-      resetScreenPickPhase();
+      eggScreenOpen = false;
+      if (typeof showAlert === 'function') {
+        showAlert('Yumurta animasyonları yüklenemedi. Lütfen tekrar dene.');
+      }
     } finally {
+      hideEggPrepOverlay();
       setEggScreenBusy(false);
     }
   }
@@ -850,7 +916,9 @@
         openEggScreen();
       });
     }
-    preloadAllEggAssets();
+    if (typeof window.novaPreloadDragonEggAssets === 'function') {
+      window.novaPreloadDragonEggAssets().catch(function () {});
+    }
   }
 
   function bindScreenUi() {
@@ -1121,7 +1189,9 @@
       });
     }
     try {
-      preloadAllEggAssets();
+      if (typeof window.novaPreloadDragonEggAssets === 'function') {
+        window.novaPreloadDragonEggAssets().catch(function () {});
+      }
     } catch (_) {}
   }
 

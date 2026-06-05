@@ -1,5 +1,44 @@
 /* Ejderha Yumurtası — ana ekran giriş + kırma ekranı */
 
+.nova-egg-prep-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 100200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.nova-egg-prep-overlay[hidden]{
+  display: none !important;
+}
+.nova-egg-prep-overlay__card{
+  padding: 18px 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(49, 46, 129, 0.88));
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+.nova-egg-prep-overlay__text{
+  margin: 0;
+  font-family: 'Comfortaa', 'Inter', system-ui, sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #fde68a;
+  text-align: center;
+  animation: nova-egg-prep-pulse 2s ease-in-out infinite;
+}
+@keyframes nova-egg-prep-pulse{
+  0%, 100%{ opacity: .7; }
+  50%{ opacity: 1; }
+}
+body.nova-egg-prep-active{
+  overflow: hidden;
+}
+
 /* — Ana ekran: sadece 3 yumurtaya tıklanır — */
 #main-screen .nova-dragon-egg-wrap {
   margin-top: 6px;

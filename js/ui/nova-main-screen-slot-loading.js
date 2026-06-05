@@ -6,6 +6,16 @@
   var pollCount = 0;
   var MAX_POLL = 48;
 
+  var SLOT_LABELS = {
+    hero: 'kahraman yükleniyor…',
+    photo: 'yükleniyor…',
+    name: 'yükleniyor…',
+    rank: 'yükleniyor…',
+    cup: 'yükleniyor…',
+    credits: 'yükleniyor…',
+    diamond: 'yükleniyor…'
+  };
+
   function getStatus() {
     if (typeof window.novaMainScreenSlotStatus === 'function') {
       try {
@@ -15,30 +25,34 @@
     return {};
   }
 
-  function ensureLabel(host) {
-    if (!host || host.querySelector('.nova-slot-loading-label')) return;
-    var span = document.createElement('span');
-    span.className = 'nova-slot-loading-label';
-    span.setAttribute('aria-hidden', 'true');
-    span.textContent = 'yükleniyor…';
-    host.appendChild(span);
+  function ensureLabel(host, text) {
+    if (!host) return;
+    var lbl = host.querySelector('.nova-slot-loading-label');
+    if (!lbl) {
+      lbl = document.createElement('span');
+      lbl.className = 'nova-slot-loading-label';
+      lbl.setAttribute('aria-hidden', 'true');
+      host.appendChild(lbl);
+    }
+    lbl.textContent = text || 'yükleniyor…';
   }
 
   function clearLabel(host) {
     if (!host) return;
-    host.classList.remove('nova-slot-pending');
+    host.classList.remove('nova-slot-pending', 'nova-slot-pending--hero');
     var lbl = host.querySelector('.nova-slot-loading-label');
     if (lbl) lbl.remove();
   }
 
-  function syncHost(host, ready) {
+  function syncHost(host, ready, labelText, heroSlot) {
     if (!host) return;
     if (ready) {
       clearLabel(host);
       return;
     }
     host.classList.add('nova-slot-pending');
-    ensureLabel(host);
+    if (heroSlot) host.classList.add('nova-slot-pending--hero');
+    ensureLabel(host, labelText);
   }
 
   function photoHost() {
@@ -51,13 +65,13 @@
 
   window.novaSyncMainSlotPlaceholders = function () {
     var st = getStatus();
-    syncHost(photoHost(), !!st.photo);
-    syncHost(document.getElementById('student-name-stage'), !!st.name);
-    syncHost(document.getElementById('student-rank'), !!st.rank);
-    syncHost(document.getElementById('nova-main-hero-slot'), !!st.hero);
-    syncHost(document.querySelector('.trophy-stats'), !!st.cup);
-    syncHost(document.querySelector('.credits-stats'), !!st.credits);
-    syncHost(document.querySelector('.diamond-stats'), !!st.diamond);
+    syncHost(photoHost(), !!st.photo, SLOT_LABELS.photo);
+    syncHost(document.getElementById('student-name-stage'), !!st.name, SLOT_LABELS.name);
+    syncHost(document.getElementById('student-rank'), !!st.rank, SLOT_LABELS.rank);
+    syncHost(document.getElementById('nova-main-hero-slot'), !!st.hero, SLOT_LABELS.hero, true);
+    syncHost(document.querySelector('.trophy-stats'), !!st.cup, SLOT_LABELS.cup);
+    syncHost(document.querySelector('.credits-stats'), !!st.credits, SLOT_LABELS.credits);
+    syncHost(document.querySelector('.diamond-stats'), !!st.diamond, SLOT_LABELS.diamond);
     return st;
   };
 
@@ -115,6 +129,11 @@
   document.addEventListener(
     'nova:sprite-boot-complete',
     function () {
+      if (typeof window.novaBonusDrawerSetOpen === 'function') {
+        try {
+          window.novaBonusDrawerSetOpen(false);
+        } catch (_) {}
+      }
       if (!window.__novaMainSlotPlaceholdersActive) {
         window.novaActivateMainSlotPlaceholders();
       }

@@ -52,10 +52,18 @@
         true
       );
     }
-    syncDrawerA11y(drawer, false);
+    setDrawerOpen(false);
   }
 
   window.novaBonusDrawerSetOpen = setDrawerOpen;
+
+  document.addEventListener(
+    'nova:sprite-boot-complete',
+    function () {
+      setDrawerOpen(false);
+    },
+    { passive: true }
+  );
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initBonusDrawer, { once: true });
