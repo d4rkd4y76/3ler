@@ -260,8 +260,13 @@
 
       window.__novaBootMainPrep = true;
       try {
+        var main = document.getElementById('main-screen');
+        var login = document.getElementById('student-selection-screen');
+        if (login) login.style.display = 'none';
+        if (main) main.style.removeProperty('display');
+
         status('Lig ve arayüz hazırlanıyor…');
-        await waitMainScreenPrefetch(4500);
+        await waitMainScreenPrefetch(12000);
         await window.novaEnsureMainScreenReady({ force: true });
         status('Hazır!');
         return true;

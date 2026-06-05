@@ -27,6 +27,20 @@ body.nova-sprite-boot-active{
   transform: translateY(12px);
   opacity: 0;
 }
+#nova_sprite_boot_overlay.is-handoff{
+  transition: opacity .45s cubic-bezier(.4, 0, .2, 1), visibility .45s;
+}
+#nova_sprite_boot_overlay.is-handoff .nova-sprite-boot-video-layer{
+  transform: scale(1.02);
+  opacity: 0;
+  transition: transform .45s cubic-bezier(.4, 0, .2, 1), opacity .4s;
+}
+
+body.nova-main-screen-visible #main-screen{
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 #nova_sprite_boot_overlay[hidden]{
   display: none !important;
 }
