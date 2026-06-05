@@ -451,19 +451,22 @@
     rewardTag.textContent = '🐉 EJDER YUMURTASI';
     wrapBtn.appendChild(rewardTag);
     btn.setAttribute('title', 'Doğru cevapta rastgele ejderha yumurtası');
-    const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
-    const questWrap = document.getElementById('quest_fab_wrap');
-    const questSlot = document.getElementById('main-screen-quest-slot');
-    const puzWrap = document.getElementById('puzzle_fab_wrap');
-    const ms = document.getElementById('main-screen');
-    const parent = bonusPanel || (puzWrap && puzWrap.parentNode) || (questWrap && questWrap.parentNode) || questSlot || ms || document.body;
-    if (puzWrap && puzWrap.parentNode === parent && parent.contains(puzWrap)){
-      if (wrapBtn.previousElementSibling !== puzWrap){ parent.insertBefore(wrapBtn, puzWrap.nextSibling); }
-    } else if (questWrap && questWrap.parentNode === parent) {
-      if (questWrap.nextSibling) parent.insertBefore(wrapBtn, questWrap.nextSibling);
-      else parent.appendChild(wrapBtn);
-    } else {
-      parent.appendChild(wrapBtn);
+    function mountFillblankIntoBonusPanel(){
+      const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
+      if (!bonusPanel) return false;
+      const puzWrap = document.getElementById('puzzle_fab_wrap');
+      if (puzWrap && puzWrap.parentNode === bonusPanel){
+        if (wrapBtn.parentNode !== bonusPanel || wrapBtn.previousElementSibling !== puzWrap){
+          bonusPanel.insertBefore(wrapBtn, puzWrap.nextSibling);
+        }
+      } else if (wrapBtn.parentNode !== bonusPanel) {
+        bonusPanel.appendChild(wrapBtn);
+      }
+      return true;
+    }
+    if (!mountFillblankIntoBonusPanel()){
+      setTimeout(mountFillblankIntoBonusPanel, 120);
+      setTimeout(mountFillblankIntoBonusPanel, 500);
     }
     const labelEl = btn.querySelector('.fb-fab-label');
     function fitFabText(){
@@ -484,20 +487,9 @@
     }
     function placeAndSizeLikeQuest(){
       try{
-        const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
-        const puzW = document.getElementById('puzzle_fab_wrap');
-        if (bonusPanel && wrapBtn.parentNode !== bonusPanel){
-          if (puzW && puzW.parentNode === bonusPanel){
-            bonusPanel.insertBefore(wrapBtn, puzW.nextSibling);
-          } else {
-            bonusPanel.appendChild(wrapBtn);
-          }
-        } else if (bonusPanel && puzW && wrapBtn.parentNode === bonusPanel && wrapBtn.previousElementSibling !== puzW){
-          bonusPanel.insertBefore(wrapBtn, puzW.nextSibling);
-        }
-        const hudLeft = document.getElementById('main-screen-hud-left');
-        if (hudLeft && wrapBtn.parentNode === hudLeft && bonusPanel){
-          bonusPanel.appendChild(wrapBtn);
+        mountFillblankIntoBonusPanel();
+        if (typeof window.novaEnsureBonusFabsInPanel === 'function') {
+          window.novaEnsureBonusFabsInPanel();
         }
         const qbtn = document.getElementById('quest_fab');
         if (!qbtn) return;

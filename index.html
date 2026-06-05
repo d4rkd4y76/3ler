@@ -73,8 +73,8 @@
 <script src="js/core/nova-cdn-config.js?v=30260604cdn1"></script>
 <script src="js/core/nova-cdn-fetch.js?v=30260604cdn1"></script>
 
-<script src="js/core/002-script-002.js?v=30260605bonushit3"></script>
-<script src="js/core/003-nova-matching-game.js?v=30260605bonushit3"></script>
+<script src="js/core/002-script-002.js?v=30260605bonushit4"></script>
+<script src="js/core/003-nova-matching-game.js?v=30260605bonushit4"></script>
 <link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=30260602perf1" />
 <script src="js/core/005-nova-daily-puzzle.js?v=30260527hero_retry1"></script>
 <script src="js/core/006-script-006.js"></script>
@@ -110,6 +110,12 @@
 
 <link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=30260605boot22" />
 <link rel="stylesheet" href="styles/114-nova-main-slot-loading.css?v=30260605slot1" />
+<style id="nova-bonus-drawer-critical-css">
+#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel{display:none!important;visibility:hidden!important;max-height:0!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;pointer-events:none!important}
+#main-screen #puzzle_fab_wrap,#main-screen #fillblank_fab_wrap,#main-screen #match_fab_wrap{display:none!important;visibility:hidden!important;pointer-events:none!important}
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #puzzle_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #fillblank_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #match_fab_wrap{display:flex!important;visibility:visible!important;pointer-events:auto!important}
+#main-screen #main-screen-quest-slot>#puzzle_fab_wrap,#main-screen #main-screen-quest-slot>#fillblank_fab_wrap,#main-screen #main-screen-quest-slot>#match_fab_wrap{display:none!important;visibility:hidden!important;pointer-events:none!important}
+</style>
 <link rel="preload" href="assets/boot-loading/boot-main.webp" as="image" type="image/webp" fetchpriority="high" />
 </head>
 <body data-nova-back='1'>
@@ -1232,8 +1238,8 @@
 
 <script src="js/core/045-nova-weekly-quests.js"></script>
 
-<script src="js/features/046-nova-move-homework-above-photo.js?v=30260602tools1"></script>
-<script src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit3"></script>
+<script src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
+<script src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
 <script src="js/ui/004-nova-perf-settings-script.js?v=30260602perf1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
@@ -1439,7 +1445,7 @@
 <script src="js/features/053-script-053.js"></script>
 <script src="js/core/054-nova-single-result-screen-guard.js?v=30260526sp_fix3"></script>
 <link rel="stylesheet" href="styles/059-login-premium.css?v=2" />
-<link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260605bonushit3" />
+<link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260605bonushit4" />
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=30260602perf1" />
 <link rel="stylesheet" href="styles/107-nova-main-hud-frame-fit.css?v=30260602framefit1" />
 <link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260602perf1" />

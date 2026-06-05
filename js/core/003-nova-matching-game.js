@@ -433,18 +433,31 @@
     rewardTag.setAttribute('aria-hidden', 'true');
     rewardTag.textContent = '🐉 EJDER YUMURTASI';
     wrap.appendChild(rewardTag);
-    const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
-    const hudLeft = bonusPanel || document.getElementById('main-screen-quest-slot') || document.getElementById('main-screen');
-    const fbWrap = document.getElementById('fillblank_fab_wrap');
-    if (hudLeft){
-      if (fbWrap && fbWrap.parentNode === hudLeft) hudLeft.insertBefore(wrap, fbWrap.nextSibling);
-      else hudLeft.appendChild(wrap);
+    function mountMatchIntoBonusPanel(){
+      const bonusPanel = document.getElementById('nova_bonus_drawer_panel');
+      if (!bonusPanel) return false;
+      const fbWrap = document.getElementById('fillblank_fab_wrap');
+      if (fbWrap && fbWrap.parentNode === bonusPanel){
+        if (wrap.parentNode !== bonusPanel || wrap.previousElementSibling !== fbWrap){
+          bonusPanel.insertBefore(wrap, fbWrap.nextSibling);
+        }
+      } else if (wrap.parentNode !== bonusPanel) {
+        bonusPanel.appendChild(wrap);
+      }
+      return true;
+    }
+    if (!mountMatchIntoBonusPanel()){
+      setTimeout(mountMatchIntoBonusPanel, 120);
+      setTimeout(mountMatchIntoBonusPanel, 500);
     }
     function syncMatchFabSizeLikeBlank(){
       try{
+        mountMatchIntoBonusPanel();
+        if (typeof window.novaEnsureBonusFabsInPanel === 'function') {
+          window.novaEnsureBonusFabsInPanel();
+        }
         const mBtn = document.getElementById('match_fab');
         if (!mBtn) return;
-        // Sizing is controlled by responsive CSS for all side FABs.
         mBtn.style.pointerEvents = 'auto';
       }catch(_){}
     }

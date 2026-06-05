@@ -352,6 +352,35 @@
   border-color: rgba(167, 139, 250, 0.65);
 }
 
+/* — Bonus FAB'lar yalnızca açık çekmecede görünür — */
+#main-screen #puzzle_fab_wrap,
+#main-screen #fillblank_fab_wrap,
+#main-screen #match_fab_wrap {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#main-screen #main-screen-quest-slot > #puzzle_fab_wrap,
+#main-screen #main-screen-quest-slot > #fillblank_fab_wrap,
+#main-screen #main-screen-quest-slot > #match_fab_wrap {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #puzzle_fab_wrap,
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #fillblank_fab_wrap,
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #match_fab_wrap {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
 /* — Bonus etkinlikler — kapalıyken içerik gizli ve tıklanamaz — */
 #main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel,
 #main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel * {

@@ -100,6 +100,12 @@
       }
 
       tuneFabLabels();
+      if (typeof window.novaEnsureBonusFabsInPanel === 'function') {
+        window.novaEnsureBonusFabsInPanel();
+      }
+      if (typeof window.novaForceBonusDrawerClosed === 'function') {
+        window.novaForceBonusDrawerClosed();
+      }
       return !!(hw || dnw || qw || fbw || pzw || mfw || sb);
     } catch (e) {
       return false;
