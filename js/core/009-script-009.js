@@ -41,7 +41,7 @@ function getStars() {
 }
 
 function getLeagueEmblemSvg(league) {
-  var uid = 'nl' + league + '_' + Math.random().toString(36).slice(2, 8);
+  var uid = 'nl' + league + '_emblem';
   var palettes = {
     1: { a: '#8b5a2b', b: '#d4a574', c: '#5c3d1e', glow: '#fbbf24', gem: '#fde68a' },
     2: { a: '#475569', b: '#94a3b8', c: '#1e293b', glow: '#38bdf8', gem: '#7dd3fc' },

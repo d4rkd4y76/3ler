@@ -71,6 +71,17 @@
   window.novaApplyGameCupLeague = function (cups) {
     var cnt = Number(cups);
     if (!isFinite(cnt) || cnt < 0) cnt = 0;
+    if (window.__novaLastAppliedCup === cnt) {
+      try {
+        var rkCheck = document.getElementById('student-rank');
+        var leagueCheck =
+          typeof getLeagueFromCups === 'function' ? getLeagueFromCups(cnt) : null;
+        if (rkCheck && leagueCheck != null && rkCheck.querySelector('.nova-lig--' + leagueCheck)) {
+          return;
+        }
+      } catch (_) {}
+    }
+    window.__novaLastAppliedCup = cnt;
     window.__novaCachedGameCup = cnt;
     var cupEl = document.getElementById('game-cup-score');
     if (cupEl) cupEl.textContent = String(cnt);
@@ -460,13 +471,16 @@
 
   function maybeStartEarly() {
     if (!getStoredStudent()) return;
+    if (window.__novaSpriteBootManaged && !window.__novaSpriteBootDone) return;
     window.novaApplyMainScreenHudInstant();
     window.novaPrefetchMainScreenAssets();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', maybeStartEarly, { once: true });
-  } else {
-    maybeStartEarly();
+  if (!window.__novaSpriteBootManaged) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', maybeStartEarly, { once: true });
+    } else {
+      maybeStartEarly();
+    }
   }
 })();

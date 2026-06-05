@@ -128,6 +128,7 @@
 
   function bootVideoBlocksSprites() {
     try {
+      if (window.__novaBootMainPrep === true) return false;
       return (
         window.__novaBootVideoPhase === true &&
         isPhoneDevice() &&

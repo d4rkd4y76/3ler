@@ -45,6 +45,12 @@ body.nova-main-screen-visible #main-screen{
 
 #nova_sprite_boot_overlay[hidden]{
   display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+#nova_sprite_boot_overlay.is-exiting,
+#nova_sprite_boot_overlay.is-handoff{
+  pointer-events: none !important;
 }
 
 /* Dekor — videonun ALTINDA */

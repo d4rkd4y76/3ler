@@ -11,7 +11,8 @@
       else panel.setAttribute('inert', '');
       var buttons = panel.querySelectorAll('button');
       for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = !open;
+        if (buttons[i].id === 'nova_bonus_drawer_toggle') continue;
+        buttons[i].disabled = false;
       }
     }
   }
@@ -31,6 +32,26 @@
     toggle.addEventListener('click', function () {
       setDrawerOpen(!drawer.classList.contains('is-open'));
     });
+    if (!document.__novaBonusFabAutoOpenBound) {
+      document.__novaBonusFabAutoOpenBound = true;
+      document.addEventListener(
+        'click',
+        function (ev) {
+          var fab = ev.target && ev.target.closest('#puzzle_fab, #fillblank_fab, #match_fab');
+          if (!fab || !drawer) return;
+          if (drawer.classList.contains('is-open')) return;
+          ev.preventDefault();
+          ev.stopPropagation();
+          setDrawerOpen(true);
+          setTimeout(function () {
+            try {
+              fab.click();
+            } catch (_) {}
+          }, 60);
+        },
+        true
+      );
+    }
     syncDrawerA11y(drawer, false);
   }
 

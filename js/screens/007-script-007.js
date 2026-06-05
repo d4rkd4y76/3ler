@@ -4261,23 +4261,14 @@ window.onload = async () => {
 
             window.__novaAppMainReady = true;
             try { document.dispatchEvent(new CustomEvent('nova:app-main-ready')); } catch (_) {}
-            try {
-              if (typeof window.novaApplyMainScreenHudInstant === 'function') {
-                window.novaApplyMainScreenHudInstant();
-              }
-            } catch (_) {}
-            try {
-              if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-                window.novaPrefetchMainScreenAssets();
-              }
-            } catch (_) {}
-            try {
-              if (typeof window.novaEnsureMainScreenReady === 'function') {
-                window.novaEnsureMainScreenReady({ force: true });
-              } else if (typeof window.novaStabilizeMainScreen === 'function') {
-                window.novaStabilizeMainScreen({ force: true });
-              }
-            } catch (_) {}
+            var bootPipelineActive = window.__novaSpriteBootManaged && !window.__novaSpriteBootDone;
+            if (!bootPipelineActive) {
+              try {
+                if (typeof window.novaApplyMainScreenHudInstant === 'function') {
+                  window.novaApplyMainScreenHudInstant();
+                }
+              } catch (_) {}
+            }
 
             // Fotoğraf yükleme
             try {
@@ -4325,15 +4316,17 @@ window.onload = async () => {
 
             addLoggedInPlayer(selectedStudent).catch(function(e){ console.error('addLoggedInPlayer', e); });
             startInvitationListener(selectedStudent.studentId);
-            if (typeof window.fetchAndDisplayGameCup === 'function') {
-              window.fetchAndDisplayGameCup(true);
-            }
-            if (typeof window.novaEnsureMainScreenReady === 'function' && !window.__novaMainScreenBootReady) {
-              try { window.novaEnsureMainScreenReady(); } catch (_) {}
-            } else if (typeof window.novaStabilizeMainScreen === 'function' && !window.__novaMainScreenBootReady) {
-              try { window.novaStabilizeMainScreen(); } catch (_) {}
-            } else if (!window.__novaMainScreenBootReady) {
-              onMainScreenLoad();
+            if (!bootPipelineActive) {
+              if (typeof window.fetchAndDisplayGameCup === 'function') {
+                window.fetchAndDisplayGameCup(true);
+              }
+              if (typeof window.novaEnsureMainScreenReady === 'function' && !window.__novaMainScreenBootReady) {
+                try { window.novaEnsureMainScreenReady(); } catch (_) {}
+              } else if (typeof window.novaStabilizeMainScreen === 'function' && !window.__novaMainScreenBootReady) {
+                try { window.novaStabilizeMainScreen(); } catch (_) {}
+              } else if (!window.__novaMainScreenBootReady) {
+                onMainScreenLoad();
+              }
             }
             try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
             try { novaBindAdminPortalBtnOnce(); } catch(_) {}
@@ -4369,7 +4362,7 @@ window.onload = async () => {
     }
 };
 try { window.onMainScreenLoad = onMainScreenLoad; } catch (_) {}
-window.addEventListener('pageshow', ()=>{ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); if(window.novaEnsureMainScreenReady) window.novaEnsureMainScreenReady({ force: true }); }catch(_){} });
+window.addEventListener('pageshow', ()=>{ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} });
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden){ try{ window.novaEnsureLoggedInUi && window.novaEnsureLoggedInUi(); }catch(_){} } });
 
         // Sınıf adları: fetchClassesForSelection + populateClassSelect içinde classNameMap doldurulur (çift tam okuma yok).

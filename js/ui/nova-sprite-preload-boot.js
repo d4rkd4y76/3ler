@@ -6,6 +6,8 @@
   var VIDEO_FALLBACK = ['yeni_loading.mp4', 'kaynaklar_yukleniyor.mp4', 'kaynaklar_y\u00fckleniyor.mp4'];
   var TARGET_DURATION_MS = 6000;
   var MAX_WAIT_MS = 90000;
+  var MAX_WAIT_PHONE_MS = 28000;
+  var stateBootStartedAt = 0;
   var EXIT_HOLD_MS = 380;
   var HANDOFF_PAINT_MS = 64;
   var POST_ANIM_VISUAL_MS = 2800;
@@ -305,17 +307,25 @@
     state._bootBlobUrl = null;
   }
 
-  function hideOverlayImmediate() {
+  function ensureBootOverlayDismissed() {
     var ov = getOverlay();
-    if (!ov) return;
     stopFinishingPulse();
     stopRenderLoop();
     window.__novaBootVideoPhase = false;
-    ov.hidden = true;
-    ov.classList.add('is-exiting');
+    window.__novaBootMainPrep = false;
+    if (ov) {
+      ov.hidden = true;
+      ov.classList.add('is-exiting', 'is-handoff');
+      ov.style.pointerEvents = 'none';
+    }
     try {
       document.body.classList.remove('nova-sprite-boot-active');
+      document.body.style.removeProperty('touch-action');
     } catch (_) {}
+  }
+
+  function hideOverlayImmediate() {
+    ensureBootOverlayDismissed();
   }
 
   function playExitTransition(cb) {
@@ -541,13 +551,13 @@
     var img = bootSheet.img;
     if (!canvas || !m || !img) return;
 
-    var fi = 0;
-    var accum = 0;
-    var last = 0;
     var fps = m.fps || 24;
     var frameMs = 1000 / fps;
     var frames = m.loopEnd || m.frameCount || 1;
+    var startWall = performance.now();
     var lastFrameFired = false;
+    var fi = 0;
+    var backupTimer = 0;
 
     function onResize() {
       drawBootFrame(canvas, fi);
@@ -555,20 +565,14 @@
     window.addEventListener('resize', onResize);
     state._bootResizeOff = function () {
       window.removeEventListener('resize', onResize);
+      if (backupTimer) clearInterval(backupTimer);
+      backupTimer = 0;
     };
 
-    function draw(now) {
+    function paintFrame(now) {
       if (state.exiting) return;
-      if (!last) last = now;
-      var delta = now - last;
-      last = now;
-      if (delta > frameMs * 2) delta = frameMs;
-      accum += delta;
-      while (accum >= frameMs && fi < frames - 1) {
-        accum -= frameMs;
-        fi += 1;
-      }
-
+      var elapsed = (now || performance.now()) - startWall;
+      fi = Math.min(frames - 1, Math.max(0, Math.floor(elapsed / frameMs)));
       drawBootFrame(canvas, fi);
 
       if (typeof onFrame === 'function') {
@@ -577,21 +581,40 @@
         } catch (_) {}
       }
 
-      if (!lastFrameFired && fi >= frames - 1) {
+      if (!lastFrameFired && (fi >= frames - 1 || elapsed >= frames * frameMs)) {
         lastFrameFired = true;
         if (typeof onLastFrame === 'function') {
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              try {
-                onLastFrame();
-              } catch (_) {}
-            });
-          });
+          try {
+            onLastFrame();
+          } catch (_) {}
         }
       }
-
-      if (!state.exiting) state.raf = requestAnimationFrame(draw);
     }
+
+    function draw(now) {
+      paintFrame(now);
+      if (!state.exiting && !lastFrameFired) state.raf = requestAnimationFrame(draw);
+    }
+
+    function onVis() {
+      if (!document.hidden && !state.exiting && !lastFrameFired) paintFrame(performance.now());
+    }
+    document.addEventListener('visibilitychange', onVis);
+
+    var oldOff = state._bootResizeOff;
+    state._bootResizeOff = function () {
+      document.removeEventListener('visibilitychange', onVis);
+      if (typeof oldOff === 'function') oldOff();
+    };
+
+    backupTimer = setInterval(function () {
+      if (state.exiting || lastFrameFired) {
+        clearInterval(backupTimer);
+        backupTimer = 0;
+        return;
+      }
+      paintFrame(performance.now());
+    }, Math.max(28, Math.floor(frameMs * 0.85)));
 
     canvas.hidden = false;
     canvas.removeAttribute('hidden');
@@ -851,12 +874,12 @@
           }
         }
 
-        if (!mainElementsReadyNow()) {
+        if (!mainElementsReadyNow() && !isPhoneBoot()) {
           throw new Error('main-screen-not-ready');
         }
 
         revealMainScreenUnderOverlay();
-        await waitForMainScreenPaint(1200);
+        await waitForMainScreenPaint(isPhoneBoot() ? 480 : 1200);
 
         state.handoffReady = true;
         stopFinishingPulse();
@@ -877,7 +900,7 @@
           }
           revealMainScreenUnderOverlay();
           await waitForMainScreenPaint(1200);
-          state.handoffReady = mainElementsReadyNow();
+          state.handoffReady = mainElementsReadyNow() || isPhoneBoot();
           stopPostAnimProgress();
           if (state.handoffReady) {
             setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
@@ -927,8 +950,37 @@
     }
 
     var prepPromise = runLightBootWork();
+    stateBootStartedAt = Date.now();
+    var sheetWaitMs = isPhoneBoot() ? 18000 : 60000;
 
-    return waitBootSheetFullyReady(60000)
+    if (isPhoneBoot()) {
+      return playBootVideoPlain(ov)
+        .then(function () {
+          return prepPromise;
+        })
+        .then(function () {
+          return finishBootHandoff();
+        })
+        .catch(function () {
+          return waitBootSheetFullyReady(sheetWaitMs)
+            .then(function () {
+              setProgress(0, 'Animasyon hazır…');
+              return primeBootCanvas(ov);
+            })
+            .then(function () {
+              setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
+              return playBootSprite(ov);
+            })
+            .then(function () {
+              return prepPromise;
+            })
+            .then(function () {
+              return finishBootHandoff();
+            });
+        });
+    }
+
+    return waitBootSheetFullyReady(sheetWaitMs)
       .then(function () {
         setProgress(0, 'Animasyon hazır…');
         return primeBootCanvas(ov);
@@ -994,24 +1046,36 @@
       return Promise.resolve();
     }
 
+    var maxWait = isPhoneBoot() ? MAX_WAIT_PHONE_MS : MAX_WAIT_MS;
     var timeout = setTimeout(function () {
+      state.handoffReady = true;
       safeExitBoot();
-    }, MAX_WAIT_MS);
+    }, maxWait);
+
+    var overlayWatch = setInterval(function () {
+      if (window.__novaSpriteBootDone) ensureBootOverlayDismissed();
+    }, 1500);
 
     return runCinematicBoot()
       .then(function () {
         clearTimeout(timeout);
+        clearInterval(overlayWatch);
         if (!state.handoffReady) {
           return finishBootHandoff();
         }
       })
       .then(function () {
+        if (!state.handoffReady && isPhoneBoot()) {
+          state.handoffReady = true;
+        }
         if (!state.handoffReady) {
           throw new Error('boot-handoff-incomplete');
         }
         markBootDone();
+        ensureBootOverlayDismissed();
         return new Promise(function (resolve) {
           playExitTransition(function () {
+            ensureBootOverlayDismissed();
             dispatchBootComplete();
             resolve();
           });
@@ -1019,7 +1083,13 @@
       })
       .catch(function () {
         clearTimeout(timeout);
+        clearInterval(overlayWatch);
+        state.handoffReady = true;
         return safeExitBoot();
+      })
+      .finally(function () {
+        clearInterval(overlayWatch);
+        ensureBootOverlayDismissed();
       });
   }
 

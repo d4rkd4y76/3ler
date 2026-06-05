@@ -21,6 +21,7 @@
   var screenBound = false;
   var cracking = false;
   var eggScreenOpen = false;
+  var eggHistoryPushed = false;
   var eggPreloadPromise = null;
 
   function getStudent() {
@@ -535,7 +536,7 @@
 
   function setEggScreenBusy(busy) {
     var closeBtn = document.getElementById('nova_degg_screen_close');
-    if (closeBtn) closeBtn.disabled = !!busy;
+    if (closeBtn) closeBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
   }
 
   function resetScreenPickPhase() {
@@ -559,10 +560,19 @@
     renderMainHubSummary(getStudent());
   }
 
+  function pushEggHistory() {
+    if (eggHistoryPushed) return;
+    try {
+      history.pushState({ novaEggScreen: true }, '', location.href);
+      eggHistoryPushed = true;
+    } catch (_) {}
+  }
+
   async function openEggScreen() {
     var screen = eggScreenEl();
     if (!screen) return;
     eggScreenOpen = true;
+    pushEggHistory();
     screen.hidden = false;
     screen.setAttribute('aria-hidden', 'false');
     screen.classList.add('is-open');
@@ -591,9 +601,9 @@
     }
   }
 
-  function closeEggScreen() {
+  function closeEggScreen(fromPopstate) {
     var screen = eggScreenEl();
-    if (!screen) return;
+    if (!screen || !eggScreenOpen) return;
     eggScreenOpen = false;
     screen.classList.remove('is-open');
     screen.hidden = true;
@@ -603,6 +613,14 @@
     renderMainHubSummary(getStudent());
     var hub = document.getElementById('nova_dragon_egg_hub');
     if (hub && !hub.querySelector('canvas')) playHubLoop(hub);
+    if (!fromPopstate && eggHistoryPushed) {
+      eggHistoryPushed = false;
+      try {
+        history.back();
+      } catch (_) {}
+      return;
+    }
+    eggHistoryPushed = false;
   }
 
   window.novaOpenDragonEggScreen = openEggScreen;
@@ -839,7 +857,17 @@
     if (screenBound) return;
     screenBound = true;
     var closeBtn = document.getElementById('nova_degg_screen_close');
-    if (closeBtn) closeBtn.addEventListener('click', closeEggScreen);
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        closeEggScreen(false);
+      });
+    }
+    if (!window.__novaEggPopstateBound) {
+      window.__novaEggPopstateBound = true;
+      window.addEventListener('popstate', function () {
+        if (eggScreenOpen) closeEggScreen(true);
+      });
+    }
     var okBtn = document.getElementById('nova_degg_screen_reward_ok');
     if (okBtn) okBtn.addEventListener('click', closeRewardPhase);
     EGG_TYPES.forEach(function (t) {
