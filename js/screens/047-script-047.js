@@ -162,8 +162,11 @@
       }
       if (idx) return Object.keys(idx);
     }catch(_){}
-    // B) fallback: minimal guess (avoid heavy download)
-    return ['duel','EFSANE']; // will still work; user can switch category; heavy fetch only when category clicked
+    // B) fallback: yeni avatar köşeleri (legacy gizlenir — tam liste hub’dan gelir)
+    if (typeof window.novaGetDefaultAvatarCategoryKeys === 'function') {
+      return window.novaGetDefaultAvatarCategoryKeys().slice();
+    }
+    return ['bilim_kosesi', 'liderler_kosesi', 'padisahlar_kosesi'];
   }
   async function loadProfilePhotos(category){
     // Called after user chooses category; fetch only that branch
@@ -184,14 +187,30 @@
     return obj;
   }
   async function renderStoreCategoryButtons_optimized(){
+    if (typeof window.novaStoreHubInit === 'function') return;
     const area = document.querySelector('.profile-categories');
     if (!area) return;
     area.style.display='flex'; area.innerHTML='';
-    const cats = await getStoreCategories();
+    let cats = await getStoreCategories();
+    if (typeof window.novaFilterAvatarStoreKeys === 'function') {
+      cats = window.novaFilterAvatarStoreKeys(cats);
+    }
+    if (typeof window.novaSortAvatarStoreKeys === 'function') {
+      cats = window.novaSortAvatarStoreKeys(cats);
+    }
+    const labelFor = (k) => {
+      if (typeof window.novaAvatarCategoryLabel === 'function') return window.novaAvatarCategoryLabel(k);
+      try {
+        const m = window.storeCategoryMeta && window.storeCategoryMeta[k];
+        if (m && m.label) return String(m.label);
+      } catch(_){}
+      return k;
+    };
     cats.forEach((k,i)=>{
       const btn = document.createElement('button');
       btn.className = 'category-button'+(i===0?' active':'');
-      btn.dataset.category=k; btn.textContent=k;
+      btn.dataset.category=k;
+      btn.textContent = labelFor(k);
       btn.addEventListener('click', ()=>{
         document.querySelectorAll('.category-button').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');

@@ -32,6 +32,9 @@
     if (k === '__nameFrames') return 'İsim Çerçevesi';
     if (k === '__avatarFrames') return 'Avatar Çerçevesi';
     if (k === 'duel') return 'Düello Biletleri';
+    if (typeof window.novaAvatarCategoryLabel === 'function') {
+      return window.novaAvatarCategoryLabel(k);
+    }
     try {
       var m = window.storeCategoryMeta && window.storeCategoryMeta[k];
       if (m && m.label) return String(m.label);
@@ -40,11 +43,16 @@
   }
 
   function sortAvatarKeys(keys) {
+    if (typeof window.novaSortAvatarStoreKeys === 'function') {
+      var duel = keys.indexOf('duel') >= 0;
+      var sorted = window.novaSortAvatarStoreKeys(keys);
+      if (duel && sorted.indexOf('duel') < 0) sorted.unshift('duel');
+      return sorted;
+    }
     keys = unique(keys).filter(function (k) { return k && !PSEUDO_KEYS[k]; });
     var meta = window.storeCategoryMeta || {};
     var hasDuel = keys.indexOf('duel') >= 0;
-    var hasEfsane = keys.indexOf('EFSANE') >= 0;
-    var rest = keys.filter(function (k) { return k !== 'duel' && k !== 'EFSANE'; });
+    var rest = keys.filter(function (k) { return k !== 'duel'; });
     rest.sort(function (a, b) {
       var oa = (meta[a] && meta[a].order != null) ? Number(meta[a].order) : 1e12;
       var ob = (meta[b] && meta[b].order != null) ? Number(meta[b].order) : 1e12;
@@ -53,20 +61,28 @@
     });
     var out = [];
     if (hasDuel) out.push('duel');
-    out = out.concat(rest);
-    if (hasEfsane) out.push('EFSANE');
-    return out;
+    return out.concat(rest);
   }
 
   function collectAvatarKeys() {
     var keys = [];
     try {
       if (typeof photoCategories === 'object' && photoCategories) {
-        keys = Object.keys(photoCategories);
+        keys = keys.concat(Object.keys(photoCategories));
       }
     } catch (_) {}
-    if (!keys.length) {
-      keys = ['duel', 'TemelKarakterler', 'DünyaDevleri', 'KizlarKösesi', 'SüperLig', 'EFSANE'];
+    try {
+      if (window.storeCategoryMeta) {
+        keys = keys.concat(Object.keys(window.storeCategoryMeta));
+      }
+    } catch (_) {}
+    if (typeof window.novaFilterAvatarStoreKeys === 'function') {
+      keys = window.novaFilterAvatarStoreKeys(keys);
+    } else {
+      keys = unique(keys).filter(function (k) { return k && !PSEUDO_KEYS[k]; });
+    }
+    if (!keys.length && typeof window.novaGetDefaultAvatarCategoryKeys === 'function') {
+      keys = window.novaGetDefaultAvatarCategoryKeys();
     }
     return sortAvatarKeys(keys);
   }
@@ -143,10 +159,6 @@
       btn.dataset.category = item.id;
       btn.setAttribute('role', 'tab');
       btn.textContent = item.label;
-      if (item.id === 'EFSANE') {
-        btn.classList.add('nova-store-sub-btn--legend');
-        btn.title = '🔥 Efsane Seçkisi';
-      }
       if (item.id === '__battleHeroesEpik') {
         btn.classList.add('nova-store-sub-btn--epic');
         btn.title = '👑 Epik kahramanlar';
@@ -169,7 +181,7 @@
       cat = preferredSub || '__nameFrames';
     } else {
       var keys = collectAvatarKeys();
-      cat = preferredSub || keys[0] || 'TemelKarakterler';
+      cat = preferredSub || keys[0] || (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' ? window.novaGetDefaultAvatarCategoryKeys()[0] : 'bilim_kosesi');
     }
     loadCategory(cat);
     try {

@@ -48,10 +48,16 @@ const NOVA_DUEL_MATCH_FOUND_MS = 2800;
 const NOVA_DUEL_PREP_MS = 10000;
 const NOVA_DUEL_SYNC_ENTER_MS = NOVA_DUEL_MATCH_FOUND_MS;
 
-        // Audio Elementlerini Seçme
-        const duelMusic = document.getElementById('duelBackgroundMusic');
-        const winnerMusic = document.getElementById('winnerMusic');
-        const singlePlayerQuestionMusic = document.getElementById('singlePlayerQuestionMusic');
+        // Arka plan müziği devre dışı (nova-no-music.js)
+        const duelMusic = (typeof window.novaCreateMusicNoop === 'function')
+            ? window.novaCreateMusicNoop()
+            : { pause: function () {}, play: function () { return Promise.resolve(); }, currentTime: 0, paused: true, loop: false };
+        const winnerMusic = (typeof window.novaCreateMusicNoop === 'function')
+            ? window.novaCreateMusicNoop()
+            : duelMusic;
+        const singlePlayerQuestionMusic = (typeof window.novaCreateMusicNoop === 'function')
+            ? window.novaCreateMusicNoop()
+            : duelMusic;
 
         // "Oyunu Sonlandır" butonuna eklenen event listener
 var duelFinalBackBtn = document.getElementById('duel-final-back-button');
@@ -6880,19 +6886,16 @@ finally{
 
         // Tüm müzikleri durdurma fonksiyonu
         function stopAllMusic() {
-            if (!duelMusic.paused) {
+            try {
                 duelMusic.pause();
                 duelMusic.currentTime = 0;
-            }
-            if (!winnerMusic.paused) {
                 winnerMusic.pause();
                 winnerMusic.currentTime = 0;
-            }
-            if (!singlePlayerQuestionMusic.paused) {
                 singlePlayerQuestionMusic.pause();
                 singlePlayerQuestionMusic.currentTime = 0;
-            }
+            } catch (_) {}
         }
+        try { window.stopAllMusic = stopAllMusic; } catch (_) {}
 
         // Kupa Sıralaması Butonuna Event Listener (fallback)
         if (kupaSiralamaButton && !kupaSiralamaButton.dataset.rankOpenBound) {
@@ -8648,23 +8651,6 @@ function switchToDuelScreen(duelKey) {
 
 
     novaAttachOptimizedDuelListeners(duelRef, duelKey);
-
-    const hiddenPlayButton = document.createElement('button');
-    hiddenPlayButton.style.display = 'none';
-    hiddenPlayButton.id = 'hiddenPlayButton';
-    duelSelectionScreen.appendChild(hiddenPlayButton);
-
-    hiddenPlayButton.addEventListener('click', () => {
-        duelMusic.play().then(() => {
-            duelMusic.loop = true;
-        }).catch(error => {
-            console.error("Müzik çalınamadı:", error);
-        });
-    });
-
-    setTimeout(() => {
-        hiddenPlayButton.click();
-    }, 1000);
 }
 
 async function syncDuelSelections(data) {

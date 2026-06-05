@@ -508,7 +508,7 @@ window.NovaAdminExport = (function(){
 
     <div id="storeView" class="view">
       <h2>3) Mağaza</h2>
-      <div class="sub">Öğrenci mağazası <b>AVATAR</b> · <b>ÇERÇEVELER</b> · <b>KAHRAMANLAR</b> sekmeleriyle açılır. Veri: <span class="mono">store/profilePhotos</span>, <span class="mono">store/nameFrames</span>, <span class="mono">store/battleHeroes</span>.</div>
+      <div class="sub">Öğrenci mağazası <b>AVATAR</b> · <b>ÇERÇEVELER</b> · <b>KAHRAMANLAR</b> sekmeleriyle açılır. Veri: <span class="mono">store/profilePhotos</span>, <span class="mono">store/nameFrames</span>, <span class="mono">store/battleHeroes</span>. <b>Tüm sınıflar için ortaktır</b> — hangi sınıf seçili olursa olsun yapılan değişiklikler herkeste görünür.</div>
 
       <div class="nova-admin-store-tabs" role="tablist" style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px">
         <button type="button" class="btn acc nova-admin-store-tab active" data-admin-store-tab="avatars">AVATAR</button>
@@ -525,7 +525,11 @@ window.NovaAdminExport = (function(){
               <select id="storeCatSelect"></select>
               <button class="btn acc" id="btnReloadStore">Yenile</button>
             </div>
-            <div class="hint small" style="margin-bottom:8px">Anahtar klasör adıdır (ör. <span class="mono">YeniKategori</span>). Öğrenci ekranında <b>görünen ad</b> ayrı ayarlanır.</div>
+            <div class="hint small" style="margin-bottom:8px">Anahtar klasör adıdır (ör. <span class="mono">bilim_kosesi</span>). Öğrenci ekranında <b>görünen ad</b> ayrı ayarlanır — Türkçe karakterler korunur (ör. <b>BİLİM KÖŞESİ</b>).</div>
+            <div class="toolbar" style="flex-wrap:wrap;gap:8px;margin-bottom:8px">
+              <button class="btn acc" id="btnSeedAvatarCategories" type="button">✨ Varsayılan avatar köşelerini kur</button>
+              <span class="hint small">BİLİM KÖŞESİ · LİDERLER KÖŞESİ · PADİŞAHLAR KÖŞESİ</span>
+            </div>
             <div class="toolbar" style="flex-wrap:wrap;gap:8px">
               <input id="newCatKey" type="text" placeholder="Yeni anahtar (boşsa otomatik)" style="flex:1;min-width:140px"/>
               <input id="newCatLabel" type="text" placeholder="Görünen ad" style="flex:1;min-width:160px"/>
@@ -556,6 +560,7 @@ window.NovaAdminExport = (function(){
               <div><label>Ad (ops.)</label><input id="store_item_name" type="text"></div>
               <div><label>Fiyat (elmas)</label><input id="store_item_price" type="number" min="0" value="0"></div>
               <div class="col" style="flex-basis:100%"><label>URL</label><input id="store_item_url" type="text" placeholder="https://…"></div>
+              <div class="col" style="flex-basis:100%"><label>Açıklama (detay sayfası)</label><textarea id="store_item_desc" rows="2" placeholder="Avatar açıklaması…"></textarea></div>
             </div>
             <div class="sticky-actions">
               <button class="btn ok" id="btnAddStoreItem">➕ Ekle</button>
@@ -1234,6 +1239,7 @@ window.NovaAdminExport = (function(){
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="js/core/nova-store-avatar-categories.js?v=30260605avatarcat2"></script>
 <script src="js/core/nova-admin-cdn.js?v=30260604cdn1"></script>
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
@@ -1308,6 +1314,7 @@ window.NovaAdminExport = (function(){
   function novaAdminMapScopedPath(path){
     const p = String(path || '').replace(/^\/+/, '');
     if (!p) return p;
+    if (p === 'store' || p.indexOf('store/') === 0) return p;
     const prefix = novaAdminScopePrefix();
     if (!prefix) return p;
     const roots = ['denemeQuestions','denemeMeta','denemeAttempts','denemeResults','denemeProgress','denemeLeaderboard','denemeAgg','fillBlanks','dailyPuzzles','dailyPuzzle','matchingGame'];
@@ -3246,6 +3253,10 @@ btnAddHeading.addEventListener('click', async ()=>{
     return t.slice(0, 64);
   }
   function autoKeyFromLabel(label){
+    if (typeof window.novaAutoAvatarCategoryKeyFromLabel === 'function') {
+      const k = window.novaAutoAvatarCategoryKeyFromLabel(label);
+      if (k) return k;
+    }
     const x = sanitizeStoreCategoryKey(label.replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c').replace(/Ğ/g,'G').replace(/Ü/g,'U').replace(/Ş/g,'S').replace(/İ/g,'I').replace(/Ö/g,'O').replace(/Ç/g,'C'));
     return x || ('cat_' + Date.now());
   }
@@ -3261,6 +3272,11 @@ btnAddHeading.addEventListener('click', async ()=>{
       return;
     }
     try{
+      if (typeof window.novaPurgeLegacyAvatarCategories === 'function') {
+        try { await window.novaPurgeLegacyAvatarCategories(rdb); } catch (purgeErr) {
+          console.warn('Eski avatar kategorileri temizlenemedi', purgeErr);
+        }
+      }
       const [snapPhotos, snapMeta, snapFrames] = await Promise.all([
         rdb.ref('store/profilePhotos').get(),
         rdb.ref('store/categoryMeta').get(),
@@ -3269,22 +3285,24 @@ btnAddHeading.addEventListener('click', async ()=>{
       const photos = snapPhotos.exists() ? snapPhotos.val() : {};
       const meta = snapMeta.exists() ? snapMeta.val() : {};
       const hasFrames = snapFrames.exists() && Object.keys(snapFrames.val() || {}).length > 0;
-      const keys = [...new Set([...Object.keys(photos), ...Object.keys(meta)])]
+      const rawKeys = [...new Set([...Object.keys(photos), ...Object.keys(meta)])]
         .filter(k => k && k !== '_meta' && k !== NAME_FRAME_CATEGORY_KEY);
-      keys.sort((a,b)=>{
-        const oa = (meta[a] && meta[a].order != null) ? Number(meta[a].order) : 1e9;
-        const ob = (meta[b] && meta[b].order != null) ? Number(meta[b].order) : 1e9;
-        if (oa !== ob) return oa - ob;
-        const la = (meta[a] && meta[a].label) || a;
-        const lb = (meta[b] && meta[b].label) || b;
-        return String(la).localeCompare(String(lb), 'tr');
-      });
-      storeCatSelect.innerHTML = keys.map(c=>{
-        const lab = (meta[c] && meta[c].label) ? meta[c].label : c;
+      let sortedKeys;
+      if (typeof window.novaSortAvatarStoreKeys === 'function') {
+        sortedKeys = window.novaSortAvatarStoreKeys(rawKeys);
+      } else if (typeof window.novaFilterAvatarStoreKeys === 'function') {
+        sortedKeys = window.novaFilterAvatarStoreKeys(rawKeys);
+      } else {
+        sortedKeys = rawKeys.filter(k => !(typeof window.novaIsLegacyAvatarCategory === 'function' && window.novaIsLegacyAvatarCategory(k)));
+      }
+      storeCatSelect.innerHTML = sortedKeys.map(c=>{
+        const lab = (typeof window.novaAvatarCategoryLabel === 'function')
+          ? window.novaAvatarCategoryLabel(c)
+          : ((meta[c] && meta[c].label) ? meta[c].label : c);
         const safe = String(lab).replace(/</g,'&lt;').replace(/"/g,'&quot;');
         return `<option value="${c}">${safe} (${c})</option>`;
       }).join('');
-      if(keys.length){ storeCatSelect.value = keys[0]; }
+      if(sortedKeys.length){ storeCatSelect.value = sortedKeys[0]; }
       const urlInput = $('#store_item_url');
       if (urlInput) urlInput.placeholder = 'https://…';
       syncCatEditors(meta);
@@ -3402,7 +3420,7 @@ btnAddHeading.addEventListener('click', async ()=>{
       storeItems.innerHTML = '<div class="danger soft">Bu kategori okunamadı: ' + String(e && e.message || e) + '</div>';
       return;
     }
-    const rows = ['<table><thead><tr><th>Önizleme</th><th>Ad</th><th>Fiyat</th><th>URL</th><th></th></tr></thead><tbody>'];
+    const rows = ['<table><thead><tr><th>Önizleme</th><th>Ad</th><th>Fiyat</th><th>Açıklama</th><th>URL</th><th></th></tr></thead><tbody>'];
     let n = 0;
     for (const id in data){
       if (id === '_meta') continue;
@@ -3413,6 +3431,7 @@ btnAddHeading.addEventListener('click', async ()=>{
         <td><img src="${(it.url||'')}" alt="" style="width:70px;height:70px;object-fit:cover;border-radius:8px;border:1px solid var(--border)" /></td>
         <td>${(it.name||'')}</td>
         <td><input data-price="${id}" type="number" min="0" value="${Number(it.price||0)}" style="width:90px"/></td>
+        <td><input data-desc="${id}" type="text" value="${String(it.desc||'').replace(/"/g,'&quot;')}" style="min-width:180px" placeholder="Detay açıklaması"/></td>
         <td class="mono small" style="word-break:break-all">${(it.url||'')}</td>
         <td>
           <button class="btn small" data-save="${id}">Kaydet</button>
@@ -3430,8 +3449,11 @@ btnAddHeading.addEventListener('click', async ()=>{
       btn.addEventListener('click', async ()=>{
         const id = btn.getAttribute('data-save');
         const priceEl = storeItems.querySelector(`input[data-price="${id}"]`);
-        await rdb.ref(`store/profilePhotos/${storeCatSelect.value}/${id}/price`).set(Number(priceEl.value||0));
-        alert('Fiyat güncellendi.');
+        const descEl = storeItems.querySelector(`input[data-desc="${id}"]`);
+        const catKey = storeCatSelect.value;
+        await rdb.ref(`store/profilePhotos/${catKey}/${id}/price`).set(Number(priceEl.value||0));
+        await rdb.ref(`store/profilePhotos/${catKey}/${id}/desc`).set(String((descEl && descEl.value) || '').trim());
+        alert('Kaydedildi.');
       });
     });
     storeItems.querySelectorAll('button[data-del]').forEach(btn=>{
@@ -3633,6 +3655,29 @@ btnAddHeading.addEventListener('click', async ()=>{
   });
 
   btnReloadStore.addEventListener('click', loadStoreCats);
+  const btnSeedAvatarCategories = $('#btnSeedAvatarCategories');
+  if (btnSeedAvatarCategories) {
+    btnSeedAvatarCategories.addEventListener('click', async ()=>{
+      if (!rdb) return alert('RTDB yok.');
+      if (!confirm('BİLİM KÖŞESİ, LİDERLER KÖŞESİ ve PADİŞAHLAR KÖŞESİ kurulsun / güncellensin mi?\n\nEski avatar kategorileri (TemelKarakterler, DünyaDevleri, EFSANE vb.) Firebase\'den kalıcı olarak silinir.')) return;
+      try {
+        if (typeof window.novaEnsureDefaultAvatarCategories === 'function') {
+          const result = await window.novaEnsureDefaultAvatarCategories(rdb);
+          const removed = (result && result.removed) ? result.removed : [];
+          alert(removed.length
+            ? ('Avatar köşeleri hazır.\n\nSilinen eski kategoriler: ' + removed.join(', '))
+            : 'Avatar köşeleri hazır.');
+        } else {
+          return alert('nova-store-avatar-categories.js yüklenemedi.');
+        }
+        await loadStoreCats();
+        if (storeCatSelect) storeCatSelect.value = 'bilim_kosesi';
+        await listStoreItems();
+      } catch (e) {
+        alert('Kurulum hatası: ' + String(e && e.message || e));
+      }
+    });
+  }
   storeCatSelect.addEventListener('change', async ()=>{
     const urlInput = $('#store_item_url');
     if (urlInput){
@@ -3777,10 +3822,13 @@ btnAddHeading.addEventListener('click', async ()=>{
     const name = $('#store_item_name').value.trim() || null;
     const price = Number($('#store_item_price').value||0);
     const url = $('#store_item_url').value.trim();
+    const desc = ($('#store_item_desc').value || '').trim();
     if(!url) return alert('URL gerekli');
     const ref = rdb.ref(`store/profilePhotos/${cat}`).push();
-    await ref.set({ name, price, url });
-    $('#store_item_name').value=''; $('#store_item_price').value='0'; $('#store_item_url').value='';
+    const payload = { name, price, url };
+    if (desc) payload.desc = desc;
+    await ref.set(payload);
+    $('#store_item_name').value=''; $('#store_item_price').value='0'; $('#store_item_url').value=''; $('#store_item_desc').value='';
     await listStoreItems();
   });
 

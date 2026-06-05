@@ -955,6 +955,7 @@ function novaMapStoreCategoryObject(o) {
       url: o[id].url,
       price: o[id].price,
       name: o[id].name || id,
+      desc: o[id].desc || '',
       allowedStudents: o[id].allowedStudents || null
     }));
 }
@@ -1352,7 +1353,9 @@ function novaResolveStoreCategory(category) {
   if (cat == null || cat === '') {
     cat = (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || '';
   }
-  if (!cat) cat = 'DünyaDevleri';
+  if (!cat) {
+    cat = (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' && window.novaGetDefaultAvatarCategoryKeys()[0]) || 'bilim_kosesi';
+  }
   try {
     if (typeof window.novaStoreHubSyncSubCategory === 'function') window.novaStoreHubSyncSubCategory(cat);
   } catch (_) {}
@@ -1472,11 +1475,6 @@ async function loadProfilePhotos(category) {
            saveToCache(CACHE_KEYS.PURCHASED, purchasedPhotos);
        }
 
-       if (category === 'EFSANE' && (photoCategories['EFSANE']?.length || 0) === 0) {
-           container.innerHTML = '<div class="no-champion">Bu kategori sizin için henüz aktif değil</div>';
-           if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(container, scrollTop);
-           return;
-       }
        if (seq !== __storeLoadSeq) return;
 
        // Kişiye özel görünürlük filtresi
@@ -1973,7 +1971,7 @@ async function novaOpenStoreFlow() {
     novaRenderCategoryButtons();
   }
   const active = document.querySelector('.profile-categories .category-button.active');
-  const first = (active && active.dataset.category) ? active.dataset.category : 'TemelKarakterler';
+  const first = (active && active.dataset.category) ? active.dataset.category : ((typeof window.novaGetDefaultAvatarCategoryKeys === 'function' && window.novaGetDefaultAvatarCategoryKeys()[0]) || 'bilim_kosesi');
   await loadProfilePhotos(first);
 }
 // === /NOVA FIX ===

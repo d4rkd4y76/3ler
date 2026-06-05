@@ -65,19 +65,20 @@
 
 <!-- NOVA: Duel Screen Lighten + Orb Removal (scoped) -->
 <link rel="stylesheet" href="styles/033-nova-duel-lighten-overrides.css" />
-<script src="js/screens/001-nova-duel-lighten-script.js"></script>
+<script defer src="js/screens/001-nova-duel-lighten-script.js"></script>
 
 <!-- NOVA: Freeze guard (must load early) -->
 <script src="js/core/000-nova-freeze-guard.js?v=30260526freeze1"></script>
+<script src="js/core/nova-no-music.js?v=30260605nomusic1"></script>
 <script src="js/core/nova-game-brand.js?v=30260602brand1"></script>
 <script src="js/core/nova-cdn-config.js?v=30260604cdn1"></script>
 <script src="js/core/nova-cdn-fetch.js?v=30260604cdn1"></script>
 
-<script src="js/core/002-script-002.js?v=30260605bonushit4"></script>
-<script src="js/core/003-nova-matching-game.js?v=30260605bonushit4"></script>
+<script defer src="js/core/002-script-002.js?v=30260605bonushit4"></script>
+<script defer src="js/core/003-nova-matching-game.js?v=30260605bonushit4"></script>
 <link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=30260602perf1" />
-<script src="js/core/005-nova-daily-puzzle.js?v=30260527hero_retry1"></script>
-<script src="js/core/006-script-006.js"></script>
+<script defer src="js/core/005-nova-daily-puzzle.js?v=30260527hero_retry1"></script>
+<script defer src="js/core/006-script-006.js"></script>
 
 
 <link rel="stylesheet" href="styles/035-nova-duel-hotfix-20251006-v3.css" />
@@ -116,7 +117,7 @@
 #main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #puzzle_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #fillblank_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #match_fab_wrap{display:flex!important;visibility:visible!important;pointer-events:auto!important}
 #main-screen #main-screen-quest-slot>#puzzle_fab_wrap,#main-screen #main-screen-quest-slot>#fillblank_fab_wrap,#main-screen #main-screen-quest-slot>#match_fab_wrap{display:none!important;visibility:hidden!important;pointer-events:none!important}
 </style>
-<link rel="preload" href="assets/boot-loading/boot-main.webp" as="image" type="image/webp" fetchpriority="high" />
+<link rel="preload" href="assets/boot-loading/boot-main.webp" as="image" type="image/webp" fetchpriority="low" />
 </head>
 <body data-nova-back='1'>
 
@@ -229,6 +230,7 @@
 </section>
 </div>
 </div>
+<script src="js/ui/nova-login-fast-boot.js?v=30260605loginfast1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
 <link rel="stylesheet" href="styles/063-nova-screen-loader.css" />
@@ -854,17 +856,12 @@
 </div>
 </div>
 </div>
-<!-- Arka Plan Müziği için Audio Elementi -->
-<audio id="duelBackgroundMusic" preload="none" src="https://github.com/d4rkd4y76/OYUN-MZK/raw/refs/heads/main/dllo%20mz.mp3"></audio>
-<!-- Kazanan Ekranı için Yeni Audio Elementi -->
-<audio id="winnerMusic" preload="none" src="https://github.com/d4rkd4y76/OYUN-MZK/raw/refs/heads/main/win%20mz.mp3"></audio>
-<!-- Tek Kişilik Oyun Müziği için Yeni Audio Elementi -->
-<audio id="singlePlayerQuestionMusic" preload="none" src="https://github.com/d4rkd4y76/OYUN-MZK/raw/refs/heads/main/oyun%20tek%20mz.mp3"></audio>
+<!-- Arka plan müziği kaldırıldı — yalnızca efekt sesleri (Web Audio) -->
 <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="js/core/007-invite-ban-utils.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script defer src="js/core/007-invite-ban-utils.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=8" />
 <script src="js/core/nova-question-markup.js?v=8"></script>
 <script src="js/ui/006-nova-game-select.js?v=30260604topiclabel1"></script>
@@ -873,11 +870,12 @@
 <script src="js/ui/nova-duel-arena-intro.js?v=30260531arenaintro1"></script>
 <script src="js/ui/nova-duel-game-fx.js?v=30260531pin1"></script>
 <script src="js/core/nova-curriculum-sort.js?v=30260604topiclabel1"></script>
-<script src="js/screens/007-script-007.js?v=30260605bootfix2"></script>
+<script defer src="js/screens/007-script-007.js?v=30260605nomusic1"></script>
 <script src="js/ui/010-nova-duel-screen.js?v=30260602perfflash1"></script>
 <script src="js/ui/nova-duel-epic-flow.js?v=30260602rtdb1"></script>
 <script src="js/ui/005-nova-screen-loader.js"></script>
-<script src="js/core/008-script-008.js?v=30260605storetrial1"></script>
+<script src="js/core/nova-store-avatar-categories.js?v=30260605avatarcat2"></script>
+<script src="js/core/008-script-008.js?v=30260605avatarcat1"></script>
 <script src="js/core/009-script-009.js?v=30260605rank3"></script>
 <script src="js/core/010-script-010.js?v=30260604qbadges2"></script>
 <script src="js/ui/011-script-011.js"></script>
@@ -907,7 +905,7 @@
 <script src="js/core/017-script-017.js"></script>
 <!-- Nova: Topic performance logger (<=4 correct -> record, keep last 25) -->
 <script src="js/core/018-script-018.js"></script>
-<script src="js/screens/019-script-019.js"></script>
+<script src="js/screens/019-script-019.js?v=30260605avatarcat1"></script>
 <link rel="stylesheet" href="styles/049-style-049.css" />
 <script src="js/core/020-script-020.js"></script>
 <script src="js/core/021-script-021.js?v=30260526nova_result1"></script>
@@ -1243,7 +1241,7 @@
 <script src="js/ui/004-nova-perf-settings-script.js?v=30260602perf1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
-<script src="js/screens/047-script-047.js"></script>
+<script src="js/screens/047-script-047.js?v=30260605avatarcat1"></script>
 
 
 <script src="js/features/048-script-048.js"></script>
@@ -1372,8 +1370,8 @@
 <link rel="stylesheet" href="styles/nova-duel-arena-intro.css?v=30260531arenaintro1" />
 <link rel="stylesheet" href="styles/nova-duel-game-premium.css?v=30260531pin1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
-<script src="js/screens/050-script-050.js"></script>
-<script src="js/ui/012-nova-store-hub.js?v=30260604storecat1"></script>
+<script src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
+<script src="js/ui/012-nova-store-hub.js?v=30260605avatarcat1"></script>
 <!-- Eski SVG temel kahraman scriptleri kaldırıldı (performans) — Alev Bot, Turbo, Çılgın Kanat, Buba, Pati -->
 <script src="js/ui/011e-nova-hero-sp-fx-core.js?v=30260528epic1"></script>
 <link rel="stylesheet" href="styles/098-nova-firtina-okcu-hero.css?v=30260604firtinadet1" />
@@ -1438,7 +1436,7 @@
 <script src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
 <script src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
 <script src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
-<script src="js/ui/015-nova-store-detail.js?v=30260605storebtn3"></script>
+<script src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
 <!-- === /NOVA PATCH === -->
 <script src="js/core/051-script-051.js"></script>
 <script src="js/core/052-script-052.js"></script>

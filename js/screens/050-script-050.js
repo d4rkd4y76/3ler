@@ -11,6 +11,9 @@
   function labelForKey(k){
     if (k === '__nameFrames') return 'İsim Çerçevesi';
     if (k === '__avatarFrames') return 'Avatar Çerçevesi';
+    if (typeof window.novaAvatarCategoryLabel === 'function') {
+      return window.novaAvatarCategoryLabel(k);
+    }
     try{
       const m = window.storeCategoryMeta && window.storeCategoryMeta[k];
       if (m && m.label) return String(m.label);
@@ -20,6 +23,12 @@
 
   function sortKeys(keys){
     keys = unique(keys);
+    if (typeof window.novaFilterAvatarStoreKeys === 'function') {
+      keys = window.novaFilterAvatarStoreKeys(keys);
+    }
+    if (typeof window.novaSortAvatarStoreKeys === 'function') {
+      return window.novaSortAvatarStoreKeys(keys);
+    }
     const meta = window.storeCategoryMeta || {};
     const hasDuel = keys.includes('duel');
     const hasEfsane = keys.includes('EFSANE');
@@ -46,7 +55,10 @@
       if(!area) return;
       area.style.display = 'flex';
       area.innerHTML = '';
-      let keys = sortKeys(['duel','TemelKarakterler','DünyaDevleri','EFSANE']);
+      let keys = sortKeys(
+        (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' && window.novaGetDefaultAvatarCategoryKeys()) ||
+        ['bilim_kosesi', 'liderler_kosesi', 'padisahlar_kosesi']
+      );
       keys.forEach((k, i) => {
         const btn = document.createElement('button');
         btn.className = 'category-button' + (i===0 ? ' active' : '');

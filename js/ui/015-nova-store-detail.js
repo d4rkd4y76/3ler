@@ -263,7 +263,7 @@
         } catch (_) {}
         var isActive = !!(livePurchased && typeof isStoreAvatarActive === 'function' && isStoreAvatarActive(photo.url));
         openStoreDetail({
-          kicker: category || 'Avatar',
+          kicker: (typeof window.novaAvatarCategoryLabel === 'function' ? window.novaAvatarCategoryLabel(category) : category) || 'Avatar',
           title: photo.name || 'Avatar',
           desc: photo.desc || 'Profilinde kullanabileceğin özel avatar.',
           priceHtml: livePurchased ? '' : (photo.price + ' <span class="diamond-icon">💎</span>'),
