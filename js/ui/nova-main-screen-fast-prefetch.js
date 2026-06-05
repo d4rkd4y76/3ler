@@ -106,6 +106,11 @@
       } catch (_) {}
       writeCupCache(student, cnt);
     }
+    if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+      try {
+        window.novaSyncMainSlotPlaceholders();
+      } catch (_) {}
+    }
   };
 
   function applyDiamondUi(value) {
@@ -161,6 +166,11 @@
       if (cached != null) window.novaApplyGameCupLeague(cached);
     }
     applyCreditsInstantDefault();
+    if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+      try {
+        window.novaSyncMainSlotPlaceholders();
+      } catch (_) {}
+    }
   };
 
   function applyCreditsInstantDefault() {
@@ -270,6 +280,11 @@
         } catch (_) {}
       }
       window.__novaMainScreenProfileApplied = true;
+      if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+        try {
+          window.novaSyncMainSlotPlaceholders();
+        } catch (_) {}
+      }
     });
   };
 

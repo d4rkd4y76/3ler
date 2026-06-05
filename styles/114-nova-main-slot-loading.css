@@ -1,0 +1,69 @@
+/* Ana ekran — öğe bazlı hafif yükleniyor placeholder (layout sabit) */
+.nova-slot-pending{
+  position: relative;
+  min-height: var(--nova-slot-min-h, 1.5rem);
+  min-width: var(--nova-slot-min-w, 2.5rem);
+}
+.nova-slot-pending > .nova-slot-loading-label{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 4px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(203, 213, 225, .72);
+  text-transform: lowercase;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  animation: novaSlotLoadPulse 2.4s ease-in-out infinite;
+}
+.nova-slot-photo-host.nova-slot-pending{
+  --nova-slot-min-h: 72px;
+  --nova-slot-min-w: 72px;
+  display: inline-block;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, .38);
+}
+.nova-slot-photo-host.nova-slot-pending #student-photo{
+  visibility: hidden;
+}
+.nova-slot-photo-host.nova-slot-pending .nova-slot-loading-label{
+  border-radius: 50%;
+}
+#student-name-stage.nova-slot-pending{
+  --nova-slot-min-h: 1.75rem;
+  --nova-slot-min-w: 6rem;
+}
+#student-rank.nova-slot-pending{
+  --nova-slot-min-h: 3.25rem;
+  --nova-slot-min-w: 4.5rem;
+}
+#student-stars.nova-slot-pending{
+  --nova-slot-min-h: 1.1rem;
+  --nova-slot-min-w: 4rem;
+}
+#nova-main-hero-slot.nova-slot-pending{
+  --nova-slot-min-h: 140px;
+  --nova-slot-min-w: 120px;
+}
+.trophy-stats.nova-slot-pending,
+.credits-stats.nova-slot-pending,
+.diamond-stats.nova-slot-pending{
+  --nova-slot-min-h: 2rem;
+  --nova-slot-min-w: 2.75rem;
+}
+.nova-slot-pending .stats-value,
+.nova-slot-pending .student-name,
+.nova-slot-pending .nova-lig{
+  visibility: hidden;
+}
+@keyframes novaSlotLoadPulse{
+  0%, 100%{ opacity: .55; }
+  50%{ opacity: .92; }
+}

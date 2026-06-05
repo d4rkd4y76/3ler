@@ -27,6 +27,7 @@
     bootAnimStarted: false,
     bootDownloadPhase: false,
     handoffReady: false,
+    bootAnimAllowed: false,
     postAnimTicker: 0,
     postAnimStarted: false,
     _bootResizeOff: null,
@@ -188,7 +189,7 @@
     var ov = getOverlay();
     if (!ov) return;
     opts = opts || {};
-    if (state.bootDownloadPhase && !opts.allowDuringDownload) {
+    if ((state.bootDownloadPhase || !state.bootAnimAllowed) && !opts.allowDuringDownload && !opts.forceComplete) {
       ratio = 0;
     }
     if (!state.handoffReady && ratio >= 1 && !opts.forceComplete) {
@@ -253,30 +254,7 @@
   function startPostAnimProgress(statusText) {
     if (state.postAnimStarted) return;
     state.postAnimStarted = true;
-    var start = performance.now();
-
-    function tick(now) {
-      if (state.exiting || state.handoffReady) {
-        stopPostAnimProgress();
-        return;
-      }
-      var readiness = bootReadinessProgress();
-      var elapsed = now - start;
-      var timeBoost = Math.min(0.15, elapsed / POST_ANIM_VISUAL_MS);
-      var ratio = 0.88 + Math.min(0.11, readiness * 0.11 + timeBoost);
-      if (state.heavyMainDone && readiness >= 0.99) ratio = 0.99;
-      var msg =
-        statusText ||
-        (readiness >= 0.85
-          ? 'Ana ekran açılıyor…'
-          : readiness >= 0.45
-            ? 'Kahramanlar hazırlanıyor…'
-            : 'Ana ekran hazırlanıyor…');
-      setProgress(ratio, msg, { allowDuringDownload: true });
-      if (!state.handoffReady) state.postAnimTicker = requestAnimationFrame(tick);
-    }
-
-    state.postAnimTicker = requestAnimationFrame(tick);
+    setProgress(0.9, statusText || 'Açılıyor…', { allowDuringDownload: true });
   }
 
   function mainElementsReadyNow() {
@@ -722,6 +700,9 @@
 
     return trySrc(0)
       .then(function () {
+        state.bootDownloadPhase = false;
+        state.bootAnimAllowed = true;
+        setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
         try {
           video.currentTime = 0;
         } catch (_) {}
@@ -841,14 +822,12 @@
   }
 
   function waitForMainScreenPaint(maxMs) {
-    var limit = maxMs == null ? 8000 : maxMs;
+    var limit = maxMs == null ? 2000 : maxMs;
     return new Promise(function (resolve) {
       var start = Date.now();
       function tick() {
         revealMainScreenUnderOverlay();
-        var painted = mainScreenPaintReady();
-        var elements = mainElementsReadyNow();
-        if ((painted && elements) || Date.now() - start >= limit) {
+        if (mainScreenPaintReady() || Date.now() - start >= limit) {
           requestAnimationFrame(function () {
             requestAnimationFrame(resolve);
           });
@@ -864,22 +843,16 @@
     return new Promise(function (resolve) {
       (async function () {
         stopPostAnimProgress();
-        setProgress(0.94, 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
+        setProgress(0.96, 'Ana ekran açılıyor…', { allowDuringDownload: true });
 
-        if (!mainElementsReadyNow()) {
-          if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
-            try {
-              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 4500, kickMs: 40 });
-            } catch (_) {}
-          }
-        }
-
-        if (!mainElementsReadyNow() && !isPhoneBoot()) {
-          throw new Error('main-screen-not-ready');
+        if (typeof window.novaActivateMainSlotPlaceholders === 'function') {
+          try {
+            window.novaActivateMainSlotPlaceholders();
+          } catch (_) {}
         }
 
         revealMainScreenUnderOverlay();
-        await waitForMainScreenPaint(isPhoneBoot() ? 480 : 1200);
+        await waitForMainScreenPaint(360);
 
         state.handoffReady = true;
         stopFinishingPulse();
@@ -890,27 +863,7 @@
           setTimeout(r, HANDOFF_PAINT_MS);
         });
         resolve();
-      })().catch(function () {
-        (async function () {
-          setProgress(0.97, 'Son öğeler yükleniyor…', { allowDuringDownload: true });
-          if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
-            try {
-              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 6000, kickMs: 40 });
-            } catch (_) {}
-          }
-          revealMainScreenUnderOverlay();
-          await waitForMainScreenPaint(1200);
-          state.handoffReady = mainElementsReadyNow() || isPhoneBoot();
-          stopPostAnimProgress();
-          if (state.handoffReady) {
-            setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
-            await new Promise(function (r) {
-              setTimeout(r, HANDOFF_PAINT_MS);
-            });
-          }
-          resolve();
-        })();
-      });
+      })();
     });
   }
 
@@ -931,6 +884,7 @@
     state.animDone = false;
     state.heavyMainDone = false;
     state.handoffReady = false;
+    state.bootAnimAllowed = false;
     state.exiting = false;
     state.postAnimStarted = false;
     stopPostAnimProgress();
@@ -949,71 +903,57 @@
       window.novaPrefetchMainScreenAssets(true);
     }
 
-    var prepPromise = runLightBootWork();
+    runLightBootWork().finally(function () {
+      if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+        try {
+          window.novaSyncMainSlotPlaceholders();
+        } catch (_) {}
+      }
+    });
     stateBootStartedAt = Date.now();
     var sheetWaitMs = isPhoneBoot() ? 18000 : 60000;
+
+    function beginBootAnimation() {
+      state.bootAnimAllowed = true;
+      setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
+      return playBootSprite(ov);
+    }
+
+    function sheetToAnim() {
+      setProgress(0, 'Animasyon hazır…');
+      return primeBootCanvas(ov).then(beginBootAnimation);
+    }
 
     if (isPhoneBoot()) {
       return playBootVideoPlain(ov)
         .then(function () {
-          return prepPromise;
-        })
-        .then(function () {
           return finishBootHandoff();
         })
         .catch(function () {
-          return waitBootSheetFullyReady(sheetWaitMs)
-            .then(function () {
-              setProgress(0, 'Animasyon hazır…');
-              return primeBootCanvas(ov);
-            })
-            .then(function () {
-              setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
-              return playBootSprite(ov);
-            })
-            .then(function () {
-              return prepPromise;
-            })
-            .then(function () {
-              return finishBootHandoff();
-            });
+          return waitBootSheetFullyReady(sheetWaitMs).then(sheetToAnim).then(function () {
+            return finishBootHandoff();
+          });
         });
     }
 
     return waitBootSheetFullyReady(sheetWaitMs)
-      .then(function () {
-        setProgress(0, 'Animasyon hazır…');
-        return primeBootCanvas(ov);
-      })
-      .then(function () {
-        setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
-        return playBootSprite(ov);
-      })
-      .then(function () {
-        return prepPromise;
-      })
+      .then(sheetToAnim)
       .then(function () {
         return finishBootHandoff();
       })
       .catch(function () {
         state.bootDownloadPhase = false;
         setProgress(0, 'Yedek video yükleniyor…', { allowDuringDownload: true });
-        if (!prepPromise) prepPromise = runLightBootWork();
-        return playBootVideoPlain(ov)
-          .then(function () {
-            return prepPromise;
-          })
-          .then(function () {
-            return finishBootHandoff();
-          });
+        return playBootVideoPlain(ov).then(function () {
+          return finishBootHandoff();
+        });
       })
       .catch(function () {
         ov.classList.add('nova-sprite-boot--no-video');
         state.videoDone = true;
         state.animDone = true;
-        return runLightBootWork().then(function () {
-          return finishBootHandoff();
-        });
+        state.bootAnimAllowed = true;
+        return finishBootHandoff();
       });
   }
 
@@ -1042,6 +982,11 @@
     if (!shouldRunBoot()) {
       markBootDone();
       hideOverlayImmediate();
+      if (typeof window.novaActivateMainSlotPlaceholders === 'function') {
+        try {
+          window.novaActivateMainSlotPlaceholders();
+        } catch (_) {}
+      }
       dispatchBootComplete();
       return Promise.resolve();
     }

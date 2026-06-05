@@ -151,6 +151,22 @@
   window.novaMainScreenElementsReady = mainScreenElementsReady;
   window.novaMainScreenReadinessRatio = mainScreenReadinessRatio;
 
+  window.novaMainScreenSlotStatus = function () {
+    return {
+      photo: profilePhotoReady(),
+      name: studentNameReady(),
+      rank: leagueBadgeReady(),
+      cup: cupHudReady(),
+      credits: creditsReady(),
+      hero: heroReady(),
+      diamond: (function () {
+        var el = document.getElementById('diamond-value');
+        if (!el) return true;
+        return String(el.textContent || '').trim() !== '';
+      })()
+    };
+  };
+
   function revealMainForBoot() {
     var main = document.getElementById('main-screen');
     var login = document.getElementById('student-selection-screen');
@@ -377,18 +393,12 @@
           ensureMainScreenLayout()
         ]);
 
-        status('Son dokunuşlar…');
-        var ok = await window.novaWaitUntilMainScreenElementsReady({
-          maxMs: isPhoneBoot() ? BOOT_WAIT_PHONE_MS : BOOT_WAIT_MAX_MS,
-          kickMs: 64
-        });
-
-        if (!ok) {
-          ok = mainScreenElementsReady();
+        if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+          window.novaSyncMainSlotPlaceholders();
         }
 
-        window.__novaMainScreenBootReady = ok;
-        return ok;
+        window.__novaMainScreenBootReady = mainScreenElementsReady();
+        return window.__novaMainScreenBootReady;
       } finally {
         window.__novaBootMainPrep = false;
       }
