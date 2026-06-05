@@ -757,9 +757,9 @@
       if (!state.animDone) return;
       startPostAnimProgress(msg || 'Ana ekran hazırlanıyor…');
     }).then(function () {
-      state.heavyMainDone = true;
+      state.heavyMainDone = mainElementsReadyNow();
       stopPostAnimProgress();
-      updateLightBootProgress(1);
+      if (state.heavyMainDone) updateLightBootProgress(1);
     });
   }
 
@@ -806,7 +806,9 @@
       var start = Date.now();
       function tick() {
         revealMainScreenUnderOverlay();
-        if (mainScreenPaintReady() || Date.now() - start >= limit) {
+        var painted = mainScreenPaintReady();
+        var elements = mainElementsReadyNow();
+        if ((painted && elements) || Date.now() - start >= limit) {
           requestAnimationFrame(function () {
             requestAnimationFrame(resolve);
           });
@@ -822,21 +824,33 @@
     return new Promise(function (resolve) {
       (async function () {
         stopPostAnimProgress();
-        setProgress(0.97, 'Ana ekran açılıyor…', { allowDuringDownload: true });
+        setProgress(0.97, 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
 
-        var needsEnsure = !state.heavyMainDone || !mainElementsReadyNow();
-        if (needsEnsure && typeof window.novaEnsureMainScreenReady === 'function') {
+        if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
           try {
-            await window.novaEnsureMainScreenReady({ force: true, boot: true, fast: true });
+            await window.novaWaitUntilMainScreenElementsReady({ maxMs: 32000 });
           } catch (_) {}
-        } else if (needsEnsure && typeof window.novaStabilizeMainScreen === 'function') {
+        } else if (typeof window.novaEnsureMainScreenReady === 'function') {
           try {
-            await window.novaStabilizeMainScreen({ force: true, boot: true });
+            await window.novaEnsureMainScreenReady({ force: true, boot: true, strict: true });
           } catch (_) {}
         }
 
+        if (!mainElementsReadyNow()) {
+          setProgress(0.98, 'Son öğeler yükleniyor…', { allowDuringDownload: true });
+          if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
+            try {
+              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 12000 });
+            } catch (_) {}
+          }
+        }
+
+        if (!mainElementsReadyNow()) {
+          throw new Error('main-screen-not-ready');
+        }
+
         revealMainScreenUnderOverlay();
-        await waitForMainScreenPaint(3500);
+        await waitForMainScreenPaint(6000);
 
         state.handoffReady = true;
         stopFinishingPulse();
@@ -848,11 +862,25 @@
         });
         resolve();
       })().catch(function () {
-        revealMainScreenUnderOverlay();
-        state.handoffReady = true;
-        stopPostAnimProgress();
-        setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
-        resolve();
+        (async function () {
+          setProgress(0.99, 'Son öğeler yükleniyor…', { allowDuringDownload: true });
+          if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
+            try {
+              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 20000 });
+            } catch (_) {}
+          }
+          revealMainScreenUnderOverlay();
+          await waitForMainScreenPaint(6000);
+          state.handoffReady = mainElementsReadyNow();
+          stopPostAnimProgress();
+          if (state.handoffReady) {
+            setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
+            await new Promise(function (r) {
+              setTimeout(r, HANDOFF_PAINT_MS);
+            });
+          }
+          resolve();
+        })();
       });
     });
   }
@@ -968,6 +996,9 @@
         }
       })
       .then(function () {
+        if (!state.handoffReady) {
+          throw new Error('boot-handoff-incomplete');
+        }
         markBootDone();
         return new Promise(function (resolve) {
           playExitTransition(function () {

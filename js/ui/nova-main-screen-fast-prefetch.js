@@ -9,6 +9,8 @@
     prefetchPromise = null;
     window.__novaMainScreenPrefetchDone = false;
     window.__novaMainScreenPrefetchStarted = false;
+    window.__novaMainScreenProfileApplied = false;
+    window.__novaMainScreenExpectedPhoto = '';
   };
 
   function getStoredStudent() {
@@ -149,6 +151,87 @@
     }
   };
 
+  function applyProfilePhotoToDom(url) {
+    var el = document.getElementById('student-photo');
+    if (!el) return Promise.resolve();
+    var src = String(url || '').trim();
+    if (!src) {
+      el.style.display = 'none';
+      try {
+        el.removeAttribute('src');
+      } catch (_) {}
+      window.__novaMainScreenProfileApplied = true;
+      window.__novaMainScreenExpectedPhoto = '';
+      return Promise.resolve();
+    }
+    window.__novaMainScreenExpectedPhoto = src;
+    return new Promise(function (resolve) {
+      function finish() {
+        el.style.display = el.naturalWidth > 0 ? 'block' : 'none';
+        window.__novaMainScreenProfileApplied = true;
+        resolve();
+      }
+      try {
+        if ((el.currentSrc || el.src) === src && el.complete && el.naturalWidth > 0) {
+          el.style.display = 'block';
+          finish();
+          return;
+        }
+      } catch (_) {}
+      el.onload = el.onerror = finish;
+      el.src = src;
+      if (el.complete) {
+        if (el.decode) el.decode().then(finish).catch(finish);
+        else finish();
+      }
+    });
+  }
+
+  window.novaApplyMainScreenProfileUi = function (data, student) {
+    data = data || window.__novaMainScreenStudentCache || {};
+    student = student || getStoredStudent();
+    if (!student) {
+      window.__novaMainScreenProfileApplied = true;
+      return Promise.resolve();
+    }
+
+    var photoUrl = data.photo || student.photo || '';
+    var name = student.studentName || data.studentName || '';
+    var nameFrame = data.nameFrame || student.nameFrame || 'default';
+
+    return applyProfilePhotoToDom(photoUrl).then(function () {
+      var nameEl = document.getElementById('student-name');
+      if (name && nameEl) {
+        try {
+          if (typeof setNameWithFrame === 'function') {
+            setNameWithFrame(nameEl, name, nameFrame);
+          } else {
+            nameEl.textContent = name;
+          }
+        } catch (_) {
+          nameEl.textContent = name;
+        }
+      }
+      try {
+        if (typeof syncSelectedNameFrame === 'function') syncSelectedNameFrame(nameFrame);
+      } catch (_) {}
+      try {
+        if (typeof applyOwnAvatarFrame === 'function') applyOwnAvatarFrame();
+      } catch (_) {}
+      if (photoUrl && student.photo !== photoUrl) {
+        student.photo = photoUrl;
+        try {
+          if (typeof selectedStudent !== 'undefined') selectedStudent.photo = photoUrl;
+        } catch (_) {}
+        try {
+          window.selectedStudent = student;
+          localStorage.setItem('selectedStudent', JSON.stringify(student));
+        } catch (_) {}
+      }
+      window.__novaMainScreenProfileApplied = true;
+    });
+  };
+
   function prefetchImageUrl(url) {
     return new Promise(function (resolve) {
       var src = String(url || '').trim();
@@ -182,7 +265,9 @@
         window.__novaMainScreenStudentCache = data;
         window.__novaMainScreenStudentCacheAt = Date.now();
         window.novaApplyMainScreenHudFromData(data, student);
-        return data;
+        return window.novaApplyMainScreenProfileUi(data, student).then(function () {
+          return data;
+        });
       })
       .catch(function () {
         window.novaApplyMainScreenHudInstant();
@@ -276,6 +361,10 @@
     var bootActive = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
 
     window.novaApplyMainScreenHudInstant();
+
+    if (student.photo && window.__novaMainScreenProfileApplied !== true) {
+      applyProfilePhotoToDom(student.photo).catch(function () {});
+    }
 
     window.__novaMainScreenPrefetchStarted = true;
     var tasks = [
