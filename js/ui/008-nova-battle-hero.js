@@ -631,8 +631,17 @@
     var heroId = getEquippedHeroId();
     if (!heroId) heroId = await loadBattleHeroFromDb();
     try {
-      var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
-      var data = snap.val() || {};
+      var data = null;
+      var cache = window.__novaMainScreenStudentCache;
+      var cacheAt = Number(window.__novaMainScreenStudentCacheAt || 0);
+      if (cache && cacheAt && Date.now() - cacheAt < 120000) {
+        data = cache;
+      } else {
+        var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
+        data = snap.val() || {};
+        window.__novaMainScreenStudentCache = data;
+        window.__novaMainScreenStudentCacheAt = Date.now();
+      }
       var dbEquipped = String(data.battleHero || '').trim();
       if (!heroId && dbEquipped) heroId = dbEquipped;
       heroId = resolvePlayableHeroId(heroId, data);
@@ -688,9 +697,16 @@
     }
   }
 
-  async function refreshMainScreenHero() {
+  async function refreshMainScreenHero(opts) {
+    opts = opts || {};
     var myGen = ++mainHeroRefreshGen;
     if (mainHeroRefreshTimer) clearTimeout(mainHeroRefreshTimer);
+    var delay = opts.urgent || window.__novaBootMainPrep ? 0 : 100;
+    if (!delay) {
+      if (myGen !== mainHeroRefreshGen) return;
+      await refreshMainScreenHeroCore();
+      return;
+    }
     return new Promise(function (resolve) {
       mainHeroRefreshTimer = setTimeout(async function () {
         mainHeroRefreshTimer = null;
@@ -700,7 +716,7 @@
         }
         await refreshMainScreenHeroCore();
         resolve();
-      }, 100);
+      }, delay);
     });
   }
 

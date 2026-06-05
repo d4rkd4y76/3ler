@@ -87,6 +87,11 @@
   function scheduleDeferredAssetPreload() {
     if (window.__novaSpriteAssetsReady || window.__novaSpriteDeferredPreloadStarted) return;
     window.__novaSpriteDeferredPreloadStarted = true;
+
+    if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+      window.novaPrefetchMainScreenAssets();
+    }
+
     function run() {
       if (typeof window.novaSpritePreloadAll !== 'function') return;
       window.novaSpritePreloadAll().catch(function () {}).finally(function () {
@@ -96,11 +101,9 @@
         } catch (_) {}
       });
     }
-    if (typeof requestIdleCallback === 'function') {
-      requestIdleCallback(function () { run(); }, { timeout: 4000 });
-    } else {
-      setTimeout(run, 800);
-    }
+
+    run();
+
     var student = null;
     try {
       var raw = localStorage.getItem('selectedStudent');
@@ -108,14 +111,14 @@
     } catch (_) {}
     var heroId = student && (student.battleHero || window.__novaEquippedHeroId);
     if (heroId && typeof window.novaSpritePreloadForHero === 'function') {
-      setTimeout(function () {
-        try { window.novaSpritePreloadForHero(heroId); } catch (_) {}
-      }, 400);
+      try {
+        window.novaSpritePreloadForHero(heroId);
+      } catch (_) {}
     }
     if (typeof window.novaRefreshMainScreenHero === 'function') {
-      setTimeout(function () {
-        try { window.novaRefreshMainScreenHero(); } catch (_) {}
-      }, 120);
+      try {
+        window.novaRefreshMainScreenHero({ urgent: true });
+      } catch (_) {}
     }
   }
 
@@ -734,21 +737,25 @@
     ov.classList.remove('is-exiting');
     setProgress(0, 'Açılış videosu indiriliyor…');
 
+    if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+      window.novaPrefetchMainScreenAssets();
+    }
+    var prepPromise = runLightBootWork();
+
     var video = ov.querySelector('.nova-sprite-boot-video-src');
     if (!video) {
-      return runLightBootWork().then(function () {
+      return prepPromise.then(function () {
         return exitAt100Immediately();
       });
     }
 
     return downloadBootVideoFully(video)
       .then(function () {
-        var lightPromise = runLightBootWork();
         return Promise.all([
           playBootVideo(ov, {
             onVideoPlayStart: function () {}
           }),
-          lightPromise
+          prepPromise
         ]);
       })
       .catch(function () {
@@ -841,10 +848,13 @@
 
   function tryAutoStartForRememberedSession() {
     if (!hasStoredStudentSession()) return;
+    if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+      window.novaPrefetchMainScreenAssets();
+    }
     if (!shouldRunBoot()) {
       markBootDone();
       if (typeof window.novaStabilizeMainScreen === 'function') {
-        window.novaStabilizeMainScreen();
+        window.novaStabilizeMainScreen({ force: true });
       }
       return;
     }

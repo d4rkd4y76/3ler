@@ -15,7 +15,11 @@
     bound: false,
     playRetryTimer: null,
     unlockBound: false,
-    blobUrl: ''
+    blobUrl: '',
+    videoBlobCache: {},
+    prefetchedVideo: null,
+    prefetchPromise: null,
+    prefetchedImageSrc: ''
   };
 
   function getDatabase() {
@@ -212,6 +216,108 @@
     img.removeAttribute('src');
   }
 
+  function prefetchImageElement(src) {
+    var url = String(src || '').trim();
+    if (!url) return Promise.resolve();
+    if (state.prefetchedImageSrc === url) return Promise.resolve(url);
+    var img = getImage();
+    return new Promise(function (resolve) {
+      function done() {
+        state.prefetchedImageSrc = url;
+        resolve(url);
+      }
+      if (img && img.src === url && img.complete && img.naturalWidth > 0) {
+        done();
+        return;
+      }
+      var probe = new Image();
+      probe.decoding = 'async';
+      probe.onload = probe.onerror = done;
+      try {
+        probe.fetchPriority = 'high';
+      } catch (_) {}
+      probe.src = url;
+    });
+  }
+
+  function prefetchVideoBlob(url) {
+    var src = String(url || '').trim();
+    if (!src) return Promise.resolve(null);
+    if (state.videoBlobCache[src]) return Promise.resolve(state.videoBlobCache[src]);
+    return fetch(src, { cache: 'force-cache', mode: 'cors', credentials: 'omit' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('bg-fetch-fail');
+        return res.blob();
+      })
+      .then(function (blob) {
+        if (blob && blob.size > 512) {
+          state.videoBlobCache[src] = blob;
+          if (!state.prefetchedVideo) state.prefetchedVideo = { url: src, blob: blob };
+        }
+        return blob;
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+  function assignVideoBlob(video, url, blob) {
+    if (!video || !blob || blob.size < 512) {
+      return tryAssignVideoSrc(video, url);
+    }
+    revokeBlobUrl();
+    return new Promise(function (resolve, reject) {
+      function cleanup() {
+        video.removeEventListener('canplay', onOk);
+        video.removeEventListener('loadeddata', onOk);
+        video.removeEventListener('error', onErr);
+      }
+      function onOk() {
+        if (video.readyState < 2) return;
+        cleanup();
+        resolve(url);
+      }
+      function onErr() {
+        cleanup();
+        tryAssignVideoSrc(video, url).then(resolve, reject);
+      }
+      try {
+        state.blobUrl = URL.createObjectURL(blob);
+        video.addEventListener('canplay', onOk, { once: true });
+        video.addEventListener('loadeddata', onOk, { once: true });
+        video.addEventListener('error', onErr, { once: true });
+        prepareVideoElement(video);
+        video.src = state.blobUrl;
+        video.load();
+      } catch (e) {
+        onErr();
+      }
+    });
+  }
+
+  function prefetchMainScreenBgMedia() {
+    if (state.prefetchPromise) return state.prefetchPromise;
+    state.prefetchPromise = fetchConfig(false)
+      .then(function (cfg) {
+        if (!cfg || cfg.show === false) return;
+        return ensurePullZoneHost(cfg).then(function (host) {
+          var play = pickPlayback(cfg, host);
+          if (!play) return;
+          if (play.mode === 'image') {
+            return prefetchImageElement(play.src);
+          }
+          if (play.mode === 'video' && play.srcList && play.srcList.length) {
+            return Promise.all(play.srcList.map(prefetchVideoBlob));
+          }
+        });
+      })
+      .catch(function () {})
+      .then(function () {
+        return true;
+      });
+    return state.prefetchPromise;
+  }
+
   function applyBackgroundImage(src) {
     var img = getImage();
     var video = getVideo();
@@ -364,26 +470,46 @@
 
   function loadVideoSource(video, srcList) {
     var list = Array.isArray(srcList) ? srcList.slice() : [srcList];
-    return new Promise(function (resolve, reject) {
-      if (!video || !list.length) {
-        reject(new Error('no-video'));
-        return;
+    if (!video || !list.length) {
+      return Promise.reject(new Error('no-video'));
+    }
+
+    var pref = state.prefetchedVideo;
+    if (pref && pref.blob && list.indexOf(pref.url) >= 0) {
+      return assignVideoBlob(video, pref.url, pref.blob);
+    }
+
+    var cachedUrl = list.find(function (u) {
+      return state.videoBlobCache[u];
+    });
+    if (cachedUrl) {
+      return assignVideoBlob(video, cachedUrl, state.videoBlobCache[cachedUrl]);
+    }
+
+    return Promise.all(
+      list.map(function (src) {
+        return prefetchVideoBlob(src).then(function (blob) {
+          return { src: src, blob: blob };
+        });
+      })
+    ).then(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].blob) {
+          return assignVideoBlob(video, entries[i].src, entries[i].blob);
+        }
       }
       var idx = 0;
       function tryNext() {
         if (idx >= list.length) {
-          reject(new Error('video-error'));
-          return;
+          return Promise.reject(new Error('video-error'));
         }
         var src = list[idx];
         idx += 1;
-        tryAssignVideoSrc(video, src)
-          .then(resolve)
-          .catch(function () {
-            tryNext();
-          });
+        return tryAssignVideoSrc(video, src).catch(function () {
+          return tryNext();
+        });
       }
-      tryNext();
+      return tryNext();
     });
   }
 
@@ -651,6 +777,7 @@
   }
 
   window.novaSyncMainScreenBgVideo = syncMainBgVideo;
+  window.novaPrefetchMainScreenBgMedia = prefetchMainScreenBgMedia;
   window.novaFetchMainScreenBgVideoConfig = fetchConfig;
   window.novaPickMainScreenBgPlayback = function (cfg) {
     return pickPlayback(cfg, resolveBunnyPullZoneHost(cfg));

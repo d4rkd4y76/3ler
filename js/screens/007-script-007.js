@@ -4255,8 +4255,22 @@ window.onload = async () => {
             applyStudentSessionIsolation(selectedStudent);
             
             studentSelectionScreen.style.display = 'none';
+            mainScreen.style.removeProperty('display');
             studentSelectionError.textContent = '';
             studentPasswordInput.value = '';
+
+            window.__novaAppMainReady = true;
+            try { document.dispatchEvent(new CustomEvent('nova:app-main-ready')); } catch (_) {}
+            try {
+              if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+                window.novaPrefetchMainScreenAssets();
+              }
+            } catch (_) {}
+            try {
+              if (typeof window.novaStabilizeMainScreen === 'function') {
+                window.novaStabilizeMainScreen({ force: true });
+              }
+            } catch (_) {}
 
             // Fotoğraf yükleme
             try {
@@ -4294,19 +4308,19 @@ window.onload = async () => {
             try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch(_) {}
             if (typeof window.novaStartSpriteBoot === 'function' && !window.__novaSpriteBootDone) {
               if (!window.__novaSpriteBootActive) {
-                await window.novaStartSpriteBoot({ trigger: 'remembered' });
+                window.novaStartSpriteBoot({ trigger: 'remembered' });
               } else if (typeof window.novaWaitSpriteBootComplete === 'function') {
-                await window.novaWaitSpriteBootComplete();
+                window.novaWaitSpriteBootComplete();
               }
             } else {
               mainScreen.style.removeProperty('display');
             }
 
-            await addLoggedInPlayer(selectedStudent);
+            addLoggedInPlayer(selectedStudent).catch(function(e){ console.error('addLoggedInPlayer', e); });
             startInvitationListener(selectedStudent.studentId);
-            await fetchAndDisplayGameCup();
-            if (typeof window.novaStabilizeMainScreen === 'function') {
-              try { await window.novaStabilizeMainScreen(); } catch (_) {}
+            fetchAndDisplayGameCup().catch(function(e){ console.error('fetchAndDisplayGameCup', e); });
+            if (typeof window.novaStabilizeMainScreen === 'function' && !window.__novaMainScreenBootReady) {
+              try { window.novaStabilizeMainScreen(); } catch (_) {}
             } else if (!window.__novaMainScreenBootReady) {
               onMainScreenLoad();
             }
@@ -4556,7 +4570,18 @@ function onMainScreenLoad() {
     try { applyOwnAvatarFrame(); } catch(_) {}
     
     const now = Date.now();
-    if (__mainScreenCreditsCache && (now - __mainScreenCreditsFetchTs) < 15000) {
+    var prefetchedCredits = window.__novaMainScreenCreditsPrefetch;
+    if (prefetchedCredits && prefetchedCredits.at && now - prefetchedCredits.at < 120000) {
+      applyMainScreenCreditsState({
+        duelCredits: prefetchedCredits.duelCredits,
+        unlimitedCreditsUntil: prefetchedCredits.unlimitedCreditsUntil
+      });
+      __mainScreenCreditsCache = {
+        duelCredits: prefetchedCredits.duelCredits,
+        unlimitedCreditsUntil: prefetchedCredits.unlimitedCreditsUntil
+      };
+      __mainScreenCreditsFetchTs = prefetchedCredits.at;
+    } else if (__mainScreenCreditsCache && (now - __mainScreenCreditsFetchTs) < 15000) {
       applyMainScreenCreditsState(__mainScreenCreditsCache);
     } else {
       const studentRef = database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`);
