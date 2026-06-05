@@ -4,7 +4,7 @@
 
   var stabilizePromise = null;
   var ensureReadyPromise = null;
-  var BOOT_STRICT_MAX_MS = 32000;
+  var BOOT_WAIT_MAX_MS = 6500;
 
   function getStoredStudent() {
     try {
@@ -23,34 +23,6 @@
     } catch (_) {
       return null;
     }
-  }
-
-  function waitMainScreenPrefetch(maxMs) {
-    if (window.__novaMainScreenPrefetchDone) return Promise.resolve();
-    return new Promise(function (resolve) {
-      var done = false;
-      function finish() {
-        if (done) return;
-        done = true;
-        resolve();
-      }
-      var limit = maxMs == null ? 12000 : maxMs;
-      var t = setTimeout(finish, limit);
-      document.addEventListener(
-        'nova:main-screen-prefetch-done',
-        function () {
-          clearTimeout(t);
-          finish();
-        },
-        { once: true }
-      );
-      if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-        window.novaPrefetchMainScreenAssets(true).finally(function () {
-          clearTimeout(t);
-          finish();
-        });
-      }
-    });
   }
 
   function ensureMainScreenLayout() {
@@ -116,8 +88,7 @@
   function creditsReady() {
     var cred = document.getElementById('duel-credits-value');
     if (!cred) return true;
-    var txt = String(cred.textContent || '').trim();
-    return txt !== '';
+    return String(cred.textContent || '').trim() !== '';
   }
 
   function studentNameReady() {
@@ -129,19 +100,15 @@
   }
 
   function profilePhotoReady() {
-    if (window.__novaMainScreenProfileApplied !== true) return false;
+    var student = getStoredStudent();
+    var expected = String(
+      window.__novaMainScreenExpectedPhoto || (student && student.photo) || ''
+    ).trim();
+    if (!expected) return window.__novaMainScreenProfileApplied === true;
     var el = document.getElementById('student-photo');
     if (!el) return true;
-    var expected = String(window.__novaMainScreenExpectedPhoto || '').trim();
-    if (!expected) return true;
-    if (el.style.display === 'none') return false;
-    if (!el.complete || el.naturalWidth < 1) return false;
-    try {
-      var cur = el.currentSrc || el.src || '';
-      return cur.indexOf(expected.split('?')[0]) >= 0 || cur === expected;
-    } catch (_) {
-      return el.naturalWidth > 0;
-    }
+    if (el.complete && el.naturalWidth > 0) return true;
+    return window.__novaMainScreenProfileApplied === true && el.src && el.src.indexOf('http') === 0;
   }
 
   function mainScreenElementsReady() {
@@ -156,7 +123,23 @@
     );
   }
 
+  function mainScreenReadinessRatio() {
+    var checks = [
+      leagueBadgeReady(),
+      cupHudReady(),
+      starsReady(),
+      creditsReady(),
+      heroReady(),
+      studentNameReady(),
+      profilePhotoReady()
+    ];
+    var n = 0;
+    for (var i = 0; i < checks.length; i++) if (checks[i]) n += 1;
+    return n / checks.length;
+  }
+
   window.novaMainScreenElementsReady = mainScreenElementsReady;
+  window.novaMainScreenReadinessRatio = mainScreenReadinessRatio;
 
   function revealMainForBoot() {
     var main = document.getElementById('main-screen');
@@ -172,24 +155,27 @@
     try {
       if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
     } catch (_) {}
-    try {
-      if (typeof window.novaApplyMainScreenProfileUi === 'function') {
-        await window.novaApplyMainScreenProfileUi();
-      }
-    } catch (_) {}
     if (!heroReady() && typeof window.novaRefreshMainScreenHero === 'function') {
       try {
-        await window.novaRefreshMainScreenHero({ urgent: true });
+        await Promise.race([
+          window.novaRefreshMainScreenHero({ urgent: true }),
+          new Promise(function (r) {
+            setTimeout(r, 1800);
+          })
+        ]);
       } catch (_) {}
     }
-    try {
-      if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup(true);
-    } catch (_) {}
+    if (!profilePhotoReady() && typeof window.novaApplyMainScreenProfileUi === 'function') {
+      try {
+        await window.novaApplyMainScreenProfileUi();
+      } catch (_) {}
+    }
   }
 
   window.novaWaitUntilMainScreenElementsReady = async function (opts) {
     opts = opts || {};
-    var maxMs = opts.maxMs == null ? BOOT_STRICT_MAX_MS : opts.maxMs;
+    var maxMs = opts.maxMs == null ? BOOT_WAIT_MAX_MS : opts.maxMs;
+    var kickMs = opts.kickMs == null ? 48 : opts.kickMs;
     var start = Date.now();
     var lastKick = 0;
 
@@ -205,15 +191,13 @@
         if (mainScreenElementsReady()) return true;
       }
 
-      if (Date.now() - lastKick > 120) {
+      if (Date.now() - lastKick > kickMs) {
         lastKick = Date.now();
         await kickMainScreenElementLoads();
       }
 
       await new Promise(function (r) {
-        requestAnimationFrame(function () {
-          requestAnimationFrame(r);
-        });
+        requestAnimationFrame(r);
       });
     }
 
@@ -224,56 +208,37 @@
     opts = opts || {};
     var student = getStoredStudent();
     if (!student) return false;
-    var strict = !!(opts.strict || opts.boot);
 
     revealMainForBoot();
 
-    try {
-      if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
-    } catch (_) {}
-
-    var prefetchP =
-      typeof window.novaPrefetchMainScreenAssets === 'function'
-        ? strict
-          ? window.novaPrefetchMainScreenAssets(true)
-          : Promise.race([
-              window.novaPrefetchMainScreenAssets(opts.force),
-              new Promise(function (r) {
-                setTimeout(r, 6000);
-              })
-            ])
-        : Promise.resolve();
-
-    await Promise.all([prefetchP, ensureMainScreenLayout()]);
-
-    try {
-      if (typeof window.novaApplyMainScreenProfileUi === 'function') {
-        await window.novaApplyMainScreenProfileUi();
-      }
-    } catch (_) {}
-
-    if (typeof window.onMainScreenLoad === 'function') {
+    if (typeof window.novaBootApplyInstantCache === 'function') {
       try {
-        window.onMainScreenLoad();
+        await window.novaBootApplyInstantCache();
       } catch (_) {}
-    } else if (typeof window.novaRequestHudFabRelayout === 'function') {
-      try {
-        window.novaRequestHudFabRelayout();
-      } catch (_) {}
+    } else if (typeof window.novaApplyMainScreenHudInstant === 'function') {
+      window.novaApplyMainScreenHudInstant();
     }
+
+    await Promise.all([
+      typeof window.novaPrefetchMainScreenAssets === 'function'
+        ? Promise.race([
+            window.novaPrefetchMainScreenAssets(opts.force),
+            new Promise(function (r) {
+              setTimeout(r, opts.boot ? 5500 : 6000);
+            })
+          ]).catch(function () {})
+        : Promise.resolve(),
+      ensureMainScreenLayout()
+    ]);
 
     if (typeof window.novaRefreshMainScreenHero === 'function') {
       try {
-        if (strict) {
-          await window.novaRefreshMainScreenHero({ urgent: true });
-        } else {
-          await Promise.race([
-            window.novaRefreshMainScreenHero({ urgent: true }),
-            new Promise(function (r) {
-              setTimeout(r, 5500);
-            })
-          ]);
-        }
+        await Promise.race([
+          window.novaRefreshMainScreenHero({ urgent: true }),
+          new Promise(function (r) {
+            setTimeout(r, opts.boot ? 3500 : 5500);
+          })
+        ]);
       } catch (_) {}
     }
 
@@ -284,7 +249,7 @@
       if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup(true);
     } catch (_) {}
 
-    if (!strict && typeof window.novaSyncMainScreenBgVideo === 'function') {
+    if (!opts.boot && typeof window.novaSyncMainScreenBgVideo === 'function') {
       var bgP = window.novaSyncMainScreenBgVideo(false);
       if (opts.awaitBg) {
         try {
@@ -295,13 +260,15 @@
       }
     }
 
+    if (typeof window.onMainScreenLoad === 'function') {
+      try {
+        window.onMainScreenLoad();
+      } catch (_) {}
+    }
+
     try {
       document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
     } catch (_) {}
-
-    if (strict) {
-      return window.novaWaitUntilMainScreenElementsReady({ maxMs: BOOT_STRICT_MAX_MS });
-    }
 
     window.__novaMainScreenBootReady = mainScreenElementsReady();
     return window.__novaMainScreenBootReady;
@@ -321,38 +288,20 @@
     opts = opts || {};
     if (ensureReadyPromise && !opts.force) return ensureReadyPromise;
 
-    var strict = !!(opts.strict || opts.boot);
-
     ensureReadyPromise = (async function () {
       var student = getStoredStudent();
       if (!student) return false;
 
       revealMainForBoot();
 
-      if (strict) {
-        await window.novaStabilizeMainScreen({ force: true, awaitBg: false, boot: true, strict: true });
-        var ok = await window.novaWaitUntilMainScreenElementsReady({ maxMs: BOOT_STRICT_MAX_MS });
-        if (ok) {
-          try {
-            document.dispatchEvent(new CustomEvent('nova:main-screen-ready'));
-          } catch (_) {}
-        }
-        window.__novaMainScreenBootReady = ok;
-        return ok;
-      }
-
-      for (var attempt = 0; attempt < 8; attempt++) {
+      for (var attempt = 0; attempt < (opts.boot ? 4 : 8); attempt++) {
         try {
-          if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
-          if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-            await Promise.race([
-              window.novaPrefetchMainScreenAssets(attempt > 0),
-              new Promise(function (r) {
-                setTimeout(r, 5000);
-              })
-            ]);
-          }
-          await window.novaStabilizeMainScreen({ force: true, awaitBg: false });
+          await window.novaStabilizeMainScreen({
+            force: true,
+            awaitBg: false,
+            boot: !!opts.boot,
+            forcePrefetch: attempt > 0
+          });
         } catch (_) {}
 
         if (mainScreenElementsReady()) {
@@ -362,8 +311,20 @@
           window.__novaMainScreenBootReady = true;
           return true;
         }
+
+        if (opts.boot) {
+          var ok = await window.novaWaitUntilMainScreenElementsReady({ maxMs: 2200, kickMs: 40 });
+          if (ok) {
+            try {
+              document.dispatchEvent(new CustomEvent('nova:main-screen-ready'));
+            } catch (_) {}
+            window.__novaMainScreenBootReady = true;
+            return true;
+          }
+        }
+
         await new Promise(function (r) {
-          setTimeout(r, 60 + attempt * 35);
+          setTimeout(r, opts.boot ? 24 + attempt * 16 : 60 + attempt * 35);
         });
       }
 
@@ -395,28 +356,45 @@
         }
       }
 
-      status('Ana ekran hazırlanıyor…');
       revealMainForBoot();
-      window.__novaMainScreenProfileApplied = false;
 
       var student = getStoredStudent();
       if (!student) {
-        status('Giriş ekranı hazır…');
         window.__novaMainScreenBootReady = true;
         return true;
       }
 
       window.__novaBootMainPrep = true;
       try {
-        status('Profil ve lig yükleniyor…');
-        await waitMainScreenPrefetch(14000);
+        status('Arayüz hazırlanıyor…');
+        if (typeof window.novaBootApplyInstantCache === 'function') {
+          await window.novaBootApplyInstantCache();
+        }
 
-        status('Kahraman ve arayüz hazırlanıyor…');
-        var ok = await window.novaEnsureMainScreenReady({ force: true, boot: true, strict: true });
+        status('Kahramanlar yükleniyor…');
+        await Promise.all([
+          typeof window.novaPrefetchMainScreenAssets === 'function'
+            ? window.novaPrefetchMainScreenAssets(true).catch(function () {})
+            : Promise.resolve(),
+          typeof window.novaRefreshMainScreenHero === 'function'
+            ? Promise.race([
+                window.novaRefreshMainScreenHero({ urgent: true }),
+                new Promise(function (r) {
+                  setTimeout(r, 4500);
+                })
+              ]).catch(function () {})
+            : Promise.resolve(),
+          ensureMainScreenLayout()
+        ]);
 
-        status(ok ? 'Hazır!' : 'Son kontroller…');
+        status('Son dokunuşlar…');
+        var ok = await window.novaWaitUntilMainScreenElementsReady({
+          maxMs: BOOT_WAIT_MAX_MS,
+          kickMs: 40
+        });
+
         if (!ok) {
-          ok = await window.novaWaitUntilMainScreenElementsReady({ maxMs: 10000 });
+          ok = mainScreenElementsReady();
         }
 
         window.__novaMainScreenBootReady = ok;
@@ -426,8 +404,8 @@
       }
     })().catch(function (e) {
       console.warn('[nova main boot prep]', e);
-      window.__novaMainScreenBootReady = false;
-      return false;
+      window.__novaMainScreenBootReady = mainScreenElementsReady();
+      return window.__novaMainScreenBootReady;
     });
 
     return window.__novaMainScreenBootPromise;

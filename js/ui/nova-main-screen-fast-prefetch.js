@@ -149,6 +149,36 @@
       var cached = readCupCache(student);
       if (cached != null) window.novaApplyGameCupLeague(cached);
     }
+    applyCreditsInstantDefault();
+  };
+
+  function applyCreditsInstantDefault() {
+    var cred = document.getElementById('duel-credits-value');
+    if (!cred) return;
+    if (String(cred.textContent || '').trim() !== '') return;
+    applyCreditsPrefetch();
+    if (String(cred.textContent || '').trim() === '') cred.textContent = '0';
+  }
+
+  window.novaBootApplyInstantCache = function () {
+    var student = getStoredStudent();
+    if (!student) return Promise.resolve(false);
+    window.novaApplyMainScreenHudInstant();
+    var heroId = String(student.battleHero || window.__novaEquippedHeroId || 'star_fairy').trim();
+    window.__novaEquippedHeroId = heroId;
+    if (typeof window.novaSpritePreloadForHero === 'function') {
+      try {
+        window.novaSpritePreloadForHero(heroId);
+      } catch (_) {}
+    }
+    if (typeof window.novaSpritePreloadHero === 'function') {
+      try {
+        window.novaSpritePreloadHero(heroId);
+      } catch (_) {}
+    }
+    return window.novaApplyMainScreenProfileUi({}, student).then(function () {
+      return true;
+    });
   };
 
   function applyProfilePhotoToDom(url) {

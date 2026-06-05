@@ -8,7 +8,7 @@
   var MAX_WAIT_MS = 90000;
   var EXIT_HOLD_MS = 380;
   var HANDOFF_PAINT_MS = 64;
-  var POST_ANIM_VISUAL_MS = 5200;
+  var POST_ANIM_VISUAL_MS = 2800;
 
   window.__novaSpriteBootManaged = true;
 
@@ -192,20 +192,25 @@
     if (!state.handoffReady && ratio >= 1 && !opts.forceComplete) {
       ratio = Math.min(ratio, 0.99);
     }
-    var pct = Math.max(0, Math.min(100, Math.round((ratio || 0) * 100)));
+    var progress = Math.max(0, Math.min(1, ratio || 0));
+    var pct = Math.round(progress * 100);
     state.smoothPct = pct;
+    ov.style.setProperty('--nova-boot-progress', String(progress));
+    ov.style.setProperty('--nova-boot-pct', String(pct));
+
     var bar = ov.querySelector('.nova-sprite-boot-bar');
     var label = ov.querySelector('.nova-sprite-boot-pct');
-    var glow = ov.querySelector('.nova-sprite-boot-bar-glow');
     var wrap = ov.querySelector('.nova-sprite-boot-bar-wrap');
     var status = ov.querySelector('.nova-sprite-boot-status');
     if (bar) {
-      bar.style.width = pct + '%';
+      bar.setAttribute('aria-valuenow', String(pct));
       bar.classList.toggle('is-full', pct >= 100);
       bar.classList.toggle('is-waiting', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
     }
-    if (glow) glow.style.left = pct + '%';
-    if (wrap) wrap.classList.toggle('has-progress', pct > 2);
+    if (wrap) {
+      wrap.classList.toggle('has-progress', pct > 0);
+      wrap.setAttribute('aria-valuenow', String(pct));
+    }
     if (label) label.textContent = pct + '%';
     if (status && statusText) {
       status.textContent = statusText;
@@ -234,25 +239,37 @@
     state.postAnimStarted = false;
   }
 
+  function bootReadinessProgress() {
+    if (typeof window.novaMainScreenReadinessRatio === 'function') {
+      try {
+        return window.novaMainScreenReadinessRatio();
+      } catch (_) {}
+    }
+    return state.heavyMainDone ? 1 : 0.35;
+  }
+
   function startPostAnimProgress(statusText) {
     if (state.postAnimStarted) return;
     state.postAnimStarted = true;
     var start = performance.now();
-    var startPct = 0.88;
-    var endPct = 0.985;
 
     function tick(now) {
       if (state.exiting || state.handoffReady) {
         stopPostAnimProgress();
         return;
       }
+      var readiness = bootReadinessProgress();
       var elapsed = now - start;
-      var t = Math.min(1, elapsed / POST_ANIM_VISUAL_MS);
-      var ratio = startPct + t * (endPct - startPct);
-      if (state.heavyMainDone) ratio = Math.min(0.99, ratio + 0.008);
+      var timeBoost = Math.min(0.15, elapsed / POST_ANIM_VISUAL_MS);
+      var ratio = 0.88 + Math.min(0.11, readiness * 0.11 + timeBoost);
+      if (state.heavyMainDone && readiness >= 0.99) ratio = 0.99;
       var msg =
         statusText ||
-        (state.heavyMainDone ? 'Ana ekran açılıyor…' : 'Ana ekran hazırlanıyor…');
+        (readiness >= 0.85
+          ? 'Ana ekran açılıyor…'
+          : readiness >= 0.45
+            ? 'Kahramanlar hazırlanıyor…'
+            : 'Ana ekran hazırlanıyor…');
       setProgress(ratio, msg, { allowDuringDownload: true });
       if (!state.handoffReady) state.postAnimTicker = requestAnimationFrame(tick);
     }
@@ -824,23 +841,12 @@
     return new Promise(function (resolve) {
       (async function () {
         stopPostAnimProgress();
-        setProgress(0.97, 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
-
-        if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
-          try {
-            await window.novaWaitUntilMainScreenElementsReady({ maxMs: 32000 });
-          } catch (_) {}
-        } else if (typeof window.novaEnsureMainScreenReady === 'function') {
-          try {
-            await window.novaEnsureMainScreenReady({ force: true, boot: true, strict: true });
-          } catch (_) {}
-        }
+        setProgress(0.94, 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
 
         if (!mainElementsReadyNow()) {
-          setProgress(0.98, 'Son öğeler yükleniyor…', { allowDuringDownload: true });
           if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
             try {
-              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 12000 });
+              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 4500, kickMs: 40 });
             } catch (_) {}
           }
         }
@@ -850,7 +856,7 @@
         }
 
         revealMainScreenUnderOverlay();
-        await waitForMainScreenPaint(6000);
+        await waitForMainScreenPaint(1200);
 
         state.handoffReady = true;
         stopFinishingPulse();
@@ -863,14 +869,14 @@
         resolve();
       })().catch(function () {
         (async function () {
-          setProgress(0.99, 'Son öğeler yükleniyor…', { allowDuringDownload: true });
+          setProgress(0.97, 'Son öğeler yükleniyor…', { allowDuringDownload: true });
           if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
             try {
-              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 20000 });
+              await window.novaWaitUntilMainScreenElementsReady({ maxMs: 6000, kickMs: 40 });
             } catch (_) {}
           }
           revealMainScreenUnderOverlay();
-          await waitForMainScreenPaint(6000);
+          await waitForMainScreenPaint(1200);
           state.handoffReady = mainElementsReadyNow();
           stopPostAnimProgress();
           if (state.handoffReady) {
@@ -912,6 +918,10 @@
     }
     setProgress(0, 'Açılış animasyonu indiriliyor…');
 
+    window.__novaBootMainPrep = true;
+    if (typeof window.novaBootApplyInstantCache === 'function') {
+      window.novaBootApplyInstantCache().catch(function () {});
+    }
     if (typeof window.novaPrefetchMainScreenAssets === 'function') {
       window.novaPrefetchMainScreenAssets(true);
     }

@@ -13,6 +13,8 @@ body.nova-sprite-boot-active{
   opacity: 1;
   visibility: visible;
   transition: opacity .6s cubic-bezier(.4, 0, .2, 1), visibility .6s;
+  --nova-boot-progress: 0;
+  --nova-boot-pct: 0;
 }
 #nova_sprite_boot_overlay.is-exiting{
   opacity: 0;
@@ -251,13 +253,20 @@ body.nova-main-screen-visible #main-screen{
 .nova-sprite-boot-bar{
   display: block;
   height: 100%;
-  width: 0%;
+  width: calc(var(--nova-boot-pct, 0) * 1%);
+  min-width: 0;
+  max-width: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, #4338ca, #7c3aed, #f59e0b, #fde047);
   background-size: 240% 100%;
   box-shadow: 0 0 18px rgba(251, 191, 36, .45);
-  transition: width .1s linear;
+  transition: none;
   animation: novaSpriteBootShine 2.2s linear infinite;
+  will-change: width;
+}
+#nova_sprite_boot_overlay:not(.is-exiting) .nova-sprite-boot-bar,
+#nova_sprite_boot_overlay:not(.is-exiting) .nova-sprite-boot-bar-glow{
+  transition: none !important;
 }
 .nova-sprite-boot-bar.is-full{
   animation: novaSpriteBootPulse .5s ease-out 1, novaSpriteBootShine 2.2s linear infinite;
@@ -266,7 +275,7 @@ body.nova-main-screen-visible #main-screen{
 .nova-sprite-boot-bar-glow{
   position: absolute;
   top: 50%;
-  left: 0;
+  left: calc(var(--nova-boot-pct, 0) * 1%);
   width: 28px;
   height: 28px;
   margin: -14px 0 0 -14px;
@@ -274,7 +283,8 @@ body.nova-main-screen-visible #main-screen{
   background: radial-gradient(circle, #fff, rgba(253, 224, 71, .5) 45%, transparent 72%);
   opacity: 0;
   pointer-events: none;
-  transition: left .1s linear, opacity .2s;
+  transition: none;
+  will-change: left;
 }
 .nova-sprite-boot-bar-wrap.has-progress .nova-sprite-boot-bar-glow{
   opacity: .9;
