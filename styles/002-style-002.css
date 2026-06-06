@@ -3003,6 +3003,18 @@ html, body {
       afDenemeChampionBurst 1.9s linear infinite;
     filter: drop-shadow(0 0 8px rgba(250,204,21,.82)) drop-shadow(0 0 18px rgba(245,158,11,.6));
 }
+.avatar-framed.af-koseler-neon{
+    border-width: 3px !important;
+    border-style: solid !important;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,.42), transparent 34%),
+      radial-gradient(circle at 82% 82%, rgba(255,255,255,.18), transparent 42%),
+      linear-gradient(135deg, rgba(34,197,94,.14), rgba(59,130,246,.12), rgba(250,204,21,.14));
+    animation:
+      afKoselerNeonCycle 2.4s linear infinite,
+      afKoselerNeonPulse .28s steps(2,end) infinite;
+    filter: drop-shadow(0 0 10px rgba(34,197,94,.55)) drop-shadow(0 0 16px rgba(59,130,246,.45)) drop-shadow(0 0 22px rgba(250,204,21,.42));
+}
 
 /* Mobile main-screen optimization: keep neon look, reduce expensive effects */
 @media (max-width: 900px), (pointer: coarse){
@@ -3026,6 +3038,9 @@ html, body {
   }
   #main-screen .avatar-framed.af-denemechamp{
     animation: mainScreenNeonGold 1.18s ease-in-out infinite !important;
+  }
+  #main-screen .avatar-framed.af-koseler-neon{
+    animation: mainScreenNeonTriple 2.2s linear infinite !important;
   }
 }
 
@@ -3142,6 +3157,58 @@ html, body {
     box-shadow: 0 0 18px rgba(250,204,21,.96), 0 0 44px rgba(245,158,11,.66), 0 0 74px rgba(194,65,12,.42);
     animation: storeFrameGold .96s ease-in-out infinite;
 }
+.store-avatar-frame.af-koseler-neon{
+    border-width: 3px;
+    border-style: solid;
+    animation: afKoselerNeonCycle 2.4s linear infinite, storeFramePulse 1.5s ease-in-out infinite;
+}
+@keyframes afKoselerNeonCycle{
+  0%, 100%{
+    border-color: #22c55e;
+    box-shadow:
+      0 0 0 2px rgba(134,239,172,.42),
+      0 0 18px rgba(34,197,94,.78),
+      0 0 36px rgba(34,197,94,.48),
+      0 0 58px rgba(16,185,129,.28);
+    background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(15,23,42,.18));
+  }
+  33%{
+    border-color: #60a5fa;
+    box-shadow:
+      0 0 0 2px rgba(147,197,253,.42),
+      0 0 18px rgba(96,165,250,.78),
+      0 0 36px rgba(59,130,246,.48),
+      0 0 58px rgba(14,165,233,.28);
+    background: linear-gradient(135deg, rgba(59,130,246,.22), rgba(15,23,42,.18));
+  }
+  66%{
+    border-color: #fbbf24;
+    box-shadow:
+      0 0 0 2px rgba(254,240,138,.42),
+      0 0 18px rgba(250,204,21,.78),
+      0 0 36px rgba(234,179,8,.48),
+      0 0 58px rgba(245,158,11,.28);
+    background: linear-gradient(135deg, rgba(250,204,21,.22), rgba(15,23,42,.18));
+  }
+}
+@keyframes afKoselerNeonPulse{
+  0%,100%{ filter: brightness(1.08) saturate(1.18); }
+  50%{ filter: brightness(1.22) saturate(1.34); }
+}
+@keyframes mainScreenNeonTriple{
+  0%,100%{
+    border-color:#22c55e;
+    box-shadow: 0 0 0 2px rgba(134,239,172,.34), 0 0 14px rgba(34,197,94,.42), 0 0 24px rgba(16,185,129,.26);
+  }
+  33%{
+    border-color:#60a5fa;
+    box-shadow: 0 0 0 2px rgba(147,197,253,.34), 0 0 14px rgba(96,165,250,.42), 0 0 24px rgba(14,165,233,.26);
+  }
+  66%{
+    border-color:#fbbf24;
+    box-shadow: 0 0 0 2px rgba(254,240,138,.34), 0 0 14px rgba(250,204,21,.42), 0 0 24px rgba(234,179,8,.26);
+  }
+}
 @keyframes storeFramePulse{
   0%,100%{ transform: scale(1); filter: brightness(1.04); }
   50%{ transform: scale(1.02); filter: brightness(1.14); }
@@ -3241,6 +3308,13 @@ html, body {
     animation-name: afGoldAura, afDenemeChampionBurst !important;
     animation-duration: .76s, 1.35s !important;
     animation-iteration-count: infinite, infinite !important;
+}
+.profile-photos-container .avatar-framed.af-koseler-neon{
+    border-width: 3px !important;
+    animation-name: afKoselerNeonCycle, afKoselerNeonPulse !important;
+    animation-duration: 2.4s, .28s !important;
+    animation-iteration-count: infinite, infinite !important;
+    animation-timing-function: linear, steps(2,end) !important;
 }
 
 @keyframes afPulse{
@@ -3473,7 +3547,8 @@ html, body {
   .avatar-framed.af-rosequeen,
   .avatar-framed.af-superlite,
   .avatar-framed.af-basicbuddy,
-  .avatar-framed.af-denemechamp{
+  .avatar-framed.af-denemechamp,
+  .avatar-framed.af-koseler-neon{
     animation: none !important;
   }
   .store-avatar-frame,
@@ -3481,7 +3556,8 @@ html, body {
   .store-avatar-frame.af-rosequeen,
   .store-avatar-frame.af-superlite,
   .store-avatar-frame.af-basicbuddy,
-  .store-avatar-frame.af-denemechamp{
+  .store-avatar-frame.af-denemechamp,
+  .store-avatar-frame.af-koseler-neon{
     animation: none !important;
   }
 }

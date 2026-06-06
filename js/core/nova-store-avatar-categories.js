@@ -8,6 +8,14 @@
     { key: 'padisahlar_kosesi', label: 'PADİŞAHLAR KÖŞESİ', order: 3 }
   ];
 
+  var PSEUDO_STORE_CATEGORY_KEYS = {
+    __nameFrames: 1,
+    __avatarFrames: 1,
+    __battleHeroes: 1,
+    __battleHeroesTemel: 1,
+    __battleHeroesEpik: 1
+  };
+
   var LEGACY_AVATAR_CATEGORY_KEYS = {
     TemelKarakterler: 1,
     'Temel Karakterler': 1,
@@ -30,6 +38,10 @@
 
   function normalizeKey(k) {
     return String(k || '').trim();
+  }
+
+  function isPseudoStoreCategory(key) {
+    return !!PSEUDO_STORE_CATEGORY_KEYS[normalizeKey(key)];
   }
 
   function isLegacyAvatarCategory(key) {
@@ -65,6 +77,7 @@
       k = normalizeKey(k);
       if (!k || k === '_meta' || seen[k]) return;
       if (k === 'duel') return;
+      if (isPseudoStoreCategory(k)) return;
       if (isLegacyAvatarCategory(k)) return;
       seen[k] = true;
       extras.push(k);
@@ -184,6 +197,7 @@
   global.NOVA_AVATAR_STORE_CATEGORIES = DEFAULT_CATEGORIES;
   global.novaAvatarCategoryLabel = labelForAvatarCategory;
   global.novaIsLegacyAvatarCategory = isLegacyAvatarCategory;
+  global.novaIsPseudoStoreCategory = isPseudoStoreCategory;
   global.novaGetDefaultAvatarCategoryKeys = getDefaultAvatarCategoryKeys;
   global.novaFilterAvatarStoreKeys = filterAvatarStoreKeys;
   global.novaSortAvatarStoreKeys = sortAvatarStoreKeys;

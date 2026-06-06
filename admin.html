@@ -153,18 +153,11 @@
     box-shadow:0 2px 8px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.25);
     white-space:nowrap;
   }
-  .nf-spark{ background:linear-gradient(135deg,#fffbeb,#fde047,#f59e0b); color:#3b2f00; }
-  .nf-wind{ background:linear-gradient(135deg,#a5f3fc,#22d3ee,#0891b2); color:#062c3f; }
-  .nf-neon{ background:linear-gradient(135deg,#22d3ee,#818cf8,#f472b6); color:#fff; }
-  .nf-fire{ background:linear-gradient(135deg,#fdba74,#f97316,#ef4444,#7f1d1d); color:#fff; }
-  .nf-ice{ background:linear-gradient(135deg,#e0f2fe,#60a5fa,#1e40af); color:#eff6ff; }
-  .nf-legend{ background:linear-gradient(135deg,#facc15,#fb7185,#a855f7,#22d3ee); color:#fff; }
-  .nf-inferno{ background:linear-gradient(160deg,#2a0f0f,#7f1d1d,#ef4444,#fbbf24); color:#fff7ed; }
-  .nf-phoenix{ background:linear-gradient(140deg,#292524,#b45309,#fb923c,#fde047); color:#fff7ed; }
-  .nf-cosmic{ background:linear-gradient(135deg,#020617,#312e81,#4c1d95,#1d4ed8); color:#e0e7ff; }
-  .nf-magma{ background:linear-gradient(140deg,#0c0a09,#7c2d12,#dc2626,#fb923c); color:#fff1e6; }
-  .nf-dragonfire{ background:linear-gradient(135deg,#312e81,#7e22ce,#ec4899,#f59e0b); color:#fff7ed; }
-  .nf-wildfire{ background:linear-gradient(135deg,#14532d,#ea580c,#dc2626,#fbbf24); color:#fff7ed; }
+  .nf-okyanus{ background:linear-gradient(135deg,#eff6ff,#93c5fd,#3b82f6); color:#0c2d5c; }
+  .nf-orman{ background:linear-gradient(135deg,#ecfdf5,#6ee7b7,#22c55e); color:#14532d; }
+  .nf-gul{ background:linear-gradient(135deg,#fdf2f8,#f9a8d4,#ec4899); color:#831843; }
+  .nf-kehribar{ background:linear-gradient(135deg,#fffbeb,#fcd34d,#f59e0b); color:#78350f; }
+  .nf-gumus{ background:linear-gradient(135deg,#f8fafc,#cbd5e1,#94a3b8); color:#1e293b; }
 
   /* Mobil / tablet: tek kolon, büyük dokunma alanları */
   @media (max-width: 960px){
@@ -576,7 +569,11 @@ window.NovaAdminExport = (function(){
         <div class="col">
           <div class="card">
             <h3>İsim çerçeveleri</h3>
-            <div class="sub" style="margin-bottom:8px">RTDB: <span class="mono">store/nameFrames/{id}</span> · Öğrencide <span class="mono">nameFrame</span></div>
+            <div class="sub" style="margin-bottom:8px">5 çerçeve · her biri <b>2500 💎</b> · <b>bonus yok</b>. RTDB: <span class="mono">store/nameFrames/{id}</span></div>
+            <div class="toolbar" style="flex-wrap:wrap;gap:8px;margin-bottom:8px">
+              <button class="btn acc" id="btnSeedNameFrames" type="button">✨ Varsayılan isim çerçevelerini kur</button>
+              <span class="hint small">Okyanus · Orman · Gül · Kehribar · Gümüş</span>
+            </div>
             <div class="toolbar">
               <select id="storeCatSelectFrames"></select>
               <button class="btn acc" id="btnReloadStoreFrames" type="button">Yenile</button>
@@ -586,19 +583,12 @@ window.NovaAdminExport = (function(){
         </div>
         <div class="col">
           <div class="card">
-            <h3>Yeni isim çerçevesi</h3>
-            <div class="grid cols-2">
-              <div><label>Ad</label><input id="store_frame_name" type="text"></div>
-              <div><label>Fiyat (elmas)</label><input id="store_frame_price" type="number" min="0" value="0"></div>
-              <div><label>ID (tone)</label><input id="store_frame_id" type="text" placeholder="ör: inferno"></div>
-            </div>
-            <div class="sticky-actions">
-              <button class="btn ok" id="btnAddNameFrame" type="button">➕ Çerçeve ekle</button>
-            </div>
+            <h3>Katalog</h3>
+            <div class="sub small">İsim çerçeveleri sabit 5 tanedir. Görünen ad ve sıra düzenlenebilir; fiyat mağazada <b>2500 elmas</b> olarak uygulanır.</div>
           </div>
           <div class="card mt12">
             <h3>Avatar çerçeveleri (kod)</h3>
-            <div class="sub small">Seri avatar çerçeveleri uygulama kodunda (<span class="mono">SERIES_AVATAR_FRAME_ITEMS</span>) tanımlıdır; mağazada ÇERÇEVELER → Avatar Çerçevesi sekmesinde görünür.</div>
+            <div class="sub small">Avatar çerçeveleri: <b>Yeşil</b> = BİLİM KÖŞESİ tamamı (+3 kupa) · <b>Mavi</b> = LİDERLER KÖŞESİ (+3) · <b>Sarı</b> = PADİŞAHLAR KÖŞESİ (+3) · <b>Neon</b> = üç köşenin tamamı (+6). Mağazada ÇERÇEVELER → Avatar Çerçevesi.</div>
           </div>
         </div>
       </div>
@@ -1240,6 +1230,7 @@ window.NovaAdminExport = (function(){
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="js/core/nova-store-avatar-categories.js?v=30260605avatarcat2"></script>
+<script src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
 <script src="js/core/nova-admin-cdn.js?v=30260604cdn1"></script>
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
@@ -3204,20 +3195,15 @@ btnAddHeading.addEventListener('click', async ()=>{
   const btnRenameCatKey = $('#btnRenameCatKey');
   const btnDeleteCategory = $('#btnDeleteCategory');
   const NAME_FRAME_CATEGORY_KEY = '__nameFrames';
-  const DEFAULT_NAME_FRAMES = [
-    { id:'spark', name:'Parilti', price:5000, tone:'spark', order:1 },
-    { id:'wind', name:'Ruzgar', price:8000, tone:'wind', order:2 },
-    { id:'neon', name:'Neon', price:12000, tone:'neon', order:3 },
-    { id:'fire', name:'Ates', price:18000, tone:'fire', order:4 },
-    { id:'ice', name:'Buz', price:22000, tone:'ice', order:5 },
-    { id:'legend', name:'Efsane', price:30000, tone:'legend', order:6 },
-    { id:'inferno', name:'Cehennem Alevi', price:34000, tone:'inferno', order:7 },
-    { id:'phoenix', name:'Anka Kanadi', price:38000, tone:'phoenix', order:8 },
-    { id:'cosmic', name:'Kozmik Nebula', price:42000, tone:'cosmic', order:9 },
-    { id:'magma', name:'Magma Kabugu', price:46000, tone:'magma', order:10 },
-    { id:'dragonfire', name:'Ejder Nefesi', price:52000, tone:'dragonfire', order:11 },
-    { id:'wildfire', name:'Ucucu Alev', price:60000, tone:'wildfire', order:12 }
-  ];
+  const DEFAULT_NAME_FRAMES = (typeof window.novaGetDefaultNameFrames === 'function')
+    ? window.novaGetDefaultNameFrames()
+    : [
+      { id:'okyanus', name:'Okyanus', price:2500, tone:'okyanus', order:1 },
+      { id:'orman', name:'Orman', price:2500, tone:'orman', order:2 },
+      { id:'gul', name:'Gül', price:2500, tone:'gul', order:3 },
+      { id:'kehribar', name:'Kehribar', price:2500, tone:'kehribar', order:4 },
+      { id:'gumus', name:'Gümüş', price:2500, tone:'gumus', order:5 }
+    ];
 
   function sanitizeNameFrameId(s){
     let t = String(s||'').trim().toLowerCase().replace(/\s+/g,'_');
@@ -3226,18 +3212,31 @@ btnAddHeading.addEventListener('click', async ()=>{
   }
   function renderAdminNameFramePreview(name, tone){
     const safeName = String(name || 'Oyuncu').replace(/</g,'&lt;').replace(/"/g,'&quot;');
-    const safeTone = sanitizeNameFrameId(tone || 'spark') || 'spark';
+    const safeTone = sanitizeNameFrameId(tone || 'okyanus') || 'okyanus';
     return `<span class="nova-name-frame nf-${safeTone}">${safeName}</span>`;
   }
-  async function ensureNameFramesSeeded(){
+  async function loadNameFramesForAdmin(){
+    if (typeof window.novaSyncNameFramesCatalog === 'function') {
+      const result = await window.novaSyncNameFramesCatalog(rdb);
+      return (result && result.frames) ? result.frames : {};
+    }
     const snap = await rdb.ref('store/nameFrames').get();
-    const curr = snap.exists() ? (snap.val() || {}) : {};
-    if (Object.keys(curr).length) return curr;
+    const raw = snap.exists() ? (snap.val() || {}) : {};
+    const frames = {};
+    DEFAULT_NAME_FRAMES.forEach((f)=>{
+      frames[f.id] = raw[f.id] || { name: f.name, price: 2500, tone: f.tone, order: f.order };
+    });
+    return frames;
+  }
+  async function ensureNameFramesSeeded(){
+    if (typeof window.novaEnsureDefaultNameFrames === 'function') {
+      return await window.novaEnsureDefaultNameFrames(rdb);
+    }
     const updates = {};
     DEFAULT_NAME_FRAMES.forEach((f)=>{
       updates[`store/nameFrames/${f.id}`] = {
         name: f.name,
-        price: Number(f.price || 0),
+        price: Number(f.price || 2500),
         tone: f.tone || f.id,
         order: Number(f.order || 1e9)
       };
@@ -3350,12 +3349,13 @@ btnAddHeading.addEventListener('click', async ()=>{
     if(cat === NAME_FRAME_CATEGORY_KEY){
       let frames = {};
       try{
-        frames = await ensureNameFramesSeeded();
+        const seeded = await loadNameFramesForAdmin();
+        frames = seeded || {};
       }catch(e){
         storeItems.innerHTML = '<div class="danger soft">İsim çerçeveleri okunamadı: ' + String(e && e.message || e) + '</div>';
         return;
       }
-      const ids = Object.keys(frames);
+      const ids = DEFAULT_NAME_FRAMES.map(f=>f.id).filter(id=>frames[id]);
       ids.sort((a,b)=>{
         const oa = Number((frames[a]||{}).order ?? 1e9);
         const ob = Number((frames[b]||{}).order ?? 1e9);
@@ -3371,18 +3371,17 @@ btnAddHeading.addEventListener('click', async ()=>{
           <td>${renderAdminNameFramePreview(name, tone)}</td>
           <td class="mono">${id}</td>
           <td><input data-nf-name="${id}" type="text" value="${name.replace(/"/g,'&quot;')}" /></td>
-          <td><input data-nf-price="${id}" type="number" min="0" value="${Number(it.price||0)}" style="width:100px"/></td>
-          <td><input data-nf-tone="${id}" type="text" value="${tone.replace(/"/g,'&quot;')}" /></td>
-          <td><input data-nf-order="${id}" type="number" value="${Number.isFinite(Number(it.order)) ? Number(it.order) : ''}" style="width:90px"/></td>
+        <td><input data-nf-price="${id}" type="number" min="0" value="2500" style="width:100px" readonly title="Sabit fiyat"/></td>
+        <td><input data-nf-tone="${id}" type="text" value="${tone.replace(/"/g,'&quot;')}" /></td>
+        <td><input data-nf-order="${id}" type="number" value="${Number.isFinite(Number(it.order)) ? Number(it.order) : ''}" style="width:90px"/></td>
           <td>
             <button class="btn small" data-nf-save="${id}">Kaydet</button>
-            <button class="btn small err" data-nf-del="${id}">Sil</button>
           </td>
         </tr>`);
       });
       rows.push('</tbody></table>');
       if(!ids.length){
-        rows.push('<p class="soft small mt8" style="padding:8px 10px">Henüz çerçeve yok. Sağdaki formdan ekleyebilirsiniz.</p>');
+        rows.push('<p class="soft small mt8" style="padding:8px 10px">Henüz çerçeve yok. ÇERÇEVELER sekmesinden <b>Varsayılan isim çerçevelerini kur</b> ile ekleyin.</p>');
       }
       storeItems.innerHTML = rows.join('');
 
@@ -3390,22 +3389,13 @@ btnAddHeading.addEventListener('click', async ()=>{
         btn.addEventListener('click', async ()=>{
           const id = btn.getAttribute('data-nf-save');
           const name = (storeItems.querySelector(`input[data-nf-name="${id}"]`)?.value || '').trim() || id;
-          const price = Number(storeItems.querySelector(`input[data-nf-price="${id}"]`)?.value || 0);
           const tone = (storeItems.querySelector(`input[data-nf-tone="${id}"]`)?.value || '').trim() || id;
           const orderRaw = (storeItems.querySelector(`input[data-nf-order="${id}"]`)?.value || '').trim();
-          const payload = { name, price: Math.max(0, Number.isFinite(price) ? price : 0), tone };
+          const payload = { name, price: 2500, tone };
           if(orderRaw !== '' && Number.isFinite(Number(orderRaw))) payload.order = Number(orderRaw);
           else payload.order = null;
           await rdb.ref(`store/nameFrames/${id}`).update(payload);
           alert('Çerçeve güncellendi.');
-          listStoreItems();
-        });
-      });
-      storeItems.querySelectorAll('button[data-nf-del]').forEach(btn=>{
-        btn.addEventListener('click', async ()=>{
-          const id = btn.getAttribute('data-nf-del');
-          if(!confirm('Bu isim çerçevesi silinsin mi?')) return;
-          await rdb.ref(`store/nameFrames/${id}`).remove();
           listStoreItems();
         });
       });
@@ -3549,11 +3539,11 @@ btnAddHeading.addEventListener('click', async ()=>{
     sel.value = NAME_FRAME_CATEGORY_KEY;
     box.innerHTML = '<div class="skeleton" style="height:200px"></div>';
     let frames = {};
-    try { frames = await ensureNameFramesSeeded(); } catch(e){
+    try { frames = await loadNameFramesForAdmin(); } catch(e){
       box.innerHTML = '<div class="danger soft">Çerçeveler okunamadı.</div>';
       return;
     }
-    const ids = Object.keys(frames);
+    const ids = DEFAULT_NAME_FRAMES.map(f=>f.id).filter(id=>frames[id]);
     ids.sort((a,b)=>{
       const oa = Number((frames[a]||{}).order ?? 1e9);
       const ob = Number((frames[b]||{}).order ?? 1e9);
@@ -3569,11 +3559,10 @@ btnAddHeading.addEventListener('click', async ()=>{
         <td>${renderAdminNameFramePreview(name, tone)}</td>
         <td class="mono">${id}</td>
         <td><input data-nf-name="${id}" type="text" value="${name.replace(/"/g,'&quot;')}" /></td>
-        <td><input data-nf-price="${id}" type="number" min="0" value="${Number(it.price||0)}" style="width:100px"/></td>
+        <td><input data-nf-price="${id}" type="number" min="0" value="2500" style="width:100px" readonly title="Sabit fiyat"/></td>
         <td><input data-nf-tone="${id}" type="text" value="${tone.replace(/"/g,'&quot;')}" /></td>
         <td><input data-nf-order="${id}" type="number" value="${Number.isFinite(Number(it.order)) ? Number(it.order) : ''}" style="width:90px"/></td>
-        <td><button class="btn small" data-nf-save="${id}">Kaydet</button>
-            <button class="btn small err" data-nf-del="${id}">Sil</button></td>
+        <td><button class="btn small" data-nf-save="${id}">Kaydet</button></td>
       </tr>`);
     });
     rows.push('</tbody></table>');
@@ -3582,22 +3571,13 @@ btnAddHeading.addEventListener('click', async ()=>{
       btn.addEventListener('click', async ()=>{
         const id = btn.getAttribute('data-nf-save');
         const name = (box.querySelector(`input[data-nf-name="${id}"]`)?.value || '').trim() || id;
-        const price = Number(box.querySelector(`input[data-nf-price="${id}"]`)?.value || 0);
         const tone = (box.querySelector(`input[data-nf-tone="${id}"]`)?.value || '').trim() || id;
         const orderRaw = (box.querySelector(`input[data-nf-order="${id}"]`)?.value || '').trim();
-        const payload = { name, price: Math.max(0, Number.isFinite(price) ? price : 0), tone };
+        const payload = { name, price: 2500, tone };
         if(orderRaw !== '' && Number.isFinite(Number(orderRaw))) payload.order = Number(orderRaw);
         else payload.order = null;
         await rdb.ref(`store/nameFrames/${id}`).update(payload);
         alert('Çerçeve güncellendi.');
-        loadStoreFramesPanel();
-      });
-    });
-    box.querySelectorAll('button[data-nf-del]').forEach(btn=>{
-      btn.addEventListener('click', async ()=>{
-        const id = btn.getAttribute('data-nf-del');
-        if(!confirm('Bu isim çerçevesi silinsin mi?')) return;
-        await rdb.ref(`store/nameFrames/${id}`).remove();
         loadStoreFramesPanel();
       });
     });
@@ -3618,25 +3598,28 @@ btnAddHeading.addEventListener('click', async ()=>{
   });
   const btnReloadStoreFrames = $('#btnReloadStoreFrames');
   if (btnReloadStoreFrames) btnReloadStoreFrames.addEventListener('click', loadStoreFramesPanel);
+  const btnSeedNameFrames = $('#btnSeedNameFrames');
+  if (btnSeedNameFrames) {
+    btnSeedNameFrames.addEventListener('click', async ()=>{
+      if (!rdb) return alert('RTDB yok.');
+      if (!confirm('5 isim çerçevesi kurulsun / güncellensin mi?\n\nEski çerçeveler silinir. Hepsi 2500 elmas olur.')) return;
+      try {
+        if (typeof window.novaEnsureDefaultNameFrames !== 'function') {
+          return alert('nova-store-name-frames.js yüklenemedi.');
+        }
+        const result = await window.novaEnsureDefaultNameFrames(rdb);
+        const removed = (result && result.removed) ? result.removed : [];
+        alert(removed.length
+          ? ('İsim çerçeveleri hazır.\n\nSilinen eski kayıtlar: ' + removed.join(', '))
+          : 'İsim çerçeveleri hazır.');
+        await loadStoreFramesPanel();
+      } catch (e) {
+        alert('Kurulum hatası: ' + String(e && e.message || e));
+      }
+    });
+  }
   const btnReloadStoreHeroes = $('#btnReloadStoreHeroes');
   if (btnReloadStoreHeroes) btnReloadStoreHeroes.addEventListener('click', loadStoreHeroesPanel);
-  const btnAddNameFrame = $('#btnAddNameFrame');
-  if (btnAddNameFrame) btnAddNameFrame.addEventListener('click', async ()=>{
-    const inputName = ($('#store_frame_name').value || '').trim();
-    const price = Number($('#store_frame_price').value||0);
-    const rawId = ($('#store_frame_id').value || '').trim();
-    const id = sanitizeNameFrameId(rawId || inputName);
-    if(!id) return alert('Geçerli bir ID girin.');
-    if(!inputName) return alert('Çerçeve adı gerekli.');
-    await rdb.ref(`store/nameFrames/${id}`).set({
-      name: inputName,
-      price: Math.max(0, Number.isFinite(price) ? price : 0),
-      tone: sanitizeNameFrameId(id) || id,
-      order: Date.now()
-    });
-    $('#store_frame_name').value=''; $('#store_frame_price').value='0'; $('#store_frame_id').value='';
-    await loadStoreFramesPanel();
-  });
   const btnAddStoreHero = $('#btnAddStoreHero');
   if (btnAddStoreHero) btnAddStoreHero.addEventListener('click', async ()=>{
     const id = sanitizeNameFrameId($('#store_hero_id').value || '').replace(/-/g,'_');

@@ -438,6 +438,26 @@ body.nova-screen-loader-active .profile-change-content.nova-store-shell{
   transition: opacity .35s ease, filter .35s ease, transform .35s ease;
 }
 
+/* Mağaza açılışı — daha hafif, cihazı yormayan yükleme */
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__particles,
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__scanlines,
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__flare{
+  display: none;
+}
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__mesh{
+  opacity: .72;
+}
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__aurora{
+  opacity: .55;
+}
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__ring--outer,
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__ring--mid{
+  animation-duration: 2.8s;
+}
+.nova-screen-loader[data-loader-kind="store"] .nova-screen-loader__spark{
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce){
   .nova-screen-loader__mesh,
   .nova-screen-loader__aurora,

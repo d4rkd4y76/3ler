@@ -2093,12 +2093,7 @@
     panel.querySelector('.char-inv-cta-store')?.addEventListener('click', function () {
       if (typeof novaCloseCharacterInventory === 'function') novaCloseCharacterInventory();
       if (typeof novaOpenStore === 'function') {
-        novaOpenStore();
-        setTimeout(function () {
-          if (typeof window.novaStoreHubSelectMainTab === 'function') {
-            window.novaStoreHubSelectMainTab('heroes', '__battleHeroesTemel');
-          }
-        }, 400);
+        novaOpenStore({ main: 'heroes', sub: '__battleHeroesTemel' });
       }
     });
     panel.querySelectorAll('[data-char-equip-hero]').forEach(function (btn) {

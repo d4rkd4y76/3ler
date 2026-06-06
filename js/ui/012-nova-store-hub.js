@@ -79,8 +79,13 @@
     if (typeof window.novaFilterAvatarStoreKeys === 'function') {
       keys = window.novaFilterAvatarStoreKeys(keys);
     } else {
-      keys = unique(keys).filter(function (k) { return k && !PSEUDO_KEYS[k]; });
+      keys = unique(keys);
     }
+    keys = unique(keys).filter(function (k) {
+      if (!k || PSEUDO_KEYS[k]) return false;
+      if (typeof window.novaIsPseudoStoreCategory === 'function' && window.novaIsPseudoStoreCategory(k)) return false;
+      return true;
+    });
     if (!keys.length && typeof window.novaGetDefaultAvatarCategoryKeys === 'function') {
       keys = window.novaGetDefaultAvatarCategoryKeys();
     }
@@ -121,8 +126,8 @@
     });
   }
 
-  function loadCategory(cat) {
-    if (!cat) return;
+  function loadCategory(cat, loadOpts) {
+    if (!cat) return Promise.resolve();
     state.sub = cat;
     setPanelsForCategory(cat);
     activateSubButton(cat);
@@ -133,8 +138,9 @@
       }
     } catch (_) {}
     if (typeof loadProfilePhotos === 'function') {
-      loadProfilePhotos(cat);
+      return loadProfilePhotos(cat, loadOpts);
     }
+    return Promise.resolve();
   }
 
   function renderSubNav() {
@@ -170,7 +176,8 @@
     });
   }
 
-  function selectMainTab(mainId, preferredSub) {
+  function selectMainTab(mainId, preferredSub, hubOpts) {
+    hubOpts = hubOpts || {};
     state.main = mainId;
     activateMainButton(mainId);
     renderSubNav();
@@ -183,13 +190,15 @@
       var keys = collectAvatarKeys();
       cat = preferredSub || keys[0] || (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' ? window.novaGetDefaultAvatarCategoryKeys()[0] : 'bilim_kosesi');
     }
-    loadCategory(cat);
+    var loadOpts = hubOpts.bootOnly ? { bootOnly: true } : null;
+    var loadPromise = loadCategory(cat, loadOpts);
     try {
       if (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.setStoreLevelBarVisible) {
         var showLevelBar = mainId === 'heroes' && cat === '__battleHeroesTemel';
         window.NOVA_HERO_LEVEL.setStoreLevelBarVisible(showLevelBar);
       }
     } catch (_) {}
+    return loadPromise;
   }
 
   function renderMainTabs() {
@@ -217,14 +226,15 @@
     renderSubNav();
   };
 
-  window.novaStoreHubInit = async function novaStoreHubInit() {
+  window.novaStoreHubInit = async function novaStoreHubInit(opts) {
+    opts = opts || {};
     if (typeof novaFetchStoreCategories === 'function') {
       await novaFetchStoreCategories();
     } else if (typeof fetchStoreCategoriesFromDB === 'function') {
       await fetchStoreCategoriesFromDB();
     }
     renderMainTabs();
-    selectMainTab('avatar');
+    await selectMainTab(opts.preferredMain || 'avatar', opts.preferredSub || null, opts);
   };
 
   function getActiveStoreCategory() {
