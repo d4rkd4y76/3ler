@@ -50,7 +50,9 @@ body.nova-main-screen-visible #main-screen.container {
     max-height: 100dvh !important;
     max-height: 100svh !important;
     min-height: 0 !important;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
     margin: 0 !important;
     padding:
       max(6px, env(safe-area-inset-top))
@@ -82,11 +84,12 @@ body.nova-main-screen-visible #main-screen.container {
     padding-bottom: 2px !important;
   }
 
+  /* Profil HUD — içeriği kadar yükseklik; stats altında boşluk bırakmaz */
   #main-screen .main-profile-hero {
-    flex: 1 1 auto !important;
+    flex: 0 0 auto !important;
     min-height: 0 !important;
     max-height: none !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     padding-top: 0 !important;
     padding-left: max(2px, env(safe-area-inset-left, 0px)) !important;
     padding-right: max(2px, env(safe-area-inset-right, 0px)) !important;
@@ -128,6 +131,7 @@ body.nova-main-screen-visible #main-screen.container {
 
   #main-screen .student-stats-container {
     margin-top: clamp(4px, 0.8vh, 8px) !important;
+    margin-bottom: 0 !important;
   }
 
   #main-screen .main-screen-hero-right,
@@ -137,16 +141,27 @@ body.nova-main-screen-visible #main-screen.container {
     padding-top: 0 !important;
   }
 
+  /* Alt menü — doğal akış, arka plan yok (stadyum görünsün) */
   #main-screen > .buttons {
+    position: relative !important;
     flex: 0 0 auto !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
     width: 100% !important;
-    max-width: 100% !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    max-width: min(560px, 100%) !important;
+    margin: clamp(2px, 0.6vh, 6px) auto 0 !important;
     padding: clamp(2px, 0.5vh, 6px) 0 max(2px, env(safe-area-inset-bottom, 0px)) !important;
     gap: clamp(6px, 1vh, 9px) !important;
-    order: 10;
+    box-sizing: border-box !important;
+    background: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transform: none !important;
   }
 
   #main-screen > .buttons button {
@@ -166,9 +181,15 @@ body.nova-main-screen-visible #main-screen.container {
     font-size: 0.72rem !important;
   }
 
+  /* Yönetici — çıkışın hemen altında (DOM sırası) */
   #main-screen .nova-admin-portal-slot {
+    position: relative !important;
     flex-shrink: 0;
-    order: 11;
+    order: unset !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: auto !important;
   }
 
   #main-screen .nask-game-signature {
