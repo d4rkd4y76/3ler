@@ -287,10 +287,6 @@ body.nova-perf-performance:not(.nova-perf-hq-active) .particle{
   animation-duration:.45s !important;
   opacity:.75 !important;
 }
-body.nova-perf-performance:not(.nova-perf-hq-active) .avatar-framed{
-  animation-duration:3.2s !important;
-  filter:none !important;
-}
 body.nova-perf-performance:not(.nova-perf-hq-active) .match-link{
   animation:none !important;
   stroke-dasharray:0 !important;
@@ -309,15 +305,19 @@ body.nova-perf-ultra:not(.nova-perf-hq-active) .confetti,
 body.nova-perf-ultra:not(.nova-perf-hq-active) .particle{
   display:none !important;
 }
-body.nova-perf-ultra:not(.nova-perf-hq-active) .avatar-framed,
 body.nova-perf-ultra:not(.nova-perf-hq-active) .match-link,
 body.nova-perf-ultra:not(.nova-perf-hq-active) .surprise-box{
   animation:none !important;
   filter:none !important;
 }
-body.nova-perf-ultra:not(.nova-perf-hq-active) *{
+body.nova-perf-ultra:not(.nova-perf-hq-active) *:not(.avatar-framed):not(.store-avatar-frame):not(.nova-name-frame):not(.nova-name-frame *):not(.nova-name-basic){
   backdrop-filter:none !important;
   transition:none !important;
   box-shadow:none !important;
   text-shadow:none !important;
+}
+body.nova-perf-ultra:not(.nova-perf-hq-active) .avatar-framed,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .store-avatar-frame{
+  filter:none !important;
+  transition:border-color .35s ease, box-shadow .35s ease !important;
 }

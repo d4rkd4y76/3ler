@@ -1,0 +1,143 @@
+/* Birleşik avatar çerçevesi — mağaza, profil, düello, sıralama, karakter envanteri */
+
+/* Mağaza/karakter: görsel çerçeve yalnızca img üzerinde (kapsayıcı şeffaf) */
+.store-avatar-frame,
+.store-avatar-frame.af-default,
+.store-avatar-frame.af-worldchamp,
+.store-avatar-frame.af-rosequeen,
+.store-avatar-frame.af-superlite,
+.store-avatar-frame.af-basicbuddy,
+.store-avatar-frame.af-denemechamp,
+.store-avatar-frame.af-koseler-neon,
+.char-inv-thumb-wrap .store-avatar-frame{
+  border: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+  filter: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+/* Mağaza grid: profil ile aynı çerçeve (ağır override yok) */
+.profile-change-content .profile-photos-container .avatar-framed,
+.profile-photos-container .avatar-framed{
+  border-width: 5px !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* —— Akıcı / mobil: hafif neon, her yerde aynı —— */
+@keyframes novaUnifiedNeonBase{
+  0%,100%{ box-shadow: 0 0 10px rgba(148,163,184,.32); }
+  50%{ box-shadow: 0 0 18px rgba(148,163,184,.46); }
+}
+@keyframes novaUnifiedNeonGold{
+  0%,100%{
+    border-color:#fbbf24;
+    box-shadow: 0 0 0 2px rgba(255,226,121,.34), 0 0 14px rgba(251,191,36,.42), 0 0 24px rgba(234,179,8,.26);
+  }
+  50%{
+    border-color:#fde047;
+    box-shadow: 0 0 0 2px rgba(255,236,153,.40), 0 0 20px rgba(251,191,36,.58), 0 0 34px rgba(249,115,22,.36);
+  }
+}
+@keyframes novaUnifiedNeonPink{
+  0%,100%{
+    border-color:#f472b6;
+    box-shadow: 0 0 0 2px rgba(249,168,212,.30), 0 0 12px rgba(244,114,182,.42), 0 0 22px rgba(236,72,153,.24);
+  }
+  50%{
+    border-color:#f9a8d4;
+    box-shadow: 0 0 0 2px rgba(251,207,232,.38), 0 0 18px rgba(244,114,182,.56), 0 0 30px rgba(236,72,153,.34);
+  }
+}
+@keyframes novaUnifiedNeonBlue{
+  0%,100%{
+    border-color:#60a5fa;
+    box-shadow: 0 0 0 2px rgba(191,219,254,.28), 0 0 12px rgba(96,165,250,.42), 0 0 22px rgba(37,99,235,.24);
+  }
+  50%{
+    border-color:#93c5fd;
+    box-shadow: 0 0 0 2px rgba(219,234,254,.36), 0 0 18px rgba(96,165,250,.58), 0 0 30px rgba(14,165,233,.34);
+  }
+}
+@keyframes novaUnifiedNeonGreen{
+  0%,100%{
+    border-color:#4ade80;
+    box-shadow: 0 0 0 2px rgba(134,239,172,.26), 0 0 12px rgba(34,197,94,.40), 0 0 22px rgba(16,185,129,.22);
+  }
+  50%{
+    border-color:#86efac;
+    box-shadow: 0 0 0 2px rgba(187,247,208,.34), 0 0 18px rgba(34,197,94,.54), 0 0 30px rgba(132,204,22,.32);
+  }
+}
+@keyframes novaUnifiedNeonTriple{
+  0%,100%{
+    border-color:#22c55e;
+    box-shadow: 0 0 0 2px rgba(134,239,172,.34), 0 0 14px rgba(34,197,94,.42), 0 0 24px rgba(16,185,129,.26);
+  }
+  33%{
+    border-color:#60a5fa;
+    box-shadow: 0 0 0 2px rgba(147,197,253,.34), 0 0 14px rgba(96,165,250,.42), 0 0 24px rgba(14,165,233,.26);
+  }
+  66%{
+    border-color:#fbbf24;
+    box-shadow: 0 0 0 2px rgba(254,240,138,.34), 0 0 14px rgba(250,204,21,.42), 0 0 24px rgba(234,179,8,.26);
+  }
+}
+
+body.nova-frames-unified-lite .avatar-framed,
+body.nova-frames-unified-lite .ranking-table .avatar-framed,
+body.nova-frames-unified-lite .duel-player-photo.avatar-framed,
+body.nova-frames-unified-lite .ndep-avatar-wrap .avatar-framed,
+body.nova-frames-unified-lite .char-inv-hero-avatar.avatar-framed,
+body.nova-frames-unified-lite .char-inv-card .avatar-framed,
+body.nova-frames-unified-lite .profile-photos-container .avatar-framed{
+  will-change: box-shadow, border-color;
+  transform: translateZ(0);
+  filter: none !important;
+  border-width: 5px !important;
+  background-image: none !important;
+  animation: novaUnifiedNeonBase 1.9s ease-in-out infinite !important;
+  transition: border-color .35s ease, box-shadow .35s ease !important;
+}
+
+body.nova-frames-unified-lite .avatar-framed.af-default{
+  border-color: #94a3b8 !important;
+  animation: novaUnifiedNeonBase 1.9s ease-in-out infinite !important;
+}
+
+body.nova-frames-unified-lite .avatar-framed.af-worldchamp,
+body.nova-frames-unified-lite .avatar-framed.af-denemechamp{
+  animation: novaUnifiedNeonGold 1.35s ease-in-out infinite !important;
+}
+body.nova-frames-unified-lite .avatar-framed.af-denemechamp{
+  animation-duration: 1.18s !important;
+}
+body.nova-frames-unified-lite .avatar-framed.af-rosequeen{
+  animation: novaUnifiedNeonPink 1.35s ease-in-out infinite !important;
+}
+body.nova-frames-unified-lite .avatar-framed.af-superlite{
+  animation: novaUnifiedNeonBlue 1.4s ease-in-out infinite !important;
+}
+body.nova-frames-unified-lite .avatar-framed.af-basicbuddy{
+  animation: novaUnifiedNeonGreen 1.45s ease-in-out infinite !important;
+}
+body.nova-frames-unified-lite .avatar-framed.af-koseler-neon{
+  border-width: 3px !important;
+  animation: novaUnifiedNeonTriple 2.2s linear infinite !important;
+}
+
+/* İsim çerçeveleri — akıcı modda sade görünüm korunsun */
+body.nova-perf-ultra:not(.nova-perf-hq-active) .nova-name-frame,
+body.nova-frames-unified-lite .nova-name-frame{
+  box-shadow: 0 2px 8px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.28) !important;
+  transition: border-color .2s ease, box-shadow .2s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  body.nova-frames-unified-lite .avatar-framed{
+    animation: none !important;
+  }
+}

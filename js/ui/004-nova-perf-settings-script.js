@@ -157,6 +157,19 @@
       }
     }catch(_){}
   }
+  function shouldUseUnifiedLiteFrames(){
+    if (!document.body || document.body.classList.contains('nova-perf-hq-active')) return false;
+    const mode = normalizeMode(window.__novaPerfMode) || getDefaultMode();
+    if (mode === 'ultra' || mode === 'performance') return true;
+    try{
+      return window.matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+    }catch(_){}
+    return false;
+  }
+  function syncUnifiedFrameLiteClass(){
+    if (!document.body) return;
+    document.body.classList.toggle('nova-frames-unified-lite', shouldUseUnifiedLiteFrames());
+  }
   function syncPerfRuntime(){
     if (!document.body) return;
     const mode = window.__novaPerfMode || getDefaultMode();
@@ -174,6 +187,7 @@
     document.body.classList.toggle('nova-perf-duel-medium-active', duelMediumActive);
     updatePerfCssVars(mode, scale);
     applyBodyScale(scale);
+    syncUnifiedFrameLiteClass();
     try{ if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout(); }catch(_){}
   }
   function novaPerfBeforeGameScreen(screenId){
@@ -188,12 +202,14 @@
       document.body.classList.add('nova-perf-sp-medium-active', 'nova-perf-duel-medium-active');
       updatePerfCssVars(mode, SINGLE_PLAYER_ULTRA_SCALE);
       applyBodyScale(SINGLE_PLAYER_ULTRA_SCALE);
+      syncUnifiedFrameLiteClass();
       return;
     }
     document.body.classList.remove('nova-perf-sp-medium-active', 'nova-perf-duel-medium-active');
     document.body.classList.add('nova-perf-hq-active');
     updatePerfCssVars(mode, 1);
     applyBodyScale(1);
+    syncUnifiedFrameLiteClass();
   }
   function novaPerfBeforeMainScreen(){
     ensureHighResScopeMarkers();
@@ -205,6 +221,7 @@
     const scale = modeScale(mode);
     updatePerfCssVars(mode, scale);
     applyBodyScale(scale);
+    syncUnifiedFrameLiteClass();
   }
   function schedulePerfSync(){
     ensureHighResScopeMarkers();
@@ -230,6 +247,7 @@
         window.novaStoreMountPendingHeroes();
       }
     } catch (_) {}
+    syncUnifiedFrameLiteClass();
     try {
       document.dispatchEvent(new CustomEvent('nova:perf-mode-changed', { detail: { mode: mode } }));
     } catch (_) {}
@@ -274,8 +292,14 @@
     setInterval(function(){
       if ((window.__novaPerfMode || getDefaultMode()) === 'ultra') schedulePerfSync();
     }, 2500);
-    window.addEventListener('resize', schedulePerfSync);
-    window.addEventListener('orientationchange', schedulePerfSync);
+    window.addEventListener('resize', function(){
+      schedulePerfSync();
+      syncUnifiedFrameLiteClass();
+    });
+    window.addEventListener('orientationchange', function(){
+      schedulePerfSync();
+      syncUnifiedFrameLiteClass();
+    });
     window.addEventListener('pageshow', schedulePerfSync);
     document.addEventListener('visibilitychange', schedulePerfSync);
   }

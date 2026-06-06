@@ -50,6 +50,7 @@
       clearLabel(host);
       return;
     }
+    if (!window.__novaMainSlotPlaceholdersActive) return;
     host.classList.add('nova-slot-pending');
     if (heroSlot) host.classList.add('nova-slot-pending--hero');
     ensureLabel(host, labelText);
@@ -108,7 +109,7 @@
       var st = window.novaSyncMainSlotPlaceholders();
       var allReady = true;
       if (st) {
-        var keys = ['photo', 'name', 'rank', 'cup', 'credits', 'hero'];
+        var keys = ['photo', 'name', 'rank', 'cup', 'credits', 'diamond', 'hero'];
         for (var i = 0; i < keys.length; i++) {
           if (st[keys[i]] === false) {
             allReady = false;

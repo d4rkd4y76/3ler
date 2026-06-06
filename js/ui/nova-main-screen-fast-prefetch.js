@@ -120,6 +120,29 @@
     if (el) el.textContent = String(dia);
     var el2 = document.getElementById('currentDiamonds');
     if (el2) el2.textContent = String(dia);
+    if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+      try {
+        window.novaSyncMainSlotPlaceholders();
+      } catch (_) {}
+    }
+  }
+
+  function applyDiamondInstantDefault() {
+    var el = document.getElementById('diamond-value');
+    if (!el) return;
+    if (String(el.textContent || '').trim() !== '') return;
+    var student = getStoredStudent();
+    var cache = window.__novaMainScreenStudentCache || {};
+    var dia =
+      cache.diamond != null
+        ? Number(cache.diamond)
+        : student && student.diamond != null
+          ? Number(student.diamond)
+          : 0;
+    if (!isFinite(dia)) dia = 0;
+    el.textContent = String(dia);
+    var el2 = document.getElementById('currentDiamonds');
+    if (el2 && String(el2.textContent || '').trim() === '') el2.textContent = String(dia);
   }
 
   function applyCreditsPrefetch() {
@@ -166,6 +189,7 @@
       if (cached != null) window.novaApplyGameCupLeague(cached);
     }
     applyCreditsInstantDefault();
+    applyDiamondInstantDefault();
     if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
       try {
         window.novaSyncMainSlotPlaceholders();
