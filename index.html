@@ -26,6 +26,10 @@
 <script id="nova-login-instant-head">
 (function () {
   try {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  } catch (_) {}
+  try {
     var raw = localStorage.getItem('selectedStudent');
     if (!raw) return;
     var o = JSON.parse(raw);
@@ -90,6 +94,7 @@
 <script src="js/core/nova-game-brand.js?v=30260602brand1"></script>
 <script src="js/core/nova-cdn-config.js?v=30260604cdn1"></script>
 <script src="js/core/nova-cdn-fetch.js?v=30260604cdn1"></script>
+<script src="js/core/nova-cdn-assets.js?v=30260606cdnassets1"></script>
 
 <script defer src="js/core/002-script-002.js?v=30260605bonushit4"></script>
 <script defer src="js/core/003-nova-matching-game.js?v=30260605bonushit4"></script>

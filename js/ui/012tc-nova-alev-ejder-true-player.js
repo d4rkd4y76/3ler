@@ -1,4 +1,4 @@
-/* Alev Ejderi — tek kişilik doğru cevap sprite klipleri */
+﻿/* Alev Ejderi — tek kişilik doğru cevap sprite klipleri */
 (function () {
   'use strict';
 
@@ -36,6 +36,7 @@
     var base = scriptBase();
     if (base.charAt(base.length - 1) !== '/') base += '/';
     var path = base + file;
+    if (typeof window.novaResolveAssetUrl === 'function') return window.novaResolveAssetUrl(path);
     try {
       return new URL(path, window.location.href).href;
     } catch (_) {

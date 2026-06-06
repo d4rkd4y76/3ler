@@ -1,4 +1,4 @@
-/* Gece Ejderi — sprite (mağaza + ana ekran ayrı sheet). */
+﻿/* Gece Ejderi — sprite (mağaza + ana ekran ayrı sheet). */
 (function () {
   'use strict';
 
@@ -24,6 +24,7 @@
     var b = base || 'hero/dark_dragon/sprite/';
     if (b.charAt(b.length - 1) !== '/') b += '/';
     var path = b + file;
+    if (typeof window.novaResolveAssetUrl === 'function') return window.novaResolveAssetUrl(path);
     try {
       return new URL(path, window.location.href).href;
     } catch (_) {

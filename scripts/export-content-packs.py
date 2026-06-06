@@ -169,7 +169,8 @@ def main() -> int:
 
     export_tree(data, args.version, input_path)
     print()
-    print("Sonraki adım: python scripts/upload-bunny-storage.py --version", args.version)
+    print("Sonraki adım (statik medya): python scripts/export-static-assets.py --version", args.version)
+    print("Ardından PowerShell: .\\scripts\\Upload-BunnyCDN.ps1 -Version", args.version)
     return 0
 
 

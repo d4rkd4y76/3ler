@@ -431,8 +431,33 @@
     return true;
   }
 
+  async function bootstrapFromAdminLocalJson(rdb) {
+    if (storageReady()) return false;
+    try {
+      var res = await fetch('cdn-admin.local.json', { cache: 'no-store', credentials: 'omit' });
+      if (!res.ok) return false;
+      var o = await res.json();
+      if (!o || !o.storageZone || !o.storageApiKey) return false;
+      saveLocalStorageCreds(o.storageZone, o.storageApiKey, o.region || 'de');
+      if (rdb && (o.base || o.enabled != null)) {
+        await savePlatformCdnConfig(rdb, {
+          enabled: o.enabled !== false,
+          base: o.base || state.cdn.base,
+          version: Number(o.version) || state.cdn.version || 1,
+          duelRefsOnly: o.duelRefsOnly !== false
+        });
+      }
+      global.__novaAdminCdnBootstrappedFromFile = true;
+      return true;
+    } catch (e) {
+      console.warn('[NovaAdminCdn] cdn-admin.local.json', e);
+      return false;
+    }
+  }
+
   async function init(rdb) {
     loadLocalStorageCreds();
+    await bootstrapFromAdminLocalJson(rdb);
     await loadPlatformCdnConfig(rdb);
     installFirebasePatches(rdb);
     state.ready = storageReady();
@@ -440,6 +465,7 @@
   }
 
   global.NovaAdminCdn = {
+    bootstrapFromAdminLocalJson: bootstrapFromAdminLocalJson,
     init: init,
     loadLocalStorageCreds: loadLocalStorageCreds,
     saveLocalStorageCreds: saveLocalStorageCreds,

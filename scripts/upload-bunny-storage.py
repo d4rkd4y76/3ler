@@ -53,13 +53,32 @@ REGION_HOST = {
     "syd": "syd.storage.bunnycdn.com",
 }
 
+MIME_BY_EXT = {
+    ".json": "application/json; charset=utf-8",
+    ".webp": "image/webp",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".gif": "image/gif",
+    ".svg": "image/svg+xml",
+    ".mp4": "video/mp4",
+    ".webm": "video/webm",
+    ".woff": "font/woff",
+    ".woff2": "font/woff2",
+}
+
+
+def guess_content_type(local_path: Path) -> str:
+    ext = local_path.suffix.lower()
+    return MIME_BY_EXT.get(ext, "application/octet-stream")
+
 
 def upload_file(host: str, zone: str, api_key: str, remote_path: str, local_path: Path) -> None:
     url = encode_storage_url(host, zone, remote_path.lstrip("/"))
     data = local_path.read_bytes()
     req = urllib.request.Request(url, data=data, method="PUT")
     req.add_header("AccessKey", api_key)
-    req.add_header("Content-Type", "application/json")
+    req.add_header("Content-Type", guess_content_type(local_path))
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
             if resp.status not in (200, 201):
@@ -73,6 +92,16 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", type=int, default=1)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument(
+        "--content-only",
+        action="store_true",
+        help="Yalnızca rtdb/ + store/ JSON (assets/ hariç)",
+    )
+    ap.add_argument(
+        "--assets-only",
+        action="store_true",
+        help="Yalnızca assets/ medya dosyaları",
+    )
     args = ap.parse_args()
 
     zone = os.environ.get("BUNNY_STORAGE_ZONE", "").strip()
@@ -93,13 +122,30 @@ def main() -> int:
 
     host = REGION_HOST.get(region, REGION_HOST["de"])
     files = [p for p in src.rglob("*") if p.is_file()]
+    if args.content_only:
+        files = [
+            p
+            for p in files
+            if "assets" + os.sep not in str(p.relative_to(src)).replace("/", os.sep)
+            and not str(p.relative_to(src)).startswith("assets/")
+        ]
+    elif args.assets_only:
+        assets_root = src / "assets"
+        if not assets_root.is_dir():
+            print(f"Hata: {assets_root} yok. Önce: python scripts/export-static-assets.py", file=sys.stderr)
+            return 1
+        files = [p for p in assets_root.rglob("*") if p.is_file()]
     safe_print(f"Yuklenecek: {len(files)} dosya -> zone={zone} host={host}")
 
     ok = 0
     failed = 0
     for i, local in enumerate(files, 1):
-        rel = local.relative_to(src).as_posix()
-        remote = f"v{args.version}/{rel}"
+        if args.assets_only:
+            rel = local.relative_to(src / "assets").as_posix()
+            remote = f"v{args.version}/assets/{rel}"
+        else:
+            rel = local.relative_to(src).as_posix()
+            remote = f"v{args.version}/{rel}"
         if args.dry_run:
             safe_print(f"  [{i}/{len(files)}] PUT {remote}")
             ok += 1

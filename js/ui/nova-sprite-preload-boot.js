@@ -364,11 +364,20 @@
         document.body.classList.remove('nova-sprite-boot-active');
       } catch (_) {}
       revokeBootBlobUrl();
+      try {
+        if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+      } catch (_) {}
+      try {
+        if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
+      } catch (_) {}
       if (typeof cb === 'function') cb();
     }, EXIT_HOLD_MS);
   }
 
   function resolveAssetUrl(path) {
+    if (typeof window.novaResolveAssetUrl === 'function') {
+      return window.novaResolveAssetUrl(path);
+    }
     try {
       return new URL(path, window.location.href).href;
     } catch (_) {
@@ -475,7 +484,13 @@
     state.bootSheetReady = false;
     state.bootAnimStarted = false;
 
-    bootSheet.promise = fetch(url, { cache: 'force-cache', credentials: 'same-origin' })
+    var fetchOpts = { cache: 'force-cache' };
+    try {
+      if (/^https?:\/\//i.test(url)) fetchOpts.credentials = 'omit';
+      else fetchOpts.credentials = 'same-origin';
+    } catch (_) {}
+
+    bootSheet.promise = fetch(url, fetchOpts)
       .then(function (res) {
         if (!res.ok) throw new Error('boot-sheet-fetch-fail');
         return res.blob();
@@ -717,7 +732,11 @@
   }
 
   function resolveVideoUrl(file) {
-    return resolveAssetUrl(file);
+    var path = String(file || '');
+    if (typeof window.novaCdnIsEnabled === 'function' && window.novaCdnIsEnabled()) {
+      path = 'video/' + path.replace(/^video\//, '');
+    }
+    return resolveAssetUrl(path);
   }
 
   function playBootVideoPlain(ov) {
@@ -904,6 +923,12 @@
     } catch (_) {}
     try {
       document.body.classList.add('nova-main-screen-visible');
+    } catch (_) {}
+    try {
+      if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+    } catch (_) {}
+    try {
+      if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
     } catch (_) {}
   }
 

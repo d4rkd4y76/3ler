@@ -2933,6 +2933,27 @@ function novaIsElementVisibleById(id){
   const st = window.getComputedStyle(el);
   return st.display !== 'none' && st.visibility !== 'hidden' && st.opacity !== '0';
 }
+function novaResetMainScreenScroll() {
+  try {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  } catch (_) {}
+}
+window.novaResetMainScreenScroll = novaResetMainScreenScroll;
+
+function novaIsPhoneMainScreen() {
+  try {
+    if (window.matchMedia) {
+      return window.matchMedia('(max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse)').matches;
+    }
+  } catch (_) {}
+  return (window.innerWidth || 0) <= 768;
+}
+
+let __novaMainScrollPinned = false;
+
 function novaSyncMainScreenScrollLock(){
   try{
     const root = document.documentElement;
@@ -2940,9 +2961,14 @@ function novaSyncMainScreenScrollLock(){
     document.body.classList.toggle('nova-main-screen-visible', mainVisible);
     root.classList.toggle('nova-main-screen-visible', mainVisible);
     if (!mainVisible){
+      __novaMainScrollPinned = false;
       root.classList.remove('nova-lock-main-scroll');
       document.body.classList.remove('nova-lock-main-scroll');
       return;
+    }
+    if (!__novaMainScrollPinned) {
+      novaResetMainScreenScroll();
+      __novaMainScrollPinned = true;
     }
     const overlayIds = [
       'characterInventoryOverlay',
@@ -2958,7 +2984,8 @@ function novaSyncMainScreenScrollLock(){
     const hasForegroundOverlay = overlayIds.some(novaIsElementVisibleById);
     const main = document.getElementById('main-screen');
     const contentTooTall = !!(main && (main.offsetHeight > (window.innerHeight - 8)));
-    const shouldLock = mainVisible && !hasForegroundOverlay && !contentTooTall;
+    const phoneMain = novaIsPhoneMainScreen();
+    const shouldLock = mainVisible && !hasForegroundOverlay && (phoneMain || !contentTooTall);
     root.classList.toggle('nova-lock-main-scroll', shouldLock);
     document.body.classList.toggle('nova-lock-main-scroll', shouldLock);
   }catch(_){}

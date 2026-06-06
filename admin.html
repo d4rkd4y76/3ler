@@ -690,7 +690,7 @@ window.NovaAdminExport = (function(){
 
     <div id="cdnView" class="view">
       <h2>CDN yayın (Bunny Storage)</h2>
-      <div class="sub">Soru, mağaza, deneme ve konu verileri kaydedildiğinde otomatik olarak Bunny Storage’a yazılır. Öğrenci uygulaması <span class="mono">platformMeta/cdn</span> ayarıyla CDN’den okur. Storage şifresi yalnızca bu tarayıcıda saklanır.</div>
+      <div class="sub">Soru, mağaza, deneme ve konu verileri kaydedildiğinde otomatik olarak Bunny Storage’a yazılır. Öğrenci uygulaması <span class="mono">platformMeta/cdn</span> ayarıyla CDN’den okur. <b>Otomatik kurulum:</b> proje kökünde <span class="mono">cdn-admin.local.json</span> (şifre içerir — GitHub’a yüklemeyin).</div>
       <div class="card">
         <h3>Öğrenci CDN adresi (Firebase)</h3>
         <div class="grid cols-2 mt8">
@@ -1267,9 +1267,13 @@ window.NovaAdminExport = (function(){
     NovaAdminCdn.init(rdb).then(function(st){
       var el = document.getElementById('cdn_storage_status');
       if (el) {
-        el.textContent = st.ready
-          ? 'CDN otomatik yayın AÇIK — soru ve mağaza kayıtları Bunny\'ye yazılır.'
-          : 'CDN otomatik yayın kapalı — Storage zone + şifre girin (CDN Yayın sekmesi).';
+        if (st.ready) {
+          el.textContent = window.__novaAdminCdnBootstrappedFromFile
+            ? 'CDN otomatik yayın AÇIK (cdn-admin.local.json yüklendi) — sorular Bunny\'ye yazılır.'
+            : 'CDN otomatik yayın AÇIK — soru ve mağaza kayıtları Bunny\'ye yazılır.';
+        } else {
+          el.textContent = 'CDN otomatik yayın kapalı — cdn-admin.local.json oluşturun veya Storage zone + şifre girin.';
+        }
       }
     }).catch(function(e){ console.warn('NovaAdminCdn.init', e); });
   })();

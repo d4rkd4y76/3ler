@@ -6,7 +6,14 @@
   if (window.__novaDuelArenaVideoInstalled) return;
   window.__novaDuelArenaVideoInstalled = true;
 
-  var SRC = 'duello-bg-loop.mp4';
+  function resolveArenaSrc() {
+    if (typeof window.novaCdnIsEnabled === 'function' && window.novaCdnIsEnabled()) {
+      if (typeof window.novaResolveAssetUrl === 'function') {
+        return window.novaResolveAssetUrl('video/duello-bg-loop.mp4');
+      }
+    }
+    return 'duello-bg-loop.mp4';
+  }
   var layer, video, running;
 
   function prefersReducedMotion() {
@@ -28,7 +35,9 @@
     layer = game.querySelector('.ndg-arena-video-layer');
     if (layer) {
       video = document.getElementById('ndg-arena-video-a');
-      if (video && video.getAttribute('src') !== SRC) video.setAttribute('src', SRC);
+      if (video && video.getAttribute('src') !== resolveArenaSrc()) {
+        video.setAttribute('src', resolveArenaSrc());
+      }
       return layer;
     }
 
@@ -51,7 +60,7 @@
     video.disablePictureInPicture = true;
     video.controls = false;
     video.loop = true;
-    video.src = SRC;
+    video.src = resolveArenaSrc();
 
     layer.appendChild(video);
     layer.appendChild(scrim);

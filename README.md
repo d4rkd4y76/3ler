@@ -13,6 +13,12 @@ Bu klasör, `düello.html` dosyasının modülerleştirilmiş çıktısını iç
 ## Çalıştırma
 `index.html` dosyasını tarayıcıda açın.
 
-## Bunny CDN (isteğe bağlı)
-Sıfırdan kurulum rehberi: **`ADIM-ADIM-BUNNY.md`** (önce bunu okuyun).  
-Teknik özet: `BUNNY-MIGRATION.md`
+## Bunny CDN (önerilen — telefon hızı)
+
+**PowerShell rehberi:** `BUNNY-POWERSHELL-KURULUM.md`  
+Teknik özet: `BUNNY-MIGRATION.md` · Adım adım: `ADIM-ADIM-BUNNY.md`
+
+```powershell
+.\scripts\Export-BunnyPacks.ps1 -Version 1
+.\scripts\Upload-BunnyCDN.ps1 -Version 1
+```

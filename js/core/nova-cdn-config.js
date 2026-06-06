@@ -109,6 +109,52 @@
   global.novaCdnApplyMeta = applyMeta;
   global.novaCdnAssetUrl = assetUrl;
 
+  var PUBLIC_CFG_CACHE_KEY = 'nova_cdn_public_cfg_v1';
+
+  function cachePublicMeta(meta) {
+    try {
+      sessionStorage.setItem(PUBLIC_CFG_CACHE_KEY, JSON.stringify({ ts: Date.now(), meta: meta }));
+    } catch (_) {}
+  }
+
+  function loadCachedPublicMeta() {
+    try {
+      var raw = sessionStorage.getItem(PUBLIC_CFG_CACHE_KEY);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || !o.meta) return null;
+      return o.meta;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function notifyCdnReady() {
+    try {
+      global.dispatchEvent(new CustomEvent('nova-cdn-ready'));
+    } catch (_) {}
+  }
+
+  function bootstrapFromPublicJson() {
+    var cached = loadCachedPublicMeta();
+    if (cached && cached.base) {
+      applyMeta(cached);
+      notifyCdnReady();
+    }
+    return fetch('cdn-config.public.json', { cache: 'default', credentials: 'omit' })
+      .then(function (res) {
+        if (!res.ok) return null;
+        return res.json();
+      })
+      .then(function (meta) {
+        if (!meta || typeof meta !== 'object') return;
+        applyMeta(meta);
+        cachePublicMeta(meta);
+        notifyCdnReady();
+      })
+      .catch(function () {});
+  }
+
   function bootstrapFromRtdb() {
     try {
       if (typeof firebase === 'undefined' || !firebase.database) return;
@@ -117,15 +163,23 @@
         .ref('platformMeta/cdn')
         .once('value')
         .then(function (snap) {
-          if (snap.exists()) applyMeta(snap.val());
+          if (snap.exists()) {
+            applyMeta(snap.val());
+            notifyCdnReady();
+          }
         })
         .catch(function () {});
     } catch (_) {}
   }
 
+  function bootstrapAll() {
+    bootstrapFromPublicJson();
+    bootstrapFromRtdb();
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootstrapFromRtdb);
+    document.addEventListener('DOMContentLoaded', bootstrapAll);
   } else {
-    setTimeout(bootstrapFromRtdb, 0);
+    setTimeout(bootstrapAll, 0);
   }
 })(typeof window !== 'undefined' ? window : this);

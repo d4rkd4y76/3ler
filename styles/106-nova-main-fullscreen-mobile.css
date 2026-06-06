@@ -23,10 +23,14 @@ body.nova-main-screen-visible #main-screen.container {
 }
 
 @media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  html.nova-main-screen-visible,
   body.nova-main-screen-visible {
     display: block !important;
     min-height: 100dvh !important;
     min-height: 100svh !important;
+    max-height: 100dvh !important;
+    max-height: 100svh !important;
+    overflow: hidden !important;
     overflow-x: hidden !important;
   }
 
@@ -38,6 +42,11 @@ body.nova-main-screen-visible #main-screen.container {
     min-width: 0 !important;
     min-height: 100dvh !important;
     min-height: 100svh !important;
+    max-height: 100dvh !important;
+    max-height: 100svh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
     margin: 0 !important;
     padding:
       max(10px, env(safe-area-inset-top))

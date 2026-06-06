@@ -24,6 +24,7 @@
     var b = base || 'hero/golge_parsi/sprite/';
     if (b.charAt(b.length - 1) !== '/') b += '/';
     var path = b + file;
+    if (typeof window.novaResolveAssetUrl === 'function') return window.novaResolveAssetUrl(path);
     try {
       return new URL(path, window.location.href).href;
     } catch (_) {
