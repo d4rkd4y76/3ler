@@ -697,6 +697,54 @@
   border-radius: 12px;
   object-fit: contain;
 }
+/* Avatar detay — önizleme %100 büyük, çerçeve kesilmeden tam görünsün */
+.nova-store-detail-panel:has(.nova-store-detail-preview--avatar){
+  width: min(500px, 100%);
+  max-height: min(94vh, 820px);
+}
+.nova-store-detail-preview--avatar{
+  min-height: 0;
+  max-height: none;
+  height: auto;
+  overflow: visible;
+  padding: 44px 14px 18px;
+  border-radius: 22px 22px 0 0;
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 18%, rgba(56, 189, 248, .16), transparent 62%),
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(99, 102, 241, .12), transparent);
+}
+.nova-store-detail-preview--avatar .nova-store-detail-vitrine{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.nova-store-detail-preview--avatar .nova-store-detail-vitrine img,
+.nova-store-detail-preview--avatar .nova-store-detail-vitrine .nova-store-avatar-img{
+  width: auto !important;
+  max-width: min(440px, 86vw) !important;
+  height: auto !important;
+  max-height: min(640px, calc(94vh - 280px)) !important;
+  min-height: 0;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  object-position: center center;
+  display: block;
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, .45),
+    0 0 0 1px rgba(147, 197, 253, .12);
+}
+@media (max-width: 480px){
+  .nova-store-detail-preview--avatar{
+    padding: 40px 10px 14px;
+  }
+  .nova-store-detail-preview--avatar .nova-store-detail-vitrine img,
+  .nova-store-detail-preview--avatar .nova-store-detail-vitrine .nova-store-avatar-img{
+    max-width: min(400px, 92vw) !important;
+    max-height: min(560px, calc(92vh - 260px)) !important;
+  }
+}
 .nova-store-detail-body{
   padding: 0 18px 20px;
 }

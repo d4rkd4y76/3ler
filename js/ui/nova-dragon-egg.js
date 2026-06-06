@@ -156,6 +156,28 @@
     }
   }
 
+  function eggPngUrl(type) {
+    var path = EGG_PNG[type] || '';
+    if (!path) return '';
+    if (typeof window.novaResolveAssetUrl === 'function') return window.novaResolveAssetUrl(path);
+    try {
+      return new URL(path, window.location.href).href;
+    } catch (_) {
+      return path;
+    }
+  }
+
+  function syncEggChipImages() {
+    EGG_TYPES.forEach(function (t) {
+      var chip = document.querySelector('#nova-dragon-egg-screen .nova-dragon-egg-chip[data-egg="' + t + '"]');
+      if (!chip) return;
+      var img = chip.querySelector('.nova-dragon-egg-chip__img');
+      if (!img) return;
+      var url = eggPngUrl(t);
+      if (url && img.getAttribute('src') !== url) img.src = url;
+    });
+  }
+
   function loadImage(url) {
     return new Promise(function (resolve, reject) {
       var img = new Image();
@@ -197,7 +219,7 @@
     });
     EGG_TYPES.forEach(function (t) {
       tasks.push(
-        loadImage(EGG_PNG[t]).then(function (img) {
+        loadImage(eggPngUrl(t)).then(function (img) {
           sheetCache['_png_' + t] = img;
           return img;
         })
@@ -651,6 +673,7 @@
       });
       if (first) selectedType = first;
       renderScreenInventory(getStudent());
+      syncEggChipImages();
       document.querySelectorAll('#nova-dragon-egg-screen .nova-dragon-egg-chip').forEach(function (c) {
         c.classList.toggle('is-selected', c.getAttribute('data-egg') === selectedType);
       });
@@ -696,8 +719,13 @@
   function updateScreenPreview() {
     var preview = document.getElementById('nova_degg_screen_preview');
     if (!preview) return;
-    preview.innerHTML =
-      '<img class="nova-degg-screen__preview-img" src="' + EGG_PNG[selectedType] + '" alt="' + EGG_LABEL[selectedType] + '"/>';
+    preview.innerHTML = '';
+    var img = document.createElement('img');
+    img.className = 'nova-degg-screen__preview-img';
+    img.alt = EGG_LABEL[selectedType] || 'Yumurta';
+    img.decoding = 'async';
+    img.src = eggPngUrl(selectedType);
+    preview.appendChild(img);
   }
 
   function showRewardUi(reward, stu) {
@@ -925,6 +953,11 @@
   function bindScreenUi() {
     if (screenBound) return;
     screenBound = true;
+    syncEggChipImages();
+    if (!window.__novaEggCdnImgBound) {
+      window.__novaEggCdnImgBound = true;
+      window.addEventListener('nova-cdn-ready', syncEggChipImages);
+    }
     var closeBtn = document.getElementById('nova_degg_screen_close');
     if (closeBtn) {
       closeBtn.addEventListener('click', function () {
@@ -994,7 +1027,7 @@
     toast.id = 'nova-degg-earn-toast';
     toast.className = 'nova-degg-earn-toast';
     toast.innerHTML =
-      '<img class="nova-degg-earn-toast__img" src="' + EGG_PNG[type] + '" alt=""/>' +
+      '<img class="nova-degg-earn-toast__img" src="' + eggPngUrl(type) + '" alt=""/>' +
       '<div class="nova-degg-earn-toast__txt"><strong>' + EGG_LABEL[type] + ' Ejderha Yumurtası!</strong>' +
       '<span>+' + count + ' — Ejderha bölümünden kırabilirsin</span></div>';
     document.body.appendChild(toast);
@@ -1042,7 +1075,7 @@
     var type = EGG_TYPES[Math.floor(Math.random() * EGG_TYPES.length)];
     var ok = await window.novaGrantDragonEgg(type, 1, { suppressToast: true });
     if (!ok) return null;
-    return { type: type, label: EGG_LABEL[type], png: EGG_PNG[type] };
+    return { type: type, label: EGG_LABEL[type], png: eggPngUrl(type) };
   };
 
   window.novaBonusTryAwardDragonEgg = window.novaBonusAwardDragonEgg;

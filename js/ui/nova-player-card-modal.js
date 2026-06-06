@@ -40,27 +40,38 @@
     ov.setAttribute('aria-hidden', 'true');
     ov.innerHTML =
       '<div class="nova-player-card" id="nova_player_card" role="dialog" aria-modal="true" aria-labelledby="nova_player_card_name">' +
-      '<button type="button" class="nova-player-card-close" id="nova_player_card_close" aria-label="Kapat">✕</button>' +
       '<div class="nova-player-card-loading" id="nova_player_card_loading">Yükleniyor…</div>' +
+      '<header class="npc-header">' +
+      '<span class="npc-header-accent" aria-hidden="true"></span>' +
       '<p class="nova-player-card-kicker">Oyuncu Kartı</p>' +
-      '<div class="nova-player-card-head">' +
+      '<button type="button" class="nova-player-card-close" id="nova_player_card_close" aria-label="Kapat">✕</button>' +
+      '</header>' +
+      '<div class="nova-player-card-body">' +
+      '<section class="npc-profile-panel">' +
+      '<div class="nova-player-card-identity">' +
       '<div class="nova-player-card-avatar-shell">' +
       '<div class="nova-player-card-avatar-wrap"><img id="nova_player_card_avatar" class="nova-player-card-avatar" alt="" decoding="async"></div>' +
       '</div>' +
+      '<div class="nova-player-card-identity-meta">' +
+      '<div class="npc-info-stack">' +
       '<div class="nova-player-card-name" id="nova_player_card_name"></div>' +
       '<div class="nova-player-card-league" id="nova_player_card_league"></div>' +
+      '<div class="nova-player-card-cup-banner">' +
+      '<span class="npc-cup-ico" aria-hidden="true">🏆</span>' +
+      '<div class="npc-cup-body"><span class="npc-cup-val" id="nova_player_card_cups">0</span><span class="npc-cup-lbl">Toplam kupa</span></div>' +
       '</div>' +
-      '<div class="nova-player-card-stats">' +
-      '<div class="npc-stat"><span class="npc-stat-ico" aria-hidden="true">🏆</span><span class="npc-stat-val" id="nova_player_card_cups">0</span><span class="npc-stat-lbl">Kupa</span></div>' +
-      '<div class="npc-stat"><span class="npc-stat-ico" aria-hidden="true">⚔️</span><span class="npc-stat-val" id="nova_player_card_credits">0</span><span class="npc-stat-lbl">Düello hakkı</span></div>' +
       '</div>' +
-      '<div class="nova-player-card-hero" id="nova_player_card_hero_section">' +
-      '<p class="npc-hero-label">Takılı kahraman</p>' +
+      '</div>' +
+      '</div>' +
+      '</section>' +
+      '<section class="npc-hero-panel nova-player-card-hero" id="nova_player_card_hero_section">' +
+      '<div class="npc-section-head"><span>Takılı kahraman</span></div>' +
       '<div class="nova-player-card-hero-host" id="nova_player_card_hero"></div>' +
-      '<div class="nova-player-card-hero-meta">' +
+      '<div class="npc-hero-footer nova-player-card-hero-meta">' +
       '<span class="npc-hero-name" id="nova_player_card_hero_name">—</span>' +
       '<span class="npc-hero-stars" id="nova_player_card_hero_stars"></span>' +
       '</div>' +
+      '</section>' +
       '</div>' +
       '</div>';
     document.body.appendChild(ov);
@@ -158,7 +169,7 @@
     try {
       if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
         if (typeof window.novaEpicDragonMountSprite === 'function') {
-          window.novaEpicDragonMountSprite(slot, heroId, { profile: 'store', scale: 1.12 });
+          window.novaEpicDragonMountSprite(slot, heroId, { profile: 'store', scale: 1.22 });
           return;
         }
       }
@@ -183,7 +194,6 @@
     var nameEl = document.getElementById('nova_player_card_name');
     var leagueEl = document.getElementById('nova_player_card_league');
     var cupsEl = document.getElementById('nova_player_card_cups');
-    var credEl = document.getElementById('nova_player_card_credits');
     var heroNameEl = document.getElementById('nova_player_card_hero_name');
     var heroStarsEl = document.getElementById('nova_player_card_hero_stars');
     var heroSection = document.getElementById('nova_player_card_hero_section');
@@ -196,14 +206,13 @@
         : data.avatarFrame || 'default';
     var photo = String(data.photo || '').trim();
     var cups = Math.max(0, Number(data.gameCup) || 0);
-    var credits = Math.max(0, Number(data.duelCredits) || 0);
     var heroId = String(data.battleHero || data.heroId || '').trim();
     var studentSnap = data.studentSnap || { purchasedBattleHeroes: data.purchasedBattleHeroes, heroLevel: data.heroLevel };
     var heroLevel = parseHeroLevel(studentSnap, heroId);
 
     if (avatar) {
       avatar.alt = name;
-      avatar.src = photo || 'https://via.placeholder.com/148x185?text=?';
+      avatar.src = photo || 'https://via.placeholder.com/222x278?text=?';
       try {
         if (typeof applyAvatarFrameToImage === 'function') applyAvatarFrameToImage(avatar, avatarFrame);
       } catch (_) {}
@@ -228,7 +237,6 @@
     }
 
     if (cupsEl) cupsEl.textContent = String(cups);
-    if (credEl) credEl.textContent = String(credits);
     if (heroNameEl) heroNameEl.textContent = heroLabel(heroId);
     if (heroStarsEl) heroStarsEl.innerHTML = renderHeroStars(heroLevel, heroId);
     if (heroSection) {
@@ -251,7 +259,6 @@
     var ref = db.ref('classes/' + classId + '/students/' + studentId);
     var snaps = await Promise.all([
       ref.once('value'),
-      ref.child('duelCredits').once('value'),
       ref.child('battleHero').once('value'),
       ref.child('gameCup').once('value'),
       ref.child('photo').once('value'),
@@ -262,9 +269,9 @@
       ref.child('heroLevel').once('value')
     ]);
     var root = snaps[0].exists() ? snaps[0].val() || {} : {};
-    var purchasedBattleHeroes = snaps[8].exists() ? snaps[8].val() || {} : root.purchasedBattleHeroes || {};
-    var battleHero = snaps[2].exists()
-      ? String(snaps[2].val() || '').trim()
+    var purchasedBattleHeroes = snaps[7].exists() ? snaps[7].val() || {} : root.purchasedBattleHeroes || {};
+    var battleHero = snaps[1].exists()
+      ? String(snaps[1].val() || '').trim()
       : String(root.battleHero || '').trim();
     if (!battleHero && purchasedBattleHeroes && typeof purchasedBattleHeroes === 'object') {
       var keys = Object.keys(purchasedBattleHeroes).filter(function (k) {
@@ -275,18 +282,17 @@
     return {
       classId: classId,
       studentId: studentId,
-      name: (snaps[5].exists() ? snaps[5].val() : root.name) || 'Oyuncu',
-      photo: (snaps[4].exists() ? snaps[4].val() : root.photo) || '',
-      nameFrame: (snaps[6].exists() ? snaps[6].val() : root.nameFrame) || 'default',
-      avatarFrame: (snaps[7].exists() ? snaps[7].val() : root.avatarFrame) || 'default',
-      gameCup: snaps[3].exists() ? Number(snaps[3].val()) || 0 : Number(root.gameCup) || 0,
-      duelCredits: snaps[1].exists() ? Number(snaps[1].val()) || 0 : Number(root.duelCredits) || 0,
+      name: (snaps[4].exists() ? snaps[4].val() : root.name) || 'Oyuncu',
+      photo: (snaps[3].exists() ? snaps[3].val() : root.photo) || '',
+      nameFrame: (snaps[5].exists() ? snaps[5].val() : root.nameFrame) || 'default',
+      avatarFrame: (snaps[6].exists() ? snaps[6].val() : root.avatarFrame) || 'default',
+      gameCup: snaps[2].exists() ? Number(snaps[2].val()) || 0 : Number(root.gameCup) || 0,
       battleHero: battleHero,
       purchasedBattleHeroes: purchasedBattleHeroes,
-      heroLevel: snaps[9].exists() ? snaps[9].val() : root.heroLevel,
+      heroLevel: snaps[8].exists() ? snaps[8].val() : root.heroLevel,
       studentSnap: {
         purchasedBattleHeroes: purchasedBattleHeroes,
-        heroLevel: snaps[9].exists() ? snaps[9].val() : root.heroLevel
+        heroLevel: snaps[8].exists() ? snaps[8].val() : root.heroLevel
       }
     };
   }
@@ -363,7 +369,7 @@
     document.body.classList.add('nova-player-card-open');
 
     applyPlayerCard(ctx);
-    setLoading(isNaN(Number(ctx.duelCredits)) || !ctx.battleHero);
+    setLoading(!ctx.battleHero);
 
     try {
       var fresh = await fetchPlayerCardData(ctx.classId, ctx.studentId);
