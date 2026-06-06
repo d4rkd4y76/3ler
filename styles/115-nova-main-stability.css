@@ -1,0 +1,50 @@
+/* Ana ekran kararlılığı — kaydırma, safe-area, tarayıcı uyumu */
+
+html.nova-main-screen-visible.nova-lock-main-scroll,
+body.nova-main-screen-visible.nova-lock-main-scroll {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  height: 100% !important;
+  max-height: 100dvh !important;
+  max-height: 100svh !important;
+  width: 100% !important;
+  touch-action: manipulation;
+}
+
+html.nova-main-screen-visible,
+body.nova-main-screen-visible {
+  scroll-behavior: auto !important;
+}
+
+/* Safe-area yalnızca #main-screen padding'inde — üst dock çift boşluk yapmasın */
+@media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  #main-screen .main-screen-top-bar,
+  #main-screen .main-screen-top-bar.nova-main-top-dock {
+    padding-top: clamp(4px, 1.2vw, 8px) !important;
+  }
+}
+
+/* Ağ uyarısı */
+.nova-network-watch-banner {
+  position: fixed;
+  left: max(10px, env(safe-area-inset-left));
+  right: max(10px, env(safe-area-inset-right));
+  top: max(10px, env(safe-area-inset-top));
+  z-index: 100300;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 191, 36, 0.55);
+  background: linear-gradient(180deg, rgba(69, 26, 3, 0.96), rgba(30, 15, 5, 0.98));
+  color: #fef3c7;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.78rem, 3.2vw, 0.88rem);
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.nova-network-watch-banner[hidden] {
+  display: none !important;
+}

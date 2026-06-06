@@ -30,6 +30,7 @@
     bootAnimAllowed: false,
     postAnimTicker: 0,
     postAnimStarted: false,
+    downloadProgressRatio: 0.03,
     _bootResizeOff: null,
     _bootBlobUrl: null
   };
@@ -219,7 +220,7 @@
       state._lastProgressPaint = now;
     }
     if ((state.bootDownloadPhase || !state.bootAnimAllowed) && !opts.allowDuringDownload && !opts.forceComplete) {
-      ratio = 0;
+      ratio = Math.max(Number(ratio) || 0, state.downloadProgressRatio || 0.03);
     }
     if (!state.handoffReady && ratio >= 1 && !opts.forceComplete) {
       ratio = Math.min(ratio, 0.99);
@@ -285,7 +286,27 @@
   function startPostAnimProgress(statusText) {
     if (state.postAnimStarted) return;
     state.postAnimStarted = true;
-    setProgress(0.9, statusText || 'Açılıyor…', { allowDuringDownload: true });
+    var postStart = performance.now();
+    var status = statusText || 'Ana ekran hazırlanıyor…';
+
+    function tick(now) {
+      if (state.exiting || state.handoffReady) {
+        stopPostAnimProgress();
+        return;
+      }
+      var t = now || performance.now();
+      var readiness = bootReadinessProgress();
+      var elapsed = t - postStart;
+      var timeRatio = Math.min(1, elapsed / POST_ANIM_VISUAL_MS);
+      var combined = 0.88 + Math.min(0.11, readiness * 0.06 + timeRatio * 0.05);
+      setProgress(combined, status, { allowDuringDownload: true });
+      if (!state.handoffReady && combined < 0.985) {
+        state.postAnimTicker = requestAnimationFrame(tick);
+      }
+    }
+
+    setProgress(0.88, status, { allowDuringDownload: true });
+    state.postAnimTicker = requestAnimationFrame(tick);
   }
 
   function mainElementsReadyNow() {
@@ -483,6 +504,8 @@
     state.bootDownloadPhase = true;
     state.bootSheetReady = false;
     state.bootAnimStarted = false;
+    state.downloadProgressRatio = 0.05;
+    setProgress(0.05, 'Açılış animasyonu indiriliyor…', { allowDuringDownload: true });
 
     var fetchOpts = { cache: 'force-cache' };
     try {
@@ -497,6 +520,8 @@
       })
       .then(function (blob) {
         if (!blob || blob.size < 4096) throw new Error('boot-sheet-empty');
+        state.downloadProgressRatio = 0.14;
+        setProgress(0.14, 'Animasyon hazırlanıyor…', { allowDuringDownload: true });
         return new Promise(function (resolve, reject) {
           var img = new Image();
           revokeBootBlobUrl();
@@ -627,9 +652,12 @@
       backupTimer = 0;
     };
 
+    var lastPaint = performance.now();
+
     function paintFrame(now) {
       if (state.exiting) return;
-      var elapsed = (now || performance.now()) - startWall;
+      lastPaint = now || performance.now();
+      var elapsed = lastPaint - startWall;
       fi = Math.min(frames - 1, Math.max(0, Math.floor(elapsed / frameMs)));
       drawBootFrame(canvas, fi);
 
@@ -666,15 +694,11 @@
     };
 
     backupTimer = setInterval(function () {
-      if (state.exiting || lastFrameFired || !document.hidden) {
-        if (!document.hidden && backupTimer) {
-          clearInterval(backupTimer);
-          backupTimer = 0;
-        }
-        return;
+      if (state.exiting || lastFrameFired) return;
+      if (performance.now() - lastPaint > frameMs * 1.35) {
+        paintFrame(performance.now());
       }
-      paintFrame(performance.now());
-    }, Math.max(33, Math.floor(frameMs)));
+    }, Math.max(28, Math.floor(frameMs * 0.85)));
 
     canvas.hidden = false;
     canvas.removeAttribute('hidden');
@@ -721,7 +745,7 @@
               : ratio < 0.72
                 ? 'Kahramanlar uyanıyor…'
                 : 'Son dokunuşlar…',
-            { allowDuringDownload: true, throttle: true }
+            { allowDuringDownload: true }
           );
         },
         done
@@ -806,6 +830,7 @@
         window.__novaBootVideoPhase = false;
         state.videoDone = true;
         state.animDone = true;
+        startPostAnimProgress('Ana ekran hazırlanıyor…');
       });
   }
 
@@ -1035,7 +1060,19 @@
     }
 
     if (isPhoneBoot()) {
+      if (bootSheet.img && bootSheet.manifest) {
+        state.bootDownloadPhase = false;
+        return primeBootCanvas(ov)
+          .then(beginBootAnimation)
+          .then(function () {
+            return finishBootHandoff();
+          });
+      }
       return playBootVideoPlain(ov)
+        .then(function () {
+          state.bootAnimAllowed = true;
+          return scheduleBootSideWork();
+        })
         .then(function () {
           return finishBootHandoff();
         })

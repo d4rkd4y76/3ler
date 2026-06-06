@@ -4629,6 +4629,10 @@ function novaRequestHudFabRelayout(opts){
           window.novaFixHudFabLayout();
         }
       }catch(_){}
+      try {
+        if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+        if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
+      } catch (_) {}
     }, ms);
   });
 }
@@ -4647,6 +4651,11 @@ function onMainScreenLoad() {
     }
     // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; tek seferlik görünürlük olayı.
     novaRequestHudFabRelayout();
+
+    try {
+      if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+      if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
+    } catch (_) {}
 
     updateDiamondCount();
     try { applyOwnAvatarFrame(); } catch(_) {}

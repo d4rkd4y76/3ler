@@ -2939,6 +2939,8 @@ function novaResetMainScreenScroll() {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+    var main = document.getElementById('main-screen');
+    if (main) main.scrollTop = 0;
   } catch (_) {}
 }
 window.novaResetMainScreenScroll = novaResetMainScreenScroll;
@@ -2952,6 +2954,8 @@ function novaIsPhoneMainScreen() {
   return (window.innerWidth || 0) <= 768;
 }
 
+let __novaMainScrollLockWasOn = false;
+
 function novaSyncMainScreenScrollLock(){
   try{
     const root = document.documentElement;
@@ -2959,6 +2963,7 @@ function novaSyncMainScreenScrollLock(){
     document.body.classList.toggle('nova-main-screen-visible', mainVisible);
     root.classList.toggle('nova-main-screen-visible', mainVisible);
     if (!mainVisible){
+      __novaMainScrollLockWasOn = false;
       root.classList.remove('nova-lock-main-scroll');
       document.body.classList.remove('nova-lock-main-scroll');
       return;
@@ -2975,14 +2980,19 @@ function novaSyncMainScreenScrollLock(){
       'single-player-game-screen'
     ];
     const hasForegroundOverlay = overlayIds.some(novaIsElementVisibleById);
+    const phoneMain = novaIsPhoneMainScreen();
     const main = document.getElementById('main-screen');
     const contentTooTall = !!(main && (main.offsetHeight > (window.innerHeight - 8)));
-    const shouldLock = mainVisible && !hasForegroundOverlay && !contentTooTall;
+    const shouldLock = mainVisible && !hasForegroundOverlay && (phoneMain || !contentTooTall);
     root.classList.toggle('nova-lock-main-scroll', shouldLock);
     document.body.classList.toggle('nova-lock-main-scroll', shouldLock);
+    if (shouldLock && !__novaMainScrollLockWasOn) {
+      novaResetMainScreenScroll();
+    }
+    __novaMainScrollLockWasOn = shouldLock;
   }catch(_){}
 }
-setInterval(novaSyncMainScreenScrollLock, 450);
+setInterval(novaSyncMainScreenScrollLock, 900);
 window.addEventListener('resize', novaSyncMainScreenScrollLock);
 window.addEventListener('orientationchange', novaSyncMainScreenScrollLock);
 // === /KARAKTER ===

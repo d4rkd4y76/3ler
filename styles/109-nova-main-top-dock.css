@@ -10,7 +10,7 @@
   max-width: min(100%, 540px);
   margin: 0 auto clamp(10px, 2.4vw, 14px);
   padding:
-    max(clamp(11px, 2.8vw, 14px), env(safe-area-inset-top, 0px))
+    clamp(11px, 2.8vw, 14px)
     clamp(14px, 3.4vw, 18px)
     clamp(10px, 2.4vw, 13px);
   gap: clamp(8px, 2vw, 12px);
