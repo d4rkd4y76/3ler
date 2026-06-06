@@ -683,6 +683,7 @@
         try { window.novaSpritePreloadHero(heroId); } catch (_) {}
       }
       mountMainScreenHero(heroId);
+      window.__novaMainHeroRefreshAt = Date.now();
       if (heroId === 'firtina_okcu' && typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
         window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
       }
@@ -714,6 +715,9 @@
 
   async function refreshMainScreenHero(opts) {
     opts = opts || {};
+    if (!opts.force && !opts.urgent && window.__novaMainHeroRefreshAt && Date.now() - window.__novaMainHeroRefreshAt < 1800) {
+      return;
+    }
     var myGen = ++mainHeroRefreshGen;
     if (mainHeroRefreshTimer) clearTimeout(mainHeroRefreshTimer);
     var delay = opts.urgent || window.__novaBootMainPrep ? 0 : 100;
@@ -2152,7 +2156,7 @@
     if (!document.__novaMainHeroVisibleBound) {
       document.__novaMainHeroVisibleBound = true;
       document.addEventListener('nova:main-screen-visible', function () {
-        try { refreshMainScreenHero(); } catch (_) {}
+        try { refreshMainScreenHero({ force: false }); } catch (_) {}
       });
     }
     try { refreshMainScreenHero(); } catch (_) {}

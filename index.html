@@ -17,7 +17,24 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" name="viewport"/>
 <style>
   html, body { background: #020611 !important; animation: none !important; }
+  html:not(.nova-has-session) #student-selection-screen {
+    display: flex !important;
+    visibility: visible !important;
+  }
+  html.nova-has-session #student-selection-screen { display: none !important; }
 </style>
+<script id="nova-login-instant-head">
+(function () {
+  try {
+    var raw = localStorage.getItem('selectedStudent');
+    if (!raw) return;
+    var o = JSON.parse(raw);
+    if (o && o.studentId && o.classId) {
+      document.documentElement.classList.add('nova-has-session');
+    }
+  } catch (_) {}
+})();
+</script>
 <title>Düellox</title>
 <!-- Comfortaa Font -->
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -117,7 +134,6 @@
 #main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #puzzle_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #fillblank_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #match_fab_wrap{display:flex!important;visibility:visible!important;pointer-events:auto!important}
 #main-screen #main-screen-quest-slot>#puzzle_fab_wrap,#main-screen #main-screen-quest-slot>#fillblank_fab_wrap,#main-screen #main-screen-quest-slot>#match_fab_wrap{display:none!important;visibility:hidden!important;pointer-events:none!important}
 </style>
-<link rel="preload" href="assets/boot-loading/boot-main.webp" as="image" type="image/webp" fetchpriority="low" />
 </head>
 <body data-nova-back='1'>
 
@@ -166,7 +182,7 @@
 </div>
 </div>
 <!-- Öğrenci Seçimi Ekranı -->
-<div aria-labelledby="kidsLoginTitle" class="nova-kids-login" id="student-selection-screen" role="region" style="display:none">
+<div aria-labelledby="kidsLoginTitle" class="nova-kids-login" id="student-selection-screen" role="region">
 <div class="grid">
 <!-- Left: friendly hero -->
 <section class="hero">
@@ -230,7 +246,14 @@
 </section>
 </div>
 </div>
-<script src="js/ui/nova-login-fast-boot.js?v=30260605loginfast1"></script>
+<script src="js/ui/nova-login-fast-boot.js?v=30260605loginfast2"></script>
+<!-- Giriş: Firebase + sınıf listesi — oyun scriptlerinden önce, defer ile parse bloklamaz -->
+<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script defer src="js/core/007-invite-ban-utils.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script defer src="js/screens/007-script-007.js?v=30260605loginfast2"></script>
+<script defer src="js/screens/022-nova-kids-login-js.js?v=30260605loginfast2"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
 <link rel="stylesheet" href="styles/063-nova-screen-loader.css?v=30260605storeboot1" />
@@ -857,31 +880,25 @@
 </div>
 </div>
 <!-- Arka plan müziği kaldırıldı — yalnızca efekt sesleri (Web Audio) -->
-<!-- Firebase SDK -->
-<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script defer src="js/core/007-invite-ban-utils.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=8" />
-<script src="js/core/nova-question-markup.js?v=8"></script>
-<script src="js/ui/006-nova-game-select.js?v=30260604topiclabel1"></script>
-<script src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
-<script src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
-<script src="js/ui/nova-duel-arena-intro.js?v=30260531arenaintro1"></script>
-<script src="js/ui/nova-duel-game-fx.js?v=30260531pin1"></script>
-<script src="js/core/nova-curriculum-sort.js?v=30260604topiclabel1"></script>
-<script defer src="js/screens/007-script-007.js?v=30260605playercard1"></script>
-<script src="js/ui/010-nova-duel-screen.js?v=30260602perfflash1"></script>
-<script src="js/ui/nova-duel-epic-flow.js?v=30260602rtdb1"></script>
-<script src="js/ui/005-nova-screen-loader.js"></script>
-<script src="js/core/nova-store-avatar-categories.js?v=30260605storeboot2"></script>
-<script src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
-<script src="js/core/008-script-008.js?v=30260605storeboot1"></script>
-<script src="js/core/009-script-009.js?v=30260605rank3"></script>
-<script src="js/core/010-script-010.js?v=30260604qbadges2"></script>
-<script src="js/ui/011-script-011.js"></script>
-<script src="js/core/013-nova-defer-init.js"></script>
-<script src="js/core/014-script-014.js?v=30260604qexp2"></script>
+<script defer src="js/core/nova-question-markup.js?v=8"></script>
+<script defer src="js/ui/006-nova-game-select.js?v=30260604topiclabel1"></script>
+<script defer src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
+<script defer src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
+<script defer src="js/ui/nova-duel-arena-intro.js?v=30260531arenaintro1"></script>
+<script defer src="js/ui/nova-duel-game-fx.js?v=30260531pin1"></script>
+<script defer src="js/core/nova-curriculum-sort.js?v=30260604topiclabel1"></script>
+<script defer src="js/ui/010-nova-duel-screen.js?v=30260602perfflash1"></script>
+<script defer src="js/ui/nova-duel-epic-flow.js?v=30260602rtdb1"></script>
+<script defer src="js/ui/005-nova-screen-loader.js"></script>
+<script defer src="js/core/nova-store-avatar-categories.js?v=30260605storeboot2"></script>
+<script defer src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
+<script defer src="js/core/008-script-008.js?v=30260605storeboot1"></script>
+<script defer src="js/core/009-script-009.js?v=30260605rank3"></script>
+<script defer src="js/core/010-script-010.js?v=30260604qbadges2"></script>
+<script defer src="js/ui/011-script-011.js"></script>
+<script defer src="js/core/013-nova-defer-init.js"></script>
+<script defer src="js/core/014-script-014.js?v=30260604qexp2"></script>
 <!-- Nova: Ders Videosu Ekranı (Single Player) -->
 <div class="lesson-video-screen" id="lesson-video-screen">
 <div class="lesson-video-header">
@@ -900,17 +917,16 @@
 </div>
 </div>
 <!-- Nova: RTDB Adapter for Lesson Video URL (supports Firebase v8 & v9) -->
-<script src="js/core/015-script-015.js"></script>
-<script src="js/core/016-script-016.js"></script>
+<script defer src="js/core/015-script-015.js"></script>
+<script defer src="js/core/016-script-016.js"></script>
 <!-- Nova: precise duel analytics hook (wraps updateDuelScore) -->
-<script src="js/core/017-script-017.js"></script>
+<script defer src="js/core/017-script-017.js"></script>
 <!-- Nova: Topic performance logger (<=4 correct -> record, keep last 25) -->
-<script src="js/core/018-script-018.js"></script>
-<script src="js/screens/019-script-019.js?v=30260605avatarcat1"></script>
+<script defer src="js/core/018-script-018.js"></script>
+<script defer src="js/screens/019-script-019.js?v=30260605avatarcat1"></script>
 <link rel="stylesheet" href="styles/049-style-049.css" />
-<script src="js/core/020-script-020.js"></script>
-<script src="js/core/021-script-021.js?v=30260526nova_result1"></script>
-<script src="js/screens/022-nova-kids-login-js.js"></script>
+<script defer src="js/core/020-script-020.js"></script>
+<script defer src="js/core/021-script-021.js?v=30260526nova_result1"></script>
 <!-- === Nova: Premium Bitiş Özeti (HTML v3) === -->
 <div aria-live="polite" id="nova-summary" class="nova-result-panel">
 <section aria-label="Başarı yüzdesi" class="nova-pct-show-wrap nz-gauge" id="novaResultArenaWrap">
@@ -1007,61 +1023,61 @@
   </div>
 </div>
 <!-- === Nova: Premium Bitiş Özeti (JS v3) === -->
-<script src="js/core/023-script-023.js?v=30260528wrongui3"></script>
+<script defer src="js/core/023-script-023.js?v=30260528wrongui3"></script>
 <!-- === Nova: Responsive & Symmetric Layout Patch (v4 CSS) === -->
 <link rel="stylesheet" href="styles/050-style-050.css" />
 <!-- === Nova: Score Container Replace & Strict Single-UI (v4 JS) === -->
-<script src="js/core/024-script-024.js?v=30260526nova_result1"></script>
+<script defer src="js/core/024-script-024.js?v=30260526nova_result1"></script>
 <!-- === Nova: Overlap Fix & Typography Tune (v5 CSS) === -->
 <link rel="stylesheet" href="styles/051-style-051.css" />
 <!-- === Nova: Question Stem Support & Safer Canvas Size (v5 JS) === -->
-<script src="js/core/025-script-025.js"></script>
+<script defer src="js/core/025-script-025.js"></script>
 <!-- === Nova: Gauge Redraw & Video CTA Styling (v6 CSS) === -->
 <link rel="stylesheet" href="styles/052-style-052.css" />
 <!-- === Nova: Mount Redraw & Robust Percentage (v6 JS) === -->
-<script src="js/core/026-script-026.js"></script>
+<script defer src="js/core/026-script-026.js"></script>
 <!-- === Nova v7 CSS: Compact Gauge, Hide Bottom Gauge, CTA, Layout === -->
 <link rel="stylesheet" href="styles/053-style-053.css?v=30260526nova_result1" />
 <!-- === Nova v7 JS: Compact Gauge, Play Again, Stronger Video Open, Percent Fix === -->
-<script src="js/core/027-script-027.js?v=30260526nova_premium1"></script>
-<script src="js/core/028-script-028.js?v=30260526result2"></script>
+<script defer src="js/core/027-script-027.js?v=30260526nova_premium1"></script>
+<script defer src="js/core/028-script-028.js?v=30260526result2"></script>
 <!-- === NOVA PATCH: Single Player Result Ring & Badge Cleanup === -->
-<script src="js/core/029-script-029.js?v=30260526nova_result1"></script>
+<script defer src="js/core/029-script-029.js?v=30260526nova_result1"></script>
 <!-- === NOVA PATCH END === -->
 
-<script src="js/core/030-script-030.js"></script>
+<script defer src="js/core/030-script-030.js"></script>
 
 
 <!-- Nova v5b: Teacher Advice Card -->
-<script src="js/core/031-script-031.js?v=30260526nova_premium1"></script>
+<script defer src="js/core/031-script-031.js?v=30260526nova_premium1"></script>
 
 <!-- NOVA_DUEL_ENHANCEMENTS_START -->
-<script src="js/core/032-script-032.js?v=30260522duelfix1"></script>
+<script defer src="js/core/032-script-032.js?v=30260522duelfix1"></script>
 <!-- NOVA_DUEL_ENHANCEMENTS_END -->
 
 
 <!-- === NOVA: Duel Dark Theme & FX (non-destructive add-on) === -->
 <link rel="stylesheet" href="styles/054-nova-duel-dark-style.css" />
 
-<script src="js/ui/033-nova-duel-dark-script.js"></script>
+<script defer src="js/ui/033-nova-duel-dark-script.js"></script>
 <!-- === /NOVA add-on === -->
 
 <!-- === NOVA: Space Upgrade v2 === -->
 <link rel="stylesheet" href="styles/055-nova-duel-space-upgrade-style.css" />
 
-<script src="js/screens/034-nova-duel-space-upgrade-script.js"></script>
+<script defer src="js/screens/034-nova-duel-space-upgrade-script.js"></script>
 <!-- === /NOVA Space Upgrade v2 === -->
 
-<script src="js/core/035-script-035.js?v=30260529duelgame1"></script>
+<script defer src="js/core/035-script-035.js?v=30260529duelgame1"></script>
 
-<script src="js/screens/036-nova-matchmaking-boot.js"></script>
+<script defer src="js/screens/036-nova-matchmaking-boot.js"></script>
 
 
-<script src="js/core/037-nova-duel-start-init.js"></script>
+<script defer src="js/core/037-nova-duel-start-init.js"></script>
 
 
     <!-- NOVA_RESULT_SCRIPT_START -->
-    <script src="js/core/038-script-038.js"></script>
+    <script defer src="js/core/038-script-038.js"></script>
     <!-- NOVA_RESULT_SCRIPT_END -->
     
 
@@ -1105,11 +1121,11 @@
 </div>
 
 
-<script src="js/screens/039-script-039.js?v=30260529duelwait1"></script>
+<script defer src="js/screens/039-script-039.js?v=30260529duelwait1"></script>
 
 
 <!-- Nova Advice Guard v2: show ONLY on result screen -->
-<script src="js/core/040-nova-advice-guard.js?v=30260526sp_fix2"></script>
+<script defer src="js/core/040-nova-advice-guard.js?v=30260526sp_fix2"></script>
 
 
 <!-- NOVA: Duel Scale Toolbar Script (safe) -->
@@ -1117,7 +1133,7 @@
 
 
 <!-- NOVA: Duel Scale Script v3 (no wrapper; scale element directly) -->
-<script src="js/screens/041-nova-duel-scale-script.js?v=30260529duelgame4"></script>
+<script defer src="js/screens/041-nova-duel-scale-script.js?v=30260529duelgame4"></script>
 
 
 <!-- NOVA: Duel Scale Toolbar -->
@@ -1135,7 +1151,7 @@
 </div>
 
 
-<script src="js/core/042-nova-image-cap-js.js?v=30260526sp_fix4"></script>
+<script defer src="js/core/042-nova-image-cap-js.js?v=30260526sp_fix4"></script>
 
 
 <!-- === NOVA HOMEWORK MODULE === -->
@@ -1230,22 +1246,22 @@
   </div>
 </div>
 
-<script src="js/core/043-script-043.js"></script>
+<script defer src="js/core/043-script-043.js"></script>
 <!-- === /NOVA HOMEWORK MODULE === -->
 
-<script src="js/core/044-script-044.js"></script>
+<script defer src="js/core/044-script-044.js"></script>
 
-<script src="js/core/045-nova-weekly-quests.js"></script>
+<script defer src="js/core/045-nova-weekly-quests.js"></script>
 
-<script src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
-<script src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
-<script src="js/ui/004-nova-perf-settings-script.js?v=30260605frames1"></script>
+<script defer src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
+<script defer src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
+<script defer src="js/ui/004-nova-perf-settings-script.js?v=30260605frames1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
-<script src="js/screens/047-script-047.js?v=30260605avatarcat1"></script>
+<script defer src="js/screens/047-script-047.js?v=30260605avatarcat1"></script>
 
 
-<script src="js/features/048-script-048.js"></script>
+<script defer src="js/features/048-script-048.js"></script>
 
 <!-- Nova Epic Duel Flow: lig → eşleşme → hazırlık -->
 <div id="nova-duel-epic-root" class="nova-duel-arena" hidden aria-hidden="true">
@@ -1342,7 +1358,7 @@
   <div class="wait-spinner"></div>
   <div class="wait-text">LÜTFEN BEKLEYİNİZ...</div>
 </div>
-<script src="js/ui/049-nova-wait-script.js?v=30260529duelwait1"></script>
+<script defer src="js/ui/049-nova-wait-script.js?v=30260529duelwait1"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=30260413q3preamble" />
 <link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=30260604topiclabel1" />
 <link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=30260526hero_store3" />
@@ -1366,85 +1382,85 @@
 <link rel="stylesheet" href="styles/075-nova-league-badges.css?v=30260526rank3" />
 <link rel="stylesheet" href="styles/067-nova-single-player-game-layout.css?v=30260531buztrue23" />
 <link rel="stylesheet" href="styles/079-nova-sp-result-premium.css?v=30260526nova_pct3" />
-<script src="js/core/055-nova-sp-result-premium.js?v=30260526nova_pct2"></script>
+<script defer src="js/core/055-nova-sp-result-premium.js?v=30260526nova_pct2"></script>
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=30260522duelfix1" />
 <link rel="stylesheet" href="styles/nova-duel-arena-intro.css?v=30260531arenaintro1" />
 <link rel="stylesheet" href="styles/nova-duel-game-premium.css?v=30260531pin1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
-<script src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
-<script src="js/ui/012-nova-store-hub.js?v=30260605storeboot2"></script>
+<script defer src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
+<script defer src="js/ui/012-nova-store-hub.js?v=30260605storeboot2"></script>
 <!-- Eski SVG temel kahraman scriptleri kaldırıldı (performans) — Alev Bot, Turbo, Çılgın Kanat, Buba, Pati -->
-<script src="js/ui/011e-nova-hero-sp-fx-core.js?v=30260528epic1"></script>
+<script defer src="js/ui/011e-nova-hero-sp-fx-core.js?v=30260528epic1"></script>
 <link rel="stylesheet" href="styles/098-nova-firtina-okcu-hero.css?v=30260604firtinadet1" />
 <link rel="stylesheet" href="styles/099-nova-yildiz-perisi-hero.css?v=30260603yildiztas1" />
-<script src="js/ui/nova-sprite-perf-core.js?v=30260605perf3"></script>
-<script src="js/ui/012ae-nova-yildiz-perisi-sprite-manifest.js?v=30260603yildiztas1"></script>
-<script src="js/ui/012ae-nova-yildiz-perisi-vitrin-video.js?v=30260603yildiztas1"></script>
-<script src="js/ui/012ag-nova-yildiz-perisi-true-manifest.js?v=30260602yildiz2"></script>
-<script src="js/ui/012ah-nova-yildiz-perisi-true-player.js?v=30260602yildiz2"></script>
-<script src="js/ui/012aa-nova-firtina-okcu-sprite-manifest.js?v=30260604firtinadet1"></script>
-<script src="js/ui/012ab-nova-firtina-okcu-vitrin-video.js?v=30260604firtinadet1"></script>
-<script src="js/ui/012ac-nova-firtina-okcu-true-manifest.js?v=30260601firtina8"></script>
-<script src="js/ui/012ad-nova-firtina-okcu-true-player.js?v=30260601firtina8"></script>
+<script defer src="js/ui/nova-sprite-perf-core.js?v=30260605perf3"></script>
+<script defer src="js/ui/012ae-nova-yildiz-perisi-sprite-manifest.js?v=30260603yildiztas1"></script>
+<script defer src="js/ui/012ae-nova-yildiz-perisi-vitrin-video.js?v=30260603yildiztas1"></script>
+<script defer src="js/ui/012ag-nova-yildiz-perisi-true-manifest.js?v=30260602yildiz2"></script>
+<script defer src="js/ui/012ah-nova-yildiz-perisi-true-player.js?v=30260602yildiz2"></script>
+<script defer src="js/ui/012aa-nova-firtina-okcu-sprite-manifest.js?v=30260604firtinadet1"></script>
+<script defer src="js/ui/012ab-nova-firtina-okcu-vitrin-video.js?v=30260604firtinadet1"></script>
+<script defer src="js/ui/012ac-nova-firtina-okcu-true-manifest.js?v=30260601firtina8"></script>
+<script defer src="js/ui/012ad-nova-firtina-okcu-true-player.js?v=30260601firtina8"></script>
 <link rel="stylesheet" href="styles/100-nova-tas-muhafiz-hero.css?v=30260601tasv2" />
-<script src="js/ui/012ai-nova-tas-muhafiz-sprite-manifest.js?v=30260601tasdet"></script>
-<script src="js/ui/012aj-nova-tas-muhafiz-vitrin-video.js?v=30260601tasdet"></script>
-<script src="js/ui/012ak-nova-tas-muhafiz-true-manifest.js?v=30260601tasv2"></script>
-<script src="js/ui/012al-nova-tas-muhafiz-true-player.js?v=30260601tasv2"></script>
+<script defer src="js/ui/012ai-nova-tas-muhafiz-sprite-manifest.js?v=30260601tasdet"></script>
+<script defer src="js/ui/012aj-nova-tas-muhafiz-vitrin-video.js?v=30260601tasdet"></script>
+<script defer src="js/ui/012ak-nova-tas-muhafiz-true-manifest.js?v=30260601tasv2"></script>
+<script defer src="js/ui/012al-nova-tas-muhafiz-true-player.js?v=30260601tasv2"></script>
 <link rel="stylesheet" href="styles/101-nova-golge-parsi-hero.css?v=30260602golgepos2" />
-<script src="js/ui/012am-nova-golge-parsi-sprite-manifest.js?v=30260602golgemain1"></script>
-<script src="js/ui/012an-nova-golge-parsi-vitrin-video.js?v=30260601golgev1"></script>
-<script src="js/ui/012ao-nova-golge-parsi-true-manifest.js?v=30260601golgev1"></script>
-<script src="js/ui/012ap-nova-golge-parsi-true-player.js?v=30260601golgev1"></script>
+<script defer src="js/ui/012am-nova-golge-parsi-sprite-manifest.js?v=30260602golgemain1"></script>
+<script defer src="js/ui/012an-nova-golge-parsi-vitrin-video.js?v=30260601golgev1"></script>
+<script defer src="js/ui/012ao-nova-golge-parsi-true-manifest.js?v=30260601golgev1"></script>
+<script defer src="js/ui/012ap-nova-golge-parsi-true-player.js?v=30260601golgev1"></script>
 <link rel="stylesheet" href="styles/102-nova-bilge-baykus-hero.css?v=30260602baykus3" />
-<script src="js/ui/012aq-nova-bilge-baykus-sprite-manifest.js?v=30260602baykus3"></script>
-<script src="js/ui/012ar-nova-bilge-baykus-vitrin-video.js?v=30260602baykus3"></script>
-<script src="js/ui/012as-nova-bilge-baykus-true-manifest.js?v=30260602baykus3"></script>
-<script src="js/ui/012at-nova-bilge-baykus-true-player.js?v=30260602baykus3"></script>
+<script defer src="js/ui/012aq-nova-bilge-baykus-sprite-manifest.js?v=30260602baykus3"></script>
+<script defer src="js/ui/012ar-nova-bilge-baykus-vitrin-video.js?v=30260602baykus3"></script>
+<script defer src="js/ui/012as-nova-bilge-baykus-true-manifest.js?v=30260602baykus3"></script>
+<script defer src="js/ui/012at-nova-bilge-baykus-true-player.js?v=30260602baykus3"></script>
 <link rel="stylesheet" href="styles/096-nova-epic-dragon-badge.css?v=30260602epichead1" />
-<script src="js/ui/012aa-nova-epic-dragon-badge.js?v=30260602epichead1"></script>
-<script src="js/ui/012q-nova-buz-ejder-svg-data.js?v=30260529buz11"></script>
-<script src="js/ui/012r-nova-buz-ejder-webgl-frost.js?v=30260529buz11"></script>
-<script src="js/ui/012s-nova-buz-ejder-fx.js?v=30260531buztrue23"></script>
-<script src="js/ui/012t-nova-buz-ejder-sprite-manifest.js?v=30260601buzstore2"></script>
-<script src="js/ui/012t-nova-buz-ejder-vitrin-video.js?v=30260531buztrue23"></script>
-<script src="js/ui/012tb-nova-buz-ejder-true-manifest.js?v=30260531buztrue23"></script>
-<script src="js/ui/012tc-nova-buz-ejder-true-player.js?v=30260531buztrue23"></script>
-<script src="js/ui/012td-nova-buz-ejder-sonuc-manifest.js?v=30260531buzsonuc7"></script>
-<script src="js/ui/012te-nova-buz-ejder-sonuc-player.js?v=30260531buzsonuc7"></script>
+<script defer src="js/ui/012aa-nova-epic-dragon-badge.js?v=30260602epichead1"></script>
+<script defer src="js/ui/012q-nova-buz-ejder-svg-data.js?v=30260529buz11"></script>
+<script defer src="js/ui/012r-nova-buz-ejder-webgl-frost.js?v=30260529buz11"></script>
+<script defer src="js/ui/012s-nova-buz-ejder-fx.js?v=30260531buztrue23"></script>
+<script defer src="js/ui/012t-nova-buz-ejder-sprite-manifest.js?v=30260601buzstore2"></script>
+<script defer src="js/ui/012t-nova-buz-ejder-vitrin-video.js?v=30260531buztrue23"></script>
+<script defer src="js/ui/012tb-nova-buz-ejder-true-manifest.js?v=30260531buztrue23"></script>
+<script defer src="js/ui/012tc-nova-buz-ejder-true-player.js?v=30260531buztrue23"></script>
+<script defer src="js/ui/012td-nova-buz-ejder-sonuc-manifest.js?v=30260531buzsonuc7"></script>
+<script defer src="js/ui/012te-nova-buz-ejder-sonuc-player.js?v=30260531buzsonuc7"></script>
 <link rel="stylesheet" href="styles/094-nova-alev-ejder-hero.css?v=30260530alev4" />
-<script src="js/ui/012x-nova-alev-ejder-svg-data.js?v=30260530alev4"></script>
-<script src="js/ui/012v-nova-alev-ejder-sprite-manifest.js?v=30260530alev7"></script>
-<script src="js/ui/012v-nova-alev-ejder-vitrin-video.js?v=30260602alevloop1"></script>
-<script src="js/ui/012tb-nova-alev-ejder-true-manifest.js?v=30260602alevtrue3"></script>
-<script src="js/ui/012tc-nova-alev-ejder-true-player.js?v=30260602alevtrue3"></script>
+<script defer src="js/ui/012x-nova-alev-ejder-svg-data.js?v=30260530alev4"></script>
+<script defer src="js/ui/012v-nova-alev-ejder-sprite-manifest.js?v=30260530alev7"></script>
+<script defer src="js/ui/012v-nova-alev-ejder-vitrin-video.js?v=30260602alevloop1"></script>
+<script defer src="js/ui/012tb-nova-alev-ejder-true-manifest.js?v=30260602alevtrue3"></script>
+<script defer src="js/ui/012tc-nova-alev-ejder-true-player.js?v=30260602alevtrue3"></script>
 <link rel="stylesheet" href="styles/095-nova-gece-ejder-hero.css?v=30260602gecetrue1" />
-<script src="js/ui/012l-nova-gece-ejder-svg-data.js?v=30260602gecetrue1"></script>
-<script src="js/ui/012y-nova-gece-ejder-sprite-manifest.js?v=30260602gecetrue1"></script>
-<script src="js/ui/012y-nova-gece-ejder-vitrin-video.js?v=30260602gecetrue1"></script>
-<script src="js/ui/012yg-nova-gece-ejder-true-manifest.js?v=30260602gecetrue1"></script>
-<script src="js/ui/012yh-nova-gece-ejder-true-player.js?v=30260602gecetrue1"></script>
-<script src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
-<script src="js/ui/008-nova-battle-hero.js?v=30260605playercard2"></script>
-<script src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
-<script src="js/ui/nova-dragon-egg.js?v=30260605degg14"></script>
-<script src="js/ui/nova-main-screen-bg-video.js?v=30260605slownet1"></script>
-<script src="js/ui/nova-main-screen-fast-prefetch.js?v=30260605slownet1"></script>
-<script src="js/ui/nova-main-screen-slot-loading.js?v=30260605slot1"></script>
-<script src="js/ui/nova-main-screen-boot-prep.js?v=30260605mainprep12"></script>
-<script src="js/ui/nova-boot-sprite-manifest.js?v=30260605boot14"></script>
-<script src="js/ui/nova-sprite-preload-boot.js?v=30260605slownet1"></script>
-<script src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
-<script src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
-<script src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
-<script src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
+<script defer src="js/ui/012l-nova-gece-ejder-svg-data.js?v=30260602gecetrue1"></script>
+<script defer src="js/ui/012y-nova-gece-ejder-sprite-manifest.js?v=30260602gecetrue1"></script>
+<script defer src="js/ui/012y-nova-gece-ejder-vitrin-video.js?v=30260602gecetrue1"></script>
+<script defer src="js/ui/012yg-nova-gece-ejder-true-manifest.js?v=30260602gecetrue1"></script>
+<script defer src="js/ui/012yh-nova-gece-ejder-true-player.js?v=30260602gecetrue1"></script>
+<script defer src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
+<script defer src="js/ui/008-nova-battle-hero.js?v=30260605mainperf1"></script>
+<script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
+<script defer src="js/ui/nova-dragon-egg.js?v=30260605degg14"></script>
+<script defer src="js/ui/nova-main-screen-bg-video.js?v=30260605mainperf1"></script>
+<script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260605bootperf1"></script>
+<script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260605slot1"></script>
+<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260605mainperf1"></script>
+<script defer src="js/ui/nova-boot-sprite-manifest.js?v=30260605boot14"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260605loginfast2"></script>
+<script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
+<script defer src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
+<script defer src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
+<script defer src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
 <link rel="stylesheet" href="styles/115-nova-player-card-modal.css?v=30260605playercard3" />
-<script src="js/ui/nova-player-card-modal.js?v=30260605playercard3"></script>
+<script defer src="js/ui/nova-player-card-modal.js?v=30260605playercard3"></script>
 <!-- === /NOVA PATCH === -->
-<script src="js/core/051-script-051.js"></script>
-<script src="js/core/052-script-052.js"></script>
-<script src="js/features/053-script-053.js"></script>
-<script src="js/core/054-nova-single-result-screen-guard.js?v=30260526sp_fix3"></script>
+<script defer src="js/core/051-script-051.js"></script>
+<script defer src="js/core/052-script-052.js"></script>
+<script defer src="js/features/053-script-053.js"></script>
+<script defer src="js/core/054-nova-single-result-screen-guard.js?v=30260526sp_fix3"></script>
 <link rel="stylesheet" href="styles/059-login-premium.css?v=2" />
 <link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260605bonushit4" />
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=30260602perf1" />
@@ -1953,7 +1969,7 @@
   });
 })();
 </script>
-<script src="js/bootstrap.js"></script>
+<script defer src="js/bootstrap.js"></script>
 
 </body>
 </html>

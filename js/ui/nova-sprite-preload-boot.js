@@ -35,6 +35,9 @@
   };
 
   var bootSheet = { img: null, manifest: null, promise: null };
+  var bootCanvasCache = { canvas: null, ctx: null, w: 0, h: 0 };
+  var progressDomCache = null;
+  var bootSideWorkPromise = null;
 
   function isPhoneBoot() {
     if (typeof window.novaSpritePerfIsPhone === 'function') {
@@ -107,7 +110,7 @@
     if (window.__novaSpriteAssetsReady || window.__novaSpriteDeferredPreloadStarted) return;
     window.__novaSpriteDeferredPreloadStarted = true;
 
-    if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+    if (!window.__novaMainScreenPrefetchDone && typeof window.novaPrefetchMainScreenAssets === 'function') {
       window.novaPrefetchMainScreenAssets();
     }
     if (typeof window.novaPrefetchMainScreenDeferredExtras === 'function') {
@@ -125,6 +128,14 @@
     }
 
     function runEquippedHero() {
+      var heroAlreadyReady = false;
+      try {
+        if (typeof window.novaMainScreenSlotStatus === 'function') {
+          heroAlreadyReady = !!window.novaMainScreenSlotStatus().hero;
+        }
+      } catch (_) {}
+      if (heroAlreadyReady) return;
+
       var student = null;
       try {
         var raw = localStorage.getItem('selectedStudent');
@@ -185,10 +196,28 @@
     h1.style.fontVariant = 'normal';
   }
 
+  function getProgressDom(ov) {
+    if (!progressDomCache || progressDomCache.ov !== ov) {
+      progressDomCache = {
+        ov: ov,
+        bar: ov.querySelector('.nova-sprite-boot-bar'),
+        label: ov.querySelector('.nova-sprite-boot-pct'),
+        wrap: ov.querySelector('.nova-sprite-boot-bar-wrap'),
+        status: ov.querySelector('.nova-sprite-boot-status')
+      };
+    }
+    return progressDomCache;
+  }
+
   function setProgress(ratio, statusText, opts) {
     var ov = getOverlay();
     if (!ov) return;
     opts = opts || {};
+    if (opts.throttle && state.bootAnimStarted && !state.animDone) {
+      var now = performance.now();
+      if (now - (state._lastProgressPaint || 0) < 110) return;
+      state._lastProgressPaint = now;
+    }
     if ((state.bootDownloadPhase || !state.bootAnimAllowed) && !opts.allowDuringDownload && !opts.forceComplete) {
       ratio = 0;
     }
@@ -197,14 +226,16 @@
     }
     var progress = Math.max(0, Math.min(1, ratio || 0));
     var pct = Math.round(progress * 100);
+    if (opts.throttle && pct === state.smoothPct && !statusText) return;
     state.smoothPct = pct;
     ov.style.setProperty('--nova-boot-progress', String(progress));
     ov.style.setProperty('--nova-boot-pct', String(pct));
 
-    var bar = ov.querySelector('.nova-sprite-boot-bar');
-    var label = ov.querySelector('.nova-sprite-boot-pct');
-    var wrap = ov.querySelector('.nova-sprite-boot-bar-wrap');
-    var status = ov.querySelector('.nova-sprite-boot-status');
+    var dom = getProgressDom(ov);
+    var bar = dom.bar;
+    var label = dom.label;
+    var wrap = dom.wrap;
+    var status = dom.status;
     if (bar) {
       bar.setAttribute('aria-valuenow', String(pct));
       bar.classList.toggle('is-full', pct >= 100);
@@ -364,20 +395,42 @@
     var m = bootSheet.manifest;
     var img = bootSheet.img;
     if (!canvas || !m || !img) return false;
-    var ctx = canvas.getContext('2d', { alpha: false });
-    if (!ctx) return false;
 
-    var layer = canvas.closest('.nova-sprite-boot-video-layer');
-    var rect = layer
-      ? layer.getBoundingClientRect()
-      : { width: window.innerWidth, height: window.innerHeight };
     var dpr = getBootCanvasDpr();
-    var w = Math.max(160, Math.round(rect.width * dpr));
-    var h = Math.max(160, Math.round(rect.height * dpr));
+    var w = bootCanvasCache.w;
+    var h = bootCanvasCache.h;
+    if (!w || !h || bootCanvasCache.canvas !== canvas) {
+      var layer = canvas.closest('.nova-sprite-boot-video-layer');
+      var rect = layer
+        ? layer.getBoundingClientRect()
+        : { width: window.innerWidth, height: window.innerHeight };
+      w = Math.max(160, Math.round(rect.width * dpr));
+      h = Math.max(160, Math.round(rect.height * dpr));
+      bootCanvasCache.w = w;
+      bootCanvasCache.h = h;
+      bootCanvasCache.canvas = canvas;
+      bootCanvasCache.ctx = null;
+    }
+
+    var ctx = bootCanvasCache.ctx;
+    if (!ctx || bootCanvasCache.canvas !== canvas) {
+      ctx = canvas.getContext('2d', { alpha: false });
+      if (!ctx) return false;
+      bootCanvasCache.ctx = ctx;
+      bootCanvasCache.canvas = canvas;
+      ctx.imageSmoothingEnabled = true;
+      try {
+        ctx.imageSmoothingQuality = isPhoneBoot() ? 'medium' : 'low';
+      } catch (_) {}
+    }
+
     if (canvas.width !== w || canvas.height !== h) {
       canvas.width = w;
       canvas.height = h;
     }
+
+    ctx.fillStyle = '#080c1c';
+    ctx.fillRect(0, 0, w, h);
 
     var r = frameRect(m, fi);
     var fit = Math.min(w / m.frameWidth, h / m.frameHeight);
@@ -386,14 +439,15 @@
     var dx = Math.round((w - dw) * 0.5);
     var dy = Math.round((h - dh) * 0.5);
 
-    ctx.fillStyle = '#080c1c';
-    ctx.fillRect(0, 0, w, h);
-    ctx.imageSmoothingEnabled = true;
-    try {
-      ctx.imageSmoothingQuality = isPhoneBoot() ? 'medium' : 'high';
-    } catch (_) {}
     ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, dx, dy, dw, dh);
     return true;
+  }
+
+  function invalidateBootCanvasCache() {
+    bootCanvasCache.canvas = null;
+    bootCanvasCache.ctx = null;
+    bootCanvasCache.w = 0;
+    bootCanvasCache.h = 0;
   }
 
   function preloadBootSheet(force) {
@@ -490,20 +544,15 @@
         if (!pack || !pack.img || !pack.img.complete || !pack.img.naturalWidth) {
           throw new Error('boot-sheet-not-ready');
         }
+        if (pack.img.decode && !pack.img._novaBootDecoded) {
+          return pack.img.decode().then(function () {
+            pack.img._novaBootDecoded = true;
+            return pack;
+          }).catch(function () {
+            return pack;
+          });
+        }
         return pack;
-      })
-      .then(function (pack) {
-        return new Promise(function (resolve, reject) {
-          var t = setTimeout(function () {
-            reject(new Error('boot-sheet-ready-timeout'));
-          }, limit);
-          function done() {
-            clearTimeout(t);
-            resolve(pack);
-          }
-          if (pack.img.decode) pack.img.decode().then(done).catch(done);
-          else done();
-        });
       });
   }
 
@@ -521,6 +570,7 @@
   }
 
   function warmBootSheet() {
+    if (!hasStoredStudentSession()) return;
     if (!bootSheet.promise) preloadBootSheet().catch(function () {});
   }
 
@@ -552,6 +602,7 @@
     var backupTimer = 0;
 
     function onResize() {
+      invalidateBootCanvasCache();
       drawBootFrame(canvas, fi);
     }
     window.addEventListener('resize', onResize);
@@ -600,13 +651,15 @@
     };
 
     backupTimer = setInterval(function () {
-      if (state.exiting || lastFrameFired) {
-        clearInterval(backupTimer);
-        backupTimer = 0;
+      if (state.exiting || lastFrameFired || !document.hidden) {
+        if (!document.hidden && backupTimer) {
+          clearInterval(backupTimer);
+          backupTimer = 0;
+        }
         return;
       }
       paintFrame(performance.now());
-    }, Math.max(28, Math.floor(frameMs * 0.85)));
+    }, Math.max(33, Math.floor(frameMs)));
 
     canvas.hidden = false;
     canvas.removeAttribute('hidden');
@@ -653,7 +706,7 @@
               : ratio < 0.72
                 ? 'Kahramanlar uyanıyor…'
                 : 'Son dokunuşlar…',
-            { allowDuringDownload: true }
+            { allowDuringDownload: true, throttle: true }
           );
         },
         done
@@ -716,6 +769,7 @@
       .then(function () {
         state.bootDownloadPhase = false;
         state.bootAnimAllowed = true;
+        scheduleBootSideWork();
         setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
         try {
           video.currentTime = 0;
@@ -796,6 +850,37 @@
       stopPostAnimProgress();
       if (state.heavyMainDone) updateLightBootProgress(1);
     });
+  }
+
+  function scheduleBootSideWork() {
+    if (bootSideWorkPromise) return bootSideWorkPromise;
+    bootSideWorkPromise = (async function () {
+      window.__novaBootMainPrep = true;
+      try {
+        if (typeof window.novaBootApplyInstantCache === 'function') {
+          await window.novaBootApplyInstantCache().catch(function () {});
+        }
+        if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+          if (window.__novaMainScreenPrefetchStarted && !window.__novaMainScreenPrefetchDone) {
+            window.novaPrefetchMainScreenAssets();
+          } else if (!window.__novaMainScreenPrefetchDone) {
+            window.novaPrefetchMainScreenAssets(true);
+          }
+        }
+        await runLightBootWork();
+      } finally {
+        if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+          try {
+            window.novaSyncMainSlotPlaceholders();
+          } catch (_) {}
+        }
+      }
+    })().finally(function () {
+      setTimeout(function () {
+        bootSideWorkPromise = null;
+      }, 400);
+    });
+    return bootSideWorkPromise;
   }
 
   function runMainScreenPrep(onStatus) {
@@ -891,9 +976,9 @@
     document.body.classList.add('nova-sprite-boot-active');
     ov.hidden = false;
     ov.classList.remove('is-exiting', 'is-handoff');
-    state.bootDownloadPhase = true;
+    state.bootDownloadPhase = !(bootSheet.img && bootSheet.manifest);
     state.bootAnimStarted = false;
-    state.bootSheetReady = false;
+    state.bootSheetReady = !!(bootSheet.img && bootSheet.manifest);
     state.videoDone = false;
     state.animDone = false;
     state.heavyMainDone = false;
@@ -904,35 +989,18 @@
     stopPostAnimProgress();
     window.__novaMainScreenBootPromise = null;
     window.__novaMainScreenBootReady = false;
-    if (typeof window.novaResetMainScreenPrefetch === 'function') {
-      window.novaResetMainScreenPrefetch();
-    }
-    setProgress(0, 'Açılış animasyonu indiriliyor…');
+    window.__novaMainScreenLoadDone = false;
+    window.__novaBootInstantCacheApplied = false;
+    bootSideWorkPromise = null;
+    setProgress(0, bootSheet.img ? 'Animasyon hazırlanıyor…' : 'Açılış animasyonu indiriliyor…');
 
-    window.__novaBootMainPrep = true;
-    if (typeof window.novaBootApplyInstantCache === 'function') {
-      window.novaBootApplyInstantCache().catch(function () {});
-    }
-    if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-      window.novaPrefetchMainScreenAssets(true);
-    }
-    if (typeof window.novaPrefetchMainScreenBgMedia === 'function') {
-      window.novaPrefetchMainScreenBgMedia().catch(function () {});
-    }
-
-    runLightBootWork().finally(function () {
-      if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
-        try {
-          window.novaSyncMainSlotPlaceholders();
-        } catch (_) {}
-      }
-    });
     stateBootStartedAt = Date.now();
     var sheetWaitMs = isPhoneBoot() ? 18000 : 60000;
 
     function beginBootAnimation() {
       state.bootAnimAllowed = true;
       setProgress(0, 'Başlıyor…', { allowDuringDownload: true });
+      scheduleBootSideWork();
       return playBootSprite(ov);
     }
 
@@ -1095,10 +1163,13 @@
   function tryAutoStartForRememberedSession() {
     if (!hasStoredStudentSession()) return;
     warmBootSheet();
-    if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-      window.novaPrefetchMainScreenAssets();
-    }
     if (!shouldRunBoot()) {
+      if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+        window.novaPrefetchMainScreenAssets();
+      }
+      if (typeof window.novaPrefetchMainScreenBgMedia === 'function') {
+        window.novaPrefetchMainScreenBgMedia().catch(function () {});
+      }
       markBootDone();
       if (typeof window.novaEnsureMainScreenReady === 'function') {
         window.novaEnsureMainScreenReady({ force: true });
@@ -1126,6 +1197,7 @@
     window.__novaSpriteBootActive = false;
     window.__novaMainScreenBootPromise = null;
     window.__novaMainScreenBootReady = false;
+    window.__novaMainScreenLoadDone = false;
     if (typeof window.novaResetMainScreenPrefetch === 'function') {
       window.novaResetMainScreenPrefetch();
     }
@@ -1141,12 +1213,15 @@
     stopPostAnimProgress();
     stopFinishingPulse();
     stopRenderLoop();
+    invalidateBootCanvasCache();
+    progressDomCache = null;
+    bootSideWorkPromise = null;
   };
 
   window.novaSpriteBootHasSession = hasStoredStudentSession;
 
   hideOverlayInitially();
-  warmBootSheet();
+  if (hasStoredStudentSession()) warmBootSheet();
   applyBootGameTitle();
 
   if (document.readyState === 'loading') {

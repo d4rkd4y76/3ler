@@ -240,34 +240,49 @@
     return mainScreenElementsReady();
   };
 
+  function heroSlotAlreadyReady() {
+    try {
+      if (typeof window.novaMainScreenSlotStatus === 'function') {
+        return !!window.novaMainScreenSlotStatus().hero;
+      }
+    } catch (_) {}
+    return heroReady();
+  }
+
   async function stabilizeMainScreenCore(opts) {
     opts = opts || {};
     var student = getStoredStudent();
     if (!student) return false;
+    var light = !!opts.light;
+    var skipPrefetch = light || (!opts.force && window.__novaMainScreenPrefetchDone);
+    var skipHero = light || (!opts.force && heroSlotAlreadyReady());
 
     revealMainForBoot();
 
-    if (typeof window.novaBootApplyInstantCache === 'function') {
-      try {
-        await window.novaBootApplyInstantCache();
-      } catch (_) {}
-    } else if (typeof window.novaApplyMainScreenHudInstant === 'function') {
-      window.novaApplyMainScreenHudInstant();
+    if (!light) {
+      if (typeof window.novaBootApplyInstantCache === 'function') {
+        try {
+          await window.novaBootApplyInstantCache();
+        } catch (_) {}
+      } else if (typeof window.novaApplyMainScreenHudInstant === 'function') {
+        window.novaApplyMainScreenHudInstant();
+      }
     }
 
-    await Promise.all([
-      typeof window.novaPrefetchMainScreenAssets === 'function'
-        ? Promise.race([
-            window.novaPrefetchMainScreenAssets(opts.force),
-            new Promise(function (r) {
-              setTimeout(r, opts.boot ? 5500 : 6000);
-            })
-          ]).catch(function () {})
-        : Promise.resolve(),
-      ensureMainScreenLayout()
-    ]);
+    var parallel = [ensureMainScreenLayout()];
+    if (!skipPrefetch && typeof window.novaPrefetchMainScreenAssets === 'function') {
+      parallel.push(
+        Promise.race([
+          window.novaPrefetchMainScreenAssets(opts.force),
+          new Promise(function (r) {
+            setTimeout(r, opts.boot ? 5500 : 6000);
+          })
+        ]).catch(function () {})
+      );
+    }
+    await Promise.all(parallel);
 
-    if (typeof window.novaRefreshMainScreenHero === 'function') {
+    if (!skipHero && typeof window.novaRefreshMainScreenHero === 'function') {
       try {
         await Promise.race([
           window.novaRefreshMainScreenHero({ urgent: true }),
@@ -278,9 +293,11 @@
       } catch (_) {}
     }
 
-    try {
-      if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
-    } catch (_) {}
+    if (!light) {
+      try {
+        if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
+      } catch (_) {}
+    }
     if (!opts.boot && typeof window.novaSyncMainScreenBgVideo === 'function') {
       var bgP = window.novaSyncMainScreenBgVideo(false);
       if (opts.awaitBg) {
@@ -292,7 +309,7 @@
       }
     }
 
-    if (typeof window.onMainScreenLoad === 'function') {
+    if (typeof window.onMainScreenLoad === 'function' && !window.__novaMainScreenLoadDone) {
       try {
         window.onMainScreenLoad();
       } catch (_) {}
@@ -330,7 +347,9 @@
       try {
         await window.novaStabilizeMainScreen({
           awaitBg: false,
-          boot: !!opts.boot
+          boot: !!opts.boot,
+          light: !!opts.afterBoot,
+          force: !!opts.force
         });
       } catch (_) {}
 
@@ -383,25 +402,32 @@
       window.__novaBootMainPrep = true;
       try {
         status('Arayüz hazırlanıyor…');
-        if (typeof window.novaBootApplyInstantCache === 'function') {
+        if (typeof window.novaBootApplyInstantCache === 'function' && !window.__novaBootInstantCacheApplied) {
           await window.novaBootApplyInstantCache();
         }
 
         status('Kahramanlar yükleniyor…');
-        await Promise.all([
-          typeof window.novaPrefetchMainScreenAssets === 'function'
-            ? window.novaPrefetchMainScreenAssets(true).catch(function () {})
-            : Promise.resolve(),
-          typeof window.novaRefreshMainScreenHero === 'function'
-            ? Promise.race([
-                window.novaRefreshMainScreenHero({ urgent: true }),
-                new Promise(function (r) {
-                  setTimeout(r, 4500);
-                })
-              ]).catch(function () {})
-            : Promise.resolve(),
-          ensureMainScreenLayout()
-        ]);
+        var prepTasks = [ensureMainScreenLayout()];
+        if (!window.__novaMainScreenPrefetchDone) {
+          if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+            prepTasks.push(
+              window
+                .novaPrefetchMainScreenAssets(window.__novaMainScreenPrefetchStarted ? false : true)
+                .catch(function () {})
+            );
+          }
+        }
+        if (!heroSlotAlreadyReady() && typeof window.novaRefreshMainScreenHero === 'function') {
+          prepTasks.push(
+            Promise.race([
+              window.novaRefreshMainScreenHero({ urgent: true }),
+              new Promise(function (r) {
+                setTimeout(r, 4500);
+              })
+            ]).catch(function () {})
+          );
+        }
+        await Promise.all(prepTasks);
 
         if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
           window.novaSyncMainSlotPlaceholders();

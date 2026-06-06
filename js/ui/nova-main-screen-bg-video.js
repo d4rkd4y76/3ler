@@ -783,6 +783,26 @@
       });
   }
 
+  var syncDebounceTimer = null;
+  var lastSyncAt = 0;
+
+  function scheduleSyncMainBgVideo(forceConfig) {
+    if (syncDebounceTimer) clearTimeout(syncDebounceTimer);
+    var now = Date.now();
+    if (!forceConfig && now - lastSyncAt < 250) {
+      syncDebounceTimer = setTimeout(function () {
+        syncDebounceTimer = null;
+        scheduleSyncMainBgVideo(forceConfig);
+      }, 250);
+      return;
+    }
+    syncDebounceTimer = setTimeout(function () {
+      syncDebounceTimer = null;
+      lastSyncAt = Date.now();
+      syncMainBgVideo(!!forceConfig);
+    }, 60);
+  }
+
   function bindEvents() {
     if (state.bound) return;
     state.bound = true;
@@ -810,7 +830,7 @@
     document.addEventListener(
       'nova:main-screen-visible',
       function () {
-        syncMainBgVideo(false);
+        scheduleSyncMainBgVideo(false);
       },
       { passive: true }
     );
@@ -819,7 +839,7 @@
       'nova:sprite-boot-complete',
       function () {
         setTimeout(function () {
-          if (isMainScreenVisible()) syncMainBgVideo(false);
+          if (isMainScreenVisible()) scheduleSyncMainBgVideo(false);
         }, 120);
       },
       { passive: true }
@@ -830,7 +850,7 @@
       var mo = new MutationObserver(function () {
         if (isMainScreenVisible()) {
           document.body.classList.add('nova-main-screen-visible');
-          syncMainBgVideo(false);
+          scheduleSyncMainBgVideo(false);
         } else {
           setLayerActive(false);
           stopPlayback();
@@ -841,11 +861,11 @@
     }
 
     function kick() {
-      if (isMainScreenVisible()) syncMainBgVideo(false);
+      if (isMainScreenVisible()) scheduleSyncMainBgVideo(false);
     }
     bindNetworkRecovery();
     kick();
-    [400, 1200, 2500, 5000, 10000, 20000, 45000].forEach(function (ms) {
+    [500, 2500, 12000].forEach(function (ms) {
       setTimeout(kick, ms);
     });
   }

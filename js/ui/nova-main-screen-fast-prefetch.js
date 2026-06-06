@@ -11,6 +11,7 @@
     window.__novaMainScreenPrefetchStarted = false;
     window.__novaMainScreenProfileApplied = false;
     window.__novaMainScreenExpectedPhoto = '';
+    window.__novaBootInstantCacheApplied = false;
   };
 
   function getStoredStudent() {
@@ -184,6 +185,10 @@
   window.novaBootApplyInstantCache = function () {
     var student = getStoredStudent();
     if (!student) return Promise.resolve(false);
+    if (window.__novaBootInstantCacheApplied) {
+      return Promise.resolve(true);
+    }
+    window.__novaBootInstantCacheApplied = true;
     window.novaApplyMainScreenHudInstant();
     var heroId = String(student.battleHero || window.__novaEquippedHeroId || 'star_fairy').trim();
     window.__novaEquippedHeroId = heroId;
@@ -423,11 +428,10 @@
     }
 
     window.__novaMainScreenPrefetchStarted = true;
+    // Tam öğrenci snapshot'ı gameCup + fotoğrafı kapsar; ayrı cup/photo istekleri gereksiz.
     var tasks = [
       prefetchStudentSnapshot(student),
-      prefetchGameCupDirect(student),
       prefetchMainScreenCredits(student),
-      prefetchImageUrl(student.photo),
       typeof window.novaPrefetchMainScreenBgMedia === 'function'
         ? window.novaPrefetchMainScreenBgMedia().catch(function () {})
         : Promise.resolve()
@@ -449,6 +453,9 @@
         var data = results[0];
         var heroId = resolveHeroId(student, data);
         window.__novaEquippedHeroId = heroId;
+        if (bootActive) {
+          return true;
+        }
         return prefetchEquippedHero(heroId);
       })
       .then(function () {

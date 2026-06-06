@@ -4276,8 +4276,22 @@ window.onload = async () => {
               } catch (_) {}
             }
 
-            // Fotoğraf yükleme
-            try {
+            // Fotoğraf / çerçeve — boot prefetch zaten yapıyorsa Firebase tekrarı atlanır
+            var skipProfileFetch = bootPipelineActive ||
+              window.__novaMainScreenProfileApplied ||
+              (window.__novaMainScreenStudentCacheAt && Date.now() - window.__novaMainScreenStudentCacheAt < 120000);
+            if (skipProfileFetch) {
+              try {
+                if (typeof window.novaApplyMainScreenProfileUi === 'function') {
+                  await window.novaApplyMainScreenProfileUi();
+                } else {
+                  syncSelectedNameFrame(selectedStudent.nameFrame || 'default');
+                  setNameWithFrame(studentName, selectedStudent.studentName, selectedStudent.nameFrame);
+                  try { applyOwnAvatarFrame(); } catch(_) {}
+                }
+              } catch (_) {}
+            } else {
+              try {
                 const baseRef = database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`);
                 const [photoSnapshot, avatarFrameSnapshot] = await Promise.all([
                   baseRef.child('photo').once('value'),
@@ -4295,20 +4309,20 @@ window.onload = async () => {
                 if (avatarFrameSnapshot.exists()) {
                     selectedStudent.avatarFrame = avatarFrameSnapshot.val() || 'default';
                 }
-            } catch (error) {
+              } catch (error) {
                 console.error("Fotoğraf çekilirken hata:", error);
                 studentPhoto.style.display = 'none';
-            }
+              }
 
-            // Öğrenci bilgilerini ayarla
-            try{
+              try{
                 const frameSnap = await database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/nameFrame`).once('value');
                 selectedStudent.nameFrame = frameSnap.exists() ? (frameSnap.val() || 'default') : (selectedStudent.nameFrame || 'default');
                 selectedStudent.avatarFrame = resolveAvatarFrameByName(selectedStudent.nameFrame, selectedStudent.avatarFrame);
-            }catch(_){}
-            syncSelectedNameFrame(selectedStudent.nameFrame || 'default');
-            setNameWithFrame(studentName, selectedStudent.studentName, selectedStudent.nameFrame);
-            try { applyOwnAvatarFrame(); } catch(_) {}
+              }catch(_){}
+              syncSelectedNameFrame(selectedStudent.nameFrame || 'default');
+              setNameWithFrame(studentName, selectedStudent.studentName, selectedStudent.nameFrame);
+              try { applyOwnAvatarFrame(); } catch(_) {}
+            }
             try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch(_) {}
             if (typeof window.novaStartSpriteBoot === 'function' && !window.__novaSpriteBootDone) {
               if (!window.__novaSpriteBootActive) {
@@ -4323,7 +4337,7 @@ window.onload = async () => {
             addLoggedInPlayer(selectedStudent).catch(function(e){ console.error('addLoggedInPlayer', e); });
             startInvitationListener(selectedStudent.studentId);
             if (!bootPipelineActive) {
-              if (typeof window.fetchAndDisplayGameCup === 'function') {
+              if (typeof window.fetchAndDisplayGameCup === 'function' && !window.__novaMainScreenPrefetchDone) {
                 window.fetchAndDisplayGameCup(true);
               }
               if (typeof window.novaEnsureMainScreenReady === 'function' && !window.__novaMainScreenBootReady) {
@@ -4344,7 +4358,9 @@ window.onload = async () => {
         }
 
         // Önce sınıf adlarını al, sonra champion select'i doldur (scope için önemli)
-        try { await fetchClassesForSelection(); } catch (e) { console.error('fetchClassesForSelection', e); }
+        if (!window.__novaClassesFetchedForLogin) {
+          try { await fetchClassesForSelection(); } catch (e) { console.error('fetchClassesForSelection', e); }
+        }
         try{
             if (selectedStudent && selectedStudent.classId) {
                 const mapped = (classNameMap && classNameMap[selectedStudent.classId]) ? String(classNameMap[selectedStudent.classId] || '').trim() : '';
@@ -4590,37 +4606,46 @@ function applyMainScreenCreditsState(userData){
     }catch(_){}
 }
 
-function novaRequestHudFabRelayout(){
+function novaRequestHudFabRelayout(opts){
+  opts = opts || {};
+  var light = !!opts.light;
   try{
     if (typeof window.novaFixHudFabLayout === 'function'){
       window.novaFixHudFabLayout();
     }
   }catch(_){}
-  try{
-    document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
-  }catch(_){}
-  try{
-    window.dispatchEvent(new Event('resize'));
-  }catch(_){}
-  [90, 260, 700].forEach(function(ms){
+  if (!light) {
+    try{
+      document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
+    }catch(_){}
+    try{
+      window.dispatchEvent(new Event('resize'));
+    }catch(_){}
+  }
+  [120, 380].forEach(function(ms){
     setTimeout(function(){
       try{
         if (typeof window.novaFixHudFabLayout === 'function'){
           window.novaFixHudFabLayout();
         }
       }catch(_){}
-      try{ document.dispatchEvent(new CustomEvent('nova:main-screen-visible')); }catch(_){}
-      try{ window.dispatchEvent(new Event('resize')); }catch(_){}
     }, ms);
   });
 }
 
 // Ana ekrana gelindiğinde elmas sayısını güncelle
 function onMainScreenLoad() {
+    if (window.__novaMainScreenLoadDone) return;
     try { if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant(); } catch(_) {}
-    try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
-    try { if (typeof window.novaRefreshMainScreenHero === 'function') window.novaRefreshMainScreenHero(); } catch (_) {}
-    // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; güvenli reflow tetikle.
+    try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi({ light: true }); } catch(_) {}
+    var heroReady = false;
+    try {
+      if (typeof window.novaMainScreenSlotStatus === 'function') heroReady = !!window.novaMainScreenSlotStatus().hero;
+    } catch (_) {}
+    if (!heroReady && typeof window.novaRefreshMainScreenHero === 'function') {
+      try { window.novaRefreshMainScreenHero(); } catch (_) {}
+    }
+    // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; tek seferlik görünürlük olayı.
     novaRequestHudFabRelayout();
 
     updateDiamondCount();
@@ -4659,9 +4684,11 @@ function onMainScreenLoad() {
     if (!__mainScreenDiamondIntervalId) {
       __mainScreenDiamondIntervalId = setInterval(updateDiamondCount, 1000 * 60 * 60);
     }
+    window.__novaMainScreenLoadDone = true;
 }
 
-function novaEnsureLoggedInUi(){
+function novaEnsureLoggedInUi(opts){
+  opts = opts || {};
   try{
     const ss = document.getElementById('student-selection-screen');
     const ms = document.getElementById('main-screen');
@@ -4670,7 +4697,7 @@ function novaEnsureLoggedInUi(){
     if (hasSession){
       ss.style.display = 'none';
       ms.style.removeProperty('display');
-      try { novaRequestHudFabRelayout(); } catch(_) {}
+      try { novaRequestHudFabRelayout({ light: !!opts.light }); } catch(_) {}
       try {
         if (typeof window.novaTournamentRefreshFab === 'function') window.novaTournamentRefreshFab();
       } catch (_) {}
@@ -4809,8 +4836,10 @@ async function handleLogin() {
         setNameWithFrame(studentName, studentInfo.name, selectedStudent.nameFrame);
         await addLoggedInPlayer(selectedStudent);
         startInvitationListener(selectedStudent.studentId);
-        if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup();
-        if (!window.__novaMainScreenBootReady) {
+        if (typeof window.fetchAndDisplayGameCup === 'function' && !window.__novaMainScreenPrefetchDone) {
+          window.fetchAndDisplayGameCup();
+        }
+        if (!window.__novaMainScreenLoadDone) {
             onMainScreenLoad();
         }
         enforceSinglePlayerClassLock();
@@ -7017,6 +7046,7 @@ async function fetchClassesForSelection() {
             const parsedClasses = JSON.parse(cachedClasses);
             if (Array.isArray(parsedClasses) && parsedClasses.length > 0) {
                 populateClassSelect(parsedClasses);
+                window.__novaClassesFetchedForLogin = true;
                 return;
             }
             // Boş/bozuk cache, canlıdan tekrar dene.
@@ -7052,6 +7082,7 @@ async function fetchClassesForSelection() {
             localStorage.setItem(CACHE_KEY, JSON.stringify(classesData));
             localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
             populateClassSelect(classesData);
+            window.__novaClassesFetchedForLogin = true;
             return;
         }
     }catch(error){
@@ -7077,6 +7108,7 @@ async function fetchClassesForSelection() {
         localStorage.setItem(CACHE_KEY, JSON.stringify(classesData));
         localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
         populateClassSelect(classesData);
+        window.__novaClassesFetchedForLogin = true;
     }catch(error){
         console.error("Seçim için sınıf çekme hata:", error);
         try{
@@ -7146,7 +7178,22 @@ function populateClassSelect(classesData) {
     window.classNameMap = map;
 }
 
-
+(function novaKickLoginClassFetchEarly() {
+    try {
+        if (window.__novaClassesFetchedForLogin) return;
+        var hasSession = false;
+        try {
+            var raw = localStorage.getItem('selectedStudent');
+            if (raw) {
+                var o = JSON.parse(raw);
+                hasSession = !!(o && o.studentId && o.classId);
+            }
+        } catch (_) {}
+        if (!hasSession && typeof fetchClassesForSelection === 'function') {
+            fetchClassesForSelection().catch(function () {});
+        }
+    } catch (_) {}
+})();
 
         // Alert fonksiyonu
         const alertOverlay = document.getElementById('alertOverlay');
