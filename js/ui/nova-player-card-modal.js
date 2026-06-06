@@ -42,8 +42,11 @@
       '<div class="nova-player-card" id="nova_player_card" role="dialog" aria-modal="true" aria-labelledby="nova_player_card_name">' +
       '<button type="button" class="nova-player-card-close" id="nova_player_card_close" aria-label="Kapat">✕</button>' +
       '<div class="nova-player-card-loading" id="nova_player_card_loading">Yükleniyor…</div>' +
+      '<p class="nova-player-card-kicker">Oyuncu Kartı</p>' +
       '<div class="nova-player-card-head">' +
+      '<div class="nova-player-card-avatar-shell">' +
       '<div class="nova-player-card-avatar-wrap"><img id="nova_player_card_avatar" class="nova-player-card-avatar" alt="" decoding="async"></div>' +
+      '</div>' +
       '<div class="nova-player-card-name" id="nova_player_card_name"></div>' +
       '<div class="nova-player-card-league" id="nova_player_card_league"></div>' +
       '</div>' +
@@ -51,8 +54,8 @@
       '<div class="npc-stat"><span class="npc-stat-ico" aria-hidden="true">🏆</span><span class="npc-stat-val" id="nova_player_card_cups">0</span><span class="npc-stat-lbl">Kupa</span></div>' +
       '<div class="npc-stat"><span class="npc-stat-ico" aria-hidden="true">⚔️</span><span class="npc-stat-val" id="nova_player_card_credits">0</span><span class="npc-stat-lbl">Düello hakkı</span></div>' +
       '</div>' +
-      '<div class="nova-player-card-hero">' +
-      '<p class="npc-hero-label">Kahraman</p>' +
+      '<div class="nova-player-card-hero" id="nova_player_card_hero_section">' +
+      '<p class="npc-hero-label">Takılı kahraman</p>' +
       '<div class="nova-player-card-hero-host" id="nova_player_card_hero"></div>' +
       '<div class="nova-player-card-hero-meta">' +
       '<span class="npc-hero-name" id="nova_player_card_hero_name">—</span>' +
@@ -72,18 +75,26 @@
 
   function heroLabel(heroId) {
     heroId = String(heroId || '').trim();
-    if (!heroId) return 'Kahraman yok';
+    if (!heroId) return 'Kahraman seçilmemiş';
     try {
-      if (typeof window.novaBattleHeroCatalog === 'function') {
-        var list = window.novaBattleHeroCatalog();
-        for (var i = 0; i < list.length; i++) {
-          if (list[i] && list[i].id === heroId && list[i].name) return list[i].name;
-        }
+      if (typeof window.novaGetHeroDisplayName === 'function') {
+        var fromApi = window.novaGetHeroDisplayName(heroId);
+        if (fromApi) return fromApi;
       }
     } catch (_) {}
-    return heroId.replace(/_/g, ' ').replace(/\b\w/g, function (c) {
-      return c.toUpperCase();
-    });
+    try {
+      var reg = window.NOVA_HERO_REGISTRY || window.NOVA_BATTLE_HERO_REGISTRY;
+      if (reg && reg[heroId] && reg[heroId].name) return String(reg[heroId].name);
+    } catch (_) {}
+    return heroId.replace(/_/g, ' ');
+  }
+
+  function heroEpicThemeClass(heroId) {
+    heroId = String(heroId || '').trim();
+    if (heroId === 'buz_ejder') return 'is-epic-buz';
+    if (heroId === 'alev_ejder') return 'is-epic-alev';
+    if (heroId === 'gece_ejder') return 'is-epic-gece';
+    return '';
   }
 
   function parseHeroLevel(studentSnap, heroId) {
@@ -101,13 +112,18 @@
 
   function renderHeroStars(level, heroId) {
     heroId = String(heroId || '').trim();
-    level = Math.max(0, Math.min(4, Number(level) || 0));
-    if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
-      return '<span class="npc-hero-epic-tag">⭐ Epik</span>';
+    var isEpic =
+      typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId);
+    if (isEpic) {
+      return '<span class="npc-hero-epic-tag">Epik kahraman</span>';
     }
+    level = Math.max(0, Math.min(4, Number(level) || 0));
     var html = '';
     for (var i = 1; i <= 4; i++) {
       html += '<span class="npc-star' + (i <= level ? ' is-on' : '') + '" aria-hidden="true">★</span>';
+    }
+    if (level > 0) {
+      html += '<span class="npc-hero-lvl">Seviye ' + level + '</span>';
     }
     return html;
   }
@@ -142,7 +158,7 @@
     try {
       if (typeof window.novaIsEpicDragonHero === 'function' && window.novaIsEpicDragonHero(heroId)) {
         if (typeof window.novaEpicDragonMountSprite === 'function') {
-          window.novaEpicDragonMountSprite(slot, heroId, { profile: 'store', scale: 1.05 });
+          window.novaEpicDragonMountSprite(slot, heroId, { profile: 'store', scale: 1.12 });
           return;
         }
       }
@@ -170,6 +186,7 @@
     var credEl = document.getElementById('nova_player_card_credits');
     var heroNameEl = document.getElementById('nova_player_card_hero_name');
     var heroStarsEl = document.getElementById('nova_player_card_hero_stars');
+    var heroSection = document.getElementById('nova_player_card_hero_section');
 
     var name = String(data.name || 'Oyuncu').trim() || 'Oyuncu';
     var nameFrame = data.nameFrame || 'default';
@@ -186,7 +203,7 @@
 
     if (avatar) {
       avatar.alt = name;
-      avatar.src = photo || 'https://via.placeholder.com/96x120?text=?';
+      avatar.src = photo || 'https://via.placeholder.com/148x185?text=?';
       try {
         if (typeof applyAvatarFrameToImage === 'function') applyAvatarFrameToImage(avatar, avatarFrame);
       } catch (_) {}
@@ -214,6 +231,11 @@
     if (credEl) credEl.textContent = String(credits);
     if (heroNameEl) heroNameEl.textContent = heroLabel(heroId);
     if (heroStarsEl) heroStarsEl.innerHTML = renderHeroStars(heroLevel, heroId);
+    if (heroSection) {
+      heroSection.classList.remove('is-epic-buz', 'is-epic-alev', 'is-epic-gece');
+      var theme = heroEpicThemeClass(heroId);
+      if (theme) heroSection.classList.add(theme);
+    }
 
     mountHero(heroId, studentSnap);
   }

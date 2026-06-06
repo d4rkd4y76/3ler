@@ -464,6 +464,21 @@
     return HERO_REGISTRY[String(heroId).trim()] || null;
   }
 
+  function getHeroDisplayName(heroId) {
+    heroId = String(heroId || '').trim();
+    if (!heroId) return '';
+    var def = getHeroDef(heroId);
+    if (def && def.name) return String(def.name);
+    if (heroCatalogCache && heroCatalogCache.length) {
+      for (var i = 0; i < heroCatalogCache.length; i++) {
+        if (heroCatalogCache[i] && heroCatalogCache[i].id === heroId && heroCatalogCache[i].name) {
+          return String(heroCatalogCache[i].name);
+        }
+      }
+    }
+    return '';
+  }
+
   function isEpicStoreHero(heroOrId) {
     var id = typeof heroOrId === 'string' ? heroOrId : (heroOrId && heroOrId.id);
     if (!id) return false;
@@ -2150,6 +2165,7 @@
   window.NOVA_BATTLE_HERO_REGISTRY = HERO_REGISTRY;
   window.NOVA_HERO_REGISTRY = HERO_REGISTRY;
   window.novaGetHeroLevel = getHeroLevel;
+  window.novaGetHeroDisplayName = getHeroDisplayName;
   window.novaMountHeroInto = mountHeroInto;
   window.mountHeroInto = mountHeroInto;
   window.mountHeroStorePreview = mountHeroStorePreview;
