@@ -10066,7 +10066,7 @@ if (winnerId && loserId) {
                 if (typeof val === 'object') return { owned: true, level: Math.max(1, Number(val.level) || 1) };
                 return { owned: !!val, level: val ? 1 : 0 };
             }
-            for (const classSnap of Object.values(classesVal)) {
+            for (const [classId, classSnap] of Object.entries(classesVal)) {
                 if (!classSnap || !classSnap.students) continue;
                 const className = classSnap.name || '';
                 for (const [studentId, student] of Object.entries(classSnap.students)) {
@@ -10091,6 +10091,7 @@ if (winnerId && loserId) {
                     } catch (_) {}
                     players.push({
                         id: String(studentId),
+                        classId: String(classId),
                         name: (student && student.name) || 'Anonim',
                         nameFrame: resolvedNameFrame,
                         avatarFrame: resolvedAvatarFrame,
@@ -10340,6 +10341,12 @@ if (winnerId && loserId) {
             __rankingLastRenderSig = sig;
 
             const rows = [];
+            const escAttr = function (s) {
+                return String(s == null ? '' : s)
+                    .replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;');
+            };
             list.forEach((player, index) => {
                 const effectiveAvatarFrame = ((player && player.nameFrame) === 'deneme_champion')
                   ? 'deneme_champion'
@@ -10350,7 +10357,12 @@ if (winnerId && loserId) {
 
                 tr.innerHTML = `
            <td class="nsr-cell nsr-cell--rank">${index + 1}</td>
-           <td class="nsr-cell nsr-cell--photo"><img src="${player.photo}" alt="" class="ranking-player-photo" loading="lazy" decoding="async" width="40" height="40"
+           <td class="nsr-cell nsr-cell--photo"><img src="${player.photo}" alt="" class="ranking-player-photo nova-player-card-trigger" loading="lazy" decoding="async" width="40" height="40"
+               data-class-id="${escAttr(String(player.classId || ''))}" data-student-id="${escAttr(String(player.id || ''))}"
+               data-player-name="${escAttr(String(player.name || ''))}" data-name-frame="${escAttr(String(player.nameFrame || 'default'))}"
+               data-avatar-frame="${escAttr(String(effectiveAvatarFrame))}" data-game-cup="${Number(player.gameCup) || 0}"
+               data-hero-id="${escAttr(String(player.heroId || ''))}" data-hero-level="${Number(player.heroLevel) || 0}"
+               role="button" tabindex="0" aria-label="Oyuncu kartını aç"
                onerror="this.src='https://via.placeholder.com/50'"></td>
            <td class="nsr-cell nsr-cell--name">${buildNsrNameCell(player)}</td>
            <td class="nsr-cell nsr-cell--lig">${buildNsrLeagueCell(player)}</td>
@@ -10368,6 +10380,9 @@ if (winnerId && loserId) {
             if (renderSeq !== __rankingRenderSeq) return;
             mountNsrRankingHeroes(rankingTableBody);
             updateUserStats(userRank, totalPlayers, userTrophy);
+            try {
+              document.dispatchEvent(new CustomEvent('nova:ranking-rendered'));
+            } catch (_) {}
         }
 
         function updateUserStats(rank, total, trophies) {

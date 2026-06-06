@@ -1,0 +1,250 @@
+/* Oyuncu kartı — hafif, tanıtım amaçlı modal */
+.nova-player-card-trigger{
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.nova-player-card-trigger:active{
+  filter: brightness(1.08);
+}
+
+.nova-player-card-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 101360;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background: rgba(2, 6, 23, .72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.nova-player-card-overlay.is-open{
+  display: flex;
+}
+body.nova-player-card-open{
+  overflow: hidden;
+}
+
+.nova-player-card{
+  position: relative;
+  width: min(360px, 100%);
+  max-height: min(90vh, 640px);
+  overflow: auto;
+  border-radius: 22px;
+  padding: 22px 18px 18px;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(56, 189, 248, .14), transparent 58%),
+    linear-gradient(165deg, #1e293b 0%, #0f172a 52%, #020617 100%);
+  border: 1px solid rgba(148, 163, 184, .26);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, .5),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+  animation: novaPlayerCardIn .28s cubic-bezier(.34, 1.08, .64, 1) both;
+}
+@keyframes novaPlayerCardIn{
+  from{ opacity: 0; transform: translateY(12px) scale(.97); }
+  to{ opacity: 1; transform: none; }
+}
+
+.nova-player-card-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, .72);
+  color: #cbd5e1;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.nova-player-card-close:hover{
+  background: rgba(30, 41, 59, .92);
+  color: #fff;
+}
+
+.nova-player-card-head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.nova-player-card-avatar-wrap{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+.nova-player-card-avatar-wrap .avatar-framed{
+  width: 96px !important;
+  height: 120px !important;
+  object-fit: cover;
+  border-radius: 14px !important;
+}
+
+.nova-player-card-name{
+  max-width: 100%;
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  line-height: 1.25;
+}
+.nova-player-card-name .nova-name-frame{
+  max-width: 100%;
+}
+
+.nova-player-card-league{
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nova-player-card-league .nova-lig{
+  transform: scale(.92);
+  transform-origin: center;
+}
+
+.nova-player-card-stats{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0 16px;
+}
+.npc-stat{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 8px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, .72);
+  border: 1px solid rgba(255, 255, 255, .08);
+}
+.npc-stat-ico{
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.npc-stat-val{
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -.02em;
+}
+.npc-stat-lbl{
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.nova-player-card-hero{
+  border-radius: 16px;
+  padding: 12px 12px 14px;
+  background: rgba(2, 6, 23, .45);
+  border: 1px solid rgba(255, 255, 255, .07);
+}
+.npc-hero-label{
+  margin: 0 0 8px;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #64748b;
+  text-align: center;
+}
+.nova-player-card-hero-host{
+  position: relative;
+  height: clamp(100px, 28vw, 128px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 80%, rgba(99, 102, 241, .18), transparent),
+    linear-gradient(180deg, rgba(15, 23, 42, .55), rgba(15, 23, 42, .85));
+}
+.nova-player-card-hero-host .nsr-hero-fallback,
+.nova-player-card-hero-host .npc-hero-empty{
+  color: #64748b;
+  font-size: .85rem;
+  font-weight: 700;
+}
+.nova-player-card-hero-meta{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.npc-hero-name{
+  font-size: .92rem;
+  font-weight: 800;
+  color: #e2e8f0;
+}
+.npc-hero-stars{
+  display: inline-flex;
+  gap: 2px;
+}
+.npc-star{
+  font-size: .78rem;
+  color: rgba(100, 116, 139, .55);
+}
+.npc-star.is-on{
+  color: #fbbf24;
+  text-shadow: 0 0 8px rgba(251, 191, 36, .45);
+}
+.npc-hero-epic-tag{
+  font-size: .72rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(88, 28, 135, .45);
+  color: #e9d5ff;
+  border: 1px solid rgba(167, 139, 250, .35);
+}
+
+.nova-player-card-loading{
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  background: rgba(15, 23, 42, .55);
+  color: #94a3b8;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  backdrop-filter: blur(2px);
+}
+.nova-player-card.is-loading .nova-player-card-loading{
+  display: flex;
+}
+
+@media (max-width: 480px){
+  .nova-player-card{
+    padding: 18px 14px 14px;
+    border-radius: 18px;
+  }
+  .nova-player-card-avatar-wrap .avatar-framed{
+    width: 88px !important;
+    height: 110px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nova-player-card{
+    animation: none;
+  }
+}
