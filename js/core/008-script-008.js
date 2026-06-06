@@ -2985,7 +2985,7 @@ function novaSyncMainScreenScrollLock(){
     const main = document.getElementById('main-screen');
     const contentTooTall = !!(main && (main.offsetHeight > (window.innerHeight - 8)));
     const phoneMain = novaIsPhoneMainScreen();
-    const shouldLock = mainVisible && !hasForegroundOverlay && (phoneMain || !contentTooTall);
+    const shouldLock = mainVisible && !hasForegroundOverlay && phoneMain;
     root.classList.toggle('nova-lock-main-scroll', shouldLock);
     document.body.classList.toggle('nova-lock-main-scroll', shouldLock);
   }catch(_){}
