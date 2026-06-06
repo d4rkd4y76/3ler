@@ -125,6 +125,11 @@ body.nova-main-bg-gradient-fallback #main-screen::before {
   z-index: 2;
 }
 
+#main-screen > .buttons,
+#main-screen > .nova-admin-portal-slot {
+  z-index: 12 !important;
+}
+
 body.nova-main-bg-video-on #main-screen.container {
   background: transparent !important;
 }

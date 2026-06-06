@@ -8,7 +8,6 @@ body.nova-main-screen-visible.nova-lock-main-scroll {
   max-height: 100dvh !important;
   max-height: 100svh !important;
   width: 100% !important;
-  touch-action: manipulation;
 }
 
 html.nova-main-screen-visible,
