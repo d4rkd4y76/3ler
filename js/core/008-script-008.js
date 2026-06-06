@@ -2952,8 +2952,6 @@ function novaIsPhoneMainScreen() {
   return (window.innerWidth || 0) <= 768;
 }
 
-let __novaMainScrollPinned = false;
-
 function novaSyncMainScreenScrollLock(){
   try{
     const root = document.documentElement;
@@ -2961,14 +2959,9 @@ function novaSyncMainScreenScrollLock(){
     document.body.classList.toggle('nova-main-screen-visible', mainVisible);
     root.classList.toggle('nova-main-screen-visible', mainVisible);
     if (!mainVisible){
-      __novaMainScrollPinned = false;
       root.classList.remove('nova-lock-main-scroll');
       document.body.classList.remove('nova-lock-main-scroll');
       return;
-    }
-    if (!__novaMainScrollPinned) {
-      novaResetMainScreenScroll();
-      __novaMainScrollPinned = true;
     }
     const overlayIds = [
       'characterInventoryOverlay',
@@ -2984,8 +2977,7 @@ function novaSyncMainScreenScrollLock(){
     const hasForegroundOverlay = overlayIds.some(novaIsElementVisibleById);
     const main = document.getElementById('main-screen');
     const contentTooTall = !!(main && (main.offsetHeight > (window.innerHeight - 8)));
-    const phoneMain = novaIsPhoneMainScreen();
-    const shouldLock = mainVisible && !hasForegroundOverlay && phoneMain;
+    const shouldLock = mainVisible && !hasForegroundOverlay && !contentTooTall;
     root.classList.toggle('nova-lock-main-scroll', shouldLock);
     document.body.classList.toggle('nova-lock-main-scroll', shouldLock);
   }catch(_){}

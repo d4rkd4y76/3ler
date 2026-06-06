@@ -1,4 +1,4 @@
-/* Ana ekran — telefonda tam çerçeve (taşma yok, alt menü her zaman görünür) */
+/* Ana ekran: krem/mor body ambiyansı yok; telefonda tam ekran */
 
 html {
   background: #020611 !important;
@@ -23,43 +23,27 @@ body.nova-main-screen-visible #main-screen.container {
 }
 
 @media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
-  html.nova-main-screen-visible,
   body.nova-main-screen-visible {
     display: block !important;
-    height: 100dvh !important;
-    height: 100svh !important;
-    min-height: 0 !important;
-    max-height: 100dvh !important;
-    max-height: 100svh !important;
-    overflow: hidden !important;
+    min-height: 100dvh !important;
+    min-height: 100svh !important;
+    overflow-x: hidden !important;
   }
 
   body.nova-main-screen-visible #main-screen {
-    --nova-main-fit-gap: clamp(4px, 0.9vh, 8px);
-    --nova-main-photo-max: min(26dvh, 188px);
-    --nova-left-showcase-w: clamp(104px, 27vw, 136px);
-    --nova-left-showcase-h: clamp(128px, 30dvh, 164px);
-
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
     max-width: none !important;
     min-width: 0 !important;
-    height: 100dvh !important;
-    height: 100svh !important;
-    max-height: 100dvh !important;
-    max-height: 100svh !important;
-    min-height: 0 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
+    min-height: 100dvh !important;
+    min-height: 100svh !important;
     margin: 0 !important;
     padding:
-      max(6px, env(safe-area-inset-top))
-      max(8px, env(safe-area-inset-right))
-      max(6px, env(safe-area-inset-bottom))
-      max(8px, env(safe-area-inset-left)) !important;
-    gap: var(--nova-main-fit-gap) !important;
+      max(10px, env(safe-area-inset-top))
+      max(10px, env(safe-area-inset-right))
+      max(10px, env(safe-area-inset-bottom))
+      max(10px, env(safe-area-inset-left)) !important;
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -67,176 +51,9 @@ body.nova-main-screen-visible #main-screen.container {
     justify-content: flex-start !important;
   }
 
-  #main-screen .app-duyuru-strip {
-    flex-shrink: 0;
-    min-height: 32px;
-  }
-
-  #main-screen .app-duyuru-strip__chunk {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    font-size: clamp(11px, 2.8vw, 13px);
-  }
-
-  #main-screen .main-screen-top-bar {
-    flex-shrink: 0 !important;
-    min-height: clamp(40px, 9.5vw, 48px) !important;
-    padding-bottom: 2px !important;
-  }
-
-  /* Profil HUD — içeriği kadar yükseklik; stats altında boşluk bırakmaz */
-  #main-screen .main-profile-hero {
-    flex: 0 0 auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
-    padding-top: 0 !important;
-    padding-left: max(2px, env(safe-area-inset-left, 0px)) !important;
-    padding-right: max(2px, env(safe-area-inset-right, 0px)) !important;
-    align-items: center !important;
-    grid-template-columns: minmax(0, 1fr) minmax(0, min(46vw, 220px)) minmax(0, 1fr) !important;
-    column-gap: clamp(4px, 1.2vw, 8px) !important;
-    row-gap: 0 !important;
-  }
-
-  #main-screen .main-screen-hero-left--showcase,
-  #main-screen .main-screen-hero-left {
-    max-width: var(--nova-left-showcase-w) !important;
-    width: var(--nova-left-showcase-w) !important;
-    min-width: var(--nova-left-showcase-w) !important;
-    padding-top: 0 !important;
-  }
-
-  #main-screen .nova-main-hero-showcase__frame {
-    min-height: var(--nova-left-showcase-h) !important;
-  }
-
-  #main-screen .nova-main-hero-showcase__body {
-    min-height: calc(var(--nova-left-showcase-h) - 34px) !important;
-  }
-
-  #main-screen .main-screen-hero-center .student-photo {
-    width: min(168px, 40vw) !important;
-    max-height: var(--nova-main-photo-max) !important;
-  }
-
-  #main-screen .main-screen-hero-center .student-name-stage {
-    margin-top: clamp(2px, 0.6vh, 6px) !important;
-  }
-
-  #main-screen .main-screen-hero-center .star-frame,
-  #main-screen .main-screen-hero-center .rank-label {
-    margin-top: clamp(2px, 0.5vh, 4px) !important;
-  }
-
-  #main-screen .student-stats-container {
-    margin-top: clamp(4px, 0.8vh, 8px) !important;
-    margin-bottom: 0 !important;
-  }
-
-  #main-screen .main-screen-hero-right,
-  #main-screen #main-screen-quest-slot {
-    max-width: clamp(100px, 26vw, 132px) !important;
-    gap: clamp(5px, 1.2vw, 8px) !important;
-    padding-top: 0 !important;
-  }
-
-  /* Alt menü — doğal akış, arka plan yok (stadyum görünsün) */
-  #main-screen > .buttons {
-    position: relative !important;
-    flex: 0 0 auto !important;
-    flex-shrink: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    max-width: min(560px, 100%) !important;
-    margin: clamp(2px, 0.6vh, 6px) auto 0 !important;
-    padding: clamp(2px, 0.5vh, 6px) 0 max(2px, env(safe-area-inset-bottom, 0px)) !important;
-    gap: clamp(6px, 1vh, 9px) !important;
-    box-sizing: border-box !important;
-    background: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    animation: none !important;
-    transform: none !important;
-  }
-
-  #main-screen > .buttons button {
-    min-height: clamp(40px, 5.4dvh, 46px) !important;
-    padding: 8px 14px !important;
-    font-size: clamp(0.82rem, 3.4vw, 0.92rem) !important;
-  }
-
-  #main-screen > .buttons .logout-button {
-    min-height: clamp(36px, 4.8dvh, 42px) !important;
-  }
-
-  #main-screen > .buttons .duel-entry-gate-note {
-    margin-top: -2px !important;
-    margin-bottom: 0 !important;
-    padding: 6px 8px !important;
-    font-size: 0.72rem !important;
-  }
-
-  /* Yönetici — çıkışın hemen altında (DOM sırası) */
-  #main-screen .nova-admin-portal-slot {
-    position: relative !important;
-    flex-shrink: 0;
-    order: unset !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    z-index: auto !important;
-  }
-
-  #main-screen .nask-game-signature {
-    display: none !important;
-  }
-
   body.nova-perf-ultra.nova-main-screen-visible #main-screen {
     width: calc(100vw / var(--nova-perf-scale, 1)) !important;
-    height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
-    height: calc(100svh / var(--nova-perf-scale, 1)) !important;
-    max-height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
-  }
-}
-
-/* Kısa ekranlar — profil alanı biraz daha sıkıştır */
-@media (max-width: 768px) and (max-height: 740px),
-       (max-width: 1024px) and (max-height: 740px) and (hover: none) and (pointer: coarse) {
-  body.nova-main-screen-visible #main-screen {
-    --nova-main-photo-max: min(23dvh, 168px);
-    --nova-left-showcase-h: clamp(118px, 27dvh, 148px);
-    --nova-main-fit-gap: 4px;
-  }
-
-  #main-screen > .buttons button {
-    min-height: 38px !important;
-  }
-
-  #main-screen > .buttons {
-    gap: 5px !important;
-  }
-}
-
-@media (max-width: 768px) and (max-height: 640px),
-       (max-width: 1024px) and (max-height: 640px) and (hover: none) and (pointer: coarse) {
-  body.nova-main-screen-visible #main-screen {
-    --nova-main-photo-max: min(20dvh, 148px);
-    --nova-left-showcase-w: clamp(96px, 25vw, 120px);
-    --nova-left-showcase-h: clamp(108px, 24dvh, 132px);
-  }
-
-  #main-screen .main-screen-top-bar {
-    min-height: 38px !important;
-  }
-
-  #main-screen > .buttons button {
-    min-height: 36px !important;
-    padding: 7px 12px !important;
-    font-size: 0.8rem !important;
+    min-height: calc(100dvh / var(--nova-perf-scale, 1)) !important;
+    min-height: calc(100svh / var(--nova-perf-scale, 1)) !important;
   }
 }
