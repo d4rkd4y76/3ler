@@ -11,7 +11,12 @@
   var EGG_LABEL = { fire: 'Alev', ice: 'Buz', night: 'Gece' };
   var DRAGON_BY_EGG = { fire: 'alev_ejder', ice: 'buz_ejder', night: 'gece_ejder' };
   var DRAGON_HERO_IDS = { alev_ejder: true, buz_ejder: true, gece_ejder: true };
-  var BASIC_HEROES = ['star_fairy', 'firtina_okcu', 'tas_muhafiz', 'golge_parsi', 'bilge_baykus'];
+  var EGG_AVATAR_NAMES = {
+    fire: ['Fatih Sultan Mehmet', 'İbn Sina', 'Piri Reis', 'Ertuğrul Gazi'],
+    ice: ['Tuğrul Bey', 'Mustafa Kemal', 'Orhan Gazi', 'Albert Einstein'],
+    night: ['Yıldırım Bayezid', '2. Abdülhamid', 'El Harezmi', 'Kürşad']
+  };
+  var eggRewardPoolCache = {};
   var MS_DAY = 86400000;
 
   var sheetCache = {};
@@ -117,6 +122,13 @@
     if (reward.kind === 'diamond') {
       updates.diamond = Math.min(25000, (Number(stu.diamond) || 0) + (Number(reward.amount) || 0));
       updates.lastDiamondUpdate = Date.now();
+      return updates;
+    }
+    if (reward.kind === 'avatar') {
+      try {
+        var enc = btoa(reward.photoUrl);
+        updates['purchasedPhotos/' + enc] = true;
+      } catch (_) {}
       return updates;
     }
     var hid = reward.heroId;
@@ -473,56 +485,138 @@
     }
   };
 
-  function pickUnownedBasic(stu) {
-    var pool = BASIC_HEROES.filter(function (id) {
-      return !ownsHeroPermanent(stu, id);
+  function normalizeRewardName(s) {
+    var t = String(s || '').trim().toLowerCase();
+    t = t.split('ı').join('i').split('İ').join('i').split('ğ').join('g').split('ü').join('u')
+      .split('ş').join('s').split('ö').join('o').split('ç').join('c');
+    return t.replace(/[^a-z0-9]/g, '');
+  }
+
+  async function ensureStoreManifestForEggs() {
+    try {
+      if (typeof window.novaCdnFetchStoreManifest === 'function' && !window.__novaStoreCdnPhotos) {
+        await window.novaCdnFetchStoreManifest();
+      }
+    } catch (_) {}
+    try {
+      if (typeof fetchStoreCategoriesFromDB === 'function') {
+        await fetchStoreCategoriesFromDB();
+      }
+    } catch (_) {}
+  }
+
+  function collectAllStorePhotos() {
+    var out = [];
+    var seen = {};
+    var cdn = window.__novaStoreCdnPhotos || {};
+    Object.keys(cdn).forEach(function (cat) {
+      var o = cdn[cat];
+      if (!o || typeof o !== 'object') return;
+      Object.keys(o).forEach(function (id) {
+        if (id === '_meta') return;
+        var p = o[id];
+        if (!p || !p.url) return;
+        var key = p.url;
+        if (seen[key]) return;
+        seen[key] = true;
+        out.push({ id: id, url: p.url, name: p.name || id, category: cat });
+      });
     });
-    if (!pool.length) return null;
-    return pool[Math.floor(Math.random() * pool.length)];
+    return out;
   }
 
-  function dragonOwned(stu, eggType) {
-    return ownsHeroPermanent(stu, DRAGON_BY_EGG[eggType]);
-  }
-
-  function rollRewardOnce(stu, eggType) {
-    var meta = stu.dragonEggMeta || {};
-    var pity = Number(meta.cracksSinceDragonTrial) || 0;
-    var dragonId = DRAGON_BY_EGG[eggType];
-
-    if (pity >= 10 && !ownsHeroPermanent(stu, dragonId)) {
-      var days = [1, 3, 5][Math.floor(Math.random() * 3)];
-      return { kind: 'dragon_trial', heroId: dragonId, days: days, pity: true };
-    }
-
-    var r = Math.random() * 100;
-    if (!ownsHeroPermanent(stu, dragonId)) {
-      if (r < 5) return { kind: 'dragon_trial', heroId: dragonId, days: 5 };
-      if (r < 13) return { kind: 'dragon_trial', heroId: dragonId, days: 3 };
-      if (r < 23) return { kind: 'dragon_trial', heroId: dragonId, days: 1 };
-    }
-
-    if (r < 38) {
-      var hero = pickUnownedBasic(stu);
-      if (hero) return { kind: 'hero_trial', heroId: hero, days: 3 };
-    }
-
-    if (r < 83) return { kind: 'diamond', amount: 50 };
-    if (r < 93) return { kind: 'diamond', amount: 100 };
-    if (r < 98) return { kind: 'diamond', amount: 250 };
-    return { kind: 'diamond', amount: 500 };
-  }
-
-  function rollReward(stu, eggType) {
-    var reward;
+  function findAvatarPhotoByName(name) {
+    var want = normalizeRewardName(name);
+    if (!want) return null;
+    var photos = collectAllStorePhotos();
     var i;
-    for (i = 0; i < 12; i++) {
-      reward = rollRewardOnce(stu, eggType);
-      if (reward.kind === 'diamond') return reward;
-      if (ownsHeroPermanent(stu, reward.heroId)) continue;
+    for (i = 0; i < photos.length; i++) {
+      if (normalizeRewardName(photos[i].name) === want) return photos[i];
+    }
+    for (i = 0; i < photos.length; i++) {
+      var n = normalizeRewardName(photos[i].name);
+      if (n.indexOf(want) >= 0 || want.indexOf(n) >= 0) return photos[i];
+    }
+    return null;
+  }
+
+  function ownsAvatar(stu, photoUrl) {
+    if (!photoUrl || !stu) return false;
+    try {
+      return !!(stu.purchasedPhotos && stu.purchasedPhotos[btoa(photoUrl)]);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function pushPoolEntries(pool, entry, count) {
+    var n = Math.max(0, Number(count) || 0);
+    var i;
+    for (i = 0; i < n; i++) pool.push(entry);
+  }
+
+  function buildEggRewardPool(eggType) {
+    if (eggRewardPoolCache[eggType]) return eggRewardPoolCache[eggType].slice();
+    var pool = [];
+    (EGG_AVATAR_NAMES[eggType] || []).forEach(function (avatarName) {
+      pool.push({ kind: 'avatar', avatarName: avatarName });
+    });
+    pushPoolEntries(pool, { kind: 'diamond', amount: 20 }, 40);
+    pushPoolEntries(pool, { kind: 'diamond', amount: 50 }, 28);
+    pushPoolEntries(pool, { kind: 'diamond', amount: 100 }, 14);
+    pushPoolEntries(pool, { kind: 'diamond', amount: 250 }, 2);
+    pushPoolEntries(pool, { kind: 'diamond', amount: 500 }, 3);
+    pushPoolEntries(pool, { kind: 'dragon_trial', days: 1 }, 4);
+    pushPoolEntries(pool, { kind: 'dragon_trial', days: 2 }, 2);
+    pushPoolEntries(pool, { kind: 'dragon_trial', days: 3 }, 2);
+    pushPoolEntries(pool, { kind: 'dragon_trial', days: 5 }, 1);
+    eggRewardPoolCache[eggType] = pool.slice();
+    return pool;
+  }
+
+  function materializePoolEntry(entry, eggType) {
+    var reward = { kind: entry.kind };
+    if (entry.kind === 'diamond') {
+      reward.amount = entry.amount;
       return reward;
     }
-    return { kind: 'diamond', amount: 100 };
+    if (entry.kind === 'avatar') {
+      reward.avatarName = entry.avatarName;
+      var photo = findAvatarPhotoByName(entry.avatarName);
+      if (!photo) return null;
+      reward.photoUrl = photo.url;
+      reward.photoName = photo.name;
+      return reward;
+    }
+    if (entry.kind === 'dragon_trial') {
+      reward.kind = 'dragon_trial';
+      reward.heroId = DRAGON_BY_EGG[eggType];
+      reward.days = entry.days;
+      return reward;
+    }
+    return null;
+  }
+
+  function isRewardBlocked(stu, reward) {
+    if (!reward) return true;
+    if (reward.kind === 'avatar') return ownsAvatar(stu, reward.photoUrl);
+    if (reward.kind === 'dragon_trial') return ownsHeroPermanent(stu, reward.heroId);
+    return false;
+  }
+
+  async function rollReward(stu, eggType) {
+    await ensureStoreManifestForEggs();
+    var pool = buildEggRewardPool(eggType);
+    var tries = Math.max(40, pool.length * 2);
+    var i;
+    for (i = 0; i < tries; i++) {
+      var entry = pool[Math.floor(Math.random() * pool.length)];
+      var reward = materializePoolEntry(entry, eggType);
+      if (!reward) continue;
+      if (isRewardBlocked(stu, reward)) continue;
+      return reward;
+    }
+    return { kind: 'diamond', amount: 50 };
   }
 
   function applyReward(stu, reward) {
@@ -532,25 +626,89 @@
       stu.lastDiamondUpdate = Date.now();
       return;
     }
+    if (reward.kind === 'avatar') {
+      stu.purchasedPhotos = stu.purchasedPhotos || {};
+      try {
+        stu.purchasedPhotos[btoa(reward.photoUrl)] = true;
+      } catch (_) {}
+      return;
+    }
     addPendingTrialDays(stu, reward);
   }
 
   function rewardTitle(reward) {
     if (!reward) return 'Ödül';
     if (reward.kind === 'diamond') return '+' + reward.amount + ' ELMAS';
+    if (reward.kind === 'avatar') return (reward.photoName || reward.avatarName || 'Avatar') + ' — AVATAR';
     var reg = window.NOVA_HERO_REGISTRY || window.NOVA_BATTLE_HERO_REGISTRY || {};
     var def = reg[reward.heroId];
     var name = def ? def.name : reward.heroId;
     var days = Math.max(1, Number(reward.days) || 3);
-    return name + ' — ' + days + ' Gün Deneme Hakkı';
+    return name + ' — ' + days + ' Gün Deneme';
   }
 
   function rewardSub(reward) {
     if (reward.kind === 'diamond') {
       return 'Elmaslar hesabına eklendi. Mağazadan harcayabilirsin!';
     }
+    if (reward.kind === 'avatar') {
+      return 'Avatar sandığına eklendi. Karakter menüsünden kullanabilirsin!';
+    }
     var days = Math.max(1, Number(reward.days) || 3);
     return days + ' gün deneme kazandın. Mağazada «Denemeyi Başlat» ile başlat.';
+  }
+
+  function playRewardRevealFx(eggType) {
+    var visual = document.getElementById('nova_degg_screen_reward_visual');
+    if (!visual) return;
+    var oldFx = visual.querySelector('.nova-degg-reward-fx');
+    if (oldFx) oldFx.remove();
+    var fx = document.createElement('div');
+    fx.className = 'nova-degg-reward-fx nova-degg-reward-fx--' + (eggType || 'fire');
+    fx.innerHTML =
+      '<div class="nova-degg-reward-fx__flash" aria-hidden="true"></div>' +
+      '<div class="nova-degg-reward-fx__ring" aria-hidden="true"></div>' +
+      '<div class="nova-degg-reward-fx__ring nova-degg-reward-fx__ring--2" aria-hidden="true"></div>' +
+      '<div class="nova-degg-reward-fx__spark nova-degg-reward-fx__spark--1" aria-hidden="true"></div>' +
+      '<div class="nova-degg-reward-fx__spark nova-degg-reward-fx__spark--2" aria-hidden="true"></div>' +
+      '<div class="nova-degg-reward-fx__spark nova-degg-reward-fx__spark--3" aria-hidden="true"></div>';
+    visual.insertBefore(fx, visual.firstChild);
+    setTimeout(function () {
+      if (fx.parentNode) fx.parentNode.removeChild(fx);
+    }, 2800);
+    try {
+      if (typeof window.novaBonusEggWinFx === 'function') {
+        window.novaBonusEggWinFx(document.getElementById('nova_degg_screen_body') || visual);
+      }
+    } catch (_) {}
+  }
+
+  function renderAvatarRewardCard(container, reward) {
+    if (!container || !reward || !reward.photoUrl) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'nova-degg-reward-avatar-card';
+    var frame = document.createElement('div');
+    frame.className = 'nova-degg-reward-avatar-card__frame';
+    var img = document.createElement('img');
+    img.className = 'nova-degg-reward-avatar-card__img';
+    img.alt = reward.photoName || reward.avatarName || 'Avatar';
+    img.decoding = 'async';
+    var imgUrl = reward.photoUrl;
+    if (typeof window.novaResolveAssetUrl === 'function') {
+      imgUrl = window.novaResolveAssetUrl(reward.photoUrl);
+    }
+    img.src = imgUrl;
+    frame.appendChild(img);
+    var name = document.createElement('div');
+    name.className = 'nova-degg-reward-avatar-card__name';
+    name.textContent = reward.photoName || reward.avatarName || 'Avatar';
+    var badge = document.createElement('span');
+    badge.className = 'nova-degg-reward-avatar-card__badge';
+    badge.textContent = 'Yeni Avatar';
+    wrap.appendChild(frame);
+    wrap.appendChild(name);
+    wrap.appendChild(badge);
+    container.appendChild(wrap);
   }
 
   function eggScreenEl() {
@@ -735,18 +893,30 @@
     var dia = document.getElementById('nova_degg_screen_reward_diamond');
     var titleEl = document.getElementById('nova_degg_screen_reward_title');
     var subEl = document.getElementById('nova_degg_screen_reward_sub');
+    var screen = eggScreenEl();
+    if (screen) {
+      screen.classList.remove('is-reward-diamond', 'is-reward-hero', 'is-reward-avatar');
+      if (reward.kind === 'diamond') screen.classList.add('is-reward-diamond');
+      else if (reward.kind === 'avatar') screen.classList.add('is-reward-avatar');
+      else screen.classList.add('is-reward-hero');
+    }
     if (rewardRoot) {
       rewardRoot.classList.toggle('is-diamond', reward.kind === 'diamond');
-      rewardRoot.classList.toggle('is-hero', reward.kind !== 'diamond');
+      rewardRoot.classList.toggle('is-hero', reward.kind === 'dragon_trial');
+      rewardRoot.classList.toggle('is-avatar', reward.kind === 'avatar');
     }
     if (titleEl) titleEl.textContent = rewardTitle(reward);
     if (subEl) subEl.textContent = rewardSub(reward);
     if (cardSlot) cardSlot.innerHTML = '';
     if (dia) dia.hidden = true;
+    playRewardRevealFx(selectedType);
     if (reward.kind === 'diamond') {
       if (dia) {
         dia.hidden = false;
-        dia.textContent = '💎 +' + reward.amount;
+        dia.innerHTML =
+          '<span class="nova-degg-diamond-reward__icon" aria-hidden="true">💎</span>' +
+          '<span class="nova-degg-diamond-reward__amount">+' + reward.amount + '</span>' +
+          '<span class="nova-degg-diamond-reward__label">ELMAS</span>';
       }
       if (typeof window.novaPlayDiamondRewardSfx === 'function') {
         window.novaPlayDiamondRewardSfx();
@@ -757,6 +927,8 @@
         if (!el) return;
         el.textContent = String(Number(stu.diamond) || 0);
       });
+    } else if (reward.kind === 'avatar') {
+      renderAvatarRewardCard(cardSlot, reward);
     } else {
       var reg = window.NOVA_HERO_REGISTRY || {};
       var hero = {
@@ -821,22 +993,17 @@
       var stu = stuSnap.val() || {};
       stu.dragonEggs = await readEggBag(ref);
 
-      var reward = rollReward(stu, selectedType);
-      var meta = stu.dragonEggMeta || {};
-      if (reward.kind === 'dragon_trial') meta.cracksSinceDragonTrial = 0;
-      else meta.cracksSinceDragonTrial = (Number(meta.cracksSinceDragonTrial) || 0) + 1;
+      var reward = await rollReward(stu, selectedType);
 
       applyReward(stu, reward);
       var updates = buildRewardUpdates(stu, reward);
-      updates['dragonEggMeta/cracksSinceDragonTrial'] = meta.cracksSinceDragonTrial;
 
       await ref.update(updates);
-      stu.dragonEggMeta = meta;
       committedReward = reward;
       committedStu = {
         diamond: stu.diamond,
         dragonEggs: stu.dragonEggs,
-        dragonEggMeta: meta,
+        purchasedPhotos: stu.purchasedPhotos || {},
         heroTrials: stu.heroTrials || {},
         dragonTrials: stu.dragonTrials || {},
         heroTrialPending: stu.heroTrialPending || {},
@@ -909,14 +1076,10 @@
   function renderScreenInventory(stu) {
     stu = stu || getStudent() || {};
     var eggs = stu.dragonEggs || {};
-    var meta = stu.dragonEggMeta || {};
-    var pity = Number(meta.cracksSinceDragonTrial) || 0;
     var pityEl = document.getElementById('nova_dragon_egg_pity');
     if (pityEl) {
-      var left = Math.max(0, 10 - pity);
-      pityEl.textContent = left > 0
-        ? ('Ejder denemesi garantisi: ' + left + ' kırma kaldı')
-        : 'Sonraki ejder denemesi garanti!';
+      pityEl.hidden = true;
+      pityEl.textContent = '';
     }
     EGG_TYPES.forEach(function (t) {
       var chip = document.querySelector('#nova-dragon-egg-screen .nova-dragon-egg-chip[data-egg="' + t + '"]');
@@ -1126,8 +1289,14 @@
         requestAnimationFrame(function () { tryMount(attempt + 1); });
         return;
       }
+      if (typeof window.novaIsEpicDragonHero === 'function' &&
+          window.novaIsEpicDragonHero(heroId) &&
+          typeof window.novaEpicDragonMountSprite === 'function') {
+        window.novaEpicDragonMountSprite(host, heroId, { profile: 'store', scale: 1.68 });
+        return;
+      }
       if (typeof window.mountHeroStorePreview === 'function') {
-        window.mountHeroStorePreview(host, heroId, { profile: 'store' });
+        window.mountHeroStorePreview(host, heroId, { profile: 'detail', scale: 1.55 });
       }
     }
     requestAnimationFrame(function () { tryMount(0); });
@@ -1167,7 +1336,7 @@
         card.innerHTML =
           preview +
           '<div class="nova-hero-store-vitrine-name">' + (hero.name || def.name) + '</div>' +
-          '<span class="nova-hero-trial-badge">' + showDays + ' gün deneme</span>';
+          '<span class="nova-hero-trial-badge nova-hero-trial-badge--egg-reward">' + showDays + ' gün deneme</span>';
       } else {
         card.innerHTML =
           preview +
