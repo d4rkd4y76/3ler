@@ -6,6 +6,7 @@
   var CONFIG_TTL_MS = 120000;
   var PLAY_RETRY_MS = 400;
   var PLAY_RETRY_MAX_MS = 20000;
+  var NETWORK_RETRY_MS = 22000;
 
   var state = {
     config: null,
@@ -19,7 +20,9 @@
     videoBlobCache: {},
     prefetchedVideo: null,
     prefetchPromise: null,
-    prefetchedImageSrc: ''
+    prefetchedImageSrc: '',
+    networkRetryTimer: null,
+    networkRetryBound: false
   };
 
   function getDatabase() {
@@ -347,6 +350,7 @@
         show();
       };
       img.onerror = function () {
+        applyGradientFallback();
         resolve();
       };
       img.src = src;
@@ -379,6 +383,84 @@
     if (!layer) return;
     layer.classList.toggle('is-active', !!on);
     document.body.classList.toggle('nova-main-bg-video-on', !!on && isMainScreenVisible());
+    if (on) {
+      layer.classList.remove('is-gradient-fallback');
+      document.body.classList.remove('nova-main-bg-gradient-fallback');
+    }
+  }
+
+  function applyGradientFallback() {
+    var layer = getLayer();
+    if (!layer || !isMainScreenVisible()) return;
+    hideIframeLayer();
+    hideBackgroundImage();
+    var video = getVideo();
+    if (video) {
+      try {
+        video.pause();
+        video.hidden = true;
+        video.setAttribute('hidden', '');
+      } catch (_) {}
+    }
+    layer.classList.add('is-gradient-fallback', 'is-active');
+    document.body.classList.add('nova-main-bg-gradient-fallback', 'nova-main-bg-video-on');
+    state.currentMode = 'gradient';
+    state.currentSrc = '';
+  }
+
+  function tryPosterFallback(cfg) {
+    var posterUrl = resolveImageUrl(cfg);
+    if (!posterUrl) return Promise.reject(new Error('no-poster'));
+    return applyBackgroundImage(posterUrl);
+  }
+
+  function handleBgLoadFailure(cfg) {
+    var libraryId = String((cfg && cfg.libraryId) || '').trim();
+    var videoId = String((cfg && cfg.videoId) || '').trim();
+    if (
+      libraryId &&
+      videoId &&
+      applyIframeFallback({
+        mode: 'iframe',
+        src: buildBunnyEmbedBgUrl(libraryId, videoId)
+      })
+    ) {
+      return Promise.resolve();
+    }
+    return tryPosterFallback(cfg).catch(function () {
+      applyGradientFallback();
+    });
+  }
+
+  function needsBgRecovery() {
+    if (!isMainScreenVisible()) return false;
+    if (document.body.classList.contains('nova-main-bg-gradient-fallback')) return true;
+    var layer = getLayer();
+    if (layer && layer.classList.contains('is-gradient-fallback')) return true;
+    return !document.body.classList.contains('nova-main-bg-video-on');
+  }
+
+  function bindNetworkRecovery() {
+    if (state.networkRetryBound) return;
+    state.networkRetryBound = true;
+    window.addEventListener(
+      'online',
+      function () {
+        if (isMainScreenVisible()) syncMainBgVideo(true);
+      },
+      { passive: true }
+    );
+    document.addEventListener(
+      'visibilitychange',
+      function () {
+        if (!document.hidden && needsBgRecovery()) syncMainBgVideo(false);
+      },
+      { passive: true }
+    );
+    if (state.networkRetryTimer) clearInterval(state.networkRetryTimer);
+    state.networkRetryTimer = setInterval(function () {
+      if (needsBgRecovery()) syncMainBgVideo(false);
+    }, NETWORK_RETRY_MS);
   }
 
   function enforceSilent(video) {
@@ -695,16 +777,7 @@
               schedulePlayRetries(video);
             })
             .catch(function () {
-              var libraryId = String((cfg && cfg.libraryId) || '').trim();
-              var videoId = String((cfg && cfg.videoId) || '').trim();
-              if (libraryId && videoId && applyIframeFallback({
-                mode: 'iframe',
-                src: buildBunnyEmbedBgUrl(libraryId, videoId)
-              })) {
-                return;
-              }
-              setLayerActive(false);
-              stopPlayback();
+              return handleBgLoadFailure(cfg);
             });
         });
       });
@@ -770,8 +843,9 @@
     function kick() {
       if (isMainScreenVisible()) syncMainBgVideo(false);
     }
+    bindNetworkRecovery();
     kick();
-    [400, 1200, 2500, 5000, 10000].forEach(function (ms) {
+    [400, 1200, 2500, 5000, 10000, 20000, 45000].forEach(function (ms) {
       setTimeout(kick, ms);
     });
   }

@@ -465,12 +465,26 @@
     return bootSheet.promise;
   }
 
+  function bootRetryDelay(ms) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, ms);
+    });
+  }
+
   function waitBootSheetFullyReady(maxMs) {
     var limit = maxMs == null ? 60000 : maxMs;
     return preloadBootSheet()
       .catch(function () {
         bootSheet.promise = null;
-        return preloadBootSheet(true);
+        return bootRetryDelay(1800).then(function () {
+          return preloadBootSheet(true);
+        });
+      })
+      .catch(function () {
+        bootSheet.promise = null;
+        return bootRetryDelay(4500).then(function () {
+          return preloadBootSheet(true);
+        });
       })
       .then(function (pack) {
         if (!pack || !pack.img || !pack.img.complete || !pack.img.naturalWidth) {
@@ -901,6 +915,9 @@
     }
     if (typeof window.novaPrefetchMainScreenAssets === 'function') {
       window.novaPrefetchMainScreenAssets(true);
+    }
+    if (typeof window.novaPrefetchMainScreenBgMedia === 'function') {
+      window.novaPrefetchMainScreenBgMedia().catch(function () {});
     }
 
     runLightBootWork().finally(function () {

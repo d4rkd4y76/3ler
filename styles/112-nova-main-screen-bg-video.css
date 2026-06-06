@@ -34,6 +34,26 @@ body.nova-main-bg-video-on .nova-main-bg-video-layer.is-active {
   opacity: 1;
 }
 
+/* Video yüklenemezse siyah yerine hafif gradyan */
+.nova-main-bg-video-layer.is-gradient-fallback {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(30, 58, 138, 0.38) 0%, transparent 58%),
+    radial-gradient(ellipse 90% 60% at 80% 100%, rgba(6, 78, 59, 0.22) 0%, transparent 55%),
+    linear-gradient(180deg, #0a1628 0%, #020611 48%, #0b1220 100%);
+}
+
+body.nova-main-bg-gradient-fallback #main-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -10%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(2, 6, 17, 0) 0%, rgba(2, 6, 17, 0.35) 100%);
+}
+
 .nova-main-bg-video,
 .nova-main-bg-image {
   position: absolute;

@@ -172,15 +172,7 @@
       diamond: (function () {
         var el = document.getElementById('diamond-value');
         if (!el) return true;
-        var txt = String(el.textContent || '').trim();
-        if (txt !== '' && txt !== '-') return true;
-        var student = getStoredStudent();
-        if (student && student.diamond != null && isFinite(Number(student.diamond))) return true;
-        try {
-          var cache = window.__novaMainScreenStudentCache;
-          if (cache && cache.diamond != null && isFinite(Number(cache.diamond))) return true;
-        } catch (_) {}
-        return false;
+        return String(el.textContent || '').trim() !== '';
       })()
     };
   };
