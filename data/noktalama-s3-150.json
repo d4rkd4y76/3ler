@@ -1,0 +1,4037 @@
+{
+  "meta": {
+    "topicId": "t08",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Noktalama İşaretleri (İki nokta, kısa çizgi ve tırnak işaretinin eklenmesi)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "nokta3_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "İki nokta işareti genelde hangi durumda kullanılır?",
+      "correct": "Örnek veya liste verirken",
+      "wrong1": "Konuşma yazarken",
+      "wrong2": "Kelime bölerken",
+      "explanation": "İki nokta, ardından örnek, liste veya açıklama geleceğini bildirir.",
+      "app": {
+        "question": {
+          "text": "İki nokta işareti genelde hangi durumda kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Örnek veya liste verirken",
+        "wrong1": "Konuşma yazarken",
+        "wrong2": "Kelime bölerken",
+        "explanation": "İki nokta, ardından örnek, liste veya açıklama geleceğini bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Örnek vermeden hemen önce hangi noktalama işareti konur?",
+      "correct": "iki nokta",
+      "wrong1": "tırnak işareti",
+      "wrong2": "kısa çizgi",
+      "explanation": "Örnek veya sıralama yapmadan hemen önce iki nokta konur.",
+      "app": {
+        "question": {
+          "text": "Örnek vermeden hemen önce hangi noktalama işareti konur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "iki nokta",
+        "wrong1": "tırnak işareti",
+        "wrong2": "kısa çizgi",
+        "explanation": "Örnek veya sıralama yapmadan hemen önce iki nokta konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sıralama yapılacaksa hangi işaret kullanılır?",
+      "correct": "iki nokta",
+      "wrong1": "soru işareti",
+      "wrong2": "ünlem",
+      "explanation": "Sıralanan sözcüklerden önce iki nokta kullanılır.",
+      "app": {
+        "question": {
+          "text": "Sıralama yapılacaksa hangi işaret kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "iki nokta",
+        "wrong1": "soru işareti",
+        "wrong2": "ünlem",
+        "explanation": "Sıralanan sözcüklerden önce iki nokta kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Liste verilmeden önce hangi işaret gelmelidir?",
+      "correct": "iki nokta",
+      "wrong1": "nokta",
+      "wrong2": "tırnak işareti",
+      "explanation": "Liste öğeleri iki noktadan sonra virgülle ayrılarak yazılır.",
+      "app": {
+        "question": {
+          "text": "Liste verilmeden önce hangi işaret gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "iki nokta",
+        "wrong1": "nokta",
+        "wrong2": "tırnak işareti",
+        "explanation": "Liste öğeleri iki noktadan sonra virgülle ayrılarak yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "Açıklama yapılacaksa hangi noktalama işareti kullanılır?",
+      "correct": "iki nokta",
+      "wrong1": "kısa çizgi",
+      "wrong2": "tırnak işareti",
+      "explanation": "Açıklanan bölümden hemen önce iki nokta konur.",
+      "app": {
+        "question": {
+          "text": "Açıklama yapılacaksa hangi noktalama işareti kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "iki nokta",
+        "wrong1": "kısa çizgi",
+        "wrong2": "tırnak işareti",
+        "explanation": "Açıklanan bölümden hemen önce iki nokta konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "İki nokta (:) işareti ne işe yarar?",
+      "correct": "Örnek veya açıklama öncesi konur",
+      "wrong1": "Her cümle sonunda konur",
+      "wrong2": "Kelime bölmek için konur",
+      "explanation": "İki nokta, devamında örnek, liste veya açıklama olacağını gösterir.",
+      "app": {
+        "question": {
+          "text": "İki nokta (:) işareti ne işe yarar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Örnek veya açıklama öncesi konur",
+        "wrong1": "Her cümle sonunda konur",
+        "wrong2": "Kelime bölmek için konur",
+        "explanation": "İki nokta, devamında örnek, liste veya açıklama olacağını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta doğru kullanılmıştır?",
+      "correct": "Meyveler: elma, armut, muz.",
+      "wrong1": "Meyveler elma, armut, muz.",
+      "wrong2": "Meyveler; elma, armut, muz.",
+      "explanation": "Meyve adları listelenmeden önce iki nokta konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Meyveler: elma, armut, muz.",
+        "wrong1": "Meyveler elma, armut, muz.",
+        "wrong2": "Meyveler; elma, armut, muz.",
+        "explanation": "Meyve adları listelenmeden önce iki nokta konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta eksiktir?",
+      "correct": "Sınıf kuralları sessiz ol, sıraya gir, dinle.",
+      "wrong1": "Sınıf kuralları: sessiz ol, sıraya gir, dinle.",
+      "wrong2": "Sınıf kuralları; sessiz ol.",
+      "explanation": "Kurallar sıralanmadan önce iki nokta olmalıydı; birinci cümlede eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta eksiktir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sınıf kuralları sessiz ol, sıraya gir, dinle.",
+        "wrong1": "Sınıf kuralları: sessiz ol, sıraya gir, dinle.",
+        "wrong2": "Sınıf kuralları; sessiz ol.",
+        "explanation": "Kurallar sıralanmadan önce iki nokta olmalıydı; birinci cümlede eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta yanlış yerde kullanılmıştır?",
+      "correct": "Mavi: rengi çok severim.",
+      "wrong1": "Sevdiğim renkler: mavi, yeşil, sarı.",
+      "wrong2": "Derslerim: Türkçe, matematik, fen.",
+      "explanation": "Renk adından hemen sonra gereksiz iki nokta konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta yanlış yerde kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mavi: rengi çok severim.",
+        "wrong1": "Sevdiğim renkler: mavi, yeşil, sarı.",
+        "wrong2": "Derslerim: Türkçe, matematik, fen.",
+        "explanation": "Renk adından hemen sonra gereksiz iki nokta konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_010",
+      "level": "kolay",
+      "premise": "En sevdiğim renkler _____ kırmızı, mavi, yeşil.",
+      "text": "Yukarıdaki cümlede boş bırakılan yere hangi noktalama işareti gelmelidir?",
+      "correct": ":",
+      "wrong1": ";",
+      "wrong2": ".",
+      "explanation": "Renk listesinden önce iki nokta konmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boş bırakılan yere hangi noktalama işareti gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "En sevdiğim renkler _____ kırmızı, mavi, yeşil."
+            }
+          ]
+        },
+        "correct": ":",
+        "wrong1": ";",
+        "wrong2": ".",
+        "explanation": "Renk listesinden önce iki nokta konmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_011",
+      "level": "kolay",
+      "premise": "Sınıf kuralları _____ sessiz ol, sıraya gir.",
+      "text": "Yukarıdaki örnekte noktalı yere hangi işaret yazılmalıdır?",
+      "correct": ":",
+      "wrong1": ",",
+      "wrong2": ".",
+      "explanation": "Kurallar listelenmeden önce iki nokta gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örnekte noktalı yere hangi işaret yazılmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıf kuralları _____ sessiz ol, sıraya gir."
+            }
+          ]
+        },
+        "correct": ":",
+        "wrong1": ",",
+        "wrong2": ".",
+        "explanation": "Kurallar listelenmeden önce iki nokta gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_012",
+      "level": "kolay",
+      "premise": "Aldığımız malzemeler _____ un, su, tuz.",
+      "text": "Yukarıdaki cümlede eksik olan noktalama işareti hangisidir?",
+      "correct": ":",
+      "wrong1": ";",
+      "wrong2": "-",
+      "explanation": "Malzeme listesinden önce iki nokta konur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede eksik olan noktalama işareti hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aldığımız malzemeler _____ un, su, tuz."
+            }
+          ]
+        },
+        "correct": ":",
+        "wrong1": ";",
+        "wrong2": "-",
+        "explanation": "Malzeme listesinden önce iki nokta konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "İki noktadan sonra genellikle ne gelir?",
+      "correct": "Örnek, liste veya açıklama",
+      "wrong1": "Cümle sonu noktası",
+      "wrong2": "Soru işareti",
+      "explanation": "İki noktadan sonra örnek verilen sözcükler, liste ya da açıklama gelir.",
+      "app": {
+        "question": {
+          "text": "İki noktadan sonra genellikle ne gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Örnek, liste veya açıklama",
+        "wrong1": "Cümle sonu noktası",
+        "wrong2": "Soru işareti",
+        "explanation": "İki noktadan sonra örnek verilen sözcükler, liste ya da açıklama gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde örnek vermek için iki nokta kullanılmıştır?",
+      "correct": "Bir hayvan gördük: kedi.",
+      "wrong1": "Bir: hayvan gördük kedi.",
+      "wrong2": "Bir hayvan gördük kedi.",
+      "explanation": "Örnek olan kedi sözcüğünden önce iki nokta konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde örnek vermek için iki nokta kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir hayvan gördük: kedi.",
+        "wrong1": "Bir: hayvan gördük kedi.",
+        "wrong2": "Bir hayvan gördük kedi.",
+        "explanation": "Örnek olan kedi sözcüğünden önce iki nokta konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde liste için iki nokta doğrudur?",
+      "correct": "Oyunlarımız: saklambaç, körebe, seksek.",
+      "wrong1": "Oyunlarımız saklambaç körebe seksek.",
+      "wrong2": "Oyunlarımız; saklambaç, körebe.",
+      "explanation": "Oyun adları iki noktadan sonra virgülle sıralanmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde liste için iki nokta doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Oyunlarımız: saklambaç, körebe, seksek.",
+        "wrong1": "Oyunlarımız saklambaç körebe seksek.",
+        "wrong2": "Oyunlarımız; saklambaç, körebe.",
+        "explanation": "Oyun adları iki noktadan sonra virgülle sıralanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_016",
+      "level": "kolay",
+      "premise": null,
+      "text": "İki nokta hangi amaçla kullanılmaz?",
+      "correct": "Her kelimeden sonra ayırmak",
+      "wrong1": "Liste vermeden önce",
+      "wrong2": "Örnek vermeden önce",
+      "explanation": "İki nokta rastgele kelime ayırmak için kullanılmaz; belirli amaçlarla konur.",
+      "app": {
+        "question": {
+          "text": "İki nokta hangi amaçla kullanılmaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her kelimeden sonra ayırmak",
+        "wrong1": "Liste vermeden önce",
+        "wrong2": "Örnek vermeden önce",
+        "explanation": "İki nokta rastgele kelime ayırmak için kullanılmaz; belirli amaçlarla konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_017",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama yapılmıştır?",
+      "correct": "Tek isteğim var: sabırlı ol.",
+      "wrong1": "Tek: isteğim var sabırlı ol.",
+      "wrong2": "Tek isteğim var sabırlı ol.",
+      "explanation": "Açıklanan kısımdan önce iki nokta doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tek isteğim var: sabırlı ol.",
+        "wrong1": "Tek: isteğim var sabırlı ol.",
+        "wrong2": "Tek isteğim var sabırlı ol.",
+        "explanation": "Açıklanan kısımdan önce iki nokta doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_018",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır sonunda kelime bölmek için hangi işaret kullanılır?",
+      "correct": "kısa çizgi",
+      "wrong1": "iki nokta",
+      "wrong2": "nokta",
+      "explanation": "Satır sonuna sığmayan kelimeler kısa çizgi ile bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda kelime bölmek için hangi işaret kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kısa çizgi",
+        "wrong1": "iki nokta",
+        "wrong2": "nokta",
+        "explanation": "Satır sonuna sığmayan kelimeler kısa çizgi ile bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_019",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kısa çizgi (-) ne zaman kullanılır?",
+      "correct": "Satır sonunda kelime bölerken",
+      "wrong1": "Cümle sonunda",
+      "wrong2": "Konuşma yazarken",
+      "explanation": "Kısa çizgi satır sonunda kelime bölmek için kullanılır.",
+      "app": {
+        "question": {
+          "text": "Kısa çizgi (-) ne zaman kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Satır sonunda kelime bölerken",
+        "wrong1": "Cümle sonunda",
+        "wrong2": "Konuşma yazarken",
+        "explanation": "Kısa çizgi satır sonunda kelime bölmek için kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_020",
+      "level": "kolay",
+      "premise": null,
+      "text": "Uzun kelimeler satır sonuna sığmazsa ne yapılır?",
+      "correct": "Kısa çizgi ile bölünür",
+      "wrong1": "Silinir",
+      "wrong2": "Birleştirilir",
+      "explanation": "Kelimenin bir kısmı alt satıra geçer; bölme yerinde kısa çizgi konur.",
+      "app": {
+        "question": {
+          "text": "Uzun kelimeler satır sonuna sığmazsa ne yapılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kısa çizgi ile bölünür",
+        "wrong1": "Silinir",
+        "wrong2": "Birleştirilir",
+        "explanation": "Kelimenin bir kısmı alt satıra geçer; bölme yerinde kısa çizgi konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi doğru kullanılmıştır?",
+      "correct": "Okul-umuz bahçede oynuyor.",
+      "wrong1": "Okulumuz bahçe-de oynuyor.",
+      "wrong2": "Okulumuz bahçede o-yunuyor.",
+      "explanation": "Okulumuz kelimesi okul-umuz şeklinde heceye uygun bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okul-umuz bahçede oynuyor.",
+        "wrong1": "Okulumuz bahçe-de oynuyor.",
+        "wrong2": "Okulumuz bahçede o-yunuyor.",
+        "explanation": "Okulumuz kelimesi okul-umuz şeklinde heceye uygun bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime bölme yanlıştır?",
+      "correct": "Öğret-men sınıfa girdi.",
+      "wrong1": "Öğr-etmen sınıfa girdi.",
+      "wrong2": "Öğretmen sınıfa girdi.",
+      "explanation": "Öğr-etmen bölmesi hece yapısına uymaz; kelime anlamsız parçalara ayrılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime bölme yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğret-men sınıfa girdi.",
+        "wrong1": "Öğr-etmen sınıfa girdi.",
+        "wrong2": "Öğretmen sınıfa girdi.",
+        "explanation": "Öğr-etmen bölmesi hece yapısına uymaz; kelime anlamsız parçalara ayrılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_023",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır sonunda \"kitaplık\" kelimesi nasıl bölünür?",
+      "correct": "kitap-lık",
+      "wrong1": "kit-aplık",
+      "wrong2": "kita-plık",
+      "explanation": "Kitaplık kelimesi heceye uygun olarak kitap-lık şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"kitaplık\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kitap-lık",
+        "wrong1": "kit-aplık",
+        "wrong2": "kita-plık",
+        "explanation": "Kitaplık kelimesi heceye uygun olarak kitap-lık şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır sonunda \"öğretmen\" kelimesi nasıl bölünür?",
+      "correct": "öğ-retmen",
+      "wrong1": "öğret-men",
+      "wrong2": "öğre-tmen",
+      "explanation": "Öğretmen kelimesi öğ-retmen şeklinde heceye uygun bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"öğretmen\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğ-retmen",
+        "wrong1": "öğret-men",
+        "wrong2": "öğre-tmen",
+        "explanation": "Öğretmen kelimesi öğ-retmen şeklinde heceye uygun bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır sonunda \"pencere\" kelimesi nasıl bölünür?",
+      "correct": "pen-cere",
+      "wrong1": "pence-re",
+      "wrong2": "pencer-e",
+      "explanation": "Pencere kelimesi pen-cere şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"pencere\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "pen-cere",
+        "wrong1": "pence-re",
+        "wrong2": "pencer-e",
+        "explanation": "Pencere kelimesi pen-cere şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır sonunda \"sandalye\" kelimesi nasıl bölünür?",
+      "correct": "san-dalye",
+      "wrong1": "sand-alye",
+      "wrong2": "sandal-ye",
+      "explanation": "Sandalye kelimesi san-dalye şeklinde bölünebilir.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"sandalye\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "san-dalye",
+        "wrong1": "sand-alye",
+        "wrong2": "sandal-ye",
+        "explanation": "Sandalye kelimesi san-dalye şeklinde bölünebilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır sonunda \"kalemlik\" kelimesi nasıl bölünür?",
+      "correct": "kalem-lik",
+      "wrong1": "kaleml-ik",
+      "wrong2": "ka-lemlik",
+      "explanation": "Kalemlik kelimesi kalem-lik şeklinde heceye uygun bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"kalemlik\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kalem-lik",
+        "wrong1": "kaleml-ik",
+        "wrong2": "ka-lemlik",
+        "explanation": "Kalemlik kelimesi kalem-lik şeklinde heceye uygun bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_028",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kısa çizgi kelime ortasında keyfi olarak konur mu?",
+      "correct": "Hayır, yalnızca satır sonunda bölme için",
+      "wrong1": "Evet, her yerde",
+      "wrong2": "Evet, cümle ortasında",
+      "explanation": "Kısa çizgi yalnızca satır sonunda kelime bölmek için kullanılır.",
+      "app": {
+        "question": {
+          "text": "Kısa çizgi kelime ortasında keyfi olarak konur mu?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hayır, yalnızca satır sonunda bölme için",
+        "wrong1": "Evet, her yerde",
+        "wrong2": "Evet, cümle ortasında",
+        "explanation": "Kısa çizgi yalnızca satır sonunda kelime bölmek için kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kısa çizgi ile kelime bölünürken ilk parçanın sonunda ne olur?",
+      "correct": "kısa çizgi",
+      "wrong1": "nokta",
+      "wrong2": "virgül",
+      "explanation": "Bölünen kelimenin ilk parçasının sonuna kısa çizgi konur.",
+      "app": {
+        "question": {
+          "text": "Kısa çizgi ile kelime bölünürken ilk parçanın sonunda ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kısa çizgi",
+        "wrong1": "nokta",
+        "wrong2": "virgül",
+        "explanation": "Bölünen kelimenin ilk parçasının sonuna kısa çizgi konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi kelime bölmek için kullanılmıştır?",
+      "correct": "Tatil-lerde denize gideriz.",
+      "wrong1": "Tatillerde denize gideriz.",
+      "wrong2": "Tatillerde deni-ze gideriz.",
+      "explanation": "Tatiller kelimesi tatil-lerde şeklinde satır sonunda bölünebilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi kelime bölmek için kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tatil-lerde denize gideriz.",
+        "wrong1": "Tatillerde denize gideriz.",
+        "wrong2": "Tatillerde deni-ze gideriz.",
+        "explanation": "Tatiller kelimesi tatil-lerde şeklinde satır sonunda bölünebilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_031",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime bölme doğrudur?",
+      "correct": "Karde-şim okula geldi.",
+      "wrong1": "Kardeş-im okula geldi.",
+      "wrong2": "Kardeşi-m okula geldi.",
+      "explanation": "Karde-şim bölmesi hece yapısına uygundur; kelime anlamını koruyarak bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime bölme doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Karde-şim okula geldi.",
+        "wrong1": "Kardeş-im okula geldi.",
+        "wrong2": "Kardeşi-m okula geldi.",
+        "explanation": "Karde-şim bölmesi hece yapısına uygundur; kelime anlamını koruyarak bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_032",
+      "level": "kolay",
+      "premise": "Öğret-_____ tahtaya yazdı.",
+      "text": "Yukarıdaki cümlede boş bırakılan yere hangi noktalama işareti gelmelidir?",
+      "correct": "men",
+      "wrong1": "mene",
+      "wrong2": "meni",
+      "explanation": "Öğretmen kelimesinin ikinci hecesi men olmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boş bırakılan yere hangi noktalama işareti gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğret-_____ tahtaya yazdı."
+            }
+          ]
+        },
+        "correct": "men",
+        "wrong1": "mene",
+        "wrong2": "meni",
+        "explanation": "Öğretmen kelimesinin ikinci hecesi men olmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_033",
+      "level": "kolay",
+      "premise": "Tatil-_____ başladı.",
+      "text": "Yukarıdaki örnekte noktalı yere hangi işaret yazılmalıdır?",
+      "correct": "ler",
+      "wrong1": "lerde",
+      "wrong2": "le",
+      "explanation": "Tatil kelimesi tatil-ler şeklinde bölünür; ler eki gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örnekte noktalı yere hangi işaret yazılmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tatil-_____ başladı."
+            }
+          ]
+        },
+        "correct": "ler",
+        "wrong1": "lerde",
+        "wrong2": "le",
+        "explanation": "Tatil kelimesi tatil-ler şeklinde bölünür; ler eki gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_034",
+      "level": "kolay",
+      "premise": "Karde-_____ okula geldi.",
+      "text": "Yukarıdaki cümlede eksik olan noktalama işareti hangisidir?",
+      "correct": "şim",
+      "wrong1": "şimi",
+      "wrong2": "sim",
+      "explanation": "Kardeşim kelimesi karde-şim şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede eksik olan noktalama işareti hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karde-_____ okula geldi."
+            }
+          ]
+        },
+        "correct": "şim",
+        "wrong1": "şimi",
+        "wrong2": "sim",
+        "explanation": "Kardeşim kelimesi karde-şim şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_035",
+      "level": "kolay",
+      "premise": null,
+      "text": "Konuşma cümlelerinde hangi noktalama işareti kullanılır?",
+      "correct": "tırnak işareti",
+      "wrong1": "iki nokta",
+      "wrong2": "kısa çizgi",
+      "explanation": "Bir kişinin söylediği sözler tırnak içine alınır.",
+      "app": {
+        "question": {
+          "text": "Konuşma cümlelerinde hangi noktalama işareti kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "tırnak işareti",
+        "wrong1": "iki nokta",
+        "wrong2": "kısa çizgi",
+        "explanation": "Bir kişinin söylediği sözler tırnak içine alınır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_036",
+      "level": "kolay",
+      "premise": null,
+      "text": "Başkasının sözünü olduğu gibi aktarırken hangi işaret kullanılır?",
+      "correct": "tırnak işareti",
+      "wrong1": "virgül",
+      "wrong2": "ünlem",
+      "explanation": "Alıntı ve konuşma sözleri tırnak içinde yazılır.",
+      "app": {
+        "question": {
+          "text": "Başkasının sözünü olduğu gibi aktarırken hangi işaret kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "tırnak işareti",
+        "wrong1": "virgül",
+        "wrong2": "ünlem",
+        "explanation": "Alıntı ve konuşma sözleri tırnak içinde yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_037",
+      "level": "kolay",
+      "premise": null,
+      "text": "Alıntı cümlelerde sözler nasıl yazılır?",
+      "correct": "Tırnak içinde",
+      "wrong1": "Parantez içinde",
+      "wrong2": "Altı çizili",
+      "explanation": "Başkasının sözü veya alıntı tırnak içine alınır.",
+      "app": {
+        "question": {
+          "text": "Alıntı cümlelerde sözler nasıl yazılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tırnak içinde",
+        "wrong1": "Parantez içinde",
+        "wrong2": "Altı çizili",
+        "explanation": "Başkasının sözü veya alıntı tırnak içine alınır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_038",
+      "level": "kolay",
+      "premise": null,
+      "text": "Konuşma cümlesinde tırnak nereye konur?",
+      "correct": "Söylenen sözün başına ve sonuna",
+      "wrong1": "Sadece cümlenin sonuna",
+      "wrong2": "Sadece dedi kelimesinden önce",
+      "explanation": "Konuşulan bölümün tamamı tırnak içine alınır.",
+      "app": {
+        "question": {
+          "text": "Konuşma cümlesinde tırnak nereye konur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Söylenen sözün başına ve sonuna",
+        "wrong1": "Sadece cümlenin sonuna",
+        "wrong2": "Sadece dedi kelimesinden önce",
+        "explanation": "Konuşulan bölümün tamamı tırnak içine alınır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_039",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak doğru kullanılmıştır?",
+      "correct": "Ali \"Ödevimi bitirdim.\" dedi.",
+      "wrong1": "Ali Ödevimi bitirdim dedi.",
+      "wrong2": "Ali \"Ödevimi bitirdim dedi.",
+      "explanation": "Konuşulan söz tırnak içinde olmalı; dedi sözü tırnak dışında kalır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ali \"Ödevimi bitirdim.\" dedi.",
+        "wrong1": "Ali Ödevimi bitirdim dedi.",
+        "wrong2": "Ali \"Ödevimi bitirdim dedi.",
+        "explanation": "Konuşulan söz tırnak içinde olmalı; dedi sözü tırnak dışında kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_040",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak yanlış kullanılmıştır?",
+      "correct": "Annem, \"Sofraya gel.\" dedi.",
+      "wrong1": "Annem \"Sofraya gel dedi.",
+      "wrong2": "Annem, Sofraya gel dedi.",
+      "explanation": "İkinci cümlede tırnak açılmış ama kapatılmamış ve nokta eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Annem, \"Sofraya gel.\" dedi.",
+        "wrong1": "Annem \"Sofraya gel dedi.",
+        "wrong2": "Annem, Sofraya gel dedi.",
+        "explanation": "İkinci cümlede tırnak açılmış ama kapatılmamış ve nokta eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_041",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak eksiktir?",
+      "correct": "Öğretmen \"Kitaplarınızı açın.\" dedi.",
+      "wrong1": "Öğretmen Kitaplarınızı açın dedi.",
+      "wrong2": "Öğretmen \"Kitaplarınızı açın dedi.\"",
+      "explanation": "Konuşma sözü tırnak içine alınmadan yazılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak eksiktir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğretmen \"Kitaplarınızı açın.\" dedi.",
+        "wrong1": "Öğretmen Kitaplarınızı açın dedi.",
+        "wrong2": "Öğretmen \"Kitaplarınızı açın dedi.\"",
+        "explanation": "Konuşma sözü tırnak içine alınmadan yazılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_042",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi doğrudur?",
+      "correct": "\"Yarın sinemaya gidelim.\" önerdi kardeşim.",
+      "wrong1": "\"Yarın sinemaya gidelim\" önerdi kardeşim.",
+      "wrong2": "Yarın sinemaya gidelim önerdi kardeşim.",
+      "explanation": "Önerilen söz tırnak içinde olmalı ve cümle noktayla bitmelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "\"Yarın sinemaya gidelim.\" önerdi kardeşim.",
+        "wrong1": "\"Yarın sinemaya gidelim\" önerdi kardeşim.",
+        "wrong2": "Yarın sinemaya gidelim önerdi kardeşim.",
+        "explanation": "Önerilen söz tırnak içinde olmalı ve cümle noktayla bitmelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_043",
+      "level": "kolay",
+      "premise": null,
+      "text": "Konuşma cümlesinde \"dedi\" kelimesi nerede olur?",
+      "correct": "Tırnak dışında, cümlenin sonunda",
+      "wrong1": "Tırnak içinde",
+      "wrong2": "Tırnaktan önce",
+      "explanation": "Dedi, söyledi gibi fiiller konuşma tırnağının dışında kalır.",
+      "app": {
+        "question": {
+          "text": "Konuşma cümlesinde \"dedi\" kelimesi nerede olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tırnak dışında, cümlenin sonunda",
+        "wrong1": "Tırnak içinde",
+        "wrong2": "Tırnaktan önce",
+        "explanation": "Dedi, söyledi gibi fiiller konuşma tırnağının dışında kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_044",
+      "level": "kolay",
+      "premise": null,
+      "text": "Alıntı cümlede tırnak ne işe yarar?",
+      "correct": "Alıntılanan sözü ayırır",
+      "wrong1": "Cümleyi bitirir",
+      "wrong2": "Kelime böler",
+      "explanation": "Tırnak, başkasından alınan sözü metinden ayırır.",
+      "app": {
+        "question": {
+          "text": "Alıntı cümlede tırnak ne işe yarar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Alıntılanan sözü ayırır",
+        "wrong1": "Cümleyi bitirir",
+        "wrong2": "Kelime böler",
+        "explanation": "Tırnak, başkasından alınan sözü metinden ayırır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_045",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde alıntı doğru yazılmıştır?",
+      "correct": "Kitapta \"Okuyan kazanır.\" yazıyordu.",
+      "wrong1": "Kitapta Okuyan kazanır yazıyordu.",
+      "wrong2": "Kitapta \"Okuyan kazanır yazıyordu.",
+      "explanation": "Kitaptan alınan söz tırnak içinde yazılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde alıntı doğru yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kitapta \"Okuyan kazanır.\" yazıyordu.",
+        "wrong1": "Kitapta Okuyan kazanır yazıyordu.",
+        "wrong2": "Kitapta \"Okuyan kazanır yazıyordu.",
+        "explanation": "Kitaptan alınan söz tırnak içinde yazılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_046",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak konuşma için kullanılmıştır?",
+      "correct": "Baba, \"Eve erken gel.\" dedi.",
+      "wrong1": "Baba Eve erken gel dedi.",
+      "wrong2": "Baba \"Eve erken gel dedi.",
+      "explanation": "Babanın söylediği emir cümlesi tırnak içinde yazılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak konuşma için kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Baba, \"Eve erken gel.\" dedi.",
+        "wrong1": "Baba Eve erken gel dedi.",
+        "wrong2": "Baba \"Eve erken gel dedi.",
+        "explanation": "Babanın söylediği emir cümlesi tırnak içinde yazılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_047",
+      "level": "kolay",
+      "premise": "Annem dedi ki _____",
+      "text": "Yukarıdaki cümlede boş bırakılan yere hangi noktalama işareti gelmelidir?",
+      "correct": "\"Yemek hazır.\"",
+      "wrong1": "Yemek hazır.",
+      "wrong2": "\"Yemek hazır",
+      "explanation": "Konuşma sözü tırnak içinde ve noktayla bitmelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boş bırakılan yere hangi noktalama işareti gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Annem dedi ki _____"
+            }
+          ]
+        },
+        "correct": "\"Yemek hazır.\"",
+        "wrong1": "Yemek hazır.",
+        "wrong2": "\"Yemek hazır",
+        "explanation": "Konuşma sözü tırnak içinde ve noktayla bitmelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_048",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak doğru kapatılmıştır?",
+      "correct": "Dedem, \"Hikâye anlatayım.\" dedi.",
+      "wrong1": "Dedem, \"Hikâye anlatayım dedi.",
+      "wrong2": "Dedem, Hikâye anlatayım.\" dedi.",
+      "explanation": "Tırnak hem açılıp hem kapatılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak doğru kapatılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dedem, \"Hikâye anlatayım.\" dedi.",
+        "wrong1": "Dedem, \"Hikâye anlatayım dedi.",
+        "wrong2": "Dedem, Hikâye anlatayım.\" dedi.",
+        "explanation": "Tırnak hem açılıp hem kapatılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_049",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma tırnağı eksiktir?",
+      "correct": "Anne bana bak dedi.",
+      "wrong1": "Anne \"Bana bak.\" dedi.",
+      "wrong2": "Anne, \"Bana bak.\" dedi.",
+      "explanation": "Anne bana bak dedi cümlesinde konuşma sözü tırnak içine alınmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma tırnağı eksiktir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Anne bana bak dedi.",
+        "wrong1": "Anne \"Bana bak.\" dedi.",
+        "wrong2": "Anne, \"Bana bak.\" dedi.",
+        "explanation": "Anne bana bak dedi cümlesinde konuşma sözü tırnak içine alınmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_050",
+      "level": "kolay",
+      "premise": null,
+      "text": "Tırnak işareti hangi cümle türünde çok kullanılır?",
+      "correct": "konuşma cümlesi",
+      "wrong1": "soru cümlesi",
+      "wrong2": "haber cümlesi",
+      "explanation": "Kişinin doğrudan söylediği sözler konuşma cümlesidir ve tırnakla gösterilir.",
+      "app": {
+        "question": {
+          "text": "Tırnak işareti hangi cümle türünde çok kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "konuşma cümlesi",
+        "wrong1": "soru cümlesi",
+        "wrong2": "haber cümlesi",
+        "explanation": "Kişinin doğrudan söylediği sözler konuşma cümlesidir ve tırnakla gösterilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_051",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ve virgül birlikte doğru kullanılmıştır?",
+      "correct": "Alışveriş listem: ekmek, süt, peynir.",
+      "wrong1": "Alışveriş listem ekmek süt peynir.",
+      "wrong2": "Alışveriş: listem ekmek, süt.",
+      "explanation": "Liste öğeleri iki noktadan sonra virgülle ayrılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ve virgül birlikte doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Alışveriş listem: ekmek, süt, peynir.",
+        "wrong1": "Alışveriş listem ekmek süt peynir.",
+        "wrong2": "Alışveriş: listem ekmek, süt.",
+        "explanation": "Liste öğeleri iki noktadan sonra virgülle ayrılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_052",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile sıralama yapılmıştır?",
+      "correct": "Spor dalları: voleybol, basketbol, futbol.",
+      "wrong1": "Spor dalları voleybol basketbol futbol.",
+      "wrong2": "Spor: dalları voleybol, basketbol.",
+      "explanation": "Spor dalları iki noktadan sonra virgülle sıralanmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile sıralama yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Spor dalları: voleybol, basketbol, futbol.",
+        "wrong1": "Spor dalları voleybol basketbol futbol.",
+        "wrong2": "Spor: dalları voleybol, basketbol.",
+        "explanation": "Spor dalları iki noktadan sonra virgülle sıralanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_053",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi noktalama gelmelidir? Teneffüste oynadığımız oyunlar _____ seksek, yakalambaç, ip atlama.",
+      "correct": ":",
+      "wrong1": ";",
+      "wrong2": ".",
+      "explanation": "Oyun adları listelenmeden önce iki nokta gelir.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi noktalama gelmelidir? Teneffüste oynadığımız oyunlar _____ seksek, yakalambaç, ip atlama.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": ":",
+        "wrong1": ";",
+        "wrong2": ".",
+        "explanation": "Oyun adları listelenmeden önce iki nokta gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_054",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta gereksiz kullanılmıştır?",
+      "correct": "Ali: bugün okula geldi.",
+      "wrong1": "Sevdiğim renkler: mavi, yeşil.",
+      "wrong2": "Örnek verelim: elma, armut.",
+      "explanation": "İlk cümlede iki nokta anlamsız yerde kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta gereksiz kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ali: bugün okula geldi.",
+        "wrong1": "Sevdiğim renkler: mavi, yeşil.",
+        "wrong2": "Örnek verelim: elma, armut.",
+        "explanation": "İlk cümlede iki nokta anlamsız yerde kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_055",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde örnek verme amacıyla iki nokta konmuştur?",
+      "correct": "Bir kuş gördük: serçe.",
+      "wrong1": "Bir: kuş gördük serçe.",
+      "wrong2": "Bir kuş gördük serçe.",
+      "explanation": "Örnek olan serçe sözcüğünden önce iki nokta konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde örnek verme amacıyla iki nokta konmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir kuş gördük: serçe.",
+        "wrong1": "Bir: kuş gördük serçe.",
+        "wrong2": "Bir kuş gördük serçe.",
+        "explanation": "Örnek olan serçe sözcüğünden önce iki nokta konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_056",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama doğru kurulmuştur?",
+      "correct": "Tek ricam var: sabırlı ol.",
+      "wrong1": "Tek: ricam var sabırlı ol.",
+      "wrong2": "Tek ricam var sabırlı ol.",
+      "explanation": "Rica cümlesinde açıklama kısmından önce iki nokta doğru konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama doğru kurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tek ricam var: sabırlı ol.",
+        "wrong1": "Tek: ricam var sabırlı ol.",
+        "wrong2": "Tek ricam var sabırlı ol.",
+        "explanation": "Rica cümlesinde açıklama kısmından önce iki nokta doğru konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_057",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta eksik bırakılmıştır?",
+      "correct": "Derslerimiz Türkçe, matematik, fen.",
+      "wrong1": "Derslerimiz: Türkçe, matematik, fen.",
+      "wrong2": "Derslerimiz; Türkçe, matematik.",
+      "explanation": "Ders adları sıralanmadan önce iki nokta eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta eksik bırakılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Derslerimiz Türkçe, matematik, fen.",
+        "wrong1": "Derslerimiz: Türkçe, matematik, fen.",
+        "wrong2": "Derslerimiz; Türkçe, matematik.",
+        "explanation": "Ders adları sıralanmadan önce iki nokta eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_058",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta anlamsız yerde kullanılmıştır?",
+      "correct": "Bugün: hava çok güzel.",
+      "wrong1": "Bugün hava çok güzel.",
+      "wrong2": "Bugün hava: çok güzel.",
+      "explanation": "İlk cümlede iki nokta gereksiz ve anlamsız yerdedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta anlamsız yerde kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bugün: hava çok güzel.",
+        "wrong1": "Bugün hava çok güzel.",
+        "wrong2": "Bugün hava: çok güzel.",
+        "explanation": "İlk cümlede iki nokta gereksiz ve anlamsız yerdedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_059",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi işaret gelmelidir? Çantamdaki eşyalar _____ defter, kalem, silgi, su şişesi.",
+      "correct": ":",
+      "wrong1": ",",
+      "wrong2": "-",
+      "explanation": "Eşya listesinden önce iki nokta konur.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi işaret gelmelidir? Çantamdaki eşyalar _____ defter, kalem, silgi, su şişesi.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": ":",
+        "wrong1": ",",
+        "wrong2": "-",
+        "explanation": "Eşya listesinden önce iki nokta konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_060",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile örnek verilmiştir?",
+      "correct": "Gördüğümüz renkler: sarı, mor, turuncu.",
+      "wrong1": "Gördüğümüz renkler sarı mor turuncu.",
+      "wrong2": "Gördüğümüz: renkler sarı.",
+      "explanation": "Renk örnekleri iki noktadan sonra verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile örnek verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gördüğümüz renkler: sarı, mor, turuncu.",
+        "wrong1": "Gördüğümüz renkler sarı mor turuncu.",
+        "wrong2": "Gördüğümüz: renkler sarı.",
+        "explanation": "Renk örnekleri iki noktadan sonra verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_061",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta yanlış kullanılmıştır?",
+      "correct": "Ev: işleri süpür, topla.",
+      "wrong1": "Ev işleri: süpür, topla, düzenle.",
+      "wrong2": "Ev işleri süpür topla düzenle.",
+      "explanation": "Ev sözcüğünden hemen sonra konan iki nokta yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ev: işleri süpür, topla.",
+        "wrong1": "Ev işleri: süpür, topla, düzenle.",
+        "wrong2": "Ev işleri süpür topla düzenle.",
+        "explanation": "Ev sözcüğünden hemen sonra konan iki nokta yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_062",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta doğru yerdedir?",
+      "correct": "Hayvanlar: kedi, köpek, kuş.",
+      "wrong1": "Hayvanlar kedi köpek kuş.",
+      "wrong2": "Hayvanlar; kedi, köpek.",
+      "explanation": "Hayvan listesi iki noktadan önce doğru konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta doğru yerdedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hayvanlar: kedi, köpek, kuş.",
+        "wrong1": "Hayvanlar kedi köpek kuş.",
+        "wrong2": "Hayvanlar; kedi, köpek.",
+        "explanation": "Hayvan listesi iki noktadan önce doğru konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_063",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ve nokta birlikte doğrudur?",
+      "correct": "Okul etkinlikleri: tiyatro, müzik, resim sergisi.",
+      "wrong1": "Okul etkinlikleri tiyatro müzik resim sergisi",
+      "wrong2": "Okul etkinlikleri: tiyatro müzik resim sergisi",
+      "explanation": "Liste sonunda cümle noktayla bitmeli; iki nokta ve virgüller doğrudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ve nokta birlikte doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okul etkinlikleri: tiyatro, müzik, resim sergisi.",
+        "wrong1": "Okul etkinlikleri tiyatro müzik resim sergisi",
+        "wrong2": "Okul etkinlikleri: tiyatro müzik resim sergisi",
+        "explanation": "Liste sonunda cümle noktayla bitmeli; iki nokta ve virgüller doğrudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_064",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile liste hatalıdır?",
+      "correct": "Sebzeler havuç patates soğan.",
+      "wrong1": "Sebzeler: havuç, patates, soğan.",
+      "wrong2": "Sebzeler; havuç, patates.",
+      "explanation": "Liste öncesi iki nokta olmadan yazılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile liste hatalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebzeler havuç patates soğan.",
+        "wrong1": "Sebzeler: havuç, patates, soğan.",
+        "wrong2": "Sebzeler; havuç, patates.",
+        "explanation": "Liste öncesi iki nokta olmadan yazılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_065",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta örnek verme için yanlış kullanılmıştır?",
+      "correct": "Mavi: rengi çok severim.",
+      "wrong1": "Bir meyve seçtik: portakal.",
+      "wrong2": "Örnek: elma.",
+      "explanation": "Renk adından hemen sonra konan iki nokta örnek verme amacıyla değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta örnek verme için yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mavi: rengi çok severim.",
+        "wrong1": "Bir meyve seçtik: portakal.",
+        "wrong2": "Örnek: elma.",
+        "explanation": "Renk adından hemen sonra konan iki nokta örnek verme amacıyla değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_066",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi işaret gelmelidir? Okul etkinlikleri _____ tiyatro, müzik, resim sergisi.",
+      "correct": ":",
+      "wrong1": ";",
+      "wrong2": ".",
+      "explanation": "Etkinlik listesinden önce iki nokta konur.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi işaret gelmelidir? Okul etkinlikleri _____ tiyatro, müzik, resim sergisi.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": ":",
+        "wrong1": ";",
+        "wrong2": ".",
+        "explanation": "Etkinlik listesinden önce iki nokta konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_067",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama hatalıdır?",
+      "correct": "Tek: isteğim var sabırlı ol.",
+      "wrong1": "Tek isteğim var: sabırlı ol.",
+      "wrong2": "Tek isteğim var sabırlı ol.",
+      "explanation": "İstek sözcüğünün ortasına konan iki nokta hatalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama hatalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tek: isteğim var sabırlı ol.",
+        "wrong1": "Tek isteğim var: sabırlı ol.",
+        "wrong2": "Tek isteğim var sabırlı ol.",
+        "explanation": "İstek sözcüğünün ortasına konan iki nokta hatalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_068",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde heceye uygun kelime bölme vardır?",
+      "correct": "Öğ-renciler bahçede oynuyor.",
+      "wrong1": "Öğren-ciler bahçede oynuyor.",
+      "wrong2": "Öğrenci-ler bahçede oynuyor.",
+      "explanation": "Öğ-renciler bölmesi hece yapısına uygundur; kelime doğru parçalara ayrılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde heceye uygun kelime bölme vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğ-renciler bahçede oynuyor.",
+        "wrong1": "Öğren-ciler bahçede oynuyor.",
+        "wrong2": "Öğrenci-ler bahçede oynuyor.",
+        "explanation": "Öğ-renciler bölmesi hece yapısına uygundur; kelime doğru parçalara ayrılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_069",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi yanlış kullanılmıştır?",
+      "correct": "Okulumuz bahçede o-yunuyor.",
+      "wrong1": "Okul-umuz bahçede oynuyor.",
+      "wrong2": "Okulumuz bahçede oynuyor.",
+      "explanation": "Oyun sözcüğünün ortasına konan kısa çizgi anlamsızdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okulumuz bahçede o-yunuyor.",
+        "wrong1": "Okul-umuz bahçede oynuyor.",
+        "wrong2": "Okulumuz bahçede oynuyor.",
+        "explanation": "Oyun sözcüğünün ortasına konan kısa çizgi anlamsızdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_070",
+      "level": "orta",
+      "premise": null,
+      "text": "Satır sonunda \"öğrenciler\" kelimesi nasıl bölünür?",
+      "correct": "öğ-ren-ciler",
+      "wrong1": "öğrenci-ler",
+      "wrong2": "öğre-nciler",
+      "explanation": "Öğrenciler kelimesi öğ-ren-ciler şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"öğrenciler\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğ-ren-ciler",
+        "wrong1": "öğrenci-ler",
+        "wrong2": "öğre-nciler",
+        "explanation": "Öğrenciler kelimesi öğ-ren-ciler şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_071",
+      "level": "orta",
+      "premise": null,
+      "text": "Satır sonunda \"bilgisayar\" kelimesi nasıl bölünür?",
+      "correct": "bilgi-sayar",
+      "wrong1": "bil-gisayar",
+      "wrong2": "bilgisay-ar",
+      "explanation": "Bilgisayar kelimesi bilgi-sayar şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"bilgisayar\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "bilgi-sayar",
+        "wrong1": "bil-gisayar",
+        "wrong2": "bilgisay-ar",
+        "explanation": "Bilgisayar kelimesi bilgi-sayar şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_072",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi satır sonu bölmesi değildir?",
+      "correct": "Okulumuz bahçede oynuyor.",
+      "wrong1": "Okul-umuz bahçede oynuyor.",
+      "wrong2": "Okul-umuz bahçede o-yunuyor.",
+      "explanation": "Kısa çizgi olmadan yazılan cümlede satır sonu bölmesi yoktur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi satır sonu bölmesi değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okulumuz bahçede oynuyor.",
+        "wrong1": "Okul-umuz bahçede oynuyor.",
+        "wrong2": "Okul-umuz bahçede o-yunuyor.",
+        "explanation": "Kısa çizgi olmadan yazılan cümlede satır sonu bölmesi yoktur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_073",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi bölüm gelmelidir? Ders-_____ başladı.",
+      "correct": "ler",
+      "wrong1": "lerimiz",
+      "wrong2": "le",
+      "explanation": "Dersler kelimesi ders-ler şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi bölüm gelmelidir? Ders-_____ başladı.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "ler",
+        "wrong1": "lerimiz",
+        "wrong2": "le",
+        "explanation": "Dersler kelimesi ders-ler şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_074",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi bölüm gelmelidir? Sınıf-_____ temizlendi.",
+      "correct": "ımız",
+      "wrong1": "imiz",
+      "wrong2": "ta",
+      "explanation": "Sınıfımız kelimesi sınıf-ımız şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi bölüm gelmelidir? Sınıf-_____ temizlendi.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "ımız",
+        "wrong1": "imiz",
+        "wrong2": "ta",
+        "explanation": "Sınıfımız kelimesi sınıf-ımız şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_075",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime bölme kurallara aykırıdır?",
+      "correct": "Kütüpha-nede kitap okuduk.",
+      "wrong1": "Kütüphane-de kitap okuduk.",
+      "wrong2": "Kütüphane açıktı.",
+      "explanation": "Kütüphane-de bölmesi hece yapısına uymaz; kelime yanlış yerden ayrılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime bölme kurallara aykırıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kütüpha-nede kitap okuduk.",
+        "wrong1": "Kütüphane-de kitap okuduk.",
+        "wrong2": "Kütüphane açıktı.",
+        "explanation": "Kütüphane-de bölmesi hece yapısına uymaz; kelime yanlış yerden ayrılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_076",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi ile bölme doğrudur?",
+      "correct": "Arka-daşım okula geldi.",
+      "wrong1": "Arkada-şım okula geldi.",
+      "wrong2": "Arka-da-şım okula geldi.",
+      "explanation": "Arkadaş kelimesi arka-daş şeklinde doğru bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi ile bölme doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Arka-daşım okula geldi.",
+        "wrong1": "Arkada-şım okula geldi.",
+        "wrong2": "Arka-da-şım okula geldi.",
+        "explanation": "Arkadaş kelimesi arka-daş şeklinde doğru bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_077",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime anlamsız bölünmüştür?",
+      "correct": "Sand-alye başında durdu.",
+      "wrong1": "San-dalye başında durdu.",
+      "wrong2": "Sandalye başında durdu.",
+      "explanation": "Sandalye kelimesinin sand-alye şeklinde bölünmesi anlamı bozar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime anlamsız bölünmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sand-alye başında durdu.",
+        "wrong1": "San-dalye başında durdu.",
+        "wrong2": "Sandalye başında durdu.",
+        "explanation": "Sandalye kelimesinin sand-alye şeklinde bölünmesi anlamı bozar.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_078",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi doğru, anlam bozulmamıştır?",
+      "correct": "Kütüpha-ne açıktı.",
+      "wrong1": "Kütüph-ane açıktı.",
+      "wrong2": "Kütüphane açıktı.",
+      "explanation": "Kütüphane kelimesi kütüpha-ne şeklinde anlamlı bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi doğru, anlam bozulmamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kütüpha-ne açıktı.",
+        "wrong1": "Kütüph-ane açıktı.",
+        "wrong2": "Kütüphane açıktı.",
+        "explanation": "Kütüphane kelimesi kütüpha-ne şeklinde anlamlı bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_079",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi gereksiz kullanılmıştır?",
+      "correct": "Bugün hava çok güzel.",
+      "wrong1": "Bugün ha-va çok güzel.",
+      "wrong2": "Bugün hava ç-ok güzel.",
+      "explanation": "Kısa kelimeler bölünmeden yazılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi gereksiz kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bugün hava çok güzel.",
+        "wrong1": "Bugün ha-va çok güzel.",
+        "wrong2": "Bugün hava ç-ok güzel.",
+        "explanation": "Kısa kelimeler bölünmeden yazılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_080",
+      "level": "orta",
+      "premise": null,
+      "text": "Satır sonunda \"kütüphane\" kelimesi nasıl bölünür?",
+      "correct": "kütüpha-ne",
+      "wrong1": "kütüph-ane",
+      "wrong2": "kütüphane",
+      "explanation": "Kütüphane kelimesi kütüpha-ne şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"kütüphane\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kütüpha-ne",
+        "wrong1": "kütüph-ane",
+        "wrong2": "kütüphane",
+        "explanation": "Kütüphane kelimesi kütüpha-ne şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_081",
+      "level": "orta",
+      "premise": null,
+      "text": "Satır sonunda \"arkadaş\" kelimesi nasıl bölünür?",
+      "correct": "arka-daş",
+      "wrong1": "arkad-aş",
+      "wrong2": "arkada-ş",
+      "explanation": "Arkadaş kelimesi arka-daş şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Satır sonunda \"arkadaş\" kelimesi nasıl bölünür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "arka-daş",
+        "wrong1": "arkad-aş",
+        "wrong2": "arkada-ş",
+        "explanation": "Arkadaş kelimesi arka-daş şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_082",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime bölme heceye uygundur?",
+      "correct": "Öğret-men sınıfa girdi.",
+      "wrong1": "Öğr-etmen sınıfa girdi.",
+      "wrong2": "Öğretmen- sınıfa girdi.",
+      "explanation": "Öğretmen kelimesi öğret-men şeklinde heceye uygundur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime bölme heceye uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğret-men sınıfa girdi.",
+        "wrong1": "Öğr-etmen sınıfa girdi.",
+        "wrong2": "Öğretmen- sınıfa girdi.",
+        "explanation": "Öğretmen kelimesi öğret-men şeklinde heceye uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_083",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi bölüm gelmelidir? Bahçe-_____ çiçekler açtı.",
+      "correct": "mizde",
+      "wrong1": "miz",
+      "wrong2": "de",
+      "explanation": "Bahçemizde kelimesi bahçe-mizde şeklinde bölünür.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi bölüm gelmelidir? Bahçe-_____ çiçekler açtı.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "mizde",
+        "wrong1": "miz",
+        "wrong2": "de",
+        "explanation": "Bahçemizde kelimesi bahçe-mizde şeklinde bölünür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_084",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi kelime bölmek dışında kullanılmıştır?",
+      "correct": "Ali - Mehmet okula gitti.",
+      "wrong1": "Ali okul-a gitti.",
+      "wrong2": "Ali okula git-ti.",
+      "explanation": "İsimler arasına konan kısa çizgi satır sonu bölmesi değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi kelime bölmek dışında kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ali - Mehmet okula gitti.",
+        "wrong1": "Ali okul-a gitti.",
+        "wrong2": "Ali okula git-ti.",
+        "explanation": "İsimler arasına konan kısa çizgi satır sonu bölmesi değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_085",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesinin tırnağı doğrudur?",
+      "correct": "Kardeşim, \"Hadi dışarı çıkalım.\" dedi.",
+      "wrong1": "Kardeşim \"Hadi dışarı çıkalım dedi.",
+      "wrong2": "Kardeşim, Hadi dışarı çıkalım.\" dedi.",
+      "explanation": "Konuşma virgül sonrası tırnakla başlar ve noktayla biter.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesinin tırnağı doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kardeşim, \"Hadi dışarı çıkalım.\" dedi.",
+        "wrong1": "Kardeşim \"Hadi dışarı çıkalım dedi.",
+        "wrong2": "Kardeşim, Hadi dışarı çıkalım.\" dedi.",
+        "explanation": "Konuşma virgül sonrası tırnakla başlar ve noktayla biter.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_086",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde alıntı yanlış yazılmıştır?",
+      "correct": "Atatürk \"Hayatta en hakiki mürşit ilimdir.\" demiştir.",
+      "wrong1": "Atatürk Hayatta en hakiki mürşit ilimdir demiştir.",
+      "wrong2": "Atatürk \"Hayatta en hakiki mürşit ilimdir demiştir.",
+      "explanation": "Ünlü söz tırnak içinde ve noktayla bitmelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde alıntı yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Atatürk \"Hayatta en hakiki mürşit ilimdir.\" demiştir.",
+        "wrong1": "Atatürk Hayatta en hakiki mürşit ilimdir demiştir.",
+        "wrong2": "Atatürk \"Hayatta en hakiki mürşit ilimdir demiştir.",
+        "explanation": "Ünlü söz tırnak içinde ve noktayla bitmelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_087",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi yanlıştır?",
+      "correct": "Öğretmen \"Sessiz olun.\" dedi.",
+      "wrong1": "Öğretmen Sessiz olun dedi.",
+      "wrong2": "Öğretmen, \"Sessiz olun.\" dedi.",
+      "explanation": "Öğretmen Sessiz olun dedi cümlesinde söz tırnak içine alınmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğretmen \"Sessiz olun.\" dedi.",
+        "wrong1": "Öğretmen Sessiz olun dedi.",
+        "wrong2": "Öğretmen, \"Sessiz olun.\" dedi.",
+        "explanation": "Öğretmen Sessiz olun dedi cümlesinde söz tırnak içine alınmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_088",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde alıntı doğru kullanılmıştır?",
+      "correct": "Annesi \"Dost kara günde belli olur.\" demiş.",
+      "wrong1": "Annesi Dost kara günde belli olur demiş.",
+      "wrong2": "Annesi \"Dost kara günde belli olur demiş.",
+      "explanation": "Alıntı söz tırnak içinde ve noktayla bitmelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde alıntı doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Annesi \"Dost kara günde belli olur.\" demiş.",
+        "wrong1": "Annesi Dost kara günde belli olur demiş.",
+        "wrong2": "Annesi \"Dost kara günde belli olur demiş.",
+        "explanation": "Alıntı söz tırnak içinde ve noktayla bitmelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_089",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak yeri yanlıştır?",
+      "correct": "Ali \"Ödevimi bitirdim.\" dedi.",
+      "wrong1": "\"Ali ödevini bitirdi.\" yazdı öğretmen.",
+      "wrong2": "Öğretmen \"Dikkatli dinleyin.\" dedi.",
+      "explanation": "İkinci cümlede tırnak haber cümlesinin tamamını kapsamamalı; yalnızca alıntı tırnak içinde olmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak yeri yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ali \"Ödevimi bitirdim.\" dedi.",
+        "wrong1": "\"Ali ödevini bitirdi.\" yazdı öğretmen.",
+        "wrong2": "Öğretmen \"Dikkatli dinleyin.\" dedi.",
+        "explanation": "İkinci cümlede tırnak haber cümlesinin tamamını kapsamamalı; yalnızca alıntı tırnak içinde olmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_090",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde hem tırnak hem nokta doğrudur?",
+      "correct": "Anne, \"Yemeği getirdim.\" dedi.",
+      "wrong1": "Anne \"Yemeği getirdim dedi.",
+      "wrong2": "Anne, Yemeği getirdim.\" dedi.",
+      "explanation": "Tırnak içi cümle noktayla biter ve tırnak kapatılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde hem tırnak hem nokta doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Anne, \"Yemeği getirdim.\" dedi.",
+        "wrong1": "Anne \"Yemeği getirdim dedi.",
+        "wrong2": "Anne, Yemeği getirdim.\" dedi.",
+        "explanation": "Tırnak içi cümle noktayla biter ve tırnak kapatılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_091",
+      "level": "orta",
+      "premise": null,
+      "text": "Boşluğa hangi noktalama gelmelidir? Kardeşim bana _____ \"Hadi dışarı çıkalım.\" dedi.",
+      "correct": ",",
+      "wrong1": ":",
+      "wrong2": "-",
+      "explanation": "Konuşmadan önce virgül konur; söz tırnak içinde yazılır.",
+      "app": {
+        "question": {
+          "text": "Boşluğa hangi noktalama gelmelidir? Kardeşim bana _____ \"Hadi dışarı çıkalım.\" dedi.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": ",",
+        "wrong1": ":",
+        "wrong2": "-",
+        "explanation": "Konuşmadan önce virgül konur; söz tırnak içinde yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_092",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi doğru bitmiştir?",
+      "correct": "Baba, \"Eve erken gel.\" dedi.",
+      "wrong1": "Baba \"Eve erken gel dedi.",
+      "wrong2": "Baba, Eve erken gel.\" dedi.",
+      "explanation": "Konuşma tırnak içinde noktayla bitmelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi doğru bitmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Baba, \"Eve erken gel.\" dedi.",
+        "wrong1": "Baba \"Eve erken gel dedi.",
+        "wrong2": "Baba, Eve erken gel.\" dedi.",
+        "explanation": "Konuşma tırnak içinde noktayla bitmelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_093",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde alıntı ve noktalama doğrudur?",
+      "correct": "Gazetede \"Yarın kar yağacak.\" yazıyordu.",
+      "wrong1": "Gazetede Yarın kar yağacak yazıyordu.",
+      "wrong2": "Gazetede \"Yarın kar yağacak yazıyordu.",
+      "explanation": "Gazete başlığı tırnak içinde ve noktalı yazılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde alıntı ve noktalama doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gazetede \"Yarın kar yağacak.\" yazıyordu.",
+        "wrong1": "Gazetede Yarın kar yağacak yazıyordu.",
+        "wrong2": "Gazetede \"Yarın kar yağacak yazıyordu.",
+        "explanation": "Gazete başlığı tırnak içinde ve noktalı yazılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_094",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak açılıp kapanmamıştır?",
+      "correct": "Komşu \"Yardımınız için teşekkürler dedi.",
+      "wrong1": "Komşu, \"Yardımınız için teşekkürler.\" dedi.",
+      "wrong2": "Komşu, Yardımınız için teşekkürler dedi.",
+      "explanation": "Tırnak açılmış ama kapatılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak açılıp kapanmamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Komşu \"Yardımınız için teşekkürler dedi.",
+        "wrong1": "Komşu, \"Yardımınız için teşekkürler.\" dedi.",
+        "wrong2": "Komşu, Yardımınız için teşekkürler dedi.",
+        "explanation": "Tırnak açılmış ama kapatılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_095",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma ve alıntı karışmış hatalıdır?",
+      "correct": "Öğretmen şunu söyledi: \"Sıraya girin.\"",
+      "wrong1": "Öğretmen şunu söyledi \"Sıraya girin.\"",
+      "wrong2": "Öğretmen: şunu söyledi \"Sıraya girin\"",
+      "explanation": "İkinci cümlede iki nokta eksik ve tırnak yeri hatalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma ve alıntı karışmış hatalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğretmen şunu söyledi: \"Sıraya girin.\"",
+        "wrong1": "Öğretmen şunu söyledi \"Sıraya girin.\"",
+        "wrong2": "Öğretmen: şunu söyledi \"Sıraya girin\"",
+        "explanation": "İkinci cümlede iki nokta eksik ve tırnak yeri hatalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_096",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma tırnağı doğru kapatılmıştır?",
+      "correct": "\"Ödevini yaptın mı?\" diye sordu annem.",
+      "wrong1": "\"Ödevini yaptın mı diye sordu annem.",
+      "wrong2": "Ödevini yaptın mı? diye sordu annem.",
+      "explanation": "Soru biçimindeki konuşma tırnak içine alınmış ve kapatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma tırnağı doğru kapatılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "\"Ödevini yaptın mı?\" diye sordu annem.",
+        "wrong1": "\"Ödevini yaptın mı diye sordu annem.",
+        "wrong2": "Ödevini yaptın mı? diye sordu annem.",
+        "explanation": "Soru biçimindeki konuşma tırnak içine alınmış ve kapatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_097",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde alıntı cümle tırnak içinde değildir?",
+      "correct": "Müdür duyurdu: \"Yarın tören var.\"",
+      "wrong1": "Müdür duyurdu \"Yarın tören var.\"",
+      "wrong2": "Müdür duyurdu: Yarın tören var.",
+      "explanation": "Duyurulan söz tırnak içinde olmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde alıntı cümle tırnak içinde değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Müdür duyurdu: \"Yarın tören var.\"",
+        "wrong1": "Müdür duyurdu \"Yarın tören var.\"",
+        "wrong2": "Müdür duyurdu: Yarın tören var.",
+        "explanation": "Duyurulan söz tırnak içinde olmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_098",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak konuşma dışında yanlış kullanılmıştır?",
+      "correct": "Bugün \"güzel\" bir gündü.",
+      "wrong1": "Annem \"Yemek hazır.\" dedi.",
+      "wrong2": "Ali \"Geldim.\" dedi.",
+      "explanation": "Sıradan sözcükleri vurgulamak için tırnak kullanımı burada yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak konuşma dışında yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bugün \"güzel\" bir gündü.",
+        "wrong1": "Annem \"Yemek hazır.\" dedi.",
+        "wrong2": "Ali \"Geldim.\" dedi.",
+        "explanation": "Sıradan sözcükleri vurgulamak için tırnak kullanımı burada yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_099",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde hem iki nokta hem tırnak doğrudur?",
+      "correct": "Öğretmen uyarıdı: \"Sessiz olun.\"",
+      "wrong1": "Öğretmen uyarıdı \"Sessiz olun\"",
+      "wrong2": "Öğretmen: uyarıdı Sessiz olun.",
+      "explanation": "Konuşmadan önce iki nokta, söz tırnak içinde yazılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde hem iki nokta hem tırnak doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğretmen uyarıdı: \"Sessiz olun.\"",
+        "wrong1": "Öğretmen uyarıdı \"Sessiz olun\"",
+        "wrong2": "Öğretmen: uyarıdı Sessiz olun.",
+        "explanation": "Konuşmadan önce iki nokta, söz tırnak içinde yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_100",
+      "level": "orta",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde eksik noktalama en belirgindir?",
+      "correct": "Anne yemeği getirdi dedi",
+      "wrong1": "Anne \"Yemeği getirdi dedi.",
+      "wrong2": "Anne, \"Yemeği getirdim.\" dedi.",
+      "explanation": "İlk cümlede tırnak, virgül ve nokta tamamen eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde eksik noktalama en belirgindir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Anne yemeği getirdi dedi",
+        "wrong1": "Anne \"Yemeği getirdi dedi.",
+        "wrong2": "Anne, \"Yemeği getirdim.\" dedi.",
+        "explanation": "İlk cümlede tırnak, virgül ve nokta tamamen eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_101",
+      "level": "zor",
+      "premise": "I. Malzemeler un su tuz.\nII. Malzemeler: un, su, tuz.\nIII. Malzemeler; un su.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede liste öncesi iki nokta doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Malzemeler un su tuz."
+                },
+                {
+                  "label": "II.",
+                  "text": "Malzemeler: un, su, tuz."
+                },
+                {
+                  "label": "III.",
+                  "text": "Malzemeler; un su."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede liste öncesi iki nokta doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_102",
+      "level": "zor",
+      "premise": "I. Derslerimiz Türkçe, matematik, fen.\nII. Derslerimiz: Türkçe, matematik, fen.\nIII. Derslerimiz; Türkçe.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede ders adları sıralanmadan önce iki nokta eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Derslerimiz Türkçe, matematik, fen."
+                },
+                {
+                  "label": "II.",
+                  "text": "Derslerimiz: Türkçe, matematik, fen."
+                },
+                {
+                  "label": "III.",
+                  "text": "Derslerimiz; Türkçe."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede ders adları sıralanmadan önce iki nokta eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_103",
+      "level": "zor",
+      "premise": "I. Sevdiğim renkler: mavi, yeşil.\nII. Bir kuş gördük: serçe.\nIII. Ali: bugün okula geldi.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede iki nokta anlamsız yerde kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sevdiğim renkler: mavi, yeşil."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bir kuş gördük: serçe."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ali: bugün okula geldi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede iki nokta anlamsız yerde kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_104",
+      "level": "zor",
+      "premise": "I. Spor dalları: voleybol, basketbol, futbol.\nII. Spor dalları voleybol basketbol futbol.\nIII. Spor: dalları voleybol.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede spor dalları iki noktadan sonra virgülle listelenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Spor dalları: voleybol, basketbol, futbol."
+                },
+                {
+                  "label": "II.",
+                  "text": "Spor dalları voleybol basketbol futbol."
+                },
+                {
+                  "label": "III.",
+                  "text": "Spor: dalları voleybol."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede spor dalları iki noktadan sonra virgülle listelenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_105",
+      "level": "zor",
+      "premise": "I. Ev işleri: süpür, topla, düzenle.\nII. Mavi: rengi çok severim.\nIII. Örnek verelim: elma, armut.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede iki nokta gereksiz ve yanlış yerdedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ev işleri: süpür, topla, düzenle."
+                },
+                {
+                  "label": "II.",
+                  "text": "Mavi: rengi çok severim."
+                },
+                {
+                  "label": "III.",
+                  "text": "Örnek verelim: elma, armut."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede iki nokta gereksiz ve yanlış yerdedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_106",
+      "level": "zor",
+      "premise": "I. Listem kalem silgi defter.\nII. Listem: kalem silgi defter\nIII. Listem: kalem, silgi, defter.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede liste öncesi iki nokta ve virgüller doğrudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Listem kalem silgi defter."
+                },
+                {
+                  "label": "II.",
+                  "text": "Listem: kalem silgi defter"
+                },
+                {
+                  "label": "III.",
+                  "text": "Listem: kalem, silgi, defter."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede liste öncesi iki nokta ve virgüller doğrudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_107",
+      "level": "zor",
+      "premise": "I. Bugün hava güzel.\nII. Bir hayvan gördük: inek.\nIII. Bir hayvan gördük inek.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede örnek vermek için iki nokta doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Bugün hava güzel."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bir hayvan gördük: inek."
+                },
+                {
+                  "label": "III.",
+                  "text": "Bir hayvan gördük inek."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede örnek vermek için iki nokta doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_108",
+      "level": "zor",
+      "premise": "I. Tek: isteğim var sabırlı ol.\nII. Tek isteğim var: sabırlı ol.\nIII. Tek isteğim var sabırlı ol.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede iki nokta anlamsız yerde kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tek: isteğim var sabırlı ol."
+                },
+                {
+                  "label": "II.",
+                  "text": "Tek isteğim var: sabırlı ol."
+                },
+                {
+                  "label": "III.",
+                  "text": "Tek isteğim var sabırlı ol."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede iki nokta anlamsız yerde kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_109",
+      "level": "zor",
+      "premise": "I. Tek ricam var sabırlı ol.\nII. Tek ricam var: sabırlı ol.\nIII. Tek: ricam var sabırlı ol.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede açıklama için iki nokta kurallara uygundur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tek ricam var sabırlı ol."
+                },
+                {
+                  "label": "II.",
+                  "text": "Tek ricam var: sabırlı ol."
+                },
+                {
+                  "label": "III.",
+                  "text": "Tek: ricam var sabırlı ol."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede açıklama için iki nokta kurallara uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_110",
+      "level": "zor",
+      "premise": "I. Okul etkinlikleri: tiyatro, müzik.\nII. Çantamdaki eşyalar: defter, kalem.\nIII. Okul: etkinlikleri tiyatro.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede iki nokta yanlış yerde kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Okul etkinlikleri: tiyatro, müzik."
+                },
+                {
+                  "label": "II.",
+                  "text": "Çantamdaki eşyalar: defter, kalem."
+                },
+                {
+                  "label": "III.",
+                  "text": "Okul: etkinlikleri tiyatro."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede iki nokta yanlış yerde kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_111",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta, virgül ve nokta birlikte doğrudur?",
+      "correct": "Okul etkinlikleri: tiyatro, müzik, resim sergisi.",
+      "wrong1": "Okul etkinlikleri tiyatro müzik resim sergisi.",
+      "wrong2": "Okul etkinlikleri: tiyatro müzik resim sergisi",
+      "explanation": "Liste iki nokta, virgül ve cümle sonu noktasıyla doğru yazılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta, virgül ve nokta birlikte doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okul etkinlikleri: tiyatro, müzik, resim sergisi.",
+        "wrong1": "Okul etkinlikleri tiyatro müzik resim sergisi.",
+        "wrong2": "Okul etkinlikleri: tiyatro müzik resim sergisi",
+        "explanation": "Liste iki nokta, virgül ve cümle sonu noktasıyla doğru yazılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_112",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ve liste tamamen doğrudur?",
+      "correct": "Gördüğümüz renkler: sarı, mor, turuncu.",
+      "wrong1": "Gördüğümüz renkler sarı mor turuncu.",
+      "wrong2": "Gördüğümüz: renkler sarı.",
+      "explanation": "Renk listesi iki noktadan sonra virgülle verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ve liste tamamen doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gördüğümüz renkler: sarı, mor, turuncu.",
+        "wrong1": "Gördüğümüz renkler sarı mor turuncu.",
+        "wrong2": "Gördüğümüz: renkler sarı.",
+        "explanation": "Renk listesi iki noktadan sonra virgülle verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_113",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta örnek verme için doğru kullanılmıştır?",
+      "correct": "Bir meyve seçtik: portakal.",
+      "wrong1": "Bir: meyve seçtik portakal.",
+      "wrong2": "Bir meyve seçtik portakal.",
+      "explanation": "Seçilen örnekten önce iki nokta konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta örnek verme için doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir meyve seçtik: portakal.",
+        "wrong1": "Bir: meyve seçtik portakal.",
+        "wrong2": "Bir meyve seçtik portakal.",
+        "explanation": "Seçilen örnekten önce iki nokta konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_114",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta gereksiz ve yanlış yerdedir?",
+      "correct": "Ali: bugün okula geldi.",
+      "wrong1": "Sevdiğim renkler: mavi, yeşil.",
+      "wrong2": "Örnek verelim: elma, armut.",
+      "explanation": "İsimden hemen sonra konan iki nokta gereksizdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta gereksiz ve yanlış yerdedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ali: bugün okula geldi.",
+        "wrong1": "Sevdiğim renkler: mavi, yeşil.",
+        "wrong2": "Örnek verelim: elma, armut.",
+        "explanation": "İsimden hemen sonra konan iki nokta gereksizdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_115",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama kurallara uygundur?",
+      "correct": "Tek isteğim var: sabırlı ol.",
+      "wrong1": "Tek: isteğim var sabırlı ol.",
+      "wrong2": "Tek isteğim var sabırlı ol.",
+      "explanation": "İstek cümlesinde açıklama bölümünden önce iki nokta kurala uygundur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta ile açıklama kurallara uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tek isteğim var: sabırlı ol.",
+        "wrong1": "Tek: isteğim var sabırlı ol.",
+        "wrong2": "Tek isteğim var sabırlı ol.",
+        "explanation": "İstek cümlesinde açıklama bölümünden önce iki nokta kurala uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_116",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde iki nokta eksikliği en belirgindir?",
+      "correct": "Sınıf temizlik görevlileri Ayşe, Fatma, Zeynep.",
+      "wrong1": "Sınıf temizlik görevlileri: Ayşe, Fatma, Zeynep.",
+      "wrong2": "Sınıf: temizlik görevlileri Ayşe Fatma Zeynep.",
+      "explanation": "Görevliler listesinden önce iki nokta eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde iki nokta eksikliği en belirgindir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sınıf temizlik görevlileri Ayşe, Fatma, Zeynep.",
+        "wrong1": "Sınıf temizlik görevlileri: Ayşe, Fatma, Zeynep.",
+        "wrong2": "Sınıf: temizlik görevlileri Ayşe Fatma Zeynep.",
+        "explanation": "Görevliler listesinden önce iki nokta eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_117",
+      "level": "zor",
+      "premise": "I. Arkada-şım geldi.\nII. Arka-daşım geldi.\nIII. Arka-da-şım geldi.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede arkadaş kelimesi arka-daş şeklinde doğru bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Arkada-şım geldi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Arka-daşım geldi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Arka-da-şım geldi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede arkadaş kelimesi arka-daş şeklinde doğru bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_118",
+      "level": "zor",
+      "premise": "I. Öğr-etmen geldi.\nII. Öğret-men geldi.\nIII. Öğretmen geldi.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede öğretmen kelimesi yanlış bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Öğr-etmen geldi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Öğret-men geldi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Öğretmen geldi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede öğretmen kelimesi yanlış bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_119",
+      "level": "zor",
+      "premise": "I. Okul-umuz bahçede oynuyor.\nII. Tatil-lerde denize gideriz.\nIII. Okulumuz bahçede o-yunuyor.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede kelime anlamsız bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Okul-umuz bahçede oynuyor."
+                },
+                {
+                  "label": "II.",
+                  "text": "Tatil-lerde denize gideriz."
+                },
+                {
+                  "label": "III.",
+                  "text": "Okulumuz bahçede o-yunuyor."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede kelime anlamsız bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_120",
+      "level": "zor",
+      "premise": "I. Bilgi-sayar açıldı.\nII. Bil-gisayar açıldı.\nIII. Bilgisay-ar açıldı.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede bilgisayar kelimesi bilgi-sayar şeklinde bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Bilgi-sayar açıldı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bil-gisayar açıldı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Bilgisay-ar açıldı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede bilgisayar kelimesi bilgi-sayar şeklinde bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_121",
+      "level": "zor",
+      "premise": "I. San-dalye başında durdu.\nII. Sand-alye başında durdu.\nIII. Sandalye başında durdu.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede sandalye kelimesi anlamsız bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "San-dalye başında durdu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sand-alye başında durdu."
+                },
+                {
+                  "label": "III.",
+                  "text": "Sandalye başında durdu."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede sandalye kelimesi anlamsız bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_122",
+      "level": "zor",
+      "premise": "I. Kütüpha-ne açıktı.\nII. Öğ-ren-ciler bahçede oynuyor.\nIII. Bugün ha-va çok güzel.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede kısa çizgi gereksiz kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kütüpha-ne açıktı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Öğ-ren-ciler bahçede oynuyor."
+                },
+                {
+                  "label": "III.",
+                  "text": "Bugün ha-va çok güzel."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede kısa çizgi gereksiz kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_123",
+      "level": "zor",
+      "premise": "I. Kaleml-ik masada duruyor.\nII. Kalem-lik masada duruyor.\nIII. Ka-lemlik masada duruyor.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede kalem-lik bölmesi heceye uygundur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kaleml-ik masada duruyor."
+                },
+                {
+                  "label": "II.",
+                  "text": "Kalem-lik masada duruyor."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ka-lemlik masada duruyor."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede kalem-lik bölmesi heceye uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_124",
+      "level": "zor",
+      "premise": "I. Öğret-men \"Dikkat\" dedi.\nII. Öğretmen \"Dikkat.\" dedi.\nIII. Öğret-men Dikkat dedi.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede kısa çizgi hem bölme hem tırnak açısından hatalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Öğret-men \"Dikkat\" dedi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Öğretmen \"Dikkat.\" dedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Öğret-men Dikkat dedi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede kısa çizgi hem bölme hem tırnak açısından hatalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_125",
+      "level": "zor",
+      "premise": "I. Kütüph-ane açıktı.\nII. Kütüpha-nede kitap okuduk.\nIII. Kütüpha-ne açıktı.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede kütüphane kelimesi kütüpha-ne şeklinde doğru bölünmüştür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kütüph-ane açıktı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Kütüpha-nede kitap okuduk."
+                },
+                {
+                  "label": "III.",
+                  "text": "Kütüpha-ne açıktı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede kütüphane kelimesi kütüpha-ne şeklinde doğru bölünmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_126",
+      "level": "zor",
+      "premise": "I. Ders-ler başladı.\nII. Der-sler başladı.\nIII. Dersler başladı.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede kısa çizgi kelime ortasında anlamsız yerdedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ders-ler başladı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Der-sler başladı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Dersler başladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede kısa çizgi kelime ortasında anlamsız yerdedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_127",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime bölme ve noktalama birlikte doğrudur?",
+      "correct": "Öğret-menimiz, \"Çok çalışın.\" dedi.",
+      "wrong1": "Öğretmen-imiz, \"Çok çalışın.\" dedi.",
+      "wrong2": "Öğretmenimiz \"Çok çalışın dedi.",
+      "explanation": "Öğretmen kelimesi öğret-men şeklinde bölünür; konuşma tırnak içinde doğru yazılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime bölme ve noktalama birlikte doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğret-menimiz, \"Çok çalışın.\" dedi.",
+        "wrong1": "Öğretmen-imiz, \"Çok çalışın.\" dedi.",
+        "wrong2": "Öğretmenimiz \"Çok çalışın dedi.",
+        "explanation": "Öğretmen kelimesi öğret-men şeklinde bölünür; konuşma tırnak içinde doğru yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_128",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi doğru, tırnak yanlıştır?",
+      "correct": "Okul-umuzda \"Hoş geldiniz.\" yazıyor.",
+      "wrong1": "Okulumuzda \"Hoş geldiniz.\" yazıyor.",
+      "wrong2": "Okul-umuzda Hoş geldiniz yazıyor.",
+      "explanation": "Üçüncü cümlede hem kelime bölme gereksiz hem tırnak eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi doğru, tırnak yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okul-umuzda \"Hoş geldiniz.\" yazıyor.",
+        "wrong1": "Okulumuzda \"Hoş geldiniz.\" yazıyor.",
+        "wrong2": "Okul-umuzda Hoş geldiniz yazıyor.",
+        "explanation": "Üçüncü cümlede hem kelime bölme gereksiz hem tırnak eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_129",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde hem kısa çizgi hem tırnak doğrudur?",
+      "correct": "Arka-daşım, \"Bekle beni.\" dedi.",
+      "wrong1": "Arkada-şım \"Bekle beni dedi.\"",
+      "wrong2": "Arka-daşım Bekle beni dedi.",
+      "explanation": "Arkadaş kelimesi arka-daş şeklinde bölünür; konuşma tırnak içinde doğru yazılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde hem kısa çizgi hem tırnak doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Arka-daşım, \"Bekle beni.\" dedi.",
+        "wrong1": "Arkada-şım \"Bekle beni dedi.\"",
+        "wrong2": "Arka-daşım Bekle beni dedi.",
+        "explanation": "Arkadaş kelimesi arka-daş şeklinde bölünür; konuşma tırnak içinde doğru yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_130",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi ve noktalama yanlıştır?",
+      "correct": "Öğret-men \"Dikkat\" dedi.",
+      "wrong1": "Öğretmen \"Dikkat.\" dedi.",
+      "wrong2": "Öğret-men Dikkat dedi.",
+      "explanation": "İlk cümlede kelime bölme doğru ama tırnak içi noktasız ve eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi ve noktalama yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğret-men \"Dikkat\" dedi.",
+        "wrong1": "Öğretmen \"Dikkat.\" dedi.",
+        "wrong2": "Öğret-men Dikkat dedi.",
+        "explanation": "İlk cümlede kelime bölme doğru ama tırnak içi noktasız ve eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_131",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kelime bölme kurallara en uygundur?",
+      "correct": "kitap-lık",
+      "wrong1": "kit-aplık",
+      "wrong2": "kita-plık",
+      "explanation": "Kitap-lık bölmesi hece yapısına en uygundur; diğer seçenekler yanlış yerden ayrılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kelime bölme kurallara en uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kitap-lık",
+        "wrong1": "kit-aplık",
+        "wrong2": "kita-plık",
+        "explanation": "Kitap-lık bölmesi hece yapısına en uygundur; diğer seçenekler yanlış yerden ayrılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_132",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi ile bölme tamamen yanlıştır?",
+      "correct": "öğ-ren-ciler",
+      "wrong1": "öğrenci-ler",
+      "wrong2": "öğre-nciler",
+      "explanation": "Öğrenciler kelimesi öğ-ren-ciler şeklinde bölünür; diğerleri yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde kısa çizgi ile bölme tamamen yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğ-ren-ciler",
+        "wrong1": "öğrenci-ler",
+        "wrong2": "öğre-nciler",
+        "explanation": "Öğrenciler kelimesi öğ-ren-ciler şeklinde bölünür; diğerleri yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_133",
+      "level": "zor",
+      "premise": "I. Anne yemeği getirdi dedi\nII. Anne \"Yemeği getirdi dedi.\nIII. Anne, \"Yemeği getirdim.\" dedi.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede virgül, tırnak ve nokta doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Anne yemeği getirdi dedi"
+                },
+                {
+                  "label": "II.",
+                  "text": "Anne \"Yemeği getirdi dedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Anne, \"Yemeği getirdim.\" dedi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede virgül, tırnak ve nokta doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_134",
+      "level": "zor",
+      "premise": "I. Annem Yemeği masaya koydu.\nII. Annem \"Yemek hazır.\" dedi.\nIII. Annem \"Yemek hazır dedi.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede konuşma tırnak içinde doğru yazılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Annem Yemeği masaya koydu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Annem \"Yemek hazır.\" dedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Annem \"Yemek hazır dedi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede konuşma tırnak içinde doğru yazılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_135",
+      "level": "zor",
+      "premise": "I. Annesi Dost kara günde belli olur demiş.\nII. Annesi Sabırlı ol demiş.\nIII. Annesi \"Dost kara günde belli olur.\" demiş.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede ünlü söz tırnak içinde ve noktalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Annesi Dost kara günde belli olur demiş."
+                },
+                {
+                  "label": "II.",
+                  "text": "Annesi Sabırlı ol demiş."
+                },
+                {
+                  "label": "III.",
+                  "text": "Annesi \"Dost kara günde belli olur.\" demiş."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede ünlü söz tırnak içinde ve noktalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_136",
+      "level": "zor",
+      "premise": "I. Gazetede Yarın kar yağacak yazıyordu.\nII. Gazetede \"Yarın kar yağacak.\" yazıyordu.\nIII. Gazetede \"Yarın kar yağacak yazıyordu.",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede gazete başlığı tırnak içinde değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Gazetede Yarın kar yağacak yazıyordu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Gazetede \"Yarın kar yağacak.\" yazıyordu."
+                },
+                {
+                  "label": "III.",
+                  "text": "Gazetede \"Yarın kar yağacak yazıyordu."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede gazete başlığı tırnak içinde değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_137",
+      "level": "zor",
+      "premise": "I. Öğretmen uyarıdı: \"Sessiz olun.\"\nII. Öğretmen uyarıdı \"Sessiz olun\"\nIII. Öğretmen: uyarıdı Sessiz olun.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede iki noktadan sonra konuşma tırnak içinde verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Öğretmen uyarıdı: \"Sessiz olun.\""
+                },
+                {
+                  "label": "II.",
+                  "text": "Öğretmen uyarıdı \"Sessiz olun\""
+                },
+                {
+                  "label": "III.",
+                  "text": "Öğretmen: uyarıdı Sessiz olun."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede iki noktadan sonra konuşma tırnak içinde verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_138",
+      "level": "zor",
+      "premise": "I. Baba, \"Eve erken gel.\" dedi.\nII. Baba \"Eve erken gel dedi.\nIII. Baba, Eve erken gel.\" dedi.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede tırnak kapatılmamış ve nokta eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Baba, \"Eve erken gel.\" dedi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Baba \"Eve erken gel dedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Baba, Eve erken gel.\" dedi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede tırnak kapatılmamış ve nokta eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_139",
+      "level": "zor",
+      "premise": "I. Kız kardeşim, \"Hadi koş.\" dedi.\nII. Kız kardeşim \"Hadi koş.\" dedi.\nIII. Kız kardeşim hadi koş dedi",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede tırnak, nokta ve büyük harf eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kız kardeşim, \"Hadi koş.\" dedi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Kız kardeşim \"Hadi koş.\" dedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Kız kardeşim hadi koş dedi"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede tırnak, nokta ve büyük harf eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_140",
+      "level": "zor",
+      "premise": "I. Anne yemeği getirdi dedi\nII. Anne, \"Yemeği getirdim.\" dedi.\nIII. Anne \"Yemeği getirdim.\" dedi.",
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede tırnak, virgül ve nokta eksiktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Anne yemeği getirdi dedi"
+                },
+                {
+                  "label": "II.",
+                  "text": "Anne, \"Yemeği getirdim.\" dedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Anne \"Yemeği getirdim.\" dedi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede tırnak, virgül ve nokta eksiktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_141",
+      "level": "zor",
+      "premise": "I. Kitapta \"Okuyan kazanır.\" yazıyordu.\nII. Kitapta Okuyan kazanır yazıyordu.\nIII. Kitapta \"Okuyan kazanır yazıyordu.",
+      "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede alıntı tırnak içinde değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki örneklerden hangisinde işaret yeri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kitapta \"Okuyan kazanır.\" yazıyordu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Kitapta Okuyan kazanır yazıyordu."
+                },
+                {
+                  "label": "III.",
+                  "text": "Kitapta \"Okuyan kazanır yazıyordu."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede alıntı tırnak içinde değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_142",
+      "level": "zor",
+      "premise": "I. Öğretmen şunu söyledi: \"Sıraya girin.\"\nII. Öğretmen şunu söyledi \"Sıraya girin.\"\nIII. Öğretmen: şunu söyledi \"Sıraya girin\"",
+      "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede iki noktadan sonra konuşma tırnak içinde yazılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde noktalama kuralına uyulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Öğretmen şunu söyledi: \"Sıraya girin.\""
+                },
+                {
+                  "label": "II.",
+                  "text": "Öğretmen şunu söyledi \"Sıraya girin.\""
+                },
+                {
+                  "label": "III.",
+                  "text": "Öğretmen: şunu söyledi \"Sıraya girin\""
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede iki noktadan sonra konuşma tırnak içinde yazılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_143",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma, iki nokta ve tırnak birlikte doğrudur?",
+      "correct": "Müdür duyurdu: \"Yarın tören var.\"",
+      "wrong1": "Müdür duyurdu \"Yarın tören var\"",
+      "wrong2": "Müdür: duyurdu Yarın tören var.",
+      "explanation": "Duyurulan söz iki noktadan sonra tırnak içinde yazılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma, iki nokta ve tırnak birlikte doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Müdür duyurdu: \"Yarın tören var.\"",
+        "wrong1": "Müdür duyurdu \"Yarın tören var\"",
+        "wrong2": "Müdür: duyurdu Yarın tören var.",
+        "explanation": "Duyurulan söz iki noktadan sonra tırnak içinde yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_144",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde alıntı ve konuşma birlikte doğru kullanılmıştır?",
+      "correct": "Dedem anlattı: \"Eskiden burada dere akardı.\"",
+      "wrong1": "Dedem anlattı \"Eskiden burada dere akardı.\"",
+      "wrong2": "Dedem anlattı: Eskiden burada dere akardı.",
+      "explanation": "Anlatılan söz iki noktadan sonra tırnak içinde yazılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde alıntı ve konuşma birlikte doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dedem anlattı: \"Eskiden burada dere akardı.\"",
+        "wrong1": "Dedem anlattı \"Eskiden burada dere akardı.\"",
+        "wrong2": "Dedem anlattı: Eskiden burada dere akardı.",
+        "explanation": "Anlatılan söz iki noktadan sonra tırnak içinde yazılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_145",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak yalnızca konuşma için kullanılmıştır?",
+      "correct": "Ali \"Ödevimi bitirdim.\" dedi.",
+      "wrong1": "Bugün \"güzel\" bir gündü.",
+      "wrong2": "Ali - Mehmet okula gitti.",
+      "explanation": "Birinci cümlede tırnak yalnızca konuşma sözü için kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak yalnızca konuşma için kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ali \"Ödevimi bitirdim.\" dedi.",
+        "wrong1": "Bugün \"güzel\" bir gündü.",
+        "wrong2": "Ali - Mehmet okula gitti.",
+        "explanation": "Birinci cümlede tırnak yalnızca konuşma sözü için kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_146",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tırnak, virgül ve nokta birlikte doğrudur?",
+      "correct": "Komşu, \"Yardımınız için teşekkürler.\" dedi.",
+      "wrong1": "Komşu \"Yardımınız için teşekkürler dedi.",
+      "wrong2": "Komşu, Yardımınız için teşekkürler dedi.",
+      "explanation": "Komşu cümlesinde virgül, tırnak, nokta ve dedi kelimesi doğru sırayla kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tırnak, virgül ve nokta birlikte doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Komşu, \"Yardımınız için teşekkürler.\" dedi.",
+        "wrong1": "Komşu \"Yardımınız için teşekkürler dedi.",
+        "wrong2": "Komşu, Yardımınız için teşekkürler dedi.",
+        "explanation": "Komşu cümlesinde virgül, tırnak, nokta ve dedi kelimesi doğru sırayla kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_147",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde noktalama kurallarına en uygun yazım vardır?",
+      "correct": "Söylediği söz şuydu: \"Sabır, başarının anahtarıdır.\"",
+      "wrong1": "Söylediği söz şuydu \"Sabır başarının anahtarıdır\"",
+      "wrong2": "Söylediği: söz şuydu \"Sabır, başarının anahtarıdır.\"",
+      "explanation": "Açıklama iki noktayla başlar; alıntı tırnak içinde ve virgül doğru yerdedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde noktalama kurallarına en uygun yazım vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Söylediği söz şuydu: \"Sabır, başarının anahtarıdır.\"",
+        "wrong1": "Söylediği söz şuydu \"Sabır başarının anahtarıdır\"",
+        "wrong2": "Söylediği: söz şuydu \"Sabır, başarının anahtarıdır.\"",
+        "explanation": "Açıklama iki noktayla başlar; alıntı tırnak içinde ve virgül doğru yerdedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_148",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde hem alıntı hem açıklama doğrudur?",
+      "correct": "Öğretmen tahtaya \"Çalışkan olun.\" yazdı.",
+      "wrong1": "Öğretmen tahtaya Çalışkan olun yazdı.",
+      "wrong2": "Öğretmen \"Çalışkan olun.\" tahtaya yazdı.",
+      "explanation": "Yazılan söz tırnak içine alınmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde hem alıntı hem açıklama doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğretmen tahtaya \"Çalışkan olun.\" yazdı.",
+        "wrong1": "Öğretmen tahtaya Çalışkan olun yazdı.",
+        "wrong2": "Öğretmen \"Çalışkan olun.\" tahtaya yazdı.",
+        "explanation": "Yazılan söz tırnak içine alınmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_149",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi tamamen doğrudur?",
+      "correct": "Baba şöyle dedi: \"Vaktinizi iyi kullanın.\"",
+      "wrong1": "Baba şöyle dedi \"Vaktinizi iyi kullanın\"",
+      "wrong2": "Baba: şöyle dedi Vaktinizi iyi kullanın.",
+      "explanation": "Dedi ifadesinden sonra iki nokta ve tırnak içi söz gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde konuşma cümlesi tamamen doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Baba şöyle dedi: \"Vaktinizi iyi kullanın.\"",
+        "wrong1": "Baba şöyle dedi \"Vaktinizi iyi kullanın\"",
+        "wrong2": "Baba: şöyle dedi Vaktinizi iyi kullanın.",
+        "explanation": "Dedi ifadesinden sonra iki nokta ve tırnak içi söz gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "nokta3_150",
+      "level": "zor",
+      "premise": null,
+      "text": "Yukarıdaki cümlelerden hangisinde tüm noktalama doğrudur?",
+      "correct": "Anne, \"Yemeği getirdim.\" dedi.",
+      "wrong1": "Anne \"Yemeği getirdim dedi.",
+      "wrong2": "Anne, Yemeği getirdim.\" dedi.",
+      "explanation": "Virgül, tırnak, nokta ve dedi kelimesi doğru yerdedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde tüm noktalama doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Anne, \"Yemeği getirdim.\" dedi.",
+        "wrong1": "Anne \"Yemeği getirdim dedi.",
+        "wrong2": "Anne, Yemeği getirdim.\" dedi.",
+        "explanation": "Virgül, tırnak, nokta ve dedi kelimesi doğru yerdedir.",
+        "url": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,4273 @@
+{
+  "meta": {
+    "topicId": "t04",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Olayların Oluş Sırası ve Hikâye Unsurları (Kahraman, yer, zaman, olay)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "olay3_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâyede olayları yaşayan kişiye ne ad verilir?",
+      "correct": "Kahraman",
+      "wrong1": "Yer",
+      "wrong2": "Zaman",
+      "explanation": "Kahraman, hikâyede olayları yapan veya yaşayan kişidir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olayları yaşayan kişiye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kahraman",
+        "wrong1": "Yer",
+        "wrong2": "Zaman",
+        "explanation": "Kahraman, hikâyede olayları yapan veya yaşayan kişidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Olayın geçtiği yere ne ad verilir?",
+      "correct": "Yer unsuru",
+      "wrong1": "Kahraman",
+      "wrong2": "Olay unsuru",
+      "explanation": "Yer unsuru, hikâyedeki olayların geçtiği mekândır.",
+      "app": {
+        "question": {
+          "text": "Olayın geçtiği yere ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yer unsuru",
+        "wrong1": "Kahraman",
+        "wrong2": "Olay unsuru",
+        "explanation": "Yer unsuru, hikâyedeki olayların geçtiği mekândır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Olayın hangi gün veya saatte olduğunu anlatan unsura ne denir?",
+      "correct": "Zaman unsuru",
+      "wrong1": "Yer unsuru",
+      "wrong2": "Kahraman",
+      "explanation": "Zaman unsuru, olayın ne zaman gerçekleştiğini söyler.",
+      "app": {
+        "question": {
+          "text": "Olayın hangi gün veya saatte olduğunu anlatan unsura ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zaman unsuru",
+        "wrong1": "Yer unsuru",
+        "wrong2": "Kahraman",
+        "explanation": "Zaman unsuru, olayın ne zaman gerçekleştiğini söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâyede yaşanan işe ne ad verilir?",
+      "correct": "Olay unsuru",
+      "wrong1": "Kahraman",
+      "wrong2": "Başlık",
+      "explanation": "Olay unsuru, hikâyede anlatılan ve yaşanan iştir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede yaşanan işe ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olay unsuru",
+        "wrong1": "Kahraman",
+        "wrong2": "Başlık",
+        "explanation": "Olay unsuru, hikâyede anlatılan ve yaşanan iştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kim sorusu hangi hikâye unsurunu buldurur?",
+      "correct": "Kahraman",
+      "wrong1": "Yer",
+      "wrong2": "Zaman",
+      "explanation": "Kim sorusu olayları yaşayan kişiyi, yani kahramanı buldurur.",
+      "app": {
+        "question": {
+          "text": "Kim sorusu hangi hikâye unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kahraman",
+        "wrong1": "Yer",
+        "wrong2": "Zaman",
+        "explanation": "Kim sorusu olayları yaşayan kişiyi, yani kahramanı buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "Nerede sorusu hangi hikâye unsurunu buldurur?",
+      "correct": "Yer",
+      "wrong1": "Kahraman",
+      "wrong2": "Olay",
+      "explanation": "Nerede sorusu olayın geçtiği yeri gösterir.",
+      "app": {
+        "question": {
+          "text": "Nerede sorusu hangi hikâye unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yer",
+        "wrong1": "Kahraman",
+        "wrong2": "Olay",
+        "explanation": "Nerede sorusu olayın geçtiği yeri gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Ne zaman sorusu hangi hikâye unsurunu buldurur?",
+      "correct": "Zaman",
+      "wrong1": "Yer",
+      "wrong2": "Kahraman",
+      "explanation": "Ne zaman sorusu olayın hangi gün veya saatte olduğunu verir.",
+      "app": {
+        "question": {
+          "text": "Ne zaman sorusu hangi hikâye unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zaman",
+        "wrong1": "Yer",
+        "wrong2": "Kahraman",
+        "explanation": "Ne zaman sorusu olayın hangi gün veya saatte olduğunu verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "Ne oldu sorusu hangi hikâye unsurunu buldurur?",
+      "correct": "Olay",
+      "wrong1": "Kahraman",
+      "wrong2": "Yer",
+      "explanation": "Ne oldu sorusu hikâyede yaşanan işi buldurur.",
+      "app": {
+        "question": {
+          "text": "Ne oldu sorusu hangi hikâye unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olay",
+        "wrong1": "Kahraman",
+        "wrong2": "Yer",
+        "explanation": "Ne oldu sorusu hikâyede yaşanan işi buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâyenin dört temel unsuru hangi seçenekte doğru verilmiştir?",
+      "correct": "Kahraman, yer, zaman, olay",
+      "wrong1": "Dize, kıta, mısra, şair",
+      "wrong2": "Başlık, sayfa, harf, cümle",
+      "explanation": "Hikâyede kahraman, yer, zaman ve olay unsurları bulunur.",
+      "app": {
+        "question": {
+          "text": "Hikâyenin dört temel unsuru hangi seçenekte doğru verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kahraman, yer, zaman, olay",
+        "wrong1": "Dize, kıta, mısra, şair",
+        "wrong2": "Başlık, sayfa, harf, cümle",
+        "explanation": "Hikâyede kahraman, yer, zaman ve olay unsurları bulunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Olayları oluş sırasına göre anlatmak neden önemlidir?",
+      "correct": "Hikâyenin anlaşılması için",
+      "wrong1": "Kitabın kalın olması için",
+      "wrong2": "Resim çizmek için",
+      "explanation": "Doğru sırada anlatılan hikâye kolayca anlaşılır.",
+      "app": {
+        "question": {
+          "text": "Olayları oluş sırasına göre anlatmak neden önemlidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hikâyenin anlaşılması için",
+        "wrong1": "Kitabın kalın olması için",
+        "wrong2": "Resim çizmek için",
+        "explanation": "Doğru sırada anlatılan hikâye kolayca anlaşılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "Önce sözcüğü hangi olayı gösterir?",
+      "correct": "İlk gelen olayı",
+      "wrong1": "En son gelen olayı",
+      "wrong2": "Hiç olmayan olayı",
+      "explanation": "Önce kelimesi diğerlerinden önce gerçekleşen ilk olayı belirtir.",
+      "app": {
+        "question": {
+          "text": "Önce sözcüğü hangi olayı gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İlk gelen olayı",
+        "wrong1": "En son gelen olayı",
+        "wrong2": "Hiç olmayan olayı",
+        "explanation": "Önce kelimesi diğerlerinden önce gerçekleşen ilk olayı belirtir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sonra sözcüğü hangi olayı gösterir?",
+      "correct": "Daha sonra gelen olayı",
+      "wrong1": "En baştaki olayı",
+      "wrong2": "Olmayan olayı",
+      "explanation": "Sonra kelimesi bir olaydan sonra gelen sonraki olayı gösterir.",
+      "app": {
+        "question": {
+          "text": "Sonra sözcüğü hangi olayı gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Daha sonra gelen olayı",
+        "wrong1": "En baştaki olayı",
+        "wrong2": "Olmayan olayı",
+        "explanation": "Sonra kelimesi bir olaydan sonra gelen sonraki olayı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "En baştaki olaya genellikle hangi sıra numarası verilir?",
+      "correct": "1",
+      "wrong1": "3",
+      "wrong2": "5",
+      "explanation": "Olayların oluş sırasında ilk olana 1 numarası verilir.",
+      "app": {
+        "question": {
+          "text": "En baştaki olaya genellikle hangi sıra numarası verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1",
+        "wrong1": "3",
+        "wrong2": "5",
+        "explanation": "Olayların oluş sırasında ilk olana 1 numarası verilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sıradaki ikinci olaya hangi numara verilir?",
+      "correct": "2",
+      "wrong1": "1",
+      "wrong2": "4",
+      "explanation": "İkinci olaya 2 numarası verilir; böylece sıra belli olur.",
+      "app": {
+        "question": {
+          "text": "Sıradaki ikinci olaya hangi numara verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2",
+        "wrong1": "1",
+        "wrong2": "4",
+        "explanation": "İkinci olaya 2 numarası verilir; böylece sıra belli olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi hikâye unsuru değildir?",
+      "correct": "Dize",
+      "wrong1": "Kahraman",
+      "wrong2": "Yer",
+      "explanation": "Dize şiirin satırıdır; kahraman ve yer hikâye unsurudur.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi hikâye unsuru değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dize",
+        "wrong1": "Kahraman",
+        "wrong2": "Yer",
+        "explanation": "Dize şiirin satırıdır; kahraman ve yer hikâye unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_016",
+      "level": "kolay",
+      "premise": "Elif sabah erkenden uyandı.",
+      "text": "Yukarıdaki cümlede kahramanı söyleyin.",
+      "correct": "Elif",
+      "wrong1": "Sabah",
+      "wrong2": "Uyandı",
+      "explanation": "Uyuyan kişi Elif'tir; kahraman Elif'tir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kahramanı söyleyin.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Elif sabah erkenden uyandı."
+            }
+          ]
+        },
+        "correct": "Elif",
+        "wrong1": "Sabah",
+        "wrong2": "Uyandı",
+        "explanation": "Uyuyan kişi Elif'tir; kahraman Elif'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_017",
+      "level": "kolay",
+      "premise": "Parkta top oynadık.",
+      "text": "Yukarıdaki cümledeolayların geçtiği yer neresidir?",
+      "correct": "Park",
+      "wrong1": "Top",
+      "wrong2": "Biz",
+      "explanation": "Parkta sözcüğü olayın parkta geçtiğini söyler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeolayların geçtiği yer neresidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Parkta top oynadık."
+            }
+          ]
+        },
+        "correct": "Park",
+        "wrong1": "Top",
+        "wrong2": "Biz",
+        "explanation": "Parkta sözcüğü olayın parkta geçtiğini söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_018",
+      "level": "kolay",
+      "premise": "Akşam olunca sokak lambaları yandı.",
+      "text": "Yukarıdaki cümledezaman unsuru hangisidir?",
+      "correct": "Akşam",
+      "wrong1": "Güneş",
+      "wrong2": "Sokak lambaları",
+      "explanation": "Akşam sözcüğü olayın hangi vakitte olduğunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledezaman unsuru hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Akşam olunca sokak lambaları yandı."
+            }
+          ]
+        },
+        "correct": "Akşam",
+        "wrong1": "Güneş",
+        "wrong2": "Sokak lambaları",
+        "explanation": "Akşam sözcüğü olayın hangi vakitte olduğunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_019",
+      "level": "kolay",
+      "premise": "Köpek havlayarak bahçeye koştu.",
+      "text": "Yukarıdaki cümledeyaşanan olay nedir?",
+      "correct": "Köpeğin havlayarak koşması",
+      "wrong1": "Köpek",
+      "wrong2": "Bahçe",
+      "explanation": "Köpeğin havlayarak koşması hikâyede yaşanan olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeyaşanan olay nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köpek havlayarak bahçeye koştu."
+            }
+          ]
+        },
+        "correct": "Köpeğin havlayarak koşması",
+        "wrong1": "Köpek",
+        "wrong2": "Bahçe",
+        "explanation": "Köpeğin havlayarak koşması hikâyede yaşanan olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_020",
+      "level": "kolay",
+      "premise": "Mert annesine çay getirdi.",
+      "text": "Yukarıdaki cümledeolayları yapan kişi kimdir?",
+      "correct": "Mert",
+      "wrong1": "Anne",
+      "wrong2": "Çay",
+      "explanation": "Çay getiren kişi Mert'tir; kahraman Mert'tir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeolayları yapan kişi kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mert annesine çay getirdi."
+            }
+          ]
+        },
+        "correct": "Mert",
+        "wrong1": "Anne",
+        "wrong2": "Çay",
+        "explanation": "Çay getiren kişi Mert'tir; kahraman Mert'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_021",
+      "level": "kolay",
+      "premise": "Deniz kenarında kumdan kale yaptılar.",
+      "text": "Yukarıdaki cümledeyer unsuru hangisidir?",
+      "correct": "Deniz kenarı",
+      "wrong1": "Kum",
+      "wrong2": "Kale",
+      "explanation": "Deniz kenarında ifadesi olayın geçtiği yeri gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeyer unsuru hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Deniz kenarında kumdan kale yaptılar."
+            }
+          ]
+        },
+        "correct": "Deniz kenarı",
+        "wrong1": "Kum",
+        "wrong2": "Kale",
+        "explanation": "Deniz kenarında ifadesi olayın geçtiği yeri gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_022",
+      "level": "kolay",
+      "premise": "Öğle arasında kantinden simit aldı.",
+      "text": "Yukarıdaki cümledeolay ne zamandır?",
+      "correct": "Öğle arası",
+      "wrong1": "Kantin",
+      "wrong2": "Simit",
+      "explanation": "Öğle arası olayın ne zaman olduğunu söyler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeolay ne zamandır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğle arasında kantinden simit aldı."
+            }
+          ]
+        },
+        "correct": "Öğle arası",
+        "wrong1": "Kantin",
+        "wrong2": "Simit",
+        "explanation": "Öğle arası olayın ne zaman olduğunu söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_023",
+      "level": "kolay",
+      "premise": "Yağmur başlayınca pencereyi kapattı.",
+      "text": "Yukarıdaki cümledeanlatılan iş hangisidir?",
+      "correct": "Pencereyi kapatmak",
+      "wrong1": "Yağmur",
+      "wrong2": "Pencere",
+      "explanation": "Pencereyi kapatmak hikâyede yaşanan iştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeanlatılan iş hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur başlayınca pencereyi kapattı."
+            }
+          ]
+        },
+        "correct": "Pencereyi kapatmak",
+        "wrong1": "Yağmur",
+        "wrong2": "Pencere",
+        "explanation": "Pencereyi kapatmak hikâyede yaşanan iştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_024",
+      "level": "kolay",
+      "premise": "Sude kütüphaneden kitap seçti.",
+      "text": "Yukarıdaki cümledehikâye kahramanı kimdir?",
+      "correct": "Sude",
+      "wrong1": "Kütüphane",
+      "wrong2": "Kitap",
+      "explanation": "Kitap seçen kişi Sude'dur; kahraman Sude'dur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledehikâye kahramanı kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sude kütüphaneden kitap seçti."
+            }
+          ]
+        },
+        "correct": "Sude",
+        "wrong1": "Kütüphane",
+        "wrong2": "Kitap",
+        "explanation": "Kitap seçen kişi Sude'dur; kahraman Sude'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_025",
+      "level": "kolay",
+      "premise": "Pazar günü pikniğe gittik.",
+      "text": "Yukarıdaki cümledezaman unsuru hangisidir?",
+      "correct": "Pazar günü",
+      "wrong1": "Piknik",
+      "wrong2": "Gittik",
+      "explanation": "Pazar günü olayın ne zaman olduğunu verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledezaman unsuru hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazar günü pikniğe gittik."
+            }
+          ]
+        },
+        "correct": "Pazar günü",
+        "wrong1": "Piknik",
+        "wrong2": "Gittik",
+        "explanation": "Pazar günü olayın ne zaman olduğunu verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_026",
+      "level": "kolay",
+      "premise": "Can sabah parka gitti.",
+      "text": "Yukarıdaki cümledekim hakkında anlatım yapılmıştır?",
+      "correct": "Can",
+      "wrong1": "Sabah",
+      "wrong2": "Park",
+      "explanation": "Parka giden kişi Can'dır; kahraman Can'dır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledekim hakkında anlatım yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Can sabah parka gitti."
+            }
+          ]
+        },
+        "correct": "Can",
+        "wrong1": "Sabah",
+        "wrong2": "Park",
+        "explanation": "Parka giden kişi Can'dır; kahraman Can'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_027",
+      "level": "kolay",
+      "premise": "Okulda sınav oldu.",
+      "text": "Yukarıdaki cümledeolay nerede geçmiştir?",
+      "correct": "Okul",
+      "wrong1": "Sınav",
+      "wrong2": "Oldu",
+      "explanation": "Okulda sözcüğü olayın okulda geçtiğini belirtir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeolay nerede geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okulda sınav oldu."
+            }
+          ]
+        },
+        "correct": "Okul",
+        "wrong1": "Sınav",
+        "wrong2": "Oldu",
+        "explanation": "Okulda sözcüğü olayın okulda geçtiğini belirtir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_028",
+      "level": "kolay",
+      "premise": "Gece yarısı fırtına çıktı.",
+      "text": "Yukarıdaki cümledeolay hangi saatte olmuştur?",
+      "correct": "Gece yarısı",
+      "wrong1": "Fırtına",
+      "wrong2": "Çıktı",
+      "explanation": "Gece yarısı olayın hangi saatte olduğunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeolay hangi saatte olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gece yarısı fırtına çıktı."
+            }
+          ]
+        },
+        "correct": "Gece yarısı",
+        "wrong1": "Fırtına",
+        "wrong2": "Çıktı",
+        "explanation": "Gece yarısı olayın hangi saatte olduğunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_029",
+      "level": "kolay",
+      "premise": "Fatma pastayı fırına koydu.",
+      "text": "Yukarıdaki cümledeyaşanan olay nedir?",
+      "correct": "Pastayı fırına koymak",
+      "wrong1": "Fatma",
+      "wrong2": "Pasta",
+      "explanation": "Fatma'nın pastayı fırına koyması anlatılan iştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeyaşanan olay nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fatma pastayı fırına koydu."
+            }
+          ]
+        },
+        "correct": "Pastayı fırına koymak",
+        "wrong1": "Fatma",
+        "wrong2": "Pasta",
+        "explanation": "Fatma'nın pastayı fırına koyması anlatılan iştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_030",
+      "level": "kolay",
+      "premise": "Bahçede çiçekler açtı.",
+      "text": "Yukarıdaki cümledeyer unsuru neresidir?",
+      "correct": "Bahçe",
+      "wrong1": "Çiçek",
+      "wrong2": "Açmak",
+      "explanation": "Bahçede sözcüğü olayın bahçede geçtiğini gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeyer unsuru neresidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bahçede çiçekler açtı."
+            }
+          ]
+        },
+        "correct": "Bahçe",
+        "wrong1": "Çiçek",
+        "wrong2": "Açmak",
+        "explanation": "Bahçede sözcüğü olayın bahçede geçtiğini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_031",
+      "level": "kolay",
+      "premise": null,
+      "text": "Önce dişlerini fırçaladı. Sonra okula gitti. İlk gerçekleşen olay hangisidir?",
+      "correct": "Dişlerini fırçalamak",
+      "wrong1": "Okula gitmek",
+      "wrong2": "Uyumak",
+      "explanation": "Önce kelimesi diş fırçalamanın ilk geldiğini söyler.",
+      "app": {
+        "question": {
+          "text": "Önce dişlerini fırçaladı. Sonra okula gitti. İlk gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dişlerini fırçalamak",
+        "wrong1": "Okula gitmek",
+        "wrong2": "Uyumak",
+        "explanation": "Önce kelimesi diş fırçalamanın ilk geldiğini söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_032",
+      "level": "kolay",
+      "premise": null,
+      "text": "Önce ödevini yaptı. Sonra televizyon izledi. Sonra gerçekleşen olay hangisidir?",
+      "correct": "Televizyon izlemek",
+      "wrong1": "Ödev yapmak",
+      "wrong2": "Uyumak",
+      "explanation": "Sonra kelimesi televizyon izlemenin ödevden sonra geldiğini gösterir.",
+      "app": {
+        "question": {
+          "text": "Önce ödevini yaptı. Sonra televizyon izledi. Sonra gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Televizyon izlemek",
+        "wrong1": "Ödev yapmak",
+        "wrong2": "Uyumak",
+        "explanation": "Sonra kelimesi televizyon izlemenin ödevden sonra geldiğini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_033",
+      "level": "kolay",
+      "premise": "1) Kapı çaldı. 2) Misafiri karşıladı.",
+      "text": "Yukarıdaki cümlelerde önce gerçekleşen olay hangisidir?",
+      "correct": "Kapı çaldı",
+      "wrong1": "Misafiri karşıladı",
+      "wrong2": "Yemek yedi",
+      "explanation": "1 numaralı olay ilk sıradadır; kapı çalmadan misafir karşılanamaz.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerde önce gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Kapı çaldı. 2) Misafiri karşıladı."
+            }
+          ]
+        },
+        "correct": "Kapı çaldı",
+        "wrong1": "Misafiri karşıladı",
+        "wrong2": "Yemek yedi",
+        "explanation": "1 numaralı olay ilk sıradadır; kapı çalmadan misafir karşılanamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_034",
+      "level": "kolay",
+      "premise": "1) Yemek pişti. 2) Sofrayı kurdu.",
+      "text": "Yukarıdaki olaylar arasında sonraki olay hangisidir?",
+      "correct": "Sofrayı kurmak",
+      "wrong1": "Yemek pişirmek",
+      "wrong2": "Televizyon izlemek",
+      "explanation": "2 numaralı olay ikinci sıradadır; önce yemek pişer, sonra sofra kurulur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylar arasında sonraki olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Yemek pişti. 2) Sofrayı kurdu."
+            }
+          ]
+        },
+        "correct": "Sofrayı kurmak",
+        "wrong1": "Yemek pişirmek",
+        "wrong2": "Televizyon izlemek",
+        "explanation": "2 numaralı olay ikinci sıradadır; önce yemek pişer, sonra sofra kurulur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_035",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi yer unsuruna örnektir?",
+      "correct": "Orman",
+      "wrong1": "Ayşe",
+      "wrong2": "Sabah",
+      "explanation": "Orman bir mekândır; Ayşe kahraman, sabah zaman unsurudur.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi yer unsuruna örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Orman",
+        "wrong1": "Ayşe",
+        "wrong2": "Sabah",
+        "explanation": "Orman bir mekândır; Ayşe kahraman, sabah zaman unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_036",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi zaman unsuruna örnektir?",
+      "correct": "Cumartesi sabahı",
+      "wrong1": "Mehmet",
+      "wrong2": "Sınıf",
+      "explanation": "Cumartesi sabahı bir zaman bilgisidir; Mehmet kahraman, sınıf yer unsurudur.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi zaman unsuruna örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cumartesi sabahı",
+        "wrong1": "Mehmet",
+        "wrong2": "Sınıf",
+        "explanation": "Cumartesi sabahı bir zaman bilgisidir; Mehmet kahraman, sınıf yer unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_037",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi kahraman olabilir?",
+      "correct": "Öğrenci",
+      "wrong1": "Kütüphane",
+      "wrong2": "Kış",
+      "explanation": "Öğrenci bir kişidir ve hikâyede kahraman olabilir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi kahraman olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğrenci",
+        "wrong1": "Kütüphane",
+        "wrong2": "Kış",
+        "explanation": "Öğrenci bir kişidir ve hikâyede kahraman olabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_038",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi olaydır?",
+      "correct": "Kitap okumak",
+      "wrong1": "Deniz",
+      "wrong2": "Salı",
+      "explanation": "Kitap okumak yapılan bir iştir; deniz yer, salı zaman olabilir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi olaydır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kitap okumak",
+        "wrong1": "Deniz",
+        "wrong2": "Salı",
+        "explanation": "Kitap okumak yapılan bir iştir; deniz yer, salı zaman olabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_039",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâyede olaylar hangi sırayla anlatılmalıdır?",
+      "correct": "Oluş sırasına göre",
+      "wrong1": "Rastgele",
+      "wrong2": "Tersten",
+      "explanation": "Olaylar gerçekte oldukları sırayla anlatılırsa hikâye anlaşılır.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olaylar hangi sırayla anlatılmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Oluş sırasına göre",
+        "wrong1": "Rastgele",
+        "wrong2": "Tersten",
+        "explanation": "Olaylar gerçekte oldukları sırayla anlatılırsa hikâye anlaşılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_040",
+      "level": "kolay",
+      "premise": null,
+      "text": "Olayları karışık anlatırsak ne olur?",
+      "correct": "Hikâye anlaşılmaz",
+      "wrong1": "Hikâye daha güzel olur",
+      "wrong2": "Hikâye kısalır",
+      "explanation": "Sıra karışırsa dinleyen hangi olayın önce olduğunu bilemez.",
+      "app": {
+        "question": {
+          "text": "Olayları karışık anlatırsak ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hikâye anlaşılmaz",
+        "wrong1": "Hikâye daha güzel olur",
+        "wrong2": "Hikâye kısalır",
+        "explanation": "Sıra karışırsa dinleyen hangi olayın önce olduğunu bilemez.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_041",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sıra numarası vermek ne işe yarar?",
+      "correct": "Olay sırasını göstermek",
+      "wrong1": "Kitabı uzatmak",
+      "wrong2": "Resim çizmek",
+      "explanation": "1, 2, 3 gibi numaralar olayların hangi sırayla olduğunu gösterir.",
+      "app": {
+        "question": {
+          "text": "Sıra numarası vermek ne işe yarar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olay sırasını göstermek",
+        "wrong1": "Kitabı uzatmak",
+        "wrong2": "Resim çizmek",
+        "explanation": "1, 2, 3 gibi numaralar olayların hangi sırayla olduğunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_042",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâyede en son olan olaya genellikle hangi numara verilir?",
+      "correct": "En büyük numara",
+      "wrong1": "1",
+      "wrong2": "0",
+      "explanation": "Son olay listede en büyük sıra numarasını alır.",
+      "app": {
+        "question": {
+          "text": "Hikâyede en son olan olaya genellikle hangi numara verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "En büyük numara",
+        "wrong1": "1",
+        "wrong2": "0",
+        "explanation": "Son olay listede en büyük sıra numarasını alır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_043",
+      "level": "kolay",
+      "premise": null,
+      "text": "En son kelimesi hangi olayı gösterir?",
+      "correct": "Sondaki olayı",
+      "wrong1": "İlk olayı",
+      "wrong2": "Ortadaki olayı",
+      "explanation": "En son sözcüğü olayların en sonuncusunu belirtir.",
+      "app": {
+        "question": {
+          "text": "En son kelimesi hangi olayı gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sondaki olayı",
+        "wrong1": "İlk olayı",
+        "wrong2": "Ortadaki olayı",
+        "explanation": "En son sözcüğü olayların en sonuncusunu belirtir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_044",
+      "level": "kolay",
+      "premise": null,
+      "text": "Ardından kelimesi ne anlama gelir?",
+      "correct": "Hemen sonra",
+      "wrong1": "Çok önce",
+      "wrong2": "Hiç olmaz",
+      "explanation": "Ardından bir olayın hemen ardından gelen olayı gösterir.",
+      "app": {
+        "question": {
+          "text": "Ardından kelimesi ne anlama gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hemen sonra",
+        "wrong1": "Çok önce",
+        "wrong2": "Hiç olmaz",
+        "explanation": "Ardından bir olayın hemen ardından gelen olayı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_045",
+      "level": "kolay",
+      "premise": null,
+      "text": "Daha önce kelimesi ne anlama gelir?",
+      "correct": "Daha önceki bir zamanda",
+      "wrong1": "Şimdi",
+      "wrong2": "Hiçbir zaman",
+      "explanation": "Daha önce geçmişte olan bir olayı anlatır.",
+      "app": {
+        "question": {
+          "text": "Daha önce kelimesi ne anlama gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Daha önceki bir zamanda",
+        "wrong1": "Şimdi",
+        "wrong2": "Hiçbir zaman",
+        "explanation": "Daha önce geçmişte olan bir olayı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_046",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâye unsurlarından biri olan kahraman neyi anlatır?",
+      "correct": "Olayları yaşayan kişiyi",
+      "wrong1": "Olayın geçtiği yeri",
+      "wrong2": "Olayın saatini",
+      "explanation": "Kahraman hikâyede olayları yapan veya yaşayan kişidir.",
+      "app": {
+        "question": {
+          "text": "Hikâye unsurlarından biri olan kahraman neyi anlatır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayları yaşayan kişiyi",
+        "wrong1": "Olayın geçtiği yeri",
+        "wrong2": "Olayın saatini",
+        "explanation": "Kahraman hikâyede olayları yapan veya yaşayan kişidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_047",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâye unsurlarından biri olan yer neyi anlatır?",
+      "correct": "Olayın geçtiği mekânı",
+      "wrong1": "Olayı yapan kişiyi",
+      "wrong2": "Olayın saatini",
+      "explanation": "Yer unsuru olayın hangi mekânda geçtiğini söyler.",
+      "app": {
+        "question": {
+          "text": "Hikâye unsurlarından biri olan yer neyi anlatır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayın geçtiği mekânı",
+        "wrong1": "Olayı yapan kişiyi",
+        "wrong2": "Olayın saatini",
+        "explanation": "Yer unsuru olayın hangi mekânda geçtiğini söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_048",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâye unsurlarından biri olan zaman neyi anlatır?",
+      "correct": "Olayın geçtiği gün veya saati",
+      "wrong1": "Olayı yapan kişiyi",
+      "wrong2": "Olayın adını",
+      "explanation": "Zaman unsuru olayın ne zaman olduğunu bildirir.",
+      "app": {
+        "question": {
+          "text": "Hikâye unsurlarından biri olan zaman neyi anlatır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayın geçtiği gün veya saati",
+        "wrong1": "Olayı yapan kişiyi",
+        "wrong2": "Olayın adını",
+        "explanation": "Zaman unsuru olayın ne zaman olduğunu bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_049",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikâye unsurlarından biri olan olay neyi anlatır?",
+      "correct": "Yaşanan işi veya durumu",
+      "wrong1": "Kitabın kapağını",
+      "wrong2": "Yazarın adını",
+      "explanation": "Olay unsuru hikâyede yaşanan işleri anlatır.",
+      "app": {
+        "question": {
+          "text": "Hikâye unsurlarından biri olan olay neyi anlatır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yaşanan işi veya durumu",
+        "wrong1": "Kitabın kapağını",
+        "wrong2": "Yazarın adını",
+        "explanation": "Olay unsuru hikâyede yaşanan işleri anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_050",
+      "level": "kolay",
+      "premise": null,
+      "text": "Olay sırasını doğru vermek dinleyiciye ne sağlar?",
+      "correct": "Hikâyeyi kolay anlamasını",
+      "wrong1": "Kitabı uzatmasını",
+      "wrong2": "Resim çizmesini",
+      "explanation": "Doğru sıra sayesinde olaylar birbirine bağlanır ve hikâye anlaşılır.",
+      "app": {
+        "question": {
+          "text": "Olay sırasını doğru vermek dinleyiciye ne sağlar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hikâyeyi kolay anlamasını",
+        "wrong1": "Kitabı uzatmasını",
+        "wrong2": "Resim çizmesini",
+        "explanation": "Doğru sıra sayesinde olaylar birbirine bağlanır ve hikâye anlaşılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_051",
+      "level": "orta",
+      "premise": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti.",
+      "text": "Yukarıdaki metinde olayları yaşayan kişi kimdir?",
+      "correct": "Defne",
+      "wrong1": "Okul",
+      "wrong2": "Sabah erkenden",
+      "explanation": "Defne hikâyede olayları yaşayan kişidir; kahraman Defne'dir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olayları yaşayan kişi kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti."
+            }
+          ]
+        },
+        "correct": "Defne",
+        "wrong1": "Okul",
+        "wrong2": "Sabah erkenden",
+        "explanation": "Defne hikâyede olayları yaşayan kişidir; kahraman Defne'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_052",
+      "level": "orta",
+      "premise": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti.",
+      "text": "Yukarıdaki metinde olay nerede geçmektedir?",
+      "correct": "Okul",
+      "wrong1": "Defne",
+      "wrong2": "Kahvaltı",
+      "explanation": "Defne okula gitmiştir; olayın geçtiği yer okuldur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olay nerede geçmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti."
+            }
+          ]
+        },
+        "correct": "Okul",
+        "wrong1": "Defne",
+        "wrong2": "Kahvaltı",
+        "explanation": "Defne okula gitmiştir; olayın geçtiği yer okuldur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_053",
+      "level": "orta",
+      "premise": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti.",
+      "text": "Yukarıdaki metinde Defne'nin günü hangi vakitte başlamıştır?",
+      "correct": "Sabah erkenden",
+      "wrong1": "Defne",
+      "wrong2": "Okul",
+      "explanation": "Sabah erkenden ifadesi olayın ne zaman başladığını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde Defne'nin günü hangi vakitte başlamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti."
+            }
+          ]
+        },
+        "correct": "Sabah erkenden",
+        "wrong1": "Defne",
+        "wrong2": "Okul",
+        "explanation": "Sabah erkenden ifadesi olayın ne zaman başladığını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_054",
+      "level": "orta",
+      "premise": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti.",
+      "text": "Yukarıdaki metinde anlatılan olaylardan biri hangisidir?",
+      "correct": "Okula gitmek",
+      "wrong1": "Defne",
+      "wrong2": "Sabah",
+      "explanation": "Kahvaltıdan sonra okula gitmek hikâyede yaşanan olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde anlatılan olaylardan biri hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti."
+            }
+          ]
+        },
+        "correct": "Okula gitmek",
+        "wrong1": "Defne",
+        "wrong2": "Sabah",
+        "explanation": "Kahvaltıdan sonra okula gitmek hikâyede yaşanan olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_055",
+      "level": "orta",
+      "premise": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti.",
+      "text": "Yukarıdaki metinde kahvaltı ile okula gitme arasındaki ilişki nasıldır?",
+      "correct": "Önce kahvaltı, sonra okula gitme",
+      "wrong1": "Önce okula gitme, sonra kahvaltı",
+      "wrong2": "İkisi aynı anda",
+      "explanation": "Önce kahvaltı yapılmış, sonra okula gidilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde kahvaltı ile okula gitme arasındaki ilişki nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Defne sabah erkenden kalktı. Kahvaltısını yaptıktan sonra okula gitti."
+            }
+          ]
+        },
+        "correct": "Önce kahvaltı, sonra okula gitme",
+        "wrong1": "Önce okula gitme, sonra kahvaltı",
+        "wrong2": "İkisi aynı anda",
+        "explanation": "Önce kahvaltı yapılmış, sonra okula gidilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_056",
+      "level": "orta",
+      "premise": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik.",
+      "text": "Yukarıdaki metinde hikâyenin kahramanı kimdir?",
+      "correct": "Ailemiz / biz",
+      "wrong1": "Park",
+      "wrong2": "Cumartesi",
+      "explanation": "Hikâyede olayları yaşayan kişiler ailemizdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde hikâyenin kahramanı kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik."
+            }
+          ]
+        },
+        "correct": "Ailemiz / biz",
+        "wrong1": "Park",
+        "wrong2": "Cumartesi",
+        "explanation": "Hikâyede olayları yaşayan kişiler ailemizdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_057",
+      "level": "orta",
+      "premise": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik.",
+      "text": "Yukarıdaki metinde bisiklete binme olayı hangi mekânda geçmiştir?",
+      "correct": "Park",
+      "wrong1": "Bisiklet",
+      "wrong2": "Dondurma",
+      "explanation": "Park olayın geçtiği yerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde bisiklete binme olayı hangi mekânda geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik."
+            }
+          ]
+        },
+        "correct": "Park",
+        "wrong1": "Bisiklet",
+        "wrong2": "Dondurma",
+        "explanation": "Park olayın geçtiği yerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_058",
+      "level": "orta",
+      "premise": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik.",
+      "text": "Yukarıdaki metinde olay hangi gün geçmiştir?",
+      "correct": "Cumartesi günü",
+      "wrong1": "Pazar",
+      "wrong2": "Pazartesi",
+      "explanation": "Cumartesi günü zaman unsurudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olay hangi gün geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik."
+            }
+          ]
+        },
+        "correct": "Cumartesi günü",
+        "wrong1": "Pazar",
+        "wrong2": "Pazartesi",
+        "explanation": "Cumartesi günü zaman unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_059",
+      "level": "orta",
+      "premise": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik.",
+      "text": "Yukarıdaki metinde bisiklete binmek hangi unsurdur?",
+      "correct": "Olay",
+      "wrong1": "Kahraman",
+      "wrong2": "Zaman",
+      "explanation": "Bisiklete binmek hikâyede yaşanan olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde bisiklete binmek hangi unsurdur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik."
+            }
+          ]
+        },
+        "correct": "Olay",
+        "wrong1": "Kahraman",
+        "wrong2": "Zaman",
+        "explanation": "Bisiklete binmek hikâyede yaşanan olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_060",
+      "level": "orta",
+      "premise": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik.",
+      "text": "Yukarıdaki metinde parka gitmeden önce ne belirtilmiştir?",
+      "correct": "Cumartesi günü",
+      "wrong1": "Dondurma yemek",
+      "wrong2": "Uyumak",
+      "explanation": "Metin cumartesi günü parka gidildiğini söyler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde parka gitmeden önce ne belirtilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumartesi günü ailemizle parka gittik. Orada bisiklete bindik ve dondurma yedik."
+            }
+          ]
+        },
+        "correct": "Cumartesi günü",
+        "wrong1": "Dondurma yemek",
+        "wrong2": "Uyumak",
+        "explanation": "Metin cumartesi günü parka gidildiğini söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_061",
+      "level": "orta",
+      "premise": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı.",
+      "text": "Yukarıdaki metinde masalı anlatan kişi kimdir?",
+      "correct": "Dedem",
+      "wrong1": "Masal",
+      "wrong2": "Göz",
+      "explanation": "Masalı anlatan kişi dedemdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde masalı anlatan kişi kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı."
+            }
+          ]
+        },
+        "correct": "Dedem",
+        "wrong1": "Masal",
+        "wrong2": "Göz",
+        "explanation": "Masalı anlatan kişi dedemdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_062",
+      "level": "orta",
+      "premise": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı.",
+      "text": "Yukarıdaki metinde olay hangi mevsim akşamında geçmiştir?",
+      "correct": "Kış akşamı",
+      "wrong1": "Yaz sabahı",
+      "wrong2": "İlkbahar öğleden sonra",
+      "explanation": "Kış akşamı zaman unsurudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olay hangi mevsim akşamında geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı."
+            }
+          ]
+        },
+        "correct": "Kış akşamı",
+        "wrong1": "Yaz sabahı",
+        "wrong2": "İlkbahar öğleden sonra",
+        "explanation": "Kış akşamı zaman unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_063",
+      "level": "orta",
+      "premise": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı.",
+      "text": "Yukarıdaki metinde yaşanan olay hangisidir?",
+      "correct": "Masal anlatmak",
+      "wrong1": "Dedem",
+      "wrong2": "Kış",
+      "explanation": "Masal anlatmak hikâyede yaşanan olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde yaşanan olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı."
+            }
+          ]
+        },
+        "correct": "Masal anlatmak",
+        "wrong1": "Dedem",
+        "wrong2": "Kış",
+        "explanation": "Masal anlatmak hikâyede yaşanan olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_064",
+      "level": "orta",
+      "premise": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı.",
+      "text": "Yukarıdaki metinde gözlerin kapanması neyi gösterir?",
+      "correct": "Masal dinlerken uykunun gelmesi",
+      "wrong1": "Kahramanın adını",
+      "wrong2": "Yer unsurunu",
+      "explanation": "Gözlerin kapanması masal dinlerken uykunun geldiğini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde gözlerin kapanması neyi gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı."
+            }
+          ]
+        },
+        "correct": "Masal dinlerken uykunun gelmesi",
+        "wrong1": "Kahramanın adını",
+        "wrong2": "Yer unsurunu",
+        "explanation": "Gözlerin kapanması masal dinlerken uykunun geldiğini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_065",
+      "level": "orta",
+      "premise": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı.",
+      "text": "Yukarıdaki metinde masal anlatma olayı nerede geçmiştir?",
+      "correct": "Ev",
+      "wrong1": "Dedem",
+      "wrong2": "Masal",
+      "explanation": "Masal anlatma olayı evde geçmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde masal anlatma olayı nerede geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış akşamı dedem bize masal anlattı. Dinlerken gözlerimiz yavaş yavaş kapandı."
+            }
+          ]
+        },
+        "correct": "Ev",
+        "wrong1": "Dedem",
+        "wrong2": "Masal",
+        "explanation": "Masal anlatma olayı evde geçmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_066",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce yağmur yağdı. Sonra gökkuşağı belirdi. İlk olay hangisidir?",
+      "correct": "Yağmur yağması",
+      "wrong1": "Gökkuşağı belirmesi",
+      "wrong2": "Güneş batması",
+      "explanation": "Önce yağmur yağmış; gökkuşağı ondan sonra belirmiştir.",
+      "app": {
+        "question": {
+          "text": "Önce yağmur yağdı. Sonra gökkuşağı belirdi. İlk olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yağmur yağması",
+        "wrong1": "Gökkuşağı belirmesi",
+        "wrong2": "Güneş batması",
+        "explanation": "Önce yağmur yağmış; gökkuşağı ondan sonra belirmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_067",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce fırını ısıttı. Sonra ekmeği pişirdi. Sonraki olay hangisidir?",
+      "correct": "Ekmeği pişirmek",
+      "wrong1": "Fırını ısıtmak",
+      "wrong2": "Marketten ekmek almak",
+      "explanation": "Fırın ısındıktan sonra ekmek pişirilmiştir.",
+      "app": {
+        "question": {
+          "text": "Önce fırını ısıttı. Sonra ekmeği pişirdi. Sonraki olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ekmeği pişirmek",
+        "wrong1": "Fırını ısıtmak",
+        "wrong2": "Marketten ekmek almak",
+        "explanation": "Fırın ısındıktan sonra ekmek pişirilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_068",
+      "level": "orta",
+      "premise": "1) Çantasını hazırladı. 2) Otobüse bindi.",
+      "text": "Yukarıdaki numaralı olaylardan ilk sıradaki hangisidir?",
+      "correct": "Kamp alanına varmak",
+      "wrong1": "Çanta hazırlamak",
+      "wrong2": "Otobüse binmek",
+      "explanation": "3 numaralı olay en son gerçekleşen olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki numaralı olaylardan ilk sıradaki hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Çantasını hazırladı. 2) Otobüse bindi."
+            }
+          ]
+        },
+        "correct": "Kamp alanına varmak",
+        "wrong1": "Çanta hazırlamak",
+        "wrong2": "Otobüse binmek",
+        "explanation": "3 numaralı olay en son gerçekleşen olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_069",
+      "level": "orta",
+      "premise": "1) Tohum ekti. 2) Suladı.",
+      "text": "Yukarıdaki cümlelerde en son gerçekleşen olay hangisidir?",
+      "correct": "Sulamak",
+      "wrong1": "Tohum ekmek",
+      "wrong2": "Filiz çıkması",
+      "explanation": "2 numaralı olay sulamaktır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerde en son gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Tohum ekti. 2) Suladı."
+            }
+          ]
+        },
+        "correct": "Sulamak",
+        "wrong1": "Tohum ekmek",
+        "wrong2": "Filiz çıkması",
+        "explanation": "2 numaralı olay sulamaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_070",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce kitabı okudu. Daha sonra özet çıkardı. Özet çıkarmadan önce ne yapmıştır?",
+      "correct": "Kitabı okumuş",
+      "wrong1": "Televizyon izlemiş",
+      "wrong2": "Uyumuş",
+      "explanation": "Özet çıkarmadan önce kitabı okumuştur.",
+      "app": {
+        "question": {
+          "text": "Önce kitabı okudu. Daha sonra özet çıkardı. Özet çıkarmadan önce ne yapmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kitabı okumuş",
+        "wrong1": "Televizyon izlemiş",
+        "wrong2": "Uyumuş",
+        "explanation": "Özet çıkarmadan önce kitabı okumuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_071",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce pazar alışverişi yaptı. Ardından yemek pişirdi. Yemek pişirmeden önce ne olmuştur?",
+      "correct": "Alışveriş yapılmış",
+      "wrong1": "Misafir gelmiş",
+      "wrong2": "Telefon çalmış",
+      "explanation": "Ardından kelimesi alışverişten sonra yemek pişirildiğini gösterir.",
+      "app": {
+        "question": {
+          "text": "Önce pazar alışverişi yaptı. Ardından yemek pişirdi. Yemek pişirmeden önce ne olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Alışveriş yapılmış",
+        "wrong1": "Misafir gelmiş",
+        "wrong2": "Telefon çalmış",
+        "explanation": "Ardından kelimesi alışverişten sonra yemek pişirildiğini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_072",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâyede yer unsuru aşağıdakilerden hangisi olabilir?",
+      "correct": "Market",
+      "wrong1": "Ali",
+      "wrong2": "Dün",
+      "explanation": "Market bir mekândır; Ali kahraman, dün zaman olabilir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede yer unsuru aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Market",
+        "wrong1": "Ali",
+        "wrong2": "Dün",
+        "explanation": "Market bir mekândır; Ali kahraman, dün zaman olabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_073",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâyede zaman unsuru aşağıdakilerden hangisi olabilir?",
+      "correct": "Gece yarısı",
+      "wrong1": "Park",
+      "wrong2": "Kedi",
+      "explanation": "Gece yarısı bir zaman bilgisidir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede zaman unsuru aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gece yarısı",
+        "wrong1": "Park",
+        "wrong2": "Kedi",
+        "explanation": "Gece yarısı bir zaman bilgisidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_074",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâyede olay unsuru aşağıdakilerden hangisi olabilir?",
+      "correct": "Resim yapmak",
+      "wrong1": "Sınıf",
+      "wrong2": "Perşembe",
+      "explanation": "Resim yapmak bir iştir; sınıf yer, perşembe zaman olabilir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olay unsuru aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Resim yapmak",
+        "wrong1": "Sınıf",
+        "wrong2": "Perşembe",
+        "explanation": "Resim yapmak bir iştir; sınıf yer, perşembe zaman olabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_075",
+      "level": "orta",
+      "premise": null,
+      "text": "Olay sırasını bozarsak dinleyici neyi anlayamaz?",
+      "correct": "Hangi olayın önce olduğunu",
+      "wrong1": "Kahramanın adını",
+      "wrong2": "Kitabın rengini",
+      "explanation": "Sıra karışırsa önce-sonra ilişkisi kaybolur.",
+      "app": {
+        "question": {
+          "text": "Olay sırasını bozarsak dinleyici neyi anlayamaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hangi olayın önce olduğunu",
+        "wrong1": "Kahramanın adını",
+        "wrong2": "Kitabın rengini",
+        "explanation": "Sıra karışırsa önce-sonra ilişkisi kaybolur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_076",
+      "level": "orta",
+      "premise": "Önce ayakkabılarını giydi. Sonra ceketini aldı. En son okula yürüdü.",
+      "text": "Yukarıdaki metinde en son gerçekleşen olay hangisidir?",
+      "correct": "Okula yürümek",
+      "wrong1": "Ayakkabı giymek",
+      "wrong2": "Ceket almak",
+      "explanation": "En son okula yürümüştür; bu olay listede en sondadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde en son gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce ayakkabılarını giydi. Sonra ceketini aldı. En son okula yürüdü."
+            }
+          ]
+        },
+        "correct": "Okula yürümek",
+        "wrong1": "Ayakkabı giymek",
+        "wrong2": "Ceket almak",
+        "explanation": "En son okula yürümüştür; bu olay listede en sondadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_077",
+      "level": "orta",
+      "premise": "Sabah kalktı. Kahvaltı etti. Okula gitti.",
+      "text": "Yukarıdaki metinde sabah rutininin doğru sırası hangisidir?",
+      "correct": "Kalk - kahvaltı et - okula git",
+      "wrong1": "Okula git - kalk - kahvaltı et",
+      "wrong2": "Kahvaltı et - okula git - kalk",
+      "explanation": "Önce uyanılır, sonra kahvaltı edilir, en son okula gidilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde sabah rutininin doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sabah kalktı. Kahvaltı etti. Okula gitti."
+            }
+          ]
+        },
+        "correct": "Kalk - kahvaltı et - okula git",
+        "wrong1": "Okula git - kalk - kahvaltı et",
+        "wrong2": "Kahvaltı et - okula git - kalk",
+        "explanation": "Önce uyanılır, sonra kahvaltı edilir, en son okula gidilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_078",
+      "level": "orta",
+      "premise": "I. Parka vardı.\nII. Evden çıktı.\nIII. Bisikletini sürdü.",
+      "text": "Yukarıdaki numaralı olayların oluş sırası hangisidir?",
+      "correct": "II - III - I",
+      "wrong1": "I - II - III",
+      "wrong2": "III - I - II",
+      "explanation": "Önce evden çıkılır, bisiklet sürülür, en son parka varılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki numaralı olayların oluş sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Parka vardı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Evden çıktı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Bisikletini sürdü."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II - III - I",
+        "wrong1": "I - II - III",
+        "wrong2": "III - I - II",
+        "explanation": "Önce evden çıkılır, bisiklet sürülür, en son parka varılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_079",
+      "level": "orta",
+      "premise": "I. Masayı kurdu.\nII. Yemeği pişirdi.\nIII. Sofraya oturdu.",
+      "text": "Yukarıdaki sofra olaylarından hangisi en başta yapılmalıdır?",
+      "correct": "Yemeği pişirmek",
+      "wrong1": "Masayı kurmak",
+      "wrong2": "Sofraya oturmak",
+      "explanation": "Yemek pişmeden masa kurulamaz; önce yemek pişirilmelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sofra olaylarından hangisi en başta yapılmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Masayı kurdu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yemeği pişirdi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Sofraya oturdu."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Yemeği pişirmek",
+        "wrong1": "Masayı kurmak",
+        "wrong2": "Sofraya oturmak",
+        "explanation": "Yemek pişmeden masa kurulamaz; önce yemek pişirilmelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_080",
+      "level": "orta",
+      "premise": "I. Ödevini yaptı.\nII. Ders çalıştı.\nIII. Dinlendi.",
+      "text": "Yukarıdaki olaylardan hangisi mantıklı sırada sona gelir?",
+      "correct": "Dinlenmek",
+      "wrong1": "Ödev yapmak",
+      "wrong2": "Ders çalışmak",
+      "explanation": "Önce ders çalışılır, ödev yapılır, en son dinlenilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylardan hangisi mantıklı sırada sona gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ödevini yaptı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Ders çalıştı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Dinlendi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Dinlenmek",
+        "wrong1": "Ödev yapmak",
+        "wrong2": "Ders çalışmak",
+        "explanation": "Önce ders çalışılır, ödev yapılır, en son dinlenilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_081",
+      "level": "orta",
+      "premise": "Pazartesi sınıfta proje sundu. Salı günü öğretmeni övdü.",
+      "text": "Yukarıdaki metinde proje sunumu hangi gün olmuştur?",
+      "correct": "Pazartesi",
+      "wrong1": "Salı",
+      "wrong2": "Çarşamba",
+      "explanation": "Proje sunumu pazartesi günü gerçekleşmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde proje sunumu hangi gün olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazartesi sınıfta proje sundu. Salı günü öğretmeni övdü."
+            }
+          ]
+        },
+        "correct": "Pazartesi",
+        "wrong1": "Salı",
+        "wrong2": "Çarşamba",
+        "explanation": "Proje sunumu pazartesi günü gerçekleşmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_082",
+      "level": "orta",
+      "premise": "Yaz tatilinde kuzenimle denize girdik. Akşamüstü kumsalda oyun oynadık.",
+      "text": "Yukarıdaki metinde denize girme olayı hangi mevsimde geçmiştir?",
+      "correct": "Yaz",
+      "wrong1": "Kış",
+      "wrong2": "Sonbahar",
+      "explanation": "Yaz tatili ifadesi olayın yaz mevsiminde olduğunu gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde denize girme olayı hangi mevsimde geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yaz tatilinde kuzenimle denize girdik. Akşamüstü kumsalda oyun oynadık."
+            }
+          ]
+        },
+        "correct": "Yaz",
+        "wrong1": "Kış",
+        "wrong2": "Sonbahar",
+        "explanation": "Yaz tatili ifadesi olayın yaz mevsiminde olduğunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_083",
+      "level": "orta",
+      "premise": "Kedim miyavlayarak mutfağa koştu. Annem ona mama verdi.",
+      "text": "Yukarıdaki metinde kedinin koşması hangi olaydan önce gerçekleşmiştir?",
+      "correct": "Mama verilmesi",
+      "wrong1": "Uyuması",
+      "wrong2": "Oyun oynaması",
+      "explanation": "Önce kedi koşmuş, sonra mama verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde kedinin koşması hangi olaydan önce gerçekleşmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kedim miyavlayarak mutfağa koştu. Annem ona mama verdi."
+            }
+          ]
+        },
+        "correct": "Mama verilmesi",
+        "wrong1": "Uyuması",
+        "wrong2": "Oyun oynaması",
+        "explanation": "Önce kedi koşmuş, sonra mama verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_084",
+      "level": "orta",
+      "premise": "Önce haritayı inceledi. Sonra yola çıktı. En son dağın tepesine ulaştı.",
+      "text": "Yukarıdaki metinde yola çıkmadan önce ne yapılmıştır?",
+      "correct": "Haritayı incelemiş",
+      "wrong1": "Dağa tırmanmış",
+      "wrong2": "Fotoğraf çekmiş",
+      "explanation": "Yola çıkmadan önce harita incelenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde yola çıkmadan önce ne yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce haritayı inceledi. Sonra yola çıktı. En son dağın tepesine ulaştı."
+            }
+          ]
+        },
+        "correct": "Haritayı incelemiş",
+        "wrong1": "Dağa tırmanmış",
+        "wrong2": "Fotoğraf çekmiş",
+        "explanation": "Yola çıkmadan önce harita incelenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_085",
+      "level": "orta",
+      "premise": "Cuma akşamı ailecek sinemaya gittik. Film bitince eve döndük.",
+      "text": "Yukarıdaki metinde eve dönme olayı ne zaman gerçekleşmiştir?",
+      "correct": "Film bitince",
+      "wrong1": "Film başlamadan",
+      "wrong2": "Sabah erken",
+      "explanation": "Film bitince ifadesi eve dönmenin ne zaman olduğunu söyler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde eve dönme olayı ne zaman gerçekleşmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cuma akşamı ailecek sinemaya gittik. Film bitince eve döndük."
+            }
+          ]
+        },
+        "correct": "Film bitince",
+        "wrong1": "Film başlamadan",
+        "wrong2": "Sabah erken",
+        "explanation": "Film bitince ifadesi eve dönmenin ne zaman olduğunu söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_086",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce kar yağdı. Ardından çocuklar kardan adam yaptı. Kardan adam yapma hangi olaydan sonra gerçekleşmiştir?",
+      "correct": "Kar yağması",
+      "wrong1": "Kar erimesi",
+      "wrong2": "Güneş batması",
+      "explanation": "Kar yağdıktan sonra çocuklar kardan adam yapmıştır.",
+      "app": {
+        "question": {
+          "text": "Önce kar yağdı. Ardından çocuklar kardan adam yaptı. Kardan adam yapma hangi olaydan sonra gerçekleşmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kar yağması",
+        "wrong1": "Kar erimesi",
+        "wrong2": "Güneş batması",
+        "explanation": "Kar yağdıktan sonra çocuklar kardan adam yapmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_087",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce sepeti hazırladık. Sonra ormana yürüdük. Ormana yürümeden önce hangi iş yapılmıştır?",
+      "correct": "Sepet hazırlanmış",
+      "wrong1": "Piknik bitmiş",
+      "wrong2": "Uyku uyumuş",
+      "explanation": "Ormana gitmeden önce sepet hazırlanmıştır.",
+      "app": {
+        "question": {
+          "text": "Önce sepeti hazırladık. Sonra ormana yürüdük. Ormana yürümeden önce hangi iş yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sepet hazırlanmış",
+        "wrong1": "Piknik bitmiş",
+        "wrong2": "Uyku uyumuş",
+        "explanation": "Ormana gitmeden önce sepet hazırlanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_088",
+      "level": "orta",
+      "premise": "1) Okul zili çaldı. 2) Öğrenciler sınıfa girdi.",
+      "text": "Yukarıdaki cümlelerde önce gerçekleşen olay hangisidir?",
+      "correct": "3",
+      "wrong1": "1",
+      "wrong2": "2",
+      "explanation": "Ders başlama üçüncü olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerde önce gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Okul zili çaldı. 2) Öğrenciler sınıfa girdi."
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "1",
+        "wrong2": "2",
+        "explanation": "Ders başlama üçüncü olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_089",
+      "level": "orta",
+      "premise": "1) Tohumları toprağa koydu. 2) Bahçeyi suladı.",
+      "text": "Yukarıdaki olaylar arasında sonraki olay hangisidir?",
+      "correct": "3",
+      "wrong1": "1",
+      "wrong2": "2",
+      "explanation": "Sebze toplama en son gerçekleşen olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylar arasında sonraki olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Tohumları toprağa koydu. 2) Bahçeyi suladı."
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "1",
+        "wrong2": "2",
+        "explanation": "Sebze toplama en son gerçekleşen olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_090",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce elini kaldırdı. Sonra soruyu cevapladı. Soruyu cevaplamadan önce ne yapmıştır?",
+      "correct": "Elini kaldırmış",
+      "wrong1": "Tahtaya yazmış",
+      "wrong2": "Dışarı çıkmış",
+      "explanation": "Soruyu cevaplamadan önce elini kaldırmıştır.",
+      "app": {
+        "question": {
+          "text": "Önce elini kaldırdı. Sonra soruyu cevapladı. Soruyu cevaplamadan önce ne yapmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Elini kaldırmış",
+        "wrong1": "Tahtaya yazmış",
+        "wrong2": "Dışarı çıkmış",
+        "explanation": "Soruyu cevaplamadan önce elini kaldırmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_091",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce marşı söyledik. Sonra bayrağı göndere çektik. Bayrağı çekme olayı hangi olaydan sonra gelmiştir?",
+      "correct": "Marş söyleme",
+      "wrong1": "Teneffüs",
+      "wrong2": "Yemek yeme",
+      "explanation": "Marş söylendikten sonra bayrak göndere çekilmiştir.",
+      "app": {
+        "question": {
+          "text": "Önce marşı söyledik. Sonra bayrağı göndere çektik. Bayrağı çekme olayı hangi olaydan sonra gelmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Marş söyleme",
+        "wrong1": "Teneffüs",
+        "wrong2": "Yemek yeme",
+        "explanation": "Marş söylendikten sonra bayrak göndere çekilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_092",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâyede olayları anlatırken hangi kelime sonraki olayı gösterir?",
+      "correct": "Sonra",
+      "wrong1": "Önce",
+      "wrong2": "Her zaman",
+      "explanation": "Sonra kelimesi bir olaydan sonra gelen olayı gösterir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olayları anlatırken hangi kelime sonraki olayı gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sonra",
+        "wrong1": "Önce",
+        "wrong2": "Her zaman",
+        "explanation": "Sonra kelimesi bir olaydan sonra gelen olayı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_093",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâyede olayları anlatırken hangi kelime ilk olayı gösterir?",
+      "correct": "Önce",
+      "wrong1": "Sonra",
+      "wrong2": "En son",
+      "explanation": "Önce kelimesi ilk gerçekleşen olayı gösterir.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olayları anlatırken hangi kelime ilk olayı gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Önce",
+        "wrong1": "Sonra",
+        "wrong2": "En son",
+        "explanation": "Önce kelimesi ilk gerçekleşen olayı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_094",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi olay sırasını göstermek için kullanılır?",
+      "correct": "1, 2, 3 numaraları",
+      "wrong1": "Renkler",
+      "wrong2": "Harfler",
+      "explanation": "Numaralar olayların hangi sırayla olduğunu gösterir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi olay sırasını göstermek için kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1, 2, 3 numaraları",
+        "wrong1": "Renkler",
+        "wrong2": "Harfler",
+        "explanation": "Numaralar olayların hangi sırayla olduğunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_095",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâyede olayları karışık sırada anlatmak neden yanlıştır?",
+      "correct": "Dinleyici kafası karışır",
+      "wrong1": "Kitap kısalır",
+      "wrong2": "Resim azalır",
+      "explanation": "Karışık sıra hikâyenin anlaşılmasını zorlaştırır.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olayları karışık sırada anlatmak neden yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dinleyici kafası karışır",
+        "wrong1": "Kitap kısalır",
+        "wrong2": "Resim azalır",
+        "explanation": "Karışık sıra hikâyenin anlaşılmasını zorlaştırır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_096",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce montunu giydi. Sonra dışarı çıktı. Dışarı çıkmadan önce ne yapmıştır?",
+      "correct": "Montunu giymiş",
+      "wrong1": "Televizyon izlemiş",
+      "wrong2": "Yemek yemiş",
+      "explanation": "Dışarı çıkmadan önce mont giyilmiştir.",
+      "app": {
+        "question": {
+          "text": "Önce montunu giydi. Sonra dışarı çıktı. Dışarı çıkmadan önce ne yapmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Montunu giymiş",
+        "wrong1": "Televizyon izlemiş",
+        "wrong2": "Yemek yemiş",
+        "explanation": "Dışarı çıkmadan önce mont giyilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_097",
+      "level": "orta",
+      "premise": null,
+      "text": "Önce öğretmen tahtaya yazdı. Sonra öğrenciler defterlerine geçti. Öğrenciler ne zaman defterlerine geçmiştir?",
+      "correct": "Öğretmen yazdıktan sonra",
+      "wrong1": "Öğretmen yazmadan önce",
+      "wrong2": "Dersten önce",
+      "explanation": "Öğretmen yazdıktan sonra öğrenciler defterlerine geçmiştir.",
+      "app": {
+        "question": {
+          "text": "Önce öğretmen tahtaya yazdı. Sonra öğrenciler defterlerine geçti. Öğrenciler ne zaman defterlerine geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğretmen yazdıktan sonra",
+        "wrong1": "Öğretmen yazmadan önce",
+        "wrong2": "Dersten önce",
+        "explanation": "Öğretmen yazdıktan sonra öğrenciler defterlerine geçmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_098",
+      "level": "orta",
+      "premise": "1) Mektubu yazdı. 2) Zarfına koydu.",
+      "text": "Yukarıdaki numaralı olaylardan ilk sıradaki hangisidir?",
+      "correct": "2",
+      "wrong1": "1",
+      "wrong2": "3",
+      "explanation": "Zarfına koyma ikinci olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki numaralı olaylardan ilk sıradaki hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Mektubu yazdı. 2) Zarfına koydu."
+            }
+          ]
+        },
+        "correct": "2",
+        "wrong1": "1",
+        "wrong2": "3",
+        "explanation": "Zarfına koyma ikinci olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_099",
+      "level": "orta",
+      "premise": "1) Mektubu yazdı. 2) Zarfına koydu.",
+      "text": "Yukarıdaki cümlelerde en son gerçekleşen olay hangisidir?",
+      "correct": "3",
+      "wrong1": "1",
+      "wrong2": "2",
+      "explanation": "Postaya verme en son gerçekleşen olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerde en son gerçekleşen olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "1) Mektubu yazdı. 2) Zarfına koydu."
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "1",
+        "wrong2": "2",
+        "explanation": "Postaya verme en son gerçekleşen olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_100",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikâye yazarken olayları sıralamak hangi unsurla ilgilidir?",
+      "correct": "Olayların oluş sırası",
+      "wrong1": "Kitabın rengi",
+      "wrong2": "Yazarın yaşı",
+      "explanation": "Olayların oluş sırası hikâyenin anlaşılması için önemlidir.",
+      "app": {
+        "question": {
+          "text": "Hikâye yazarken olayları sıralamak hangi unsurla ilgilidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayların oluş sırası",
+        "wrong1": "Kitabın rengi",
+        "wrong2": "Yazarın yaşı",
+        "explanation": "Olayların oluş sırası hikâyenin anlaşılması için önemlidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_101",
+      "level": "zor",
+      "premise": "I. Defne ödevini bitirdi.\nII. Defne ders çalışmaya başladı.\nIII. Defne dinlenmek için müziği açtı.",
+      "text": "Yukarıdaki olayların mantıklı sırası hangisidir?",
+      "correct": "II - I - III",
+      "wrong1": "I - II - III",
+      "wrong2": "III - II - I",
+      "explanation": "Önce ders çalışılır, ödev bitirilir, en son dinlenilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olayların mantıklı sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Defne ödevini bitirdi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Defne ders çalışmaya başladı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Defne dinlenmek için müziği açtı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II - I - III",
+        "wrong1": "I - II - III",
+        "wrong2": "III - II - I",
+        "explanation": "Önce ders çalışılır, ödev bitirilir, en son dinlenilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_102",
+      "level": "zor",
+      "premise": "I. Bisikletini park etti.\nII. Marketten ekmek aldı.\nIII. Evden çıktı.",
+      "text": "Yukarıdaki alışveriş olaylarının doğru sırası hangisidir?",
+      "correct": "III - II - I",
+      "wrong1": "I - III - II",
+      "wrong2": "II - I - III",
+      "explanation": "Önce evden çıkılır, marketten ekmek alınır, bisiklet park edilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki alışveriş olaylarının doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Bisikletini park etti."
+                },
+                {
+                  "label": "II.",
+                  "text": "Marketten ekmek aldı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Evden çıktı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III - II - I",
+        "wrong1": "I - III - II",
+        "wrong2": "II - I - III",
+        "explanation": "Önce evden çıkılır, marketten ekmek alınır, bisiklet park edilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_103",
+      "level": "zor",
+      "premise": "I. Masaya oturdu.\nII. Ellerini yıkadı.\nIII. Çorbayı içti.",
+      "text": "Yukarıdaki metinde anlatım bozukluğu hangi sebepten kaynaklanır?",
+      "correct": "Olaylar karışık sırada",
+      "wrong1": "Metin çok kısa",
+      "wrong2": "Kahraman yok",
+      "explanation": "Yemekte önce masaya oturulur, çorba içilir, en son eller yıkanır; verilen sıra mantıklı değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde anlatım bozukluğu hangi sebepten kaynaklanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Masaya oturdu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Ellerini yıkadı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Çorbayı içti."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Olaylar karışık sırada",
+        "wrong1": "Metin çok kısa",
+        "wrong2": "Kahraman yok",
+        "explanation": "Yemekte önce masaya oturulur, çorba içilir, en son eller yıkanır; verilen sıra mantıklı değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_104",
+      "level": "zor",
+      "premise": "I. Masaya oturdu.\nII. Ellerini yıkadı.\nIII. Çorbayı içti.",
+      "text": "Yukarıdaki yemekte olayların doğru sırası hangisidir?",
+      "correct": "Masaya otur - çorba iç - el yıka",
+      "wrong1": "El yıka - çorba iç - masaya otur",
+      "wrong2": "Çorba iç - masaya otur - el yıka",
+      "explanation": "Yemekte önce masaya oturulur, çorba içilir, en son eller yıkanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yemekte olayların doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Masaya oturdu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Ellerini yıkadı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Çorbayı içti."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Masaya otur - çorba iç - el yıka",
+        "wrong1": "El yıka - çorba iç - masaya otur",
+        "wrong2": "Çorba iç - masaya otur - el yıka",
+        "explanation": "Yemekte önce masaya oturulur, çorba içilir, en son eller yıkanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_105",
+      "level": "zor",
+      "premise": "I. Kim?\nII. Nerede?\nIII. Ne oldu?",
+      "text": "Yukarıdaki sorulardan hangisi olay unsurunu buldurur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. soru ne oldu diye sorar; bu olay unsurunu buldurur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sorulardan hangisi olay unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kim?"
+                },
+                {
+                  "label": "II.",
+                  "text": "Nerede?"
+                },
+                {
+                  "label": "III.",
+                  "text": "Ne oldu?"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. soru ne oldu diye sorar; bu olay unsurunu buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_106",
+      "level": "zor",
+      "premise": "I. Kim?\nII. Nerede?\nIII. Ne oldu?",
+      "text": "Yukarıdaki sorulardan hangisi yer unsurunu buldurur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. soru nerede diye sorar; yer unsurunu buldurur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sorulardan hangisi yer unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kim?"
+                },
+                {
+                  "label": "II.",
+                  "text": "Nerede?"
+                },
+                {
+                  "label": "III.",
+                  "text": "Ne oldu?"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. soru nerede diye sorar; yer unsurunu buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_107",
+      "level": "zor",
+      "premise": "I. Kahraman\nII. Dize\nIII. Zaman",
+      "text": "Yukarıdaki ifadelerden hangisi hikâye unsuru değildir?",
+      "correct": "Dize",
+      "wrong1": "Kahraman",
+      "wrong2": "Zaman",
+      "explanation": "Dize şiirin satırıdır; kahraman ve zaman hikâye unsurudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangisi hikâye unsuru değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kahraman"
+                },
+                {
+                  "label": "II.",
+                  "text": "Dize"
+                },
+                {
+                  "label": "III.",
+                  "text": "Zaman"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Dize",
+        "wrong1": "Kahraman",
+        "wrong2": "Zaman",
+        "explanation": "Dize şiirin satırıdır; kahraman ve zaman hikâye unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_108",
+      "level": "zor",
+      "premise": "I. Kahraman\nII. Yer\nIII. Olay",
+      "text": "Yukarıdaki ifadelerden hangileri hikâye unsurudur?",
+      "correct": "Hepsi",
+      "wrong1": "Yalnız I",
+      "wrong2": "I ve II",
+      "explanation": "Kahraman, yer ve olay hikâyenin temel unsurlarındandır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangileri hikâye unsurudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kahraman"
+                },
+                {
+                  "label": "II.",
+                  "text": "Yer"
+                },
+                {
+                  "label": "III.",
+                  "text": "Olay"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Hepsi",
+        "wrong1": "Yalnız I",
+        "wrong2": "I ve II",
+        "explanation": "Kahraman, yer ve olay hikâyenin temel unsurlarındandır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_109",
+      "level": "zor",
+      "premise": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü.",
+      "text": "Yukarıdaki metinde kahraman kimdir?",
+      "correct": "Berk",
+      "wrong1": "Köy pazarı",
+      "wrong2": "Pazar sabahı",
+      "explanation": "Berk olayları yaşayan kişidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde kahraman kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü."
+            }
+          ]
+        },
+        "correct": "Berk",
+        "wrong1": "Köy pazarı",
+        "wrong2": "Pazar sabahı",
+        "explanation": "Berk olayları yaşayan kişidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_110",
+      "level": "zor",
+      "premise": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü.",
+      "text": "Yukarıdaki metinde Berk nereye gitmiştir?",
+      "correct": "Köy pazarı",
+      "wrong1": "Berk",
+      "wrong2": "Dedesi",
+      "explanation": "Köy pazarı olayın geçtiği yerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde Berk nereye gitmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü."
+            }
+          ]
+        },
+        "correct": "Köy pazarı",
+        "wrong1": "Berk",
+        "wrong2": "Dedesi",
+        "explanation": "Köy pazarı olayın geçtiği yerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_111",
+      "level": "zor",
+      "premise": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü.",
+      "text": "Yukarıdaki metinde Berk'in gezintisi hangi gün başlamıştır?",
+      "correct": "Pazar sabahı",
+      "wrong1": "Akşam",
+      "wrong2": "Salı",
+      "explanation": "Pazar sabahı zaman unsurudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde Berk'in gezintisi hangi gün başlamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü."
+            }
+          ]
+        },
+        "correct": "Pazar sabahı",
+        "wrong1": "Akşam",
+        "wrong2": "Salı",
+        "explanation": "Pazar sabahı zaman unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_112",
+      "level": "zor",
+      "premise": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü.",
+      "text": "Yukarıdaki metinde sebze alma olayı hangi olaydan önce gerçekleşmiştir?",
+      "correct": "Dedesiyle çay içme",
+      "wrong1": "Eve dönme",
+      "wrong2": "Uyuma",
+      "explanation": "Önce sebze alınmış, sonra dedesiyle çay içilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde sebze alma olayı hangi olaydan önce gerçekleşmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazar sabahı Berk köy pazarına gitti. Sebze aldı, sonra dedesiyle çay içti. Akşam eve döndü."
+            }
+          ]
+        },
+        "correct": "Dedesiyle çay içme",
+        "wrong1": "Eve dönme",
+        "wrong2": "Uyuma",
+        "explanation": "Önce sebze alınmış, sonra dedesiyle çay içilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_113",
+      "level": "zor",
+      "premise": "Salı günü sınıfta deney yaptık. Önce malzemeleri hazırladık. Sonra öğretmenimiz bize yardım etti.",
+      "text": "Yukarıdaki metinde deney yapan kişiler kimdir?",
+      "correct": "Biz / sınıf",
+      "wrong1": "Öğretmen",
+      "wrong2": "Salı",
+      "explanation": "Deneyi yapan kişiler biziz.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde deney yapan kişiler kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Salı günü sınıfta deney yaptık. Önce malzemeleri hazırladık. Sonra öğretmenimiz bize yardım etti."
+            }
+          ]
+        },
+        "correct": "Biz / sınıf",
+        "wrong1": "Öğretmen",
+        "wrong2": "Salı",
+        "explanation": "Deneyi yapan kişiler biziz.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_114",
+      "level": "zor",
+      "premise": "Salı günü sınıfta deney yaptık. Önce malzemeleri hazırladık. Sonra öğretmenimiz bize yardım etti.",
+      "text": "Yukarıdaki metinde olay nerede geçmiştir?",
+      "correct": "Sınıf",
+      "wrong1": "Deney",
+      "wrong2": "Salı",
+      "explanation": "Sınıf olayın geçtiği yerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olay nerede geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Salı günü sınıfta deney yaptık. Önce malzemeleri hazırladık. Sonra öğretmenimiz bize yardım etti."
+            }
+          ]
+        },
+        "correct": "Sınıf",
+        "wrong1": "Deney",
+        "wrong2": "Salı",
+        "explanation": "Sınıf olayın geçtiği yerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_115",
+      "level": "zor",
+      "premise": "Salı günü sınıfta deney yaptık. Önce malzemeleri hazırladık. Sonra öğretmenimiz bize yardım etti.",
+      "text": "Yukarıdaki metinde malzeme hazırlama olayı hangi olaydan önce gelmiştir?",
+      "correct": "Öğretmenin yardım etmesi",
+      "wrong1": "Deney yapılması",
+      "wrong2": "Teneffüs",
+      "explanation": "Önce malzemeler hazırlanmış, sonra öğretmen yardım etmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde malzeme hazırlama olayı hangi olaydan önce gelmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Salı günü sınıfta deney yaptık. Önce malzemeleri hazırladık. Sonra öğretmenimiz bize yardım etti."
+            }
+          ]
+        },
+        "correct": "Öğretmenin yardım etmesi",
+        "wrong1": "Deney yapılması",
+        "wrong2": "Teneffüs",
+        "explanation": "Önce malzemeler hazırlanmış, sonra öğretmen yardım etmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_116",
+      "level": "zor",
+      "premise": "Önce yağmur yağdı. Sonra sokaklar ıslandı. En son çocuklar evlere koştu.",
+      "text": "Yukarıdaki metinde üç olayın sırası doğru mudur?",
+      "correct": "Evet, sıra doğrudur",
+      "wrong1": "Hayır, tam tersi olmalı",
+      "wrong2": "Sıra önemsizdir",
+      "explanation": "Önce yağmur, sonra ıslanma, en son eve koşma mantıklı bir sıradır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde üç olayın sırası doğru mudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce yağmur yağdı. Sonra sokaklar ıslandı. En son çocuklar evlere koştu."
+            }
+          ]
+        },
+        "correct": "Evet, sıra doğrudur",
+        "wrong1": "Hayır, tam tersi olmalı",
+        "wrong2": "Sıra önemsizdir",
+        "explanation": "Önce yağmur, sonra ıslanma, en son eve koşma mantıklı bir sıradır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_117",
+      "level": "zor",
+      "premise": "Önce uykuya daldı. Sonra dişlerini fırçaladı. En son yatağa yattı.",
+      "text": "Yukarıdaki metinde hangi olay yanlış sırada verilmiştir?",
+      "correct": "Diş fırçalamadan önce uyumak",
+      "wrong1": "Yatağa yatmak",
+      "wrong2": "Diş fırçalamak",
+      "explanation": "Uyumadan önce dişler fırçalanmalıdır; sıra mantıklı değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde hangi olay yanlış sırada verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce uykuya daldı. Sonra dişlerini fırçaladı. En son yatağa yattı."
+            }
+          ]
+        },
+        "correct": "Diş fırçalamadan önce uyumak",
+        "wrong1": "Yatağa yatmak",
+        "wrong2": "Diş fırçalamak",
+        "explanation": "Uyumadan önce dişler fırçalanmalıdır; sıra mantıklı değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_118",
+      "level": "zor",
+      "premise": "I. Okul zili çaldı.\nII. Öğrenciler sınıfa girdi.\nIII. Ders başladı.",
+      "text": "Yukarıdaki olayların oluş sırası hangisidir?",
+      "correct": "II - I - III",
+      "wrong1": "I - II - III",
+      "wrong2": "III - I - II",
+      "explanation": "Önce zil çalar, öğrenciler sınıfa girer, ders başlar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olayların oluş sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Okul zili çaldı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Öğrenciler sınıfa girdi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ders başladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II - I - III",
+        "wrong1": "I - II - III",
+        "wrong2": "III - I - II",
+        "explanation": "Önce zil çalar, öğrenciler sınıfa girer, ders başlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_119",
+      "level": "zor",
+      "premise": "I. Tohumları toprağa koydu.\nII. Bahçeyi suladı.\nIII. Sebzeleri topladı.",
+      "text": "Yukarıdaki bahçe olaylarının mantıklı sırası hangisidir?",
+      "correct": "I - II - III",
+      "wrong1": "III - I - II",
+      "wrong2": "II - III - I",
+      "explanation": "Önce tohum ekilir, sulama yapılır, en son sebze toplanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bahçe olaylarının mantıklı sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tohumları toprağa koydu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bahçeyi suladı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Sebzeleri topladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I - II - III",
+        "wrong1": "III - I - II",
+        "wrong2": "II - III - I",
+        "explanation": "Önce tohum ekilir, sulama yapılır, en son sebze toplanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_120",
+      "level": "zor",
+      "premise": "I. Ne zaman?\nII. Kim?\nIII. Nerede?",
+      "text": "Yukarıdaki sorulardan hangisi kahramanı buldurur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Kim sorusu kahramanı buldurur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sorulardan hangisi kahramanı buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ne zaman?"
+                },
+                {
+                  "label": "II.",
+                  "text": "Kim?"
+                },
+                {
+                  "label": "III.",
+                  "text": "Nerede?"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Kim sorusu kahramanı buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_121",
+      "level": "zor",
+      "premise": "I. Ne zaman?\nII. Kim?\nIII. Nerede?",
+      "text": "Yukarıdaki sorulardan hangisi zaman unsurunu buldurur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Ne zaman sorusu zaman unsurunu buldurur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sorulardan hangisi zaman unsurunu buldurur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ne zaman?"
+                },
+                {
+                  "label": "II.",
+                  "text": "Kim?"
+                },
+                {
+                  "label": "III.",
+                  "text": "Nerede?"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Ne zaman sorusu zaman unsurunu buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_122",
+      "level": "zor",
+      "premise": "I. Kitabı kapattı.\nII. Son sayfayı okudu.\nIII. Kitabı rafa koydu.",
+      "text": "Yukarıdaki kitap okuma olaylarının doğru sırası hangisidir?",
+      "correct": "II - I - III",
+      "wrong1": "I - II - III",
+      "wrong2": "III - II - I",
+      "explanation": "Önce son sayfa okunur, kitap kapatılır, rafa konur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kitap okuma olaylarının doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kitabı kapattı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Son sayfayı okudu."
+                },
+                {
+                  "label": "III.",
+                  "text": "Kitabı rafa koydu."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II - I - III",
+        "wrong1": "I - II - III",
+        "wrong2": "III - II - I",
+        "explanation": "Önce son sayfa okunur, kitap kapatılır, rafa konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_123",
+      "level": "zor",
+      "premise": "Önce kar yağdı. Ardından çocuklar kardan adam yaptı. En son güneş çıkınca kar eridi.",
+      "text": "Yukarıdaki metinde kardan adam yapma olayı hangi olaydan sonra gerçekleşmiştir?",
+      "correct": "Kar yağması",
+      "wrong1": "Kar erimesi",
+      "wrong2": "Güneş batması",
+      "explanation": "Kar yağınca çocuklar kardan adam yapmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde kardan adam yapma olayı hangi olaydan sonra gerçekleşmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce kar yağdı. Ardından çocuklar kardan adam yaptı. En son güneş çıkınca kar eridi."
+            }
+          ]
+        },
+        "correct": "Kar yağması",
+        "wrong1": "Kar erimesi",
+        "wrong2": "Güneş batması",
+        "explanation": "Kar yağınca çocuklar kardan adam yapmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_124",
+      "level": "zor",
+      "premise": "Cumartesi sabahı pikniğe gittik. Önce sepeti hazırladık. Sonra ormana yürüdük.",
+      "text": "Yukarıdaki metinde ormana yürümeden önce ne yapılmıştır?",
+      "correct": "Sepet hazırlanmış",
+      "wrong1": "Piknik bitmiş",
+      "wrong2": "Uyku uyumuş",
+      "explanation": "Ormana yürümeden önce sepet hazırlanmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde ormana yürümeden önce ne yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumartesi sabahı pikniğe gittik. Önce sepeti hazırladık. Sonra ormana yürüdük."
+            }
+          ]
+        },
+        "correct": "Sepet hazırlanmış",
+        "wrong1": "Piknik bitmiş",
+        "wrong2": "Uyku uyumuş",
+        "explanation": "Ormana yürümeden önce sepet hazırlanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_125",
+      "level": "zor",
+      "premise": "I. Ellerini yıkadı.\nII. Yemeğini yedi.\nIII. Tabaklarını topladı.",
+      "text": "Yukarıdaki yemek olaylarından hangisi ilk sırada olmalıdır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Önce yemek yenir, sonra tabak toplanır, en son el yıkanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yemek olaylarından hangisi ilk sırada olmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ellerini yıkadı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yemeğini yedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Tabaklarını topladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Önce yemek yenir, sonra tabak toplanır, en son el yıkanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_126",
+      "level": "zor",
+      "premise": "I. Ellerini yıkadı.\nII. Yemeğini yedi.\nIII. Tabaklarını topladı.",
+      "text": "Yukarıdaki yemek olaylarının doğru sırası hangisidir?",
+      "correct": "II - III - I",
+      "wrong1": "I - II - III",
+      "wrong2": "III - I - II",
+      "explanation": "Önce yemek yenir, tabak toplanır, en son eller yıkanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yemek olaylarının doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ellerini yıkadı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yemeğini yedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Tabaklarını topladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II - III - I",
+        "wrong1": "I - II - III",
+        "wrong2": "III - I - II",
+        "explanation": "Önce yemek yenir, tabak toplanır, en son eller yıkanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_127",
+      "level": "zor",
+      "premise": "Önce denize girdi. Sonra havluyu aldı. En son güneşlendi.",
+      "text": "Yukarıdaki metinde olayların sırası neden yanlıştır?",
+      "correct": "Yüzmeden önce havlu alınmış",
+      "wrong1": "Metin çok uzun",
+      "wrong2": "Kahraman yok",
+      "explanation": "Yüzmeden önce havlu alınır; verilen sırada havlu alma yüzmeden sonra gelmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olayların sırası neden yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce denize girdi. Sonra havluyu aldı. En son güneşlendi."
+            }
+          ]
+        },
+        "correct": "Yüzmeden önce havlu alınmış",
+        "wrong1": "Metin çok uzun",
+        "wrong2": "Kahraman yok",
+        "explanation": "Yüzmeden önce havlu alınır; verilen sırada havlu alma yüzmeden sonra gelmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_128",
+      "level": "zor",
+      "premise": "Önce denize girdi. Sonra havluyu aldı. En son güneşlendi.",
+      "text": "Yukarıdaki plaj olaylarının doğru sırası hangisidir?",
+      "correct": "Havlu al - denize gir - güneşlen",
+      "wrong1": "Denize gir - havlu al - güneşlen",
+      "wrong2": "Güneşlen - denize gir - havlu al",
+      "explanation": "Önce havlu alınır, denize girilir, sonra güneşlenilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki plaj olaylarının doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce denize girdi. Sonra havluyu aldı. En son güneşlendi."
+            }
+          ]
+        },
+        "correct": "Havlu al - denize gir - güneşlen",
+        "wrong1": "Denize gir - havlu al - güneşlen",
+        "wrong2": "Güneşlen - denize gir - havlu al",
+        "explanation": "Önce havlu alınır, denize girilir, sonra güneşlenilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_129",
+      "level": "zor",
+      "premise": "I. Orman\nII. Kamp alanı\nIII. Yıldızlar",
+      "text": "Yukarıdaki ifadelerden hangisi yer unsuru değildir?",
+      "correct": "Yıldızlar",
+      "wrong1": "Kamp alanı",
+      "wrong2": "Orman",
+      "explanation": "Yıldızlar gök cismidir; kamp alanı ve orman yer unsuru olabilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangisi yer unsuru değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Orman"
+                },
+                {
+                  "label": "II.",
+                  "text": "Kamp alanı"
+                },
+                {
+                  "label": "III.",
+                  "text": "Yıldızlar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Yıldızlar",
+        "wrong1": "Kamp alanı",
+        "wrong2": "Orman",
+        "explanation": "Yıldızlar gök cismidir; kamp alanı ve orman yer unsuru olabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_130",
+      "level": "zor",
+      "premise": "I. Gece yarısı\nII. Pazartesi\nIII. Kütüphane",
+      "text": "Yukarıdaki ifadelerden hangisi zaman unsuru değildir?",
+      "correct": "Kütüphane",
+      "wrong1": "Gece yarısı",
+      "wrong2": "Pazartesi",
+      "explanation": "Kütüphane bir mekândır; gece yarısı ve pazartesi zaman unsuru olabilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangisi zaman unsuru değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Gece yarısı"
+                },
+                {
+                  "label": "II.",
+                  "text": "Pazartesi"
+                },
+                {
+                  "label": "III.",
+                  "text": "Kütüphane"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Kütüphane",
+        "wrong1": "Gece yarısı",
+        "wrong2": "Pazartesi",
+        "explanation": "Kütüphane bir mekândır; gece yarısı ve pazartesi zaman unsuru olabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_131",
+      "level": "zor",
+      "premise": "I. Koşmak\nII. Salı günü\nIII. Yüzmek",
+      "text": "Yukarıdaki ifadelerden hangisi olay unsuru değildir?",
+      "correct": "Salı günü",
+      "wrong1": "Koşmak",
+      "wrong2": "Yüzmek",
+      "explanation": "Salı günü zaman unsurudur; koşmak ve yüzmek olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangisi olay unsuru değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Koşmak"
+                },
+                {
+                  "label": "II.",
+                  "text": "Salı günü"
+                },
+                {
+                  "label": "III.",
+                  "text": "Yüzmek"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Salı günü",
+        "wrong1": "Koşmak",
+        "wrong2": "Yüzmek",
+        "explanation": "Salı günü zaman unsurudur; koşmak ve yüzmek olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_132",
+      "level": "zor",
+      "premise": "Önce okula gitti. Sonra ödevini yaptı. En son televizyon izledi.",
+      "text": "Yukarıdaki metinde ilk olay hangisidir?",
+      "correct": "Okula gitmek",
+      "wrong1": "Ödev yapmak",
+      "wrong2": "Televizyon izlemek",
+      "explanation": "Metinde önce okula gidilmiş, sonra ödev yapılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde ilk olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce okula gitti. Sonra ödevini yaptı. En son televizyon izledi."
+            }
+          ]
+        },
+        "correct": "Okula gitmek",
+        "wrong1": "Ödev yapmak",
+        "wrong2": "Televizyon izlemek",
+        "explanation": "Metinde önce okula gidilmiş, sonra ödev yapılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_133",
+      "level": "zor",
+      "premise": "Önce okula gitti. Sonra ödevini yaptı. En son televizyon izledi.",
+      "text": "Yukarıdaki metinde en son olay hangisidir?",
+      "correct": "Televizyon izlemek",
+      "wrong1": "Okula gitmek",
+      "wrong2": "Ödev yapmak",
+      "explanation": "En son televizyon izlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde en son olay hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce okula gitti. Sonra ödevini yaptı. En son televizyon izledi."
+            }
+          ]
+        },
+        "correct": "Televizyon izlemek",
+        "wrong1": "Okula gitmek",
+        "wrong2": "Ödev yapmak",
+        "explanation": "En son televizyon izlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_134",
+      "level": "zor",
+      "premise": "I. Tabaklarını topladı.\nII. Yemeğini yedi.\nIII. Ellerini yıkadı.",
+      "text": "Yukarıdaki olaylardan hangisi mantıksız sırada verilmiştir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. olayda önce yemek yenmeli, sonra tabak toplanmalıdır; ters verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylardan hangisi mantıksız sırada verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tabaklarını topladı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yemeğini yedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ellerini yıkadı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. olayda önce yemek yenmeli, sonra tabak toplanmalıdır; ters verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_135",
+      "level": "zor",
+      "premise": "I. Tabaklarını topladı.\nII. Yemeğini yedi.\nIII. Ellerini yıkadı.",
+      "text": "Yukarıdaki tabak toplama olaylarının doğru sırası hangisidir?",
+      "correct": "II - I - III",
+      "wrong1": "I - II - III",
+      "wrong2": "III - II - I",
+      "explanation": "Önce yemek yenir, sonra tabak toplanır, en son eller yıkanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki tabak toplama olaylarının doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tabaklarını topladı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yemeğini yedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ellerini yıkadı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II - I - III",
+        "wrong1": "I - II - III",
+        "wrong2": "III - II - I",
+        "explanation": "Önce yemek yenir, sonra tabak toplanır, en son eller yıkanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_136",
+      "level": "zor",
+      "premise": "Cuma öğleden sonra kütüphanede sessizce kitap okudu. Bitince kitabı rafa koydu.",
+      "text": "Yukarıdaki kütüphane ziyareti hangi mekânda geçmiştir?",
+      "correct": "Kütüphane",
+      "wrong1": "Kitap",
+      "wrong2": "Cuma",
+      "explanation": "Kütüphane olayın geçtiği yerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kütüphane ziyareti hangi mekânda geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cuma öğleden sonra kütüphanede sessizce kitap okudu. Bitince kitabı rafa koydu."
+            }
+          ]
+        },
+        "correct": "Kütüphane",
+        "wrong1": "Kitap",
+        "wrong2": "Cuma",
+        "explanation": "Kütüphane olayın geçtiği yerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_137",
+      "level": "zor",
+      "premise": "Cuma öğleden sonra kütüphanede sessizce kitap okudu. Bitince kitabı rafa koydu.",
+      "text": "Yukarıdaki metinde olay ne zaman geçmiştir?",
+      "correct": "Cuma öğleden sonra",
+      "wrong1": "Sabah",
+      "wrong2": "Gece",
+      "explanation": "Cuma öğleden sonra zaman unsurudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde olay ne zaman geçmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cuma öğleden sonra kütüphanede sessizce kitap okudu. Bitince kitabı rafa koydu."
+            }
+          ]
+        },
+        "correct": "Cuma öğleden sonra",
+        "wrong1": "Sabah",
+        "wrong2": "Gece",
+        "explanation": "Cuma öğleden sonra zaman unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_138",
+      "level": "zor",
+      "premise": "Cuma öğleden sonra kütüphanede sessizce kitap okudu. Bitince kitabı rafa koydu.",
+      "text": "Yukarıdaki metinde kitabı rafa koyma olayı hangi olaydan sonra gelmiştir?",
+      "correct": "Kitap okuma",
+      "wrong1": "Uyuma",
+      "wrong2": "Yemek yeme",
+      "explanation": "Önce kitap okunmuş, sonra rafa konmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde kitabı rafa koyma olayı hangi olaydan sonra gelmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cuma öğleden sonra kütüphanede sessizce kitap okudu. Bitince kitabı rafa koydu."
+            }
+          ]
+        },
+        "correct": "Kitap okuma",
+        "wrong1": "Uyuma",
+        "wrong2": "Yemek yeme",
+        "explanation": "Önce kitap okunmuş, sonra rafa konmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_139",
+      "level": "zor",
+      "premise": "I. Tohum ekti.\nII. Filiz çıktı.\nIII. Meyve topladı.",
+      "text": "Yukarıdaki bahçe ekim olaylarının doğru sırası hangisidir?",
+      "correct": "I - II - III",
+      "wrong1": "III - I - II",
+      "wrong2": "II - III - I",
+      "explanation": "Önce tohum ekilir, filiz çıkar, meyve toplanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bahçe ekim olaylarının doğru sırası hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tohum ekti."
+                },
+                {
+                  "label": "II.",
+                  "text": "Filiz çıktı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Meyve topladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I - II - III",
+        "wrong1": "III - I - II",
+        "wrong2": "II - III - I",
+        "explanation": "Önce tohum ekilir, filiz çıkar, meyve toplanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_140",
+      "level": "zor",
+      "premise": "I. Tohum ekti.\nII. Filiz çıktı.\nIII. Meyve topladı.",
+      "text": "Yukarıdaki olaylardan hangisi en son gerçekleşir?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "Meyve toplama en son gerçekleşen olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylardan hangisi en son gerçekleşir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tohum ekti."
+                },
+                {
+                  "label": "II.",
+                  "text": "Filiz çıktı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Meyve topladı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "Meyve toplama en son gerçekleşen olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_141",
+      "level": "zor",
+      "premise": "I. Kim?\nII. Ne zaman?\nIII. Ne oldu?",
+      "text": "Yukarıdaki sorulardan hangisi ne oldu sorusuna karşılık gelir?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "Ne oldu sorusu olay unsurunu buldurur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sorulardan hangisi ne oldu sorusuna karşılık gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kim?"
+                },
+                {
+                  "label": "II.",
+                  "text": "Ne zaman?"
+                },
+                {
+                  "label": "III.",
+                  "text": "Ne oldu?"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "Ne oldu sorusu olay unsurunu buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_142",
+      "level": "zor",
+      "premise": "I. Kim?\nII. Ne zaman?\nIII. Nerede?",
+      "text": "Yukarıdaki sorulardan hangisi nerede sorusuna karşılık gelir?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "Nerede sorusu yer unsurunu buldurur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sorulardan hangisi nerede sorusuna karşılık gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kim?"
+                },
+                {
+                  "label": "II.",
+                  "text": "Ne zaman?"
+                },
+                {
+                  "label": "III.",
+                  "text": "Nerede?"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "Nerede sorusu yer unsurunu buldurur.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_143",
+      "level": "zor",
+      "premise": "Önce yatağa yattı. Sonra odasını topladı. En son uyudu.",
+      "text": "Yukarıdaki metinde anlatım neden anlaşılmaz?",
+      "correct": "Olaylar mantıksız sırada",
+      "wrong1": "Metin çok kısa",
+      "wrong2": "Kahraman çok",
+      "explanation": "Önce uyumalı, sonra yatak toplanmalı; verilen sıra mantıklı değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde anlatım neden anlaşılmaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce yatağa yattı. Sonra odasını topladı. En son uyudu."
+            }
+          ]
+        },
+        "correct": "Olaylar mantıksız sırada",
+        "wrong1": "Metin çok kısa",
+        "wrong2": "Kahraman çok",
+        "explanation": "Önce uyumalı, sonra yatak toplanmalı; verilen sıra mantıklı değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_144",
+      "level": "zor",
+      "premise": "Önce yatağa yattı. Sonra odasını topladı. En son uyudu.",
+      "text": "Yukarıdaki metinde doğru sıra hangisidir?",
+      "correct": "Odayı topla - uyu - yatağa yat",
+      "wrong1": "Yatağa yat - odayı topla - uyu",
+      "wrong2": "Uyu - odayı topla - yatağa yat",
+      "explanation": "Önce oda toplanır, uyuma ve yatağa yatma en son gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde doğru sıra hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce yatağa yattı. Sonra odasını topladı. En son uyudu."
+            }
+          ]
+        },
+        "correct": "Odayı topla - uyu - yatağa yat",
+        "wrong1": "Yatağa yat - odayı topla - uyu",
+        "wrong2": "Uyu - odayı topla - yatağa yat",
+        "explanation": "Önce oda toplanır, uyuma ve yatağa yatma en son gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_145",
+      "level": "zor",
+      "premise": null,
+      "text": "Hikâyede olayları sıralarken en önemli kural hangisidir?",
+      "correct": "Oluş sırasına uymak",
+      "wrong1": "Rastgele anlatmak",
+      "wrong2": "Tersten anlatmak",
+      "explanation": "Olaylar gerçekte oldukları sırayla anlatılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olayları sıralarken en önemli kural hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Oluş sırasına uymak",
+        "wrong1": "Rastgele anlatmak",
+        "wrong2": "Tersten anlatmak",
+        "explanation": "Olaylar gerçekte oldukları sırayla anlatılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_146",
+      "level": "zor",
+      "premise": null,
+      "text": "Hikâyede kahraman, yer, zaman ve olay unsurları bir arada ne sağlar?",
+      "correct": "Hikâyenin anlaşılmasını",
+      "wrong1": "Kitabın incelmesini",
+      "wrong2": "Resmin çizilmesini",
+      "explanation": "Dört unsur bir arada hikâyenin tam anlaşılmasını sağlar.",
+      "app": {
+        "question": {
+          "text": "Hikâyede kahraman, yer, zaman ve olay unsurları bir arada ne sağlar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hikâyenin anlaşılmasını",
+        "wrong1": "Kitabın incelmesini",
+        "wrong2": "Resmin çizilmesini",
+        "explanation": "Dört unsur bir arada hikâyenin tam anlaşılmasını sağlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_147",
+      "level": "zor",
+      "premise": null,
+      "text": "Olay sırasını numaralandırmak hangi durumda en çok işe yarar?",
+      "correct": "Birden fazla olay anlatılırken",
+      "wrong1": "Tek cümle yazılırken",
+      "wrong2": "Başlık seçilirken",
+      "explanation": "Birden fazla olay varken numaralar sırayı netleştirir.",
+      "app": {
+        "question": {
+          "text": "Olay sırasını numaralandırmak hangi durumda en çok işe yarar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Birden fazla olay anlatılırken",
+        "wrong1": "Tek cümle yazılırken",
+        "wrong2": "Başlık seçilirken",
+        "explanation": "Birden fazla olay varken numaralar sırayı netleştirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_148",
+      "level": "zor",
+      "premise": null,
+      "text": "Hikâyede önce-sonra ilişkisi bozulursa ne olur?",
+      "correct": "Dinleyici kafası karışır",
+      "wrong1": "Hikâye kısalır",
+      "wrong2": "Kahraman değişir",
+      "explanation": "Sıra bozulunca olaylar birbirine karışır ve hikâye anlaşılmaz.",
+      "app": {
+        "question": {
+          "text": "Hikâyede önce-sonra ilişkisi bozulursa ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dinleyici kafası karışır",
+        "wrong1": "Hikâye kısalır",
+        "wrong2": "Kahraman değişir",
+        "explanation": "Sıra bozulunca olaylar birbirine karışır ve hikâye anlaşılmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_149",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi hikâye unsurlarını ve sıralamayı doğru açıklar?",
+      "correct": "Kahraman kişidir, olaylar oluş sırasına göre anlatılır",
+      "wrong1": "Yer kişi adıdır, sıra önemsizdir",
+      "wrong2": "Zaman olaydır, tersten anlatılır",
+      "explanation": "Kahraman kişidir; olaylar oluş sırasına göre anlatılmalıdır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi hikâye unsurlarını ve sıralamayı doğru açıklar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kahraman kişidir, olaylar oluş sırasına göre anlatılır",
+        "wrong1": "Yer kişi adıdır, sıra önemsizdir",
+        "wrong2": "Zaman olaydır, tersten anlatılır",
+        "explanation": "Kahraman kişidir; olaylar oluş sırasına göre anlatılmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "olay3_150",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi olay sırası konusunda yanlıştır?",
+      "correct": "Olayları rastgele anlatmak daha iyidir",
+      "wrong1": "Önce ve sonra kelimeleri sırayı gösterir",
+      "wrong2": "Numaralar olay sırasını belirtir",
+      "explanation": "Olayları rastgele anlatmak hikâyeyi anlaşılmaz yapar.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi olay sırası konusunda yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayları rastgele anlatmak daha iyidir",
+        "wrong1": "Önce ve sonra kelimeleri sırayı gösterir",
+        "wrong2": "Numaralar olay sırasını belirtir",
+        "explanation": "Olayları rastgele anlatmak hikâyeyi anlaşılmaz yapar.",
+        "url": null
+      }
+    }
+  ]
+}

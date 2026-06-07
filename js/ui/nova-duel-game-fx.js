@@ -82,23 +82,45 @@
       return avail;
     }
 
+    function textLength() {
+      var total = 0;
+      var nodes = container.querySelectorAll(
+        '.question-preamble-body, .question-preamble-item, .question-actual-text, .question-info-text, .question-text'
+      );
+      for (var n = 0; n < nodes.length; n++) {
+        total += String(nodes[n].textContent || '').trim().length;
+      }
+      return total;
+    }
+
     function apply() {
       var avail = measureAvail();
       container.style.maxHeight = avail + 'px';
 
+      var chars = textLength();
       var scale = 1;
+      if (chars > 90) scale = Math.min(scale, 0.94);
+      if (chars > 130) scale = Math.min(scale, 0.86);
+      if (chars > 170) scale = Math.min(scale, 0.78);
+      if (chars > 210) scale = Math.min(scale, 0.72);
+      if (chars > 260) scale = Math.min(scale, 0.66);
+      if (chars > 320) scale = Math.min(scale, 0.60);
+      container.style.setProperty('--ndg-q-font-scale', scale.toFixed(3));
+
       var i;
-      for (i = 0; i < 10; i++) {
-        if (container.scrollHeight <= container.clientHeight + 4) break;
-        scale = Math.max(0.76, scale * 0.93);
+      for (i = 0; i < 28; i++) {
+        if (container.scrollHeight <= container.clientHeight + 3) break;
+        scale = Math.max(0.52, scale * 0.94);
         container.style.setProperty('--ndg-q-font-scale', scale.toFixed(3));
       }
 
-      if (container.scrollHeight > container.clientHeight + 2) {
-        container.style.overflowY = 'auto';
-      } else {
-        container.style.overflowY = 'hidden';
+      var textBox = container.querySelector('.question-text-container');
+      if (textBox) {
+        textBox.style.maxHeight = Math.max(48, avail - 8) + 'px';
+        textBox.style.overflow = 'hidden';
       }
+
+      container.style.overflowY = 'hidden';
 
       window.ndgFitDuelQuestionMedia(container);
     }

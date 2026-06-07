@@ -467,6 +467,7 @@ window.NovaAdminExport = (function(){
             <div class="toolbar">
               <button class="btn acc" id="btnReloadQuestions">Yenile</button>
               <button class="btn" id="btnNewQuestion">➕ Yeni Soru</button>
+              <button class="btn warn" id="btnSeedMetinTurleri150" title="3. sınıf Metin Türleri — 150 soru (JSON)">📥 Metin Türleri 150 Yükle</button>
             </div>
             <div class="list" id="questionsTable" style="max-height:520px; overflow:auto"></div>
           </div>
@@ -3134,6 +3135,58 @@ btnAddHeading.addEventListener('click', async ()=>{
     if(!h||!l||!t){ alert('Başlık/ders/konu seçiniz'); return; }
     newQuestionComposer(h,l,t);
   });
+
+  async function seedMetinTurleri150(){
+    const h = headingSelect.value, l = lessonSelect.value, t = topicSelect.value;
+    if(!h||!l||!t){ alert('Önce 3.SINIF → TÜRKÇE → Metin Türleri konusunu seçin.'); return; }
+    const topicName = (topicSelect.selectedOptions[0] && topicSelect.selectedOptions[0].textContent) || '';
+    if (!/metin\s*tür/i.test(topicName) && t !== 't01' && t !== 'topic_01_metin_turleri_hik_ye_edici_metin'){
+      if (!confirm('Seçili konu Metin Türleri değil gibi görünüyor: "' + topicName + '". Yine de devam edilsin mi?')) return;
+    }
+    if (!confirm('150 Metin Türleri sorusu bu konuya yüklensin mi? Firebase + Bunny (CDN açıksa) güncellenir. Aynı anahtarlar (metin3_001…) üzerine yazılır.')) return;
+    try{
+      let items = [];
+      if (window.NOVA_METIN_TURLERI_S3_150 && Array.isArray(window.NOVA_METIN_TURLERI_S3_150.questions)){
+        items = window.NOVA_METIN_TURLERI_S3_150.questions;
+      } else {
+        const res = await fetch('data/metin-turleri-s3-150.json?v=' + Date.now());
+        if (!res.ok) throw new Error('JSON bulunamadı. Yerel admin için: python scripts/push-metin-turleri-live.py çalıştırın veya data/metin-turleri-s3-150.json dosyasının admin ile aynı klasörde olduğundan emin olun.');
+        const pack = await res.json();
+        items = Array.isArray(pack.questions) ? pack.questions : [];
+      }
+      if (!items.length) throw new Error('Soru listesi boş');
+      const base = `championData/headings/${h}/lessons/${l}/topics/${t}`;
+      const updates = {};
+      items.forEach(function(it){
+        const qid = it.id || ('metin3_' + String(Math.random()).slice(2,8));
+        const app = it.app || it;
+        updates[base + '/questions/' + qid] = {
+          question: app.question || { text: it.text, info: it.premise || null, infoBlocks: it.premise ? [{ type:'text', content: it.premise }] : null },
+          correct: app.correct || it.correct,
+          wrong1: app.wrong1 || it.wrong1,
+          wrong2: app.wrong2 || it.wrong2,
+          explanation: app.explanation || it.explanation || null,
+          url: null
+        };
+        updates[base + '/questionIds/' + qid] = true;
+      });
+      updates[base + '/active'] = true;
+      await rdb.ref().update(updates);
+      if (window.NovaAdminCdn && typeof NovaAdminCdn.onUpdates === 'function' && NovaAdminCdn.storageReady && NovaAdminCdn.storageReady()){
+        await NovaAdminCdn.onUpdates(updates, rdb);
+      }
+      await reloadQuestions();
+      alert(items.length + ' soru Firebase\'e yüklendi.' + (window.NovaAdminCdn && NovaAdminCdn.storageReady && NovaAdminCdn.storageReady() ? ' Bunny CDN de güncellendi.' : ' Bunny için Storage zone + şifre girin veya push-metin-turleri-live.py kullanın.'));
+    }catch(e){
+      console.warn('seedMetinTurleri150', e);
+      alert('Toplu yükleme hatası: ' + (e && e.message ? e.message : e));
+    }
+  }
+  const btnSeedMetinTurleri150 = $('#btnSeedMetinTurleri150');
+  if (btnSeedMetinTurleri150 && !btnSeedMetinTurleri150.dataset.bound){
+    btnSeedMetinTurleri150.dataset.bound = '1';
+    btnSeedMetinTurleri150.addEventListener('click', seedMetinTurleri150);
+  }
 
   function toEmbed(u){
     if(!u) return '';

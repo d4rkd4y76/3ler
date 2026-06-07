@@ -1,0 +1,4152 @@
+{
+  "meta": {
+    "topicId": "t06",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Dilbilgisi Temelleri (Özel isim, cins isim, tekil ve çoğul isimler)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "dilb3_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: çocuk, Mert, öğrenci?",
+      "correct": "Mert",
+      "wrong1": "çocuk",
+      "wrong2": "öğrenci",
+      "explanation": "Mert, belirli bir kişi adı olduğu için özel isimdir; çocuk ve öğrenci ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: çocuk, Mert, öğrenci?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mert",
+        "wrong1": "çocuk",
+        "wrong2": "öğrenci",
+        "explanation": "Mert, belirli bir kişi adı olduğu için özel isimdir; çocuk ve öğrenci ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: mert, Mert, çocuk?",
+      "correct": "Mert",
+      "wrong1": "mert",
+      "wrong2": "çocuk",
+      "explanation": "Mert yazımı doğrudur; çünkü özel isimler büyük harfle başlar, mert biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: mert, Mert, çocuk?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mert",
+        "wrong1": "mert",
+        "wrong2": "çocuk",
+        "explanation": "Mert yazımı doğrudur; çünkü özel isimler büyük harfle başlar, mert biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_003",
+      "level": "kolay",
+      "premise": "Mert bugün kütüphaneye gitti.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Mert) hangi seçenektedir?",
+      "correct": "Mert",
+      "wrong1": "bugün",
+      "wrong2": "kütüphaneye",
+      "explanation": "Bu cümlede özel isim olan sözcük Merttir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Mert) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mert bugün kütüphaneye gitti."
+            }
+          ]
+        },
+        "correct": "Mert",
+        "wrong1": "bugün",
+        "wrong2": "kütüphaneye",
+        "explanation": "Bu cümlede özel isim olan sözcük Merttir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir kişi adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Mert, çocuk, öğrenci.",
+      "correct": "Mert",
+      "wrong1": "çocuk",
+      "wrong2": "öğrenci",
+      "explanation": "Mert tek bir kişi adı gösterdiği için büyük harfle yazılır; çocuk ve öğrenci gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir kişi adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Mert, çocuk, öğrenci.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mert",
+        "wrong1": "çocuk",
+        "wrong2": "öğrenci",
+        "explanation": "Mert tek bir kişi adı gösterdiği için büyük harfle yazılır; çocuk ve öğrenci gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_005",
+      "level": "kolay",
+      "premise": "I. Mert\nII. mert\nIII. çocuk",
+      "text": "Yukarıdaki yazımlardan Mert adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Mert yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan çocuk doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Mert adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Mert"
+                },
+                {
+                  "label": "II.",
+                  "text": "mert"
+                },
+                {
+                  "label": "III.",
+                  "text": "çocuk"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Mert yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan çocuk doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: şehir, Ankara, cadde?",
+      "correct": "Ankara",
+      "wrong1": "şehir",
+      "wrong2": "cadde",
+      "explanation": "Ankara, belirli bir şehir adı olduğu için özel isimdir; şehir ve cadde ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: şehir, Ankara, cadde?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ankara",
+        "wrong1": "şehir",
+        "wrong2": "cadde",
+        "explanation": "Ankara, belirli bir şehir adı olduğu için özel isimdir; şehir ve cadde ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: ankara, Ankara, şehir?",
+      "correct": "Ankara",
+      "wrong1": "ankara",
+      "wrong2": "şehir",
+      "explanation": "Ankara yazımı doğrudur; çünkü özel isimler büyük harfle başlar, ankara biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: ankara, Ankara, şehir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ankara",
+        "wrong1": "ankara",
+        "wrong2": "şehir",
+        "explanation": "Ankara yazımı doğrudur; çünkü özel isimler büyük harfle başlar, ankara biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_008",
+      "level": "kolay",
+      "premise": "Ankara yarın yağmurlu olacak.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Ankara) hangi seçenektedir?",
+      "correct": "Ankara",
+      "wrong1": "yarın",
+      "wrong2": "yağmurlu",
+      "explanation": "Bu cümlede özel isim olan sözcük Ankaratir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Ankara) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ankara yarın yağmurlu olacak."
+            }
+          ]
+        },
+        "correct": "Ankara",
+        "wrong1": "yarın",
+        "wrong2": "yağmurlu",
+        "explanation": "Bu cümlede özel isim olan sözcük Ankaratir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir şehir adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Ankara, şehir, cadde.",
+      "correct": "Ankara",
+      "wrong1": "şehir",
+      "wrong2": "cadde",
+      "explanation": "Ankara tek bir şehir adı gösterdiği için büyük harfle yazılır; şehir ve cadde gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir şehir adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Ankara, şehir, cadde.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ankara",
+        "wrong1": "şehir",
+        "wrong2": "cadde",
+        "explanation": "Ankara tek bir şehir adı gösterdiği için büyük harfle yazılır; şehir ve cadde gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_010",
+      "level": "kolay",
+      "premise": "I. Ankara\nII. ankara\nIII. şehir",
+      "text": "Yukarıdaki yazımlardan Ankara adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Ankara yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan şehir doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Ankara adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ankara"
+                },
+                {
+                  "label": "II.",
+                  "text": "ankara"
+                },
+                {
+                  "label": "III.",
+                  "text": "şehir"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Ankara yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan şehir doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: kız, Zeynep, kardeş?",
+      "correct": "Zeynep",
+      "wrong1": "kız",
+      "wrong2": "kardeş",
+      "explanation": "Zeynep, belirli bir kişi adı olduğu için özel isimdir; kız ve kardeş ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: kız, Zeynep, kardeş?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zeynep",
+        "wrong1": "kız",
+        "wrong2": "kardeş",
+        "explanation": "Zeynep, belirli bir kişi adı olduğu için özel isimdir; kız ve kardeş ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: zeynep, Zeynep, kız?",
+      "correct": "Zeynep",
+      "wrong1": "zeynep",
+      "wrong2": "kız",
+      "explanation": "Zeynep yazımı doğrudur; çünkü özel isimler büyük harfle başlar, zeynep biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: zeynep, Zeynep, kız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zeynep",
+        "wrong1": "zeynep",
+        "wrong2": "kız",
+        "explanation": "Zeynep yazımı doğrudur; çünkü özel isimler büyük harfle başlar, zeynep biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_013",
+      "level": "kolay",
+      "premise": "Zeynep resim yarışmasına katıldı.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Zeynep) hangi seçenektedir?",
+      "correct": "Zeynep",
+      "wrong1": "resim",
+      "wrong2": "yarışmasına",
+      "explanation": "Bu cümlede özel isim olan sözcük Zeyneptir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Zeynep) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep resim yarışmasına katıldı."
+            }
+          ]
+        },
+        "correct": "Zeynep",
+        "wrong1": "resim",
+        "wrong2": "yarışmasına",
+        "explanation": "Bu cümlede özel isim olan sözcük Zeyneptir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir kişi adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Zeynep, kız, kardeş.",
+      "correct": "Zeynep",
+      "wrong1": "kız",
+      "wrong2": "kardeş",
+      "explanation": "Zeynep tek bir kişi adı gösterdiği için büyük harfle yazılır; kız ve kardeş gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir kişi adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Zeynep, kız, kardeş.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zeynep",
+        "wrong1": "kız",
+        "wrong2": "kardeş",
+        "explanation": "Zeynep tek bir kişi adı gösterdiği için büyük harfle yazılır; kız ve kardeş gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_015",
+      "level": "kolay",
+      "premise": "I. Zeynep\nII. zeynep\nIII. kız",
+      "text": "Yukarıdaki yazımlardan Zeynep adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Zeynep yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan kız doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Zeynep adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Zeynep"
+                },
+                {
+                  "label": "II.",
+                  "text": "zeynep"
+                },
+                {
+                  "label": "III.",
+                  "text": "kız"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Zeynep yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan kız doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_016",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: il, Bursa, mahalle?",
+      "correct": "Bursa",
+      "wrong1": "il",
+      "wrong2": "mahalle",
+      "explanation": "Bursa, belirli bir şehir adı olduğu için özel isimdir; il ve mahalle ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: il, Bursa, mahalle?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bursa",
+        "wrong1": "il",
+        "wrong2": "mahalle",
+        "explanation": "Bursa, belirli bir şehir adı olduğu için özel isimdir; il ve mahalle ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_017",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: bursa, Bursa, il?",
+      "correct": "Bursa",
+      "wrong1": "bursa",
+      "wrong2": "il",
+      "explanation": "Bursa yazımı doğrudur; çünkü özel isimler büyük harfle başlar, bursa biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: bursa, Bursa, il?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bursa",
+        "wrong1": "bursa",
+        "wrong2": "il",
+        "explanation": "Bursa yazımı doğrudur; çünkü özel isimler büyük harfle başlar, bursa biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_018",
+      "level": "kolay",
+      "premise": "Bursa ipeğiyle ünlüdür.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Bursa) hangi seçenektedir?",
+      "correct": "Bursa",
+      "wrong1": "ipeğiyle",
+      "wrong2": "ünlüdür",
+      "explanation": "Bu cümlede özel isim olan sözcük Bursatir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Bursa) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bursa ipeğiyle ünlüdür."
+            }
+          ]
+        },
+        "correct": "Bursa",
+        "wrong1": "ipeğiyle",
+        "wrong2": "ünlüdür",
+        "explanation": "Bu cümlede özel isim olan sözcük Bursatir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_019",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir şehir adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Bursa, il, mahalle.",
+      "correct": "Bursa",
+      "wrong1": "il",
+      "wrong2": "mahalle",
+      "explanation": "Bursa tek bir şehir adı gösterdiği için büyük harfle yazılır; il ve mahalle gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir şehir adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Bursa, il, mahalle.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bursa",
+        "wrong1": "il",
+        "wrong2": "mahalle",
+        "explanation": "Bursa tek bir şehir adı gösterdiği için büyük harfle yazılır; il ve mahalle gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_020",
+      "level": "kolay",
+      "premise": "I. Bursa\nII. bursa\nIII. il",
+      "text": "Yukarıdaki yazımlardan Bursa adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Bursa yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan il doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Bursa adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Bursa"
+                },
+                {
+                  "label": "II.",
+                  "text": "bursa"
+                },
+                {
+                  "label": "III.",
+                  "text": "il"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Bursa yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan il doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: nehir, Kızılırmak, su?",
+      "correct": "Kızılırmak",
+      "wrong1": "nehir",
+      "wrong2": "su",
+      "explanation": "Kızılırmak, belirli bir nehir adı olduğu için özel isimdir; nehir ve su ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: nehir, Kızılırmak, su?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kızılırmak",
+        "wrong1": "nehir",
+        "wrong2": "su",
+        "explanation": "Kızılırmak, belirli bir nehir adı olduğu için özel isimdir; nehir ve su ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: kızılırmak, Kızılırmak, nehir?",
+      "correct": "Kızılırmak",
+      "wrong1": "kızılırmak",
+      "wrong2": "nehir",
+      "explanation": "Kızılırmak yazımı doğrudur; çünkü özel isimler büyük harfle başlar, kızılırmak biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: kızılırmak, Kızılırmak, nehir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kızılırmak",
+        "wrong1": "kızılırmak",
+        "wrong2": "nehir",
+        "explanation": "Kızılırmak yazımı doğrudur; çünkü özel isimler büyük harfle başlar, kızılırmak biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_023",
+      "level": "kolay",
+      "premise": "Kızılırmak ülkemizin uzun akarsularındandır.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Kızılırmak) hangi seçenektedir?",
+      "correct": "Kızılırmak",
+      "wrong1": "ülkemizin",
+      "wrong2": "akarsularındandır",
+      "explanation": "Bu cümlede özel isim olan sözcük Kızılırmaktir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Kızılırmak) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kızılırmak ülkemizin uzun akarsularındandır."
+            }
+          ]
+        },
+        "correct": "Kızılırmak",
+        "wrong1": "ülkemizin",
+        "wrong2": "akarsularındandır",
+        "explanation": "Bu cümlede özel isim olan sözcük Kızılırmaktir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir nehir adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Kızılırmak, nehir, su.",
+      "correct": "Kızılırmak",
+      "wrong1": "nehir",
+      "wrong2": "su",
+      "explanation": "Kızılırmak tek bir nehir adı gösterdiği için büyük harfle yazılır; nehir ve su gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir nehir adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Kızılırmak, nehir, su.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kızılırmak",
+        "wrong1": "nehir",
+        "wrong2": "su",
+        "explanation": "Kızılırmak tek bir nehir adı gösterdiği için büyük harfle yazılır; nehir ve su gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_025",
+      "level": "kolay",
+      "premise": "I. Kızılırmak\nII. kızılırmak\nIII. nehir",
+      "text": "Yukarıdaki yazımlardan Kızılırmak adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Kızılırmak yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan nehir doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Kızılırmak adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kızılırmak"
+                },
+                {
+                  "label": "II.",
+                  "text": "kızılırmak"
+                },
+                {
+                  "label": "III.",
+                  "text": "nehir"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Kızılırmak yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan nehir doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: dağ, Uludağ, tepe?",
+      "correct": "Uludağ",
+      "wrong1": "dağ",
+      "wrong2": "tepe",
+      "explanation": "Uludağ, belirli bir dağ adı olduğu için özel isimdir; dağ ve tepe ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: dağ, Uludağ, tepe?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Uludağ",
+        "wrong1": "dağ",
+        "wrong2": "tepe",
+        "explanation": "Uludağ, belirli bir dağ adı olduğu için özel isimdir; dağ ve tepe ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: uludağ, Uludağ, dağ?",
+      "correct": "Uludağ",
+      "wrong1": "uludağ",
+      "wrong2": "dağ",
+      "explanation": "Uludağ yazımı doğrudur; çünkü özel isimler büyük harfle başlar, uludağ biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: uludağ, Uludağ, dağ?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Uludağ",
+        "wrong1": "uludağ",
+        "wrong2": "dağ",
+        "explanation": "Uludağ yazımı doğrudur; çünkü özel isimler büyük harfle başlar, uludağ biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_028",
+      "level": "kolay",
+      "premise": "Kışın Uludağ'a çok sayıda ziyaretçi gelir.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Uludağ) hangi seçenektedir?",
+      "correct": "Uludağ",
+      "wrong1": "kışın",
+      "wrong2": "ziyaretçi",
+      "explanation": "Bu cümlede özel isim olan sözcük Uludağtir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Uludağ) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kışın Uludağ'a çok sayıda ziyaretçi gelir."
+            }
+          ]
+        },
+        "correct": "Uludağ",
+        "wrong1": "kışın",
+        "wrong2": "ziyaretçi",
+        "explanation": "Bu cümlede özel isim olan sözcük Uludağtir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir dağ adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Uludağ, dağ, tepe.",
+      "correct": "Uludağ",
+      "wrong1": "dağ",
+      "wrong2": "tepe",
+      "explanation": "Uludağ tek bir dağ adı gösterdiği için büyük harfle yazılır; dağ ve tepe gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir dağ adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Uludağ, dağ, tepe.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Uludağ",
+        "wrong1": "dağ",
+        "wrong2": "tepe",
+        "explanation": "Uludağ tek bir dağ adı gösterdiği için büyük harfle yazılır; dağ ve tepe gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_030",
+      "level": "kolay",
+      "premise": "I. Uludağ\nII. uludağ\nIII. dağ",
+      "text": "Yukarıdaki yazımlardan Uludağ adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Uludağ yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan dağ doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Uludağ adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Uludağ"
+                },
+                {
+                  "label": "II.",
+                  "text": "uludağ"
+                },
+                {
+                  "label": "III.",
+                  "text": "dağ"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Uludağ yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan dağ doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_031",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: okul, Yıldız İlkokulu, sınıf?",
+      "correct": "Yıldız İlkokulu",
+      "wrong1": "okul",
+      "wrong2": "sınıf",
+      "explanation": "Yıldız İlkokulu, belirli bir okul adı olduğu için özel isimdir; okul ve sınıf ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: okul, Yıldız İlkokulu, sınıf?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yıldız İlkokulu",
+        "wrong1": "okul",
+        "wrong2": "sınıf",
+        "explanation": "Yıldız İlkokulu, belirli bir okul adı olduğu için özel isimdir; okul ve sınıf ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_032",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: yıldız ilkokulu, Yıldız İlkokulu, okul?",
+      "correct": "Yıldız İlkokulu",
+      "wrong1": "yıldız ilkokulu",
+      "wrong2": "okul",
+      "explanation": "Yıldız İlkokulu yazımı doğrudur; çünkü özel isimler büyük harfle başlar, yıldız ilkokulu biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: yıldız ilkokulu, Yıldız İlkokulu, okul?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yıldız İlkokulu",
+        "wrong1": "yıldız ilkokulu",
+        "wrong2": "okul",
+        "explanation": "Yıldız İlkokulu yazımı doğrudur; çünkü özel isimler büyük harfle başlar, yıldız ilkokulu biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_033",
+      "level": "kolay",
+      "premise": "Yıldız İlkokulu bu yıl kitap şenliği düzenledi.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Yıldız İlkokulu) hangi seçenektedir?",
+      "correct": "Yıldız İlkokulu",
+      "wrong1": "bu yıl",
+      "wrong2": "kitap",
+      "explanation": "Bu cümlede özel isim olan sözcük Yıldız İlkokulutir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Yıldız İlkokulu) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yıldız İlkokulu bu yıl kitap şenliği düzenledi."
+            }
+          ]
+        },
+        "correct": "Yıldız İlkokulu",
+        "wrong1": "bu yıl",
+        "wrong2": "kitap",
+        "explanation": "Bu cümlede özel isim olan sözcük Yıldız İlkokulutir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_034",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir okul adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Yıldız İlkokulu, okul, sınıf.",
+      "correct": "Yıldız İlkokulu",
+      "wrong1": "okul",
+      "wrong2": "sınıf",
+      "explanation": "Yıldız İlkokulu tek bir okul adı gösterdiği için büyük harfle yazılır; okul ve sınıf gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir okul adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Yıldız İlkokulu, okul, sınıf.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yıldız İlkokulu",
+        "wrong1": "okul",
+        "wrong2": "sınıf",
+        "explanation": "Yıldız İlkokulu tek bir okul adı gösterdiği için büyük harfle yazılır; okul ve sınıf gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_035",
+      "level": "kolay",
+      "premise": "I. Yıldız İlkokulu\nII. yıldız ilkokulu\nIII. okul",
+      "text": "Yukarıdaki yazımlardan Yıldız İlkokulu adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Yıldız İlkokulu yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan okul doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Yıldız İlkokulu adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yıldız İlkokulu"
+                },
+                {
+                  "label": "II.",
+                  "text": "yıldız ilkokulu"
+                },
+                {
+                  "label": "III.",
+                  "text": "okul"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Yıldız İlkokulu yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan okul doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_036",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: göl, Van Gölü, kıyı?",
+      "correct": "Van Gölü",
+      "wrong1": "göl",
+      "wrong2": "kıyı",
+      "explanation": "Van Gölü, belirli bir göl adı olduğu için özel isimdir; göl ve kıyı ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: göl, Van Gölü, kıyı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Van Gölü",
+        "wrong1": "göl",
+        "wrong2": "kıyı",
+        "explanation": "Van Gölü, belirli bir göl adı olduğu için özel isimdir; göl ve kıyı ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_037",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: van gölü, Van Gölü, göl?",
+      "correct": "Van Gölü",
+      "wrong1": "van gölü",
+      "wrong2": "göl",
+      "explanation": "Van Gölü yazımı doğrudur; çünkü özel isimler büyük harfle başlar, van gölü biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: van gölü, Van Gölü, göl?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Van Gölü",
+        "wrong1": "van gölü",
+        "wrong2": "göl",
+        "explanation": "Van Gölü yazımı doğrudur; çünkü özel isimler büyük harfle başlar, van gölü biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_038",
+      "level": "kolay",
+      "premise": "Van Gölü'nün suyu sodalıdır.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Van Gölü) hangi seçenektedir?",
+      "correct": "Van Gölü",
+      "wrong1": "suyu",
+      "wrong2": "sodalıdır",
+      "explanation": "Bu cümlede özel isim olan sözcük Van Gölütir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Van Gölü) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Van Gölü'nün suyu sodalıdır."
+            }
+          ]
+        },
+        "correct": "Van Gölü",
+        "wrong1": "suyu",
+        "wrong2": "sodalıdır",
+        "explanation": "Bu cümlede özel isim olan sözcük Van Gölütir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_039",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir göl adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Van Gölü, göl, kıyı.",
+      "correct": "Van Gölü",
+      "wrong1": "göl",
+      "wrong2": "kıyı",
+      "explanation": "Van Gölü tek bir göl adı gösterdiği için büyük harfle yazılır; göl ve kıyı gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir göl adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Van Gölü, göl, kıyı.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Van Gölü",
+        "wrong1": "göl",
+        "wrong2": "kıyı",
+        "explanation": "Van Gölü tek bir göl adı gösterdiği için büyük harfle yazılır; göl ve kıyı gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_040",
+      "level": "kolay",
+      "premise": "I. Van Gölü\nII. van gölü\nIII. göl",
+      "text": "Yukarıdaki yazımlardan Van Gölü adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Van Gölü yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan göl doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Van Gölü adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Van Gölü"
+                },
+                {
+                  "label": "II.",
+                  "text": "van gölü"
+                },
+                {
+                  "label": "III.",
+                  "text": "göl"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Van Gölü yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan göl doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_041",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: bayram, Cumhuriyet Bayramı, tören?",
+      "correct": "Cumhuriyet Bayramı",
+      "wrong1": "bayram",
+      "wrong2": "tören",
+      "explanation": "Cumhuriyet Bayramı, belirli bir bayram adı olduğu için özel isimdir; bayram ve tören ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: bayram, Cumhuriyet Bayramı, tören?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cumhuriyet Bayramı",
+        "wrong1": "bayram",
+        "wrong2": "tören",
+        "explanation": "Cumhuriyet Bayramı, belirli bir bayram adı olduğu için özel isimdir; bayram ve tören ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_042",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: cumhuriyet bayramı, Cumhuriyet Bayramı, bayram?",
+      "correct": "Cumhuriyet Bayramı",
+      "wrong1": "cumhuriyet bayramı",
+      "wrong2": "bayram",
+      "explanation": "Cumhuriyet Bayramı yazımı doğrudur; çünkü özel isimler büyük harfle başlar, cumhuriyet bayramı biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: cumhuriyet bayramı, Cumhuriyet Bayramı, bayram?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cumhuriyet Bayramı",
+        "wrong1": "cumhuriyet bayramı",
+        "wrong2": "bayram",
+        "explanation": "Cumhuriyet Bayramı yazımı doğrudur; çünkü özel isimler büyük harfle başlar, cumhuriyet bayramı biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_043",
+      "level": "kolay",
+      "premise": "Cumhuriyet Bayramı'nda şiir okuduk.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Cumhuriyet Bayramı) hangi seçenektedir?",
+      "correct": "Cumhuriyet Bayramı",
+      "wrong1": "şiir",
+      "wrong2": "okuduk",
+      "explanation": "Bu cümlede özel isim olan sözcük Cumhuriyet Bayramıtir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Cumhuriyet Bayramı) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cumhuriyet Bayramı'nda şiir okuduk."
+            }
+          ]
+        },
+        "correct": "Cumhuriyet Bayramı",
+        "wrong1": "şiir",
+        "wrong2": "okuduk",
+        "explanation": "Bu cümlede özel isim olan sözcük Cumhuriyet Bayramıtir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_044",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir bayram adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Cumhuriyet Bayramı, bayram, tören.",
+      "correct": "Cumhuriyet Bayramı",
+      "wrong1": "bayram",
+      "wrong2": "tören",
+      "explanation": "Cumhuriyet Bayramı tek bir bayram adı gösterdiği için büyük harfle yazılır; bayram ve tören gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir bayram adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Cumhuriyet Bayramı, bayram, tören.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cumhuriyet Bayramı",
+        "wrong1": "bayram",
+        "wrong2": "tören",
+        "explanation": "Cumhuriyet Bayramı tek bir bayram adı gösterdiği için büyük harfle yazılır; bayram ve tören gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_045",
+      "level": "kolay",
+      "premise": "I. Cumhuriyet Bayramı\nII. cumhuriyet bayramı\nIII. bayram",
+      "text": "Yukarıdaki yazımlardan Cumhuriyet Bayramı adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Cumhuriyet Bayramı yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan bayram doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Cumhuriyet Bayramı adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Cumhuriyet Bayramı"
+                },
+                {
+                  "label": "II.",
+                  "text": "cumhuriyet bayramı"
+                },
+                {
+                  "label": "III.",
+                  "text": "bayram"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Cumhuriyet Bayramı yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan bayram doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_046",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: traverten, Pamukkale, vadi?",
+      "correct": "Pamukkale",
+      "wrong1": "traverten",
+      "wrong2": "vadi",
+      "explanation": "Pamukkale, belirli bir yer adı olduğu için özel isimdir; traverten ve vadi ise genel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sözcüklerden hangisi özel isimdir: traverten, Pamukkale, vadi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Pamukkale",
+        "wrong1": "traverten",
+        "wrong2": "vadi",
+        "explanation": "Pamukkale, belirli bir yer adı olduğu için özel isimdir; traverten ve vadi ise genel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_047",
+      "level": "kolay",
+      "premise": null,
+      "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: pamukkale, Pamukkale, traverten?",
+      "correct": "Pamukkale",
+      "wrong1": "pamukkale",
+      "wrong2": "traverten",
+      "explanation": "Pamukkale yazımı doğrudur; çünkü özel isimler büyük harfle başlar, pamukkale biçimi ise kuralı bozmuştur.",
+      "app": {
+        "question": {
+          "text": "Özel isimler büyük harfle başlar. Bu kurala göre hangisi doğru yazılmıştır: pamukkale, Pamukkale, traverten?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Pamukkale",
+        "wrong1": "pamukkale",
+        "wrong2": "traverten",
+        "explanation": "Pamukkale yazımı doğrudur; çünkü özel isimler büyük harfle başlar, pamukkale biçimi ise kuralı bozmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_048",
+      "level": "kolay",
+      "premise": "Pamukkale'yi görmek isteyen turistler erken geldi.",
+      "text": "Yukarıdaki cümlede geçen özel isim (Pamukkale) hangi seçenektedir?",
+      "correct": "Pamukkale",
+      "wrong1": "görmek",
+      "wrong2": "turistler",
+      "explanation": "Bu cümlede özel isim olan sözcük Pamukkaletir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede geçen özel isim (Pamukkale) hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pamukkale'yi görmek isteyen turistler erken geldi."
+            }
+          ]
+        },
+        "correct": "Pamukkale",
+        "wrong1": "görmek",
+        "wrong2": "turistler",
+        "explanation": "Bu cümlede özel isim olan sözcük Pamukkaletir; öteki seçenekler yalnızca zamanı ya da durumu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_049",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir yer adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Pamukkale, traverten, vadi.",
+      "correct": "Pamukkale",
+      "wrong1": "traverten",
+      "wrong2": "vadi",
+      "explanation": "Pamukkale tek bir yer adı gösterdiği için büyük harfle yazılır; traverten ve vadi gibi sözcükler cins addır.",
+      "app": {
+        "question": {
+          "text": "Bir yer adı yazarken hangi sözcük ilk harfi büyük olacak biçimde kullanılmalıdır? Örnek seçenekler: Pamukkale, traverten, vadi.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Pamukkale",
+        "wrong1": "traverten",
+        "wrong2": "vadi",
+        "explanation": "Pamukkale tek bir yer adı gösterdiği için büyük harfle yazılır; traverten ve vadi gibi sözcükler cins addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_050",
+      "level": "kolay",
+      "premise": "I. Pamukkale\nII. pamukkale\nIII. traverten",
+      "text": "Yukarıdaki yazımlardan Pamukkale adının doğru yazımı hangisidir?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "Listede yalnızca I. satırdaki Pamukkale yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan traverten doğru cevap değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan Pamukkale adının doğru yazımı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Pamukkale"
+                },
+                {
+                  "label": "II.",
+                  "text": "pamukkale"
+                },
+                {
+                  "label": "III.",
+                  "text": "traverten"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "Listede yalnızca I. satırdaki Pamukkale yazımı kurala uygundur; küçük harfle yazılan biçim ve cins ad olan traverten doğru cevap değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_051",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Ali, masa, Ankara?",
+      "correct": "masa",
+      "wrong1": "Ali",
+      "wrong2": "Ankara",
+      "explanation": "masa aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Ali ve Ankara ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Ali, masa, Ankara?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "masa",
+        "wrong1": "Ali",
+        "wrong2": "Ankara",
+        "explanation": "masa aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Ali ve Ankara ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_052",
+      "level": "orta",
+      "premise": "Sınıftaki masa boyanacak.",
+      "text": "Yukarıdaki cümlede cins isim olan \"masa\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "masa",
+      "wrong1": "Sınıftaki",
+      "wrong2": "boyanacak",
+      "explanation": "Cümlede tür bildiren sözcük masadur; Sınıftaki ve boyanacak cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"masa\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıftaki masa boyanacak."
+            }
+          ]
+        },
+        "correct": "masa",
+        "wrong1": "Sınıftaki",
+        "wrong2": "boyanacak",
+        "explanation": "Cümlede tür bildiren sözcük masadur; Sınıftaki ve boyanacak cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_053",
+      "level": "orta",
+      "premise": null,
+      "text": "\"masa\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "masa belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"masa\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "masa belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_054",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: masa.",
+      "correct": "masa",
+      "wrong1": "Ali",
+      "wrong2": "Ankara",
+      "explanation": "masa bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: masa.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "masa",
+        "wrong1": "Ali",
+        "wrong2": "Ankara",
+        "explanation": "masa bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_055",
+      "level": "orta",
+      "premise": "I. Ali\nII. masa\nIII. Ankara",
+      "text": "Yukarıdaki sözcüklerden masa türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki masa ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden masa türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ali"
+                },
+                {
+                  "label": "II.",
+                  "text": "masa"
+                },
+                {
+                  "label": "III.",
+                  "text": "Ankara"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki masa ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_056",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Merve, kedi, Bursa?",
+      "correct": "kedi",
+      "wrong1": "Merve",
+      "wrong2": "Bursa",
+      "explanation": "kedi aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Merve ve Bursa ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Merve, kedi, Bursa?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kedi",
+        "wrong1": "Merve",
+        "wrong2": "Bursa",
+        "explanation": "kedi aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Merve ve Bursa ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_057",
+      "level": "orta",
+      "premise": "Minik kedi pencerenin önünde uyudu.",
+      "text": "Yukarıdaki cümlede cins isim olan \"kedi\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "kedi",
+      "wrong1": "Minik",
+      "wrong2": "pencerenin",
+      "explanation": "Cümlede tür bildiren sözcük kedidur; Minik ve pencerenin cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"kedi\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Minik kedi pencerenin önünde uyudu."
+            }
+          ]
+        },
+        "correct": "kedi",
+        "wrong1": "Minik",
+        "wrong2": "pencerenin",
+        "explanation": "Cümlede tür bildiren sözcük kedidur; Minik ve pencerenin cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_058",
+      "level": "orta",
+      "premise": null,
+      "text": "\"kedi\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "kedi belirli tek bir varlığı değil, aynı türden tüm hayvan adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"kedi\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "kedi belirli tek bir varlığı değil, aynı türden tüm hayvan adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_059",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: kedi.",
+      "correct": "kedi",
+      "wrong1": "Merve",
+      "wrong2": "Bursa",
+      "explanation": "kedi bir hayvan adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: kedi.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kedi",
+        "wrong1": "Merve",
+        "wrong2": "Bursa",
+        "explanation": "kedi bir hayvan adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_060",
+      "level": "orta",
+      "premise": "I. Merve\nII. kedi\nIII. Bursa",
+      "text": "Yukarıdaki sözcüklerden kedi türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki kedi ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden kedi türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Merve"
+                },
+                {
+                  "label": "II.",
+                  "text": "kedi"
+                },
+                {
+                  "label": "III.",
+                  "text": "Bursa"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki kedi ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_061",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Ayla, öğretmen, Van?",
+      "correct": "öğretmen",
+      "wrong1": "Ayla",
+      "wrong2": "Van",
+      "explanation": "öğretmen aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Ayla ve Van ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Ayla, öğretmen, Van?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğretmen",
+        "wrong1": "Ayla",
+        "wrong2": "Van",
+        "explanation": "öğretmen aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Ayla ve Van ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_062",
+      "level": "orta",
+      "premise": "Yeni öğretmen bizi güler yüzle karşıladı.",
+      "text": "Yukarıdaki cümlede cins isim olan \"öğretmen\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "öğretmen",
+      "wrong1": "Yeni",
+      "wrong2": "bizi",
+      "explanation": "Cümlede tür bildiren sözcük öğretmendur; Yeni ve bizi cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"öğretmen\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yeni öğretmen bizi güler yüzle karşıladı."
+            }
+          ]
+        },
+        "correct": "öğretmen",
+        "wrong1": "Yeni",
+        "wrong2": "bizi",
+        "explanation": "Cümlede tür bildiren sözcük öğretmendur; Yeni ve bizi cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_063",
+      "level": "orta",
+      "premise": null,
+      "text": "\"öğretmen\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "öğretmen belirli tek bir varlığı değil, aynı türden tüm meslek adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"öğretmen\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "öğretmen belirli tek bir varlığı değil, aynı türden tüm meslek adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_064",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: öğretmen.",
+      "correct": "öğretmen",
+      "wrong1": "Ayla",
+      "wrong2": "Van",
+      "explanation": "öğretmen bir meslek adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: öğretmen.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğretmen",
+        "wrong1": "Ayla",
+        "wrong2": "Van",
+        "explanation": "öğretmen bir meslek adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_065",
+      "level": "orta",
+      "premise": "I. Ayla\nII. öğretmen\nIII. Van",
+      "text": "Yukarıdaki sözcüklerden öğretmen türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki öğretmen ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden öğretmen türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ayla"
+                },
+                {
+                  "label": "II.",
+                  "text": "öğretmen"
+                },
+                {
+                  "label": "III.",
+                  "text": "Van"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki öğretmen ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_066",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Efe, kalem, Konya?",
+      "correct": "kalem",
+      "wrong1": "Efe",
+      "wrong2": "Konya",
+      "explanation": "kalem aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Efe ve Konya ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Efe, kalem, Konya?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kalem",
+        "wrong1": "Efe",
+        "wrong2": "Konya",
+        "explanation": "kalem aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Efe ve Konya ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_067",
+      "level": "orta",
+      "premise": "Mavi kalem sıranın altına düştü.",
+      "text": "Yukarıdaki cümlede cins isim olan \"kalem\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "kalem",
+      "wrong1": "Mavi",
+      "wrong2": "sıranın",
+      "explanation": "Cümlede tür bildiren sözcük kalemdur; Mavi ve sıranın cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"kalem\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mavi kalem sıranın altına düştü."
+            }
+          ]
+        },
+        "correct": "kalem",
+        "wrong1": "Mavi",
+        "wrong2": "sıranın",
+        "explanation": "Cümlede tür bildiren sözcük kalemdur; Mavi ve sıranın cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_068",
+      "level": "orta",
+      "premise": null,
+      "text": "\"kalem\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "kalem belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"kalem\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "kalem belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_069",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: kalem.",
+      "correct": "kalem",
+      "wrong1": "Efe",
+      "wrong2": "Konya",
+      "explanation": "kalem bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: kalem.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kalem",
+        "wrong1": "Efe",
+        "wrong2": "Konya",
+        "explanation": "kalem bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_070",
+      "level": "orta",
+      "premise": "I. Efe\nII. kalem\nIII. Konya",
+      "text": "Yukarıdaki sözcüklerden kalem türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki kalem ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden kalem türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Efe"
+                },
+                {
+                  "label": "II.",
+                  "text": "kalem"
+                },
+                {
+                  "label": "III.",
+                  "text": "Konya"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki kalem ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_071",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Deniz, park, Kars?",
+      "correct": "park",
+      "wrong1": "Deniz",
+      "wrong2": "Kars",
+      "explanation": "park aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Deniz ve Kars ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Deniz, park, Kars?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "park",
+        "wrong1": "Deniz",
+        "wrong2": "Kars",
+        "explanation": "park aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Deniz ve Kars ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_072",
+      "level": "orta",
+      "premise": "Mahalledeki park akşam serin olur.",
+      "text": "Yukarıdaki cümlede cins isim olan \"park\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "park",
+      "wrong1": "Mahalledeki",
+      "wrong2": "akşam",
+      "explanation": "Cümlede tür bildiren sözcük parkdur; Mahalledeki ve akşam cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"park\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mahalledeki park akşam serin olur."
+            }
+          ]
+        },
+        "correct": "park",
+        "wrong1": "Mahalledeki",
+        "wrong2": "akşam",
+        "explanation": "Cümlede tür bildiren sözcük parkdur; Mahalledeki ve akşam cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_073",
+      "level": "orta",
+      "premise": null,
+      "text": "\"park\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "park belirli tek bir varlığı değil, aynı türden tüm yer adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"park\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "park belirli tek bir varlığı değil, aynı türden tüm yer adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_074",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: park.",
+      "correct": "park",
+      "wrong1": "Deniz",
+      "wrong2": "Kars",
+      "explanation": "park bir yer adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: park.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "park",
+        "wrong1": "Deniz",
+        "wrong2": "Kars",
+        "explanation": "park bir yer adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_075",
+      "level": "orta",
+      "premise": "I. Deniz\nII. park\nIII. Kars",
+      "text": "Yukarıdaki sözcüklerden park türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki park ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden park türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Deniz"
+                },
+                {
+                  "label": "II.",
+                  "text": "park"
+                },
+                {
+                  "label": "III.",
+                  "text": "Kars"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki park ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_076",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Elif, çiçek, Uludağ?",
+      "correct": "çiçek",
+      "wrong1": "Elif",
+      "wrong2": "Uludağ",
+      "explanation": "çiçek aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Elif ve Uludağ ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Elif, çiçek, Uludağ?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çiçek",
+        "wrong1": "Elif",
+        "wrong2": "Uludağ",
+        "explanation": "çiçek aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Elif ve Uludağ ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_077",
+      "level": "orta",
+      "premise": "Saksıdaki çiçek bugün açtı.",
+      "text": "Yukarıdaki cümlede cins isim olan \"çiçek\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "çiçek",
+      "wrong1": "Saksıdaki",
+      "wrong2": "bugün",
+      "explanation": "Cümlede tür bildiren sözcük çiçekdur; Saksıdaki ve bugün cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"çiçek\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Saksıdaki çiçek bugün açtı."
+            }
+          ]
+        },
+        "correct": "çiçek",
+        "wrong1": "Saksıdaki",
+        "wrong2": "bugün",
+        "explanation": "Cümlede tür bildiren sözcük çiçekdur; Saksıdaki ve bugün cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_078",
+      "level": "orta",
+      "premise": null,
+      "text": "\"çiçek\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "çiçek belirli tek bir varlığı değil, aynı türden tüm bitki adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"çiçek\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "çiçek belirli tek bir varlığı değil, aynı türden tüm bitki adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_079",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: çiçek.",
+      "correct": "çiçek",
+      "wrong1": "Elif",
+      "wrong2": "Uludağ",
+      "explanation": "çiçek bir bitki adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: çiçek.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çiçek",
+        "wrong1": "Elif",
+        "wrong2": "Uludağ",
+        "explanation": "çiçek bir bitki adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_080",
+      "level": "orta",
+      "premise": "I. Elif\nII. çiçek\nIII. Uludağ",
+      "text": "Yukarıdaki sözcüklerden çiçek türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki çiçek ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden çiçek türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Elif"
+                },
+                {
+                  "label": "II.",
+                  "text": "çiçek"
+                },
+                {
+                  "label": "III.",
+                  "text": "Uludağ"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki çiçek ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_081",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Aras, kitap, Pamukkale?",
+      "correct": "kitap",
+      "wrong1": "Aras",
+      "wrong2": "Pamukkale",
+      "explanation": "kitap aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Aras ve Pamukkale ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Aras, kitap, Pamukkale?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kitap",
+        "wrong1": "Aras",
+        "wrong2": "Pamukkale",
+        "explanation": "kitap aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Aras ve Pamukkale ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_082",
+      "level": "orta",
+      "premise": "Kalın kitap çantama sığmadı.",
+      "text": "Yukarıdaki cümlede cins isim olan \"kitap\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "kitap",
+      "wrong1": "Kalın",
+      "wrong2": "çantama",
+      "explanation": "Cümlede tür bildiren sözcük kitapdur; Kalın ve çantama cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"kitap\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kalın kitap çantama sığmadı."
+            }
+          ]
+        },
+        "correct": "kitap",
+        "wrong1": "Kalın",
+        "wrong2": "çantama",
+        "explanation": "Cümlede tür bildiren sözcük kitapdur; Kalın ve çantama cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_083",
+      "level": "orta",
+      "premise": null,
+      "text": "\"kitap\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "kitap belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"kitap\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "kitap belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_084",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: kitap.",
+      "correct": "kitap",
+      "wrong1": "Aras",
+      "wrong2": "Pamukkale",
+      "explanation": "kitap bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: kitap.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kitap",
+        "wrong1": "Aras",
+        "wrong2": "Pamukkale",
+        "explanation": "kitap bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_085",
+      "level": "orta",
+      "premise": "I. Aras\nII. kitap\nIII. Pamukkale",
+      "text": "Yukarıdaki sözcüklerden kitap türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki kitap ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden kitap türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Aras"
+                },
+                {
+                  "label": "II.",
+                  "text": "kitap"
+                },
+                {
+                  "label": "III.",
+                  "text": "Pamukkale"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki kitap ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_086",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Nil, öğrenci, Ankara?",
+      "correct": "öğrenci",
+      "wrong1": "Nil",
+      "wrong2": "Ankara",
+      "explanation": "öğrenci aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Nil ve Ankara ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Nil, öğrenci, Ankara?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğrenci",
+        "wrong1": "Nil",
+        "wrong2": "Ankara",
+        "explanation": "öğrenci aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Nil ve Ankara ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_087",
+      "level": "orta",
+      "premise": "Çalışkan öğrenci soruyu hemen çözdü.",
+      "text": "Yukarıdaki cümlede cins isim olan \"öğrenci\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "öğrenci",
+      "wrong1": "Çalışkan",
+      "wrong2": "soruyu",
+      "explanation": "Cümlede tür bildiren sözcük öğrencidur; Çalışkan ve soruyu cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"öğrenci\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çalışkan öğrenci soruyu hemen çözdü."
+            }
+          ]
+        },
+        "correct": "öğrenci",
+        "wrong1": "Çalışkan",
+        "wrong2": "soruyu",
+        "explanation": "Cümlede tür bildiren sözcük öğrencidur; Çalışkan ve soruyu cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_088",
+      "level": "orta",
+      "premise": null,
+      "text": "\"öğrenci\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "öğrenci belirli tek bir varlığı değil, aynı türden tüm insan adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"öğrenci\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "öğrenci belirli tek bir varlığı değil, aynı türden tüm insan adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_089",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: öğrenci.",
+      "correct": "öğrenci",
+      "wrong1": "Nil",
+      "wrong2": "Ankara",
+      "explanation": "öğrenci bir insan adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: öğrenci.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "öğrenci",
+        "wrong1": "Nil",
+        "wrong2": "Ankara",
+        "explanation": "öğrenci bir insan adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_090",
+      "level": "orta",
+      "premise": "I. Nil\nII. öğrenci\nIII. Ankara",
+      "text": "Yukarıdaki sözcüklerden öğrenci türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki öğrenci ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden öğrenci türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Nil"
+                },
+                {
+                  "label": "II.",
+                  "text": "öğrenci"
+                },
+                {
+                  "label": "III.",
+                  "text": "Ankara"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki öğrenci ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_091",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Zeynep, çanta, Bolu?",
+      "correct": "çanta",
+      "wrong1": "Zeynep",
+      "wrong2": "Bolu",
+      "explanation": "çanta aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Zeynep ve Bolu ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Zeynep, çanta, Bolu?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çanta",
+        "wrong1": "Zeynep",
+        "wrong2": "Bolu",
+        "explanation": "çanta aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Zeynep ve Bolu ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_092",
+      "level": "orta",
+      "premise": "Ağır çanta askıda duruyor.",
+      "text": "Yukarıdaki cümlede cins isim olan \"çanta\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "çanta",
+      "wrong1": "Ağır",
+      "wrong2": "askıda",
+      "explanation": "Cümlede tür bildiren sözcük çantadur; Ağır ve askıda cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"çanta\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağır çanta askıda duruyor."
+            }
+          ]
+        },
+        "correct": "çanta",
+        "wrong1": "Ağır",
+        "wrong2": "askıda",
+        "explanation": "Cümlede tür bildiren sözcük çantadur; Ağır ve askıda cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_093",
+      "level": "orta",
+      "premise": null,
+      "text": "\"çanta\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "çanta belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"çanta\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "çanta belirli tek bir varlığı değil, aynı türden tüm eşya adı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_094",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: çanta.",
+      "correct": "çanta",
+      "wrong1": "Zeynep",
+      "wrong2": "Bolu",
+      "explanation": "çanta bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: çanta.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çanta",
+        "wrong1": "Zeynep",
+        "wrong2": "Bolu",
+        "explanation": "çanta bir eşya adı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_095",
+      "level": "orta",
+      "premise": "I. Zeynep\nII. çanta\nIII. Bolu",
+      "text": "Yukarıdaki sözcüklerden çanta türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki çanta ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden çanta türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Zeynep"
+                },
+                {
+                  "label": "II.",
+                  "text": "çanta"
+                },
+                {
+                  "label": "III.",
+                  "text": "Bolu"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki çanta ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_096",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi cins isimdir: Can, bulut, Van Gölü?",
+      "correct": "bulut",
+      "wrong1": "Can",
+      "wrong2": "Van Gölü",
+      "explanation": "bulut aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Can ve Van Gölü ise özel isimdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi cins isimdir: Can, bulut, Van Gölü?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "bulut",
+        "wrong1": "Can",
+        "wrong2": "Van Gölü",
+        "explanation": "bulut aynı türden birçok varlığın ortak adı olduğu için cins isimdir; Can ve Van Gölü ise özel isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_097",
+      "level": "orta",
+      "premise": "Gri bulut ovanın üstünü kapladı.",
+      "text": "Yukarıdaki cümlede cins isim olan \"bulut\" hangi seçenekte doğru gösterilmiştir?",
+      "correct": "bulut",
+      "wrong1": "Gri",
+      "wrong2": "ovanın",
+      "explanation": "Cümlede tür bildiren sözcük bulutdur; Gri ve ovanın cins isim göreviyle kullanılmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede cins isim olan \"bulut\" hangi seçenekte doğru gösterilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gri bulut ovanın üstünü kapladı."
+            }
+          ]
+        },
+        "correct": "bulut",
+        "wrong1": "Gri",
+        "wrong2": "ovanın",
+        "explanation": "Cümlede tür bildiren sözcük bulutdur; Gri ve ovanın cins isim göreviyle kullanılmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_098",
+      "level": "orta",
+      "premise": null,
+      "text": "\"bulut\" sözcüğü neden cins isim sayılır?",
+      "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+      "wrong1": "Tek bir kişiyi gösterdiği için",
+      "wrong2": "Her zaman büyük harfle başladığı için",
+      "explanation": "bulut belirli tek bir varlığı değil, aynı türden tüm doğa varlığı örneklerini karşılayabildiği için cins isimdir.",
+      "app": {
+        "question": {
+          "text": "\"bulut\" sözcüğü neden cins isim sayılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aynı türdeki varlıkların ortak adı olduğu için",
+        "wrong1": "Tek bir kişiyi gösterdiği için",
+        "wrong2": "Her zaman büyük harfle başladığı için",
+        "explanation": "bulut belirli tek bir varlığı değil, aynı türden tüm doğa varlığı örneklerini karşılayabildiği için cins isimdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_099",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: bulut.",
+      "correct": "bulut",
+      "wrong1": "Can",
+      "wrong2": "Van Gölü",
+      "explanation": "bulut bir doğa varlığı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisi özel isim olmadığı için küçük harfle de yazılabilir? Odak sözcük: bulut.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "bulut",
+        "wrong1": "Can",
+        "wrong2": "Van Gölü",
+        "explanation": "bulut bir doğa varlığı adı olduğundan cins isimdir ve cümle içinde genellikle küçük harfle yazılır; diğer seçenekler özel addır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_100",
+      "level": "orta",
+      "premise": "I. Can\nII. bulut\nIII. Van Gölü",
+      "text": "Yukarıdaki sözcüklerden bulut türündeki cins isim hangisidir?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. sıradaki bulut ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sözcüklerden bulut türündeki cins isim hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Can"
+                },
+                {
+                  "label": "II.",
+                  "text": "bulut"
+                },
+                {
+                  "label": "III.",
+                  "text": "Van Gölü"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. sıradaki bulut ortak ad olduğu için cins isimdir; I. ve III. sıralardaki özel adlar bu kurala girmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_101",
+      "level": "zor",
+      "premise": null,
+      "text": "\"kedi\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "kediler",
+      "wrong1": "kedi",
+      "wrong2": "kedilar",
+      "explanation": "kedi sözcüğü birden fazla varlığı anlatınca kediler olur; kedilar yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"kedi\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kediler",
+        "wrong1": "kedi",
+        "wrong2": "kedilar",
+        "explanation": "kedi sözcüğü birden fazla varlığı anlatınca kediler olur; kedilar yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_102",
+      "level": "zor",
+      "premise": "Sokaktaki kediler güneşte ısındı.",
+      "text": "Yukarıdaki cümlede kedi sözcüğünün çoğul hâli hangisidir?",
+      "correct": "kediler",
+      "wrong1": "Sokaktaki",
+      "wrong2": "güneşte",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kediler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kedi sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sokaktaki kediler güneşte ısındı."
+            }
+          ]
+        },
+        "correct": "kediler",
+        "wrong1": "Sokaktaki",
+        "wrong2": "güneşte",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kediler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_103",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kedi sözcüğüne doğru getirilmiştir?",
+      "correct": "kediler",
+      "wrong1": "kedilar",
+      "wrong2": "kedi",
+      "explanation": "kedi sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kediler olur; kedilar yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kedi sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kediler",
+        "wrong1": "kedilar",
+        "wrong2": "kedi",
+        "explanation": "kedi sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kediler olur; kedilar yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_104",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde kedi sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Kedilar sınıf kapısında bekledi.",
+      "wrong1": "Sokaktaki kediler güneşte ısındı.",
+      "wrong2": "Kediler akşam olunca eve girdi.",
+      "explanation": "Kedilar biçimi yanlıştır; doğru çoğul kediler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde kedi sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kedilar sınıf kapısında bekledi.",
+        "wrong1": "Sokaktaki kediler güneşte ısındı.",
+        "wrong2": "Kediler akşam olunca eve girdi.",
+        "explanation": "Kedilar biçimi yanlıştır; doğru çoğul kediler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_105",
+      "level": "zor",
+      "premise": "I. kedi\nII. kediler\nIII. kedilar",
+      "text": "Yukarıdaki yazımlardan hangisi kedi sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki kediler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi kedi sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "kedi"
+                },
+                {
+                  "label": "II.",
+                  "text": "kediler"
+                },
+                {
+                  "label": "III.",
+                  "text": "kedilar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki kediler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_106",
+      "level": "zor",
+      "premise": null,
+      "text": "\"çiçek\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "çiçekler",
+      "wrong1": "çiçek",
+      "wrong2": "çiçeklar",
+      "explanation": "çiçek sözcüğü birden fazla varlığı anlatınca çiçekler olur; çiçeklar yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"çiçek\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çiçekler",
+        "wrong1": "çiçek",
+        "wrong2": "çiçeklar",
+        "explanation": "çiçek sözcüğü birden fazla varlığı anlatınca çiçekler olur; çiçeklar yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_107",
+      "level": "zor",
+      "premise": "Bahçedeki çiçekler renk renk açtı.",
+      "text": "Yukarıdaki cümlede çiçek sözcüğünün çoğul hâli hangisidir?",
+      "correct": "çiçekler",
+      "wrong1": "Bahçedeki",
+      "wrong2": "renk renk",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad çiçekler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede çiçek sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bahçedeki çiçekler renk renk açtı."
+            }
+          ]
+        },
+        "correct": "çiçekler",
+        "wrong1": "Bahçedeki",
+        "wrong2": "renk renk",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad çiçekler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_108",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki çiçek sözcüğüne doğru getirilmiştir?",
+      "correct": "çiçekler",
+      "wrong1": "çiçeklar",
+      "wrong2": "çiçek",
+      "explanation": "çiçek sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim çiçekler olur; çiçeklar yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki çiçek sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çiçekler",
+        "wrong1": "çiçeklar",
+        "wrong2": "çiçek",
+        "explanation": "çiçek sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim çiçekler olur; çiçeklar yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_109",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde çiçek sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Çiçeklar sınıf kapısında bekledi.",
+      "wrong1": "Bahçedeki çiçekler renk renk açtı.",
+      "wrong2": "Çiçekler yağmurdan sonra canlandı.",
+      "explanation": "Çiçeklar biçimi yanlıştır; doğru çoğul çiçekler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde çiçek sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çiçeklar sınıf kapısında bekledi.",
+        "wrong1": "Bahçedeki çiçekler renk renk açtı.",
+        "wrong2": "Çiçekler yağmurdan sonra canlandı.",
+        "explanation": "Çiçeklar biçimi yanlıştır; doğru çoğul çiçekler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_110",
+      "level": "zor",
+      "premise": "I. çiçek\nII. çiçekler\nIII. çiçeklar",
+      "text": "Yukarıdaki yazımlardan hangisi çiçek sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki çiçekler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi çiçek sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "çiçek"
+                },
+                {
+                  "label": "II.",
+                  "text": "çiçekler"
+                },
+                {
+                  "label": "III.",
+                  "text": "çiçeklar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki çiçekler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_111",
+      "level": "zor",
+      "premise": null,
+      "text": "\"çocuk\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "çocuklar",
+      "wrong1": "çocuk",
+      "wrong2": "çocukler",
+      "explanation": "çocuk sözcüğü birden fazla varlığı anlatınca çocuklar olur; çocukler yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"çocuk\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çocuklar",
+        "wrong1": "çocuk",
+        "wrong2": "çocukler",
+        "explanation": "çocuk sözcüğü birden fazla varlığı anlatınca çocuklar olur; çocukler yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_112",
+      "level": "zor",
+      "premise": "Çocuklar oyundan sonra su içti.",
+      "text": "Yukarıdaki cümlede çocuk sözcüğünün çoğul hâli hangisidir?",
+      "correct": "çocuklar",
+      "wrong1": "oyundan",
+      "wrong2": "su",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad çocuklar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede çocuk sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çocuklar oyundan sonra su içti."
+            }
+          ]
+        },
+        "correct": "çocuklar",
+        "wrong1": "oyundan",
+        "wrong2": "su",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad çocuklar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_113",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki çocuk sözcüğüne doğru getirilmiştir?",
+      "correct": "çocuklar",
+      "wrong1": "çocukler",
+      "wrong2": "çocuk",
+      "explanation": "çocuk sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim çocuklar olur; çocukler yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki çocuk sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "çocuklar",
+        "wrong1": "çocukler",
+        "wrong2": "çocuk",
+        "explanation": "çocuk sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim çocuklar olur; çocukler yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_114",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde çocuk sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Çocukler sınıf kapısında bekledi.",
+      "wrong1": "Çocuklar oyundan sonra su içti.",
+      "wrong2": "Çocuklar sıraya geçince sessizleşti.",
+      "explanation": "Çocukler biçimi yanlıştır; doğru çoğul çocuklar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde çocuk sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çocukler sınıf kapısında bekledi.",
+        "wrong1": "Çocuklar oyundan sonra su içti.",
+        "wrong2": "Çocuklar sıraya geçince sessizleşti.",
+        "explanation": "Çocukler biçimi yanlıştır; doğru çoğul çocuklar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_115",
+      "level": "zor",
+      "premise": "I. çocuk\nII. çocuklar\nIII. çocukler",
+      "text": "Yukarıdaki yazımlardan hangisi çocuk sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki çocuklar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi çocuk sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "çocuk"
+                },
+                {
+                  "label": "II.",
+                  "text": "çocuklar"
+                },
+                {
+                  "label": "III.",
+                  "text": "çocukler"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki çocuklar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_116",
+      "level": "zor",
+      "premise": null,
+      "text": "\"kuş\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "kuşlar",
+      "wrong1": "kuş",
+      "wrong2": "kuşler",
+      "explanation": "kuş sözcüğü birden fazla varlığı anlatınca kuşlar olur; kuşler yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"kuş\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kuşlar",
+        "wrong1": "kuş",
+        "wrong2": "kuşler",
+        "explanation": "kuş sözcüğü birden fazla varlığı anlatınca kuşlar olur; kuşler yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_117",
+      "level": "zor",
+      "premise": "Kuşlar sabah erkenden ötmeye başladı.",
+      "text": "Yukarıdaki cümlede kuş sözcüğünün çoğul hâli hangisidir?",
+      "correct": "kuşlar",
+      "wrong1": "sabah",
+      "wrong2": "ötmeye",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kuşlar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kuş sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuşlar sabah erkenden ötmeye başladı."
+            }
+          ]
+        },
+        "correct": "kuşlar",
+        "wrong1": "sabah",
+        "wrong2": "ötmeye",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kuşlar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_118",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kuş sözcüğüne doğru getirilmiştir?",
+      "correct": "kuşlar",
+      "wrong1": "kuşler",
+      "wrong2": "kuş",
+      "explanation": "kuş sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kuşlar olur; kuşler yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kuş sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kuşlar",
+        "wrong1": "kuşler",
+        "wrong2": "kuş",
+        "explanation": "kuş sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kuşlar olur; kuşler yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_119",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde kuş sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Kuşler sınıf kapısında bekledi.",
+      "wrong1": "Kuşlar sabah erkenden ötmeye başladı.",
+      "wrong2": "Kuşlar tellere yan yana kondu.",
+      "explanation": "Kuşler biçimi yanlıştır; doğru çoğul kuşlar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde kuş sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kuşler sınıf kapısında bekledi.",
+        "wrong1": "Kuşlar sabah erkenden ötmeye başladı.",
+        "wrong2": "Kuşlar tellere yan yana kondu.",
+        "explanation": "Kuşler biçimi yanlıştır; doğru çoğul kuşlar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_120",
+      "level": "zor",
+      "premise": "I. kuş\nII. kuşlar\nIII. kuşler",
+      "text": "Yukarıdaki yazımlardan hangisi kuş sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki kuşlar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi kuş sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "kuş"
+                },
+                {
+                  "label": "II.",
+                  "text": "kuşlar"
+                },
+                {
+                  "label": "III.",
+                  "text": "kuşler"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki kuşlar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_121",
+      "level": "zor",
+      "premise": null,
+      "text": "\"defter\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "defterler",
+      "wrong1": "defter",
+      "wrong2": "defterlar",
+      "explanation": "defter sözcüğü birden fazla varlığı anlatınca defterler olur; defterlar yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"defter\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "defterler",
+        "wrong1": "defter",
+        "wrong2": "defterlar",
+        "explanation": "defter sözcüğü birden fazla varlığı anlatınca defterler olur; defterlar yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_122",
+      "level": "zor",
+      "premise": "Yeni defterler dolaba yerleştirildi.",
+      "text": "Yukarıdaki cümlede defter sözcüğünün çoğul hâli hangisidir?",
+      "correct": "defterler",
+      "wrong1": "Yeni",
+      "wrong2": "dolaba",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad defterler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede defter sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yeni defterler dolaba yerleştirildi."
+            }
+          ]
+        },
+        "correct": "defterler",
+        "wrong1": "Yeni",
+        "wrong2": "dolaba",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad defterler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_123",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki defter sözcüğüne doğru getirilmiştir?",
+      "correct": "defterler",
+      "wrong1": "defterlar",
+      "wrong2": "defter",
+      "explanation": "defter sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim defterler olur; defterlar yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki defter sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "defterler",
+        "wrong1": "defterlar",
+        "wrong2": "defter",
+        "explanation": "defter sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim defterler olur; defterlar yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_124",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde defter sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Defterlar sınıf kapısında bekledi.",
+      "wrong1": "Yeni defterler dolaba yerleştirildi.",
+      "wrong2": "Defterler öğretmenin masasına bırakıldı.",
+      "explanation": "Defterlar biçimi yanlıştır; doğru çoğul defterler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde defter sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Defterlar sınıf kapısında bekledi.",
+        "wrong1": "Yeni defterler dolaba yerleştirildi.",
+        "wrong2": "Defterler öğretmenin masasına bırakıldı.",
+        "explanation": "Defterlar biçimi yanlıştır; doğru çoğul defterler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_125",
+      "level": "zor",
+      "premise": "I. defter\nII. defterler\nIII. defterlar",
+      "text": "Yukarıdaki yazımlardan hangisi defter sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki defterler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi defter sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "defter"
+                },
+                {
+                  "label": "II.",
+                  "text": "defterler"
+                },
+                {
+                  "label": "III.",
+                  "text": "defterlar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki defterler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_126",
+      "level": "zor",
+      "premise": null,
+      "text": "\"kalem\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "kalemler",
+      "wrong1": "kalem",
+      "wrong2": "kalemlar",
+      "explanation": "kalem sözcüğü birden fazla varlığı anlatınca kalemler olur; kalemlar yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"kalem\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kalemler",
+        "wrong1": "kalem",
+        "wrong2": "kalemlar",
+        "explanation": "kalem sözcüğü birden fazla varlığı anlatınca kalemler olur; kalemlar yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_127",
+      "level": "zor",
+      "premise": "Renkli kalemler kutuda duruyor.",
+      "text": "Yukarıdaki cümlede kalem sözcüğünün çoğul hâli hangisidir?",
+      "correct": "kalemler",
+      "wrong1": "Renkli",
+      "wrong2": "kutuda",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kalemler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kalem sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Renkli kalemler kutuda duruyor."
+            }
+          ]
+        },
+        "correct": "kalemler",
+        "wrong1": "Renkli",
+        "wrong2": "kutuda",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kalemler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_128",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kalem sözcüğüne doğru getirilmiştir?",
+      "correct": "kalemler",
+      "wrong1": "kalemlar",
+      "wrong2": "kalem",
+      "explanation": "kalem sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kalemler olur; kalemlar yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kalem sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kalemler",
+        "wrong1": "kalemlar",
+        "wrong2": "kalem",
+        "explanation": "kalem sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kalemler olur; kalemlar yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_129",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde kalem sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Kalemlar sınıf kapısında bekledi.",
+      "wrong1": "Renkli kalemler kutuda duruyor.",
+      "wrong2": "Kalemler ders bitince toplandı.",
+      "explanation": "Kalemlar biçimi yanlıştır; doğru çoğul kalemler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde kalem sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kalemlar sınıf kapısında bekledi.",
+        "wrong1": "Renkli kalemler kutuda duruyor.",
+        "wrong2": "Kalemler ders bitince toplandı.",
+        "explanation": "Kalemlar biçimi yanlıştır; doğru çoğul kalemler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_130",
+      "level": "zor",
+      "premise": "I. kalem\nII. kalemler\nIII. kalemlar",
+      "text": "Yukarıdaki yazımlardan hangisi kalem sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki kalemler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi kalem sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "kalem"
+                },
+                {
+                  "label": "II.",
+                  "text": "kalemler"
+                },
+                {
+                  "label": "III.",
+                  "text": "kalemlar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki kalemler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_131",
+      "level": "zor",
+      "premise": null,
+      "text": "\"oyun\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "oyunlar",
+      "wrong1": "oyun",
+      "wrong2": "oyunler",
+      "explanation": "oyun sözcüğü birden fazla varlığı anlatınca oyunlar olur; oyunler yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"oyun\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "oyunlar",
+        "wrong1": "oyun",
+        "wrong2": "oyunler",
+        "explanation": "oyun sözcüğü birden fazla varlığı anlatınca oyunlar olur; oyunler yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_132",
+      "level": "zor",
+      "premise": "Geleneksel oyunlar teneffüste çok sevilir.",
+      "text": "Yukarıdaki cümlede oyun sözcüğünün çoğul hâli hangisidir?",
+      "correct": "oyunlar",
+      "wrong1": "Geleneksel",
+      "wrong2": "teneffüste",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad oyunlar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede oyun sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geleneksel oyunlar teneffüste çok sevilir."
+            }
+          ]
+        },
+        "correct": "oyunlar",
+        "wrong1": "Geleneksel",
+        "wrong2": "teneffüste",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad oyunlar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_133",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki oyun sözcüğüne doğru getirilmiştir?",
+      "correct": "oyunlar",
+      "wrong1": "oyunler",
+      "wrong2": "oyun",
+      "explanation": "oyun sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim oyunlar olur; oyunler yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki oyun sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "oyunlar",
+        "wrong1": "oyunler",
+        "wrong2": "oyun",
+        "explanation": "oyun sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim oyunlar olur; oyunler yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_134",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde oyun sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Oyunler sınıf kapısında bekledi.",
+      "wrong1": "Geleneksel oyunlar teneffüste çok sevilir.",
+      "wrong2": "Oyunlar şenlikte yeniden kuruldu.",
+      "explanation": "Oyunler biçimi yanlıştır; doğru çoğul oyunlar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde oyun sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Oyunler sınıf kapısında bekledi.",
+        "wrong1": "Geleneksel oyunlar teneffüste çok sevilir.",
+        "wrong2": "Oyunlar şenlikte yeniden kuruldu.",
+        "explanation": "Oyunler biçimi yanlıştır; doğru çoğul oyunlar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_135",
+      "level": "zor",
+      "premise": "I. oyun\nII. oyunlar\nIII. oyunler",
+      "text": "Yukarıdaki yazımlardan hangisi oyun sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki oyunlar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi oyun sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "oyun"
+                },
+                {
+                  "label": "II.",
+                  "text": "oyunlar"
+                },
+                {
+                  "label": "III.",
+                  "text": "oyunler"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki oyunlar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_136",
+      "level": "zor",
+      "premise": null,
+      "text": "\"kitap\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "kitaplar",
+      "wrong1": "kitap",
+      "wrong2": "kitapler",
+      "explanation": "kitap sözcüğü birden fazla varlığı anlatınca kitaplar olur; kitapler yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"kitap\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kitaplar",
+        "wrong1": "kitap",
+        "wrong2": "kitapler",
+        "explanation": "kitap sözcüğü birden fazla varlığı anlatınca kitaplar olur; kitapler yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_137",
+      "level": "zor",
+      "premise": "Kitaplar raflarda düzgün durmalı.",
+      "text": "Yukarıdaki cümlede kitap sözcüğünün çoğul hâli hangisidir?",
+      "correct": "kitaplar",
+      "wrong1": "raflarda",
+      "wrong2": "düzgün",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kitaplar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kitap sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitaplar raflarda düzgün durmalı."
+            }
+          ]
+        },
+        "correct": "kitaplar",
+        "wrong1": "raflarda",
+        "wrong2": "düzgün",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad kitaplar sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_138",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kitap sözcüğüne doğru getirilmiştir?",
+      "correct": "kitaplar",
+      "wrong1": "kitapler",
+      "wrong2": "kitap",
+      "explanation": "kitap sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kitaplar olur; kitapler yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki kitap sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "kitaplar",
+        "wrong1": "kitapler",
+        "wrong2": "kitap",
+        "explanation": "kitap sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim kitaplar olur; kitapler yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_139",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde kitap sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Kitapler sınıf kapısında bekledi.",
+      "wrong1": "Kitaplar raflarda düzgün durmalı.",
+      "wrong2": "Kitaplar kütüphanede numaralandırıldı.",
+      "explanation": "Kitapler biçimi yanlıştır; doğru çoğul kitaplar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde kitap sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kitapler sınıf kapısında bekledi.",
+        "wrong1": "Kitaplar raflarda düzgün durmalı.",
+        "wrong2": "Kitaplar kütüphanede numaralandırıldı.",
+        "explanation": "Kitapler biçimi yanlıştır; doğru çoğul kitaplar olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_140",
+      "level": "zor",
+      "premise": "I. kitap\nII. kitaplar\nIII. kitapler",
+      "text": "Yukarıdaki yazımlardan hangisi kitap sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki kitaplar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi kitap sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "kitap"
+                },
+                {
+                  "label": "II.",
+                  "text": "kitaplar"
+                },
+                {
+                  "label": "III.",
+                  "text": "kitapler"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki kitaplar doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_141",
+      "level": "zor",
+      "premise": null,
+      "text": "\"şehir\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "şehirler",
+      "wrong1": "şehir",
+      "wrong2": "şehirlar",
+      "explanation": "şehir sözcüğü birden fazla varlığı anlatınca şehirler olur; şehirlar yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"şehir\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "şehirler",
+        "wrong1": "şehir",
+        "wrong2": "şehirlar",
+        "explanation": "şehir sözcüğü birden fazla varlığı anlatınca şehirler olur; şehirlar yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_142",
+      "level": "zor",
+      "premise": "Büyük şehirler geceleri ışıl ışıl olur.",
+      "text": "Yukarıdaki cümlede şehir sözcüğünün çoğul hâli hangisidir?",
+      "correct": "şehirler",
+      "wrong1": "Büyük",
+      "wrong2": "geceleri",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad şehirler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede şehir sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Büyük şehirler geceleri ışıl ışıl olur."
+            }
+          ]
+        },
+        "correct": "şehirler",
+        "wrong1": "Büyük",
+        "wrong2": "geceleri",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad şehirler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_143",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki şehir sözcüğüne doğru getirilmiştir?",
+      "correct": "şehirler",
+      "wrong1": "şehirlar",
+      "wrong2": "şehir",
+      "explanation": "şehir sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim şehirler olur; şehirlar yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki şehir sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "şehirler",
+        "wrong1": "şehirlar",
+        "wrong2": "şehir",
+        "explanation": "şehir sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim şehirler olur; şehirlar yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_144",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde şehir sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Şehirlar sınıf kapısında bekledi.",
+      "wrong1": "Büyük şehirler geceleri ışıl ışıl olur.",
+      "wrong2": "Şehirler haritada farklı renklerle gösterildi.",
+      "explanation": "Şehirlar biçimi yanlıştır; doğru çoğul şehirler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde şehir sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Şehirlar sınıf kapısında bekledi.",
+        "wrong1": "Büyük şehirler geceleri ışıl ışıl olur.",
+        "wrong2": "Şehirler haritada farklı renklerle gösterildi.",
+        "explanation": "Şehirlar biçimi yanlıştır; doğru çoğul şehirler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_145",
+      "level": "zor",
+      "premise": "I. şehir\nII. şehirler\nIII. şehirlar",
+      "text": "Yukarıdaki yazımlardan hangisi şehir sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki şehirler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi şehir sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "şehir"
+                },
+                {
+                  "label": "II.",
+                  "text": "şehirler"
+                },
+                {
+                  "label": "III.",
+                  "text": "şehirlar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki şehirler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_146",
+      "level": "zor",
+      "premise": null,
+      "text": "\"göz\" sözcüğünün çoğul biçimi hangisidir?",
+      "correct": "gözler",
+      "wrong1": "göz",
+      "wrong2": "gözlar",
+      "explanation": "göz sözcüğü birden fazla varlığı anlatınca gözler olur; gözlar yazımı ise ünlü uyumuna uymaz.",
+      "app": {
+        "question": {
+          "text": "\"göz\" sözcüğünün çoğul biçimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "gözler",
+        "wrong1": "göz",
+        "wrong2": "gözlar",
+        "explanation": "göz sözcüğü birden fazla varlığı anlatınca gözler olur; gözlar yazımı ise ünlü uyumuna uymaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_147",
+      "level": "zor",
+      "premise": "Gözler sağlıklı kalmak için dinlenmelidir.",
+      "text": "Yukarıdaki cümlede göz sözcüğünün çoğul hâli hangisidir?",
+      "correct": "gözler",
+      "wrong1": "sağlıklı",
+      "wrong2": "dinlenmelidir",
+      "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad gözler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede göz sözcüğünün çoğul hâli hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gözler sağlıklı kalmak için dinlenmelidir."
+            }
+          ]
+        },
+        "correct": "gözler",
+        "wrong1": "sağlıklı",
+        "wrong2": "dinlenmelidir",
+        "explanation": "Cümlede birden fazla varlık anlatıldığı için çoğul ad gözler sözcüğüdür; diğer seçenekler çoğul ad değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_148",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki göz sözcüğüne doğru getirilmiştir?",
+      "correct": "gözler",
+      "wrong1": "gözlar",
+      "wrong2": "göz",
+      "explanation": "göz sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim gözler olur; gözlar yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki seçeneklerden hangisinde -lar/-ler eki göz sözcüğüne doğru getirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "gözler",
+        "wrong1": "gözlar",
+        "wrong2": "göz",
+        "explanation": "göz sözcüğünün son ünlüsü dikkate alındığında doğru çoğul biçim gözler olur; gözlar yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_149",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde göz sözcüğünün çoğulu yanlış yazılmıştır?",
+      "correct": "Gözlar sınıf kapısında bekledi.",
+      "wrong1": "Gözler sağlıklı kalmak için dinlenmelidir.",
+      "wrong2": "Gözler ekrana uzun süre bakınca yorulur.",
+      "explanation": "Gözlar biçimi yanlıştır; doğru çoğul gözler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde göz sözcüğünün çoğulu yanlış yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gözlar sınıf kapısında bekledi.",
+        "wrong1": "Gözler sağlıklı kalmak için dinlenmelidir.",
+        "wrong2": "Gözler ekrana uzun süre bakınca yorulur.",
+        "explanation": "Gözlar biçimi yanlıştır; doğru çoğul gözler olmalıydı. Öteki iki cümlede çoğul ek doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "dilb3_150",
+      "level": "zor",
+      "premise": "I. göz\nII. gözler\nIII. gözlar",
+      "text": "Yukarıdaki yazımlardan hangisi göz sözcüğünün doğru çoğuludur?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "Listede II. sıradaki gözler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki yazımlardan hangisi göz sözcüğünün doğru çoğuludur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "göz"
+                },
+                {
+                  "label": "II.",
+                  "text": "gözler"
+                },
+                {
+                  "label": "III.",
+                  "text": "gözlar"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "Listede II. sıradaki gözler doğru çoğul yazımdır; I tekil biçimdir, III ise ekin yanlış kullanılmasına örnektir.",
+        "url": null
+      }
+    }
+  ]
+}

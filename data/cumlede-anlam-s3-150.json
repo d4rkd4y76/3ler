@@ -1,0 +1,4301 @@
+{
+  "meta": {
+    "topicId": "t05",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Cümlede Anlam (Sebep-Sonuç İlişkileri)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "cumle3_001",
+      "level": "kolay",
+      "premise": "Yağmur yağdığı için sokaklar ıslak oldu.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Sokaklar ıslak oldu",
+      "wrong1": "Yağmur yağdığı için",
+      "wrong2": "Yağmur yağdı",
+      "explanation": "Yağmur yağması sebeptir; sokakların ıslanması bu sebebin sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağdığı için sokaklar ıslak oldu."
+            }
+          ]
+        },
+        "correct": "Sokaklar ıslak oldu",
+        "wrong1": "Yağmur yağdığı için",
+        "wrong2": "Yağmur yağdı",
+        "explanation": "Yağmur yağması sebeptir; sokakların ıslanması bu sebebin sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_002",
+      "level": "kolay",
+      "premise": "Çok çalıştığım için sınavdan yüksek not aldım.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok çalışmam",
+      "wrong1": "Yüksek not almam",
+      "wrong2": "Sınav",
+      "explanation": "Çalışmak bir nedendir; yüksek not almak bu nedenin sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok çalıştığım için sınavdan yüksek not aldım."
+            }
+          ]
+        },
+        "correct": "Çok çalışmam",
+        "wrong1": "Yüksek not almam",
+        "wrong2": "Sınav",
+        "explanation": "Çalışmak bir nedendir; yüksek not almak bu nedenin sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_003",
+      "level": "kolay",
+      "premise": "Hasta olduğu için okula gelemedi.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Okula gelememesi",
+      "wrong1": "Hasta olması",
+      "wrong2": "Okul",
+      "explanation": "Hasta olmak sebeptir; okula gelemeyiş bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hasta olduğu için okula gelemedi."
+            }
+          ]
+        },
+        "correct": "Okula gelememesi",
+        "wrong1": "Hasta olması",
+        "wrong2": "Okul",
+        "explanation": "Hasta olmak sebeptir; okula gelemeyiş bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_004",
+      "level": "kolay",
+      "premise": "Geç kaldığı için otobüsü kaçırdı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Geç kalması",
+      "wrong1": "Otobüsü kaçırması",
+      "wrong2": "Otobüs",
+      "explanation": "Geç kalmak nedendir; otobüsü kaçırmak bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geç kaldığı için otobüsü kaçırdı."
+            }
+          ]
+        },
+        "correct": "Geç kalması",
+        "wrong1": "Otobüsü kaçırması",
+        "wrong2": "Otobüs",
+        "explanation": "Geç kalmak nedendir; otobüsü kaçırmak bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_005",
+      "level": "kolay",
+      "premise": "Aç olduğu için çok yemek yedi.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Çok yemek yemesi",
+      "wrong1": "Aç olması",
+      "wrong2": "Yemek",
+      "explanation": "Açlık sebeptir; çok yemek yemek bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aç olduğu için çok yemek yedi."
+            }
+          ]
+        },
+        "correct": "Çok yemek yemesi",
+        "wrong1": "Aç olması",
+        "wrong2": "Yemek",
+        "explanation": "Açlık sebeptir; çok yemek yemek bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_006",
+      "level": "kolay",
+      "premise": "Soğuk hava olduğu için mont giydi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Soğuk hava",
+      "wrong1": "Mont giymesi",
+      "wrong2": "Hava",
+      "explanation": "Soğuk hava nedendir; mont giymek bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Soğuk hava olduğu için mont giydi."
+            }
+          ]
+        },
+        "correct": "Soğuk hava",
+        "wrong1": "Mont giymesi",
+        "wrong2": "Hava",
+        "explanation": "Soğuk hava nedendir; mont giymek bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_007",
+      "level": "kolay",
+      "premise": "Dikkatsiz davrandığı için kalemi kırdı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Kalemi kırması",
+      "wrong1": "Dikkatsiz davranması",
+      "wrong2": "Kalem",
+      "explanation": "Dikkatsizlik sebeptir; kalemin kırılması bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dikkatsiz davrandığı için kalemi kırdı."
+            }
+          ]
+        },
+        "correct": "Kalemi kırması",
+        "wrong1": "Dikkatsiz davranması",
+        "wrong2": "Kalem",
+        "explanation": "Dikkatsizlik sebeptir; kalemin kırılması bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_008",
+      "level": "kolay",
+      "premise": "Çok koştuğu için yoruldu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok koşması",
+      "wrong1": "Yorulması",
+      "wrong2": "Koşu",
+      "explanation": "Çok koşmak nedendir; yorulmak bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok koştuğu için yoruldu."
+            }
+          ]
+        },
+        "correct": "Çok koşması",
+        "wrong1": "Yorulması",
+        "wrong2": "Koşu",
+        "explanation": "Çok koşmak nedendir; yorulmak bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_009",
+      "level": "kolay",
+      "premise": "Elektrik kesildiği için lamba söndü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Lambanın sönmesi",
+      "wrong1": "Elektriğin kesilmesi",
+      "wrong2": "Elektrik",
+      "explanation": "Elektriğin kesilmesi sebeptir; lambanın sönmesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Elektrik kesildiği için lamba söndü."
+            }
+          ]
+        },
+        "correct": "Lambanın sönmesi",
+        "wrong1": "Elektriğin kesilmesi",
+        "wrong2": "Elektrik",
+        "explanation": "Elektriğin kesilmesi sebeptir; lambanın sönmesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_010",
+      "level": "kolay",
+      "premise": "Susadığı için su içti.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Susaması",
+      "wrong1": "Su içmesi",
+      "wrong2": "Su",
+      "explanation": "Susamak nedendir; su içmek bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Susadığı için su içti."
+            }
+          ]
+        },
+        "correct": "Susaması",
+        "wrong1": "Su içmesi",
+        "wrong2": "Su",
+        "explanation": "Susamak nedendir; su içmek bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_011",
+      "level": "kolay",
+      "premise": "Annem yemek yaptı, bu yüzden mutfak sıcaktı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Annemin yemek yapması",
+      "wrong1": "Mutfak sıcak olması",
+      "wrong2": "Mutfak",
+      "explanation": "Yemek yapmak nedendir; mutfağın sıcak olması bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Annem yemek yaptı, bu yüzden mutfak sıcaktı."
+            }
+          ]
+        },
+        "correct": "Annemin yemek yapması",
+        "wrong1": "Mutfak sıcak olması",
+        "wrong2": "Mutfak",
+        "explanation": "Yemek yapmak nedendir; mutfağın sıcak olması bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_012",
+      "level": "kolay",
+      "premise": "Rüzgâr esti, bu yüzden yapraklar uçtu.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Yaprakların uçması",
+      "wrong1": "Rüzgârın esmesi",
+      "wrong2": "Yapraklar",
+      "explanation": "Rüzgâr sebeptir; yaprakların uçması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Rüzgâr esti, bu yüzden yapraklar uçtu."
+            }
+          ]
+        },
+        "correct": "Yaprakların uçması",
+        "wrong1": "Rüzgârın esmesi",
+        "wrong2": "Yapraklar",
+        "explanation": "Rüzgâr sebeptir; yaprakların uçması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_013",
+      "level": "kolay",
+      "premise": "Kalemi düşürdü, bu yüzden kırıldı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kalemi düşürmesi",
+      "wrong1": "Kalemin kırılması",
+      "wrong2": "Kalem",
+      "explanation": "Düşürmek nedendir; kırılma bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kalemi düşürdü, bu yüzden kırıldı."
+            }
+          ]
+        },
+        "correct": "Kalemi düşürmesi",
+        "wrong1": "Kalemin kırılması",
+        "wrong2": "Kalem",
+        "explanation": "Düşürmek nedendir; kırılma bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_014",
+      "level": "kolay",
+      "premise": "Çok gülünce gözleri doldu.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Gözlerinin dolması",
+      "wrong1": "Çok gülmek",
+      "wrong2": "Gözler",
+      "explanation": "Çok gülmek sebeptir; gözlerin dolması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok gülünce gözleri doldu."
+            }
+          ]
+        },
+        "correct": "Gözlerinin dolması",
+        "wrong1": "Çok gülmek",
+        "wrong2": "Gözler",
+        "explanation": "Çok gülmek sebeptir; gözlerin dolması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_015",
+      "level": "kolay",
+      "premise": "Ödevini bitirmedi, bu yüzden öğretmen uyarı verdi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Ödevini bitirmemesi",
+      "wrong1": "Öğretmenin uyarı vermesi",
+      "wrong2": "Ödev",
+      "explanation": "Ödevi bitirmemek nedendir; uyarı almak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ödevini bitirmedi, bu yüzden öğretmen uyarı verdi."
+            }
+          ]
+        },
+        "correct": "Ödevini bitirmemesi",
+        "wrong1": "Öğretmenin uyarı vermesi",
+        "wrong2": "Ödev",
+        "explanation": "Ödevi bitirmemek nedendir; uyarı almak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_016",
+      "level": "kolay",
+      "premise": "Hava soğuk olduğu için pencereyi kapattık.",
+      "text": "Yukarıdaki cümlede boşluğa hangi bağlaç gelmelidir?",
+      "correct": "için",
+      "wrong1": "ama",
+      "wrong2": "veya",
+      "explanation": "Soğuk hava bir neden olduğu için pencereyi kapatma sonucunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boşluğa hangi bağlaç gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hava soğuk olduğu için pencereyi kapattık."
+            }
+          ]
+        },
+        "correct": "için",
+        "wrong1": "ama",
+        "wrong2": "veya",
+        "explanation": "Soğuk hava bir neden olduğu için pencereyi kapatma sonucunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_017",
+      "level": "kolay",
+      "premise": "Çok yorulduğu için erken yattı.",
+      "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+      "correct": "için",
+      "wrong1": "ile",
+      "wrong2": "gibi",
+      "explanation": "Yorulmak sebeptir; erken yatmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok yorulduğu için erken yattı."
+            }
+          ]
+        },
+        "correct": "için",
+        "wrong1": "ile",
+        "wrong2": "gibi",
+        "explanation": "Yorulmak sebeptir; erken yatmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_018",
+      "level": "kolay",
+      "premise": "Hasta oldu, _____ doktora gitti.",
+      "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+      "correct": "bu yüzden",
+      "wrong1": "ama",
+      "wrong2": "veya",
+      "explanation": "Hasta olmak nedendir; doktora gitmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hasta oldu, _____ doktora gitti."
+            }
+          ]
+        },
+        "correct": "bu yüzden",
+        "wrong1": "ama",
+        "wrong2": "veya",
+        "explanation": "Hasta olmak nedendir; doktora gitmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_019",
+      "level": "kolay",
+      "premise": "Yağmur yağdı, _____ şemsiyeyi açtık.",
+      "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+      "correct": "bu yüzden",
+      "wrong1": "fakat",
+      "wrong2": "ya da",
+      "explanation": "Yağmur yağmak sebeptir; şemsiye açmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağdı, _____ şemsiyeyi açtık."
+            }
+          ]
+        },
+        "correct": "bu yüzden",
+        "wrong1": "fakat",
+        "wrong2": "ya da",
+        "explanation": "Yağmur yağmak sebeptir; şemsiye açmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_020",
+      "level": "kolay",
+      "premise": "Çok çalıştı, _____ sınavı kazandı.",
+      "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+      "correct": "dolayısıyla",
+      "wrong1": "ancak",
+      "wrong2": "hem de",
+      "explanation": "Çalışmak nedendir; sınavı kazanmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede boşluğa hangi sözcük gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok çalıştı, _____ sınavı kazandı."
+            }
+          ]
+        },
+        "correct": "dolayısıyla",
+        "wrong1": "ancak",
+        "wrong2": "hem de",
+        "explanation": "Çalışmak nedendir; sınavı kazanmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hangisinde kar yağması ile okul tatili arasında sebep-sonuç vardır?",
+      "correct": "Kar yağınca okul tatil oldu",
+      "wrong1": "Bugün hava güzel",
+      "wrong2": "Ali okula gitti",
+      "explanation": "Kar yağması sebeptir; okulun tatil olması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Hangisinde kar yağması ile okul tatili arasında sebep-sonuç vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kar yağınca okul tatil oldu",
+        "wrong1": "Bugün hava güzel",
+        "wrong2": "Ali okula gitti",
+        "explanation": "Kar yağması sebeptir; okulun tatil olması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hangisinde ağlama ile sesin kısılması arasında sebep-sonuç vardır?",
+      "correct": "Çok ağladığı için sesi kısıldı",
+      "wrong1": "Ayşe kitap okuyor",
+      "wrong2": "Bahçede çiçek var",
+      "explanation": "Ağlamak sebeptir; sesin kısılması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Hangisinde ağlama ile sesin kısılması arasında sebep-sonuç vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çok ağladığı için sesi kısıldı",
+        "wrong1": "Ayşe kitap okuyor",
+        "wrong2": "Bahçede çiçek var",
+        "explanation": "Ağlamak sebeptir; sesin kısılması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_023",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hangisinde sebep-sonuç ilişkisi kurulmamıştır?",
+      "correct": "Kedim süt içti",
+      "wrong1": "Susuz kaldığı için su içti",
+      "wrong2": "Geç kaldığı için koştu",
+      "explanation": "Kedinin süt içmesi basit bir olaydır; neden-sonuç kurulmamıştır.",
+      "app": {
+        "question": {
+          "text": "Hangisinde sebep-sonuç ilişkisi kurulmamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kedim süt içti",
+        "wrong1": "Susuz kaldığı için su içti",
+        "wrong2": "Geç kaldığı için koştu",
+        "explanation": "Kedinin süt içmesi basit bir olaydır; neden-sonuç kurulmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hangisinde yalnızca olay anlatılmış, sebep-sonuç yoktur?",
+      "correct": "Parkta top oynadık",
+      "wrong1": "Soğuktan titredi",
+      "wrong2": "Yorulduğu için dinlendi",
+      "explanation": "Top oynamak tek başına bir eylemdir.",
+      "app": {
+        "question": {
+          "text": "Hangisinde yalnızca olay anlatılmış, sebep-sonuç yoktur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Parkta top oynadık",
+        "wrong1": "Soğuktan titredi",
+        "wrong2": "Yorulduğu için dinlendi",
+        "explanation": "Top oynamak tek başına bir eylemdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hangisinde elektrik kesintisi ile televizyon kapanması arasında sebep-sonuç vardır?",
+      "correct": "Elektrik gitti, bu yüzden televizyon kapandı",
+      "wrong1": "Televizyon büyük",
+      "wrong2": "Salon geniş",
+      "explanation": "Elektriğin gitmesi sebeptir; televizyonun kapanması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Hangisinde elektrik kesintisi ile televizyon kapanması arasında sebep-sonuç vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Elektrik gitti, bu yüzden televizyon kapandı",
+        "wrong1": "Televizyon büyük",
+        "wrong2": "Salon geniş",
+        "explanation": "Elektriğin gitmesi sebeptir; televizyonun kapanması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sebep nedir?",
+      "correct": "Bir olayın ortaya çıkmasına yol açan neden",
+      "wrong1": "Bir olayın sonunda olan şey",
+      "wrong2": "Bir cümlenin sonu",
+      "explanation": "Sebep, bir şeyin olmasına neden olan durumdur.",
+      "app": {
+        "question": {
+          "text": "Sebep nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir olayın ortaya çıkmasına yol açan neden",
+        "wrong1": "Bir olayın sonunda olan şey",
+        "wrong2": "Bir cümlenin sonu",
+        "explanation": "Sebep, bir şeyin olmasına neden olan durumdur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sonuç nedir?",
+      "correct": "Sebepten sonra ortaya çıkan durum",
+      "wrong1": "Bir olayın başlangıcı",
+      "wrong2": "Cümledeki isim",
+      "explanation": "Sonuç, sebebin ardından meydana gelen olaydır.",
+      "app": {
+        "question": {
+          "text": "Sonuç nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebepten sonra ortaya çıkan durum",
+        "wrong1": "Bir olayın başlangıcı",
+        "wrong2": "Cümledeki isim",
+        "explanation": "Sonuç, sebebin ardından meydana gelen olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_028",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çünkü kelimesi cümlede neyi gösterir?",
+      "correct": "Sebebi",
+      "wrong1": "Sonucu",
+      "wrong2": "Zamanı",
+      "explanation": "Çünkü kelimesi neden bildirir.",
+      "app": {
+        "question": {
+          "text": "Çünkü kelimesi cümlede neyi gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebebi",
+        "wrong1": "Sonucu",
+        "wrong2": "Zamanı",
+        "explanation": "Çünkü kelimesi neden bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bu yüzden kelimesi cümlede neyi gösterir?",
+      "correct": "Sonucu",
+      "wrong1": "Sebebi",
+      "wrong2": "Yeri",
+      "explanation": "Bu yüzden bağlacı sebepten sonra gelen sonucu anlatır.",
+      "app": {
+        "question": {
+          "text": "Bu yüzden kelimesi cümlede neyi gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sonucu",
+        "wrong1": "Sebebi",
+        "wrong2": "Yeri",
+        "explanation": "Bu yüzden bağlacı sebepten sonra gelen sonucu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "Dolayısıyla kelimesi hangi ilişkiyi kurar?",
+      "correct": "Sebep-sonuç",
+      "wrong1": "Karşıtlık",
+      "wrong2": "Seçenek",
+      "explanation": "Dolayısıyla bir nedenin ardından gelen sonucu bağlar.",
+      "app": {
+        "question": {
+          "text": "Dolayısıyla kelimesi hangi ilişkiyi kurar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep-sonuç",
+        "wrong1": "Karşıtlık",
+        "wrong2": "Seçenek",
+        "explanation": "Dolayısıyla bir nedenin ardından gelen sonucu bağlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_031",
+      "level": "kolay",
+      "premise": "Çok oynadığı için terledi.",
+      "text": "Yukarıdaki cümlede terlemesi hangi tür cümle öğesidir?",
+      "correct": "Sonuç",
+      "wrong1": "Sebep",
+      "wrong2": "Özne",
+      "explanation": "Oynamak sebeptir; terlemek bunun sonucudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede terlemesi hangi tür cümle öğesidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok oynadığı için terledi."
+            }
+          ]
+        },
+        "correct": "Sonuç",
+        "wrong1": "Sebep",
+        "wrong2": "Özne",
+        "explanation": "Oynamak sebeptir; terlemek bunun sonucudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_032",
+      "level": "kolay",
+      "premise": "Kış geldiği için ağaçlar yapraklarını döktü.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kışın gelmesi",
+      "wrong1": "Yaprakların dökülmesi",
+      "wrong2": "Ağaçlar",
+      "explanation": "Kışın gelmesi nedendir; yaprakların dökülmesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış geldiği için ağaçlar yapraklarını döktü."
+            }
+          ]
+        },
+        "correct": "Kışın gelmesi",
+        "wrong1": "Yaprakların dökülmesi",
+        "wrong2": "Ağaçlar",
+        "explanation": "Kışın gelmesi nedendir; yaprakların dökülmesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_033",
+      "level": "kolay",
+      "premise": "Dondurma yediği için boğazı ağrıdı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Boğazının ağrıması",
+      "wrong1": "Dondurma yemesi",
+      "wrong2": "Dondurma",
+      "explanation": "Dondurma yemek sebeptir; boğaz ağrısı sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dondurma yediği için boğazı ağrıdı."
+            }
+          ]
+        },
+        "correct": "Boğazının ağrıması",
+        "wrong1": "Dondurma yemesi",
+        "wrong2": "Dondurma",
+        "explanation": "Dondurma yemek sebeptir; boğaz ağrısı sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_034",
+      "level": "kolay",
+      "premise": "Fırtına çıktığı için dışarı çıkamadık.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Fırtınanın çıkması",
+      "wrong1": "Dışarı çıkamamamız",
+      "wrong2": "Dışarı",
+      "explanation": "Fırtına sebeptir; dışarı çıkamamak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtına çıktığı için dışarı çıkamadık."
+            }
+          ]
+        },
+        "correct": "Fırtınanın çıkması",
+        "wrong1": "Dışarı çıkamamamız",
+        "wrong2": "Dışarı",
+        "explanation": "Fırtına sebeptir; dışarı çıkamamak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_035",
+      "level": "kolay",
+      "premise": "Kitabı unuttuğu için geri döndü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Geri dönmesi",
+      "wrong1": "Kitabı unutması",
+      "wrong2": "Kitap",
+      "explanation": "Kitabı unutmak sebeptir; geri dönmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitabı unuttuğu için geri döndü."
+            }
+          ]
+        },
+        "correct": "Geri dönmesi",
+        "wrong1": "Kitabı unutması",
+        "wrong2": "Kitap",
+        "explanation": "Kitabı unutmak sebeptir; geri dönmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_036",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yağmur ile ıslanma arasındaki doğru eşleştirme hangisidir?",
+      "correct": "Sebep: yağmur — Sonuç: ıslanmak",
+      "wrong1": "Sebep: ıslanmak — Sonuç: yağmur",
+      "wrong2": "Sebep: güneş — Sonuç: yağmur",
+      "explanation": "Yağmur yağması ıslanmaya neden olur.",
+      "app": {
+        "question": {
+          "text": "Yağmur ile ıslanma arasındaki doğru eşleştirme hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep: yağmur — Sonuç: ıslanmak",
+        "wrong1": "Sebep: ıslanmak — Sonuç: yağmur",
+        "wrong2": "Sebep: güneş — Sonuç: yağmur",
+        "explanation": "Yağmur yağması ıslanmaya neden olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_037",
+      "level": "kolay",
+      "premise": null,
+      "text": "Açlık ile yemek yeme arasındaki doğru eşleştirme hangisidir?",
+      "correct": "Sebep: açlık — Sonuç: yemek yemek",
+      "wrong1": "Sebep: yemek yemek — Sonuç: açlık",
+      "wrong2": "Sebep: uyku — Sonuç: açlık",
+      "explanation": "Açlık yemek yemeye neden olur.",
+      "app": {
+        "question": {
+          "text": "Açlık ile yemek yeme arasındaki doğru eşleştirme hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep: açlık — Sonuç: yemek yemek",
+        "wrong1": "Sebep: yemek yemek — Sonuç: açlık",
+        "wrong2": "Sebep: uyku — Sonuç: açlık",
+        "explanation": "Açlık yemek yemeye neden olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_038",
+      "level": "kolay",
+      "premise": null,
+      "text": "İçin bağlacı hangi ilişkiyi kurar?",
+      "correct": "Sebep-sonuç",
+      "wrong1": "Karşıtlık",
+      "wrong2": "Benzerlik",
+      "explanation": "İçin bağlacı bir neden ile sonucu birbirine bağlar.",
+      "app": {
+        "question": {
+          "text": "İçin bağlacı hangi ilişkiyi kurar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep-sonuç",
+        "wrong1": "Karşıtlık",
+        "wrong2": "Benzerlik",
+        "explanation": "İçin bağlacı bir neden ile sonucu birbirine bağlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_039",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sebep-sonuç cümlesinde önce genellikle ne gelir?",
+      "correct": "Sebep",
+      "wrong1": "Sonuç",
+      "wrong2": "Soru",
+      "explanation": "Sebep genellikle önce, sonuç sonra söylenir.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç cümlesinde önce genellikle ne gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep",
+        "wrong1": "Sonuç",
+        "wrong2": "Soru",
+        "explanation": "Sebep genellikle önce, sonuç sonra söylenir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_040",
+      "level": "kolay",
+      "premise": "Kar yağınca yollar kaygan oldu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kar yağması",
+      "wrong1": "Yolların kaygan olması",
+      "wrong2": "Yollar",
+      "explanation": "Kar yağmak nedendir; yolların kaygan olması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kar yağınca yollar kaygan oldu."
+            }
+          ]
+        },
+        "correct": "Kar yağması",
+        "wrong1": "Yolların kaygan olması",
+        "wrong2": "Yollar",
+        "explanation": "Kar yağmak nedendir; yolların kaygan olması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_041",
+      "level": "kolay",
+      "premise": "Uykusu geldiği için erken yattı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Erken yatması",
+      "wrong1": "Uykusunun gelmesi",
+      "wrong2": "Uyku",
+      "explanation": "Uykunun gelmesi sebeptir; erken yatmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uykusu geldiği için erken yattı."
+            }
+          ]
+        },
+        "correct": "Erken yatması",
+        "wrong1": "Uykusunun gelmesi",
+        "wrong2": "Uyku",
+        "explanation": "Uykunun gelmesi sebeptir; erken yatmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_042",
+      "level": "kolay",
+      "premise": "Çok bağırdığı için sesi kısıldı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok bağırmak",
+      "wrong1": "Sesinin kısılması",
+      "wrong2": "Ses",
+      "explanation": "Çok bağırmak nedendir; sesin kısılması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok bağırdığı için sesi kısıldı."
+            }
+          ]
+        },
+        "correct": "Çok bağırmak",
+        "wrong1": "Sesinin kısılması",
+        "wrong2": "Ses",
+        "explanation": "Çok bağırmak nedendir; sesin kısılması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_043",
+      "level": "kolay",
+      "premise": "Rüzgar estiği için ağaç dalları sallandı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Dalların sallanması",
+      "wrong1": "Rüzgarın esmesi",
+      "wrong2": "Ağaç",
+      "explanation": "Rüzgar sebeptir; dalların sallanması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Rüzgar estiği için ağaç dalları sallandı."
+            }
+          ]
+        },
+        "correct": "Dalların sallanması",
+        "wrong1": "Rüzgarın esmesi",
+        "wrong2": "Ağaç",
+        "explanation": "Rüzgar sebeptir; dalların sallanması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_044",
+      "level": "kolay",
+      "premise": "Kalemi kaybettiği için yeni kalem aldı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kalemi kaybetmesi",
+      "wrong1": "Yeni kalem alması",
+      "wrong2": "Kalem",
+      "explanation": "Kalemi kaybetmek nedendir; yeni kalem almak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kalemi kaybettiği için yeni kalem aldı."
+            }
+          ]
+        },
+        "correct": "Kalemi kaybetmesi",
+        "wrong1": "Yeni kalem alması",
+        "wrong2": "Kalem",
+        "explanation": "Kalemi kaybetmek nedendir; yeni kalem almak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_045",
+      "level": "kolay",
+      "premise": "Sınav zor olduğu için çok düşündü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Çok düşünmesi",
+      "wrong1": "Sınavın zor olması",
+      "wrong2": "Sınav",
+      "explanation": "Sınavın zor olması sebeptir; çok düşünmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınav zor olduğu için çok düşündü."
+            }
+          ]
+        },
+        "correct": "Çok düşünmesi",
+        "wrong1": "Sınavın zor olması",
+        "wrong2": "Sınav",
+        "explanation": "Sınavın zor olması sebeptir; çok düşünmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_046",
+      "level": "kolay",
+      "premise": "Gece geç yattığı için sabah yorgun kalktı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Gece geç yatmak",
+      "wrong1": "Sabah yorgun kalkmak",
+      "wrong2": "Sabah",
+      "explanation": "Geç yatmak nedendir; yorgun kalkmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gece geç yattığı için sabah yorgun kalktı."
+            }
+          ]
+        },
+        "correct": "Gece geç yatmak",
+        "wrong1": "Sabah yorgun kalkmak",
+        "wrong2": "Sabah",
+        "explanation": "Geç yatmak nedendir; yorgun kalkmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_047",
+      "level": "kolay",
+      "premise": "Çok güneşte kaldığı için cildi kızardı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Cildin kızarması",
+      "wrong1": "Güneşte kalmak",
+      "wrong2": "Güneş",
+      "explanation": "Güneşte kalmak sebeptir; cildin kızarması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok güneşte kaldığı için cildi kızardı."
+            }
+          ]
+        },
+        "correct": "Cildin kızarması",
+        "wrong1": "Güneşte kalmak",
+        "wrong2": "Güneş",
+        "explanation": "Güneşte kalmak sebeptir; cildin kızarması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_048",
+      "level": "kolay",
+      "premise": "Annem yorgun olduğu için dinlendi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Yorgun olması",
+      "wrong1": "Dinlenmesi",
+      "wrong2": "Anne",
+      "explanation": "Yorgunluk sebeptir; dinlenmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Annem yorgun olduğu için dinlendi."
+            }
+          ]
+        },
+        "correct": "Yorgun olması",
+        "wrong1": "Dinlenmesi",
+        "wrong2": "Anne",
+        "explanation": "Yorgunluk sebeptir; dinlenmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_049",
+      "level": "kolay",
+      "premise": "Köpek havladığı için uyandık.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Uyanmamız",
+      "wrong1": "Köpeğin havlaması",
+      "wrong2": "Köpek",
+      "explanation": "Köpeğin havlaması sebeptir; uyanmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köpek havladığı için uyandık."
+            }
+          ]
+        },
+        "correct": "Uyanmamız",
+        "wrong1": "Köpeğin havlaması",
+        "wrong2": "Köpek",
+        "explanation": "Köpeğin havlaması sebeptir; uyanmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_050",
+      "level": "kolay",
+      "premise": "Buz kaygan olduğu için düştü.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Buzun kaygan olması",
+      "wrong1": "Düşmesi",
+      "wrong2": "Buz",
+      "explanation": "Buzun kaygan olması nedendir; düşmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Buz kaygan olduğu için düştü."
+            }
+          ]
+        },
+        "correct": "Buzun kaygan olması",
+        "wrong1": "Düşmesi",
+        "wrong2": "Buz",
+        "explanation": "Buzun kaygan olması nedendir; düşmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_051",
+      "level": "orta",
+      "premise": "Kar fırtınası çıktığı için okul erken kapandı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kar fırtınasının çıkması",
+      "wrong1": "Okulun erken kapanması",
+      "wrong2": "Okul",
+      "explanation": "Fırtına sebeptir; okulun erken kapanması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kar fırtınası çıktığı için okul erken kapandı."
+            }
+          ]
+        },
+        "correct": "Kar fırtınasının çıkması",
+        "wrong1": "Okulun erken kapanması",
+        "wrong2": "Okul",
+        "explanation": "Fırtına sebeptir; okulun erken kapanması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_052",
+      "level": "orta",
+      "premise": "Ödevini zamanında yapmadığı için notu düştü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Notunun düşmesi",
+      "wrong1": "Ödevini zamanında yapmaması",
+      "wrong2": "Not",
+      "explanation": "Ödevi yapmamak sebeptir; notun düşmesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ödevini zamanında yapmadığı için notu düştü."
+            }
+          ]
+        },
+        "correct": "Notunun düşmesi",
+        "wrong1": "Ödevini zamanında yapmaması",
+        "wrong2": "Not",
+        "explanation": "Ödevi yapmamak sebeptir; notun düşmesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_053",
+      "level": "orta",
+      "premise": "Çok televizyon izlediği için gözleri yoruldu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok televizyon izlemesi",
+      "wrong1": "Gözlerinin yorulması",
+      "wrong2": "Televizyon",
+      "explanation": "Televizyon izlemek sebeptir; göz yorgunluğu sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok televizyon izlediği için gözleri yoruldu."
+            }
+          ]
+        },
+        "correct": "Çok televizyon izlemesi",
+        "wrong1": "Gözlerinin yorulması",
+        "wrong2": "Televizyon",
+        "explanation": "Televizyon izlemek sebeptir; göz yorgunluğu sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_054",
+      "level": "orta",
+      "premise": "Yağmur yağdığı için piknik iptal oldu.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Pikniğin iptal olması",
+      "wrong1": "Yağmur yağması",
+      "wrong2": "Piknik",
+      "explanation": "Yağmur sebeptir; pikniğin iptal olması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağdığı için piknik iptal oldu."
+            }
+          ]
+        },
+        "correct": "Pikniğin iptal olması",
+        "wrong1": "Yağmur yağması",
+        "wrong2": "Piknik",
+        "explanation": "Yağmur sebeptir; pikniğin iptal olması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_055",
+      "level": "orta",
+      "premise": "Kalemi kırıldığı için yeni kalem istedi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kalemin kırılması",
+      "wrong1": "Yeni kalem istemesi",
+      "wrong2": "Kalem",
+      "explanation": "Kalemin kırılması sebeptir; yeni kalem istemek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kalemi kırıldığı için yeni kalem istedi."
+            }
+          ]
+        },
+        "correct": "Kalemin kırılması",
+        "wrong1": "Yeni kalem istemesi",
+        "wrong2": "Kalem",
+        "explanation": "Kalemin kırılması sebeptir; yeni kalem istemek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_056",
+      "level": "orta",
+      "premise": "Çalışmadığı için sınavdan düşük not aldı.",
+      "text": "Yukarıdaki cümlede sebep-sonuç sırası doğru mudur?",
+      "correct": "Evet, doğru",
+      "wrong1": "Hayır, ters",
+      "wrong2": "Sebep-sonuç yok",
+      "explanation": "Çalışmamak sebep, düşük not sonuçtur; sıra doğrudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep-sonuç sırası doğru mudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çalışmadığı için sınavdan düşük not aldı."
+            }
+          ]
+        },
+        "correct": "Evet, doğru",
+        "wrong1": "Hayır, ters",
+        "wrong2": "Sebep-sonuç yok",
+        "explanation": "Çalışmamak sebep, düşük not sonuçtur; sıra doğrudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_057",
+      "level": "orta",
+      "premise": "Sınavdan düşük not aldığı için çalışmadı.",
+      "text": "Yukarıdaki cümlede sebep-sonuç ilişkisi doğru mu?",
+      "correct": "Hayır, yanlış",
+      "wrong1": "Evet, doğru",
+      "wrong2": "İlişki yok",
+      "explanation": "Düşük not çalışmamanın sonucudur; sebep olarak gösterilmesi yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep-sonuç ilişkisi doğru mu?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınavdan düşük not aldığı için çalışmadı."
+            }
+          ]
+        },
+        "correct": "Hayır, yanlış",
+        "wrong1": "Evet, doğru",
+        "wrong2": "İlişki yok",
+        "explanation": "Düşük not çalışmamanın sonucudur; sebep olarak gösterilmesi yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_058",
+      "level": "orta",
+      "premise": null,
+      "text": "Hasta olmayı sebep gösteren cümle hangisidir?",
+      "correct": "Okula gitmedi çünkü hasta oldu",
+      "wrong1": "Hasta oldu okula gitti",
+      "wrong2": "Okul güzel",
+      "explanation": "Çünkü kelimesi hasta olmayı sebep olarak bildirir.",
+      "app": {
+        "question": {
+          "text": "Hasta olmayı sebep gösteren cümle hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okula gitmedi çünkü hasta oldu",
+        "wrong1": "Hasta oldu okula gitti",
+        "wrong2": "Okul güzel",
+        "explanation": "Çünkü kelimesi hasta olmayı sebep olarak bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_059",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde bu yüzden sonuç bildirir?",
+      "correct": "Yağmur yağdı, bu yüzden ıslandık",
+      "wrong1": "Islandık, bu yüzden yağmur yağdı",
+      "wrong2": "Bu yüzden güzel",
+      "explanation": "Yağmur sebeptir; ıslanmak bu yüzden ile anlatılan sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde bu yüzden sonuç bildirir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yağmur yağdı, bu yüzden ıslandık",
+        "wrong1": "Islandık, bu yüzden yağmur yağdı",
+        "wrong2": "Bu yüzden güzel",
+        "explanation": "Yağmur sebeptir; ıslanmak bu yüzden ile anlatılan sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_060",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde dolayısıyla doğru kullanılmıştır?",
+      "correct": "Çok çalıştı, dolayısıyla başardı",
+      "wrong1": "Başardı, dolayısıyla çalıştı",
+      "wrong2": "Dolayısıyla mavi",
+      "explanation": "Çalışmak sebeptir; başarmak dolayısıyla ile bağlanan sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde dolayısıyla doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çok çalıştı, dolayısıyla başardı",
+        "wrong1": "Başardı, dolayısıyla çalıştı",
+        "wrong2": "Dolayısıyla mavi",
+        "explanation": "Çalışmak sebeptir; başarmak dolayısıyla ile bağlanan sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_061",
+      "level": "orta",
+      "premise": null,
+      "text": "Sebep-sonuç cümlesi hangisidir?",
+      "correct": "Susadığı için su içti",
+      "wrong1": "Su içti",
+      "wrong2": "Susadı",
+      "explanation": "Susamak sebep, su içmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç cümlesi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Susadığı için su içti",
+        "wrong1": "Su içti",
+        "wrong2": "Susadı",
+        "explanation": "Susamak sebep, su içmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_062",
+      "level": "orta",
+      "premise": null,
+      "text": "Sebep-sonuç cümlesi olmayan hangisidir?",
+      "correct": "Bahçede çiçek açtı",
+      "wrong1": "Yorulduğu için dinlendi",
+      "wrong2": "Aç olduğu için yemek yedi",
+      "explanation": "Çiçek açmak basit bir olaydır; neden-sonuç yoktur.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç cümlesi olmayan hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bahçede çiçek açtı",
+        "wrong1": "Yorulduğu için dinlendi",
+        "wrong2": "Aç olduğu için yemek yedi",
+        "explanation": "Çiçek açmak basit bir olaydır; neden-sonuç yoktur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_063",
+      "level": "orta",
+      "premise": "I. Sebep bir olayın nedenidir.\nII. Sonuç sebepten sonra gelir.\nIII. Ama sebep-sonuç kurar.",
+      "text": "Yukarıdaki ifadelerden hangisi yanlıştır?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "Ama karşıtlık bildirir; sebep-sonuç kurmaz.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangisi yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sebep bir olayın nedenidir."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sonuç sebepten sonra gelir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ama sebep-sonuç kurar."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "Ama karşıtlık bildirir; sebep-sonuç kurmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_064",
+      "level": "orta",
+      "premise": "I. İçin sebep-sonuç kurar.\nII. Bu yüzden sonuç bildirir.\nIII. Çünkü sebep bildirir.",
+      "text": "Yukarıdaki bağlaç bilgilerinden hangileri doğrudur?",
+      "correct": "Hepsi",
+      "wrong1": "Yalnız I",
+      "wrong2": "I ve II",
+      "explanation": "Üç ifade de sebep-sonuç bağlaçları hakkında doğrudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bağlaç bilgilerinden hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "İçin sebep-sonuç kurar."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bu yüzden sonuç bildirir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Çünkü sebep bildirir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Hepsi",
+        "wrong1": "Yalnız I",
+        "wrong2": "I ve II",
+        "explanation": "Üç ifade de sebep-sonuç bağlaçları hakkında doğrudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_065",
+      "level": "orta",
+      "premise": "Yağmur yağdı.",
+      "text": "Yukarıdaki cümlede bu yüzden şemsiye açtık. Parçada kaç sebep-sonuç ilişkisi vardır?",
+      "correct": "Bir",
+      "wrong1": "İki",
+      "wrong2": "Hiç",
+      "explanation": "Yağmur yağması şemsiye açmaya neden olmuştur; bir ilişki vardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede bu yüzden şemsiye açtık. Parçada kaç sebep-sonuç ilişkisi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağdı."
+            }
+          ]
+        },
+        "correct": "Bir",
+        "wrong1": "İki",
+        "wrong2": "Hiç",
+        "explanation": "Yağmur yağması şemsiye açmaya neden olmuştur; bir ilişki vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_066",
+      "level": "orta",
+      "premise": "I. Yağmur yağdı.\nII. Şemsiye açtık.\nIII. Islanmadık.",
+      "text": "Yukarıdaki cümlelerden hangisinde sebep-sonuç ilişkisi en açık kurulmuştur?",
+      "correct": "I ve II birlikte",
+      "wrong1": "Yalnız III",
+      "wrong2": "Hiçbiri",
+      "explanation": "Yağmur yağması şemsiye açmaya neden olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde sebep-sonuç ilişkisi en açık kurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yağmur yağdı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Şemsiye açtık."
+                },
+                {
+                  "label": "III.",
+                  "text": "Islanmadık."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I ve II birlikte",
+        "wrong1": "Yalnız III",
+        "wrong2": "Hiçbiri",
+        "explanation": "Yağmur yağması şemsiye açmaya neden olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_067",
+      "level": "orta",
+      "premise": "I. Geç kaldı.\nII. Koştu.\nIII. Otobüse yetişti.",
+      "text": "Yukarıdaki olaylarda geç kalmak hangi olaya neden olmuştur?",
+      "correct": "Koşmak",
+      "wrong1": "Otobüse yetişmek",
+      "wrong2": "Uyumak",
+      "explanation": "Geç kalmak koşmaya neden olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylarda geç kalmak hangi olaya neden olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Geç kaldı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Koştu."
+                },
+                {
+                  "label": "III.",
+                  "text": "Otobüse yetişti."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Koşmak",
+        "wrong1": "Otobüse yetişmek",
+        "wrong2": "Uyumak",
+        "explanation": "Geç kalmak koşmaya neden olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_068",
+      "level": "orta",
+      "premise": "I. Çok çalıştı.\nII. Sınavı kazandı.\nIII. Ailesi sevindi.",
+      "text": "Yukarıdaki olaylarda sınavı kazanmanın sebebi hangisidir?",
+      "correct": "Çok çalışmak",
+      "wrong1": "Ailenin sevinmesi",
+      "wrong2": "Sınav",
+      "explanation": "Sınavı kazanmanın sebebi çok çalışmaktır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylarda sınavı kazanmanın sebebi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Çok çalıştı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sınavı kazandı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ailesi sevindi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Çok çalışmak",
+        "wrong1": "Ailenin sevinmesi",
+        "wrong2": "Sınav",
+        "explanation": "Sınavı kazanmanın sebebi çok çalışmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_069",
+      "level": "orta",
+      "premise": "I. Hasta oldu.\nII. Okula gitmedi.\nIII. Dinlendi.",
+      "text": "Yukarıdaki olaylarda okula gitmemenin sebebi hangisidir?",
+      "correct": "Hasta olmak",
+      "wrong1": "Dinlenmek",
+      "wrong2": "Okul",
+      "explanation": "Hasta olmak okula gitmemeye neden olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylarda okula gitmemenin sebebi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Hasta oldu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Okula gitmedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Dinlendi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Hasta olmak",
+        "wrong1": "Dinlenmek",
+        "wrong2": "Okul",
+        "explanation": "Hasta olmak okula gitmemeye neden olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_070",
+      "level": "orta",
+      "premise": "I. Rüzgar esti.\nII. Pencere kapandı.\nIII. Oda serindi.",
+      "text": "Yukarıdaki olaylarda pencere kapanmasının sebebi hangisidir?",
+      "correct": "Rüzgarın esmesi",
+      "wrong1": "Odanın serinlemesi",
+      "wrong2": "Pencere",
+      "explanation": "Rüzgar pencerenin kapanmasına neden olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki olaylarda pencere kapanmasının sebebi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Rüzgar esti."
+                },
+                {
+                  "label": "II.",
+                  "text": "Pencere kapandı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Oda serindi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Rüzgarın esmesi",
+        "wrong1": "Odanın serinlemesi",
+        "wrong2": "Pencere",
+        "explanation": "Rüzgar pencerenin kapanmasına neden olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_071",
+      "level": "orta",
+      "premise": "Cam kırıldığı için dikkatli yürüdü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Dikkatli yürümesi",
+      "wrong1": "Camın kırılması",
+      "wrong2": "Cam",
+      "explanation": "Cam kırılması sebeptir; dikkatli yürümek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cam kırıldığı için dikkatli yürüdü."
+            }
+          ]
+        },
+        "correct": "Dikkatli yürümesi",
+        "wrong1": "Camın kırılması",
+        "wrong2": "Cam",
+        "explanation": "Cam kırılması sebeptir; dikkatli yürümek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_072",
+      "level": "orta",
+      "premise": "Çok gürültü olduğu için ders çalışamadı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok gürültü olması",
+      "wrong1": "Ders çalışamaması",
+      "wrong2": "Ders",
+      "explanation": "Gürültü sebeptir; ders çalışamamak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok gürültü olduğu için ders çalışamadı."
+            }
+          ]
+        },
+        "correct": "Çok gürültü olması",
+        "wrong1": "Ders çalışamaması",
+        "wrong2": "Ders",
+        "explanation": "Gürültü sebeptir; ders çalışamamak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_073",
+      "level": "orta",
+      "premise": "Karnım acıktığı için mutfağa gittim.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Mutfağa gitmem",
+      "wrong1": "Karnımın acıkması",
+      "wrong2": "Mutfak",
+      "explanation": "Acıkmak sebeptir; mutfağa gitmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karnım acıktığı için mutfağa gittim."
+            }
+          ]
+        },
+        "correct": "Mutfağa gitmem",
+        "wrong1": "Karnımın acıkması",
+        "wrong2": "Mutfak",
+        "explanation": "Acıkmak sebeptir; mutfağa gitmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_074",
+      "level": "orta",
+      "premise": "Yollar buzlu olduğu için yavaş yürüdük.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Yolların buzlu olması",
+      "wrong1": "Yavaş yürümemiz",
+      "wrong2": "Yollar",
+      "explanation": "Buzlu yollar sebeptir; yavaş yürümek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yollar buzlu olduğu için yavaş yürüdük."
+            }
+          ]
+        },
+        "correct": "Yolların buzlu olması",
+        "wrong1": "Yavaş yürümemiz",
+        "wrong2": "Yollar",
+        "explanation": "Buzlu yollar sebeptir; yavaş yürümek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_075",
+      "level": "orta",
+      "premise": "Öğretmen anlattığı için defterime yazdım.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Defterime yazmam",
+      "wrong1": "Öğretmenin anlatması",
+      "wrong2": "Defter",
+      "explanation": "Öğretmenin anlatması sebeptir; deftere yazmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğretmen anlattığı için defterime yazdım."
+            }
+          ]
+        },
+        "correct": "Defterime yazmam",
+        "wrong1": "Öğretmenin anlatması",
+        "wrong2": "Defter",
+        "explanation": "Öğretmenin anlatması sebeptir; deftere yazmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_076",
+      "level": "orta",
+      "premise": "Müzik çok yüksek olduğu için kulaklık taktı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Müziğin çok yüksek olması",
+      "wrong1": "Kulaklık takması",
+      "wrong2": "Müzik",
+      "explanation": "Yüksek müzik sebeptir; kulaklık takmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Müzik çok yüksek olduğu için kulaklık taktı."
+            }
+          ]
+        },
+        "correct": "Müziğin çok yüksek olması",
+        "wrong1": "Kulaklık takması",
+        "wrong2": "Müzik",
+        "explanation": "Yüksek müzik sebeptir; kulaklık takmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_077",
+      "level": "orta",
+      "premise": "Okul çantası ağır olduğu için omzum ağrıdı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Omzumun ağrıması",
+      "wrong1": "Çantanın ağır olması",
+      "wrong2": "Omuz",
+      "explanation": "Ağır çanta sebeptir; omuz ağrısı sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okul çantası ağır olduğu için omzum ağrıdı."
+            }
+          ]
+        },
+        "correct": "Omzumun ağrıması",
+        "wrong1": "Çantanın ağır olması",
+        "wrong2": "Omuz",
+        "explanation": "Ağır çanta sebeptir; omuz ağrısı sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_078",
+      "level": "orta",
+      "premise": "Sıcak olduğu için fanı açtı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Sıcak olması",
+      "wrong1": "Fanı açması",
+      "wrong2": "Fan",
+      "explanation": "Sıcak hava sebeptir; fan açmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıcak olduğu için fanı açtı."
+            }
+          ]
+        },
+        "correct": "Sıcak olması",
+        "wrong1": "Fanı açması",
+        "wrong2": "Fan",
+        "explanation": "Sıcak hava sebeptir; fan açmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_079",
+      "level": "orta",
+      "premise": "Kalem yazmadığı için yeni uç taktı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Yeni uç takması",
+      "wrong1": "Kalemin yazmaması",
+      "wrong2": "Uç",
+      "explanation": "Kalemin yazmaması sebeptir; yeni uç takmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kalem yazmadığı için yeni uç taktı."
+            }
+          ]
+        },
+        "correct": "Yeni uç takması",
+        "wrong1": "Kalemin yazmaması",
+        "wrong2": "Uç",
+        "explanation": "Kalemin yazmaması sebeptir; yeni uç takmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_080",
+      "level": "orta",
+      "premise": "Misafir geleceği için evi temizledi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Misafir geleceği",
+      "wrong1": "Evi temizlemesi",
+      "wrong2": "Ev",
+      "explanation": "Misafir gelmesi sebeptir; evi temizlemek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Misafir geleceği için evi temizledi."
+            }
+          ]
+        },
+        "correct": "Misafir geleceği",
+        "wrong1": "Evi temizlemesi",
+        "wrong2": "Ev",
+        "explanation": "Misafir gelmesi sebeptir; evi temizlemek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_081",
+      "level": "orta",
+      "premise": "Soru zor olduğu için uzun düşündü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Uzun düşünmesi",
+      "wrong1": "Sorunun zor olması",
+      "wrong2": "Soru",
+      "explanation": "Zor soru sebeptir; uzun düşünmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Soru zor olduğu için uzun düşündü."
+            }
+          ]
+        },
+        "correct": "Uzun düşünmesi",
+        "wrong1": "Sorunun zor olması",
+        "wrong2": "Soru",
+        "explanation": "Zor soru sebeptir; uzun düşünmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_082",
+      "level": "orta",
+      "premise": "Rüzgarlı olduğu için şapkasını tuttu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Rüzgarlı olması",
+      "wrong1": "Şapkasını tutması",
+      "wrong2": "Şapka",
+      "explanation": "Rüzgar sebeptir; şapka tutmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Rüzgarlı olduğu için şapkasını tuttu."
+            }
+          ]
+        },
+        "correct": "Rüzgarlı olması",
+        "wrong1": "Şapkasını tutması",
+        "wrong2": "Şapka",
+        "explanation": "Rüzgar sebeptir; şapka tutmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_083",
+      "level": "orta",
+      "premise": "Çok oyun oynadığı için geç yattı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Geç yatması",
+      "wrong1": "Çok oyun oynaması",
+      "wrong2": "Oyun",
+      "explanation": "Çok oyun oynamak sebeptir; geç yatmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok oyun oynadığı için geç yattı."
+            }
+          ]
+        },
+        "correct": "Geç yatması",
+        "wrong1": "Çok oyun oynaması",
+        "wrong2": "Oyun",
+        "explanation": "Çok oyun oynamak sebeptir; geç yatmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_084",
+      "level": "orta",
+      "premise": "Sınav yaklaştığı için daha çok çalıştı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Sınavın yaklaşması",
+      "wrong1": "Daha çok çalışması",
+      "wrong2": "Sınav",
+      "explanation": "Sınavın yaklaşması sebeptir; daha çok çalışmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınav yaklaştığı için daha çok çalıştı."
+            }
+          ]
+        },
+        "correct": "Sınavın yaklaşması",
+        "wrong1": "Daha çok çalışması",
+        "wrong2": "Sınav",
+        "explanation": "Sınavın yaklaşması sebeptir; daha çok çalışmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_085",
+      "level": "orta",
+      "premise": "Kedisi kaybolduğu için üzgündü.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Üzgün olması",
+      "wrong1": "Kedisinin kaybolması",
+      "wrong2": "Kedi",
+      "explanation": "Kedinin kaybolması sebeptir; üzülmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kedisi kaybolduğu için üzgündü."
+            }
+          ]
+        },
+        "correct": "Üzgün olması",
+        "wrong1": "Kedisinin kaybolması",
+        "wrong2": "Kedi",
+        "explanation": "Kedinin kaybolması sebeptir; üzülmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_086",
+      "level": "orta",
+      "premise": "Hediye aldığı için çok mutlu oldu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Hediye alması",
+      "wrong1": "Mutlu olması",
+      "wrong2": "Hediye",
+      "explanation": "Hediye almak sebeptir; mutlu olmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hediye aldığı için çok mutlu oldu."
+            }
+          ]
+        },
+        "correct": "Hediye alması",
+        "wrong1": "Mutlu olması",
+        "wrong2": "Hediye",
+        "explanation": "Hediye almak sebeptir; mutlu olmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_087",
+      "level": "orta",
+      "premise": "Yolda kaldığı için babasını aradı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Babasını araması",
+      "wrong1": "Yolda kalması",
+      "wrong2": "Baba",
+      "explanation": "Yolda kalmak sebeptir; babayı aramak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yolda kaldığı için babasını aradı."
+            }
+          ]
+        },
+        "correct": "Babasını araması",
+        "wrong1": "Yolda kalması",
+        "wrong2": "Baba",
+        "explanation": "Yolda kalmak sebeptir; babayı aramak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_088",
+      "level": "orta",
+      "premise": "Çok konuştuğu için susması istendi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok konuşması",
+      "wrong1": "Susması istenmesi",
+      "wrong2": "Konuşma",
+      "explanation": "Çok konuşmak sebeptir; susması istenmek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok konuştuğu için susması istendi."
+            }
+          ]
+        },
+        "correct": "Çok konuşması",
+        "wrong1": "Susması istenmesi",
+        "wrong2": "Konuşma",
+        "explanation": "Çok konuşmak sebeptir; susması istenmek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_089",
+      "level": "orta",
+      "premise": "Güneş battığı için sokak lambaları yandı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Sokak lambalarının yanması",
+      "wrong1": "Güneşin batması",
+      "wrong2": "Sokak",
+      "explanation": "Güneşin batması sebeptir; lambaların yanması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş battığı için sokak lambaları yandı."
+            }
+          ]
+        },
+        "correct": "Sokak lambalarının yanması",
+        "wrong1": "Güneşin batması",
+        "wrong2": "Sokak",
+        "explanation": "Güneşin batması sebeptir; lambaların yanması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_090",
+      "level": "orta",
+      "premise": "Kışın soğuk olduğu için kalın mont giydi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Kışın soğuk olması",
+      "wrong1": "Kalın mont giymesi",
+      "wrong2": "Mont",
+      "explanation": "Soğuk kış sebeptir; kalın mont giymek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kışın soğuk olduğu için kalın mont giydi."
+            }
+          ]
+        },
+        "correct": "Kışın soğuk olması",
+        "wrong1": "Kalın mont giymesi",
+        "wrong2": "Mont",
+        "explanation": "Soğuk kış sebeptir; kalın mont giymek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_091",
+      "level": "orta",
+      "premise": "Çok kitap okuduğu için kelime dağarcığı genişledi.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Kelime dağarcığının genişlemesi",
+      "wrong1": "Çok kitap okuması",
+      "wrong2": "Kitap",
+      "explanation": "Kitap okumak sebeptir; kelime dağarcığının genişlemesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok kitap okuduğu için kelime dağarcığı genişledi."
+            }
+          ]
+        },
+        "correct": "Kelime dağarcığının genişlemesi",
+        "wrong1": "Çok kitap okuması",
+        "wrong2": "Kitap",
+        "explanation": "Kitap okumak sebeptir; kelime dağarcığının genişlemesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_092",
+      "level": "orta",
+      "premise": "Pil bittiği için oyuncak çalışmadı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Pilin bitmesi",
+      "wrong1": "Oyuncağın çalışmaması",
+      "wrong2": "Oyuncak",
+      "explanation": "Pilin bitmesi sebeptir; oyuncağın çalışmaması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pil bittiği için oyuncak çalışmadı."
+            }
+          ]
+        },
+        "correct": "Pilin bitmesi",
+        "wrong1": "Oyuncağın çalışmaması",
+        "wrong2": "Oyuncak",
+        "explanation": "Pilin bitmesi sebeptir; oyuncağın çalışmaması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_093",
+      "level": "orta",
+      "premise": "Sulama yapılmadığı için çiçekler soldu.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Çiçeklerin solması",
+      "wrong1": "Sulama yapılmaması",
+      "wrong2": "Çiçek",
+      "explanation": "Sulama yapmamak sebeptir; çiçeklerin solması sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sulama yapılmadığı için çiçekler soldu."
+            }
+          ]
+        },
+        "correct": "Çiçeklerin solması",
+        "wrong1": "Sulama yapılmaması",
+        "wrong2": "Çiçek",
+        "explanation": "Sulama yapmamak sebeptir; çiçeklerin solması sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_094",
+      "level": "orta",
+      "premise": "Çok koştuğu için nefesi kesildi.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok koşması",
+      "wrong1": "Nefesinin kesilmesi",
+      "wrong2": "Nefes",
+      "explanation": "Çok koşmak sebeptir; nefesin kesilmesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok koştuğu için nefesi kesildi."
+            }
+          ]
+        },
+        "correct": "Çok koşması",
+        "wrong1": "Nefesinin kesilmesi",
+        "wrong2": "Nefes",
+        "explanation": "Çok koşmak sebeptir; nefesin kesilmesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_095",
+      "level": "orta",
+      "premise": "Geç uyuduğu için sabah geç kalktı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Sabah geç kalkması",
+      "wrong1": "Geç uyuması",
+      "wrong2": "Sabah",
+      "explanation": "Geç uyumak sebeptir; geç kalkmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geç uyuduğu için sabah geç kalktı."
+            }
+          ]
+        },
+        "correct": "Sabah geç kalkması",
+        "wrong1": "Geç uyuması",
+        "wrong2": "Sabah",
+        "explanation": "Geç uyumak sebeptir; geç kalkmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_096",
+      "level": "orta",
+      "premise": "Yağmur yağdığı için bahçeye çıkmadı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Yağmur yağması",
+      "wrong1": "Bahçeye çıkmaması",
+      "wrong2": "Bahçe",
+      "explanation": "Yağmur sebeptir; bahçeye çıkmamak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağdığı için bahçeye çıkmadı."
+            }
+          ]
+        },
+        "correct": "Yağmur yağması",
+        "wrong1": "Bahçeye çıkmaması",
+        "wrong2": "Bahçe",
+        "explanation": "Yağmur sebeptir; bahçeye çıkmamak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_097",
+      "level": "orta",
+      "premise": "Kalemi unuttuğu için arkadaşından istedi.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Arkadaşından istemesi",
+      "wrong1": "Kalemi unutması",
+      "wrong2": "Arkadaş",
+      "explanation": "Kalemi unutmak sebeptir; arkadaşından istemek sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kalemi unuttuğu için arkadaşından istedi."
+            }
+          ]
+        },
+        "correct": "Arkadaşından istemesi",
+        "wrong1": "Kalemi unutması",
+        "wrong2": "Arkadaş",
+        "explanation": "Kalemi unutmak sebeptir; arkadaşından istemek sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_098",
+      "level": "orta",
+      "premise": "Çok güldüğü için karın ağrısı oldu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Çok gülmek",
+      "wrong1": "Karın ağrısı",
+      "wrong2": "Karın",
+      "explanation": "Çok gülmek sebeptir; karın ağrısı sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok güldüğü için karın ağrısı oldu."
+            }
+          ]
+        },
+        "correct": "Çok gülmek",
+        "wrong1": "Karın ağrısı",
+        "wrong2": "Karın",
+        "explanation": "Çok gülmek sebeptir; karın ağrısı sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_099",
+      "level": "orta",
+      "premise": "Fırtına çıktığı için pencereyi kapattı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Pencereyi kapatması",
+      "wrong1": "Fırtınanın çıkması",
+      "wrong2": "Pencere",
+      "explanation": "Fırtına sebeptir; pencereyi kapatmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtına çıktığı için pencereyi kapattı."
+            }
+          ]
+        },
+        "correct": "Pencereyi kapatması",
+        "wrong1": "Fırtınanın çıkması",
+        "wrong2": "Pencere",
+        "explanation": "Fırtına sebeptir; pencereyi kapatmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_100",
+      "level": "orta",
+      "premise": null,
+      "text": "Sebep-sonuç ilişkisinde sonuç genellikle hangi bağlaçla bildirilir?",
+      "correct": "Bu yüzden",
+      "wrong1": "Ama",
+      "wrong2": "Veya",
+      "explanation": "Bu yüzden bağlacı sebepten sonra gelen sonucu bildirir.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç ilişkisinde sonuç genellikle hangi bağlaçla bildirilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bu yüzden",
+        "wrong1": "Ama",
+        "wrong2": "Veya",
+        "explanation": "Bu yüzden bağlacı sebepten sonra gelen sonucu bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_101",
+      "level": "zor",
+      "premise": "I. Geç kaldığı için koştu.\nII. Aç olduğu için yemek yedi.\nIII. Koşmak spor yapmak demektir.",
+      "text": "Yukarıdaki cümlelerin hangisinde sebep-sonuç ilişkisi yoktur?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümlede tanım vardır; neden-sonuç kurulmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde sebep-sonuç ilişkisi yoktur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Geç kaldığı için koştu."
+                },
+                {
+                  "label": "II.",
+                  "text": "Aç olduğu için yemek yedi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Koşmak spor yapmak demektir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümlede tanım vardır; neden-sonuç kurulmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_102",
+      "level": "zor",
+      "premise": "I. Çalıştığı için başardı.\nII. Başardığı için çalıştı.\nIII. Başardı çünkü çalıştı.",
+      "text": "Yukarıdaki cümlelerin hangisinde sebep-sonuç sırası doğrudur?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede önce sebep (çalışma), sonra sonuç (başarı) gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde sebep-sonuç sırası doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Çalıştığı için başardı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Başardığı için çalıştı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Başardı çünkü çalıştı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede önce sebep (çalışma), sonra sonuç (başarı) gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_103",
+      "level": "zor",
+      "premise": "I. Yağmur yağınca ıslandı.\nII. Başardığı için çalıştı.\nIII. Hasta olduğu için yattı.",
+      "text": "Yukarıdaki cümlelerin hangisinde sebep-sonuç sırası yanlıştır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede başarı sebep gibi gösterilmiş; çalışmak sebep olmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerin hangisinde sebep-sonuç sırası yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yağmur yağınca ıslandı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Başardığı için çalıştı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Hasta olduğu için yattı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede başarı sebep gibi gösterilmiş; çalışmak sebep olmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_104",
+      "level": "zor",
+      "premise": "I. Çünkü kelimesi sebep bildirir.\nII. Bu yüzden kelimesi sonuç bildirir.\nIII. Dolayısıyla kelimesi sebep bildirir.",
+      "text": "Yukarıdaki bağlaç tanımlarından hangileri doğrudur?",
+      "correct": "I ve II",
+      "wrong1": "Yalnız I",
+      "wrong2": "I, II ve III",
+      "explanation": "I ve II doğru; dolayısıyla sonuç bildirir, sebep değil.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bağlaç tanımlarından hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Çünkü kelimesi sebep bildirir."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bu yüzden kelimesi sonuç bildirir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Dolayısıyla kelimesi sebep bildirir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I ve II",
+        "wrong1": "Yalnız I",
+        "wrong2": "I, II ve III",
+        "explanation": "I ve II doğru; dolayısıyla sonuç bildirir, sebep değil.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_105",
+      "level": "zor",
+      "premise": "I. Sebep bir olayın nedenidir.\nII. Sonuç sebepten sonra ortaya çıkar.\nIII. İçin bağlacı sebep-sonuç kurar.",
+      "text": "Yukarıdaki sebep-sonuç tanımlarından hangileri doğrudur?",
+      "correct": "I, II ve III",
+      "wrong1": "Yalnız II",
+      "wrong2": "I ve III",
+      "explanation": "Üç ifade de doğru: sebep neden, sonuç sebebin ardından gelen durum, için bağlaç kurar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sebep-sonuç tanımlarından hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sebep bir olayın nedenidir."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sonuç sebepten sonra ortaya çıkar."
+                },
+                {
+                  "label": "III.",
+                  "text": "İçin bağlacı sebep-sonuç kurar."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I, II ve III",
+        "wrong1": "Yalnız II",
+        "wrong2": "I ve III",
+        "explanation": "Üç ifade de doğru: sebep neden, sonuç sebebin ardından gelen durum, için bağlaç kurar.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_106",
+      "level": "zor",
+      "premise": "I. Yağmur yağmak ıslanmanın sebebidir.\nII. Geç kalmak otobüsü kaçırmanın sebebidir.\nIII. Başarı çalışmanın sebebidir.",
+      "text": "Yukarıdaki sebep örneklerinden hangisi yanlıştır?",
+      "correct": "Yalnız III",
+      "wrong1": "I ve II",
+      "wrong2": "I, II ve III",
+      "explanation": "III yanlış: başarı çalışmanın sonucudur, sebebi değil.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sebep örneklerinden hangisi yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yağmur yağmak ıslanmanın sebebidir."
+                },
+                {
+                  "label": "II.",
+                  "text": "Geç kalmak otobüsü kaçırmanın sebebidir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Başarı çalışmanın sebebidir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Yalnız III",
+        "wrong1": "I ve II",
+        "wrong2": "I, II ve III",
+        "explanation": "III yanlış: başarı çalışmanın sonucudur, sebebi değil.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_107",
+      "level": "zor",
+      "premise": "I. Sebep: ıslanmak — Sonuç: yağmur\nII. Sebep: hasta olmak — Sonuç: dinlenmek\nIII. Sebep: yağmur — Sonuç: şemsiye açmak",
+      "text": "Yukarıdaki eşleştirmelerden hangileri doğrudur?",
+      "correct": "II ve III",
+      "wrong1": "Yalnız I",
+      "wrong2": "I ve II",
+      "explanation": "II ve III doğru: hasta-dinlenme ve yağmur-şemsiye. I ters kurulmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki eşleştirmelerden hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sebep: ıslanmak — Sonuç: yağmur"
+                },
+                {
+                  "label": "II.",
+                  "text": "Sebep: hasta olmak — Sonuç: dinlenmek"
+                },
+                {
+                  "label": "III.",
+                  "text": "Sebep: yağmur — Sonuç: şemsiye açmak"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II ve III",
+        "wrong1": "Yalnız I",
+        "wrong2": "I ve II",
+        "explanation": "II ve III doğru: hasta-dinlenme ve yağmur-şemsiye. I ters kurulmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_108",
+      "level": "zor",
+      "premise": "I. Sebep: karanlık — Sonuç: elektrik kesintisi\nII. Sebep: çalışmak — Sonuç: başarı\nIII. Sebep: başarı — Sonuç: çalışmak",
+      "text": "Yukarıdaki eşleştirmelerden hangileri yanlıştır?",
+      "correct": "I ve III",
+      "wrong1": "Yalnız II",
+      "wrong2": "II ve III",
+      "explanation": "I ve III yanlış: karanlık sonuçtur, başarı sonuçtur. II doğrudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki eşleştirmelerden hangileri yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sebep: karanlık — Sonuç: elektrik kesintisi"
+                },
+                {
+                  "label": "II.",
+                  "text": "Sebep: çalışmak — Sonuç: başarı"
+                },
+                {
+                  "label": "III.",
+                  "text": "Sebep: başarı — Sonuç: çalışmak"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I ve III",
+        "wrong1": "Yalnız II",
+        "wrong2": "II ve III",
+        "explanation": "I ve III yanlış: karanlık sonuçtur, başarı sonuçtur. II doğrudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_109",
+      "level": "zor",
+      "premise": "Yağmur yağınca ıslandık. Sonra geç kaldığımız için otobüsü kaçırdık.",
+      "text": "Yukarıdaki parçada kaç sebep-sonuç ilişkisi vardır?",
+      "correct": "İki",
+      "wrong1": "Bir",
+      "wrong2": "Üç",
+      "explanation": "Parçada yağmur-ıslanma ve geç kalma-otobüs kaçırma olmak üzere iki ilişki vardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada kaç sebep-sonuç ilişkisi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağınca ıslandık. Sonra geç kaldığımız için otobüsü kaçırdık."
+            }
+          ]
+        },
+        "correct": "İki",
+        "wrong1": "Bir",
+        "wrong2": "Üç",
+        "explanation": "Parçada yağmur-ıslanma ve geç kalma-otobüs kaçırma olmak üzere iki ilişki vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_110",
+      "level": "zor",
+      "premise": "Yağmur yağınca ıslandık. Sonra geç kaldığımız için otobüsü kaçırdık.",
+      "text": "Yukarıdaki parçada ilk sebep-sonuç ilişkisinin sebebi hangisidir?",
+      "correct": "Yağmur yağması",
+      "wrong1": "Islanmak",
+      "wrong2": "Otobüsü kaçırmak",
+      "explanation": "İlk ilişkide yağmur yağması ıslanmanın sebebidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada ilk sebep-sonuç ilişkisinin sebebi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağınca ıslandık. Sonra geç kaldığımız için otobüsü kaçırdık."
+            }
+          ]
+        },
+        "correct": "Yağmur yağması",
+        "wrong1": "Islanmak",
+        "wrong2": "Otobüsü kaçırmak",
+        "explanation": "İlk ilişkide yağmur yağması ıslanmanın sebebidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_111",
+      "level": "zor",
+      "premise": "Yağmur yağınca ıslandık. Sonra geç kaldığımız için otobüsü kaçırdık.",
+      "text": "Yukarıdaki parçada ikinci sebep-sonuç ilişkisinin sonucu hangisidir?",
+      "correct": "Otobüsü kaçırmak",
+      "wrong1": "Yağmur yağmak",
+      "wrong2": "Islanmak",
+      "explanation": "İkinci ilişkide geç kalmak sebep, otobüsü kaçırmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada ikinci sebep-sonuç ilişkisinin sonucu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağınca ıslandık. Sonra geç kaldığımız için otobüsü kaçırdık."
+            }
+          ]
+        },
+        "correct": "Otobüsü kaçırmak",
+        "wrong1": "Yağmur yağmak",
+        "wrong2": "Islanmak",
+        "explanation": "İkinci ilişkide geç kalmak sebep, otobüsü kaçırmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_112",
+      "level": "zor",
+      "premise": "I. Bugün hava güzel.\nII. Çok çalıştığı için sınavı kazandı.\nIII. Sınav zordu.",
+      "text": "Yukarıdaki parçada sebep-sonuç ilişkisi hangi cümlede vardır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede çalışmak sebep, kazanmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada sebep-sonuç ilişkisi hangi cümlede vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Bugün hava güzel."
+                },
+                {
+                  "label": "II.",
+                  "text": "Çok çalıştığı için sınavı kazandı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Sınav zordu."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede çalışmak sebep, kazanmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_113",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi seçenekte sebep, sonuç ve bağlaç doğru kullanılmıştır?",
+      "correct": "Hasta olduğu için okula gitmedi",
+      "wrong1": "Okula gitmediği için hasta oldu",
+      "wrong2": "Hasta oldu, bu yüzden okula gitti",
+      "explanation": "Hasta olmak gitmemenin nedenidir; için bağlacı doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Hangi seçenekte sebep, sonuç ve bağlaç doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hasta olduğu için okula gitmedi",
+        "wrong1": "Okula gitmediği için hasta oldu",
+        "wrong2": "Hasta oldu, bu yüzden okula gitti",
+        "explanation": "Hasta olmak gitmemenin nedenidir; için bağlacı doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_114",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi seçenekte sebep-sonuç ilişkisi yanlış kurulmuştur?",
+      "correct": "Başarılı olduğu için çok çalıştı",
+      "wrong1": "Çok çalıştığı için başarılı oldu",
+      "wrong2": "Hasta olduğu için dinlendi",
+      "explanation": "Başarılı olmak çalışmanın sonucudur; ters kurulmuştur.",
+      "app": {
+        "question": {
+          "text": "Hangi seçenekte sebep-sonuç ilişkisi yanlış kurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Başarılı olduğu için çok çalıştı",
+        "wrong1": "Çok çalıştığı için başarılı oldu",
+        "wrong2": "Hasta olduğu için dinlendi",
+        "explanation": "Başarılı olmak çalışmanın sonucudur; ters kurulmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_115",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi seçenekte bu yüzden doğru kullanılmıştır?",
+      "correct": "Elektrik kesildi, bu yüzden ders çalışamadık",
+      "wrong1": "Ders çalışamadık, bu yüzden elektrik kesildi",
+      "wrong2": "Bu yüzden güzel",
+      "explanation": "Elektriğin kesilmesi sebeptir; ders çalışamamak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Hangi seçenekte bu yüzden doğru kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Elektrik kesildi, bu yüzden ders çalışamadık",
+        "wrong1": "Ders çalışamadık, bu yüzden elektrik kesildi",
+        "wrong2": "Bu yüzden güzel",
+        "explanation": "Elektriğin kesilmesi sebeptir; ders çalışamamak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_116",
+      "level": "zor",
+      "premise": "Fırtına çıktığı için ağaç devrildi.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Ağacın devrilmesi",
+      "wrong1": "Fırtınanın çıkması",
+      "wrong2": "Ağaç",
+      "explanation": "Fırtına sebeptir; ağacın devrilmesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtına çıktığı için ağaç devrildi."
+            }
+          ]
+        },
+        "correct": "Ağacın devrilmesi",
+        "wrong1": "Fırtınanın çıkması",
+        "wrong2": "Ağaç",
+        "explanation": "Fırtına sebeptir; ağacın devrilmesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_117",
+      "level": "zor",
+      "premise": "Gece geç yattığı için sabah geç kalktı.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Gece geç yatmak",
+      "wrong1": "Sabah geç kalkmak",
+      "wrong2": "Sabah",
+      "explanation": "Geç yatmak nedendir; geç kalkmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gece geç yattığı için sabah geç kalktı."
+            }
+          ]
+        },
+        "correct": "Gece geç yatmak",
+        "wrong1": "Sabah geç kalkmak",
+        "wrong2": "Sabah",
+        "explanation": "Geç yatmak nedendir; geç kalkmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_118",
+      "level": "zor",
+      "premise": "Okula gitmedi çünkü hasta oldu.",
+      "text": "Yukarıdaki cümlede sebep hangisidir?",
+      "correct": "Hasta olmak",
+      "wrong1": "Okula gitmemek",
+      "wrong2": "Okul",
+      "explanation": "Bu cümlede çünkü kelimesinden sonra gelen hasta olmak sebebi gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sebep hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okula gitmedi çünkü hasta oldu."
+            }
+          ]
+        },
+        "correct": "Hasta olmak",
+        "wrong1": "Okula gitmemek",
+        "wrong2": "Okul",
+        "explanation": "Bu cümlede çünkü kelimesinden sonra gelen hasta olmak sebebi gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_119",
+      "level": "zor",
+      "premise": "Çok bağırdı, dolayısıyla sesi kısıldı.",
+      "text": "Yukarıdaki cümlede sonuç hangisidir?",
+      "correct": "Sesinin kısılması",
+      "wrong1": "Bağırmak",
+      "wrong2": "Ses",
+      "explanation": "Bağırmak sebeptir; sesin kısılması dolayısıyla ile bağlanan sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede sonuç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çok bağırdı, dolayısıyla sesi kısıldı."
+            }
+          ]
+        },
+        "correct": "Sesinin kısılması",
+        "wrong1": "Bağırmak",
+        "wrong2": "Ses",
+        "explanation": "Bağırmak sebeptir; sesin kısılması dolayısıyla ile bağlanan sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_120",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisinde sebep-sonuç en iyi açıklanmıştır?",
+      "correct": "Okula gitmedi çünkü hasta oldu; hasta olmak gitmemesinin nedenidir",
+      "wrong1": "Okula gitmedi",
+      "wrong2": "Hasta oldu",
+      "explanation": "İlk cümlede hem sonuç hem sebep açıkça belirtilmiştir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisinde sebep-sonuç en iyi açıklanmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okula gitmedi çünkü hasta oldu; hasta olmak gitmemesinin nedenidir",
+        "wrong1": "Okula gitmedi",
+        "wrong2": "Hasta oldu",
+        "explanation": "İlk cümlede hem sonuç hem sebep açıkça belirtilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_121",
+      "level": "zor",
+      "premise": "I. Ağaç uzun.\nII. Fırtına çıktığı için ağaç devrildi.\nIII. Fırtına doğa olayıdır.",
+      "text": "Yukarıdaki cümlelerden hangisinde fırtına ile ağaç devrilmesi arasında sebep-sonuç vardır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede fırtına sebep, ağacın devrilmesi sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde fırtına ile ağaç devrilmesi arasında sebep-sonuç vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ağaç uzun."
+                },
+                {
+                  "label": "II.",
+                  "text": "Fırtına çıktığı için ağaç devrildi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Fırtına doğa olayıdır."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede fırtına sebep, ağacın devrilmesi sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_122",
+      "level": "zor",
+      "premise": "Yağmur yağınca ıslandık. Geç kaldığımız için otobüsü kaçırdık.",
+      "text": "Yukarıdaki parçada birinci sebep-sonuç ilişkisinin sonucu hangisidir?",
+      "correct": "Islanmak",
+      "wrong1": "Yağmur yağmak",
+      "wrong2": "Otobüs kaçırmak",
+      "explanation": "Yağmur yağması ıslanmanın sebebidir; ıslanmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada birinci sebep-sonuç ilişkisinin sonucu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağınca ıslandık. Geç kaldığımız için otobüsü kaçırdık."
+            }
+          ]
+        },
+        "correct": "Islanmak",
+        "wrong1": "Yağmur yağmak",
+        "wrong2": "Otobüs kaçırmak",
+        "explanation": "Yağmur yağması ıslanmanın sebebidir; ıslanmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_123",
+      "level": "zor",
+      "premise": "Yağmur yağınca ıslandık. Geç kaldığımız için otobüsü kaçırdık.",
+      "text": "Yukarıdaki parçada ikinci sebep-sonuç ilişkisinin sebebi hangisidir?",
+      "correct": "Geç kalmak",
+      "wrong1": "Otobüsü kaçırmak",
+      "wrong2": "Islanmak",
+      "explanation": "Geç kalmak otobüsü kaçırmanın sebebidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada ikinci sebep-sonuç ilişkisinin sebebi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağınca ıslandık. Geç kaldığımız için otobüsü kaçırdık."
+            }
+          ]
+        },
+        "correct": "Geç kalmak",
+        "wrong1": "Otobüsü kaçırmak",
+        "wrong2": "Islanmak",
+        "explanation": "Geç kalmak otobüsü kaçırmanın sebebidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_124",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi cümlede sebep-sonuç ters kurulmuştur?",
+      "correct": "Başardığı için çalıştı",
+      "wrong1": "Çalıştığı için başardı",
+      "wrong2": "Hasta olduğu için yattı",
+      "explanation": "Başarmak çalışmanın sonucudur; sebep gibi gösterilmesi yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Hangi cümlede sebep-sonuç ters kurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Başardığı için çalıştı",
+        "wrong1": "Çalıştığı için başardı",
+        "wrong2": "Hasta olduğu için yattı",
+        "explanation": "Başarmak çalışmanın sonucudur; sebep gibi gösterilmesi yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_125",
+      "level": "zor",
+      "premise": null,
+      "text": "Okula gitmeme gerekçesini sebep olarak gösteren cümle hangisidir?",
+      "correct": "Okula gitmedi çünkü hasta oldu",
+      "wrong1": "Çünkü okula gitmedi hasta oldu",
+      "wrong2": "Hasta çünkü oldu",
+      "explanation": "Hasta olmak gitmemenin nedenidir; çünkü doğru kullanılmıştır.",
+      "app": {
+        "question": {
+          "text": "Okula gitmeme gerekçesini sebep olarak gösteren cümle hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Okula gitmedi çünkü hasta oldu",
+        "wrong1": "Çünkü okula gitmedi hasta oldu",
+        "wrong2": "Hasta çünkü oldu",
+        "explanation": "Hasta olmak gitmemenin nedenidir; çünkü doğru kullanılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_126",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi cümlede dolayısıyla kelimesi yanlış kullanılmıştır?",
+      "correct": "Güzel dolayısıyla hava",
+      "wrong1": "Çalıştı, dolayısıyla başardı",
+      "wrong2": "Yağmur yağdı, dolayısıyla ıslandık",
+      "explanation": "Güzel dolayısıyla hava anlamsızdır; sebep-sonuç kurulmamıştır.",
+      "app": {
+        "question": {
+          "text": "Hangi cümlede dolayısıyla kelimesi yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Güzel dolayısıyla hava",
+        "wrong1": "Çalıştı, dolayısıyla başardı",
+        "wrong2": "Yağmur yağdı, dolayısıyla ıslandık",
+        "explanation": "Güzel dolayısıyla hava anlamsızdır; sebep-sonuç kurulmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_127",
+      "level": "zor",
+      "premise": null,
+      "text": "Sebep-sonuç cümlesinde için bağlacı hangi bölümde kullanılır?",
+      "correct": "Sebep bölümünün sonunda",
+      "wrong1": "Sonuç bölümünün sonunda",
+      "wrong2": "Cümlenin başında",
+      "explanation": "İçin bağlacı sebep bölümünün sonunda kullanılır.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç cümlesinde için bağlacı hangi bölümde kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep bölümünün sonunda",
+        "wrong1": "Sonuç bölümünün sonunda",
+        "wrong2": "Cümlenin başında",
+        "explanation": "İçin bağlacı sebep bölümünün sonunda kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_128",
+      "level": "zor",
+      "premise": null,
+      "text": "Bu yüzden bağlacı hangi bölümden önce gelir?",
+      "correct": "Sonuç bölümünden önce",
+      "wrong1": "Sebep bölümünden önce",
+      "wrong2": "Cümlenin sonunda",
+      "explanation": "Bu yüzden sonuç bölümünden önce gelir ve sonucu bildirir.",
+      "app": {
+        "question": {
+          "text": "Bu yüzden bağlacı hangi bölümden önce gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sonuç bölümünden önce",
+        "wrong1": "Sebep bölümünden önce",
+        "wrong2": "Cümlenin sonunda",
+        "explanation": "Bu yüzden sonuç bölümünden önce gelir ve sonucu bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_129",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesi değildir?",
+      "correct": "Bugün pazartesi",
+      "wrong1": "Yağmur yağdığı için ıslandık",
+      "wrong2": "Aç olduğu için yemek yedi",
+      "explanation": "Bugün pazartesi basit bir bilgidir; sebep-sonuç yoktur.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesi değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bugün pazartesi",
+        "wrong1": "Yağmur yağdığı için ıslandık",
+        "wrong2": "Aç olduğu için yemek yedi",
+        "explanation": "Bugün pazartesi basit bir bilgidir; sebep-sonuç yoktur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_130",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesidir?",
+      "correct": "Soğuk olduğu için mont giydi",
+      "wrong1": "Mont mavi",
+      "wrong2": "Soğuk hava",
+      "explanation": "Soğuk olmak mont giymenin nedenidir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Soğuk olduğu için mont giydi",
+        "wrong1": "Mont mavi",
+        "wrong2": "Soğuk hava",
+        "explanation": "Soğuk olmak mont giymenin nedenidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_131",
+      "level": "zor",
+      "premise": "I. Sebep her zaman sonuçtan önce gelir.\nII. Sonuç sebebin ardından ortaya çıkar.\nIII. Ama sebep-sonuç kurar.",
+      "text": "Yukarıdaki sebep-sonuç kurallarından hangileri doğrudur?",
+      "correct": "I ve II",
+      "wrong1": "Yalnız III",
+      "wrong2": "I, II ve III",
+      "explanation": "I ve II doğru; ama karşıtlık bildirir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sebep-sonuç kurallarından hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sebep her zaman sonuçtan önce gelir."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sonuç sebebin ardından ortaya çıkar."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ama sebep-sonuç kurar."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I ve II",
+        "wrong1": "Yalnız III",
+        "wrong2": "I, II ve III",
+        "explanation": "I ve II doğru; ama karşıtlık bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_132",
+      "level": "zor",
+      "premise": "I. İçin sebep-sonuç kurar.\nII. Bu yüzden sonuç bildirir.\nIII. Çünkü sonuç bildirir.",
+      "text": "Yukarıdaki bağlaç ifadelerinden hangisi yanlıştır?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "Çünkü sebep bildirir, sonuç değil.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bağlaç ifadelerinden hangisi yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "İçin sebep-sonuç kurar."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bu yüzden sonuç bildirir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Çünkü sonuç bildirir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "Çünkü sebep bildirir, sonuç değil.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_133",
+      "level": "zor",
+      "premise": "I. Yağmur yağmak ıslanmanın sebebidir.\nII. Çalışmak başarının sebebidir.\nIII. Geç kalmak otobüsü kaçırmanın sebebidir.",
+      "text": "Yukarıdaki sebep-sonuç örneklerinden hangileri doğrudur?",
+      "correct": "Hepsi",
+      "wrong1": "Yalnız I",
+      "wrong2": "I ve III",
+      "explanation": "Üç ifade de doğru sebep-sonuç eşleştirmesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki sebep-sonuç örneklerinden hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yağmur yağmak ıslanmanın sebebidir."
+                },
+                {
+                  "label": "II.",
+                  "text": "Çalışmak başarının sebebidir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Geç kalmak otobüsü kaçırmanın sebebidir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Hepsi",
+        "wrong1": "Yalnız I",
+        "wrong2": "I ve III",
+        "explanation": "Üç ifade de doğru sebep-sonuç eşleştirmesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_134",
+      "level": "zor",
+      "premise": "I. Sebep: karanlık — Sonuç: elektrik kesintisi\nII. Sebep: yağmur — Sonuç: ıslanmak\nIII. Sebep: başarı — Sonuç: çalışmak",
+      "text": "Yukarıdaki ters eşleştirmelerden hangileri yanlıştır?",
+      "correct": "I ve III",
+      "wrong1": "Yalnız II",
+      "wrong2": "II ve III",
+      "explanation": "I ve III yanlış: karanlık sonuçtur, başarı sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ters eşleştirmelerden hangileri yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sebep: karanlık — Sonuç: elektrik kesintisi"
+                },
+                {
+                  "label": "II.",
+                  "text": "Sebep: yağmur — Sonuç: ıslanmak"
+                },
+                {
+                  "label": "III.",
+                  "text": "Sebep: başarı — Sonuç: çalışmak"
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I ve III",
+        "wrong1": "Yalnız II",
+        "wrong2": "II ve III",
+        "explanation": "I ve III yanlış: karanlık sonuçtur, başarı sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_135",
+      "level": "zor",
+      "premise": "Hasta olduğu için dinlendi. Yağmur yağınca ıslandı. Geç kaldığı için otobüsü kaçırdı.",
+      "text": "Yukarıdaki parçada toplam kaç sebep-sonuç ilişkisi vardır?",
+      "correct": "Üç",
+      "wrong1": "Bir",
+      "wrong2": "İki",
+      "explanation": "Parçada hasta-dinlenme, yağmur-ıslanma ve geç kalma-otobüs kaçırma olmak üzere üç ilişki vardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada toplam kaç sebep-sonuç ilişkisi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hasta olduğu için dinlendi. Yağmur yağınca ıslandı. Geç kaldığı için otobüsü kaçırdı."
+            }
+          ]
+        },
+        "correct": "Üç",
+        "wrong1": "Bir",
+        "wrong2": "İki",
+        "explanation": "Parçada hasta-dinlenme, yağmur-ıslanma ve geç kalma-otobüs kaçırma olmak üzere üç ilişki vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_136",
+      "level": "zor",
+      "premise": "Hasta olduğu için dinlendi. Yağmur yağınca ıslandı. Geç kaldığı için otobüsü kaçırdı.",
+      "text": "Yukarıdaki parçada yağmur yağması hangi sonuca neden olmuştur?",
+      "correct": "Islanmak",
+      "wrong1": "Dinlenmek",
+      "wrong2": "Otobüs kaçırmak",
+      "explanation": "Yağmur yağması ıslanmaya neden olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada yağmur yağması hangi sonuca neden olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hasta olduğu için dinlendi. Yağmur yağınca ıslandı. Geç kaldığı için otobüsü kaçırdı."
+            }
+          ]
+        },
+        "correct": "Islanmak",
+        "wrong1": "Dinlenmek",
+        "wrong2": "Otobüs kaçırmak",
+        "explanation": "Yağmur yağması ıslanmaya neden olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_137",
+      "level": "zor",
+      "premise": "Hasta olduğu için dinlendi. Yağmur yağınca ıslandı. Geç kaldığı için otobüsü kaçırdı.",
+      "text": "Yukarıdaki parçada hasta olma hangi sonuca neden olmuştur?",
+      "correct": "Dinlenmek",
+      "wrong1": "Islanmak",
+      "wrong2": "Otobüs kaçırmak",
+      "explanation": "Hasta olmak dinlenmeye neden olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçada hasta olma hangi sonuca neden olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hasta olduğu için dinlendi. Yağmur yağınca ıslandı. Geç kaldığı için otobüsü kaçırdı."
+            }
+          ]
+        },
+        "correct": "Dinlenmek",
+        "wrong1": "Islanmak",
+        "wrong2": "Otobüs kaçırmak",
+        "explanation": "Hasta olmak dinlenmeye neden olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_138",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi seçenekte sebep-sonuç ilişkisi doğru kurulmuştur?",
+      "correct": "Çok çalıştığı için sınavı kazandı",
+      "wrong1": "Sınavı kazandığı için çok çalıştı",
+      "wrong2": "Sınavı kazandı çünkü başarılı",
+      "explanation": "Çalışmak sebeptir; sınavı kazanmak sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Hangi seçenekte sebep-sonuç ilişkisi doğru kurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çok çalıştığı için sınavı kazandı",
+        "wrong1": "Sınavı kazandığı için çok çalıştı",
+        "wrong2": "Sınavı kazandı çünkü başarılı",
+        "explanation": "Çalışmak sebeptir; sınavı kazanmak sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_139",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi seçenekte için bağlacı yanlış kullanılmıştır?",
+      "correct": "Gittiği için okula hasta oldu",
+      "wrong1": "Hasta olduğu için okula gitmedi",
+      "wrong2": "Aç olduğu için yemek yedi",
+      "explanation": "Okula gitmek hastalığın sebebi olamaz; ters kurulmuştur.",
+      "app": {
+        "question": {
+          "text": "Hangi seçenekte için bağlacı yanlış kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gittiği için okula hasta oldu",
+        "wrong1": "Hasta olduğu için okula gitmedi",
+        "wrong2": "Aç olduğu için yemek yedi",
+        "explanation": "Okula gitmek hastalığın sebebi olamaz; ters kurulmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_140",
+      "level": "zor",
+      "premise": null,
+      "text": "Sebep-sonuç ilişkisinde hangi bağlaç sebebi bildirir?",
+      "correct": "Çünkü",
+      "wrong1": "Bu yüzden",
+      "wrong2": "Dolayısıyla",
+      "explanation": "Çünkü kelimesi sebebi bildirir.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç ilişkisinde hangi bağlaç sebebi bildirir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çünkü",
+        "wrong1": "Bu yüzden",
+        "wrong2": "Dolayısıyla",
+        "explanation": "Çünkü kelimesi sebebi bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_141",
+      "level": "zor",
+      "premise": null,
+      "text": "Sebep-sonuç ilişkisinde hangi bağlaç sonucu bildirir?",
+      "correct": "Bu yüzden",
+      "wrong1": "Çünkü",
+      "wrong2": "Ve",
+      "explanation": "Bu yüzden kelimesi sonucu bildirir.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç ilişkisinde hangi bağlaç sonucu bildirir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bu yüzden",
+        "wrong1": "Çünkü",
+        "wrong2": "Ve",
+        "explanation": "Bu yüzden kelimesi sonucu bildirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_142",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesi olarak yanlıştır?",
+      "correct": "Başarılı olduğu için çalıştı",
+      "wrong1": "Hasta olduğu için dinlendi",
+      "wrong2": "Yağmur yağdığı için ıslandı",
+      "explanation": "Başarılı olmak çalışmanın sonucudur; sebep gibi gösterilmesi yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesi olarak yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Başarılı olduğu için çalıştı",
+        "wrong1": "Hasta olduğu için dinlendi",
+        "wrong2": "Yağmur yağdığı için ıslandı",
+        "explanation": "Başarılı olmak çalışmanın sonucudur; sebep gibi gösterilmesi yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_143",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesi olarak doğrudur?",
+      "correct": "Geç kaldığı için otobüsü kaçırdı",
+      "wrong1": "Otobüsü kaçırdığı için geç kaldı",
+      "wrong2": "Geç kaldı çünkü otobüs",
+      "explanation": "Geç kalmak otobüsü kaçırmanın nedenidir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi sebep-sonuç cümlesi olarak doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Geç kaldığı için otobüsü kaçırdı",
+        "wrong1": "Otobüsü kaçırdığı için geç kaldı",
+        "wrong2": "Geç kaldı çünkü otobüs",
+        "explanation": "Geç kalmak otobüsü kaçırmanın nedenidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_144",
+      "level": "zor",
+      "premise": "I. Yağmur yağınca ıslandı.\nII. Bugün hava güzel.\nIII. Ali okula gitti.",
+      "text": "Yukarıdaki cümlelerden hangisinde yağmur ile ıslanma arasında sebep-sonuç vardır?",
+      "correct": "I",
+      "wrong1": "II",
+      "wrong2": "III",
+      "explanation": "I. cümlede yağmur sebep, ıslanma sonuçtur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde yağmur ile ıslanma arasında sebep-sonuç vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yağmur yağınca ıslandı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bugün hava güzel."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ali okula gitti."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I",
+        "wrong1": "II",
+        "wrong2": "III",
+        "explanation": "I. cümlede yağmur sebep, ıslanma sonuçtur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_145",
+      "level": "zor",
+      "premise": "I. Yorulduğu için dinlendi.\nII. Bugün cuma.\nIII. Aç olduğu için yemek yedi.",
+      "text": "Yukarıdaki cümlelerden hangisinde sebep-sonuç kurulmamıştır?",
+      "correct": "II",
+      "wrong1": "I",
+      "wrong2": "III",
+      "explanation": "II. cümlede basit bilgi vardır; sebep-sonuç kurulmamıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelerden hangisinde sebep-sonuç kurulmamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Yorulduğu için dinlendi."
+                },
+                {
+                  "label": "II.",
+                  "text": "Bugün cuma."
+                },
+                {
+                  "label": "III.",
+                  "text": "Aç olduğu için yemek yedi."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II",
+        "wrong1": "I",
+        "wrong2": "III",
+        "explanation": "II. cümlede basit bilgi vardır; sebep-sonuç kurulmamıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_146",
+      "level": "zor",
+      "premise": null,
+      "text": "Sebep-sonuç ilişkisini en iyi açıklayan ifade hangisidir?",
+      "correct": "Sebep bir olayın nedenidir, sonuç sebebin ardından gelir",
+      "wrong1": "Sebep ve sonuç aynı şeydir",
+      "wrong2": "Sonuç her zaman önce gelir",
+      "explanation": "Sebep neden, sonuç sebebin ardından ortaya çıkan durumdur.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç ilişkisini en iyi açıklayan ifade hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sebep bir olayın nedenidir, sonuç sebebin ardından gelir",
+        "wrong1": "Sebep ve sonuç aynı şeydir",
+        "wrong2": "Sonuç her zaman önce gelir",
+        "explanation": "Sebep neden, sonuç sebebin ardından ortaya çıkan durumdur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_147",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi sebep-sonuç konusunda yanlıştır?",
+      "correct": "Sonuç sebepten önce gelir",
+      "wrong1": "İçin bağlacı sebep-sonuç kurar",
+      "wrong2": "Bu yüzden sonuç bildirir",
+      "explanation": "Sonuç sebepten sonra gelir; önce gelmesi yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi sebep-sonuç konusunda yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sonuç sebepten önce gelir",
+        "wrong1": "İçin bağlacı sebep-sonuç kurar",
+        "wrong2": "Bu yüzden sonuç bildirir",
+        "explanation": "Sonuç sebepten sonra gelir; önce gelmesi yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_148",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi cümlede sebep ve sonuç doğru eşleştirilmiştir?",
+      "correct": "Elektrik kesildi, bu yüzden lamba söndü",
+      "wrong1": "Lamba söndü, bu yüzden elektrik kesildi",
+      "wrong2": "Bu yüzden lamba söndü elektrik",
+      "explanation": "Elektriğin kesilmesi lambanın sönmesine neden olur.",
+      "app": {
+        "question": {
+          "text": "Hangi cümlede sebep ve sonuç doğru eşleştirilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Elektrik kesildi, bu yüzden lamba söndü",
+        "wrong1": "Lamba söndü, bu yüzden elektrik kesildi",
+        "wrong2": "Bu yüzden lamba söndü elektrik",
+        "explanation": "Elektriğin kesilmesi lambanın sönmesine neden olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_149",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi cümlede sebep-sonuç ilişkisi kurulmamıştır?",
+      "correct": "Bahçede kırmızı gül var",
+      "wrong1": "Susadığı için su içti",
+      "wrong2": "Yorulduğu için dinlendi",
+      "explanation": "Gülün rengini anlatmak sebep-sonuç değildir.",
+      "app": {
+        "question": {
+          "text": "Hangi cümlede sebep-sonuç ilişkisi kurulmamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bahçede kırmızı gül var",
+        "wrong1": "Susadığı için su içti",
+        "wrong2": "Yorulduğu için dinlendi",
+        "explanation": "Gülün rengini anlatmak sebep-sonuç değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "cumle3_150",
+      "level": "zor",
+      "premise": null,
+      "text": "Sebep-sonuç cümlelerinde en sık kullanılan bağlaç hangisidir?",
+      "correct": "İçin",
+      "wrong1": "Ama",
+      "wrong2": "Veya",
+      "explanation": "İçin bağlacı sebep-sonuç cümlelerinde en sık kullanılır.",
+      "app": {
+        "question": {
+          "text": "Sebep-sonuç cümlelerinde en sık kullanılan bağlaç hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İçin",
+        "wrong1": "Ama",
+        "wrong2": "Veya",
+        "explanation": "İçin bağlacı sebep-sonuç cümlelerinde en sık kullanılır.",
+        "url": null
+      }
+    }
+  ]
+}

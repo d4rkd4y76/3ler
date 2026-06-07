@@ -1,0 +1,4342 @@
+{
+  "meta": {
+    "topicId": "t03",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Paragrafta Anlam (Metnin konusu, ana düşüncesi, şiirin ana duygusu)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "paragraf3_001",
+      "level": "kolay",
+      "premise": "Kedi evcil bir hayvandır. Miyavlayarak ses çıkarır. Et ve süt yer.",
+      "text": "Yukarıdaki paragrafa göre metnin konusu nedir?",
+      "correct": "Kediler",
+      "wrong1": "Kuşlar",
+      "wrong2": "Balıklar",
+      "explanation": "Paragrafta kedinin sesi, yemeği ve evcil olması anlatılıyor; konu kedilerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafa göre metnin konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kedi evcil bir hayvandır. Miyavlayarak ses çıkarır. Et ve süt yer."
+            }
+          ]
+        },
+        "correct": "Kediler",
+        "wrong1": "Kuşlar",
+        "wrong2": "Balıklar",
+        "explanation": "Paragrafta kedinin sesi, yemeği ve evcil olması anlatılıyor; konu kedilerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_002",
+      "level": "kolay",
+      "premise": "Arılar çiçeklerden bal yapar. Sarı ve siyah renklidir. Vızıldayarak uçarlar.",
+      "text": "Yukarıdaki metne göre bu parça öncelikle ne hakkında yazılmıştır?",
+      "correct": "Arılar",
+      "wrong1": "Kelebekler",
+      "wrong2": "Karıncalar",
+      "explanation": "Arıların bal yapması ve çiçeklere gitmesi anlatılıyor; konu arılardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parça öncelikle ne hakkında yazılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arılar çiçeklerden bal yapar. Sarı ve siyah renklidir. Vızıldayarak uçarlar."
+            }
+          ]
+        },
+        "correct": "Arılar",
+        "wrong1": "Kelebekler",
+        "wrong2": "Karıncalar",
+        "explanation": "Arıların bal yapması ve çiçeklere gitmesi anlatılıyor; konu arılardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_003",
+      "level": "kolay",
+      "premise": "Sınıfta konuşurken söz hakkı alırız. Koridorda koşmayız. Sıraya düzgün gireriz.",
+      "text": "Yukarıdaki metne göre paragrafın konusu aşağıdakilerden hangisidir?",
+      "correct": "Okul kuralları",
+      "wrong1": "Oyun kuralları",
+      "wrong2": "Trafik kuralları",
+      "explanation": "Sınıfta sessiz olmak ve sıraya girmek okul kurallarıdır; metnin konusu budur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıfta konuşurken söz hakkı alırız. Koridorda koşmayız. Sıraya düzgün gireriz."
+            }
+          ]
+        },
+        "correct": "Okul kuralları",
+        "wrong1": "Oyun kuralları",
+        "wrong2": "Trafik kuralları",
+        "explanation": "Sınıfta sessiz olmak ve sıraya girmek okul kurallarıdır; metnin konusu budur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_004",
+      "level": "kolay",
+      "premise": "Yılda dört mevsim vardır: ilkbahar, yaz, sonbahar ve kış. Her mevsimin havası farklıdır.",
+      "text": "Yukarıdaki metne göre metin ağırlıklı olarak hangi konuyu işlemektedir?",
+      "correct": "Mevsimler",
+      "wrong1": "Renkler",
+      "wrong2": "Sayılar",
+      "explanation": "Dört mevsimin adları ve özellikleri anlatılıyor; konu mevsimlerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metin ağırlıklı olarak hangi konuyu işlemektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yılda dört mevsim vardır: ilkbahar, yaz, sonbahar ve kış. Her mevsimin havası farklıdır."
+            }
+          ]
+        },
+        "correct": "Mevsimler",
+        "wrong1": "Renkler",
+        "wrong2": "Sayılar",
+        "explanation": "Dört mevsimin adları ve özellikleri anlatılıyor; konu mevsimlerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_005",
+      "level": "kolay",
+      "premise": "Her gün dişlerimizi fırçalarız. Tatlı yedikten sonra ağzımızı çalkalarız. Yılda bir kez diş hekimine gideriz.",
+      "text": "Yukarıdaki metne göre okuduğunuz paragraf hangi konuyu anlatmaktadır?",
+      "correct": "Diş sağlığı",
+      "wrong1": "Saç bakımı",
+      "wrong2": "Tırnak bakımı",
+      "explanation": "Diş fırçalamak ve diş hekimine gitmek anlatılıyor; konu diş sağlığıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre okuduğunuz paragraf hangi konuyu anlatmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her gün dişlerimizi fırçalarız. Tatlı yedikten sonra ağzımızı çalkalarız. Yılda bir kez diş hekimine gideriz."
+            }
+          ]
+        },
+        "correct": "Diş sağlığı",
+        "wrong1": "Saç bakımı",
+        "wrong2": "Tırnak bakımı",
+        "explanation": "Diş fırçalamak ve diş hekimine gitmek anlatılıyor; konu diş sağlığıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_006",
+      "level": "kolay",
+      "premise": "Kitap okumak bizi bilgilendirir. Yeni kelimeler öğreniriz. Hayal gücümüz gelişir.",
+      "text": "Yukarıdaki metne göre paragrafta üzerinde durulan asıl konu hangisidir?",
+      "correct": "Kitap okumanın faydaları",
+      "wrong1": "Televizyon izlemek",
+      "wrong2": "Bilgisayar oyunları",
+      "explanation": "Kitap okumanın kelime öğretmesi ve hayal kurmayı sağlaması anlatılıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta üzerinde durulan asıl konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitap okumak bizi bilgilendirir. Yeni kelimeler öğreniriz. Hayal gücümüz gelişir."
+            }
+          ]
+        },
+        "correct": "Kitap okumanın faydaları",
+        "wrong1": "Televizyon izlemek",
+        "wrong2": "Bilgisayar oyunları",
+        "explanation": "Kitap okumanın kelime öğretmesi ve hayal kurmayı sağlaması anlatılıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_007",
+      "level": "kolay",
+      "premise": "Denizde birçok canlı yaşar. Balıklar yüzer, yengeçler kumsalda yürür. Deniz yıldızı beş kolludur.",
+      "text": "Yukarıdaki metne göre bu metnin konusunu en iyi karşılayan seçenek hangisidir?",
+      "correct": "Deniz canlıları",
+      "wrong1": "Orman hayvanları",
+      "wrong2": "Çiftlik hayvanları",
+      "explanation": "Balık, yengeç ve deniz yıldızı denizde yaşar; konu deniz canlılarıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metnin konusunu en iyi karşılayan seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Denizde birçok canlı yaşar. Balıklar yüzer, yengeçler kumsalda yürür. Deniz yıldızı beş kolludur."
+            }
+          ]
+        },
+        "correct": "Deniz canlıları",
+        "wrong1": "Orman hayvanları",
+        "wrong2": "Çiftlik hayvanları",
+        "explanation": "Balık, yengeç ve deniz yıldızı denizde yaşar; konu deniz canlılarıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_008",
+      "level": "kolay",
+      "premise": "Kırmızı ışıkta dururuz. Sarı ışıkta hazırlanırız. Yeşil ışıkta dikkatli geçeriz.",
+      "text": "Yukarıdaki metne göre paragraf bize hangi konu hakkında bilgi vermektedir?",
+      "correct": "Trafik işaretleri",
+      "wrong1": "Park oyunları",
+      "wrong2": "Mutfak eşyaları",
+      "explanation": "Kırmızı, sarı ve yeşil ışıkların anlamı anlatılıyor; konu trafik işaretleridir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf bize hangi konu hakkında bilgi vermektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kırmızı ışıkta dururuz. Sarı ışıkta hazırlanırız. Yeşil ışıkta dikkatli geçeriz."
+            }
+          ]
+        },
+        "correct": "Trafik işaretleri",
+        "wrong1": "Park oyunları",
+        "wrong2": "Mutfak eşyaları",
+        "explanation": "Kırmızı, sarı ve yeşil ışıkların anlamı anlatılıyor; konu trafik işaretleridir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_009",
+      "level": "kolay",
+      "premise": "Bitkiler büyümek için su ister. Toprağa kök salar. Güneş ışığından faydalanır.",
+      "text": "Yukarıdaki metne göre yazar bu paragrafta hangi konuyu ele almıştır?",
+      "correct": "Bitkilerin ihtiyaçları",
+      "wrong1": "Hayvanların oyunları",
+      "wrong2": "Ev eşyaları",
+      "explanation": "Bitkilerin su, toprak ve güneşe ihtiyacı anlatılıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazar bu paragrafta hangi konuyu ele almıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bitkiler büyümek için su ister. Toprağa kök salar. Güneş ışığından faydalanır."
+            }
+          ]
+        },
+        "correct": "Bitkilerin ihtiyaçları",
+        "wrong1": "Hayvanların oyunları",
+        "wrong2": "Ev eşyaları",
+        "explanation": "Bitkilerin su, toprak ve güneşe ihtiyacı anlatılıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_010",
+      "level": "kolay",
+      "premise": "Mustafa Kemal Atatürk Türkiye Cumhuriyetinin kurucusudur. Selanikte doğmuştur. Milletimiz onu çok sever.",
+      "text": "Yukarıdaki metne göre paragrafın anlatım merkezi aşağıdakilerden hangisidir?",
+      "correct": "Atatürk",
+      "wrong1": "Bir masal kahramanı",
+      "wrong2": "Bir sporcu",
+      "explanation": "Atatürkün doğumu, okulu ve ülkeye hizmeti anlatılıyor; konu Atatürk'tür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın anlatım merkezi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mustafa Kemal Atatürk Türkiye Cumhuriyetinin kurucusudur. Selanikte doğmuştur. Milletimiz onu çok sever."
+            }
+          ]
+        },
+        "correct": "Atatürk",
+        "wrong1": "Bir masal kahramanı",
+        "wrong2": "Bir sporcu",
+        "explanation": "Atatürkün doğumu, okulu ve ülkeye hizmeti anlatılıyor; konu Atatürk'tür.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_011",
+      "level": "kolay",
+      "premise": "Parkta çöpleri yere atmamalıyız. Ağaçlara zarar vermemeliyiz. Doğayı temiz tutarsak hepimiz sağlıklı yaşarız.",
+      "text": "Yukarıdaki paragrafa göre metnin ana düşüncesi nedir?",
+      "correct": "Doğayı korumalıyız",
+      "wrong1": "Parkta oyun oynamalıyız",
+      "wrong2": "Alışveriş yapmalıyız",
+      "explanation": "Çöp atmamak ve ağaç dikmek doğayı korur; metnin verdiği mesaj budur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafa göre metnin ana düşüncesi nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Parkta çöpleri yere atmamalıyız. Ağaçlara zarar vermemeliyiz. Doğayı temiz tutarsak hepimiz sağlıklı yaşarız."
+            }
+          ]
+        },
+        "correct": "Doğayı korumalıyız",
+        "wrong1": "Parkta oyun oynamalıyız",
+        "wrong2": "Alışveriş yapmalıyız",
+        "explanation": "Çöp atmamak ve ağaç dikmek doğayı korur; metnin verdiği mesaj budur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_012",
+      "level": "kolay",
+      "premise": "Her gece aynı saatte yatarız. Uykumuz yetince sabah dinç uyanırız. Düzenli uyku bizi güçlü tutar.",
+      "text": "Yukarıdaki metne göre yazar bu paragrafla okuyucuya ne söylemek istemektedir?",
+      "correct": "Düzenli uyumak sağlıklıdır",
+      "wrong1": "Geç saatte uyumak iyidir",
+      "wrong2": "Uyumadan oyun oynamak iyidir",
+      "explanation": "Erken yatmanın dinlendirdiği anlatılıyor; ana düşünce düzenli uykunun faydasıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazar bu paragrafla okuyucuya ne söylemek istemektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her gece aynı saatte yatarız. Uykumuz yetince sabah dinç uyanırız. Düzenli uyku bizi güçlü tutar."
+            }
+          ]
+        },
+        "correct": "Düzenli uyumak sağlıklıdır",
+        "wrong1": "Geç saatte uyumak iyidir",
+        "wrong2": "Uyumadan oyun oynamak iyidir",
+        "explanation": "Erken yatmanın dinlendirdiği anlatılıyor; ana düşünce düzenli uykunun faydasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_013",
+      "level": "kolay",
+      "premise": "Yaşlı teyze poşetlerini taşımakta zorlandı. Ali koşarak yardım etti. Teyze teşekkür edince Ali mutlu oldu.",
+      "text": "Yukarıdaki metne göre paragrafın ana fikri aşağıdakilerden hangisidir?",
+      "correct": "Yardımlaşmak güzeldir",
+      "wrong1": "Yalnız oynamak daha iyidir",
+      "wrong2": "Yardım istememek gerekir",
+      "explanation": "Yaşlı teyzenin taşımaya yardım edilmesi yardımlaşmayı öğütler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana fikri aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yaşlı teyze poşetlerini taşımakta zorlandı. Ali koşarak yardım etti. Teyze teşekkür edince Ali mutlu oldu."
+            }
+          ]
+        },
+        "correct": "Yardımlaşmak güzeldir",
+        "wrong1": "Yalnız oynamak daha iyidir",
+        "wrong2": "Yardım istememek gerekir",
+        "explanation": "Yaşlı teyzenin taşımaya yardım edilmesi yardımlaşmayı öğütler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_014",
+      "level": "kolay",
+      "premise": "Diş fırçalarken musluğu kapatırız. Boşa akan su kaybolur. Az su harcarsak herkes faydalanır.",
+      "text": "Yukarıdaki metne göre metnin konusunu bulmak için paragrafı okuyunca hangi seçenek doğru çıkar?",
+      "correct": "Su israf edilmemelidir",
+      "wrong1": "Su hiç kullanılmamalıdır",
+      "wrong2": "Musluk hep açık kalmalıdır",
+      "explanation": "Musluğu kapatmak suyu korur; metin suyu tasarruflu kullanmayı söyler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusunu bulmak için paragrafı okuyunca hangi seçenek doğru çıkar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Diş fırçalarken musluğu kapatırız. Boşa akan su kaybolur. Az su harcarsak herkes faydalanır."
+            }
+          ]
+        },
+        "correct": "Su israf edilmemelidir",
+        "wrong1": "Su hiç kullanılmamalıdır",
+        "wrong2": "Musluk hep açık kalmalıdır",
+        "explanation": "Musluğu kapatmak suyu korur; metin suyu tasarruflu kullanmayı söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_015",
+      "level": "kolay",
+      "premise": "Ayşe okulda cüzdan buldu. İçinde para vardı. Hiç düşünmeden sınıf öğretmenine teslim etti.",
+      "text": "Yukarıdaki metne göre metnin vermek istediği asıl mesaj hangisidir?",
+      "correct": "Dürüst olmak önemlidir",
+      "wrong1": "Bulunan eşyayı saklamak iyidir",
+      "wrong2": "Yalan söylemek sorun değildir",
+      "explanation": "Bulunan cüzdanın sahibine verilmesi dürüstlüğü vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin vermek istediği asıl mesaj hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ayşe okulda cüzdan buldu. İçinde para vardı. Hiç düşünmeden sınıf öğretmenine teslim etti."
+            }
+          ]
+        },
+        "correct": "Dürüst olmak önemlidir",
+        "wrong1": "Bulunan eşyayı saklamak iyidir",
+        "wrong2": "Yalan söylemek sorun değildir",
+        "explanation": "Bulunan cüzdanın sahibine verilmesi dürüstlüğü vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_016",
+      "level": "kolay",
+      "premise": "Her gün biraz koşarız. Top oynarız. Hareket edince kaslarımız güçlenir ve kendimizi iyi hissederiz.",
+      "text": "Yukarıdaki metne göre paragrafta en çok hangi konu işlenmiştir?",
+      "correct": "Spor yapmak sağlığa iyidir",
+      "wrong1": "Spor yapmak yorucudur",
+      "wrong2": "Spor hiç gerekli değildir",
+      "explanation": "Koşmanın ve oyun oynamanın vücudu güçlendirdiği anlatılıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta en çok hangi konu işlenmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her gün biraz koşarız. Top oynarız. Hareket edince kaslarımız güçlenir ve kendimizi iyi hissederiz."
+            }
+          ]
+        },
+        "correct": "Spor yapmak sağlığa iyidir",
+        "wrong1": "Spor yapmak yorucudur",
+        "wrong2": "Spor hiç gerekli değildir",
+        "explanation": "Koşmanın ve oyun oynamanın vücudu güçlendirdiği anlatılıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_017",
+      "level": "kolay",
+      "premise": "Kitaplarımızı temiz tutarız. Sayfalarını kırpmayız. Özenli davranırsak kitaplar uzun süre dayanır.",
+      "text": "Yukarıdaki metne göre bu yazının konusu aşağıdakilerden hangisi olabilir?",
+      "correct": "Kitapları özenle kullanmalıyız",
+      "wrong1": "Kitapları yırtmak sorun değildir",
+      "wrong2": "Kitap okumaya gerek yoktur",
+      "explanation": "Kitapları kırpmamak ve düzgün saklamak özenli kullanımı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu yazının konusu aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitaplarımızı temiz tutarız. Sayfalarını kırpmayız. Özenli davranırsak kitaplar uzun süre dayanır."
+            }
+          ]
+        },
+        "correct": "Kitapları özenle kullanmalıyız",
+        "wrong1": "Kitapları yırtmak sorun değildir",
+        "wrong2": "Kitap okumaya gerek yoktur",
+        "explanation": "Kitapları kırpmamak ve düzgün saklamak özenli kullanımı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_018",
+      "level": "kolay",
+      "premise": "Elif tohum ekti. Her gün suladı ama hemen bitki görmedi. Bir hafta sonra sabırla bekleyince filiz çıktı.",
+      "text": "Yukarıdaki metne göre paragrafın ana düşüncesini en iyi ifade eden seçenek hangisidir?",
+      "correct": "Sabırlı olmak gerekir",
+      "wrong1": "Hemen vazgeçmek iyidir",
+      "wrong2": "Beklemek zaman kaybıdır",
+      "explanation": "Tohumun filizlenmesi için beklenmesi sabrı öğütler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana düşüncesini en iyi ifade eden seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Elif tohum ekti. Her gün suladı ama hemen bitki görmedi. Bir hafta sonra sabırla bekleyince filiz çıktı."
+            }
+          ]
+        },
+        "correct": "Sabırlı olmak gerekir",
+        "wrong1": "Hemen vazgeçmek iyidir",
+        "wrong2": "Beklemek zaman kaybıdır",
+        "explanation": "Tohumun filizlenmesi için beklenmesi sabrı öğütler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_019",
+      "level": "kolay",
+      "premise": "Annem sabah erkenden kalkar. Kahvaltımızı hazırlar. Bize iyi bakar. Onu sevmek ve saymak gerekir.",
+      "text": "Yukarıdaki metne göre bu metinden çıkarılacak ana düşünce hangisidir?",
+      "correct": "Annelerimizi sevmeliyiz",
+      "wrong1": "Hediye almak yeterlidir",
+      "wrong2": "Anneler yalnızca yemek pişirir",
+      "explanation": "Annenin emeği ve sevgisi anlatılarak anneleri sevmek vurgulanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metinden çıkarılacak ana düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Annem sabah erkenden kalkar. Kahvaltımızı hazırlar. Bize iyi bakar. Onu sevmek ve saymak gerekir."
+            }
+          ]
+        },
+        "correct": "Annelerimizi sevmeliyiz",
+        "wrong1": "Hediye almak yeterlidir",
+        "wrong2": "Anneler yalnızca yemek pişirir",
+        "explanation": "Annenin emeği ve sevgisi anlatılarak anneleri sevmek vurgulanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_020",
+      "level": "kolay",
+      "premise": "Zeynep doğum gününde kek getirdi. Her arkadaşına dilim verdi. Hepsi birlikte yiyince daha çok eğlendiler.",
+      "text": "Yukarıdaki metne göre paragrafın ne hakkında olduğunu gösteren seçenek hangisidir?",
+      "correct": "Paylaşmak mutluluk verir",
+      "wrong1": "Her şeyi tek başına yemek iyidir",
+      "wrong2": "Paylaşmak zor bir iştir",
+      "explanation": "Kekin arkadaşlarla bölünmesi paylaşmanın sevinci anlatılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ne hakkında olduğunu gösteren seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep doğum gününde kek getirdi. Her arkadaşına dilim verdi. Hepsi birlikte yiyince daha çok eğlendiler."
+            }
+          ]
+        },
+        "correct": "Paylaşmak mutluluk verir",
+        "wrong1": "Her şeyi tek başına yemek iyidir",
+        "wrong2": "Paylaşmak zor bir iştir",
+        "explanation": "Kekin arkadaşlarla bölünmesi paylaşmanın sevinci anlatılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_021",
+      "level": "kolay",
+      "premise": "Kışın kar yağar. Hava soğuk olur. Kalın mont ve atkı giyeriz.",
+      "text": "Yukarıdaki metne göre metne en çok yakışan başlık hangi seçenektedir?",
+      "correct": "Kış Mevsimi",
+      "wrong1": "Yaz Tatili",
+      "wrong2": "Okul Başlangıcı",
+      "explanation": "Kar yağması, soğuk hava ve kalın giysiler kış mevsimini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metne en çok yakışan başlık hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kışın kar yağar. Hava soğuk olur. Kalın mont ve atkı giyeriz."
+            }
+          ]
+        },
+        "correct": "Kış Mevsimi",
+        "wrong1": "Yaz Tatili",
+        "wrong2": "Okul Başlangıcı",
+        "explanation": "Kar yağması, soğuk hava ve kalın giysiler kış mevsimini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_022",
+      "level": "kolay",
+      "premise": "Arı sabah erken kalkar. Çiçekten nektar toplar. Gün boyu çalışarak kovana bal getirir.",
+      "text": "Yukarıdaki metne göre paragrafın konusunu doğru veren ifade hangisidir?",
+      "correct": "Arının Çalışkanlığı",
+      "wrong1": "Kelebeğin Renkleri",
+      "wrong2": "Kuşun Yuvası",
+      "explanation": "Arının çiçekten bal toplaması çalışkanlık konusuna uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusunu doğru veren ifade hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arı sabah erken kalkar. Çiçekten nektar toplar. Gün boyu çalışarak kovana bal getirir."
+            }
+          ]
+        },
+        "correct": "Arının Çalışkanlığı",
+        "wrong1": "Kelebeğin Renkleri",
+        "wrong2": "Kuşun Yuvası",
+        "explanation": "Arının çiçekten bal toplaması çalışkanlık konusuna uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_023",
+      "level": "kolay",
+      "premise": "Annem sepete sandviç koydu. Ailemle parka gittik. Çimenlerde oyun oynadık.",
+      "text": "Yukarıdaki paragrafa göre metne en uygun başlık hangisidir?",
+      "correct": "Pikniğe Gidiyoruz",
+      "wrong1": "Kış Sporları",
+      "wrong2": "Deniz Yolculuğu",
+      "explanation": "Sepet hazırlama, parka gitme ve oyun oynama piknik başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafa göre metne en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Annem sepete sandviç koydu. Ailemle parka gittik. Çimenlerde oyun oynadık."
+            }
+          ]
+        },
+        "correct": "Pikniğe Gidiyoruz",
+        "wrong1": "Kış Sporları",
+        "wrong2": "Deniz Yolculuğu",
+        "explanation": "Sepet hazırlama, parka gitme ve oyun oynama piknik başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_024",
+      "level": "kolay",
+      "premise": "Kütüphanede sessiz oluruz. Kitapları özenle alırız. Başkalarının okumasını engellemeyiz.",
+      "text": "Yukarıdaki metne göre bu parçada anlatılan konu hangisidir?",
+      "correct": "Kütüphane Kuralları",
+      "wrong1": "Spor Salonu",
+      "wrong2": "Mutfakta Yemek",
+      "explanation": "Sessiz olmak ve sırayla kitap almak kütüphane kurallarını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parçada anlatılan konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kütüphanede sessiz oluruz. Kitapları özenle alırız. Başkalarının okumasını engellemeyiz."
+            }
+          ]
+        },
+        "correct": "Kütüphane Kuralları",
+        "wrong1": "Spor Salonu",
+        "wrong2": "Mutfakta Yemek",
+        "explanation": "Sessiz olmak ve sırayla kitap almak kütüphane kurallarını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_025",
+      "level": "kolay",
+      "premise": "Fil çok büyük bir hayvandır. Hortumu ile su içer. Geniş kulakları vardır.",
+      "text": "Yukarıdaki metne göre paragraf okunduğunda akla gelen konu hangisidir?",
+      "correct": "Filin Özellikleri",
+      "wrong1": "Aslanın Kükremesi",
+      "wrong2": "Tavşanın Zıplaması",
+      "explanation": "Filin hortumu, büyüklüğü ve kulakları anlatılıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf okunduğunda akla gelen konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fil çok büyük bir hayvandır. Hortumu ile su içer. Geniş kulakları vardır."
+            }
+          ]
+        },
+        "correct": "Filin Özellikleri",
+        "wrong1": "Aslanın Kükremesi",
+        "wrong2": "Tavşanın Zıplaması",
+        "explanation": "Filin hortumu, büyüklüğü ve kulakları anlatılıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_026",
+      "level": "kolay",
+      "premise": "İnternette tanımadığımız kişilerle konuşmayız. Şifremizi kimseye söylemeyiz. Bir sorun olursa annemize babamıza haber veririz.",
+      "text": "Yukarıdaki metne göre metnin konusu olarak hangisi söylenebilir?",
+      "correct": "Güvenli İnternet Kullanımı",
+      "wrong1": "Televizyon Kanalları",
+      "wrong2": "Radyo Dinlemek",
+      "explanation": "Yabancılarla konuşmamak ve ebeveyne sormak internet güvenliğine uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusu olarak hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İnternette tanımadığımız kişilerle konuşmayız. Şifremizi kimseye söylemeyiz. Bir sorun olursa annemize babamıza haber veririz."
+            }
+          ]
+        },
+        "correct": "Güvenli İnternet Kullanımı",
+        "wrong1": "Televizyon Kanalları",
+        "wrong2": "Radyo Dinlemek",
+        "explanation": "Yabancılarla konuşmamak ve ebeveyne sormak internet güvenliğine uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_027",
+      "level": "kolay",
+      "premise": "Sabah alarm çalar. Yataktan kalkarım. Yüzümü yıkar, dişlerimi fırçalar ve kahvaltı yaparım.",
+      "text": "Yukarıdaki metne göre paragrafta bahsedilen ana konu hangisidir?",
+      "correct": "Sabah Rutinim",
+      "wrong1": "Gece Yıldızları",
+      "wrong2": "Hafta Sonu Planı",
+      "explanation": "Uyanma, yüz yıkama ve kahvaltı sabah rutinini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta bahsedilen ana konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sabah alarm çalar. Yataktan kalkarım. Yüzümü yıkar, dişlerimi fırçalar ve kahvaltı yaparım."
+            }
+          ]
+        },
+        "correct": "Sabah Rutinim",
+        "wrong1": "Gece Yıldızları",
+        "wrong2": "Hafta Sonu Planı",
+        "explanation": "Uyanma, yüz yıkama ve kahvaltı sabah rutinini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_028",
+      "level": "kolay",
+      "premise": "Gökyüzü bulutluydi. Öğleden sonra yağmur yağdı. Okuldan çıkınca şemsiyemi açtım.",
+      "text": "Yukarıdaki metne göre bu parçaya hangi başlık daha uygundur?",
+      "correct": "Yağmurlu Bir Gün",
+      "wrong1": "Sıcak Çöl Günü",
+      "wrong2": "Karlı Dağ Yolu",
+      "explanation": "Bulutlar, yağmur ve şemsiye yağmurlu gün başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parçaya hangi başlık daha uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gökyüzü bulutluydi. Öğleden sonra yağmur yağdı. Okuldan çıkınca şemsiyemi açtım."
+            }
+          ]
+        },
+        "correct": "Yağmurlu Bir Gün",
+        "wrong1": "Sıcak Çöl Günü",
+        "wrong2": "Karlı Dağ Yolu",
+        "explanation": "Bulutlar, yağmur ve şemsiye yağmurlu gün başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_029",
+      "level": "kolay",
+      "premise": "Arkadaşım sınavdan düşük not aldı. Onu dinledim. Birlikte tekrar çalışmayı planladık.",
+      "text": "Yukarıdaki metne göre bu paragraf hangi konuya ayrılmıştır?",
+      "correct": "Dostluk",
+      "wrong1": "Kıskançlık",
+      "wrong2": "Korku",
+      "explanation": "Arkadaşın üzüntüsünü paylaşmak dostluk konusuna uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu paragraf hangi konuya ayrılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkadaşım sınavdan düşük not aldı. Onu dinledim. Birlikte tekrar çalışmayı planladık."
+            }
+          ]
+        },
+        "correct": "Dostluk",
+        "wrong1": "Kıskançlık",
+        "wrong2": "Korku",
+        "explanation": "Arkadaşın üzüntüsünü paylaşmak dostluk konusuna uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_030",
+      "level": "kolay",
+      "premise": "Saksıya tohum ektim. Her gün suladım. Bir süre sonra renkli çiçekler açtı.",
+      "text": "Yukarıdaki metne göre paragrafa en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Çiçek Yetiştirmek",
+      "wrong1": "Ağaç Kesmek",
+      "wrong2": "Deniz Dalgası",
+      "explanation": "Tohum ekmek, sulamak ve çiçek açması bu başlığa uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafa en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Saksıya tohum ektim. Her gün suladım. Bir süre sonra renkli çiçekler açtı."
+            }
+          ]
+        },
+        "correct": "Çiçek Yetiştirmek",
+        "wrong1": "Ağaç Kesmek",
+        "wrong2": "Deniz Dalgası",
+        "explanation": "Tohum ekmek, sulamak ve çiçek açması bu başlığa uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_031",
+      "level": "kolay",
+      "premise": "Okul takımımız voleybol oynadı. Herkes pas verdi. Maçı kazanınca sevinçle bağırdık.",
+      "text": "Yukarıdaki metne göre metne verilebilecek en iyi başlık hangisidir?",
+      "correct": "Voleybol Maçı",
+      "wrong1": "Resim dersi",
+      "wrong2": "Yemek tarifi",
+      "explanation": "Takımın fileye vurması voleybol maçı başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metne verilebilecek en iyi başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okul takımımız voleybol oynadı. Herkes pas verdi. Maçı kazanınca sevinçle bağırdık."
+            }
+          ]
+        },
+        "correct": "Voleybol Maçı",
+        "wrong1": "Resim dersi",
+        "wrong2": "Yemek tarifi",
+        "explanation": "Takımın fileye vurması voleybol maçı başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_032",
+      "level": "kolay",
+      "premise": "Annem kollarında\nGüvenli bir dünya\nKalbim huzur bulur",
+      "text": "Yukarıdaki şiire göre şiirin ana duygusu nedir?",
+      "correct": "Sevgi",
+      "wrong1": "Korku",
+      "wrong2": "Öfke",
+      "explanation": "Anne sevgisi ve sıcaklık dizelerde sevgi duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiire göre şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Annem kollarında\nGüvenli bir dünya\nKalbim huzur bulur"
+            }
+          ]
+        },
+        "correct": "Sevgi",
+        "wrong1": "Korku",
+        "wrong2": "Öfke",
+        "explanation": "Anne sevgisi ve sıcaklık dizelerde sevgi duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_033",
+      "level": "kolay",
+      "premise": "Güneş parlıyor\nKuşlar şarkı söylüyor\nÇocuklar gülüyor",
+      "text": "Yukarıdaki metne göre bu dizelerde hangi duygu ağır basmaktadır?",
+      "correct": "Neşe",
+      "wrong1": "Üzüntü",
+      "wrong2": "Kızgınlık",
+      "explanation": "Kuş sesleri ve gülen çocuk neşe duygusunu gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu dizelerde hangi duygu ağır basmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş parlıyor\nKuşlar şarkı söylüyor\nÇocuklar gülüyor"
+            }
+          ]
+        },
+        "correct": "Neşe",
+        "wrong1": "Üzüntü",
+        "wrong2": "Kızgınlık",
+        "explanation": "Kuş sesleri ve gülen çocuk neşe duygusunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_034",
+      "level": "kolay",
+      "premise": "Sahilde yürüyorum\nDalgalar kıyıya vuruyor\nRüzgar hafif esiyor",
+      "text": "Yukarıdaki metne göre şiirin okuyucuya hissettirdiği ana duygu hangisidir?",
+      "correct": "Huzur",
+      "wrong1": "Panik",
+      "wrong2": "Kıskançlık",
+      "explanation": "Dalga sesi ve kumda yürümek huzur duygusunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin okuyucuya hissettirdiği ana duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sahilde yürüyorum\nDalgalar kıyıya vuruyor\nRüzgar hafif esiyor"
+            }
+          ]
+        },
+        "correct": "Huzur",
+        "wrong1": "Panik",
+        "wrong2": "Kıskançlık",
+        "explanation": "Dalga sesi ve kumda yürümek huzur duygusunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_035",
+      "level": "kolay",
+      "premise": "Uzakta kalan evim\nSokak lambası yanar\nHasret büyür içimde",
+      "text": "Yukarıdaki metne göre dizelerde yoğun olarak işlenen duygu hangisidir?",
+      "correct": "Özlem",
+      "wrong1": "Gurur",
+      "wrong2": "Şaşkınlık",
+      "explanation": "Uzak kalan memleket özlem duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizelerde yoğun olarak işlenen duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uzakta kalan evim\nSokak lambası yanar\nHasret büyür içimde"
+            }
+          ]
+        },
+        "correct": "Özlem",
+        "wrong1": "Gurur",
+        "wrong2": "Şaşkınlık",
+        "explanation": "Uzak kalan memleket özlem duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_036",
+      "level": "kolay",
+      "premise": "Kelebek uçuyor\nRenkli çiçekler açmış\nBahçe ne güzel",
+      "text": "Yukarıdaki metne göre şiirin ana duygusu aşağıdakilerden hangisidir?",
+      "correct": "Mutluluk",
+      "wrong1": "Korku",
+      "wrong2": "Utanç",
+      "explanation": "Kelebek ve rengarenk çiçekler mutluluk duygusunu verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin ana duygusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kelebek uçuyor\nRenkli çiçekler açmış\nBahçe ne güzel"
+            }
+          ]
+        },
+        "correct": "Mutluluk",
+        "wrong1": "Korku",
+        "wrong2": "Utanç",
+        "explanation": "Kelebek ve rengarenk çiçekler mutluluk duygusunu verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_037",
+      "level": "kolay",
+      "premise": "Gece gökyüzüne bakıyorum\nYıldızlar parlıyor\nAcaba uzakta ne var",
+      "text": "Yukarıdaki metne göre bu şiirde hangi duygu ön plandadır?",
+      "correct": "Merak",
+      "wrong1": "Pişmanlık",
+      "wrong2": "Bıkkınlık",
+      "explanation": "Yıldızlara bakmak ve soru sormak merak duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu şiirde hangi duygu ön plandadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gece gökyüzüne bakıyorum\nYıldızlar parlıyor\nAcaba uzakta ne var"
+            }
+          ]
+        },
+        "correct": "Merak",
+        "wrong1": "Pişmanlık",
+        "wrong2": "Bıkkınlık",
+        "explanation": "Yıldızlara bakmak ve soru sormak merak duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_038",
+      "level": "kolay",
+      "premise": "Öğretmenim sabırla anlatır\nBize yol gösterir\nOna teşekkür ederim",
+      "text": "Yukarıdaki metne göre dizeleri okuyunca hangi duygu uyanır?",
+      "correct": "Minnet",
+      "wrong1": "Kırgınlık",
+      "wrong2": "Kaygı",
+      "explanation": "Emek veren öğretmene teşekkür minnet duygusunu gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizeleri okuyunca hangi duygu uyanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğretmenim sabırla anlatır\nBize yol gösterir\nOna teşekkür ederim"
+            }
+          ]
+        },
+        "correct": "Minnet",
+        "wrong1": "Kırgınlık",
+        "wrong2": "Kaygı",
+        "explanation": "Emek veren öğretmene teşekkür minnet duygusunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_039",
+      "level": "kolay",
+      "premise": "Dağa tırmanıyorum\nAdım adım yükseliyorum\nKorkmuyorum artık",
+      "text": "Yukarıdaki metne göre şiirin taşıdığı ana duygu hangi seçenektedir?",
+      "correct": "Cesaret",
+      "wrong1": "Umutsuzluk",
+      "wrong2": "Yalnızlık",
+      "explanation": "Yüksekten korkmama ve deneme isteği cesaret duygusudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin taşıdığı ana duygu hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dağa tırmanıyorum\nAdım adım yükseliyorum\nKorkmuyorum artık"
+            }
+          ]
+        },
+        "correct": "Cesaret",
+        "wrong1": "Umutsuzluk",
+        "wrong2": "Yalnızlık",
+        "explanation": "Yüksekten korkmama ve deneme isteği cesaret duygusudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_040",
+      "level": "kolay",
+      "premise": "Kar yağıyor\nKardan adam yapıyoruz\nHepimiz gülüyoruz",
+      "text": "Yukarıdaki metne göre bu dizeler hangi duyguyu anlatmaktadır?",
+      "correct": "Neşe",
+      "wrong1": "Korku",
+      "wrong2": "Üzüntü",
+      "explanation": "Kar yağışında oyun oynamak neşe duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu dizeler hangi duyguyu anlatmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kar yağıyor\nKardan adam yapıyoruz\nHepimiz gülüyoruz"
+            }
+          ]
+        },
+        "correct": "Neşe",
+        "wrong1": "Korku",
+        "wrong2": "Üzüntü",
+        "explanation": "Kar yağışında oyun oynamak neşe duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_041",
+      "level": "kolay",
+      "premise": "Köpek sahibini kapıda bekler. Sahibi gelince kuyruk sallar. Onu çok sever ve korur.",
+      "text": "Yukarıdaki metne göre paragrafın konusu ile ilgili doğru seçenek hangisidir?",
+      "correct": "Köpeğin sadakati",
+      "wrong1": "Kedinin uykusu",
+      "wrong2": "Balığın yüzmesi",
+      "explanation": "Köpeğin sahibini beklemesi ve sevinmesi sadakati anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusu ile ilgili doğru seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köpek sahibini kapıda bekler. Sahibi gelince kuyruk sallar. Onu çok sever ve korur."
+            }
+          ]
+        },
+        "correct": "Köpeğin sadakati",
+        "wrong1": "Kedinin uykusu",
+        "wrong2": "Balığın yüzmesi",
+        "explanation": "Köpeğin sahibini beklemesi ve sevinmesi sadakati anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_042",
+      "level": "kolay",
+      "premise": "Mart ayı gelince kuşlar geri döner. Ağaçlar tomurcuklanır. Doğa yavaş yavaş canlanır.",
+      "text": "Yukarıdaki metne göre metinde işlenen temel konu hangisidir?",
+      "correct": "Mart ayında doğanın uyanışı",
+      "wrong1": "Kışın kar yağışı",
+      "wrong2": "Yazın denize gidilmesi",
+      "explanation": "Martta kuşların gelmesi ve çiçeklerin açması ilkbahar uyanışını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metinde işlenen temel konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mart ayı gelince kuşlar geri döner. Ağaçlar tomurcuklanır. Doğa yavaş yavaş canlanır."
+            }
+          ]
+        },
+        "correct": "Mart ayında doğanın uyanışı",
+        "wrong1": "Kışın kar yağışı",
+        "wrong2": "Yazın denize gidilmesi",
+        "explanation": "Martta kuşların gelmesi ve çiçeklerin açması ilkbahar uyanışını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_043",
+      "level": "kolay",
+      "premise": "Elif kütüphaneye gitti. Raflara baktı. Sonunda ilginç bir masal seçip okumaya başladı.",
+      "text": "Yukarıdaki metne göre paragrafın konusunu belirleyen doğru cevap hangisidir?",
+      "correct": "Elifin kütüphanede kitap seçmesi",
+      "wrong1": "Elifin market alışverişi",
+      "wrong2": "Elifin yüzme dersi",
+      "explanation": "Elifin raflara bakması ve masal seçmesi bu olayı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusunu belirleyen doğru cevap hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Elif kütüphaneye gitti. Raflara baktı. Sonunda ilginç bir masal seçip okumaya başladı."
+            }
+          ]
+        },
+        "correct": "Elifin kütüphanede kitap seçmesi",
+        "wrong1": "Elifin market alışverişi",
+        "wrong2": "Elifin yüzme dersi",
+        "explanation": "Elifin raflara bakması ve masal seçmesi bu olayı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_044",
+      "level": "kolay",
+      "premise": "Karşıya geçerken önce sola sonra sağa bakarız. Yaya geçidini kullanırız. Kırmızı ışıkta asla koşmayız.",
+      "text": "Yukarıdaki metne göre bu metin esas olarak neyi anlatmaktadır?",
+      "correct": "Trafikte dikkat edilmesi gerekenler",
+      "wrong1": "Parkta oynanan oyunlar",
+      "wrong2": "Evde yapılan ödevler",
+      "explanation": "Yaya geçidinde durmak ve sola bakmak trafikte dikkati anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metin esas olarak neyi anlatmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karşıya geçerken önce sola sonra sağa bakarız. Yaya geçidini kullanırız. Kırmızı ışıkta asla koşmayız."
+            }
+          ]
+        },
+        "correct": "Trafikte dikkat edilmesi gerekenler",
+        "wrong1": "Parkta oynanan oyunlar",
+        "wrong2": "Evde yapılan ödevler",
+        "explanation": "Yaya geçidinde durmak ve sola bakmak trafikte dikkati anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_045",
+      "level": "kolay",
+      "premise": "Güneş denizdeki suyu ısıtır. Su buhar olup buluta yükselir. Bulutlar yağmur olarak yeryüzüne iner.",
+      "text": "Yukarıdaki metne göre paragrafın konusu hangi seçenekte verilmiştir?",
+      "correct": "Su döngüsü",
+      "wrong1": "Rüzgarın yönü",
+      "wrong2": "Deprem anında yapılacaklar",
+      "explanation": "Güneşin suyu buharlaştırması ve yağmur olarak geri dönmesi su döngüsüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusu hangi seçenekte verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş denizdeki suyu ısıtır. Su buhar olup buluta yükselir. Bulutlar yağmur olarak yeryüzüne iner."
+            }
+          ]
+        },
+        "correct": "Su döngüsü",
+        "wrong1": "Rüzgarın yönü",
+        "wrong2": "Deprem anında yapılacaklar",
+        "explanation": "Güneşin suyu buharlaştırması ve yağmur olarak geri dönmesi su döngüsüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_046",
+      "level": "kolay",
+      "premise": "Öğretmenimiz bizi gruplara ayırdı. Herkes bir iş aldı. Birlikte çalışınca güzel bir poster yaptık.",
+      "text": "Yukarıdaki metne göre metnin konusunu bulurken hangi seçeneği işaretleriz?",
+      "correct": "Sınıfta grup çalışması",
+      "wrong1": "Sınıfta uyku hali",
+      "wrong2": "Sınıfta yalnız oturma",
+      "explanation": "Görev paylaşımı ve birlikte poster yapma grup çalışmasını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusunu bulurken hangi seçeneği işaretleriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğretmenimiz bizi gruplara ayırdı. Herkes bir iş aldı. Birlikte çalışınca güzel bir poster yaptık."
+            }
+          ]
+        },
+        "correct": "Sınıfta grup çalışması",
+        "wrong1": "Sınıfta uyku hali",
+        "wrong2": "Sınıfta yalnız oturma",
+        "explanation": "Görev paylaşımı ve birlikte poster yapma grup çalışmasını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_047",
+      "level": "kolay",
+      "premise": "Her öğünde sebze yeriz. Şekerli içecekleri azaltırız. Sağlıklı beslenince kendimizi dinç hissederiz.",
+      "text": "Yukarıdaki metne göre paragrafta yoğunlaşılan konu hangisidir?",
+      "correct": "Sağlıklı beslenmenin önemi",
+      "wrong1": "Şekerli yiyeceklerin tadı",
+      "wrong2": "Gece geç yatmanın etkisi",
+      "explanation": "Sebze yemek ve abur cubur azaltmak sağlıklı beslenmeyi anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta yoğunlaşılan konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her öğünde sebze yeriz. Şekerli içecekleri azaltırız. Sağlıklı beslenince kendimizi dinç hissederiz."
+            }
+          ]
+        },
+        "correct": "Sağlıklı beslenmenin önemi",
+        "wrong1": "Şekerli yiyeceklerin tadı",
+        "wrong2": "Gece geç yatmanın etkisi",
+        "explanation": "Sebze yemek ve abur cubur azaltmak sağlıklı beslenmeyi anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_048",
+      "level": "kolay",
+      "premise": "Sınıfça parka gittik. Eldiven takıp çöpleri topladık. Parkı temiz görünce hepimiz mutlu olduk.",
+      "text": "Yukarıdaki metne göre bu yazı hangi konu üzerine kurulmuştur?",
+      "correct": "Gönüllü temizlik etkinliği",
+      "wrong1": "Futbol maçı",
+      "wrong2": "Sinema gezisi",
+      "explanation": "Öğrencilerin parktaki çöpleri toplaması gönüllü temizliği anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu yazı hangi konu üzerine kurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıfça parka gittik. Eldiven takıp çöpleri topladık. Parkı temiz görünce hepimiz mutlu olduk."
+            }
+          ]
+        },
+        "correct": "Gönüllü temizlik etkinliği",
+        "wrong1": "Futbol maçı",
+        "wrong2": "Sinema gezisi",
+        "explanation": "Öğrencilerin parktaki çöpleri toplaması gönüllü temizliği anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_049",
+      "level": "kolay",
+      "premise": "Karıncılar küçük ama güçlüdür. Birlikte yiyecek taşır. Sırayla tünele girer ve işlerini paylaşır.",
+      "text": "Yukarıdaki metne göre paragrafın konusunu ifade eden seçenek hangisidir?",
+      "correct": "Karncaların birlikte çalışması",
+      "wrong1": "Arıların tek başına uçması",
+      "wrong2": "Kuşların göç etmemesi",
+      "explanation": "Karıncaların yiyeceği taşıması birlikte çalışmayı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusunu ifade eden seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karıncılar küçük ama güçlüdür. Birlikte yiyecek taşır. Sırayla tünele girer ve işlerini paylaşır."
+            }
+          ]
+        },
+        "correct": "Karncaların birlikte çalışması",
+        "wrong1": "Arıların tek başına uçması",
+        "wrong2": "Kuşların göç etmemesi",
+        "explanation": "Karıncaların yiyeceği taşıması birlikte çalışmayı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_050",
+      "level": "kolay",
+      "premise": "Müzeye gittik. Rehber eski eserleri anlattı. Tarihimizi yakından görünce çok şey öğrendik.",
+      "text": "Yukarıdaki metne göre metnin konusu aşağıdakilerden hangisi değildir? (Doğru konuyu seçiniz.)",
+      "correct": "Müze gezisinde öğrenilenler",
+      "wrong1": "Alışveriş merkezinde oyun",
+      "wrong2": "Evde televizyon izleme",
+      "explanation": "Tarih eserlerinin korunması ve rehber dinleme müze gezisini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusu aşağıdakilerden hangisi değildir? (Doğru konuyu seçiniz.)",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Müzeye gittik. Rehber eski eserleri anlattı. Tarihimizi yakından görünce çok şey öğrendik."
+            }
+          ]
+        },
+        "correct": "Müze gezisinde öğrenilenler",
+        "wrong1": "Alışveriş merkezinde oyun",
+        "wrong2": "Evde televizyon izleme",
+        "explanation": "Tarih eserlerinin korunması ve rehber dinleme müze gezisini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_051",
+      "level": "orta",
+      "premise": "Orman yangınları çoğu zaman insanların dikkatsizliğiyle başlar. Izgarada ateş yakmak yasaktır. Sigara izi ve cam şişe yangına neden olabilir.",
+      "text": "Yukarıdaki metne göre paragraf hangi konuyu açıklamaktadır?",
+      "correct": "Orman yangınlarının önlenmesi",
+      "wrong1": "Piknik yapmanın yolları",
+      "wrong2": "Kamp malzemeleri",
+      "explanation": "Çöp bırakmamak ve ateş yakmamak yangınları önlemeyi anlatır; konu orman yangınlarıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf hangi konuyu açıklamaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Orman yangınları çoğu zaman insanların dikkatsizliğiyle başlar. Izgarada ateş yakmak yasaktır. Sigara izi ve cam şişe yangına neden olabilir."
+            }
+          ]
+        },
+        "correct": "Orman yangınlarının önlenmesi",
+        "wrong1": "Piknik yapmanın yolları",
+        "wrong2": "Kamp malzemeleri",
+        "explanation": "Çöp bırakmamak ve ateş yakmamak yangınları önlemeyi anlatır; konu orman yangınlarıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_052",
+      "level": "orta",
+      "premise": "Leylek ve kırlangıç sonbaharda sıcak ülkelere gider. Havalar soğuyunca geri dönemezler. İlkbaharda yine ülkemize gelirler.",
+      "text": "Yukarıdaki metne göre metnin konusu hangi seçenekte doğru verilmiştir?",
+      "correct": "Göçmen kuşlar",
+      "wrong1": "Ev kuşları",
+      "wrong2": "Deniz kuşları",
+      "explanation": "Sonbaharda göç eden leylek ve kırlangıç anlatılıyor; konu göçmen kuşlardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusu hangi seçenekte doğru verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Leylek ve kırlangıç sonbaharda sıcak ülkelere gider. Havalar soğuyunca geri dönemezler. İlkbaharda yine ülkemize gelirler."
+            }
+          ]
+        },
+        "correct": "Göçmen kuşlar",
+        "wrong1": "Ev kuşları",
+        "wrong2": "Deniz kuşları",
+        "explanation": "Sonbaharda göç eden leylek ve kırlangıç anlatılıyor; konu göçmen kuşlardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_053",
+      "level": "orta",
+      "premise": "Odadan çıkarken ışığı kapatırız. Kullanmadığımız cihazın fişini çekeriz. Az elektrik harcayarak doğayı koruruz.",
+      "text": "Yukarıdaki metne göre yazar bu paragrafla hangi konuyu işlemiştir?",
+      "correct": "Enerji tasarrufu",
+      "wrong1": "Elektrik üretimi",
+      "wrong2": "Oyuncak pilleri",
+      "explanation": "Lambayı kapatmak ve fişi çekmek enerji tasarrufunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazar bu paragrafla hangi konuyu işlemiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Odadan çıkarken ışığı kapatırız. Kullanmadığımız cihazın fişini çekeriz. Az elektrik harcayarak doğayı koruruz."
+            }
+          ]
+        },
+        "correct": "Enerji tasarrufu",
+        "wrong1": "Elektrik üretimi",
+        "wrong2": "Oyuncak pilleri",
+        "explanation": "Lambayı kapatmak ve fişi çekmek enerji tasarrufunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_054",
+      "level": "orta",
+      "premise": "Bir arkadaşımız düşerse panik yapmayız. Sakin kalır, yetişkin çağırırız. Bilmediğimiz müdahaleyi yapmaya kalkmayız.",
+      "text": "Yukarıdaki metne göre paragrafın odaklandığı konu hangisidir?",
+      "correct": "İlk yardımın temel kuralları",
+      "wrong1": "Doktor muayenesi",
+      "wrong2": "Hastane yemekleri",
+      "explanation": "Yaralıyı yatırmak ve yetişkin çağırmak ilk yardım konusuna girer.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın odaklandığı konu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir arkadaşımız düşerse panik yapmayız. Sakin kalır, yetişkin çağırırız. Bilmediğimiz müdahaleyi yapmaya kalkmayız."
+            }
+          ]
+        },
+        "correct": "İlk yardımın temel kuralları",
+        "wrong1": "Doktor muayenesi",
+        "wrong2": "Hastane yemekleri",
+        "explanation": "Yaralıyı yatırmak ve yetişkin çağırmak ilk yardım konusuna girer.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_055",
+      "level": "orta",
+      "premise": "Evde kağıt, plastik ve camı ayrı kutulara atarız. Bu malzemeler tekrar kullanılır. Geri dönüşüm doğayı korur.",
+      "text": "Yukarıdaki metne göre bu metin hangi konuya değinmektedir?",
+      "correct": "Geri dönüşüm",
+      "wrong1": "Çöp yakma",
+      "wrong2": "Deniz kirliliği",
+      "explanation": "Kağıt, plastik ve cam ayrımı geri dönüşüm konusunu oluşturur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metin hangi konuya değinmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Evde kağıt, plastik ve camı ayrı kutulara atarız. Bu malzemeler tekrar kullanılır. Geri dönüşüm doğayı korur."
+            }
+          ]
+        },
+        "correct": "Geri dönüşüm",
+        "wrong1": "Çöp yakma",
+        "wrong2": "Deniz kirliliği",
+        "explanation": "Kağıt, plastik ve cam ayrımı geri dönüşüm konusunu oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_056",
+      "level": "orta",
+      "premise": "23 Nisan Ulusal Egemenlik ve Çocuk Bayramıdır. 29 Ekim Cumhuriyet Bayramıdır. Bu günlerde törenler yapılır.",
+      "text": "Yukarıdaki metne göre paragrafta işlenen konu hangi seçenektedir?",
+      "correct": "Milli bayramlarımız",
+      "wrong1": "Yabancı ülkeler",
+      "wrong2": "Mevsim şenlikleri",
+      "explanation": "23 Nisan ve 29 Ekim kutlamaları milli bayramları anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta işlenen konu hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "23 Nisan Ulusal Egemenlik ve Çocuk Bayramıdır. 29 Ekim Cumhuriyet Bayramıdır. Bu günlerde törenler yapılır."
+            }
+          ]
+        },
+        "correct": "Milli bayramlarımız",
+        "wrong1": "Yabancı ülkeler",
+        "wrong2": "Mevsim şenlikleri",
+        "explanation": "23 Nisan ve 29 Ekim kutlamaları milli bayramları anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_057",
+      "level": "orta",
+      "premise": "Sessiz yerlerde bağırarak konuşmayız. Gereksiz korna çalmayız. Yüksek müzik komşuları rahatsız eder.",
+      "text": "Yukarıdaki metne göre metnin konusunu gösteren ifade hangisidir?",
+      "correct": "Ses kirliliği",
+      "wrong1": "Su kirliliği",
+      "wrong2": "Toprak kirliliği",
+      "explanation": "Yüksek sesle konuşmamak ve korna çalmamak ses kirliliği konusudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusunu gösteren ifade hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sessiz yerlerde bağırarak konuşmayız. Gereksiz korna çalmayız. Yüksek müzik komşuları rahatsız eder."
+            }
+          ]
+        },
+        "correct": "Ses kirliliği",
+        "wrong1": "Su kirliliği",
+        "wrong2": "Toprak kirliliği",
+        "explanation": "Yüksek sesle konuşmamak ve korna çalmamak ses kirliliği konusudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_058",
+      "level": "orta",
+      "premise": "Müzedeki eserlere dokunmayız. Fotoğraf çekerken flaş kullanmayız. Tarihi yapıları çizmeyiz.",
+      "text": "Yukarıdaki metne göre yazarın vurgulamak istediği düşünce hangisidir?",
+      "correct": "Değerli eşyaların korunması",
+      "wrong1": "Alışveriş indirimleri",
+      "wrong2": "Oyuncak yapımı",
+      "explanation": "Müzedeki eserlerin dokunulmadan izlenmesi koruma konusunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazarın vurgulamak istediği düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Müzedeki eserlere dokunmayız. Fotoğraf çekerken flaş kullanmayız. Tarihi yapıları çizmeyiz."
+            }
+          ]
+        },
+        "correct": "Değerli eşyaların korunması",
+        "wrong1": "Alışveriş indirimleri",
+        "wrong2": "Oyuncak yapımı",
+        "explanation": "Müzedeki eserlerin dokunulmadan izlenmesi koruma konusunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_059",
+      "level": "orta",
+      "premise": "Arkadaşım üzgünse nedenini sorarım. Onu dinlerim. Kendimi onun yerine koyarak anlamaya çalışırım.",
+      "text": "Yukarıdaki metne göre paragrafın okuyucuya iletmek istediği ana fikir nedir?",
+      "correct": "Empati kurmak",
+      "wrong1": "Yarış kazanmak",
+      "wrong2": "Ödev kopyalamak",
+      "explanation": "Arkadaşın duygusunu anlamak empati konusuna uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın okuyucuya iletmek istediği ana fikir nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkadaşım üzgünse nedenini sorarım. Onu dinlerim. Kendimi onun yerine koyarak anlamaya çalışırım."
+            }
+          ]
+        },
+        "correct": "Empati kurmak",
+        "wrong1": "Yarış kazanmak",
+        "wrong2": "Ödev kopyalamak",
+        "explanation": "Arkadaşın duygusunu anlamak empati konusuna uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_060",
+      "level": "orta",
+      "premise": "Günlük küçük bir plan yaparım. Önce ödevimi bitiririm. Sonra oyun ve dinlenmeye zaman kalır.",
+      "text": "Yukarıdaki metne göre metnin ana düşüncesi aşağıdakilerden hangisi olabilir?",
+      "correct": "Zamanı verimli kullanmak",
+      "wrong1": "Televizyon saatleri",
+      "wrong2": "Uyku saatleri",
+      "explanation": "Plan yapmak ve ödevi zamanında bitirmek verimli zaman kullanımını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana düşüncesi aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Günlük küçük bir plan yaparım. Önce ödevimi bitiririm. Sonra oyun ve dinlenmeye zaman kalır."
+            }
+          ]
+        },
+        "correct": "Zamanı verimli kullanmak",
+        "wrong1": "Televizyon saatleri",
+        "wrong2": "Uyku saatleri",
+        "explanation": "Plan yapmak ve ödevi zamanında bitirmek verimli zaman kullanımını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_061",
+      "level": "orta",
+      "premise": "Can her gün on dakika matematik tekrarı yaptı. Zorlandığı konular azaldı. Sınavda daha iyi sonuç aldı.",
+      "text": "Yukarıdaki metne göre paragraftan çıkarılabilecek asıl düşünce hangisidir?",
+      "correct": "Çalışkan olmak başarı getirir",
+      "wrong1": "Şans her zaman yeterlidir",
+      "wrong2": "Çalışmadan not alınabilir",
+      "explanation": "Her gün tekrar yaparak başarıya ulaşmak ana düşüncedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraftan çıkarılabilecek asıl düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Can her gün on dakika matematik tekrarı yaptı. Zorlandığı konular azaldı. Sınavda daha iyi sonuç aldı."
+            }
+          ]
+        },
+        "correct": "Çalışkan olmak başarı getirir",
+        "wrong1": "Şans her zaman yeterlidir",
+        "wrong2": "Çalışmadan not alınabilir",
+        "explanation": "Her gün tekrar yaparak başarıya ulaşmak ana düşüncedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_062",
+      "level": "orta",
+      "premise": "Ormanda yürürken çiçek koparmayız. Yuva olan ağaçlara zarar vermeyiz. Doğa bize aittir, onu korumak görevimizdir.",
+      "text": "Yukarıdaki metne göre bu paragrafın ana fikrini doğru veren seçenek hangisidir?",
+      "correct": "Doğaya saygı duymalıyız",
+      "wrong1": "Doğada istediğimizi toplayabiliriz",
+      "wrong2": "Doğa sadece görüntüdür",
+      "explanation": "Çiçek koparmamak ve hayvanları rahatsız etmemek doğaya saygıyı vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu paragrafın ana fikrini doğru veren seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ormanda yürürken çiçek koparmayız. Yuva olan ağaçlara zarar vermeyiz. Doğa bize aittir, onu korumak görevimizdir."
+            }
+          ]
+        },
+        "correct": "Doğaya saygı duymalıyız",
+        "wrong1": "Doğada istediğimizi toplayabiliriz",
+        "wrong2": "Doğa sadece görüntüdür",
+        "explanation": "Çiçek koparmamak ve hayvanları rahatsız etmemek doğaya saygıyı vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_063",
+      "level": "orta",
+      "premise": "Bir gün yalan söyledim. Annem üzüldü. Sonra gerçeği anlatınca güvenini yeniden kazandım. Doğru söylemek her zaman daha iyidir.",
+      "text": "Yukarıdaki metne göre metnin ana düşüncesi hangi seçenekte verilmiştir?",
+      "correct": "Yalan söylemek güveni yıkar",
+      "wrong1": "Küçük yalanlar zararsızdır",
+      "wrong2": "Yalan bazen gerekir",
+      "explanation": "Doğruyu söyleyince annenin güvenmesi dürüstlüğün önemini gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana düşüncesi hangi seçenekte verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir gün yalan söyledim. Annem üzüldü. Sonra gerçeği anlatınca güvenini yeniden kazandım. Doğru söylemek her zaman daha iyidir."
+            }
+          ]
+        },
+        "correct": "Yalan söylemek güveni yıkar",
+        "wrong1": "Küçük yalanlar zararsızdır",
+        "wrong2": "Yalan bazen gerekir",
+        "explanation": "Doğruyu söyleyince annenin güvenmesi dürüstlüğün önemini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_064",
+      "level": "orta",
+      "premise": "Sınıfımızda herkes farklıdır. Kimisi farklı renk saçlı, kimisi farklı dil konuşuyor. Hepimize saygı duymak güzel bir davranıştır.",
+      "text": "Yukarıdaki metne göre paragrafı okuduktan sonra akla gelen ana düşünce hangisidir?",
+      "correct": "Farklılıklara saygı göstermeliyiz",
+      "wrong1": "Herkes aynı olmalıdır",
+      "wrong2": "Farklı olanla konuşmamak gerekir",
+      "explanation": "Farklı renkte gözlük takan arkadaşa saygı farklılıklara saygıyı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafı okuduktan sonra akla gelen ana düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıfımızda herkes farklıdır. Kimisi farklı renk saçlı, kimisi farklı dil konuşuyor. Hepimize saygı duymak güzel bir davranıştır."
+            }
+          ]
+        },
+        "correct": "Farklılıklara saygı göstermeliyiz",
+        "wrong1": "Herkes aynı olmalıdır",
+        "wrong2": "Farklı olanla konuşmamak gerekir",
+        "explanation": "Farklı renkte gözlük takan arkadaşa saygı farklılıklara saygıyı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_065",
+      "level": "orta",
+      "premise": "Arkadaşım bana bir olay anlattı. Sözünü kesmedim. Dinleyince onu daha iyi anladım ve güvenimiz arttı.",
+      "text": "Yukarıdaki metne göre yazarın asıl anlatmak istediği düşünce hangisidir?",
+      "correct": "Sabırla dinlemek iletişimi güçlendirir",
+      "wrong1": "Konuşmak dinlemekten önemli değildir",
+      "wrong2": "Söz kesmek normaldir",
+      "explanation": "Arkadaşın hikayesini sabırla dinlemek iletişimin temelidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazarın asıl anlatmak istediği düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkadaşım bana bir olay anlattı. Sözünü kesmedim. Dinleyince onu daha iyi anladım ve güvenimiz arttı."
+            }
+          ]
+        },
+        "correct": "Sabırla dinlemek iletişimi güçlendirir",
+        "wrong1": "Konuşmak dinlemekten önemli değildir",
+        "wrong2": "Söz kesmek normaldir",
+        "explanation": "Arkadaşın hikayesini sabırla dinlemek iletişimin temelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_066",
+      "level": "orta",
+      "premise": "Önce kolay ödevimi yaptım. Sonra zor olana geçtim. Planlı çalışınca gece geç yatmadım.",
+      "text": "Yukarıdaki metne göre paragrafın ana düşüncesi olarak hangisi söylenebilir?",
+      "correct": "Planlı çalışmak zaman kazandırır",
+      "wrong1": "Plansız çalışmak daha eğlencelidir",
+      "wrong2": "Plan yapmak gereksizdir",
+      "explanation": "Ödevleri sıraya koyup bitirmek planlı çalışmanın faydasını gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana düşüncesi olarak hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce kolay ödevimi yaptım. Sonra zor olana geçtim. Planlı çalışınca gece geç yatmadım."
+            }
+          ]
+        },
+        "correct": "Planlı çalışmak zaman kazandırır",
+        "wrong1": "Plansız çalışmak daha eğlencelidir",
+        "wrong2": "Plan yapmak gereksizdir",
+        "explanation": "Ödevleri sıraya koyup bitirmek planlı çalışmanın faydasını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_067",
+      "level": "orta",
+      "premise": "Komşum bana bisiklet sürmeyi öğretti. Ona teşekkür ettim. Minnet duyunca hem o mutlu oldu hem ben.",
+      "text": "Yukarıdaki metne göre metnin ana fikrini bulmak için hangi seçeneği işaretleriz?",
+      "correct": "Minnet duymak insanı mutlu eder",
+      "wrong1": "Teşekkür etmek zorunlu değildir",
+      "wrong2": "Yardım eden unutulabilir",
+      "explanation": "Yardım eden komşuya teşekkür minnet duygusunu vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana fikrini bulmak için hangi seçeneği işaretleriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Komşum bana bisiklet sürmeyi öğretti. Ona teşekkür ettim. Minnet duyunca hem o mutlu oldu hem ben."
+            }
+          ]
+        },
+        "correct": "Minnet duymak insanı mutlu eder",
+        "wrong1": "Teşekkür etmek zorunlu değildir",
+        "wrong2": "Yardım eden unutulabilir",
+        "explanation": "Yardım eden komşuya teşekkür minnet duygusunu vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_068",
+      "level": "orta",
+      "premise": "Gece karanlık odadan geçerken korktum. Derin nefes aldım ve ışığı açtım. Cesaret edince korkum azaldı.",
+      "text": "Yukarıdaki metne göre paragrafta okuyucuya aktarılmak istenen ana düşünce nedir?",
+      "correct": "Cesaret korkuyu yenmeye yardım eder",
+      "wrong1": "Korkmak ayıptır",
+      "wrong2": "Denememek daha güvenlidir",
+      "explanation": "Karanlık odada ışığı açarak korkuyu yenmek cesareti anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta okuyucuya aktarılmak istenen ana düşünce nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gece karanlık odadan geçerken korktum. Derin nefes aldım ve ışığı açtım. Cesaret edince korkum azaldı."
+            }
+          ]
+        },
+        "correct": "Cesaret korkuyu yenmeye yardım eder",
+        "wrong1": "Korkmak ayıptır",
+        "wrong2": "Denememek daha güvenlidir",
+        "explanation": "Karanlık odada ışığı açarak korkuyu yenmek cesareti anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_069",
+      "level": "orta",
+      "premise": "Her akşam yirmi dakika kitap okurum. Yeni kelimeler öğrenirim. Okudukça kendimi daha bilgili hissederim.",
+      "text": "Yukarıdaki metne göre bu metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Okumak bizi geliştirir",
+      "wrong1": "Okumak sadece ders içindir",
+      "wrong2": "Kitap okumak zaman kaybıdır",
+      "explanation": "Her gün kitap okuyarak yeni bilgi edinmek okumanın faydasını gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her akşam yirmi dakika kitap okurum. Yeni kelimeler öğrenirim. Okudukça kendimi daha bilgili hissederim."
+            }
+          ]
+        },
+        "correct": "Okumak bizi geliştirir",
+        "wrong1": "Okumak sadece ders içindir",
+        "wrong2": "Kitap okumak zaman kaybıdır",
+        "explanation": "Her gün kitap okuyarak yeni bilgi edinmek okumanın faydasını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_070",
+      "level": "orta",
+      "premise": "Sınıf başkanı seçildim. Teneffüste sınıfı düzenledim. Sorumluluk alınca daha düzenli oldum.",
+      "text": "Yukarıdaki metne göre paragrafın ana fikri hangi seçenekte doğru verilmiştir?",
+      "correct": "Sorumluluk almak olgunlaştırır",
+      "wrong1": "İşleri başkasına bırakmak iyidir",
+      "wrong2": "Sorumluluk çocuğa göre değildir",
+      "explanation": "Sınıf başkanlığı görevini dikkatle yapmak sorumluluğu vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana fikri hangi seçenekte doğru verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıf başkanı seçildim. Teneffüste sınıfı düzenledim. Sorumluluk alınca daha düzenli oldum."
+            }
+          ]
+        },
+        "correct": "Sorumluluk almak olgunlaştırır",
+        "wrong1": "İşleri başkasına bırakmak iyidir",
+        "wrong2": "Sorumluluk çocuğa göre değildir",
+        "explanation": "Sınıf başkanlığı görevini dikkatle yapmak sorumluluğu vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_071",
+      "level": "orta",
+      "premise": "Deprem olunca panik yapmamalıyız. Çök-kapan-tut hareketini yaparız. Sarsıntı bitince güvenli çıkışa gideriz.",
+      "text": "Yukarıdaki metne göre paragrafın içeriğine uygun başlık hangisidir?",
+      "correct": "Deprem Anında Yapılacaklar",
+      "wrong1": "Denizde Yüzmek",
+      "wrong2": "Kamp Ateşi Yakmak",
+      "explanation": "Çök-kapan-tut hareketi deprem başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın içeriğine uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Deprem olunca panik yapmamalıyız. Çök-kapan-tut hareketini yaparız. Sarsıntı bitince güvenli çıkışa gideriz."
+            }
+          ]
+        },
+        "correct": "Deprem Anında Yapılacaklar",
+        "wrong1": "Denizde Yüzmek",
+        "wrong2": "Kamp Ateşi Yakmak",
+        "explanation": "Çök-kapan-tut hareketi deprem başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_072",
+      "level": "orta",
+      "premise": "Kan bağışı birçok hastaya umut olur. Yetişkinler gönüllü olarak bağış yapar. Küçük bir yardım büyük fark yaratır.",
+      "text": "Yukarıdaki metne göre bu metin hangi başlık altında toplanabilir?",
+      "correct": "Gönüllü Kan Bağışı",
+      "wrong1": "Kanlı Nose Spor",
+      "wrong2": "Kan testi korkusu",
+      "explanation": "Bağışın hayat kurtarması gönüllü kan bağışı başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metin hangi başlık altında toplanabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kan bağışı birçok hastaya umut olur. Yetişkinler gönüllü olarak bağış yapar. Küçük bir yardım büyük fark yaratır."
+            }
+          ]
+        },
+        "correct": "Gönüllü Kan Bağışı",
+        "wrong1": "Kanlı Nose Spor",
+        "wrong2": "Kan testi korkusu",
+        "explanation": "Bağışın hayat kurtarması gönüllü kan bağışı başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_073",
+      "level": "orta",
+      "premise": "Sokakta bir kedi gördük. Ona su ve mama bıraktık. Küçük bir yardım onu mutlu etti.",
+      "text": "Yukarıdaki metne göre paragrafa konulabilecek en uygun başlık hangisidir?",
+      "correct": "Sokak Hayvanlarına Yardım",
+      "wrong1": "Evde oyun oynamak",
+      "wrong2": "Hayvanat bahçesi gezisi",
+      "explanation": "Mama ve su bırakmak sokak hayvanlarına yardım başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafa konulabilecek en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sokakta bir kedi gördük. Ona su ve mama bıraktık. Küçük bir yardım onu mutlu etti."
+            }
+          ]
+        },
+        "correct": "Sokak Hayvanlarına Yardım",
+        "wrong1": "Evde oyun oynamak",
+        "wrong2": "Hayvanat bahçesi gezisi",
+        "explanation": "Mama ve su bırakmak sokak hayvanlarına yardım başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_074",
+      "level": "orta",
+      "premise": "Güneş panelleri ışığı toplar. Temiz enerji üretir. Doğayı kirletmeden elektrik elde edilir.",
+      "text": "Yukarıdaki metne göre metnin konusuna uygun başlık seçeneği hangisidir?",
+      "correct": "Güneş Enerjisi",
+      "wrong1": "Rüzgar söylentisi",
+      "wrong2": "Kömür madeni",
+      "explanation": "Güneş panellerinin elektrik üretmesi bu başlığa uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusuna uygun başlık seçeneği hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş panelleri ışığı toplar. Temiz enerji üretir. Doğayı kirletmeden elektrik elde edilir."
+            }
+          ]
+        },
+        "correct": "Güneş Enerjisi",
+        "wrong1": "Rüzgar söylentisi",
+        "wrong2": "Kömür madeni",
+        "explanation": "Güneş panellerinin elektrik üretmesi bu başlığa uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_075",
+      "level": "orta",
+      "premise": "Bir şey isterken lütfen derim. Yardım alınca teşekkür ederim. Nazik davranınca karşımdaki de bana iyi davranır.",
+      "text": "Yukarıdaki metne göre paragraf okunduğunda hangi başlık daha doğru olur?",
+      "correct": "Nazik Olmanın Gücü",
+      "wrong1": "Bağırarak konuşmak",
+      "wrong2": "Sessiz kalmanın zararı",
+      "explanation": "Kibarca istemek ve teşekkür etmek nazik olma başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf okunduğunda hangi başlık daha doğru olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir şey isterken lütfen derim. Yardım alınca teşekkür ederim. Nazik davranınca karşımdaki de bana iyi davranır."
+            }
+          ]
+        },
+        "correct": "Nazik Olmanın Gücü",
+        "wrong1": "Bağırarak konuşmak",
+        "wrong2": "Sessiz kalmanın zararı",
+        "explanation": "Kibarca istemek ve teşekkür etmek nazik olma başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_076",
+      "level": "orta",
+      "premise": "Kış gelmeden montlarımızı kontrol ederiz. Evde sıcak tutmak için hazırlık yaparız. Soğuktan korunmak için plan yaparız.",
+      "text": "Yukarıdaki metne göre bu parçaya verilecek başlık aşağıdakilerden hangisidir?",
+      "correct": "Kış Hazırlığı",
+      "wrong1": "Yaz meyveleri",
+      "wrong2": "Sonbahar yaprakları",
+      "explanation": "Odun ve kalorifer kontrolü kış hazırlığı başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parçaya verilecek başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış gelmeden montlarımızı kontrol ederiz. Evde sıcak tutmak için hazırlık yaparız. Soğuktan korunmak için plan yaparız."
+            }
+          ]
+        },
+        "correct": "Kış Hazırlığı",
+        "wrong1": "Yaz meyveleri",
+        "wrong2": "Sonbahar yaprakları",
+        "explanation": "Odun ve kalorifer kontrolü kış hazırlığı başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_077",
+      "level": "orta",
+      "premise": "Okulumuzda bilim fuarı düzenlendi. Her grup bir deney hazırladı. Ziyaretçilere projelerimizi anlattık.",
+      "text": "Yukarıdaki metne göre metne en çok uyan başlık hangisidir?",
+      "correct": "Bilim Fuarı",
+      "wrong1": "Spor müsabakası",
+      "wrong2": "Resim yarışması",
+      "explanation": "Deney yapma ve proje sunma bilim fuarı başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metne en çok uyan başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okulumuzda bilim fuarı düzenlendi. Her grup bir deney hazırladı. Ziyaretçilere projelerimizi anlattık."
+            }
+          ]
+        },
+        "correct": "Bilim Fuarı",
+        "wrong1": "Spor müsabakası",
+        "wrong2": "Resim yarışması",
+        "explanation": "Deney yapma ve proje sunma bilim fuarı başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_078",
+      "level": "orta",
+      "premise": "Komşumuza selam veririz. Yaşlı komşunun poşetine yardım ederiz. İyi komşuluk huzurlu bir sokak sağlar.",
+      "text": "Yukarıdaki metne göre paragrafın içeriği hangi başlıkla örtüşür?",
+      "correct": "Komşuluk İlişkileri",
+      "wrong1": "Yabancı ülkeler",
+      "wrong2": "Okul kuralları",
+      "explanation": "Komşuya selam vermek ve yardım etmek komşuluk başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın içeriği hangi başlıkla örtüşür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Komşumuza selam veririz. Yaşlı komşunun poşetine yardım ederiz. İyi komşuluk huzurlu bir sokak sağlar."
+            }
+          ]
+        },
+        "correct": "Komşuluk İlişkileri",
+        "wrong1": "Yabancı ülkeler",
+        "wrong2": "Okul kuralları",
+        "explanation": "Komşuya selam vermek ve yardım etmek komşuluk başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_079",
+      "level": "orta",
+      "premise": "Ağaçlar oksijen verir. Hayvanlara yuva olur. Ormanlar olmadan hava temiz kalmaz.",
+      "text": "Yukarıdaki metne göre doğru başlık seçeneği hangisidir?",
+      "correct": "Ormanın Can damarları",
+      "wrong1": "Çöl bitkileri",
+      "wrong2": "Deniz algleri",
+      "explanation": "Ağaçların oksijen vermesi orman başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre doğru başlık seçeneği hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağaçlar oksijen verir. Hayvanlara yuva olur. Ormanlar olmadan hava temiz kalmaz."
+            }
+          ]
+        },
+        "correct": "Ormanın Can damarları",
+        "wrong1": "Çöl bitkileri",
+        "wrong2": "Deniz algleri",
+        "explanation": "Ağaçların oksijen vermesi orman başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_080",
+      "level": "orta",
+      "premise": "Tiyatro gösterisi için provalar yaptık. İlk kez sahneye çıkınca heyecanlandım. Metnimi ezberleyince kendime güvendim.",
+      "text": "Yukarıdaki metne göre paragrafa uygun düşülen başlık hangisidir?",
+      "correct": "İlk Kez Sahne",
+      "wrong1": "Ev ödevi",
+      "wrong2": "Pazar alışverişi",
+      "explanation": "Tiyatro provası ve sahneye çıkma bu başlığa uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafa uygun düşülen başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tiyatro gösterisi için provalar yaptık. İlk kez sahneye çıkınca heyecanlandım. Metnimi ezberleyince kendime güvendim."
+            }
+          ]
+        },
+        "correct": "İlk Kez Sahne",
+        "wrong1": "Ev ödevi",
+        "wrong2": "Pazar alışverişi",
+        "explanation": "Tiyatro provası ve sahneye çıkma bu başlığa uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_081",
+      "level": "orta",
+      "premise": "Yapraklar sarardı\nRüzgarla dökülüyor\nSonbahar geldi sessizce",
+      "text": "Yukarıdaki metne göre şiirin ana duygusunu doğru veren seçenek hangisidir?",
+      "correct": "Hüzün",
+      "wrong1": "Sevinç",
+      "wrong2": "Gurur",
+      "explanation": "Sonbahar yapraklarının dökülmesi hüzün duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin ana duygusunu doğru veren seçenek hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yapraklar sarardı\nRüzgarla dökülüyor\nSonbahar geldi sessizce"
+            }
+          ]
+        },
+        "correct": "Hüzün",
+        "wrong1": "Sevinç",
+        "wrong2": "Gurur",
+        "explanation": "Sonbahar yapraklarının dökülmesi hüzün duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_082",
+      "level": "orta",
+      "premise": "Bayram sabahı\nKapı çalınıyor\nSevinçle kucaklaşıyoruz",
+      "text": "Yukarıdaki metne göre dizelerde hissedilen duygu hangisidir?",
+      "correct": "Coşku",
+      "wrong1": "Korku",
+      "wrong2": "Pişmanlık",
+      "explanation": "Bayram sabahı coşku duygusunu yansıtır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizelerde hissedilen duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bayram sabahı\nKapı çalınıyor\nSevinçle kucaklaşıyoruz"
+            }
+          ]
+        },
+        "correct": "Coşku",
+        "wrong1": "Korku",
+        "wrong2": "Pişmanlık",
+        "explanation": "Bayram sabahı coşku duygusunu yansıtır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_083",
+      "level": "orta",
+      "premise": "Bayrağım dalgalanıyor\nVatanım güzel vatan\nSeni seviyorum",
+      "text": "Yukarıdaki metne göre şiir okunduğunda hangi duygu baskın gelir?",
+      "correct": "Vatan sevgisi",
+      "wrong1": "Oyun sevgisi",
+      "wrong2": "Yemek sevgisi",
+      "explanation": "Bayrak ve vatan dizeleri vatan sevgisini taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiir okunduğunda hangi duygu baskın gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bayrağım dalgalanıyor\nVatanım güzel vatan\nSeni seviyorum"
+            }
+          ]
+        },
+        "correct": "Vatan sevgisi",
+        "wrong1": "Oyun sevgisi",
+        "wrong2": "Yemek sevgisi",
+        "explanation": "Bayrak ve vatan dizeleri vatan sevgisini taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_084",
+      "level": "orta",
+      "premise": "Yağmur yağıyor\nSokak boş\nYalnız yürüyorum",
+      "text": "Yukarıdaki metne göre bu şiirin ana duygusu hangi seçenekte verilmiştir?",
+      "correct": "Yalnızlık",
+      "wrong1": "Kıskançlık",
+      "wrong2": "Şaşkınlık",
+      "explanation": "Yağmurda tek başına yürümek yalnızlık duygusunu verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu şiirin ana duygusu hangi seçenekte verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur yağıyor\nSokak boş\nYalnız yürüyorum"
+            }
+          ]
+        },
+        "correct": "Yalnızlık",
+        "wrong1": "Kıskançlık",
+        "wrong2": "Şaşkınlık",
+        "explanation": "Yağmurda tek başına yürümek yalnızlık duygusunu verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_085",
+      "level": "orta",
+      "premise": "Toprağa tohum ektim\nSabırla bekliyorum\nYeşil filiz çıkacak",
+      "text": "Yukarıdaki metne göre dizelerde aktarılan duygu hangisidir?",
+      "correct": "Umut",
+      "wrong1": "Umutsuzluk",
+      "wrong2": "Öfke",
+      "explanation": "Tohumun filizlenmesi umut duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizelerde aktarılan duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Toprağa tohum ektim\nSabırla bekliyorum\nYeşil filiz çıkacak"
+            }
+          ]
+        },
+        "correct": "Umut",
+        "wrong1": "Umutsuzluk",
+        "wrong2": "Öfke",
+        "explanation": "Tohumun filizlenmesi umut duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_086",
+      "level": "orta",
+      "premise": "Kartal dağların üstünde\nKanatlarını açmış\nGökyüzünde süzülüyor",
+      "text": "Yukarıdaki metne göre şiirin ana duygusu olarak hangisi söylenebilir?",
+      "correct": "Hayranlık",
+      "wrong1": "Korku",
+      "wrong2": "Sıkıntı",
+      "explanation": "Kartalın yüksekten uçması hayranlık duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin ana duygusu olarak hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kartal dağların üstünde\nKanatlarını açmış\nGökyüzünde süzülüyor"
+            }
+          ]
+        },
+        "correct": "Hayranlık",
+        "wrong1": "Korku",
+        "wrong2": "Sıkıntı",
+        "explanation": "Kartalın yüksekten uçması hayranlık duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_087",
+      "level": "orta",
+      "premise": "Oyuncağımı kırdım\nKeşke dikkatli olsaydım\nŞimdi üzgünüm",
+      "text": "Yukarıdaki metne göre bu dizelerde hangi duygu anlatılmaktadır?",
+      "correct": "Pişmanlık",
+      "wrong1": "Sevinç",
+      "wrong2": "Merak",
+      "explanation": "Kırılan oyuncağa üzülme pişmanlık ve üzüntü taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu dizelerde hangi duygu anlatılmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Oyuncağımı kırdım\nKeşke dikkatli olsaydım\nŞimdi üzgünüm"
+            }
+          ]
+        },
+        "correct": "Pişmanlık",
+        "wrong1": "Sevinç",
+        "wrong2": "Merak",
+        "explanation": "Kırılan oyuncağa üzülme pişmanlık ve üzüntü taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_088",
+      "level": "orta",
+      "premise": "Güvercin uçuyor\nEller birleşiyor\nBarış gelsin diyoruz",
+      "text": "Yukarıdaki metne göre şiirin duygusal tonu hangi seçeneğe uygundur?",
+      "correct": "Barış",
+      "wrong1": "Savaş",
+      "wrong2": "Rekabet",
+      "explanation": "Güvercin ve el ele tutuşma barış duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin duygusal tonu hangi seçeneğe uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güvercin uçuyor\nEller birleşiyor\nBarış gelsin diyoruz"
+            }
+          ]
+        },
+        "correct": "Barış",
+        "wrong1": "Savaş",
+        "wrong2": "Rekabet",
+        "explanation": "Güvercin ve el ele tutuşma barış duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_089",
+      "level": "orta",
+      "premise": "Belediye fidan dağıttı. Okul olarak parka gittik. Her öğrenci bir fidan dikip suladı.",
+      "text": "Yukarıdaki metne göre metinden çıkarılması gereken ana düşünce hangisidir?",
+      "correct": "Gönüllülerin fidan dikmesi",
+      "wrong1": "Öğrencilerin sınav stresi",
+      "wrong2": "Market indirimleri",
+      "explanation": "Herkesin fidan dikmesi ağaçlandırma etkinliğini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metinden çıkarılması gereken ana düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Belediye fidan dağıttı. Okul olarak parka gittik. Her öğrenci bir fidan dikip suladı."
+            }
+          ]
+        },
+        "correct": "Gönüllülerin fidan dikmesi",
+        "wrong1": "Öğrencilerin sınav stresi",
+        "wrong2": "Market indirimleri",
+        "explanation": "Herkesin fidan dikmesi ağaçlandırma etkinliğini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_090",
+      "level": "orta",
+      "premise": "Kütüphane haftasında okuma yarışması yaptık. Her gün yeni kitap seçtik. En çok okuyan sınıfa ödül verildi.",
+      "text": "Yukarıdaki metne göre paragrafın ana düşüncesi hangi cümleyle örtüşür? (Anlam olarak)",
+      "correct": "Kütüphane haftası etkinlikleri",
+      "wrong1": "Futbol turnuvası",
+      "wrong2": "Resim sergisi",
+      "explanation": "Kitap okuma yarışması kütüphane haftasını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana düşüncesi hangi cümleyle örtüşür? (Anlam olarak)",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kütüphane haftasında okuma yarışması yaptık. Her gün yeni kitap seçtik. En çok okuyan sınıfa ödül verildi."
+            }
+          ]
+        },
+        "correct": "Kütüphane haftası etkinlikleri",
+        "wrong1": "Futbol turnuvası",
+        "wrong2": "Resim sergisi",
+        "explanation": "Kitap okuma yarışması kütüphane haftasını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_091",
+      "level": "orta",
+      "premise": "Yağmur durduktan sonra güneş çıktı. Gökyüzünde renkli bir yay belirdi. Öğretmenimiz buna gökkuşağı dedi.",
+      "text": "Yukarıdaki metne göre yazar bu metinle hangi düşünceyi pekiştirmek istemiştir?",
+      "correct": "Yağmur sonrası gökkuşağı",
+      "wrong1": "Kar fırtınası",
+      "wrong2": "Sisli sabah",
+      "explanation": "Güneşin yağmur sonrası gökkuşağı oluşturması anlatılıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazar bu metinle hangi düşünceyi pekiştirmek istemiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmur durduktan sonra güneş çıktı. Gökyüzünde renkli bir yay belirdi. Öğretmenimiz buna gökkuşağı dedi."
+            }
+          ]
+        },
+        "correct": "Yağmur sonrası gökkuşağı",
+        "wrong1": "Kar fırtınası",
+        "wrong2": "Sisli sabah",
+        "explanation": "Güneşin yağmur sonrası gökkuşağı oluşturması anlatılıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_092",
+      "level": "orta",
+      "premise": "Bisiklete binerken kask takarız. Kaldırımdan yavaş gideriz. Trafik kurallarına uyarsak güvenli oluruz.",
+      "text": "Yukarıdaki metne göre paragrafın ana fikri hangisidir?",
+      "correct": "Bisiklet sürerken kurallara uyma",
+      "wrong1": "Otobüs bileti alma",
+      "wrong2": "Uçak yolculuğu",
+      "explanation": "Kask takmak ve kaldırımdan gitmek bisiklet kurallarını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana fikri hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bisiklete binerken kask takarız. Kaldırımdan yavaş gideriz. Trafik kurallarına uyarsak güvenli oluruz."
+            }
+          ]
+        },
+        "correct": "Bisiklet sürerken kurallara uyma",
+        "wrong1": "Otobüs bileti alma",
+        "wrong2": "Uçak yolculuğu",
+        "explanation": "Kask takmak ve kaldırımdan gitmek bisiklet kurallarını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_093",
+      "level": "orta",
+      "premise": "Arkeologlar dikkatle kazdı. Toprağın altında eski bir çanak buldular. Eser müzeye gönderildi.",
+      "text": "Yukarıdaki metne göre metnin ana düşüncesi hangi seçenekte yer almaktadır?",
+      "correct": "Arkeolojik kazıda bulunan eser",
+      "wrong1": "Yeni açılan market",
+      "wrong2": "Okul bahçesinde oyun",
+      "explanation": "Toprak altından çıkan çanak antik eser bulunmasını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana düşüncesi hangi seçenekte yer almaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkeologlar dikkatle kazdı. Toprağın altında eski bir çanak buldular. Eser müzeye gönderildi."
+            }
+          ]
+        },
+        "correct": "Arkeolojik kazıda bulunan eser",
+        "wrong1": "Yeni açılan market",
+        "wrong2": "Okul bahçesinde oyun",
+        "explanation": "Toprak altından çıkan çanak antik eser bulunmasını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_094",
+      "level": "orta",
+      "premise": "Abimle tableti sırayla kullanırız. Süremiz bitince kardeşime veririz. Paylaşınca kavga etmeden oynarız.",
+      "text": "Yukarıdaki metne göre paragrafın verdiği temel mesaj hangisidir?",
+      "correct": "Kardeşler arası paylaşım",
+      "wrong1": "Komşular arası tartışma",
+      "wrong2": "Öğretmenler arası toplantı",
+      "explanation": "Oyuncak ve tablet süresini paylaşma kardeşler arası paylaşımı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın verdiği temel mesaj hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Abimle tableti sırayla kullanırız. Süremiz bitince kardeşime veririz. Paylaşınca kavga etmeden oynarız."
+            }
+          ]
+        },
+        "correct": "Kardeşler arası paylaşım",
+        "wrong1": "Komşular arası tartışma",
+        "wrong2": "Öğretmenler arası toplantı",
+        "explanation": "Oyuncak ve tablet süresini paylaşma kardeşler arası paylaşımı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_095",
+      "level": "orta",
+      "premise": "Limon suyunu sodaya döktük. Kabarcıklar oluştu. Deney yapınca asit ve bazın tepkime verdiğini gördük.",
+      "text": "Yukarıdaki metne göre bu paragrafın ana düşüncesi hangi seçenekte bulunur?",
+      "correct": "Deney sırasında gözlem yapma",
+      "wrong1": "Resim yapma etkinliği",
+      "wrong2": "Müzik dinleme saati",
+      "explanation": "Limon ve soda ile kabarma deneyi bilim gözlemini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu paragrafın ana düşüncesi hangi seçenekte bulunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Limon suyunu sodaya döktük. Kabarcıklar oluştu. Deney yapınca asit ve bazın tepkime verdiğini gördük."
+            }
+          ]
+        },
+        "correct": "Deney sırasında gözlem yapma",
+        "wrong1": "Resim yapma etkinliği",
+        "wrong2": "Müzik dinleme saati",
+        "explanation": "Limon ve soda ile kabarma deneyi bilim gözlemini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_096",
+      "level": "orta",
+      "premise": "Otobüste yaşlı bir amca bindi. Hemen ayağa kalkıp yer verdim. Teşekkür edince mutlu oldum.",
+      "text": "Yukarıdaki metne göre metnin ana fikrini doğru gösteren ifade hangisidir?",
+      "correct": "Yaşlılara saygı gösterme",
+      "wrong1": "Hayvanları korkutma",
+      "wrong2": "Eşyaları kırma",
+      "explanation": "Otobüste yaşlıya yer vermek saygıyı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana fikrini doğru gösteren ifade hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Otobüste yaşlı bir amca bindi. Hemen ayağa kalkıp yer verdim. Teşekkür edince mutlu oldum."
+            }
+          ]
+        },
+        "correct": "Yaşlılara saygı gösterme",
+        "wrong1": "Hayvanları korkutma",
+        "wrong2": "Eşyaları kırma",
+        "explanation": "Otobüste yaşlıya yer vermek saygıyı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_097",
+      "level": "orta",
+      "premise": "Kışın kalın mont giyeriz. Yazın hafif kıyafetler giyeriz. Mevsime uygun giyinince hastalanmayız.",
+      "text": "Yukarıdaki metne göre paragrafta savunulan ana düşünce hangisidir?",
+      "correct": "Mevsimlik giysilerin seçimi",
+      "wrong1": "Yemek tarifi",
+      "wrong2": "Ev temizliği",
+      "explanation": "Soğukta mont, sıcakta tişört giyme mevsimlik giysileri anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafta savunulan ana düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kışın kalın mont giyeriz. Yazın hafif kıyafetler giyeriz. Mevsime uygun giyinince hastalanmayız."
+            }
+          ]
+        },
+        "correct": "Mevsimlik giysilerin seçimi",
+        "wrong1": "Yemek tarifi",
+        "wrong2": "Ev temizliği",
+        "explanation": "Soğukta mont, sıcakta tişört giyme mevsimlik giysileri anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_098",
+      "level": "orta",
+      "premise": "Proje için kütüphaneden kitap aldım. Güvenilir siteden bilgi topladım. Notlarımı düzenleyip sunum hazırladım.",
+      "text": "Yukarıdaki metne göre okuyucunun paragraftan çıkarması gereken ana düşünce hangisidir?",
+      "correct": "Proje ödevinde araştırma yapma",
+      "wrong1": "Teneffüste saklambaç",
+      "wrong2": "Kantinden atıştırma",
+      "explanation": "Kütüphane ve internetten bilgi toplama proje ödevini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre okuyucunun paragraftan çıkarması gereken ana düşünce hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Proje için kütüphaneden kitap aldım. Güvenilir siteden bilgi topladım. Notlarımı düzenleyip sunum hazırladım."
+            }
+          ]
+        },
+        "correct": "Proje ödevinde araştırma yapma",
+        "wrong1": "Teneffüste saklambaç",
+        "wrong2": "Kantinden atıştırma",
+        "explanation": "Kütüphane ve internetten bilgi toplama proje ödevini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_099",
+      "level": "orta",
+      "premise": "Sınıfımızda okuma köşesi vardır. Kitaplar raflara düzgün dizilir. Herkes sessizce okur.",
+      "text": "Yukarıdaki metne göre paragrafın ana düşüncesi aşağıdakilerden hangisine karşılık gelir?",
+      "correct": "Okuma köşesi düzeni",
+      "wrong1": "Spor saati",
+      "wrong2": "Kantin sırası",
+      "explanation": "Kitapların düzgün dizilmesi okuma köşesi konusuna uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana düşüncesi aşağıdakilerden hangisine karşılık gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıfımızda okuma köşesi vardır. Kitaplar raflara düzgün dizilir. Herkes sessizce okur."
+            }
+          ]
+        },
+        "correct": "Okuma köşesi düzeni",
+        "wrong1": "Spor saati",
+        "wrong2": "Kantin sırası",
+        "explanation": "Kitapların düzgün dizilmesi okuma köşesi konusuna uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_100",
+      "level": "orta",
+      "premise": "Ailemle pikniğe gittik. Battaniyeye oturup yemek yedik. Birlikte vakit geçirmek bizi mutlu etti.",
+      "text": "Yukarıdaki metne göre metin için en uygun başlık hangi seçenektedir?",
+      "correct": "Aile Pikniği",
+      "wrong1": "Kış Karnavalı",
+      "wrong2": "Deniz Yolculuğu",
+      "explanation": "Ailece parka gidip yemek yeme aile pikniği başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metin için en uygun başlık hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ailemle pikniğe gittik. Battaniyeye oturup yemek yedik. Birlikte vakit geçirmek bizi mutlu etti."
+            }
+          ]
+        },
+        "correct": "Aile Pikniği",
+        "wrong1": "Kış Karnavalı",
+        "wrong2": "Deniz Yolculuğu",
+        "explanation": "Ailece parka gidip yemek yeme aile pikniği başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_101",
+      "level": "zor",
+      "premise": "Göller ve nehirler canlılar için önemlidir. Fabrika atıkları suyu kirletir. Herkes temiz tutmaya dikkat etmelidir.",
+      "text": "Yukarıdaki metne göre metnin ana fikri hangi seçenekte açıklanmıştır?",
+      "correct": "Su kaynaklarının korunması",
+      "wrong1": "Deniz turizmi",
+      "wrong2": "Yağmur sonrası oyun",
+      "explanation": "Göl ve nehirlerin kirletilmemesi su kaynaklarının korunması konusudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana fikri hangi seçenekte açıklanmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Göller ve nehirler canlılar için önemlidir. Fabrika atıkları suyu kirletir. Herkes temiz tutmaya dikkat etmelidir."
+            }
+          ]
+        },
+        "correct": "Su kaynaklarının korunması",
+        "wrong1": "Deniz turizmi",
+        "wrong2": "Yağmur sonrası oyun",
+        "explanation": "Göl ve nehirlerin kirletilmemesi su kaynaklarının korunması konusudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_102",
+      "level": "zor",
+      "premise": "İnternetten bilgi ararken güvenilir sitelere bakarız. Kopyaladığımız bilginin kaynağını yazarız. Yanlış habere inanmamak için dikkatli oluruz.",
+      "text": "Yukarıdaki metne göre yazar bu paragrafla ne vurgulamak istemiştir?",
+      "correct": "Dijital okuryazarlık",
+      "wrong1": "Kağıt kesme sanatı",
+      "wrong2": "El yazısı güzelliği",
+      "explanation": "Doğru site seçmek ve kaynak göstermek dijital okuryazarlık konusuna girer.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazar bu paragrafla ne vurgulamak istemiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İnternetten bilgi ararken güvenilir sitelere bakarız. Kopyaladığımız bilginin kaynağını yazarız. Yanlış habere inanmamak için dikkatli oluruz."
+            }
+          ]
+        },
+        "correct": "Dijital okuryazarlık",
+        "wrong1": "Kağıt kesme sanatı",
+        "wrong2": "El yazısı güzelliği",
+        "explanation": "Doğru site seçmek ve kaynak göstermek dijital okuryazarlık konusuna girer.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_103",
+      "level": "zor",
+      "premise": "Tarihi camiler ve köprüler geçmişten kalmıştır. Restorasyonla korunur. Gelecek nesillere aktarmak görevimizdir.",
+      "text": "Yukarıdaki metne göre metnin ana düşüncesi hangi seçenekte yer alır?",
+      "correct": "Kültürel miras",
+      "wrong1": "Günümüz modası",
+      "wrong2": "Spor müsabakaları",
+      "explanation": "Eski yapıların korunması kültürel miras konusunu oluşturur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana düşüncesi hangi seçenekte yer alır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tarihi camiler ve köprüler geçmişten kalmıştır. Restorasyonla korunur. Gelecek nesillere aktarmak görevimizdir."
+            }
+          ]
+        },
+        "correct": "Kültürel miras",
+        "wrong1": "Günümüz modası",
+        "wrong2": "Spor müsabakaları",
+        "explanation": "Eski yapıların korunması kültürel miras konusunu oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_104",
+      "level": "zor",
+      "premise": "Afet çantasında su, yiyecek, fener ve düdük bulunur. Ailece nerede buluşacağımızı konuşuruz. Hazırlıklı olmak güven verir.",
+      "text": "Yukarıdaki metne göre paragraftan çıkarılan temel mesaj hangisidir?",
+      "correct": "Afet çantası hazırlığı",
+      "wrong1": "Piknik sepeti",
+      "wrong2": "Okul çantası",
+      "explanation": "Su, fener ve düdük bulundurma afet çantası konusuna uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraftan çıkarılan temel mesaj hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Afet çantasında su, yiyecek, fener ve düdük bulunur. Ailece nerede buluşacağımızı konuşuruz. Hazırlıklı olmak güven verir."
+            }
+          ]
+        },
+        "correct": "Afet çantası hazırlığı",
+        "wrong1": "Piknik sepeti",
+        "wrong2": "Okul çantası",
+        "explanation": "Su, fener ve düdük bulundurma afet çantası konusuna uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_105",
+      "level": "zor",
+      "premise": "Evcil hayvanlar da canlıdır. Düzenli mama ve su verilmelidir. Korkutulmamalı, sevgiyle bakılmalıdır.",
+      "text": "Yukarıdaki metne göre bu parçanın ana fikri hangi seçenekte bulunur?",
+      "correct": "Hayvan hakları",
+      "wrong1": "Ev dekorasyonu",
+      "wrong2": "Bilgisayar oyunları",
+      "explanation": "Evcil hayvana düzenli mama ve sevgi verme hayvan hakları konusudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parçanın ana fikri hangi seçenekte bulunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Evcil hayvanlar da canlıdır. Düzenli mama ve su verilmelidir. Korkutulmamalı, sevgiyle bakılmalıdır."
+            }
+          ]
+        },
+        "correct": "Hayvan hakları",
+        "wrong1": "Ev dekorasyonu",
+        "wrong2": "Bilgisayar oyunları",
+        "explanation": "Evcil hayvana düzenli mama ve sevgi verme hayvan hakları konusudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_106",
+      "level": "zor",
+      "premise": "Fabrika dumanları havayı ısıtır. Buzullar eriyor. Ağaç dikmek ve enerji tasarrufu iklimi korumaya yardım eder.",
+      "text": "Yukarıdaki metne göre yazarın okuyucuya vermek istediği mesaj hangisidir?",
+      "correct": "İklim değişikliği",
+      "wrong1": "Mevsimlik moda",
+      "wrong2": "Günlük hava durumu",
+      "explanation": "Sera gazları ve sıcaklık artışı iklim değişikliği konusunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre yazarın okuyucuya vermek istediği mesaj hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fabrika dumanları havayı ısıtır. Buzullar eriyor. Ağaç dikmek ve enerji tasarrufu iklimi korumaya yardım eder."
+            }
+          ]
+        },
+        "correct": "İklim değişikliği",
+        "wrong1": "Mevsimlik moda",
+        "wrong2": "Günlük hava durumu",
+        "explanation": "Sera gazları ve sıcaklık artışı iklim değişikliği konusunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_107",
+      "level": "zor",
+      "premise": "Depremde birçok kişi yardım gönderdi. Gönüllüler çadır kurdu. Zor günde birlik olmak dayanışmayı gösterir.",
+      "text": "Yukarıdaki metne göre paragrafın ana düşüncesi hangi seçenekle örtüşür?",
+      "correct": "Toplumsal dayanışma",
+      "wrong1": "Bireysel rekabet",
+      "wrong2": "Gizli oyun",
+      "explanation": "Deprem yardımı ve bağış toplama dayanışma konusuna uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın ana düşüncesi hangi seçenekle örtüşür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Depremde birçok kişi yardım gönderdi. Gönüllüler çadır kurdu. Zor günde birlik olmak dayanışmayı gösterir."
+            }
+          ]
+        },
+        "correct": "Toplumsal dayanışma",
+        "wrong1": "Bireysel rekabet",
+        "wrong2": "Gizli oyun",
+        "explanation": "Deprem yardımı ve bağış toplama dayanışma konusuna uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_108",
+      "level": "zor",
+      "premise": "Kitap okurken sırtımızı dik tutarız. Ekrana çok yaklaşmayız. Doğru duruş bel ağrısını azaltır.",
+      "text": "Yukarıdaki metne göre metnin asıl düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Sağlıklı duruş",
+      "wrong1": "Hızlı koşu",
+      "wrong2": "Yüksek atlama",
+      "explanation": "Omuzları dik tutmak ve ekrana yaklaşmamak sağlıklı duruş konusudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin asıl düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitap okurken sırtımızı dik tutarız. Ekrana çok yaklaşmayız. Doğru duruş bel ağrısını azaltır."
+            }
+          ]
+        },
+        "correct": "Sağlıklı duruş",
+        "wrong1": "Hızlı koşu",
+        "wrong2": "Yüksek atlama",
+        "explanation": "Omuzları dik tutmak ve ekrana yaklaşmamak sağlıklı duruş konusudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_109",
+      "level": "zor",
+      "premise": "Dedem bize eski hikayeler anlatır. Bu hikayeler yazısız dönemden kalma sözlü mirastır. Dinleyerek kültürümüzü öğreniriz.",
+      "text": "Yukarıdaki metne göre paragrafın anlatımına göre başlık hangisi olmalıdır?",
+      "correct": "Sözlü kültür mirası",
+      "wrong1": "Bilgisayar programlama",
+      "wrong2": "Matematik formülleri",
+      "explanation": "Teke yöresi hikayeleri sözlü kültür mirası konusuna girer.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın anlatımına göre başlık hangisi olmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dedem bize eski hikayeler anlatır. Bu hikayeler yazısız dönemden kalma sözlü mirastır. Dinleyerek kültürümüzü öğreniriz."
+            }
+          ]
+        },
+        "correct": "Sözlü kültür mirası",
+        "wrong1": "Bilgisayar programlama",
+        "wrong2": "Matematik formülleri",
+        "explanation": "Teke yöresi hikayeleri sözlü kültür mirası konusuna girer.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_110",
+      "level": "zor",
+      "premise": "Önce acil işleri yaparım. Sonra ödev, en son oyun gelir. Zamanı planlayınca hiçbir iş yarım kalmaz.",
+      "text": "Yukarıdaki metne göre bu yazıya hangi başlık konulursa daha anlamlı olur?",
+      "correct": "Zaman yönetimi",
+      "wrong1": "Saat tamir etme",
+      "wrong2": "Takvim yapımı",
+      "explanation": "Öncelik sırası belirleme zaman yönetimi konusunu oluşturur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu yazıya hangi başlık konulursa daha anlamlı olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Önce acil işleri yaparım. Sonra ödev, en son oyun gelir. Zamanı planlayınca hiçbir iş yarım kalmaz."
+            }
+          ]
+        },
+        "correct": "Zaman yönetimi",
+        "wrong1": "Saat tamir etme",
+        "wrong2": "Takvim yapımı",
+        "explanation": "Öncelik sırası belirleme zaman yönetimi konusunu oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_111",
+      "level": "zor",
+      "premise": "Matematik konusunu arkadaşıma anlattım. Anlatırken ben de pekiştirdim. Bilgi paylaşınca ikimiz de kazandık.",
+      "text": "Yukarıdaki metne göre paragrafa en yakın başlık hangisidir?",
+      "correct": "Bilgi paylaşıldıkça çoğalır",
+      "wrong1": "Bilgi saklanmalıdır",
+      "wrong2": "Bilgi sadece sınavdadır",
+      "explanation": "Arkadaşa anlatınca konuyu daha iyi öğrenmek ana düşüncedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafa en yakın başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Matematik konusunu arkadaşıma anlattım. Anlatırken ben de pekiştirdim. Bilgi paylaşınca ikimiz de kazandık."
+            }
+          ]
+        },
+        "correct": "Bilgi paylaşıldıkça çoğalır",
+        "wrong1": "Bilgi saklanmalıdır",
+        "wrong2": "Bilgi sadece sınavdadır",
+        "explanation": "Arkadaşa anlatınca konuyu daha iyi öğrenmek ana düşüncedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_112",
+      "level": "zor",
+      "premise": "Proje için haftalarca uğraştık. Defterimizi özenle hazırladık. Sunumda ödül alınca emeğimizin karşılığını gördük.",
+      "text": "Yukarıdaki metne göre metnin içeriğine uygun başlık hangisidir?",
+      "correct": "Sabır ve emek başarıyı getirir",
+      "wrong1": "Hızlı bitirmek yeterlidir",
+      "wrong2": "Emek gereksizdir",
+      "explanation": "Haftalarca proje üzerinde çalışıp ödül almak emeğin değerini gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin içeriğine uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Proje için haftalarca uğraştık. Defterimizi özenle hazırladık. Sunumda ödül alınca emeğimizin karşılığını gördük."
+            }
+          ]
+        },
+        "correct": "Sabır ve emek başarıyı getirir",
+        "wrong1": "Hızlı bitirmek yeterlidir",
+        "wrong2": "Emek gereksizdir",
+        "explanation": "Haftalarca proje üzerinde çalışıp ödül almak emeğin değerini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_113",
+      "level": "zor",
+      "premise": "Arkadaşımla tartıştık. Bağırmak yerine sakin konuştuk. Sorunu dinleyince anlaştık.",
+      "text": "Yukarıdaki metne göre paragraf hangi başlık altında toplanmalıdır?",
+      "correct": "Doğru iletişim yanlış anlaşılmayı azaltır",
+      "wrong1": "Bağırmak daha etkilidir",
+      "wrong2": "Susmak her zaman iyidir",
+      "explanation": "Sakin konuşunca kavganın bittiği ana düşüncedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf hangi başlık altında toplanmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkadaşımla tartıştık. Bağırmak yerine sakin konuştuk. Sorunu dinleyince anlaştık."
+            }
+          ]
+        },
+        "correct": "Doğru iletişim yanlış anlaşılmayı azaltır",
+        "wrong1": "Bağırmak daha etkilidir",
+        "wrong2": "Susmak her zaman iyidir",
+        "explanation": "Sakin konuşunca kavganın bittiği ana düşüncedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_114",
+      "level": "zor",
+      "premise": "Okulumuzda farklı yörelerden öğrenciler var. Herkes kendi oyununu anlattı. Farklı kültürler bizi zenginleştirir.",
+      "text": "Yukarıdaki metne göre metne verilen başlıklardan hangisi en uygundur?",
+      "correct": "Her kültürün kendine özgü değeri vardır",
+      "wrong1": "Tek tip kültür olmalıdır",
+      "wrong2": "Farklı kültürler önemsizdir",
+      "explanation": "Farklı yemek ve oyunları tanımak kültürel zenginliği vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metne verilen başlıklardan hangisi en uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okulumuzda farklı yörelerden öğrenciler var. Herkes kendi oyununu anlattı. Farklı kültürler bizi zenginleştirir."
+            }
+          ]
+        },
+        "correct": "Her kültürün kendine özgü değeri vardır",
+        "wrong1": "Tek tip kültür olmalıdır",
+        "wrong2": "Farklı kültürler önemsizdir",
+        "explanation": "Farklı yemek ve oyunları tanımak kültürel zenginliği vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_115",
+      "level": "zor",
+      "premise": "Yeni gelen öğrenciyi sessiz diye yargıladım. Konuşunca çok nazik olduğunu gördüm. Önyargılı olmamak gerekir.",
+      "text": "Yukarıdaki metne göre paragrafın konusuna uygun başlık hangisidir?",
+      "correct": "Önyargı insanı yanıltır",
+      "wrong1": "İlk izlenim her zaman doğrudur",
+      "wrong2": "Tanımadan karar vermek iyidir",
+      "explanation": "Dış görünüşe bakıp yanılma önyargının zararını gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın konusuna uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yeni gelen öğrenciyi sessiz diye yargıladım. Konuşunca çok nazik olduğunu gördüm. Önyargılı olmamak gerekir."
+            }
+          ]
+        },
+        "correct": "Önyargı insanı yanıltır",
+        "wrong1": "İlk izlenim her zaman doğrudur",
+        "wrong2": "Tanımadan karar vermek iyidir",
+        "explanation": "Dış görünüşe bakıp yanılma önyargının zararını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_116",
+      "level": "zor",
+      "premise": "Büyüyen kıyafetlerimi atmak yerine ihtiyacı olana verdim. Az tüketip paylaşınca israf azaldı.",
+      "text": "Yukarıdaki metne göre bu parçaya en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Sorumlu tüketim kaynakları korur",
+      "wrong1": "Ne kadar çok alırsak o kadar iyidir",
+      "wrong2": "Artan eşya sorun değildir",
+      "explanation": "Eski kıyafeti bağışlamak sorumlu tüketimi anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parçaya en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Büyüyen kıyafetlerimi atmak yerine ihtiyacı olana verdim. Az tüketip paylaşınca israf azaldı."
+            }
+          ]
+        },
+        "correct": "Sorumlu tüketim kaynakları korur",
+        "wrong1": "Ne kadar çok alırsak o kadar iyidir",
+        "wrong2": "Artan eşya sorun değildir",
+        "explanation": "Eski kıyafeti bağışlamak sorumlu tüketimi anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_117",
+      "level": "zor",
+      "premise": "Neden yağmur yağdı diye sordum. Öğretmen deney gösterdi. Merak edince konuyu unutmadım.",
+      "text": "Yukarıdaki metne göre metin için seçilecek en doğru başlık hangisidir?",
+      "correct": "Merak öğrenmenin kapısını açar",
+      "wrong1": "Merak dikkat dağıtır",
+      "wrong2": "Sadece ezber yeterlidir",
+      "explanation": "Soru sorarak deney yapmak merakın öğrenmeyi başlattığını gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metin için seçilecek en doğru başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Neden yağmur yağdı diye sordum. Öğretmen deney gösterdi. Merak edince konuyu unutmadım."
+            }
+          ]
+        },
+        "correct": "Merak öğrenmenin kapısını açar",
+        "wrong1": "Merak dikkat dağıtır",
+        "wrong2": "Sadece ezber yeterlidir",
+        "explanation": "Soru sorarak deney yapmak merakın öğrenmeyi başlattığını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_118",
+      "level": "zor",
+      "premise": "Görevleri kura ile seçtik. Kimse şikayet etmedi. Adil olunca herkes kabul etti.",
+      "text": "Yukarıdaki metne göre paragrafa uygun başlık hangi seçenektedir?",
+      "correct": "Adalet herkesin hakkını korur",
+      "wrong1": "Güçlü olan haklıdır",
+      "wrong2": "Kurallar gereksizdir",
+      "explanation": "Kura ile görev verilmesi adaletin önemini vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafa uygun başlık hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Görevleri kura ile seçtik. Kimse şikayet etmedi. Adil olunca herkes kabul etti."
+            }
+          ]
+        },
+        "correct": "Adalet herkesin hakkını korur",
+        "wrong1": "Güçlü olan haklıdır",
+        "wrong2": "Kurallar gereksizdir",
+        "explanation": "Kura ile görev verilmesi adaletin önemini vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_119",
+      "level": "zor",
+      "premise": "Fırtına bahçeyi sarsmıştı. Bir hafta sonra filiz yeniden çıktı. Umut edince pes etmedik.",
+      "text": "Yukarıdaki metne göre metnin anlatımına en çok uyan başlık hangisidir?",
+      "correct": "Umut zor zamanlarda insana güç verir",
+      "wrong1": "Umutsuzluk daha gerçektir",
+      "wrong2": "Beklemek anlamsızdır",
+      "explanation": "Yağmur sonrası fidanın yeşermesi umut mesajı taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin anlatımına en çok uyan başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtına bahçeyi sarsmıştı. Bir hafta sonra filiz yeniden çıktı. Umut edince pes etmedik."
+            }
+          ]
+        },
+        "correct": "Umut zor zamanlarda insana güç verir",
+        "wrong1": "Umutsuzluk daha gerçektir",
+        "wrong2": "Beklemek anlamsızdır",
+        "explanation": "Yağmur sonrası fidanın yeşermesi umut mesajı taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_120",
+      "level": "zor",
+      "premise": "Arkadaşım hastaydı. Onu ziyaret edip ders notlarını verdim. Zor günde yanında olmak dostluktur.",
+      "text": "Yukarıdaki metne göre paragraf hangi başlıkla adlandırılabilir?",
+      "correct": "Gerçek dost zor günde belli olur",
+      "wrong1": "Dostluk sadece oyunda vardır",
+      "wrong2": "Yalnız kalmak her zaman iyidir",
+      "explanation": "Hasta arkadaşı ziyaret etmek gerçek dostluğu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf hangi başlıkla adlandırılabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkadaşım hastaydı. Onu ziyaret edip ders notlarını verdim. Zor günde yanında olmak dostluktur."
+            }
+          ]
+        },
+        "correct": "Gerçek dost zor günde belli olur",
+        "wrong1": "Dostluk sadece oyunda vardır",
+        "wrong2": "Yalnız kalmak her zaman iyidir",
+        "explanation": "Hasta arkadaşı ziyaret etmek gerçek dostluğu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_121",
+      "level": "zor",
+      "premise": "Perde arkasına el feneri tuttuk. Hayvan gölgeleri oluşturduk. Hem eğlendik hem hayal gücümüz çalıştı.",
+      "text": "Yukarıdaki metne göre metne konulacak en uygun başlık hangisidir?",
+      "correct": "Gölge Oyunu ile Öğrenmek",
+      "wrong1": "Televizyon reklamları",
+      "wrong2": "Alışveriş listesi",
+      "explanation": "Perde arkasında hayvan gösterme gölge oyunu başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metne konulacak en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Perde arkasına el feneri tuttuk. Hayvan gölgeleri oluşturduk. Hem eğlendik hem hayal gücümüz çalıştı."
+            }
+          ]
+        },
+        "correct": "Gölge Oyunu ile Öğrenmek",
+        "wrong1": "Televizyon reklamları",
+        "wrong2": "Alışveriş listesi",
+        "explanation": "Perde arkasında hayvan gösterme gölge oyunu başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_122",
+      "level": "zor",
+      "premise": "Her gün yirmi dakika sessiz okuma yaparız. Kimse konuşmaz. Bu saat okuma alışkanlığı kazandırır.",
+      "text": "Yukarıdaki metne göre paragrafın içeriğini yansıtan başlık hangisidir?",
+      "correct": "Sessiz Kitap Okuma Saati",
+      "wrong1": "Yüksek sesle şarkı",
+      "wrong2": "Koşu yarışması",
+      "explanation": "Herkesin sessizce kitap okuması bu başlığa uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın içeriğini yansıtan başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her gün yirmi dakika sessiz okuma yaparız. Kimse konuşmaz. Bu saat okuma alışkanlığı kazandırır."
+            }
+          ]
+        },
+        "correct": "Sessiz Kitap Okuma Saati",
+        "wrong1": "Yüksek sesle şarkı",
+        "wrong2": "Koşu yarışması",
+        "explanation": "Herkesin sessizce kitap okuması bu başlığa uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_123",
+      "level": "zor",
+      "premise": "Gezide tarihi duvara tırmanmadık. Rehberin uyarısını dinledik. Korursak eserler yıllarca yaşar.",
+      "text": "Yukarıdaki metne göre bu metin hangi başlığı taşımalıdır?",
+      "correct": "Tarihi Eserleri Koruyoruz",
+      "wrong1": "Yeni bina yapımı",
+      "wrong2": "Oyun parkı",
+      "explanation": "Tarihi duvara zarar vermeme koruma başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metin hangi başlığı taşımalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gezide tarihi duvara tırmanmadık. Rehberin uyarısını dinledik. Korursak eserler yıllarca yaşar."
+            }
+          ]
+        },
+        "correct": "Tarihi Eserleri Koruyoruz",
+        "wrong1": "Yeni bina yapımı",
+        "wrong2": "Oyun parkı",
+        "explanation": "Tarihi duvara zarar vermeme koruma başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_124",
+      "level": "zor",
+      "premise": "İlk denemede yanlış yaptım. Öğretmen sabırla gösterdi. Tekrar deneyince doğru buldum.",
+      "text": "Yukarıdaki metne göre paragrafa uygun düşen başlık seçeneği hangisidir?",
+      "correct": "Matematikte Hata Yapmaktan Korkmamak",
+      "wrong1": "Hiç denememek",
+      "wrong2": "Kopya çekmek",
+      "explanation": "Yanlış yapıp düzeltmek bu başlığa uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafa uygun düşen başlık seçeneği hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İlk denemede yanlış yaptım. Öğretmen sabırla gösterdi. Tekrar deneyince doğru buldum."
+            }
+          ]
+        },
+        "correct": "Matematikte Hata Yapmaktan Korkmamak",
+        "wrong1": "Hiç denememek",
+        "wrong2": "Kopya çekmek",
+        "explanation": "Yanlış yapıp düzeltmek bu başlığa uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_125",
+      "level": "zor",
+      "premise": "Kuş yuvasına yaklaşmadık. Flaş kullanmadık. Doğada sessiz ve saygılı fotoğraf çektik.",
+      "text": "Yukarıdaki metne göre metin için en anlamlı başlık hangisidir?",
+      "correct": "Doğada Fotoğraf Etik",
+      "wrong1": "Selfie yarışması",
+      "wrong2": "Yüksek ses",
+      "explanation": "Hayvanları korkutmadan fotoğraf çekme etik başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metin için en anlamlı başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuş yuvasına yaklaşmadık. Flaş kullanmadık. Doğada sessiz ve saygılı fotoğraf çektik."
+            }
+          ]
+        },
+        "correct": "Doğada Fotoğraf Etik",
+        "wrong1": "Selfie yarışması",
+        "wrong2": "Yüksek ses",
+        "explanation": "Hayvanları korkutmadan fotoğraf çekme etik başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_126",
+      "level": "zor",
+      "premise": "Sınıf temsilcisi için adaylar konuştu. Herkes sırayla oy kullandı. Seçim demokratik yapıldı.",
+      "text": "Yukarıdaki metne göre bu parçaya hangi başlık konulmalıdır?",
+      "correct": "Sınıf Temsilcisi Seçimi",
+      "wrong1": "Tatil planı",
+      "wrong2": "Yemek tarifi",
+      "explanation": "Oy kullanma ve aday konuşması seçim başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu parçaya hangi başlık konulmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıf temsilcisi için adaylar konuştu. Herkes sırayla oy kullandı. Seçim demokratik yapıldı."
+            }
+          ]
+        },
+        "correct": "Sınıf Temsilcisi Seçimi",
+        "wrong1": "Tatil planı",
+        "wrong2": "Yemek tarifi",
+        "explanation": "Oy kullanma ve aday konuşması seçim başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_127",
+      "level": "zor",
+      "premise": "Köyde tarım yapılır, hava daha sakin olabilir. Kentte otobüs ve market vardır. İki yaşam farklıdır.",
+      "text": "Yukarıdaki metne göre paragrafın içeriğine en uygun başlık hangisidir?",
+      "correct": "Kırsal ve Kent Yaşamı",
+      "wrong1": "Uzay yolculuğu",
+      "wrong2": "Denizaltı",
+      "explanation": "Köyde tarım, kentte otobüs farkı bu başlığa uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragrafın içeriğine en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köyde tarım yapılır, hava daha sakin olabilir. Kentte otobüs ve market vardır. İki yaşam farklıdır."
+            }
+          ]
+        },
+        "correct": "Kırsal ve Kent Yaşamı",
+        "wrong1": "Uzay yolculuğu",
+        "wrong2": "Denizaltı",
+        "explanation": "Köyde tarım, kentte otobüs farkı bu başlığa uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_128",
+      "level": "zor",
+      "premise": "Her akşam küçük kardeşime masal okurum. Kelimeleri göstererek okumayı öğretirim. Gönüllü okuma onu mutlu eder.",
+      "text": "Yukarıdaki metne göre metne verilecek başlık hangi seçenektedir?",
+      "correct": "Gönüllü Okuma Dostu",
+      "wrong1": "Televizyon izleme",
+      "wrong2": "Bilgisayar tamiri",
+      "explanation": "Küçük kardeşe kitap okuma gönüllü okuma başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metne verilecek başlık hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her akşam küçük kardeşime masal okurum. Kelimeleri göstererek okumayı öğretirim. Gönüllü okuma onu mutlu eder."
+            }
+          ]
+        },
+        "correct": "Gönüllü Okuma Dostu",
+        "wrong1": "Televizyon izleme",
+        "wrong2": "Bilgisayar tamiri",
+        "explanation": "Küçük kardeşe kitap okuma gönüllü okuma başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_129",
+      "level": "zor",
+      "premise": "Biten pilleri çöpe atmıyoruz. Okuldaki özel kutuya bırakıyoruz. Doğru toplama zehirli maddeleri engeller.",
+      "text": "Yukarıdaki metne göre paragraf için en doğru başlık hangisidir?",
+      "correct": "Atık Pil Toplama",
+      "wrong1": "Pil yutmak",
+      "wrong2": "Pil satın alma",
+      "explanation": "Kullanılmış pilleri kutuya atma atık pil başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre paragraf için en doğru başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Biten pilleri çöpe atmıyoruz. Okuldaki özel kutuya bırakıyoruz. Doğru toplama zehirli maddeleri engeller."
+            }
+          ]
+        },
+        "correct": "Atık Pil Toplama",
+        "wrong1": "Pil yutmak",
+        "wrong2": "Pil satın alma",
+        "explanation": "Kullanılmış pilleri kutuya atma atık pil başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_130",
+      "level": "zor",
+      "premise": "Maçı kaybettik ama rakibi tebrik ettik. Hile yapmadık. Fair play spor ahlakıdır.",
+      "text": "Yukarıdaki metne göre bu metnin başlığı hangi seçenek olabilir?",
+      "correct": "Yarışmada Fair Play",
+      "wrong1": "Hile yapmak",
+      "wrong2": "Oyundan kaçmak",
+      "explanation": "Kaybedince tebrik etmek fair play başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu metnin başlığı hangi seçenek olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Maçı kaybettik ama rakibi tebrik ettik. Hile yapmadık. Fair play spor ahlakıdır."
+            }
+          ]
+        },
+        "correct": "Yarışmada Fair Play",
+        "wrong1": "Hile yapmak",
+        "wrong2": "Oyundan kaçmak",
+        "explanation": "Kaybedince tebrik etmek fair play başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_131",
+      "level": "zor",
+      "premise": "Gurbette akşam\nPencereden bakıyorum\nMemleket uzakta",
+      "text": "Yukarıdaki metne göre dizelerde ağır basan duygu hangisidir?",
+      "correct": "Hasret",
+      "wrong1": "Kıskançlık",
+      "wrong2": "Gurur",
+      "explanation": "Gurbette geçen akşam hasret duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizelerde ağır basan duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gurbette akşam\nPencereden bakıyorum\nMemleket uzakta"
+            }
+          ]
+        },
+        "correct": "Hasret",
+        "wrong1": "Kıskançlık",
+        "wrong2": "Gurur",
+        "explanation": "Gurbette geçen akşam hasret duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_132",
+      "level": "zor",
+      "premise": "Gök gürledi\nIşıklar söndü\nKorkuyla sarıldım",
+      "text": "Yukarıdaki metne göre şiirin ana duygusunu bulmak için hangi seçeneği işaretleriz?",
+      "correct": "Korku",
+      "wrong1": "Neşe",
+      "wrong2": "Merak",
+      "explanation": "Fırtınada sığınma korku duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin ana duygusunu bulmak için hangi seçeneği işaretleriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gök gürledi\nIşıklar söndü\nKorkuyla sarıldım"
+            }
+          ]
+        },
+        "correct": "Korku",
+        "wrong1": "Neşe",
+        "wrong2": "Merak",
+        "explanation": "Fırtınada sığınma korku duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_133",
+      "level": "zor",
+      "premise": "Kanatlarım var\nGökyüzüne açılıyorum\nÖzgürce uçuyorum",
+      "text": "Yukarıdaki metne göre bu şiirde hissedilen ana duygu hangisidir?",
+      "correct": "Özgürlük",
+      "wrong1": "Baskı",
+      "wrong2": "Utanç",
+      "explanation": "Kanat çırpıp uçma özgürlük duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu şiirde hissedilen ana duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kanatlarım var\nGökyüzüne açılıyorum\nÖzgürce uçuyorum"
+            }
+          ]
+        },
+        "correct": "Özgürlük",
+        "wrong1": "Baskı",
+        "wrong2": "Utanç",
+        "explanation": "Kanat çırpıp uçma özgürlük duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_134",
+      "level": "zor",
+      "premise": "İlk kar yağdı\nHer yer bembeyaz\nGözlerime inanamıyorum",
+      "text": "Yukarıdaki metne göre dizelerin taşıdığı duygu hangi seçenektedir?",
+      "correct": "Şaşkınlık",
+      "wrong1": "Sıkıntı",
+      "wrong2": "Pişmanlık",
+      "explanation": "İlk kar yağışına hayran kalma şaşkınlık ve hayranlık taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizelerin taşıdığı duygu hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İlk kar yağdı\nHer yer bembeyaz\nGözlerime inanamıyorum"
+            }
+          ]
+        },
+        "correct": "Şaşkınlık",
+        "wrong1": "Sıkıntı",
+        "wrong2": "Pişmanlık",
+        "explanation": "İlk kar yağışına hayran kalma şaşkınlık ve hayranlık taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_135",
+      "level": "zor",
+      "premise": "Yaralı kuş yolda\nKanatları kırık\nOna acıyorum",
+      "text": "Yukarıdaki metne göre şiirin ana duygusu aşağıdakilerden hangisine karşılık gelir?",
+      "correct": "Acıma",
+      "wrong1": "Sevinç",
+      "wrong2": "Gurur",
+      "explanation": "Yaralı kuşa yardım isteği acıma duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin ana duygusu aşağıdakilerden hangisine karşılık gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yaralı kuş yolda\nKanatları kırık\nOna acıyorum"
+            }
+          ]
+        },
+        "correct": "Acıma",
+        "wrong1": "Sevinç",
+        "wrong2": "Gurur",
+        "explanation": "Yaralı kuşa yardım isteği acıma duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_136",
+      "level": "zor",
+      "premise": "Yol uzun\nDizlerim yoruldu\nYine de yürüyeceğim",
+      "text": "Yukarıdaki metne göre bu dizeler okuyucuda hangi duyguyu uyandırır?",
+      "correct": "Kararlılık",
+      "wrong1": "Tembellik",
+      "wrong2": "Karamsarlık",
+      "explanation": "Engellere rağmen yürümek kararlılık duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu dizeler okuyucuda hangi duyguyu uyandırır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yol uzun\nDizlerim yoruldu\nYine de yürüyeceğim"
+            }
+          ]
+        },
+        "correct": "Kararlılık",
+        "wrong1": "Tembellik",
+        "wrong2": "Karamsarlık",
+        "explanation": "Engellere rağmen yürümek kararlılık duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_137",
+      "level": "zor",
+      "premise": "Eski okul zili\nKulaklarımda çalıyor\nGeçmişe özlem duyuyorum",
+      "text": "Yukarıdaki metne göre şiirin ana duygusu hangi seçenekte doğru verilmiştir?",
+      "correct": "Nostalji",
+      "wrong1": "Öfke",
+      "wrong2": "Korku",
+      "explanation": "Eski okul anıları nostalji duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre şiirin ana duygusu hangi seçenekte doğru verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Eski okul zili\nKulaklarımda çalıyor\nGeçmişe özlem duyuyorum"
+            }
+          ]
+        },
+        "correct": "Nostalji",
+        "wrong1": "Öfke",
+        "wrong2": "Korku",
+        "explanation": "Eski okul anıları nostalji duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_138",
+      "level": "zor",
+      "premise": "Toprağım kokusu\nGöğsümde taşıyorum\nSeni seviyorum vatan",
+      "text": "Yukarıdaki metne göre dizelerde anlatılan duygu hangisidir?",
+      "correct": "Sevgi",
+      "wrong1": "Nefret",
+      "wrong2": "Kaygı",
+      "explanation": "Toprak ve vatan sevgisi dizelerde sevgi duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre dizelerde anlatılan duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Toprağım kokusu\nGöğsümde taşıyorum\nSeni seviyorum vatan"
+            }
+          ]
+        },
+        "correct": "Sevgi",
+        "wrong1": "Nefret",
+        "wrong2": "Kaygı",
+        "explanation": "Toprak ve vatan sevgisi dizelerde sevgi duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_139",
+      "level": "zor",
+      "premise": "I. Ormanda kuş sesleri duyulur.\nII. Yürüyüş yolu güzeldir.\nIII. Ağaçlar oksijen verir, bu yüzden korunmalıdır.",
+      "text": "Yukarıdaki cümlelere göre paragrafın ana düşüncesi hangi seçenekte verilmiştir?",
+      "correct": "III",
+      "wrong1": "I",
+      "wrong2": "II",
+      "explanation": "III. cümle ağaçların oksijen vermesi ve korunması gerektiğini söyleyerek ana düşünceyi verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre paragrafın ana düşüncesi hangi seçenekte verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ormanda kuş sesleri duyulur."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yürüyüş yolu güzeldir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ağaçlar oksijen verir, bu yüzden korunmalıdır."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III",
+        "wrong1": "I",
+        "wrong2": "II",
+        "explanation": "III. cümle ağaçların oksijen vermesi ve korunması gerektiğini söyleyerek ana düşünceyi verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_140",
+      "level": "zor",
+      "premise": "I. Musluğu sıkı kapatırız.\nII. Sabah erken kalkarım.\nIII. Az su harcarsak herkes faydalanır.",
+      "text": "Yukarıdaki cümlelere göre paragrafın konusu hangi seçenektedir?",
+      "correct": "Su tasarrufu",
+      "wrong1": "Su sporları",
+      "wrong2": "Deniz turizmi",
+      "explanation": "I. ve III. cümlelerde musluk kapatma ve suyu koruma su tasarrufu konusunu oluşturur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre paragrafın konusu hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Musluğu sıkı kapatırız."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sabah erken kalkarım."
+                },
+                {
+                  "label": "III.",
+                  "text": "Az su harcarsak herkes faydalanır."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Su tasarrufu",
+        "wrong1": "Su sporları",
+        "wrong2": "Deniz turizmi",
+        "explanation": "I. ve III. cümlelerde musluk kapatma ve suyu koruma su tasarrufu konusunu oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_141",
+      "level": "zor",
+      "premise": "I. Her akşam kitap okurum.\nII. Odanın lambası sarıdır.\nIII. Okuma beni geliştirir.",
+      "text": "Yukarıdaki cümlelere göre metne en uygun başlık hangisidir?",
+      "correct": "Kitap Okuma Alışkanlığı",
+      "wrong1": "Televizyon saati",
+      "wrong2": "Alışveriş indirimi",
+      "explanation": "I. ve III. cümleler her gün okuma alışkanlığını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre metne en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Her akşam kitap okurum."
+                },
+                {
+                  "label": "II.",
+                  "text": "Odanın lambası sarıdır."
+                },
+                {
+                  "label": "III.",
+                  "text": "Okuma beni geliştirir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Kitap Okuma Alışkanlığı",
+        "wrong1": "Televizyon saati",
+        "wrong2": "Alışveriş indirimi",
+        "explanation": "I. ve III. cümleler her gün okuma alışkanlığını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_142",
+      "level": "zor",
+      "premise": "Gece sessiz\nYıldızlar parlıyor\nKalbim huzur buldu",
+      "text": "Yukarıdaki şiire göre okuyucuda uyandırılan duygu hangisidir?",
+      "correct": "Huzur",
+      "wrong1": "Öfke",
+      "wrong2": "Korku",
+      "explanation": "Dizeler sakin gece ve yıldızlarla huzur duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiire göre okuyucuda uyandırılan duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gece sessiz\nYıldızlar parlıyor\nKalbim huzur buldu"
+            }
+          ]
+        },
+        "correct": "Huzur",
+        "wrong1": "Öfke",
+        "wrong2": "Korku",
+        "explanation": "Dizeler sakin gece ve yıldızlarla huzur duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_143",
+      "level": "zor",
+      "premise": "I. Çantaya su koyduk.\nII. Fener ve düdük ekledik.\nIII. Okul bahçesi geniştir.",
+      "text": "Yukarıdaki cümlelere göre paragraf ne anlatıyor?",
+      "correct": "Deprem çantası hazırlama",
+      "wrong1": "Piknik yapma",
+      "wrong2": "Yüzme kursu",
+      "explanation": "I. ve II. cümlelerde çanta içeriği deprem hazırlığını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre paragraf ne anlatıyor?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Çantaya su koyduk."
+                },
+                {
+                  "label": "II.",
+                  "text": "Fener ve düdük ekledik."
+                },
+                {
+                  "label": "III.",
+                  "text": "Okul bahçesi geniştir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Deprem çantası hazırlama",
+        "wrong1": "Piknik yapma",
+        "wrong2": "Yüzme kursu",
+        "explanation": "I. ve II. cümlelerde çanta içeriği deprem hazırlığını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_144",
+      "level": "zor",
+      "premise": "I. Kek yaptık.\nII. Mutfak koktu.\nIII. Arkadaşlarımızla paylaşınca daha mutlu olduk.",
+      "text": "Yukarıdaki cümlelere göre metnin ana düşüncesi hangi seçenektedir?",
+      "correct": "Paylaşmak mutluluk verir",
+      "wrong1": "Paylaşmak zordur",
+      "wrong2": "Her şeyi saklamak iyidir",
+      "explanation": "III. cümle paylaşınca mutlu olunduğunu söyleyerek ana düşünceyi verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre metnin ana düşüncesi hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kek yaptık."
+                },
+                {
+                  "label": "II.",
+                  "text": "Mutfak koktu."
+                },
+                {
+                  "label": "III.",
+                  "text": "Arkadaşlarımızla paylaşınca daha mutlu olduk."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Paylaşmak mutluluk verir",
+        "wrong1": "Paylaşmak zordur",
+        "wrong2": "Her şeyi saklamak iyidir",
+        "explanation": "III. cümle paylaşınca mutlu olunduğunu söyleyerek ana düşünceyi verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_145",
+      "level": "zor",
+      "premise": "I. Bisiklette kask takarız.\nII. Yaya geçidini kullanırız.\nIII. Ders zili çalar.",
+      "text": "Yukarıdaki cümlelere göre metnin konusu hangi seçenekte verilmiştir?",
+      "correct": "Trafik güvenliği",
+      "wrong1": "Okul kıyafeti",
+      "wrong2": "Resim dersi",
+      "explanation": "I. ve II. cümleler kask ve yaya geçidi trafik güvenliği konusudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre metnin konusu hangi seçenekte verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Bisiklette kask takarız."
+                },
+                {
+                  "label": "II.",
+                  "text": "Yaya geçidini kullanırız."
+                },
+                {
+                  "label": "III.",
+                  "text": "Ders zili çalar."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Trafik güvenliği",
+        "wrong1": "Okul kıyafeti",
+        "wrong2": "Resim dersi",
+        "explanation": "I. ve II. cümleler kask ve yaya geçidi trafik güvenliği konusudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_146",
+      "level": "zor",
+      "premise": "I. Parkta çöp topladık.\nII. Hava güneşliydi.\nIII. Temiz çevre hepimizin hakkıdır.",
+      "text": "Yukarıdaki cümlelere göre paragrafa en uygun başlık hangisidir?",
+      "correct": "Gönüllü Temizlik",
+      "wrong1": "Resim sergisi",
+      "wrong2": "Sinema bileti",
+      "explanation": "I. ve III. cümleler park temizliği gönüllü temizlik başlığına uyar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre paragrafa en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Parkta çöp topladık."
+                },
+                {
+                  "label": "II.",
+                  "text": "Hava güneşliydi."
+                },
+                {
+                  "label": "III.",
+                  "text": "Temiz çevre hepimizin hakkıdır."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Gönüllü Temizlik",
+        "wrong1": "Resim sergisi",
+        "wrong2": "Sinema bileti",
+        "explanation": "I. ve III. cümleler park temizliği gönüllü temizlik başlığına uyar.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_147",
+      "level": "zor",
+      "premise": "I. Kardeşim ödevinde zorlandı.\nII. Ona okuma alıştırması yaptım.\nIII. Akşam yemek yedik.",
+      "text": "Yukarıdaki cümlelere göre metin hangi olayı anlatmaktadır?",
+      "correct": "Kardeşe yardım etme",
+      "wrong1": "Market alışverişi",
+      "wrong2": "Televizyon izleme",
+      "explanation": "I. ve II. cümleler ödevde kardeşe yardımı anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre metin hangi olayı anlatmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Kardeşim ödevinde zorlandı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Ona okuma alıştırması yaptım."
+                },
+                {
+                  "label": "III.",
+                  "text": "Akşam yemek yedik."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Kardeşe yardım etme",
+        "wrong1": "Market alışverişi",
+        "wrong2": "Televizyon izleme",
+        "explanation": "I. ve II. cümleler ödevde kardeşe yardımı anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_148",
+      "level": "zor",
+      "premise": "I. Ormanda yürüdük.\nII. Kuş sesleri vardı.\nIII. Doğayı korumak hepimizin görevidir.",
+      "text": "Yukarıdaki cümlelere göre paragrafın ana fikri hangi seçenektedir?",
+      "correct": "Doğayı korumak görevimizdir",
+      "wrong1": "Doğada istediğimizi yapabiliriz",
+      "wrong2": "Doğa önemsizdir",
+      "explanation": "III. cümle doğayı korumanın görev olduğunu söyler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre paragrafın ana fikri hangi seçenektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Ormanda yürüdük."
+                },
+                {
+                  "label": "II.",
+                  "text": "Kuş sesleri vardı."
+                },
+                {
+                  "label": "III.",
+                  "text": "Doğayı korumak hepimizin görevidir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Doğayı korumak görevimizdir",
+        "wrong1": "Doğada istediğimizi yapabiliriz",
+        "wrong2": "Doğa önemsizdir",
+        "explanation": "III. cümle doğayı korumanın görev olduğunu söyler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_149",
+      "level": "zor",
+      "premise": "Köy yolu uzak\nDuman tütüyor\nHasret büyüyor",
+      "text": "Yukarıdaki şiire göre dizelerde baskın duygu hangisidir?",
+      "correct": "Özlem",
+      "wrong1": "Kızgınlık",
+      "wrong2": "Gurur",
+      "explanation": "Uzak kalan köy özlem duygusunu taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiire göre dizelerde baskın duygu hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köy yolu uzak\nDuman tütüyor\nHasret büyüyor"
+            }
+          ]
+        },
+        "correct": "Özlem",
+        "wrong1": "Kızgınlık",
+        "wrong2": "Gurur",
+        "explanation": "Uzak kalan köy özlem duygusunu taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_150",
+      "level": "zor",
+      "premise": "I. Sınıfta sessizlik vardı.\nII. Arkadaşımın üzgün olduğunu fark ettim.\nIII. Tahtaya kalem yazıldı.",
+      "text": "Yukarıdaki cümlelere göre paragrafın konusu nedir?",
+      "correct": "Empati",
+      "wrong1": "Yarış",
+      "wrong2": "Rekabet",
+      "explanation": "II. cümle arkadaşın duygusunu anlama empati konusunu verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlelere göre paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Sınıfta sessizlik vardı."
+                },
+                {
+                  "label": "II.",
+                  "text": "Arkadaşımın üzgün olduğunu fark ettim."
+                },
+                {
+                  "label": "III.",
+                  "text": "Tahtaya kalem yazıldı."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Empati",
+        "wrong1": "Yarış",
+        "wrong2": "Rekabet",
+        "explanation": "II. cümle arkadaşın duygusunu anlama empati konusunu verir.",
+        "url": null
+      }
+    }
+  ]
+}

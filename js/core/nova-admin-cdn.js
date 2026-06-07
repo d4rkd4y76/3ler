@@ -473,6 +473,7 @@
     loadPlatformCdnConfig: loadPlatformCdnConfig,
     rebuildStoreManifest: rebuildStoreManifest,
     publishPath: publishPath,
+    onUpdates: onUpdates,
     uploadAsset: uploadAsset,
     assetPublicUrl: assetPublicUrl,
     testConnection: testConnection,

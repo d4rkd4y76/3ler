@@ -686,9 +686,49 @@
 }
 
 /* Öncül blokları (oyun + önizleme) */
+.question-preamble-wrap,
+.question-preamble-block--text,
+.question-preamble-body,
+.question-info-text,
+.question-preamble-item,
+.deneme-q-pre .question-preamble-block--text {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphenate-character: "-";
+  hyphenate-limit-chars: 5 3 2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
 .question-preamble-block {
   width: 100%;
   margin-bottom: 12px;
+}
+
+/* Örnek metin / şiir — sola hizalı, satır başları korunur */
+.question-preamble-block--text,
+.question-preamble-block--text.q-markup,
+.question-preamble-wrap .question-preamble-block--text {
+  text-align: left !important;
+  white-space: normal;
+}
+
+.question-preamble-block--text .q-markup,
+.question-preamble-block--text br {
+  text-align: left;
+}
+
+#single-player-game-screen .question-preamble-block--text,
+#single-player-game-screen .question-info-text,
+#duel-game-screen .question-preamble-block--text,
+#duel-game-screen .question-preamble-wrap .question-preamble-block--text {
+  text-align: left !important;
+}
+
+.deneme-q-pre .question-preamble-block--text {
+  text-align: left !important;
 }
 
 .question-preamble-block:last-child {

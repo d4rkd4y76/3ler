@@ -542,6 +542,16 @@ body.nova-duel-game-open #nova-duel-scale-toolbar,
   line-height: 1.45 !important;
   background: transparent !important;
   border: none !important;
+  text-align: left !important;
+}
+
+#duel-game-screen .question-preamble-block--text {
+  text-align: left !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-character: "-";
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 #duel-game-screen .question-divider {

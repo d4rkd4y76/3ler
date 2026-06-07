@@ -824,6 +824,14 @@
     );
   }
 
+  function applyPreambleHyphenation(wrap) {
+    try {
+      if (global.NovaTurkishHyphen && typeof global.NovaTurkishHyphen.applyToPreamble === "function") {
+        global.NovaTurkishHyphen.applyToPreamble(wrap);
+      }
+    } catch (_) {}
+  }
+
   function mountPreambleBlocks(parent, info, infoItems, infoBlocks) {
     const blocks = getInfoBlocks(info, infoItems, infoBlocks);
     if (!blocks.length) return false;
@@ -832,6 +840,7 @@
     wrap.className = "question-preamble-wrap";
     wrap.innerHTML = blocks.map(blockHtml).join("");
     parent.appendChild(wrap);
+    applyPreambleHyphenation(wrap);
     return true;
   }
 
@@ -914,6 +923,7 @@
     pre.innerHTML = blocks.map(blockHtml).join("");
     parent.appendChild(pre);
     initBunnyVideos(pre);
+    applyPreambleHyphenation(pre);
   }
 
   function insertAtCursor(input, token) {
