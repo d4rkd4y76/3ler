@@ -1,5 +1,6 @@
 /**
- * Soru metni: kesirler [[1/3]], dikey toplama [[add:243+125]] veya [[add:125+135+145]], çözüm [[addsol:348+225]],
+ * Soru metni: kesirler [[1/3]], dikey toplama [[add:243+125]], dikey cikarma [[sub:485-234]],
+ * cozum [[addsol:348+225]] / [[subsol:485-234]],
  * dikey çarpma [[mul:23×45]], bölme [[div:144÷12]],
  * geometri [[shape:kare:5:cm]], cisim [[solid:kup:4:cm]], Bunny video [[bunny:host:videoId]]
  * Öncül: infoBlocks (metin, madde, görsel, video) + geriye dönük info / infoItems
@@ -9,6 +10,10 @@
   const FRAC_RE = /\[\[\s*(\d+)\s*[\/|]\s*(\d+)\s*\]\]/g;
   const ADD_MULTI_RE = /\[\[\s*add\s*:\s*((?:\d+\s*\+\s*)+\d+)\s*\]\]/gi;
   const ADDSOL_MULTI_RE = /\[\[\s*addsol\s*:\s*((?:\d+\s*\+\s*)+\d+)\s*\]\]/gi;
+  const SUB_PAIR_RE = /\[\[\s*sub\s*:\s*(\d+)\s*-\s*(\d+)\s*\]\]/gi;
+  const SUBSOL_RE = /\[\[\s*subsol\s*:\s*(\d+)\s*-\s*(\d+)\s*\]\]/gi;
+  const STEPHR_RE = /\[\[\s*stephr\s*\]\]/gi;
+  const RESULT_RE = /\[\[\s*result\s*:\s*(\d+)\s*\]\]/gi;
   const MUL_RE = /\[\[\s*mul\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
   const DIV_RE = /\[\[\s*div\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*\]\]/gi;
   const SHAPE_RE = /\[\[\s*shape\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
@@ -371,6 +376,168 @@
 
   function verticalAddSolutionHtml(a, b) {
     return verticalAddSolutionFromOperands([parseInt(a, 10) || 0, parseInt(b, 10) || 0]);
+  }
+
+  function subTopDigitHtml(orig, adj, changed) {
+    if (!changed) {
+      return (
+        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+        (orig ? escapeHtml(String(orig)) : "&nbsp;") +
+        "</span></span>"
+      );
+    }
+    var adjStr = String(adj);
+    var wide = adjStr.length > 1 ? " q-vmath__adj--wide" : "";
+    return (
+      '<span class="q-vmath__gcol q-vmath__gcol--stack">' +
+      '<span class="q-vmath__adj' +
+      wide +
+      '" title="Onluk bozma sonrası">' +
+      escapeHtml(adjStr) +
+      "</span>" +
+      '<span class="q-vmath__digit q-vmath__digit--struck">' +
+      '<span class="q-vmath__digit-inner">' +
+      escapeHtml(String(orig)) +
+      "</span>" +
+      '<span class="q-vmath__strike" aria-hidden="true"></span>' +
+      "</span></span>"
+    );
+  }
+
+  function computeSubColumns(a, b) {
+    var na = parseInt(a, 10) || 0;
+    var nb = parseInt(b, 10) || 0;
+    var sa = String(na);
+    var sb = String(nb);
+    var sr = String(na - nb);
+    var len = Math.max(sa.length, sb.length, sr.length);
+    var da = sa.padStart(len, "0").split("").map(Number);
+    var db = sb.padStart(len, "0").split("").map(Number);
+    var work = da.slice();
+    var adjustedTop = da.slice();
+    var anyBorrow = false;
+    var i;
+    var k;
+
+    for (i = len - 1; i >= 0; i--) {
+      if (work[i] < db[i]) {
+        anyBorrow = true;
+        k = i - 1;
+        while (k >= 0 && work[k] === 0) {
+          work[k] = 9;
+          adjustedTop[k] = 9;
+          k--;
+        }
+        if (k >= 0) {
+          work[k] -= 1;
+          adjustedTop[k] = work[k];
+        }
+        adjustedTop[i] = work[i] + 10;
+      } else {
+        adjustedTop[i] = work[i];
+      }
+    }
+
+    var topChanged = [];
+    var origTop = sa.padStart(len, "\u00a0");
+    var origD = splitPaddedDigits(origTop, len);
+
+    for (var j = 0; j < len; j++) {
+      var o = da[j];
+      var adj = adjustedTop[j];
+      topChanged[j] = anyBorrow && o !== adj;
+    }
+
+    return {
+      len: len,
+      top: origTop,
+      bottom: sb.padStart(len, "\u00a0"),
+      result: sr.padStart(len, "\u00a0"),
+      origDigits: origD,
+      da: da,
+      adjustedTop: adjustedTop,
+      topChanged: topChanged,
+      anyBorrow: anyBorrow,
+      diff: na - nb,
+    };
+  }
+
+  function buildSubGridHtml(cols, withSolution) {
+    var len = cols.len;
+    var origD = cols.origDigits || splitPaddedDigits(cols.top, len);
+    var botD = splitPaddedDigits(cols.bottom, len);
+    var resD = splitPaddedDigits(cols.result, len);
+    var parts = ['<span class="q-vmath__grid q-vmath__grid--sub" style="--q-add-cols:' + len + '">'];
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+    for (var ti = 0; ti < len; ti++) {
+      var origChar = origD[ti] || (cols.da ? String(cols.da[ti]) : "");
+      if (withSolution && cols.anyBorrow && cols.topChanged[ti]) {
+        parts.push(subTopDigitHtml(origChar, cols.adjustedTop[ti], true));
+      } else {
+        parts.push(subTopDigitHtml(origChar, origChar, false));
+      }
+    }
+    parts.push("</span>");
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op q-vmath__grid-row--sub">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"><span class="q-vmath__sign">−</span></span>');
+    for (var si = 0; si < len; si++) {
+      parts.push(
+        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+          (botD[si] ? escapeHtml(botD[si]) : "&nbsp;") +
+          "</span></span>"
+      );
+    }
+    parts.push("</span>");
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--bar">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+    parts.push('<span class="q-vmath__bar-line" aria-hidden="true"></span>');
+    parts.push("</span>");
+
+    if (withSolution) {
+      parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--result">');
+      parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+      for (var ri = 0; ri < len; ri++) {
+        parts.push(
+          '<span class="q-vmath__gcol"><span class="q-vmath__digit q-vmath__digit--result">' +
+            (resD[ri] ? escapeHtml(resD[ri]) : "&nbsp;") +
+            "</span></span>"
+        );
+      }
+      parts.push("</span>");
+    }
+
+    parts.push("</span>");
+    return parts.join("");
+  }
+
+  function verticalSubHtml(a, b) {
+    var na = parseInt(a, 10) || 0;
+    var nb = parseInt(b, 10) || 0;
+    var cols = computeSubColumns(na, nb);
+    return (
+      '<span class="q-vmath q-vmath--sub" role="math" aria-label="' +
+      escapeHtml(String(na) + " eksi " + String(nb)) +
+      '">' +
+      buildSubGridHtml(cols, false) +
+      "</span>"
+    );
+  }
+
+  function verticalSubSolutionHtml(a, b) {
+    var na = parseInt(a, 10) || 0;
+    var nb = parseInt(b, 10) || 0;
+    var cols = computeSubColumns(na, nb);
+    return (
+      '<span class="q-vmath q-vmath--sub q-vmath--subsol" role="math" aria-label="' +
+      escapeHtml(String(na) + " eksi " + String(nb) + " eşittir " + String(cols.diff)) +
+      '">' +
+      buildSubGridHtml(cols, true) +
+      "</span>"
+    );
   }
 
   function verticalMulHtml(a, b) {
@@ -763,6 +930,12 @@
     s = s.replace(ADDSOL_MULTI_RE, function (_, ops) {
       return verticalAddSolutionFromOperands(parseAddOperands(ops));
     });
+    s = s.replace(SUBSOL_RE, function (_, a, b) {
+      return verticalSubSolutionHtml(a, b);
+    });
+    s = s.replace(SUB_PAIR_RE, function (_, a, b) {
+      return verticalSubHtml(a, b);
+    });
     s = s.replace(ADD_MULTI_RE, function (_, ops) {
       return verticalAddFromOperands(parseAddOperands(ops));
     });
@@ -788,6 +961,10 @@
         return bunnyVideoHtml("", parts, vid);
       }
       return bunnyVideoHtml(parts, "", vid);
+    });
+    s = s.replace(STEPHR_RE, '<hr class="q-step-divider" aria-hidden="true">');
+    s = s.replace(RESULT_RE, function (_, n) {
+      return '<span class="q-final-result">' + escapeHtml(n) + "</span>";
     });
     s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/\n/g, "<br>");

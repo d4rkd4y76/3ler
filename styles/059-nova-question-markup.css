@@ -435,7 +435,8 @@
   opacity: 0.85;
 }
 
-.q-vmath--add .q-vmath__grid {
+.q-vmath--add .q-vmath__grid,
+.q-vmath--sub .q-vmath__grid {
   display: inline-grid;
   grid-template-columns: 1.05em repeat(var(--q-add-cols, 3), 1.2em);
   column-gap: 0.08em;
@@ -444,11 +445,13 @@
   justify-items: center;
 }
 
-.q-vmath--add .q-vmath__grid-row {
+.q-vmath--add .q-vmath__grid-row,
+.q-vmath--sub .q-vmath__grid-row {
   display: contents;
 }
 
-.q-vmath--add .q-vmath__gcol {
+.q-vmath--add .q-vmath__gcol,
+.q-vmath--sub .q-vmath__gcol {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -457,22 +460,26 @@
   text-align: center;
 }
 
-.q-vmath--add .q-vmath__gcol--sign {
+.q-vmath--add .q-vmath__gcol--sign,
+.q-vmath--sub .q-vmath__gcol--sign {
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 0.08em;
   min-width: 1.05em;
 }
 
-.q-vmath--add .q-vmath__grid-row--bar .q-vmath__gcol--sign {
+.q-vmath--add .q-vmath__grid-row--bar .q-vmath__gcol--sign,
+.q-vmath--sub .q-vmath__grid-row--bar .q-vmath__gcol--sign {
   display: none;
 }
 
-.q-vmath--add .q-vmath__gcol--bar {
+.q-vmath--add .q-vmath__gcol--bar,
+.q-vmath--sub .q-vmath__gcol--bar {
   display: none;
 }
 
-.q-vmath--add .q-vmath__bar-line {
+.q-vmath--add .q-vmath__bar-line,
+.q-vmath--sub .q-vmath__bar-line {
   grid-column: 1 / -1;
   width: 100%;
   height: 3px;
@@ -483,7 +490,8 @@
   align-self: center;
 }
 
-.q-vmath--add .q-vmath__digit {
+.q-vmath--add .q-vmath__digit,
+.q-vmath--sub .q-vmath__digit {
   display: block;
   width: 1.1em;
   text-align: center;
@@ -506,10 +514,94 @@
   visibility: hidden;
 }
 
-.q-vmath--addsol .q-vmath__digit--result {
+.q-vmath--addsol .q-vmath__digit--result,
+.q-vmath--subsol .q-vmath__digit--result {
   margin-top: 0;
   padding-top: 0.1em;
   border-top: none;
+}
+
+.q-vmath--sub .q-vmath__sign {
+  margin-right: 0;
+  opacity: 0.85;
+}
+
+.q-vmath--sub .q-vmath__gcol--stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 1.2em;
+}
+
+.q-vmath--sub .q-vmath__adj {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.62em;
+  line-height: 1;
+  min-height: 0.95em;
+  font-weight: 900;
+  color: #f87171;
+  text-shadow: 0 0 6px rgba(248, 113, 113, 0.35);
+}
+
+.q-vmath--sub .q-vmath__adj--wide {
+  font-size: 0.5em;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.q-vmath--sub .q-vmath__digit--struck {
+  position: relative;
+  display: inline-block;
+}
+
+.q-vmath--sub .q-vmath__digit--struck .q-vmath__digit-inner {
+  color: rgba(248, 113, 113, 0.82);
+}
+
+.q-vmath--sub .q-vmath__strike {
+  position: absolute;
+  left: -0.08em;
+  right: -0.08em;
+  top: 52%;
+  height: 1.5px;
+  border-radius: 999px;
+  background: #ef4444;
+  box-shadow: 0 0 4px rgba(239, 68, 68, 0.45);
+  pointer-events: none;
+}
+
+.q-vmath--subsol .q-vmath__digit--struck .q-vmath__digit-inner {
+  opacity: 0.95;
+}
+
+.q-step-divider {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: 0.85em 0;
+  border: none;
+  border-top: 2px solid rgba(148, 163, 184, 0.55);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.q-final-result {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 1.12em;
+  color: #22c55e;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.35);
+  padding: 0.06em 0.35em;
+  border-radius: 0.35em;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.explanation-text .q-final-result,
+.explanation-v .q-final-result,
+.explanation-note__body .q-final-result {
+  font-size: clamp(1.15rem, 4.2vw, 1.65rem);
 }
 
 /* Türk ilkokul bölme: bölünen solda, bölen sağ üstte, ┌─ köşe */
