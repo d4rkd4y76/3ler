@@ -151,10 +151,18 @@ def patch_dllwrld(
     topic_id: str,
     heading_id: str = "SINIF3",
     lesson_id: str = "lesson_turkce",
+    lesson_id_kw: str | None = None,
+    topic_name: str | None = None,
+    topic_order: int | None = None,
 ) -> None:
+    if lesson_id_kw is not None:
+        lesson_id = lesson_id_kw
     with open(dllwrld_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    topic_path = data["championData"]["headings"][heading_id]["lessons"][lesson_id]["topics"][topic_id]
+    topics = data["championData"]["headings"][heading_id]["lessons"][lesson_id]["topics"]
+    if topic_id not in topics:
+        topics[topic_id] = {"active": True, "questions": {}, "questionIds": {}}
+    topic_path = topics[topic_id]
     questions_out = {}
     question_ids = {}
     for q in questions:
@@ -164,6 +172,10 @@ def patch_dllwrld(
     topic_path["questions"] = questions_out
     topic_path["questionIds"] = question_ids
     topic_path["active"] = True
+    if topic_name:
+        topic_path["name"] = topic_name
+    if topic_order is not None:
+        topic_path["order"] = topic_order
     with open(dllwrld_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
 
@@ -177,7 +189,10 @@ def write_json_pack(
     grade: int = 3,
     heading_id: str = "SINIF3",
     lesson_id: str = "lesson_turkce",
+    lesson_id_kw: str | None = None,
 ) -> None:
+    if lesson_id_kw is not None:
+        lesson_id = lesson_id_kw
     data_path.parent.mkdir(parents=True, exist_ok=True)
     out = {
         "meta": {
@@ -201,6 +216,7 @@ def write_word_doc(
     title: str,
     key_prefix: str,
     subtitle: str = "Konu: Eş anlamlı, zıt anlamlı ve sesteş (eş sesli) kelimeler",
+    subject_label: str = "3. Sınıf Türkçe",
 ) -> None:
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -210,7 +226,7 @@ def write_word_doc(
     doc = Document()
     h = doc.add_heading(title, 0)
     h.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    sub = doc.add_paragraph("3. Sınıf Türkçe — 150 Soru (Kolay / Orta / Zor)")
+    sub = doc.add_paragraph(f"{subject_label} — 150 Soru (Kolay / Orta / Zor)")
     sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.add_paragraph(subtitle)
     doc.add_paragraph("")

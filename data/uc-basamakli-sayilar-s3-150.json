@@ -1,0 +1,3202 @@
+{
+  "meta": {
+    "topicId": "t01",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_matematik",
+    "title": "Üç Basamaklı Doğal Sayılar (Okuma, yazma, basamak değeri)",
+    "grade": 3,
+    "count": 130
+  },
+  "questions": [
+    {
+      "id": "mat3_sayilar_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "260 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "İki yüz altmış",
+      "wrong1": "İki yüz kırk",
+      "wrong2": "İki yüz altmış iki",
+      "explanation": "260 sayısı 'İki yüz altmış' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "260 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İki yüz altmış",
+        "wrong1": "İki yüz kırk",
+        "wrong2": "İki yüz altmış iki",
+        "explanation": "260 sayısı 'İki yüz altmış' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "146 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Yüz kırk altı",
+      "wrong1": "Yüz elli altı",
+      "wrong2": "Yüz kırk dört",
+      "explanation": "146 sayısı 'Yüz kırk altı' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "146 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yüz kırk altı",
+        "wrong1": "Yüz elli altı",
+        "wrong2": "Yüz kırk dört",
+        "explanation": "146 sayısı 'Yüz kırk altı' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "349 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Üç yüz kırk dokuz",
+      "wrong1": "Üç yüz elli dokuz",
+      "wrong2": "Üç yüz kırk yedi",
+      "explanation": "349 sayısı 'Üç yüz kırk dokuz' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "349 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Üç yüz kırk dokuz",
+        "wrong1": "Üç yüz elli dokuz",
+        "wrong2": "Üç yüz kırk yedi",
+        "explanation": "349 sayısı 'Üç yüz kırk dokuz' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "489 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Dört yüz seksen dokuz",
+      "wrong1": "Dört yüz yetmiş dokuz",
+      "wrong2": "Dört yüz seksen yedi",
+      "explanation": "489 sayısı 'Dört yüz seksen dokuz' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "489 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dört yüz seksen dokuz",
+        "wrong1": "Dört yüz yetmiş dokuz",
+        "wrong2": "Dört yüz seksen yedi",
+        "explanation": "489 sayısı 'Dört yüz seksen dokuz' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "452 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Dört yüz elli iki",
+      "wrong1": "Dört yüz altmış iki",
+      "wrong2": "Dört yüz elli",
+      "explanation": "452 sayısı 'Dört yüz elli iki' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "452 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dört yüz elli iki",
+        "wrong1": "Dört yüz altmış iki",
+        "wrong2": "Dört yüz elli",
+        "explanation": "452 sayısı 'Dört yüz elli iki' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "981 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Dokuz yüz seksen bir",
+      "wrong1": "Dokuz yüz doksan bir",
+      "wrong2": "Dokuz yüz seksen",
+      "explanation": "981 sayısı 'Dokuz yüz seksen bir' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "981 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dokuz yüz seksen bir",
+        "wrong1": "Dokuz yüz doksan bir",
+        "wrong2": "Dokuz yüz seksen",
+        "explanation": "981 sayısı 'Dokuz yüz seksen bir' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "902 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Dokuz yüz iki",
+      "wrong1": "Dokuz yüz on iki",
+      "wrong2": "Dokuz yüz",
+      "explanation": "902 sayısı 'Dokuz yüz iki' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "902 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dokuz yüz iki",
+        "wrong1": "Dokuz yüz on iki",
+        "wrong2": "Dokuz yüz",
+        "explanation": "902 sayısı 'Dokuz yüz iki' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "119 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Yüz on dokuz",
+      "wrong1": "Yüz yirmi dokuz",
+      "wrong2": "Yüz on yedi",
+      "explanation": "119 sayısı 'Yüz on dokuz' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "119 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yüz on dokuz",
+        "wrong1": "Yüz yirmi dokuz",
+        "wrong2": "Yüz on yedi",
+        "explanation": "119 sayısı 'Yüz on dokuz' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "834 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Sekiz yüz otuz dört",
+      "wrong1": "Sekiz yüz yirmi dört",
+      "wrong2": "Sekiz yüz otuz iki",
+      "explanation": "834 sayısı 'Sekiz yüz otuz dört' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "834 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sekiz yüz otuz dört",
+        "wrong1": "Sekiz yüz yirmi dört",
+        "wrong2": "Sekiz yüz otuz iki",
+        "explanation": "834 sayısı 'Sekiz yüz otuz dört' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "664 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Altı yüz altmış dört",
+      "wrong1": "Altı yüz elli dört",
+      "wrong2": "Altı yüz altmış iki",
+      "explanation": "664 sayısı 'Altı yüz altmış dört' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "664 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Altı yüz altmış dört",
+        "wrong1": "Altı yüz elli dört",
+        "wrong2": "Altı yüz altmış iki",
+        "explanation": "664 sayısı 'Altı yüz altmış dört' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "377 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Üç yüz yetmiş yedi",
+      "wrong1": "Üç yüz seksen yedi",
+      "wrong2": "Üç yüz yetmiş beş",
+      "explanation": "377 sayısı 'Üç yüz yetmiş yedi' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "377 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Üç yüz yetmiş yedi",
+        "wrong1": "Üç yüz seksen yedi",
+        "wrong2": "Üç yüz yetmiş beş",
+        "explanation": "377 sayısı 'Üç yüz yetmiş yedi' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "277 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "İki yüz yetmiş yedi",
+      "wrong1": "İki yüz seksen yedi",
+      "wrong2": "İki yüz yetmiş beş",
+      "explanation": "277 sayısı 'İki yüz yetmiş yedi' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "277 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İki yüz yetmiş yedi",
+        "wrong1": "İki yüz seksen yedi",
+        "wrong2": "İki yüz yetmiş beş",
+        "explanation": "277 sayısı 'İki yüz yetmiş yedi' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "321 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Üç yüz yirmi bir",
+      "wrong1": "Üç yüz otuz bir",
+      "wrong2": "Üç yüz yirmi",
+      "explanation": "321 sayısı 'Üç yüz yirmi bir' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "321 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Üç yüz yirmi bir",
+        "wrong1": "Üç yüz otuz bir",
+        "wrong2": "Üç yüz yirmi",
+        "explanation": "321 sayısı 'Üç yüz yirmi bir' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "550 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Beş yüz elli",
+      "wrong1": "Beş yüz kırk",
+      "wrong2": "Beş yüz elli iki",
+      "explanation": "550 sayısı 'Beş yüz elli' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "550 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Beş yüz elli",
+        "wrong1": "Beş yüz kırk",
+        "wrong2": "Beş yüz elli iki",
+        "explanation": "550 sayısı 'Beş yüz elli' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "281 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "İki yüz seksen bir",
+      "wrong1": "İki yüz doksan bir",
+      "wrong2": "İki yüz seksen",
+      "explanation": "281 sayısı 'İki yüz seksen bir' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "281 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İki yüz seksen bir",
+        "wrong1": "İki yüz doksan bir",
+        "wrong2": "İki yüz seksen",
+        "explanation": "281 sayısı 'İki yüz seksen bir' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_016",
+      "level": "kolay",
+      "premise": null,
+      "text": "989 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Dokuz yüz seksen dokuz",
+      "wrong1": "Dokuz yüz doksan dokuz",
+      "wrong2": "Dokuz yüz seksen yedi",
+      "explanation": "989 sayısı 'Dokuz yüz seksen dokuz' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "989 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dokuz yüz seksen dokuz",
+        "wrong1": "Dokuz yüz doksan dokuz",
+        "wrong2": "Dokuz yüz seksen yedi",
+        "explanation": "989 sayısı 'Dokuz yüz seksen dokuz' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_017",
+      "level": "kolay",
+      "premise": null,
+      "text": "835 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Sekiz yüz otuz beş",
+      "wrong1": "Sekiz yüz yirmi beş",
+      "wrong2": "Sekiz yüz otuz üç",
+      "explanation": "835 sayısı 'Sekiz yüz otuz beş' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "835 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sekiz yüz otuz beş",
+        "wrong1": "Sekiz yüz yirmi beş",
+        "wrong2": "Sekiz yüz otuz üç",
+        "explanation": "835 sayısı 'Sekiz yüz otuz beş' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_018",
+      "level": "kolay",
+      "premise": null,
+      "text": "718 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Yedi yüz on sekiz",
+      "wrong1": "Yedi yüz seksen bir",
+      "wrong2": "Yedi yüz on altı",
+      "explanation": "718 sayısı 'Yedi yüz on sekiz' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "718 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yedi yüz on sekiz",
+        "wrong1": "Yedi yüz seksen bir",
+        "wrong2": "Yedi yüz on altı",
+        "explanation": "718 sayısı 'Yedi yüz on sekiz' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_019",
+      "level": "kolay",
+      "premise": null,
+      "text": "109 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Yüz dokuz",
+      "wrong1": "Yüz on dokuz",
+      "wrong2": "Yüz yedi",
+      "explanation": "109 sayısı 'Yüz dokuz' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "109 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yüz dokuz",
+        "wrong1": "Yüz on dokuz",
+        "wrong2": "Yüz yedi",
+        "explanation": "109 sayısı 'Yüz dokuz' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_020",
+      "level": "kolay",
+      "premise": null,
+      "text": "395 sayısının okunuşu aşağıdakilerden hangisidir?",
+      "correct": "Üç yüz doksan beş",
+      "wrong1": "Üç yüz seksen beş",
+      "wrong2": "Üç yüz doksan üç",
+      "explanation": "395 sayısı 'Üç yüz doksan beş' şeklinde okunur.",
+      "app": {
+        "question": {
+          "text": "395 sayısının okunuşu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Üç yüz doksan beş",
+        "wrong1": "Üç yüz seksen beş",
+        "wrong2": "Üç yüz doksan üç",
+        "explanation": "395 sayısı 'Üç yüz doksan beş' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'İki yüz yirmi altı' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "226",
+      "wrong1": "262",
+      "wrong2": "22",
+      "explanation": "'İki yüz yirmi altı' olarak okunan sayı 2 yüzlük, 2 onluk ve 6 birlikten oluşur. Rakamla yazılışı 226'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'İki yüz yirmi altı' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "226",
+        "wrong1": "262",
+        "wrong2": "22",
+        "explanation": "'İki yüz yirmi altı' olarak okunan sayı 2 yüzlük, 2 onluk ve 6 birlikten oluşur. Rakamla yazılışı 226'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Dört yüz seksen iki' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "482",
+      "wrong1": "428",
+      "wrong2": "48",
+      "explanation": "'Dört yüz seksen iki' olarak okunan sayı 4 yüzlük, 8 onluk ve 2 birlikten oluşur. Rakamla yazılışı 482'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Dört yüz seksen iki' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "482",
+        "wrong1": "428",
+        "wrong2": "48",
+        "explanation": "'Dört yüz seksen iki' olarak okunan sayı 4 yüzlük, 8 onluk ve 2 birlikten oluşur. Rakamla yazılışı 482'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_023",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Dört yüz yetmiş iki' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "472",
+      "wrong1": "427",
+      "wrong2": "47",
+      "explanation": "'Dört yüz yetmiş iki' olarak okunan sayı 4 yüzlük, 7 onluk ve 2 birlikten oluşur. Rakamla yazılışı 472'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Dört yüz yetmiş iki' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "472",
+        "wrong1": "427",
+        "wrong2": "47",
+        "explanation": "'Dört yüz yetmiş iki' olarak okunan sayı 4 yüzlük, 7 onluk ve 2 birlikten oluşur. Rakamla yazılışı 472'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Yüz kırk beş' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "145",
+      "wrong1": "154",
+      "wrong2": "14",
+      "explanation": "'Yüz kırk beş' olarak okunan sayı 1 yüzlük, 4 onluk ve 5 birlikten oluşur. Rakamla yazılışı 145'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Yüz kırk beş' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "145",
+        "wrong1": "154",
+        "wrong2": "14",
+        "explanation": "'Yüz kırk beş' olarak okunan sayı 1 yüzlük, 4 onluk ve 5 birlikten oluşur. Rakamla yazılışı 145'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Yedi yüz yetmiş' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "770",
+      "wrong1": "707",
+      "wrong2": "77",
+      "explanation": "'Yedi yüz yetmiş' olarak okunan sayı 7 yüzlük, 7 onluk ve 0 birlikten oluşur. Rakamla yazılışı 770'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Yedi yüz yetmiş' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "770",
+        "wrong1": "707",
+        "wrong2": "77",
+        "explanation": "'Yedi yüz yetmiş' olarak okunan sayı 7 yüzlük, 7 onluk ve 0 birlikten oluşur. Rakamla yazılışı 770'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Dokuz yüz doksan yedi' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "997",
+      "wrong1": "979",
+      "wrong2": "99",
+      "explanation": "'Dokuz yüz doksan yedi' olarak okunan sayı 9 yüzlük, 9 onluk ve 7 birlikten oluşur. Rakamla yazılışı 997'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Dokuz yüz doksan yedi' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "997",
+        "wrong1": "979",
+        "wrong2": "99",
+        "explanation": "'Dokuz yüz doksan yedi' olarak okunan sayı 9 yüzlük, 9 onluk ve 7 birlikten oluşur. Rakamla yazılışı 997'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'İki yüz otuz iki' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "232",
+      "wrong1": "223",
+      "wrong2": "23",
+      "explanation": "'İki yüz otuz iki' olarak okunan sayı 2 yüzlük, 3 onluk ve 2 birlikten oluşur. Rakamla yazılışı 232'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'İki yüz otuz iki' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "232",
+        "wrong1": "223",
+        "wrong2": "23",
+        "explanation": "'İki yüz otuz iki' olarak okunan sayı 2 yüzlük, 3 onluk ve 2 birlikten oluşur. Rakamla yazılışı 232'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_028",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Yedi yüz kırk üç' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "743",
+      "wrong1": "734",
+      "wrong2": "74",
+      "explanation": "'Yedi yüz kırk üç' olarak okunan sayı 7 yüzlük, 4 onluk ve 3 birlikten oluşur. Rakamla yazılışı 743'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Yedi yüz kırk üç' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "743",
+        "wrong1": "734",
+        "wrong2": "74",
+        "explanation": "'Yedi yüz kırk üç' olarak okunan sayı 7 yüzlük, 4 onluk ve 3 birlikten oluşur. Rakamla yazılışı 743'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Sekiz yüz on üç' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "813",
+      "wrong1": "831",
+      "wrong2": "81",
+      "explanation": "'Sekiz yüz on üç' olarak okunan sayı 8 yüzlük, 1 onluk ve 3 birlikten oluşur. Rakamla yazılışı 813'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Sekiz yüz on üç' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "813",
+        "wrong1": "831",
+        "wrong2": "81",
+        "explanation": "'Sekiz yüz on üç' olarak okunan sayı 8 yüzlük, 1 onluk ve 3 birlikten oluşur. Rakamla yazılışı 813'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'İki yüz elli beş' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "255",
+      "wrong1": "225",
+      "wrong2": "25",
+      "explanation": "'İki yüz elli beş' olarak okunan sayı 2 yüzlük, 5 onluk ve 5 birlikten oluşur. Rakamla yazılışı 255'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'İki yüz elli beş' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "255",
+        "wrong1": "225",
+        "wrong2": "25",
+        "explanation": "'İki yüz elli beş' olarak okunan sayı 2 yüzlük, 5 onluk ve 5 birlikten oluşur. Rakamla yazılışı 255'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_031",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'İki yüz yirmi' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "220",
+      "wrong1": "202",
+      "wrong2": "22",
+      "explanation": "'İki yüz yirmi' olarak okunan sayı 2 yüzlük, 2 onluk ve 0 birlikten oluşur. Rakamla yazılışı 220'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'İki yüz yirmi' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "220",
+        "wrong1": "202",
+        "wrong2": "22",
+        "explanation": "'İki yüz yirmi' olarak okunan sayı 2 yüzlük, 2 onluk ve 0 birlikten oluşur. Rakamla yazılışı 220'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_032",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Altı yüz otuz bir' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "631",
+      "wrong1": "613",
+      "wrong2": "63",
+      "explanation": "'Altı yüz otuz bir' olarak okunan sayı 6 yüzlük, 3 onluk ve 1 birlikten oluşur. Rakamla yazılışı 631'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Altı yüz otuz bir' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "631",
+        "wrong1": "613",
+        "wrong2": "63",
+        "explanation": "'Altı yüz otuz bir' olarak okunan sayı 6 yüzlük, 3 onluk ve 1 birlikten oluşur. Rakamla yazılışı 631'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_033",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Altı yüz yirmi üç' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "623",
+      "wrong1": "632",
+      "wrong2": "62",
+      "explanation": "'Altı yüz yirmi üç' olarak okunan sayı 6 yüzlük, 2 onluk ve 3 birlikten oluşur. Rakamla yazılışı 623'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Altı yüz yirmi üç' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "623",
+        "wrong1": "632",
+        "wrong2": "62",
+        "explanation": "'Altı yüz yirmi üç' olarak okunan sayı 6 yüzlük, 2 onluk ve 3 birlikten oluşur. Rakamla yazılışı 623'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_034",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Beş yüz yirmi üç' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "523",
+      "wrong1": "532",
+      "wrong2": "52",
+      "explanation": "'Beş yüz yirmi üç' olarak okunan sayı 5 yüzlük, 2 onluk ve 3 birlikten oluşur. Rakamla yazılışı 523'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Beş yüz yirmi üç' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "523",
+        "wrong1": "532",
+        "wrong2": "52",
+        "explanation": "'Beş yüz yirmi üç' olarak okunan sayı 5 yüzlük, 2 onluk ve 3 birlikten oluşur. Rakamla yazılışı 523'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_035",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Yüz elli dört' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "154",
+      "wrong1": "145",
+      "wrong2": "15",
+      "explanation": "'Yüz elli dört' olarak okunan sayı 1 yüzlük, 5 onluk ve 4 birlikten oluşur. Rakamla yazılışı 154'tür.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Yüz elli dört' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "154",
+        "wrong1": "145",
+        "wrong2": "15",
+        "explanation": "'Yüz elli dört' olarak okunan sayı 1 yüzlük, 5 onluk ve 4 birlikten oluşur. Rakamla yazılışı 154'tür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_036",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Sekiz yüz kırk' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "840",
+      "wrong1": "804",
+      "wrong2": "84",
+      "explanation": "'Sekiz yüz kırk' olarak okunan sayı 8 yüzlük, 4 onluk ve 0 birlikten oluşur. Rakamla yazılışı 840'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Sekiz yüz kırk' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "840",
+        "wrong1": "804",
+        "wrong2": "84",
+        "explanation": "'Sekiz yüz kırk' olarak okunan sayı 8 yüzlük, 4 onluk ve 0 birlikten oluşur. Rakamla yazılışı 840'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_037",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Sekiz yüz yirmi altı' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "826",
+      "wrong1": "862",
+      "wrong2": "82",
+      "explanation": "'Sekiz yüz yirmi altı' olarak okunan sayı 8 yüzlük, 2 onluk ve 6 birlikten oluşur. Rakamla yazılışı 826'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Sekiz yüz yirmi altı' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "826",
+        "wrong1": "862",
+        "wrong2": "82",
+        "explanation": "'Sekiz yüz yirmi altı' olarak okunan sayı 8 yüzlük, 2 onluk ve 6 birlikten oluşur. Rakamla yazılışı 826'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_038",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Yüz otuz dokuz' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "139",
+      "wrong1": "193",
+      "wrong2": "13",
+      "explanation": "'Yüz otuz dokuz' olarak okunan sayı 1 yüzlük, 3 onluk ve 9 birlikten oluşur. Rakamla yazılışı 139'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Yüz otuz dokuz' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "139",
+        "wrong1": "193",
+        "wrong2": "13",
+        "explanation": "'Yüz otuz dokuz' olarak okunan sayı 1 yüzlük, 3 onluk ve 9 birlikten oluşur. Rakamla yazılışı 139'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_039",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Sekiz yüz altmış üç' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "863",
+      "wrong1": "836",
+      "wrong2": "86",
+      "explanation": "'Sekiz yüz altmış üç' olarak okunan sayı 8 yüzlük, 6 onluk ve 3 birlikten oluşur. Rakamla yazılışı 863'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Sekiz yüz altmış üç' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "863",
+        "wrong1": "836",
+        "wrong2": "86",
+        "explanation": "'Sekiz yüz altmış üç' olarak okunan sayı 8 yüzlük, 6 onluk ve 3 birlikten oluşur. Rakamla yazılışı 863'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_040",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunuşu 'Dokuz yüz seksen yedi' olan doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "987",
+      "wrong1": "978",
+      "wrong2": "98",
+      "explanation": "'Dokuz yüz seksen yedi' olarak okunan sayı 9 yüzlük, 8 onluk ve 7 birlikten oluşur. Rakamla yazılışı 987'dir.",
+      "app": {
+        "question": {
+          "text": "Okunuşu 'Dokuz yüz seksen yedi' olan doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "987",
+        "wrong1": "978",
+        "wrong2": "98",
+        "explanation": "'Dokuz yüz seksen yedi' olarak okunan sayı 9 yüzlük, 8 onluk ve 7 birlikten oluşur. Rakamla yazılışı 987'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_041",
+      "level": "kolay",
+      "premise": null,
+      "text": "887 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "7",
+      "wrong1": "8",
+      "wrong2": "80",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 887 sayısının birler basamağında 7 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "887 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "7",
+        "wrong1": "8",
+        "wrong2": "80",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 887 sayısının birler basamağında 7 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_042",
+      "level": "kolay",
+      "premise": null,
+      "text": "713 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "3",
+      "wrong1": "7",
+      "wrong2": "1",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 713 sayısının en sağında 3 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "713 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "3",
+        "wrong1": "7",
+        "wrong2": "1",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 713 sayısının en sağında 3 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_043",
+      "level": "kolay",
+      "premise": null,
+      "text": "472 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "2",
+      "wrong1": "4",
+      "wrong2": "7",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 472 sayısının en sağında 2 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "472 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2",
+        "wrong1": "4",
+        "wrong2": "7",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 472 sayısının en sağında 2 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_044",
+      "level": "kolay",
+      "premise": null,
+      "text": "984 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "4",
+      "wrong1": "9",
+      "wrong2": "8",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 984 sayısının en sağında 4 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "984 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "4",
+        "wrong1": "9",
+        "wrong2": "8",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 984 sayısının en sağında 4 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_045",
+      "level": "kolay",
+      "premise": null,
+      "text": "607 sayısının yüzler basamağında hangi rakam vardır?",
+      "correct": "6",
+      "wrong1": "0",
+      "wrong2": "7",
+      "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 607 sayısında en solda 6 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "607 sayısının yüzler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "6",
+        "wrong1": "0",
+        "wrong2": "7",
+        "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 607 sayısında en solda 6 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_046",
+      "level": "kolay",
+      "premise": null,
+      "text": "964 sayısının yüzler basamağında hangi rakam vardır?",
+      "correct": "9",
+      "wrong1": "6",
+      "wrong2": "4",
+      "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 964 sayısında en solda 9 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "964 sayısının yüzler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "9",
+        "wrong1": "6",
+        "wrong2": "4",
+        "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 964 sayısında en solda 9 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_047",
+      "level": "kolay",
+      "premise": null,
+      "text": "857 sayısının yüzler basamağında hangi rakam vardır?",
+      "correct": "8",
+      "wrong1": "5",
+      "wrong2": "7",
+      "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 857 sayısında en solda 8 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "857 sayısının yüzler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "8",
+        "wrong1": "5",
+        "wrong2": "7",
+        "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 857 sayısında en solda 8 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_048",
+      "level": "kolay",
+      "premise": null,
+      "text": "432 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "2",
+      "wrong1": "4",
+      "wrong2": "3",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 432 sayısının en sağında 2 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "432 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2",
+        "wrong1": "4",
+        "wrong2": "3",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 432 sayısının en sağında 2 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_049",
+      "level": "kolay",
+      "premise": null,
+      "text": "812 sayısının onlar basamağında hangi rakam vardır?",
+      "correct": "1",
+      "wrong1": "8",
+      "wrong2": "2",
+      "explanation": "Üç basamaklı sayılarda ortadaki rakam onlar basamağını gösterir. 812 sayısının ortasında 1 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "812 sayısının onlar basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1",
+        "wrong1": "8",
+        "wrong2": "2",
+        "explanation": "Üç basamaklı sayılarda ortadaki rakam onlar basamağını gösterir. 812 sayısının ortasında 1 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_050",
+      "level": "kolay",
+      "premise": null,
+      "text": "972 sayısının yüzler basamağında hangi rakam vardır?",
+      "correct": "9",
+      "wrong1": "7",
+      "wrong2": "2",
+      "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 972 sayısında en solda 9 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "972 sayısının yüzler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "9",
+        "wrong1": "7",
+        "wrong2": "2",
+        "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 972 sayısında en solda 9 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_051",
+      "level": "kolay",
+      "premise": null,
+      "text": "108 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "8",
+      "wrong1": "1",
+      "wrong2": "0",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 108 sayısının en sağında 8 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "108 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "8",
+        "wrong1": "1",
+        "wrong2": "0",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 108 sayısının en sağında 8 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_052",
+      "level": "kolay",
+      "premise": null,
+      "text": "651 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "1",
+      "wrong1": "6",
+      "wrong2": "5",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 651 sayısının en sağında 1 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "651 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1",
+        "wrong1": "6",
+        "wrong2": "5",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 651 sayısının en sağında 1 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_053",
+      "level": "kolay",
+      "premise": null,
+      "text": "276 sayısının yüzler basamağında hangi rakam vardır?",
+      "correct": "2",
+      "wrong1": "7",
+      "wrong2": "6",
+      "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 276 sayısında en solda 2 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "276 sayısının yüzler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2",
+        "wrong1": "7",
+        "wrong2": "6",
+        "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 276 sayısında en solda 2 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_054",
+      "level": "kolay",
+      "premise": null,
+      "text": "165 sayısının birler basamağında hangi rakam vardır?",
+      "correct": "5",
+      "wrong1": "1",
+      "wrong2": "6",
+      "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 165 sayısının en sağında 5 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "165 sayısının birler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "5",
+        "wrong1": "1",
+        "wrong2": "6",
+        "explanation": "Üç basamaklı sayılarda en sağdaki rakam birler basamağını gösterir. 165 sayısının en sağında 5 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_055",
+      "level": "kolay",
+      "premise": null,
+      "text": "730 sayısının yüzler basamağında hangi rakam vardır?",
+      "correct": "7",
+      "wrong1": "3",
+      "wrong2": "0",
+      "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 730 sayısında en solda 7 rakamı vardır.",
+      "app": {
+        "question": {
+          "text": "730 sayısının yüzler basamağında hangi rakam vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "7",
+        "wrong1": "3",
+        "wrong2": "0",
+        "explanation": "Üç basamaklı sayılarda en soldaki rakam yüzler basamağını gösterir. 730 sayısında en solda 7 rakamı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_056",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 377 sayısındaki 3 rakamının basamak değeri kaçtır?",
+      "correct": "300",
+      "wrong1": "30",
+      "wrong2": "3",
+      "explanation": "377 sayısında 3 rakamı yüzler basamağındadır. Basamak değeri 3 x 100 = 300 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 377 sayısındaki 3 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "300",
+        "wrong1": "30",
+        "wrong2": "3",
+        "explanation": "377 sayısında 3 rakamı yüzler basamağındadır. Basamak değeri 3 x 100 = 300 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_057",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 277 sayısındaki 2 rakamının basamak değeri kaçtır?",
+      "correct": "200",
+      "wrong1": "20",
+      "wrong2": "2",
+      "explanation": "277 sayısında 2 rakamı yüzler basamağındadır. Basamak değeri 2 x 100 = 200 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 277 sayısındaki 2 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "200",
+        "wrong1": "20",
+        "wrong2": "2",
+        "explanation": "277 sayısında 2 rakamı yüzler basamağındadır. Basamak değeri 2 x 100 = 200 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_058",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 321 sayısındaki 2 rakamının basamak değeri kaçtır?",
+      "correct": "20",
+      "wrong1": "2",
+      "wrong2": "200",
+      "explanation": "321 sayısında 2 rakamı onlar basamağındadır. Basamak değeri 2 x 10 = 20 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 321 sayısındaki 2 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "2",
+        "wrong2": "200",
+        "explanation": "321 sayısında 2 rakamı onlar basamağındadır. Basamak değeri 2 x 10 = 20 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_059",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 550 sayısındaki 0 rakamının basamak değeri kaçtır?",
+      "correct": "0",
+      "wrong1": "10",
+      "wrong2": "50",
+      "explanation": "550 sayısında 0 rakamı birler basamağındadır. Basamak değeri 0 x 1 = 0 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 550 sayısındaki 0 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "0",
+        "wrong1": "10",
+        "wrong2": "50",
+        "explanation": "550 sayısında 0 rakamı birler basamağındadır. Basamak değeri 0 x 1 = 0 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_060",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 281 sayısındaki 2 rakamının basamak değeri kaçtır?",
+      "correct": "200",
+      "wrong1": "20",
+      "wrong2": "2",
+      "explanation": "281 sayısında 2 rakamı yüzler basamağındadır. Basamak değeri 2 x 100 = 200 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 281 sayısındaki 2 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "200",
+        "wrong1": "20",
+        "wrong2": "2",
+        "explanation": "281 sayısında 2 rakamı yüzler basamağındadır. Basamak değeri 2 x 100 = 200 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_061",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 989 sayısındaki 8 rakamının basamak değeri kaçtır?",
+      "correct": "80",
+      "wrong1": "8",
+      "wrong2": "800",
+      "explanation": "989 sayısında 8 rakamı onlar basamağındadır. Basamak değeri 8 x 10 = 80 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 989 sayısındaki 8 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "80",
+        "wrong1": "8",
+        "wrong2": "800",
+        "explanation": "989 sayısında 8 rakamı onlar basamağındadır. Basamak değeri 8 x 10 = 80 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_062",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 835 sayısındaki 5 rakamının basamak değeri kaçtır?",
+      "correct": "5",
+      "wrong1": "50",
+      "wrong2": "500",
+      "explanation": "835 sayısında 5 rakamı birler basamağındadır. Basamak değeri 5 x 1 = 5 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 835 sayısındaki 5 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "50",
+        "wrong2": "500",
+        "explanation": "835 sayısında 5 rakamı birler basamağındadır. Basamak değeri 5 x 1 = 5 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_063",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 452 sayısındaki 4 rakamının basamak değeri kaçtır?",
+      "correct": "400",
+      "wrong1": "40",
+      "wrong2": "4",
+      "explanation": "452 sayısında 4 rakamı yüzler basamağındadır. Basamak değeri 4 x 100 = 400 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 452 sayısındaki 4 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "400",
+        "wrong1": "40",
+        "wrong2": "4",
+        "explanation": "452 sayısında 4 rakamı yüzler basamağındadır. Basamak değeri 4 x 100 = 400 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_064",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 109 sayısındaki 9 rakamının basamak değeri kaçtır?",
+      "correct": "9",
+      "wrong1": "90",
+      "wrong2": "900",
+      "explanation": "109 sayısında 9 rakamı birler basamağındadır. Basamak değeri 9 x 1 = 9 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 109 sayısındaki 9 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "9",
+        "wrong1": "90",
+        "wrong2": "900",
+        "explanation": "109 sayısında 9 rakamı birler basamağındadır. Basamak değeri 9 x 1 = 9 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_065",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 395 sayısındaki 9 rakamının basamak değeri kaçtır?",
+      "correct": "90",
+      "wrong1": "9",
+      "wrong2": "900",
+      "explanation": "395 sayısında 9 rakamı onlar basamağındadır. Basamak değeri 9 x 10 = 90 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 395 sayısındaki 9 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "90",
+        "wrong1": "9",
+        "wrong2": "900",
+        "explanation": "395 sayısında 9 rakamı onlar basamağındadır. Basamak değeri 9 x 10 = 90 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_066",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 854 sayısındaki 8 rakamının basamak değeri kaçtır?",
+      "correct": "800",
+      "wrong1": "80",
+      "wrong2": "8",
+      "explanation": "854 sayısında 8 rakamı yüzler basamağındadır. Basamak değeri 8 x 100 = 800 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 854 sayısındaki 8 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "800",
+        "wrong1": "80",
+        "wrong2": "8",
+        "explanation": "854 sayısında 8 rakamı yüzler basamağındadır. Basamak değeri 8 x 100 = 800 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_067",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 413 sayısındaki 1 rakamının basamak değeri kaçtır?",
+      "correct": "10",
+      "wrong1": "1",
+      "wrong2": "100",
+      "explanation": "413 sayısında 1 rakamı onlar basamağındadır. Basamak değeri 1 x 10 = 10 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 413 sayısındaki 1 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "1",
+        "wrong2": "100",
+        "explanation": "413 sayısında 1 rakamı onlar basamağındadır. Basamak değeri 1 x 10 = 10 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_068",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 651 sayısındaki 6 rakamının basamak değeri kaçtır?",
+      "correct": "600",
+      "wrong1": "60",
+      "wrong2": "6",
+      "explanation": "651 sayısında 6 rakamı yüzler basamağındadır. Basamak değeri 6 x 100 = 600 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 651 sayısındaki 6 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "600",
+        "wrong1": "60",
+        "wrong2": "6",
+        "explanation": "651 sayısında 6 rakamı yüzler basamağındadır. Basamak değeri 6 x 100 = 600 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_069",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 439 sayısındaki 4 rakamının basamak değeri kaçtır?",
+      "correct": "400",
+      "wrong1": "40",
+      "wrong2": "4",
+      "explanation": "439 sayısında 4 rakamı yüzler basamağındadır. Basamak değeri 4 x 100 = 400 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 439 sayısındaki 4 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "400",
+        "wrong1": "40",
+        "wrong2": "4",
+        "explanation": "439 sayısında 4 rakamı yüzler basamağındadır. Basamak değeri 4 x 100 = 400 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_070",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 569 sayısındaki 9 rakamının basamak değeri kaçtır?",
+      "correct": "9",
+      "wrong1": "90",
+      "wrong2": "900",
+      "explanation": "569 sayısında 9 rakamı birler basamağındadır. Basamak değeri 9 x 1 = 9 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 569 sayısındaki 9 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "9",
+        "wrong1": "90",
+        "wrong2": "900",
+        "explanation": "569 sayısında 9 rakamı birler basamağındadır. Basamak değeri 9 x 1 = 9 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_071",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 249 sayısındaki 4 rakamının basamak değeri kaçtır?",
+      "correct": "40",
+      "wrong1": "4",
+      "wrong2": "400",
+      "explanation": "249 sayısında 4 rakamı onlar basamağındadır. Basamak değeri 4 x 10 = 40 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 249 sayısındaki 4 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "40",
+        "wrong1": "4",
+        "wrong2": "400",
+        "explanation": "249 sayısında 4 rakamı onlar basamağındadır. Basamak değeri 4 x 10 = 40 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_072",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 974 sayısındaki 4 rakamının basamak değeri kaçtır?",
+      "correct": "4",
+      "wrong1": "40",
+      "wrong2": "400",
+      "explanation": "974 sayısında 4 rakamı birler basamağındadır. Basamak değeri 4 x 1 = 4 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 974 sayısındaki 4 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "40",
+        "wrong2": "400",
+        "explanation": "974 sayısında 4 rakamı birler basamağındadır. Basamak değeri 4 x 1 = 4 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_073",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 456 sayısındaki 6 rakamının basamak değeri kaçtır?",
+      "correct": "6",
+      "wrong1": "60",
+      "wrong2": "600",
+      "explanation": "456 sayısında 6 rakamı birler basamağındadır. Basamak değeri 6 x 1 = 6 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 456 sayısındaki 6 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "60",
+        "wrong2": "600",
+        "explanation": "456 sayısında 6 rakamı birler basamağındadır. Basamak değeri 6 x 1 = 6 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_074",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 735 sayısındaki 5 rakamının basamak değeri kaçtır?",
+      "correct": "5",
+      "wrong1": "50",
+      "wrong2": "500",
+      "explanation": "735 sayısında 5 rakamı birler basamağındadır. Basamak değeri 5 x 1 = 5 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 735 sayısındaki 5 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "50",
+        "wrong2": "500",
+        "explanation": "735 sayısında 5 rakamı birler basamağındadır. Basamak değeri 5 x 1 = 5 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_075",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 981 sayısındaki 1 rakamının basamak değeri kaçtır?",
+      "correct": "1",
+      "wrong1": "10",
+      "wrong2": "100",
+      "explanation": "981 sayısında 1 rakamı birler basamağındadır. Basamak değeri 1 x 1 = 1 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 981 sayısındaki 1 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "1",
+        "wrong1": "10",
+        "wrong2": "100",
+        "explanation": "981 sayısında 1 rakamı birler basamağındadır. Basamak değeri 1 x 1 = 1 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_076",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 348 sayısındaki 4 rakamının basamak değeri kaçtır?",
+      "correct": "40",
+      "wrong1": "4",
+      "wrong2": "400",
+      "explanation": "348 sayısında 4 rakamı onlar basamağındadır. Basamak değeri 4 x 10 = 40 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 348 sayısındaki 4 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "40",
+        "wrong1": "4",
+        "wrong2": "400",
+        "explanation": "348 sayısında 4 rakamı onlar basamağındadır. Basamak değeri 4 x 10 = 40 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_077",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 769 sayısındaki 7 rakamının basamak değeri kaçtır?",
+      "correct": "700",
+      "wrong1": "70",
+      "wrong2": "7",
+      "explanation": "769 sayısında 7 rakamı yüzler basamağındadır. Basamak değeri 7 x 100 = 700 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 769 sayısındaki 7 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "700",
+        "wrong1": "70",
+        "wrong2": "7",
+        "explanation": "769 sayısında 7 rakamı yüzler basamağındadır. Basamak değeri 7 x 100 = 700 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_078",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 563 sayısındaki 6 rakamının basamak değeri kaçtır?",
+      "correct": "60",
+      "wrong1": "6",
+      "wrong2": "600",
+      "explanation": "563 sayısında 6 rakamı onlar basamağındadır. Basamak değeri 6 x 10 = 60 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 563 sayısındaki 6 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "60",
+        "wrong1": "6",
+        "wrong2": "600",
+        "explanation": "563 sayısında 6 rakamı onlar basamağındadır. Basamak değeri 6 x 10 = 60 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_079",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 129 sayısındaki 2 rakamının basamak değeri kaçtır?",
+      "correct": "20",
+      "wrong1": "2",
+      "wrong2": "200",
+      "explanation": "129 sayısında 2 rakamı onlar basamağındadır. Basamak değeri 2 x 10 = 20 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 129 sayısındaki 2 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "2",
+        "wrong2": "200",
+        "explanation": "129 sayısında 2 rakamı onlar basamağındadır. Basamak değeri 2 x 10 = 20 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_080",
+      "level": "orta",
+      "premise": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir.",
+      "text": "Yukarıdaki metne göre 469 sayısındaki 4 rakamının basamak değeri kaçtır?",
+      "correct": "400",
+      "wrong1": "40",
+      "wrong2": "4",
+      "explanation": "469 sayısında 4 rakamı yüzler basamağındadır. Basamak değeri 4 x 100 = 400 olur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre 469 sayısındaki 4 rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir rakamın bulunduğu basamağa göre aldığı değere basamak değeri denir."
+            }
+          ]
+        },
+        "correct": "400",
+        "wrong1": "40",
+        "wrong2": "4",
+        "explanation": "469 sayısında 4 rakamı yüzler basamağındadır. Basamak değeri 4 x 100 = 400 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_081",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '6 yüzlük + 6 onluk + 2 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "662",
+      "wrong1": "672",
+      "wrong2": "626",
+      "explanation": "6 yüzlük = 600, 6 onluk = 60, 2 birlik = 2. Toplamları 662 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '6 yüzlük + 6 onluk + 2 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "662",
+        "wrong1": "672",
+        "wrong2": "626",
+        "explanation": "6 yüzlük = 600, 6 onluk = 60, 2 birlik = 2. Toplamları 662 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_082",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '3 onluk + 7 yüzlük + 4 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "734",
+      "wrong1": "374",
+      "wrong2": "473",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 7, onlar basamağına 3 ve birler basamağına 4 yazılmalıdır. Sayı 734 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '3 onluk + 7 yüzlük + 4 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "734",
+        "wrong1": "374",
+        "wrong2": "473",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 7, onlar basamağına 3 ve birler basamağına 4 yazılmalıdır. Sayı 734 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_083",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '300 + 10 + 6' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "316",
+      "wrong1": "326",
+      "wrong2": "136",
+      "explanation": "Basamak değerleri 300, 10 ve 6 olan sayının kendisi bu değerlerin toplamı olan 316'dır.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '300 + 10 + 6' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "316",
+        "wrong1": "326",
+        "wrong2": "136",
+        "explanation": "Basamak değerleri 300, 10 ve 6 olan sayının kendisi bu değerlerin toplamı olan 316'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_084",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '8 yüzlük + 9 onluk + 2 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "892",
+      "wrong1": "902",
+      "wrong2": "992",
+      "explanation": "8 yüzlük = 800, 9 onluk = 90, 2 birlik = 2. Toplamları 892 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '8 yüzlük + 9 onluk + 2 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "892",
+        "wrong1": "902",
+        "wrong2": "992",
+        "explanation": "8 yüzlük = 800, 9 onluk = 90, 2 birlik = 2. Toplamları 892 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_085",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '6 birlik + 2 yüzlük + 1 onluk' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "216",
+      "wrong1": "126",
+      "wrong2": "621",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 2, onlar basamağına 1 ve birler basamağına 6 yazılmalıdır. Sayı 216 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '6 birlik + 2 yüzlük + 1 onluk' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "216",
+        "wrong1": "126",
+        "wrong2": "621",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 2, onlar basamağına 1 ve birler basamağına 6 yazılmalıdır. Sayı 216 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_086",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '100 + 70 + 7' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "177",
+      "wrong1": "187",
+      "wrong2": "717",
+      "explanation": "Basamak değerleri 100, 70 ve 7 olan sayının kendisi bu değerlerin toplamı olan 177'dir.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '100 + 70 + 7' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "177",
+        "wrong1": "187",
+        "wrong2": "717",
+        "explanation": "Basamak değerleri 100, 70 ve 7 olan sayının kendisi bu değerlerin toplamı olan 177'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_087",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '4 yüzlük + 1 onluk + 3 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "413",
+      "wrong1": "423",
+      "wrong2": "431",
+      "explanation": "4 yüzlük = 400, 1 onluk = 10, 3 birlik = 3. Toplamları 413 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '4 yüzlük + 1 onluk + 3 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "413",
+        "wrong1": "423",
+        "wrong2": "431",
+        "explanation": "4 yüzlük = 400, 1 onluk = 10, 3 birlik = 3. Toplamları 413 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_088",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '2 onluk + 1 yüzlük + 9 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "129",
+      "wrong1": "219",
+      "wrong2": "912",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 1, onlar basamağına 2 ve birler basamağına 9 yazılmalıdır. Sayı 129 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '2 onluk + 1 yüzlük + 9 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "129",
+        "wrong1": "219",
+        "wrong2": "912",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 1, onlar basamağına 2 ve birler basamağına 9 yazılmalıdır. Sayı 129 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_089",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '400 + 70 + 1' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "471",
+      "wrong1": "481",
+      "wrong2": "741",
+      "explanation": "Basamak değerleri 400, 70 ve 1 olan sayının kendisi bu değerlerin toplamı olan 471'dir.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '400 + 70 + 1' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "471",
+        "wrong1": "481",
+        "wrong2": "741",
+        "explanation": "Basamak değerleri 400, 70 ve 1 olan sayının kendisi bu değerlerin toplamı olan 471'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_090",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '9 yüzlük + 6 onluk + 8 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "968",
+      "wrong1": "978",
+      "wrong2": "986",
+      "explanation": "9 yüzlük = 900, 6 onluk = 60, 8 birlik = 8. Toplamları 968 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '9 yüzlük + 6 onluk + 8 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "968",
+        "wrong1": "978",
+        "wrong2": "986",
+        "explanation": "9 yüzlük = 900, 6 onluk = 60, 8 birlik = 8. Toplamları 968 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_091",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '9 birlik + 2 yüzlük + 8 onluk' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "289",
+      "wrong1": "829",
+      "wrong2": "928",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 2, onlar basamağına 8 ve birler basamağına 9 yazılmalıdır. Sayı 289 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '9 birlik + 2 yüzlük + 8 onluk' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "289",
+        "wrong1": "829",
+        "wrong2": "928",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 2, onlar basamağına 8 ve birler basamağına 9 yazılmalıdır. Sayı 289 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_092",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '600 + 40 + 6' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "646",
+      "wrong1": "656",
+      "wrong2": "466",
+      "explanation": "Basamak değerleri 600, 40 ve 6 olan sayının kendisi bu değerlerin toplamı olan 646'dır.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '600 + 40 + 6' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "646",
+        "wrong1": "656",
+        "wrong2": "466",
+        "explanation": "Basamak değerleri 600, 40 ve 6 olan sayının kendisi bu değerlerin toplamı olan 646'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_093",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '8 yüzlük + 6 onluk + 1 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "861",
+      "wrong1": "871",
+      "wrong2": "816",
+      "explanation": "8 yüzlük = 800, 6 onluk = 60, 1 birlik = 1. Toplamları 861 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '8 yüzlük + 6 onluk + 1 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "861",
+        "wrong1": "871",
+        "wrong2": "816",
+        "explanation": "8 yüzlük = 800, 6 onluk = 60, 1 birlik = 1. Toplamları 861 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_094",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '4 onluk + 3 yüzlük + 3 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "343",
+      "wrong1": "433",
+      "wrong2": "334",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 3, onlar basamağına 4 ve birler basamağına 3 yazılmalıdır. Sayı 343 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '4 onluk + 3 yüzlük + 3 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "343",
+        "wrong1": "433",
+        "wrong2": "334",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 3, onlar basamağına 4 ve birler basamağına 3 yazılmalıdır. Sayı 343 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_095",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '800 + 50 + 6' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "856",
+      "wrong1": "866",
+      "wrong2": "586",
+      "explanation": "Basamak değerleri 800, 50 ve 6 olan sayının kendisi bu değerlerin toplamı olan 856'dır.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '800 + 50 + 6' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "856",
+        "wrong1": "866",
+        "wrong2": "586",
+        "explanation": "Basamak değerleri 800, 50 ve 6 olan sayının kendisi bu değerlerin toplamı olan 856'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_096",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '7 yüzlük + 1 onluk + 7 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "717",
+      "wrong1": "727",
+      "wrong2": "771",
+      "explanation": "7 yüzlük = 700, 1 onluk = 10, 7 birlik = 7. Toplamları 717 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '7 yüzlük + 1 onluk + 7 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "717",
+        "wrong1": "727",
+        "wrong2": "771",
+        "explanation": "7 yüzlük = 700, 1 onluk = 10, 7 birlik = 7. Toplamları 717 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_097",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '5 birlik + 2 yüzlük + 8 onluk' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "285",
+      "wrong1": "825",
+      "wrong2": "528",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 2, onlar basamağına 8 ve birler basamağına 5 yazılmalıdır. Sayı 285 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '5 birlik + 2 yüzlük + 8 onluk' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "285",
+        "wrong1": "825",
+        "wrong2": "528",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 2, onlar basamağına 8 ve birler basamağına 5 yazılmalıdır. Sayı 285 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_098",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '400 + 40 + 7' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "447",
+      "wrong1": "457",
+      "wrong2": "474",
+      "explanation": "Basamak değerleri 400, 40 ve 7 olan sayının kendisi bu değerlerin toplamı olan 447'dir.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '400 + 40 + 7' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "447",
+        "wrong1": "457",
+        "wrong2": "474",
+        "explanation": "Basamak değerleri 400, 40 ve 7 olan sayının kendisi bu değerlerin toplamı olan 447'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_099",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '3 yüzlük + 0 onluk + 4 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "304",
+      "wrong1": "314",
+      "wrong2": "340",
+      "explanation": "3 yüzlük = 300, 0 onluk = 0, 4 birlik = 4. Toplamları 304 yapar.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '3 yüzlük + 0 onluk + 4 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "304",
+        "wrong1": "314",
+        "wrong2": "340",
+        "explanation": "3 yüzlük = 300, 0 onluk = 0, 4 birlik = 4. Toplamları 304 yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_100",
+      "level": "orta",
+      "premise": null,
+      "text": "Çözümlenmiş hâli '9 onluk + 4 yüzlük + 1 birlik' olan sayı aşağıdakilerden hangisidir?",
+      "correct": "491",
+      "wrong1": "941",
+      "wrong2": "149",
+      "explanation": "Verilenler karışık sıralansa da yüzler basamağına 4, onlar basamağına 9 ve birler basamağına 1 yazılmalıdır. Sayı 491 olur.",
+      "app": {
+        "question": {
+          "text": "Çözümlenmiş hâli '9 onluk + 4 yüzlük + 1 birlik' olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "491",
+        "wrong1": "941",
+        "wrong2": "149",
+        "explanation": "Verilenler karışık sıralansa da yüzler basamağına 4, onlar basamağına 9 ve birler basamağına 1 yazılmalıdır. Sayı 491 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_101",
+      "level": "zor",
+      "premise": "Efe elindeki 8, 3 ve 9 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "983",
+      "wrong1": "389",
+      "wrong2": "893",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 983.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 8, 3 ve 9 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "983",
+        "wrong1": "389",
+        "wrong2": "893",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 983.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_102",
+      "level": "zor",
+      "premise": "Efe elindeki 3, 5 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "305",
+      "wrong1": "530",
+      "wrong2": "035",
+      "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 305.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 3, 5 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "305",
+        "wrong1": "530",
+        "wrong2": "035",
+        "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 305.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_103",
+      "level": "zor",
+      "premise": "Efe elindeki 7, 1 ve 5 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "751",
+      "wrong1": "157",
+      "wrong2": "571",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 751.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 7, 1 ve 5 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "751",
+        "wrong1": "157",
+        "wrong2": "571",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 751.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_104",
+      "level": "zor",
+      "premise": "Efe elindeki 6, 8 ve 4 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "468",
+      "wrong1": "864",
+      "wrong2": "648",
+      "explanation": "En küçük sayıyı elde etmek için rakamlar küçükten büyüğe (yüzler, onlar, birler) sıralanır: 468.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 6, 8 ve 4 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "468",
+        "wrong1": "864",
+        "wrong2": "648",
+        "explanation": "En küçük sayıyı elde etmek için rakamlar küçükten büyüğe (yüzler, onlar, birler) sıralanır: 468.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_105",
+      "level": "zor",
+      "premise": "Efe elindeki 2, 7 ve 4 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "742",
+      "wrong1": "247",
+      "wrong2": "472",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 742.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 2, 7 ve 4 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "742",
+        "wrong1": "247",
+        "wrong2": "472",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 742.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_106",
+      "level": "zor",
+      "premise": "Efe elindeki 9, 8 ve 2 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "289",
+      "wrong1": "982",
+      "wrong2": "829",
+      "explanation": "En küçük sayıyı elde etmek için rakamlar küçükten büyüğe (yüzler, onlar, birler) sıralanır: 289.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 9, 8 ve 2 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "289",
+        "wrong1": "982",
+        "wrong2": "829",
+        "explanation": "En küçük sayıyı elde etmek için rakamlar küçükten büyüğe (yüzler, onlar, birler) sıralanır: 289.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_107",
+      "level": "zor",
+      "premise": "Efe elindeki 5, 2 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "520",
+      "wrong1": "025",
+      "wrong2": "250",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 520.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 5, 2 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "520",
+        "wrong1": "025",
+        "wrong2": "250",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 520.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_108",
+      "level": "zor",
+      "premise": "Efe elindeki 3, 4 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "304",
+      "wrong1": "430",
+      "wrong2": "034",
+      "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 304.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 3, 4 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "304",
+        "wrong1": "430",
+        "wrong2": "034",
+        "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 304.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_109",
+      "level": "zor",
+      "premise": "Efe elindeki 6, 1 ve 9 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "961",
+      "wrong1": "169",
+      "wrong2": "691",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 961.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 6, 1 ve 9 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "961",
+        "wrong1": "169",
+        "wrong2": "691",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 961.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_110",
+      "level": "zor",
+      "premise": "Efe elindeki 7, 5 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "507",
+      "wrong1": "750",
+      "wrong2": "057",
+      "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 507.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 7, 5 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "507",
+        "wrong1": "750",
+        "wrong2": "057",
+        "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 507.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_111",
+      "level": "zor",
+      "premise": "Efe elindeki 4, 2 ve 8 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "842",
+      "wrong1": "248",
+      "wrong2": "482",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 842.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 4, 2 ve 8 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "842",
+        "wrong1": "248",
+        "wrong2": "482",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 842.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_112",
+      "level": "zor",
+      "premise": "Efe elindeki 6, 8 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "608",
+      "wrong1": "860",
+      "wrong2": "068",
+      "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 608.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 6, 8 ve 0 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "608",
+        "wrong1": "860",
+        "wrong2": "068",
+        "explanation": "En küçük sayı için en küçük rakam başa yazılır ancak sayı 0 ile başlayamaz. Bu yüzden 0'dan sonraki en küçük rakam yüzler basamağına yazılır, 0 onlar basamağına konur: 608.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_113",
+      "level": "zor",
+      "premise": "Efe elindeki 9, 3 ve 5 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "953",
+      "wrong1": "359",
+      "wrong2": "593",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 953.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 9, 3 ve 5 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "953",
+        "wrong1": "359",
+        "wrong2": "593",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 953.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_114",
+      "level": "zor",
+      "premise": "Efe elindeki 1, 7 ve 4 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "147",
+      "wrong1": "741",
+      "wrong2": "417",
+      "explanation": "En küçük sayıyı elde etmek için rakamlar küçükten büyüğe (yüzler, onlar, birler) sıralanır: 147.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 1, 7 ve 4 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "147",
+        "wrong1": "741",
+        "wrong2": "417",
+        "explanation": "En küçük sayıyı elde etmek için rakamlar küçükten büyüğe (yüzler, onlar, birler) sıralanır: 147.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_115",
+      "level": "zor",
+      "premise": "Efe elindeki 2, 0 ve 8 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır.",
+      "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "820",
+      "wrong1": "028",
+      "wrong2": "280",
+      "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 820.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre efe'nin yazabileceği en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Efe elindeki 2, 0 ve 8 rakamlarını birer kez kullanarak üç basamaklı sayılar oluşturacaktır."
+            }
+          ]
+        },
+        "correct": "820",
+        "wrong1": "028",
+        "wrong2": "280",
+        "explanation": "En büyük sayıyı yazmak için en büyük rakam yüzler basamağına, sonraki onlar basamağına, en küçüğü ise birler basamağına yazılır: 820.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_116",
+      "level": "zor",
+      "premise": null,
+      "text": "Üç basamaklı en büyük doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "999",
+      "wrong1": "100",
+      "wrong2": "987",
+      "explanation": "Üç basamaklı en büyük sayı 999'dur. 'Rakamları farklı' denmediği için tüm basamaklara en büyük rakam olan 9 yazılır.",
+      "app": {
+        "question": {
+          "text": "Üç basamaklı en büyük doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "999",
+        "wrong1": "100",
+        "wrong2": "987",
+        "explanation": "Üç basamaklı en büyük sayı 999'dur. 'Rakamları farklı' denmediği için tüm basamaklara en büyük rakam olan 9 yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_117",
+      "level": "zor",
+      "premise": null,
+      "text": "Üç basamaklı en küçük doğal sayı aşağıdakilerden hangisidir?",
+      "correct": "100",
+      "wrong1": "101",
+      "wrong2": "999",
+      "explanation": "Üç basamaklı en küçük sayı 100'dür.",
+      "app": {
+        "question": {
+          "text": "Üç basamaklı en küçük doğal sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "100",
+        "wrong1": "101",
+        "wrong2": "999",
+        "explanation": "Üç basamaklı en küçük sayı 100'dür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_118",
+      "level": "zor",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı en büyük üç basamaklı doğal sayı hangisidir?",
+      "correct": "987",
+      "wrong1": "999",
+      "wrong2": "989",
+      "explanation": "En büyük sayı için yüzler basamağına 9, onlar basamağına farklı olması için 8, birler basamağına ise 7 yazılır. Sayı 987 olur.",
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı en büyük üç basamaklı doğal sayı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "987",
+        "wrong1": "999",
+        "wrong2": "989",
+        "explanation": "En büyük sayı için yüzler basamağına 9, onlar basamağına farklı olması için 8, birler basamağına ise 7 yazılır. Sayı 987 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_119",
+      "level": "zor",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı en küçük üç basamaklı doğal sayı hangisidir?",
+      "correct": "102",
+      "wrong1": "100",
+      "wrong2": "123",
+      "explanation": "En küçük olması için yüzler basamağına 1, onlar basamağına 0, birler basamağına ise (rakamlar farklı olduğu için) 2 yazılır. Sayı 102 olur.",
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı en küçük üç basamaklı doğal sayı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "102",
+        "wrong1": "100",
+        "wrong2": "123",
+        "explanation": "En küçük olması için yüzler basamağına 1, onlar basamağına 0, birler basamağına ise (rakamlar farklı olduğu için) 2 yazılır. Sayı 102 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_120",
+      "level": "zor",
+      "premise": null,
+      "text": "Birler basamağında 0 (sıfır) bulunan üç basamaklı en büyük doğal sayı kaçtır?",
+      "correct": "990",
+      "wrong1": "900",
+      "wrong2": "999",
+      "explanation": "En büyük olması için yüzler ve onlar basamağına 9 yazılır, şarta göre birler basamağı 0 olmalıdır. Sayı 990 olur.",
+      "app": {
+        "question": {
+          "text": "Birler basamağında 0 (sıfır) bulunan üç basamaklı en büyük doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "990",
+        "wrong1": "900",
+        "wrong2": "999",
+        "explanation": "En büyük olması için yüzler ve onlar basamağına 9 yazılır, şarta göre birler basamağı 0 olmalıdır. Sayı 990 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_121",
+      "level": "zor",
+      "premise": null,
+      "text": "Onlar basamağı 5 olan rakamları birbirinden farklı en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "958",
+      "wrong1": "959",
+      "wrong2": "859",
+      "explanation": "Yüzler basamağına 9 yazarız. Onlar basamağı 5. Rakamları farklı dendiği için birler basamağına 9 yazamayız, 8 yazarız: 958.",
+      "app": {
+        "question": {
+          "text": "Onlar basamağı 5 olan rakamları birbirinden farklı en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "958",
+        "wrong1": "959",
+        "wrong2": "859",
+        "explanation": "Yüzler basamağına 9 yazarız. Onlar basamağı 5. Rakamları farklı dendiği için birler basamağına 9 yazamayız, 8 yazarız: 958.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_122",
+      "level": "zor",
+      "premise": null,
+      "text": "Yüzler basamağı 4 olan en küçük üç basamaklı doğal sayı kaçtır?",
+      "correct": "400",
+      "wrong1": "401",
+      "wrong2": "410",
+      "explanation": "Yüzler basamağı 4 iken sayının en küçük olması için onlar ve birler basamağına 0 yazılır: 400.",
+      "app": {
+        "question": {
+          "text": "Yüzler basamağı 4 olan en küçük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "400",
+        "wrong1": "401",
+        "wrong2": "410",
+        "explanation": "Yüzler basamağı 4 iken sayının en küçük olması için onlar ve birler basamağına 0 yazılır: 400.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_123",
+      "level": "zor",
+      "premise": null,
+      "text": "Rakamlarının basamak değerleri toplamı 615 olan sayı aşağıdakilerden hangisidir?",
+      "correct": "615",
+      "wrong1": "651",
+      "wrong2": "156",
+      "explanation": "Bir sayının basamak değerleri toplamı her zaman sayının kendisine eşittir (600 + 10 + 5 = 615).",
+      "app": {
+        "question": {
+          "text": "Rakamlarının basamak değerleri toplamı 615 olan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "615",
+        "wrong1": "651",
+        "wrong2": "156",
+        "explanation": "Bir sayının basamak değerleri toplamı her zaman sayının kendisine eşittir (600 + 10 + 5 = 615).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_124",
+      "level": "zor",
+      "premise": null,
+      "text": "704 sayısındaki 0 (sıfır) rakamının basamak değeri kaçtır?",
+      "correct": "0",
+      "wrong1": "10",
+      "wrong2": "100",
+      "explanation": "Sıfır (0) rakamı hangi basamakta bulunursa bulunsun basamak değeri her zaman 0'dır.",
+      "app": {
+        "question": {
+          "text": "704 sayısındaki 0 (sıfır) rakamının basamak değeri kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "0",
+        "wrong1": "10",
+        "wrong2": "100",
+        "explanation": "Sıfır (0) rakamı hangi basamakta bulunursa bulunsun basamak değeri her zaman 0'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_125",
+      "level": "zor",
+      "premise": null,
+      "text": "Hangi sayının yüzler basamağındaki rakamın basamak değeri 500'dür?",
+      "correct": "532",
+      "wrong1": "352",
+      "wrong2": "235",
+      "explanation": "Yüzler basamağının değerinin 500 olması için en soldaki rakamın 5 olması gerekir. Bu da 532 sayısında vardır.",
+      "app": {
+        "question": {
+          "text": "Hangi sayının yüzler basamağındaki rakamın basamak değeri 500'dür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "532",
+        "wrong1": "352",
+        "wrong2": "235",
+        "explanation": "Yüzler basamağının değerinin 500 olması için en soldaki rakamın 5 olması gerekir. Bu da 532 sayısında vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_126",
+      "level": "zor",
+      "premise": null,
+      "text": "258 sayısının onlar ve yüzler basamağındaki rakamların yerleri değiştirilirse oluşacak yeni sayı kaç olur?",
+      "correct": "528",
+      "wrong1": "852",
+      "wrong2": "285",
+      "explanation": "Yüzler basamağı 2, onlar basamağı 5'tir. Yer değiştirince yüzler 5, onlar 2 olur. Yeni sayı 528 olur.",
+      "app": {
+        "question": {
+          "text": "258 sayısının onlar ve yüzler basamağındaki rakamların yerleri değiştirilirse oluşacak yeni sayı kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "528",
+        "wrong1": "852",
+        "wrong2": "285",
+        "explanation": "Yüzler basamağı 2, onlar basamağı 5'tir. Yer değiştirince yüzler 5, onlar 2 olur. Yeni sayı 528 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_127",
+      "level": "zor",
+      "premise": null,
+      "text": "491 sayısının birler ve yüzler basamağındaki rakamların yerleri değiştirilirse oluşacak yeni sayı kaç olur?",
+      "correct": "194",
+      "wrong1": "941",
+      "wrong2": "419",
+      "explanation": "Yüzler basamağındaki 4 ile birler basamağındaki 1 yer değiştirirse, 1 başa 4 sona geçer. Yeni sayı 194 olur.",
+      "app": {
+        "question": {
+          "text": "491 sayısının birler ve yüzler basamağındaki rakamların yerleri değiştirilirse oluşacak yeni sayı kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "194",
+        "wrong1": "941",
+        "wrong2": "419",
+        "explanation": "Yüzler basamağındaki 4 ile birler basamağındaki 1 yer değiştirirse, 1 başa 4 sona geçer. Yeni sayı 194 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_128",
+      "level": "zor",
+      "premise": null,
+      "text": "Bütün basamaklarındaki rakamları aynı olan en büyük üç basamaklı doğal sayı kaçtır?",
+      "correct": "999",
+      "wrong1": "888",
+      "wrong2": "111",
+      "explanation": "En büyük rakam 9'dur. Üç basamakta da 9 kullanılırsa sayı 999 olur.",
+      "app": {
+        "question": {
+          "text": "Bütün basamaklarındaki rakamları aynı olan en büyük üç basamaklı doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "999",
+        "wrong1": "888",
+        "wrong2": "111",
+        "explanation": "En büyük rakam 9'dur. Üç basamakta da 9 kullanılırsa sayı 999 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_129",
+      "level": "zor",
+      "premise": null,
+      "text": "3 yüzlük ve 7 birlikten oluşan doğal sayı kaçtır?",
+      "correct": "307",
+      "wrong1": "370",
+      "wrong2": "37",
+      "explanation": "Onluk belirtilmediği için onlar basamağına 0 yazılır. Yüzler 3 ve birler 7 olunca sayı 307 olur.",
+      "app": {
+        "question": {
+          "text": "3 yüzlük ve 7 birlikten oluşan doğal sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "307",
+        "wrong1": "370",
+        "wrong2": "37",
+        "explanation": "Onluk belirtilmediği için onlar basamağına 0 yazılır. Yüzler 3 ve birler 7 olunca sayı 307 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_sayilar_130",
+      "level": "zor",
+      "premise": null,
+      "text": "8 onluk ve 5 yüzlükten oluşan sayı aşağıdakilerden hangisidir?",
+      "correct": "580",
+      "wrong1": "850",
+      "wrong2": "508",
+      "explanation": "5 yüzlük ve 8 onluk verilmiştir. Birlik olmadığı için 0 yazılır. Sayı 580 olur.",
+      "app": {
+        "question": {
+          "text": "8 onluk ve 5 yüzlükten oluşan sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "580",
+        "wrong1": "850",
+        "wrong2": "508",
+        "explanation": "5 yüzlük ve 8 onluk verilmiştir. Birlik olmadığı için 0 yazılır. Sayı 580 olur.",
+        "url": null
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/* Düellox — tam ekran net video (üstte) + alt yükleme paneli */
+/* Düellox — tam ekran açılış görseli (blur → net) + alt yükleme paneli */
 body.nova-sprite-boot-active{
   overflow: hidden !important;
   touch-action: none;
@@ -15,14 +15,18 @@ body.nova-sprite-boot-active{
   transition: opacity .6s cubic-bezier(.4, 0, .2, 1), visibility .6s;
   --nova-boot-progress: 0;
   --nova-boot-pct: 0;
+  --nova-boot-blur: 32px;
+  --nova-boot-scale: 1.08;
+  --nova-boot-brightness: 0.68;
+  --nova-boot-saturate: 0.82;
 }
 #nova_sprite_boot_overlay.is-exiting{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
-#nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-video-layer{
-  transform: scale(1.05);
+#nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-hero-layer{
+  transform: scale(1.04);
   opacity: 0;
 }
 #nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-bottom-dock{
@@ -32,7 +36,7 @@ body.nova-sprite-boot-active{
 #nova_sprite_boot_overlay.is-handoff{
   transition: opacity .45s cubic-bezier(.4, 0, .2, 1), visibility .45s;
 }
-#nova_sprite_boot_overlay.is-handoff .nova-sprite-boot-video-layer{
+#nova_sprite_boot_overlay.is-handoff .nova-sprite-boot-hero-layer{
   transform: scale(1.02);
   opacity: 0;
   transition: transform .45s cubic-bezier(.4, 0, .2, 1), opacity .4s;
@@ -53,7 +57,6 @@ body.nova-main-screen-visible #main-screen{
   pointer-events: none !important;
 }
 
-/* Dekor — videonun ALTINDA */
 .nova-sprite-boot-bg{
   position: absolute;
   inset: 0;
@@ -72,8 +75,7 @@ body.nova-main-screen-visible #main-screen{
     linear-gradient(180deg, rgba(0,0,0,.25) 0%, transparent 18%, transparent 72%, rgba(0,0,0,.55) 100%);
 }
 
-/* VIDEO — en önemli katman, net ve önde */
-.nova-sprite-boot-video-layer{
+.nova-sprite-boot-hero-layer{
   position: absolute;
   inset: 0;
   z-index: 5;
@@ -81,37 +83,26 @@ body.nova-main-screen-visible #main-screen{
   transition: transform .65s cubic-bezier(.4, 0, .2, 1), opacity .5s;
 }
 
-#nova_sprite_boot_canvas{
+.nova-sprite-boot-hero-img{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center center;
   pointer-events: none;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  image-rendering: auto;
+  transform: scale(var(--nova-boot-scale, 1.08));
+  filter:
+    blur(var(--nova-boot-blur, 32px))
+    brightness(var(--nova-boot-brightness, 0.68))
+    saturate(var(--nova-boot-saturate, 0.82));
+  transition: transform .35s cubic-bezier(.2, .85, .2, 1), opacity .4s ease;
+  will-change: filter, transform;
+  opacity: .92;
 }
-
-.nova-sprite-boot-video-src{
-  position: absolute;
-  width: 0;
-  height: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-#nova_sprite_boot_overlay.nova-sprite-boot--plain-video .nova-sprite-boot-video-src{
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.nova-sprite-boot-hero-img.is-loaded{
   opacity: 1;
-  object-fit: contain;
-  z-index: 4;
-}
-
-#nova_sprite_boot_overlay.nova-sprite-boot--plain-video #nova_sprite_boot_canvas{
-  display: none !important;
 }
 
 .nova-sprite-boot-scanline{
@@ -119,7 +110,7 @@ body.nova-main-screen-visible #main-screen{
   inset: 0;
   z-index: 6;
   pointer-events: none;
-  opacity: .12;
+  opacity: calc(.14 * (1 - var(--nova-boot-progress, 0)));
   background: repeating-linear-gradient(
     180deg,
     transparent,
@@ -127,6 +118,7 @@ body.nova-main-screen-visible #main-screen{
     rgba(0, 0, 0, .04) 3px,
     rgba(0, 0, 0, .04) 4px
   );
+  transition: opacity .4s ease;
 }
 
 .nova-sprite-boot-flash{
@@ -141,7 +133,6 @@ body.nova-main-screen-visible #main-screen{
   animation: novaBootFlash .7s ease-out forwards;
 }
 
-/* UI — videonun üstünde, blur YOK */
 .nova-sprite-boot-top-brand{
   position: absolute;
   top: max(14px, env(safe-area-inset-top));
@@ -198,7 +189,6 @@ body.nova-main-screen-visible #main-screen{
   padding:
     28px 20px
     max(22px, calc(env(safe-area-inset-bottom) + 16px));
-  /* backdrop-filter KALDIRILDI — videoyu bulanıklaştırıyordu */
   background: linear-gradient(
     180deg,
     rgba(2, 3, 8, 0) 0%,
@@ -330,19 +320,6 @@ body.nova-main-screen-visible #main-screen{
   50%{ opacity: 1; }
 }
 
-#nova_sprite_boot_overlay.nova-sprite-boot--no-video .nova-sprite-boot-video-layer::after{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(124, 58, 237, .35), transparent 50%),
-    radial-gradient(circle at 50% 48%, rgba(253, 224, 71, .2), transparent 38%);
-  animation: novaBootOrb 2.5s ease-in-out infinite;
-}
-#nova_sprite_boot_overlay.nova-sprite-boot--no-video #nova_sprite_boot_canvas{
-  opacity: 0;
-}
-
 @keyframes novaSpriteBootShine{
   0%{ background-position: 0% 50%; }
   100%{ background-position: 240% 50%; }
@@ -350,10 +327,6 @@ body.nova-main-screen-visible #main-screen{
 @keyframes novaSpriteBootPulse{
   0%, 100%{ filter: brightness(1); }
   50%{ filter: brightness(1.4); }
-}
-@keyframes novaBootOrb{
-  0%, 100%{ opacity: .6; transform: scale(1); }
-  50%{ opacity: 1; transform: scale(1.03); }
 }
 @keyframes novaBootFlash{
   0%{ opacity: 0; }

@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "mat3_yuvarlama_001",
+    "level": "kolay",
+    "premise": "Bir sayıyı en yakın onluğa yuvarlarken birler basamağına bakılır. Birler basamağındaki rakam 5'ten küçükse sayı kendi onluğunda kalır.",
+    "text": "Buna göre 43 sayısı en yakın hangi onluğa yuvarlanır?",
+    "correct": "40",
+    "wrong1": "50",
+    "wrong2": "45",
+    "explanation": "43 sayısının birler basamağında 3 vardır. 5'ten küçük olduğu için sayı kendi onluğunda kalır ve 40'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_002",
+    "level": "kolay",
+    "premise": "Bir sayıyı en yakın onluğa yuvarlarken birler basamağına bakılır. Birler basamağındaki rakam 5 veya 5'ten büyükse sayı bir sonraki onluğa yuvarlanır.",
+    "text": "Buna göre 67 sayısı en yakın hangi onluğa yuvarlanır?",
+    "correct": "70",
+    "wrong1": "60",
+    "wrong2": "65",
+    "explanation": "67 sayısının birler basamağında 7 vardır. 5'ten büyük olduğu için sayı bir sonraki onluk olan 70'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "135 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "140",
+    "wrong1": "130",
+    "wrong2": "100",
+    "explanation": "135'in birler basamağında 5 vardır. Birler basamağı 5 olan sayılar bir sonraki onluğa yuvarlanır, yani 140 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "281 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "280",
+    "wrong1": "290",
+    "wrong2": "200",
+    "explanation": "281'in birler basamağında 1 vardır. 5'ten küçük olduğu için kendi onluğunda kalır ve 280'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_005",
+    "level": "kolay",
+    "premise": null,
+    "text": "496 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "500",
+    "wrong1": "490",
+    "wrong2": "400",
+    "explanation": "496'nın birler basamağında 6 vardır. Bir sonraki onluğa yuvarlanırken 49 onluğu 50 onluğuna dönüşür, yani 500 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_006",
+    "level": "kolay",
+    "premise": null,
+    "text": "714 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "710",
+    "wrong1": "720",
+    "wrong2": "700",
+    "explanation": "714 sayısının birler basamağındaki rakam 4'tür. 5'ten küçük olduğu için kendi onluğunda kalarak 710'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_007",
+    "level": "kolay",
+    "premise": null,
+    "text": "808 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "810",
+    "wrong1": "800",
+    "wrong2": "820",
+    "explanation": "808'in birler basamağında 8 vardır. 5'ten büyük olduğu için bir sonraki onluk olan 810'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_008",
+    "level": "kolay",
+    "premise": null,
+    "text": "993 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "990",
+    "wrong1": "1000",
+    "wrong2": "900",
+    "explanation": "993'ün birler basamağındaki rakam 3'tür. 5'ten küçük olduğu için sayı kendi onluğunda kalarak 990'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_009",
+    "level": "kolay",
+    "premise": null,
+    "text": "345 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "350",
+    "wrong1": "340",
+    "wrong2": "300",
+    "explanation": "345'in birler basamağında 5 vardır. Birler basamağı 5 olan sayılar daima bir sonraki onluğa yuvarlanır, yani 350 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_010",
+    "level": "kolay",
+    "premise": null,
+    "text": "672 sayısı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "670",
+    "wrong1": "680",
+    "wrong2": "600",
+    "explanation": "672'nin birler basamağında 2 vardır. 5'ten küçük olduğu için kendi onluğunda kalır ve 670'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_011",
+    "level": "orta",
+    "premise": "Onluğa yuvarlamada sayının birler basamağına bakarak karar veririz.",
+    "text": "Aşağıdaki sayılardan hangisi en yakın onluğa yuvarlandığında 50 elde EDİLMEZ?",
+    "correct": "55",
+    "wrong1": "48",
+    "wrong2": "54",
+    "explanation": "55 sayısının birler basamağı 5 olduğu için bir sonraki onluk olan 60'a yuvarlanır. 48 ve 54 sayıları 50'ye yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_012",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sayılardan hangisi en yakın onluğa yuvarlandığında 120 elde edilir?",
+    "correct": "123",
+    "wrong1": "125",
+    "wrong2": "114",
+    "explanation": "123 sayısının birler basamağı 3'tür, kendi onluğunda kalarak 120'ye yuvarlanır. 125 sayısı 130'a, 114 sayısı 110'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_013",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sayılardan hangisi en yakın onluğa yuvarlandığında 270 OLMAZ?",
+    "correct": "276",
+    "wrong1": "268",
+    "wrong2": "272",
+    "explanation": "276 sayısının birler basamağı 6'dır ve 280'e yuvarlanır. 268 ve 272 sayıları ise 270'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_014",
+    "level": "orta",
+    "premise": "Aylin'in okuduğu kitabın sayfa sayısı en yakın onluğa yuvarlandığında 80 olmaktadır.",
+    "text": "Buna göre Aylin'in okuduğu kitabın sayfa sayısı en az kaç olabilir?",
+    "correct": "75",
+    "wrong1": "71",
+    "wrong2": "84",
+    "explanation": "80'e yuvarlanan en küçük sayı 75'tir. Çünkü 74 sayısı aşağıya, yani 70'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_015",
+    "level": "orta",
+    "premise": "Cem'in boyunun uzunluğu en yakın onluğa yuvarlandığında 140 cm olmaktadır.",
+    "text": "Buna göre Cem'in boyu en çok kaç cm olabilir?",
+    "correct": "144",
+    "wrong1": "145",
+    "wrong2": "149",
+    "explanation": "140'a yuvarlanan en büyük sayı 144'tür. 145 sayısı 150'ye yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_016",
+    "level": "orta",
+    "premise": null,
+    "text": "En yakın onluğa yuvarlandığında 350 olan en büyük sayı ile en küçük sayının birler basamaklarındaki rakamların toplamı kaçtır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "350'ye yuvarlanan en büyük sayı 354, en küçük sayı 345'tir. Birler basamakları 4 ve 5'tir. Toplamları 4+5=9 yapar."
+  },
+  {
+    "id": "mat3_yuvarlama_017",
+    "level": "orta",
+    "premise": null,
+    "text": "3, 7 ve 2 rakamları birer kez kullanılarak yazılabilecek en büyük üç basamaklı sayı en yakın onluğa yuvarlandığında kaç olur?",
+    "correct": "730",
+    "wrong1": "720",
+    "wrong2": "740",
+    "explanation": "Bu rakamlarla yazılabilecek en büyük sayı 732'dir. 732 sayısının birler basamağı 2 olduğu için 730'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_018",
+    "level": "zor",
+    "premise": null,
+    "text": "En yakın onluğa yuvarlandığında 60 olan en büyük doğal sayı kaçtır?",
+    "correct": "64",
+    "wrong1": "65",
+    "wrong2": "59",
+    "explanation": "60'a yuvarlanan sayılar 55 ile 64 arasındadır. Bunların en büyüğü 64'tür."
+  },
+  {
+    "id": "mat3_yuvarlama_019",
+    "level": "zor",
+    "premise": null,
+    "text": "En yakın onluğa yuvarlandığında 90 olan en küçük doğal sayı kaçtır?",
+    "correct": "85",
+    "wrong1": "91",
+    "wrong2": "84",
+    "explanation": "90'a yuvarlanan sayılar 85 ile 94 arasındadır. Bunların en küçüğü 85'tir."
+  },
+  {
+    "id": "mat3_yuvarlama_020",
+    "level": "zor",
+    "premise": null,
+    "text": "En yakın onluğa yuvarlandığında 150 olan en büyük ve en küçük doğal sayıların farkı kaçtır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "150'ye yuvarlanan en büyük sayı 154, en küçük sayı 145'tir. Aralarındaki fark 154 - 145 = 9'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_021",
+    "level": "zor",
+    "premise": "23A sayısı en yakın onluğa yuvarlandığında 240 olmaktadır.",
+    "text": "Buna göre A yerine yazılabilecek rakamların toplamı kaçtır?",
+    "correct": "35",
+    "wrong1": "30",
+    "wrong2": "40",
+    "explanation": "Sayı 240'a yuvarlandığına göre A rakamı 5, 6, 7, 8 veya 9 olmalıdır. Toplamları 5+6+7+8+9 = 35 eder."
+  },
+  {
+    "id": "mat3_yuvarlama_022",
+    "level": "zor",
+    "premise": "Bir oyun parkındaki bilet sayısı en yakın onluğa yuvarlandığında 40 olmaktadır.",
+    "text": "Buna göre bilet sayısının alabileceği kaç farklı değer vardır?",
+    "correct": "10",
+    "wrong1": "9",
+    "wrong2": "11",
+    "explanation": "40'a yuvarlanan sayılar 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 olmak üzere toplam 10 tanedir."
+  },
+  {
+    "id": "mat3_yuvarlama_023",
+    "level": "zor",
+    "premise": "Ali 85 sayısından başlayarak 94 sayısına kadar olan tüm sayıları tahtaya yazdı.",
+    "text": "Ali'nin yazdığı bu sayıların tamamı en yakın onluğa yuvarlandığında hangi sayı elde edilir?",
+    "correct": "Hepsi 90'a yuvarlanır",
+    "wrong1": "Yarısı 80'e, yarısı 90'a yuvarlanır",
+    "wrong2": "Hepsi 100'e yuvarlanır",
+    "explanation": "85 ile 94 arasındaki tüm sayılar kural gereği 90'a yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_024",
+    "level": "zor",
+    "premise": null,
+    "text": "Birler basamağı 5 olan iki basamaklı en küçük sayı en yakın onluğa yuvarlandığında kaç olur?",
+    "correct": "20",
+    "wrong1": "10",
+    "wrong2": "30",
+    "explanation": "Birler basamağı 5 olan iki basamaklı en küçük sayı 15'tir. 15 sayısı yukarı yuvarlanır ve 20 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_025",
+    "level": "kolay",
+    "premise": "Sayıları en yakın yüzlüğe yuvarlarken onlar basamağına bakarız. Onlar basamağı 5'ten küçükse kendi yüzlüğüne, 5 veya daha büyükse bir sonraki yüzlüğe yuvarlarız.",
+    "text": "Buna göre 140 sayısı en yakın yüzlüğe yuvarlandığında hangi sayı olur?",
+    "correct": "100",
+    "wrong1": "200",
+    "wrong2": "150",
+    "explanation": "140 sayısının onlar basamağında 4 vardır. 5'ten küçük olduğu için alt yüzlük olan 100'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_026",
+    "level": "kolay",
+    "premise": null,
+    "text": "260 sayısını en yakın yüzlüğe yuvarlarsak hangi sayıyı buluruz?",
+    "correct": "300",
+    "wrong1": "200",
+    "wrong2": "250",
+    "explanation": "260 sayısının onlar basamağında 6 vardır. Onlar basamağı 5 ve üstü olan sayılar bir sonraki yüzlüğe yuvarlanır. Bu yüzden 300 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_027",
+    "level": "kolay",
+    "premise": null,
+    "text": "350 sayısının en yakın yüzlüğe yuvarlanmış hâli aşağıdakilerden hangisidir?",
+    "correct": "400",
+    "wrong1": "300",
+    "wrong2": "350",
+    "explanation": "350 sayısının onlar basamağında 5 vardır. Kural gereği 5 ve üzeri yukarı yuvarlanır, sonuç 400 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_028",
+    "level": "kolay",
+    "premise": null,
+    "text": "820 sayısı en yakın yüzlüğe yuvarlandığında hangi sayı elde edilir?",
+    "correct": "800",
+    "wrong1": "900",
+    "wrong2": "850",
+    "explanation": "820'nin onlar basamağında 2 vardır. 5'ten küçük olduğu için kendi yüzlüğünde kalır ve 800'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_029",
+    "level": "kolay",
+    "premise": null,
+    "text": "719 sayısını en yakın yüzlüğe yuvarladığımızda sonuç ne olur?",
+    "correct": "700",
+    "wrong1": "800",
+    "wrong2": "720",
+    "explanation": "719 sayısının onlar basamağı 1'dir. 5'ten küçük olduğu için 700'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_030",
+    "level": "kolay",
+    "premise": null,
+    "text": "681 sayısı en yakın yüzlüğe yuvarlandığında aşağıdakilerden hangisi elde edilir?",
+    "correct": "700",
+    "wrong1": "600",
+    "wrong2": "680",
+    "explanation": "681 sayısının onlar basamağında 8 vardır. 5'ten büyük olduğu için bir sonraki yüzlük olan 700'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_031",
+    "level": "kolay",
+    "premise": null,
+    "text": "950 sayısını en yakın yüzlüğe yuvarlarsak hangi sayıyı buluruz?",
+    "correct": "1000",
+    "wrong1": "900",
+    "wrong2": "960",
+    "explanation": "950 sayısının onlar basamağında 5 vardır. Onlar basamağı 5 olan sayılar bir sonraki yüzlüğe yuvarlanır, yani 1000 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_032",
+    "level": "kolay",
+    "premise": null,
+    "text": "449 sayısı en yakın yüzlüğe yuvarlandığında sonuç kaçtır?",
+    "correct": "400",
+    "wrong1": "500",
+    "wrong2": "450",
+    "explanation": "449 sayısının onlar basamağı 4'tür. 5'ten küçük olduğu için alt yüzlük olan 400'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_033",
+    "level": "kolay",
+    "premise": null,
+    "text": "508 sayısını en yakın yüzlüğe yuvarlarsak aşağıdakilerden hangisi olur?",
+    "correct": "500",
+    "wrong1": "600",
+    "wrong2": "510",
+    "explanation": "508 sayısının onlar basamağında 0 vardır. 5'ten küçük olduğu için kendi yüzlüğü olan 500'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_034",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sayılardan hangisi en yakın yüzlüğe yuvarlandığında 500 OLMAZ?",
+    "correct": "551",
+    "wrong1": "499",
+    "wrong2": "450",
+    "explanation": "551 sayısının onlar basamağı 5 olduğu için 600'e yuvarlanır. 499 ve 450 sayıları ise 500'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_035",
+    "level": "orta",
+    "premise": "7A0 sayısı en yakın yüzlüğe yuvarlandığında 800 olmaktadır.",
+    "text": "Buna göre A yerine yazılabilecek en küçük rakam kaçtır?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Sayının yukarı yuvarlanması için onlar basamağındaki A'nın 5, 6, 7, 8 veya 9 olması gerekir. En küçüğü 5'tir."
+  },
+  {
+    "id": "mat3_yuvarlama_036",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki yuvarlama işlemlerinden hangisi YANLIŞTIR?",
+    "correct": "350 -> 300",
+    "wrong1": "249 -> 200",
+    "wrong2": "862 -> 900",
+    "explanation": "350 sayısının onlar basamağı 5 olduğu için kural gereği üst yüzlüğe yani 400'e yuvarlanması gerekir."
+  },
+  {
+    "id": "mat3_yuvarlama_037",
+    "level": "orta",
+    "premise": null,
+    "text": "249 sayısı en yakın yüzlüğe yuvarlandığında hangi sayı elde edilir?",
+    "correct": "200",
+    "wrong1": "300",
+    "wrong2": "250",
+    "explanation": "Onlar basamağında 4 vardır (5'ten küçük). Bu yüzden kendi yüzlüğünde kalır ve 200'e yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_038",
+    "level": "orta",
+    "premise": null,
+    "text": "862 sayısı en yakın yüzlüğe yuvarlandığında hangi sayı elde edilir?",
+    "correct": "900",
+    "wrong1": "800",
+    "wrong2": "860",
+    "explanation": "Onlar basamağında 6 vardır (5'ten büyük). Bir sonraki yüzlüğe yuvarlanır ve 900 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_039",
+    "level": "orta",
+    "premise": null,
+    "text": "980 sayısı en yakın yüzlüğe yuvarlandığında hangi sayı elde edilir?",
+    "correct": "1000",
+    "wrong1": "900",
+    "wrong2": "980",
+    "explanation": "Onlar basamağı 8'dir, yukarı yuvarlanır. 9 yüzlüğü bir sonraki yüzlüğe geçince 1000 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_040",
+    "level": "zor",
+    "premise": null,
+    "text": "En yakın yüzlüğe yuvarlandığında 600 olan en büyük sayı kaçtır?",
+    "correct": "649",
+    "wrong1": "650",
+    "wrong2": "599",
+    "explanation": "600'e yuvarlanan en büyük sayının yüzler basamağı 6 olarak kalmalıdır. Bunun için onlar basamağı en fazla 4 olabilir. En büyük sayı 649'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_041",
+    "level": "zor",
+    "premise": null,
+    "text": "En yakın yüzlüğe yuvarlandığında 800 olan en küçük sayı kaçtır?",
+    "correct": "750",
+    "wrong1": "801",
+    "wrong2": "749",
+    "explanation": "800'e yuvarlanması için alt yüzlükten (700'lerden) gelmesi gerekir. Onlar basamağı en az 5 olmalıdır. Bu yüzden en küçük sayı 750'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_042",
+    "level": "zor",
+    "premise": "4A5 sayısı en yakın yüzlüğe yuvarlandığında 500 olmaktadır.",
+    "text": "Buna göre A yerine yazılabilecek en küçük rakam kaçtır?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Yukarı (500'e) yuvarlanması için onlar basamağı (A) 5, 6, 7, 8 veya 9 olmalıdır. Bunların en küçüğü 5'tir."
+  },
+  {
+    "id": "mat3_yuvarlama_043",
+    "level": "zor",
+    "premise": null,
+    "text": "En yakın yüzlüğe yuvarlandığında 300 olan sayılar arasındaki fark en fazla kaçtır?",
+    "correct": "99",
+    "wrong1": "100",
+    "wrong2": "90",
+    "explanation": "300'e yuvarlanan en büyük sayı 349, en küçük sayı 250'dir. Aralarındaki fark 349 - 250 = 99'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_044",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi sayı hem en yakın onluğa hem de en yakın yüzlüğe yuvarlandığında 400 sayısını verir?",
+    "correct": "398",
+    "wrong1": "405",
+    "wrong2": "349",
+    "explanation": "398 en yakın onluğa yuvarlandığında 400, en yakın yüzlüğe yuvarlandığında da 400 olur. Sonuçlar aynıdır."
+  },
+  {
+    "id": "mat3_yuvarlama_045",
+    "level": "zor",
+    "premise": null,
+    "text": "750 ile 849 arasındaki tüm sayıların ortak özelliği nedir?",
+    "correct": "Hepsi en yakın yüzlüğe yuvarlandığında 800 olur.",
+    "wrong1": "Hepsi en yakın onluğa yuvarlandığında 800 olur.",
+    "wrong2": "Hepsi çift sayıdır.",
+    "explanation": "750'den başlayıp 849'a kadar olan sayıların tamamı kural gereği 800 yüzlüğüne yuvarlanır."
+  },
+  {
+    "id": "mat3_yuvarlama_046",
+    "level": "kolay",
+    "premise": "Sayıları karşılaştırırken büyüktür (>), küçüktür (<) veya eşittir (=) sembolleri kullanılır.",
+    "text": "125 ... 152 karşılaştırmasında noktalı yere hangi sembol gelmelidir?",
+    "correct": "< (küçüktür)",
+    "wrong1": "> (büyüktür)",
+    "wrong2": "= (eşittir)",
+    "explanation": "Yüzler basamakları aynı (1). Onlar basamağında 2, 5'ten küçüktür. Bu yüzden 125 < 152 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_047",
+    "level": "kolay",
+    "premise": null,
+    "text": "340 ... 304 karşılaştırmasında noktalı yere hangi sembol gelmelidir?",
+    "correct": "> (büyüktür)",
+    "wrong1": "< (küçüktür)",
+    "wrong2": "= (eşittir)",
+    "explanation": "Yüzler basamakları aynı (3). Onlar basamağında 4, 0'dan büyüktür. Bu yüzden 340 > 304 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_048",
+    "level": "kolay",
+    "premise": null,
+    "text": "765 ... 765 karşılaştırmasında noktalı yere hangi sembol gelmelidir?",
+    "correct": "= (eşittir)",
+    "wrong1": "< (küçüktür)",
+    "wrong2": "> (büyüktür)",
+    "explanation": "Her iki sayının da tüm basamakları aynı olduğu için bu sayılar birbirine eşittir."
+  },
+  {
+    "id": "mat3_yuvarlama_049",
+    "level": "kolay",
+    "premise": null,
+    "text": "890 ... 908 karşılaştırmasında noktalı yere hangi sembol gelmelidir?",
+    "correct": "< (küçüktür)",
+    "wrong1": "> (büyüktür)",
+    "wrong2": "= (eşittir)",
+    "explanation": "Yüzler basamağını karşılaştırdığımızda 8, 9'dan küçüktür. Bu yüzden 890 < 908 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_050",
+    "level": "kolay",
+    "premise": null,
+    "text": "412 ... 402 karşılaştırmasında noktalı yere hangi sembol gelmelidir?",
+    "correct": "> (büyüktür)",
+    "wrong1": "< (küçüktür)",
+    "wrong2": "= (eşittir)",
+    "explanation": "Yüzler basamakları aynı (4). Onlar basamağında 1, 0'dan büyüktür. Bu yüzden 412 > 402 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_051",
+    "level": "kolay",
+    "premise": null,
+    "text": "555 ... 550 karşılaştırmasında noktalı yere hangi sembol gelmelidir?",
+    "correct": "> (büyüktür)",
+    "wrong1": "< (küçüktür)",
+    "wrong2": "= (eşittir)",
+    "explanation": "Yüzler ve onlar basamakları eşittir. Birler basamağında 5, 0'dan büyüktür. Bu yüzden 555 > 550 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_052",
+    "level": "kolay",
+    "premise": null,
+    "text": "789, 879 ve 798 sayıları arasından en BÜYÜK olanı hangisidir?",
+    "correct": "879",
+    "wrong1": "798",
+    "wrong2": "789",
+    "explanation": "Sayıları karşılaştırırken önce yüzler basamağına bakarız. Yüzler basamağı en büyük olan 879'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_053",
+    "level": "kolay",
+    "premise": null,
+    "text": "109, 190 ve 901 sayıları arasından en KÜÇÜK olanı hangisidir?",
+    "correct": "109",
+    "wrong1": "190",
+    "wrong2": "901",
+    "explanation": "Önce yüzler basamağına bakarız. Yüzler basamağı en küçük olan 1'dir. Onlar basamağına baktığımızda 0 < 9 olduğundan 109 en küçüktür."
+  },
+  {
+    "id": "mat3_yuvarlama_054",
+    "level": "kolay",
+    "premise": null,
+    "text": "345, 354 ve 435 sayılarının küçükten büyüğe doğru sıralanışı hangi seçenekte verilmiştir?",
+    "correct": "345 < 354 < 435",
+    "wrong1": "354 < 345 < 435",
+    "wrong2": "435 < 354 < 345",
+    "explanation": "Yüzler basamağı büyük olan 435 en büyüktür. Yüzler basamağı 3 olanlar arasında onlar basamağına bakarız: 4 < 5. Sıralama 345 < 354 < 435 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_055",
+    "level": "kolay",
+    "premise": null,
+    "text": "678, 687 ve 876 sayılarının büyükten küçüğe doğru sıralanışı hangi seçenekte verilmiştir?",
+    "correct": "876 > 687 > 678",
+    "wrong1": "687 > 876 > 678",
+    "wrong2": "876 > 678 > 687",
+    "explanation": "Yüzler basamağı 8 olan 876 en büyüktür. 687 ve 678 arasında onlar basamağı 8 > 7 olduğu için 687 daha büyüktür. Sıralama 876 > 687 > 678 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_056",
+    "level": "orta",
+    "premise": "245 < A < 248 sıralamasında A yerine gelebilecek doğal sayılar hangileridir?",
+    "text": "Bu eşitsizliği sağlayan sayılar hangi seçenekte doğru verilmiştir?",
+    "correct": "246, 247",
+    "wrong1": "245, 246",
+    "wrong2": "247, 248",
+    "explanation": "A sayısı 245'ten büyük, 248'den küçük olmalıdır. Bu aralıktaki tam sayılar 246 ve 247'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_057",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sayılardan hangisi 540 ile 560 arasındadır?",
+    "correct": "555",
+    "wrong1": "539",
+    "wrong2": "561",
+    "explanation": "555 sayısı 540'tan büyük, 560'tan küçüktür. Tam aralarındadır."
+  },
+  {
+    "id": "mat3_yuvarlama_058",
+    "level": "orta",
+    "premise": null,
+    "text": "128, 450, 310 sayıları küçükten büyüğe sıralandığında ortada hangi sayı yer alır?",
+    "correct": "310",
+    "wrong1": "128",
+    "wrong2": "450",
+    "explanation": "Sıralama: 128 < 310 < 450 şeklindedir. Ortadaki sayı 310'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_059",
+    "level": "orta",
+    "premise": "800 > ? > 795",
+    "text": "Yukarıdaki sıralamada soru işareti yerine aşağıdaki sayılardan hangisi yazılabilir?",
+    "correct": "799",
+    "wrong1": "801",
+    "wrong2": "794",
+    "explanation": "Yazılacak sayı 800'den küçük, 795'ten büyük olmalıdır. Şıklarda bu şarta sadece 799 uyar."
+  },
+  {
+    "id": "mat3_yuvarlama_060",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sıralamalardan hangisinde bir HATA yapılmıştır?",
+    "correct": "110 < 120 < 115",
+    "wrong1": "200 < 300 < 400",
+    "wrong2": "870 > 740 > 730",
+    "explanation": "120 sayısı 115'ten küçüktür denilmiş, bu yanlıştır. Doğrusu 110 < 115 < 120 olmalıydı."
+  },
+  {
+    "id": "mat3_yuvarlama_061",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sıralamalardan hangisi DOĞRUDUR?",
+    "correct": "300 < 350 < 400",
+    "wrong1": "350 < 300 < 400",
+    "wrong2": "400 < 350 < 300",
+    "explanation": "Yüzler ve onlar basamaklarına bakıldığında 300 en küçük, 400 en büyüktür. 300 < 350 < 400 sıralaması doğrudur."
+  },
+  {
+    "id": "mat3_yuvarlama_062",
+    "level": "orta",
+    "premise": null,
+    "text": "404, 440, 400 sayılarını büyükten küçüğe sıralayınız.",
+    "correct": "440 > 404 > 400",
+    "wrong1": "440 > 400 > 404",
+    "wrong2": "404 > 440 > 400",
+    "explanation": "Yüzler basamağı aynıdır. Onlar basamağına bakılır: 4 > 0 = 0. En büyük 440'tır. Sonra birler basamağına bakılır: 4 > 0. Sonuç: 440 > 404 > 400."
+  },
+  {
+    "id": "mat3_yuvarlama_063",
+    "level": "orta",
+    "premise": null,
+    "text": "612, 598, 621 sayılarını büyükten küçüğe doğru sıralayınız.",
+    "correct": "621 > 612 > 598",
+    "wrong1": "621 > 598 > 612",
+    "wrong2": "598 > 612 > 621",
+    "explanation": "Yüzler basamağı en büyük olanlar 621 ve 612'dir. Onlar basamağına bakarsak 2 > 1 olduğu için 621 > 612'dir. En küçük 598'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_064",
+    "level": "orta",
+    "premise": null,
+    "text": "981, 918, 891 sayılarını küçükten büyüğe sıralayınız.",
+    "correct": "891 < 918 < 981",
+    "wrong1": "918 < 891 < 981",
+    "wrong2": "891 < 981 < 918",
+    "explanation": "Yüzler basamağı küçük olan 891 en küçüktür. Diğer ikisinin yüzler basamağı 9'dur, onlar basamağına bakılır: 1, 8'den küçüktür (918 < 981)."
+  },
+  {
+    "id": "mat3_yuvarlama_065",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki sayılardan hangisi 299 sayısından daha BÜYÜKTÜR?",
+    "correct": "300",
+    "wrong1": "298",
+    "wrong2": "289",
+    "explanation": "299'dan bir sonraki tam sayı 300'dür ve 299'dan büyüktür."
+  },
+  {
+    "id": "mat3_yuvarlama_066",
+    "level": "orta",
+    "premise": null,
+    "text": "4_3 > 473 eşitsizliğinde boş bırakılan yere aşağıdakilerden hangisi yazılabilir?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "6",
+    "explanation": "Sayının 473'ten büyük olması için onlar basamağının 7'den büyük olması gerekir. Şıklarda buna uyan rakam 8'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_067",
+    "level": "orta",
+    "premise": null,
+    "text": "_32 < 432 eşitsizliğinde boş bırakılan yere yazılabilecek en büyük rakam kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Sayının 432'den küçük olması için yüzler basamağı 4'ten küçük olmalıdır (3, 2, 1). Yazılabilecek en büyük rakam 3'tür."
+  },
+  {
+    "id": "mat3_yuvarlama_068",
+    "level": "orta",
+    "premise": "Ali'nin boyu 140 cm, Can'ın boyu 104 cm, Efe'nin boyu ise 144 cm'dir.",
+    "text": "Buna göre en uzun boylu olan kimdir?",
+    "correct": "Efe",
+    "wrong1": "Ali",
+    "wrong2": "Can",
+    "explanation": "Boy uzunluklarını karşılaştırdığımızda: 104 < 140 < 144. En büyük sayı 144 olduğundan en uzun boylu Efe'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_069",
+    "level": "orta",
+    "premise": "Ali'nin 245, Veli'nin 254, Can'ın 240 misketi vardır.",
+    "text": "Buna göre en çok misketi olan kimdir?",
+    "correct": "Veli",
+    "wrong1": "Ali",
+    "wrong2": "Can",
+    "explanation": "Sayıları karşılaştırdığımızda 254 > 245 > 240 olur. En büyük sayı 254 olduğu için en çok misket Veli'dedir."
+  },
+  {
+    "id": "mat3_yuvarlama_070",
+    "level": "orta",
+    "premise": "Rakamları farklı en küçük üç basamaklı doğal sayı ile 103 sayısını karşılaştırıyoruz.",
+    "text": "Buna göre aşağıdakilerden hangisi DOĞRUDUR?",
+    "correct": "102 < 103",
+    "wrong1": "102 > 103",
+    "wrong2": "100 < 103",
+    "explanation": "Rakamları farklı en küçük üç basamaklı sayı 102'dir. Birler basamaklarına bakıldığında 2 < 3 olduğu için 102 < 103 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_071",
+    "level": "orta",
+    "premise": null,
+    "text": "340 ile 345 arasındaki ÇİFT doğal sayılar hangileridir?",
+    "correct": "342, 344",
+    "wrong1": "341, 343",
+    "wrong2": "340, 342, 344",
+    "explanation": "340 ile 345 'arasındaki' dendiği için 340 ve 345 dahil edilmez. Bu aralıktaki sayılar 341, 342, 343, 344'tür. Çift olanlar 342 ve 344'tür."
+  },
+  {
+    "id": "mat3_yuvarlama_072",
+    "level": "orta",
+    "premise": null,
+    "text": "210 ile 215 arasındaki TEK doğal sayılar hangileridir?",
+    "correct": "211, 213",
+    "wrong1": "212, 214",
+    "wrong2": "211, 213, 215",
+    "explanation": "210 ile 215 arasındaki sayılar 211, 212, 213, 214'tür. Bunlardan tek olanlar 211 ve 213'tür."
+  },
+  {
+    "id": "mat3_yuvarlama_073",
+    "level": "orta",
+    "premise": null,
+    "text": "1, 5, 8 rakamları birer kez kullanılarak yazılabilecek en büyük üç basamaklı sayı kaçtır?",
+    "correct": "851",
+    "wrong1": "581",
+    "wrong2": "815",
+    "explanation": "En büyük sayıyı oluşturmak için rakamları büyükten küçüğe doğru (yüzler, onlar, birler) yazarız: 8 > 5 > 1. Sayı 851 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_074",
+    "level": "orta",
+    "premise": null,
+    "text": "3, 7, 1 rakamları birer kez kullanılarak yazılabilecek en küçük üç basamaklı sayı kaçtır?",
+    "correct": "137",
+    "wrong1": "173",
+    "wrong2": "317",
+    "explanation": "En küçük sayıyı oluşturmak için rakamları küçükten büyüğe doğru yazarız: 1 < 3 < 7. Sayı 137 olur."
+  },
+  {
+    "id": "mat3_yuvarlama_075",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki eşitsizliklerden hangisi YANLIŞTIR?",
+    "correct": "199 > 200",
+    "wrong1": "540 < 546",
+    "wrong2": "301 > 300",
+    "explanation": "199 sayısı 200'den küçüktür. Bu yüzden 199 > 200 ifadesi yanlıştır."
+  },
+  {
+    "id": "mat3_yuvarlama_076",
+    "level": "zor",
+    "premise": "4A5 < 456 sıralamasının doğru olması için A yerine rakamlar yazılacaktır.",
+    "text": "Buna göre A yerine yazılabilecek en büyük rakam kaçtır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "6",
+    "explanation": "Sayının 456'dan küçük olması için onlar basamağındaki A, 5'ten küçük olmalıdır (0,1,2,3,4). En büyüğü 4'tür."
+  },
+  {
+    "id": "mat3_yuvarlama_077",
+    "level": "zor",
+    "premise": "7B2 > 762 sıralamasının doğru olması için B yerine rakamlar yazılacaktır.",
+    "text": "Buna göre B yerine yazılabilecek en küçük rakam kaçtır?",
+    "correct": "7",
+    "wrong1": "6",
+    "wrong2": "8",
+    "explanation": "Sayının 762'den büyük olması için onlar basamağı olan B'nin 6'dan büyük olması gerekir (7,8,9). En küçüğü 7'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_078",
+    "level": "zor",
+    "premise": "C50 < 450 sıralamasında C bir rakamdır.",
+    "text": "Buna göre C yerine yazılabilecek rakamların toplamı kaçtır?",
+    "correct": "6",
+    "wrong1": "10",
+    "wrong2": "3",
+    "explanation": "Sayının 450'den küçük olması için yüzler basamağı (C) 4'ten küçük olmalıdır. Sayı 3 basamaklı olduğu için 0 olamaz. 1+2+3 = 6 eder."
+  },
+  {
+    "id": "mat3_yuvarlama_079",
+    "level": "zor",
+    "premise": "485 > 48A sıralamasına göre A yerine yazılabilecek kaç farklı rakam vardır?",
+    "text": "Buna göre A yerine yazılabilecek kaç farklı rakam vardır?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "A rakamı 5'ten küçük olmalıdır. Bunlar: 0, 1, 2, 3, 4'tür. Toplam 5 tanedir."
+  },
+  {
+    "id": "mat3_yuvarlama_080",
+    "level": "zor",
+    "premise": "A = 6 yüzlük + 5 onluk\nB = 6 yüzlük + 5 birlik\nC = 5 yüzlük + 6 onluk",
+    "text": "A, B ve C sayılarının büyükten küçüğe doğru sıralanışı nasıldır?",
+    "correct": "A > B > C",
+    "wrong1": "C > B > A",
+    "wrong2": "B > A > C",
+    "explanation": "Sayılar oluşturulduğunda A=650, B=605, C=560 olur. Sıralama 650 > 605 > 560 yani A > B > C şeklindedir."
+  },
+  {
+    "id": "mat3_yuvarlama_081",
+    "level": "zor",
+    "premise": "7, 0, 4 rakamları birer kez kullanılarak yazılabilecek tüm üç basamaklı sayılar yazılıyor.",
+    "text": "Yazılan bu sayılar büyükten küçüğe sıralandığında baştan 3. sayı kaç olur?",
+    "correct": "470",
+    "wrong1": "407",
+    "wrong2": "704",
+    "explanation": "Yazılabilen sayılar: 740, 704, 470, 407. Büyükten küçüğe sıralandığında 3. sayı 470'tir."
+  },
+  {
+    "id": "mat3_yuvarlama_082",
+    "level": "zor",
+    "premise": "54_ > 546",
+    "text": "Sıralamasında boş bırakılan yere yazılabilecek rakamların toplamı kaçtır?",
+    "correct": "24",
+    "wrong1": "15",
+    "wrong2": "21",
+    "explanation": "Sayı 546'dan büyük olacağı için boş yere 7, 8 ve 9 rakamları yazılabilir. Toplamları 7+8+9 = 24'tür."
+  },
+  {
+    "id": "mat3_yuvarlama_083",
+    "level": "zor",
+    "premise": "Sıralama: 400 > A > 300 > B > 200",
+    "text": "Buna göre A ve B sayılarının yüzler basamaklarının toplamı kaçtır?",
+    "correct": "5",
+    "wrong1": "7",
+    "wrong2": "6",
+    "explanation": "A sayısı 300'lü (yüzler=3), B sayısı 200'lü (yüzler=2) bir sayıdır. Toplamları 3 + 2 = 5'tir."
+  },
+  {
+    "id": "mat3_yuvarlama_084",
+    "level": "zor",
+    "premise": "Rakamları farklı en büyük üç basamaklı çift sayıyı arıyoruz.",
+    "text": "Buna göre bu sayı aşağıdakilerden hangisidir?",
+    "correct": "986",
+    "wrong1": "988",
+    "wrong2": "998",
+    "explanation": "En büyük sayı için yüzler basamağı 9, onlar 8 olur. Çift olması ve rakamları farklı olması için birler basamağı 6 olur: 986."
+  },
+  {
+    "id": "mat3_yuvarlama_085",
+    "level": "zor",
+    "premise": "A < 312 sıralamasında A yerine yazılabilecek en büyük üç basamaklı sayı yazılıyor.",
+    "text": "Buna göre A sayısının onlar basamağında hangi rakam vardır?",
+    "correct": "1",
+    "wrong1": "2",
+    "wrong2": "0",
+    "explanation": "312'den küçük olan en büyük tam sayı 311'dir. 311 sayısının onlar basamağında 1 rakamı vardır."
+  },
+  {
+    "id": "mat3_yuvarlama_086",
+    "level": "zor",
+    "premise": "İki basamaklı en büyük sayı ile üç basamaklı en küçük sayı karşılaştırılıyor.",
+    "text": "Buna göre doğru sembol kullanımı nasıldır?",
+    "correct": "99 < 100",
+    "wrong1": "98 < 100",
+    "wrong2": "99 < 101",
+    "explanation": "İki basamaklı en büyük sayı 99'dur. Üç basamaklı en küçük sayı 100'dür. Doğru kullanım 99 < 100 şeklindedir."
+  },
+  {
+    "id": "mat3_yuvarlama_087",
+    "level": "zor",
+    "premise": null,
+    "text": "Basamaklarındaki rakamların toplamı 4 olan üç basamaklı sayıların en büyüğü ile en küçüğü hangi seçenekte doğru verilmiştir?",
+    "correct": "400 ve 103",
+    "wrong1": "310 ve 130",
+    "wrong2": "400 ve 112",
+    "explanation": "Rakamları toplamı 4 olan en büyük üç basamaklı sayı 400'dür (4+0+0). En küçük üç basamaklı sayı ise 103'tür (1+0+3)."
+  },
+  {
+    "id": "mat3_yuvarlama_088",
+    "level": "zor",
+    "premise": "350 > B > 347 eşitsizliğinde B bir doğal sayıdır.",
+    "text": "Buna göre B yerine gelebilecek sayıların birler basamaklarındaki rakamların toplamı kaçtır?",
+    "correct": "17",
+    "wrong1": "15",
+    "wrong2": "8",
+    "explanation": "B yerine 348 ve 349 gelebilir. Birler basamakları 8 ve 9'dur. Toplamları 8 + 9 = 17 eder."
+  },
+  {
+    "id": "mat3_yuvarlama_089",
+    "level": "zor",
+    "premise": "A > 520 > B sıralamasında A ve B birer doğal sayıdır.",
+    "text": "A'nın alabileceği en küçük değer ile B'nin alabileceği en büyük değerin farkı kaçtır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "A'nın en küçük değeri 521, B'nin en büyük değeri 519'dur. Fark: 521 - 519 = 2'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_090",
+    "level": "zor",
+    "premise": "En yakın onluğa yuvarlandığında 120 olan en büyük sayı X, en yakın onluğa yuvarlandığında 130 olan en küçük sayı Y'dir.",
+    "text": "Buna göre X ve Y sayılarının karşılaştırması nasıldır?",
+    "correct": "X < Y",
+    "wrong1": "X > Y",
+    "wrong2": "X = Y",
+    "explanation": "X = 124'tür. Y = 125'tir. 124 < 125 olduğu için X < Y olur."
+  },
+  {
+    "id": "mat3_yuvarlama_091",
+    "level": "kolay",
+    "premise": "Romen rakamlarında 'I' sembolü 1 sayısını ifade eder.",
+    "text": "Buna göre 'I' sembolünün okunuşu kaçtır?",
+    "correct": "1",
+    "wrong1": "5",
+    "wrong2": "10",
+    "explanation": "Romen rakamlarında 'I' sembolü 1 sayısını temsil eder."
+  },
+  {
+    "id": "mat3_yuvarlama_092",
+    "level": "kolay",
+    "premise": "Romen rakamlarında 'V' sembolü 5 sayısını ifade eder.",
+    "text": "Buna göre 'V' sembolünün okunuşu kaçtır?",
+    "correct": "5",
+    "wrong1": "10",
+    "wrong2": "1",
+    "explanation": "Romen rakamlarında 'V' sembolü 5 sayısını temsil eder."
+  },
+  {
+    "id": "mat3_yuvarlama_093",
+    "level": "kolay",
+    "premise": "Romen rakamlarında 'X' sembolü 10 sayısını ifade eder.",
+    "text": "Buna göre 'X' sembolünün okunuşu kaçtır?",
+    "correct": "10",
+    "wrong1": "20",
+    "wrong2": "5",
+    "explanation": "Romen rakamlarında 'X' sembolü 10 sayısını temsil eder."
+  },
+  {
+    "id": "mat3_yuvarlama_094",
+    "level": "kolay",
+    "premise": null,
+    "text": "Romen rakamlarıyla yazılan 'II' sembolü hangi sayıyı ifade eder?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "İki tane 'I' yan yana gelerek 1 + 1 = 2 sayısını oluşturur."
+  },
+  {
+    "id": "mat3_yuvarlama_095",
+    "level": "kolay",
+    "premise": null,
+    "text": "Romen rakamlarıyla yazılan 'III' sembolü hangi sayıyı ifade eder?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Üç tane 'I' yan yana gelerek 1 + 1 + 1 = 3 sayısını oluşturur."
+  },
+  {
+    "id": "mat3_yuvarlama_096",
+    "level": "kolay",
+    "premise": "Küçük rakam büyük rakamın soluna yazılırsa çıkarılır.",
+    "text": "Buna göre 'IV' sembolü hangi sayıyı ifade eder?",
+    "correct": "4",
+    "wrong1": "6",
+    "wrong2": "5",
+    "explanation": "5'ten (V) 1 (I) çıkarılarak yazılır: 5 - 1 = 4."
+  },
+  {
+    "id": "mat3_yuvarlama_097",
+    "level": "kolay",
+    "premise": "Küçük rakam büyük rakamın sağına yazılırsa toplanır.",
+    "text": "Buna göre 'VI' sembolü hangi sayıyı ifade eder?",
+    "correct": "6",
+    "wrong1": "4",
+    "wrong2": "7",
+    "explanation": "5 (V) ve 1 (I) toplanır: 5 + 1 = 6."
+  },
+  {
+    "id": "mat3_yuvarlama_098",
+    "level": "kolay",
+    "premise": null,
+    "text": "Romen rakamlarıyla yazılan 'VII' sembolü hangi sayıyı ifade eder?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "V (5) ve II (2) yan yana toplanarak 5 + 2 = 7 eder."
+  },
+  {
+    "id": "mat3_yuvarlama_099",
+    "level": "kolay",
+    "premise": null,
+    "text": "Romen rakamlarıyla yazılan 'VIII' sembolü hangi sayıyı ifade eder?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "V (5) ve III (3) yan yana toplanarak 5 + 3 = 8 eder."
+  },
+  {
+    "id": "mat3_yuvarlama_100",
+    "level": "kolay",
+    "premise": "Küçük rakam büyük rakamın soluna yazılırsa çıkarılır.",
+    "text": "Buna göre 'IX' sembolü hangi sayıyı ifade eder?",
+    "correct": "9",
+    "wrong1": "11",
+    "wrong2": "10",
+    "explanation": "10'dan (X) 1 (I) çıkarılarak yazılır: 10 - 1 = 9."
+  },
+  {
+    "id": "mat3_yuvarlama_101",
+    "level": "orta",
+    "premise": "Küçük rakam büyük rakamın sağına yazılırsa toplanır.",
+    "text": "Buna göre 11 sayısının Romen rakamları ile yazılışı hangisidir?",
+    "correct": "XI",
+    "wrong1": "IX",
+    "wrong2": "XII",
+    "explanation": "10 (X) sembolünün sağına 1 (I) yazıldığında 10 + 1 = 11 (XI) olur."
+  },
+  {
+    "id": "mat3_yuvarlama_102",
+    "level": "orta",
+    "premise": null,
+    "text": "12 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XII",
+    "wrong1": "IIX",
+    "wrong2": "XIV",
+    "explanation": "12 sayısı 10 + 2 olarak düşünülür. 10 (X) ve 2 (II) birleşerek XII olur."
+  },
+  {
+    "id": "mat3_yuvarlama_103",
+    "level": "orta",
+    "premise": null,
+    "text": "13 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XIII",
+    "wrong1": "XII",
+    "wrong2": "XIV",
+    "explanation": "13 sayısı 10 ve 3'ün toplamıdır. 10 (X) ve 3 (III) birleştirilerek 'XIII' elde edilir."
+  },
+  {
+    "id": "mat3_yuvarlama_104",
+    "level": "orta",
+    "premise": null,
+    "text": "14 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XIV",
+    "wrong1": "XVI",
+    "wrong2": "XIIII",
+    "explanation": "10 (X) ve 4 (IV) bir araya gelerek 'XIV' (14) sayısını oluşturur."
+  },
+  {
+    "id": "mat3_yuvarlama_105",
+    "level": "orta",
+    "premise": null,
+    "text": "15 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XV",
+    "wrong1": "VX",
+    "wrong2": "XIIIII",
+    "explanation": "15 sayısı 10 ve 5'in toplamıdır. 10 (X) ve 5 (V) birleştirilerek 'XV' olarak yazılır."
+  },
+  {
+    "id": "mat3_yuvarlama_106",
+    "level": "orta",
+    "premise": null,
+    "text": "16 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XVI",
+    "wrong1": "XIV",
+    "wrong2": "XVII",
+    "explanation": "10 (X) , 5 (V) ve 1 (I) birleşerek 10+5+1=16 (XVI) sayısını oluşturur."
+  },
+  {
+    "id": "mat3_yuvarlama_107",
+    "level": "orta",
+    "premise": null,
+    "text": "17 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XVII",
+    "wrong1": "XV",
+    "wrong2": "XVIII",
+    "explanation": "10 (X), 5 (V) ve 2 (II) sembollerinin birleşmesiyle 10 + 5 + 2 = 17 (XVII) oluşur."
+  },
+  {
+    "id": "mat3_yuvarlama_108",
+    "level": "orta",
+    "premise": null,
+    "text": "18 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XVIII",
+    "wrong1": "XIIX",
+    "wrong2": "XVII",
+    "explanation": "18 sayısı 10 + 5 + 3 şeklinde ayrılır. Bu da X + V + III yani 'XVIII' olarak yazılır."
+  },
+  {
+    "id": "mat3_yuvarlama_109",
+    "level": "orta",
+    "premise": null,
+    "text": "19 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XIX",
+    "wrong1": "XVIIII",
+    "wrong2": "XXI",
+    "explanation": "19 sayısı 10 + 9 olarak ayrılır. 10 (X) ve 9 (IX) yan yana yazılarak 'XIX' elde edilir."
+  },
+  {
+    "id": "mat3_yuvarlama_110",
+    "level": "orta",
+    "premise": null,
+    "text": "20 sayısının Romen rakamları ile yazılışı aşağıdakilerden hangisidir?",
+    "correct": "XX",
+    "wrong1": "VVVV",
+    "wrong2": "XIIX",
+    "explanation": "Her bir 'X' 10 demektir. İki tane 'X' yan yana gelince 10 + 10 = 20 (XX) olur."
+  },
+  {
+    "id": "mat3_yuvarlama_111",
+    "level": "orta",
+    "premise": "Romen rakamlarında aynı sembol yan yana yazılarak toplanır.",
+    "text": "Aşağıdaki Romen rakamlarından hangisinin yazımı YANLIŞTIR?",
+    "correct": "VIIII",
+    "wrong1": "IX",
+    "wrong2": "XIV",
+    "explanation": "Romen rakamlarında bir sembol yan yana en fazla 3 kez yazılabilir. 9 sayısı VIIII değil, IX olarak yazılır."
+  },
+  {
+    "id": "mat3_yuvarlama_112",
+    "level": "orta",
+    "premise": "Romen rakamlarında bir sembol en fazla 3 kez yan yana gelebilir.",
+    "text": "Buna göre aşağıdakilerden hangisi yanlıştır?",
+    "correct": "IIII",
+    "wrong1": "IV",
+    "wrong2": "VIII",
+    "explanation": "4 sayısını yazmak için IIII kullanılmaz, IV kullanılır."
+  },
+  {
+    "id": "mat3_yuvarlama_113",
+    "level": "orta",
+    "premise": null,
+    "text": "4 sayısının Romen rakamları ile doğru yazılışı hangisidir?",
+    "correct": "IV",
+    "wrong1": "IIII",
+    "wrong2": "VI",
+    "explanation": "4 sayısı, 5'ten (V) 1 (I) çıkarılarak yazılır: IV."
+  },
+  {
+    "id": "mat3_yuvarlama_114",
+    "level": "orta",
+    "premise": null,
+    "text": "V ve I sembolleri yan yana getirilerek yazılabilecek iki farklı sayı hangileridir?",
+    "correct": "IV ve VI",
+    "wrong1": "IV ve VII",
+    "wrong2": "VI ve VII",
+    "explanation": "I, V'nin soluna yazılırsa 4 (IV), sağına yazılırsa 6 (VI) olur."
+  },
+  {
+    "id": "mat3_yuvarlama_115",
+    "level": "orta",
+    "premise": null,
+    "text": "'XIX' Romen rakamından sonra gelen sayı aşağıdakilerden hangisidir?",
+    "correct": "XX",
+    "wrong1": "XVIII",
+    "wrong2": "XV",
+    "explanation": "XIX = 19'dur. 19'dan sonra 20 gelir. 20 sayısının Romen rakamıyla yazılışı XX'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_116",
+    "level": "zor",
+    "premise": "Bir matematik işleminde Romen rakamları kullanılmıştır: V + VII = ?",
+    "text": "İşlemin sonucunun Romen rakamıyla gösterilişi aşağıdakilerden hangisidir?",
+    "correct": "XII",
+    "wrong1": "XIII",
+    "wrong2": "XI",
+    "explanation": "V = 5 ve VII = 7. 5 + 7 = 12. 12'nin Romen rakamı karşılığı XII'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_117",
+    "level": "zor",
+    "premise": "Bir matematik işleminde Romen rakamları kullanılmıştır: XIX - X = ?",
+    "text": "İşlemin sonucunun Romen rakamıyla gösterilişi aşağıdakilerden hangisidir?",
+    "correct": "IX",
+    "wrong1": "VIII",
+    "wrong2": "XI",
+    "explanation": "XIX = 19 ve X = 10. 19 - 10 = 9. 9'un Romen rakamı karşılığı IX'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_118",
+    "level": "zor",
+    "premise": "Bir saat kadranında akrep Romen rakamıyla 'IX' üzerinde, yelkovan ise 'XII' üzerindedir.",
+    "text": "Buna göre saat tam olarak kaçtır?",
+    "correct": "09.00",
+    "wrong1": "11.00",
+    "wrong2": "04.00",
+    "explanation": "'IX' 9'u, 'XII' ise 12'yi gösterir. Akrep 9'da, yelkovan 12'de ise saat tam 9'dur."
+  },
+  {
+    "id": "mat3_yuvarlama_119",
+    "level": "zor",
+    "premise": "Bir asır 100 yıldır.",
+    "text": "20. (yirminci) yüzyılı ifade eden Romen rakamı aşağıdakilerden hangisidir?",
+    "correct": "XX",
+    "wrong1": "XII",
+    "wrong2": "XV",
+    "explanation": "20 sayısı iki adet 10'luk sembol olan 'XX' ile ifade edilir."
+  },
+  {
+    "id": "mat3_yuvarlama_120",
+    "level": "zor",
+    "premise": "Kumbara açıldığında içinden V tane 1 lira, X tane 50 kuruş çıkmıştır.",
+    "text": "Çıkan paraların toplam sayısı Romen rakamıyla nasıl ifade edilir?",
+    "correct": "XV",
+    "wrong1": "XX",
+    "wrong2": "XIII",
+    "explanation": "V (5) ve X (10) toplanır. 5 + 10 = 15 adet para çıkmıştır. 15 = XV."
+  },
+  {
+    "id": "mat3_yuvarlama_121",
+    "level": "zor",
+    "premise": "12 ile 18 arasındaki çift sayılar yazılacaktır.",
+    "text": "Bu sayıların Romen rakamıyla gösterimi aşağıdakilerden hangisidir?",
+    "correct": "XIV, XVI",
+    "wrong1": "XIII, XV, XVII",
+    "wrong2": "XII, XIV, XVI",
+    "explanation": "12 ile 18 arasındaki çift sayılar 14 (XIV) ve 16 (XVI)'dır."
+  },
+  {
+    "id": "mat3_yuvarlama_122",
+    "level": "zor",
+    "premise": "Romen rakamları ile sayıları yazarken bazı kurallara uyarız.",
+    "text": "10'dan geriye ikişer ritmik sayarken söylediğimiz sayılardan hangisinin Romen rakamlarında bir karşılığı yoktur?",
+    "correct": "0",
+    "wrong1": "2",
+    "wrong2": "4",
+    "explanation": "10, 8, 6, 4, 2, 0 diye sayarız. Romen rakamlarında '0' (sıfır) sembolü bulunmaz."
+  },
+  {
+    "id": "mat3_yuvarlama_123",
+    "level": "zor",
+    "premise": null,
+    "text": "Romen rakamları ile yazılmış 'XIX' sayısının basamaklarındaki rakamların toplamı (kendi kullandığımız onluk sisteminde) kaçtır?",
+    "correct": "10",
+    "wrong1": "19",
+    "wrong2": "11",
+    "explanation": "XIX sayısı 19'a eşittir. Kendi sistemimizde 19'un rakamları 1 ve 9'dur. Toplamları 1 + 9 = 10 eder."
+  },
+  {
+    "id": "mat3_yuvarlama_124",
+    "level": "zor",
+    "premise": "Ece'nin 'XV' tane kalemi vardır. Arkadaşına 'IV' tane verirse geriye kaç kalemi kalır?",
+    "text": "Kalan kalem sayısının Romen rakamlarıyla ifadesi nedir?",
+    "correct": "XI",
+    "wrong1": "IX",
+    "wrong2": "XII",
+    "explanation": "XV = 15, IV = 4'tür. 15 - 4 = 11 eder. 11 sayısı Romen rakamlarıyla XI olarak yazılır."
+  },
+  {
+    "id": "mat3_yuvarlama_125",
+    "level": "zor",
+    "premise": "Ali her gün 2 sayfa kitap okuyor.",
+    "text": "Buna göre Ali 'X' günde toplam kaç sayfa kitap okur?",
+    "correct": "XX",
+    "wrong1": "XV",
+    "wrong2": "X",
+    "explanation": "X = 10 gündür. Günde 2 sayfa okursa 10 x 2 = 20 sayfa okur. 20 sayısı Romen rakamlarıyla XX olarak yazılır."
+  },
+  {
+    "id": "mat3_yuvarlama_126",
+    "level": "zor",
+    "premise": "Ali'nin 14, Ayşe'nin 16 misketi vardır.",
+    "text": "Ali ve Ayşe'nin misket sayılarının Romen rakamlarıyla gösterilişi sırasıyla nasıldır?",
+    "correct": "XIV, XVI",
+    "wrong1": "XVI, XIV",
+    "wrong2": "XIV, XV",
+    "explanation": "14 sayısı XIV, 16 sayısı ise XVI şeklinde yazılır."
+  },
+  {
+    "id": "mat3_yuvarlama_127",
+    "level": "zor",
+    "premise": "Bir sınıfta XVIII kız öğrenci, XII erkek öğrenci vardır.",
+    "text": "Bu sınıftaki kız öğrenci sayısı, erkek öğrenci sayısından kaç fazladır?",
+    "correct": "VI",
+    "wrong1": "IV",
+    "wrong2": "V",
+    "explanation": "Kızlar XVIII (18), erkekler XII (12)'dir. 18 - 12 = 6 fazladır. 6'nın yazılışı VI'dır."
+  },
+  {
+    "id": "mat3_yuvarlama_128",
+    "level": "zor",
+    "premise": "Ömer, apartmanının XII. katında oturmaktadır. Mehmet ise Ömer'den V kat daha aşağıda oturmaktadır.",
+    "text": "Buna göre Mehmet kaçıncı katta oturmaktadır?",
+    "correct": "VII",
+    "wrong1": "XVII",
+    "wrong2": "VIII",
+    "explanation": "Ömer XII (12). katta. Mehmet V (5) kat aşağıdaysa 12 - 5 = 7. katta oturur. 7 sayısının Romen rakamıyla yazılışı VII'dir."
+  },
+  {
+    "id": "mat3_yuvarlama_129",
+    "level": "zor",
+    "premise": "Romen rakamlarında küçük rakam büyük rakamın soluna yazılarak çıkarma işlemi yapılır.",
+    "text": "Buna göre 1'den 20'ye kadar olan Romen rakamlarının kaç tanesinde bu kural kullanılmıştır?",
+    "correct": "4",
+    "wrong1": "3",
+    "wrong2": "5",
+    "explanation": "Bu kural 4 (IV), 9 (IX), 14 (XIV) ve 19 (XIX) sayılarında kullanılmıştır. Toplam 4 tanedir."
+  },
+  {
+    "id": "mat3_yuvarlama_130",
+    "level": "zor",
+    "premise": "Romen rakamlarında 10'dan küçük olan çift sayıları yazıyoruz.",
+    "text": "Yazdığımız bu sayıların kendi sistemimizdeki toplamı kaçtır ve Romen rakamlarıyla nasıl gösterilir?",
+    "correct": "20 -> XX",
+    "wrong1": "18 -> XVIII",
+    "wrong2": "30 -> XXX",
+    "explanation": "10'dan küçük çift sayılar: 2 (II), 4 (IV), 6 (VI), 8 (VIII). Toplamı: 2+4+6+8 = 20'dir. Romen rakamıyla XX olarak yazılır."
+  }
+]
