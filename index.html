@@ -84,8 +84,7 @@
 <link rel="stylesheet" href="styles/021-nova-name-frame-styles.css?v=30260605nameframes1" />
 <link rel="stylesheet" href="styles/022-style-022.css" />
 <link rel="stylesheet" href="styles/023-style-023.css" />
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&amp;family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="styles/024-nova-kids-login-styles.css" />
-<link rel="stylesheet" href="styles/059-login-premium.css?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&amp;family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- === Nova: Result Screen Cleanup & Premium Summary (CSS v3) === -->
 <link rel="stylesheet" href="styles/025-style-025.css?v=30260528wrongui2" />
 <link rel="stylesheet" href="styles/026-style-026.css" /><link rel="stylesheet" href="styles/027-style-027.css?v=30260526nova_result1" />
@@ -207,41 +206,64 @@
 <ul class="players-list" id="playersList"></ul>
 </div>
 </div>
-<!-- Öğrenci Seçimi Ekranı -->
-<div aria-labelledby="kidsLoginTitle" class="nova-kids-login" id="student-selection-screen" role="region">
-<div class="grid">
-<!-- Left: friendly hero -->
-<section class="hero">
-<span class="badge">🎒 Öğrenci Dostu • Hızlı Giriş</span>
-<h1 id="kidsLoginTitle">Düellox’a Hoş Geldin!</h1>
-<p class="lead">Sınıfını seç, adını yaz, şifreni gir. Hemen oyuna başla! Hem telefonda hem bilgisayarda pırıl pırıl.</p>
-<div aria-hidden="true" class="stickers">
-<div class="sticker">🏆 Başarı Rozeti</div>
-<div class="sticker" style="background:#ecfeff;border-color:#bae6fd;color:#0c4a6e">🧠 Zihin Egzersizi</div>
-<div class="sticker" style="background:#f0fdf4;border-color:#bbf7d0;color:#065f46">⏱️ Hızlı Başlangıç</div>
+<!-- Düellox Arena Giriş Ekranı -->
+<div aria-labelledby="kidsLoginTitle" class="nova-login-arena" id="student-selection-screen" role="region">
+<div aria-hidden="true" class="nova-login-arena__bg">
+<div class="nova-login-arena__stars"></div>
+<div class="nova-login-arena__aurora"></div>
+<div class="nova-login-arena__grid"></div>
+<div class="nova-login-arena__orb nova-login-arena__orb--a"></div>
+<div class="nova-login-arena__orb nova-login-arena__orb--b"></div>
 </div>
-<!-- simple SVG mascot -->
-<svg aria-hidden="true" class="mascot" fill="none" viewbox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-<circle cx="60" cy="60" fill="#FFCF5A" opacity=".6" r="50"></circle>
-<circle cx="45" cy="50" fill="#0b1220" r="6"></circle>
-<circle cx="75" cy="50" fill="#0b1220" r="6"></circle>
-<path d="M40 78 C 56 90, 64 90, 80 78" stroke="#0b1220" stroke-linecap="round" stroke-width="6"></path>
+<div class="nova-login-arena__shell">
+<header class="nova-login-arena__brand">
+<span class="nova-login-arena__brand-badge">⚔️ Bilgi Düellosu</span>
+<div class="nova-login-arena__logo-wrap">
+<div aria-hidden="true" class="nova-login-arena__logo-glow"></div>
+<h1 class="nova-login-arena__title" id="kidsLoginTitle">Düello<span class="nova-login-arena__title-x">x</span></h1>
+</div>
+<p class="nova-login-arena__tagline">Bilgi arenasına gir, rakiplerini geç, zirveye oyna. Sınıfını seç ve mücadeleye katıl.</p>
+<div aria-hidden="true" class="nova-login-arena__features">
+<div class="nova-login-arena__feat"><span class="nova-login-arena__feat-icon">⚔️</span> Canlı Düello</div>
+<div class="nova-login-arena__feat"><span class="nova-login-arena__feat-icon">🏆</span> Sıralama</div>
+<div class="nova-login-arena__feat"><span class="nova-login-arena__feat-icon">🐉</span> Kahramanlar</div>
+</div>
+<svg aria-hidden="true" class="nova-login-arena__duel-art" fill="none" viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="nlSwordA" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#00f0ff"/>
+<stop offset="100%" stop-color="#66a6ff"/>
+</linearGradient>
+<linearGradient id="nlSwordB" x1="100%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#f472b6"/>
+<stop offset="100%" stop-color="#a855f7"/>
+</linearGradient>
+</defs>
+<circle cx="170" cy="60" fill="rgba(0,240,255,0.12)" r="44" stroke="rgba(0,240,255,0.35)" stroke-width="2"/>
+<circle cx="170" cy="60" fill="none" opacity="0.5" r="58" stroke="rgba(168,85,247,0.25)" stroke-dasharray="4 8" stroke-width="1"/>
+<path d="M68 92 L118 38 L128 48 L78 102 Z" fill="url(#nlSwordA)" opacity="0.9"/>
+<path d="M68 92 L78 102 L72 108 L62 98 Z" fill="#00ffcc"/>
+<path d="M272 92 L222 38 L212 48 L262 102 Z" fill="url(#nlSwordB)" opacity="0.9"/>
+<path d="M272 92 L262 102 L268 108 L278 98 Z" fill="#f472b6"/>
+<path d="M150 60 L190 60" stroke="rgba(0,240,255,0.6)" stroke-linecap="round" stroke-width="3"/>
+<circle cx="170" cy="60" fill="#00f0ff" r="6"/>
 </svg>
-</section>
-<!-- Right: login card -->
-<section aria-label="Giriş paneli" class="card">
-<div class="toprow">
-<div class="brand"><span class="dot"></span> <span>Düellox</span></div>
+<div class="nova-login-arena__publisher">NASK GAMES</div>
+</header>
+<section aria-label="Giriş paneli" class="nova-login-arena__panel card">
+<div class="nova-login-arena__panel-header">
+<h2>Oyuna Giriş<span>Sınıfını seç, kullanıcı adını ve şifreni gir</span></h2>
 <button aria-label="Kayıt Ol" class="register-link" id="register-button" type="button">Kayıt Ol</button>
 </div>
-<p class="subtitle">Sınıfını seç, kullanıcı adını ve şifreni gir.</p>
 <form novalidate="">
-<div class="field">
+<div class="field field--class">
+<label class="nova-login-field-label" for="selection-class-select">Sınıf</label>
+<div class="field__control">
 <span aria-hidden="true" class="ico">🏫</span>
-<label class="sr" for="selection-class-select">Sınıf</label>
 <select id="selection-class-select">
-<option value="">Sınıfını Seç</option>
+<option value="">Sınıfını seç…</option>
 </select>
+</div>
 </div>
 <div class="row">
 <div class="field">
@@ -253,33 +275,33 @@
 <span aria-hidden="true" class="ico">🔒</span>
 <label class="sr" for="student-password-input">Şifre</label>
 <input autocomplete="current-password" id="student-password-input" placeholder="Şifre" type="password"/>
-<span aria-label="Şifreyi göster/gizle" class="eye" id="togglePwd" role="button">👁️</span>
+<span aria-label="Şifreyi göster/gizle" class="eye" id="togglePwd" role="button" tabindex="0">👁</span>
 </div>
 </div>
 <div class="actions">
-<label class="muted" style="display:flex;align-items:center;gap:8px">
-<input id="rememberMe" style="accent-color:#5b8cff" type="checkbox"/> Beni hatırla
-          </label>
+<label class="muted">
+<input id="rememberMe" type="checkbox"/> Beni hatırla
+</label>
 <button class="link" id="forgot" type="button">Şifremi Unuttum?</button>
 </div>
-<button class="cta" disabled="" id="login-button" type="button">Hemen Başla</button>
+<button class="cta" disabled="" id="login-button" type="button">Arenaya Gir</button>
 <div aria-live="polite" class="error" id="student-selection-error" role="alert"></div>
 <div aria-live="polite" class="helper">
-<span>📌</span>
-<span>İpucu: Alanları doldurunca buton aktif olur. Enter’a basarak da başlayabilirsin.</span>
+<span>⚡</span>
+<span>Alanları doldur, <strong>Arenaya Gir</strong> ile mücadeleye başla. Enter tuşu da işe yarar.</span>
 </div>
 </form>
 </section>
 </div>
 </div>
-<script src="js/ui/nova-login-fast-boot.js?v=30260605loginfast2"></script>
+<script src="js/ui/nova-login-fast-boot.js?v=30260606loginarena1"></script>
 <!-- Giriş: Firebase + sınıf listesi — oyun scriptlerinden önce, defer ile parse bloklamaz -->
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script defer src="js/screens/007-script-007.js?v=30260608bootv8"></script>
-<script defer src="js/screens/022-nova-kids-login-js.js?v=30260605loginfast2"></script>
+<script defer src="js/screens/022-nova-kids-login-js.js?v=30260606loginarena1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
 <link rel="stylesheet" href="styles/063-nova-screen-loader.css?v=30260605storeboot1" />
@@ -633,7 +655,7 @@
 <div class="registration-content nova-register-card">
 <div class="registration-header nova-register-header">
 <div class="nova-register-headcopy">
-<span class="nova-register-badge">🎮 Yeni Oyuncu</span>
+<span class="nova-register-badge">⚔️ Yeni Oyuncu</span>
 <h2 id="registerModalTitle">Yeni Hesap Oluştur</h2>
 <p class="registration-subtitle">Sınıfını seç, bilgilerini gir ve Düellox’a katıl.</p>
 </div>
@@ -909,7 +931,7 @@
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=30260608add4" />
 <script defer src="js/core/nova-turkish-hyphen.js?v=1"></script>
 <script defer src="js/core/nova-question-markup.js?v=30260608add4"></script>
-<script defer src="js/ui/006-nova-game-select.js?v=30260604topiclabel1"></script>
+<script defer src="js/ui/006-nova-game-select.js?v=30260606loginarena2"></script>
 <script defer src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
 <script defer src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
 <script defer src="js/ui/nova-duel-arena-intro.js?v=30260531arenaintro1"></script>
@@ -1387,7 +1409,7 @@
 </div>
 <script defer src="js/ui/049-nova-wait-script.js?v=30260529duelwait1"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=30260413q3preamble" />
-<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=30260604topiclabel1" />
+<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=30260606loginarena2" />
 <link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=30260526hero_store3" />
 <link rel="stylesheet" href="styles/069-nova-hero-premium-motion.css?v=30260527cheer1" />
 <link rel="stylesheet" href="styles/083-nova-turbo-turtle-hero.css?v=30260527turbo2" />
@@ -1413,7 +1435,8 @@
 <link rel="stylesheet" href="styles/068-nova-duel-fullscreen-layout.css?v=30260522duelfix1" />
 <link rel="stylesheet" href="styles/nova-duel-arena-intro.css?v=30260531arenaintro1" />
 <link rel="stylesheet" href="styles/nova-duel-game-premium.css?v=30260531pin1" />
-<link rel="stylesheet" href="styles/065-nova-registration-premium.css" />
+<link rel="stylesheet" href="styles/065-nova-registration-premium.css?v=30260606loginarena2" />
+<link rel="stylesheet" href="styles/116-nova-login-arena.css?v=30260606loginarena2" />
 <script defer src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
 <script defer src="js/ui/012-nova-store-hub.js?v=30260605storeboot2"></script>
 <!-- Eski SVG temel kahraman scriptleri kaldırıldı (performans) — Alev Bot, Turbo, Çılgın Kanat, Buba, Pati -->
@@ -1498,25 +1521,6 @@
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
-<style id="nova-login-final-override">
-#student-selection-screen.nova-kids-login .card{
-  border:1px solid rgba(255,255,255,.78) !important;
-  box-shadow:0 24px 60px rgba(15,23,42,.22), inset 0 1px 0 rgba(255,255,255,.82) !important;
-  background:linear-gradient(180deg,#ffffff,#f8fbff) !important;
-}
-#student-selection-screen.nova-kids-login .hero{
-  border:1px solid rgba(255,255,255,.75) !important;
-  box-shadow:0 22px 56px rgba(15,23,42,.18), inset 0 1px 0 rgba(255,255,255,.78) !important;
-}
-#student-selection-screen.nova-kids-login .cta.active{
-  box-shadow:0 16px 34px rgba(91,140,255,.36), inset 0 1px 0 rgba(255,255,255,.4) !important;
-}
-.verification-content{
-  border:1px solid rgba(255,255,255,.78) !important;
-  box-shadow:0 24px 60px rgba(2,8,23,.42), inset 0 1px 0 rgba(255,255,255,.8) !important;
-  background:linear-gradient(180deg,#ffffff,#f8fbff) !important;
-}
-</style>
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
 #tools-open-button.profile-tools-button:not(.nova-tools-rail-btn){

@@ -313,7 +313,7 @@
 
     const tone = sel.closest('#single-player-screen') || sel.closest('#duel-selection-screen')
       ? 'arena'
-      : 'login';
+      : (sel.id === 'registerClassSelect' ? 'register' : 'login');
 
     const wrap = document.createElement('div');
     wrap.className = 'nova-game-select nova-game-select--' + tone;

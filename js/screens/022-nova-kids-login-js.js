@@ -9,10 +9,15 @@
   const eye = document.getElementById('togglePwd');
 
   // Şifre göster/gizle
-  eye?.addEventListener('click', () => {
+  function togglePwdVisibility() {
     const type = pass.type === 'password' ? 'text' : 'password';
     pass.type = type;
-    eye.textContent = type === 'password' ? '👁️' : '🙈';
+    eye.textContent = type === 'password' ? '👁' : '🙈';
+    eye.setAttribute('aria-pressed', type === 'text' ? 'true' : 'false');
+  }
+  eye?.addEventListener('click', togglePwdVisibility);
+  eye?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePwdVisibility(); }
   });
 
   function validate(){

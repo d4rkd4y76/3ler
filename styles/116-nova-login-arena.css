@@ -1,0 +1,556 @@
+/* ═══ Düellox — Arena Giriş Ekranı (tam ekran, oyun odaklı) ═══ */
+
+#student-selection-screen.nova-login-arena {
+  --nl-neon: #00f0ff;
+  --nl-mint: #00ffcc;
+  --nl-blue: #66a6ff;
+  --nl-violet: #a855f7;
+  --nl-rose: #f472b6;
+  --nl-ink: #e9f4ff;
+  --nl-muted: #94a3b8;
+  --nl-panel: rgba(8, 18, 40, 0.82);
+  --nl-border: rgba(0, 200, 255, 0.38);
+  --nl-glow: rgba(0, 240, 255, 0.22);
+  --nl-err: #ff6b8a;
+
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--nl-ink);
+  background: radial-gradient(1200px 700px at 50% 120%, #061129 0%, #040a1a 42%, #020611 72%, #01030a 100%);
+}
+
+html:not(.nova-has-session) #student-selection-screen.nova-login-arena {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* ── Arka plan katmanları ── */
+.nova-login-arena__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nova-login-arena__stars {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.75;
+  background:
+    radial-gradient(2px 2px at 18% 28%, #d1e6ff 50%, transparent 51%) repeat,
+    radial-gradient(1px 1px at 62% 68%, #9bc2ff 50%, transparent 51%) repeat,
+    radial-gradient(1px 1px at 82% 18%, #ffffff 50%, transparent 51%) repeat;
+  background-size: 300px 300px, 250px 250px, 200px 200px;
+  animation: novaLoginStarDrift 42s linear infinite;
+}
+
+.nova-login-arena__aurora {
+  position: absolute;
+  inset: -15%;
+  background: conic-gradient(
+    from 0deg at 50% -8%,
+    rgba(0, 255, 255, 0.07),
+    transparent 22%,
+    rgba(168, 85, 247, 0.08) 42%,
+    transparent 62%,
+    rgba(0, 255, 200, 0.06) 82%,
+    transparent
+  );
+  filter: blur(10px);
+  animation: novaLoginAuroraSweep 14s linear infinite;
+}
+
+.nova-login-arena__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(0, 200, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 200, 255, 0.15) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 75%);
+}
+
+.nova-login-arena__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.45;
+  animation: novaLoginOrbFloat 8s ease-in-out infinite;
+}
+
+.nova-login-arena__orb--a {
+  width: 280px;
+  height: 280px;
+  top: 8%;
+  left: -4%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.35), transparent 70%);
+}
+
+.nova-login-arena__orb--b {
+  width: 320px;
+  height: 320px;
+  bottom: 6%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.28), transparent 70%);
+  animation-delay: -3s;
+}
+
+@keyframes novaLoginStarDrift {
+  to { transform: translateY(-180px); }
+}
+
+@keyframes novaLoginAuroraSweep {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes novaLoginOrbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(12px, -16px) scale(1.06); }
+}
+
+/* ── Ana kabuk ── */
+.nova-login-arena__shell {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(20px, 4vw, 48px);
+  align-items: center;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding:
+    max(20px, env(safe-area-inset-top))
+    clamp(16px, 4vw, 32px)
+    max(20px, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 900px) {
+  .nova-login-arena__shell {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: clamp(16px, 3vw, 28px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ── Marka vitrini ── */
+.nova-login-arena__brand {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.5vw, 22px);
+  padding: clamp(8px, 2vw, 16px) 0;
+}
+
+.nova-login-arena__brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nl-mint);
+  background: rgba(0, 255, 200, 0.08);
+  border: 1px solid rgba(0, 255, 200, 0.28);
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.12);
+}
+
+.nova-login-arena__logo-wrap {
+  position: relative;
+  width: fit-content;
+}
+
+.nova-login-arena__logo-glow {
+  position: absolute;
+  inset: -20% -10%;
+  background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.35), transparent 65%);
+  filter: blur(24px);
+  pointer-events: none;
+  animation: novaLoginLogoPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes novaLoginLogoPulse {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+#student-selection-screen.nova-login-arena .nova-login-arena__title {
+  position: relative;
+  margin: 0;
+  font-family: "Comfortaa", "Baloo 2", cursive, sans-serif;
+  font-size: clamp(42px, 8vw, 76px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, var(--nl-neon) 35%, var(--nl-mint) 65%, var(--nl-blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 28px rgba(0, 240, 255, 0.45));
+}
+
+.nova-login-arena__title-x {
+  background: linear-gradient(135deg, var(--nl-rose), var(--nl-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nova-login-arena__tagline {
+  margin: 0;
+  max-width: 28em;
+  font-size: clamp(15px, 2.2vw, 18px);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--nl-muted);
+}
+
+.nova-login-arena__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.nova-login-arena__feat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nl-ink);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.nova-login-arena__feat-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.nova-login-arena__duel-art {
+  margin-top: clamp(8px, 2vw, 16px);
+  width: min(100%, 340px);
+  opacity: 0.85;
+}
+
+.nova-login-arena__publisher {
+  margin-top: auto;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.65);
+}
+
+@media (max-width: 900px) {
+  .nova-login-arena__brand {
+    text-align: center;
+    align-items: center;
+  }
+  .nova-login-arena__tagline { text-align: center; }
+  .nova-login-arena__features { justify-content: center; }
+  .nova-login-arena__duel-art { display: none; }
+  .nova-login-arena__publisher { margin-top: 8px; }
+}
+
+/* ── Giriş paneli ── */
+#student-selection-screen.nova-login-arena .nova-login-arena__panel.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(22px, 4vw, 32px);
+  border-radius: 22px;
+  background: var(--nl-panel);
+  border: 1px solid var(--nl-border);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 40px var(--nl-glow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.nova-login-arena__panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--nl-neon), var(--nl-mint), transparent);
+  opacity: 0.85;
+}
+
+.nova-login-arena__panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nova-login-arena__panel-header h2 {
+  margin: 0;
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.nova-login-arena__panel-header h2 span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nl-muted);
+}
+
+#student-selection-screen.nova-login-arena .register-link {
+  flex-shrink: 0;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 200, 255, 0.35);
+  background: rgba(0, 200, 255, 0.08);
+  color: var(--nl-neon);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+#student-selection-screen.nova-login-arena .register-link:hover {
+  background: rgba(0, 200, 255, 0.16);
+  border-color: rgba(0, 240, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+#student-selection-screen.nova-login-arena form {
+  display: grid;
+  gap: 14px;
+}
+
+#student-selection-screen.nova-login-arena .nova-login-field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #00f0ff;
+  margin-bottom: 2px;
+}
+
+#student-selection-screen.nova-login-arena .field--class {
+  gap: 10px;
+}
+
+#student-selection-screen.nova-login-arena .field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 15px;
+  border-radius: 14px;
+  background: rgba(4, 12, 28, 0.72);
+  border: 1.5px solid rgba(0, 160, 220, 0.22);
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.12s;
+}
+
+#student-selection-screen.nova-login-arena .field:focus-within {
+  border-color: rgba(0, 240, 255, 0.55);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.12), 0 8px 28px rgba(0, 200, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+#student-selection-screen.nova-login-arena .ico {
+  flex-shrink: 0;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+#student-selection-screen.nova-login-arena .field input,
+#student-selection-screen.nova-login-arena .field select {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 100%;
+  color: var(--nl-ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#student-selection-screen.nova-login-arena .field select option {
+  background: #0a1628;
+  color: var(--nl-ink);
+}
+
+#student-selection-screen.nova-login-arena .field input::placeholder {
+  color: rgba(148, 163, 184, 0.75);
+  font-weight: 500;
+}
+
+#student-selection-screen.nova-login-arena .eye {
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-size: 16px;
+  opacity: 0.75;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+#student-selection-screen.nova-login-arena .eye:hover {
+  opacity: 1;
+  background: rgba(0, 200, 255, 0.1);
+}
+
+#student-selection-screen.nova-login-arena .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 560px) {
+  #student-selection-screen.nova-login-arena .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+#student-selection-screen.nova-login-arena .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#student-selection-screen.nova-login-arena .muted {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--nl-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#student-selection-screen.nova-login-arena .muted input {
+  accent-color: var(--nl-neon);
+  width: 16px;
+  height: 16px;
+}
+
+#student-selection-screen.nova-login-arena .link {
+  background: none;
+  border: 0;
+  color: var(--nl-blue);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+#student-selection-screen.nova-login-arena .link:hover {
+  color: var(--nl-neon);
+  text-decoration: underline;
+}
+
+#student-selection-screen.nova-login-arena .cta {
+  width: 100%;
+  border: 0;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #041018;
+  background: linear-gradient(135deg, var(--nl-neon) 0%, var(--nl-mint) 45%, var(--nl-blue) 100%);
+  box-shadow: 0 12px 32px rgba(0, 240, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  cursor: not-allowed;
+  opacity: 0.45;
+  transition: transform 0.18s, box-shadow 0.18s, opacity 0.18s;
+}
+
+#student-selection-screen.nova-login-arena .cta.active {
+  cursor: pointer;
+  opacity: 1;
+}
+
+#student-selection-screen.nova-login-arena .cta.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 240, 255, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+#student-selection-screen.nova-login-arena .cta.active:active {
+  transform: translateY(0);
+}
+
+#student-selection-screen.nova-login-arena .error {
+  min-height: 22px;
+  color: var(--nl-err);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#student-selection-screen.nova-login-arena .helper {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(0, 255, 200, 0.85);
+  background: rgba(0, 255, 200, 0.06);
+  border: 1px solid rgba(0, 255, 200, 0.18);
+}
+
+#student-selection-screen.nova-login-arena .sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+body.nova-login-fast-visible {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-login-arena__stars,
+  .nova-login-arena__aurora,
+  .nova-login-arena__orb,
+  .nova-login-arena__logo-glow {
+    animation: none !important;
+  }
+  #student-selection-screen.nova-login-arena .field,
+  #student-selection-screen.nova-login-arena .cta {
+    transition: none !important;
+  }
+}

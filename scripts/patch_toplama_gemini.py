@@ -249,6 +249,16 @@ def build_two_step_explanation(exp: str) -> str | None:
     return "\n".join(lines)
 
 
+def apply_why_context(q: dict) -> dict:
+    """Mevcut aciklamaya 'neden topluyoruz' on ekini uygular (dikey cozum ayni kalir)."""
+    try:
+        from patch_toplama_why_context import patch_question as why_patch
+    except ImportError:
+        from scripts.patch_toplama_why_context import patch_question as why_patch  # type: ignore
+    patched, _ = why_patch(q)
+    return patched
+
+
 def patch_question(q: dict) -> dict:
     q = dict(q)
     text = normalize_add_markup((q.get("text") or "").strip())
@@ -269,32 +279,32 @@ def patch_question(q: dict) -> dict:
             f"[[addsol:{subtrahend}+{ans}]] kontrolü: {subtrahend} + {ans} = {tot}\n"
             f"Ters işlem: {tot} − {subtrahend} = **{ans}**."
         )
-        return q
+        return apply_why_context(q)
 
     two = build_two_step_explanation(exp)
     if two:
         q["explanation"] = two
-        return q
+        return apply_why_context(q)
 
     correct = int(q["correct"]) if str(q.get("correct", "")).isdigit() else None
     if correct is not None:
         triple = extract_addends_from_premise(q.get("premise", "") or text, correct)
         if triple:
             q["explanation"] = build_multi_add_explanation(triple, correct)
-            return q
+            return apply_why_context(q)
 
     m3 = ADD_THREE.search(exp)
     if m3:
         a3, b3, c3 = int(m3.group(1)), int(m3.group(2)), int(m3.group(3))
         q["explanation"] = build_three_add_explanation(a3, b3, c3, a3 + b3 + c3)
-        return q
+        return apply_why_context(q)
 
     found = find_addition(q)
     if found:
         a, b, res = found
         q["explanation"] = build_add_explanation(a, b, res)
 
-    return q
+    return apply_why_context(q)
 
 
 def main() -> int:

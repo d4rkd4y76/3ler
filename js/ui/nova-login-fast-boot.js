@@ -56,6 +56,10 @@
 
     el.style.visibility = 'visible';
 
+    el.style.position = 'fixed';
+
+    el.style.inset = '0';
+
     el.dataset.novaFastShown = '1';
 
     try {
