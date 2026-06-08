@@ -310,7 +310,7 @@ body.nova-perf-ultra:not(.nova-perf-hq-active) .surprise-box{
   animation:none !important;
   filter:none !important;
 }
-body.nova-perf-ultra:not(.nova-perf-hq-active) *:not(.avatar-framed):not(.store-avatar-frame):not(.nova-name-frame):not(.nova-name-frame *):not(.nova-name-basic){
+body.nova-perf-ultra:not(.nova-perf-hq-active) *:not(.avatar-framed):not(.store-avatar-frame):not(.nova-name-frame):not(.nova-name-frame *):not(.nova-name-basic):not(.roborox-page-layer){
   backdrop-filter:none !important;
   transition:none !important;
   box-shadow:none !important;

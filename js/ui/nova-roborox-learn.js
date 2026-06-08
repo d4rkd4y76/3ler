@@ -280,6 +280,56 @@
     preloadAdjacent();
   }
 
+  function whenPageReady(img, cb) {
+    if (!img) {
+      cb();
+      return;
+    }
+    if (img.complete && img.naturalWidth > 0) {
+      cb();
+      return;
+    }
+    function done() {
+      img.removeEventListener("load", done);
+      img.removeEventListener("error", done);
+      cb();
+    }
+    img.addEventListener("load", done);
+    img.addEventListener("error", done);
+  }
+
+  function runSlideTransition(incoming, outgoing, enterClass, exitClass, toIdx) {
+    incoming.classList.add(enterClass);
+    outgoing.classList.add("is-active");
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        incoming.classList.remove(enterClass);
+        incoming.classList.add("is-settled");
+        outgoing.classList.add(exitClass);
+      });
+    });
+
+    let finished = false;
+    function complete() {
+      if (finished) return;
+      finished = true;
+      activePage = incoming;
+      idlePage = outgoing;
+      finishSlide(toIdx, incoming, outgoing);
+    }
+
+    const timer = window.setTimeout(complete, SLIDE_MS + 80);
+    function onEnd(ev) {
+      if (ev.target !== incoming) return;
+      if (ev.propertyName !== "transform" && ev.propertyName !== "opacity") return;
+      window.clearTimeout(timer);
+      incoming.removeEventListener("transitionend", onEnd);
+      complete();
+    }
+    incoming.addEventListener("transitionend", onEnd, { passive: true });
+  }
+
   function animatePage(direction) {
     if (animating || !activePage || !idlePage || !pageViewport) return;
     if (direction === "next" && pageIndex >= images.length - 1) return;
@@ -296,41 +346,15 @@
     resetPageClasses(incoming);
     resetPageClasses(outgoing);
     incoming.src = toUrl;
-    incoming.alt =
-      (reader.dataset.title || "Sayfa") + " — " + (toIdx + 1);
+    incoming.alt = (reader.dataset.title || "Sayfa") + " — " + (toIdx + 1);
 
     const enterClass = direction === "next" ? "is-enter-right" : "is-enter-left";
     const exitClass = direction === "next" ? "is-exit-left" : "is-exit-right";
 
-    incoming.classList.add(enterClass);
-    outgoing.classList.add("is-active");
-
-    void incoming.offsetWidth;
-
-    incoming.classList.remove(enterClass);
-    incoming.classList.add("is-settled");
-    outgoing.classList.add(exitClass);
-
-    let done = false;
-    function complete() {
-      if (done) return;
-      done = true;
-      activePage = incoming;
-      idlePage = outgoing;
-      finishSlide(toIdx, incoming, outgoing);
-    }
-
-    const timer = window.setTimeout(complete, SLIDE_MS + 40);
-    incoming.addEventListener(
-      "transitionend",
-      function onEnd(ev) {
-        if (ev.propertyName !== "transform" && ev.propertyName !== "opacity") return;
-        window.clearTimeout(timer);
-        incoming.removeEventListener("transitionend", onEnd);
-        complete();
-      },
-      { passive: true }
-    );
+    whenPageReady(incoming, function () {
+      if (!animating || incoming.src !== toUrl) return;
+      runSlideTransition(incoming, outgoing, enterClass, exitClass, toIdx);
+    });
   }
 
   if (learnOpenBtn) {

@@ -448,12 +448,21 @@ body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope {
   -webkit-user-drag: none;
   pointer-events: none;
   will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transition:
     transform 0.48s cubic-bezier(0.34, 1.2, 0.64, 1),
     opacity 0.38s ease;
-  transform: translateX(0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
   opacity: 0;
   z-index: 1;
+}
+
+body.nova-perf-ultra.roborox-reader-open .roborox-page-layer,
+body.nova-perf-performance.roborox-reader-open .roborox-page-layer {
+  transition:
+    transform 0.48s cubic-bezier(0.34, 1.2, 0.64, 1),
+    opacity 0.38s ease !important;
 }
 
 .roborox-page-layer.is-active {
@@ -462,31 +471,31 @@ body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope {
 }
 
 .roborox-page-layer.is-enter-right {
-  transform: translateX(105%) scale(0.96);
+  transform: translate3d(105%, 0, 0) scale(0.96);
   opacity: 1;
   z-index: 3;
 }
 
 .roborox-page-layer.is-enter-left {
-  transform: translateX(-105%) scale(0.96);
+  transform: translate3d(-105%, 0, 0) scale(0.96);
   opacity: 1;
   z-index: 3;
 }
 
 .roborox-page-layer.is-exit-left {
-  transform: translateX(-28%) scale(0.94);
+  transform: translate3d(-28%, 0, 0) scale(0.94);
   opacity: 0;
   z-index: 2;
 }
 
 .roborox-page-layer.is-exit-right {
-  transform: translateX(28%) scale(0.94);
+  transform: translate3d(28%, 0, 0) scale(0.94);
   opacity: 0;
   z-index: 2;
 }
 
 .roborox-page-layer.is-settled {
-  transform: translateX(0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
   opacity: 1;
   z-index: 2;
 }
