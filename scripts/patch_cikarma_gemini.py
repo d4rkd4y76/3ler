@@ -125,25 +125,25 @@ ZIHINDEN: dict[str, tuple[int, int, str]] = {
 
 STEP_DIVIDER = "[[stephr]]"
 
+PLACE_SHORT = {
+    "birler": "Birler",
+    "onlar": "Onlar",
+    "yüzler": "Yüzler",
+}
+
 
 def fmt_final_result(n: int) -> str:
     return f"Sonuç: [[result:{n}]]"
 
 
-def borrow_intro() -> str:
-    return (
-        "**Onluk bozma:** Toplama da **elde** taşırız; çıkarmada üst rakam yetmezse sol komşudan "
-        "**1 onluk** alırız (1 onluk = 10 birlik). İşlemde kırmızı çizgili eski rakam silinir, "
-        "**üstüne yeni değer** yazılır — hem onluk veren hem alan basamakta."
-    )
+def place_label(place: str) -> str:
+    return PLACE_SHORT.get(place, place.capitalize())
 
 
 def place_names(length: int) -> list[str]:
-    if length == 3:
-        return ["yüzler", "onlar", "birler"]
-    if length == 2:
-        return ["onlar", "birler"]
-    return [f"{i + 1}. basamak" for i in range(length)]
+    from math_place_utils import place_names as _pn
+
+    return _pn(length)
 
 
 def compute_sub_steps(a: int, b: int) -> tuple[list[dict], int, bool, bool]:
@@ -214,39 +214,33 @@ def sub_title(any_borrow: bool, hundred_borrow: bool) -> str:
 
 
 def sub_step_line(step: dict) -> str:
-    p = step["place"].capitalize()
+    from math_place_utils import rakam_ablative
+
+    label = place_label(step["place"])
     da, db, digit = step["da"], step["db"], step["digit"]
     if step["borrowed"]:
         eff = step["available"]
         top = step["top"]
-        bf_name = step.get("borrow_from_name") or "sol komşu"
+        kaynak = rakam_ablative(eff)
         if step.get("cascade_zero"):
-            return (
-                f"• {p} basamağı: {eff}'den {db} çıkmaz. "
-                f"Ara basamak **0** olduğu için sola **onluk bozulur** (0'lar 9 olur). "
-                f"Alttaki **{eff}** kırmızı çizilir, üstüne **{top}** yazılır → "
-                f"{top} − {db} = **{digit}**."
-            )
-        return (
-            f"• {p} basamağı: {eff}'den {db} çıkmaz → {bf_name} basamağından "
-            f"**1 onluk bozarız**. Alttaki **{eff}** kırmızı çizilir, üstüne **{top}** yazılır → "
-            f"{top} − {db} = **{digit}**."
-        )
-    if step.get("lent"):
+            calc = f"{top} − {db} = **{digit}**"
+            body = f"{kaynak} {db} çıkmaz · sola boz · {calc}"
+        else:
+            calc = f"{top} − {db} = **{digit}**"
+            body = f"{kaynak} {db} çıkmaz · onluk al · {calc}"
+    elif step.get("lent"):
         avail = step["available"]
-        right = (step.get("lent_to_name") or "sağ").capitalize()
-        return (
-            f"• {p} basamağı: {right} basamağına **1 onluk verdik**. "
-            f"Alttaki **{da}** kırmızı çizilir, üstüne **{avail}** yazılır → "
-            f"{avail} − {db} = **{digit}**."
-        )
-    avail = step.get("available", da)
-    return f"• {p} basamağı: {avail} − {db} = **{digit}** yazılır."
+        body = f"Onluk verdik · {avail} − {db} = **{digit}**"
+    else:
+        avail = step.get("available", da)
+        body = f"{avail} − {db} = **{digit}**"
+    return f"**{label} basamağı**\n{body}"
 
 
 def build_zihinden_explanation(a: int, b: int, hint: str) -> str:
-    body = build_sub_explanation(a, b)
-    return f"Zihinden çıkarma — {hint}\n\n{body}"
+    _, calc, any_borrow, _ = compute_sub_steps(a, b)
+    title = sub_title(any_borrow, False)
+    return f"{hint}\n\n{title}:\n[[subsol:{a}-{b}]]\n{fmt_final_result(calc)}"
 
 
 def build_sub_explanation(
@@ -257,9 +251,10 @@ def build_sub_explanation(
         result = calc
     title = sub_title(any_borrow, hundred_borrow)
     lines = [f"{title}:", f"[[subsol:{a}-{b}]]"]
-    if any_borrow:
-        lines.append(borrow_intro())
-    lines.extend(sub_step_line(s) for s in steps)
+    for i, s in enumerate(steps):
+        if i > 0:
+            lines.append(STEP_DIVIDER)
+        lines.append(sub_step_line(s))
     if step_only:
         lines.append(f"→ **{result}**")
     else:
@@ -288,12 +283,30 @@ def build_add_explanation(
     eldeli = any(s["carry_out"] for s in steps)
     title = "Eldeli toplama" if eldeli else "Eldesiz toplama"
     lines = [f"{title} (ters işlem):", f"[[addsol:{a}+{b}]]"]
-    lines.extend(add_step_line(s) for s in steps)
+    for i, s in enumerate(steps):
+        if i > 0:
+            lines.append(STEP_DIVIDER)
+        lines.append(add_step_line_short(s))
     if step_only:
         lines.append(f"→ **{result}**")
     else:
         lines.append(fmt_final_result(result))
     return "\n".join(lines)
+
+
+def add_step_line_short(step: dict) -> str:
+    p = place_label(step["place"])
+    da, db = step["da"], step["db"]
+    cin, cout, digit = step["carry_in"], step["carry_out"], step["digit"]
+    if cin and cout:
+        body = f"{da} + {db} + elde {cin} = **{digit}** · 1 elde"
+    elif cout:
+        body = f"{da} + {db} = **{digit}** · 1 elde"
+    elif cin:
+        body = f"{da} + {db} + elde {cin} = **{digit}**"
+    else:
+        body = f"{da} + {db} = **{digit}**"
+    return f"**{p} basamağı**\n{body}"
 
 
 def build_two_step_explanation(steps: list[tuple[str, int, int, int | None]]) -> str:

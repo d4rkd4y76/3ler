@@ -393,9 +393,9 @@
 </div>
 </div>
 <div class="main-screen-hero-right" id="main-screen-quest-slot">
-<button class="profile-tools-button nova-main-rail-btn nova-tools-rail-btn" id="tools-open-button" type="button" aria-label="Araçlar menüsünü aç">
-<span class="profile-tools-icon" aria-hidden="true">🧰</span>
-<span class="profile-tools-text">ARAÇLAR</span>
+<button class="profile-tools-button nova-main-rail-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç">
+<span class="profile-tools-icon" aria-hidden="true">📚</span>
+<span class="profile-tools-text">ÖĞREN</span>
 </button>
 <div class="nova-bonus-drawer" id="nova-bonus-drawer">
 <script>
@@ -928,9 +928,9 @@
 </div>
 </div>
 <!-- Arka plan müziği kaldırıldı — yalnızca efekt sesleri (Web Audio) -->
-<link rel="stylesheet" href="styles/059-nova-question-markup.css?v=30260608sub4" />
+<link rel="stylesheet" href="styles/059-nova-question-markup.css?v=30260608mul1" />
 <script defer src="js/core/nova-turkish-hyphen.js?v=1"></script>
-<script defer src="js/core/nova-question-markup.js?v=30260608sub4"></script>
+<script defer src="js/core/nova-question-markup.js?v=30260608mul1"></script>
 <script defer src="js/ui/006-nova-game-select.js?v=30260606loginarena2"></script>
 <script defer src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
 <script defer src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
@@ -1025,13 +1025,81 @@
 </div>
 </div>
 
-<!-- Araçlar: ders seç → kaydırılabilir araç listesi -->
+<!-- Öğren hub: Roborox veya Özel Araçlar seçimi -->
+<div id="learn-hub-modal" class="learn-hub-modal" aria-hidden="true" hidden>
+  <div class="learn-hub-card" role="dialog" aria-modal="true" aria-labelledby="learn-hub-title">
+    <div class="learn-hub-top">
+      <div>
+        <h3 id="learn-hub-title">Öğren</h3>
+        <p>Nasıl öğrenmek istersin?</p>
+      </div>
+      <button type="button" id="learn-hub-close" class="learn-hub-close" aria-label="Kapat">✕</button>
+    </div>
+    <div class="learn-hub-choices">
+      <button type="button" id="learn-hub-roborox" class="learn-hub-choice learn-hub-choice--roborox">
+        <span class="learn-hub-choice__ico" aria-hidden="true">🤖</span>
+        <span class="learn-hub-choice__body">
+          <span class="learn-hub-choice__title">Roborox ile Konuları Öğren</span>
+          <span class="learn-hub-choice__desc">Görsel slaytlarla adım adım konu anlatımı</span>
+        </span>
+        <span class="learn-hub-choice__go" aria-hidden="true">›</span>
+      </button>
+      <button type="button" id="learn-hub-tools" class="learn-hub-choice learn-hub-choice--tools">
+        <span class="learn-hub-choice__ico" aria-hidden="true">🧰</span>
+        <span class="learn-hub-choice__body">
+          <span class="learn-hub-choice__title">Özel Öğrenme Araçları</span>
+          <span class="learn-hub-choice__desc">İnteraktif atölyeler ve oyunlaştırılmış araçlar</span>
+        </span>
+        <span class="learn-hub-choice__go" aria-hidden="true">›</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Roborox ile Konuları Öğren — konu listesi -->
+<div id="roborox-topics-modal" class="roborox-topics-modal" aria-hidden="true" hidden>
+  <div class="roborox-topics-card" role="dialog" aria-modal="true" aria-labelledby="roborox-topics-title">
+    <div class="roborox-topics-top">
+      <div>
+        <h3 id="roborox-topics-title">Roborox ile Konuları Öğren</h3>
+        <p>Görsel derslerle konuları adım adım keşfet.</p>
+      </div>
+      <button type="button" id="roborox-topics-close" class="roborox-topics-close" aria-label="Kapat">✕</button>
+    </div>
+    <div id="roborox-topics-list" class="roborox-topics-scroll"></div>
+  </div>
+</div>
+
+<!-- Roborox tam ekran kitap okuyucu -->
+<div id="roborox-reader-overlay" class="roborox-reader-overlay" aria-hidden="true" hidden>
+  <header class="roborox-reader-head">
+    <div class="roborox-reader-title" id="roborox-reader-title">Roborox</div>
+    <div class="roborox-reader-count" id="roborox-reader-count"></div>
+    <button type="button" id="roborox-reader-close" class="roborox-reader-close" aria-label="Kapat">✕</button>
+  </header>
+  <div class="roborox-reader-stage">
+    <div class="roborox-book">
+      <div class="roborox-book__stack">
+        <div class="roborox-page-base" id="roborox-page-base">
+          <img id="roborox-page-base-img" alt="" decoding="async" draggable="false"/>
+        </div>
+        <div id="roborox-page-flip-host"></div>
+      </div>
+    </div>
+  </div>
+  <footer class="roborox-reader-foot">
+    <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki</button>
+    <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki →</button>
+  </footer>
+</div>
+
+<!-- Özel Araçlar: ders seç → kaydırılabilir araç listesi -->
 <div id="tools-modal" class="tools-modal tools-modal--pro" aria-hidden="true" hidden>
   <div class="tools-pro-card" role="dialog" aria-modal="true" aria-labelledby="tools-modal-title">
     <div class="tools-pro-top">
       <div class="tools-pro-top-text">
-        <h3 id="tools-modal-title">Araçlar</h3>
-        <p id="tools-modal-tagline" class="tools-pro-tagline">Önce dersini seç; sonra o derse ait araçları kaydırarak gör.</p>
+        <h3 id="tools-modal-title">Özel Öğrenme Araçları</h3>
+        <p id="tools-modal-tagline" class="tools-pro-tagline">Önce dersini seç; sonra o derse ait interaktif araçları kullan.</p>
       </div>
       <button id="tools-close-button" type="button" class="tools-pro-close" aria-label="Kapat">✕</button>
     </div>
@@ -1520,6 +1588,7 @@
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
+<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260609roborox2" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
@@ -1879,7 +1948,6 @@
 </style>
 <script id="nask-tools-script">
 (function () {
-  const openBtn = document.getElementById("tools-open-button");
   const modal = document.getElementById("tools-modal");
   const closeBtn = document.getElementById("tools-close-button");
   const viewCats = document.getElementById("tools-view-cats");
@@ -1887,7 +1955,7 @@
   const backCat = document.getElementById("tools-back-cat");
   const listBanner = document.getElementById("tools-list-banner");
   const listScroll = document.getElementById("tools-list-scroll");
-  if (!openBtn || !modal || !closeBtn || !viewCats || !viewList || !backCat || !listBanner || !listScroll) return;
+  if (!modal || !closeBtn || !viewCats || !viewList || !backCat || !listBanner || !listScroll) return;
 
   const CATALOG = {
     tr: {
@@ -1976,7 +2044,8 @@
     showCategories();
   };
 
-  openBtn.addEventListener("click", openModal);
+  window.novaOpenSpecialToolsModal = openModal;
+
   closeBtn.addEventListener("click", closeModal);
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
@@ -1999,6 +2068,7 @@
   });
 })();
 </script>
+<script defer src="js/ui/nova-roborox-learn.js?v=30260609roborox2"></script>
 <script defer src="js/bootstrap.js"></script>
 
 </body>

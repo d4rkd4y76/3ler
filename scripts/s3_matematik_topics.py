@@ -40,6 +40,8 @@ TOPICS: list[dict] = [
             if i == 4
             else "mat3_cikarma_"
             if i == 5
+            else "mat3_carp_"
+            if i == 6
             else f"mat3_t{i:02d}_"
         ),
         "raw_file": (
@@ -53,6 +55,8 @@ TOPICS: list[dict] = [
             if i == 4
             else "cikarma-gemini-raw.json"
             if i == 5
+            else "carpma-gemini-raw.json"
+            if i == 6
             else f"mat3-t{i:02d}-gemini-raw.json"
         ),
         "data_file": (
@@ -66,6 +70,8 @@ TOPICS: list[dict] = [
             if i == 4
             else "uclu-basamakli-cikarma-s3-150.json"
             if i == 5
+            else "uclu-basamakli-carpma-s3-150.json"
+            if i == 6
             else f"mat3-t{i:02d}-s3-150.json"
         ),
         "word_file": "Üç Basamaklı Doğal Sayılar (3. Sınıf) - 150 Soru - GÜNCEL v4.docx"

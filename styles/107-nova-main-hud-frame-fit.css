@@ -31,7 +31,7 @@
   #main-screen #match_fab_wrap,
   #main-screen #homework_fab.homework-fab,
   #main-screen .main-screen-hero-right .quest-fab-wrap,
-  #main-screen #main-screen-quest-slot #tools-open-button,
+  #main-screen #main-screen-quest-slot #learn-open-button,
   #main-screen #main-screen-quest-slot #homework_fab,
   #main-screen #main-screen-quest-slot #quest_fab_wrap,
   #main-screen #main-screen-quest-slot .nova-bonus-drawer {
@@ -39,8 +39,7 @@
     max-width: 100% !important;
   }
 
-  #main-screen #tools-open-button.profile-tools-button,
-  #main-screen #tools-open-button.nova-tools-rail-btn,
+  #main-screen #learn-open-button.nova-learn-rail-btn,
   #main-screen #homework_fab.homework-fab,
   #main-screen #quest_fab.quest-fab,
   #main-screen .nova-bonus-drawer__toggle,
@@ -54,7 +53,7 @@
     border-radius: clamp(11px, 2.5vw, 15px) !important;
   }
 
-  #main-screen #tools-open-button .profile-tools-icon {
+  #main-screen #learn-open-button .profile-tools-icon {
     width: clamp(18px, 4.6vw, 22px) !important;
     height: clamp(18px, 4.6vw, 22px) !important;
     font-size: clamp(10px, 2.6vw, 12px) !important;

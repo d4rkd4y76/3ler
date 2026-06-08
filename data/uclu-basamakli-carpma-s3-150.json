@@ -1,0 +1,1297 @@
+{
+  "meta": {
+    "topicId": "t06",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_matematik",
+    "title": "Çarpma İşlemi (Çarpım tablosunun tamamlanması, iki basamaklıyla bir basamaklıyı çarpma)",
+    "grade": 3,
+    "count": 50
+  },
+  "questions": [
+    {
+      "id": "mat3_carp_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:6×7]] işleminin sonucu kaçtır?",
+      "correct": "42",
+      "wrong1": "48",
+      "wrong2": "36",
+      "explanation": "Çarpım tablosundan **6 × 7** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:6×7]]\n**6** ile **7** çarpılır, sonuç **42** olur.",
+      "app": {
+        "question": {
+          "text": "[[mul:6×7]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "42",
+        "wrong1": "48",
+        "wrong2": "36",
+        "explanation": "Çarpım tablosundan **6 × 7** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:6×7]]\n**6** ile **7** çarpılır, sonuç **42** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:8×5]] işleminin sonucu kaçtır?",
+      "correct": "40",
+      "wrong1": "45",
+      "wrong2": "35",
+      "explanation": "Çarpım tablosundan **8 × 5** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:8×5]]\n**8** ile **5** çarpılır, sonuç **40** olur.",
+      "app": {
+        "question": {
+          "text": "[[mul:8×5]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "40",
+        "wrong1": "45",
+        "wrong2": "35",
+        "explanation": "Çarpım tablosundan **8 × 5** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:8×5]]\n**8** ile **5** çarpılır, sonuç **40** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:9×4]] işleminin sonucu kaçtır?",
+      "correct": "36",
+      "wrong1": "45",
+      "wrong2": "32",
+      "explanation": "Çarpım tablosundan **9 × 4** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:9×4]]\n**9** ile **4** çarpılır, sonuç **36** olur.",
+      "app": {
+        "question": {
+          "text": "[[mul:9×4]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "36",
+        "wrong1": "45",
+        "wrong2": "32",
+        "explanation": "Çarpım tablosundan **9 × 4** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:9×4]]\n**9** ile **4** çarpılır, sonuç **36** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:7×7]] işleminin sonucu kaçtır?",
+      "correct": "49",
+      "wrong1": "42",
+      "wrong2": "56",
+      "explanation": "Çarpım tablosundan **7 × 7** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:7×7]]\n**7** ile **7** çarpılır, sonuç **49** olur.",
+      "app": {
+        "question": {
+          "text": "[[mul:7×7]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "49",
+        "wrong1": "42",
+        "wrong2": "56",
+        "explanation": "Çarpım tablosundan **7 × 7** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:7×7]]\n**7** ile **7** çarpılır, sonuç **49** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:8×8]] işleminin sonucu kaçtır?",
+      "correct": "64",
+      "wrong1": "56",
+      "wrong2": "72",
+      "explanation": "Çarpım tablosundan **8 × 8** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:8×8]]\n**8** ile **8** çarpılır, sonuç **64** olur.",
+      "app": {
+        "question": {
+          "text": "[[mul:8×8]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "64",
+        "wrong1": "56",
+        "wrong2": "72",
+        "explanation": "Çarpım tablosundan **8 × 8** sonucunu bulmamız isteniyor.\n\nÇarpım tablosu:\n[[mul:8×8]]\n**8** ile **8** çarpılır, sonuç **64** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:3×9]] işleminin sonucu kaçtır?",
+      "correct": "27",
+      "wrong1": "24",
+      "wrong2": "30",
+      "explanation": "Çarpım tablosundan **3 × 9** sonucunu isteniyor.\n\nÇarpım tablosu:\n[[mul:3×9]]\n**3** ile **9** çarpılır, sonuç **27** olur.",
+      "app": {
+        "question": {
+          "text": "[[mul:3×9]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "27",
+        "wrong1": "24",
+        "wrong2": "30",
+        "explanation": "Çarpım tablosundan **3 × 9** sonucunu isteniyor.\n\nÇarpım tablosu:\n[[mul:3×9]]\n**3** ile **9** çarpılır, sonuç **27** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_007",
+      "level": "kolay",
+      "premise": "Bir sınıfta 8 adet öğrenci sırası vardır. Her sırada 2 öğrenci oturmaktadır.",
+      "text": "Bu sınıfta oturan toplam öğrenci sayısı kaçtır?",
+      "correct": "16",
+      "wrong1": "18",
+      "wrong2": "14",
+      "explanation": "Toplam öğrenci = sıra sayısı × her sıradaki öğrenci → **8 × 2**.\n\nEldeli çarpma:\n[[mulsol:8×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:16]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu sınıfta oturan toplam öğrenci sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sınıfta 8 adet öğrenci sırası vardır. Her sırada 2 öğrenci oturmaktadır."
+            }
+          ]
+        },
+        "correct": "16",
+        "wrong1": "18",
+        "wrong2": "14",
+        "explanation": "Toplam öğrenci = sıra sayısı × her sıradaki öğrenci → **8 × 2**.\n\nEldeli çarpma:\n[[mulsol:8×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:16]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_008",
+      "level": "kolay",
+      "premise": "Zeynep her gün düzenli olarak 5 sayfa hikaye kitabı okumaktadır.",
+      "text": "Zeynep hızını değiştirmeden okumaya devam ederse 6 günde toplam kaç sayfa kitap okur?",
+      "correct": "30",
+      "wrong1": "25",
+      "wrong2": "35",
+      "explanation": "6 günde okunan sayfa = günlük sayfa × gün sayısı → **6 × 5**.\n\nEldeli çarpma:\n[[mulsol:6×5]]\n**Birler basamağı**\n6 ile 5'i çarparız: 6 × 5 = **30**. Alta **0** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:30]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre zeynep hızını değiştirmeden okumaya devam ederse 6 günde toplam kaç sayfa kitap okur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep her gün düzenli olarak 5 sayfa hikaye kitabı okumaktadır."
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "25",
+        "wrong2": "35",
+        "explanation": "6 günde okunan sayfa = günlük sayfa × gün sayısı → **6 × 5**.\n\nEldeli çarpma:\n[[mulsol:6×5]]\n**Birler basamağı**\n6 ile 5'i çarparız: 6 × 5 = **30**. Alta **0** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:30]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_009",
+      "level": "kolay",
+      "premise": "Ali, odasındaki 4 vazonun her birine 4 adet çiçek koymuştur.",
+      "text": "Vazolardaki toplam çiçek sayısı kaçtır?",
+      "correct": "16",
+      "wrong1": "12",
+      "wrong2": "20",
+      "explanation": "Toplam çiçek = vazo sayısı × her vazodaki çiçek → **4 × 4**.\n\nEldeli çarpma:\n[[mulsol:4×4]]\n**Birler basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:16]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre vazolardaki toplam çiçek sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali, odasındaki 4 vazonun her birine 4 adet çiçek koymuştur."
+            }
+          ]
+        },
+        "correct": "16",
+        "wrong1": "12",
+        "wrong2": "20",
+        "explanation": "Toplam çiçek = vazo sayısı × her vazodaki çiçek → **4 × 4**.\n\nEldeli çarpma:\n[[mulsol:4×4]]\n**Birler basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:16]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_010",
+      "level": "kolay",
+      "premise": "Bir boya kutusunda 7 adet renkli kalem bulunmaktadır. Kırtasiyeci bu kutulardan 5 tane satmıştır.",
+      "text": "Kırtasiyecinin sattığı toplam renkli kalem sayısı kaçtır?",
+      "correct": "35",
+      "wrong1": "30",
+      "wrong2": "40",
+      "explanation": "Satılan kalem = kutu sayısı × kutudaki kalem → **5 × 7**.\n\nEldeli çarpma:\n[[mulsol:7×5]]\n**Birler basamağı**\n7 ile 5'i çarparız: 7 × 5 = **35**. Alta **5** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:35]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre kırtasiyecinin sattığı toplam renkli kalem sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir boya kutusunda 7 adet renkli kalem bulunmaktadır. Kırtasiyeci bu kutulardan 5 tane satmıştır."
+            }
+          ]
+        },
+        "correct": "35",
+        "wrong1": "30",
+        "wrong2": "40",
+        "explanation": "Satılan kalem = kutu sayısı × kutudaki kalem → **5 × 7**.\n\nEldeli çarpma:\n[[mulsol:7×5]]\n**Birler basamağı**\n7 ile 5'i çarparız: 7 × 5 = **35**. Alta **5** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:35]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_011",
+      "level": "kolay",
+      "premise": "Bir çiftlikte 9 tane koyun otlamaktadır.",
+      "text": "Çiftlikteki koyunların ayak sayıları toplamı kaçtır?",
+      "correct": "36",
+      "wrong1": "40",
+      "wrong2": "32",
+      "explanation": "Toplam ayak = koyun sayısı × bir koyunun ayağı → **9 × 4**.\n\nEldeli çarpma:\n[[mulsol:9×4]]\n**Birler basamağı**\n9 ile 4'ü çarparız: 9 × 4 = **36**. Alta **6** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:36]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre çiftlikteki koyunların ayak sayıları toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir çiftlikte 9 tane koyun otlamaktadır."
+            }
+          ]
+        },
+        "correct": "36",
+        "wrong1": "40",
+        "wrong2": "32",
+        "explanation": "Toplam ayak = koyun sayısı × bir koyunun ayağı → **9 × 4**.\n\nEldeli çarpma:\n[[mulsol:9×4]]\n**Birler basamağı**\n9 ile 4'ü çarparız: 9 × 4 = **36**. Alta **6** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:36]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_012",
+      "level": "kolay",
+      "premise": "Manavdan kilosu 8 TL olan domateslerden 3 kilogram aldık.",
+      "text": "Manava domatesler için toplam kaç TL ödememiz gerekir?",
+      "correct": "24",
+      "wrong1": "21",
+      "wrong2": "27",
+      "explanation": "Toplam fiyat = kilogram fiyatı × alınan kg → **8 × 3**.\n\nEldeli çarpma:\n[[mulsol:8×3]]\n**Birler basamağı**\n8 ile 3'ü çarparız: 8 × 3 = **24**. Alta **4** yazılır. **2** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:24]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre manava domatesler için toplam kaç TL ödememiz gerekir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Manavdan kilosu 8 TL olan domateslerden 3 kilogram aldık."
+            }
+          ]
+        },
+        "correct": "24",
+        "wrong1": "21",
+        "wrong2": "27",
+        "explanation": "Toplam fiyat = kilogram fiyatı × alınan kg → **8 × 3**.\n\nEldeli çarpma:\n[[mulsol:8×3]]\n**Birler basamağı**\n8 ile 3'ü çarparız: 8 × 3 = **24**. Alta **4** yazılır. **2** elde olur ve sonucun **onlar** basamağına yazılır.\nSonuç: [[result:24]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "15 sayısını 10 ile kısa yoldan çarptığımızda sonuç kaç olur?",
+      "correct": "150",
+      "wrong1": "105",
+      "wrong2": "151",
+      "explanation": "10 ile çarpma kuralı: sayının sonuna **0** eklenir → **15 × 10**.\n\n10 ile çarpma kuralı: Sayının sonuna **0** eklenir.\n[[mul:15×10]]\n**15** sayısının sonuna 0 eklenince **150** olur.",
+      "app": {
+        "question": {
+          "text": "15 sayısını 10 ile kısa yoldan çarptığımızda sonuç kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "150",
+        "wrong1": "105",
+        "wrong2": "151",
+        "explanation": "10 ile çarpma kuralı: sayının sonuna **0** eklenir → **15 × 10**.\n\n10 ile çarpma kuralı: Sayının sonuna **0** eklenir.\n[[mul:15×10]]\n**15** sayısının sonuna 0 eklenince **150** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "32 x 10 işleminin sonucu kaçtır?",
+      "correct": "320",
+      "wrong1": "302",
+      "wrong2": "32",
+      "explanation": "10 ile çarpma kuralı: **32** sayısının sonuna **0** eklenir.\n\n10 ile çarpma kuralı: Sayının sonuna **0** eklenir.\n[[mul:32×10]]\n**32** sayısının sonuna 0 eklenince **320** olur.",
+      "app": {
+        "question": {
+          "text": "32 x 10 işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "320",
+        "wrong1": "302",
+        "wrong2": "32",
+        "explanation": "10 ile çarpma kuralı: **32** sayısının sonuna **0** eklenir.\n\n10 ile çarpma kuralı: Sayının sonuna **0** eklenir.\n[[mul:32×10]]\n**32** sayısının sonuna 0 eklenince **320** olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hangi sayıyı 10 ile çarparsak sonuç 240 olur?",
+      "correct": "24",
+      "wrong1": "2400",
+      "wrong2": "40",
+      "explanation": "10 ile çarpma ters sorusu: sonundaki **0** silinerek sayı bulunur.\n\n10 ile çarpma kuralı: Sonundaki **0** silinir.\n**24** sayısının sonundaki 0 silinince **24** kalır.",
+      "app": {
+        "question": {
+          "text": "Hangi sayıyı 10 ile çarparsak sonuç 240 olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "24",
+        "wrong1": "2400",
+        "wrong2": "40",
+        "explanation": "10 ile çarpma ters sorusu: sonundaki **0** silinerek sayı bulunur.\n\n10 ile çarpma kuralı: Sonundaki **0** silinir.\n**24** sayısının sonundaki 0 silinince **24** kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_016",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:23×3]] işleminin sonucu kaçtır?",
+      "correct": "69",
+      "wrong1": "59",
+      "wrong2": "79",
+      "explanation": "İki basamaklı × tek basamaklı çarpma: **23 × 3**.\n\nEldesiz çarpma:\n[[mulsol:23×3]]\n**Birler basamağı**\n3 ile 3'ü çarparız: 3 × 3 = **9**. Alta **9** yazılır.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Alta **6** yazılır.\nSonuç: [[result:69]]",
+      "app": {
+        "question": {
+          "text": "[[mul:23×3]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "69",
+        "wrong1": "59",
+        "wrong2": "79",
+        "explanation": "İki basamaklı × tek basamaklı çarpma: **23 × 3**.\n\nEldesiz çarpma:\n[[mulsol:23×3]]\n**Birler basamağı**\n3 ile 3'ü çarparız: 3 × 3 = **9**. Alta **9** yazılır.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Alta **6** yazılır.\nSonuç: [[result:69]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_017",
+      "level": "kolay",
+      "premise": null,
+      "text": "[[mul:42×2]] işleminin sonucu kaçtır?",
+      "correct": "84",
+      "wrong1": "82",
+      "wrong2": "94",
+      "explanation": "İki basamaklı × tek basamaklı çarpma: **42 × 2**.\n\nEldesiz çarpma:\n[[mulsol:42×2]]\n**Birler basamağı**\n2 ile 2'yi çarparız: 2 × 2 = **4**. Alta **4** yazılır.\n[[stephr]]\n**Onlar basamağı**\n4 ile 2'yi çarparız: 4 × 2 = **8**. Alta **8** yazılır.\nSonuç: [[result:84]]",
+      "app": {
+        "question": {
+          "text": "[[mul:42×2]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "84",
+        "wrong1": "82",
+        "wrong2": "94",
+        "explanation": "İki basamaklı × tek basamaklı çarpma: **42 × 2**.\n\nEldesiz çarpma:\n[[mulsol:42×2]]\n**Birler basamağı**\n2 ile 2'yi çarparız: 2 × 2 = **4**. Alta **4** yazılır.\n[[stephr]]\n**Onlar basamağı**\n4 ile 2'yi çarparız: 4 × 2 = **8**. Alta **8** yazılır.\nSonuç: [[result:84]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_018",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:26×3]] işleminin sonucu kaçtır?",
+      "correct": "78",
+      "wrong1": "68",
+      "wrong2": "88",
+      "explanation": "Eldeli çarpma: **26 × 3** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:26×3]]\n**Birler basamağı**\n6 ile 3'ü çarparız: 6 × 3 = **18**. Alta **8** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Elde **1** eklenince **7** olur. Alta **7** yazılır.\nSonuç: [[result:78]]",
+      "app": {
+        "question": {
+          "text": "[[mul:26×3]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "78",
+        "wrong1": "68",
+        "wrong2": "88",
+        "explanation": "Eldeli çarpma: **26 × 3** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:26×3]]\n**Birler basamağı**\n6 ile 3'ü çarparız: 6 × 3 = **18**. Alta **8** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Elde **1** eklenince **7** olur. Alta **7** yazılır.\nSonuç: [[result:78]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_019",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:35×4]] işleminin sonucu kaçtır?",
+      "correct": "140",
+      "wrong1": "130",
+      "wrong2": "150",
+      "explanation": "Eldeli çarpma: **35 × 4** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:35×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n3 ile 4'ü çarparız: 3 × 4 = **12**. Elde **2** eklenince **14** olur. Alta **4** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:140]]",
+      "app": {
+        "question": {
+          "text": "[[mul:35×4]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "140",
+        "wrong1": "130",
+        "wrong2": "150",
+        "explanation": "Eldeli çarpma: **35 × 4** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:35×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n3 ile 4'ü çarparız: 3 × 4 = **12**. Elde **2** eklenince **14** olur. Alta **4** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:140]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_020",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:48×2]] işleminin sonucu kaçtır?",
+      "correct": "96",
+      "wrong1": "86",
+      "wrong2": "106",
+      "explanation": "Eldeli çarpma: **48 × 2** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:48×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 2'yi çarparız: 4 × 2 = **8**. Elde **1** eklenince **9** olur. Alta **9** yazılır.\nSonuç: [[result:96]]",
+      "app": {
+        "question": {
+          "text": "[[mul:48×2]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "96",
+        "wrong1": "86",
+        "wrong2": "106",
+        "explanation": "Eldeli çarpma: **48 × 2** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:48×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 2'yi çarparız: 4 × 2 = **8**. Elde **1** eklenince **9** olur. Alta **9** yazılır.\nSonuç: [[result:96]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_021",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:17×5]] işleminin sonucu kaçtır?",
+      "correct": "85",
+      "wrong1": "75",
+      "wrong2": "95",
+      "explanation": "Eldeli çarpma: **17 × 5** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:17×5]]\n**Birler basamağı**\n7 ile 5'i çarparız: 7 × 5 = **35**. Alta **5** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 5'i çarparız: 1 × 5 = **5**. Elde **3** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:85]]",
+      "app": {
+        "question": {
+          "text": "[[mul:17×5]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "85",
+        "wrong1": "75",
+        "wrong2": "95",
+        "explanation": "Eldeli çarpma: **17 × 5** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:17×5]]\n**Birler basamağı**\n7 ile 5'i çarparız: 7 × 5 = **35**. Alta **5** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 5'i çarparız: 1 × 5 = **5**. Elde **3** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:85]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_022",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:29×3]] işleminin sonucu kaçtır?",
+      "correct": "87",
+      "wrong1": "77",
+      "wrong2": "97",
+      "explanation": "Eldeli çarpma: **29 × 3** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:29×3]]\n**Birler basamağı**\n9 ile 3'ü çarparız: 9 × 3 = **27**. Alta **7** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Elde **2** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:87]]",
+      "app": {
+        "question": {
+          "text": "[[mul:29×3]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "87",
+        "wrong1": "77",
+        "wrong2": "97",
+        "explanation": "Eldeli çarpma: **29 × 3** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:29×3]]\n**Birler basamağı**\n9 ile 3'ü çarparız: 9 × 3 = **27**. Alta **7** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Elde **2** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:87]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_023",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:14×6]] işleminin sonucu kaçtır?",
+      "correct": "84",
+      "wrong1": "74",
+      "wrong2": "94",
+      "explanation": "Eldeli çarpma: **14 × 6** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:14×6]]\n**Birler basamağı**\n4 ile 6'yı çarparız: 4 × 6 = **24**. Alta **4** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 6'yı çarparız: 1 × 6 = **6**. Elde **2** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:84]]",
+      "app": {
+        "question": {
+          "text": "[[mul:14×6]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "84",
+        "wrong1": "74",
+        "wrong2": "94",
+        "explanation": "Eldeli çarpma: **14 × 6** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:14×6]]\n**Birler basamağı**\n4 ile 6'yı çarparız: 4 × 6 = **24**. Alta **4** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 6'yı çarparız: 1 × 6 = **6**. Elde **2** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:84]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_024",
+      "level": "orta",
+      "premise": null,
+      "text": "[[mul:25×5]] işleminin sonucu kaçtır?",
+      "correct": "125",
+      "wrong1": "115",
+      "wrong2": "135",
+      "explanation": "Eldeli çarpma: **25 × 5** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:25×5]]\n**Birler basamağı**\n5 ile 5'i çarparız: 5 × 5 = **25**. Alta **5** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 5'i çarparız: 2 × 5 = **10**. Elde **2** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:125]]",
+      "app": {
+        "question": {
+          "text": "[[mul:25×5]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "125",
+        "wrong1": "115",
+        "wrong2": "135",
+        "explanation": "Eldeli çarpma: **25 × 5** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:25×5]]\n**Birler basamağı**\n5 ile 5'i çarparız: 5 × 5 = **25**. Alta **5** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 5'i çarparız: 2 × 5 = **10**. Elde **2** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:125]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_025",
+      "level": "orta",
+      "premise": "Bir tiyatro salonunda 24 sıra bulunmaktadır. Her sırada 5 kişi yan yana oturabilmektedir.",
+      "text": "Tüm koltuklar dolu olduğuna göre salonda kaç kişi vardır?",
+      "correct": "120",
+      "wrong1": "110",
+      "wrong2": "130",
+      "explanation": "Toplam kişi = sıra × kişi → **24 × 5**.\n\nEldeli çarpma:\n[[mulsol:24×5]]\n**Birler basamağı**\n4 ile 5'i çarparız: 4 × 5 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 5'i çarparız: 2 × 5 = **10**. Elde **2** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:120]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre tüm koltuklar dolu olduğuna göre salonda kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir tiyatro salonunda 24 sıra bulunmaktadır. Her sırada 5 kişi yan yana oturabilmektedir."
+            }
+          ]
+        },
+        "correct": "120",
+        "wrong1": "110",
+        "wrong2": "130",
+        "explanation": "Toplam kişi = sıra × kişi → **24 × 5**.\n\nEldeli çarpma:\n[[mulsol:24×5]]\n**Birler basamağı**\n4 ile 5'i çarparız: 4 × 5 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 5'i çarparız: 2 × 5 = **10**. Elde **2** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:120]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_026",
+      "level": "orta",
+      "premise": "Çiftliğimizdeki inek günde 18 litre süt vermektedir.",
+      "text": "Bu inek bir haftada toplam kaç litre süt verir?",
+      "correct": "126",
+      "wrong1": "116",
+      "wrong2": "136",
+      "explanation": "Haftalık süt = günlük süt × 7 gün → **18 × 7**.\n\nEldeli çarpma:\n[[mulsol:18×7]]\n**Birler basamağı**\n8 ile 7'yi çarparız: 8 × 7 = **56**. Alta **6** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 7'yi çarparız: 1 × 7 = **7**. Elde **5** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:126]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu inek bir haftada toplam kaç litre süt verir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çiftliğimizdeki inek günde 18 litre süt vermektedir."
+            }
+          ]
+        },
+        "correct": "126",
+        "wrong1": "116",
+        "wrong2": "136",
+        "explanation": "Haftalık süt = günlük süt × 7 gün → **18 × 7**.\n\nEldeli çarpma:\n[[mulsol:18×7]]\n**Birler basamağı**\n8 ile 7'yi çarparız: 8 × 7 = **56**. Alta **6** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 7'yi çarparız: 1 × 7 = **7**. Elde **5** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:126]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_027",
+      "level": "orta",
+      "premise": "Kırtasiyedeki resim defterlerinin tanesi 28 TL'dir. Ali, kendisi ve 2 kardeşi için birer tane defter alacaktır.",
+      "text": "Ali defterler için toplam kaç TL ödeme yapar?",
+      "correct": "84",
+      "wrong1": "74",
+      "wrong2": "94",
+      "explanation": "3 kişi için defter tutarı = fiyat × 3 → **28 × 3**.\n\nEldeli çarpma:\n[[mulsol:28×3]]\n**Birler basamağı**\n8 ile 3'ü çarparız: 8 × 3 = **24**. Alta **4** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Elde **2** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:84]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre ali defterler için toplam kaç TL ödeme yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kırtasiyedeki resim defterlerinin tanesi 28 TL'dir. Ali, kendisi ve 2 kardeşi için birer tane defter alacaktır."
+            }
+          ]
+        },
+        "correct": "84",
+        "wrong1": "74",
+        "wrong2": "94",
+        "explanation": "3 kişi için defter tutarı = fiyat × 3 → **28 × 3**.\n\nEldeli çarpma:\n[[mulsol:28×3]]\n**Birler basamağı**\n8 ile 3'ü çarparız: 8 × 3 = **24**. Alta **4** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 3'ü çarparız: 2 × 3 = **6**. Elde **2** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:84]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_028",
+      "level": "orta",
+      "premise": "Bir yolcu otobüsünde 36 yolcu bulunmaktadır.",
+      "text": "Aynı kapasitedeki tamamen dolu 3 otobüste toplam kaç yolcu vardır?",
+      "correct": "108",
+      "wrong1": "98",
+      "wrong2": "118",
+      "explanation": "Toplam yolcu = otobüs başına yolcu × otobüs sayısı → **36 × 3**.\n\nEldeli çarpma:\n[[mulsol:36×3]]\n**Birler basamağı**\n6 ile 3'ü çarparız: 6 × 3 = **18**. Alta **8** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n3 ile 3'ü çarparız: 3 × 3 = **9**. Elde **1** eklenince **10** olur. Alta **0** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:108]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre aynı kapasitedeki tamamen dolu 3 otobüste toplam kaç yolcu vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir yolcu otobüsünde 36 yolcu bulunmaktadır."
+            }
+          ]
+        },
+        "correct": "108",
+        "wrong1": "98",
+        "wrong2": "118",
+        "explanation": "Toplam yolcu = otobüs başına yolcu × otobüs sayısı → **36 × 3**.\n\nEldeli çarpma:\n[[mulsol:36×3]]\n**Birler basamağı**\n6 ile 3'ü çarparız: 6 × 3 = **18**. Alta **8** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n3 ile 3'ü çarparız: 3 × 3 = **9**. Elde **1** eklenince **10** olur. Alta **0** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:108]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_029",
+      "level": "orta",
+      "premise": "Günde 45 sayfa kitap okuyan Ayşe, okuma hızını hiç değiştirmemiştir.",
+      "text": "Ayşe 4 günde toplam kaç sayfa kitap okur?",
+      "correct": "180",
+      "wrong1": "160",
+      "wrong2": "200",
+      "explanation": "4 günde okunan = günlük sayfa × 4 → **45 × 4**.\n\nEldeli çarpma:\n[[mulsol:45×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Elde **2** eklenince **18** olur. Alta **8** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:180]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre ayşe 4 günde toplam kaç sayfa kitap okur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Günde 45 sayfa kitap okuyan Ayşe, okuma hızını hiç değiştirmemiştir."
+            }
+          ]
+        },
+        "correct": "180",
+        "wrong1": "160",
+        "wrong2": "200",
+        "explanation": "4 günde okunan = günlük sayfa × 4 → **45 × 4**.\n\nEldeli çarpma:\n[[mulsol:45×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Elde **2** eklenince **18** olur. Alta **8** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:180]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_030",
+      "level": "orta",
+      "premise": "Bir otoparkta 4 kat vardır. Her katta 25 araç park edebilmektedir.",
+      "text": "Otopark tamamen dolu olduğunda otoparkta kaç araç bulunur?",
+      "correct": "100",
+      "wrong1": "80",
+      "wrong2": "120",
+      "explanation": "Toplam araç = kat × kat başına araç → **25 × 4**.\n\nEldeli çarpma:\n[[mulsol:25×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 4'ü çarparız: 2 × 4 = **8**. Elde **2** eklenince **10** olur. Alta **0** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:100]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre otopark tamamen dolu olduğunda otoparkta kaç araç bulunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir otoparkta 4 kat vardır. Her katta 25 araç park edebilmektedir."
+            }
+          ]
+        },
+        "correct": "100",
+        "wrong1": "80",
+        "wrong2": "120",
+        "explanation": "Toplam araç = kat × kat başına araç → **25 × 4**.\n\nEldeli çarpma:\n[[mulsol:25×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 4'ü çarparız: 2 × 4 = **8**. Elde **2** eklenince **10** olur. Alta **0** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:100]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_031",
+      "level": "orta",
+      "premise": "Bir çiftlikte 16 kümes ve her kümeste 8 tavuk vardır.",
+      "text": "Bu çiftlikteki toplam tavuk sayısı kaçtır?",
+      "correct": "128",
+      "wrong1": "118",
+      "wrong2": "138",
+      "explanation": "Toplam tavuk = kümes × kümes başına tavuk → **16 × 8**.\n\nEldeli çarpma:\n[[mulsol:16×8]]\n**Birler basamağı**\n6 ile 8'i çarparız: 6 × 8 = **48**. Alta **8** yazılır, **4** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 8'i çarparız: 1 × 8 = **8**. Elde **4** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:128]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu çiftlikteki toplam tavuk sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir çiftlikte 16 kümes ve her kümeste 8 tavuk vardır."
+            }
+          ]
+        },
+        "correct": "128",
+        "wrong1": "118",
+        "wrong2": "138",
+        "explanation": "Toplam tavuk = kümes × kümes başına tavuk → **16 × 8**.\n\nEldeli çarpma:\n[[mulsol:16×8]]\n**Birler basamağı**\n6 ile 8'i çarparız: 6 × 8 = **48**. Alta **8** yazılır, **4** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 8'i çarparız: 1 × 8 = **8**. Elde **4** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:128]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_032",
+      "level": "orta",
+      "premise": "Marketten tanesi 12 TL olan çikolatalardan 7 tane aldım.",
+      "text": "Kasiyere çikolatalar için ne kadar ödemeliyim?",
+      "correct": "84",
+      "wrong1": "74",
+      "wrong2": "94",
+      "explanation": "Toplam tutar = fiyat × adet → **12 × 7**.\n\nEldeli çarpma:\n[[mulsol:12×7]]\n**Birler basamağı**\n2 ile 7'yi çarparız: 2 × 7 = **14**. Alta **4** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 7'yi çarparız: 1 × 7 = **7**. Elde **1** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:84]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre kasiyere çikolatalar için ne kadar ödemeliyim?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Marketten tanesi 12 TL olan çikolatalardan 7 tane aldım."
+            }
+          ]
+        },
+        "correct": "84",
+        "wrong1": "74",
+        "wrong2": "94",
+        "explanation": "Toplam tutar = fiyat × adet → **12 × 7**.\n\nEldeli çarpma:\n[[mulsol:12×7]]\n**Birler basamağı**\n2 ile 7'yi çarparız: 2 × 7 = **14**. Alta **4** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 7'yi çarparız: 1 × 7 = **7**. Elde **1** eklenince **8** olur. Alta **8** yazılır.\nSonuç: [[result:84]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_033",
+      "level": "orta",
+      "premise": "Sınıfımızdaki 18 sıranın her birinde 2 öğrenci oturmaktadır.",
+      "text": "Buna göre sınıfımızın öğrenci mevcudu kaçtır?",
+      "correct": "36",
+      "wrong1": "32",
+      "wrong2": "40",
+      "explanation": "Sınıf mevcudu = sıra × öğrenci → **18 × 2**.\n\nEldeli çarpma:\n[[mulsol:18×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 2'yi çarparız: 1 × 2 = **2**. Elde **1** eklenince **3** olur. Alta **3** yazılır.\nSonuç: [[result:36]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre buna göre sınıfımızın öğrenci mevcudu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıfımızdaki 18 sıranın her birinde 2 öğrenci oturmaktadır."
+            }
+          ]
+        },
+        "correct": "36",
+        "wrong1": "32",
+        "wrong2": "40",
+        "explanation": "Sınıf mevcudu = sıra × öğrenci → **18 × 2**.\n\nEldeli çarpma:\n[[mulsol:18×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 2'yi çarparız: 1 × 2 = **2**. Elde **1** eklenince **3** olur. Alta **3** yazılır.\nSonuç: [[result:36]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_034",
+      "level": "orta",
+      "premise": "Bir kutuda 24 adet şeker vardır.",
+      "text": "Bu kutulardan 5 tane alan Can, toplam kaç adet şeker almış olur?",
+      "correct": "120",
+      "wrong1": "110",
+      "wrong2": "130",
+      "explanation": "Toplam şeker = kutu başına şeker × kutu → **24 × 5**.\n\nEldeli çarpma:\n[[mulsol:24×5]]\n**Birler basamağı**\n4 ile 5'i çarparız: 4 × 5 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 5'i çarparız: 2 × 5 = **10**. Elde **2** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:120]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu kutulardan 5 tane alan Can, toplam kaç adet şeker almış olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kutuda 24 adet şeker vardır."
+            }
+          ]
+        },
+        "correct": "120",
+        "wrong1": "110",
+        "wrong2": "130",
+        "explanation": "Toplam şeker = kutu başına şeker × kutu → **24 × 5**.\n\nEldeli çarpma:\n[[mulsol:24×5]]\n**Birler basamağı**\n4 ile 5'i çarparız: 4 × 5 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 5'i çarparız: 2 × 5 = **10**. Elde **2** eklenince **12** olur. Alta **2** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:120]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_035",
+      "level": "zor",
+      "premise": null,
+      "text": "[[mul:67×8]] işleminin sonucu kaçtır?",
+      "correct": "536",
+      "wrong1": "526",
+      "wrong2": "546",
+      "explanation": "Eldeli çarpma: **67 × 8** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:67×8]]\n**Birler basamağı**\n7 ile 8'i çarparız: 7 × 8 = **56**. Alta **6** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n6 ile 8'i çarparız: 6 × 8 = **48**. Elde **5** eklenince **53** olur. Alta **3** yazılır. **5** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:536]]",
+      "app": {
+        "question": {
+          "text": "[[mul:67×8]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "536",
+        "wrong1": "526",
+        "wrong2": "546",
+        "explanation": "Eldeli çarpma: **67 × 8** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:67×8]]\n**Birler basamağı**\n7 ile 8'i çarparız: 7 × 8 = **56**. Alta **6** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n6 ile 8'i çarparız: 6 × 8 = **48**. Elde **5** eklenince **53** olur. Alta **3** yazılır. **5** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:536]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_036",
+      "level": "zor",
+      "premise": null,
+      "text": "[[mul:89×6]] işleminin sonucu kaçtır?",
+      "correct": "534",
+      "wrong1": "524",
+      "wrong2": "544",
+      "explanation": "Eldeli çarpma: **89 × 6** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:89×6]]\n**Birler basamağı**\n9 ile 6'yı çarparız: 9 × 6 = **54**. Alta **4** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n8 ile 6'yı çarparız: 8 × 6 = **48**. Elde **5** eklenince **53** olur. Alta **3** yazılır. **5** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:534]]",
+      "app": {
+        "question": {
+          "text": "[[mul:89×6]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "534",
+        "wrong1": "524",
+        "wrong2": "544",
+        "explanation": "Eldeli çarpma: **89 × 6** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:89×6]]\n**Birler basamağı**\n9 ile 6'yı çarparız: 9 × 6 = **54**. Alta **4** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n8 ile 6'yı çarparız: 8 × 6 = **48**. Elde **5** eklenince **53** olur. Alta **3** yazılır. **5** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:534]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_037",
+      "level": "zor",
+      "premise": null,
+      "text": "[[mul:74×9]] işleminin sonucu kaçtır?",
+      "correct": "666",
+      "wrong1": "656",
+      "wrong2": "676",
+      "explanation": "Eldeli çarpma: **74 × 9** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:74×9]]\n**Birler basamağı**\n4 ile 9'u çarparız: 4 × 9 = **36**. Alta **6** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n7 ile 9'u çarparız: 7 × 9 = **63**. Elde **3** eklenince **66** olur. Alta **6** yazılır. **6** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:666]]",
+      "app": {
+        "question": {
+          "text": "[[mul:74×9]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "666",
+        "wrong1": "656",
+        "wrong2": "676",
+        "explanation": "Eldeli çarpma: **74 × 9** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:74×9]]\n**Birler basamağı**\n4 ile 9'u çarparız: 4 × 9 = **36**. Alta **6** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n7 ile 9'u çarparız: 7 × 9 = **63**. Elde **3** eklenince **66** olur. Alta **6** yazılır. **6** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:666]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_038",
+      "level": "zor",
+      "premise": null,
+      "text": "[[mul:98×7]] işleminin sonucu kaçtır?",
+      "correct": "686",
+      "wrong1": "676",
+      "wrong2": "696",
+      "explanation": "Eldeli çarpma: **98 × 7** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:98×7]]\n**Birler basamağı**\n8 ile 7'yi çarparız: 8 × 7 = **56**. Alta **6** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n9 ile 7'yi çarparız: 9 × 7 = **63**. Elde **5** eklenince **68** olur. Alta **8** yazılır. **6** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:686]]",
+      "app": {
+        "question": {
+          "text": "[[mul:98×7]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "686",
+        "wrong1": "676",
+        "wrong2": "696",
+        "explanation": "Eldeli çarpma: **98 × 7** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:98×7]]\n**Birler basamağı**\n8 ile 7'yi çarparız: 8 × 7 = **56**. Alta **6** yazılır, **5** elde olur.\n[[stephr]]\n**Onlar basamağı**\n9 ile 7'yi çarparız: 9 × 7 = **63**. Elde **5** eklenince **68** olur. Alta **8** yazılır. **6** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:686]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_039",
+      "level": "zor",
+      "premise": null,
+      "text": "[[mul:85×8]] işleminin sonucu kaçtır?",
+      "correct": "680",
+      "wrong1": "670",
+      "wrong2": "690",
+      "explanation": "Eldeli çarpma: **85 × 8** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:85×8]]\n**Birler basamağı**\n5 ile 8'i çarparız: 5 × 8 = **40**. Alta **0** yazılır, **4** elde olur.\n[[stephr]]\n**Onlar basamağı**\n8 ile 8'i çarparız: 8 × 8 = **64**. Elde **4** eklenince **68** olur. Alta **8** yazılır. **6** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:680]]",
+      "app": {
+        "question": {
+          "text": "[[mul:85×8]] işleminin sonucu kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "680",
+        "wrong1": "670",
+        "wrong2": "690",
+        "explanation": "Eldeli çarpma: **85 × 8** işlemini basamak basamak yaparız.\n\nEldeli çarpma:\n[[mulsol:85×8]]\n**Birler basamağı**\n5 ile 8'i çarparız: 5 × 8 = **40**. Alta **0** yazılır, **4** elde olur.\n[[stephr]]\n**Onlar basamağı**\n8 ile 8'i çarparız: 8 × 8 = **64**. Elde **4** eklenince **68** olur. Alta **8** yazılır. **6** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:680]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_040",
+      "level": "zor",
+      "premise": "Ahmet, tanesi 15 TL olan kalemlerden 4 tane, fiyatı 20 TL olan bir silgi almıştır.",
+      "text": "Ahmet kırtasiyeye toplam kaç TL borçlanmıştır?",
+      "correct": "80",
+      "wrong1": "60",
+      "wrong2": "100",
+      "explanation": "Önce kalem tutarı **15 × 4**, sonra silgi eklenir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:15×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 4'ü çarparız: 1 × 4 = **4**. Elde **2** eklenince **6** olur. Alta **6** yazılır.\n→ **60**\n[[stephr]]\n**2. adım**\nEldesiz toplama:\n[[addsol:60+20]]\n**Birler basamağı**\n0 + 0 = **0** eder. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n6 + 2 = **8** eder. Alta **8** yazılır.\n→ **80**\n[[stephr]]\nSonuç: [[result:80]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre ahmet kırtasiyeye toplam kaç TL borçlanmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ahmet, tanesi 15 TL olan kalemlerden 4 tane, fiyatı 20 TL olan bir silgi almıştır."
+            }
+          ]
+        },
+        "correct": "80",
+        "wrong1": "60",
+        "wrong2": "100",
+        "explanation": "Önce kalem tutarı **15 × 4**, sonra silgi eklenir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:15×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 4'ü çarparız: 1 × 4 = **4**. Elde **2** eklenince **6** olur. Alta **6** yazılır.\n→ **60**\n[[stephr]]\n**2. adım**\nEldesiz toplama:\n[[addsol:60+20]]\n**Birler basamağı**\n0 + 0 = **0** eder. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n6 + 2 = **8** eder. Alta **8** yazılır.\n→ **80**\n[[stephr]]\nSonuç: [[result:80]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_041",
+      "level": "zor",
+      "premise": "Sınıfımızda 16 sıra vardır. Öğrenciler sıralara 2'şerli oturmuş ancak 3 kişi ayakta kalmıştır.",
+      "text": "Bu bilgilere göre sınıf mevcudumuz kaçtır?",
+      "correct": "35",
+      "wrong1": "32",
+      "wrong2": "38",
+      "explanation": "Önce sıralarda oturanlar **16 × 2**, sonra ayakta kalanlar eklenir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:16×2]]\n**Birler basamağı**\n6 ile 2'yi çarparız: 6 × 2 = **12**. Alta **2** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 2'yi çarparız: 1 × 2 = **2**. Elde **1** eklenince **3** olur. Alta **3** yazılır.\n→ **32**\n[[stephr]]\n**2. adım**\nEldesiz toplama:\n[[addsol:32+3]]\n**Birler basamağı**\n2 + 3 = **5** eder. Alta **5** yazılır.\n[[stephr]]\n**Onlar basamağı**\n3 + 0 = **3** eder. Alta **3** yazılır.\n→ **35**\n[[stephr]]\nSonuç: [[result:35]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu bilgilere göre sınıf mevcudumuz kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sınıfımızda 16 sıra vardır. Öğrenciler sıralara 2'şerli oturmuş ancak 3 kişi ayakta kalmıştır."
+            }
+          ]
+        },
+        "correct": "35",
+        "wrong1": "32",
+        "wrong2": "38",
+        "explanation": "Önce sıralarda oturanlar **16 × 2**, sonra ayakta kalanlar eklenir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:16×2]]\n**Birler basamağı**\n6 ile 2'yi çarparız: 6 × 2 = **12**. Alta **2** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 2'yi çarparız: 1 × 2 = **2**. Elde **1** eklenince **3** olur. Alta **3** yazılır.\n→ **32**\n[[stephr]]\n**2. adım**\nEldesiz toplama:\n[[addsol:32+3]]\n**Birler basamağı**\n2 + 3 = **5** eder. Alta **5** yazılır.\n[[stephr]]\n**Onlar basamağı**\n3 + 0 = **3** eder. Alta **3** yazılır.\n→ **35**\n[[stephr]]\nSonuç: [[result:35]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_042",
+      "level": "zor",
+      "premise": "Ayşe tatilde her gün 25 problem çözmüştür. 4 günün sonunda çözdüğü problemlerin 12 tanesinin yanlış olduğunu fark etmiştir.",
+      "text": "Ayşe'nin doğru çözdüğü problem sayısı kaçtır?",
+      "correct": "88",
+      "wrong1": "100",
+      "wrong2": "76",
+      "explanation": "Önce toplam problem **25 × 4**, sonra yanlışlar çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:25×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 4'ü çarparız: 2 × 4 = **8**. Elde **2** eklenince **10** olur. Alta **0** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **100**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:100-12]]\n**Birler basamağı**\n0'dan 2 çıkmaz · sola boz · 10 − 2 = **8**\n[[stephr]]\n**Onlar basamağı**\n9 − 1 = **8**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 0 − 0 = **0**\n→ **88**\n[[stephr]]\nSonuç: [[result:88]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre ayşe'nin doğru çözdüğü problem sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ayşe tatilde her gün 25 problem çözmüştür. 4 günün sonunda çözdüğü problemlerin 12 tanesinin yanlış olduğunu fark etmiştir."
+            }
+          ]
+        },
+        "correct": "88",
+        "wrong1": "100",
+        "wrong2": "76",
+        "explanation": "Önce toplam problem **25 × 4**, sonra yanlışlar çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:25×4]]\n**Birler basamağı**\n5 ile 4'ü çarparız: 5 × 4 = **20**. Alta **0** yazılır, **2** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 4'ü çarparız: 2 × 4 = **8**. Elde **2** eklenince **10** olur. Alta **0** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **100**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:100-12]]\n**Birler basamağı**\n0'dan 2 çıkmaz · sola boz · 10 − 2 = **8**\n[[stephr]]\n**Onlar basamağı**\n9 − 1 = **8**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 0 − 0 = **0**\n→ **88**\n[[stephr]]\nSonuç: [[result:88]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_043",
+      "level": "zor",
+      "premise": "Bir fırıncı sabah erkenden 45 adet ekmek üretmiştir. Bu ekmekleri 3 bakkala onar onar toptan satmıştır.",
+      "text": "Fırıncının elinde satılmamış kaç adet ekmek kalmıştır?",
+      "correct": "15",
+      "wrong1": "30",
+      "wrong2": "35",
+      "explanation": "Önce satılan ekmek **3 × 10**, sonra toplamdan çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldesiz çarpma:\n[[mulsol:10×3]]\n**Birler basamağı**\n0 ile 3'ü çarparız: 0 × 3 = **0**. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n1 ile 3'ü çarparız: 1 × 3 = **3**. Alta **3** yazılır.\n→ **30**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:45-30]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n4 − 3 = **1**\n→ **15**\n[[stephr]]\nSonuç: [[result:15]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre fırıncının elinde satılmamış kaç adet ekmek kalmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir fırıncı sabah erkenden 45 adet ekmek üretmiştir. Bu ekmekleri 3 bakkala onar onar toptan satmıştır."
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "30",
+        "wrong2": "35",
+        "explanation": "Önce satılan ekmek **3 × 10**, sonra toplamdan çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldesiz çarpma:\n[[mulsol:10×3]]\n**Birler basamağı**\n0 ile 3'ü çarparız: 0 × 3 = **0**. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n1 ile 3'ü çarparız: 1 × 3 = **3**. Alta **3** yazılır.\n→ **30**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:45-30]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n4 − 3 = **1**\n→ **15**\n[[stephr]]\nSonuç: [[result:15]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_044",
+      "level": "zor",
+      "premise": "Kerem, tanesi 35 TL olan hikaye kitaplarından 2 tane alarak kasaya 100 TL uzatmıştır.",
+      "text": "Kerem kasadan kaç TL para üstü almalıdır?",
+      "correct": "30",
+      "wrong1": "70",
+      "wrong2": "40",
+      "explanation": "Önce kitap tutarı **35 × 2**, para üstü için **100**'den çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:35×2]]\n**Birler basamağı**\n5 ile 2'yi çarparız: 5 × 2 = **10**. Alta **0** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n3 ile 2'yi çarparız: 3 × 2 = **6**. Elde **1** eklenince **7** olur. Alta **7** yazılır.\n→ **70**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:100-70]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 7 çıkmaz · onluk al · 10 − 7 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 0 − 0 = **0**\n→ **30**\n[[stephr]]\nSonuç: [[result:30]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre kerem kasadan kaç TL para üstü almalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kerem, tanesi 35 TL olan hikaye kitaplarından 2 tane alarak kasaya 100 TL uzatmıştır."
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "70",
+        "wrong2": "40",
+        "explanation": "Önce kitap tutarı **35 × 2**, para üstü için **100**'den çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:35×2]]\n**Birler basamağı**\n5 ile 2'yi çarparız: 5 × 2 = **10**. Alta **0** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n3 ile 2'yi çarparız: 3 × 2 = **6**. Elde **1** eklenince **7** olur. Alta **7** yazılır.\n→ **70**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:100-70]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 7 çıkmaz · onluk al · 10 − 7 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 0 − 0 = **0**\n→ **30**\n[[stephr]]\nSonuç: [[result:30]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_045",
+      "level": "zor",
+      "premise": "Bir ilçe kütüphanesinde 8 adet büyük kitaplık vardır. Her kitaplıkta 25 adet kitap bulunmaktadır. Kütüphaneye yeni 40 kitap daha bağışlanmıştır.",
+      "text": "Kütüphanedeki toplam kitap sayısı kaç olmuştur?",
+      "correct": "240",
+      "wrong1": "200",
+      "wrong2": "280",
+      "explanation": "Önce kitaplıktaki kitap **25 × 8**, bağış eklenir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:25×8]]\n**Birler basamağı**\n5 ile 8'i çarparız: 5 × 8 = **40**. Alta **0** yazılır, **4** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 8'i çarparız: 2 × 8 = **16**. Elde **4** eklenince **20** olur. Alta **0** yazılır. **2** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **200**\n[[stephr]]\n**2. adım**\nEldesiz toplama:\n[[addsol:200+40]]\n**Birler basamağı**\n0 + 0 = **0** eder. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n0 + 4 = **4** eder. Alta **4** yazılır.\n[[stephr]]\n**Yüzler basamağı**\n2 + 0 = **2** eder. Alta **2** yazılır.\n→ **240**\n[[stephr]]\nSonuç: [[result:240]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre kütüphanedeki toplam kitap sayısı kaç olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir ilçe kütüphanesinde 8 adet büyük kitaplık vardır. Her kitaplıkta 25 adet kitap bulunmaktadır. Kütüphaneye yeni 40 kitap daha bağışlanmıştır."
+            }
+          ]
+        },
+        "correct": "240",
+        "wrong1": "200",
+        "wrong2": "280",
+        "explanation": "Önce kitaplıktaki kitap **25 × 8**, bağış eklenir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:25×8]]\n**Birler basamağı**\n5 ile 8'i çarparız: 5 × 8 = **40**. Alta **0** yazılır, **4** elde olur.\n[[stephr]]\n**Onlar basamağı**\n2 ile 8'i çarparız: 2 × 8 = **16**. Elde **4** eklenince **20** olur. Alta **0** yazılır. **2** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **200**\n[[stephr]]\n**2. adım**\nEldesiz toplama:\n[[addsol:200+40]]\n**Birler basamağı**\n0 + 0 = **0** eder. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n0 + 4 = **4** eder. Alta **4** yazılır.\n[[stephr]]\n**Yüzler basamağı**\n2 + 0 = **2** eder. Alta **2** yazılır.\n→ **240**\n[[stephr]]\nSonuç: [[result:240]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_046",
+      "level": "zor",
+      "premise": "Zeynep'in kumbarasında 45 TL'si vardır. Kardeşinin parası ise Zeynep'in parasının 3 katından 20 TL eksiktir.",
+      "text": "Buna göre Zeynep'in kardeşinin kaç TL parası vardır?",
+      "correct": "115",
+      "wrong1": "135",
+      "wrong2": "95",
+      "explanation": "Önce **45 × 3**, sonra **20 TL** eksiltilir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:45×3]]\n**Birler basamağı**\n5 ile 3'ü çarparız: 5 × 3 = **15**. Alta **5** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 3'ü çarparız: 4 × 3 = **12**. Elde **1** eklenince **13** olur. Alta **3** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **135**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:135-20]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n3 − 2 = **1**\n[[stephr]]\n**Yüzler basamağı**\n1 − 0 = **1**\n→ **115**\n[[stephr]]\nSonuç: [[result:115]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre buna göre Zeynep'in kardeşinin kaç TL parası vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep'in kumbarasında 45 TL'si vardır. Kardeşinin parası ise Zeynep'in parasının 3 katından 20 TL eksiktir."
+            }
+          ]
+        },
+        "correct": "115",
+        "wrong1": "135",
+        "wrong2": "95",
+        "explanation": "Önce **45 × 3**, sonra **20 TL** eksiltilir.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:45×3]]\n**Birler basamağı**\n5 ile 3'ü çarparız: 5 × 3 = **15**. Alta **5** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 3'ü çarparız: 4 × 3 = **12**. Elde **1** eklenince **13** olur. Alta **3** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **135**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:135-20]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n3 − 2 = **1**\n[[stephr]]\n**Yüzler basamağı**\n1 − 0 = **1**\n→ **115**\n[[stephr]]\nSonuç: [[result:115]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_047",
+      "level": "zor",
+      "premise": "Bir çiftlikte 14 koyun, 18 tavuk ve 6 inek bulunmaktadır.",
+      "text": "Bu çiftlikteki hayvanların ayak sayıları toplamı kaçtır?",
+      "correct": "116",
+      "wrong1": "106",
+      "wrong2": "126",
+      "explanation": "Her hayvan grubunun ayak sayısı çarpılır, sonra toplanır.\n\n**5 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:14×4]]\n**Birler basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 4'ü çarparız: 1 × 4 = **4**. Elde **1** eklenince **5** olur. Alta **5** yazılır.\n→ **56**\n[[stephr]]\n**2. adım**\nEldeli çarpma:\n[[mulsol:18×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 2'yi çarparız: 1 × 2 = **2**. Elde **1** eklenince **3** olur. Alta **3** yazılır.\n→ **36**\n[[stephr]]\n**3. adım**\nEldeli çarpma:\n[[mulsol:6×4]]\n**Birler basamağı**\n6 ile 4'ü çarparız: 6 × 4 = **24**. Alta **4** yazılır. **2** elde olur ve sonucun **onlar** basamağına yazılır.\n→ **24**\n[[stephr]]\n**4. adım**\nEldeli toplama:\n[[addsol:56+36]]\n**Birler basamağı**\n6 + 6 = **12** eder. Alta **2** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n5 + 3 + elde 1 = **9** eder. Alta **9** yazılır.\n→ **92**\n[[stephr]]\n**5. adım**\nEldeli toplama:\n[[addsol:92+24]]\n**Birler basamağı**\n2 + 4 = **6** eder. Alta **6** yazılır.\n[[stephr]]\n**Onlar basamağı**\n9 + 2 = **11** eder. Alta **1** yazılır, **1** elde olur.\n→ **116**\n[[stephr]]\nSonuç: [[result:116]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu çiftlikteki hayvanların ayak sayıları toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir çiftlikte 14 koyun, 18 tavuk ve 6 inek bulunmaktadır."
+            }
+          ]
+        },
+        "correct": "116",
+        "wrong1": "106",
+        "wrong2": "126",
+        "explanation": "Her hayvan grubunun ayak sayısı çarpılır, sonra toplanır.\n\n**5 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:14×4]]\n**Birler basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 4'ü çarparız: 1 × 4 = **4**. Elde **1** eklenince **5** olur. Alta **5** yazılır.\n→ **56**\n[[stephr]]\n**2. adım**\nEldeli çarpma:\n[[mulsol:18×2]]\n**Birler basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 2'yi çarparız: 1 × 2 = **2**. Elde **1** eklenince **3** olur. Alta **3** yazılır.\n→ **36**\n[[stephr]]\n**3. adım**\nEldeli çarpma:\n[[mulsol:6×4]]\n**Birler basamağı**\n6 ile 4'ü çarparız: 6 × 4 = **24**. Alta **4** yazılır. **2** elde olur ve sonucun **onlar** basamağına yazılır.\n→ **24**\n[[stephr]]\n**4. adım**\nEldeli toplama:\n[[addsol:56+36]]\n**Birler basamağı**\n6 + 6 = **12** eder. Alta **2** yazılır, **1** elde olur.\n[[stephr]]\n**Onlar basamağı**\n5 + 3 + elde 1 = **9** eder. Alta **9** yazılır.\n→ **92**\n[[stephr]]\n**5. adım**\nEldeli toplama:\n[[addsol:92+24]]\n**Birler basamağı**\n2 + 4 = **6** eder. Alta **6** yazılır.\n[[stephr]]\n**Onlar basamağı**\n9 + 2 = **11** eder. Alta **1** yazılır, **1** elde olur.\n→ **116**\n[[stephr]]\nSonuç: [[result:116]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_048",
+      "level": "zor",
+      "premise": "Bir mağaza sahibi, tanesi 45 TL olan okul tişörtlerinden yarım düzine satın almıştır.",
+      "text": "Mağaza sahibi bu tişörtler için toptancıya toplam kaç TL ödemiştir?",
+      "correct": "270",
+      "wrong1": "540",
+      "wrong2": "225",
+      "explanation": "Yarım düzine = 6 adet; toplam **45 × 6**.\n\nEldeli çarpma:\n[[mulsol:45×6]]\n**Birler basamağı**\n5 ile 6'yı çarparız: 5 × 6 = **30**. Alta **0** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 6'yı çarparız: 4 × 6 = **24**. Elde **3** eklenince **27** olur. Alta **7** yazılır. **2** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:270]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre mağaza sahibi bu tişörtler için toptancıya toplam kaç TL ödemiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir mağaza sahibi, tanesi 45 TL olan okul tişörtlerinden yarım düzine satın almıştır."
+            }
+          ]
+        },
+        "correct": "270",
+        "wrong1": "540",
+        "wrong2": "225",
+        "explanation": "Yarım düzine = 6 adet; toplam **45 × 6**.\n\nEldeli çarpma:\n[[mulsol:45×6]]\n**Birler basamağı**\n5 ile 6'yı çarparız: 5 × 6 = **30**. Alta **0** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n4 ile 6'yı çarparız: 4 × 6 = **24**. Elde **3** eklenince **27** olur. Alta **7** yazılır. **2** elde olur ve sonucun **yüzler** basamağına yazılır.\nSonuç: [[result:270]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_049",
+      "level": "zor",
+      "premise": "Bir terzi her takım elbise için 4 metre kumaş kullanmaktadır. Terzinin elinde 50 metrelik bir top kumaş vardır. Terzi 9 takım elbise dikmiştir.",
+      "text": "Terzinin elinde geriye kaç metre kumaş kalmıştır?",
+      "correct": "14",
+      "wrong1": "16",
+      "wrong2": "12",
+      "explanation": "Önce kullanılan kumaş **9 × 4**, kalan **50**'den çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:9×4]]\n**Birler basamağı**\n9 ile 4'ü çarparız: 9 × 4 = **36**. Alta **6** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\n→ **36**\n[[stephr]]\n**2. adım**\nOnluk bozarak çıkarma:\n[[subsol:50-36]]\n**Birler basamağı**\n0'dan 6 çıkmaz · onluk al · 10 − 6 = **4**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 4 − 3 = **1**\n→ **14**\n[[stephr]]\nSonuç: [[result:14]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre terzinin elinde geriye kaç metre kumaş kalmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir terzi her takım elbise için 4 metre kumaş kullanmaktadır. Terzinin elinde 50 metrelik bir top kumaş vardır. Terzi 9 takım elbise dikmiştir."
+            }
+          ]
+        },
+        "correct": "14",
+        "wrong1": "16",
+        "wrong2": "12",
+        "explanation": "Önce kullanılan kumaş **9 × 4**, kalan **50**'den çıkarılır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:9×4]]\n**Birler basamağı**\n9 ile 4'ü çarparız: 9 × 4 = **36**. Alta **6** yazılır. **3** elde olur ve sonucun **onlar** basamağına yazılır.\n→ **36**\n[[stephr]]\n**2. adım**\nOnluk bozarak çıkarma:\n[[subsol:50-36]]\n**Birler basamağı**\n0'dan 6 çıkmaz · onluk al · 10 − 6 = **4**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 4 − 3 = **1**\n→ **14**\n[[stephr]]\nSonuç: [[result:14]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_carp_050",
+      "level": "zor",
+      "premise": "Dört katlı bir apartmanın her katında 4 daire vardır. Her dairenin 5 penceresi ve her pencerenin 2 açılır kanadı bulunmaktadır.",
+      "text": "Bu apartmandaki pencerelerin toplam açılır kanat sayısı kaçtır?",
+      "correct": "160",
+      "wrong1": "80",
+      "wrong2": "120",
+      "explanation": "Daire → pencere → kanat sayısı adım adım çarpılır.\n\n**3 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:4×4]]\n**Birler basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **onlar** basamağına yazılır.\n→ **16**\n[[stephr]]\n**2. adım**\nEldeli çarpma:\n[[mulsol:16×5]]\n**Birler basamağı**\n6 ile 5'i çarparız: 6 × 5 = **30**. Alta **0** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 5'i çarparız: 1 × 5 = **5**. Elde **3** eklenince **8** olur. Alta **8** yazılır.\n→ **80**\n[[stephr]]\n**3. adım**\nEldeli çarpma:\n[[mulsol:80×2]]\n**Birler basamağı**\n0 ile 2'yi çarparız: 0 × 2 = **0**. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **160**\n[[stephr]]\nSonuç: [[result:160]]",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre bu apartmandaki pencerelerin toplam açılır kanat sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dört katlı bir apartmanın her katında 4 daire vardır. Her dairenin 5 penceresi ve her pencerenin 2 açılır kanadı bulunmaktadır."
+            }
+          ]
+        },
+        "correct": "160",
+        "wrong1": "80",
+        "wrong2": "120",
+        "explanation": "Daire → pencere → kanat sayısı adım adım çarpılır.\n\n**3 adımlı problem**:\n**1. adım**\nEldeli çarpma:\n[[mulsol:4×4]]\n**Birler basamağı**\n4 ile 4'ü çarparız: 4 × 4 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **onlar** basamağına yazılır.\n→ **16**\n[[stephr]]\n**2. adım**\nEldeli çarpma:\n[[mulsol:16×5]]\n**Birler basamağı**\n6 ile 5'i çarparız: 6 × 5 = **30**. Alta **0** yazılır, **3** elde olur.\n[[stephr]]\n**Onlar basamağı**\n1 ile 5'i çarparız: 1 × 5 = **5**. Elde **3** eklenince **8** olur. Alta **8** yazılır.\n→ **80**\n[[stephr]]\n**3. adım**\nEldeli çarpma:\n[[mulsol:80×2]]\n**Birler basamağı**\n0 ile 2'yi çarparız: 0 × 2 = **0**. Alta **0** yazılır.\n[[stephr]]\n**Onlar basamağı**\n8 ile 2'yi çarparız: 8 × 2 = **16**. Alta **6** yazılır. **1** elde olur ve sonucun **yüzler** basamağına yazılır.\n→ **160**\n[[stephr]]\nSonuç: [[result:160]]",
+        "url": null
+      }
+    }
+  ]
+}

@@ -39,16 +39,13 @@ SKIP_TEXT_VERTICAL = (
 
 
 def compute_add_steps(a: int, b: int) -> tuple[list[dict], int]:
+    from math_place_utils import place_names
+
     sa, sb = str(a), str(b)
     length = max(len(sa), len(sb))
     da = [int(c) for c in sa.zfill(length)]
     db = [int(c) for c in sb.zfill(length)]
-    if length == 3:
-        names = ["yüzler", "onlar", "birler"]
-    elif length == 2:
-        names = ["onlar", "birler"]
-    else:
-        names = [f"{i + 1}. basamak" for i in range(length)]
+    names = place_names(length)
     steps: list[dict] = []
     carry = 0
     result_digits: list[int] = []
@@ -56,7 +53,7 @@ def compute_add_steps(a: int, b: int) -> tuple[list[dict], int]:
         total = da[i] + db[i] + carry
         digit = total % 10
         new_carry = 1 if total >= 10 else 0
-        place = names[i] if i < len(names) else f"{i + 1}. basamak"
+        place = names[i] if i < len(names) else names[0]
         steps.append(
             {
                 "place": place,
@@ -110,17 +107,14 @@ def build_add_explanation(a: int, b: int, result: int | None = None) -> str:
 
 
 def compute_add_steps_multi(addends: list[int]) -> tuple[list[dict], int]:
+    from math_place_utils import place_names
+
     if len(addends) < 2:
         return [], addends[0] if addends else 0
     total = sum(addends)
     length = max(len(str(n)) for n in addends + [total])
     digit_rows = [[int(c) for c in str(n).zfill(length)] for n in addends]
-    if length == 3:
-        names = ["yüzler", "onlar", "birler"]
-    elif length == 2:
-        names = ["onlar", "birler"]
-    else:
-        names = [f"{i + 1}. basamak" for i in range(length)]
+    names = place_names(length)
     steps: list[dict] = []
     carry = 0
     result_digits: list[int] = []
@@ -129,7 +123,7 @@ def compute_add_steps_multi(addends: list[int]) -> tuple[list[dict], int]:
         total_col = sum(digits) + carry
         digit = total_col % 10
         new_carry = total_col // 10
-        place = names[i] if i < len(names) else f"{i + 1}. basamak"
+        place = names[i] if i < len(names) else names[0]
         steps.append(
             {
                 "place": place,

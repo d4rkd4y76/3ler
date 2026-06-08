@@ -436,7 +436,8 @@
 }
 
 .q-vmath--add .q-vmath__grid,
-.q-vmath--sub .q-vmath__grid {
+.q-vmath--sub .q-vmath__grid,
+.q-vmath--mul .q-vmath__grid {
   display: inline-grid;
   grid-template-columns: 1.05em repeat(var(--q-add-cols, 3), 1.2em);
   column-gap: 0.08em;
@@ -446,12 +447,14 @@
 }
 
 .q-vmath--add .q-vmath__grid-row,
-.q-vmath--sub .q-vmath__grid-row {
+.q-vmath--sub .q-vmath__grid-row,
+.q-vmath--mul .q-vmath__grid-row {
   display: contents;
 }
 
 .q-vmath--add .q-vmath__gcol,
-.q-vmath--sub .q-vmath__gcol {
+.q-vmath--sub .q-vmath__gcol,
+.q-vmath--mul .q-vmath__gcol {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -461,7 +464,8 @@
 }
 
 .q-vmath--add .q-vmath__gcol--sign,
-.q-vmath--sub .q-vmath__gcol--sign {
+.q-vmath--sub .q-vmath__gcol--sign,
+.q-vmath--mul .q-vmath__gcol--sign {
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 0.08em;
@@ -469,17 +473,20 @@
 }
 
 .q-vmath--add .q-vmath__grid-row--bar .q-vmath__gcol--sign,
-.q-vmath--sub .q-vmath__grid-row--bar .q-vmath__gcol--sign {
+.q-vmath--sub .q-vmath__grid-row--bar .q-vmath__gcol--sign,
+.q-vmath--mul .q-vmath__grid-row--bar .q-vmath__gcol--sign {
   display: none;
 }
 
 .q-vmath--add .q-vmath__gcol--bar,
-.q-vmath--sub .q-vmath__gcol--bar {
+.q-vmath--sub .q-vmath__gcol--bar,
+.q-vmath--mul .q-vmath__gcol--bar {
   display: none;
 }
 
 .q-vmath--add .q-vmath__bar-line,
-.q-vmath--sub .q-vmath__bar-line {
+.q-vmath--sub .q-vmath__bar-line,
+.q-vmath--mul .q-vmath__bar-line {
   grid-column: 1 / -1;
   width: 100%;
   height: 3px;
@@ -491,14 +498,16 @@
 }
 
 .q-vmath--add .q-vmath__digit,
-.q-vmath--sub .q-vmath__digit {
+.q-vmath--sub .q-vmath__digit,
+.q-vmath--mul .q-vmath__digit {
   display: block;
   width: 1.1em;
   text-align: center;
   line-height: 1.15;
 }
 
-.q-vmath--add .q-vmath__carry {
+.q-vmath--add .q-vmath__carry,
+.q-vmath--mul .q-vmath__carry {
   display: block;
   width: 1.1em;
   text-align: center;
@@ -510,12 +519,14 @@
   text-shadow: 0 0 6px rgba(251, 191, 36, 0.45);
 }
 
-.q-vmath--add .q-vmath__carry--empty {
+.q-vmath--add .q-vmath__carry--empty,
+.q-vmath--mul .q-vmath__carry--empty {
   visibility: hidden;
 }
 
 .q-vmath--addsol .q-vmath__digit--result,
-.q-vmath--subsol .q-vmath__digit--result {
+.q-vmath--subsol .q-vmath__digit--result,
+.q-vmath--mulsol .q-vmath__digit--result {
   margin-top: 0;
   padding-top: 0.1em;
   border-top: none;
@@ -581,10 +592,9 @@
   display: block;
   width: 100%;
   height: 0;
-  margin: 0.85em 0;
+  margin: 0.65em 0;
   border: none;
-  border-top: 2px solid rgba(148, 163, 184, 0.55);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-top: 1px dashed rgba(148, 163, 184, 0.45);
 }
 
 .q-final-result {

@@ -15,6 +15,7 @@
   const STEPHR_RE = /\[\[\s*stephr\s*\]\]/gi;
   const RESULT_RE = /\[\[\s*result\s*:\s*(\d+)\s*\]\]/gi;
   const MUL_RE = /\[\[\s*mul\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
+  const MULSOL_RE = /\[\[\s*mulsol\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
   const DIV_RE = /\[\[\s*div\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*\]\]/gi;
   const SHAPE_RE = /\[\[\s*shape\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
   const SOLID_RE = /\[\[\s*solid\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
@@ -540,22 +541,140 @@
     );
   }
 
+  function computeMulColumns(a, b) {
+    var na = parseInt(a, 10) || 0;
+    var nb = parseInt(b, 10) || 0;
+    var sa = String(na);
+    var m = nb;
+    var da = sa.split("").map(Number);
+    var mcLen = da.length;
+    var carryRow = Array(mcLen).fill("\u00a0");
+    var carry = 0;
+    var resultDigits = [];
+    var i;
+    for (i = mcLen - 1; i >= 0; i--) {
+      var total = da[i] * m + carry;
+      var digit = total % 10;
+      carry = Math.floor(total / 10);
+      resultDigits.unshift(String(digit));
+      if (carry > 0 && i > 0) {
+        carryRow[i - 1] = String(carry);
+      }
+    }
+    if (carry > 0) {
+      resultDigits.unshift(String(carry));
+      carryRow.unshift("\u00a0");
+    }
+    var gridLen = Math.max(mcLen, resultDigits.length, String(m).length);
+    var top = sa.padStart(gridLen, "\u00a0");
+    var bottom = String(m).padStart(gridLen, "\u00a0");
+    while (carryRow.length < gridLen) {
+      carryRow.unshift("\u00a0");
+    }
+    if (carryRow.length > gridLen) {
+      carryRow = carryRow.slice(carryRow.length - gridLen);
+    }
+    return {
+      len: gridLen,
+      top: top,
+      bottom: bottom,
+      result: resultDigits.join("").padStart(gridLen, "\u00a0"),
+      carryRow: carryRow,
+      product: na * nb,
+    };
+  }
+
+  function buildMulGridHtml(cols, withSolution) {
+    var len = cols.len;
+    var topD = splitPaddedDigits(cols.top, len);
+    var botD = splitPaddedDigits(cols.bottom, len);
+    var resD = splitPaddedDigits(cols.result, len);
+    var parts = ['<span class="q-vmath__grid q-vmath__grid--mul" style="--q-add-cols:' + len + '">'];
+
+    if (withSolution) {
+      parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--carry">');
+      parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+      for (var ci = 0; ci < len; ci++) {
+        var cval = cols.carryRow[ci];
+        var hasCarry = cval && String(cval).trim() && cval !== "\u00a0";
+        parts.push(
+          '<span class="q-vmath__gcol">' +
+            (hasCarry
+              ? '<span class="q-vmath__carry" title="Elde">' + escapeHtml(String(cval)) + "</span>"
+              : '<span class="q-vmath__carry q-vmath__carry--empty" aria-hidden="true">&nbsp;</span>') +
+            "</span>"
+        );
+      }
+      parts.push("</span>");
+    }
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+    for (var ti = 0; ti < len; ti++) {
+      parts.push(
+        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+          (topD[ti] ? escapeHtml(topD[ti]) : "&nbsp;") +
+          "</span></span>"
+      );
+    }
+    parts.push("</span>");
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op q-vmath__grid-row--mul">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"><span class="q-vmath__sign">×</span></span>');
+    for (var si = 0; si < len; si++) {
+      parts.push(
+        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+          (botD[si] ? escapeHtml(botD[si]) : "&nbsp;") +
+          "</span></span>"
+      );
+    }
+    parts.push("</span>");
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--bar">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+    parts.push('<span class="q-vmath__bar-line" aria-hidden="true"></span>');
+    parts.push("</span>");
+
+    if (withSolution) {
+      parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--result">');
+      parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+      for (var ri = 0; ri < len; ri++) {
+        parts.push(
+          '<span class="q-vmath__gcol"><span class="q-vmath__digit q-vmath__digit--result">' +
+            (resD[ri] ? escapeHtml(resD[ri]) : "&nbsp;") +
+            "</span></span>"
+        );
+      }
+      parts.push("</span>");
+    }
+
+    parts.push("</span>");
+    return parts.join("");
+  }
+
   function verticalMulHtml(a, b) {
-    const x = escapeHtml(a);
-    const y = escapeHtml(b);
+    var na = parseInt(a, 10) || 0;
+    var nb = parseInt(b, 10) || 0;
+    var cols = computeMulColumns(na, nb);
     return (
       '<span class="q-vmath q-vmath--mul" role="math" aria-label="' +
-      x +
-      " çarpı " +
-      y +
+      escapeHtml(String(na) + " çarpı " + String(nb)) +
       '">' +
-      '<span class="q-vmath__col">' +
-      '<span class="q-vmath__row q-vmath__row--top">' +
-      x +
-      '</span><span class="q-vmath__row q-vmath__row--op"><span class="q-vmath__sign">×</span>' +
-      y +
-      '</span><span class="q-vmath__bar" aria-hidden="true"></span>' +
-      "</span></span>"
+      buildMulGridHtml(cols, false) +
+      "</span>"
+    );
+  }
+
+  function verticalMulSolutionHtml(a, b) {
+    var na = parseInt(a, 10) || 0;
+    var nb = parseInt(b, 10) || 0;
+    var cols = computeMulColumns(na, nb);
+    return (
+      '<span class="q-vmath q-vmath--mul q-vmath--mulsol" role="math" aria-label="' +
+      escapeHtml(String(na) + " çarpı " + String(nb) + " eşittir " + String(cols.product)) +
+      '">' +
+      buildMulGridHtml(cols, true) +
+      "</span>"
     );
   }
 
@@ -935,6 +1054,9 @@
     });
     s = s.replace(SUB_PAIR_RE, function (_, a, b) {
       return verticalSubHtml(a, b);
+    });
+    s = s.replace(MULSOL_RE, function (_, a, b) {
+      return verticalMulSolutionHtml(a, b);
     });
     s = s.replace(ADD_MULTI_RE, function (_, ops) {
       return verticalAddFromOperands(parseAddOperands(ops));

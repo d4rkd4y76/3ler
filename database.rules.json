@@ -857,6 +857,27 @@
         ".validate": "(!newData.exists()) || newData.isNumber()"
       }
     },
+    "roboroxLearn": {
+      ".read": true,
+      ".write": true,
+      "$topicId": {
+        "title": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 200)"
+        },
+        "order": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        },
+        "active": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        },
+        "images": {
+          ".validate": "(!newData.exists()) || newData.hasChildren()"
+        },
+        "updatedAt": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        }
+      }
+    },
     "hikayeVideo": {
       ".read": true,
       ".write": true,
