@@ -191,21 +191,21 @@
     try {
       if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
     } catch (_) {}
+    var kicks = [];
     if (!heroReady() && typeof window.novaRefreshMainScreenHero === 'function') {
-      try {
-        await Promise.race([
-          window.novaRefreshMainScreenHero({ urgent: true }),
+      kicks.push(
+        Promise.race([
+          window.novaRefreshMainScreenHero({ urgent: true, force: true }),
           new Promise(function (r) {
-            setTimeout(r, 1800);
+            setTimeout(r, 2200);
           })
-        ]);
-      } catch (_) {}
+        ]).catch(function () {})
+      );
     }
     if (!profilePhotoReady() && typeof window.novaApplyMainScreenProfileUi === 'function') {
-      try {
-        await window.novaApplyMainScreenProfileUi();
-      } catch (_) {}
+      kicks.push(window.novaApplyMainScreenProfileUi().catch(function () {}));
     }
+    if (kicks.length) await Promise.all(kicks);
   }
 
   window.novaWaitUntilMainScreenElementsReady = async function (opts) {
@@ -402,36 +402,66 @@
       window.__novaBootMainPrep = true;
       try {
         status('Arayüz hazırlanıyor…');
-        if (typeof window.novaBootApplyInstantCache === 'function' && !window.__novaBootInstantCacheApplied) {
-          await window.novaBootApplyInstantCache();
-        }
-
         status('Kahramanlar yükleniyor…');
         var prepTasks = [ensureMainScreenLayout()];
-        if (!window.__novaMainScreenPrefetchDone) {
-          if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-            prepTasks.push(
-              window
-                .novaPrefetchMainScreenAssets(window.__novaMainScreenPrefetchStarted ? false : true)
-                .catch(function () {})
-            );
-          }
+
+        if (typeof window.novaBootApplyInstantCache === 'function' && !window.__novaBootInstantCacheApplied) {
+          prepTasks.push(window.novaBootApplyInstantCache().catch(function () {}));
         }
+
+        if (!window.__novaMainScreenPrefetchDone && typeof window.novaPrefetchMainScreenAssets === 'function') {
+          prepTasks.push(
+            window
+              .novaPrefetchMainScreenAssets(window.__novaMainScreenPrefetchStarted ? false : true)
+              .catch(function () {})
+          );
+        }
+
         if (!heroSlotAlreadyReady() && typeof window.novaRefreshMainScreenHero === 'function') {
           prepTasks.push(
             Promise.race([
-              window.novaRefreshMainScreenHero({ urgent: true }),
+              window.novaRefreshMainScreenHero({ urgent: true, force: true }),
               new Promise(function (r) {
-                setTimeout(r, 4500);
+                setTimeout(r, 6000);
               })
             ]).catch(function () {})
           );
         }
+
+        if (!profilePhotoReady() && typeof window.novaApplyMainScreenProfileUi === 'function') {
+          prepTasks.push(window.novaApplyMainScreenProfileUi().catch(function () {}));
+        }
+
+        if (typeof window.novaPreloadDragonEggAssets === 'function') {
+          prepTasks.push(window.novaPreloadDragonEggAssets().catch(function () {}));
+        }
+
         await Promise.all(prepTasks);
+
+        if (typeof window.novaDragonEggEnsureHub === 'function') {
+          try {
+            await Promise.race([
+              window.novaDragonEggEnsureHub(),
+              new Promise(function (r) {
+                setTimeout(r, 4000);
+              })
+            ]);
+          } catch (_) {}
+        }
 
         if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
           window.novaSyncMainSlotPlaceholders();
         }
+
+        if (typeof window.onMainScreenLoad === 'function' && !window.__novaMainScreenLoadDone) {
+          try {
+            window.onMainScreenLoad();
+          } catch (_) {}
+        }
+
+        try {
+          document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
+        } catch (_) {}
 
         window.__novaMainScreenBootReady = mainScreenElementsReady();
         return window.__novaMainScreenBootReady;

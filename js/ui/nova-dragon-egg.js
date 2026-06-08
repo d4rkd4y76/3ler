@@ -1371,16 +1371,35 @@
     }
   }
 
-  function boot() {
-    if (!document.getElementById('main-screen')) return;
+  function ensureHubRunning() {
     ensureHubMarkup();
+    var hub = document.getElementById('nova_dragon_egg_hub');
+    if (hub && !hub.querySelector('canvas')) playHubLoop(hub);
+    return hub;
+  }
+
+  window.novaDragonEggEnsureHub = function () {
+    if (!document.getElementById('main-screen')) return Promise.resolve();
     bindMainEntry();
     bindScreenUi();
-    var hub = document.getElementById('nova_dragon_egg_hub');
-    if (hub) playHubLoop(hub);
-    loadStudentEggFields().then(function () {
-      renderHubInventory(getStudent());
+    var preload =
+      window.__novaEggAssetsReady || eggPreloadPromise
+        ? Promise.resolve()
+        : preloadAllEggAssets().catch(function () {
+            return preloadAllEggAssets(true);
+          });
+    return preload.then(function () {
+      ensureHubRunning();
+      return loadStudentEggFields().then(function () {
+        renderHubInventory(getStudent());
+      });
     });
+  };
+
+  function boot() {
+    if (!document.getElementById('main-screen')) return;
+    bindMainEntry();
+    bindScreenUi();
     if (!document.__novaDragonEggVisibleBound) {
       document.__novaDragonEggVisibleBound = true;
       document.addEventListener('nova:main-screen-visible', function () {
@@ -1396,6 +1415,14 @@
         window.novaPreloadDragonEggAssets().catch(function () {});
       }
     } catch (_) {}
+    if (window.__novaBootMainPrep || window.__novaSpriteBootActive) {
+      window.novaDragonEggEnsureHub().catch(function () {});
+      return;
+    }
+    ensureHubRunning();
+    loadStudentEggFields().then(function () {
+      renderHubInventory(getStudent());
+    });
   }
 
   if (document.readyState === 'loading') {
@@ -1403,6 +1430,4 @@
   } else {
     boot();
   }
-  window.addEventListener('load', boot, { once: true });
-  setTimeout(boot, 1200);
 })();

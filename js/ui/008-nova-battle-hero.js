@@ -651,7 +651,18 @@
       var cacheAt = Number(window.__novaMainScreenStudentCacheAt || 0);
       if (cache && cacheAt && Date.now() - cacheAt < 120000) {
         data = cache;
-      } else {
+      } else if (window.__novaMainScreenPrefetchStarted && !cache) {
+        var waitStart = Date.now();
+        while (!cache && Date.now() - waitStart < 1400) {
+          await new Promise(function (r) {
+            setTimeout(r, 45);
+          });
+          cache = window.__novaMainScreenStudentCache;
+          cacheAt = Number(window.__novaMainScreenStudentCacheAt || 0);
+        }
+        if (cache && cacheAt) data = cache;
+      }
+      if (!data) {
         var snap = await database.ref('classes/' + s.classId + '/students/' + s.studentId).once('value');
         data = snap.val() || {};
         window.__novaMainScreenStudentCache = data;
@@ -2190,5 +2201,4 @@
   } else {
     boot();
   }
-  setTimeout(boot, 800);
 })();

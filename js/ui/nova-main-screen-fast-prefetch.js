@@ -190,7 +190,7 @@
     }
     window.__novaBootInstantCacheApplied = true;
     window.novaApplyMainScreenHudInstant();
-    var heroId = String(student.battleHero || window.__novaEquippedHeroId || 'star_fairy').trim();
+    var heroId = resolveHeroId(student, window.__novaMainScreenStudentCache);
     window.__novaEquippedHeroId = heroId;
     if (typeof window.novaSpritePreloadForHero === 'function') {
       try {
@@ -202,7 +202,10 @@
         window.novaSpritePreloadHero(heroId);
       } catch (_) {}
     }
-    return window.novaApplyMainScreenProfileUi({}, student).then(function () {
+    return Promise.all([
+      window.novaApplyMainScreenProfileUi({}, student).catch(function () {}),
+      prefetchEquippedHero(heroId).catch(function () {})
+    ]).then(function () {
       return true;
     });
   };
@@ -420,30 +423,38 @@
     if (!student) return Promise.resolve(false);
 
     var bootActive = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
+    var heroIdEarly = resolveHeroId(student, window.__novaMainScreenStudentCache);
 
     window.novaApplyMainScreenHudInstant();
+    window.__novaEquippedHeroId = heroIdEarly;
 
     if (student.photo && window.__novaMainScreenProfileApplied !== true) {
       applyProfilePhotoToDom(student.photo).catch(function () {});
     }
+    prefetchEquippedHero(heroIdEarly).catch(function () {});
 
     window.__novaMainScreenPrefetchStarted = true;
-    // Tam öğrenci snapshot'ı gameCup + fotoğrafı kapsar; ayrı cup/photo istekleri gereksiz.
     var tasks = [
       prefetchStudentSnapshot(student),
-      prefetchMainScreenCredits(student),
-      typeof window.novaPrefetchMainScreenBgMedia === 'function'
-        ? window.novaPrefetchMainScreenBgMedia().catch(function () {})
-        : Promise.resolve()
+      prefetchMainScreenCredits(student)
     ];
 
-    if (!bootActive) {
+    if (bootActive) {
       tasks.push(
+        typeof window.novaPreloadDragonEggAssets === 'function'
+          ? window.novaPreloadDragonEggAssets().catch(function () {})
+          : Promise.resolve()
+      );
+    } else {
+      tasks.push(
+        typeof window.novaPrefetchMainScreenBgMedia === 'function'
+          ? window.novaPrefetchMainScreenBgMedia().catch(function () {})
+          : Promise.resolve(),
         typeof window.novaPreloadBootSheet === 'function'
           ? window.novaPreloadBootSheet().catch(function () {})
           : Promise.resolve(),
         typeof window.novaPreloadDragonEggAssets === 'function'
-          ? window.novaPreloadDragonEggAssets()
+          ? window.novaPreloadDragonEggAssets().catch(function () {})
           : Promise.resolve()
       );
     }
@@ -453,9 +464,6 @@
         var data = results[0];
         var heroId = resolveHeroId(student, data);
         window.__novaEquippedHeroId = heroId;
-        if (bootActive) {
-          return true;
-        }
         return prefetchEquippedHero(heroId);
       })
       .then(function () {

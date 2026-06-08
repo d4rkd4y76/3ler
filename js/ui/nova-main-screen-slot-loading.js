@@ -121,9 +121,9 @@
         return;
       }
       pollCount += 1;
-      pollTimer = setTimeout(tick, 520);
+      pollTimer = setTimeout(tick, 140);
     }
-    pollTimer = setTimeout(tick, 520);
+    pollTimer = setTimeout(tick, 140);
   }
 
   document.addEventListener(
@@ -134,7 +134,12 @@
           window.novaBonusDrawerSetOpen(false);
         } catch (_) {}
       }
-      if (!window.__novaMainSlotPlaceholdersActive) {
+      if (
+        typeof window.novaMainScreenElementsReady === 'function' &&
+        window.novaMainScreenElementsReady()
+      ) {
+        window.novaDeactivateMainSlotPlaceholders();
+      } else if (!window.__novaMainSlotPlaceholdersActive) {
         window.novaActivateMainSlotPlaceholders();
       }
     },

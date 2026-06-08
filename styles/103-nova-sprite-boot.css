@@ -12,7 +12,9 @@ body.nova-sprite-boot-active{
   background: #020308;
   opacity: 1;
   visibility: visible;
-  transition: opacity .6s cubic-bezier(.4, 0, .2, 1), visibility .6s;
+  transition:
+    opacity 1.05s cubic-bezier(.22, .85, .28, 1),
+    visibility 1.05s cubic-bezier(.22, .85, .28, 1);
   --nova-boot-progress: 0;
   --nova-boot-pct: 0;
   --nova-boot-blur: 32px;
@@ -20,26 +22,41 @@ body.nova-sprite-boot-active{
   --nova-boot-brightness: 0.68;
   --nova-boot-saturate: 0.82;
 }
+#nova_sprite_boot_overlay.is-fade-out{
+  pointer-events: none;
+}
 #nova_sprite_boot_overlay.is-exiting{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
-#nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-hero-layer{
-  transform: scale(1.04);
+#nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-hero-layer,
+#nova_sprite_boot_overlay.is-fade-out .nova-sprite-boot-hero-layer{
+  transform: scale(1.015);
   opacity: 0;
+  transition: transform 1s cubic-bezier(.2, .85, .2, 1), opacity .95s ease;
 }
-#nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-bottom-dock{
-  transform: translateY(12px);
+#nova_sprite_boot_overlay.is-exiting .nova-sprite-boot-bottom-dock,
+#nova_sprite_boot_overlay.is-fade-out .nova-sprite-boot-bottom-dock{
+  transform: translateY(18px);
   opacity: 0;
+  transition: transform .85s ease, opacity .75s ease;
 }
 #nova_sprite_boot_overlay.is-handoff{
-  transition: opacity .45s cubic-bezier(.4, 0, .2, 1), visibility .45s;
+  transition:
+    opacity 1.05s cubic-bezier(.22, .85, .28, 1),
+    visibility 1.05s cubic-bezier(.22, .85, .28, 1);
 }
 #nova_sprite_boot_overlay.is-handoff .nova-sprite-boot-hero-layer{
-  transform: scale(1.02);
+  transform: scale(1.01);
   opacity: 0;
-  transition: transform .45s cubic-bezier(.4, 0, .2, 1), opacity .4s;
+  transition: transform 1s cubic-bezier(.2, .85, .2, 1), opacity .9s ease;
+}
+
+body.nova-boot-handoff-active #main-screen{
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: opacity .9s cubic-bezier(.22, .85, .28, 1);
 }
 
 body.nova-main-screen-visible #main-screen{
