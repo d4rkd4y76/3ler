@@ -4,7 +4,9 @@
 body.nova-perf-ultra:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
 body.nova-perf-performance:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
 body.nova-perf-ultra:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope,
-body.nova-perf-performance:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope{
+body.nova-perf-performance:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope,
+body.nova-perf-ultra:not(.nova-perf-hq-active) #roborox-reader-overlay.nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) #roborox-reader-overlay.nova-perf-fullscreen-scope{
   /* zoom yok — içerik diğer ekranlarla aynı ölçekte kalır */
   top: 0 !important;
   left: 0 !important;
@@ -22,11 +24,25 @@ body.nova-perf-performance:not(.nova-perf-hq-active) #rankingPanel.nova-perf-ful
 }
 
 body.nova-perf-ultra:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
-body.nova-perf-performance:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope{
+body.nova-perf-performance:not(.nova-perf-hq-active) #profileChangeOverlay.nova-perf-fullscreen-scope,
+body.nova-perf-ultra:not(.nova-perf-hq-active) #roborox-reader-overlay.nova-perf-fullscreen-scope,
+body.nova-perf-performance:not(.nova-perf-hq-active) #roborox-reader-overlay.nova-perf-fullscreen-scope{
   position: fixed !important;
   align-items: stretch !important;
   justify-content: stretch !important;
   padding: 0 !important;
+}
+
+body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope{
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
 }
 
 body.nova-perf-ultra:not(.nova-perf-hq-active) #rankingPanel.nova-perf-fullscreen-scope,

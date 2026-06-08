@@ -77,9 +77,25 @@
     document.body.style.overflow = on ? "hidden" : "";
   }
 
+  function ensureReaderPortal() {
+    if (reader && reader.parentElement !== document.body) {
+      document.body.appendChild(reader);
+    }
+  }
+
   function setReaderBodyLock(on) {
     document.body.classList.toggle("roborox-reader-open", !!on);
+    document.documentElement.classList.toggle("roborox-reader-open", !!on);
     document.body.style.overflow = on ? "hidden" : "";
+    if (on) {
+      try {
+        document.body.style.zoom = "1";
+        document.body.style.transform = "none";
+        document.body.style.width = "100%";
+      } catch (_) {}
+    } else if (typeof window.novaSyncPerfRuntime === "function") {
+      window.novaSyncPerfRuntime();
+    }
   }
 
   function openLearnHub() {
@@ -220,6 +236,7 @@
 
   function openReader(topic) {
     if (!reader || !topic || !topic.images.length) return;
+    ensureReaderPortal();
     images = topic.images.slice();
     pageIndex = 0;
     animating = false;

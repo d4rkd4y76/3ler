@@ -9,7 +9,8 @@
   /* Akıcı modda orta (iyi) çözünürlük — tek kişilik + düello (geri sayım dahil) */
   const FULLSCREEN_SCOPE_IDS = [
     'profileChangeOverlay',
-    'rankingPanel'
+    'rankingPanel',
+    'roborox-reader-overlay'
   ];
   const SINGLE_PLAYER_PERF_IDS = [
     'single-player-screen',
@@ -132,7 +133,10 @@
   }
   function applyBodyScale(scale){
     if (!document.body) return;
-    if (document.body.classList.contains('nova-duel-game-open')) {
+    if (
+      document.body.classList.contains('nova-duel-game-open') ||
+      document.body.classList.contains('roborox-reader-open')
+    ) {
       try {
         document.body.style.zoom = '1';
         document.body.style.transform = 'none';
