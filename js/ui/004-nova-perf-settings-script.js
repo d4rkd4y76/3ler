@@ -9,8 +9,7 @@
   /* Akıcı modda orta (iyi) çözünürlük — tek kişilik + düello (geri sayım dahil) */
   const FULLSCREEN_SCOPE_IDS = [
     'profileChangeOverlay',
-    'rankingPanel',
-    'roborox-reader-overlay'
+    'rankingPanel'
   ];
   const SINGLE_PLAYER_PERF_IDS = [
     'single-player-screen',
