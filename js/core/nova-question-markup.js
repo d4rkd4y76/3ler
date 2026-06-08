@@ -1,5 +1,5 @@
 /**
- * Soru metni: kesirler [[1/3]], dikey toplama [[add:243+125]], çözüm [[addsol:348+225]],
+ * Soru metni: kesirler [[1/3]], dikey toplama [[add:243+125]] veya [[add:125+135+145]], çözüm [[addsol:348+225]],
  * dikey çarpma [[mul:23×45]], bölme [[div:144÷12]],
  * geometri [[shape:kare:5:cm]], cisim [[solid:kup:4:cm]], Bunny video [[bunny:host:videoId]]
  * Öncül: infoBlocks (metin, madde, görsel, video) + geriye dönük info / infoItems
@@ -7,8 +7,8 @@
 (function (global) {
   const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
   const FRAC_RE = /\[\[\s*(\d+)\s*[\/|]\s*(\d+)\s*\]\]/g;
-  const ADD_RE = /\[\[\s*add\s*:\s*(\d+)\s*\+\s*(\d+)\s*\]\]/gi;
-  const ADDSOL_RE = /\[\[\s*addsol\s*:\s*(\d+)\s*\+\s*(\d+)\s*\]\]/gi;
+  const ADD_MULTI_RE = /\[\[\s*add\s*:\s*((?:\d+\s*\+\s*)+\d+)\s*\]\]/gi;
+  const ADDSOL_MULTI_RE = /\[\[\s*addsol\s*:\s*((?:\d+\s*\+\s*)+\d+)\s*\]\]/gi;
   const MUL_RE = /\[\[\s*mul\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
   const DIV_RE = /\[\[\s*div\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*\]\]/gi;
   const SHAPE_RE = /\[\[\s*shape\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
@@ -157,6 +157,17 @@
     };
   }
 
+  function parseAddOperands(raw) {
+    return String(raw)
+      .split("+")
+      .map(function (s) {
+        return parseInt(String(s).trim(), 10);
+      })
+      .filter(function (n) {
+        return !isNaN(n) && n >= 0;
+      });
+  }
+
   function computeAddColumns(a, b) {
     const na = parseInt(a, 10) || 0;
     const nb = parseInt(b, 10) || 0;
@@ -198,6 +209,54 @@
       carryRow: carryRow,
       steps: steps,
       sum: na + nb,
+      rows: null,
+    };
+  }
+
+  function computeAddColumnsFromOperands(addends) {
+    if (!addends || addends.length < 2) {
+      return computeAddColumns(addends && addends[0] != null ? addends[0] : 0, addends && addends[1] != null ? addends[1] : 0);
+    }
+    if (addends.length === 2) {
+      var two = computeAddColumns(addends[0], addends[1]);
+      two.rows = [two.top, two.bottom];
+      return two;
+    }
+    var sum = 0;
+    for (var si = 0; si < addends.length; si++) sum += addends[si];
+    var sr = String(sum);
+    var len = sr.length;
+    for (var lj = 0; lj < addends.length; lj++) {
+      if (String(addends[lj]).length > len) len = String(addends[lj]).length;
+    }
+    var digitRows = [];
+    for (var r = 0; r < addends.length; r++) {
+      digitRows.push(String(addends[r]).padStart(len, "0").split("").map(Number));
+    }
+    var carryRow = Array(len).fill("\u00a0");
+    var carry = 0;
+    var resultDigits = [];
+    for (var pos = len - 1; pos >= 0; pos--) {
+      var total = carry;
+      for (var dr = 0; dr < digitRows.length; dr++) total += digitRows[dr][pos];
+      var digit = total % 10;
+      var newCarry = Math.floor(total / 10);
+      if (newCarry > 0 && pos > 0) carryRow[pos - 1] = String(newCarry);
+      resultDigits.unshift(digit);
+      carry = newCarry;
+    }
+    var paddedRows = addends.map(function (n) {
+      return String(n).padStart(len, "\u00a0");
+    });
+    return {
+      len: len,
+      top: paddedRows[0],
+      bottom: paddedRows[paddedRows.length - 1],
+      rows: paddedRows,
+      result: sr.padStart(len, "\u00a0"),
+      carryRow: carryRow,
+      sum: sum,
+      multi: true,
     };
   }
 
@@ -212,8 +271,7 @@
 
   function buildAddGridHtml(cols, withSolution) {
     var len = cols.len;
-    var topD = splitPaddedDigits(cols.top, len);
-    var botD = splitPaddedDigits(cols.bottom, len);
+    var rows = cols.rows || [cols.top, cols.bottom];
     var resD = splitPaddedDigits(cols.result, len);
     var parts = ['<span class="q-vmath__grid" style="--q-add-cols:' + len + '">'];
 
@@ -234,27 +292,24 @@
       parts.push("</span>");
     }
 
-    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--top">');
-    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
-    for (var ti = 0; ti < len; ti++) {
+    for (var ri = 0; ri < rows.length; ri++) {
+      var rowD = splitPaddedDigits(rows[ri], len);
+      var isLast = ri === rows.length - 1;
+      parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op">');
       parts.push(
-        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
-          (topD[ti] ? escapeHtml(topD[ti]) : "&nbsp;") +
-          "</span></span>"
+        '<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true">' +
+          (isLast && rows.length > 1 ? '<span class="q-vmath__sign">+</span>' : "") +
+          "</span>"
       );
+      for (var di = 0; di < len; di++) {
+        parts.push(
+          '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+            (rowD[di] ? escapeHtml(rowD[di]) : "&nbsp;") +
+            "</span></span>"
+        );
+      }
+      parts.push("</span>");
     }
-    parts.push("</span>");
-
-    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op">');
-    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign"><span class="q-vmath__sign">+</span></span>');
-    for (var bi = 0; bi < len; bi++) {
-      parts.push(
-        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
-          (botD[bi] ? escapeHtml(botD[bi]) : "&nbsp;") +
-          "</span></span>"
-      );
-    }
-    parts.push("</span>");
 
     parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--bar">');
     parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
@@ -264,10 +319,10 @@
     if (withSolution) {
       parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--result">');
       parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
-      for (var ri = 0; ri < len; ri++) {
+      for (var ri2 = 0; ri2 < len; ri2++) {
         parts.push(
           '<span class="q-vmath__gcol"><span class="q-vmath__digit q-vmath__digit--result">' +
-            (resD[ri] ? escapeHtml(resD[ri]) : "&nbsp;") +
+            (resD[ri2] ? escapeHtml(resD[ri2]) : "&nbsp;") +
             "</span></span>"
         );
       }
@@ -278,32 +333,44 @@
     return parts.join("");
   }
 
-  function verticalAddHtml(a, b) {
-    var cols = computeAddColumns(a, b);
+  function verticalAddFromOperands(nums) {
+    if (!nums || nums.length < 2) return escapeHtml(String(nums && nums[0] != null ? nums[0] : ""));
+    var cols = computeAddColumnsFromOperands(nums);
+    var label = nums.join(" artı ");
+    var cls = "q-vmath q-vmath--add" + (nums.length > 2 ? " q-vmath--add-multi" : "");
     return (
-      '<span class="q-vmath q-vmath--add" role="math" aria-label="' +
-      String(a) +
-      " artı " +
-      String(b) +
+      '<span class="' +
+      cls +
+      '" role="math" aria-label="' +
+      escapeHtml(label) +
       '">' +
       buildAddGridHtml(cols, false) +
       "</span>"
     );
   }
 
-  function verticalAddSolutionHtml(a, b) {
-    var cols = computeAddColumns(a, b);
+  function verticalAddSolutionFromOperands(nums) {
+    if (!nums || nums.length < 2) return escapeHtml(String(nums && nums[0] != null ? nums[0] : ""));
+    var cols = computeAddColumnsFromOperands(nums);
+    var label = nums.join(" artı ") + " eşittir " + String(cols.sum);
+    var cls = "q-vmath q-vmath--add q-vmath--addsol" + (nums.length > 2 ? " q-vmath--add-multi" : "");
     return (
-      '<span class="q-vmath q-vmath--add q-vmath--addsol" role="math" aria-label="' +
-      String(a) +
-      " artı " +
-      String(b) +
-      " eşittir " +
-      String(cols.sum) +
+      '<span class="' +
+      cls +
+      '" role="math" aria-label="' +
+      escapeHtml(label) +
       '">' +
       buildAddGridHtml(cols, true) +
       "</span>"
     );
+  }
+
+  function verticalAddHtml(a, b) {
+    return verticalAddFromOperands([parseInt(a, 10) || 0, parseInt(b, 10) || 0]);
+  }
+
+  function verticalAddSolutionHtml(a, b) {
+    return verticalAddSolutionFromOperands([parseInt(a, 10) || 0, parseInt(b, 10) || 0]);
   }
 
   function verticalMulHtml(a, b) {
@@ -693,11 +760,11 @@
     s = s.replace(FRAC_RE, function (_, a, b) {
       return stackedFractionHtml(a, b);
     });
-    s = s.replace(ADDSOL_RE, function (_, a, b) {
-      return verticalAddSolutionHtml(a, b);
+    s = s.replace(ADDSOL_MULTI_RE, function (_, ops) {
+      return verticalAddSolutionFromOperands(parseAddOperands(ops));
     });
-    s = s.replace(ADD_RE, function (_, a, b) {
-      return verticalAddHtml(a, b);
+    s = s.replace(ADD_MULTI_RE, function (_, ops) {
+      return verticalAddFromOperands(parseAddOperands(ops));
     });
     s = s.replace(MUL_RE, function (_, a, b) {
       return verticalMulHtml(a, b);

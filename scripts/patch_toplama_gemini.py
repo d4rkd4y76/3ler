@@ -109,15 +109,86 @@ def build_add_explanation(a: int, b: int, result: int | None = None) -> str:
     return "\n".join(lines)
 
 
-def build_three_add_explanation(a: int, b: int, c: int, result: int) -> str:
-    mid = a + b
-    lines = [
-        "Üç sayıyı alt alta toplarken önce ilk ikisini, sonra üçüncüyü ekleriz.",
-        f"1. adım: [[addsol:{a}+{b}]] → {mid}",
-        f"2. adım: [[addsol:{mid}+{c}]] → {result}",
-        f"Sonuç: **{result}**.",
-    ]
+def compute_add_steps_multi(addends: list[int]) -> tuple[list[dict], int]:
+    if len(addends) < 2:
+        return [], addends[0] if addends else 0
+    total = sum(addends)
+    length = max(len(str(n)) for n in addends + [total])
+    digit_rows = [[int(c) for c in str(n).zfill(length)] for n in addends]
+    if length == 3:
+        names = ["yüzler", "onlar", "birler"]
+    elif length == 2:
+        names = ["onlar", "birler"]
+    else:
+        names = [f"{i + 1}. basamak" for i in range(length)]
+    steps: list[dict] = []
+    carry = 0
+    result_digits: list[int] = []
+    for i in range(length - 1, -1, -1):
+        digits = [row[i] for row in digit_rows]
+        total_col = sum(digits) + carry
+        digit = total_col % 10
+        new_carry = total_col // 10
+        place = names[i] if i < len(names) else f"{i + 1}. basamak"
+        steps.append(
+            {
+                "place": place,
+                "digits": digits,
+                "carry_in": carry,
+                "digit": digit,
+                "carry_out": new_carry,
+            }
+        )
+        result_digits.insert(0, digit)
+        carry = new_carry
+    return steps, int("".join(str(d) for d in result_digits) or "0")
+
+
+def step_line_multi(step: dict) -> str:
+    p = step["place"].capitalize()
+    digits = step["digits"]
+    cin, cout, digit = step["carry_in"], step["carry_out"], step["digit"]
+    parts = " + ".join(str(d) for d in digits)
+    if cin:
+        parts += f" + elde ({cin})"
+    total = sum(digits) + cin
+    if cout:
+        carry_txt = f"**{cout} elde**" if cout > 1 else "**1 elde**"
+        return (
+            f"• {p} basamağı: {parts} = {total} → "
+            f"alta **{digit}** yazılır, sol basamağa {carry_txt} taşınır."
+        )
+    return f"• {p} basamağı: {parts} = {digit} → alta **{digit}** yazılır."
+
+
+def build_multi_add_explanation(addends: list[int], result: int | None = None) -> str:
+    steps, calc = compute_add_steps_multi(addends)
+    if result is None:
+        result = calc
+    ops = "+".join(str(n) for n in addends)
+    eldeli = any(s["carry_out"] for s in steps)
+    title = "Eldeli toplama" if eldeli else "Eldesiz toplama"
+    lines = [f"{title} — alt alta:", f"[[addsol:{ops}]]"]
+    lines.extend(step_line_multi(s) for s in steps)
+    lines.append(f"Sonuç: **{result}**.")
     return "\n".join(lines)
+
+
+def extract_addends_from_premise(premise: str, correct: int) -> list[int] | None:
+    nums = [int(m.group(1)) for m in re.finditer(r"\b(\d{2,4})\b", premise or "")]
+    if len(nums) < 3:
+        return None
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            for k in range(j + 1, len(nums)):
+                triple = [nums[i], nums[j], nums[k]]
+                if sum(triple) == correct:
+                    return triple
+    return None
+
+
+def build_three_add_explanation(a: int, b: int, c: int, result: int) -> str:
+    return build_multi_add_explanation([a, b, c], result)
 
 
 def find_addition(q: dict) -> tuple[int, int, int | None] | None:
@@ -204,6 +275,13 @@ def patch_question(q: dict) -> dict:
     if two:
         q["explanation"] = two
         return q
+
+    correct = int(q["correct"]) if str(q.get("correct", "")).isdigit() else None
+    if correct is not None:
+        triple = extract_addends_from_premise(q.get("premise", "") or text, correct)
+        if triple:
+            q["explanation"] = build_multi_add_explanation(triple, correct)
+            return q
 
     m3 = ADD_THREE.search(exp)
     if m3:

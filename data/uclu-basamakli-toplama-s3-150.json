@@ -1337,7 +1337,7 @@
       "correct": "530",
       "wrong1": "520",
       "wrong2": "540",
-      "explanation": "Eldesiz toplama — alt alta:\n[[addsol:145+230]]\n• Birler basamağı: 5 + 0 = 5 → alta 5 yazılır.\n• Onlar basamağı: 4 + 3 = 7 → alta 7 yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta 3 yazılır.\nSonuç: 530.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:145+230+155]]\n• Birler basamağı: 5 + 0 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 3 + 5 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 2 + 1 + elde (1) = 5 → alta **5** yazılır.\nSonuç: **530**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre okan'ın kumbarasında toplam kaç TL vardır?",
@@ -1353,7 +1353,7 @@
         "correct": "530",
         "wrong1": "520",
         "wrong2": "540",
-        "explanation": "Eldesiz toplama — alt alta:\n[[addsol:145+230]]\n• Birler basamağı: 5 + 0 = 5 → alta 5 yazılır.\n• Onlar basamağı: 4 + 3 = 7 → alta 7 yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta 3 yazılır.\nSonuç: 530.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:145+230+155]]\n• Birler basamağı: 5 + 0 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 3 + 5 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 2 + 1 + elde (1) = 5 → alta **5** yazılır.\nSonuç: **530**.",
         "url": null
       }
     },
@@ -1449,7 +1449,7 @@
       "correct": "516",
       "wrong1": "506",
       "wrong2": "526",
-      "explanation": "Eldeli toplama — alt alta:\n[[addsol:148+165]]\n• Birler basamağı: 8 + 5 = 13 → alta 3 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 4 + 6 + elde (1) = 11 → alta 1 yazılır, sol basamağa 1 elde taşınır.\n• Yüzler basamağı: 1 + 1 + elde (1) = 3 → alta 3 yazılır.\nSonuç: 516.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:148+165+203]]\n• Birler basamağı: 8 + 5 + 3 = 16 → alta **6** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 6 + 0 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 1 + 2 + elde (1) = 5 → alta **5** yazılır.\nSonuç: **516**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre etkinlikte toplam kaç fidan dikilmiştir?",
@@ -1465,7 +1465,7 @@
         "correct": "516",
         "wrong1": "506",
         "wrong2": "526",
-        "explanation": "Eldeli toplama — alt alta:\n[[addsol:148+165]]\n• Birler basamağı: 8 + 5 = 13 → alta 3 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 4 + 6 + elde (1) = 11 → alta 1 yazılır, sol basamağa 1 elde taşınır.\n• Yüzler basamağı: 1 + 1 + elde (1) = 3 → alta 3 yazılır.\nSonuç: 516.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:148+165+203]]\n• Birler basamağı: 8 + 5 + 3 = 16 → alta **6** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 6 + 0 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 1 + 2 + elde (1) = 5 → alta **5** yazılır.\nSonuç: **516**.",
         "url": null
       }
     },
@@ -1505,7 +1505,7 @@
       "correct": "199",
       "wrong1": "189",
       "wrong2": "209",
-      "explanation": "Eldeli toplama — alt alta:\n[[addsol:115+48]]\n• Birler basamağı: 5 + 8 = 13 → alta 3 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 1 + 4 + elde (1) = 6 → alta 6 yazılır.\n• Yüzler basamağı: 1 + 0 = 1 → alta 1 yazılır.\nSonuç: 199.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:115+48+36]]\n• Birler basamağı: 5 + 8 + 6 = 19 → alta **9** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 1 + 4 + 3 + elde (1) = 9 → alta **9** yazılır.\n• Yüzler basamağı: 1 + 0 + 0 = 1 → alta **1** yazılır.\nSonuç: **199**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre otobüste son durumda kaç yolcu olmuştur?",
@@ -1521,7 +1521,7 @@
         "correct": "199",
         "wrong1": "189",
         "wrong2": "209",
-        "explanation": "Eldeli toplama — alt alta:\n[[addsol:115+48]]\n• Birler basamağı: 5 + 8 = 13 → alta 3 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 1 + 4 + elde (1) = 6 → alta 6 yazılır.\n• Yüzler basamağı: 1 + 0 = 1 → alta 1 yazılır.\nSonuç: 199.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:115+48+36]]\n• Birler basamağı: 5 + 8 + 6 = 19 → alta **9** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 1 + 4 + 3 + elde (1) = 9 → alta **9** yazılır.\n• Yüzler basamağı: 1 + 0 + 0 = 1 → alta **1** yazılır.\nSonuç: **199**.",
         "url": null
       }
     },
@@ -1668,7 +1668,7 @@
       "correct": "930",
       "wrong1": "920",
       "wrong2": "940",
-      "explanation": "Eldeli toplama — alt alta:\n[[addsol:235+315]]\n• Birler basamağı: 5 + 5 = 10 → alta 0 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 3 + 1 + elde (1) = 5 → alta 5 yazılır.\n• Yüzler basamağı: 2 + 3 = 5 → alta 5 yazılır.\nSonuç: 930.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:235+315+380]]\n• Birler basamağı: 5 + 5 + 0 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 3 + 1 + 8 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + 3 + elde (1) = 9 → alta **9** yazılır.\nSonuç: **930**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre fırıncı üç günde toplam kaç ekmek satmıştır?",
@@ -1684,7 +1684,7 @@
         "correct": "930",
         "wrong1": "920",
         "wrong2": "940",
-        "explanation": "Eldeli toplama — alt alta:\n[[addsol:235+315]]\n• Birler basamağı: 5 + 5 = 10 → alta 0 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 3 + 1 + elde (1) = 5 → alta 5 yazılır.\n• Yüzler basamağı: 2 + 3 = 5 → alta 5 yazılır.\nSonuç: 930.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:235+315+380]]\n• Birler basamağı: 5 + 5 + 0 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 3 + 1 + 8 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + 3 + elde (1) = 9 → alta **9** yazılır.\nSonuç: **930**.",
         "url": null
       }
     },
@@ -1724,7 +1724,7 @@
       "correct": "245",
       "wrong1": "220",
       "wrong2": "255",
-      "explanation": "Eldeli toplama — alt alta:\n[[addsol:184+36]]\n• Birler basamağı: 4 + 6 = 10 → alta 0 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 8 + 3 + elde (1) = 12 → alta 2 yazılır, sol basamağa 1 elde taşınır.\n• Yüzler basamağı: 1 + 0 + elde (1) = 2 → alta 2 yazılır.\nSonuç: 245.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:184+36+25]]\n• Birler basamağı: 4 + 6 + 5 = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 3 + 2 + elde (1) = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 0 + 0 + elde (1) = 2 → alta **2** yazılır.\nSonuç: **245**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre çiçekçideki sarı güllerin sayısı kaçtır?",
@@ -1740,7 +1740,7 @@
         "correct": "245",
         "wrong1": "220",
         "wrong2": "255",
-        "explanation": "Eldeli toplama — alt alta:\n[[addsol:184+36]]\n• Birler basamağı: 4 + 6 = 10 → alta 0 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 8 + 3 + elde (1) = 12 → alta 2 yazılır, sol basamağa 1 elde taşınır.\n• Yüzler basamağı: 1 + 0 + elde (1) = 2 → alta 2 yazılır.\nSonuç: 245.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:184+36+25]]\n• Birler basamağı: 4 + 6 + 5 = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 3 + 2 + elde (1) = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 0 + 0 + elde (1) = 2 → alta **2** yazılır.\nSonuç: **245**.",
         "url": null
       }
     },
@@ -1859,7 +1859,7 @@
       "correct": "652",
       "wrong1": "642",
       "wrong2": "662",
-      "explanation": "Eldeli toplama — alt alta:\n[[addsol:218+198]]\n• Birler basamağı: 8 + 8 = 16 → alta 6 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 1 + 9 + elde (1) = 11 → alta 1 yazılır, sol basamağa 1 elde taşınır.\n• Yüzler basamağı: 2 + 1 + elde (1) = 4 → alta 4 yazılır.\nSonuç: 652.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:218+198+236]]\n• Birler basamağı: 8 + 8 + 6 = 22 → alta **2** yazılır, sol basamağa **2 elde** taşınır.\n• Onlar basamağı: 1 + 9 + 3 + elde (2) = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 1 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **652**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre üç ayda toplam kaç kitap bağışlanmıştır?",
@@ -1875,7 +1875,7 @@
         "correct": "652",
         "wrong1": "642",
         "wrong2": "662",
-        "explanation": "Eldeli toplama — alt alta:\n[[addsol:218+198]]\n• Birler basamağı: 8 + 8 = 16 → alta 6 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 1 + 9 + elde (1) = 11 → alta 1 yazılır, sol basamağa 1 elde taşınır.\n• Yüzler basamağı: 2 + 1 + elde (1) = 4 → alta 4 yazılır.\nSonuç: 652.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:218+198+236]]\n• Birler basamağı: 8 + 8 + 6 = 22 → alta **2** yazılır, sol basamağa **2 elde** taşınır.\n• Onlar basamağı: 1 + 9 + 3 + elde (2) = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 1 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **652**.",
         "url": null
       }
     },
@@ -1938,7 +1938,7 @@
       "correct": "405",
       "wrong1": "395",
       "wrong2": "415",
-      "explanation": "Eldeli toplama — alt alta:\n[[addsol:125+135]]\n• Birler basamağı: 5 + 5 = 10 → alta 0 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 2 + 3 + elde (1) = 6 → alta 6 yazılır.\n• Yüzler basamağı: 1 + 1 = 2 → alta 2 yazılır.\nSonuç: 405.",
+      "explanation": "Eldeli toplama — alt alta:\n[[addsol:125+135+145]]\n• Birler basamağı: 5 + 5 + 5 = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 2 + 3 + 4 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 1 + 1 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **405**.",
       "app": {
         "question": {
           "text": "Yukarıdaki metne göre ayşe bu üç günde toplam kaç soru çözmüştür?",
@@ -1954,7 +1954,7 @@
         "correct": "405",
         "wrong1": "395",
         "wrong2": "415",
-        "explanation": "Eldeli toplama — alt alta:\n[[addsol:125+135]]\n• Birler basamağı: 5 + 5 = 10 → alta 0 yazılır, sol basamağa 1 elde taşınır.\n• Onlar basamağı: 2 + 3 + elde (1) = 6 → alta 6 yazılır.\n• Yüzler basamağı: 1 + 1 = 2 → alta 2 yazılır.\nSonuç: 405.",
+        "explanation": "Eldeli toplama — alt alta:\n[[addsol:125+135+145]]\n• Birler basamağı: 5 + 5 + 5 = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 2 + 3 + 4 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 1 + 1 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **405**.",
         "url": null
       }
     }
