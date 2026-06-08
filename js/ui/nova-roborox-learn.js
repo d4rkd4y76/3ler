@@ -77,6 +77,11 @@
     document.body.style.overflow = on ? "hidden" : "";
   }
 
+  function setReaderBodyLock(on) {
+    document.body.classList.toggle("roborox-reader-open", !!on);
+    document.body.style.overflow = on ? "hidden" : "";
+  }
+
   function openLearnHub() {
     if (!learnHubModal) return;
     learnHubModal.hidden = false;
@@ -230,7 +235,7 @@
     reader.hidden = false;
     reader.classList.add("open");
     reader.setAttribute("aria-hidden", "false");
-    lockScroll(true);
+    setReaderBodyLock(true);
   }
 
   function closeReader() {
@@ -245,7 +250,7 @@
     images = [];
     pageIndex = 0;
     animating = false;
-    lockScroll(false);
+    setReaderBodyLock(false);
   }
 
   function finishSlide(toIdx, incoming, outgoing) {

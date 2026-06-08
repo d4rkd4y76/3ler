@@ -296,32 +296,94 @@
   font-size: 0.9rem;
 }
 
-/* Tam ekran slayt okuyucu — mobil öncelikli */
+/* Tam ekran slayt okuyucu — üst / görsel / alt ayrı katmanlar */
+body.roborox-reader-open {
+  overflow: hidden !important;
+}
+
+body.roborox-reader-open #main-screen,
+body.roborox-reader-open .buttons,
+body.roborox-reader-open .nova-admin-portal-slot {
+  visibility: hidden !important;
+}
+
 .roborox-reader-overlay {
   position: fixed;
   inset: 0;
-  z-index: 12100;
+  z-index: 200000;
   display: none;
-  background: #3d3428;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100vw;
   height: 100vh;
   height: 100dvh;
+  min-height: 100dvh;
   overflow: hidden;
-  touch-action: pan-y pinch-zoom;
+  background: #14110f;
+  touch-action: pan-x;
+  isolation: isolate;
 }
 
-.roborox-reader-overlay.open { display: block; }
+.roborox-reader-overlay.open {
+  display: flex;
+}
+
+.roborox-reader-head {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: max(8px, env(safe-area-inset-top)) 12px 10px;
+  background: #14110f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fef3c7;
+}
+
+.roborox-reader-title {
+  font-weight: 800;
+  font-size: clamp(0.82rem, 3.4vw, 0.98rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.roborox-reader-count {
+  font-size: clamp(0.75rem, 3vw, 0.88rem);
+  font-weight: 700;
+  opacity: 0.9;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.roborox-reader-close {
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+}
 
 .roborox-reader-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: #1f1a17;
 }
 
 .roborox-page-viewport {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #3d3428;
+  background: #1f1a17;
 }
 
 .roborox-page-layer {
@@ -386,78 +448,26 @@
   }
 }
 
-.roborox-reader-chrome {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.roborox-reader-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: max(10px, env(safe-area-inset-top)) 14px 28px;
-  color: #fef3c7;
-  flex-shrink: 0;
-  pointer-events: auto;
-  background: linear-gradient(180deg, rgba(12, 10, 9, 0.72) 0%, rgba(12, 10, 9, 0.35) 55%, transparent 100%);
-}
-
-.roborox-reader-title {
-  font-weight: 800;
-  font-size: clamp(0.85rem, 3.5vw, 1rem);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 46vw;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-}
-
-.roborox-reader-count {
-  font-size: clamp(0.75rem, 3vw, 0.88rem);
-  opacity: 0.92;
-  white-space: nowrap;
-  font-weight: 700;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-}
-
-.roborox-reader-close {
-  border: none;
-  background: rgba(255,255,255,.18);
-  color: #fff;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
 .roborox-reader-foot {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 28px 16px max(14px, env(safe-area-inset-bottom));
-  flex-shrink: 0;
-  pointer-events: auto;
-  background: linear-gradient(0deg, rgba(12, 10, 9, 0.78) 0%, rgba(12, 10, 9, 0.4) 55%, transparent 100%);
+  padding: 12px 14px max(12px, env(safe-area-inset-bottom));
+  background: #14110f;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .roborox-reader-nav {
   border: none;
   border-radius: 999px;
-  padding: 13px 24px;
+  padding: 12px 20px;
   font-weight: 800;
-  font-size: clamp(0.88rem, 3.6vw, 0.96rem);
+  font-size: clamp(0.86rem, 3.5vw, 0.95rem);
   cursor: pointer;
-  min-width: clamp(108px, 28vw, 132px);
-  transition: transform .15s ease, opacity .15s ease;
-  pointer-events: auto;
+  min-width: clamp(104px, 27vw, 128px);
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .roborox-reader-nav:disabled {
@@ -470,20 +480,12 @@
 }
 
 .roborox-reader-nav--prev {
-  background: rgba(255,255,255,.16);
+  background: rgba(255, 255, 255, 0.1);
   color: #fef3c7;
-  backdrop-filter: blur(6px);
 }
 
 .roborox-reader-nav--next {
   background: linear-gradient(135deg, #fb923c, #ea580c);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(234, 88, 12, 0.5);
-}
-
-/* Dikey telefonda slayt ekranı doldursun (9:16 görseller için) */
-@media (orientation: portrait) and (max-width: 900px) {
-  .roborox-page-layer {
-    object-fit: cover;
-  }
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.45);
 }
