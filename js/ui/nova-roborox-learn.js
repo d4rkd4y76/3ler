@@ -59,9 +59,13 @@
   const readerClose = document.getElementById("roborox-reader-close");
   const readerPrev = document.getElementById("roborox-reader-prev");
   const readerNext = document.getElementById("roborox-reader-next");
-  const pageBase = document.getElementById("roborox-page-base");
-  const pageBaseImg = document.getElementById("roborox-page-base-img");
-  const flipHost = document.getElementById("roborox-page-flip-host");
+  const pageViewport = document.getElementById("roborox-page-viewport");
+  const pageA = document.getElementById("roborox-page-a");
+  const pageB = document.getElementById("roborox-page-b");
+
+  const SLIDE_MS = 500;
+  let activePage = pageA;
+  let idlePage = pageB;
 
   let topicsCache = [];
   let images = [];
@@ -181,14 +185,32 @@
     if (readerNext) readerNext.disabled = animating || pageIndex >= images.length - 1;
   }
 
-  function setBaseImage(url) {
-    if (!pageBaseImg) return;
-    pageBaseImg.src = url || "";
-    pageBaseImg.alt = (reader.dataset.title || "Sayfa") + " — " + (pageIndex + 1);
+  function resetPageClasses(img) {
+    if (!img) return;
+    img.className = "roborox-page-layer";
   }
 
-  function clearFlipper() {
-    if (flipHost) flipHost.innerHTML = "";
+  function showPage(img, url) {
+    if (!img) return;
+    resetPageClasses(img);
+    img.classList.add("is-active", "is-settled");
+    img.src = url || "";
+    img.alt = (reader && reader.dataset.title ? reader.dataset.title : "Sayfa") + " — " + (pageIndex + 1);
+  }
+
+  function preloadAdjacent() {
+    [pageIndex - 1, pageIndex + 1].forEach(function (i) {
+      if (i < 0 || i >= images.length) return;
+      const pre = new Image();
+      pre.decoding = "async";
+      pre.src = images[i];
+    });
+  }
+
+  function setBaseImage(url) {
+    showPage(activePage, url);
+    resetPageClasses(idlePage);
+    preloadAdjacent();
   }
 
   function openReader(topic) {
@@ -197,8 +219,12 @@
     pageIndex = 0;
     animating = false;
     reader.dataset.title = topic.title;
-    clearFlipper();
-    setBaseImage(images[0]);
+    activePage = pageA;
+    idlePage = pageB;
+    resetPageClasses(pageA);
+    resetPageClasses(pageB);
+    showPage(activePage, images[0]);
+    preloadAdjacent();
     updateReaderUi();
     closeTopicsModal();
     reader.hidden = false;
@@ -212,108 +238,76 @@
     reader.classList.remove("open");
     reader.setAttribute("aria-hidden", "true");
     reader.hidden = true;
-    clearFlipper();
+    resetPageClasses(pageA);
+    resetPageClasses(pageB);
+    if (pageA) pageA.removeAttribute("src");
+    if (pageB) pageB.removeAttribute("src");
     images = [];
     pageIndex = 0;
     animating = false;
     lockScroll(false);
   }
 
-  function buildFlipLayer(fromUrl, toUrl, direction) {
-    const flip = document.createElement("div");
-    flip.className = "roborox-page-flip";
-
-    const front = document.createElement("div");
-    front.className = "roborox-page-face roborox-page-face--front";
-    const frontImg = document.createElement("img");
-    frontImg.src = fromUrl;
-    frontImg.alt = "";
-    frontImg.draggable = false;
-    front.appendChild(frontImg);
-
-    const back = document.createElement("div");
-    back.className = "roborox-page-face roborox-page-face--back";
-    const backImg = document.createElement("img");
-    backImg.src = toUrl;
-    backImg.alt = "";
-    backImg.draggable = false;
-    back.appendChild(backImg);
-
-    flip.appendChild(front);
-    flip.appendChild(back);
-
-    if (direction === "prev") {
-      flip.style.transformOrigin = "right center";
-      flip.style.transform = "rotateY(180deg)";
-    }
-
-    return flip;
+  function finishSlide(toIdx, incoming, outgoing) {
+    pageIndex = toIdx;
+    resetPageClasses(outgoing);
+    resetPageClasses(incoming);
+    incoming.classList.add("is-active", "is-settled");
+    animating = false;
+    updateReaderUi();
+    preloadAdjacent();
   }
 
   function animatePage(direction) {
-    if (animating || !flipHost || !pageBaseImg) return;
+    if (animating || !activePage || !idlePage || !pageViewport) return;
     if (direction === "next" && pageIndex >= images.length - 1) return;
     if (direction === "prev" && pageIndex <= 0) return;
+
+    const toIdx = direction === "next" ? pageIndex + 1 : pageIndex - 1;
+    const incoming = idlePage;
+    const outgoing = activePage;
+    const toUrl = images[toIdx];
 
     animating = true;
     updateReaderUi();
 
-    const fromIdx = pageIndex;
-    const toIdx = direction === "next" ? pageIndex + 1 : pageIndex - 1;
-    const fromUrl = images[fromIdx];
-    const toUrl = images[toIdx];
+    resetPageClasses(incoming);
+    resetPageClasses(outgoing);
+    incoming.src = toUrl;
+    incoming.alt =
+      (reader.dataset.title || "Sayfa") + " — " + (toIdx + 1);
 
-    clearFlipper();
+    const enterClass = direction === "next" ? "is-enter-right" : "is-enter-left";
+    const exitClass = direction === "next" ? "is-exit-left" : "is-exit-right";
 
-    if (direction === "prev") {
-      setBaseImage(toUrl);
-      const flip = buildFlipLayer(toUrl, fromUrl, "prev");
-      flip.style.transformOrigin = "right center";
-      flip.style.transform = "rotateY(180deg)";
-      flipHost.appendChild(flip);
-      requestAnimationFrame(function () {
-        flip.classList.add("is-turning");
-        requestAnimationFrame(function () {
-          flip.style.transform = "rotateY(0deg)";
-        });
-      });
-      flip.addEventListener(
-        "transitionend",
-        function onEnd(ev) {
-          if (ev.propertyName !== "transform") return;
-          flip.removeEventListener("transitionend", onEnd);
-          pageIndex = toIdx;
-          setBaseImage(images[pageIndex]);
-          clearFlipper();
-          animating = false;
-          updateReaderUi();
-        },
-        { once: false }
-      );
-      return;
+    incoming.classList.add(enterClass);
+    outgoing.classList.add("is-active");
+
+    void incoming.offsetWidth;
+
+    incoming.classList.remove(enterClass);
+    incoming.classList.add("is-settled");
+    outgoing.classList.add(exitClass);
+
+    let done = false;
+    function complete() {
+      if (done) return;
+      done = true;
+      activePage = incoming;
+      idlePage = outgoing;
+      finishSlide(toIdx, incoming, outgoing);
     }
 
-    const flip = buildFlipLayer(fromUrl, toUrl, "next");
-    flipHost.appendChild(flip);
-    requestAnimationFrame(function () {
-      flip.classList.add("is-turning");
-      requestAnimationFrame(function () {
-        flip.classList.add("is-turned");
-      });
-    });
-
-    flip.addEventListener(
+    const timer = window.setTimeout(complete, SLIDE_MS + 40);
+    incoming.addEventListener(
       "transitionend",
       function onEnd(ev) {
-        if (ev.propertyName !== "transform") return;
-        flip.removeEventListener("transitionend", onEnd);
-        pageIndex = toIdx;
-        setBaseImage(images[pageIndex]);
-        clearFlipper();
-        animating = false;
-        updateReaderUi();
+        if (ev.propertyName !== "transform" && ev.propertyName !== "opacity") return;
+        window.clearTimeout(timer);
+        incoming.removeEventListener("transitionend", onEnd);
+        complete();
       },
-      { once: false }
+      { passive: true }
     );
   }
 
@@ -385,31 +379,35 @@
     });
   }
 
-  if (reader) {
-    reader.addEventListener("click", function (e) {
-      if (e.target === reader) closeReader();
-    });
-
-    reader.addEventListener(
+  if (pageViewport) {
+    pageViewport.addEventListener(
       "touchstart",
       function (e) {
+        if (animating) return;
         if (!e.changedTouches || !e.changedTouches[0]) return;
         touchStartX = e.changedTouches[0].clientX;
       },
       { passive: true }
     );
 
-    reader.addEventListener(
+    pageViewport.addEventListener(
       "touchend",
       function (e) {
+        if (animating) return;
         if (!e.changedTouches || !e.changedTouches[0]) return;
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) < 48) return;
+        if (Math.abs(dx) < 52) return;
         if (dx < 0) animatePage("next");
         else animatePage("prev");
       },
       { passive: true }
     );
+  }
+
+  if (reader) {
+    reader.addEventListener("click", function (e) {
+      if (e.target === reader && !animating) closeReader();
+    });
   }
 
   document.addEventListener("keydown", function (e) {

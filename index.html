@@ -1070,27 +1070,25 @@
   </div>
 </div>
 
-<!-- Roborox tam ekran kitap okuyucu -->
+<!-- Roborox tam ekran slayt okuyucu -->
 <div id="roborox-reader-overlay" class="roborox-reader-overlay" aria-hidden="true" hidden>
-  <header class="roborox-reader-head">
-    <div class="roborox-reader-title" id="roborox-reader-title">Roborox</div>
-    <div class="roborox-reader-count" id="roborox-reader-count"></div>
-    <button type="button" id="roborox-reader-close" class="roborox-reader-close" aria-label="Kapat">✕</button>
-  </header>
   <div class="roborox-reader-stage">
-    <div class="roborox-book">
-      <div class="roborox-book__stack">
-        <div class="roborox-page-base" id="roborox-page-base">
-          <img id="roborox-page-base-img" alt="" decoding="async" draggable="false"/>
-        </div>
-        <div id="roborox-page-flip-host"></div>
-      </div>
+    <div class="roborox-page-viewport" id="roborox-page-viewport">
+      <img id="roborox-page-a" class="roborox-page-layer is-active" alt="" decoding="async" draggable="false"/>
+      <img id="roborox-page-b" class="roborox-page-layer" alt="" decoding="async" draggable="false"/>
     </div>
   </div>
-  <footer class="roborox-reader-foot">
-    <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki</button>
-    <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki →</button>
-  </footer>
+  <div class="roborox-reader-chrome">
+    <header class="roborox-reader-head">
+      <div class="roborox-reader-title" id="roborox-reader-title">Roborox</div>
+      <div class="roborox-reader-count" id="roborox-reader-count"></div>
+      <button type="button" id="roborox-reader-close" class="roborox-reader-close" aria-label="Kapat">✕</button>
+    </header>
+    <footer class="roborox-reader-foot">
+      <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki</button>
+      <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki →</button>
+    </footer>
+  </div>
 </div>
 
 <!-- Özel Araçlar: ders seç → kaydırılabilir araç listesi -->
@@ -1588,7 +1586,7 @@
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
-<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260609roborox2" />
+<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260609roborox3" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
@@ -2068,7 +2066,7 @@
   });
 })();
 </script>
-<script defer src="js/ui/nova-roborox-learn.js?v=30260609roborox2"></script>
+<script defer src="js/ui/nova-roborox-learn.js?v=30260609roborox3"></script>
 <script defer src="js/bootstrap.js"></script>
 
 </body>
