@@ -53,6 +53,12 @@
   --nova-slot-min-h: 148px;
   --nova-slot-min-w: 128px;
 }
+#nova-main-hero-slot.nova-slot-pending canvas,
+#nova-main-hero-slot.nova-slot-pending .nova-hero-alev-sprite__canvas,
+#nova-main-hero-slot.nova-slot-pending .nova-hero-svg,
+#nova-main-hero-slot.nova-slot-pending .nova-main-hero-host{
+  visibility: hidden;
+}
 #nova-main-hero-slot.nova-slot-pending--hero > .nova-slot-loading-label{
   font-size: .58rem;
   letter-spacing: .03em;

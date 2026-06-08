@@ -44,19 +44,23 @@ body.nova-sprite-boot-active{
 }
 #nova_sprite_boot_overlay.is-handoff{
   transition:
-    opacity 1.45s cubic-bezier(.22, .85, .28, 1),
-    visibility 1.45s cubic-bezier(.22, .85, .28, 1);
+    opacity 0.85s cubic-bezier(.22, .85, .28, 1),
+    visibility 0.85s cubic-bezier(.22, .85, .28, 1);
 }
 #nova_sprite_boot_overlay.is-handoff .nova-sprite-boot-hero-layer{
-  transform: scale(1.004);
+  transform: scale(1.002);
   opacity: 0;
-  transition: transform 1.3s cubic-bezier(.2, .85, .2, 1), opacity 1.2s ease;
+  transition: transform 0.9s cubic-bezier(.2, .85, .2, 1), opacity 0.85s ease;
 }
 
+body.nova-sprite-boot-active:not(.nova-boot-handoff-active) .nova-sprite-boot-hero-img{
+  transition: none;
+  will-change: filter, transform;
+}
 body.nova-boot-handoff-active #main-screen{
   visibility: visible !important;
   opacity: 1 !important;
-  transition: opacity 1.35s cubic-bezier(.22, .85, .28, 1);
+  transition: opacity 0.85s cubic-bezier(.22, .85, .28, 1);
   will-change: opacity;
 }
 

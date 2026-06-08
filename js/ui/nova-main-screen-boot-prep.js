@@ -4,8 +4,8 @@
 
   var stabilizePromise = null;
   var ensureReadyPromise = null;
-  var BOOT_WAIT_MAX_MS = 4500;
-  var BOOT_WAIT_PHONE_MS = 2800;
+  var BOOT_WAIT_MAX_MS = 2800;
+  var BOOT_WAIT_PHONE_MS = 1800;
 
   function isPhoneBoot() {
     if (typeof window.novaSpritePerfIsPhone === 'function') {
@@ -141,19 +141,58 @@
     return !!host.querySelector('svg');
   }
 
+  function isMainScreenDisplayed() {
+    try {
+      if (document.documentElement.classList.contains('nova-boot-pending')) return false;
+    } catch (_) {}
+    var main = document.getElementById('main-screen');
+    if (!main || !main.isConnected) return false;
+    try {
+      return window.getComputedStyle(main).display !== 'none';
+    } catch (_) {
+      return true;
+    }
+  }
+
+  function cupCacheAvailable() {
+    var student = getStoredStudent();
+    if (!student) return false;
+    try {
+      if (student.gameCup != null && isFinite(Number(student.gameCup))) return true;
+    } catch (_) {}
+    try {
+      var raw = localStorage.getItem('nova_main_game_cup_v1');
+      if (!raw) return false;
+      var o = JSON.parse(raw);
+      var key = String(student.classId || '') + ':' + String(student.studentId || '');
+      return !!(o && o.key === key);
+    } catch (_) {
+      return false;
+    }
+  }
+
   function bootHandoffReady() {
     return (
-      leagueBadgeReady() &&
-      cupHudReady() &&
-      starsReady() &&
-      creditsReady() &&
       studentNameReady() &&
-      profilePhotoBootReady() &&
-      heroBootReady()
+      creditsReady() &&
+      (cupHudReady() || leagueBadgeReady() || cupCacheAvailable())
     );
   }
 
   window.novaBootHandoffReady = bootHandoffReady;
+
+  function mainScreenShellReady() {
+    if (!studentNameReady()) return false;
+    if (!creditsReady()) {
+      var cred = document.getElementById('duel-credits-value');
+      if (cred && String(cred.textContent || '').trim() === '') {
+        cred.textContent = '0';
+      }
+    }
+    return studentNameReady() && creditsReady();
+  }
+
+  window.novaMainScreenShellReady = mainScreenShellReady;
 
   function mainScreenElementsReady() {
     return (
@@ -436,30 +475,43 @@
 
       window.__novaBootMainPrep = true;
       try {
+        if (typeof window.novaActivateMainSlotPlaceholders === 'function') {
+          window.novaActivateMainSlotPlaceholders();
+        }
+
         status('Arayüz hazırlanıyor…');
-        status('Kahramanlar yükleniyor…');
         var prepTasks = [ensureMainScreenLayout()];
 
-        if (!heroSlotAlreadyReady() && typeof window.novaRefreshMainScreenHero === 'function') {
+        if (typeof window.novaBootApplyInstantCache === 'function' && !window.__novaBootInstantCacheApplied) {
+          prepTasks.push(window.novaBootApplyInstantCache().catch(function () {}));
+        } else if (typeof window.novaApplyMainScreenHudInstant === 'function') {
+          window.novaApplyMainScreenHudInstant();
+        }
+
+        if (!window.__novaMainScreenPrefetchStarted && typeof window.novaPrefetchMainScreenAssets === 'function') {
+          prepTasks.push(
+            Promise.race([
+              window.novaPrefetchMainScreenAssets(true).catch(function () {}),
+              new Promise(function (r) {
+                setTimeout(r, isPhoneBoot() ? 2200 : 2800);
+              })
+            ])
+          );
+        }
+
+        if (
+          isMainScreenDisplayed() &&
+          !heroSlotAlreadyReady() &&
+          typeof window.novaRefreshMainScreenHero === 'function'
+        ) {
+          status('Kahramanlar yükleniyor…');
           prepTasks.push(
             Promise.race([
               window.novaRefreshMainScreenHero({ urgent: true, force: true }),
               new Promise(function (r) {
-                setTimeout(r, isPhoneBoot() ? 3200 : 4200);
+                setTimeout(r, isPhoneBoot() ? 1600 : 2000);
               })
             ]).catch(function () {})
-          );
-        }
-
-        if (typeof window.novaBootApplyInstantCache === 'function' && !window.__novaBootInstantCacheApplied) {
-          prepTasks.push(window.novaBootApplyInstantCache().catch(function () {}));
-        }
-
-        if (!window.__novaMainScreenPrefetchDone && typeof window.novaPrefetchMainScreenAssets === 'function') {
-          prepTasks.push(
-            window
-              .novaPrefetchMainScreenAssets(window.__novaMainScreenPrefetchStarted ? false : true)
-              .catch(function () {})
           );
         }
 
@@ -468,7 +520,7 @@
             Promise.race([
               window.novaApplyMainScreenProfileUi().catch(function () {}),
               new Promise(function (r) {
-                setTimeout(r, 1800);
+                setTimeout(r, 1200);
               })
             ])
           );
@@ -490,14 +542,15 @@
           document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
         } catch (_) {}
 
-        if (!bootHandoffReady()) {
+        if (!mainScreenShellReady() && !bootHandoffReady()) {
           await window.novaWaitUntilMainScreenElementsReady({
-            maxMs: isPhoneBoot() ? 2800 : 3600,
-            kickMs: 40
+            maxMs: isPhoneBoot() ? 1200 : 1600,
+            kickMs: 48
           });
         }
 
-        window.__novaMainScreenBootReady = mainScreenElementsReady() || bootHandoffReady();
+        window.__novaMainScreenBootReady =
+          mainScreenShellReady() || bootHandoffReady() || mainScreenElementsReady();
         return window.__novaMainScreenBootReady;
       } finally {
         window.__novaBootMainPrep = false;

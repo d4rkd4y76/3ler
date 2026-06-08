@@ -607,10 +607,23 @@
     if (existing) {
       if (existing.getAttribute('data-nova-main-hero') === heroId) {
         var c = existing.querySelector('canvas');
-        if (c && c.width > 0 && c.height > 0) return;
-        if (existing.querySelector('svg')) return;
-        unmountHeroFromHost(existing);
-        existing.remove();
+        if (c && c.width > 8 && c.height > 8) {
+          var cssW = c.clientWidth || c.getBoundingClientRect().width || 0;
+          var cssH = c.clientHeight || c.getBoundingClientRect().height || 0;
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          var undersized =
+            cssW > 24 &&
+            cssH > 24 &&
+            (c.width < cssW * dpr * 0.72 || c.height < cssH * dpr * 0.72);
+          if (!undersized) return;
+          unmountHeroFromHost(existing);
+          existing.remove();
+        } else if (existing.querySelector('svg')) {
+          return;
+        } else {
+          unmountHeroFromHost(existing);
+          existing.remove();
+        }
       } else {
         clearMainHeroSlot(slot);
       }

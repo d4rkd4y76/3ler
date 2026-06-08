@@ -28,6 +28,7 @@
   var eggScreenOpen = false;
   var eggHistoryPushed = false;
   var eggPreloadPromise = null;
+  var eggScreenOpening = false;
 
   function getStudent() {
     try {
@@ -809,14 +810,25 @@
   }
 
   async function openEggScreen() {
-    if (eggScreenOpen) return;
+    if (eggScreenOpen || eggScreenOpening) return;
     var screen = eggScreenEl();
     if (!screen) return;
 
+    eggScreenOpening = true;
     showEggPrepOverlay('Yumurtalar hazırlanıyor…');
     setEggScreenBusy(true);
     try {
-      await preloadAllEggAssets(true);
+      await Promise.race([
+        preloadAllEggAssets(true),
+        new Promise(function (_, reject) {
+          setTimeout(function () {
+            reject(new Error('egg-preload-timeout'));
+          }, 12000);
+        })
+      ]).catch(function (err) {
+        console.warn('openEggScreen preload', err);
+        return preloadAllEggAssets(true).catch(function () {});
+      });
       eggScreenOpen = true;
       pushEggHistory();
       screen.hidden = false;
@@ -846,6 +858,7 @@
     } finally {
       hideEggPrepOverlay();
       setEggScreenBusy(false);
+      eggScreenOpening = false;
     }
   }
 
@@ -1099,15 +1112,41 @@
     renderScreenInventory(stu);
   }
 
-  function bindMainEntry() {
-    if (uiBound) return;
-    uiBound = true;
+  function bindOpenButtonIfNeeded() {
     var openBtn = document.getElementById('nova_dragon_egg_open');
-    if (openBtn) {
-      openBtn.addEventListener('click', function () {
-        openEggScreen();
-      });
+    if (!openBtn || openBtn.__novaEggOpenBound) return;
+    openBtn.__novaEggOpenBound = true;
+    openBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openEggScreen();
+    });
+  }
+
+  function bindMainEntry() {
+    if (!window.__novaEggEntryDelegated) {
+      window.__novaEggEntryDelegated = true;
+      document.addEventListener(
+        'click',
+        function (e) {
+          var t = e.target;
+          if (!t || !t.closest) return;
+          var btn = t.closest('#nova_dragon_egg_open, .nova-dragon-egg-entry');
+          if (!btn) return;
+          var main = document.getElementById('main-screen');
+          if (!main || !main.contains(btn)) return;
+          e.preventDefault();
+          openEggScreen();
+        },
+        true
+      );
     }
+    if (uiBound) {
+      bindOpenButtonIfNeeded();
+      return;
+    }
+    uiBound = true;
+    bindOpenButtonIfNeeded();
     if (typeof window.novaPreloadDragonEggAssets === 'function') {
       window.novaPreloadDragonEggAssets().catch(function () {});
     }
@@ -1165,6 +1204,7 @@
     if (wrap) {
       var oldHint = wrap.querySelector('.nova-dragon-egg-entry__hint');
       if (oldHint) oldHint.remove();
+      bindOpenButtonIfNeeded();
       return wrap;
     }
     var anchor = document.querySelector('#main-screen-hud-left .nova-main-hero-showcase-wrap');
@@ -1180,6 +1220,7 @@
       '<span class="nova-dragon-egg-entry__total" id="nova_dragon_egg_total">0 yumurta</span>' +
       '</button></div>';
     anchor.insertAdjacentElement('afterend', wrap);
+    bindOpenButtonIfNeeded();
     return wrap;
   }
 

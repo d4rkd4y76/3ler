@@ -442,6 +442,37 @@
 
   window.novaSpriteBootFlushDefer = flushDeferQueue;
 
+  window.novaSpriteRefreshMainHeroCanvases = function () {
+    var slot = document.getElementById('nova-main-hero-slot');
+    if (!slot) return;
+    globalRegistry.forEach(function (eng) {
+      if (!eng || !eng.wrap || !eng.canvas) return;
+      if (!slot.contains(eng.wrap)) return;
+      eng.lastCw = 0;
+      eng.lastCh = 0;
+      eng.drawScale = 0;
+      try {
+        if (typeof eng.resize === 'function') eng.resize();
+        if (typeof eng.draw === 'function') eng.draw();
+      } catch (_) {}
+    });
+  };
+
+  function refreshMainHeroWhenVisible() {
+    if (!isMainScreenVisible()) return;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        window.novaSpriteRefreshMainHeroCanvases();
+        if (typeof window.novaRefreshMainScreenHero === 'function') {
+          window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
+        }
+      });
+    });
+  }
+
+  document.addEventListener('nova:sprite-boot-complete', refreshMainHeroWhenVisible, { passive: true });
+  document.addEventListener('nova:main-screen-visible', refreshMainHeroWhenVisible, { passive: true });
+
   function storeIoMargin() {
     return isPhoneDevice() ? '48px 0px' : '72px 0px';
   }
