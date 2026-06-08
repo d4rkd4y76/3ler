@@ -4261,13 +4261,15 @@ window.onload = async () => {
             applyStudentSessionIsolation(selectedStudent);
             
             studentSelectionScreen.style.display = 'none';
-            mainScreen.style.removeProperty('display');
+            var bootPipelineActive = window.__novaSpriteBootManaged && !window.__novaSpriteBootDone;
+            if (!bootPipelineActive) {
+              mainScreen.style.removeProperty('display');
+            }
             studentSelectionError.textContent = '';
             studentPasswordInput.value = '';
 
             window.__novaAppMainReady = true;
             try { document.dispatchEvent(new CustomEvent('nova:app-main-ready')); } catch (_) {}
-            var bootPipelineActive = window.__novaSpriteBootManaged && !window.__novaSpriteBootDone;
             if (!bootPipelineActive) {
               try {
                 if (typeof window.novaApplyMainScreenHudInstant === 'function') {
@@ -4823,6 +4825,11 @@ async function handleLogin() {
         }
 
         try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch (_) {}
+
+        try {
+          document.documentElement.classList.add('nova-has-session', 'nova-boot-pending');
+          document.body.classList.remove('nova-login-fast-visible');
+        } catch (_) {}
 
         studentSelectionScreen.style.display = 'none';
         studentSelectionError.textContent = '';

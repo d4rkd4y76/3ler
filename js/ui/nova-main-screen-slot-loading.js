@@ -134,13 +134,13 @@
           window.novaBonusDrawerSetOpen(false);
         } catch (_) {}
       }
+      window.novaDeactivateMainSlotPlaceholders();
       if (
         typeof window.novaMainScreenElementsReady === 'function' &&
-        window.novaMainScreenElementsReady()
+        !window.novaMainScreenElementsReady() &&
+        typeof window.novaEnsureMainScreenReady === 'function'
       ) {
-        window.novaDeactivateMainSlotPlaceholders();
-      } else if (!window.__novaMainSlotPlaceholdersActive) {
-        window.novaActivateMainSlotPlaceholders();
+        window.novaEnsureMainScreenReady({ afterBoot: true, force: true }).catch(function () {});
       }
     },
     { passive: true }

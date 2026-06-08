@@ -36,6 +36,8 @@ TOPICS: list[dict] = [
             if i == 2
             else "mat3_tekcift_"
             if i == 3
+            else "mat3_toplama_"
+            if i == 4
             else f"mat3_t{i:02d}_"
         ),
         "raw_file": (
@@ -45,6 +47,8 @@ TOPICS: list[dict] = [
             if i == 2
             else "tekcift-gemini-raw.json"
             if i == 3
+            else "toplama-gemini-raw.json"
+            if i == 4
             else f"mat3-t{i:02d}-gemini-raw.json"
         ),
         "data_file": (
@@ -54,6 +58,8 @@ TOPICS: list[dict] = [
             if i == 2
             else "tek-cift-sayilar-s3-150.json"
             if i == 3
+            else "uclu-basamakli-toplama-s3-150.json"
+            if i == 4
             else f"mat3-t{i:02d}-s3-150.json"
         ),
         "word_file": "Üç Basamaklı Doğal Sayılar (3. Sınıf) - 150 Soru - GÜNCEL v4.docx"

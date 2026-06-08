@@ -19,6 +19,12 @@
     visibility: visible !important;
   }
   html.nova-has-session #student-selection-screen { display: none !important; }
+  html.nova-boot-pending #main-screen {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 </style>
 <script id="nova-login-instant-head">
 (function () {
@@ -32,6 +38,18 @@
     var o = JSON.parse(raw);
     if (o && o.studentId && o.classId) {
       document.documentElement.classList.add('nova-has-session');
+      var bootDone = false;
+      var hardReload = false;
+      try {
+        bootDone = sessionStorage.getItem('nova_sprite_boot_done_v9') === '1';
+      } catch (_) {}
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (nav && nav.type === 'reload') hardReload = true;
+      } catch (_) {}
+      if (!bootDone || hardReload) {
+        document.documentElement.classList.add('nova-boot-pending');
+      }
     }
   } catch (_) {}
 })();
@@ -129,7 +147,7 @@
 <link rel="stylesheet" href="styles/044-nova-homework-above-photo.css" />
 
 <link rel="preload" as="image" href="https://dlxstore.b-cdn.net/A_highly_detailed%2C_cinematic_masterpiece%2C_202606081224%20(1).jpeg" fetchpriority="high" />
-<link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=30260608bootperf3" />
+<link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=30260608bootv6" />
 <link rel="stylesheet" href="styles/114-nova-main-slot-loading.css?v=30260605slot1" />
 <style id="nova-bonus-drawer-critical-css">
 #main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel{display:none!important;visibility:hidden!important;max-height:0!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;pointer-events:none!important}
@@ -260,7 +278,7 @@
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script defer src="js/screens/007-script-007.js?v=30260605loginfast2"></script>
+<script defer src="js/screens/007-script-007.js?v=30260608bootv6"></script>
 <script defer src="js/screens/022-nova-kids-login-js.js?v=30260605loginfast2"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
@@ -888,9 +906,9 @@
 </div>
 </div>
 <!-- Arka plan müziği kaldırıldı — yalnızca efekt sesleri (Web Audio) -->
-<link rel="stylesheet" href="styles/059-nova-question-markup.css?v=9" />
+<link rel="stylesheet" href="styles/059-nova-question-markup.css?v=30260608add3" />
 <script defer src="js/core/nova-turkish-hyphen.js?v=1"></script>
-<script defer src="js/core/nova-question-markup.js?v=9"></script>
+<script defer src="js/core/nova-question-markup.js?v=30260608add2"></script>
 <script defer src="js/ui/006-nova-game-select.js?v=30260604topiclabel1"></script>
 <script defer src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
 <script defer src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
@@ -1450,15 +1468,14 @@
 <script defer src="js/ui/012yg-nova-gece-ejder-true-manifest.js?v=30260602gecetrue1"></script>
 <script defer src="js/ui/012yh-nova-gece-ejder-true-player.js?v=30260602gecetrue1"></script>
 <script defer src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
-<script defer src="js/ui/008-nova-battle-hero.js?v=30260608bootperf3"></script>
+<script defer src="js/ui/008-nova-battle-hero.js?v=30260608bootv6"></script>
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
-<script defer src="js/ui/nova-dragon-egg.js?v=30260608bootperf3"></script>
-<script defer src="js/ui/nova-main-screen-bg-video.js?v=30260605mainperf1"></script>
-<script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260608bootperf3"></script>
-<script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260608bootperf3"></script>
-<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260608bootperf3"></script>
-<script defer src="js/core/nova-network-watch.js?v=30260606opt1"></script>
-<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260608bootperf3"></script>
+<script defer src="js/ui/nova-dragon-egg.js?v=30260608bootv6"></script>
+<script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv6"></script>
+<script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260608bootv6"></script>
+<script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260608bootv6"></script>
+<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260608bootv6"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260608bootv6"></script>
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
@@ -1474,7 +1491,7 @@
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/107-nova-main-hud-frame-fit.css?v=30260602framefit1" />
 <link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260602perf1" />
-<link rel="stylesheet" href="styles/115-nova-main-stability.css?v=30260606opt1" />
+<link rel="stylesheet" href="styles/115-nova-main-stability.css?v=30260608bootv6" />
 <link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=30260606opt1" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260602adminfoot1" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />

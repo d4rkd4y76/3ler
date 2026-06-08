@@ -71,6 +71,20 @@
   }
 
   function isMainScreenVisible() {
+    try {
+      if (
+        document.body.classList.contains('nova-sprite-boot-active') &&
+        !document.body.classList.contains('nova-boot-handoff-active')
+      ) {
+        return false;
+      }
+      if (
+        document.documentElement.classList.contains('nova-boot-pending') &&
+        !document.body.classList.contains('nova-boot-handoff-active')
+      ) {
+        return false;
+      }
+    } catch (_) {}
     var main = document.getElementById('main-screen');
     if (!main) return false;
     try {

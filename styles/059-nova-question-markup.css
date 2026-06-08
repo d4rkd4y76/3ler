@@ -418,7 +418,8 @@
   opacity: 0.85;
 }
 
-.q-vmath--mul .q-vmath__bar {
+.q-vmath--mul .q-vmath__bar,
+.q-vmath--add .q-vmath__bar {
   display: block;
   width: 100%;
   min-width: 2.2em;
@@ -427,6 +428,88 @@
   border-radius: 999px;
   background: currentColor;
   opacity: 0.85;
+}
+
+.q-vmath--add .q-vmath__sign {
+  margin-right: 0;
+  opacity: 0.85;
+}
+
+.q-vmath--add .q-vmath__grid {
+  display: inline-grid;
+  grid-template-columns: 1.05em repeat(var(--q-add-cols, 3), 1.2em);
+  column-gap: 0.08em;
+  row-gap: 0.06em;
+  align-items: end;
+  justify-items: center;
+}
+
+.q-vmath--add .q-vmath__grid-row {
+  display: contents;
+}
+
+.q-vmath--add .q-vmath__gcol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 1.2em;
+  text-align: center;
+}
+
+.q-vmath--add .q-vmath__gcol--sign {
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 0.08em;
+  min-width: 1.05em;
+}
+
+.q-vmath--add .q-vmath__grid-row--bar .q-vmath__gcol--sign {
+  display: none;
+}
+
+.q-vmath--add .q-vmath__gcol--bar {
+  display: none;
+}
+
+.q-vmath--add .q-vmath__bar-line {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 3px;
+  margin: 0.14em 0 0.1em;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+  align-self: center;
+}
+
+.q-vmath--add .q-vmath__digit {
+  display: block;
+  width: 1.1em;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.q-vmath--add .q-vmath__carry {
+  display: block;
+  width: 1.1em;
+  text-align: center;
+  font-size: 0.58em;
+  line-height: 1;
+  min-height: 0.95em;
+  font-weight: 900;
+  color: #fbbf24;
+  text-shadow: 0 0 6px rgba(251, 191, 36, 0.45);
+}
+
+.q-vmath--add .q-vmath__carry--empty {
+  visibility: hidden;
+}
+
+.q-vmath--addsol .q-vmath__digit--result {
+  margin-top: 0;
+  padding-top: 0.1em;
+  border-top: none;
 }
 
 /* Türk ilkokul bölme: bölünen solda, bölen sağ üstte, ┌─ köşe */

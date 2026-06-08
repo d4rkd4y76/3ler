@@ -1,31 +1,30 @@
-/* Sinematik boot — tek görsel, yüzdeyle blur → net geçiş */
+/* Boot — tek görsel, blur→net, ana ekran hazır olunca yumuşak geçiş */
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'nova_sprite_boot_done_v7';
+  var SESSION_KEY = 'nova_sprite_boot_done_v9';
   var BOOT_IMAGE_URL =
     'https://dlxstore.b-cdn.net/A_highly_detailed%2C_cinematic_masterpiece%2C_202606081224%20(1).jpeg';
   var MAX_BLUR_PX = 32;
   var MAX_SCALE_EXTRA = 0.08;
-  var MAX_WAIT_MS = 90000;
-  var MAX_WAIT_PHONE_MS = 28000;
-  var EXIT_HOLD_MS = 1050;
-  var HANDOFF_PAINT_MS = 180;
+  var MAX_WAIT_MS = 45000;
+  var MAX_WAIT_PHONE_MS = 32000;
+  var EXIT_FADE_MS = 1200;
   var DOWNLOAD_PROGRESS_MAX = 0.12;
-  var IMAGE_READY_PROGRESS = 0.15;
-  var REVEAL_END_PROGRESS = 0.99;
-  var REVEAL_DURATION_MS = 6500;
-  var REVEAL_DURATION_PHONE_MS = 5000;
+  var IMAGE_READY_PROGRESS = 0.12;
+  var REVEAL_END_PROGRESS = 1;
+  var MIN_REVEAL_MS = 900;
+  var MIN_REVEAL_PHONE_MS = 700;
+  var MIN_REVEAL_READY_MS = 400;
+  var MIN_REVEAL_READY_PHONE_MS = 300;
+  var MAX_REVEAL_MS = 3600;
+  var MAX_REVEAL_PHONE_MS = 2800;
 
   window.__novaSpriteBootManaged = true;
 
   var state = {
     smoothPct: 0,
     exiting: false,
-    finishingPulse: false,
-    finishingTimer: 0,
-    heavyMainDone: false,
-    bootImageReady: false,
     handoffReady: false,
     bootAnimAllowed: false,
     downloadTicker: 0,
@@ -73,9 +72,9 @@
     if (isHardReload()) {
       try {
         sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem('nova_sprite_boot_done_v8');
+        sessionStorage.removeItem('nova_sprite_boot_done_v7');
         sessionStorage.removeItem('nova_sprite_boot_done_v6');
-        sessionStorage.removeItem('nova_sprite_boot_done_v5');
-        sessionStorage.removeItem('nova_sprite_boot_done_v4');
       } catch (_) {}
       return true;
     }
@@ -93,18 +92,74 @@
     var ov = getOverlay();
     if (ov) {
       ov.hidden = true;
-      ov.classList.remove('is-exiting', 'is-handoff');
+      ov.classList.remove('is-exiting', 'is-handoff', 'is-fade-out');
     }
     try {
-      document.body.classList.remove('nova-sprite-boot-active');
+      document.body.classList.remove('nova-sprite-boot-active', 'nova-boot-handoff-active');
     } catch (_) {}
   }
 
-  function markBootDone() {
+  function applyMainScreenLayoutShell() {
+    var login = document.getElementById('student-selection-screen');
+    var main = document.getElementById('main-screen');
+    if (login) login.style.display = 'none';
+    if (main) main.style.removeProperty('display');
     try {
-      sessionStorage.setItem(SESSION_KEY, '1');
+      document.documentElement.classList.add('nova-has-session', 'nova-main-screen-visible');
+      document.body.classList.remove('nova-login-fast-visible');
+      document.body.classList.add('nova-main-screen-visible');
+    } catch (_) {}
+    try {
+      if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+    } catch (_) {}
+    try {
+      if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
+    } catch (_) {}
+    try {
+      if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+    } catch (_) {}
+    try {
+      if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
+    } catch (_) {}
+    try {
+      if (typeof window.novaSyncPerfRuntime === 'function') window.novaSyncPerfRuntime();
+    } catch (_) {}
+  }
+
+  window.novaPrepareMainScreenLayoutShell = applyMainScreenLayoutShell;
+
+  function prepareBootShellEarly() {
+    if (!hasStoredStudentSession() || !shouldRunBoot()) {
+      hideOverlayInitially();
+      return;
+    }
+    applyMainScreenLayoutShell();
+    var ov = getOverlay();
+    var main = document.getElementById('main-screen');
+    if (main) {
+      main.style.visibility = 'hidden';
+      main.style.opacity = '0';
+    }
+    try {
+      document.documentElement.classList.add('nova-boot-pending');
+      document.body.classList.add('nova-sprite-boot-active');
+      document.body.classList.remove('nova-boot-handoff-active');
+    } catch (_) {}
+    if (ov) {
+      ov.hidden = false;
+      ov.classList.remove('is-exiting', 'is-handoff', 'is-fade-out');
+    }
+    window.__novaSpriteBootActive = true;
+  }
+
+  function markBootDone() {
+    var ready = mainElementsReadyNow();
+    try {
+      if (ready) sessionStorage.setItem(SESSION_KEY, '1');
+      else sessionStorage.removeItem(SESSION_KEY);
     } catch (_) {}
     window.__novaSpriteBootDone = true;
+    window.__novaMainScreenBootReady = ready;
     window.__novaBootVideoPhase = false;
     if (typeof window.novaSpriteBootFlushDefer === 'function') {
       window.novaSpriteBootFlushDefer();
@@ -113,74 +168,16 @@
   }
 
   function scheduleDeferredAssetPreload() {
-    if (window.__novaSpriteAssetsReady || window.__novaSpriteDeferredPreloadStarted) return;
+    if (window.__novaSpriteDeferredPreloadStarted) return;
     window.__novaSpriteDeferredPreloadStarted = true;
-
-    if (!window.__novaMainScreenPrefetchDone && typeof window.novaPrefetchMainScreenAssets === 'function') {
-      window.novaPrefetchMainScreenAssets();
-    }
     if (typeof window.novaPrefetchMainScreenDeferredExtras === 'function') {
       window.novaPrefetchMainScreenDeferredExtras().catch(function () {});
     }
-
-    function runAllHeroSprites() {
-      if (typeof window.novaSpritePreloadAll !== 'function') return;
+    if (typeof window.novaSpritePreloadAll === 'function') {
       window.novaSpritePreloadAll().catch(function () {}).finally(function () {
         window.__novaSpriteAssetsReady = true;
-        try {
-          document.dispatchEvent(new CustomEvent('nova:sprite-assets-ready'));
-        } catch (_) {}
       });
     }
-
-    function runEquippedHero() {
-      var heroAlreadyReady = false;
-      try {
-        if (typeof window.novaMainScreenSlotStatus === 'function') {
-          heroAlreadyReady = !!window.novaMainScreenSlotStatus().hero;
-        }
-      } catch (_) {}
-      if (heroAlreadyReady) return;
-
-      var student = null;
-      try {
-        var raw = localStorage.getItem('selectedStudent');
-        if (raw) student = JSON.parse(raw);
-      } catch (_) {}
-      var heroId = student && (student.battleHero || window.__novaEquippedHeroId);
-      if (heroId && typeof window.novaSpritePreloadForHero === 'function') {
-        try {
-          window.novaSpritePreloadForHero(heroId);
-        } catch (_) {}
-      }
-      if (typeof window.novaRefreshMainScreenHero === 'function') {
-        try {
-          window.novaRefreshMainScreenHero({ urgent: true });
-        } catch (_) {}
-      }
-    }
-
-    runEquippedHero();
-
-    function scheduleBackgroundHeroPreload() {
-      if (window.__novaMainScreenReadyDone) {
-        runAllHeroSprites();
-        return;
-      }
-      document.addEventListener(
-        'nova:main-screen-ready',
-        function () {
-          window.__novaMainScreenReadyDone = true;
-          runAllHeroSprites();
-        },
-        { once: true }
-      );
-      setTimeout(function () {
-        if (!window.__novaSpriteAssetsReady) runAllHeroSprites();
-      }, 12000);
-    }
-
-    scheduleBackgroundHeroPreload();
   }
 
   function applyBootGameTitle() {
@@ -226,8 +223,8 @@
     if (!state.bootAnimAllowed && !opts.allowDuringDownload && !opts.forceComplete) {
       ratio = Math.max(Number(ratio) || 0, state.downloadProgressRatio || 0.03);
     }
-    if (!state.handoffReady && ratio >= 1 && !opts.forceComplete) {
-      ratio = Math.min(ratio, 0.99);
+    if (!state.handoffReady && !state.revealComplete && ratio >= 1 && !opts.forceComplete) {
+      ratio = Math.min(ratio, 0.97);
     }
     var progress = Math.max(0, Math.min(1, ratio || 0));
     var pct = Math.round(progress * 100);
@@ -240,32 +237,13 @@
     if (dom.bar) {
       dom.bar.setAttribute('aria-valuenow', String(pct));
       dom.bar.classList.toggle('is-full', pct >= 100);
-      dom.bar.classList.toggle('is-waiting', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
     }
     if (dom.wrap) {
       dom.wrap.classList.toggle('has-progress', pct > 0);
       dom.wrap.setAttribute('aria-valuenow', String(pct));
     }
     if (dom.label) dom.label.textContent = pct + '%';
-    if (dom.status && statusText) {
-      dom.status.textContent = statusText;
-      dom.status.classList.toggle('is-finishing', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
-    }
-    ov.classList.toggle('is-finishing-wait', !!opts.finishingWait || (pct >= 100 && state.finishingPulse));
-  }
-
-  function stopFinishingPulse() {
-    state.finishingPulse = false;
-    if (state.finishingTimer) {
-      clearTimeout(state.finishingTimer);
-      state.finishingTimer = 0;
-    }
-    var ov = getOverlay();
-    if (ov) ov.classList.remove('is-finishing-wait');
-    var status = ov && ov.querySelector('.nova-sprite-boot-status');
-    if (status) status.classList.remove('is-finishing');
-    var bar = ov && ov.querySelector('.nova-sprite-boot-bar');
-    if (bar) bar.classList.remove('is-waiting');
+    if (dom.status && statusText) dom.status.textContent = statusText;
   }
 
   function stopDownloadProgress() {
@@ -278,40 +256,71 @@
     state.revealTicker = 0;
   }
 
+  function bootHandoffReadyNow() {
+    if (typeof window.novaBootHandoffReady === 'function') {
+      try {
+        return window.novaBootHandoffReady();
+      } catch (_) {}
+    }
+    return mainElementsReadyNow();
+  }
+
+  function canProceedToHandoff(elapsed, readiness) {
+    var minReadyMs = isPhoneBoot() ? MIN_REVEAL_READY_PHONE_MS : MIN_REVEAL_READY_MS;
+    if (elapsed < minReadyMs) return false;
+    if (mainElementsReadyNow() || bootHandoffReadyNow()) return true;
+    if (readiness >= 0.82) return true;
+    return false;
+  }
+
+  function finishRevealProgress(resolve, statusText) {
+    stopRevealProgress();
+    state.revealComplete = true;
+    state.handoffReady = true;
+    setProgress(1, statusText || 'Hazır!', { forceComplete: true, allowDuringDownload: true });
+    resolve();
+  }
+
+  function bootReadinessProgress() {
+    if (typeof window.novaMainScreenReadinessRatio === 'function') {
+      try {
+        return window.novaMainScreenReadinessRatio();
+      } catch (_) {}
+    }
+    return mainElementsReadyNow() ? 1 : 0.2;
+  }
+
   function revealStatusForProgress(progress) {
-    if (progress < 0.38) return 'Dünyalar hazırlanıyor…';
-    if (progress < 0.62) return 'Kahramanlar uyanıyor…';
-    if (progress < 0.86) return 'Son dokunuşlar…';
-    return 'Ana ekran hazırlanıyor…';
+    if (progress < 0.35) return 'Açılış görseli hazırlanıyor…';
+    if (progress < 0.62) return 'Kahramanlar ve profil yükleniyor…';
+    if (progress < 0.88) return 'Ana ekran hazırlanıyor…';
+    return 'Neredeyse hazır…';
   }
 
   function startDownloadProgress() {
     stopDownloadProgress();
     var dlStart = performance.now();
-
     function tick(now) {
-      if (state.bootImageReady || state.exiting || state.handoffReady) {
+      if (state.bootImageReady || state.exiting) {
         stopDownloadProgress();
         return;
       }
       var elapsed = (now || performance.now()) - dlStart;
-      var p = Math.min(
-        DOWNLOAD_PROGRESS_MAX,
-        0.02 + (elapsed / 5000) * (DOWNLOAD_PROGRESS_MAX - 0.02)
-      );
+      var p = Math.min(DOWNLOAD_PROGRESS_MAX, 0.02 + (elapsed / 4000) * (DOWNLOAD_PROGRESS_MAX - 0.02));
       state.downloadProgressRatio = p;
       setProgress(p, 'Açılış görseli indiriliyor…', { allowDuringDownload: true });
       state.downloadTicker = requestAnimationFrame(tick);
     }
-
     state.downloadTicker = requestAnimationFrame(tick);
   }
 
-  function startLinearReveal() {
+  function startAdaptiveReveal() {
     stopRevealProgress();
     state.revealComplete = false;
     var revealStart = performance.now();
-    var duration = isPhoneBoot() ? REVEAL_DURATION_PHONE_MS : REVEAL_DURATION_MS;
+    var minMs = isPhoneBoot() ? MIN_REVEAL_PHONE_MS : MIN_REVEAL_MS;
+    var minReadyMs = isPhoneBoot() ? MIN_REVEAL_READY_PHONE_MS : MIN_REVEAL_READY_MS;
+    var maxMs = isPhoneBoot() ? MAX_REVEAL_PHONE_MS : MAX_REVEAL_MS;
     var span = REVEAL_END_PROGRESS - IMAGE_READY_PROGRESS;
 
     setProgress(IMAGE_READY_PROGRESS, revealStatusForProgress(IMAGE_READY_PROGRESS), {
@@ -320,27 +329,29 @@
 
     return new Promise(function (resolve) {
       function tick(now) {
-        if (state.exiting || state.handoffReady) {
+        if (state.exiting) {
           stopRevealProgress();
           resolve();
           return;
         }
-        var elapsed = (now || performance.now()) - revealStart;
-        var t = Math.min(1, elapsed / duration);
-        var progress = IMAGE_READY_PROGRESS + span * t;
-        setProgress(progress, revealStatusForProgress(progress), { allowDuringDownload: true });
-
-        if (t < 1) {
-          state.revealTicker = requestAnimationFrame(tick);
+        var t = now || performance.now();
+        var elapsed = t - revealStart;
+        var readiness = bootReadinessProgress();
+        var timeRatio = Math.min(1, elapsed / minMs);
+        var blend = Math.min(1, timeRatio * 0.15 + readiness * 0.85);
+        var progress = IMAGE_READY_PROGRESS + span * blend;
+        if (canProceedToHandoff(elapsed, readiness)) {
+          finishRevealProgress(resolve, 'Hazır!');
           return;
         }
+        setProgress(progress, revealStatusForProgress(progress), { allowDuringDownload: true });
 
-        stopRevealProgress();
-        state.revealComplete = true;
-        setProgress(REVEAL_END_PROGRESS, 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
-        resolve();
+        if (elapsed >= maxMs) {
+          finishRevealProgress(resolve, 'Ana ekran açılıyor…');
+          return;
+        }
+        state.revealTicker = requestAnimationFrame(tick);
       }
-
       state.revealTicker = requestAnimationFrame(tick);
     });
   }
@@ -354,65 +365,132 @@
     return !!window.__novaMainScreenBootReady;
   }
 
-  function ensureBootOverlayDismissed() {
-    var ov = getOverlay();
-    stopFinishingPulse();
-    window.__novaBootVideoPhase = false;
-    window.__novaBootMainPrep = false;
-    if (ov) {
-      ov.hidden = true;
-      ov.classList.add('is-exiting', 'is-handoff');
-      ov.style.pointerEvents = 'none';
+  function revealMainScreenUnderOverlay(opts) {
+    opts = opts || {};
+    var main = document.getElementById('main-screen');
+    var login = document.getElementById('student-selection-screen');
+    if (login) login.style.display = 'none';
+    if (main) {
+      main.style.removeProperty('display');
+      if (opts.keepHidden) {
+        main.style.visibility = 'hidden';
+        main.style.opacity = '0';
+      } else {
+        main.style.visibility = 'visible';
+        if (opts.fadeIn) {
+          main.style.opacity = '0';
+        } else {
+          main.style.opacity = '1';
+        }
+      }
     }
     try {
-      document.body.classList.remove('nova-sprite-boot-active');
-      document.body.style.removeProperty('touch-action');
+      if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
     } catch (_) {}
-  }
-
-  function hideOverlayImmediate() {
-    ensureBootOverlayDismissed();
-  }
-
-  function playExitTransition(cb) {
-    if (state.exiting) {
-      if (typeof cb === 'function') cb();
-      return;
+    if (!opts.keepHidden) {
+      try {
+        document.body.classList.add('nova-main-screen-visible');
+      } catch (_) {}
     }
+  }
+
+  function waitForMainScreenReady(maxMs) {
+    if (mainElementsReadyNow()) return Promise.resolve(true);
+    if (typeof window.novaWaitUntilMainScreenElementsReady === 'function') {
+      return window.novaWaitUntilMainScreenElementsReady({
+        maxMs: maxMs == null ? (isPhoneBoot() ? 8000 : 12000) : maxMs,
+        kickMs: 64
+      });
+    }
+    return Promise.resolve(false);
+  }
+
+  function kickBootHandoffLayout() {
+    applyMainScreenLayoutShell();
+    if (typeof window.novaFixHudFabLayout === 'function') {
+      try {
+        window.novaFixHudFabLayout();
+      } catch (_) {}
+    }
+    if (!mainElementsReadyNow() && typeof window.novaRefreshMainScreenHero === 'function') {
+      try {
+        window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
+      } catch (_) {}
+    }
+    return Promise.resolve(true);
+  }
+
+  function playExitTransition() {
+    if (state.exiting) return Promise.resolve();
     state.exiting = true;
     window.__novaBootVideoPhase = false;
+
     var ov = getOverlay();
-    stopFinishingPulse();
+    var main = document.getElementById('main-screen');
+
+    stopRevealProgress();
+    stopDownloadProgress();
     setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
-    revealMainScreenUnderOverlay();
+
+    if (typeof window.novaDeactivateMainSlotPlaceholders === 'function') {
+      try {
+        window.novaDeactivateMainSlotPlaceholders();
+      } catch (_) {}
+    }
+
+    applyMainScreenLayoutShell();
+
+    revealMainScreenUnderOverlay({ fadeIn: true });
+    if (main) {
+      main.style.visibility = 'visible';
+      main.style.removeProperty('display');
+    }
     try {
       document.body.classList.add('nova-boot-handoff-active');
     } catch (_) {}
-    if (ov) {
-      ov.classList.add('is-handoff', 'is-fade-out');
+
+    return new Promise(function (resolve) {
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          ov.classList.add('is-exiting');
+          if (main) main.style.opacity = '1';
+          if (ov) {
+            ov.classList.add('is-handoff', 'is-fade-out');
+            requestAnimationFrame(function () {
+              ov.classList.add('is-exiting');
+            });
+          }
         });
       });
-    }
-    setTimeout(function () {
-      stopFinishingPulse();
-      if (ov) {
-        ov.hidden = true;
-        ov.classList.remove('is-fade-out', 'is-handoff', 'is-exiting');
-      }
-      try {
-        document.body.classList.remove('nova-sprite-boot-active', 'nova-boot-handoff-active');
-      } catch (_) {}
-      try {
-        if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
-      } catch (_) {}
-      try {
-        if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
-      } catch (_) {}
-      if (typeof cb === 'function') cb();
-    }, EXIT_HOLD_MS);
+
+      setTimeout(function () {
+        if (ov) {
+          ov.hidden = true;
+          ov.classList.remove('is-handoff', 'is-fade-out', 'is-exiting');
+        }
+        if (main) {
+          main.style.removeProperty('opacity');
+        }
+        try {
+          document.body.classList.remove('nova-sprite-boot-active', 'nova-boot-handoff-active');
+          document.body.classList.add('nova-main-screen-visible');
+          document.documentElement.classList.add('nova-main-screen-visible');
+          document.documentElement.classList.remove('nova-boot-pending');
+          document.body.style.removeProperty('touch-action');
+        } catch (_) {}
+        try {
+          if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+        } catch (_) {}
+        try {
+          if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
+        } catch (_) {}
+        try {
+          if (typeof window.novaSyncMainScreenBgVideo === 'function') {
+            window.novaSyncMainScreenBgVideo(false).catch(function () {});
+          }
+        } catch (_) {}
+        resolve();
+      }, EXIT_FADE_MS);
+    });
   }
 
   function preloadBootImage(force) {
@@ -447,11 +525,7 @@
         state.bootImageReady = true;
         stopDownloadProgress();
         state.downloadProgressRatio = IMAGE_READY_PROGRESS;
-        setProgress(IMAGE_READY_PROGRESS, 'Görsel hazır — netleşiyor…', { allowDuringDownload: true });
-        var heroImg = getOverlay() && getOverlay().querySelector('.nova-sprite-boot-hero-img');
-        if (heroImg && !heroImg.complete) {
-          heroImg.src = BOOT_IMAGE_URL;
-        }
+        setProgress(IMAGE_READY_PROGRESS, 'Görsel hazır…', { allowDuringDownload: true });
         resolve(bootImage);
       }
 
@@ -471,20 +545,11 @@
     return bootImage.promise;
   }
 
-  function waitBootImageReady(maxMs) {
-    return preloadBootImage()
-      .catch(function () {
-        bootImage.promise = null;
-        return new Promise(function (resolve) {
-          setTimeout(resolve, 1200);
-        }).then(function () {
-          return preloadBootImage(true);
-        });
-      })
-      .catch(function () {
-        bootImage.promise = null;
-        return preloadBootImage(true);
-      });
+  function waitBootImageReady() {
+    return preloadBootImage().catch(function () {
+      bootImage.promise = null;
+      return preloadBootImage(true);
+    });
   }
 
   function warmBootImage() {
@@ -500,41 +565,24 @@
     }
   }
 
-  function runLightBootWork() {
-    state.heavyMainDone = false;
-    return runMainScreenPrep(function (msg) {
-      if (!state.revealComplete) return;
-      setProgress(REVEAL_END_PROGRESS, msg || 'Ana ekran hazırlanıyor…', { allowDuringDownload: true });
-    }).then(function () {
-      state.heavyMainDone = mainElementsReadyNow();
-    });
-  }
-
   function scheduleBootSideWork() {
     if (bootSideWorkPromise) return bootSideWorkPromise;
+    window.__novaBootMainPrep = true;
     bootSideWorkPromise = (async function () {
-      window.__novaBootMainPrep = true;
       try {
-        revealMainScreenUnderOverlay();
+        revealMainScreenUnderOverlay({ keepHidden: true });
         if (typeof window.novaApplyMainScreenHudInstant === 'function') {
-          try {
-            window.novaApplyMainScreenHudInstant();
-          } catch (_) {}
+          window.novaApplyMainScreenHudInstant();
         }
-        if (typeof window.novaPrefetchMainScreenAssets === 'function' && !window.__novaMainScreenPrefetchDone) {
-          window.novaPrefetchMainScreenAssets(true).catch(function () {});
+        if (typeof window.novaPrepareMainScreenForBoot === 'function') {
+          await window.novaPrepareMainScreenForBoot();
+        } else if (typeof window.novaPrefetchMainScreenAssets === 'function') {
+          await window.novaPrefetchMainScreenAssets(true).catch(function () {});
         }
-        await runLightBootWork();
+        window.__novaMainScreenBootReady = mainElementsReadyNow() || bootHandoffReadyNow();
       } finally {
-        if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
-          try {
-            window.novaSyncMainSlotPlaceholders();
-          } catch (_) {}
-        }
-        if (
-          typeof window.novaDeactivateMainSlotPlaceholders === 'function' &&
-          mainElementsReadyNow()
-        ) {
+        window.__novaBootMainPrep = false;
+        if (typeof window.novaDeactivateMainSlotPlaceholders === 'function') {
           try {
             window.novaDeactivateMainSlotPlaceholders();
           } catch (_) {}
@@ -543,155 +591,44 @@
     })().finally(function () {
       setTimeout(function () {
         bootSideWorkPromise = null;
-      }, 400);
+      }, 200);
     });
     return bootSideWorkPromise;
-  }
-
-  function runMainScreenPrep(onStatus) {
-    if (typeof window.novaPrepareMainScreenForBoot !== 'function') {
-      return Promise.resolve();
-    }
-    return window.novaPrepareMainScreenForBoot(onStatus);
-  }
-
-  function revealMainScreenUnderOverlay() {
-    var main = document.getElementById('main-screen');
-    var login = document.getElementById('student-selection-screen');
-    if (login) login.style.display = 'none';
-    if (main) {
-      main.style.removeProperty('display');
-      main.style.visibility = 'visible';
-      main.style.opacity = '1';
-    }
-    try {
-      if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
-    } catch (_) {}
-    try {
-      document.body.classList.add('nova-main-screen-visible');
-    } catch (_) {}
-    try {
-      if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
-    } catch (_) {}
-    try {
-      if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
-    } catch (_) {}
-  }
-
-  function mainScreenPaintReady() {
-    var main = document.getElementById('main-screen');
-    if (!main) return false;
-    try {
-      var st = window.getComputedStyle(main);
-      if (st.display === 'none' || st.visibility === 'hidden') return false;
-      var r = main.getBoundingClientRect();
-      return r.width > 20 && r.height > 20;
-    } catch (_) {
-      return main.offsetWidth > 20 && main.offsetHeight > 20;
-    }
-  }
-
-  function waitForMainScreenPaint(maxMs) {
-    var limit = maxMs == null ? 2000 : maxMs;
-    return new Promise(function (resolve) {
-      var start = Date.now();
-      function tick() {
-        revealMainScreenUnderOverlay();
-        if (mainScreenPaintReady() || Date.now() - start >= limit) {
-          requestAnimationFrame(function () {
-            requestAnimationFrame(resolve);
-          });
-          return;
-        }
-        requestAnimationFrame(tick);
-      }
-      tick();
-    });
-  }
-
-  function finishBootHandoff() {
-    return new Promise(function (resolve) {
-      (async function () {
-        stopRevealProgress();
-        stopDownloadProgress();
-        setProgress(0.99, 'Ana ekran açılıyor…', { allowDuringDownload: true });
-
-        revealMainScreenUnderOverlay();
-        if (
-          !mainElementsReadyNow() &&
-          typeof window.novaActivateMainSlotPlaceholders === 'function'
-        ) {
-          try {
-            window.novaActivateMainSlotPlaceholders();
-          } catch (_) {}
-        } else if (typeof window.novaDeactivateMainSlotPlaceholders === 'function') {
-          try {
-            window.novaDeactivateMainSlotPlaceholders();
-          } catch (_) {}
-        }
-
-        await waitForMainScreenPaint(480);
-
-        state.handoffReady = true;
-        stopFinishingPulse();
-        setProgress(1, 'Hazır!', { forceComplete: true, allowDuringDownload: true });
-
-        await new Promise(function (r) {
-          setTimeout(r, HANDOFF_PAINT_MS);
-        });
-        resolve();
-      })();
-    });
   }
 
   function runCinematicBoot() {
     var ov = getOverlay();
     if (!ov) return Promise.resolve();
 
+    applyMainScreenLayoutShell();
+    document.body.classList.add('nova-sprite-boot-active');
+    ov.hidden = false;
+    ov.classList.remove('is-exiting', 'is-handoff', 'is-fade-out');
+    state.exiting = false;
+    state.handoffReady = false;
+    state.bootAnimAllowed = false;
+    state.revealComplete = false;
+    window.__novaSpriteBootActive = true;
+
     var login = document.getElementById('student-selection-screen');
     if (login) login.style.display = 'none';
 
-    document.body.classList.add('nova-sprite-boot-active');
-    ov.hidden = false;
-    ov.classList.remove('is-exiting', 'is-handoff', 'nova-sprite-boot--no-video', 'nova-sprite-boot--plain-video');
-    state.bootImageReady = false;
-    state.animDone = false;
-    state.heavyMainDone = false;
-    state.handoffReady = false;
-    state.bootAnimAllowed = false;
-    state.exiting = false;
-    state.revealComplete = false;
-    stopRevealProgress();
-    stopDownloadProgress();
-    window.__novaMainScreenBootPromise = null;
-    window.__novaMainScreenBootReady = false;
-    window.__novaMainScreenLoadDone = false;
-    window.__novaBootInstantCacheApplied = false;
-    bootSideWorkPromise = null;
     setProgress(0, 'Kaynaklar hazırlanıyor…');
 
     var heroImg = ov.querySelector('.nova-sprite-boot-hero-img');
     if (heroImg) heroImg.classList.remove('is-loaded');
 
-    revealMainScreenUnderOverlay();
     var prepPromise = scheduleBootSideWork();
 
-    return waitBootImageReady(isPhoneBoot() ? 22000 : 60000)
+    return waitBootImageReady()
       .then(function () {
         if (heroImg) heroImg.classList.add('is-loaded');
         state.bootAnimAllowed = true;
         state.animDone = true;
-        window.__novaBootVideoPhase = false;
-        return Promise.all([startLinearReveal(), prepPromise]);
+        return Promise.all([startAdaptiveReveal(), prepPromise]);
       })
       .then(function () {
-        return finishBootHandoff();
-      })
-      .catch(function () {
-        state.bootAnimAllowed = true;
-        state.animDone = true;
-        if (heroImg) heroImg.classList.add('is-loaded');
-        return finishBootHandoff();
+        return kickBootHandoffLayout();
       });
   }
 
@@ -699,80 +636,65 @@
     try {
       document.dispatchEvent(new CustomEvent('nova:sprite-boot-complete'));
     } catch (_) {}
-  }
-
-  function safeExitBoot() {
-    return finishBootHandoff().then(function () {
-      markBootDone();
-      return new Promise(function (resolve) {
-        playExitTransition(function () {
-          dispatchBootComplete();
-          resolve();
-        });
-      });
-    });
+    if (!mainElementsReadyNow() && typeof window.novaEnsureMainScreenReady === 'function') {
+      window.novaEnsureMainScreenReady({ afterBoot: true, force: true }).catch(function () {});
+    }
   }
 
   function runBootPipeline() {
     applyBootGameTitle();
+
     if (!shouldRunBoot()) {
-      markBootDone();
-      hideOverlayImmediate();
-      if (typeof window.novaActivateMainSlotPlaceholders === 'function') {
+      return (async function () {
+        applyMainScreenLayoutShell();
+        revealMainScreenUnderOverlay();
+        if (typeof window.novaEnsureMainScreenReady === 'function') {
+          await window.novaEnsureMainScreenReady({ force: true, afterBoot: true }).catch(function () {});
+        }
+        markBootDone();
+        var ov = getOverlay();
+        if (ov) ov.hidden = true;
         try {
-          window.novaActivateMainSlotPlaceholders();
+          document.body.classList.remove('nova-sprite-boot-active');
+          document.documentElement.classList.remove('nova-boot-pending');
+          document.body.classList.add('nova-main-screen-visible');
         } catch (_) {}
-      }
-      dispatchBootComplete();
-      return Promise.resolve();
+        dispatchBootComplete();
+      })();
     }
 
-    var maxWait = isPhoneBoot() ? MAX_WAIT_PHONE_MS : MAX_WAIT_MS;
     var timeout = setTimeout(function () {
       state.handoffReady = true;
-      safeExitBoot();
-    }, maxWait);
-
-    var overlayWatch = setInterval(function () {
-      if (window.__novaSpriteBootDone) ensureBootOverlayDismissed();
-    }, 1500);
+    }, isPhoneBoot() ? MAX_WAIT_PHONE_MS : MAX_WAIT_MS);
 
     return runCinematicBoot()
       .then(function () {
         clearTimeout(timeout);
-        clearInterval(overlayWatch);
-        if (!state.handoffReady) return finishBootHandoff();
+        state.handoffReady = true;
+        return playExitTransition();
       })
       .then(function () {
-        if (!state.handoffReady && isPhoneBoot()) state.handoffReady = true;
-        if (!state.handoffReady) throw new Error('boot-handoff-incomplete');
         markBootDone();
-        ensureBootOverlayDismissed();
-        return new Promise(function (resolve) {
-          playExitTransition(function () {
-            ensureBootOverlayDismissed();
-            dispatchBootComplete();
-            resolve();
-          });
-        });
+        dispatchBootComplete();
       })
       .catch(function () {
         clearTimeout(timeout);
-        clearInterval(overlayWatch);
         state.handoffReady = true;
-        return safeExitBoot();
-      })
-      .finally(function () {
-        clearInterval(overlayWatch);
-        ensureBootOverlayDismissed();
+        return playExitTransition().then(function () {
+          markBootDone();
+          dispatchBootComplete();
+        });
       });
   }
 
   window.novaStartSpriteBoot = function (opts) {
     if (bootRunPromise) return bootRunPromise;
     opts = opts || {};
+    if (hasStoredStudentSession()) {
+      applyMainScreenLayoutShell();
+      if (shouldRunBoot()) prepareBootShellEarly();
+    }
     window.__novaSpriteBootTriggered = opts.trigger || 'manual';
-    window.__novaSpriteBootActive = true;
     bootRunPromise = runBootPipeline().finally(function () {
       window.__novaSpriteBootActive = false;
       bootRunPromise = null;
@@ -808,18 +730,7 @@
     if (!hasStoredStudentSession()) return;
     warmBootImage();
     if (!shouldRunBoot()) {
-      if (typeof window.novaPrefetchMainScreenAssets === 'function') {
-        window.novaPrefetchMainScreenAssets();
-      }
-      if (typeof window.novaPrefetchMainScreenBgMedia === 'function') {
-        window.novaPrefetchMainScreenBgMedia().catch(function () {});
-      }
-      markBootDone();
-      if (typeof window.novaEnsureMainScreenReady === 'function') {
-        window.novaEnsureMainScreenReady({ force: true });
-      } else if (typeof window.novaStabilizeMainScreen === 'function') {
-        window.novaStabilizeMainScreen({ force: true });
-      }
+      runBootPipeline();
       return;
     }
     window.novaStartSpriteBoot({ trigger: 'remembered' });
@@ -828,39 +739,24 @@
   window.novaSpriteBootReset = function () {
     try {
       sessionStorage.removeItem(SESSION_KEY);
-      sessionStorage.removeItem('nova_sprite_boot_done_v6');
-      sessionStorage.removeItem('nova_sprite_boot_done_v5');
-      sessionStorage.removeItem('nova_sprite_boot_done_v4');
+      sessionStorage.removeItem('nova_sprite_boot_done_v7');
     } catch (_) {}
-    bootRunPromise = null;
-    bootImage.promise = null;
-    bootImage.img = null;
-    window.__novaSpriteBootDone = false;
-    window.__novaSpriteAssetsReady = false;
-    window.__novaBootVideoPhase = false;
-    window.__novaSpriteBootActive = false;
-    window.__novaMainScreenBootPromise = null;
-    window.__novaMainScreenBootReady = false;
-    window.__novaMainScreenLoadDone = false;
     if (typeof window.novaResetMainScreenPrefetch === 'function') {
       window.novaResetMainScreenPrefetch();
     }
+    window.__novaSpriteBootDone = false;
+    window.__novaMainScreenBootReady = false;
+    bootRunPromise = null;
+    bootSideWorkPromise = null;
+    bootImage.promise = null;
     state.exiting = false;
-    state.animDone = false;
-    state.heavyMainDone = false;
-    state.bootImageReady = false;
-    state.handoffReady = false;
-    state.revealComplete = false;
     stopRevealProgress();
     stopDownloadProgress();
-    stopFinishingPulse();
-    progressDomCache = null;
-    bootSideWorkPromise = null;
   };
 
   window.novaSpriteBootHasSession = hasStoredStudentSession;
 
-  hideOverlayInitially();
+  prepareBootShellEarly();
   if (hasStoredStudentSession()) warmBootImage();
   applyBootGameTitle();
 

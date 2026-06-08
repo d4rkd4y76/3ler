@@ -439,13 +439,7 @@
       prefetchMainScreenCredits(student)
     ];
 
-    if (bootActive) {
-      tasks.push(
-        typeof window.novaPreloadDragonEggAssets === 'function'
-          ? window.novaPreloadDragonEggAssets().catch(function () {})
-          : Promise.resolve()
-      );
-    } else {
+    if (!bootActive) {
       tasks.push(
         typeof window.novaPrefetchMainScreenBgMedia === 'function'
           ? window.novaPrefetchMainScreenBgMedia().catch(function () {})

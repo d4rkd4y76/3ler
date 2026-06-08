@@ -1,11 +1,14 @@
 /**
- * Soru metni: kesirler [[1/3]], dikey çarpma [[mul:23×45]], bölme [[div:144÷12]],
+ * Soru metni: kesirler [[1/3]], dikey toplama [[add:243+125]], çözüm [[addsol:348+225]],
+ * dikey çarpma [[mul:23×45]], bölme [[div:144÷12]],
  * geometri [[shape:kare:5:cm]], cisim [[solid:kup:4:cm]], Bunny video [[bunny:host:videoId]]
  * Öncül: infoBlocks (metin, madde, görsel, video) + geriye dönük info / infoItems
  */
 (function (global) {
   const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
   const FRAC_RE = /\[\[\s*(\d+)\s*[\/|]\s*(\d+)\s*\]\]/g;
+  const ADD_RE = /\[\[\s*add\s*:\s*(\d+)\s*\+\s*(\d+)\s*\]\]/gi;
+  const ADDSOL_RE = /\[\[\s*addsol\s*:\s*(\d+)\s*\+\s*(\d+)\s*\]\]/gi;
   const MUL_RE = /\[\[\s*mul\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
   const DIV_RE = /\[\[\s*div\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*\]\]/gi;
   const SHAPE_RE = /\[\[\s*shape\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
@@ -142,6 +145,164 @@
       '<span class="q-frac__den">' +
       d +
       "</span></span>"
+    );
+  }
+
+  function padMathNums(a, b, resultLen) {
+    const len = resultLen || Math.max(String(a).length, String(b).length);
+    return {
+      len: len,
+      top: String(a).padStart(len, "\u00a0"),
+      bottom: String(b).padStart(len, "\u00a0"),
+    };
+  }
+
+  function computeAddColumns(a, b) {
+    const na = parseInt(a, 10) || 0;
+    const nb = parseInt(b, 10) || 0;
+    const sa = String(na);
+    const sb = String(nb);
+    const sr = String(na + nb);
+    const len = Math.max(sa.length, sb.length, sr.length);
+    const digitsA = sa.padStart(len, "0").split("").map(Number);
+    const digitsB = sb.padStart(len, "0").split("").map(Number);
+    const carryRow = Array(len).fill("\u00a0");
+    const steps = [];
+    let carry = 0;
+    const resultDigits = [];
+    for (let pos = len - 1; pos >= 0; pos--) {
+      const da = digitsA[pos];
+      const db = digitsB[pos];
+      const total = da + db + carry;
+      const digit = total % 10;
+      const newCarry = total >= 10 ? 1 : 0;
+      const place =
+        pos === len - 1 ? "birler" : pos === len - 2 ? "onlar" : pos === len - 3 ? "yüzler" : "basamak";
+      steps.unshift({
+        place: place,
+        da: da,
+        db: db,
+        carryIn: carry,
+        digit: digit,
+        carryOut: newCarry,
+      });
+      if (newCarry && pos > 0) carryRow[pos - 1] = "1";
+      resultDigits.unshift(digit);
+      carry = newCarry;
+    }
+    return {
+      len: len,
+      top: sa.padStart(len, "\u00a0"),
+      bottom: sb.padStart(len, "\u00a0"),
+      result: sr.padStart(len, "\u00a0"),
+      carryRow: carryRow,
+      steps: steps,
+      sum: na + nb,
+    };
+  }
+
+  function splitPaddedDigits(padded, len) {
+    return String(padded)
+      .padStart(len, "\u00a0")
+      .split("")
+      .map(function (c) {
+        return c === "\u00a0" ? "" : c;
+      });
+  }
+
+  function buildAddGridHtml(cols, withSolution) {
+    var len = cols.len;
+    var topD = splitPaddedDigits(cols.top, len);
+    var botD = splitPaddedDigits(cols.bottom, len);
+    var resD = splitPaddedDigits(cols.result, len);
+    var parts = ['<span class="q-vmath__grid" style="--q-add-cols:' + len + '">'];
+
+    if (withSolution) {
+      parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--carry">');
+      parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+      for (var ci = 0; ci < len; ci++) {
+        var cval = cols.carryRow[ci];
+        var hasCarry = cval && String(cval).trim() && cval !== "\u00a0";
+        parts.push(
+          '<span class="q-vmath__gcol">' +
+            (hasCarry
+              ? '<span class="q-vmath__carry" title="Elde">' + escapeHtml(String(cval)) + "</span>"
+              : '<span class="q-vmath__carry q-vmath__carry--empty" aria-hidden="true">&nbsp;</span>') +
+            "</span>"
+        );
+      }
+      parts.push("</span>");
+    }
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--top">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+    for (var ti = 0; ti < len; ti++) {
+      parts.push(
+        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+          (topD[ti] ? escapeHtml(topD[ti]) : "&nbsp;") +
+          "</span></span>"
+      );
+    }
+    parts.push("</span>");
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--op">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign"><span class="q-vmath__sign">+</span></span>');
+    for (var bi = 0; bi < len; bi++) {
+      parts.push(
+        '<span class="q-vmath__gcol"><span class="q-vmath__digit">' +
+          (botD[bi] ? escapeHtml(botD[bi]) : "&nbsp;") +
+          "</span></span>"
+      );
+    }
+    parts.push("</span>");
+
+    parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--bar">');
+    parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+    parts.push('<span class="q-vmath__bar-line" aria-hidden="true"></span>');
+    parts.push("</span>");
+
+    if (withSolution) {
+      parts.push('<span class="q-vmath__grid-row q-vmath__grid-row--result">');
+      parts.push('<span class="q-vmath__gcol q-vmath__gcol--sign" aria-hidden="true"></span>');
+      for (var ri = 0; ri < len; ri++) {
+        parts.push(
+          '<span class="q-vmath__gcol"><span class="q-vmath__digit q-vmath__digit--result">' +
+            (resD[ri] ? escapeHtml(resD[ri]) : "&nbsp;") +
+            "</span></span>"
+        );
+      }
+      parts.push("</span>");
+    }
+
+    parts.push("</span>");
+    return parts.join("");
+  }
+
+  function verticalAddHtml(a, b) {
+    var cols = computeAddColumns(a, b);
+    return (
+      '<span class="q-vmath q-vmath--add" role="math" aria-label="' +
+      String(a) +
+      " artı " +
+      String(b) +
+      '">' +
+      buildAddGridHtml(cols, false) +
+      "</span>"
+    );
+  }
+
+  function verticalAddSolutionHtml(a, b) {
+    var cols = computeAddColumns(a, b);
+    return (
+      '<span class="q-vmath q-vmath--add q-vmath--addsol" role="math" aria-label="' +
+      String(a) +
+      " artı " +
+      String(b) +
+      " eşittir " +
+      String(cols.sum) +
+      '">' +
+      buildAddGridHtml(cols, true) +
+      "</span>"
     );
   }
 
@@ -531,6 +692,12 @@
     let s = escapeHtml(String(raw));
     s = s.replace(FRAC_RE, function (_, a, b) {
       return stackedFractionHtml(a, b);
+    });
+    s = s.replace(ADDSOL_RE, function (_, a, b) {
+      return verticalAddSolutionHtml(a, b);
+    });
+    s = s.replace(ADD_RE, function (_, a, b) {
+      return verticalAddHtml(a, b);
     });
     s = s.replace(MUL_RE, function (_, a, b) {
       return verticalMulHtml(a, b);

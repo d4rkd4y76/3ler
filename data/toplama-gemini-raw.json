@@ -1,0 +1,752 @@
+[
+  {
+    "id": "mat3_toplama_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:243+125]] işleminin sonucu kaçtır?",
+    "correct": "368",
+    "wrong1": "378",
+    "wrong2": "468",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:243+125]]\n• Birler basamağı: 3 + 5 = 8 → alta **8** yazılır.\n• Onlar basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 2 + 1 = 3 → alta **3** yazılır.\nSonuç: **368**."
+  },
+  {
+    "id": "mat3_toplama_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:402+351]] işleminin sonucu kaçtır?",
+    "correct": "753",
+    "wrong1": "743",
+    "wrong2": "763",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:402+351]]\n• Birler basamağı: 2 + 1 = 3 → alta **3** yazılır.\n• Onlar basamağı: 0 + 5 = 5 → alta **5** yazılır.\n• Yüzler basamağı: 4 + 3 = 7 → alta **7** yazılır.\nSonuç: **753**."
+  },
+  {
+    "id": "mat3_toplama_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:114+230]] işleminin sonucu kaçtır?",
+    "correct": "344",
+    "wrong1": "354",
+    "wrong2": "444",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:114+230]]\n• Birler basamağı: 4 + 0 = 4 → alta **4** yazılır.\n• Onlar basamağı: 1 + 3 = 4 → alta **4** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **344**."
+  },
+  {
+    "id": "mat3_toplama_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:521+246]] işleminin sonucu kaçtır?",
+    "correct": "767",
+    "wrong1": "777",
+    "wrong2": "667",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:521+246]]\n• Birler basamağı: 1 + 6 = 7 → alta **7** yazılır.\n• Onlar basamağı: 2 + 4 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 5 + 2 = 7 → alta **7** yazılır.\nSonuç: **767**."
+  },
+  {
+    "id": "mat3_toplama_005",
+    "level": "kolay",
+    "premise": "Ali'nin 142 bilyesi vardı. Arkadaşı ona 215 bilye daha verdi.",
+    "text": "Ali'nin toplam kaç bilyesi oldu?",
+    "correct": "357",
+    "wrong1": "367",
+    "wrong2": "347",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:142+215]]\n• Birler basamağı: 2 + 5 = 7 → alta **7** yazılır.\n• Onlar basamağı: 4 + 1 = 5 → alta **5** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **357**."
+  },
+  {
+    "id": "mat3_toplama_006",
+    "level": "kolay",
+    "premise": "Zeynep kitabının 234 sayfasını okudu. Okunacak 123 sayfası daha kaldı.",
+    "text": "Zeynep'in kitabı toplam kaç sayfadır?",
+    "correct": "357",
+    "wrong1": "367",
+    "wrong2": "457",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:234+123]]\n• Birler basamağı: 4 + 3 = 7 → alta **7** yazılır.\n• Onlar basamağı: 3 + 2 = 5 → alta **5** yazılır.\n• Yüzler basamağı: 2 + 1 = 3 → alta **3** yazılır.\nSonuç: **357**."
+  },
+  {
+    "id": "mat3_toplama_007",
+    "level": "kolay",
+    "premise": "Bir çiftlikte 304 tavuk, 182 horoz vardır.",
+    "text": "Bu çiftlikte toplam kaç kümes hayvanı vardır?",
+    "correct": "486",
+    "wrong1": "496",
+    "wrong2": "476",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:304+182]]\n• Birler basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Onlar basamağı: 0 + 8 = 8 → alta **8** yazılır.\n• Yüzler basamağı: 3 + 1 = 4 → alta **4** yazılır.\nSonuç: **486**."
+  },
+  {
+    "id": "mat3_toplama_008",
+    "level": "kolay",
+    "premise": "Cemil Bey 430 TL'ye bir mont, 125 TL'ye bir gömlek almıştır.",
+    "text": "Cemil Bey kasaya toplam kaç TL ödemelidir?",
+    "correct": "555",
+    "wrong1": "545",
+    "wrong2": "565",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:430+125]]\n• Birler basamağı: 0 + 5 = 5 → alta **5** yazılır.\n• Onlar basamağı: 3 + 2 = 5 → alta **5** yazılır.\n• Yüzler basamağı: 4 + 1 = 5 → alta **5** yazılır.\nSonuç: **555**."
+  },
+  {
+    "id": "mat3_toplama_009",
+    "level": "kolay",
+    "premise": null,
+    "text": "300 ile 40 sayılarını zihinden toplarsak sonuç kaç olur?",
+    "correct": "340",
+    "wrong1": "350",
+    "wrong2": "440",
+    "explanation": "300 tam yüzlüktür. Üzerine 40 onluğu eklendiğinde onluk basamağına 4 yazılır ve sonuç 340 olur."
+  },
+  {
+    "id": "mat3_toplama_010",
+    "level": "kolay",
+    "premise": null,
+    "text": "500 ile 70 sayılarını zihinden toplarsak sonuç kaç olur?",
+    "correct": "570",
+    "wrong1": "580",
+    "wrong2": "670",
+    "explanation": "500 tam yüzlüktür. Üzerine 7 onluk (70) eklendiğinde sonuç 570 olur."
+  },
+  {
+    "id": "mat3_toplama_011",
+    "level": "kolay",
+    "premise": null,
+    "text": "600 ile 8 sayılarını zihinden toplarsak sonuç kaç olur?",
+    "correct": "608",
+    "wrong1": "680",
+    "wrong2": "618",
+    "explanation": "600 tam yüzlüktür. Üzerine 8 birlik eklendiğinde birler basamağı değişir ve 608 olur."
+  },
+  {
+    "id": "mat3_toplama_012",
+    "level": "kolay",
+    "premise": "Defne kolyeleri için 120 sarı, 230 mavi boncuk kullandı.",
+    "text": "Defne toplam kaç boncuk kullanmıştır?",
+    "correct": "350",
+    "wrong1": "360",
+    "wrong2": "340",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:120+230]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 2 + 3 = 5 → alta **5** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **350**."
+  },
+  {
+    "id": "mat3_toplama_013",
+    "level": "kolay",
+    "premise": null,
+    "text": "800 + 100 işlemini zihinden yaptığımızda sonuç kaç yüzlük eder?",
+    "correct": "9 yüzlük (900)",
+    "wrong1": "8 yüzlük (800)",
+    "wrong2": "10 yüzlük (1000)",
+    "explanation": "8 yüzlüğe 1 yüzlük eklediğimizde 9 yüzlük elde ederiz, bu da 900 demektir."
+  },
+  {
+    "id": "mat3_toplama_014",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:253+104]] işleminin sonucu kaçtır?",
+    "correct": "357",
+    "wrong1": "367",
+    "wrong2": "457",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:253+104]]\n• Birler basamağı: 3 + 4 = 7 → alta **7** yazılır.\n• Onlar basamağı: 5 + 0 = 5 → alta **5** yazılır.\n• Yüzler basamağı: 2 + 1 = 3 → alta **3** yazılır.\nSonuç: **357**."
+  },
+  {
+    "id": "mat3_toplama_015",
+    "level": "kolay",
+    "premise": null,
+    "text": "416 sayısının 250 fazlası kaçtır?",
+    "correct": "666",
+    "wrong1": "656",
+    "wrong2": "676",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:416+250]]\n• Birler basamağı: 6 + 0 = 6 → alta **6** yazılır.\n• Onlar basamağı: 1 + 5 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 4 + 2 = 6 → alta **6** yazılır.\nSonuç: **666**."
+  },
+  {
+    "id": "mat3_toplama_016",
+    "level": "kolay",
+    "premise": "Elif kumbarasına birinci ay 210 TL, ikinci ay 115 TL atmıştır.",
+    "text": "Elif kumbarasında toplam kaç TL biriktirmiştir?",
+    "correct": "325",
+    "wrong1": "315",
+    "wrong2": "335",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:210+115]]\n• Birler basamağı: 0 + 5 = 5 → alta **5** yazılır.\n• Onlar basamağı: 1 + 1 = 2 → alta **2** yazılır.\n• Yüzler basamağı: 2 + 1 = 3 → alta **3** yazılır.\nSonuç: **325**."
+  },
+  {
+    "id": "mat3_toplama_017",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:345+123]] işleminin sonucu kaçtır?",
+    "correct": "468",
+    "wrong1": "458",
+    "wrong2": "478",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:345+123]]\n• Birler basamağı: 5 + 3 = 8 → alta **8** yazılır.\n• Onlar basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 3 + 1 = 4 → alta **4** yazılır.\nSonuç: **468**."
+  },
+  {
+    "id": "mat3_toplama_018",
+    "level": "kolay",
+    "premise": null,
+    "text": "Toplama işleminde 0 (sıfır) rakamının görevi nedir?",
+    "correct": "Etkisiz elemandır, sonucu değiştirmez.",
+    "wrong1": "Sonucu her zaman 0 yapar.",
+    "wrong2": "Sayıyı 10 katına çıkarır.",
+    "explanation": "Toplama işleminde 0 hangi sayı ile toplanırsa toplansın sonuç o sayının kendisi olur (etkisiz eleman)."
+  },
+  {
+    "id": "mat3_toplama_019",
+    "level": "kolay",
+    "premise": "Okul bahçesine 112 çam ağacı ve 205 meşe ağacı fidanı dikildi.",
+    "text": "Okul bahçesine toplam kaç fidan dikilmiştir?",
+    "correct": "317",
+    "wrong1": "327",
+    "wrong2": "417",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:112+205]]\n• Birler basamağı: 2 + 5 = 7 → alta **7** yazılır.\n• Onlar basamağı: 1 + 0 = 1 → alta **1** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **317**."
+  },
+  {
+    "id": "mat3_toplama_020",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:734+142]] işleminin sonucu kaçtır?",
+    "correct": "876",
+    "wrong1": "886",
+    "wrong2": "976",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:734+142]]\n• Birler basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Onlar basamağı: 3 + 4 = 7 → alta **7** yazılır.\n• Yüzler basamağı: 7 + 1 = 8 → alta **8** yazılır.\nSonuç: **876**."
+  },
+  {
+    "id": "mat3_toplama_021",
+    "level": "kolay",
+    "premise": "Fatih 140 cevizi olduğunu söyledi. Abisi ona 200 ceviz daha verdi.",
+    "text": "Fatih'in kaç cevizi oldu?",
+    "correct": "340",
+    "wrong1": "350",
+    "wrong2": "240",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:140+200]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 4 + 0 = 4 → alta **4** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **340**."
+  },
+  {
+    "id": "mat3_toplama_022",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:400+400]] işleminin sonucu kaçtır?",
+    "correct": "800",
+    "wrong1": "700",
+    "wrong2": "900",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:400+400]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Yüzler basamağı: 4 + 4 = 8 → alta **8** yazılır.\nSonuç: **800**."
+  },
+  {
+    "id": "mat3_toplama_023",
+    "level": "kolay",
+    "premise": null,
+    "text": "[[add:362+215]] işleminin sonucu kaçtır?",
+    "correct": "577",
+    "wrong1": "587",
+    "wrong2": "567",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:362+215]]\n• Birler basamağı: 2 + 5 = 7 → alta **7** yazılır.\n• Onlar basamağı: 6 + 1 = 7 → alta **7** yazılır.\n• Yüzler basamağı: 3 + 2 = 5 → alta **5** yazılır.\nSonuç: **577**."
+  },
+  {
+    "id": "mat3_toplama_024",
+    "level": "kolay",
+    "premise": null,
+    "text": "250 ile 120 sayılarını zihinden toplarsak sonuç ne olur?",
+    "correct": "370",
+    "wrong1": "380",
+    "wrong2": "360",
+    "explanation": "Onluklar toplanır: 25 onluk + 12 onluk = 37 onluk (370)."
+  },
+  {
+    "id": "mat3_toplama_025",
+    "level": "kolay",
+    "premise": "Bir trende 214 erkek, 132 kadın yolcu vardır.",
+    "text": "Trende toplam kaç yolcu vardır?",
+    "correct": "346",
+    "wrong1": "356",
+    "wrong2": "336",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:214+132]]\n• Birler basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Onlar basamağı: 1 + 3 = 4 → alta **4** yazılır.\n• Yüzler basamağı: 2 + 1 = 3 → alta **3** yazılır.\nSonuç: **346**."
+  },
+  {
+    "id": "mat3_toplama_026",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:348+225]] işleminin sonucu kaçtır?",
+    "correct": "573",
+    "wrong1": "563",
+    "wrong2": "583",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:348+225]]\n• Birler basamağı: 8 + 5 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 2 + elde (1) = 7 → alta **7** yazılır.\n• Yüzler basamağı: 3 + 2 = 5 → alta **5** yazılır.\nSonuç: **573**."
+  },
+  {
+    "id": "mat3_toplama_027",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:456+182]] işleminin sonucu kaçtır?",
+    "correct": "638",
+    "wrong1": "648",
+    "wrong2": "628",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:456+182]]\n• Birler basamağı: 6 + 2 = 8 → alta **8** yazılır.\n• Onlar basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 4 + 1 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **638**."
+  },
+  {
+    "id": "mat3_toplama_028",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:275+146]] işleminin sonucu kaçtır?",
+    "correct": "421",
+    "wrong1": "411",
+    "wrong2": "321",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:275+146]]\n• Birler basamağı: 5 + 6 = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 7 + 4 + elde (1) = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 1 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **421**."
+  },
+  {
+    "id": "mat3_toplama_029",
+    "level": "orta",
+    "premise": "Bir fırında sabahtan öğleye kadar 286, öğleden akşama kadar 355 ekmek satılmıştır.",
+    "text": "Fırında gün boyunca toplam kaç ekmek satılmıştır?",
+    "correct": "641",
+    "wrong1": "631",
+    "wrong2": "651",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:286+355]]\n• Birler basamağı: 6 + 5 = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 5 + elde (1) = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **641**."
+  },
+  {
+    "id": "mat3_toplama_030",
+    "level": "orta",
+    "premise": "Kütüphanede 394 hikaye kitabı, 128 şiir kitabı bulunmaktadır.",
+    "text": "Kütüphanede bu iki türden toplam kaç kitap vardır?",
+    "correct": "522",
+    "wrong1": "512",
+    "wrong2": "422",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:394+128]]\n• Birler basamağı: 4 + 8 = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 9 + 2 + elde (1) = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 1 + elde (1) = 5 → alta **5** yazılır.\nSonuç: **522**."
+  },
+  {
+    "id": "mat3_toplama_031",
+    "level": "orta",
+    "premise": "245 + ...... = 612",
+    "text": "Yukarıdaki toplama işleminde noktalı yere hangi sayı gelmelidir?",
+    "correct": "367",
+    "wrong1": "377",
+    "wrong2": "357",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:245+367]]\n• Birler basamağı: 5 + 7 = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 6 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **612**."
+  },
+  {
+    "id": "mat3_toplama_032",
+    "level": "orta",
+    "premise": "...... + 189 = 504",
+    "text": "Yukarıdaki işlemde verilmeyen toplanan kaçtır?",
+    "correct": "315",
+    "wrong1": "325",
+    "wrong2": "305",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:189+315]]\n• Birler basamağı: 9 + 5 = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 1 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 3 + elde (1) = 5 → alta **5** yazılır.\nSonuç: **504**."
+  },
+  {
+    "id": "mat3_toplama_033",
+    "level": "orta",
+    "premise": "Meltem 365 TL'ye ayakkabı ve bir miktar parayla da çanta alıyor. Toplam 600 TL ödüyor.",
+    "text": "Çantanın fiyatı kaç TL'dir?",
+    "correct": "235",
+    "wrong1": "245",
+    "wrong2": "225",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:365+235]]\n• Birler basamağı: 5 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 6 + 3 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **600**."
+  },
+  {
+    "id": "mat3_toplama_034",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:509+294]] işleminin sonucu kaçtır?",
+    "correct": "803",
+    "wrong1": "813",
+    "wrong2": "793",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:509+294]]\n• Birler basamağı: 9 + 4 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 0 + 9 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 5 + 2 + elde (1) = 8 → alta **8** yazılır.\nSonuç: **803**."
+  },
+  {
+    "id": "mat3_toplama_035",
+    "level": "orta",
+    "premise": "Ahmet'in 350 TL'si vardır. Telefon almak için 485 TL'ye daha ihtiyacı olduğunu görüyor.",
+    "text": "Telefonun fiyatı kaç TL'dir?",
+    "correct": "835",
+    "wrong1": "825",
+    "wrong2": "845",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:350+485]]\n• Birler basamağı: 0 + 5 = 5 → alta **5** yazılır.\n• Onlar basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 4 + elde (1) = 8 → alta **8** yazılır.\nSonuç: **835**."
+  },
+  {
+    "id": "mat3_toplama_036",
+    "level": "orta",
+    "premise": null,
+    "text": "Bir toplama işleminde birinci toplanan 278, ikinci toplanan 345'tir. Toplam kaçtır?",
+    "correct": "623",
+    "wrong1": "633",
+    "wrong2": "613",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:278+345]]\n• Birler basamağı: 8 + 5 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 7 + 4 + elde (1) = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **623**."
+  },
+  {
+    "id": "mat3_toplama_037",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:672+159]] işleminin sonucu kaçtır?",
+    "correct": "831",
+    "wrong1": "821",
+    "wrong2": "841",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:672+159]]\n• Birler basamağı: 2 + 9 = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 7 + 5 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 6 + 1 + elde (1) = 8 → alta **8** yazılır.\nSonuç: **831**."
+  },
+  {
+    "id": "mat3_toplama_038",
+    "level": "orta",
+    "premise": "A = 265, B = 378",
+    "text": "Yukarıda verilen değerlere göre A + B işleminin sonucu kaçtır?",
+    "correct": "643",
+    "wrong1": "633",
+    "wrong2": "653",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:265+378]]\n• Birler basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 6 + 7 + elde (1) = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **643**."
+  },
+  {
+    "id": "mat3_toplama_039",
+    "level": "orta",
+    "premise": "Bir ağaçlandırma çalışmasında cumartesi günü 456 fidan, pazar günü 385 fidan dikilmiştir.",
+    "text": "Hafta sonu toplam kaç fidan dikilmiştir?",
+    "correct": "841",
+    "wrong1": "831",
+    "wrong2": "851",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:456+385]]\n• Birler basamağı: 6 + 5 = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 5 + 8 + elde (1) = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 4 + 3 + elde (1) = 8 → alta **8** yazılır.\nSonuç: **841**."
+  },
+  {
+    "id": "mat3_toplama_040",
+    "level": "orta",
+    "premise": "Kemal aklından tuttuğu sayıya 285 eklediğinde sonucun 600 olduğunu görüyor.",
+    "text": "Kemal'in aklından tuttuğu sayı kaçtır?",
+    "correct": "315",
+    "wrong1": "325",
+    "wrong2": "305",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:285+315]]\n• Birler basamağı: 5 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 1 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 3 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **600**."
+  },
+  {
+    "id": "mat3_toplama_041",
+    "level": "orta",
+    "premise": null,
+    "text": "Yüzler basamağı 3, onlar basamağı 8, birler basamağı 4 olan sayı ile 267 sayısının toplamı kaçtır?",
+    "correct": "651",
+    "wrong1": "641",
+    "wrong2": "551",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:384+267]]\n• Birler basamağı: 4 + 7 = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 6 + elde (1) = 15 → alta **5** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **651**."
+  },
+  {
+    "id": "mat3_toplama_042",
+    "level": "orta",
+    "premise": "Berna 468 sayfalık kitabın bir kısmını okudu. Geriye 145 sayfası kaldı.",
+    "text": "Berna kaç sayfa kitap okumuştur?",
+    "correct": "323",
+    "wrong1": "333",
+    "wrong2": "313",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:145+323]]\n• Birler basamağı: 5 + 3 = 8 → alta **8** yazılır.\n• Onlar basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 1 + 3 = 4 → alta **4** yazılır.\nSonuç: **468**."
+  },
+  {
+    "id": "mat3_toplama_043",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:298+434]] işleminin sonucu kaçtır?",
+    "correct": "732",
+    "wrong1": "722",
+    "wrong2": "742",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:298+434]]\n• Birler basamağı: 8 + 4 = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 9 + 3 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 4 + elde (1) = 7 → alta **7** yazılır.\nSonuç: **732**."
+  },
+  {
+    "id": "mat3_toplama_044",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi sayının 195 fazlası 482 eder?",
+    "correct": "287",
+    "wrong1": "297",
+    "wrong2": "277",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:195+287]]\n• Birler basamağı: 5 + 7 = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 9 + 8 + elde (1) = 18 → alta **8** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 2 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **482**."
+  },
+  {
+    "id": "mat3_toplama_045",
+    "level": "orta",
+    "premise": "Sinemada 1. salonda 189 kişi, 2. salonda 245 kişi film izlemektedir.",
+    "text": "İki salonda toplam kaç kişi vardır?",
+    "correct": "434",
+    "wrong1": "424",
+    "wrong2": "444",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:189+245]]\n• Birler basamağı: 9 + 5 = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 4 + elde (1) = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 2 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **434**."
+  },
+  {
+    "id": "mat3_toplama_046",
+    "level": "orta",
+    "premise": null,
+    "text": "[[add:377+249]] işleminin sonucu kaçtır?",
+    "correct": "626",
+    "wrong1": "616",
+    "wrong2": "636",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:377+249]]\n• Birler basamağı: 7 + 9 = 16 → alta **6** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 7 + 4 + elde (1) = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **626**."
+  },
+  {
+    "id": "mat3_toplama_047",
+    "level": "orta",
+    "premise": "Bir okulun ilkokul bölümünde 482, ortaokul bölümünde 378 öğrenci vardır.",
+    "text": "Bu okulda toplam kaç öğrenci eğitim görmektedir?",
+    "correct": "860",
+    "wrong1": "850",
+    "wrong2": "870",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:482+378]]\n• Birler basamağı: 2 + 8 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 7 + elde (1) = 16 → alta **6** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 4 + 3 + elde (1) = 8 → alta **8** yazılır.\nSonuç: **860**."
+  },
+  {
+    "id": "mat3_toplama_048",
+    "level": "orta",
+    "premise": "349 + ...... = 716",
+    "text": "Yukarıdaki işlemde noktalı yere hangi sayı gelmelidir?",
+    "correct": "367",
+    "wrong1": "357",
+    "wrong2": "377",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:349+367]]\n• Birler basamağı: 9 + 7 = 16 → alta **6** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 6 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 3 + elde (1) = 7 → alta **7** yazılır.\nSonuç: **716**."
+  },
+  {
+    "id": "mat3_toplama_049",
+    "level": "orta",
+    "premise": null,
+    "text": "Birler basamağı 8 olan iki basamaklı en büyük sayı ile 385 sayısının toplamı kaçtır?",
+    "correct": "483",
+    "wrong1": "473",
+    "wrong2": "493",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:385+98]]\n• Birler basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 9 + elde (1) = 18 → alta **8** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 0 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **483**."
+  },
+  {
+    "id": "mat3_toplama_050",
+    "level": "orta",
+    "premise": "Manav satacağı elmaların 185 kilogramını sabahtan, kalanını öğleden sonra sattı. Manavın sattığı elmaların tamamı 420 kilogramdır.",
+    "text": "Manav öğleden sonra kaç kilogram elma satmıştır?",
+    "correct": "235",
+    "wrong1": "225",
+    "wrong2": "245",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:185+235]]\n• Birler basamağı: 5 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 3 + elde (1) = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 2 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **420**."
+  },
+  {
+    "id": "mat3_toplama_051",
+    "level": "zor",
+    "premise": "Can birinci gün 145 sayfa kitap okudu. İkinci gün ise birinci günden 48 sayfa daha fazla okudu.",
+    "text": "Can iki günde toplam kaç sayfa kitap okumuştur?",
+    "correct": "338",
+    "wrong1": "193",
+    "wrong2": "328",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:145+48]]\n• Birler basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 4 + elde (1) = 9 → alta **9** yazılır.\n• Yüzler basamağı: 1 + 0 = 1 → alta **1** yazılır.\nSonuç: **338**."
+  },
+  {
+    "id": "mat3_toplama_052",
+    "level": "zor",
+    "premise": "Bir çiftlikte 238 tavuk bulunmaktadır. Horozların sayısı ise tavuklardan 75 fazladır.",
+    "text": "Bu çiftlikte toplam kaç kümes hayvanı vardır?",
+    "correct": "551",
+    "wrong1": "313",
+    "wrong2": "541",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:238+75]]\n• Birler basamağı: 8 + 5 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 3 + 7 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 0 + elde (1) = 3 → alta **3** yazılır.\nSonuç: **551**."
+  },
+  {
+    "id": "mat3_toplama_053",
+    "level": "zor",
+    "premise": "Okan'ın kumbarasından 145 TL, 230 TL ve 155 TL'lik banknot desteleri çıkmıştır.",
+    "text": "Okan'ın kumbarasında toplam kaç TL vardır?",
+    "correct": "530",
+    "wrong1": "520",
+    "wrong2": "540",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:145+230]]\n• Birler basamağı: 5 + 0 = 5 → alta **5** yazılır.\n• Onlar basamağı: 4 + 3 = 7 → alta **7** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **530**."
+  },
+  {
+    "id": "mat3_toplama_054",
+    "level": "zor",
+    "premise": "Ayşe 346 ve 213 sayılarını işlem yapmadan en yakın onluğa yuvarlayarak toplamıştır.",
+    "text": "Ayşe'nin bulduğu tahmini sonuç kaçtır?",
+    "correct": "560",
+    "wrong1": "559",
+    "wrong2": "570",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:350+210]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 5 + 1 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 3 + 2 = 5 → alta **5** yazılır.\nSonuç: **560**."
+  },
+  {
+    "id": "mat3_toplama_055",
+    "level": "zor",
+    "premise": "Cemil 485 ve 296 sayılarını en yakın onluğa yuvarlayarak tahmini bir sonuç buluyor. Daha sonra işlemin gerçek sonucunu buluyor.",
+    "text": "Tahmini sonuç ile gerçek sonuç arasındaki fark kaçtır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:490+300]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 9 + 0 = 9 → alta **9** yazılır.\n• Yüzler basamağı: 4 + 3 = 7 → alta **7** yazılır.\nSonuç: **9**."
+  },
+  {
+    "id": "mat3_toplama_056",
+    "level": "zor",
+    "premise": "Bir mağazada pantolon 285 TL, ayakkabı ise pantolondan 130 TL daha pahalıdır.",
+    "text": "Pantolon ve ayakkabı alan bir müşteri kasaya toplam kaç TL öder?",
+    "correct": "700",
+    "wrong1": "415",
+    "wrong2": "690",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:285+130]]\n• Birler basamağı: 5 + 0 = 5 → alta **5** yazılır.\n• Onlar basamağı: 8 + 3 = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 1 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **700**."
+  },
+  {
+    "id": "mat3_toplama_057",
+    "level": "zor",
+    "premise": "Ağaç dikme etkinliğinde 1. sınıflar 148, 2. sınıflar 165, 3. sınıflar 203 fidan dikmiştir.",
+    "text": "Etkinlikte toplam kaç fidan dikilmiştir?",
+    "correct": "516",
+    "wrong1": "506",
+    "wrong2": "526",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:148+165]]\n• Birler basamağı: 8 + 5 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 6 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 1 + elde (1) = 3 → alta **3** yazılır.\nSonuç: **516**."
+  },
+  {
+    "id": "mat3_toplama_058",
+    "level": "zor",
+    "premise": "Babam 36 yaşındadır. Dedem babamdan 28 yaş büyüktür.",
+    "text": "Babam ve dedemin yaşları toplamı kaçtır?",
+    "correct": "100",
+    "wrong1": "64",
+    "wrong2": "90",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:36+28]]\n• Birler basamağı: 6 + 8 = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 3 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **100**."
+  },
+  {
+    "id": "mat3_toplama_059",
+    "level": "zor",
+    "premise": "Bir otobüste 115 yolcu vardır. İlk durakta 48 yolcu biniyor. İkinci durakta 36 yolcu daha biniyor (hiç kimse inmiyor).",
+    "text": "Otobüste son durumda kaç yolcu olmuştur?",
+    "correct": "199",
+    "wrong1": "189",
+    "wrong2": "209",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:115+48]]\n• Birler basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 1 + 4 + elde (1) = 6 → alta **6** yazılır.\n• Yüzler basamağı: 1 + 0 = 1 → alta **1** yazılır.\nSonuç: **199**."
+  },
+  {
+    "id": "mat3_toplama_060",
+    "level": "zor",
+    "premise": "Rakamları birbirinden farklı üç basamaklı en büyük çift sayı ile rakamları birbirinden farklı iki basamaklı en büyük sayının toplamı kaçtır?",
+    "correct": "1084",
+    "wrong1": "1085",
+    "wrong2": "1096",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:986+98]]\n• Birler basamağı: 6 + 8 = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 9 + elde (1) = 18 → alta **8** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 9 + 0 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\nSonuç: **1084**.",
+    "text": ""
+  },
+  {
+    "id": "mat3_toplama_061",
+    "level": "zor",
+    "premise": "Aklımda tuttuğum sayıya 185 eklediğimde sonuç 400 oluyor.",
+    "text": "Aklımda tuttuğum sayının 250 fazlası kaçtır?",
+    "correct": "465",
+    "wrong1": "215",
+    "wrong2": "475",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:185+215]]\n• Birler basamağı: 5 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 1 + elde (1) = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 2 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **400**."
+  },
+  {
+    "id": "mat3_toplama_062",
+    "level": "zor",
+    "premise": "Fatih 394 ve 208 sayılarını en yakın onluğa yuvarlayarak toplamıştır.",
+    "text": "Fatih'in bulduğu tahmini sonuç kaçtır?",
+    "correct": "600",
+    "wrong1": "590",
+    "wrong2": "610",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:390+210]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 9 + 1 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 3 + 2 + elde (1) = 6 → alta **6** yazılır.\nSonuç: **600**."
+  },
+  {
+    "id": "mat3_toplama_063",
+    "level": "zor",
+    "premise": "Hafta sonu lunaparka cumartesi günü 348 kişi gelmiştir. Pazar günü ise cumartesi gününden 126 kişi daha fazla gelmiştir.",
+    "text": "Lunaparka hafta sonu toplam kaç kişi gelmiştir?",
+    "correct": "822",
+    "wrong1": "474",
+    "wrong2": "812",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:348+126]]\n• Birler basamağı: 8 + 6 = 14 → alta **4** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 2 + elde (1) = 7 → alta **7** yazılır.\n• Yüzler basamağı: 3 + 1 = 4 → alta **4** yazılır.\nSonuç: **822**."
+  },
+  {
+    "id": "mat3_toplama_064",
+    "level": "zor",
+    "premise": "A + 145 = 300\nB + 210 = 450",
+    "text": "Yukarıda verilen işlemlere göre A + B kaçtır?",
+    "correct": "395",
+    "wrong1": "385",
+    "wrong2": "405",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:155+240]]\n• Birler basamağı: 5 + 0 = 5 → alta **5** yazılır.\n• Onlar basamağı: 5 + 4 = 9 → alta **9** yazılır.\n• Yüzler basamağı: 1 + 2 = 3 → alta **3** yazılır.\nSonuç: **395**."
+  },
+  {
+    "id": "mat3_toplama_065",
+    "level": "zor",
+    "premise": "Bir fırıncı cuma 235, cumartesi 315 ve pazar 380 ekmek satmıştır.",
+    "text": "Fırıncı üç günde toplam kaç ekmek satmıştır?",
+    "correct": "930",
+    "wrong1": "920",
+    "wrong2": "940",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:235+315]]\n• Birler basamağı: 5 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 3 + 1 + elde (1) = 5 → alta **5** yazılır.\n• Yüzler basamağı: 2 + 3 = 5 → alta **5** yazılır.\nSonuç: **930**."
+  },
+  {
+    "id": "mat3_toplama_066",
+    "level": "zor",
+    "premise": "Zeynep aklındaki sayıdan 125 çıkardığında 340 kaldığını hesaplıyor.",
+    "text": "Zeynep'in aklındaki sayının 180 fazlası kaçtır?",
+    "correct": "645",
+    "wrong1": "465",
+    "wrong2": "635",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:340+125]]\n• Birler basamağı: 0 + 5 = 5 → alta **5** yazılır.\n• Onlar basamağı: 4 + 2 = 6 → alta **6** yazılır.\n• Yüzler basamağı: 3 + 1 = 4 → alta **4** yazılır.\nSonuç: **645**."
+  },
+  {
+    "id": "mat3_toplama_067",
+    "level": "zor",
+    "premise": "Bir çiçekçide 184 kırmızı gül, kırmızı güllerden 36 fazla beyaz gül, beyaz güllerden 25 fazla da sarı gül vardır.",
+    "text": "Çiçekçideki sarı güllerin sayısı kaçtır?",
+    "correct": "245",
+    "wrong1": "220",
+    "wrong2": "255",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:184+36]]\n• Birler basamağı: 4 + 6 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 8 + 3 + elde (1) = 12 → alta **2** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 1 + 0 + elde (1) = 2 → alta **2** yazılır.\nSonuç: **245**."
+  },
+  {
+    "id": "mat3_toplama_068",
+    "level": "zor",
+    "premise": "1, 4 ve 7 rakamlarını birer kez kullanarak yazılabilecek en büyük 3 basamaklı sayı ile en küçük 3 basamaklı sayının toplamı kaçtır?",
+    "correct": "888",
+    "wrong1": "878",
+    "wrong2": "898",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:741+147]]\n• Birler basamağı: 1 + 7 = 8 → alta **8** yazılır.\n• Onlar basamağı: 4 + 4 = 8 → alta **8** yazılır.\n• Yüzler basamağı: 7 + 1 = 8 → alta **8** yazılır.\nSonuç: **888**.",
+    "text": ""
+  },
+  {
+    "id": "mat3_toplama_069",
+    "level": "zor",
+    "premise": "Okulumuzun kütüphanesinde 345 masal, masallardan 128 fazla hikaye kitabı vardır.",
+    "text": "Kütüphanede masal ve hikaye kitaplarının toplam sayısı kaçtır?",
+    "correct": "818",
+    "wrong1": "473",
+    "wrong2": "808",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:345+128]]\n• Birler basamağı: 5 + 8 = 13 → alta **3** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 4 + 2 + elde (1) = 7 → alta **7** yazılır.\n• Yüzler basamağı: 3 + 1 = 4 → alta **4** yazılır.\nSonuç: **818**."
+  },
+  {
+    "id": "mat3_toplama_070",
+    "level": "zor",
+    "premise": "Kemal, 417 ve 352 sayılarını en yakın onluğa yuvarlayarak toplamını tahmin ediyor.",
+    "text": "Tahmini sonuç ile gerçek sonuç arasındaki fark kaçtır?",
+    "correct": "1",
+    "wrong1": "2",
+    "wrong2": "0",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:420+350]]\n• Birler basamağı: 0 + 0 = 0 → alta **0** yazılır.\n• Onlar basamağı: 2 + 5 = 7 → alta **7** yazılır.\n• Yüzler basamağı: 4 + 3 = 7 → alta **7** yazılır.\nSonuç: **1**."
+  },
+  {
+    "id": "mat3_toplama_071",
+    "level": "zor",
+    "premise": "Üç kardeşin ağırlıkları sırasıyla 25 kg, 32 kg ve 41 kg'dır. Babalarının ağırlığı ise üç kardeşin ağırlıklarının toplamından 15 kg daha eksiktir.",
+    "text": "Babalarının ağırlığı kaç kilogramdır?",
+    "correct": "83",
+    "wrong1": "98",
+    "wrong2": "73",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:25+32]]\n• Birler basamağı: 5 + 2 = 7 → alta **7** yazılır.\n• Onlar basamağı: 2 + 3 = 5 → alta **5** yazılır.\nSonuç: **83**."
+  },
+  {
+    "id": "mat3_toplama_072",
+    "level": "zor",
+    "premise": "Bir kütüphaneye 1. ay 218, 2. ay 198, 3. ay 236 kitap bağışlanmıştır.",
+    "text": "Üç ayda toplam kaç kitap bağışlanmıştır?",
+    "correct": "652",
+    "wrong1": "642",
+    "wrong2": "662",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:218+198]]\n• Birler basamağı: 8 + 8 = 16 → alta **6** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 1 + 9 + elde (1) = 11 → alta **1** yazılır, sol basamağa **1 elde** taşınır.\n• Yüzler basamağı: 2 + 1 + elde (1) = 4 → alta **4** yazılır.\nSonuç: **652**."
+  },
+  {
+    "id": "mat3_toplama_073",
+    "level": "zor",
+    "premise": "Selim'in aklından tuttuğu sayının 140 fazlası 350'dir.",
+    "text": "Selim'in aklından tuttuğu sayının 275 fazlası kaçtır?",
+    "correct": "485",
+    "wrong1": "475",
+    "wrong2": "495",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:210+275]]\n• Birler basamağı: 0 + 5 = 5 → alta **5** yazılır.\n• Onlar basamağı: 1 + 7 = 8 → alta **8** yazılır.\n• Yüzler basamağı: 2 + 2 = 4 → alta **4** yazılır.\nSonuç: **485**."
+  },
+  {
+    "id": "mat3_toplama_074",
+    "level": "zor",
+    "premise": "Yüzler basamağında 4 olan en büyük üç basamaklı sayı ile yüzler basamağında 2 olan en küçük üç basamaklı sayının toplamı kaçtır?",
+    "correct": "699",
+    "wrong1": "700",
+    "wrong2": "698",
+    "explanation": "Eldesiz toplama — alt alta:\n[[addsol:499+200]]\n• Birler basamağı: 9 + 0 = 9 → alta **9** yazılır.\n• Onlar basamağı: 9 + 0 = 9 → alta **9** yazılır.\n• Yüzler basamağı: 4 + 2 = 6 → alta **6** yazılır.\nSonuç: **699**.",
+    "text": ""
+  },
+  {
+    "id": "mat3_toplama_075",
+    "level": "zor",
+    "premise": "Ayşe 1. gün 125, 2. gün 135 ve 3. gün 145 soru çözmüştür.",
+    "text": "Ayşe bu üç günde toplam kaç soru çözmüştür?",
+    "correct": "405",
+    "wrong1": "395",
+    "wrong2": "415",
+    "explanation": "Eldeli toplama — alt alta:\n[[addsol:125+135]]\n• Birler basamağı: 5 + 5 = 10 → alta **0** yazılır, sol basamağa **1 elde** taşınır.\n• Onlar basamağı: 2 + 3 + elde (1) = 6 → alta **6** yazılır.\n• Yüzler basamağı: 1 + 1 = 2 → alta **2** yazılır.\nSonuç: **405**."
+  }
+]

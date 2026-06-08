@@ -543,6 +543,7 @@
   }
 
   function isMainScreenVisible() {
+    if (window.__novaBootMainPrep || window.__novaSpriteBootActive) return true;
     var main = document.getElementById('main-screen');
     if (!main) return false;
     try {
