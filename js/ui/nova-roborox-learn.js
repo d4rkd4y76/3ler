@@ -46,8 +46,14 @@
   const pageViewport = document.getElementById("roborox-page-viewport");
   const pageA = document.getElementById("roborox-page-a");
   const pageB = document.getElementById("roborox-page-b");
+  const topicIntro = document.getElementById("roborox-topic-intro");
+  const topicIntroTitle = document.getElementById("roborox-topic-intro-title");
 
   const SLIDE_MS = 500;
+  const INTRO_MIN_MS = 1100;
+  const INTRO_MIN_PERF_MS = 580;
+  const INTRO_MAX_MS = 2600;
+  const INTRO_EXIT_MS = 380;
   let activePage = pageA;
   let idlePage = pageB;
 
@@ -59,6 +65,7 @@
   let images = [];
   let pageIndex = 0;
   let animating = false;
+  let introActive = false;
   let touchStartX = 0;
 
   function lockScroll(on) {
@@ -98,6 +105,119 @@
     if (reader && reader.parentElement !== document.body) {
       document.body.appendChild(reader);
     }
+  }
+
+  function ensureIntroPortal() {
+    if (topicIntro && topicIntro.parentElement !== document.body) {
+      document.body.appendChild(topicIntro);
+    }
+  }
+
+  function isLowPerfMode() {
+    return (
+      document.body.classList.contains("nova-perf-ultra") ||
+      document.body.classList.contains("nova-perf-performance")
+    );
+  }
+
+  function prefersReducedMotion() {
+    try {
+      return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function hideTopicIntro() {
+    if (!topicIntro) return;
+    topicIntro.classList.remove("open", "is-enter", "is-exit");
+    topicIntro.hidden = true;
+    topicIntro.setAttribute("aria-hidden", "true");
+  }
+
+  function preloadFirstImage(url, cb) {
+    if (!url) {
+      cb(false);
+      return;
+    }
+    const img = new Image();
+    img.decoding = "async";
+    let done = false;
+    function finish(ok) {
+      if (done) return;
+      done = true;
+      cb(!!ok);
+    }
+    img.onload = function () {
+      finish(true);
+    };
+    img.onerror = function () {
+      finish(false);
+    };
+    img.src = url;
+  }
+
+  function playTopicIntro(topic) {
+    if (!topic || !topic.images.length || introActive) return;
+
+    if (!topicIntro || !topicIntroTitle || prefersReducedMotion()) {
+      closeTopicsModal();
+      openReader(topic, false);
+      return;
+    }
+
+    introActive = true;
+    closeTopicsModal();
+    ensureIntroPortal();
+
+    const lowPerf = isLowPerfMode();
+    const minMs = lowPerf ? INTRO_MIN_PERF_MS : INTRO_MIN_MS;
+    const exitMs = lowPerf ? 260 : INTRO_EXIT_MS;
+    let minTimeDone = false;
+    let imageReady = false;
+    let introFinished = false;
+
+    topicIntroTitle.textContent = topic.title;
+    topicIntro.hidden = false;
+    topicIntro.setAttribute("aria-hidden", "false");
+    topicIntro.classList.add("open");
+    topicIntro.classList.remove("is-exit");
+    void topicIntro.offsetWidth;
+    topicIntro.classList.add("is-enter");
+    lockScroll(true);
+
+    function finishIntro() {
+      if (introFinished) return;
+      introFinished = true;
+      topicIntro.classList.remove("is-enter");
+      topicIntro.classList.add("is-exit");
+      window.setTimeout(function () {
+        hideTopicIntro();
+        lockScroll(false);
+        openReader(topic, true);
+        introActive = false;
+      }, exitMs);
+    }
+
+    function tryFinishIntro() {
+      if (!minTimeDone || !imageReady || introFinished) return;
+      finishIntro();
+    }
+
+    window.setTimeout(function () {
+      minTimeDone = true;
+      tryFinishIntro();
+    }, minMs);
+
+    window.setTimeout(function () {
+      imageReady = true;
+      tryFinishIntro();
+    }, INTRO_MAX_MS);
+
+    preloadFirstImage(topic.images[0], function () {
+      imageReady = true;
+      tryFinishIntro();
+    });
   }
 
   function setReaderBodyLock(on) {
@@ -290,7 +410,7 @@
     });
   }
 
-  function openReader(topic) {
+  function openReader(topic, withIntroHandoff) {
     if (!reader || !topic || !topic.images.length) return;
     ensureReaderPortal();
     images = topic.images.slice();
@@ -306,9 +426,22 @@
     updateReaderUi();
     closeTopicsModal();
     reader.hidden = false;
+    reader.classList.remove("is-open-ready");
+    if (withIntroHandoff) reader.classList.add("is-opening");
+    else reader.classList.remove("is-opening");
     reader.classList.add("open");
     reader.setAttribute("aria-hidden", "false");
     setReaderBodyLock(true);
+    if (withIntroHandoff) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          reader.classList.add("is-open-ready");
+          window.setTimeout(function () {
+            reader.classList.remove("is-opening", "is-open-ready");
+          }, 400);
+        });
+      });
+    }
   }
 
   function closeReader() {
@@ -474,7 +607,7 @@
       const topic = topicsCache.find(function (t) {
         return t.id === id;
       });
-      if (topic) openReader(topic);
+      if (topic) playTopicIntro(topic);
     });
   }
 

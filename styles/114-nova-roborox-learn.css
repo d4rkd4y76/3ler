@@ -317,6 +317,191 @@
   font-size: 0.9rem;
 }
 
+/* Konu açılış animasyonu — yalnızca transform/opacity (mobil dostu) */
+.roborox-topic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 12060;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(160deg, #7c2d12 0%, #9a3412 38%, #c2410c 100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  contain: strict;
+  will-change: opacity;
+}
+
+.roborox-topic-intro.open {
+  display: flex;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.roborox-topic-intro.is-enter {
+  animation: roboroxIntroFadeIn 0.42s ease forwards;
+}
+
+.roborox-topic-intro.is-exit {
+  animation: roboroxIntroFadeOut 0.38s ease forwards;
+}
+
+.roborox-topic-intro__inner {
+  width: min(100%, 360px);
+  text-align: center;
+  color: #fff;
+  transform: translate3d(0, 18px, 0) scale(0.94);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.roborox-topic-intro.is-enter .roborox-topic-intro__inner {
+  animation: roboroxIntroCardIn 0.62s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
+}
+
+.roborox-topic-intro.is-exit .roborox-topic-intro__inner {
+  animation: roboroxIntroCardOut 0.34s ease forwards;
+}
+
+.roborox-topic-intro__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.roborox-topic-intro__badge-ico {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.roborox-topic-intro__title {
+  margin: 18px 0 10px;
+  font-size: clamp(1.35rem, 6vw, 1.85rem);
+  font-weight: 900;
+  line-height: 1.2;
+  text-wrap: balance;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+}
+
+.roborox-topic-intro__hint {
+  margin: 0;
+  font-size: 0.82rem;
+  opacity: 0.88;
+}
+
+.roborox-topic-intro__progress {
+  width: min(100%, 200px);
+  height: 4px;
+  margin: 20px auto 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+}
+
+.roborox-topic-intro__progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar {
+  animation: roboroxIntroProgress 1.1s ease-out 0.2s forwards;
+}
+
+body.nova-perf-ultra .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar,
+body.nova-perf-performance .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar {
+  animation-duration: 0.55s;
+}
+
+.roborox-reader-overlay.is-opening {
+  opacity: 0;
+}
+
+.roborox-reader-overlay.is-opening.is-open-ready {
+  animation: roboroxReaderFadeIn 0.36s ease forwards;
+}
+
+@keyframes roboroxIntroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes roboroxIntroFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes roboroxIntroCardIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes roboroxIntroCardOut {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0) scale(1.03);
+  }
+}
+
+@keyframes roboroxIntroProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes roboroxReaderFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roborox-topic-intro.is-enter,
+  .roborox-topic-intro.is-exit,
+  .roborox-topic-intro.is-enter .roborox-topic-intro__inner,
+  .roborox-topic-intro.is-exit .roborox-topic-intro__inner,
+  .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar,
+  .roborox-reader-overlay.is-opening.is-open-ready {
+    animation: none !important;
+  }
+  .roborox-topic-intro.is-enter { opacity: 1; }
+  .roborox-topic-intro.is-enter .roborox-topic-intro__inner {
+    opacity: 1;
+    transform: none;
+  }
+  .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar {
+    transform: scaleX(1);
+  }
+}
+
 /* Tam ekran slayt okuyucu — üst / görsel / alt ayrı katmanlar */
 html.roborox-reader-open,
 html:has(body.roborox-reader-open) {
