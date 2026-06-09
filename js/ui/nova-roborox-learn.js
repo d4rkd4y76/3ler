@@ -1,31 +1,13 @@
 /**
- * Roborox ile Konuları Öğren — konu listesi + kitap sayfası okuyucu
+ * Roborox ile Konuları Öğren — ders listesi → konu listesi → kitap sayfası okuyucu
  */
 (function () {
   "use strict";
 
-  function extractGrade(v) {
-    if (typeof window.__novaExtractGradeNumber === "function") {
-      const g = window.__novaExtractGradeNumber(v);
-      if (g) return g;
-    }
-    const s = String(v || "");
-    const m = s.match(/\b([1-4])\b/);
-    return m ? Number(m[1]) : null;
-  }
+  var R = window.NovaRoboroxData;
 
   function roboroxLearnPath() {
-    let student = null;
-    try {
-      student = window.selectedStudent || JSON.parse(localStorage.getItem("selectedStudent") || "null");
-    } catch (_) {}
-    const classId = String((student && student.classId) || "").trim();
-    const className = String((student && student.className) || "").trim();
-    const grade = extractGrade(className || classId);
-    if (grade === 3) return "roboroxLearn";
-    if (grade >= 1 && grade <= 4) return "classContent/sinif" + grade + "/roboroxLearn";
-    if (classId) return "classContent/class_" + classId.replace(/[^\w-]/g, "_") + "/roboroxLearn";
-    return "roboroxLearn";
+    return R && R.roboroxLearnPath ? R.roboroxLearnPath() : "roboroxLearn";
   }
 
   function db() {
@@ -46,6 +28,8 @@
   const topicsModal = document.getElementById("roborox-topics-modal");
   const topicsList = document.getElementById("roborox-topics-list");
   const topicsClose = document.getElementById("roborox-topics-close");
+  const topicsBack = document.getElementById("roborox-topics-back");
+  const topicsSubtitle = document.getElementById("roborox-topics-subtitle");
 
   const learnHubModal = document.getElementById("learn-hub-modal");
   const learnOpenBtn = document.getElementById("learn-open-button");
@@ -67,7 +51,11 @@
   let activePage = pageA;
   let idlePage = pageB;
 
+  let viewMode = "lessons";
+  let lessonsCache = [];
   let topicsCache = [];
+  let selectedLesson = null;
+  let studentGrade = null;
   let images = [];
   let pageIndex = 0;
   let animating = false;
@@ -75,6 +63,35 @@
 
   function lockScroll(on) {
     document.body.style.overflow = on ? "hidden" : "";
+  }
+
+  function currentStudent() {
+    try {
+      return window.selectedStudent || JSON.parse(localStorage.getItem("selectedStudent") || "null");
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function syncGradeSubtitle() {
+    if (!topicsSubtitle) return;
+    var student = currentStudent();
+    var className = String((student && student.className) || "").trim();
+    studentGrade = R && R.extractGrade ? R.extractGrade(className || (student && student.classId)) : null;
+    var gradeText = R && R.gradeLabel ? R.gradeLabel(studentGrade) : "";
+    if (viewMode === "topics" && selectedLesson) {
+      topicsSubtitle.textContent = (gradeText ? gradeText + " · " : "") + selectedLesson.name;
+    } else if (gradeText) {
+      topicsSubtitle.textContent = gradeText + " derslerin";
+    } else {
+      topicsSubtitle.textContent = "Görsel derslerle konuları adım adım keşfet.";
+    }
+  }
+
+  function setBackVisible(on) {
+    if (!topicsBack) return;
+    topicsBack.hidden = !on;
+    topicsBack.style.display = on ? "" : "none";
   }
 
   function ensureReaderPortal() {
@@ -119,6 +136,9 @@
     topicsModal.classList.remove("open");
     topicsModal.setAttribute("aria-hidden", "true");
     topicsModal.hidden = true;
+    viewMode = "lessons";
+    selectedLesson = null;
+    setBackVisible(false);
     lockScroll(false);
   }
 
@@ -128,71 +148,113 @@
     topicsModal.classList.add("open");
     topicsModal.setAttribute("aria-hidden", "false");
     lockScroll(true);
-    loadTopics();
+    loadRoboroxContent();
   }
 
-  async function loadTopics() {
+  function renderLessons() {
     if (!topicsList) return;
-    topicsList.innerHTML = '<p class="roborox-topics-empty">Konular yükleniyor…</p>';
+    topicsList.innerHTML = "";
+    lessonsCache.forEach(function (lesson) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "roborox-topic-item roborox-lesson-item";
+      btn.dataset.lessonId = lesson.id;
+      btn.innerHTML =
+        '<span class="roborox-topic-item__ico" aria-hidden="true">' +
+        esc(lesson.icon || "📚") +
+        "</span>" +
+        '<span><span class="roborox-topic-item__title">' +
+        esc(lesson.name) +
+        '</span><span class="roborox-topic-item__meta">' +
+        lesson.topics.length +
+        " konu</span></span>";
+      topicsList.appendChild(btn);
+    });
+    syncGradeSubtitle();
+    setBackVisible(false);
+  }
+
+  function renderTopics() {
+    if (!topicsList) return;
+    topicsList.innerHTML = "";
+    topicsCache.forEach(function (t) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "roborox-topic-item";
+      btn.dataset.topicId = t.id;
+      btn.innerHTML =
+        '<span class="roborox-topic-item__ico" aria-hidden="true">📖</span>' +
+        '<span><span class="roborox-topic-item__title">' +
+        esc(t.title) +
+        '</span><span class="roborox-topic-item__meta">' +
+        t.images.length +
+        " sayfa</span></span>";
+      topicsList.appendChild(btn);
+    });
+    syncGradeSubtitle();
+    setBackVisible(true);
+  }
+
+  function showLessonTopics(lesson) {
+    if (!lesson) return;
+    selectedLesson = lesson;
+    viewMode = "topics";
+    topicsCache = lesson.topics.slice();
+    renderTopics();
+  }
+
+  function goBackToLessons() {
+    if (viewMode !== "topics" || !lessonsCache.length) return;
+    viewMode = "lessons";
+    selectedLesson = null;
+    topicsCache = [];
+    renderLessons();
+  }
+
+  async function loadRoboroxContent() {
+    if (!topicsList) return;
+    topicsList.innerHTML = '<p class="roborox-topics-empty">Yükleniyor…</p>';
+    setBackVisible(false);
     const database = db();
     if (!database) {
       topicsList.innerHTML = '<p class="roborox-topics-empty">Bağlantı kurulamadı.</p>';
       return;
     }
+    if (!R || !R.parseSnapshot) {
+      topicsList.innerHTML = '<p class="roborox-topics-empty">Modül yüklenemedi.</p>';
+      return;
+    }
     try {
       const snap = await database.ref(roboroxLearnPath()).get();
       const raw = snap.exists() ? snap.val() || {} : {};
-      topicsCache = Object.keys(raw)
-        .map(function (id) {
-          const v = raw[id] || {};
-          const imgs = Array.isArray(v.images)
-            ? v.images.filter(Boolean)
-            : v.imageUrls && typeof v.imageUrls === "object"
-              ? Object.keys(v.imageUrls)
-                  .sort()
-                  .map(function (k) {
-                    return v.imageUrls[k];
-                  })
-                  .filter(Boolean)
-              : [];
-          return {
-            id: id,
-            title: String(v.title || "Konu").trim() || "Konu",
-            order: Number(v.order) || 0,
-            active: v.active !== false,
-            images: imgs.filter(function (u) {
-              return typeof u === "string" && u.trim();
-            }),
-          };
-        })
-        .filter(function (t) {
-          return t.active && t.images.length > 0;
-        })
-        .sort(function (a, b) {
-          return a.order - b.order || a.title.localeCompare(b.title, "tr");
-        });
+      const parsed = R.parseSnapshot(raw);
 
-      if (!topicsCache.length) {
-        topicsList.innerHTML =
-          '<p class="roborox-topics-empty">Henüz bu sınıf için Roborox konusu eklenmemiş.<br>Öğretmeniniz admin panelinden ekleyebilir.</p>';
+      if (parsed.mode === "lessons" && parsed.lessons.length) {
+        viewMode = "lessons";
+        lessonsCache = parsed.lessons;
+        selectedLesson = null;
+        renderLessons();
         return;
       }
 
-      topicsList.innerHTML = "";
-      topicsCache.forEach(function (t) {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "roborox-topic-item";
-        btn.dataset.topicId = t.id;
-        btn.innerHTML =
-          '<span class="roborox-topic-item__ico" aria-hidden="true">📖</span>' +
-          '<span><span class="roborox-topic-item__title">' +
-          esc(t.title) +
-          '</span><span class="roborox-topic-item__meta">' +
-          t.images.length +
-          " sayfa</span></span>";
-        topicsList.appendChild(btn);
-      });
+      if (parsed.flatTopics.length) {
+        viewMode = "flat";
+        lessonsCache = [];
+        topicsCache = parsed.flatTopics;
+        selectedLesson = null;
+        renderTopics();
+        setBackVisible(false);
+        return;
+      }
+
+      var student = currentStudent();
+      var grade = R.extractGrade(String((student && student.className) || (student && student.classId) || ""));
+      var gradeText = R.gradeLabel(grade);
+      topicsList.innerHTML =
+        '<p class="roborox-topics-empty">Henüz ' +
+        (gradeText ? "<strong>" + esc(gradeText) + "</strong> için " : "") +
+        "Roborox dersi eklenmemiş.<br>Öğretmeniniz admin panelinden ders ve konu ekleyebilir.</p>";
+      syncGradeSubtitle();
     } catch (e) {
       topicsList.innerHTML =
         '<p class="roborox-topics-empty">Yükleme hatası: ' + esc(e && e.message ? e.message : e) + "</p>";
@@ -226,12 +288,6 @@
       pre.decoding = "async";
       pre.src = images[i];
     });
-  }
-
-  function setBaseImage(url) {
-    showPage(activePage, url);
-    resetPageClasses(idlePage);
-    preloadAdjacent();
   }
 
   function openReader(topic) {
@@ -391,6 +447,10 @@
     topicsClose.addEventListener("click", closeTopicsModal);
   }
 
+  if (topicsBack) {
+    topicsBack.addEventListener("click", goBackToLessons);
+  }
+
   if (topicsModal) {
     topicsModal.addEventListener("click", function (e) {
       if (e.target === topicsModal) closeTopicsModal();
@@ -399,6 +459,15 @@
 
   if (topicsList) {
     topicsList.addEventListener("click", function (e) {
+      const lessonBtn = e.target.closest("[data-lesson-id]");
+      if (lessonBtn) {
+        const id = lessonBtn.getAttribute("data-lesson-id");
+        const lesson = lessonsCache.find(function (l) {
+          return l.id === id;
+        });
+        if (lesson) showLessonTopics(lesson);
+        return;
+      }
       const btn = e.target.closest("[data-topic-id]");
       if (!btn) return;
       const id = btn.getAttribute("data-topic-id");
@@ -459,6 +528,14 @@
   document.addEventListener("keydown", function (e) {
     if (learnHubModal && learnHubModal.classList.contains("open") && e.key === "Escape") {
       closeLearnHub();
+      return;
+    }
+    if (topicsModal && topicsModal.classList.contains("open") && e.key === "Escape") {
+      if (viewMode === "topics" && lessonsCache.length) {
+        goBackToLessons();
+        return;
+      }
+      closeTopicsModal();
       return;
     }
     if (!reader || !reader.classList.contains("open")) return;

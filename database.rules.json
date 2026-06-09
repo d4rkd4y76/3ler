@@ -860,6 +860,46 @@
     "roboroxLearn": {
       ".read": true,
       ".write": true,
+      "lessons": {
+        ".read": true,
+        ".write": true,
+        "$lessonId": {
+          "name": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 120)"
+          },
+          "order": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "active": {
+            ".validate": "(!newData.exists()) || newData.isBoolean()"
+          },
+          "icon": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 8)"
+          },
+          "updatedAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "topics": {
+            "$topicId": {
+              "title": {
+                ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 200)"
+              },
+              "order": {
+                ".validate": "(!newData.exists()) || newData.isNumber()"
+              },
+              "active": {
+                ".validate": "(!newData.exists()) || newData.isBoolean()"
+              },
+              "images": {
+                ".validate": "(!newData.exists()) || newData.hasChildren()"
+              },
+              "updatedAt": {
+                ".validate": "(!newData.exists()) || newData.isNumber()"
+              }
+            }
+          }
+        }
+      },
       "$topicId": {
         "title": {
           ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 200)"

@@ -856,36 +856,57 @@ window.NovaAdminExport = (function(){
 
     <div id="roboroxLearnView" class="view">
       <h2>Roborox ile Konuları Öğren</h2>
-      <div class="sub">Seçili sınıf için görsel ders slaytları (9:16 dikey görseller). Öğrenci ana ekranda <strong>Roborox ile Öğren</strong> butonundan açar; sayfalar kitap çevirme animasyonu ile gösterilir. Veritabanı: <span class="mono" id="roborox_learn_path_hint">/roboroxLearn</span></div>
-      <div class="row">
+      <div class="sub">Seçili sınıf için <strong>ders</strong> ve <strong>konu</strong> oluşturun. Öğrenci önce kendi sınıfının derslerini, sonra konularını görür. Veritabanı: <span class="mono" id="roborox_learn_path_hint">/roboroxLearn</span></div>
+      <div class="toolbar mt8" style="gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn acc" id="roborox_learn_seed_lessons">Varsayılan dersleri oluştur</button>
+        <button type="button" class="btn" id="roborox_learn_reload">Yenile</button>
+      </div>
+      <div class="hint mt8" id="roborox_learn_status"></div>
+      <div class="row mt12">
         <div class="col">
           <div class="card">
+            <h3 id="roborox_lesson_form_title">Yeni Ders Ekle</h3>
+            <input type="hidden" id="roborox_lesson_edit_id" value="" />
+            <label>Ders adı</label>
+            <input type="text" id="roborox_lesson_name" placeholder="Örn: TÜRKÇE" />
+            <label>Sıra (küçük önce)</label>
+            <input type="number" id="roborox_lesson_order" value="1" min="0" step="1" />
+            <label>İkon (emoji, isteğe bağlı)</label>
+            <input type="text" id="roborox_lesson_icon" placeholder="📖" maxlength="4" />
+            <label class="flex mt8" style="gap:10px;align-items:center">
+              <input type="checkbox" id="roborox_lesson_active" checked />
+              <span>Aktif (öğrencide görünsün)</span>
+            </label>
+            <div class="toolbar mt12">
+              <button type="button" class="btn acc" id="roborox_lesson_save">Dersi Kaydet</button>
+              <button type="button" class="btn" id="roborox_lesson_clear">Ders Formunu Temizle</button>
+            </div>
+          </div>
+          <div class="card mt12">
             <h3 id="roborox_learn_form_title">Yeni Konu Ekle</h3>
             <input type="hidden" id="roborox_learn_edit_id" value="" />
+            <label>Ders</label>
+            <select id="roborox_learn_lesson_select"><option value="">— Ders seçin —</option></select>
             <label>Konu başlığı</label>
-            <input type="text" id="roborox_learn_title" placeholder="Örn: Üç basamaklı toplama" />
+            <input type="text" id="roborox_learn_title" placeholder="Örn: Metin Türleri" />
             <label>Sıra (küçük önce)</label>
             <input type="number" id="roborox_learn_order" value="1" min="0" step="1" />
             <label class="flex mt8" style="gap:10px;align-items:center">
               <input type="checkbox" id="roborox_learn_active" checked />
               <span>Aktif (öğrencide görünsün)</span>
             </label>
-            <label>Görsel URL'leri — her satıra bir tane (9:16 dikey önerilir)</label>
-            <textarea id="roborox_learn_images" rows="10" placeholder="https://cdn.example.com/slayt1.jpg&#10;https://cdn.example.com/slayt2.jpg"></textarea>
+            <label>Görsel URL'leri — her satıra bir tane (16:9 veya 9:16)</label>
+            <textarea id="roborox_learn_images" rows="8" placeholder="https://cdn.example.com/slayt1.jpg&#10;https://cdn.example.com/slayt2.jpg"></textarea>
             <div class="toolbar mt12">
-              <button type="button" class="btn acc" id="roborox_learn_save">Kaydet</button>
-              <button type="button" class="btn" id="roborox_learn_clear">Formu temizle</button>
+              <button type="button" class="btn acc" id="roborox_learn_save">Konuyu Kaydet</button>
+              <button type="button" class="btn" id="roborox_learn_clear">Konu Formunu Temizle</button>
             </div>
-            <div class="hint mt8" id="roborox_learn_status"></div>
           </div>
         </div>
         <div class="col">
           <div class="card">
-            <div class="toolbar" style="justify-content:space-between;align-items:center">
-              <h3 style="margin:0">Konu listesi</h3>
-              <button type="button" class="btn" id="roborox_learn_reload">Yenile</button>
-            </div>
-            <div class="list" id="roborox_learn_list" style="max-height:520px;margin-top:12px"></div>
+            <h3 style="margin:0">Dersler ve konular</h3>
+            <div class="list" id="roborox_learn_list" style="max-height:720px;margin-top:12px"></div>
           </div>
         </div>
       </div>
@@ -1273,6 +1294,7 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-admin-cdn.js?v=30260604cdn1"></script>
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
+<script src="js/core/nova-roborox-data.js?v=30260609roborox8"></script>
 <script>
 /** =============================
  * NASK ADMİN PANEL – RTDB bağlayıcı
@@ -1506,27 +1528,48 @@ window.NovaAdminExport = (function(){
     girisPanosuReload.addEventListener('click', ()=> window.novaLoadGirisPanosuAdmin && window.novaLoadGirisPanosuAdmin());
   }
 
-  // ---- Roborox ile Konuları Öğren ----
+  // ---- Roborox ile Konuları Öğren (ders + konu) ----
   const roboroxLearnTitle = $('#roborox_learn_title');
   const roboroxLearnOrder = $('#roborox_learn_order');
   const roboroxLearnActive = $('#roborox_learn_active');
   const roboroxLearnImages = $('#roborox_learn_images');
   const roboroxLearnEditId = $('#roborox_learn_edit_id');
+  const roboroxLearnLessonSelect = $('#roborox_learn_lesson_select');
   const roboroxLearnSave = $('#roborox_learn_save');
   const roboroxLearnClear = $('#roborox_learn_clear');
   const roboroxLearnReload = $('#roborox_learn_reload');
+  const roboroxLearnSeedLessons = $('#roborox_learn_seed_lessons');
   const roboroxLearnList = $('#roborox_learn_list');
   const roboroxLearnStatus = $('#roborox_learn_status');
   const roboroxLearnFormTitle = $('#roborox_learn_form_title');
   const roboroxLearnPathHint = $('#roborox_learn_path_hint');
+  const roboroxLessonName = $('#roborox_lesson_name');
+  const roboroxLessonOrder = $('#roborox_lesson_order');
+  const roboroxLessonIcon = $('#roborox_lesson_icon');
+  const roboroxLessonActive = $('#roborox_lesson_active');
+  const roboroxLessonEditId = $('#roborox_lesson_edit_id');
+  const roboroxLessonSave = $('#roborox_lesson_save');
+  const roboroxLessonClear = $('#roborox_lesson_clear');
+  const roboroxLessonFormTitle = $('#roborox_lesson_form_title');
+  let __roboroxAdminLessons = [];
 
   function novaRoboroxLearnDbPath(){
     const prefix = novaAdminScopePrefix();
     return (prefix || '') + 'roboroxLearn';
   }
 
+  function novaRoboroxLessonsPath(){
+    return novaRoboroxLearnDbPath() + '/lessons';
+  }
+
   function novaRoboroxEsc(v){
     return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  }
+
+  function novaRoboroxAdminGrade(){
+    const cid = novaAdminScopeClassId();
+    const meta = (window.__novaAdminClassMetaMap && window.__novaAdminClassMetaMap[cid]) || {};
+    return novaAdminExtractGrade(meta.name || cid);
   }
 
   function novaRoboroxLearnResetForm(){
@@ -1538,8 +1581,95 @@ window.NovaAdminExport = (function(){
     if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Yeni Konu Ekle';
   }
 
+  function novaRoboroxLessonResetForm(){
+    if(roboroxLessonEditId) roboroxLessonEditId.value = '';
+    if(roboroxLessonName) roboroxLessonName.value = '';
+    if(roboroxLessonOrder) roboroxLessonOrder.value = '1';
+    if(roboroxLessonIcon) roboroxLessonIcon.value = '';
+    if(roboroxLessonActive) roboroxLessonActive.checked = true;
+    if(roboroxLessonFormTitle) roboroxLessonFormTitle.textContent = 'Yeni Ders Ekle';
+  }
+
   function novaRoboroxParseImageLines(text){
     return String(text || '').split(/\r?\n/).map(function(s){ return s.trim(); }).filter(Boolean);
+  }
+
+  function novaRoboroxSlug(text){
+    const tr = { ç:'c', ğ:'g', ı:'i', ö:'o', ş:'s', ü:'u', Ç:'c', Ğ:'g', İ:'i', Ö:'o', Ş:'s', Ü:'u' };
+    let s = String(text || '').split('').map(function(ch){ return tr[ch] != null ? tr[ch] : ch; }).join('')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    return s || ('lesson_' + Date.now());
+  }
+
+  function novaRoboroxFillLessonSelect(lessons, selectedId){
+    if(!roboroxLearnLessonSelect) return;
+    const opts = ['<option value="">— Ders seçin —</option>'];
+    lessons.forEach(function(l){
+      opts.push('<option value="' + novaRoboroxEsc(l.id) + '"' + (selectedId === l.id ? ' selected' : '') + '>' + novaRoboroxEsc(l.name) + '</option>');
+    });
+    roboroxLearnLessonSelect.innerHTML = opts.join('');
+  }
+
+  function novaRoboroxRenderAdminList(lessons, legacyTopics){
+    if(!roboroxLearnList) return;
+    roboroxLearnList.innerHTML = '';
+    if(lessons.length){
+      lessons.forEach(function(lesson){
+        const lessonEl = document.createElement('div');
+        lessonEl.className = 'item';
+        lessonEl.innerHTML =
+          '<div class="flex" style="justify-content:space-between;gap:8px;align-items:flex-start">' +
+            '<div><strong>' + novaRoboroxEsc((lesson.icon || '📚') + ' ' + lesson.name) + '</strong><div class="soft">' +
+            (lesson.topics ? lesson.topics.length : 0) + ' konu · sıra ' + lesson.order +
+            (lesson.active !== false ? '' : ' · <span class="danger">pasif</span>') +
+            '</div></div>' +
+            '<div class="flex" style="gap:6px;flex-shrink:0">' +
+            '<button type="button" class="btn sm" data-roborox-lesson-edit="' + novaRoboroxEsc(lesson.id) + '">Düzenle</button>' +
+            '<button type="button" class="btn sm warn" data-roborox-lesson-del="' + novaRoboroxEsc(lesson.id) + '">Sil</button>' +
+            '</div></div>';
+        roboroxLearnList.appendChild(lessonEl);
+        (lesson.topics || []).forEach(function(topic){
+          const topicEl = document.createElement('div');
+          topicEl.className = 'item';
+          topicEl.style.marginLeft = '18px';
+          topicEl.innerHTML =
+            '<div class="flex" style="justify-content:space-between;gap:8px;align-items:flex-start">' +
+              '<div><strong>' + novaRoboroxEsc(topic.title) + '</strong><div class="soft">' +
+              topic.images.length + ' görsel · sıra ' + topic.order +
+              (topic.active ? '' : ' · <span class="danger">pasif</span>') +
+              '</div></div>' +
+              '<div class="flex" style="gap:6px;flex-shrink:0">' +
+              '<button type="button" class="btn sm" data-roborox-topic-edit="' + novaRoboroxEsc(lesson.id) + '" data-roborox-topic-id="' + novaRoboroxEsc(topic.id) + '">Düzenle</button>' +
+              '<button type="button" class="btn sm warn" data-roborox-topic-del="' + novaRoboroxEsc(lesson.id) + '" data-roborox-topic-id="' + novaRoboroxEsc(topic.id) + '">Sil</button>' +
+              '</div></div>';
+          roboroxLearnList.appendChild(topicEl);
+        });
+      });
+      return;
+    }
+    if(legacyTopics.length){
+      const hint = document.createElement('div');
+      hint.className = 'hint';
+      hint.innerHTML = 'Eski düz konu listesi (geriye uyumluluk). Yeni yapı için <strong>Varsayılan dersleri oluştur</strong> deyin.';
+      roboroxLearnList.appendChild(hint);
+      legacyTopics.forEach(function(row){
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.innerHTML =
+          '<div class="flex" style="justify-content:space-between;gap:8px;align-items:flex-start">' +
+            '<div><strong>' + novaRoboroxEsc(row.title) + '</strong><div class="soft">' +
+            row.images.length + ' görsel · sıra ' + row.order +
+            (row.active ? '' : ' · <span class="danger">pasif</span>') +
+            '</div></div>' +
+            '<div class="flex" style="gap:6px;flex-shrink:0">' +
+            '<button type="button" class="btn sm" data-roborox-legacy-edit="' + novaRoboroxEsc(row.id) + '">Düzenle</button>' +
+            '<button type="button" class="btn sm warn" data-roborox-legacy-del="' + novaRoboroxEsc(row.id) + '">Sil</button>' +
+            '</div></div>';
+        roboroxLearnList.appendChild(el);
+      });
+      return;
+    }
+    roboroxLearnList.innerHTML = '<div class="hint">Henüz ders yok. <strong>Varsayılan dersleri oluştur</strong> veya soldan ders ekleyin.</div>';
   }
 
   window.novaLoadRoboroxLearnAdmin = async function(){
@@ -1549,44 +1679,70 @@ window.NovaAdminExport = (function(){
     try{
       const snap = await rdb.ref(novaRoboroxLearnDbPath()).get();
       const raw = snap.exists() ? (snap.val() || {}) : {};
-      const rows = Object.keys(raw).map(function(id){
-        const v = raw[id] || {};
-        const imgs = Array.isArray(v.images) ? v.images : [];
+      const R = window.NovaRoboroxData;
+      const parsed = R && R.parseSnapshot ? R.parseSnapshot(raw) : { mode:'flat', lessons:[], flatTopics:[] };
+      const lessonsSnap = await rdb.ref(novaRoboroxLessonsPath()).get();
+      const lessonsRaw = lessonsSnap.exists() ? (lessonsSnap.val() || {}) : {};
+      const lessons = Object.keys(lessonsRaw).map(function(id){
+        const v = lessonsRaw[id] || {};
+        const topicsRaw = v.topics || {};
+        const topics = Object.keys(topicsRaw).map(function(tid){
+          const t = topicsRaw[tid] || {};
+          return R && R.parseTopic ? R.parseTopic(tid, t, id) : { id: tid, title: t.title || tid, order: Number(t.order)||0, active: t.active !== false, images: Array.isArray(t.images) ? t.images : [] };
+        }).sort(function(a,b){ return a.order - b.order || String(a.title).localeCompare(String(b.title), 'tr'); });
         return {
           id: id,
-          title: String(v.title || id),
+          name: String(v.name || id),
           order: Number(v.order) || 0,
           active: v.active !== false,
-          images: imgs.filter(Boolean),
-          updatedAt: v.updatedAt || 0
+          icon: String(v.icon || (R && R.lessonIcon ? R.lessonIcon(id) : '📚')),
+          topics: topics
         };
-      }).sort(function(a,b){ return a.order - b.order || a.title.localeCompare(b.title, 'tr'); });
-
-      roboroxLearnList.innerHTML = '';
-      if(!rows.length){
-        roboroxLearnList.innerHTML = '<div class="hint">Henüz konu yok. Soldan başlık ve görsel URL\'leri ekleyin.</div>';
-      } else {
-        rows.forEach(function(row){
-          const el = document.createElement('div');
-          el.className = 'item';
-          el.innerHTML =
-            '<div class="flex" style="justify-content:space-between;gap:8px;align-items:flex-start">' +
-              '<div><strong>' + novaRoboroxEsc(row.title) + '</strong><div class="soft">' +
-              row.images.length + ' görsel · sıra ' + row.order +
-              (row.active ? '' : ' · <span class="danger">pasif</span>') +
-              '</div></div>' +
-              '<div class="flex" style="gap:6px;flex-shrink:0">' +
-              '<button type="button" class="btn sm" data-roborox-edit="' + novaRoboroxEsc(row.id) + '">Düzenle</button>' +
-              '<button type="button" class="btn sm warn" data-roborox-del="' + novaRoboroxEsc(row.id) + '">Sil</button>' +
-              '</div></div>';
-          roboroxLearnList.appendChild(el);
-        });
-      }
-      roboroxLearnStatus.textContent = rows.length ? (rows.length + ' konu listelendi.') : 'Kayıt yok.';
+      }).sort(function(a,b){ return a.order - b.order || a.name.localeCompare(b.name, 'tr'); });
+      __roboroxAdminLessons = lessons;
+      novaRoboroxFillLessonSelect(lessons, roboroxLearnLessonSelect && roboroxLearnLessonSelect.value);
+      novaRoboroxRenderAdminList(lessons, parsed.flatTopics || []);
+      const topicCount = lessons.reduce(function(n,l){ return n + (l.topics ? l.topics.length : 0); }, 0);
+      roboroxLearnStatus.textContent = lessons.length
+        ? (lessons.length + ' ders, ' + topicCount + ' konu listelendi.')
+        : ((parsed.flatTopics && parsed.flatTopics.length) ? (parsed.flatTopics.length + ' eski düz konu (geriye uyumlu).') : 'Kayıt yok.');
     }catch(e){
       roboroxLearnStatus.textContent = 'Okuma hatası: ' + (e && e.message ? e.message : e);
     }
   };
+
+  if(roboroxLessonSave && !roboroxLessonSave.dataset.bound){
+    roboroxLessonSave.dataset.bound = '1';
+    roboroxLessonSave.addEventListener('click', async function(){
+      if(!rdb){ roboroxLearnStatus.textContent = 'RTDB yok.'; return; }
+      const name = String(roboroxLessonName && roboroxLessonName.value || '').trim();
+      if(!name){ roboroxLearnStatus.textContent = 'Ders adı gerekli.'; return; }
+      const editId = String(roboroxLessonEditId && roboroxLessonEditId.value || '').trim();
+      const id = editId || ('lesson_' + novaRoboroxSlug(name).slice(0, 40));
+      roboroxLearnStatus.textContent = 'Ders kaydediliyor…';
+      try{
+        const existing = editId ? ((await rdb.ref(novaRoboroxLessonsPath() + '/' + id).get()).val() || {}) : {};
+        await rdb.ref(novaRoboroxLessonsPath() + '/' + id).set({
+          name: name,
+          order: Number(roboroxLessonOrder && roboroxLessonOrder.value) || 0,
+          active: !!(roboroxLessonActive && roboroxLessonActive.checked),
+          icon: String(roboroxLessonIcon && roboroxLessonIcon.value || '').trim() || (window.NovaRoboroxData && NovaRoboroxData.lessonIcon(id)) || '📚',
+          topics: existing.topics || {},
+          updatedAt: Date.now()
+        });
+        novaRoboroxLessonResetForm();
+        roboroxLearnStatus.textContent = 'Ders kaydedildi.';
+        window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
+      }catch(e){
+        roboroxLearnStatus.textContent = 'Ders kayıt hatası: ' + (e && e.message ? e.message : e);
+      }
+    });
+  }
+
+  if(roboroxLessonClear && !roboroxLessonClear.dataset.bound){
+    roboroxLessonClear.dataset.bound = '1';
+    roboroxLessonClear.addEventListener('click', novaRoboroxLessonResetForm);
+  }
 
   if(roboroxLearnSave && !roboroxLearnSave.dataset.bound){
     roboroxLearnSave.dataset.bound = '1';
@@ -1597,10 +1753,28 @@ window.NovaAdminExport = (function(){
       if(!title){ roboroxLearnStatus.textContent = 'Konu başlığı gerekli.'; return; }
       if(!images.length){ roboroxLearnStatus.textContent = 'En az bir görsel URL girin.'; return; }
       const editId = String(roboroxLearnEditId && roboroxLearnEditId.value || '').trim();
+      const lessonId = String(roboroxLearnLessonSelect && roboroxLearnLessonSelect.value || '').trim();
       const id = editId || ('rl_' + Date.now());
-      roboroxLearnStatus.textContent = 'Kaydediliyor…';
+      roboroxLearnStatus.textContent = 'Konu kaydediliyor…';
       try{
-        await rdb.ref(novaRoboroxLearnDbPath() + '/' + id).set({
+        if(!lessonId){
+          if(editId){
+            await rdb.ref(novaRoboroxLearnDbPath() + '/' + id).set({
+              title: title,
+              order: Number(roboroxLearnOrder && roboroxLearnOrder.value) || 0,
+              active: !!(roboroxLearnActive && roboroxLearnActive.checked),
+              images: images,
+              updatedAt: Date.now()
+            });
+            novaRoboroxLearnResetForm();
+            roboroxLearnStatus.textContent = 'Eski düz konu kaydedildi.';
+            window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
+            return;
+          }
+          roboroxLearnStatus.textContent = 'Önce ders seçin.';
+          return;
+        }
+        await rdb.ref(novaRoboroxLessonsPath() + '/' + lessonId + '/topics/' + id).set({
           title: title,
           order: Number(roboroxLearnOrder && roboroxLearnOrder.value) || 0,
           active: !!(roboroxLearnActive && roboroxLearnActive.checked),
@@ -1608,10 +1782,11 @@ window.NovaAdminExport = (function(){
           updatedAt: Date.now()
         });
         novaRoboroxLearnResetForm();
-        roboroxLearnStatus.textContent = 'Kaydedildi.';
+        if(roboroxLearnLessonSelect) roboroxLearnLessonSelect.value = lessonId;
+        roboroxLearnStatus.textContent = 'Konu kaydedildi.';
         window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
       }catch(e){
-        roboroxLearnStatus.textContent = 'Kayıt hatası: ' + (e && e.message ? e.message : e);
+        roboroxLearnStatus.textContent = 'Konu kayıt hatası: ' + (e && e.message ? e.message : e);
       }
     });
   }
@@ -1628,13 +1803,118 @@ window.NovaAdminExport = (function(){
     });
   }
 
+  if(roboroxLearnSeedLessons && !roboroxLearnSeedLessons.dataset.bound){
+    roboroxLearnSeedLessons.dataset.bound = '1';
+    roboroxLearnSeedLessons.addEventListener('click', async function(){
+      if(!rdb){ roboroxLearnStatus.textContent = 'RTDB yok.'; return; }
+      const grade = novaRoboroxAdminGrade();
+      if(!grade){ roboroxLearnStatus.textContent = 'Sınıf seçimi gerekli.'; return; }
+      const R = window.NovaRoboroxData;
+      const defaults = R && R.defaultLessonsForGrade ? R.defaultLessonsForGrade(grade) : [];
+      if(!defaults.length){ roboroxLearnStatus.textContent = 'Bu sınıf için varsayılan ders bulunamadı.'; return; }
+      roboroxLearnStatus.textContent = 'Varsayılan dersler oluşturuluyor…';
+      try{
+        const existingSnap = await rdb.ref(novaRoboroxLessonsPath()).get();
+        const existing = existingSnap.exists() ? (existingSnap.val() || {}) : {};
+        const updates = {};
+        defaults.forEach(function(l){
+          if(existing[l.id]) return;
+          updates[l.id] = {
+            name: l.name,
+            order: l.order,
+            active: true,
+            icon: l.icon,
+            topics: {},
+            updatedAt: Date.now()
+          };
+        });
+        if(!Object.keys(updates).length){
+          roboroxLearnStatus.textContent = 'Tüm varsayılan dersler zaten mevcut.';
+          return;
+        }
+        await rdb.ref(novaRoboroxLessonsPath()).update(updates);
+        roboroxLearnStatus.textContent = Object.keys(updates).length + ' ders oluşturuldu. Şimdi konu ekleyebilirsiniz.';
+        window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
+      }catch(e){
+        roboroxLearnStatus.textContent = 'Ders oluşturma hatası: ' + (e && e.message ? e.message : e);
+      }
+    });
+  }
+
   if(roboroxLearnList && !roboroxLearnList.dataset.bound){
     roboroxLearnList.dataset.bound = '1';
     roboroxLearnList.addEventListener('click', async function(ev){
-      const editBtn = ev.target.closest('[data-roborox-edit]');
-      const delBtn = ev.target.closest('[data-roborox-del]');
-      if(editBtn){
-        const id = editBtn.getAttribute('data-roborox-edit');
+      const lessonEditBtn = ev.target.closest('[data-roborox-lesson-edit]');
+      const lessonDelBtn = ev.target.closest('[data-roborox-lesson-del]');
+      const topicEditBtn = ev.target.closest('[data-roborox-topic-edit]');
+      const topicDelBtn = ev.target.closest('[data-roborox-topic-del]');
+      const legacyEditBtn = ev.target.closest('[data-roborox-legacy-edit]');
+      const legacyDelBtn = ev.target.closest('[data-roborox-legacy-del]');
+
+      if(lessonEditBtn){
+        const id = lessonEditBtn.getAttribute('data-roborox-lesson-edit');
+        const lesson = __roboroxAdminLessons.find(function(l){ return l.id === id; });
+        if(!lesson) return;
+        if(roboroxLessonEditId) roboroxLessonEditId.value = lesson.id;
+        if(roboroxLessonName) roboroxLessonName.value = lesson.name;
+        if(roboroxLessonOrder) roboroxLessonOrder.value = String(lesson.order);
+        if(roboroxLessonIcon) roboroxLessonIcon.value = lesson.icon || '';
+        if(roboroxLessonActive) roboroxLessonActive.checked = lesson.active !== false;
+        if(roboroxLessonFormTitle) roboroxLessonFormTitle.textContent = 'Dersi Düzenle';
+        roboroxLearnStatus.textContent = 'Ders düzenleme: ' + lesson.name;
+        return;
+      }
+
+      if(lessonDelBtn){
+        const id = lessonDelBtn.getAttribute('data-roborox-lesson-del');
+        if(!confirm('Bu ders ve tüm konuları silinsin mi?')) return;
+        try{
+          await rdb.ref(novaRoboroxLessonsPath() + '/' + id).remove();
+          roboroxLearnStatus.textContent = 'Ders silindi.';
+          window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
+        }catch(e){
+          roboroxLearnStatus.textContent = 'Ders silme hatası: ' + (e && e.message ? e.message : e);
+        }
+        return;
+      }
+
+      if(topicEditBtn){
+        const lessonId = topicEditBtn.getAttribute('data-roborox-topic-edit');
+        const topicId = topicEditBtn.getAttribute('data-roborox-topic-id');
+        try{
+          const snap = await rdb.ref(novaRoboroxLessonsPath() + '/' + lessonId + '/topics/' + topicId).get();
+          if(!snap.exists()) return;
+          const v = snap.val() || {};
+          if(roboroxLearnLessonSelect) roboroxLearnLessonSelect.value = lessonId;
+          if(roboroxLearnEditId) roboroxLearnEditId.value = topicId;
+          if(roboroxLearnTitle) roboroxLearnTitle.value = String(v.title || '');
+          if(roboroxLearnOrder) roboroxLearnOrder.value = String(Number(v.order) || 0);
+          if(roboroxLearnActive) roboroxLearnActive.checked = v.active !== false;
+          if(roboroxLearnImages) roboroxLearnImages.value = (Array.isArray(v.images) ? v.images : []).join('\n');
+          if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Konuyu Düzenle';
+          roboroxLearnStatus.textContent = 'Konu düzenleme: ' + topicId;
+        }catch(e){
+          roboroxLearnStatus.textContent = 'Konu düzenleme hatası: ' + (e && e.message ? e.message : e);
+        }
+        return;
+      }
+
+      if(topicDelBtn){
+        const lessonId = topicDelBtn.getAttribute('data-roborox-topic-del');
+        const topicId = topicDelBtn.getAttribute('data-roborox-topic-id');
+        if(!confirm('Bu konu silinsin mi?')) return;
+        try{
+          await rdb.ref(novaRoboroxLessonsPath() + '/' + lessonId + '/topics/' + topicId).remove();
+          roboroxLearnStatus.textContent = 'Konu silindi.';
+          window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
+        }catch(e){
+          roboroxLearnStatus.textContent = 'Konu silme hatası: ' + (e && e.message ? e.message : e);
+        }
+        return;
+      }
+
+      if(legacyEditBtn){
+        const id = legacyEditBtn.getAttribute('data-roborox-legacy-edit');
         try{
           const snap = await rdb.ref(novaRoboroxLearnDbPath() + '/' + id).get();
           if(!snap.exists()) return;
@@ -1644,19 +1924,20 @@ window.NovaAdminExport = (function(){
           if(roboroxLearnOrder) roboroxLearnOrder.value = String(Number(v.order) || 0);
           if(roboroxLearnActive) roboroxLearnActive.checked = v.active !== false;
           if(roboroxLearnImages) roboroxLearnImages.value = (Array.isArray(v.images) ? v.images : []).join('\n');
-          if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Konuyu Düzenle';
-          roboroxLearnStatus.textContent = 'Düzenleme modu: ' + id;
+          if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Eski Konuyu Düzenle (düz liste)';
+          roboroxLearnStatus.textContent = 'Eski düz konu düzenleme: ' + id;
         }catch(e){
           roboroxLearnStatus.textContent = 'Düzenleme hatası: ' + (e && e.message ? e.message : e);
         }
         return;
       }
-      if(delBtn){
-        const id = delBtn.getAttribute('data-roborox-del');
-        if(!confirm('Bu Roborox konusu silinsin mi?')) return;
+
+      if(legacyDelBtn){
+        const id = legacyDelBtn.getAttribute('data-roborox-legacy-del');
+        if(!confirm('Bu eski düz konu silinsin mi?')) return;
         try{
           await rdb.ref(novaRoboroxLearnDbPath() + '/' + id).remove();
-          roboroxLearnStatus.textContent = 'Silindi.';
+          roboroxLearnStatus.textContent = 'Eski konu silindi.';
           window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin();
         }catch(e){
           roboroxLearnStatus.textContent = 'Silme hatası: ' + (e && e.message ? e.message : e);
