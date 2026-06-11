@@ -35,7 +35,7 @@
     pointer-events: none !important;
   }
 </style>
-<link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611loginfix2" />
+<link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611logincompact1" />
 <script id="nova-login-instant-head">
 (function () {
   try {
@@ -375,10 +375,21 @@
 </div>
 <div class="main-screen-hero-center nova-main-stage">
 <div class="nova-main-stage__frame">
-<nav class="nova-main-tabs" id="nova-main-tabs" role="tablist" aria-label="Profil görünümü">
-<button type="button" class="nova-main-tab is-active" id="nova-main-tab-btn-avatar" role="tab" data-nova-main-tab="avatar" aria-selected="true" aria-controls="nova-main-tab-avatar">Avatar</button>
-<button type="button" class="nova-main-tab" id="nova-main-tab-btn-kahraman" role="tab" data-nova-main-tab="kahraman" aria-selected="false" aria-controls="nova-main-tab-kahraman">Kahraman</button>
-<button type="button" class="nova-main-tab" id="nova-main-tab-btn-lig" role="tab" data-nova-main-tab="lig" aria-selected="false" aria-controls="nova-main-tab-lig">Lig</button>
+<nav class="nova-main-carousel-nav" id="nova-main-tabs" role="tablist" aria-label="Profil görünümü">
+<button type="button" class="nova-main-carousel-nav__arrow nova-main-carousel-nav__arrow--prev" id="nova-main-tab-prev" data-nova-main-tab-dir="prev" aria-label="Önceki görünüm">
+<span aria-hidden="true">‹</span>
+</button>
+<div class="nova-main-carousel-nav__center">
+<div class="nova-main-carousel-nav__dots" id="nova-main-tab-dots" aria-hidden="true">
+<span class="nova-main-carousel-nav__dot is-active"></span>
+<span class="nova-main-carousel-nav__dot"></span>
+<span class="nova-main-carousel-nav__dot"></span>
+</div>
+<span class="nova-main-carousel-nav__title" id="nova-main-tab-label" role="tab" aria-live="polite">Avatar</span>
+</div>
+<button type="button" class="nova-main-carousel-nav__arrow nova-main-carousel-nav__arrow--next" id="nova-main-tab-next" data-nova-main-tab-dir="next" aria-label="Sonraki görünüm">
+<span aria-hidden="true">›</span>
+</button>
 </nav>
 <div class="nova-main-tab-panels">
 <div class="nova-main-tab-panel is-active" id="nova-main-tab-avatar" role="tabpanel" aria-labelledby="nova-main-tab-btn-avatar">
@@ -1600,7 +1611,7 @@
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
 <script defer src="js/ui/nova-dragon-egg.js?v=30260608degg1"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611maintabs2"></script>
+<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611maintabs3"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
@@ -1628,7 +1639,7 @@
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
 <link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260611kabuk1" />
-<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611maintabs2" />
+<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611maintabs3" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */

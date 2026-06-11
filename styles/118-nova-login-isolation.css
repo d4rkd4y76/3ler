@@ -94,3 +94,77 @@ html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen,
 html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen * {
   transition-property: border-color, box-shadow, background, color, opacity, transform !important;
 }
+
+/* ── Giriş: mobil + akıcı mod kompakt düzen ── */
+@media (max-width: 900px) {
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__shell {
+    align-content: start;
+    gap: clamp(10px, 2.5vw, 16px);
+    padding:
+      max(10px, env(safe-area-inset-top))
+      clamp(12px, 3.5vw, 18px)
+      max(12px, env(safe-area-inset-bottom));
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__brand {
+    gap: 8px;
+    padding: 0;
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__brand-badge {
+    padding: 5px 10px;
+    font-size: 9px;
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__title {
+    font-size: clamp(28px, 7.2vw, 36px) !important;
+    line-height: 1 !important;
+    filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.35));
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__tagline,
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__features,
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__duel-art,
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__publisher {
+    display: none !important;
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__panel.card {
+    padding: clamp(14px, 3.6vw, 18px);
+    gap: 12px;
+    border-radius: 18px;
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__panel-header h2 {
+    font-size: clamp(17px, 4.2vw, 20px);
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .nova-login-arena__panel-header h2 span {
+    font-size: 11px;
+  }
+
+  html:not(.nova-has-session) #student-selection-screen .field {
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  html:not(.nova-has-session) #student-selection-screen form {
+    gap: 10px;
+  }
+}
+
+html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen .nova-login-arena__shell {
+  max-height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen .nova-login-arena__logo-glow {
+  opacity: 0.45 !important;
+  filter: blur(16px);
+}
+
+html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen .nova-login-arena__orb {
+  opacity: 0.28;
+  filter: blur(28px);
+}

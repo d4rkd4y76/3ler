@@ -9,14 +9,42 @@
   var ligLoadPromise = null;
   var heroLoadPromise = null;
   var activeTab = 'avatar';
+  var TAB_ORDER = ['avatar', 'kahraman', 'lig'];
+  var TAB_LABELS = { avatar: 'Avatar', kahraman: 'Kahraman', lig: 'Lig' };
+
+  function tabIndex(name) {
+    var idx = TAB_ORDER.indexOf(name);
+    return idx >= 0 ? idx : 0;
+  }
+
+  function shiftTab(dir) {
+    var idx = tabIndex(activeTab);
+    idx = (idx + dir + TAB_ORDER.length) % TAB_ORDER.length;
+    setTab(TAB_ORDER[idx]);
+  }
+
+  function updateCarouselChrome(name) {
+    var label = document.getElementById('nova-main-tab-label');
+    var dotsWrap = document.getElementById('nova-main-tab-dots');
+    if (label) {
+      label.textContent = TAB_LABELS[name] || name;
+      label.setAttribute('aria-controls', 'nova-main-tab-' + name);
+    }
+    if (dotsWrap) {
+      var dots = dotsWrap.querySelectorAll('.nova-main-carousel-nav__dot');
+      for (var i = 0; i < TAB_ORDER.length; i++) {
+        if (dots[i]) dots[i].classList.toggle('is-active', TAB_ORDER[i] === name);
+      }
+    }
+    var prevBtn = document.getElementById('nova-main-tab-prev');
+    var nextBtn = document.getElementById('nova-main-tab-next');
+    if (prevBtn) prevBtn.disabled = false;
+    if (nextBtn) nextBtn.disabled = false;
+  }
 
   function hubActive() {
     var hero = document.getElementById('main-profile-hero');
     return !!(hero && hero.classList.contains('nova-main-hub'));
-  }
-
-  function getTabButtons() {
-    return document.querySelectorAll('#nova-main-tabs [data-nova-main-tab]');
   }
 
   function getPanel(name) {
@@ -79,13 +107,7 @@
     var panel = getPanel(name);
     if (!panel) return;
     activeTab = name;
-
-    getTabButtons().forEach(function (btn) {
-      var on = btn.getAttribute('data-nova-main-tab') === name;
-      btn.classList.toggle('is-active', on);
-      btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      btn.tabIndex = on ? 0 : -1;
-    });
+    updateCarouselChrome(name);
 
     ['avatar', 'kahraman', 'lig'].forEach(function (key) {
       var p = getPanel(key);
@@ -170,6 +192,7 @@
       .then(function () {
         finishHeroTabUi();
         if (kahramanContentReady()) loaded.kahraman = true;
+        setTimeout(finishHeroTabUi, 220);
       })
       .finally(function () {
         showKahramanLoading(false);
@@ -278,10 +301,27 @@
     if (nav.dataset.novaTabsBound !== '1') {
       nav.dataset.novaTabsBound = '1';
       nav.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-nova-main-tab]');
-        if (!btn || !nav.contains(btn)) return;
-        e.preventDefault();
-        setTab(btn.getAttribute('data-nova-main-tab'));
+        var prev = e.target.closest('[data-nova-main-tab-dir="prev"]');
+        var next = e.target.closest('[data-nova-main-tab-dir="next"]');
+        if (prev) {
+          e.preventDefault();
+          shiftTab(-1);
+          return;
+        }
+        if (next) {
+          e.preventDefault();
+          shiftTab(1);
+          return;
+        }
+      });
+      nav.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          shiftTab(-1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          shiftTab(1);
+        }
       });
     }
   }
@@ -295,6 +335,7 @@
 
   window.novaMainTabsLazyEnabled = hubActive;
   window.novaMainTabsSetTab = setTab;
+  window.novaMainTabsShiftTab = shiftTab;
   window.novaMainTabsLoadTab = loadTabContent;
   window.novaMainTabsAvatarReady = function () {
     return loaded.avatar && hubActive();
