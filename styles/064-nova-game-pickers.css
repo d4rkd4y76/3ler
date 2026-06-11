@@ -147,16 +147,25 @@
   box-shadow: 0 0 12px rgba(34, 211, 238, .25) !important;
 }
 .nova-game-select__menu--fixed.nova-game-select__menu--login{
-  background: #ffffff !important;
-  border: 1px solid rgba(99, 102, 241, .45) !important;
+  background: #0a1628 !important;
+  border: 1px solid rgba(0, 200, 255, 0.45) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 240, 255, 0.12) !important;
+  z-index: 102500 !important;
 }
 .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option{
-  color: #1e293b !important;
-  background: #f1f5f9 !important;
+  color: #e2e8f0 !important;
+  background: #0f1d32 !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option:hover,
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option:focus-visible,
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option[aria-selected="true"]{
+  background: rgba(0, 200, 255, 0.18) !important;
+  color: #fff !important;
 }
 .nova-game-select__menu--fixed.nova-game-select__menu--register{
   background: #1e293b !important;
   border: 1px solid rgba(129, 140, 248, .4) !important;
+  z-index: 102500 !important;
 }
 .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__option{
   color: #e2e8f0 !important;
@@ -439,8 +448,7 @@ body.nova-sp-screen-open{
   overflow: hidden !important;
 }
 body.nova-sp-screen-open #main-screen,
-body:has(#single-player-screen[style*="flex"]) #main-screen,
-body:has(#single-player-screen.nova-sp-screen-visible) #main-screen{
+body.nova-sp-game-open #main-screen {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
@@ -541,6 +549,14 @@ body:has(#single-player-screen.nova-sp-screen-visible) #main-screen{
     0 28px 60px rgba(2, 6, 23, .55),
     0 0 80px rgba(34, 211, 238, .08) !important;
   overflow: visible !important;
+}
+#single-player-screen .nova-game-select--locked .nova-game-select__trigger{
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.88;
+}
+#single-player-screen .nova-game-select--locked .nova-game-select__chev{
+  opacity: 0.35;
 }
 #single-player-screen .nova-game-select--open{
   position: relative;
@@ -654,12 +670,8 @@ body:has(#single-player-screen.nova-sp-screen-visible) #main-screen{
 }
 
 /* Tek kişilik soru ekranı → styles/067-nova-single-player-game-layout.css */
-body.nova-sp-game-open #main-screen,
-body:has(#single-player-game-screen[style*="flex"]) #main-screen,
-body:has(#single-player-game-screen.nova-sp-game-visible) #main-screen{
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+body.nova-sp-game-open {
+  overflow: hidden !important;
 }
 
 /* ═══ DÜELLO SEÇİM — aynı arena stili ═══ */

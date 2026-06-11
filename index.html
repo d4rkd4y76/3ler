@@ -14,10 +14,19 @@
 <link rel="stylesheet" href="styles/001-nova-space-arena-style.css" />
 <style>
   html, body { background: #020611 !important; animation: none !important; }
-  html:not(.nova-has-session) #student-selection-screen {
-    display: flex !important;
-    visibility: visible !important;
+  html:not(.nova-has-session), html:not(.nova-has-session) body {
+    zoom: 1 !important; transform: none !important; overflow: hidden !important;
   }
+  html:not(.nova-has-session) body {
+    display: block !important; padding: 0 !important; margin: 0 !important;
+  }
+  html:not(.nova-has-session) #student-selection-screen {
+    display: flex !important; visibility: visible !important;
+    position: fixed !important; inset: 0 !important; z-index: 99990 !important;
+    zoom: 1 !important; transform: none !important; isolation: isolate;
+  }
+  html:not(.nova-has-session) #nova_sprite_boot_overlay,
+  html:not(.nova-has-session) #main-screen { display: none !important; visibility: hidden !important; }
   html.nova-has-session #student-selection-screen { display: none !important; }
   html.nova-boot-pending #main-screen {
     display: none !important;
@@ -26,6 +35,7 @@
     pointer-events: none !important;
   }
 </style>
+<link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611loginfix2" />
 <script id="nova-login-instant-head">
 (function () {
   try {
@@ -294,13 +304,13 @@
 </section>
 </div>
 </div>
-<script src="js/ui/nova-login-fast-boot.js?v=30260606loginarena1"></script>
+<script src="js/ui/nova-login-fast-boot.js?v=30260611loginfix1"></script>
 <!-- Giriş: Firebase + sınıf listesi — oyun scriptlerinden önce, defer ile parse bloklamaz -->
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script defer src="js/screens/007-script-007.js?v=30260608bootv8"></script>
+<script defer src="js/screens/007-script-007.js?v=30260611spback1"></script>
 <script defer src="js/screens/022-nova-kids-login-js.js?v=30260606loginarena1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
@@ -931,8 +941,8 @@
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=30260608mul1" />
 <script defer src="js/core/nova-turkish-hyphen.js?v=1"></script>
 <script defer src="js/core/nova-question-markup.js?v=30260608mul1"></script>
-<script defer src="js/ui/006-nova-game-select.js?v=30260606loginarena2"></script>
-<script defer src="js/ui/007-nova-single-player-screen.js?v=30260602perfflash1"></script>
+<script defer src="js/ui/006-nova-game-select.js?v=30260611splock1"></script>
+<script defer src="js/ui/007-nova-single-player-screen.js?v=30260611spback1"></script>
 <script defer src="js/ui/nova-duel-arena-video.js?v=30260531yildiz1"></script>
 <script defer src="js/ui/nova-duel-arena-intro.js?v=30260531arenaintro1"></script>
 <script defer src="js/ui/nova-duel-game-fx.js?v=30260531pin1"></script>
@@ -1037,10 +1047,10 @@
     </div>
     <div class="learn-hub-choices">
       <button type="button" id="learn-hub-roborox" class="learn-hub-choice learn-hub-choice--roborox">
-        <span class="learn-hub-choice__ico" aria-hidden="true">🤖</span>
+        <span class="learn-hub-choice__ico" aria-hidden="true">🐢</span>
         <span class="learn-hub-choice__body">
-          <span class="learn-hub-choice__title">Roborox ile Konuları Öğren</span>
-          <span class="learn-hub-choice__desc">Görsel slaytlarla adım adım konu anlatımı</span>
+          <span class="learn-hub-choice__title">Kaptan Kabuk Anlatıyor</span>
+          <span class="learn-hub-choice__desc">Öğrenme kartlarıyla adım adım konu anlatımı</span>
         </span>
         <span class="learn-hub-choice__go" aria-hidden="true">›</span>
       </button>
@@ -1056,14 +1066,14 @@
   </div>
 </div>
 
-<!-- Roborox ile Konuları Öğren — konu listesi -->
+<!-- Kaptan Kabuk — konu listesi -->
 <div id="roborox-topics-modal" class="roborox-topics-modal" aria-hidden="true" hidden>
   <div class="roborox-topics-card" role="dialog" aria-modal="true" aria-labelledby="roborox-topics-title">
     <div class="roborox-topics-top">
       <button type="button" id="roborox-topics-back" class="roborox-topics-back" aria-label="Derslere dön" hidden>←</button>
       <div class="roborox-topics-head">
-        <h3 id="roborox-topics-title">Roborox ile Konuları Öğren</h3>
-        <p id="roborox-topics-subtitle">Görsel derslerle konuları adım adım keşfet.</p>
+        <h3 id="roborox-topics-title"><span class="roborox-topics-brand-ico" aria-hidden="true">🐢</span> Kaptan Kabuk Anlatıyor</h3>
+        <p id="roborox-topics-subtitle">Öğrenme kartlarıyla konuları adım adım keşfet.</p>
       </div>
       <button type="button" id="roborox-topics-close" class="roborox-topics-close" aria-label="Kapat">✕</button>
     </div>
@@ -1071,20 +1081,22 @@
   </div>
 </div>
 
-<!-- Roborox konu açılış animasyonu -->
+<!-- Konu açılış animasyonu -->
 <div id="roborox-topic-intro" class="roborox-topic-intro" aria-hidden="true" hidden>
   <div class="roborox-topic-intro__inner">
-    <span class="roborox-topic-intro__badge" aria-hidden="true"><span class="roborox-topic-intro__badge-ico" aria-hidden="true">🐢</span> Kaplumbağa</span>
+    <div class="roborox-topic-intro__mascot" aria-hidden="true">🐢</div>
+    <span class="roborox-topic-intro__badge">Kaptan Kabuk Anlatıyor</span>
     <h2 id="roborox-topic-intro-title" class="roborox-topic-intro__title"></h2>
-    <p class="roborox-topic-intro__hint">Konu hazırlanıyor…</p>
+    <p id="roborox-topic-intro-cards" class="roborox-topic-intro__cards"></p>
+    <p id="roborox-topic-intro-hint" class="roborox-topic-intro__hint">Öğrenme kartları hazırlanıyor…</p>
     <div class="roborox-topic-intro__progress" aria-hidden="true"><span class="roborox-topic-intro__progress-bar"></span></div>
   </div>
 </div>
 
-<!-- Roborox tam ekran slayt okuyucu -->
+<!-- Öğrenme kartları tam ekran okuyucu -->
 <div id="roborox-reader-overlay" class="roborox-reader-overlay" aria-hidden="true" hidden>
   <header class="roborox-reader-head">
-    <div class="roborox-reader-title" id="roborox-reader-title">Roborox</div>
+    <div class="roborox-reader-title" id="roborox-reader-title">Kaptan Kabuk Anlatıyor</div>
     <div class="roborox-reader-count" id="roborox-reader-count"></div>
     <button type="button" id="roborox-reader-close" class="roborox-reader-close" aria-label="Kapat">✕</button>
   </header>
@@ -1095,8 +1107,8 @@
     </div>
   </div>
   <footer class="roborox-reader-foot">
-    <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki</button>
-    <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki →</button>
+    <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki Kart</button>
+    <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki Kart →</button>
   </footer>
 </div>
 
@@ -1379,7 +1391,7 @@
 
 <script defer src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
 <script defer src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
-<script defer src="js/ui/004-nova-perf-settings-script.js?v=30260605frames1"></script>
+<script defer src="js/ui/004-nova-perf-settings-script.js?v=30260611loginfix1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
 <script defer src="js/screens/047-script-047.js?v=30260605avatarcat1"></script>
@@ -1484,7 +1496,7 @@
 </div>
 <script defer src="js/ui/049-nova-wait-script.js?v=30260529duelwait1"></script>
 <link rel="stylesheet" href="styles/058-style-058.css?v=30260413q3preamble" />
-<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=30260606loginarena2" />
+<link rel="stylesheet" href="styles/064-nova-game-pickers.css?v=30260611spback1" />
 <link rel="stylesheet" href="styles/066-nova-battle-hero.css?v=30260526hero_store3" />
 <link rel="stylesheet" href="styles/069-nova-hero-premium-motion.css?v=30260527cheer1" />
 <link rel="stylesheet" href="styles/083-nova-turbo-turtle-hero.css?v=30260527turbo2" />
@@ -1511,7 +1523,7 @@
 <link rel="stylesheet" href="styles/nova-duel-arena-intro.css?v=30260531arenaintro1" />
 <link rel="stylesheet" href="styles/nova-duel-game-premium.css?v=30260531pin1" />
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css?v=30260606loginarena2" />
-<link rel="stylesheet" href="styles/116-nova-login-arena.css?v=30260606loginarena2" />
+<link rel="stylesheet" href="styles/116-nova-login-arena.css?v=30260611loginfix2" />
 <script defer src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
 <script defer src="js/ui/012-nova-store-hub.js?v=30260605storeboot2"></script>
 <!-- Eski SVG temel kahraman scriptleri kaldırıldı (performans) — Alev Bot, Turbo, Çılgın Kanat, Buba, Pati -->
@@ -1572,8 +1584,8 @@
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260608bootv8"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260608bootv9"></script>
+<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611spback1"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611mainfix1"></script>
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
@@ -1588,14 +1600,15 @@
 <link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260605bonushit4" />
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/107-nova-main-hud-frame-fit.css?v=30260602framefit1" />
-<link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260602perf1" />
+<link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260611perf2" />
+<link rel="stylesheet" href="styles/117-nova-perf-scale-v2.css?v=30260611loginfix1" />
 <link rel="stylesheet" href="styles/115-nova-main-stability.css?v=30260608bootv8" />
 <link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=30260606opt1" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260602adminfoot1" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
-<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260609roborox10" />
+<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260611kabuk1" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
@@ -2076,7 +2089,7 @@
 })();
 </script>
 <script defer src="js/core/nova-roborox-data.js?v=30260609roborox8"></script>
-<script defer src="js/ui/nova-roborox-learn.js?v=30260609roborox9"></script>
+<script defer src="js/ui/nova-roborox-learn.js?v=30260611kabuk1"></script>
 <script defer src="js/bootstrap.js"></script>
 
 </body>

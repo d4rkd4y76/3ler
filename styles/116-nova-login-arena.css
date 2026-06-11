@@ -291,6 +291,10 @@ html:not(.nova-has-session) #student-selection-screen.nova-login-arena {
   overflow: hidden;
 }
 
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card {
+  overflow: visible;
+}
+
 .nova-login-arena__panel::before {
   content: "";
   position: absolute;

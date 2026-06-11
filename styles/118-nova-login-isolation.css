@@ -1,0 +1,96 @@
+/* Giriş kapısı — oturum yokken tek katman, zoom/transform yok, arka ekran sızıntısı yok */
+
+html:not(.nova-has-session),
+html:not(.nova-has-session) body {
+  zoom: 1 !important;
+  transform: none !important;
+  transform-origin: top left !important;
+  width: 100% !important;
+  max-width: none !important;
+  overflow: hidden !important;
+  min-height: 100dvh;
+}
+
+html:not(.nova-has-session) body {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #020611 !important;
+  animation: none !important;
+}
+
+html:not(.nova-has-session) #nova_sprite_boot_overlay,
+html:not(.nova-has-session) #main-screen,
+html:not(.nova-has-session) #result-back-btn {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html:not(.nova-has-session) body.nova-sprite-boot-active #nova_sprite_boot_overlay {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+html:not(.nova-has-session) #student-selection-screen.nova-login-arena {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99990 !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  zoom: 1 !important;
+  transform: none !important;
+  isolation: isolate;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html:not(.nova-has-session) #student-selection-screen .nova-login-arena__shell,
+html:not(.nova-has-session) #student-selection-screen .nova-login-arena__panel,
+html:not(.nova-has-session) #student-selection-screen input,
+html:not(.nova-has-session) #student-selection-screen select,
+html:not(.nova-has-session) #student-selection-screen button {
+  transform: none !important;
+  zoom: 1 !important;
+}
+
+/* Açılır menü body'ye taşındığında giriş katmanının ÜSTÜNDE olmalı */
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register {
+  z-index: 102500 !important;
+  pointer-events: auto !important;
+}
+
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card {
+  overflow: visible !important;
+}
+
+#student-selection-screen .field--class:has(.nova-game-select--open),
+#student-selection-screen .field:has(.nova-game-select--open) {
+  z-index: 120 !important;
+}
+
+/* İlk kare: animasyonlar hazır olana kadar kapalı (eğik/katman flaşı yok) */
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__stars,
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__aurora,
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__orb,
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__logo-glow {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+html.nova-login-ready:not(.nova-has-session) #student-selection-screen .nova-login-arena__stars,
+html.nova-login-ready:not(.nova-has-session) #student-selection-screen .nova-login-arena__aurora,
+html.nova-login-ready:not(.nova-has-session) #student-selection-screen .nova-login-arena__orb,
+html.nova-login-ready:not(.nova-has-session) #student-selection-screen .nova-login-arena__logo-glow {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Akıcı mod girişte geçişleri kapatma kuralından muaf tut */
+html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen,
+html:not(.nova-has-session) body.nova-perf-ultra #student-selection-screen * {
+  transition-property: border-color, box-shadow, background, color, opacity, transform !important;
+}

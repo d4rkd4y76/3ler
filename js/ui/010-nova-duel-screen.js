@@ -32,6 +32,10 @@
       document.body.style.minHeight = '';
     } catch (_) {}
 
+    try {
+      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-selection-screen');
+    } catch (_) {}
+
     hideMain();
     if (typeof window.novaHideSinglePlayerSelectForGame === 'function') {
       window.novaHideSinglePlayerSelectForGame();
@@ -39,10 +43,6 @@
     if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
       window.novaCloseSinglePlayerGameScreen({ showMain: false });
     }
-
-    try {
-      if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-selection-screen');
-    } catch (_) {}
 
     if (duel) {
       moveToBody(duel);
@@ -136,6 +136,12 @@
     try {
       if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('duel-game-screen');
     } catch (_) {}
+
+    if (typeof window.novaSetPerfTier === 'function') {
+      try {
+        window.novaSetPerfTier('native');
+      } catch (_) {}
+    }
 
     if (game) {
       moveToBody(game);

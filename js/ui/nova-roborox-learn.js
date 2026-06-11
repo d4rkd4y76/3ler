@@ -1,10 +1,32 @@
 /**
- * Roborox ile Konuları Öğren — ders listesi → konu listesi → kitap sayfası okuyucu
+ * Kaptan Kabuk Anlatıyor — ders listesi → konu listesi → öğrenme kartı okuyucu
  */
 (function () {
   "use strict";
 
   var R = window.NovaRoboroxData;
+  var BRAND_NAME = "Kaptan Kabuk Anlatıyor";
+  var BRAND_EMOJI = "🐢";
+
+  function cardCountLabel(n) {
+    n = Math.max(0, Number(n) || 0);
+    return n + " Öğrenme Kartı";
+  }
+
+  function topicItemHtml(title, meta, icon) {
+    return (
+      '<span class="roborox-topic-item__ico" aria-hidden="true">' +
+      esc(icon || BRAND_EMOJI) +
+      "</span>" +
+      '<span class="roborox-topic-item__body">' +
+      '<span class="roborox-topic-item__title">' +
+      esc(title) +
+      "</span>" +
+      '<span class="roborox-topic-item__meta">' +
+      esc(meta) +
+      "</span></span>"
+    );
+  }
 
   function roboroxLearnPath() {
     return R && R.roboroxLearnPath ? R.roboroxLearnPath() : "roboroxLearn";
@@ -48,6 +70,8 @@
   const pageB = document.getElementById("roborox-page-b");
   const topicIntro = document.getElementById("roborox-topic-intro");
   const topicIntroTitle = document.getElementById("roborox-topic-intro-title");
+  const topicIntroHint = document.getElementById("roborox-topic-intro-hint");
+  const topicIntroCards = document.getElementById("roborox-topic-intro-cards");
 
   const SLIDE_MS = 500;
   const INTRO_MIN_MS = 1100;
@@ -72,6 +96,12 @@
     document.body.style.overflow = on ? "hidden" : "";
   }
 
+  function notifyMainScreenReturn() {
+    if (typeof window.novaReturnToMainScreen === "function") {
+      window.novaReturnToMainScreen();
+    }
+  }
+
   function currentStudent() {
     try {
       return window.selectedStudent || JSON.parse(localStorage.getItem("selectedStudent") || "null");
@@ -91,7 +121,7 @@
     } else if (gradeText) {
       topicsSubtitle.textContent = gradeText + " derslerin";
     } else {
-      topicsSubtitle.textContent = "Görsel derslerle konuları adım adım keşfet.";
+      topicsSubtitle.textContent = "Öğrenme kartlarıyla konuları adım adım keşfet.";
     }
   }
 
@@ -178,6 +208,8 @@
     let introFinished = false;
 
     topicIntroTitle.textContent = topic.title;
+    if (topicIntroCards) topicIntroCards.textContent = cardCountLabel(topic.images.length);
+    if (topicIntroHint) topicIntroHint.textContent = "Öğrenme kartları hazırlanıyor…";
     topicIntro.hidden = false;
     topicIntro.setAttribute("aria-hidden", "false");
     topicIntro.classList.add("open");
@@ -249,6 +281,7 @@
     learnHubModal.setAttribute("aria-hidden", "true");
     learnHubModal.hidden = true;
     lockScroll(false);
+    notifyMainScreenReturn();
   }
 
   function closeTopicsModal() {
@@ -260,6 +293,7 @@
     selectedLesson = null;
     setBackVisible(false);
     lockScroll(false);
+    notifyMainScreenReturn();
   }
 
   function openTopicsModal() {
@@ -279,15 +313,7 @@
       btn.type = "button";
       btn.className = "roborox-topic-item roborox-lesson-item";
       btn.dataset.lessonId = lesson.id;
-      btn.innerHTML =
-        '<span class="roborox-topic-item__ico" aria-hidden="true">' +
-        esc(lesson.icon || "📚") +
-        "</span>" +
-        '<span><span class="roborox-topic-item__title">' +
-        esc(lesson.name) +
-        '</span><span class="roborox-topic-item__meta">' +
-        lesson.topics.length +
-        " konu</span></span>";
+      btn.innerHTML = topicItemHtml(lesson.name, lesson.topics.length + " konu", lesson.icon || "📚");
       topicsList.appendChild(btn);
     });
     syncGradeSubtitle();
@@ -302,13 +328,7 @@
       btn.type = "button";
       btn.className = "roborox-topic-item";
       btn.dataset.topicId = t.id;
-      btn.innerHTML =
-        '<span class="roborox-topic-item__ico" aria-hidden="true">📖</span>' +
-        '<span><span class="roborox-topic-item__title">' +
-        esc(t.title) +
-        '</span><span class="roborox-topic-item__meta">' +
-        t.images.length +
-        " sayfa</span></span>";
+      btn.innerHTML = topicItemHtml(t.title, cardCountLabel(t.images.length), BRAND_EMOJI);
       topicsList.appendChild(btn);
     });
     syncGradeSubtitle();
@@ -373,7 +393,7 @@
       topicsList.innerHTML =
         '<p class="roborox-topics-empty">Henüz ' +
         (gradeText ? "<strong>" + esc(gradeText) + "</strong> için " : "") +
-        "Roborox dersi eklenmemiş.<br>Öğretmeniniz admin panelinden ders ve konu ekleyebilir.</p>";
+        "öğrenme kartı eklenmemiş.<br>Öğretmeniniz admin panelinden ders ve konu ekleyebilir.</p>";
       syncGradeSubtitle();
     } catch (e) {
       topicsList.innerHTML =
@@ -382,8 +402,12 @@
   }
 
   function updateReaderUi() {
-    if (readerTitle) readerTitle.textContent = reader.dataset.title || "Roborox";
-    if (readerCount) readerCount.textContent = images.length ? pageIndex + 1 + " / " + images.length : "";
+    if (readerTitle) readerTitle.textContent = reader.dataset.title || BRAND_NAME;
+    if (readerCount) {
+      readerCount.textContent = images.length
+        ? "Kart " + (pageIndex + 1) + " / " + images.length
+        : "";
+    }
     if (readerPrev) readerPrev.disabled = animating || pageIndex <= 0;
     if (readerNext) readerNext.disabled = animating || pageIndex >= images.length - 1;
   }
@@ -398,7 +422,10 @@
     resetPageClasses(img);
     img.classList.add("is-active", "is-settled");
     img.src = url || "";
-    img.alt = (reader && reader.dataset.title ? reader.dataset.title : "Sayfa") + " — " + (pageIndex + 1);
+    img.alt =
+      (reader && reader.dataset.title ? reader.dataset.title : "Öğrenme Kartı") +
+      " — " +
+      (pageIndex + 1);
   }
 
   function preloadAdjacent() {
@@ -457,6 +484,7 @@
     pageIndex = 0;
     animating = false;
     setReaderBodyLock(false);
+    notifyMainScreenReturn();
   }
 
   function finishSlide(toIdx, incoming, outgoing) {
@@ -535,7 +563,7 @@
     resetPageClasses(incoming);
     resetPageClasses(outgoing);
     incoming.src = toUrl;
-    incoming.alt = (reader.dataset.title || "Sayfa") + " — " + (toIdx + 1);
+    incoming.alt = (reader.dataset.title || "Öğrenme Kartı") + " — " + (toIdx + 1);
 
     const enterClass = direction === "next" ? "is-enter-right" : "is-enter-left";
     const exitClass = direction === "next" ? "is-exit-left" : "is-exit-right";

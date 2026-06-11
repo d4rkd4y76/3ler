@@ -62,6 +62,8 @@
 
   var bootRunPromise = null;
 
+  var handoffInFlight = null;
+
   function isPhoneBoot() {
 
     if (typeof window.novaSpritePerfIsPhone === 'function') {
@@ -516,13 +518,13 @@
 
   function canHandoffNow(elapsed) {
 
-    var minCinematic = cinematicMs() * 0.985;
+    var shellReady = mainShellReadyNow() || bootHandoffReadyNow();
 
-    if (elapsed < minCinematic) return false;
+    if (shellReady && elapsed >= cinematicMs() * 0.42) return true;
 
-    if (mainShellReadyNow() || bootHandoffReadyNow()) return true;
+    if (bootReadinessProgress() >= 0.72 && elapsed >= cinematicMs() * 0.55) return true;
 
-    if (bootReadinessProgress() >= 0.5) return true;
+    if (elapsed >= cinematicMs() * 0.985) return true;
 
     if (elapsed >= cinematicMs() + MAX_WAIT_AT_99_MS) return true;
 
@@ -782,9 +784,71 @@
     });
   }
 
+  function isBootOverlayVisible() {
+
+    var ov = getOverlay();
+
+    if (!ov || ov.hidden) return false;
+
+    try {
+
+      return window.getComputedStyle(ov).visibility !== 'hidden';
+
+    } catch (_) {
+
+      return true;
+
+    }
+
+  }
+
+  function forceBootHandoff(reason) {
+
+    if (window.__novaSpriteBootDone && !isBootOverlayVisible()) return Promise.resolve();
+
+    stopRevealProgress();
+
+    stopDownloadProgress();
+
+    state.handoffReady = true;
+
+    state.revealComplete = true;
+
+    state.exiting = false;
+
+    try {
+
+      console.warn('[nova boot] zorunlu handoff', reason || '');
+
+    } catch (_) {}
+
+    return playExitTransition().then(function () {
+
+      if (!window.__novaSpriteBootDone) {
+
+        markBootDone();
+
+        dispatchBootComplete();
+
+      }
+
+    });
+
+  }
+
+  window.novaForceBootHandoff = forceBootHandoff;
+
   function playExitTransition() {
 
-    if (state.exiting) return Promise.resolve();
+    if (handoffInFlight) return handoffInFlight;
+
+    var overlayStillVisible = isBootOverlayVisible();
+
+    if (!overlayStillVisible && window.__novaSpriteBootDone) return Promise.resolve();
+
+    if (state.exiting && !overlayStillVisible) return Promise.resolve();
+
+    if (state.exiting && overlayStillVisible) state.exiting = false;
 
     state.exiting = true;
 
@@ -840,7 +904,7 @@
 
     } catch (_) {}
 
-    return new Promise(function (resolve) {
+    handoffInFlight = new Promise(function (resolve) {
 
       requestAnimationFrame(function () {
 
@@ -933,6 +997,14 @@
         resolve();
 
       }, EXIT_FADE_MS);
+
+    });
+
+    return handoffInFlight.finally(function () {
+
+      handoffInFlight = null;
+
+      state.exiting = false;
 
     });
 
@@ -1170,11 +1242,13 @@
 
     var prepPromise = scheduleBootSideWork();
 
+    prepPromise.catch(function () {});
+
     return waitBootImageReady()
       .then(function () {
         if (heroImg) heroImg.classList.add('is-loaded');
         state.animDone = true;
-        return Promise.all([prepPromise, startCinematicProgress()]);
+        return startCinematicProgress();
       })
       .then(function () {
         return kickBootHandoffLayout();
@@ -1183,6 +1257,10 @@
   }
 
   function dispatchBootComplete() {
+
+    if (window.__novaSpriteBootHandoffDispatched) return;
+
+    window.__novaSpriteBootHandoffDispatched = true;
 
     try {
 
@@ -1242,7 +1320,19 @@
 
       state.handoffReady = true;
 
+      forceBootHandoff('max-wait');
+
     }, isPhoneBoot() ? MAX_WAIT_PHONE_MS : MAX_WAIT_MS);
+
+    var handoffGuard = setTimeout(function () {
+
+      if (!window.__novaSpriteBootDone && isBootOverlayVisible()) {
+
+        forceBootHandoff('handoff-guard');
+
+      }
+
+    }, cinematicMs() + MAX_WAIT_AT_99_MS + 1200);
 
     return runCinematicBoot()
 
@@ -1250,7 +1340,11 @@
 
         clearTimeout(timeout);
 
+        clearTimeout(handoffGuard);
+
         state.handoffReady = true;
+
+        if (window.__novaSpriteBootDone && !isBootOverlayVisible()) return;
 
         return playExitTransition();
 
@@ -1258,7 +1352,7 @@
 
       .then(function () {
 
-        markBootDone();
+        if (!window.__novaSpriteBootDone) markBootDone();
 
         dispatchBootComplete();
 
@@ -1267,6 +1361,8 @@
       .catch(function () {
 
         clearTimeout(timeout);
+
+        clearTimeout(handoffGuard);
 
         state.handoffReady = true;
 
@@ -1389,6 +1485,8 @@
     }
 
     window.__novaSpriteBootDone = false;
+
+    window.__novaSpriteBootHandoffDispatched = false;
 
     window.__novaMainScreenBootReady = false;
 

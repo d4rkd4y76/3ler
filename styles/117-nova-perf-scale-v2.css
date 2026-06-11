@@ -1,0 +1,56 @@
+/* Akıcı mod ölçek v2 — body zoom sabit; ekran katmanında boost (geçiş flaşı yok) */
+
+body.nova-perf-ultra:not(.nova-duel-game-open):not(.roborox-reader-open) {
+  /* JS body zoom = --nova-perf-body-zoom; burada yedek yok */
+}
+
+/* Ana ekran: yalnızca body ölçeği (oturum açıkken) */
+html.nova-has-session body.nova-perf-ultra.nova-perf-tier-main #main-screen {
+  zoom: 1 !important;
+  transform: none !important;
+}
+
+/* Tek kişilik / düello seçim / eşleşme — orta netlik */
+body.nova-perf-ultra.nova-perf-tier-sp .nova-perf-sp-scope.nova-sp-screen-visible,
+body.nova-perf-ultra.nova-perf-tier-sp .nova-perf-sp-scope.nova-sp-game-visible,
+body.nova-perf-ultra.nova-perf-tier-sp #duel-selection-screen.nova-duel-select-visible,
+body.nova-perf-ultra.nova-perf-tier-sp #matchmakingScreen.nova-duel-mm-visible {
+  zoom: var(--nova-perf-sp-boost, 1.16279) !important;
+  transform: none !important;
+}
+
+/* Bulmaca / boşluk / eşleştirme — tam çözünürlük (görünür olan scope) */
+body.nova-perf-ultra.nova-perf-tier-hq .nova-perf-hq-scope {
+  zoom: var(--nova-perf-counter-zoom, 1.35135) !important;
+  transform: none !important;
+}
+
+/* Gizli / pasif ekranlara asla counter-zoom uygulanmaz */
+body.nova-perf-ultra .nova-perf-hq-scope:not(.open),
+body.nova-perf-ultra:not(.nova-perf-tier-hq) .nova-perf-hq-scope,
+body.nova-perf-ultra .nova-perf-sp-scope:not(.nova-sp-screen-visible):not(.nova-sp-game-visible),
+body.nova-perf-ultra #duel-selection-screen:not(.nova-duel-select-visible),
+body.nova-perf-ultra #matchmakingScreen:not(.nova-duel-mm-visible),
+body.nova-perf-ultra #daily-puzzle-screen:not(.open),
+body.nova-perf-ultra #fillblank-screen:not(.open),
+body.nova-perf-ultra #match-screen:not(.open) {
+  zoom: 1 !important;
+  transform: none !important;
+}
+
+/* Düello oyunu — tam ekran, body zoom 1 (ayrı katman) */
+body.nova-duel-game-open #duel-game-screen.nova-duel-game-visible {
+  zoom: 1 !important;
+  transform: none !important;
+}
+
+/* Geçiş animasyonları ölçeği bozmasın */
+#main-screen.container,
+#single-player-screen.container,
+#single-player-game-screen.single-player-game-container,
+#duel-selection-screen.duel-selection-container,
+#duel-game-screen.duel-game-container,
+#matchmakingScreen.container,
+#student-selection-screen.container {
+  animation: none !important;
+}

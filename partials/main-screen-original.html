@@ -1,0 +1,128 @@
+<!-- Ana Ekran -->
+<div class="container" id="main-screen" style="display: none; position: relative;">
+<div id="nova-main-bg-video-layer" class="nova-main-bg-video-layer" aria-hidden="true">
+  <img id="nova-main-bg-image" class="nova-main-bg-image" alt="" hidden decoding="async"/>
+  <video id="nova-main-bg-video" class="nova-main-bg-video" muted loop playsinline webkit-playsinline autoplay preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-hidden="true" tabindex="-1"></video>
+  <div id="nova-main-bg-video-iframe-wrap" class="nova-main-bg-video-iframe-wrap" hidden>
+    <iframe id="nova-main-bg-video-iframe" class="nova-main-bg-video-iframe" title="" tabindex="-1" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <div class="nova-main-bg-video-scrim" aria-hidden="true"></div>
+</div>
+<div class="app-duyuru-strip" id="app-duyuru-strip" hidden>
+<div class="app-duyuru-strip__viewport">
+<div class="app-duyuru-strip__track" id="app-duyuru-track">
+<span class="app-duyuru-strip__chunk" id="app-duyuru-c1"></span><span class="app-duyuru-strip__chunk" id="app-duyuru-c2"></span>
+</div>
+</div>
+</div>
+<div class="main-screen-top-bar nova-main-top-dock" id="main-screen-top-bar">
+<div class="main-screen-odev-anchor" id="main-screen-odev-slot">
+<button type="button" class="nova-character-chip" id="nova_character_open_btn" aria-label="Karakter sandığı — avatarlar ve çerçeveler">
+<span class="char-chip-ring" aria-hidden="true"></span>
+<span class="char-chip-sparkles" aria-hidden="true"></span>
+<span class="char-chip-icon" aria-hidden="true">🎒</span>
+<span class="char-chip-label">KARAKTER</span>
+</button>
+</div>
+<div class="main-screen-deneme-column" id="main-screen-deneme-column">
+<div class="main-screen-deneme-slot" id="main-screen-deneme-slot"></div>
+</div>
+<div class="main-screen-store-anchor" id="main-screen-hud-right">
+<button type="button" class="nova-store-chip" id="nova_store_open_btn" aria-label="Mağaza — avatar, çerçeve ve kahramanlar">
+<span class="store-chip-ring" aria-hidden="true"></span>
+<span class="store-chip-sparkles" aria-hidden="true"></span>
+<span class="store-chip-icon" aria-hidden="true">🛒</span>
+<span class="store-chip-label">MAĞAZA</span>
+</button>
+</div>
+</div>
+<div class="main-profile-hero" id="main-profile-hero">
+<div class="main-screen-hero-left main-screen-hero-left--showcase" id="main-screen-hud-left">
+<div class="nova-main-hero-showcase-wrap">
+<div class="nova-main-hero-showcase__title" aria-hidden="false">KAHRAMANIN</div>
+<div class="nova-main-hero-showcase" id="nova-main-hero-showcase" aria-hidden="true">
+<div class="nova-main-hero-showcase__frame">
+<div class="nova-main-hero-showcase__head" id="nova-main-hero-showcase-head">
+<div class="nova-main-hero-showcase__level" id="nova-main-hero-showcase-level" hidden></div>
+</div>
+<div class="nova-main-hero-showcase__body">
+<div class="nova-main-hero-zone" id="nova-main-hero-zone" aria-hidden="true">
+<div class="nova-main-hero-zone__pad" aria-hidden="true"></div>
+<div class="nova-main-hero-slot" id="nova-main-hero-slot"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="main-screen-hero-center">
+<div class="student-info">
+<img alt="Öğrenci Fotoğrafı" class="student-photo" id="student-photo" src="" style="display: none;"/>
+<div class="student-name-stage" id="student-name-stage">
+<div class="student-name" id="student-name"></div>
+</div>
+<div class="star-frame" id="student-stars"></div>
+<div class="rank-label" id="student-rank"></div>
+<div class="student-stats-container">
+<div class="student-stats">
+<div class="stats-item trophy-stats">
+<div class="stats-glow trophy-glow"></div>
+<span class="stats-icon">🏆</span>
+<span class="stats-value trophy-value" id="game-cup-score">0</span>
+</div>
+<div class="stats-item diamond-stats">
+<div class="stats-glow diamond-glow"></div>
+<span class="stats-icon">💎</span>
+<span class="stats-value diamond-value" id="diamond-value">0</span>
+</div>
+<div class="stats-item credits-stats" id="credits-stats">
+<div class="stats-glow credits-glow"></div>
+<span class="stats-icon">⚔️</span>
+<span class="stats-value credits-value" id="duel-credits-value">0</span>
+<div class="tip-title" style="display: none;">Düello Hakkı</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="main-screen-hero-right" id="main-screen-quest-slot">
+<button class="profile-tools-button nova-main-rail-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç">
+<span class="profile-tools-icon" aria-hidden="true">📚</span>
+<span class="profile-tools-text">ÖĞREN</span>
+</button>
+<div class="nova-bonus-drawer" id="nova-bonus-drawer">
+<script>
+(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
+</script>
+<button type="button" class="nova-bonus-drawer__toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
+<span class="nova-bonus-drawer__toggle-icon" aria-hidden="true">✨</span>
+<span class="nova-bonus-drawer__toggle-label">BONUS ETKİNLİKLER</span>
+<span class="nova-bonus-drawer__chevron" aria-hidden="true">▶</span>
+</button>
+<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
+<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
+<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">🧩 BULMACA</button>
+<span class="nova-fab-reward-tag nova-fab-reward-tag--egg" aria-hidden="true">🐉 EJDER YUMURTASI</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="buttons">
+<button class="single-player" type="button"><span class="main-menu-icon" aria-hidden="true">▶</span><span class="main-menu-label">Tek Kişilik Oyun</span></button>
+<button class="find-duel-button" id="findDuelButton" type="button">
+<span class="button-content">
+<i class="duel-icon" aria-hidden="true">⚔</i>
+<span class="main-menu-label">Düello Ara</span>
+</span>
+<div class="button-glow"></div>
+</button>
+<div class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 kredi.</div>
+<button class="kupa-siralama-button" id="kupa-siralama-button" type="button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;"><span class="main-menu-icon" aria-hidden="true">🏆</span><span class="main-menu-label">Sezon Sıralaması</span></button>
+<button class="logout-button" id="logout-button" type="button"><span class="main-menu-icon" aria-hidden="true">↩</span><span class="main-menu-label">Çıkış Yap</span></button>
+</div>
+<div class="nova-admin-portal-slot" id="nova_admin_portal_slot" hidden>
+<button type="button" class="nova-admin-portal-btn" id="nova_admin_portal_btn" aria-label="Yönetici paneline geç"><span class="main-menu-icon" aria-hidden="true">⚙</span><span class="main-menu-label">Yönetici</span></button>
+</div>
+<div class="nask-game-signature" aria-hidden="true">NASK GAMES</div>
+</div>

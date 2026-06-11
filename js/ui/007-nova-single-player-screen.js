@@ -10,25 +10,42 @@
     }
   }
 
+  function cleanupSinglePlayerBodyState() {
+    document.body.classList.remove('nova-sp-screen-open', 'nova-sp-game-open');
+    document.body.classList.add('nova-main-screen-visible');
+    try {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    } catch (_) {}
+  }
+
+  function hideSinglePlayerLayer(el, visibleClass) {
+    if (!el) return;
+    el.classList.remove(visibleClass);
+    el.setAttribute('aria-hidden', 'true');
+    try {
+      el.style.setProperty('display', 'none', 'important');
+    } catch (_) {
+      el.style.display = 'none';
+    }
+  }
+
   function novaCloseSinglePlayerSelectScreen() {
     var sp = getEl('single-player-screen');
-    var main = getEl('main-screen');
-    try {
-      if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
-    } catch (_) {}
-    document.body.classList.remove('nova-sp-screen-open');
-    if (!document.body.classList.contains('nova-sp-game-open')) {
+    cleanupSinglePlayerBodyState();
+    hideSinglePlayerLayer(sp, 'nova-sp-screen-visible');
+    if (typeof window.novaReturnToMainScreen === 'function') {
+      window.novaReturnToMainScreen();
+    } else {
+      var main = getEl('main-screen');
       try {
-        document.body.style.overflow = '';
+        if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
       } catch (_) {}
-    }
-    if (sp) {
-      sp.style.display = 'none';
-      sp.classList.remove('nova-sp-screen-visible');
-      sp.setAttribute('aria-hidden', 'true');
-    }
-    if (main && !document.body.classList.contains('nova-sp-game-open')) {
-      main.style.removeProperty('display');
+      if (main) {
+        main.style.setProperty('display', 'flex', 'important');
+        main.style.setProperty('visibility', 'visible', 'important');
+        main.style.setProperty('opacity', '1', 'important');
+      }
     }
   }
 
@@ -92,22 +109,26 @@
   function novaCloseSinglePlayerGameScreen(opts) {
     var showMain = !opts || opts.showMain !== false;
     var game = getEl('single-player-game-screen');
-    var main = getEl('main-screen');
-    if (showMain) {
-      try {
-        if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
-      } catch (_) {}
-    }
-    document.body.classList.remove('nova-sp-game-open');
+    cleanupSinglePlayerBodyState();
+    hideSinglePlayerLayer(game, 'nova-sp-game-visible');
     try {
-      document.body.style.overflow = '';
+      if (game) game.classList.remove('nova-sp-result-open');
     } catch (_) {}
-    if (game) {
-      game.style.display = 'none';
-      game.classList.remove('nova-sp-game-visible');
-      game.setAttribute('aria-hidden', 'true');
+    if (showMain) {
+      if (typeof window.novaReturnToMainScreen === 'function') {
+        window.novaReturnToMainScreen();
+      } else {
+        var main = getEl('main-screen');
+        try {
+          if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen();
+        } catch (_) {}
+        if (main) {
+          main.style.setProperty('display', 'flex', 'important');
+          main.style.setProperty('visibility', 'visible', 'important');
+          main.style.setProperty('opacity', '1', 'important');
+        }
+      }
     }
-    if (main && showMain) main.style.removeProperty('display');
   }
 
   window.novaOpenSinglePlayerSelectScreen = novaOpenSinglePlayerSelectScreen;

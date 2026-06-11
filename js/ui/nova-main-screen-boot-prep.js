@@ -564,6 +564,104 @@
     return window.__novaMainScreenBootPromise;
   };
 
+  function isBootOverlayBlocking() {
+    var ov = document.getElementById('nova_sprite_boot_overlay');
+    if (!ov || ov.hidden) return false;
+    try {
+      return window.getComputedStyle(ov).visibility !== 'hidden';
+    } catch (_) {
+      return true;
+    }
+  }
+
+  window.novaReturnToMainScreen = function (opts) {
+    opts = opts || {};
+    var main = document.getElementById('main-screen');
+    var login = document.getElementById('student-selection-screen');
+
+    if (login) login.style.display = 'none';
+    try {
+      document.body.classList.remove('nova-sp-screen-open', 'nova-sp-game-open', 'roborox-reader-open');
+      document.body.classList.add('nova-main-screen-visible');
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    } catch (_) {}
+
+    if (main) {
+      main.style.removeProperty('display');
+      main.style.removeProperty('visibility');
+      main.style.removeProperty('opacity');
+      main.style.setProperty('display', 'flex', 'important');
+      main.style.setProperty('visibility', 'visible', 'important');
+      main.style.setProperty('opacity', '1', 'important');
+      main.removeAttribute('aria-hidden');
+    }
+
+    try {
+      document.documentElement.classList.remove('nova-boot-pending');
+      document.documentElement.classList.remove('roborox-reader-open');
+    } catch (_) {}
+
+    if (isBootOverlayBlocking()) {
+      try {
+        if (typeof window.novaForceBootHandoff === 'function') {
+          window.novaForceBootHandoff('return-main');
+        }
+      } catch (_) {}
+    }
+
+    if (!opts.skipPerf && typeof window.novaPerfBeforeMainScreen === 'function') {
+      try {
+        window.novaPerfBeforeMainScreen();
+      } catch (_) {}
+    }
+
+    function relayoutPass() {
+      try {
+        if (typeof window.novaEnsureLoggedInUi === 'function') {
+          window.novaEnsureLoggedInUi({ light: true });
+        }
+      } catch (_) {}
+      try {
+        if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+      } catch (_) {}
+      try {
+        if (typeof window.novaSyncPerfRuntime === 'function') window.novaSyncPerfRuntime();
+      } catch (_) {}
+      try {
+        if (typeof window.novaResetMainScreenScroll === 'function') window.novaResetMainScreenScroll();
+      } catch (_) {}
+      try {
+        if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
+      } catch (_) {}
+      try {
+        if (typeof window.novaSpriteRefreshMainHeroCanvases === 'function') {
+          window.novaSpriteRefreshMainHeroCanvases();
+        }
+      } catch (_) {}
+      if (opts.hero !== false && typeof window.novaRefreshMainScreenHero === 'function') {
+        window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
+      }
+      try {
+        document.dispatchEvent(new CustomEvent('nova:main-screen-visible'));
+      } catch (_) {}
+    }
+
+    relayoutPass();
+    requestAnimationFrame(function () {
+      requestAnimationFrame(relayoutPass);
+    });
+    setTimeout(relayoutPass, 160);
+
+    if (typeof window.novaStabilizeMainScreen === 'function') {
+      window.novaStabilizeMainScreen({
+        afterBoot: true,
+        force: !!opts.force,
+        awaitBg: false
+      }).catch(function () {});
+    }
+  };
+
   function bindMainScreenRecovery() {
     if (document.__novaMainScreenRecoveryBound) return;
     document.__novaMainScreenRecoveryBound = true;

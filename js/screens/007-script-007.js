@@ -3938,63 +3938,137 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             window.__novaResolveBestHeadingFromList = resolveBestHeadingFromList;
             window.__novaFilterHeadingsForStudent = filterHeadingsForStudent;
         } catch (_novaExportFns) {}
-        async function enforceSinglePlayerClassLock() {
-            try {
-                if (!classSelect) return;
-                await ensureSelectedStudentClassName();
-                let headingId = await resolveBestSinglePlayerHeadingId();
-                if (!headingId) {
-                    try { await fetchChampionData(); } catch (_) {}
-                    headingId = await resolveBestSinglePlayerHeadingId();
-                }
-                let label = getScopedClassLabel();
-                if ((!label || isLikelyDbKeyLabel(label)) && selectionClassSelect && selectedStudent && selectedStudent.classId) {
-                    const fallbackOpt = selectionClassSelect.querySelector('option[value="' + String(selectedStudent.classId).replace(/"/g, '\\"') + '"]');
-                    if (fallbackOpt) label = String(fallbackOpt.textContent || '').trim();
-                }
-                if (!label || isLikelyDbKeyLabel(label)) {
-                    try {
-                        const classSnap = await database.ref('classes/' + selectedStudent.classId + '/name').once('value');
-                        if (classSnap.exists()) label = String(classSnap.val() || '').trim();
-                    } catch (_) {}
-                }
-                if (!label || isLikelyDbKeyLabel(label)) {
-                    try {
-                        const headingName = await novaReadChampionLeaf('championData/headings/' + headingId + '/name');
-                        if (headingName != null && headingName !== '') label = String(headingName).trim();
-                    } catch (_) {}
-                }
-                if (!label || isLikelyDbKeyLabel(label)) label = 'Sınıf';
-                classSelect.innerHTML = '';
-                const lockedOption = document.createElement('option');
-                lockedOption.value = headingId || '';
-                lockedOption.textContent = label;
-                classSelect.appendChild(lockedOption);
-                classSelect.value = headingId || '';
+        let enforceSinglePlayerClassLockPromise = null;
+
+        function applyLockedClassSelectDom(headingId, label) {
+            if (!classSelect) return;
+            const hid = String(headingId || '').trim();
+            const lbl = String(label || 'Sınıf').trim() || 'Sınıf';
+            const cur = classSelect.options[0];
+            if (
+                classSelect.dataset.novaSpClassLocked === '1' &&
+                classSelect.options.length === 1 &&
+                cur &&
+                String(cur.value) === hid &&
+                String(cur.textContent || '').trim() === lbl
+            ) {
                 classSelect.disabled = true;
                 classSelect.style.pointerEvents = 'none';
                 classSelect.style.cursor = 'not-allowed';
                 classSelect.style.opacity = '0.8';
-                if (subjectSelect) subjectSelect.value = '';
-                if (topicSelect) topicSelect.value = '';
-                if (headingId) {
-                    await fetchLessons(headingId, subjectSelect);
-                    if (subjectSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
-                        window.novaRefreshGameSelectMenu(subjectSelect);
-                    }
-                    if (topicSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
-                        window.novaRefreshGameSelectMenu(topicSelect);
-                    }
-                } else {
-                    if (subjectSelect) subjectSelect.innerHTML = '<option value="">Bu sınıf için ders yok</option>';
-                    if (topicSelect) topicSelect.innerHTML = '<option value="">Bu sınıf için konu yok</option>';
-                    if (typeof startGameButton !== 'undefined' && startGameButton) {
-                        startGameButton.classList.remove('active');
-                        startGameButton.disabled = true;
-                    }
-                }
-            } catch (_) {}
+                return false;
+            }
+            classSelect.innerHTML = '';
+            const lockedOption = document.createElement('option');
+            lockedOption.value = hid;
+            lockedOption.textContent = lbl;
+            classSelect.appendChild(lockedOption);
+            classSelect.value = hid;
+            classSelect.disabled = true;
+            classSelect.style.pointerEvents = 'none';
+            classSelect.style.cursor = 'not-allowed';
+            classSelect.style.opacity = '0.8';
+            classSelect.dataset.novaSpClassLocked = '1';
+            classSelect.dataset.novaLockedHeadingId = hid;
+            classSelect.dataset.novaLockedLabel = lbl;
+            if (typeof window.novaRefreshGameSelectMenu === 'function') {
+                window.novaRefreshGameSelectMenu(classSelect);
+            }
+            const wrap = classSelect.closest('.nova-game-select');
+            if (wrap) {
+                wrap.classList.add('nova-game-select--locked');
+                wrap.classList.remove('nova-game-select--empty');
+                wrap.classList.add('nova-game-select--filled');
+            }
+            return true;
         }
+
+        async function enforceSinglePlayerClassLock(opts) {
+            if (!classSelect || !selectedStudent || !selectedStudent.classId) return;
+            if (enforceSinglePlayerClassLockPromise) {
+                return enforceSinglePlayerClassLockPromise;
+            }
+            opts = opts || {};
+            enforceSinglePlayerClassLockPromise = (async function () {
+                try {
+                    const prevHeadingId = String(classSelect.dataset.novaLockedHeadingId || '').trim();
+                    let quickLabel = getScopedClassLabel();
+                    if (quickLabel && !isLikelyDbKeyLabel(quickLabel)) {
+                        applyLockedClassSelectDom(prevHeadingId || selectedStudent.classId, quickLabel);
+                    }
+
+                    await ensureSelectedStudentClassName();
+                    let headingId = await resolveBestSinglePlayerHeadingId();
+                    if (!headingId) {
+                        try {
+                            const fn = window.novaFetchChampionHeadingList;
+                            if (typeof fn === 'function') {
+                                const list = await fn();
+                                if (list && list.length) window.__novaChampionHeadingsList = list;
+                            }
+                        } catch (_) {}
+                        headingId = await resolveBestSinglePlayerHeadingId();
+                    }
+
+                    let label = getScopedClassLabel();
+                    if ((!label || isLikelyDbKeyLabel(label)) && selectionClassSelect && selectedStudent.classId) {
+                        const fallbackOpt = selectionClassSelect.querySelector('option[value="' + String(selectedStudent.classId).replace(/"/g, '\\"') + '"]');
+                        if (fallbackOpt) label = String(fallbackOpt.textContent || '').trim();
+                    }
+                    if (!label || isLikelyDbKeyLabel(label)) {
+                        try {
+                            const classSnap = await database.ref('classes/' + selectedStudent.classId + '/name').once('value');
+                            if (classSnap.exists()) label = String(classSnap.val() || '').trim();
+                        } catch (_) {}
+                    }
+                    if ((!label || isLikelyDbKeyLabel(label)) && headingId) {
+                        try {
+                            const headingName = await novaReadChampionLeaf('championData/headings/' + headingId + '/name');
+                            if (headingName != null && headingName !== '') label = String(headingName).trim();
+                        } catch (_) {}
+                    }
+                    if (!label || isLikelyDbKeyLabel(label)) label = 'Sınıf';
+
+                    const headingChanged = applyLockedClassSelectDom(headingId || '', label);
+                    const shouldResetLessons = headingChanged || !prevHeadingId || prevHeadingId !== String(headingId || '').trim();
+
+                    if (headingId) {
+                        if (shouldResetLessons && !opts.preserveLessons) {
+                            if (subjectSelect) subjectSelect.value = '';
+                            if (topicSelect) topicSelect.value = '';
+                        }
+                        if (shouldResetLessons || !subjectSelect || !subjectSelect.options || subjectSelect.options.length <= 1) {
+                            await fetchLessons(headingId, subjectSelect);
+                        }
+                        if (subjectSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                            window.novaRefreshGameSelectMenu(subjectSelect);
+                        }
+                        if (topicSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                            window.novaRefreshGameSelectMenu(topicSelect);
+                        }
+                    } else {
+                        if (subjectSelect) subjectSelect.innerHTML = '<option value="">Bu sınıf için ders yok</option>';
+                        if (topicSelect) topicSelect.innerHTML = '<option value="">Bu sınıf için konu yok</option>';
+                        if (typeof startGameButton !== 'undefined' && startGameButton) {
+                            startGameButton.classList.remove('active');
+                            startGameButton.disabled = true;
+                        }
+                        if (subjectSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                            window.novaRefreshGameSelectMenu(subjectSelect);
+                        }
+                        if (topicSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                            window.novaRefreshGameSelectMenu(topicSelect);
+                        }
+                    }
+                } catch (_) {}
+            })();
+            try {
+                return await enforceSinglePlayerClassLockPromise;
+            } finally {
+                enforceSinglePlayerClassLockPromise = null;
+            }
+        }
+        try { window.__novaEnforceSinglePlayerClassLock = enforceSinglePlayerClassLock; } catch (_) {}
 
         const studentPhoto = document.getElementById('student-photo');
         const studentName = document.getElementById('student-name');
@@ -4374,9 +4448,9 @@ window.onload = async () => {
             }
         }catch(_){}
         try { await fetchChampionData(); } catch (e) { console.error('fetchChampionData', e); }
-        try{
-            enforceSinglePlayerClassLock();
-        }catch(e){ console.error('enforceSinglePlayerClassLock', e); }
+        try {
+            await enforceSinglePlayerClassLock({ reason: 'boot', preserveLessons: true });
+        } catch (e) { console.error('enforceSinglePlayerClassLock', e); }
 
     } catch (error) {
         console.error("Uygulama başlatma hatası:", error);
@@ -4845,8 +4919,14 @@ async function handleLogin() {
 
         if (typeof window.novaStartSpriteBoot === 'function') {
             await window.novaStartSpriteBoot({ trigger: 'login' });
+            if (typeof window.novaForceBootHandoff === 'function') {
+                try { await window.novaForceBootHandoff('login-complete'); } catch (_) {}
+            }
         } else {
             mainScreen.style.removeProperty('display');
+        }
+        if (typeof window.novaReturnToMainScreen === 'function') {
+            window.novaReturnToMainScreen({ skipPerf: true });
         }
 
         setNameWithFrame(studentName, studentInfo.name, selectedStudent.nameFrame);
@@ -4858,7 +4938,9 @@ async function handleLogin() {
         if (!window.__novaMainScreenLoadDone) {
             onMainScreenLoad();
         }
-        enforceSinglePlayerClassLock();
+        try {
+            await enforceSinglePlayerClassLock({ reason: 'login', preserveLessons: true });
+        } catch (_) {}
 
         await novaSyncAdminPortalFlag();
 
@@ -5646,14 +5728,21 @@ function showConfirmation(message) {
                 } else {
                     if (currentScreen && currentScreen.id === 'single-player-screen' && typeof window.novaCloseSinglePlayerSelectScreen === 'function') {
                         window.novaCloseSinglePlayerSelectScreen();
+                    } else if (currentScreen && currentScreen.id === 'single-player-game-screen' && typeof window.novaCloseSinglePlayerGameScreen === 'function') {
+                        window.novaCloseSinglePlayerGameScreen();
                     } else {
-                        try { if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen(); } catch (_) {}
                         currentScreen.style.display = 'none';
-                        mainScreen.style.removeProperty('display');
+                        if (typeof window.novaReturnToMainScreen === 'function') {
+                            window.novaReturnToMainScreen();
+                        } else {
+                            try { if (window.novaPerfBeforeMainScreen) window.novaPerfBeforeMainScreen(); } catch (_) {}
+                            mainScreen.style.removeProperty('display');
+                            novaRequestHudFabRelayout();
+                        }
                     }
                     resetGameScreens();
                     try{ if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); }catch(_){}
-                    novaRequestHudFabRelayout();
+                    if (typeof window.novaReturnToMainScreen !== 'function') novaRequestHudFabRelayout();
                 }
             });
         });
@@ -5662,6 +5751,12 @@ function showConfirmation(message) {
             if (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.clearChampionUiCaches === 'function') {
                 window.NovaCurriculumSort.clearChampionUiCaches();
             }
+            try {
+                await fetchChampionData();
+            } catch (_) {}
+            try {
+                await enforceSinglePlayerClassLock({ reason: 'sp-open' });
+            } catch (_) {}
             if (typeof window.novaOpenSinglePlayerSelectScreen === 'function') {
                 window.novaOpenSinglePlayerSelectScreen();
             } else {
@@ -5670,11 +5765,12 @@ function showConfirmation(message) {
                 if (studentSelectionScreen) studentSelectionScreen.style.display = 'none';
                 singlePlayerScreen.style.display = 'flex';
             }
-            try{ if (window.novaEnhanceGameSelects) window.novaEnhanceGameSelects(singlePlayerScreen); }catch(_){}
+            try { if (window.novaEnhanceGameSelects) window.novaEnhanceGameSelects(singlePlayerScreen); } catch (_) {}
             try {
-                await fetchChampionData();
+                if (classSelect && typeof window.novaRefreshGameSelectMenu === 'function') {
+                    window.novaRefreshGameSelectMenu(classSelect);
+                }
             } catch (_) {}
-            await enforceSinglePlayerClassLock();
         });
 
         startGameButton.addEventListener('click', () => {
@@ -5765,11 +5861,17 @@ function populateChampionSelect(data) {
     const classSelectEl = document.getElementById('class-select');
     if (!classSelectEl || !data) return;
 
+    const student = window.selectedStudent || null;
+    if (student && student.classId) {
+        if (typeof window.__novaEnforceSinglePlayerClassLock === 'function') {
+            window.__novaEnforceSinglePlayerClassLock({ reason: 'champion-populate', preserveLessons: true }).catch(function () {});
+        }
+        return;
+    }
+
     const getScoped = window.__novaGetScopedClassLabel;
     const normTag = window.__novaNormalizeClassTag;
     const gradeNum = window.__novaExtractGradeNumber;
-    const resolveId = window.__novaResolveSinglePlayerHeadingId;
-    const student = window.selectedStudent || null;
 
     if (typeof getScoped === 'function' && typeof normTag === 'function' && typeof gradeNum === 'function') {
         const scopedLabel = getScoped();
@@ -5792,51 +5894,30 @@ function populateChampionSelect(data) {
             });
         }
 
-        if (student && (student.className || student.classId)) {
-            classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
-            classSelectEl.disabled = true;
-            classSelectEl.style.pointerEvents = 'none';
-            classSelectEl.style.cursor = 'not-allowed';
-            var subEl = document.getElementById('subject-select');
-            (async function () {
-                var resolveBest = window.__novaResolveBestHeadingFromList || window.__novaResolveBestSinglePlayerHeadingId;
-                var pool = scopedRows.length ? scopedRows : data;
-                var bestId = (typeof resolveBest === 'function')
-                    ? await resolveBest(pool)
-                    : ((pool[0] && pool[0].id) || '');
-                if (!bestId) {
-                    console.warn('Öğrenci sınıfı için champion heading bulunamadı:', scopedLabel);
-                    return;
-                }
-                var pickRow = pool.find(function (x) { return x && String(x.id) === String(bestId); }) || { id: bestId, name: scopedLabel };
-                classSelectEl.innerHTML = '';
-                var option = document.createElement('option');
-                option.value = bestId;
-                option.textContent = scopedLabel || pickRow.name || 'Sınıf';
-                classSelectEl.appendChild(option);
-                classSelectEl.value = bestId;
-                try { localStorage.removeItem('cachedLessons_' + bestId); } catch (_) {}
-                try { localStorage.removeItem('cachedLessonsTimestamp_' + bestId); } catch (_) {}
-                if (subEl && bestId) {
-                    await fetchLessons(bestId, subEl);
-                    if (typeof window.novaRefreshGameSelectMenu === 'function') {
-                        window.novaRefreshGameSelectMenu(subEl);
-                    }
-                }
-            })();
-        } else {
-            classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
-            scopedRows.forEach(function (item) {
-                var opt = document.createElement('option');
-                opt.value = item.id;
-                opt.textContent = item.name || item.id;
-                classSelectEl.appendChild(opt);
-            });
+        classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
+        classSelectEl.disabled = false;
+        classSelectEl.style.pointerEvents = '';
+        classSelectEl.style.cursor = '';
+        classSelectEl.style.opacity = '';
+        delete classSelectEl.dataset.novaSpClassLocked;
+        scopedRows.forEach(function (item) {
+            var opt = document.createElement('option');
+            opt.value = item.id;
+            opt.textContent = item.name || item.id;
+            classSelectEl.appendChild(opt);
+        });
+        if (typeof window.novaRefreshGameSelectMenu === 'function') {
+            window.novaRefreshGameSelectMenu(classSelectEl);
         }
         return;
     }
 
     classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
+    classSelectEl.disabled = false;
+    classSelectEl.style.pointerEvents = '';
+    classSelectEl.style.cursor = '';
+    classSelectEl.style.opacity = '';
+    delete classSelectEl.dataset.novaSpClassLocked;
     novaSortClassGradeRowsLocal(data).forEach(function (item) {
         if (!item || !item.id) return;
         const option = document.createElement('option');
@@ -6175,11 +6256,24 @@ function checkLoginButtonState() {
         });
 
         function resetGameScreens() {
-            // Tek Kişilik Oyun Ekranı
-            singlePlayerSelects.forEach(select => {
-                select.value = "";
-            });
-            enforceSinglePlayerClassLock();
+            // Tek Kişilik Oyun Ekranı — sınıf öğrenciye kilitli kalır, yalnızca ders/konu sıfırlanır
+            if (subjectSelect) {
+                subjectSelect.value = '';
+                try {
+                    if (typeof window.novaRefreshGameSelectMenu === 'function') {
+                        window.novaRefreshGameSelectMenu(subjectSelect);
+                    }
+                } catch (_) {}
+            }
+            if (topicSelect) {
+                topicSelect.innerHTML = '<option value="">Seçiniz</option>';
+                try {
+                    if (typeof window.novaRefreshGameSelectMenu === 'function') {
+                        window.novaRefreshGameSelectMenu(topicSelect);
+                    }
+                } catch (_) {}
+            }
+            enforceSinglePlayerClassLock({ preserveLessons: true });
             startGameButton.classList.remove('active');
             startGameButton.disabled = true;
 
@@ -6913,11 +7007,15 @@ finally{
                     window.NovaTracker.state.finished = false;
                 }
             } catch (_) {}
-            try {
-                if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
-                if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
-            } catch (_) {}
-            novaRequestHudFabRelayout();
+            if (typeof window.novaReturnToMainScreen === 'function') {
+                window.novaReturnToMainScreen();
+            } else {
+                try {
+                    if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
+                    if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+                } catch (_) {}
+                novaRequestHudFabRelayout();
+            }
         }
         window.novaSpResultGoBack = novaSpResultGoBack;
 

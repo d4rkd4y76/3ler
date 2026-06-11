@@ -134,6 +134,14 @@
   }
 
   var NOVA_MENU_Z = 101200;
+  var NOVA_LOGIN_MENU_Z = 102500;
+
+  function menuZIndexForWrap(wrap) {
+    if (wrap && (wrap.dataset.tone === 'login' || wrap.dataset.tone === 'register')) {
+      return NOVA_LOGIN_MENU_Z;
+    }
+    return NOVA_MENU_Z;
+  }
 
   function usesFixedMenu(wrap){
     return wrap && (wrap.dataset.tone === 'arena' || wrap.dataset.tone === 'login' || wrap.dataset.tone === 'register');
@@ -205,7 +213,7 @@
     menu.style.top = (r.bottom + gap) + 'px';
     menu.style.width = Math.min(r.width, window.innerWidth - 16) + 'px';
     menu.style.maxHeight = maxH + 'px';
-    menu.style.zIndex = String(NOVA_MENU_Z);
+    menu.style.zIndex = String(menuZIndexForWrap(wrap));
     const screen = dropdownHostScreen(wrap);
     if (screen) screen.classList.add('nova-game-form-dropdown-open');
   }
@@ -352,6 +360,7 @@
     if (lbl) lbl.classList.add('nova-game-select__sr-label');
 
     trigger.addEventListener('click', function(e){
+      if (sel.disabled || wrap.classList.contains('nova-game-select--locked')) return;
       e.preventDefault();
       e.stopPropagation();
       const open = wrap.classList.contains('nova-game-select--open');
