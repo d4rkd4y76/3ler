@@ -1337,13 +1337,22 @@ async function appendCardsProgressively(container, cards, seq, bootOnly){
 }
 
 async function getStoreStudentData(force = false){
-  if (!selectedStudent || !selectedStudent.classId || !selectedStudent.studentId) return null;
-  const key = `${selectedStudent.classId}:${selectedStudent.studentId}`;
+  try { novaSyncStudentFromStorage(); } catch (_) {}
+  var st = (typeof window.novaGetActiveStudent === 'function')
+    ? window.novaGetActiveStudent()
+    : (window.selectedStudent || null);
+  try {
+    if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId && selectedStudent.classId) {
+      st = selectedStudent;
+    }
+  } catch (_) {}
+  if (!st || !st.classId || !st.studentId) return null;
+  const key = `${st.classId}:${st.studentId}`;
   const now = Date.now();
   if (!force && __storeStudentCache.key === key && __storeStudentCache.data && (now - __storeStudentCache.ts) < 6000){
     return __storeStudentCache.data;
   }
-  const base = `classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`;
+  const base = `classes/${st.classId}/students/${st.studentId}`;
   const fields = ['diamond', 'duelCredits', 'gameCup', 'photo', 'nameFrame', 'avatarFrame', 'battleHero', 'purchasedPhotos', 'purchasedAvatarFrames', 'purchasedBattleHeroes', 'heroLevel', 'heroTrials', 'dragonTrials', 'heroTrialPending', 'dragonTrialPending'];
   const snaps = await Promise.all(fields.map(function (f) {
     return database.ref(base + '/' + f).once('value');
@@ -1426,6 +1435,10 @@ function novaResolveStoreCategory(category) {
 async function loadProfilePhotos(category, opts) {
   opts = opts || {};
   const seq = ++__storeLoadSeq;
+  try { novaSyncStudentFromStorage(); } catch (_) {}
+  if (typeof window.novaGetActiveStudent === 'function') {
+    window.selectedStudent = window.novaGetActiveStudent();
+  }
   if (!window.selectedStudent) {
     // localStorage fallback
     try { window.selectedStudent = JSON.parse(localStorage.getItem('selectedStudent') || 'null'); } catch(_) {}
@@ -2129,6 +2142,18 @@ async function novaOpenStoreFlow(hubOpts) {
 // === KARAKTER: envanter / kostüm & çerçeve sandığı ===
 function novaSyncStudentFromStorage() {
   try {
+    if (typeof window.novaGetActiveStudent === 'function') {
+      var active = window.novaGetActiveStudent();
+      if (active && active.studentId) {
+        try {
+          if (typeof selectedStudent !== 'undefined' && selectedStudent && typeof selectedStudent === 'object') {
+            Object.assign(selectedStudent, active);
+          }
+          window.selectedStudent = active;
+        } catch (_) {}
+        return true;
+      }
+    }
     if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId) {
       try {
         window.selectedStudent = selectedStudent;

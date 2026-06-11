@@ -52,12 +52,21 @@
     if (hasStoredStudent()) {
       try {
         document.documentElement.classList.add('nova-has-session');
+        if (typeof window.novaHydrateSessionFromStorage === 'function') {
+          window.novaHydrateSessionFromStorage();
+        } else {
+          try {
+            window.selectedStudent = JSON.parse(localStorage.getItem('selectedStudent') || 'null');
+          } catch (_) {}
+        }
       } catch (_) {}
       return;
     }
 
     try {
-      document.documentElement.classList.remove('nova-has-session', 'nova-login-ready');
+      if (typeof window.novaApplyGuestLoginShell === 'function') {
+        window.novaApplyGuestLoginShell();
+      }
     } catch (_) {}
 
     neutralizeBodyScale();

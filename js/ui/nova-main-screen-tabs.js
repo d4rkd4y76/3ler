@@ -130,8 +130,18 @@
     loadTabContent(name);
   }
 
+  function hasActiveSession() {
+    return !!(typeof window.novaGetActiveStudent === 'function'
+      ? window.novaGetActiveStudent()
+      : (window.selectedStudent && window.selectedStudent.studentId && window.selectedStudent.classId));
+  }
+
   function ensureAvatarTab() {
-    if (loaded.avatar) return Promise.resolve();
+    if (loaded.avatar && hasActiveSession()) return Promise.resolve();
+    if (!hasActiveSession()) {
+      loaded.avatar = false;
+      return Promise.resolve();
+    }
     loaded.avatar = true;
     var tasks = [];
     if (typeof window.novaApplyMainScreenProfileUi === 'function') {
@@ -254,7 +264,9 @@
         return;
       }
       try {
-        var student = window.selectedStudent;
+        var student = (typeof window.novaGetActiveStudent === 'function')
+          ? window.novaGetActiveStudent()
+          : window.selectedStudent;
         if (!student && typeof selectedStudent !== 'undefined') student = selectedStudent;
         if (!student || !student.classId || !student.studentId) {
           resolve();
@@ -328,6 +340,7 @@
 
   function boot() {
     if (!hubActive()) return;
+    if (!hasActiveSession()) return;
     bindTabs();
     setTab(activeTab || 'avatar');
     ensureAvatarTab();
@@ -346,6 +359,21 @@
   } else {
     boot();
   }
+
+  function refreshAfterSessionReady() {
+    if (!hubActive()) return;
+    if (!hasActiveSession()) return;
+    loaded.avatar = false;
+    loaded.kahraman = false;
+    loaded.lig = false;
+    heroLoadPromise = null;
+    ligLoadPromise = null;
+    bindTabs();
+    setTab(activeTab || 'avatar');
+  }
+
+  document.addEventListener('nova:app-main-ready', refreshAfterSessionReady);
+  document.addEventListener('nova:sprite-boot-complete', refreshAfterSessionReady);
 
   document.addEventListener('nova:main-screen-visible', function () {
     if (!hubActive()) return;

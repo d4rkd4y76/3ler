@@ -3759,7 +3759,22 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             className: '',
             nameFrame: 'default'
         };
-        try { window.selectedStudent = selectedStudent; } catch (_) {}
+        if (typeof window.novaHydrateSessionFromStorage === 'function') {
+            window.novaHydrateSessionFromStorage(selectedStudent);
+        } else {
+            try {
+                var __novaStoredStudentRaw = localStorage.getItem('selectedStudent');
+                if (__novaStoredStudentRaw) {
+                    var __novaStoredStudent = JSON.parse(__novaStoredStudentRaw);
+                    if (__novaStoredStudent && __novaStoredStudent.studentId && __novaStoredStudent.classId) {
+                        Object.assign(selectedStudent, __novaStoredStudent);
+                    }
+                }
+                window.selectedStudent = selectedStudent;
+            } catch (_) {
+                try { window.selectedStudent = selectedStudent; } catch (_e) {}
+            }
+        }
         const NOVA_ACTIVE_STUDENT_FP_KEY = 'nova_active_student_fp';
         function getStudentFingerprint(st) {
             const cid = String((st && st.classId) || '').trim();
@@ -4400,13 +4415,11 @@ window.onload = async () => {
               try { applyOwnAvatarFrame(); } catch(_) {}
             }
             try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch(_) {}
-            if (typeof window.novaStartSpriteBoot === 'function' && !window.__novaSpriteBootDone) {
-              if (!window.__novaSpriteBootActive) {
-                window.novaStartSpriteBoot({ trigger: 'remembered' });
-              } else if (typeof window.novaWaitSpriteBootComplete === 'function') {
-                window.novaWaitSpriteBootComplete();
-              }
-            } else {
+            if (window.__novaSpriteBootActive && typeof window.novaWaitSpriteBootComplete === 'function') {
+              try { await window.novaWaitSpriteBootComplete(); } catch (_) {}
+            } else if (!window.__novaSpriteBootDone && typeof window.novaStartSpriteBoot === 'function' && !window.__novaSpriteBootActive) {
+              try { await window.novaStartSpriteBoot({ trigger: 'remembered-onload' }); } catch (_) {}
+            } else if (!bootPipelineActive) {
               mainScreen.style.removeProperty('display');
             }
 
@@ -4810,7 +4823,15 @@ function novaEnsureLoggedInUi(opts){
     const ss = document.getElementById('student-selection-screen');
     const ms = document.getElementById('main-screen');
     if (!ss || !ms) return;
-    const hasSession = !!(selectedStudent && selectedStudent.studentId && selectedStudent.classId);
+    var st = (typeof window.novaGetActiveStudent === 'function')
+      ? window.novaGetActiveStudent()
+      : (window.selectedStudent || null);
+    try {
+      if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId && selectedStudent.classId) {
+        st = selectedStudent;
+      }
+    } catch (_) {}
+    const hasSession = !!(st && st.studentId && st.classId);
     if (hasSession){
       ss.style.display = 'none';
       ms.style.removeProperty('display');
@@ -4821,7 +4842,15 @@ function novaEnsureLoggedInUi(opts){
       if (!window.__novaLoginGuardObs){
         window.__novaLoginGuardObs = new MutationObserver(() => {
           try{
-            const ok = !!(selectedStudent && selectedStudent.studentId && selectedStudent.classId);
+            var active = (typeof window.novaGetActiveStudent === 'function')
+              ? window.novaGetActiveStudent()
+              : (window.selectedStudent || null);
+            try {
+              if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId && selectedStudent.classId) {
+                active = selectedStudent;
+              }
+            } catch (_) {}
+            const ok = !!(active && active.studentId && active.classId);
             if (!ok) return;
             if (ss.style.display !== 'none') ss.style.display = 'none';
             if (ms.style.display === 'none') ms.style.removeProperty('display');

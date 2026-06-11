@@ -27,12 +27,25 @@
   }
   html:not(.nova-has-session) #nova_sprite_boot_overlay,
   html:not(.nova-has-session) #main-screen { display: none !important; visibility: hidden !important; }
-  html.nova-has-session #student-selection-screen { display: none !important; }
+  html:not(.nova-has-session).nova-boot-pending #nova_sprite_boot_overlay {
+    display: none !important; visibility: hidden !important; opacity: 0 !important;
+  }
+  html.nova-has-session #student-selection-screen,
+  html.nova-boot-pending #student-selection-screen {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
   html.nova-boot-pending #main-screen {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+  }
+  html.nova-has-session.nova-boot-pending #nova_sprite_boot_overlay[hidden] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 </style>
 <link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611logincompact1" />
@@ -48,6 +61,7 @@
     var o = JSON.parse(raw);
     if (o && o.studentId && o.classId) {
       document.documentElement.classList.add('nova-has-session');
+      try { window.selectedStudent = o; } catch (_) {}
       var bootDone = false;
       var hardReload = false;
       try {
@@ -64,6 +78,7 @@
   } catch (_) {}
 })();
 </script>
+<script src="js/ui/nova-session-hydrate.js?v=30260611session2"></script>
 <title>Düellox</title>
 <!-- Comfortaa Font -->
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -197,6 +212,17 @@
     <p class="nova-sprite-boot-status">Kaynaklar hazırlanıyor…</p>
   </footer>
 </div>
+<script id="nova-boot-overlay-early">
+(function () {
+  try {
+    var root = document.documentElement;
+    if (!root.classList.contains('nova-has-session') || !root.classList.contains('nova-boot-pending')) return;
+    var ov = document.getElementById('nova_sprite_boot_overlay');
+    if (ov) ov.hidden = false;
+    if (document.body) document.body.classList.add('nova-sprite-boot-active');
+  } catch (_) {}
+})();
+</script>
 
 <link rel="stylesheet" href="styles/045-nova-duel-intro-column.css" />
 
@@ -304,13 +330,13 @@
 </section>
 </div>
 </div>
-<script src="js/ui/nova-login-fast-boot.js?v=30260611loginfix1"></script>
+<script src="js/ui/nova-login-fast-boot.js?v=30260611session2"></script>
 <!-- Giriş: Firebase + sınıf listesi — oyun scriptlerinden önce, defer ile parse bloklamaz -->
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script defer src="js/screens/007-script-007.js?v=30260611maintabs2"></script>
+<script defer src="js/screens/007-script-007.js?v=30260611session2"></script>
 <script defer src="js/screens/022-nova-kids-login-js.js?v=30260606loginarena1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
@@ -981,7 +1007,7 @@
 <script defer src="js/ui/005-nova-screen-loader.js"></script>
 <script defer src="js/core/nova-store-avatar-categories.js?v=30260605storeboot2"></script>
 <script defer src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
-<script defer src="js/core/008-script-008.js?v=30260606maindock2"></script>
+<script defer src="js/core/008-script-008.js?v=30260611session1"></script>
 <script defer src="js/core/009-script-009.js?v=30260605rank3"></script>
 <script defer src="js/core/010-script-010.js?v=30260604qbadges2"></script>
 <script defer src="js/ui/011-script-011.js"></script>
@@ -1611,11 +1637,11 @@
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
 <script defer src="js/ui/nova-dragon-egg.js?v=30260608degg1"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611maintabs3"></script>
+<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611session2"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
-<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611maintabs1"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611session2"></script>
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260611maintabs2"></script>

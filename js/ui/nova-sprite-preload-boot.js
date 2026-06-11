@@ -92,6 +92,12 @@
 
   function hasStoredStudentSession() {
 
+    if (typeof window.novaHasStoredStudentSession === 'function') {
+
+      return window.novaHasStoredStudentSession();
+
+    }
+
     try {
 
       var raw = localStorage.getItem('selectedStudent');
@@ -107,6 +113,40 @@
       return false;
 
     }
+
+  }
+
+  function ensureGuestLoginShell() {
+
+    if (hasStoredStudentSession()) return false;
+
+    hideOverlayInitially();
+
+    if (typeof window.novaApplyGuestLoginShell === 'function') {
+
+      try { window.novaApplyGuestLoginShell(); } catch (_) {}
+
+    } else {
+
+      try {
+
+        document.documentElement.classList.remove('nova-has-session', 'nova-boot-pending', 'nova-main-screen-visible');
+
+      } catch (_) {}
+
+      try {
+
+        var login = document.getElementById('student-selection-screen');
+
+        if (login) login.style.display = 'flex';
+
+      } catch (_) {}
+
+    }
+
+    window.__novaSpriteBootActive = false;
+
+    return true;
 
   }
 
@@ -241,6 +281,14 @@
   window.novaPrepareMainScreenLayoutShell = applyMainScreenLayoutShell;
 
   function prepareBootShellEarly() {
+
+    if (ensureGuestLoginShell()) return;
+
+    try {
+
+      if (typeof window.novaHydrateSessionFromStorage === 'function') window.novaHydrateSessionFromStorage();
+
+    } catch (_) {}
 
     if (!hasStoredStudentSession() || !shouldRunBoot()) {
 
@@ -1212,6 +1260,14 @@
 
   function runCinematicBoot() {
 
+    if (!hasStoredStudentSession()) {
+
+      ensureGuestLoginShell();
+
+      return Promise.resolve();
+
+    }
+
     var ov = getOverlay();
 
     if (!ov) return Promise.resolve();
@@ -1268,7 +1324,19 @@
 
     try {
 
+      if (typeof window.novaHydrateSessionFromStorage === 'function') window.novaHydrateSessionFromStorage();
+
+    } catch (_) {}
+
+    try {
+
       document.dispatchEvent(new CustomEvent('nova:sprite-boot-complete'));
+
+    } catch (_) {}
+
+    try {
+
+      document.dispatchEvent(new CustomEvent('nova:app-main-ready'));
 
     } catch (_) {}
 
@@ -1281,6 +1349,14 @@
   }
 
   function runBootPipeline() {
+
+    if (!hasStoredStudentSession()) {
+
+      ensureGuestLoginShell();
+
+      return Promise.resolve();
+
+    }
 
     applyBootGameTitle();
 
@@ -1388,6 +1464,14 @@
 
     opts = opts || {};
 
+    if (!hasStoredStudentSession()) {
+
+      ensureGuestLoginShell();
+
+      return Promise.resolve();
+
+    }
+
     if (hasStoredStudentSession()) {
 
       applyMainScreenLayoutShell();
@@ -1456,7 +1540,13 @@
 
   function tryAutoStartForRememberedSession() {
 
-    if (!hasStoredStudentSession()) return;
+    if (!hasStoredStudentSession()) {
+
+      ensureGuestLoginShell();
+
+      return;
+
+    }
 
     warmBootImage();
 
@@ -1510,9 +1600,17 @@
 
   window.novaSpriteBootHasSession = hasStoredStudentSession;
 
-  prepareBootShellEarly();
+  if (ensureGuestLoginShell()) {
 
-  if (hasStoredStudentSession()) warmBootImage();
+    applyBootGameTitle();
+
+  } else {
+
+    prepareBootShellEarly();
+
+    if (hasStoredStudentSession()) warmBootImage();
+
+  }
 
   applyBootGameTitle();
 
