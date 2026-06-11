@@ -136,10 +136,19 @@
     }
   }
 
+  function lazyTabsActive() {
+    try {
+      return typeof window.novaMainTabsLazyEnabled === 'function' && window.novaMainTabsLazyEnabled();
+    } catch (_) {
+      return false;
+    }
+  }
+
   window.novaApplyMainScreenHudFromData = function (data, student) {
     data = data || {};
     student = student || getStoredStudent();
     if (!student) return;
+    if (lazyTabsActive()) return;
 
     var cups =
       data.gameCup != null
@@ -161,6 +170,14 @@
   window.novaApplyMainScreenHudInstant = function () {
     var student = getStoredStudent();
     if (!student) return;
+    if (lazyTabsActive()) {
+      if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+        try {
+          window.novaSyncMainSlotPlaceholders();
+        } catch (_) {}
+      }
+      return;
+    }
     window.novaApplyMainScreenHudFromData(window.__novaMainScreenStudentCache, student);
     if (student.gameCup == null) {
       var cached = readCupCache(student);
@@ -189,6 +206,16 @@
       return Promise.resolve(true);
     }
     window.__novaBootInstantCacheApplied = true;
+    if (lazyTabsActive()) {
+      return window.novaApplyMainScreenProfileUi({}, student).then(function () {
+        if (typeof window.novaSyncMainSlotPlaceholders === 'function') {
+          try {
+            window.novaSyncMainSlotPlaceholders();
+          } catch (_) {}
+        }
+        return true;
+      });
+    }
     window.novaApplyMainScreenHudInstant();
     var heroId = resolveHeroId(student, window.__novaMainScreenStudentCache);
     window.__novaEquippedHeroId = heroId;
@@ -421,6 +448,23 @@
 
     var student = getStoredStudent();
     if (!student) return Promise.resolve(false);
+
+    if (lazyTabsActive()) {
+      window.__novaMainScreenPrefetchStarted = true;
+      prefetchPromise = prefetchStudentSnapshot(student)
+        .then(function () {
+          window.__novaMainScreenPrefetchDone = true;
+          try {
+            document.dispatchEvent(new CustomEvent('nova:main-screen-prefetch-done'));
+          } catch (_) {}
+          return true;
+        })
+        .catch(function () {
+          window.__novaMainScreenPrefetchDone = true;
+          return false;
+        });
+      return prefetchPromise;
+    }
 
     var bootActive = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
     var heroIdEarly = resolveHeroId(student, window.__novaMainScreenStudentCache);

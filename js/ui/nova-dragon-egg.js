@@ -1207,7 +1207,10 @@
       bindOpenButtonIfNeeded();
       return wrap;
     }
-    var anchor = document.querySelector('#main-screen-hud-left .nova-main-hero-showcase-wrap');
+    var anchor = document.getElementById('nova-main-left-egg-slot');
+    if (!anchor) {
+      anchor = document.querySelector('#main-screen-hud-left .nova-main-hero-showcase-wrap');
+    }
     if (!anchor) return null;
     wrap = document.createElement('div');
     wrap.id = 'nova-dragon-egg-wrap';
@@ -1219,7 +1222,11 @@
       '<div class="nova-dragon-egg-hub" id="nova_dragon_egg_hub"></div>' +
       '<span class="nova-dragon-egg-entry__total" id="nova_dragon_egg_total">0 yumurta</span>' +
       '</button></div>';
-    anchor.insertAdjacentElement('afterend', wrap);
+    if (anchor.id === 'nova-main-left-egg-slot') {
+      anchor.appendChild(wrap);
+    } else {
+      anchor.insertAdjacentElement('afterend', wrap);
+    }
     bindOpenButtonIfNeeded();
     return wrap;
   }

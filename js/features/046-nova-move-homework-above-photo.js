@@ -43,7 +43,7 @@
       if (dnw && denemeSlot && dnw.parentNode !== denemeSlot) denemeSlot.appendChild(dnw);
       if (hw && questSlot && hw.parentNode !== questSlot) questSlot.appendChild(hw);
       if (qw && questSlot && qw.parentNode !== questSlot) questSlot.appendChild(qw);
-      if (bonusDrawer && questSlot && bonusDrawer.parentNode !== questSlot) questSlot.appendChild(bonusDrawer);
+      if (bonusDrawer && hudLeft && bonusDrawer.parentNode !== hudLeft) hudLeft.appendChild(bonusDrawer);
 
       if (bonusPanel) {
         [pzw, fbw, mfw].filter(Boolean).forEach(function (el) {
@@ -59,7 +59,7 @@
 
       if (questSlot) {
         var learnBtn = document.getElementById('learn-open-button');
-        [learnBtn, hw, qw, bonusDrawer, sb].filter(Boolean).forEach(function (el) {
+        [learnBtn, hw, qw, sb].filter(Boolean).forEach(function (el) {
           try { questSlot.appendChild(el); } catch (_) {}
         });
       }

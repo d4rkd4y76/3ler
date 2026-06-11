@@ -4620,26 +4620,49 @@ let __cupFetchInFlight = false;
 let __cupFetchLastTs = 0;
 
 function fetchAndDisplayGameCup(force) {
-    if (!selectedStudent?.studentId) return;
+    var student = null;
+    try {
+      if (typeof selectedStudent !== 'undefined' && selectedStudent && selectedStudent.studentId) {
+        student = selectedStudent;
+      }
+    } catch (_) {}
+    if (!student && window.selectedStudent && window.selectedStudent.studentId) {
+      student = window.selectedStudent;
+    }
+    if (!student?.studentId) return Promise.resolve(false);
     try {
       if (typeof window.novaApplyGameCupLeague === 'function') {
         if (window.__novaCachedGameCup != null) {
           window.novaApplyGameCupLeague(window.__novaCachedGameCup);
-        } else if (selectedStudent.gameCup != null) {
-          window.novaApplyGameCupLeague(Number(selectedStudent.gameCup) || 0);
+        } else if (student.gameCup != null) {
+          window.novaApplyGameCupLeague(Number(student.gameCup) || 0);
         }
       }
     } catch (_) {}
     const now = Date.now();
-    if (__cupFetchInFlight || (!force && (now - __cupFetchLastTs) < 900)) return;
+    if (__cupFetchInFlight) {
+      if (!force) return Promise.resolve(true);
+      return new Promise(function (resolve) {
+        var tries = 0;
+        (function waitTurn() {
+          if (!__cupFetchInFlight || tries > 40) {
+            resolve(fetchAndDisplayGameCup(false));
+            return;
+          }
+          tries += 1;
+          setTimeout(waitTurn, 50);
+        })();
+      });
+    }
+    if (!force && (now - __cupFetchLastTs) < 900) return Promise.resolve(true);
     __cupFetchInFlight = true;
     __cupFetchLastTs = now;
-    database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).once('value').then(snapshot => {
+    return database.ref(`classes/${student.classId}/students/${student.studentId}/gameCup`).once('value').then(snapshot => {
         var cnt = 0;
         if (snapshot.exists()) {
             cnt = Number(snapshot.val()) || 0;
         } else {
-            database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/gameCup`).set(0);
+            database.ref(`classes/${student.classId}/students/${student.studentId}/gameCup`).set(0);
         }
         try {
             if (typeof window.novaApplyGameCupLeague === 'function') {
@@ -4654,13 +4677,16 @@ function fetchAndDisplayGameCup(force) {
             }
         } catch (e) { console.warn('Yıldız/rütbe (kupa) güncellenemedi:', e); }
         try { if (typeof refreshDuelEntryGateNote === 'function') refreshDuelEntryGateNote(); } catch(_){}
-        __cupFetchInFlight = false;
+        window.__novaLigCupLoaded = true;
+        return cnt;
     }).catch(error => {
         console.error("gameCup çekilirken hata:", error);
         try {
           if (typeof window.novaApplyGameCupLeague === 'function') window.novaApplyGameCupLeague(0);
         } catch (_) {}
         try { if (typeof refreshDuelEntryGateNote === 'function') refreshDuelEntryGateNote(); } catch(_){}
+        return 0;
+    }).finally(function () {
         __cupFetchInFlight = false;
     });
 }
@@ -4718,14 +4744,16 @@ function onMainScreenLoad() {
     if (window.__novaMainScreenLoadDone) return;
     try { if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant(); } catch(_) {}
     try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi({ light: true }); } catch(_) {}
-    var heroReady = false;
-    try {
-      if (typeof window.novaMainScreenSlotStatus === 'function') heroReady = !!window.novaMainScreenSlotStatus().hero;
-    } catch (_) {}
-    if (!heroReady && typeof window.novaRefreshMainScreenHero === 'function') {
-      try { window.novaRefreshMainScreenHero(); } catch (_) {}
+    var lazyTabs = typeof window.novaMainTabsLazyEnabled === 'function' && window.novaMainTabsLazyEnabled();
+    if (!lazyTabs) {
+      var heroReady = false;
+      try {
+        if (typeof window.novaMainScreenSlotStatus === 'function') heroReady = !!window.novaMainScreenSlotStatus().hero;
+      } catch (_) {}
+      if (!heroReady && typeof window.novaRefreshMainScreenHero === 'function') {
+        try { window.novaRefreshMainScreenHero(); } catch (_) {}
+      }
     }
-    // İlk girişte HUD/FAB yerleşimi bazen geç oturuyor; tek seferlik görünürlük olayı.
     novaRequestHudFabRelayout();
 
     try {
@@ -4733,8 +4761,9 @@ function onMainScreenLoad() {
       if (typeof window.novaSyncMainScreenScrollLock === 'function') window.novaSyncMainScreenScrollLock();
     } catch (_) {}
 
-    updateDiamondCount();
-    try { applyOwnAvatarFrame(); } catch(_) {}
+    if (!lazyTabs) {
+      updateDiamondCount();
+      try { applyOwnAvatarFrame(); } catch(_) {}
     
     const now = Date.now();
     var prefetchedCredits = window.__novaMainScreenCreditsPrefetch;
@@ -4768,6 +4797,9 @@ function onMainScreenLoad() {
 
     if (!__mainScreenDiamondIntervalId) {
       __mainScreenDiamondIntervalId = setInterval(updateDiamondCount, 1000 * 60 * 60);
+    }
+    } else {
+      try { applyOwnAvatarFrame(); } catch(_) {}
     }
     window.__novaMainScreenLoadDone = true;
 }

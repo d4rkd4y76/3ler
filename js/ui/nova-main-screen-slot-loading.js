@@ -30,6 +30,14 @@
 
   };
 
+  function lazyTabsActive() {
+    try {
+      return typeof window.novaMainTabsLazyEnabled === 'function' && window.novaMainTabsLazyEnabled();
+    } catch (_) {
+      return false;
+    }
+  }
+
   function getStatus() {
 
     if (typeof window.novaMainScreenSlotStatus === 'function') {
@@ -118,6 +126,10 @@
 
     if (!st) return true;
 
+    if (lazyTabsActive()) {
+      return st.photo !== false && st.name !== false;
+    }
+
     var keys = ['photo', 'name', 'rank', 'cup', 'credits', 'hero'];
 
     for (var i = 0; i < keys.length; i++) {
@@ -133,6 +145,15 @@
   function kickPendingLoads(st) {
 
     if (!st) return;
+
+    if (lazyTabsActive()) {
+      if (!st.photo && typeof window.novaApplyMainScreenProfileUi === 'function') {
+        try {
+          window.novaApplyMainScreenProfileUi().catch(function () {});
+        } catch (_) {}
+      }
+      return;
+    }
 
     if (!st.hero && typeof window.novaRefreshMainScreenHero === 'function') {
 

@@ -751,6 +751,7 @@
 
     if (
       !mainElementsReadyNow() &&
+      !(typeof window.novaMainTabsLazyEnabled === 'function' && window.novaMainTabsLazyEnabled()) &&
       typeof window.novaRefreshMainScreenHero === 'function' &&
       !document.documentElement.classList.contains('nova-boot-pending')
     ) {
@@ -775,7 +776,10 @@
             window.novaSpriteRefreshMainHeroCanvases();
           } catch (_) {}
         }
-        if (typeof window.novaRefreshMainScreenHero === 'function') {
+        if (
+          !(typeof window.novaMainTabsLazyEnabled === 'function' && window.novaMainTabsLazyEnabled()) &&
+          typeof window.novaRefreshMainScreenHero === 'function'
+        ) {
           try {
             window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
           } catch (_) {}

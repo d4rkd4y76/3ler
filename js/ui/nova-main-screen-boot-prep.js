@@ -171,7 +171,18 @@
     }
   }
 
+  function lazyTabsActive() {
+    try {
+      return typeof window.novaMainTabsLazyEnabled === 'function' && window.novaMainTabsLazyEnabled();
+    } catch (_) {
+      return false;
+    }
+  }
+
   function bootHandoffReady() {
+    if (lazyTabsActive()) {
+      return studentNameReady() && profilePhotoBootReady();
+    }
     return (
       studentNameReady() &&
       creditsReady() &&
@@ -182,6 +193,9 @@
   window.novaBootHandoffReady = bootHandoffReady;
 
   function mainScreenShellReady() {
+    if (lazyTabsActive()) {
+      return studentNameReady();
+    }
     if (!studentNameReady()) return false;
     if (!creditsReady()) {
       var cred = document.getElementById('duel-credits-value');
@@ -195,6 +209,9 @@
   window.novaMainScreenShellReady = mainScreenShellReady;
 
   function mainScreenElementsReady() {
+    if (lazyTabsActive()) {
+      return studentNameReady() && profilePhotoReady();
+    }
     return (
       leagueBadgeReady() &&
       cupHudReady() &&
@@ -208,6 +225,15 @@
 
   function mainScreenReadinessRatio() {
     var booting = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
+    if (lazyTabsActive()) {
+      var lazyChecks = [
+        booting ? profilePhotoBootReady() : profilePhotoReady(),
+        studentNameReady()
+      ];
+      var lazyN = 0;
+      for (var j = 0; j < lazyChecks.length; j++) if (lazyChecks[j]) lazyN += 1;
+      return lazyN / lazyChecks.length;
+    }
     var checks = [
       leagueBadgeReady(),
       cupHudReady(),
@@ -226,6 +252,7 @@
   window.novaMainScreenReadinessRatio = mainScreenReadinessRatio;
 
   function heroDisplayReady() {
+    if (lazyTabsActive()) return true;
     var slot = document.getElementById('nova-main-hero-slot');
     if (!slot) return true;
     var host = slot.querySelector('[data-nova-main-hero]');
@@ -236,6 +263,17 @@
   }
 
   window.novaMainScreenSlotStatus = function () {
+    if (lazyTabsActive()) {
+      return {
+        photo: profilePhotoReady(),
+        name: studentNameReady(),
+        rank: true,
+        cup: true,
+        credits: true,
+        hero: true,
+        diamond: true
+      };
+    }
     return {
       photo: profilePhotoReady(),
       name: studentNameReady(),
@@ -266,7 +304,7 @@
       if (typeof window.novaApplyMainScreenHudInstant === 'function') window.novaApplyMainScreenHudInstant();
     } catch (_) {}
     var kicks = [];
-    if (!heroReady() && typeof window.novaRefreshMainScreenHero === 'function') {
+    if (!lazyTabsActive() && !heroReady() && typeof window.novaRefreshMainScreenHero === 'function') {
       kicks.push(
         Promise.race([
           window.novaRefreshMainScreenHero({ urgent: true, force: true }),
@@ -329,7 +367,7 @@
     if (!student) return false;
     var light = !!opts.afterBoot && !opts.force;
     var skipPrefetch = light || (!opts.force && window.__novaMainScreenPrefetchDone);
-    var skipHero = light || (!opts.force && heroSlotAlreadyReady());
+    var skipHero = lazyTabsActive() || light || (!opts.force && heroSlotAlreadyReady());
 
     revealMainForBoot();
 
@@ -500,6 +538,7 @@
         }
 
         if (
+          !lazyTabsActive() &&
           isMainScreenDisplayed() &&
           !heroSlotAlreadyReady() &&
           typeof window.novaRefreshMainScreenHero === 'function'
@@ -639,7 +678,7 @@
           window.novaSpriteRefreshMainHeroCanvases();
         }
       } catch (_) {}
-      if (opts.hero !== false && typeof window.novaRefreshMainScreenHero === 'function') {
+      if (!lazyTabsActive() && opts.hero !== false && typeof window.novaRefreshMainScreenHero === 'function') {
         window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
       }
       try {

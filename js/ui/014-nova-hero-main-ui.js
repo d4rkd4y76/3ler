@@ -413,19 +413,28 @@
   }
 
   function patchRefreshMainHero() {
-    if (typeof window.refreshMainScreenHero !== 'function') return;
-    if (window.refreshMainScreenHero.__nhSheetPatched) return;
-    var orig = window.refreshMainScreenHero;
-    window.refreshMainScreenHero = async function () {
+    var target = typeof window.novaRefreshMainScreenHero === 'function'
+      ? 'novaRefreshMainScreenHero'
+      : (typeof window.refreshMainScreenHero === 'function' ? 'refreshMainScreenHero' : '');
+    if (!target || window[target].__nhSheetPatched) return;
+    var orig = window[target];
+    window[target] = async function () {
       await orig.apply(this, arguments);
       ensureHeroFloatWrap();
       refreshMainHeroStars();
     };
-    window.refreshMainScreenHero.__nhSheetPatched = true;
+    window[target].__nhSheetPatched = true;
+    if (target === 'novaRefreshMainScreenHero' && typeof window.refreshMainScreenHero === 'function') {
+      window.refreshMainScreenHero = window.novaRefreshMainScreenHero;
+    }
   }
 
   window.novaRefreshMainHeroStars = refreshMainHeroStars;
   window.novaOpenHeroDetailSheet = openHeroSheet;
+
+  document.addEventListener('nova:main-screen-visible', function () {
+    patchRefreshMainHero();
+  });
 
   document.addEventListener('DOMContentLoaded', function () {
     ensureHeroFloatWrap();
@@ -433,6 +442,7 @@
     bindMainHeroTap();
     ensureSheetUi();
     patchRefreshMainHero();
+    setTimeout(patchRefreshMainHero, 0);
     setTimeout(refreshMainHeroStars, 1200);
     setInterval(function () {
       var main = document.getElementById('main-screen');

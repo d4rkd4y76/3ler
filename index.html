@@ -310,7 +310,7 @@
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script defer src="js/screens/007-script-007.js?v=30260611spback1"></script>
+<script defer src="js/screens/007-script-007.js?v=30260611maintabs2"></script>
 <script defer src="js/screens/022-nova-kids-login-js.js?v=30260606loginarena1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
@@ -353,9 +353,44 @@
 </button>
 </div>
 </div>
-<div class="main-profile-hero" id="main-profile-hero">
-<div class="main-screen-hero-left main-screen-hero-left--showcase" id="main-screen-hud-left">
-<div class="nova-main-hero-showcase-wrap">
+<div class="main-profile-hero nova-main-hub" id="main-profile-hero">
+<div class="main-screen-hero-left nova-main-left-hub" id="main-screen-hud-left">
+<div class="nova-main-left-egg-slot" id="nova-main-left-egg-slot" aria-hidden="false"></div>
+<div class="nova-bonus-drawer" id="nova-bonus-drawer">
+<script>
+(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
+</script>
+<button type="button" class="nova-bonus-drawer__toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
+<span class="nova-bonus-drawer__toggle-icon" aria-hidden="true">✨</span>
+<span class="nova-bonus-drawer__toggle-label">BONUS ETKİNLİKLER</span>
+<span class="nova-bonus-drawer__chevron" aria-hidden="true">▶</span>
+</button>
+<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
+<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
+<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">🧩 BULMACA</button>
+<span class="nova-fab-reward-tag nova-fab-reward-tag--egg" aria-hidden="true">🐉 EJDER YUMURTASI</span>
+</span>
+</div>
+</div>
+</div>
+<div class="main-screen-hero-center nova-main-stage">
+<div class="nova-main-stage__frame">
+<nav class="nova-main-tabs" id="nova-main-tabs" role="tablist" aria-label="Profil görünümü">
+<button type="button" class="nova-main-tab is-active" id="nova-main-tab-btn-avatar" role="tab" data-nova-main-tab="avatar" aria-selected="true" aria-controls="nova-main-tab-avatar">Avatar</button>
+<button type="button" class="nova-main-tab" id="nova-main-tab-btn-kahraman" role="tab" data-nova-main-tab="kahraman" aria-selected="false" aria-controls="nova-main-tab-kahraman">Kahraman</button>
+<button type="button" class="nova-main-tab" id="nova-main-tab-btn-lig" role="tab" data-nova-main-tab="lig" aria-selected="false" aria-controls="nova-main-tab-lig">Lig</button>
+</nav>
+<div class="nova-main-tab-panels">
+<div class="nova-main-tab-panel is-active" id="nova-main-tab-avatar" role="tabpanel" aria-labelledby="nova-main-tab-btn-avatar">
+<div class="student-info nova-main-tab-avatar-body">
+<img alt="Öğrenci Fotoğrafı" class="student-photo" id="student-photo" src="" style="display: none;"/>
+<div class="student-name-stage" id="student-name-stage">
+<div class="student-name" id="student-name"></div>
+</div>
+</div>
+</div>
+<div class="nova-main-tab-panel" id="nova-main-tab-kahraman" role="tabpanel" aria-labelledby="nova-main-tab-btn-kahraman" hidden>
+<div class="nova-main-hero-showcase-wrap nova-main-tab-hero-body">
 <div class="nova-main-hero-showcase__title" aria-hidden="false">KAHRAMANIN</div>
 <div class="nova-main-hero-showcase" id="nova-main-hero-showcase" aria-hidden="true">
 <div class="nova-main-hero-showcase__frame">
@@ -372,12 +407,8 @@
 </div>
 </div>
 </div>
-<div class="main-screen-hero-center">
-<div class="student-info">
-<img alt="Öğrenci Fotoğrafı" class="student-photo" id="student-photo" src="" style="display: none;"/>
-<div class="student-name-stage" id="student-name-stage">
-<div class="student-name" id="student-name"></div>
-</div>
+<div class="nova-main-tab-panel" id="nova-main-tab-lig" role="tabpanel" aria-labelledby="nova-main-tab-btn-lig" hidden>
+<div class="nova-main-tab-lig-body student-info">
 <div class="star-frame" id="student-stars"></div>
 <div class="rank-label" id="student-rank"></div>
 <div class="student-stats-container">
@@ -402,27 +433,14 @@
 </div>
 </div>
 </div>
-<div class="main-screen-hero-right" id="main-screen-quest-slot">
+</div>
+</div>
+</div>
+<div class="main-screen-hero-right nova-main-right-rail" id="main-screen-quest-slot">
 <button class="profile-tools-button nova-main-rail-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç">
 <span class="profile-tools-icon" aria-hidden="true">📚</span>
 <span class="profile-tools-text">ÖĞREN</span>
 </button>
-<div class="nova-bonus-drawer" id="nova-bonus-drawer">
-<script>
-(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
-</script>
-<button type="button" class="nova-bonus-drawer__toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
-<span class="nova-bonus-drawer__toggle-icon" aria-hidden="true">✨</span>
-<span class="nova-bonus-drawer__toggle-label">BONUS ETKİNLİKLER</span>
-<span class="nova-bonus-drawer__chevron" aria-hidden="true">▶</span>
-</button>
-<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
-<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">🧩 BULMACA</button>
-<span class="nova-fab-reward-tag nova-fab-reward-tag--egg" aria-hidden="true">🐉 EJDER YUMURTASI</span>
-</span>
-</div>
-</div>
 </div>
 </div>
 <div class="buttons">
@@ -1582,13 +1600,14 @@
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
 <script defer src="js/ui/nova-dragon-egg.js?v=30260608degg1"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611spback1"></script>
-<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611mainfix1"></script>
+<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611maintabs2"></script>
+<script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611maintabs1"></script>
+<script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
+<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
-<script defer src="js/ui/014-nova-hero-main-ui.js?v=30260602rtdb1"></script>
+<script defer src="js/ui/014-nova-hero-main-ui.js?v=30260611maintabs2"></script>
 <script defer src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
 <link rel="stylesheet" href="styles/115-nova-player-card-modal.css?v=30260606playercard9" />
 <script defer src="js/ui/nova-player-card-modal.js?v=30260606playercard7"></script>
@@ -1609,6 +1628,7 @@
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
 <link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260611kabuk1" />
+<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611maintabs2" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
