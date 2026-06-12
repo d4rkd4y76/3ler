@@ -42,8 +42,7 @@
     btn.className = 'nova-bonus-mini-btn nova-bonus-mini-btn--' + cfg.variant;
     btn.innerHTML =
       '<span class="nova-bonus-mini-btn__ico" aria-hidden="true">' + cfg.icon + '</span>' +
-      '<span class="nova-bonus-mini-btn__txt">' + cfg.label + '</span>' +
-      '<span class="nova-bonus-mini-btn__egg" aria-hidden="true">🐉</span>';
+      '<span class="nova-bonus-mini-btn__txt">' + cfg.label + '</span>';
 
     btn.style.removeProperty('width');
     btn.style.removeProperty('height');

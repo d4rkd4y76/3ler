@@ -240,14 +240,14 @@
 }
 
 #main-screen .nova-main-left-hub {
-  max-width: min(124px, 31vw) !important;
-  width: min(124px, 31vw) !important;
+  max-width: min(136px, 33vw) !important;
+  width: min(136px, 33vw) !important;
   justify-self: end !important;
 }
 
 #main-screen .nova-main-right-rail {
-  max-width: min(124px, 31vw) !important;
-  width: min(124px, 31vw) !important;
+  max-width: min(136px, 33vw) !important;
+  width: min(136px, 33vw) !important;
   justify-self: start !important;
   gap: clamp(7px, 1.8vw, 10px) !important;
   padding-top: clamp(2px, 0.6vw, 4px) !important;
@@ -310,10 +310,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: clamp(6px, 1.5vw, 8px);
+  gap: clamp(5px, 1.2vw, 7px);
   width: 100%;
   min-height: clamp(44px, 11vw, 52px);
-  padding: clamp(7px, 1.8vw, 9px) clamp(8px, 2vw, 10px);
+  padding: clamp(7px, 1.8vw, 9px) clamp(20px, 4.5vw, 22px) clamp(7px, 1.8vw, 9px) clamp(7px, 1.6vw, 9px);
   border: 2px solid rgba(167, 139, 250, 0.55);
   border-radius: clamp(12px, 2.8vw, 15px);
   background:
@@ -383,25 +383,27 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1px;
+  justify-content: center;
+  gap: 0;
+  overflow: visible;
 }
 
 #main-screen .nova-bonus-chest-toggle__title {
   font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
-  font-size: clamp(7px, 1.85vw, 9px);
+  font-size: clamp(8px, 2vw, 10px);
   font-weight: 900;
-  letter-spacing: 0.06em;
-  line-height: 1.15;
-  color: #fef3c7;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.02em;
+  line-height: 1.12;
+  color: #fef9c3;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 12px rgba(251, 191, 36, 0.2);
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  word-break: keep-all;
 }
 
 #main-screen .nova-bonus-chest-toggle__sub {
-  font-size: clamp(6px, 1.5vw, 7px);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: rgba(221, 214, 254, 0.85);
-  line-height: 1.1;
+  display: none !important;
 }
 
 #main-screen .nova-bonus-drawer.is-open .nova-bonus-chest-toggle {
@@ -414,15 +416,20 @@
 }
 
 #main-screen .nova-bonus-drawer__chevron {
+  position: absolute;
+  right: clamp(6px, 1.4vw, 8px);
+  top: 50%;
   flex-shrink: 0;
-  margin-left: auto;
-  font-size: clamp(8px, 2vw, 10px);
-  opacity: 0.8;
+  margin-left: 0;
+  font-size: clamp(7px, 1.7vw, 9px);
+  opacity: 0.75;
+  transform: translateY(-50%);
   transition: transform 0.28s ease;
+  pointer-events: none;
 }
 
 #main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__chevron {
-  transform: rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
 }
 
 /* Bonus panel — kompakt mini butonlar */
@@ -465,7 +472,7 @@
 #main-screen .nova-bonus-drawer__panel #match_fab {
   position: relative !important;
   display: grid !important;
-  grid-template-columns: 22px minmax(0, 1fr) 16px !important;
+  grid-template-columns: 24px minmax(0, 1fr) !important;
   grid-template-rows: 1fr !important;
   align-items: center !important;
   column-gap: 6px !important;
@@ -537,15 +544,7 @@
 }
 
 #main-screen .nova-bonus-drawer__panel .nova-bonus-mini-btn__egg {
-  grid-column: 3;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 18px !important;
-  font-size: 11px !important;
-  line-height: 1 !important;
-  opacity: 0.95 !important;
-  filter: drop-shadow(0 0 3px rgba(251, 191, 36, 0.45));
+  display: none !important;
 }
 
 #main-screen .nova-bonus-drawer__panel .nova-bonus-mini-btn--puzzle,
@@ -971,10 +970,14 @@
     column-gap: 2px !important;
   }
 
-  #main-screen .nova-main-left-hub,
+  #main-screen .nova-main-left-hub {
+    max-width: min(132px, 32vw) !important;
+    width: min(132px, 32vw) !important;
+  }
+
   #main-screen .nova-main-right-rail {
-    max-width: min(116px, 29.5vw) !important;
-    width: min(116px, 29.5vw) !important;
+    max-width: min(132px, 32vw) !important;
+    width: min(132px, 32vw) !important;
   }
 
   #main-screen .nova-main-stage {
@@ -1021,20 +1024,87 @@
 
   #main-screen .nova-main-left-hub,
   #main-screen .main-screen-hero-left.nova-main-left-hub {
-    max-width: min(116px, 29.5vw) !important;
-    width: min(116px, 29.5vw) !important;
+    max-width: min(132px, 32vw) !important;
+    width: min(132px, 32vw) !important;
     min-width: 0 !important;
   }
 
   #main-screen .nova-main-right-rail,
   #main-screen #main-screen-quest-slot {
-    max-width: min(116px, 29.5vw) !important;
-    width: min(116px, 29.5vw) !important;
+    max-width: min(132px, 32vw) !important;
+    width: min(132px, 32vw) !important;
   }
 
   #main-screen .nova-main-tab-avatar-body .student-photo {
     width: min(100%, 178px) !important;
     max-height: min(44vw, 220px) !important;
+  }
+}
+
+/* Masaüstü — hub içeriğe göre daralır, ekranda tam ortada */
+@media (min-width: 900px) {
+  #main-screen .main-profile-hero.nova-main-hub {
+    display: grid !important;
+    width: fit-content !important;
+    max-width: min(928px, 94vw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+    grid-template-columns: 176px minmax(300px, 420px) 176px !important;
+    grid-template-areas: "heroLeft heroMid heroRight" !important;
+    column-gap: clamp(14px, 2vw, 22px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #main-screen .nova-main-left-hub,
+  #main-screen .main-screen-hero-left.nova-main-left-hub {
+    grid-area: heroLeft !important;
+    max-width: 176px !important;
+    width: 176px !important;
+    justify-self: stretch !important;
+  }
+
+  #main-screen .nova-main-right-rail,
+  #main-screen #main-screen-quest-slot {
+    grid-area: heroRight !important;
+    max-width: 176px !important;
+    width: 176px !important;
+    justify-self: stretch !important;
+  }
+
+  #main-screen .nova-main-stage {
+    grid-area: heroMid !important;
+    justify-self: center !important;
+    max-width: 420px !important;
+    width: min(420px, 100%) !important;
+  }
+
+  #main-screen .nova-main-tab-avatar-body .student-photo {
+    width: min(100%, 228px) !important;
+    max-height: 285px !important;
+  }
+
+  #main-screen .nova-bonus-chest-toggle {
+    min-height: 48px;
+    padding: 9px 11px;
+  }
+
+  #main-screen .nova-bonus-chest-toggle__title {
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    line-height: 1.14;
+  }
+
+  #main-screen .nova-bonus-chest-toggle__gem {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  #main-screen .nova-game-btn {
+    min-height: 50px;
   }
 }
 

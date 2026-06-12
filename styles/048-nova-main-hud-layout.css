@@ -956,17 +956,17 @@
   100%{ opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--r)); }
 }
 
-/* --- Main HUD professional side actions --- */
-#main-screen .main-profile-hero{
+/* --- Main HUD professional side actions (nova-main-hub hariç) --- */
+#main-screen .main-profile-hero:not(.nova-main-hub){
   grid-template-columns: minmax(120px, 1fr) minmax(0, min(88vw, 420px)) minmax(120px, 1fr);
   column-gap: clamp(22px, 4.2vw, 54px);
 }
-#main-screen .main-screen-hero-left{
+#main-screen .main-screen-hero-left:not(.nova-main-left-hub){
   max-width: clamp(136px, 18vw, 190px);
   align-items: flex-end;
   padding-right: clamp(6px, 1.2vw, 14px);
 }
-#main-screen .main-screen-hero-right{
+#main-screen .main-screen-hero-right:not(.nova-main-right-rail){
   max-width: clamp(136px, 18vw, 190px);
   align-items: flex-start;
   padding-left: clamp(6px, 1.2vw, 14px);
@@ -987,9 +987,9 @@
 #main-screen .main-screen-hero-right .surprise-box{
   transform: none !important;
 }
-#main-screen #puzzle_fab,
-#main-screen #fillblank_fab,
-#main-screen #match_fab,
+#main-screen #puzzle_fab:not(.nova-bonus-mini-btn),
+#main-screen #fillblank_fab:not(.nova-bonus-mini-btn),
+#main-screen #match_fab:not(.nova-bonus-mini-btn),
 #main-screen #homework_fab.homework-fab,
 #main-screen #quest_fab.quest-fab{
   width: 100% !important;
@@ -1009,15 +1009,15 @@
   align-items: center !important;
   justify-content: center !important;
 }
-#main-screen #puzzle_fab{
+#main-screen #puzzle_fab:not(.nova-bonus-mini-btn){
   background: linear-gradient(145deg, #7c3aed 0%, #6d28d9 55%, #4c1d95 100%) !important;
   border: 1px solid rgba(196, 181, 253, 0.62) !important;
 }
-#main-screen #fillblank_fab{
+#main-screen #fillblank_fab:not(.nova-bonus-mini-btn){
   background: linear-gradient(145deg, #f97316 0%, #ef4444 56%, #be123c 100%) !important;
   border: 1px solid rgba(254, 215, 170, 0.7) !important;
 }
-#main-screen #match_fab{
+#main-screen #match_fab:not(.nova-bonus-mini-btn){
   background: linear-gradient(145deg, #06b6d4 0%, #0ea5e9 56%, #2563eb 100%) !important;
   border: 1px solid rgba(186, 230, 253, 0.7) !important;
 }
@@ -1030,9 +1030,9 @@
   border: 1px solid rgba(187, 247, 208, 0.66) !important;
   animation: none !important;
 }
-#main-screen #puzzle_fab:hover,
-#main-screen #fillblank_fab:hover,
-#main-screen #match_fab:hover,
+#main-screen #puzzle_fab:not(.nova-bonus-mini-btn):hover,
+#main-screen #fillblank_fab:not(.nova-bonus-mini-btn):hover,
+#main-screen #match_fab:not(.nova-bonus-mini-btn):hover,
 #main-screen #homework_fab.homework-fab:hover,
 #main-screen #quest_fab.quest-fab:hover{
   transform: translateY(-2px);

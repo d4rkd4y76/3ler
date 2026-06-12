@@ -2,8 +2,11 @@
 
 #main-screen .main-profile-hero.nova-main-hub {
   grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "heroLeft heroMid heroRight";
   column-gap: clamp(3px, 0.9vw, 6px);
   align-items: stretch;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: clamp(10px, 2.4vw, 16px) !important;
   padding-bottom: clamp(6px, 1.6vw, 12px) !important;
   padding-left: max(4px, env(safe-area-inset-left, 0px));
@@ -17,8 +20,8 @@
 
 /* — Sol kolon: ejderha yumurtası + bonus — */
 #main-screen .nova-main-left-hub {
-  max-width: min(124px, 31vw) !important;
-  width: min(124px, 31vw) !important;
+  max-width: min(136px, 33vw) !important;
+  width: min(136px, 33vw) !important;
   min-width: 0 !important;
   justify-self: end !important;
   display: flex !important;
@@ -46,8 +49,8 @@
 }
 
 #main-screen .nova-main-right-rail {
-  max-width: min(124px, 31vw) !important;
-  width: min(124px, 31vw) !important;
+  max-width: min(136px, 33vw) !important;
+  width: min(136px, 33vw) !important;
   justify-self: start !important;
   padding-bottom: clamp(8px, 2vw, 14px) !important;
   gap: clamp(8px, 2vw, 11px) !important;
@@ -400,13 +403,13 @@
   }
 
   #main-screen .nova-main-left-hub {
-    max-width: min(118px, 30vw) !important;
-    width: min(118px, 30vw) !important;
+    max-width: min(132px, 32vw) !important;
+    width: min(132px, 32vw) !important;
   }
 
   #main-screen .nova-main-right-rail {
-    max-width: min(118px, 30vw) !important;
-    width: min(118px, 30vw) !important;
+    max-width: min(132px, 32vw) !important;
+    width: min(132px, 32vw) !important;
   }
 
   #main-screen .nova-main-stage {
