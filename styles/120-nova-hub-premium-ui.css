@@ -233,12 +233,32 @@
   pointer-events: none;
 }
 
-/* ═══ SAĞ RAY — ÖĞREN / ÖDEV / GÖREV ═══ */
+/* ═══ HUB GRID — geniş merkez, yan raylar çerçeveye yakın ═══ */
+#main-screen .main-profile-hero.nova-main-hub {
+  grid-template-columns: auto minmax(0, 1fr) auto !important;
+  column-gap: clamp(2px, 0.7vw, 5px) !important;
+}
+
+#main-screen .nova-main-left-hub {
+  max-width: min(124px, 31vw) !important;
+  width: min(124px, 31vw) !important;
+  justify-self: end !important;
+}
+
 #main-screen .nova-main-right-rail {
-  max-width: min(200px, 38vw) !important;
-  gap: clamp(8px, 2vw, 11px) !important;
+  max-width: min(124px, 31vw) !important;
+  width: min(124px, 31vw) !important;
+  justify-self: start !important;
+  gap: clamp(7px, 1.8vw, 10px) !important;
   padding-top: clamp(2px, 0.6vw, 4px) !important;
 }
+
+#main-screen .nova-main-stage {
+  max-width: min(100%, 400px) !important;
+  width: 100% !important;
+}
+
+/* ═══ SAĞ RAY — ÖĞREN / ÖDEV / GÖREV ═══ */
 
 #main-screen .nova-main-right-rail .nova-game-btn,
 #main-screen .nova-main-right-rail #homework_fab,
@@ -283,8 +303,7 @@
 
 /* ═══ SOL — BONUS SANDIK (farklı görsel) ═══ */
 #main-screen .nova-main-left-hub {
-  max-width: min(168px, 36vw) !important;
-  gap: clamp(8px, 2vw, 11px) !important;
+  gap: clamp(7px, 1.8vw, 10px) !important;
 }
 
 #main-screen .nova-bonus-chest-toggle {
@@ -446,7 +465,7 @@
 #main-screen .nova-bonus-drawer__panel #match_fab {
   position: relative !important;
   display: grid !important;
-  grid-template-columns: 24px minmax(0, 1fr) 18px !important;
+  grid-template-columns: 22px minmax(0, 1fr) 16px !important;
   grid-template-rows: 1fr !important;
   align-items: center !important;
   column-gap: 6px !important;
@@ -457,17 +476,17 @@
   min-height: 36px !important;
   max-height: 36px !important;
   margin: 0 !important;
-  padding: 0 8px !important;
+  padding: 0 6px !important;
   border: 1.5px solid rgba(255, 255, 255, 0.24) !important;
   border-radius: 10px !important;
   font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif !important;
-  font-size: 9px !important;
+  font-size: clamp(7.5px, 1.9vw, 8.5px) !important;
   font-weight: 900 !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.03em !important;
   line-height: 1 !important;
   color: #fff !important;
   cursor: pointer !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   box-sizing: border-box !important;
   text-align: left !important;
   white-space: nowrap !important;
@@ -508,13 +527,13 @@
 #main-screen .nova-bonus-drawer__panel .nova-bonus-mini-btn__txt {
   grid-column: 2;
   min-width: 0 !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
   white-space: nowrap !important;
   text-align: left !important;
-  font-size: 9px !important;
+  font-size: clamp(7.5px, 1.9vw, 8.5px) !important;
   font-weight: 900 !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.02em !important;
 }
 
 #main-screen .nova-bonus-drawer__panel .nova-bonus-mini-btn__egg {
@@ -579,8 +598,8 @@
 
 /* ═══ MERKEZ VİTRİN — GELİŞTİRİLMİŞ CAROUSEL ═══ */
 #main-screen .nova-main-stage__frame {
-  padding: clamp(12px, 2.8vw, 18px) !important;
-  border-radius: clamp(22px, 5vw, 30px) !important;
+  padding: clamp(8px, 2vw, 12px) !important;
+  border-radius: clamp(18px, 4.2vw, 24px) !important;
   background:
     radial-gradient(ellipse 120% 80% at 50% -20%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
     radial-gradient(ellipse 80% 50% at 50% 110%, rgba(167, 139, 250, 0.1) 0%, transparent 50%),
@@ -594,23 +613,23 @@
 
 #main-screen .nova-main-carousel-nav {
   display: grid !important;
-  grid-template-columns: 36px 1fr 36px !important;
-  gap: clamp(6px, 1.5vw, 8px) !important;
-  margin-bottom: clamp(10px, 2.4vw, 14px) !important;
-  padding: clamp(8px, 2vw, 10px) !important;
-  border-radius: clamp(16px, 3.6vw, 20px) !important;
+  grid-template-columns: 30px minmax(0, 1fr) 30px !important;
+  gap: clamp(4px, 1vw, 6px) !important;
+  margin-bottom: clamp(8px, 2vw, 11px) !important;
+  padding: clamp(5px, 1.4vw, 7px) clamp(6px, 1.5vw, 8px) !important;
+  border-radius: clamp(12px, 2.8vw, 16px) !important;
   background: rgba(2, 6, 23, 0.72) !important;
   border: 1px solid rgba(148, 163, 184, 0.14) !important;
 }
 
 #main-screen .nova-main-carousel-nav__arrow {
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 11px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 9px !important;
   border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
   background: linear-gradient(160deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)) !important;
   color: #e2e8f0 !important;
-  font-size: 1.35rem !important;
+  font-size: 1.15rem !important;
   box-shadow:
     0 3px 0 rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
@@ -642,29 +661,29 @@
 
 #main-screen .nova-hub-tab-title-slot {
   width: 100%;
-  min-height: 36px;
+  min-height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: 0 2px;
+  overflow: visible;
+  padding: 0;
 }
 
 #main-screen .nova-hub-tab-title {
   display: block;
-  width: 100%;
-  max-width: 100%;
+  width: auto;
+  max-width: none;
   font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
-  font-size: clamp(10px, 2.6vw, 13px);
+  font-size: clamp(11px, 2.85vw, 13px);
   font-weight: 900;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
   color: #f8fafc;
   text-shadow: 0 0 14px rgba(56, 189, 248, 0.22);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  text-overflow: clip;
   line-height: 1.15;
   transition: opacity 0.18s ease, transform 0.2s ease;
 }
@@ -696,14 +715,38 @@
   display: none !important;
 }
 
-/* Panel alanı — yalnızca dış çerçeve; içerik (avatar/kahraman/lig) dokunulmaz */
+/* Panel alanı */
 #main-screen .nova-main-tab-panels {
-  min-height: clamp(210px, 44vw, 290px) !important;
-  border-radius: clamp(14px, 3.2vw, 18px);
-  background: rgba(2, 6, 23, 0.35);
-  border: 1px solid rgba(148, 163, 184, 0.08);
-  box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.2);
+  min-height: clamp(200px, 42vw, 272px) !important;
+  padding: clamp(4px, 1vw, 8px) clamp(2px, 0.6vw, 6px) !important;
+  border-radius: clamp(12px, 2.8vw, 16px);
+  background: rgba(2, 6, 23, 0.28);
+  border: 1px solid rgba(148, 163, 184, 0.06);
+  box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.18);
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+#main-screen .nova-main-tab-avatar-body {
+  width: 100% !important;
+  padding: clamp(4px, 1vw, 8px) clamp(2px, 0.5vw, 4px) !important;
+  gap: clamp(8px, 2vw, 12px) !important;
+}
+
+#main-screen .nova-main-tab-avatar-body .student-photo {
+  width: min(100%, 192px) !important;
+  height: auto !important;
+  max-height: min(46vw, 240px) !important;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+#main-screen .nova-main-tab-avatar-body .student-name-stage,
+#main-screen .nova-main-tab-avatar-body .student-name {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Avatar / isim / kahraman — orijinal stiller korunur; lig istatistikleri aşağıda premium */
@@ -924,13 +967,74 @@
 }
 
 @media (max-width: 720px) {
+  #main-screen .main-profile-hero.nova-main-hub {
+    column-gap: 2px !important;
+  }
+
+  #main-screen .nova-main-left-hub,
+  #main-screen .nova-main-right-rail {
+    max-width: min(116px, 29.5vw) !important;
+    width: min(116px, 29.5vw) !important;
+  }
+
+  #main-screen .nova-main-stage {
+    max-width: 100% !important;
+  }
+
   #main-screen .nova-hub-tab-title {
-    font-size: clamp(9px, 2.4vw, 11px);
-    letter-spacing: 0.16em;
+    font-size: clamp(10px, 2.7vw, 12px);
+    letter-spacing: 0.1em;
+  }
+
+  #main-screen .nova-main-carousel-nav {
+    grid-template-columns: 28px minmax(0, 1fr) 28px !important;
+  }
+
+  #main-screen .nova-main-carousel-nav__arrow {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1.05rem !important;
   }
 
   #main-screen .nova-game-btn {
-    min-height: clamp(42px, 11vw, 48px);
+    min-height: clamp(40px, 10.5vw, 46px);
+    padding-left: clamp(7px, 1.8vw, 9px) !important;
+    padding-right: clamp(7px, 1.8vw, 9px) !important;
+  }
+
+  #main-screen .nova-game-btn__title {
+    font-size: clamp(9px, 2.3vw, 10.5px) !important;
+  }
+
+  #main-screen .nova-game-btn__sub {
+    font-size: clamp(7px, 1.8vw, 8px) !important;
+  }
+}
+
+@media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  #main-screen .main-profile-hero.nova-main-hub {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    column-gap: clamp(2px, 0.6vw, 4px) !important;
+    padding-left: max(2px, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(2px, env(safe-area-inset-right, 0px)) !important;
+  }
+
+  #main-screen .nova-main-left-hub,
+  #main-screen .main-screen-hero-left.nova-main-left-hub {
+    max-width: min(116px, 29.5vw) !important;
+    width: min(116px, 29.5vw) !important;
+    min-width: 0 !important;
+  }
+
+  #main-screen .nova-main-right-rail,
+  #main-screen #main-screen-quest-slot {
+    max-width: min(116px, 29.5vw) !important;
+    width: min(116px, 29.5vw) !important;
+  }
+
+  #main-screen .nova-main-tab-avatar-body .student-photo {
+    width: min(100%, 178px) !important;
+    max-height: min(44vw, 220px) !important;
   }
 }
 
