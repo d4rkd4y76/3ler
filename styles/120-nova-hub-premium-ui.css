@@ -1,37 +1,41 @@
 /* Ana hub — premium oyun butonları + geliştirilmiş Avatar/Kahraman/Lig vitrin */
 
-/* ═══ OYUN BUTONU TEMEL SİSTEMİ ═══ */
+/* ═══ HUB RAY BUTONLARI — Premium v2 (ÖĞREN · ÖDEV · GÖREV · Yumurta) ═══ */
 #main-screen .nova-game-btn {
-  --ngb-face: linear-gradient(168deg, #4f46e5 0%, #3730a3 55%, #1e1b4b 100%);
-  --ngb-edge: rgba(255, 255, 255, 0.42);
-  --ngb-shadow: rgba(15, 23, 42, 0.55);
-  --ngb-glow: rgba(99, 102, 241, 0.45);
-  --ngb-icon-bg: rgba(255, 255, 255, 0.16);
+  --nrb-a: #6366f1;
+  --nrb-b: #4338ca;
+  --nrb-c: #1e1b4b;
+  --nrb-glow: rgba(99, 102, 241, 0.55);
+  --nrb-ring: rgba(199, 210, 254, 0.75);
+  --nrb-shine: rgba(255, 255, 255, 0.38);
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: clamp(34px, 8.5vw, 40px) minmax(0, 1fr);
   align-items: center;
-  justify-content: flex-start;
-  gap: clamp(8px, 2vw, 11px);
+  column-gap: clamp(7px, 1.8vw, 9px);
   width: 100%;
-  min-height: clamp(46px, 11.5vw, 54px);
-  padding: clamp(7px, 1.8vw, 9px) clamp(10px, 2.4vw, 13px);
-  border: 2px solid var(--ngb-edge);
-  border-radius: clamp(14px, 3.2vw, 17px);
-  background: var(--ngb-face);
+  min-height: clamp(50px, 12.5vw, 58px);
+  padding: clamp(7px, 1.7vw, 9px) clamp(9px, 2.2vw, 11px);
+  border: none;
+  border-radius: clamp(15px, 3.6vw, 18px);
+  background:
+    linear-gradient(168deg, var(--nrb-a) 0%, var(--nrb-b) 46%, var(--nrb-c) 100%);
   color: #f8fafc;
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, 'Baloo 2', sans-serif;
   box-shadow:
-    0 clamp(4px, 1vw, 6px) 0 rgba(0, 0, 0, 0.38),
-    0 clamp(10px, 2.4vw, 16px) clamp(20px, 5vw, 28px) var(--ngb-shadow),
-    0 0 clamp(16px, 4vw, 24px) var(--ngb-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.38),
-    inset 0 -5px 12px rgba(0, 0, 0, 0.22);
+    0 0 0 1px var(--nrb-ring),
+    0 0 0 2px rgba(0, 0, 0, 0.35),
+    0 5px 0 rgba(0, 0, 0, 0.42),
+    0 14px 28px rgba(0, 0, 0, 0.38),
+    0 0 22px var(--nrb-glow),
+    inset 0 1px 0 var(--nrb-shine),
+    inset 0 -7px 14px rgba(0, 0, 0, 0.28);
   transition:
-    transform 0.14s cubic-bezier(0.34, 1.4, 0.64, 1),
-    box-shadow 0.16s ease,
+    transform 0.16s cubic-bezier(0.34, 1.35, 0.64, 1),
+    box-shadow 0.18s ease,
     filter 0.16s ease;
   text-align: left;
   -webkit-tap-highlight-color: transparent;
@@ -42,12 +46,14 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.28) 0%,
-    rgba(255, 255, 255, 0.04) 38%,
-    rgba(0, 0, 0, 0.12) 100%
-  );
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.06) 32%,
+      transparent 52%,
+      rgba(0, 0, 0, 0.14) 100%
+    );
   pointer-events: none;
   z-index: 0;
 }
@@ -55,158 +61,189 @@
 #main-screen .nova-game-btn::after {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 14%;
-  right: 14%;
+  top: 1px;
+  left: 10%;
+  right: 10%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
   pointer-events: none;
   z-index: 1;
 }
 
+@keyframes novaRailBtnShimmer {
+  0%, 78%, 100% { transform: translateX(-130%) skewX(-12deg); opacity: 0; }
+  84% { opacity: 0.55; }
+  92% { transform: translateX(130%) skewX(-12deg); opacity: 0; }
+}
+
+#main-screen .nova-game-btn .nova-game-btn__icon::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 58%
+  );
+  transform: translateX(-130%) skewX(-12deg);
+  animation: novaRailBtnShimmer 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
 #main-screen .nova-game-btn:hover {
-  filter: brightness(1.08) saturate(1.05);
+  filter: brightness(1.06) saturate(1.04);
   transform: translateY(-2px);
   box-shadow:
-    0 clamp(6px, 1.4vw, 8px) 0 rgba(0, 0, 0, 0.34),
-    0 clamp(14px, 3.2vw, 20px) clamp(24px, 5.5vw, 32px) var(--ngb-shadow),
-    0 0 clamp(22px, 5vw, 30px) var(--ngb-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42),
-    inset 0 -5px 12px rgba(0, 0, 0, 0.2);
+    0 0 0 1px var(--nrb-ring),
+    0 0 0 2px rgba(0, 0, 0, 0.32),
+    0 7px 0 rgba(0, 0, 0, 0.38),
+    0 18px 34px rgba(0, 0, 0, 0.4),
+    0 0 30px var(--nrb-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    inset 0 -7px 14px rgba(0, 0, 0, 0.24);
 }
 
 #main-screen .nova-game-btn:active {
-  transform: translateY(3px) scale(0.985);
+  transform: translateY(3px) scale(0.988);
+  filter: brightness(0.98);
   box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.35),
-    0 6px 14px var(--ngb-shadow),
-    inset 0 2px 6px rgba(0, 0, 0, 0.28);
+    0 0 0 1px var(--nrb-ring),
+    0 2px 0 rgba(0, 0, 0, 0.4),
+    0 8px 16px rgba(0, 0, 0, 0.32),
+    0 0 16px var(--nrb-glow),
+    inset 0 2px 8px rgba(0, 0, 0, 0.32);
 }
 
 #main-screen .nova-game-btn__icon {
   position: relative;
   z-index: 2;
+  grid-column: 1;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: clamp(30px, 7.5vw, 36px);
-  height: clamp(30px, 7.5vw, 36px);
-  border-radius: clamp(10px, 2.4vw, 12px);
-  background: var(--ngb-icon-bg);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  width: clamp(34px, 8.5vw, 40px);
+  height: clamp(34px, 8.5vw, 40px);
+  border-radius: clamp(11px, 2.7vw, 13px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.42) 0%, transparent 52%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.22) 0%, rgba(0, 0, 0, 0.18) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 3px 8px rgba(0, 0, 0, 0.22);
-  font-size: clamp(15px, 3.8vw, 18px);
+    inset 0 2px 5px rgba(255, 255, 255, 0.28),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.22),
+    0 4px 10px rgba(0, 0, 0, 0.28);
+  font-size: clamp(16px, 4vw, 19px);
   line-height: 1;
 }
 
 #main-screen .nova-game-btn__text {
   position: relative;
   z-index: 2;
+  grid-column: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 1px;
+  gap: 0;
   min-width: 0;
-  flex: 1 1 auto;
+  padding-right: 2px;
 }
 
 #main-screen .nova-game-btn__title {
-  font-size: clamp(10px, 2.5vw, 12px);
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  line-height: 1.1;
+  font-size: clamp(9.5px, 2.45vw, 11.5px);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.12;
   text-transform: uppercase;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(255, 255, 255, 0.12);
   white-space: nowrap;
 }
 
 #main-screen .nova-game-btn__sub {
-  font-size: clamp(7px, 1.75vw, 8.5px);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  line-height: 1.15;
-  color: rgba(255, 255, 255, 0.72);
-  white-space: nowrap;
+  display: none !important;
+}
+
+#main-screen .nova-game-btn__title--stack {
+  white-space: normal;
+  letter-spacing: 0.065em;
+  line-height: 1.14;
+  font-size: clamp(8.5px, 2.15vw, 10.5px);
+  text-align: left;
 }
 
 /* — Renk varyantları — */
 #main-screen .nova-game-btn--learn {
-  --ngb-face: linear-gradient(168deg, #a855f7 0%, #7c3aed 48%, #4c1d95 100%);
-  --ngb-edge: rgba(233, 213, 255, 0.55);
-  --ngb-shadow: rgba(76, 29, 149, 0.5);
-  --ngb-glow: rgba(168, 85, 247, 0.42);
+  --nrb-a: #c084fc;
+  --nrb-b: #7c3aed;
+  --nrb-c: #4c1d95;
+  --nrb-glow: rgba(192, 132, 252, 0.5);
+  --nrb-ring: rgba(233, 213, 255, 0.72);
 }
 
 #main-screen .nova-game-btn--homework {
-  --ngb-face: linear-gradient(168deg, #38bdf8 0%, #2563eb 50%, #1e3a8a 100%);
-  --ngb-edge: rgba(186, 230, 253, 0.62);
-  --ngb-shadow: rgba(30, 58, 138, 0.48);
-  --ngb-glow: rgba(56, 189, 248, 0.38);
+  --nrb-a: #60a5fa;
+  --nrb-b: #2563eb;
+  --nrb-c: #1e3a8a;
+  --nrb-glow: rgba(96, 165, 250, 0.48);
+  --nrb-ring: rgba(191, 219, 254, 0.75);
 }
 
 #main-screen .nova-game-btn--quest {
-  --ngb-face: linear-gradient(168deg, #4ade80 0%, #16a34a 50%, #14532d 100%);
-  --ngb-edge: rgba(187, 247, 208, 0.58);
-  --ngb-shadow: rgba(20, 83, 45, 0.48);
-  --ngb-glow: rgba(74, 222, 128, 0.35);
+  --nrb-a: #4ade80;
+  --nrb-b: #16a34a;
+  --nrb-c: #14532d;
+  --nrb-glow: rgba(74, 222, 128, 0.45);
+  --nrb-ring: rgba(187, 247, 208, 0.72);
 }
 
-#main-screen .nova-game-btn--bonus {
-  --ngb-face: linear-gradient(168deg, #fbbf24 0%, #d97706 48%, #92400e 100%);
-  --ngb-edge: rgba(254, 243, 199, 0.62);
-  --ngb-shadow: rgba(120, 53, 15, 0.52);
-  --ngb-glow: rgba(251, 191, 36, 0.38);
-  --ngb-icon-bg: rgba(255, 255, 255, 0.2);
-  color: #fffbeb;
+#main-screen .nova-game-btn--yumurta {
+  --nrb-a: #a78bfa;
+  --nrb-b: #6d28d9;
+  --nrb-c: #312e81;
+  --nrb-glow: rgba(167, 139, 250, 0.5);
+  --nrb-ring: rgba(253, 224, 71, 0.55);
 }
 
-#main-screen .nova-game-btn--puzzle {
-  --ngb-face: linear-gradient(168deg, #a78bfa 0%, #7c3aed 50%, #4c1d95 100%);
-  --ngb-edge: rgba(221, 214, 254, 0.58);
-  --ngb-shadow: rgba(76, 29, 149, 0.45);
-  --ngb-glow: rgba(167, 139, 250, 0.32);
+#main-screen .nova-bonus-chest-toggle.nova-game-btn {
+  padding-right: clamp(18px, 4.2vw, 22px) !important;
 }
 
-#main-screen .nova-game-btn--fillblank {
-  --ngb-face: linear-gradient(168deg, #fb923c 0%, #ea580c 50%, #9a3412 100%);
-  --ngb-edge: rgba(254, 215, 170, 0.62);
-  --ngb-shadow: rgba(124, 45, 18, 0.48);
-  --ngb-glow: rgba(251, 146, 60, 0.32);
-}
-
-#main-screen .nova-game-btn--match {
-  --ngb-face: linear-gradient(168deg, #22d3ee 0%, #0284c7 50%, #1e3a8a 100%);
-  --ngb-edge: rgba(186, 230, 253, 0.62);
-  --ngb-shadow: rgba(30, 58, 138, 0.45);
-  --ngb-glow: rgba(34, 211, 238, 0.32);
-}
-
-/* Bonus açık durumu */
-#main-screen .nova-bonus-drawer.is-open .nova-game-btn--bonus {
-  filter: brightness(1.06);
-  box-shadow:
-    0 4px 0 rgba(0, 0, 0, 0.32),
-    0 12px 24px var(--ngb-shadow),
-    0 0 28px var(--ngb-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-chest-toggle.nova-game-btn {
+  --nrb-ring: rgba(253, 224, 71, 0.85);
+  --nrb-glow: rgba(251, 191, 36, 0.55);
+  filter: brightness(1.05);
 }
 
 #main-screen .nova-bonus-drawer__chevron {
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-  margin-left: auto;
-  font-size: clamp(9px, 2.2vw, 11px);
-  opacity: 0.85;
-  transition: transform 0.28s cubic-bezier(0.34, 1.2, 0.64, 1);
+  position: absolute;
+  right: clamp(5px, 1.2vw, 7px);
+  top: 50%;
+  z-index: 4;
+  width: clamp(13px, 3.2vw, 15px);
+  height: clamp(13px, 3.2vw, 15px);
+  margin: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: clamp(6px, 1.5vw, 7px);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  opacity: 0.9;
+  transform: translateY(-50%);
+  transition: transform 0.26s cubic-bezier(0.34, 1.2, 0.64, 1);
+  pointer-events: none;
 }
 
 #main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__chevron {
-  transform: rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
 }
 
 /* Rozet (ödev/görev) */
@@ -214,22 +251,25 @@
 #main-screen .nova-game-btn .hw-badge,
 #main-screen .nova-game-btn .q-badge {
   position: absolute;
-  top: -4px;
-  right: -4px;
-  z-index: 5;
-  min-width: clamp(18px, 4.5vw, 22px);
-  height: clamp(18px, 4.5vw, 22px);
+  top: -5px;
+  right: -5px;
+  z-index: 6;
+  min-width: clamp(19px, 4.8vw, 22px);
+  height: clamp(19px, 4.8vw, 22px);
   padding: 0 5px;
   border-radius: 999px;
   display: grid;
   place-items: center;
-  font-size: clamp(9px, 2.2vw, 11px);
-  font-weight: 900;
+  font-size: clamp(9px, 2.2vw, 10px);
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
   color: #fff;
-  background: linear-gradient(180deg, #fb7185 0%, #e11d48 100%);
-  border: 2px solid rgba(15, 23, 42, 0.85);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 12px rgba(244, 63, 94, 0.45);
+  background: linear-gradient(180deg, #fb7185 0%, #e11d48 55%, #be123c 100%);
+  border: 2px solid rgba(15, 23, 42, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(254, 202, 202, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.45),
+    0 0 14px rgba(244, 63, 94, 0.5);
   pointer-events: none;
 }
 
@@ -301,135 +341,13 @@
   display: none !important;
 }
 
-/* ═══ SOL — BONUS SANDIK (farklı görsel) ═══ */
+/* ═══ SOL — BONUS SANDIK ═══ */
 #main-screen .nova-main-left-hub {
   gap: clamp(7px, 1.8vw, 10px) !important;
 }
 
-#main-screen .nova-bonus-chest-toggle {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: clamp(5px, 1.2vw, 7px);
+#main-screen .nova-bonus-chest-toggle.nova-game-btn {
   width: 100%;
-  min-height: clamp(44px, 11vw, 52px);
-  padding: clamp(7px, 1.8vw, 9px) clamp(20px, 4.5vw, 22px) clamp(7px, 1.8vw, 9px) clamp(7px, 1.6vw, 9px);
-  border: 2px solid rgba(167, 139, 250, 0.55);
-  border-radius: clamp(12px, 2.8vw, 15px);
-  background:
-    linear-gradient(145deg, rgba(76, 29, 149, 0.92) 0%, rgba(49, 46, 129, 0.96) 45%, rgba(30, 27, 75, 0.98) 100%);
-  color: #f5f3ff;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow:
-    0 4px 0 rgba(30, 27, 75, 0.9),
-    0 10px 22px rgba(49, 46, 129, 0.45),
-    0 0 20px rgba(167, 139, 250, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: transform 0.14s ease, box-shadow 0.16s ease, filter 0.16s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-#main-screen .nova-bonus-chest-toggle::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.14) 48%,
-    transparent 62%
-  );
-  transform: translateX(-120%);
-  animation: novaBonusChestShine 4.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes novaBonusChestShine {
-  0%, 72%, 100% { transform: translateX(-120%); }
-  82% { transform: translateX(120%); }
-}
-
-#main-screen .nova-bonus-chest-toggle:hover {
-  filter: brightness(1.07);
-  transform: translateY(-1px);
-}
-
-#main-screen .nova-bonus-chest-toggle:active {
-  transform: translateY(3px);
-  box-shadow:
-    0 1px 0 rgba(30, 27, 75, 0.9),
-    0 4px 12px rgba(49, 46, 129, 0.35),
-    inset 0 2px 6px rgba(0, 0, 0, 0.25);
-}
-
-#main-screen .nova-bonus-chest-toggle__gem {
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: clamp(28px, 7vw, 34px);
-  height: clamp(28px, 7vw, 34px);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fde68a, #d97706 70%, #92400e 100%);
-  border: 2px solid rgba(254, 243, 199, 0.7);
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.45);
-  font-size: clamp(14px, 3.5vw, 17px);
-  line-height: 1;
-}
-
-#main-screen .nova-bonus-chest-toggle__text {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0;
-  overflow: visible;
-}
-
-#main-screen .nova-bonus-chest-toggle__title {
-  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
-  font-size: clamp(8px, 2vw, 10px);
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  line-height: 1.12;
-  color: #fef9c3;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 12px rgba(251, 191, 36, 0.2);
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-  word-break: keep-all;
-}
-
-#main-screen .nova-bonus-chest-toggle__sub {
-  display: none !important;
-}
-
-#main-screen .nova-bonus-drawer.is-open .nova-bonus-chest-toggle {
-  border-color: rgba(251, 191, 36, 0.65);
-  box-shadow:
-    0 4px 0 rgba(30, 27, 75, 0.9),
-    0 10px 24px rgba(49, 46, 129, 0.5),
-    0 0 28px rgba(251, 191, 36, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
-}
-
-#main-screen .nova-bonus-drawer__chevron {
-  position: absolute;
-  right: clamp(6px, 1.4vw, 8px);
-  top: 50%;
-  flex-shrink: 0;
-  margin-left: 0;
-  font-size: clamp(7px, 1.7vw, 9px);
-  opacity: 0.75;
-  transform: translateY(-50%);
-  transition: transform 0.28s ease;
-  pointer-events: none;
-}
-
-#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__chevron {
-  transform: translateY(-50%) rotate(180deg);
 }
 
 /* Bonus panel — kompakt mini butonlar */
@@ -1000,18 +918,26 @@
   }
 
   #main-screen .nova-game-btn {
-    min-height: clamp(40px, 10.5vw, 46px);
-    padding-left: clamp(7px, 1.8vw, 9px) !important;
-    padding-right: clamp(7px, 1.8vw, 9px) !important;
+    min-height: clamp(46px, 11.5vw, 52px);
+    grid-template-columns: clamp(32px, 8vw, 36px) minmax(0, 1fr);
+  }
+
+  #main-screen .nova-game-btn__icon {
+    width: clamp(32px, 8vw, 36px);
+    height: clamp(32px, 8vw, 36px);
+    font-size: clamp(14px, 3.6vw, 17px);
   }
 
   #main-screen .nova-game-btn__title {
-    font-size: clamp(9px, 2.3vw, 10.5px) !important;
+    font-size: clamp(9px, 2.35vw, 10.5px) !important;
+    letter-spacing: 0.09em !important;
   }
 
-  #main-screen .nova-game-btn__sub {
-    font-size: clamp(7px, 1.8vw, 8px) !important;
+  #main-screen .nova-game-btn__title--stack {
+    font-size: clamp(8px, 2.05vw, 9.5px) !important;
+    letter-spacing: 0.055em !important;
   }
+
 }
 
 @media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
@@ -1086,24 +1012,8 @@
     max-height: 285px !important;
   }
 
-  #main-screen .nova-bonus-chest-toggle {
-    min-height: 48px;
-    padding: 9px 11px;
-  }
-
-  #main-screen .nova-bonus-chest-toggle__title {
-    font-size: 10.5px;
-    letter-spacing: 0.02em;
-    line-height: 1.14;
-  }
-
-  #main-screen .nova-bonus-chest-toggle__gem {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-
-  #main-screen .nova-game-btn {
+  #main-screen .nova-main-right-rail .nova-game-btn,
+  #main-screen .nova-main-left-hub .nova-bonus-chest-toggle.nova-game-btn {
     min-height: 50px;
   }
 }
@@ -1117,6 +1027,67 @@
     transition: none !important;
     animation: none !important;
   }
+
+  #main-screen .nova-game-btn .nova-game-btn__icon::after {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
+/* 048 HUD layout — nova-game-btn ray sıfırlama */
+#main-screen #homework_fab.homework-fab.nova-game-btn,
+#main-screen #quest_fab.quest-fab.nova-game-btn {
+  width: 100% !important;
+  min-height: clamp(50px, 12.5vw, 58px) !important;
+  height: auto !important;
+  padding: clamp(7px, 1.7vw, 9px) clamp(9px, 2.2vw, 11px) !important;
+  border: none !important;
+  border-radius: clamp(15px, 3.6vw, 18px) !important;
+  display: grid !important;
+  grid-template-columns: clamp(34px, 8.5vw, 40px) minmax(0, 1fr) !important;
+  align-items: center !important;
+  justify-content: unset !important;
+  text-align: left !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: none !important;
+  backdrop-filter: none !important;
+  overflow: visible !important;
+  animation: none !important;
+  background: linear-gradient(168deg, var(--nrb-a) 0%, var(--nrb-b) 46%, var(--nrb-c) 100%) !important;
+  box-shadow:
+    0 0 0 1px var(--nrb-ring),
+    0 0 0 2px rgba(0, 0, 0, 0.35),
+    0 5px 0 rgba(0, 0, 0, 0.42),
+    0 14px 28px rgba(0, 0, 0, 0.38),
+    0 0 22px var(--nrb-glow),
+    inset 0 1px 0 var(--nrb-shine),
+    inset 0 -7px 14px rgba(0, 0, 0, 0.28) !important;
+}
+
+#main-screen #homework_fab.homework-fab.nova-game-btn::after,
+#main-screen #quest_fab.quest-fab.nova-game-btn::after {
+  inset: auto !important;
+  top: 1px !important;
+  left: 10% !important;
+  right: 10% !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent) !important;
+}
+
+#main-screen #homework_fab.homework-fab.nova-game-btn:hover,
+#main-screen #quest_fab.quest-fab.nova-game-btn:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.06) saturate(1.04) !important;
+}
+
+#main-screen #homework_fab.homework-fab.nova-game-btn .hw-badge,
+#main-screen #quest_fab.quest-fab.nova-game-btn .q-badge {
+  top: -5px !important;
+  right: -5px !important;
+  transform: none !important;
 }
 
 /* Kilitli günlük etkinlik */

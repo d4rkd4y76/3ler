@@ -65,6 +65,29 @@
     }
   }
 
+  function stripRailSubtitles() {
+    var subs = document.querySelectorAll(
+      '#main-screen-quest-slot .nova-game-btn__sub, #learn-open-button .nova-game-btn__sub'
+    );
+    for (var i = 0; i < subs.length; i++) {
+      try { subs[i].remove(); } catch (_) {}
+    }
+  }
+
+  function upgradeLearnFab() {
+    var btn = document.getElementById('learn-open-button');
+    if (!btn) return;
+    if (btn.dataset.novaGameBtnUpgraded === '1') {
+      stripRailSubtitles();
+      return;
+    }
+    upgradeRailButton(btn, {
+      variant: 'learn',
+      icon: '📚',
+      title: 'ÖĞREN'
+    });
+  }
+
   function upgradeHomeworkFab() {
     var btn = document.getElementById('homework_fab');
     if (!btn) return;
@@ -72,7 +95,6 @@
       variant: 'homework',
       icon: '🚀',
       title: 'ÖDEV',
-      sub: 'Görevlerin',
       badgeEl: document.getElementById('homework_badge')
     });
   }
@@ -84,14 +106,15 @@
       variant: 'quest',
       icon: '⚔️',
       title: 'GÖREV',
-      sub: 'Haftalık',
       badgeEl: document.getElementById('quest_badge')
     });
   }
 
   function upgradeAll() {
+    upgradeLearnFab();
     upgradeHomeworkFab();
     upgradeQuestFab();
+    stripRailSubtitles();
     upgradeBonusButtons();
   }
 

@@ -1,7 +1,7 @@
 /* Kaptan Kabuk — konu listesi + öğrenme kartı okuyucu */
 
 /* ÖĞREN butonu — ana ekran */
-#main-screen #learn-open-button.nova-learn-rail-btn {
+#main-screen #learn-open-button.nova-learn-rail-btn:not(.nova-game-btn) {
   position: relative !important;
   width: 100% !important;
   max-width: 100% !important;
