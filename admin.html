@@ -383,7 +383,7 @@ window.NovaAdminExport = (function(){
                 <label>Kupa</label><input id="new_cup" type="number" min="0" value="0"/>
               </div>
               <div>
-                <label>Düello Kredisi</label><input id="new_duel" type="number" min="0" value="0"/>
+                <label>⚡ Düello Enerjisi</label><input id="new_duel" type="number" min="0" value="0"/>
               </div>
             </div>
             <div class="sticky-actions">
@@ -604,7 +604,7 @@ window.NovaAdminExport = (function(){
             <div class="sub" style="margin-bottom:8px">RTDB: <span class="mono">store/battleHeroes/{id}</span> · Öğrencide <span class="mono">battleHero</span>, <span class="mono">purchasedBattleHeroes/{id}</span> → <span class="mono">{ level: 1-4 }</span></div>
             <div class="card mt12" style="background:#0f172a;color:#e2e8f0;padding:12px;border-radius:12px">
               <h4 style="margin:0 0 8px">⚔️ Kahraman seviye sistemi</h4>
-              <div class="small">Satın alınca <b>Seviye 1</b> (giriş). Yükseltme: Sv.2 → 5000💎+1000🎫 (%50) · Sv.3 → 5000💎+2000🎫 (%20) · Sv.4 → 5000💎+2500🎫 (%5). Başarısız denemede kaynak harcanır.</div>
+              <div class="small">Satın alınca <b>Seviye 1</b> (giriş). Yükseltme: Sv.2 → 5000💎+1000⚡ (%50) · Sv.3 → 5000💎+2000⚡ (%20) · Sv.4 → 5000💎+2500⚡ (%5). Başarısız denemede kaynak harcanır.</div>
             </div>
             <div class="toolbar">
               <button class="btn acc" id="btnReloadStoreHeroes" type="button">Yenile</button>
@@ -954,7 +954,7 @@ window.NovaAdminExport = (function(){
             <button class="btn warn" id="btnResetCups">🏆 Kupaları Sıfırla</button>
           </div>
           <div class="center">
-            <button class="btn warn" id="btnResetDuel">⚔️ Düello Kredilerini Sıfırla</button>
+            <button class="btn warn" id="btnResetDuel">⚡ Düello Enerjilerini Sıfırla</button>
           </div>
         </div>
         <div class="hint mt12 danger">Bu işlemler geri alınamaz. İşlem kapsamı: <span class="mono">/classes/*/students/*</span></div>
@@ -3265,7 +3265,7 @@ window.NovaAdminExport = (function(){
         <div><label>Foto (URL)</label><input id="st_photo" type="text" value="${(st.photo||'').replace(/"/g,'&quot;')}" /></div>
         <div><label>Elmas</label><input id="st_diamond" type="number" min="0" value="${Number(st.diamond||0)}" /></div>
         <div><label>Kupa</label><input id="st_cup" type="number" min="0" value="${Number(st.gameCup||0)}" /></div>
-        <div><label>Düello Kredisi</label><input id="st_duel" type="number" min="0" value="${Number(st.duelCredits||0)}" /></div>
+        <div><label>⚡ Düello Enerjisi</label><input id="st_duel" type="number" min="0" value="${Number(st.duelCredits||0)}" /></div>
       </div>
       <div class="sticky-actions">
         <button class="btn ok" id="btnSaveSt">💾 Güncelle</button>
@@ -4390,9 +4390,9 @@ btnAddHeading.addEventListener('click', async ()=>{
   $('#btnResetDuel').addEventListener('click', async ()=>{
     if(!await guardReset()) return;
     const scope = $('#resetScope').value;
-    if(!confirm('Düello kredileri sıfırlansın mı?')) return;
+    if(!confirm('Düello enerjileri sıfırlansın mı?')) return;
     await eachStudent((cid,sid)=> rdb.ref(`classes/${cid}/students/${sid}/duelCredits`).set(0), scope);
-    alert('Düello kredileri sıfırlandı.');
+    alert('Düello enerjileri sıfırlandı.');
     listStudents();
   });
 

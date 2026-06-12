@@ -240,7 +240,7 @@ async function refreshDuelEntryGateNote(){
       const missCredits = Math.max(0, 15 - credits);
       const parts = [];
       if (missCup > 0) parts.push(`${missCup} kupa`);
-      if (missCredits > 0) parts.push(`${missCredits} düello kredisi`);
+      if (missCredits > 0) parts.push(`${missCredits} düello enerjisi`);
       note.textContent = `Düelloya katılman için ${parts.join(', ')} daha lazım.`;
       btn.classList.add('locked');
       btn.disabled = true;
@@ -512,8 +512,8 @@ async function processAutoMatchPair(m) {
       const s = document.getElementById('autoMatchSubtext');
       if (t) t.textContent = 'Yeni rakip aranıyor';
       if (!eligMe.eligible) {
-         if (s) s.textContent = 'Düello için en az 3 kupa ve 15 kredi gerekiyor.';
-         await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello kredisi gerekir.');
+         if (s) s.textContent = 'Düello için en az 3 kupa ve 15 ⚡ düello enerjisi gerekiyor.';
+         await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello enerjisi gerekir.');
          document.getElementById('matchmakingScreen').style.display = 'none';
          stopAutoMatchCoordinator();
          return;
@@ -553,7 +553,7 @@ async function processAutoMatchPair(m) {
    const cOth = credOth.exists() ? Number(credOth.val()) : 0;
    if (cMe < 15 || cOth < 15) {
       await clearAutoMatchCoordinatorMatch(m.id, classId);
-      await showAlert('Eşleşme iptal: düello kredisi uygun değil.');
+      await showAlert('Eşleşme iptal: düello enerjisi uygun değil.');
       document.getElementById('matchmakingScreen').style.display = 'none';
       stopAutoMatchCoordinator();
       return;
@@ -593,7 +593,7 @@ async function processAutoMatchPair(m) {
 document.getElementById('findDuelButton').addEventListener('click', async () => {
    const myGate = await checkDuelEligibility(selectedStudent.studentId, selectedStudent.classId);
    if (!myGate.eligible) {
-      await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello kredisi gerekir.');
+      await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello enerjisi gerekir.');
       return;
    }
    cleanupMatchmakingListeners();
@@ -1089,10 +1089,10 @@ async function claimSeriesAvatarFrame(item){
     const cost = Number(item && item.price || 0);
     const currentCredits = Number(userData.duelCredits || 0);
     if (currentCredits < cost){
-      await showAlert(`Yetersiz düello kredisi. Gerekli: ${cost}, mevcut: ${currentCredits}.`);
+      await showAlert(`Yetersiz düello enerjisi. Gerekli: ${cost}, mevcut: ${currentCredits}.`);
       return;
     }
-    const ok = await showConfirmation(`${cost} düello kredisi ile "${item.name}" avatar çerçevesini açmak istiyor musun?`);
+    const ok = await showConfirmation(`${cost} düello enerjisi ile "${item.name}" avatar çerçevesini açmak istiyor musun?`);
     if (!ok) return;
     await studentRef.update({
       duelCredits: currentCredits - cost,
@@ -1108,7 +1108,7 @@ async function claimSeriesAvatarFrame(item){
       __storeStudentCache = { key, ts: Date.now(), data: nextData };
     }catch(_){}
     await renderAvatarFrameStore(nextData, document.getElementById('profilePhotosContainer'));
-    await showAlert(`🏆 ${item.name} açıldı! (${cost} kredi harcandı)`);
+    await showAlert(`🏆 ${item.name} açıldı! (${cost} ⚡ düello enerjisi harcandı)`);
     try { await novaRefreshCharacterInventoryIfOpen(); } catch (_) {}
   }catch(e){
     console.error('Series frame claim error:', e);
@@ -1806,7 +1806,7 @@ async function renderAvatarFrameStore(userData, container){
         ${isOwned
           ? ''
           : (canClaim
-              ? `<span class="purchased-badge">🔥 Köşe Tamamlandı • ${cost} kredi</span>`
+              ? `<span class="purchased-badge">🔥 Köşe Tamamlandı • ${cost} ⚡</span>`
               : `<span class="series-lock-note">${escapeHtml(item.unlockRuleText || 'Köşeyi tamamla')}<br>${unlock.owned}/${unlock.total}</span>`)}
       </div>
       <div class="series-lock-note" style="margin-top:6px;max-width:220px;padding:8px 10px;border-radius:10px;border:1px solid rgba(148,163,184,.3);background:linear-gradient(180deg,rgba(30,41,59,.5),rgba(15,23,42,.65));color:#e2e8f0;line-height:1.35">
@@ -1814,9 +1814,9 @@ async function renderAvatarFrameStore(userData, container){
         <div style="margin-bottom:4px">${escapeHtml(perkLine)}</div>
         <div style="font-size:11px;color:#cbd5e1;margin-bottom:3px">🎯 ${escapeHtml(statusLine)}</div>
         <div style="font-size:11px;color:#a5b4fc;margin-bottom:3px">🧩 ${escapeHtml(progressLine)}</div>
-        <div style="font-size:11px;color:#fcd34d">💳 Açılış bedeli: ${cost} düello kredisi</div>
+        <div style="font-size:11px;color:#fcd34d">⚡ Açılış bedeli: ${cost} düello enerjisi</div>
       </div>
-      ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : (canClaim ? 'use-button' : 'buy-button')}" ${!isOwned && !canClaim ? 'disabled' : ''}>${isOwned ? 'Kullan' : (canClaim ? `✨ ${cost} Kredi ile Aç` : 'Kilitli')}</button>`}
+      ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : (canClaim ? 'use-button' : 'buy-button')}" ${!isOwned && !canClaim ? 'disabled' : ''}>${isOwned ? 'Kullan' : (canClaim ? `⚡ ${cost} Enerji ile Aç` : 'Kilitli')}</button>`}
     `;
     const button = card.querySelector('.profile-photo-button');
     if (button) {
@@ -3274,7 +3274,7 @@ document.querySelectorAll('.category-button').forEach(button => {
     });
 });
 
-// Düello kredisi satın alma fonksiyonu
+// Düello enerjisi satın alma fonksiyonu
 async function purchaseCredits(amount, cost) {
     // Satın almaya başlamadan önce onay soruyoruz
     const confirmed = await showConfirmation("Bu düello biletini satın almak istediğinizden emin misiniz?");
@@ -3306,7 +3306,7 @@ async function purchaseCredits(amount, cost) {
         document.getElementById('duel-credits-value').textContent = currentCredits + amount;
         try { refreshDuelEntryGateNote(); } catch(_){}
         
-        await showAlert('Düello hakkı satın alma başarılı!');
+        await showAlert('⚡ Düello enerjisi satın alma başarılı!');
         
     } catch (error) {
         console.error('Satın alma hatası:', error);
@@ -3364,7 +3364,7 @@ async function purchaseUnlimited(cost) {
             button.onclick = null;
         });
 
-        await showAlert('✨ Sınırsız düello hakkı aktifleştirildi!');
+        await showAlert('⚡ Sınırsız düello enerjisi aktifleştirildi!');
        
     } catch (error) {let chosen = shuffleArray(allQuestions).slice(0, 10);
         console.error('Satın alma hatası:', error);

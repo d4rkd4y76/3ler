@@ -336,7 +336,7 @@
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script defer src="js/screens/007-script-007.js?v=30260611session2"></script>
+<script defer src="js/screens/007-script-007.js?v=30260611enerji1"></script>
 <script defer src="js/screens/022-nova-kids-login-js.js?v=30260606loginarena1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260527hero_retry1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css" />
@@ -386,15 +386,21 @@
 <script>
 (function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
 </script>
-<button type="button" class="nova-bonus-drawer__toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
-<span class="nova-bonus-drawer__toggle-icon" aria-hidden="true">✨</span>
-<span class="nova-bonus-drawer__toggle-label">BONUS ETKİNLİKLER</span>
-<span class="nova-bonus-drawer__chevron" aria-hidden="true">▶</span>
+<button type="button" class="nova-bonus-chest-toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
+<span class="nova-bonus-chest-toggle__gem" aria-hidden="true">🎁</span>
+<span class="nova-bonus-chest-toggle__text">
+<strong class="nova-bonus-chest-toggle__title">BONUS ETKİNLİKLER</strong>
+<small class="nova-bonus-chest-toggle__sub">Mini oyunlar & ödüller</small>
+</span>
+<span class="nova-bonus-drawer__chevron" aria-hidden="true">▼</span>
 </button>
 <div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
 <span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="puzzle-fab" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">🧩 BULMACA</button>
-<span class="nova-fab-reward-tag nova-fab-reward-tag--egg" aria-hidden="true">🐉 EJDER YUMURTASI</span>
+<button type="button" class="nova-bonus-mini-btn nova-bonus-mini-btn--puzzle" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">
+<span class="nova-bonus-mini-btn__ico" aria-hidden="true">🧩</span>
+<span class="nova-bonus-mini-btn__txt">BULMACA</span>
+<span class="nova-bonus-mini-btn__egg" aria-hidden="true">🐉</span>
+</button>
 </span>
 </div>
 </div>
@@ -406,12 +412,9 @@
 <span aria-hidden="true">‹</span>
 </button>
 <div class="nova-main-carousel-nav__center">
-<div class="nova-main-carousel-nav__dots" id="nova-main-tab-dots" aria-hidden="true">
-<span class="nova-main-carousel-nav__dot is-active"></span>
-<span class="nova-main-carousel-nav__dot"></span>
-<span class="nova-main-carousel-nav__dot"></span>
+<div class="nova-hub-tab-title-slot" id="nova-main-tab-title-slot">
+<span class="nova-hub-tab-title" id="nova-main-tab-label" role="tab" aria-live="polite">AVATAR</span>
 </div>
-<span class="nova-main-carousel-nav__title" id="nova-main-tab-label" role="tab" aria-live="polite">Avatar</span>
 </div>
 <button type="button" class="nova-main-carousel-nav__arrow nova-main-carousel-nav__arrow--next" id="nova-main-tab-next" data-nova-main-tab-dir="next" aria-label="Sonraki görünüm">
 <span aria-hidden="true">›</span>
@@ -449,22 +452,19 @@
 <div class="star-frame" id="student-stars"></div>
 <div class="rank-label" id="student-rank"></div>
 <div class="student-stats-container">
-<div class="student-stats">
-<div class="stats-item trophy-stats">
-<div class="stats-glow trophy-glow"></div>
-<span class="stats-icon">🏆</span>
-<span class="stats-value trophy-value" id="game-cup-score">0</span>
+<div class="nova-lig-stats" role="list" aria-label="Oyuncu kaynakları">
+<div class="nova-lig-stat nova-lig-stat--cup stats-item trophy-stats" role="listitem">
+<span class="nova-lig-stat__icon stats-icon" aria-hidden="true">🏆</span>
+<span class="nova-lig-stat__track"><span class="nova-lig-stat__value stats-value trophy-value" id="game-cup-score">0</span></span>
 </div>
-<div class="stats-item diamond-stats">
-<div class="stats-glow diamond-glow"></div>
-<span class="stats-icon">💎</span>
-<span class="stats-value diamond-value" id="diamond-value">0</span>
+<div class="nova-lig-stat nova-lig-stat--gem stats-item diamond-stats" role="listitem">
+<span class="nova-lig-stat__icon stats-icon" aria-hidden="true">💎</span>
+<span class="nova-lig-stat__track"><span class="nova-lig-stat__value stats-value diamond-value" id="diamond-value">0</span></span>
 </div>
-<div class="stats-item credits-stats" id="credits-stats">
-<div class="stats-glow credits-glow"></div>
-<span class="stats-icon">⚔️</span>
-<span class="stats-value credits-value" id="duel-credits-value">0</span>
-<div class="tip-title" style="display: none;">Düello Hakkı</div>
+<div class="nova-lig-stat nova-lig-stat--energy stats-item credits-stats" id="credits-stats" role="listitem">
+<span class="nova-lig-stat__icon stats-icon" aria-hidden="true">⚡</span>
+<span class="nova-lig-stat__track"><span class="nova-lig-stat__value stats-value credits-value" id="duel-credits-value">0</span></span>
+<div class="tip-title" style="display: none;">Düello Enerjisi</div>
 </div>
 </div>
 </div>
@@ -474,9 +474,12 @@
 </div>
 </div>
 <div class="main-screen-hero-right nova-main-right-rail" id="main-screen-quest-slot">
-<button class="profile-tools-button nova-main-rail-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç">
-<span class="profile-tools-icon" aria-hidden="true">📚</span>
-<span class="profile-tools-text">ÖĞREN</span>
+<button class="nova-game-btn nova-game-btn--learn profile-tools-button nova-main-rail-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç" data-nova-game-btn-upgraded="1">
+<span class="nova-game-btn__icon" aria-hidden="true">📚</span>
+<span class="nova-game-btn__text">
+<span class="nova-game-btn__title">ÖĞREN</span>
+<span class="nova-game-btn__sub">Konular</span>
+</span>
 </button>
 </div>
 </div>
@@ -489,7 +492,7 @@
 </span>
 <div class="button-glow"></div>
 </button>
-<div class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 kredi.</div>
+<div class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 ⚡ düello enerjisi.</div>
 <button class="kupa-siralama-button" id="kupa-siralama-button" type="button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;"><span class="main-menu-icon" aria-hidden="true">🏆</span><span class="main-menu-label">Sezon Sıralaması</span></button>
 <button class="logout-button" id="logout-button" type="button"><span class="main-menu-icon" aria-hidden="true">↩</span><span class="main-menu-label">Çıkış Yap</span></button>
 </div>
@@ -943,13 +946,13 @@
 <div class="profile-categories nova-store-categories" id="novaStoreLegacyCategories" hidden aria-hidden="true"></div>
 </section>
 <div class="nova-store-stage">
-<!-- Düello Hakları Mağazası -->
+<!-- Düello Enerjisi Mağazası -->
 <div class="duel-credits-store" id="duelCreditsStore" style="display: none;">
 <div class="credits-packages-container">
 <!-- 100 Hak Paketi -->
 <div class="credit-package">
 <div class="package-header">
-<span class="package-amount">🎫 100 Düello Bileti</span>
+<span class="package-amount">⚡ 100 Düello Enerjisi</span>
 </div>
 <div class="package-price">
 <span class="diamond-amount">100</span>
@@ -962,7 +965,7 @@
 <!-- 300 Hak Paketi -->
 <div class="credit-package">
 <div class="package-header">
-<span class="package-amount">🎫 300 Düello Bileti</span>
+<span class="package-amount">⚡ 300 Düello Enerjisi</span>
 </div>
 <div class="package-price">
 <span class="diamond-amount">250</span>
@@ -975,7 +978,7 @@
 <!-- 750 Hak Paketi -->
 <div class="credit-package">
 <div class="package-header">
-<span class="package-amount">🎫 750 Düello Bileti</span>
+<span class="package-amount">⚡ 750 Düello Enerjisi</span>
 </div>
 <div class="package-price">
 <span class="diamond-amount">500</span>
@@ -1007,7 +1010,7 @@
 <script defer src="js/ui/005-nova-screen-loader.js"></script>
 <script defer src="js/core/nova-store-avatar-categories.js?v=30260605storeboot2"></script>
 <script defer src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
-<script defer src="js/core/008-script-008.js?v=30260611session1"></script>
+<script defer src="js/core/008-script-008.js?v=30260611enerji1"></script>
 <script defer src="js/core/009-script-009.js?v=30260605rank3"></script>
 <script defer src="js/core/010-script-010.js?v=30260604qbadges2"></script>
 <script defer src="js/ui/011-script-011.js"></script>
@@ -1580,7 +1583,7 @@
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css?v=30260606loginarena2" />
 <link rel="stylesheet" href="styles/116-nova-login-arena.css?v=30260611loginfix2" />
 <script defer src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
-<script defer src="js/ui/012-nova-store-hub.js?v=30260605storeboot2"></script>
+<script defer src="js/ui/012-nova-store-hub.js?v=30260611enerji1"></script>
 <!-- Eski SVG temel kahraman scriptleri kaldırıldı (performans) — Alev Bot, Turbo, Çılgın Kanat, Buba, Pati -->
 <script defer src="js/ui/011e-nova-hero-sp-fx-core.js?v=30260528epic1"></script>
 <link rel="stylesheet" href="styles/098-nova-firtina-okcu-hero.css?v=30260604firtinadet1" />
@@ -1637,13 +1640,14 @@
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
 <script defer src="js/ui/nova-dragon-egg.js?v=30260608degg1"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
-<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611session2"></script>
+<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611enerji1"></script>
+<script defer src="js/ui/nova-hub-game-buttons.js?v=30260611hubpremium3"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611session2"></script>
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
-<script defer src="js/ui/013-nova-hero-level-system.js?v=30260605trial2"></script>
+<script defer src="js/ui/013-nova-hero-level-system.js?v=30260611enerji1"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260611maintabs2"></script>
 <script defer src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
 <link rel="stylesheet" href="styles/115-nova-player-card-modal.css?v=30260606playercard9" />
@@ -1665,7 +1669,8 @@
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
 <link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260611kabuk1" />
-<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611maintabs3" />
+<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611stats2" />
+<link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611stats3" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */

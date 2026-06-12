@@ -68,8 +68,8 @@
 .trophy-stats.nova-slot-pending,
 .credits-stats.nova-slot-pending,
 .diamond-stats.nova-slot-pending{
-  --nova-slot-min-h: 2rem;
-  --nova-slot-min-w: 2.75rem;
+  --nova-slot-min-h: 42px;
+  --nova-slot-min-w: 100%;
 }
 .nova-slot-pending .stats-value,
 .nova-slot-pending .student-name,

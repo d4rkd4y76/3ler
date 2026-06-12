@@ -10,7 +10,7 @@
   var heroLoadPromise = null;
   var activeTab = 'avatar';
   var TAB_ORDER = ['avatar', 'kahraman', 'lig'];
-  var TAB_LABELS = { avatar: 'Avatar', kahraman: 'Kahraman', lig: 'Lig' };
+  var TAB_LABELS = { avatar: 'AVATAR', kahraman: 'KAHRAMAN', lig: 'LİG' };
 
   function tabIndex(name) {
     var idx = TAB_ORDER.indexOf(name);
@@ -24,18 +24,28 @@
   }
 
   function updateCarouselChrome(name) {
-    var label = document.getElementById('nova-main-tab-label');
-    var dotsWrap = document.getElementById('nova-main-tab-dots');
-    if (label) {
-      label.textContent = TAB_LABELS[name] || name;
-      label.setAttribute('aria-controls', 'nova-main-tab-' + name);
-    }
-    if (dotsWrap) {
-      var dots = dotsWrap.querySelectorAll('.nova-main-carousel-nav__dot');
-      for (var i = 0; i < TAB_ORDER.length; i++) {
-        if (dots[i]) dots[i].classList.toggle('is-active', TAB_ORDER[i] === name);
+    var titleEl = document.getElementById('nova-main-tab-label');
+    var text = TAB_LABELS[name] || String(name || '').toUpperCase();
+
+    if (titleEl) {
+      if (titleEl.textContent !== text) {
+        titleEl.classList.add('is-leaving');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            titleEl.textContent = text;
+            titleEl.setAttribute('aria-controls', 'nova-main-tab-' + name);
+            titleEl.classList.remove('is-leaving');
+            titleEl.classList.add('is-entering');
+            setTimeout(function () {
+              titleEl.classList.remove('is-entering');
+            }, 240);
+          });
+        });
+      } else {
+        titleEl.setAttribute('aria-controls', 'nova-main-tab-' + name);
       }
     }
+
     var prevBtn = document.getElementById('nova-main-tab-prev');
     var nextBtn = document.getElementById('nova-main-tab-next');
     if (prevBtn) prevBtn.disabled = false;
@@ -172,7 +182,7 @@
   }
 
   function showLigLoading(on) {
-    showTabLoading('lig', on, 'Lig bilgileri yükleniyor…');
+    showTabLoading('lig', on, 'LİG bilgileri yükleniyor…');
   }
 
   function showKahramanLoading(on) {

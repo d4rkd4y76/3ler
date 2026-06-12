@@ -5140,10 +5140,10 @@ async function searchFriends() {
 
 /**
  * Düello puanlama (tek kaynak):
- * - Oyun normal biter: kazanan +6 kupa +15 düello kredisi +10 elmas, kaybeden yalnızca -3 kupa alır.
+ * - Oyun normal biter: kazanan +6 kupa +15 düello enerjisi +10 elmas, kaybeden yalnızca -3 kupa alır.
  *   Seri avatar çerçevesi takılıysa (ve kazandıysa) ekstra kupa verir: +4 (Dünya/Kızlar/Süper), +2 (Temel).
  * - Süre doldu (TIME_OUT): kupa +6/-3 (mevcut senaryoya göre).
- * - Eşleşmeden sonra çıkma: çıkan -15 düello kredisi; kupa değişmez; rakibe kredi verilmez.
+ * - Eşleşmeden sonra çıkma: çıkan -15 düello enerjisi; kupa değişmez; rakibe kredi verilmez.
  */
 async function updateDuelScore(type, data) {
     const {inviterId, inviterClassId, invitedId, invitedClassId} = data;
@@ -5178,7 +5178,7 @@ async function updateDuelScore(type, data) {
         const localId = currentStudentId || currentUid || selectedId;
 
         const isLeaver = (localId && (localId === dcId));
-        // Eşleşmeden sonra çıkan: sadece çıkan oyuncu -15 düello kredisi (rakibe kredi verilmez; kupa değişmez)
+        // Eşleşmeden sonra çıkan: sadece çıkan oyuncu -15 düello enerjisi (rakibe kredi verilmez; kupa değişmez)
         try {
             const invId = data && (data.inviterId || data.hostId);
             const invClassId = data && (data.inviterClassId || data.hostClassId);
@@ -5225,7 +5225,7 @@ async function updateDuelScore(type, data) {
         } else {
             // Bu istemci ayrılan kişi DEĞİL → sadece bilgi ver (ban yazma!)
             if (typeof showAlert === 'function') {
-                await showAlert('Rakibiniz oyundan ayrıldı. Çıkan oyuncunun 15 düello kredisi düşürüldü (kupa değişmedi).');
+                await showAlert('Rakibiniz oyundan ayrıldı. Çıkan oyuncunun 15 düello enerjisi düşürüldü (kupa değişmedi).');
             }
         }
     } catch (err) {
@@ -5290,9 +5290,9 @@ async function updateDuelScore(type, data) {
                         await showAlert(`🔥 Çerçeve bonusu aktif: +${extraCup} ekstra kupa kazandın!`);
                       }
                       if (heroCupBonus > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
-                        await showAlert(`🦸 Kahraman bonusu: +${heroCupBonus} ek kupa${heroCreditBonus > 0 ? (' ve +' + heroCreditBonus + ' düello kredisi') : ''}!`);
+                        await showAlert(`🦸 Kahraman bonusu: +${heroCupBonus} ek kupa${heroCreditBonus > 0 ? (' ve +' + heroCreditBonus + ' düello enerjisi') : ''}!`);
                       } else if (heroCreditBonus > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
-                        await showAlert(`🦸 Kahraman bonusu: +${heroCreditBonus} düello kredisi!`);
+                        await showAlert(`🦸 Kahraman bonusu: +${heroCreditBonus} düello enerjisi!`);
                       }
                     }catch(_){}
                 } else {
@@ -7518,11 +7518,11 @@ try {
             checkDuelEligibility(player.studentId, player.classId)
         ]);
         if (!meGate.eligible) {
-            await showAlert('Düello daveti göndermek için en az 3 kupa ve 15 düello kredisi gerekir.');
+            await showAlert('Düello daveti göndermek için en az 3 kupa ve 15 düello enerjisi gerekir.');
             return;
         }
         if (!otherGate.eligible) {
-            await showAlert(`${player.name} düelloya uygun değil (en az 3 kupa ve 15 kredi gerekir).`);
+            await showAlert(`${player.name} düelloya uygun değil (en az 3 kupa ve 15 ⚡ düello enerjisi gerekir).`);
             return;
         }
 
@@ -7531,7 +7531,7 @@ try {
         const inviterCreditsSnap = await database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/duelCredits`).once('value');
         const inviterCredits = inviterCreditsSnap.exists() ? inviterCreditsSnap.val() : 0;
         if (inviterCredits < 0) {
-            await showAlert('Düello başlatmak için en az 3 düello kredisine sahip olmalısınız.');
+            await showAlert('Düello başlatmak için en az 3 düello enerjisine sahip olmalısınız.');
             return;
         }
 
@@ -7539,7 +7539,7 @@ try {
         const invitedCreditsSnap = await database.ref(`classes/${player.classId}/students/${player.studentId}/duelCredits`).once('value');
         const invitedCredits = invitedCreditsSnap.exists() ? invitedCreditsSnap.val() : 0;
         if (invitedCredits < 0) {
-            await showAlert(`${player.name} yeterli düello kredisine sahip değil.`);
+            await showAlert(`${player.name} yeterli düello enerjisine sahip değil.`);
             return;
         }
         // --- Kredi Kontrolleri Bitiş ---
@@ -8037,7 +8037,7 @@ invitationAcceptButton.addEventListener('click', async () => {
     if (currentInvitation && selectedStudent && selectedStudent.studentId && selectedStudent.classId) {
         const myGate = await checkDuelEligibility(selectedStudent.studentId, selectedStudent.classId);
         if (!myGate.eligible) {
-            await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello kredisi gerekir.');
+            await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello enerjisi gerekir.');
             try { await database.ref(`invitations/${selectedStudent.studentId}`).remove(); } catch(_) {}
             invitationOverlay.style.display = 'none';
             currentInvitation = null;
@@ -9976,14 +9976,14 @@ function endDuelGame() {
           ? [
               `<li><span>🏆 Kupa</span><b>+${winnerCupGain}</b></li>`,
               `<li><span>💎 Elmas</span><b>+10</b></li>`,
-              `<li><span>⚡ Düello Kredisi</span><b>+15</b></li>`
+              `<li><span>⚡ Düello Enerjisi</span><b>+15</b></li>`
             ]
           : [`<li><span>🤝 Sonuç</span><b>Berabere</b></li>`];
         const loserRows = winnerId
           ? [
               `<li><span>🏆 Kupa</span><b>-3</b></li>`,
               `<li><span>💎 Elmas</span><b>0</b></li>`,
-              `<li><span>⚡ Düello Kredisi</span><b>0</b></li>`
+              `<li><span>⚡ Düello Enerjisi</span><b>0</b></li>`
             ]
           : [`<li><span>🤝 Sonuç</span><b>Berabere</b></li>`];
         duelFinalContainer.classList.remove('nova-duel-final-win','nova-duel-final-lose','nova-duel-final-tie');
@@ -10066,7 +10066,7 @@ function endDuelGame() {
               </article>
               <article class="nova-duel-report-tile plus">
                 <div class="icon">⚡</div>
-                <div class="label">Düello Kredisi</div>
+                <div class="label">Düello Enerjisi</div>
                 <div class="value" id="nova_duel_delta_cr">0</div>
               </article>` : ''}
               ${(!localWon && !localLost) ? `
@@ -10143,7 +10143,7 @@ if (winnerId && loserId) {
 
     renderLocalDelta();
 
-    // Puanları görsel olarak güncelle (kupa + düello kredisi)
+    // Puanları görsel olarak güncelle (kupa + düello enerjisi)
     if (selectedStudent.studentId === winnerId || selectedStudent.studentId === loserId) {
       if (typeof window.fetchAndDisplayGameCup === 'function') window.fetchAndDisplayGameCup();
       // Sonuc ekrani acikken ana ekrani zorla gostermeyelim.

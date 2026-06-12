@@ -31,7 +31,7 @@
   function labelForKey(k) {
     if (k === '__nameFrames') return 'İsim Çerçevesi';
     if (k === '__avatarFrames') return 'Avatar Çerçevesi';
-    if (k === 'duel') return 'Düello Biletleri';
+    if (k === 'duel') return '⚡ Düello Enerjisi';
     if (typeof window.novaAvatarCategoryLabel === 'function') {
       return window.novaAvatarCategoryLabel(k);
     }

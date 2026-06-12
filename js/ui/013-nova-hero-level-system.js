@@ -3,7 +3,7 @@
   var MAX_LEVEL = 4;
   var Z_OVERLAY = 101200;
 
-  /** Test: seviye yükseltme 1 elmas + 1 düello kredisi (prod öncesi kapat) */
+  /** Test: seviye yükseltme 1 elmas + 1 düello enerjisi (prod öncesi kapat) */
   var NOVA_TEST_HERO_ECONOMY = true;
   try {
     if (typeof window.NOVA_TEST_HERO_ECONOMY === 'boolean') {
@@ -53,14 +53,14 @@
     3: [
       'Seviye 2 özelliklerinin tamamı',
       'Düello galibiyeti: toplam +8 ek kupa (+5 bonus)',
-      'Düello galibiyeti: +10 düello kredisi',
+      '⚡ Düello galibiyeti: +10 düello enerjisi',
       'Görev ödülü: tamamlanan her görevde +120 💎 kahraman bonusu (toplam)',
       'Tek kişilik: 2 soruda yanlış şık gösterme (oyun başına 2 hak)'
     ],
     4: [
       'Seviye 3 özelliklerinin tamamı',
       'Düello galibiyeti: toplam +18 ek kupa (+10 bonus)',
-      'Düello galibiyeti: +30 düello kredisi (toplam)',
+      '⚡ Düello galibiyeti: +30 düello enerjisi (toplam)',
       'Görev ödülü: tamamlanan her görevde +320 💎 kahraman bonusu (toplam)',
       'Boşluk · Bulmaca · Eşleştir: kazanılan elmaslar 2 kat'
     ]
@@ -458,7 +458,7 @@
       lines.push('Düello galibiyeti: toplam +' + p.duelCupBonus + ' ek kupa');
     }
     if (p.duelCreditBonusOnWin > 0) {
-      lines.push('Düello galibiyeti: +' + p.duelCreditBonusOnWin + ' düello kredisi');
+      lines.push('⚡ Düello galibiyeti: +' + p.duelCreditBonusOnWin + ' düello enerjisi');
     }
     if (p.questBonusDiamonds > 0) {
       lines.push('Görev ödülü: tamamlanan her görevde +' + p.questBonusDiamonds + ' 💎 kahraman bonusu');
@@ -606,7 +606,7 @@
         costEl.innerHTML =
           '<span class="nh-level-stat__label">Maliyet</span>'
           + '<span class="nh-level-stat__value">💎 ' + cost.diamonds
-          + (cost.duelCredits ? ' · 🎫 ' + cost.duelCredits : '')
+          + (cost.duelCredits ? ' · ⚡ ' + cost.duelCredits : '')
           + '</span>'
           + '<span class="nh-level-stat__note">Başarısız olsa da harcanır</span>';
       }
@@ -802,12 +802,12 @@
     var diamonds = Number(user.diamond) || 0;
     var credits = Number(user.duelCredits) || 0;
     if (diamonds < cost.diamonds || credits < cost.duelCredits) {
-      showResultBanner('fail', 'BAŞARISIZ', 'Yeterli elmas veya düello kredin yok.');
+      showResultBanner('fail', 'BAŞARISIZ', 'Yeterli elmas veya ⚡ düello enerjin yok.');
       return;
     }
 
     var msg = cost.duelCredits
-      ? (cost.diamonds + ' 💎 ve ' + cost.duelCredits + ' 🎫 harcanacak. Başarı şansı %' + Math.round(chance * 100) + '. Devam?')
+      ? (cost.diamonds + ' 💎 ve ' + cost.duelCredits + ' ⚡ düello enerjisi harcanacak. Başarı şansı %' + Math.round(chance * 100) + '. Devam?')
       : (cost.diamonds + ' 💎 harcanacak. Başarı şansı %' + Math.round(chance * 100) + '. Devam?');
     var ok = await nhDialogConfirm(msg);
     if (!ok) return;

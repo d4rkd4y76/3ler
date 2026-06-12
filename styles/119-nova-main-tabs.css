@@ -334,11 +334,14 @@
 }
 
 #main-screen .nova-main-tab-lig-body .student-stats {
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: clamp(10px, 2.5vw, 16px);
-  display: flex !important;
-  visibility: visible !important;
+  justify-content: stretch;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: block !important;
 }
 
 #main-screen .nova-main-tab-lig-loading,
