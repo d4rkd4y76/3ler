@@ -3092,6 +3092,57 @@ window.NovaAdminExport = (function(){
     const m = String(name || '').match(/([1-4])\s*\.?\s*SINIF/i);
     return m && m[1] ? Number(m[1]) : null;
   }
+  function canonicalHeadingId(grade){
+    return (grade >= 1 && grade <= 4) ? ('SINIF' + grade) : '';
+  }
+  function normalizeHeadingTag(name){
+    return String(name || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'');
+  }
+  /** Soru verisi SINIF1…SINIF4 altında; admin seçimini buna sabitle */
+  function listScopedHeadingOptions(headingsMap, scopedName){
+    headingsMap = headingsMap || {};
+    const grade = gradeFromName(scopedName);
+    const canonicalId = canonicalHeadingId(grade);
+    const scopedTag = normalizeHeadingTag(scopedName);
+    const all = Object.entries(headingsMap).map(([id, h])=>({
+      id,
+      name: (h && (h.name || h.label || h.title)) || ('Heading ' + id.slice(-4))
+    }));
+    if (!scopedName) return all;
+    if (canonicalId && headingsMap[canonicalId]) {
+      const h = headingsMap[canonicalId];
+      return [{ id: canonicalId, name: (h && h.name) || scopedName }];
+    }
+    const matched = all.filter((x)=> normalizeHeadingTag(x.name) === scopedTag);
+    return matched.length ? matched : [];
+  }
+  async function ensureScopedHeadingExists(db, scopedName){
+    const grade = gradeFromName(scopedName);
+    const canonicalId = canonicalHeadingId(grade);
+    if (canonicalId) {
+      const snap = await db.ref('championData/headings/' + canonicalId).get();
+      if (!snap.exists()) {
+        await db.ref('championData/headings/' + canonicalId).set({
+          name: scopedName || gradeName(grade),
+          lessons: {},
+          createdAt: Date.now()
+        });
+      }
+      const h = (await db.ref('championData/headings/' + canonicalId).get()).val() || {};
+      return { id: canonicalId, name: h.name || scopedName || gradeName(grade) };
+    }
+    const ref = db.ref('championData/headings').push();
+    await ref.set({ name: scopedName, lessons: {}, createdAt: Date.now() });
+    return { id: ref.key, name: scopedName };
+  }
+  try {
+    window.NovaAdminHeading = {
+      gradeFromName: gradeFromName,
+      gradeName: gradeName,
+      listScopedHeadingOptions: listScopedHeadingOptions,
+      ensureScopedHeadingExists: ensureScopedHeadingExists
+    };
+  } catch (_) {}
   async function fetchClassRowsRaw(){
     const snap = await rdb.ref('classes').get();
     const data = snap.exists() ? snap.val() : {};
@@ -3147,13 +3198,17 @@ window.NovaAdminExport = (function(){
       const nm = String((headings[hid] && headings[hid].name) || '').toUpperCase();
       const g = gradeFromName(nm);
       if (g && !headingByGrade[g]) headingByGrade[g] = hid;
+      const m = String(hid || '').match(/^SINIF([1-4])$/i);
+      if (m && !headingByGrade[Number(m[1])]) headingByGrade[Number(m[1])] = hid;
     });
     const structureUpdates = {};
     for (let g = 1; g <= 4; g++){
       if (!headingByGrade[g]){
-        let hid = classByGrade[g] || '';
-        if (!hid || headings[hid]) hid = rdb.ref('championData/headings').push().key;
-        structureUpdates['championData/headings/' + hid] = { name: gradeName(g), lessons: {} };
+        const hid = 'SINIF' + g;
+        if (!headings[hid]) {
+          structureUpdates['championData/headings/' + hid] = { name: gradeName(g), lessons: {} };
+        }
+        headingByGrade[g] = hid;
       }
     }
     if (Object.keys(structureUpdates).length) await rdb.ref().update(structureUpdates);
@@ -3396,25 +3451,13 @@ window.NovaAdminExport = (function(){
     headingSelect.innerHTML = '<option value="">Yükleniyor…</option>';
     const snap = await rdb.ref('championData/headings').get();
     const data = snap.exists() ? snap.val() : {};
-    let arr = Object.entries(data).map(([id, h])=>{
-      const label = (h && (h.name || h.label || h.title)) || ('Heading ' + id.slice(-4));
-      return { id, name: label };
-    });
     const scopedName = getScopedClassName();
-    if (scopedName) {
-      const scopedTag = normalizeClassTag(scopedName);
-      arr = arr.filter((x)=> normalizeClassTag(x.name) === scopedTag);
-      if (!arr.length){
-        const ref = rdb.ref('championData/headings').push();
-        await ref.set({ name: scopedName, lessons: {}, createdAt: Date.now() });
-        arr = [{ id: ref.key, name: scopedName }];
-      }
+    let arr = listScopedHeadingOptions(data, scopedName);
+    if (scopedName && !arr.length) {
+      arr = [await ensureScopedHeadingExists(rdb, scopedName)];
     }
     // Sort by numeric grade first if present (e.g., "2.SINIF", "3.SINIF"), then locale text
     arr.sort((a,b)=>{
-      const scopedCid = String(window.novaAdminScopedClassId || '');
-      if (scopedCid && a.id === scopedCid && b.id !== scopedCid) return -1;
-      if (scopedCid && b.id === scopedCid && a.id !== scopedCid) return 1;
       const na = parseInt(String(a.name).replace(/[^0-9]/g,'')) || 0;
       const nb = parseInt(String(b.name).replace(/[^0-9]/g,'')) || 0;
       if (na !== nb) return na - nb;
@@ -7170,19 +7213,12 @@ Doğru şık: C
   async function loadHeadings(){
     const s = await d.ref('championData/headings').get();
     const headingSel = byId('hw_heading'); headingSel.innerHTML='';
-    const items = [];
-    const scopedTag = scopedClassTagHW();
-    s.forEach(ch => {
-      const v = ch.val()||{};
-      const nm = pickName(v, ch.key, 'Başlık');
-      if (scopedTag && String(nm || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'') !== scopedTag) return;
-      items.push({ id: ch.key, name: nm });
-    });
-    if (!items.length && scopedTag){
-      const rawName = String((((window.__novaAdminClassMetaMap || {})[window.novaAdminScopedClassId] || {}).name) || '').trim() || 'Sınıf';
-      const ref = d.ref('championData/headings').push();
-      await ref.set({ name: rawName, lessons: {}, createdAt: Date.now() });
-      items.push({ id: ref.key, name: rawName });
+    const data = s.exists() ? s.val() : {};
+    const rawName = String((((window.__novaAdminClassMetaMap || {})[window.novaAdminScopedClassId] || {}).name) || '').trim();
+    const H = window.NovaAdminHeading || {};
+    let items = H.listScopedHeadingOptions ? H.listScopedHeadingOptions(data, rawName) : [];
+    if (!items.length && rawName && H.ensureScopedHeadingExists) {
+      items = [await H.ensureScopedHeadingExists(d, rawName)];
     }
     items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
     items.forEach(it=>{
@@ -7542,19 +7578,12 @@ byId('hw_assign').addEventListener('click', async ()=>{
   async function loadHeadingsLA(){
     const sel = byId('la_heading'); sel.innerHTML='';
     const snap = await d.ref('championData/headings').get();
-    const items = [];
-    const scopedTag = scopedClassTagLA();
-    snap.forEach(ch=>{
-      const v = ch.val()||{};
-      const nm = pickName(v, ch.key, 'Başlık');
-      if (scopedTag && String(nm || '').toLocaleUpperCase('tr-TR').replace(/\s+/g,'') !== scopedTag) return;
-      items.push({id:ch.key, name:nm});
-    });
-    if (!items.length && scopedTag){
-      const rawName = String((((window.__novaAdminClassMetaMap || {})[window.novaAdminScopedClassId] || {}).name) || '').trim() || 'Sınıf';
-      const ref = d.ref('championData/headings').push();
-      await ref.set({ name: rawName, lessons: {}, createdAt: Date.now() });
-      items.push({ id: ref.key, name: rawName });
+    const data = snap.exists() ? snap.val() : {};
+    const rawName = String((((window.__novaAdminClassMetaMap || {})[window.novaAdminScopedClassId] || {}).name) || '').trim();
+    const H = window.NovaAdminHeading || {};
+    let items = H.listScopedHeadingOptions ? H.listScopedHeadingOptions(data, rawName) : [];
+    if (!items.length && rawName && H.ensureScopedHeadingExists) {
+      items = [await H.ensureScopedHeadingExists(d, rawName)];
     }
     items.sort((a,b)=> (a.name||'').localeCompare(b.name||'','tr'));
     items.forEach(it=>{

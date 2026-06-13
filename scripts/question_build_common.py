@@ -9,6 +9,36 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+VISUAL_MARKUP_RE = re.compile(
+    r"\[\[(?:clock|clockarc|para|terazi|shape|solid|bunny):[^\]]+\]\]",
+    re.IGNORECASE,
+)
+
+
+def premise_plain_text(premise: str) -> str:
+    s = VISUAL_MARKUP_RE.sub("", premise or "")
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def has_visual_markup(premise: str) -> bool:
+    return bool(VISUAL_MARKUP_RE.search(premise or ""))
+
+
+def premise_text_prefix(premise: str) -> str | None:
+    """Öncül tipine göre soru kökü öneki."""
+    if not premise:
+        return None
+    plain = premise_plain_text(premise)
+    if parse_roman_items(premise):
+        return None
+    if has_visual_markup(premise) and len(plain) < 20:
+        return "Yukarıdakine göre"
+    if len(plain) > 15 or (len(premise) > 15 and not has_visual_markup(premise)):
+        return "Yukarıdaki metne göre"
+    if has_visual_markup(premise):
+        return "Yukarıdakine göre"
+    return None
+
 
 def parse_roman_items(text: str) -> list[dict]:
     items = []
@@ -85,8 +115,10 @@ def normalize_question(q: dict) -> dict:
                 q["text"] = "Yukarıdaki " + text[0].lower() + text[1:] if text else text
             else:
                 q["text"] = "Yukarıdaki bilgilere göre " + text[0].lower() + text[1:] if text else text
-        elif len(premise) > 15:
-            q["text"] = "Yukarıdaki metne göre " + text[0].lower() + text[1:] if text else text
+        else:
+            prefix = premise_text_prefix(premise)
+            if prefix:
+                q["text"] = prefix + " " + text[0].lower() + text[1:] if text else text
 
     if premise and "İncelenen boşluk:" in q.get("text", ""):
         q["text"] = re.sub(r"\s*İncelenen boşluk:.*$", "", q["text"]).strip()

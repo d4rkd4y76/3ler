@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "mat3_kesir_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "Kesirlerde bütünün kaç eş parçaya bölündüğünü gösteren ve çizginin altında yer alan sayıya ne ad verilir?",
+    "correct": "Payda",
+    "wrong1": "Pay",
+    "wrong2": "Kesir çizgisi",
+    "explanation": "Bütünün kaç eşit parçaya ayrıldığını gösteren alttaki sayıya payda denir."
+  },
+  {
+    "id": "mat3_kesir_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "Kesirlerde eş parçalardan kaç tanesinin alındığını gösteren ve çizginin üstünde yer alan sayıya ne ad verilir?",
+    "correct": "Pay",
+    "wrong1": "Payda",
+    "wrong2": "Bölüm",
+    "explanation": "Eş parçalardan kaçının seçildiğini veya boyandığını gösteren üstteki sayıya pay denir."
+  },
+  {
+    "id": "mat3_kesir_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "Pay ve paydayı birbirinden ayıran yatay çizgiye ne denir?",
+    "correct": "Kesir çizgisi",
+    "wrong1": "Bölme çizgisi",
+    "wrong2": "Toplama çizgisi",
+    "explanation": "Payı üstte, paydayı altta tutan çizgiye kesir çizgisi denir."
+  },
+  {
+    "id": "mat3_kesir_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "Payı 1 olan kesirlere matematik dilinde ne ad verilir?",
+    "correct": "Birim kesir",
+    "wrong1": "Tam kesir",
+    "wrong2": "Yarım kesir",
+    "explanation": "Bir bütünün eş parçalarından sadece birini (1 parçasını) gösteren kesirlere birim kesir denir."
+  },
+  {
+    "id": "mat3_kesir_005",
+    "level": "kolay",
+    "premise": "Kesirleri modellemek için bir bütünü parçalara ayırmamız gerekir.",
+    "text": "Kesir elde edebilmek için parçaların özelliği nasıl olmalıdır?",
+    "correct": "Birbirine eşit olmalıdır",
+    "wrong1": "Farklı büyüklükte olmalıdır",
+    "wrong2": "Ortası büyük olmalıdır",
+    "explanation": "Kesir kavramının temel kuralı, bütünün birbirine tamamen eş parçalara ayrılmasıdır."
+  },
+  {
+    "id": "mat3_kesir_006",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hiç parçalanmamış, eksiksiz tam nesnelere ne ad verilir?",
+    "correct": "Bütün",
+    "wrong1": "Yarım",
+    "wrong2": "Çeyrek",
+    "explanation": "Parçalara ayrılmamış tam haline bütün denir."
+  },
+  {
+    "id": "mat3_kesir_007",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir bütünün tam ortadan iki eş parçaya ayrılmasıyla oluşan parçalardan her birine ne denir?",
+    "correct": "Yarım",
+    "wrong1": "Çeyrek",
+    "wrong2": "Birim",
+    "explanation": "Bütünü iki eşit parçaya bölersek her bir parça 'yarım' olur."
+  },
+  {
+    "id": "mat3_kesir_008",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir bütünün dört eş parçaya ayrılmasıyla oluşan parçalardan her birine ne denir?",
+    "correct": "Çeyrek",
+    "wrong1": "Yarım",
+    "wrong2": "Dilim",
+    "explanation": "Bütünü dört eşit parçaya bölersek her bir parça 'çeyrek' olur."
+  },
+  {
+    "id": "mat3_kesir_009",
+    "level": "kolay",
+    "premise": null,
+    "text": "1/2 kesri günlük hayatta kullandığımız hangi kavramla eş anlamlıdır?",
+    "correct": "Yarım",
+    "wrong1": "Çeyrek",
+    "wrong2": "Bütün",
+    "explanation": "Bir bütünü 2'ye bölüp 1'ini almak o bütünün yarısını ifade eder."
+  },
+  {
+    "id": "mat3_kesir_010",
+    "level": "kolay",
+    "premise": null,
+    "text": "1/4 kesri günlük hayatta kullandığımız hangi kavramla eş anlamlıdır?",
+    "correct": "Çeyrek",
+    "wrong1": "Yarım",
+    "wrong2": "Bütün",
+    "explanation": "Bir bütünü 4'e bölüp 1'ini almak o bütünün çeyreğini ifade eder."
+  },
+  {
+    "id": "mat3_kesir_011",
+    "level": "kolay",
+    "premise": null,
+    "text": "1/3 kesrinin doğru okunuşu aşağıdakilerden hangisidir?",
+    "correct": "Üçte bir",
+    "wrong1": "Birde üç",
+    "wrong2": "Üç tam bir",
+    "explanation": "Kesirler aşağıdan yukarıya doğru okunurken önce payda okunur: Üçte bir."
+  },
+  {
+    "id": "mat3_kesir_012",
+    "level": "kolay",
+    "premise": null,
+    "text": "1/5 kesrinin doğru okunuşu aşağıdakilerden hangisidir?",
+    "correct": "Beşte bir",
+    "wrong1": "Birde beş",
+    "wrong2": "Beş bölü beş",
+    "explanation": "Paydası 5, payı 1'dir. Aşağıdan yukarı okursak 'Beşte bir' olur."
+  },
+  {
+    "id": "mat3_kesir_013",
+    "level": "kolay",
+    "premise": null,
+    "text": "1/8 kesrinin doğru okunuşu aşağıdakilerden hangisidir?",
+    "correct": "Sekizde bir",
+    "wrong1": "Birde sekiz",
+    "wrong2": "Sekiz tam bir",
+    "explanation": "Bir bütün sekize bölünmüş, biri alınmıştır. Okunuşu 'Sekizde bir'dir."
+  },
+  {
+    "id": "mat3_kesir_014",
+    "level": "kolay",
+    "premise": null,
+    "text": "Yukarıdan aşağıya okuma kuralına göre 3/4 kesri nasıl okunur?",
+    "correct": "Üç bölü dört",
+    "wrong1": "Dört bölü üç",
+    "wrong2": "Üçte dört",
+    "explanation": "Yukarıdan (paydan) başlayarak okurken aradaki kesir çizgisi 'bölü' olarak ifade edilir: Üç bölü dört."
+  },
+  {
+    "id": "mat3_kesir_015",
+    "level": "kolay",
+    "premise": null,
+    "text": "'Altıda bir' şeklinde okunan birim kesrin rakamlarla yazılışı hangisidir?",
+    "correct": "1/6",
+    "wrong1": "6/1",
+    "wrong2": "1+6",
+    "explanation": "Altıda (payda 6), bir (pay 1) demektir. 1/6 şeklinde yazılır."
+  },
+  {
+    "id": "mat3_kesir_016",
+    "level": "kolay",
+    "premise": null,
+    "text": "'Dokuzda bir' şeklinde okunan birim kesrin rakamlarla yazılışı hangisidir?",
+    "correct": "1/9",
+    "wrong1": "9/1",
+    "wrong2": "9/9",
+    "explanation": "Dokuzda (payda 9), bir (pay 1) demektir. 1/9 şeklinde yazılır."
+  },
+  {
+    "id": "mat3_kesir_017",
+    "level": "kolay",
+    "premise": null,
+    "text": "'Yedide iki' şeklinde okunan kesrin rakamlarla yazılışı hangisidir?",
+    "correct": "2/7",
+    "wrong1": "7/2",
+    "wrong2": "1/7",
+    "explanation": "Yedide (payda 7), iki (pay 2) demektir. 2/7 şeklinde yazılır."
+  },
+  {
+    "id": "mat3_kesir_018",
+    "level": "kolay",
+    "premise": null,
+    "text": "'Beşte üç' şeklinde okunan kesrin rakamlarla yazılışı hangisidir?",
+    "correct": "3/5",
+    "wrong1": "5/3",
+    "wrong2": "3/3",
+    "explanation": "Beşte (payda 5), üç (pay 3) demektir. 3/5 şeklinde yazılır."
+  },
+  {
+    "id": "mat3_kesir_019",
+    "level": "kolay",
+    "premise": "Bir dikdörtgen 8 eşit parçaya bölünmüş ve 3 parçası boyanmıştır.",
+    "text": "Boyalı kısmı ifade eden kesir hangisidir?",
+    "correct": "3/8",
+    "wrong1": "8/3",
+    "wrong2": "3/5",
+    "explanation": "Toplam parça sayısı (payda) 8, boyalı parça sayısı (pay) 3'tür. Kesir 3/8'dir."
+  },
+  {
+    "id": "mat3_kesir_020",
+    "level": "kolay",
+    "premise": "Elif bir çikolatayı 6 eşit parçaya böldü ve 2 parçasını yedi.",
+    "text": "Elif çikolatanın kaçta kaçını yemiştir?",
+    "correct": "2/6",
+    "wrong1": "6/2",
+    "wrong2": "4/6",
+    "explanation": "Toplam parça (payda) 6, yenilen parça (pay) 2. Yani çikolatanın 2/6'sını yemiştir."
+  },
+  {
+    "id": "mat3_kesir_021",
+    "level": "orta",
+    "premise": null,
+    "text": "1 tam elma, kaç yarım elma eder?",
+    "correct": "2",
+    "wrong1": "4",
+    "wrong2": "3",
+    "explanation": "1 tam elmayı ortadan ikiye bölersek 2 yarım elde ederiz."
+  },
+  {
+    "id": "mat3_kesir_022",
+    "level": "orta",
+    "premise": null,
+    "text": "3 tam elma, kaç yarım elma eder?",
+    "correct": "6",
+    "wrong1": "3",
+    "wrong2": "5",
+    "explanation": "1 tam elma 2 yarımdan oluşur. 3 tam elma ise 3 x 2 = 6 yarım elma eder."
+  },
+  {
+    "id": "mat3_kesir_023",
+    "level": "orta",
+    "premise": null,
+    "text": "5 tam elma, kaç yarım elma eder?",
+    "correct": "10",
+    "wrong1": "5",
+    "wrong2": "8",
+    "explanation": "1 tam elma 2 yarımdan oluşur. 5 tam elma ise 5 x 2 = 10 yarım elma eder."
+  },
+  {
+    "id": "mat3_kesir_024",
+    "level": "orta",
+    "premise": null,
+    "text": "1 tam ekmek, kaç çeyrek ekmek eder?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "8",
+    "explanation": "Çeyrek, bir bütünün 4 eşit parçasından biridir. Bu nedenle 1 tam ekmek 4 çeyrek eder."
+  },
+  {
+    "id": "mat3_kesir_025",
+    "level": "orta",
+    "premise": null,
+    "text": "2 tam ekmek, kaç çeyrek ekmek eder?",
+    "correct": "8",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "1 tam ekmek 4 çeyrek eder. 2 tam ekmek ise 2 x 4 = 8 çeyrek eder."
+  },
+  {
+    "id": "mat3_kesir_026",
+    "level": "orta",
+    "premise": null,
+    "text": "4 tam ekmek, kaç çeyrek ekmek eder?",
+    "correct": "16",
+    "wrong1": "8",
+    "wrong2": "12",
+    "explanation": "1 tam ekmek 4 çeyrek eder. 4 tam ekmek ise 4 x 4 = 16 çeyrek eder."
+  },
+  {
+    "id": "mat3_kesir_027",
+    "level": "orta",
+    "premise": null,
+    "text": "6 yarım limon, birleştiğinde kaç tam limon eder?",
+    "correct": "3",
+    "wrong1": "2",
+    "wrong2": "4",
+    "explanation": "Her 2 yarım limon 1 tam limon yapar. 6 yarım limon 6 ÷ 2 = 3 tam eder."
+  },
+  {
+    "id": "mat3_kesir_028",
+    "level": "orta",
+    "premise": null,
+    "text": "10 yarım limon, birleştiğinde kaç tam limon eder?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Her 2 yarım limon 1 tam limon yapar. 10 yarım limon 10 ÷ 2 = 5 tam eder."
+  },
+  {
+    "id": "mat3_kesir_029",
+    "level": "orta",
+    "premise": null,
+    "text": "8 çeyrek dilim karpuz, kaç tam karpuz eder?",
+    "correct": "2",
+    "wrong1": "4",
+    "wrong2": "3",
+    "explanation": "Her 4 çeyrek 1 tam eder. 8 çeyrek ise 8 ÷ 4 = 2 tam eder."
+  },
+  {
+    "id": "mat3_kesir_030",
+    "level": "orta",
+    "premise": null,
+    "text": "12 çeyrek simit, kaç tam simit eder?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Her 4 çeyrek 1 tam simit yapar. 12 ÷ 4 = 3 tam simit eder."
+  },
+  {
+    "id": "mat3_kesir_031",
+    "level": "orta",
+    "premise": null,
+    "text": "16 çeyrek simit, kaç tam simit eder?",
+    "correct": "4",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Her 4 çeyrek 1 tam simit yapar. 16 ÷ 4 = 4 tam simit eder."
+  },
+  {
+    "id": "mat3_kesir_032",
+    "level": "orta",
+    "premise": null,
+    "text": "1 yarım pizza, kaç çeyrek pizzaya eşittir?",
+    "correct": "2",
+    "wrong1": "4",
+    "wrong2": "3",
+    "explanation": "Yarım, bütünün 2 eş parçasından biri; çeyrek ise 4 eş parçasından biridir. 1 yarım, 2 çeyreğe denktir."
+  },
+  {
+    "id": "mat3_kesir_033",
+    "level": "orta",
+    "premise": null,
+    "text": "3 yarım pizza, kaç çeyrek pizzaya eşittir?",
+    "correct": "6",
+    "wrong1": "4",
+    "wrong2": "8",
+    "explanation": "1 yarım 2 çeyrek eder. 3 yarım pizza 3 x 2 = 6 çeyrek eder."
+  },
+  {
+    "id": "mat3_kesir_034",
+    "level": "orta",
+    "premise": null,
+    "text": "4 çeyrek elma ve 1 tam elma toplam kaç çeyrek elma eder?",
+    "correct": "8",
+    "wrong1": "5",
+    "wrong2": "6",
+    "explanation": "1 tam elma 4 çeyrek eder. 4 çeyrek daha eklersek 4 + 4 = 8 çeyrek elma eder."
+  },
+  {
+    "id": "mat3_kesir_035",
+    "level": "orta",
+    "premise": null,
+    "text": "2 tam simit ve 2 yarım simit toplam kaç yarım simit eder?",
+    "correct": "6",
+    "wrong1": "4",
+    "wrong2": "8",
+    "explanation": "2 tam simit 4 yarım simit eder. 2 yarım daha eklersek 4 + 2 = 6 yarım simit eder."
+  },
+  {
+    "id": "mat3_kesir_036",
+    "level": "orta",
+    "premise": "Birim kesirlerde payda büyüdükçe bütünün bölündüğü parça sayısı artar.",
+    "text": "Bu bilgiye göre, 1/2 kesri mi yoksa 1/4 kesri mi daha büyüktür?",
+    "correct": "1/2 kesri daha büyüktür",
+    "wrong1": "1/4 kesri daha büyüktür",
+    "wrong2": "İkisi de eşittir",
+    "explanation": "Bir bütünü 2'ye böldüğümüzde düşen parça (1/2), 4'e böldüğümüzde düşen parçadan (1/4) daha büyüktür."
+  },
+  {
+    "id": "mat3_kesir_037",
+    "level": "orta",
+    "premise": "Birim kesirlerde payda küçüldükçe dilim büyür.",
+    "text": "Aşağıdaki birim kesirlerden hangisi en büyüktür?",
+    "correct": "1/3",
+    "wrong1": "1/6",
+    "wrong2": "1/9",
+    "explanation": "Bir bütünü ne kadar az parçaya bölersek dilim o kadar büyük olur. 3, 6 ve 9 arasından en az olan 3 olduğu için 1/3 en büyüktür."
+  },
+  {
+    "id": "mat3_kesir_038",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki birim kesirlerden hangisi en küçüktür?",
+    "correct": "1/10",
+    "wrong1": "1/5",
+    "wrong2": "1/2",
+    "explanation": "Paydası en büyük olan kesir en küçüktür çünkü bütün daha çok parçaya ayrılmıştır. 10 > 5 > 2 olduğundan 1/10 en küçüktür."
+  },
+  {
+    "id": "mat3_kesir_039",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki birim kesirlerden hangisi en büyüktür?",
+    "correct": "1/4",
+    "wrong1": "1/7",
+    "wrong2": "1/8",
+    "explanation": "Paydası en küçük olan birim kesir en büyük parçayı ifade eder. Bu yüzden 1/4 en büyüktür."
+  },
+  {
+    "id": "mat3_kesir_040",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki birim kesirlerden hangisi en küçüktür?",
+    "correct": "1/12",
+    "wrong1": "1/6",
+    "wrong2": "1/3",
+    "explanation": "Bütün ne kadar çok parçaya bölünürse, bir parça o kadar küçük olur. 12 parçaya bölmek dilimi en küçük yapar (1/12)."
+  },
+  {
+    "id": "mat3_kesir_041",
+    "level": "orta",
+    "premise": "1/5 , 1/2 , 1/8",
+    "text": "Yukarıdaki birim kesirlerin BÜYÜKTEN KÜÇÜĞE doğru sıralanışı hangisinde doğru verilmiştir?",
+    "correct": "1/2 > 1/5 > 1/8",
+    "wrong1": "1/8 > 1/5 > 1/2",
+    "wrong2": "1/5 > 1/2 > 1/8",
+    "explanation": "Paydası küçük olan birim kesir daha büyüktür. Bu yüzden önce yarım (1/2), sonra beşte bir (1/5), en son sekizde bir (1/8) gelir."
+  },
+  {
+    "id": "mat3_kesir_042",
+    "level": "orta",
+    "premise": "1/10 , 1/3 , 1/6",
+    "text": "Yukarıdaki birim kesirlerin KÜÇÜKTEN BÜYÜĞE doğru sıralanışı hangisinde doğru verilmiştir?",
+    "correct": "1/10 < 1/6 < 1/3",
+    "wrong1": "1/3 < 1/6 < 1/10",
+    "wrong2": "1/6 < 1/3 < 1/10",
+    "explanation": "Paydası en büyük olan en küçüktür. Sırasıyla 10 parçaya bölünen, 6'ya bölünen ve 3'e bölünen pastayı düşünerek sıralarız."
+  },
+  {
+    "id": "mat3_kesir_043",
+    "level": "orta",
+    "premise": "Zeynep pastasının 1/4'ünü, Ali 1/3'ünü, Can ise 1/6'sını yemiştir.",
+    "text": "En büyük pasta dilimini kim yemiştir?",
+    "correct": "Ali",
+    "wrong1": "Zeynep",
+    "wrong2": "Can",
+    "explanation": "Paydası en küçük olan kesir en büyük dilimi ifade eder. 1/3 (Ali) > 1/4 (Zeynep) > 1/6 (Can)."
+  },
+  {
+    "id": "mat3_kesir_044",
+    "level": "orta",
+    "premise": "Ayşe 1 metrelik ipin 1/8'ini, Fatma 1/5'ini, Elif ise 1/10'unu kullanmıştır.",
+    "text": "En az ip kullanan kimdir?",
+    "correct": "Elif",
+    "wrong1": "Ayşe",
+    "wrong2": "Fatma",
+    "explanation": "Paydası en büyük olan kesir en küçüktür. 1/10 (Elif) en küçük parçadır."
+  },
+  {
+    "id": "mat3_kesir_045",
+    "level": "orta",
+    "premise": "Bir otoparktaki arabaların 1/4'ü beyaz, 1/7'si kırmızı, 1/5'i siyahtır.",
+    "text": "Otoparkta en çok hangi renkte araba vardır?",
+    "correct": "Beyaz",
+    "wrong1": "Kırmızı",
+    "wrong2": "Siyah",
+    "explanation": "1/4, 1/5 ve 1/7 birim kesirlerinden en büyüğü 1/4'tür. En çok beyaz araba vardır."
+  },
+  {
+    "id": "mat3_kesir_046",
+    "level": "orta",
+    "premise": "Bir çokluğun birim kesrini bulmak için o çokluğu kesrin paydasına böleriz.",
+    "text": "Buna göre 20 sayısının 1/4'ü (çeyreği) kaçtır?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "20'nin 1/4'ünü bulmak için bütünü 4 eşit parçaya ayırmamız gerekir. 20 ÷ 4 = 5."
+  },
+  {
+    "id": "mat3_kesir_047",
+    "level": "orta",
+    "premise": "Bir çokluğun birim kesrini bulmak için o çokluğu kesrin paydasına böleriz.",
+    "text": "Buna göre 30 sayısının 1/5'i kaçtır?",
+    "correct": "6",
+    "wrong1": "5",
+    "wrong2": "7",
+    "explanation": "30'un 1/5'ini bulmak için 30'u 5'e böleriz. 30 ÷ 5 = 6."
+  },
+  {
+    "id": "mat3_kesir_048",
+    "level": "orta",
+    "premise": null,
+    "text": "42 sayısının 1/6'sı kaçtır?",
+    "correct": "7",
+    "wrong1": "6",
+    "wrong2": "8",
+    "explanation": "42'yi 6 eşit parçaya bölersek her bir parça 7 olur (42 ÷ 6 = 7)."
+  },
+  {
+    "id": "mat3_kesir_049",
+    "level": "orta",
+    "premise": null,
+    "text": "56 sayısının 1/7'si kaçtır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "56'yı 7 eşit parçaya bölersek her bir parça 8 olur (56 ÷ 7 = 8)."
+  },
+  {
+    "id": "mat3_kesir_050",
+    "level": "orta",
+    "premise": null,
+    "text": "72 sayısının 1/8'i kaçtır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "7",
+    "explanation": "72'yi 8 eşit parçaya bölersek her bir parça 9 olur (72 ÷ 8 = 9)."
+  },
+  {
+    "id": "mat3_kesir_051",
+    "level": "orta",
+    "premise": null,
+    "text": "81 sayısının 1/9'u kaçtır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "81'i 9 eşit parçaya bölersek her bir parça 9 olur (81 ÷ 9 = 9)."
+  },
+  {
+    "id": "mat3_kesir_052",
+    "level": "orta",
+    "premise": null,
+    "text": "45 sayısının 1/5'i kaçtır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "7",
+    "explanation": "45'i 5 eşit parçaya bölersek her bir parça 9 olur (45 ÷ 5 = 9)."
+  },
+  {
+    "id": "mat3_kesir_053",
+    "level": "orta",
+    "premise": null,
+    "text": "64 sayısının 1/8'i kaçtır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "64'ü 8 eşit parçaya bölersek her bir parça 8 olur (64 ÷ 8 = 8)."
+  },
+  {
+    "id": "mat3_kesir_054",
+    "level": "orta",
+    "premise": null,
+    "text": "36 sayısının 1/4'ü kaçtır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "7",
+    "explanation": "36'yı 4 eşit parçaya bölersek her bir parça 9 olur (36 ÷ 4 = 9)."
+  },
+  {
+    "id": "mat3_kesir_055",
+    "level": "orta",
+    "premise": null,
+    "text": "48 sayısının 1/6'sı kaçtır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "48'i 6 eşit parçaya bölersek her bir parça 8 olur (48 ÷ 6 = 8)."
+  },
+  {
+    "id": "mat3_kesir_056",
+    "level": "orta",
+    "premise": null,
+    "text": "90 sayısının 1/10'u kaçtır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "90'ı 10 eşit parçaya bölersek her bir parça 9 olur (90 ÷ 10 = 9)."
+  },
+  {
+    "id": "mat3_kesir_057",
+    "level": "orta",
+    "premise": null,
+    "text": "70 sayısının 1/10'u kaçtır?",
+    "correct": "7",
+    "wrong1": "6",
+    "wrong2": "8",
+    "explanation": "70'i 10 eşit parçaya bölersek her bir parça 7 olur (70 ÷ 10 = 7)."
+  },
+  {
+    "id": "mat3_kesir_058",
+    "level": "orta",
+    "premise": null,
+    "text": "54 sayısının 1/9'u kaçtır?",
+    "correct": "6",
+    "wrong1": "5",
+    "wrong2": "7",
+    "explanation": "54'ü 9 eşit parçaya bölersek her bir parça 6 olur (54 ÷ 9 = 6)."
+  },
+  {
+    "id": "mat3_kesir_059",
+    "level": "orta",
+    "premise": null,
+    "text": "28 sayısının 1/7'si kaçtır?",
+    "correct": "4",
+    "wrong1": "3",
+    "wrong2": "5",
+    "explanation": "28'i 7 eşit parçaya bölersek her bir parça 4 olur (28 ÷ 7 = 4)."
+  },
+  {
+    "id": "mat3_kesir_060",
+    "level": "orta",
+    "premise": null,
+    "text": "32 sayısının 1/8'i kaçtır?",
+    "correct": "4",
+    "wrong1": "3",
+    "wrong2": "5",
+    "explanation": "32'yi 8 eşit parçaya bölersek her bir parça 4 olur (32 ÷ 8 = 4)."
+  },
+  {
+    "id": "mat3_kesir_061",
+    "level": "orta",
+    "premise": null,
+    "text": "24 sayısının 1/3'ü kaçtır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "6",
+    "explanation": "24'ü 3 eşit parçaya bölersek her bir parça 8 olur (24 ÷ 3 = 8)."
+  },
+  {
+    "id": "mat3_kesir_062",
+    "level": "orta",
+    "premise": null,
+    "text": "27 sayısının 1/9'u kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "27'yi 9 eşit parçaya bölersek her bir parça 3 olur (27 ÷ 9 = 3)."
+  },
+  {
+    "id": "mat3_kesir_063",
+    "level": "orta",
+    "premise": null,
+    "text": "40 sayısının 1/5'i kaçtır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "40'ı 5 eşit parçaya bölersek her bir parça 8 olur (40 ÷ 5 = 8)."
+  },
+  {
+    "id": "mat3_kesir_064",
+    "level": "orta",
+    "premise": null,
+    "text": "49 sayısının 1/7'si kaçtır?",
+    "correct": "7",
+    "wrong1": "6",
+    "wrong2": "8",
+    "explanation": "49'u 7 eşit parçaya bölersek her bir parça 7 olur (49 ÷ 7 = 7)."
+  },
+  {
+    "id": "mat3_kesir_065",
+    "level": "orta",
+    "premise": null,
+    "text": "16 sayısının 1/4'ü kaçtır?",
+    "correct": "4",
+    "wrong1": "3",
+    "wrong2": "5",
+    "explanation": "16'yı 4 eşit parçaya bölersek her bir parça 4 olur (16 ÷ 4 = 4)."
+  },
+  {
+    "id": "mat3_kesir_066",
+    "level": "orta",
+    "premise": "Sınıfımızda 30 öğrenci vardır. Sınıftaki öğrencilerin 1/5'i gözlüklüdür.",
+    "text": "Sınıfımızda kaç tane gözlüklü öğrenci vardır?",
+    "correct": "6",
+    "wrong1": "5",
+    "wrong2": "7",
+    "explanation": "Öğrenci sayısının (30) 1/5'ini bulmak için sayıyı 5'e böleriz. 30 ÷ 5 = 6 öğrenci."
+  },
+  {
+    "id": "mat3_kesir_067",
+    "level": "orta",
+    "premise": "Ali'nin 42 tane bilyesi vardır. Ali bilyelerinin 1/6'sını kardeşine vermiştir.",
+    "text": "Ali kardeşine kaç bilye vermiştir?",
+    "correct": "7",
+    "wrong1": "6",
+    "wrong2": "8",
+    "explanation": "42'nin 1/6'sını bulmak için 42'yi 6'ya böleriz. 42 ÷ 6 = 7 bilye."
+  },
+  {
+    "id": "mat3_kesir_068",
+    "level": "orta",
+    "premise": "Kitaplıktaki 56 kitabın 1/7'si masal kitabıdır.",
+    "text": "Kitaplıktaki masal kitabı sayısı kaçtır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "56'nın 1/7'sini bulmak için 56'yı 7'ye böleriz. 56 ÷ 7 = 8 kitap."
+  },
+  {
+    "id": "mat3_kesir_069",
+    "level": "orta",
+    "premise": "Bir sepetteki 48 yumurtanın 1/8'i taşıma sırasında kırılmıştır.",
+    "text": "Sepette kaç yumurta kırılmıştır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "48'in 1/8'ini bulmak için 48'i 8'e böleriz. 48 ÷ 8 = 6 yumurta."
+  },
+  {
+    "id": "mat3_kesir_070",
+    "level": "orta",
+    "premise": "Ayşe 63 lirasının 1/9'u ile defter almıştır.",
+    "text": "Ayşe deftere kaç lira ödemiştir?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "63'ün 1/9'unu bulmak için 63'ü 9'a böleriz. 63 ÷ 9 = 7 TL."
+  },
+  {
+    "id": "mat3_kesir_071",
+    "level": "orta",
+    "premise": "Dedem 72 yaşındadır. Benim yaşım dedemin yaşının 1/8'i kadardır.",
+    "text": "Ben kaç yaşındayım?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "72'nin 1/8'ini bulmak için 72'yi 8'e böleriz. 72 ÷ 8 = 9 yaş."
+  },
+  {
+    "id": "mat3_kesir_072",
+    "level": "orta",
+    "premise": "Otoparktaki 45 aracın 1/5'i beyaz renklidir.",
+    "text": "Otoparkta kaç tane beyaz renkli araç vardır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "45'in 1/5'ini bulmak için 45'i 5'e böleriz. 45 ÷ 5 = 9 araç."
+  },
+  {
+    "id": "mat3_kesir_073",
+    "level": "orta",
+    "premise": "Çiftlikteki 64 hayvanın 1/8'i inektir.",
+    "text": "Çiftlikte kaç tane inek vardır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "64'ün 1/8'ini bulmak için 64'ü 8'e böleriz. 64 ÷ 8 = 8 inek."
+  },
+  {
+    "id": "mat3_kesir_074",
+    "level": "orta",
+    "premise": "Bir ağaçtaki 54 elmanın 1/6'sı toplanmıştır.",
+    "text": "Ağaçtan kaç elma toplanmıştır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "7",
+    "explanation": "54'ün 1/6'sını bulmak için 54'ü 6'ya böleriz. 54 ÷ 6 = 9 elma."
+  },
+  {
+    "id": "mat3_kesir_075",
+    "level": "orta",
+    "premise": "Can cebindeki 36 liranın 1/4'ünü harcamıştır.",
+    "text": "Can kaç lira harcamıştır?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "36'nın 1/4'ünü bulmak için 36'yı 4'e böleriz. 36 ÷ 4 = 9 TL."
+  },
+  {
+    "id": "mat3_kesir_076",
+    "level": "orta",
+    "premise": "Fırıncı 80 ekmeğin 1/10'unu satmıştır.",
+    "text": "Fırıncı kaç ekmek satmıştır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "80'in 1/10'unu bulmak için 80'i 10'a böleriz. 80 ÷ 10 = 8 ekmek."
+  },
+  {
+    "id": "mat3_kesir_077",
+    "level": "orta",
+    "premise": "Otobüsteki 40 yolcunun 1/8'i ilk durakta inmiştir.",
+    "text": "İlk durakta kaç yolcu inmiştir?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "40'ın 1/8'ini bulmak için 40'ı 8'e böleriz. 40 ÷ 8 = 5 yolcu."
+  },
+  {
+    "id": "mat3_kesir_078",
+    "level": "orta",
+    "premise": "Manav 35 kilogram domatesin 1/7'sini satmıştır.",
+    "text": "Manav kaç kilogram domates satmıştır?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "35'in 1/7'sini bulmak için 35'i 7'ye böleriz. 35 ÷ 7 = 5 kg."
+  },
+  {
+    "id": "mat3_kesir_079",
+    "level": "orta",
+    "premise": "Bahçemizdeki 24 ağacın 1/3'ü elma ağacıdır.",
+    "text": "Bahçemizde kaç tane elma ağacı vardır?",
+    "correct": "8",
+    "wrong1": "7",
+    "wrong2": "9",
+    "explanation": "24'ün 1/3'ünü bulmak için 24'ü 3'e böleriz. 24 ÷ 3 = 8 ağaç."
+  },
+  {
+    "id": "mat3_kesir_080",
+    "level": "orta",
+    "premise": "Bir mağazadaki 27 tişörtün 1/9'u mavidir.",
+    "text": "Mağazada kaç tane mavi tişört vardır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "27'nin 1/9'unu bulmak için 27'yi 9'a böleriz. 27 ÷ 9 = 3 tişört."
+  },
+  {
+    "id": "mat3_kesir_081",
+    "level": "orta",
+    "premise": "Annem yaptığı 24 kurabiyenin yarısını komşuya verdi.",
+    "text": "Annem komşuya kaç kurabiye vermiştir?",
+    "correct": "12",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Yarım demek 1/2 demektir. 24'ün yarısını bulmak için 24'ü 2'ye böleriz. 24 ÷ 2 = 12 kurabiye."
+  },
+  {
+    "id": "mat3_kesir_082",
+    "level": "orta",
+    "premise": "Bakkal amca 32 dondurmanın çeyreğini sabah sattı.",
+    "text": "Bakkal amca sabah kaç dondurma satmıştır?",
+    "correct": "8",
+    "wrong1": "16",
+    "wrong2": "4",
+    "explanation": "Çeyrek demek 1/4 demektir. 32'nin çeyreğini bulmak için 32'yi 4'e böleriz. 32 ÷ 4 = 8 dondurma."
+  },
+  {
+    "id": "mat3_kesir_083",
+    "level": "orta",
+    "premise": "Cemil 48 sayfalık defterinin 1/6'sını doldurmuştur.",
+    "text": "Cemil kaç sayfa yazı yazmıştır?",
+    "correct": "8",
+    "wrong1": "6",
+    "wrong2": "7",
+    "explanation": "48'in 1/6'sını bulmak için 48'i 6'ya böleriz. 48 ÷ 6 = 8 sayfa."
+  },
+  {
+    "id": "mat3_kesir_084",
+    "level": "orta",
+    "premise": "Bir saat 60 dakikadır.",
+    "text": "Buna göre çeyrek saat kaç dakikadır?",
+    "correct": "15",
+    "wrong1": "30",
+    "wrong2": "20",
+    "explanation": "Çeyrek, bütünün 4'e bölümüdür. 60 ÷ 4 = 15 dakika."
+  },
+  {
+    "id": "mat3_kesir_085",
+    "level": "orta",
+    "premise": "Bir saat 60 dakikadır.",
+    "text": "Buna göre yarım saat kaç dakikadır?",
+    "correct": "30",
+    "wrong1": "15",
+    "wrong2": "45",
+    "explanation": "Yarım, bütünün 2'ye bölümüdür. 60 ÷ 2 = 30 dakika."
+  },
+  {
+    "id": "mat3_kesir_086",
+    "level": "orta",
+    "premise": "1 deste 10 adettir.",
+    "text": "2 deste kalemin 1/5'i kaç kalemdir?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "5",
+    "explanation": "Önce 2 desteyi buluruz: 2 x 10 = 20 kalem. Sonra 1/5'ini hesaplarız: 20 ÷ 5 = 4 kalem."
+  },
+  {
+    "id": "mat3_kesir_087",
+    "level": "orta",
+    "premise": "1 düzine 12 adettir.",
+    "text": "3 düzine kalemin 1/6'sı kaç kalemdir?",
+    "correct": "6",
+    "wrong1": "4",
+    "wrong2": "3",
+    "explanation": "Önce 3 düzineyi buluruz: 3 x 12 = 36 kalem. Sonra 1/6'sını hesaplarız: 36 ÷ 6 = 6 kalem."
+  },
+  {
+    "id": "mat3_kesir_088",
+    "level": "zor",
+    "premise": "Kerem 40 sayfalık hikaye kitabının 1/5'ini okumuştur.",
+    "text": "Kerem'in kitabı bitirmesi için daha kaç sayfa okuması gerekmektedir?",
+    "correct": "32",
+    "wrong1": "8",
+    "wrong2": "30",
+    "explanation": "Önce okuduğu kısmı buluruz: 40 ÷ 5 = 8 sayfa okumuş. Kalan sayfayı bulmak için: 40 - 8 = 32 sayfa okuması gerekir."
+  },
+  {
+    "id": "mat3_kesir_089",
+    "level": "zor",
+    "premise": "Ayşe 50 lirasının 1/10'u ile silgi almıştır.",
+    "text": "Ayşe'nin geriye kaç lirası kalmıştır?",
+    "correct": "45",
+    "wrong1": "5",
+    "wrong2": "40",
+    "explanation": "Önce silginin fiyatını buluruz: 50 ÷ 10 = 5 TL. Kalan parası: 50 - 5 = 45 TL."
+  },
+  {
+    "id": "mat3_kesir_090",
+    "level": "zor",
+    "premise": "Kümesteki 32 tavuğun 1/8'i siyah renklidir.",
+    "text": "Kümeste siyah olmayan kaç tavuk vardır?",
+    "correct": "28",
+    "wrong1": "4",
+    "wrong2": "26",
+    "explanation": "Siyah tavuk sayısı: 32 ÷ 8 = 4. Siyah olmayanlar: 32 - 4 = 28 tavuk."
+  },
+  {
+    "id": "mat3_kesir_091",
+    "level": "zor",
+    "premise": "Ağaçtaki 48 elmanın 1/6'sı rüzgarda yere düşmüştür.",
+    "text": "Ağacın dalında kaç elma kalmıştır?",
+    "correct": "40",
+    "wrong1": "8",
+    "wrong2": "42",
+    "explanation": "Düşen elmalar: 48 ÷ 6 = 8. Kalan elmalar: 48 - 8 = 40 elma."
+  },
+  {
+    "id": "mat3_kesir_092",
+    "level": "zor",
+    "premise": "Efe 36 soruluk testin 1/4'ünü yanlış yapmıştır. Boş bıraktığı soru yoktur.",
+    "text": "Efe kaç soruyu doğru yapmıştır?",
+    "correct": "27",
+    "wrong1": "9",
+    "wrong2": "25",
+    "explanation": "Yanlış yaptığı soru sayısı: 36 ÷ 4 = 9. Doğru yaptığı: 36 - 9 = 27 soru."
+  },
+  {
+    "id": "mat3_kesir_093",
+    "level": "zor",
+    "premise": "Bir fırıncı 60 ekmeğin 1/10'unu satmıştır.",
+    "text": "Fırıncının dükkanında satılmamış kaç ekmek kalmıştır?",
+    "correct": "54",
+    "wrong1": "6",
+    "wrong2": "50",
+    "explanation": "Satılan ekmek: 60 ÷ 10 = 6. Kalan ekmek: 60 - 6 = 54 ekmek."
+  },
+  {
+    "id": "mat3_kesir_094",
+    "level": "zor",
+    "premise": "Mehmet amca bahçesindeki 45 kasanın 1/9'unu komşusuna vermiştir.",
+    "text": "Mehmet amcanın geriye kaç kasası kalmıştır?",
+    "correct": "40",
+    "wrong1": "5",
+    "wrong2": "35",
+    "explanation": "Verdiği kasa: 45 ÷ 9 = 5. Kalan kasa: 45 - 5 = 40 kasa."
+  },
+  {
+    "id": "mat3_kesir_095",
+    "level": "zor",
+    "premise": "Sınıfımızdaki 30 öğrencinin 1/6'sı sarışındır.",
+    "text": "Sınıfımızda sarışın olmayan kaç öğrenci vardır?",
+    "correct": "25",
+    "wrong1": "5",
+    "wrong2": "20",
+    "explanation": "Sarışın öğrenci: 30 ÷ 6 = 5. Sarışın olmayan: 30 - 5 = 25 öğrenci."
+  },
+  {
+    "id": "mat3_kesir_096",
+    "level": "zor",
+    "premise": "Canan 70 lirasının 1/7'sini kumbarasına atmıştır.",
+    "text": "Canan'ın cüzdanında kaç lirası kalmıştır?",
+    "correct": "60",
+    "wrong1": "10",
+    "wrong2": "50",
+    "explanation": "Kumbaraya atılan: 70 ÷ 7 = 10 TL. Cüzdanda kalan: 70 - 10 = 60 TL."
+  },
+  {
+    "id": "mat3_kesir_097",
+    "level": "zor",
+    "premise": "Bir sepetteki 24 yumurtanın 1/3'ü pastada kullanılmıştır.",
+    "text": "Sepette kullanılmayan kaç yumurta kalmıştır?",
+    "correct": "16",
+    "wrong1": "8",
+    "wrong2": "14",
+    "explanation": "Kullanılan yumurta: 24 ÷ 3 = 8. Kalan yumurta: 24 - 8 = 16 yumurta."
+  },
+  {
+    "id": "mat3_kesir_098",
+    "level": "zor",
+    "premise": "Selin 60 lirasının 1/6'sı ile kalem, 1/10'u ile de silgi aldı.",
+    "text": "Selin'in geriye kaç lirası kalmıştır?",
+    "correct": "44",
+    "wrong1": "45",
+    "wrong2": "40",
+    "explanation": "Kalem: 60 ÷ 6 = 10 TL. Silgi: 60 ÷ 10 = 6 TL. Toplam harcama 16 TL. Geriye kalan: 60 - 16 = 44 TL."
+  },
+  {
+    "id": "mat3_kesir_099",
+    "level": "zor",
+    "premise": "Bir bakkal 40 şişe sütün önce 1/4'ünü, daha sonra 12 şişesini satmıştır.",
+    "text": "Bakkalda kaç şişe süt kalmıştır?",
+    "correct": "18",
+    "wrong1": "20",
+    "wrong2": "16",
+    "explanation": "İlk satış: 40 ÷ 4 = 10 şişe. Toplam satış: 10 + 12 = 22 şişe. Kalan: 40 - 22 = 18 şişe."
+  },
+  {
+    "id": "mat3_kesir_100",
+    "level": "zor",
+    "premise": "Ablam 24 yaşında. Benim yaşım ablamın yaşının 1/3'ü kadardır.",
+    "text": "İkimizin yaşları toplamı kaçtır?",
+    "correct": "32",
+    "wrong1": "30",
+    "wrong2": "28",
+    "explanation": "Benim yaşım: 24 ÷ 3 = 8. İkimizin yaş toplamı: 24 + 8 = 32."
+  },
+  {
+    "id": "mat3_kesir_101",
+    "level": "zor",
+    "premise": "Annem 36 yaşında. Benim yaşım annemin yaşının 1/4'ü kadardır.",
+    "text": "İkimizin yaşları farkı kaçtır?",
+    "correct": "27",
+    "wrong1": "9",
+    "wrong2": "25",
+    "explanation": "Benim yaşım: 36 ÷ 4 = 9. Yaş farkımız: 36 - 9 = 27."
+  },
+  {
+    "id": "mat3_kesir_102",
+    "level": "zor",
+    "premise": "Bir çuvalda 50 kg un vardır. Fırıncı unun 1/5'ini börek için, 1/10'unu da pasta için kullanmıştır.",
+    "text": "Çuvalda toplam kaç kg un kalmıştır?",
+    "correct": "35",
+    "wrong1": "40",
+    "wrong2": "30",
+    "explanation": "Börek: 50 ÷ 5 = 10 kg. Pasta: 50 ÷ 10 = 5 kg. Toplam kullanılan: 10 + 5 = 15 kg. Kalan un: 50 - 15 = 35 kg."
+  },
+  {
+    "id": "mat3_kesir_103",
+    "level": "zor",
+    "premise": "Cem 64 misketinin 1/8'ini Ali'ye, 10 tanesini de Can'a vermiştir.",
+    "text": "Cem'in kaç misketi kalmıştır?",
+    "correct": "46",
+    "wrong1": "48",
+    "wrong2": "44",
+    "explanation": "Ali'ye verilen: 64 ÷ 8 = 8. Toplam verilen: 8 + 10 = 18. Kalan misket: 64 - 18 = 46."
+  },
+  {
+    "id": "mat3_kesir_104",
+    "level": "zor",
+    "premise": "Bir yolcu otobüsünde 42 yolcu vardır. Yolcuların 1/6'sı çocuktur. Çocukların dışındakiler ise yetişkindir.",
+    "text": "Otobüste kaç yetişkin yolcu vardır?",
+    "correct": "35",
+    "wrong1": "7",
+    "wrong2": "36",
+    "explanation": "Çocuk sayısı: 42 ÷ 6 = 7. Yetişkin sayısı: 42 - 7 = 35."
+  },
+  {
+    "id": "mat3_kesir_105",
+    "level": "zor",
+    "premise": "Mehmet 56 lirasının 1/7'siyle kitap, 15 lirasıyla boya kalemi almıştır.",
+    "text": "Mehmet'in harcadığı toplam para kaç liradır?",
+    "correct": "23",
+    "wrong1": "25",
+    "wrong2": "21",
+    "explanation": "Kitap parası: 56 ÷ 7 = 8 TL. Toplam harcama: 8 + 15 = 23 TL."
+  },
+  {
+    "id": "mat3_kesir_106",
+    "level": "zor",
+    "premise": "Zeynep 45 cevizinin 1/9'unu yemiş, 12 tanesini de arkadaşına vermiştir.",
+    "text": "Zeynep'in geriye kaç cevizi kalmıştır?",
+    "correct": "28",
+    "wrong1": "25",
+    "wrong2": "30",
+    "explanation": "Yediği: 45 ÷ 9 = 5. Toplam azalan ceviz: 5 + 12 = 17. Kalan: 45 - 17 = 28 ceviz."
+  },
+  {
+    "id": "mat3_kesir_107",
+    "level": "zor",
+    "premise": "Taha 48 sayfalık kitabın 1/6'sını sabah, 10 sayfasını öğlen okumuştur.",
+    "text": "Taha akşam kaç sayfa okursa kitap biter?",
+    "correct": "30",
+    "wrong1": "28",
+    "wrong2": "32",
+    "explanation": "Sabah: 48 ÷ 6 = 8 sayfa. Öğlen: 10 sayfa. Toplam okunan: 8 + 10 = 18. Okunması gereken: 48 - 18 = 30 sayfa."
+  },
+  {
+    "id": "mat3_kesir_108",
+    "level": "zor",
+    "premise": "Kırtasiyeci 72 kalemin 1/8'ini sabah satmıştır. Öğleden sonra da 15 kalem satmıştır.",
+    "text": "Kırtasiyecinin satamadığı kaç kalemi kalmıştır?",
+    "correct": "48",
+    "wrong1": "45",
+    "wrong2": "50",
+    "explanation": "Sabah: 72 ÷ 8 = 9 kalem. Toplam satılan: 9 + 15 = 24. Kalan: 72 - 24 = 48 kalem."
+  },
+  {
+    "id": "mat3_kesir_109",
+    "level": "zor",
+    "premise": "Elif'in 54 şekeri vardır. Şekerlerinin 1/6'sını kardeşine vermiş, 14 tanesini de kendisi yemiştir.",
+    "text": "Elif'in geriye kaç şekeri kalmıştır?",
+    "correct": "31",
+    "wrong1": "30",
+    "wrong2": "32",
+    "explanation": "Kardeşine verdiği: 54 ÷ 6 = 9. Toplam giden şeker: 9 + 14 = 23. Kalan şeker: 54 - 23 = 31."
+  },
+  {
+    "id": "mat3_kesir_110",
+    "level": "zor",
+    "premise": "Mertcan 40 soruluk sınavda soruların 1/5'ini yanlış yapmış, 3 soruyu da boş bırakmıştır.",
+    "text": "Mertcan kaç soruyu doğru yapmıştır?",
+    "correct": "29",
+    "wrong1": "30",
+    "wrong2": "28",
+    "explanation": "Yanlışlar: 40 ÷ 5 = 8. Yanlış+Boş: 8 + 3 = 11. Doğrular: 40 - 11 = 29."
+  },
+  {
+    "id": "mat3_kesir_111",
+    "level": "zor",
+    "premise": "Bir sınıftaki 36 öğrencinin 1/4'ü gözlüklüdür. Gözlüklü öğrencilerin 4 tanesi kızdır.",
+    "text": "Bu sınıftaki gözlüklü erkek öğrenci sayısı kaçtır?",
+    "correct": "5",
+    "wrong1": "9",
+    "wrong2": "4",
+    "explanation": "Gözlüklü toplam öğrenci: 36 ÷ 4 = 9. Gözlüklü erkek: 9 - 4 = 5 öğrenci."
+  },
+  {
+    "id": "mat3_kesir_112",
+    "level": "zor",
+    "premise": "Dolaptaki 28 şişe suyun 1/7'si içildi. Daha sonra dolaba 10 şişe su daha eklendi.",
+    "text": "Son durumda dolapta kaç şişe su vardır?",
+    "correct": "34",
+    "wrong1": "32",
+    "wrong2": "36",
+    "explanation": "İçilen: 28 ÷ 7 = 4. Kalan: 28 - 4 = 24. Sonra eklenenle: 24 + 10 = 34 şişe."
+  },
+  {
+    "id": "mat3_kesir_113",
+    "level": "zor",
+    "premise": "Bir manav 63 limonun 1/9'unu çürük olduğu için çöpe attı. Sağlam limonlardan 20 tanesini sattı.",
+    "text": "Manavın elinde kaç sağlam limon kaldı?",
+    "correct": "36",
+    "wrong1": "38",
+    "wrong2": "35",
+    "explanation": "Çürükler: 63 ÷ 9 = 7. Kalan sağlamlar: 63 - 7 = 56. Satıldıktan sonra: 56 - 20 = 36 limon."
+  },
+  {
+    "id": "mat3_kesir_114",
+    "level": "zor",
+    "premise": "Ceyda 80 sayfalık kitabın çeyreğini pazartesi, 15 sayfasını da salı günü okudu.",
+    "text": "Ceyda bu iki günde toplam kaç sayfa kitap okumuştur?",
+    "correct": "35",
+    "wrong1": "20",
+    "wrong2": "45",
+    "explanation": "Pazartesi (çeyrek): 80 ÷ 4 = 20 sayfa. Salı: 15 sayfa. Toplam okuduğu: 20 + 15 = 35 sayfa."
+  },
+  {
+    "id": "mat3_kesir_115",
+    "level": "zor",
+    "premise": "Ali'nin 60 lirası vardır. Parasının 1/6'sı ile defter, çeyreği ile boya almıştır.",
+    "text": "Ali'nin harcadığı para toplam kaç liradır?",
+    "correct": "25",
+    "wrong1": "35",
+    "wrong2": "20",
+    "explanation": "Defter: 60 ÷ 6 = 10 TL. Boya (çeyrek): 60 ÷ 4 = 15 TL. Toplam harcama: 10 + 15 = 25 TL."
+  },
+  {
+    "id": "mat3_kesir_116",
+    "level": "zor",
+    "premise": "Fırat 50 soruluk matematik ödevinin 1/5'ini bitirmiştir. Bitirmesi gereken sorular yarım kaldığı için hesaplama yapmak istiyor.",
+    "text": "Fırat'ın ödevinin yarısına ulaşması için kaç soru daha çözmesi gerekir?",
+    "correct": "15",
+    "wrong1": "10",
+    "wrong2": "25",
+    "explanation": "Ödevin yarısı: 50 ÷ 2 = 25 soru. Çözdüğü (1/5): 50 ÷ 5 = 10 soru. Yarıya ulaşmak için: 25 - 10 = 15 soru."
+  },
+  {
+    "id": "mat3_kesir_117",
+    "level": "zor",
+    "premise": "Ayşe 42 lirasının 1/7'sini harcadıktan sonra, babası ona 20 lira daha vermiştir.",
+    "text": "Ayşe'nin son durumda kaç lirası olmuştur?",
+    "correct": "56",
+    "wrong1": "62",
+    "wrong2": "50",
+    "explanation": "Harcadığı: 42 ÷ 7 = 6 TL. Kalan parası: 42 - 6 = 36 TL. Babası verince: 36 + 20 = 56 TL."
+  },
+  {
+    "id": "mat3_kesir_118",
+    "level": "zor",
+    "premise": "Buse 72 boncuğunun 1/8'ini bir bileklik için kullanmıştır. Kalan boncuklardan 12 tanesini de kolyeye ayırmıştır.",
+    "text": "Buse'nin elinde hiç kullanılmamış kaç boncuk kalmıştır?",
+    "correct": "51",
+    "wrong1": "53",
+    "wrong2": "50",
+    "explanation": "Bilekliğe giden: 72 ÷ 8 = 9. Toplam kullanılan: 9 + 12 = 21. Kalan boncuk: 72 - 21 = 51."
+  },
+  {
+    "id": "mat3_kesir_119",
+    "level": "zor",
+    "premise": "Bir pastanedeki 45 simidin 1/5'i susamsızdır. Susamlı simitlerin 10 tanesi satılmıştır.",
+    "text": "Pastanede satılmayan kaç tane susamlı simit kalmıştır?",
+    "correct": "26",
+    "wrong1": "28",
+    "wrong2": "25",
+    "explanation": "Susamsızlar: 45 ÷ 5 = 9. Susamlılar: 45 - 9 = 36. Kalan susamlılar: 36 - 10 = 26."
+  },
+  {
+    "id": "mat3_kesir_120",
+    "level": "zor",
+    "premise": "Sinan 64 sayfalık derginin 1/8'ini okudu. Daha sonra 15 sayfa daha okudu.",
+    "text": "Sinan'ın dergide okumadığı kaç sayfası kalmıştır?",
+    "correct": "41",
+    "wrong1": "43",
+    "wrong2": "40",
+    "explanation": "İlk okuduğu: 64 ÷ 8 = 8. Toplam okuduğu: 8 + 15 = 23. Kalan sayfa: 64 - 23 = 41."
+  },
+  {
+    "id": "mat3_kesir_121",
+    "level": "zor",
+    "premise": "Bir sınıftaki 32 öğrencinin çeyreği müzik kulübüne, 10 öğrenci de resim kulübüne katılmıştır. Geri kalanlar kulüpsüzdür.",
+    "text": "Bu sınıfta hiçbir kulübe katılmayan kaç öğrenci vardır?",
+    "correct": "14",
+    "wrong1": "16",
+    "wrong2": "12",
+    "explanation": "Müzik (çeyrek): 32 ÷ 4 = 8 öğrenci. Toplam kulüplü: 8 + 10 = 18. Kulüpsüzler: 32 - 18 = 14 öğrenci."
+  },
+  {
+    "id": "mat3_kesir_122",
+    "level": "zor",
+    "premise": "Teyzem 48 yaşındadır. Annemin yaşı teyzemin yaşının 1/6'sı kadar daha küçüktür.",
+    "text": "Buna göre annem kaç yaşındadır?",
+    "correct": "40",
+    "wrong1": "8",
+    "wrong2": "42",
+    "explanation": "Küçük olduğu yaş farkı: 48 ÷ 6 = 8. Annemin yaşı: 48 - 8 = 40."
+  },
+  {
+    "id": "mat3_kesir_123",
+    "level": "zor",
+    "premise": "Sıla 36 çikolatasının 1/4'ünü sabah, 1/9'unu akşam yemiştir.",
+    "text": "Sıla bir günde toplam kaç çikolata yemiştir?",
+    "correct": "13",
+    "wrong1": "14",
+    "wrong2": "12",
+    "explanation": "Sabah (çeyrek): 36 ÷ 4 = 9. Akşam: 36 ÷ 9 = 4. Toplam yediği: 9 + 4 = 13 çikolata."
+  },
+  {
+    "id": "mat3_kesir_124",
+    "level": "zor",
+    "premise": "Kırtasiyedeki 40 silginin önce 1/8'i, sonra 1/5'i satılmıştır.",
+    "text": "Kırtasiyede toplam kaç silgi satılmıştır?",
+    "correct": "13",
+    "wrong1": "12",
+    "wrong2": "14",
+    "explanation": "İlk satılan: 40 ÷ 8 = 5. Sonra satılan: 40 ÷ 5 = 8. Toplam satılan: 5 + 8 = 13 silgi."
+  },
+  {
+    "id": "mat3_kesir_125",
+    "level": "zor",
+    "premise": "Berkay 80 metrelik yolun çeyreğini koşarak, 1/10'unu yürüyerek geçmiştir.",
+    "text": "Berkay toplam kaç metre yol gitmiştir?",
+    "correct": "28",
+    "wrong1": "25",
+    "wrong2": "30",
+    "explanation": "Koştuğu (çeyrek): 80 ÷ 4 = 20 m. Yürüdüğü: 80 ÷ 10 = 8 m. Toplam yol: 20 + 8 = 28 m."
+  },
+  {
+    "id": "mat3_kesir_126",
+    "level": "zor",
+    "premise": "Bahçemizdeki 42 çiçeğin 1/7'si gül, 1/6'sı laledir.",
+    "text": "Bahçemizde gül ve lalelerin toplam sayısı kaçtır?",
+    "correct": "13",
+    "wrong1": "12",
+    "wrong2": "14",
+    "explanation": "Güller: 42 ÷ 7 = 6. Laleler: 42 ÷ 6 = 7. Toplam: 6 + 7 = 13."
+  },
+  {
+    "id": "mat3_kesir_127",
+    "level": "zor",
+    "premise": "Hasan amcanın 56 tavuğu vardır. Tavukların 1/8'i beyaz, 1/7'si kahverengidir.",
+    "text": "Beyaz ve kahverengi tavukların toplamı kaçtır?",
+    "correct": "15",
+    "wrong1": "16",
+    "wrong2": "14",
+    "explanation": "Beyazlar: 56 ÷ 8 = 7. Kahverengiler: 56 ÷ 7 = 8. Toplam: 7 + 8 = 15."
+  },
+  {
+    "id": "mat3_kesir_128",
+    "level": "zor",
+    "premise": "Bir kütüphanedeki 72 derginin 1/9'u bilim, 1/8'i spor dergisidir.",
+    "text": "Bilim dergileri, spor dergilerinden kaç tane eksiktir?",
+    "correct": "1",
+    "wrong1": "2",
+    "wrong2": "3",
+    "explanation": "Bilim: 72 ÷ 9 = 8. Spor: 72 ÷ 8 = 9. Aralarındaki fark: 9 - 8 = 1."
+  },
+  {
+    "id": "mat3_kesir_129",
+    "level": "zor",
+    "premise": "Bir otoparkta 60 araç vardır. Araçların 1/10'u kamyonet, 1/6'sı minibüstür.",
+    "text": "Otoparktaki kamyonet ve minibüslerin toplam sayısı kaçtır?",
+    "correct": "16",
+    "wrong1": "15",
+    "wrong2": "17",
+    "explanation": "Kamyonetler: 60 ÷ 10 = 6. Minibüsler: 60 ÷ 6 = 10. Toplam: 6 + 10 = 16."
+  },
+  {
+    "id": "mat3_kesir_130",
+    "level": "zor",
+    "premise": "Esra 54 lirasının 1/9'u ile toka, 1/6'sı ile tarak almıştır.",
+    "text": "Esra'nın bu alışverişten sonra kaç lirası kalmıştır?",
+    "correct": "39",
+    "wrong1": "40",
+    "wrong2": "38",
+    "explanation": "Toka: 54 ÷ 9 = 6 TL. Tarak: 54 ÷ 6 = 9 TL. Toplam harcama: 6 + 9 = 15 TL. Kalan para: 54 - 15 = 39 TL."
+  }
+]

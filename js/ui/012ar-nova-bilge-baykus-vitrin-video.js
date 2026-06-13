@@ -108,11 +108,14 @@
   function loadAssets(profile, force) {
     var p = profile === 'main' ? 'main' : 'store';
     var cache = sheetCache[p];
-    if (cache.promise && !force) return cache.promise;
+    if (cache.promise && !force) {
+      if (cache.img) return cache.promise;
+      cache.promise = null;
+    }
     cache.promise = getRootManifest().then(function (root) {
       var manifest = profileManifest(root, p);
       if (!manifest || !manifest.sheet) {
-        return Promise.reject(new Error('tas-manifest-profile:' + p));
+        return Promise.reject(new Error('bilge-manifest-profile:' + p));
       }
       cache.manifest = manifest;
       var urls = sheetUrlCandidates(manifest);
@@ -120,6 +123,9 @@
         cache.img = res.img;
         return manifest;
       });
+    }).catch(function (err) {
+      if (!cache.img) cache.promise = null;
+      throw err;
     });
     return cache.promise;
   }

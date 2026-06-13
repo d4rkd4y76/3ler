@@ -391,7 +391,39 @@
     return fromData || fromStudent || fromGlobal || 'star_fairy';
   }
 
+  function waitForCdnReady(maxMs) {
+    if (typeof window.novaCdnIsEnabled === 'function' && window.novaCdnIsEnabled()) {
+      return Promise.resolve();
+    }
+    return new Promise(function (resolve) {
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+        resolve();
+      }
+      var ms = maxMs == null ? 4000 : maxMs;
+      var timer = setTimeout(finish, ms);
+      window.addEventListener(
+        'nova-cdn-ready',
+        function () {
+          clearTimeout(timer);
+          finish();
+        },
+        { once: true }
+      );
+    });
+  }
+
   function prefetchEquippedHero(heroId) {
+    var id = String(heroId || '').trim();
+    if (!id) return Promise.resolve();
+    return waitForCdnReady().then(function () {
+      return prefetchEquippedHeroCore(id);
+    });
+  }
+
+  function prefetchEquippedHeroCore(heroId) {
     var id = String(heroId || '').trim();
     if (!id) return Promise.resolve();
     var tasks = [];

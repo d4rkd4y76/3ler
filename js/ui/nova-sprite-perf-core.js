@@ -604,4 +604,55 @@
       });
     }
   });
+
+  var cdnSpriteRetryTimer = 0;
+
+  function remountVisibleSpriteHosts() {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        try {
+          window.novaSpriteRefreshMainHeroCanvases();
+        } catch (_) {}
+        try {
+          if (typeof window.novaRefreshMainScreenHero === 'function') {
+            window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
+          }
+        } catch (_) {}
+        try {
+          window.novaStoreMountPendingHeroes();
+        } catch (_) {}
+        try {
+          window.novaStoreRemountVisibleHeroes();
+        } catch (_) {}
+      });
+    });
+  }
+
+  function retrySpritesAfterCdnReady() {
+    if (typeof window.novaCdnIsEnabled !== 'function' || !window.novaCdnIsEnabled()) return;
+    clearTimeout(cdnSpriteRetryTimer);
+    cdnSpriteRetryTimer = setTimeout(function () {
+      window.__novaSpriteForcePreload = true;
+      preloadAllPromise = null;
+      if (typeof window.novaSpritePreloadAll !== 'function') {
+        remountVisibleSpriteHosts();
+        return;
+      }
+      window
+        .novaSpritePreloadAll()
+        .catch(function () {})
+        .finally(function () {
+          window.__novaSpriteForcePreload = false;
+          remountVisibleSpriteHosts();
+        });
+    }, 40);
+  }
+
+  window.addEventListener('nova-cdn-ready', retrySpritesAfterCdnReady);
+
+  document.addEventListener('nova:main-tab-activate', function (e) {
+    var tab = e && e.detail && e.detail.tab;
+    if (tab !== 'kahraman') return;
+    remountVisibleSpriteHosts();
+  });
 })();

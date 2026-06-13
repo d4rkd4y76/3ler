@@ -13,7 +13,7 @@
     var i, src;
     for (i = scripts.length - 1; i >= 0; i--) {
       src = scripts[i].src || '';
-      if (src.indexOf('012ab-nova-yildiz-perisi') !== -1) {
+      if (src.indexOf('012ae-nova-yildiz-perisi') !== -1) {
         return src.replace(/js\/ui\/[^?#]+$/, 'hero/yildiz_perisi/sprite/');
       }
     }
@@ -108,7 +108,10 @@
   function loadAssets(profile, force) {
     var p = profile === 'main' ? 'main' : 'store';
     var cache = sheetCache[p];
-    if (cache.promise && !force) return cache.promise;
+    if (cache.promise && !force) {
+      if (cache.img) return cache.promise;
+      cache.promise = null;
+    }
     cache.promise = getRootManifest().then(function (root) {
       var manifest = profileManifest(root, p);
       if (!manifest || !manifest.sheet) {
@@ -120,6 +123,9 @@
         cache.img = res.img;
         return manifest;
       });
+    }).catch(function (err) {
+      if (!cache.img) cache.promise = null;
+      throw err;
     });
     return cache.promise;
   }

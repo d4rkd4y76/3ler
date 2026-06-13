@@ -492,8 +492,10 @@
 }
 #single-player-game-screen .question-text-container.no-preamble .question-actual-text{
   min-height: clamp(60px, 12vh, 140px);
-  display:grid;
-  place-items:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 #single-player-game-screen .options-container{
   margin-top: clamp(10px, 2vh, 16px) !important;

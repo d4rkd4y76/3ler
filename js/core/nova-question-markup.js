@@ -1,13 +1,18 @@
 /**
- * Soru metni: kesirler [[1/3]], dikey toplama [[add:243+125]], dikey cikarma [[sub:485-234]],
+ * Soru metni: kesirler [[1/3]], kesir modeli [[fracbar:3/8]], dikey toplama [[add:243+125]], dikey cikarma [[sub:485-234]],
  * cozum [[addsol:348+225]] / [[subsol:485-234]],
- * dikey çarpma [[mul:23×45]], bölme [[div:144÷12]],
- * geometri [[shape:kare:5:cm]], cisim [[solid:kup:4:cm]], Bunny video [[bunny:host:videoId]]
+ * dikey çarpma [[mul:23×45]], bölme [[div:144÷12]], çözüm [[divsol:18÷3]], adım [[divstep:72÷4:1]]
+ * geometri [[shape:kare:5:cm]], cisim [[solid:kup:4:cm]], saat [[clock:a:8:00]] / [[clock:d:14:30]], para [[para:10TL|5TL]], terazi [[terazi:L:2,3:R:5]], Bunny video [[bunny:host:videoId]]
  * Öncül: infoBlocks (metin, madde, görsel, video) + geriye dönük info / infoItems
  */
 (function (global) {
   const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
   const FRAC_RE = /\[\[\s*(\d+)\s*[\/|]\s*(\d+)\s*\]\]/g;
+  const FRACBAR_RE = /\[\[\s*fracbar\s*:\s*(\d+)\s*[\/|]\s*(\d+)\s*\]\]/gi;
+  const CLOCK_RE =
+    /\[\[\s*clock\s*:\s*(?:(a|analog|d|digital)\s*:)?\s*(\d{1,2})\s*:\s*(\d{2})\s*\]\]/gi;
+  const CLOCKARC_RE =
+    /\[\[\s*clockarc\s*:\s*(\d{1,2})\s*:\s*(\d{2})\s*:\s*(\d{1,2})\s*:\s*(\d{1,2})\s*\]\]/gi;
   const ADD_MULTI_RE = /\[\[\s*add\s*:\s*((?:\d+\s*\+\s*)+\d+)\s*\]\]/gi;
   const ADDSOL_MULTI_RE = /\[\[\s*addsol\s*:\s*((?:\d+\s*\+\s*)+\d+)\s*\]\]/gi;
   const SUB_PAIR_RE = /\[\[\s*sub\s*:\s*(\d+)\s*-\s*(\d+)\s*\]\]/gi;
@@ -16,10 +21,14 @@
   const RESULT_RE = /\[\[\s*result\s*:\s*(\d+)\s*\]\]/gi;
   const MUL_RE = /\[\[\s*mul\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
   const MULSOL_RE = /\[\[\s*mulsol\s*:\s*(\d+)\s*[×x*]\s*(\d+)\s*\]\]/gi;
+  const DIVSTEP_RE = /\[\[\s*divstep\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*:\s*(\d+)\s*\]\]/gi;
+  const DIVSOL_RE = /\[\[\s*divsol\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*\]\]/gi;
   const DIV_RE = /\[\[\s*div\s*:\s*(\d+)\s*[÷\/]\s*(\d+)\s*\]\]/gi;
   const SHAPE_RE = /\[\[\s*shape\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
   const SOLID_RE = /\[\[\s*solid\s*:\s*([a-zçğıöşü_]+)\s*:\s*([^:\]]+)(?:\s*:\s*([a-zçğıöşü]+))?\s*\]\]/gi;
   const BUNNY_VID_RE = /\[\[\s*bunny\s*:\s*([^:\]]*)\s*:\s*([a-f0-9-]{8,})\s*\]\]/gi;
+  const PARA_RE = /\[\[\s*para\s*:\s*([^\]]+?)\s*\]\]/gi;
+  const TERAZI_RE = /\[\[\s*terazi\s*:\s*L\s*:\s*([^:\]]+?)\s*:\s*R\s*:\s*([^\]]+?)\s*\]\]/gi;
   const IMG_RE = /^https?:\/\/\S+\.(png|jpe?g|gif|webp|svg)(\?\S*)?$/i;
   const BUNNY_IMG_RE = /^https?:\/\/[^/]+\.b-cdn\.net\/.+/i;
 
@@ -150,6 +159,33 @@
       '</span><span class="q-frac__bar" aria-hidden="true"></span>' +
       '<span class="q-frac__den">' +
       d +
+      "</span></span>"
+    );
+  }
+
+  function fracBarHtml(num, den) {
+    var n = parseInt(num, 10) || 0;
+    var d = parseInt(den, 10) || 1;
+    if (d < 1) d = 1;
+    if (n < 0) n = 0;
+    if (n > d) n = d;
+    var cells = [];
+    var i;
+    for (i = 0; i < d; i++) {
+      cells.push(
+        '<span class="q-fracbar__cell' +
+          (i < n ? " q-fracbar__cell--on" : "") +
+          '" aria-hidden="true"></span>'
+      );
+    }
+    return (
+      '<span class="q-fracbar" role="img" aria-label="' +
+      escapeHtml(String(n) + " bölü " + String(d) + " model") +
+      '">' +
+      '<span class="q-fracbar__grid" style="--fracbar-cols:' +
+      d +
+      '">' +
+      cells.join("") +
       "</span></span>"
     );
   }
@@ -678,23 +714,324 @@
     );
   }
 
-  function verticalDivHtml(dividend, divisor) {
-    const d = escapeHtml(dividend);
-    const v = escapeHtml(divisor);
+  function computeDivision(dividend, divisor) {
+    const na = parseInt(dividend, 10) || 0;
+    const nb = parseInt(divisor, 10) || 1;
+    const quotient = nb ? Math.floor(na / nb) : 0;
+    const product = quotient * nb;
+    const remainder = na - product;
+    return { dividend: na, divisor: nb, quotient: quotient, product: product, remainder: remainder };
+  }
+
+  function padDivDigits(n, width) {
+    return String(n).padStart(Math.max(width, String(n).length), "0");
+  }
+
+  function divDigitWidth(n) {
+    return Math.max(2, String(n).length);
+  }
+
+  function mkDivState(cols, quotient, rows, bringCol) {
+    return {
+      cols: cols,
+      quotient: quotient || "",
+      rows: rows || [],
+      hasWork: (rows || []).length > 0,
+      bringCol: bringCol == null ? undefined : bringCol,
+    };
+  }
+
+  function computeDivProgressSteps(na, nb) {
+    const ds = String(na);
+    const cols = ds.split("");
+    const n = cols.length;
+    const steps = [];
+
+    if (n === 1) {
+      const d = parseInt(cols[0], 10);
+      const q = Math.floor(d / nb);
+      const p = q * nb;
+      const rem = d - p;
+      steps.push(mkDivState(cols, String(q), []));
+      var done1 = mkDivState(cols, String(q), [
+        { type: "sub", val: String(p), start: 0 },
+        { type: "bar" },
+        { type: "num", val: String(rem), start: 0 },
+      ]);
+      steps.push(done1);
+      if (rem > 0) steps.push(done1);
+      return steps;
+    }
+
+    if (n === 2) {
+      const d1 = parseInt(cols[0], 10);
+      const d2 = parseInt(cols[1], 10);
+      if (d1 >= nb) {
+        const q1 = Math.floor(d1 / nb);
+        const p1 = q1 * nb;
+        const r1 = d1 - p1;
+        const work = r1 * 10 + d2;
+        const q2 = Math.floor(work / nb);
+        const p2 = q2 * nb;
+        const r2 = work - p2;
+        const fullQ = String(q1) + String(q2);
+        const remStr = padDivDigits(r2, n);
+        const downCol = n - 1;
+        const p2Str = String(p2);
+        const subP2Start = n - p2Str.length;
+        var afterFirst = [
+          { type: "sub", val: String(p1), start: 0 },
+          { type: "bar" },
+        ];
+        var step2Rows = afterFirst.concat([{ type: "num", val: String(r1), start: 0 }]);
+        var step3Rows = afterFirst.concat([
+          { type: "bringWork", partial: String(r1), down: String(d2) },
+        ]);
+        var step4Rows = step3Rows.concat([
+          { type: "sub", val: p2Str, start: subP2Start },
+          { type: "bar" },
+          { type: "num", val: remStr, start: 0 },
+        ]);
+
+        steps.push(mkDivState(cols, String(q1), [{ type: "sub", val: String(p1), start: 0 }]));
+        steps.push(mkDivState(cols, String(q1), step2Rows));
+        steps.push(mkDivState(cols, fullQ, step3Rows, downCol));
+        if (work > 0) {
+          steps.push(mkDivState(cols, fullQ, step4Rows, downCol));
+        }
+        return steps;
+      }
+
+      const work = d1 * 10 + d2;
+      const q = Math.floor(work / nb);
+      const p = q * nb;
+      const rem = work - p;
+      const pStr = String(p);
+      const remStr = padDivDigits(rem, n);
+      steps.push(mkDivState(cols, "", []));
+      steps.push(mkDivState(cols, String(q), []));
+      var done2 = mkDivState(cols, String(q), [
+        { type: "sub", val: pStr, start: n - pStr.length },
+        { type: "bar" },
+        { type: "num", val: remStr, start: n - remStr.length },
+      ]);
+      steps.push(done2);
+      if (rem > 0) steps.push(done2);
+      return steps;
+    }
+
+    const parts = computeDivision(na, nb);
+    const pStr = String(parts.product);
+    const remStr = padDivDigits(parts.remainder, n);
+    steps.push(
+      mkDivState(cols, String(parts.quotient), [
+        { type: "sub", val: pStr, start: n - pStr.length },
+        { type: "bar" },
+        { type: "num", val: remStr, start: n - remStr.length },
+      ])
+    );
+    return steps;
+  }
+
+  function appendDivGridSign(parts, ch) {
+    parts.push(
+      '<span class="q-vmath__sign"' +
+        (ch ? "" : ' aria-hidden="true"') +
+        ">" +
+        (ch ? escapeHtml(ch) : "") +
+        "</span>"
+    );
+  }
+
+  function appendDivGridDigits(parts, colCount, value, startCol, extraCls) {
+    var s = String(value);
+    var i;
+    for (i = 0; i < colCount; i++) {
+      var ch = i >= startCol && i < startCol + s.length ? s[i - startCol] : "\u00a0";
+      parts.push(
+        '<span class="q-vmath__dcol' +
+          (extraCls || "") +
+          '">' +
+          escapeHtml(ch) +
+          "</span>"
+      );
+    }
+  }
+
+  function buildDivLeftColHtml(state) {
+    var cols = state.cols;
+    var n = cols.length;
+    var parts = [];
+    var i;
+    parts.push('<span class="q-vmath__left-col" style="--div-cols:' + n + '">');
+    parts.push('<span class="q-vmath__div-grid-left">');
+
+    appendDivGridSign(parts, "");
+    for (i = 0; i < n; i++) {
+      var bringSrc = state.bringCol === i;
+      parts.push(
+        '<span class="q-vmath__dcol q-vmath__dcol--dividend' +
+          (bringSrc ? " q-vmath__dcol--bring-src" : "") +
+          '">' +
+          escapeHtml(cols[i]) +
+          (bringSrc
+            ? '<span class="q-vmath__bring-arrow q-vmath__bring-arrow--src" aria-hidden="true">↓</span>'
+            : "") +
+          "</span>"
+      );
+    }
+
+    for (i = 0; i < state.rows.length; i++) {
+      var row = state.rows[i];
+      if (row.type === "sub") {
+        appendDivGridSign(parts, "−");
+        appendDivGridDigits(parts, n, row.val, row.start, " q-vmath__dcol--sub");
+      } else if (row.type === "bar") {
+        appendDivGridSign(parts, "");
+        parts.push(
+          '<span class="q-vmath__bar-span" style="grid-column:2 / span ' +
+            n +
+            '"><span class="q-vmath__divsol-bar" aria-hidden="true"></span></span>'
+        );
+      } else if (row.type === "num") {
+        appendDivGridSign(parts, "");
+        appendDivGridDigits(parts, n, row.val, row.start, " q-vmath__dcol--partial");
+      } else if (row.type === "bringWork") {
+        appendDivGridSign(parts, "");
+        var bpi;
+        for (bpi = 0; bpi < n; bpi++) {
+          if (bpi === 0) {
+            parts.push(
+              '<span class="q-vmath__dcol q-vmath__dcol--work">' +
+                escapeHtml(String(row.partial)) +
+                "</span>"
+            );
+          } else if (bpi === n - 1) {
+            parts.push(
+              '<span class="q-vmath__dcol q-vmath__dcol--work">' +
+                escapeHtml(String(row.down)) +
+                "</span>"
+            );
+          } else {
+            parts.push('<span class="q-vmath__dcol">\u00a0</span>');
+          }
+        }
+      } else if (row.type === "workLine") {
+        appendDivGridSign(parts, "");
+        appendDivGridDigits(parts, n, row.val, row.start, " q-vmath__dcol--work");
+      }
+    }
+
+    parts.push("</span></span>");
+    return parts.join("");
+  }
+
+  function verticalDivStepHtml(dividend, divisor, stepNum) {
+    var na = parseInt(dividend, 10) || 0;
+    var nb = parseInt(divisor, 10) || 1;
+    var allSteps = computeDivProgressSteps(na, nb);
+    var idx = Math.min(Math.max(1, parseInt(stepNum, 10) || 1), allSteps.length) - 1;
+    var state = allSteps[idx];
+    var solCls = " q-vmath__div-grid--sol";
+    var bracketSol = state.quotient !== "" || state.hasWork;
     return (
-      '<span class="q-vmath q-vmath--div" role="math" aria-label="' +
-      d +
-      " bölü " +
-      v +
+      '<span class="q-vmath q-vmath--div q-vmath--divstep" role="math" aria-label="' +
+      escapeHtml(String(na) + " bölü " + String(nb) + " adım " + String(stepNum)) +
       '">' +
-      '<span class="q-vmath__long">' +
-      '<span class="q-vmath__dividend">' +
-      d +
-      '</span><span class="q-vmath__bracket">' +
+      '<span class="q-vmath__div-grid' +
+      solCls +
+      '">' +
+      buildDivLeftColHtml(state) +
+      buildDivBracketHtml(nb, bracketSol, state.quotient, true) +
+      "</span></span>"
+    );
+  }
+
+  function buildDivBracketHtml(divisor, withQuotient, quotient, extendLine) {
+    const v = escapeHtml(String(divisor));
+    var colCls = withQuotient ? " q-vmath__bracket-col--sol" : "";
+    if (!withQuotient && extendLine) colCls = " q-vmath__bracket-col--long";
+    var fullVline = withQuotient || extendLine;
+    if (fullVline) {
+      var html = '<span class="q-vmath__bracket-col' + colCls + '">';
+      html +=
+        '<span class="q-vmath__bracket-vline q-vmath__bracket-vline--full" aria-hidden="true"></span>';
+      html += '<span class="q-vmath__bracket-stack">';
+      html += '<span class="q-vmath__divisor">' + v + "</span>";
+      html += '<span class="q-vmath__bracket-hline" aria-hidden="true"></span>';
+      if (withQuotient) {
+        html +=
+          '<span class="q-vmath__quotient">' + escapeHtml(String(quotient)) + "</span>";
+      } else {
+        html +=
+          '<span class="q-vmath__quotient q-vmath__quotient--empty" aria-hidden="true"></span>';
+      }
+      html += "</span></span>";
+      return html;
+    }
+    return (
+      '<span class="q-vmath__bracket-col">' +
+      '<span class="q-vmath__bracket-head">' +
+      '<span class="q-vmath__bracket-vline" aria-hidden="true"></span>' +
       '<span class="q-vmath__divisor">' +
       v +
-      '</span><span class="q-vmath__work" aria-hidden="true"></span>' +
-      "</span></span></span>"
+      "</span></span>" +
+      '<span class="q-vmath__bracket-hline" aria-hidden="true"></span>' +
+      '<span class="q-vmath__quotient q-vmath__quotient--empty" aria-hidden="true"></span>' +
+      "</span>"
+    );
+  }
+
+  function buildDivLeftColSimple(dividendStr) {
+    var cols = String(dividendStr).split("");
+    var n = cols.length;
+    var parts = [];
+    var i;
+    parts.push('<span class="q-vmath__left-col" style="--div-cols:' + n + '">');
+    parts.push('<span class="q-vmath__div-grid-left">');
+    appendDivGridSign(parts, "");
+    for (i = 0; i < n; i++) {
+      parts.push(
+        '<span class="q-vmath__dcol q-vmath__dcol--dividend">' + escapeHtml(cols[i]) + "</span>"
+      );
+    }
+    parts.push("</span></span>");
+    return parts.join("");
+  }
+
+  function verticalDivHtml(dividend, divisor) {
+    const aria = String(dividend) + " bölü " + String(divisor);
+    return (
+      '<span class="q-vmath q-vmath--div" role="math" aria-label="' +
+      escapeHtml(aria) +
+      '">' +
+      '<span class="q-vmath__div-grid">' +
+      buildDivLeftColSimple(String(dividend)) +
+      buildDivBracketHtml(divisor, false, "", true) +
+      "</span></span>"
+    );
+  }
+
+  function verticalDivSolutionHtml(dividend, divisor) {
+    const parts = computeDivision(dividend, divisor);
+    const dStr = String(parts.dividend);
+    const allSteps = computeDivProgressSteps(parts.dividend, parts.divisor);
+    const state = allSteps[allSteps.length - 1];
+    const aria =
+      dStr +
+      " bölü " +
+      String(parts.divisor) +
+      " eşittir bölüm " +
+      String(parts.quotient) +
+      (parts.remainder ? ", kalan " + String(parts.remainder) : "");
+    return (
+      '<span class="q-vmath q-vmath--div q-vmath--divsol" role="math" aria-label="' +
+      escapeHtml(aria) +
+      '">' +
+      '<span class="q-vmath__div-grid q-vmath__div-grid--sol">' +
+      buildDivLeftColHtml(state) +
+      buildDivBracketHtml(parts.divisor, true, state.quotient || String(parts.quotient)) +
+      "</span></span>"
     );
   }
 
@@ -1040,11 +1377,362 @@
     return '<span class="q-bunny-video q-bunny-video--missing">Video yapılandırması eksik</span>';
   }
 
+  function parseClockTime(h, m) {
+    var hour = parseInt(h, 10);
+    var min = parseInt(m, 10);
+    if (isNaN(hour)) hour = 0;
+    if (isNaN(min)) min = 0;
+    hour = ((hour % 24) + 24) % 24;
+    min = ((min % 60) + 60) % 60;
+    return { hour: hour, min: min };
+  }
+
+  function clockAriaLabel(hour, min) {
+    return (
+      String(hour).padStart(2, "0") +
+      " saat " +
+      String(min).padStart(2, "0") +
+      " dakika"
+    );
+  }
+
+  function clockNumAngle(num) {
+    var n = parseInt(num, 10) || 12;
+    if (n === 12) n = 0;
+    return ((n * 30 - 90) * Math.PI) / 180;
+  }
+
+  function annularSectorPath(cx, cy, r0, r1, ang0, ang1) {
+    var sweep = ang1 - ang0;
+    if (sweep <= 0) sweep += Math.PI * 2;
+    var large = sweep > Math.PI ? 1 : 0;
+    var x0o = cx + r1 * Math.cos(ang0);
+    var y0o = cy + r1 * Math.sin(ang0);
+    var x1o = cx + r1 * Math.cos(ang1);
+    var y1o = cy + r1 * Math.sin(ang1);
+    var x1i = cx + r0 * Math.cos(ang1);
+    var y1i = cy + r0 * Math.sin(ang1);
+    var x0i = cx + r0 * Math.cos(ang0);
+    var y0i = cy + r0 * Math.sin(ang0);
+    return (
+      "M" +
+      x0o +
+      " " +
+      y0o +
+      " A" +
+      r1 +
+      " " +
+      r1 +
+      " 0 " +
+      large +
+      " 1 " +
+      x1o +
+      " " +
+      y1o +
+      " L" +
+      x1i +
+      " " +
+      y1i +
+      " A" +
+      r0 +
+      " " +
+      r0 +
+      " 0 " +
+      large +
+      " 0 " +
+      x0i +
+      " " +
+      y0i +
+      " Z"
+    );
+  }
+
+  function analogClockHtml(h, m, arcFrom, arcTo) {
+    var t = parseClockTime(h, m);
+    var hour = t.hour;
+    var min = t.min;
+    var cx = 50;
+    var cy = 50;
+    var r = 44;
+    var hourAngle = (((hour % 12) * 30 + min * 0.5 - 90) * Math.PI) / 180;
+    var minAngle = ((min * 6 - 90) * Math.PI) / 180;
+    var hourLen = 22;
+    var minLen = 34;
+    var hx = cx + hourLen * Math.cos(hourAngle);
+    var hy = cy + hourLen * Math.sin(hourAngle);
+    var mx = cx + minLen * Math.cos(minAngle);
+    var my = cy + minLen * Math.sin(minAngle);
+    var nums = [];
+    var n;
+    for (n = 1; n <= 12; n += 1) {
+      var ang = ((n * 30 - 90) * Math.PI) / 180;
+      var tx = cx + 34 * Math.cos(ang);
+      var ty = cy + 34 * Math.sin(ang) + 3.5;
+      nums.push(
+        '<text x="' +
+          tx +
+          '" y="' +
+          ty +
+          '" text-anchor="middle" class="q-clock__num">' +
+          n +
+          "</text>"
+      );
+    }
+    var ticks = [];
+    for (n = 0; n < 60; n += 1) {
+      if (n % 5 === 0) continue;
+      var tAng = ((n * 6 - 90) * Math.PI) / 180;
+      ticks.push(
+        '<line class="q-clock__tick" x1="' +
+          (cx + 37 * Math.cos(tAng)) +
+          '" y1="' +
+          (cy + 37 * Math.sin(tAng)) +
+          '" x2="' +
+          (cx + 42 * Math.cos(tAng)) +
+          '" y2="' +
+          (cy + 42 * Math.sin(tAng)) +
+          '"/>'
+      );
+    }
+    var arcSvg = "";
+    if (arcFrom != null && arcTo != null) {
+      var a0 = clockNumAngle(arcFrom);
+      var a1 = clockNumAngle(arcTo);
+      arcSvg =
+        '<path class="q-clock__arc" d="' +
+        annularSectorPath(cx, cy, 14, 40, a0, a1) +
+        '"/>';
+    }
+    var svg =
+      '<svg class="q-clock__svg" viewBox="0 0 100 100" aria-hidden="true">' +
+      '<circle class="q-clock__face" cx="' +
+      cx +
+      '" cy="' +
+      cy +
+      '" r="' +
+      r +
+      '"/>' +
+      arcSvg +
+      ticks.join("") +
+      nums.join("") +
+      '<line class="q-clock__hand q-clock__hand--min" x1="' +
+      cx +
+      '" y1="' +
+      cy +
+      '" x2="' +
+      mx +
+      '" y2="' +
+      my +
+      '"/>' +
+      '<line class="q-clock__hand q-clock__hand--hour" x1="' +
+      cx +
+      '" y1="' +
+      cy +
+      '" x2="' +
+      hx +
+      '" y2="' +
+      hy +
+      '"/>' +
+      '<circle class="q-clock__center" cx="' +
+      cx +
+      '" cy="' +
+      cy +
+      '" r="2.5"/>' +
+      "</svg>";
+    return (
+      '<span class="q-clock q-clock--analog' +
+      (arcSvg ? " q-clock--arc" : "") +
+      '" role="img" aria-label="' +
+      escapeHtml(clockAriaLabel(hour, min)) +
+      '">' +
+      svg +
+      "</span>"
+    );
+  }
+
+  function analogClockArcHtml(h, m, fromNum, toNum) {
+    return analogClockHtml(h, m, fromNum, toNum);
+  }
+
+  function analogClockHtmlPlain(h, m) {
+    return analogClockHtml(h, m, null, null);
+  }
+
+  function digitalClockHtml(h, m) {
+    var t = parseClockTime(h, m);
+    var hh = String(t.hour).padStart(2, "0");
+    var mm = String(t.min).padStart(2, "0");
+    return (
+      '<span class="q-clock q-clock--digital" role="img" aria-label="' +
+      escapeHtml(clockAriaLabel(t.hour, t.min)) +
+      '"><span class="q-clock__lcd">' +
+      hh +
+      '<span class="q-clock__colon">:</span>' +
+      mm +
+      "</span></span>"
+    );
+  }
+
+  var PARA_CDN_BASE = "https://duellox-cdn.b-cdn.net/v1/paralar/";
+  var PARA_FILE_MAP = {
+    "5TL": "5TL.jpg",
+    "10TL": "10TL.jpg",
+    "20TL": "20TL.jpg",
+    "50TL": "50TL.jpg",
+    "100TL": "100TL.jpg",
+    "200TL": "200TL.jpg",
+    "5kr": "madeni_5krs.png",
+    "10kr": "madeni_10krs.png",
+    "25kr": "madeni_25krs.png",
+    "50kr": "madeni_50krs.png",
+    "1TL": "1TL.png",
+    "5TLm": "madeni_5TL.png",
+  };
+
+  function paraFileForKey(key) {
+    var k = String(key || "")
+      .trim()
+      .replace(/\s+/g, "");
+    if (!k) return "";
+    if (PARA_FILE_MAP[k]) return PARA_FILE_MAP[k];
+    var low = k.toLowerCase();
+    if (PARA_FILE_MAP[low]) return PARA_FILE_MAP[low];
+    if (/^\d+TL$/i.test(k)) return k.replace(/tl/i, "TL") + ".jpg";
+    if (/^\d+kr$/i.test(k)) {
+      var n = k.match(/^(\d+)/i)[1];
+      return "madeni_" + n + "krs.png";
+    }
+    return k;
+  }
+
+  function paraImgHtml(spec) {
+    var parts = String(spec || "")
+      .split(/[|,]/)
+      .map(function (p) {
+        return p.trim();
+      })
+      .filter(Boolean);
+    if (!parts.length) return "";
+    return (
+      '<span class="q-para-row" role="img" aria-label="Para görseli">' +
+      parts
+        .map(function (key) {
+          var file = paraFileForKey(key);
+          var url = PARA_CDN_BASE + encodeURIComponent(file).replace(/%2F/g, "/");
+          return (
+            '<img class="q-para-img" src="' +
+            escapeHtml(url) +
+            '" alt="' +
+            escapeHtml(key) +
+            '" loading="lazy">'
+          );
+        })
+        .join("") +
+      "</span>"
+    );
+  }
+
+  function teraziHtml(leftSpec, rightSpec) {
+    var left = String(leftSpec || "")
+      .split(",")
+      .map(function (x) {
+        return x.trim();
+      })
+      .filter(Boolean);
+    var right = String(rightSpec || "")
+      .split(",")
+      .map(function (x) {
+        return x.trim();
+      })
+      .filter(Boolean);
+    var leftSum = left.reduce(function (a, b) {
+      return a + (parseFloat(b) || 0);
+    }, 0);
+    var rightSum = right.reduce(function (a, b) {
+      return a + (parseFloat(b) || 0);
+    }, 0);
+    var tilt = leftSum === rightSum ? 0 : leftSum > rightSum ? 8 : -8;
+    var beam =
+      '<g transform="rotate(' +
+      tilt +
+      ' 50 42)"><rect class="q-terazi__beam" x="18" y="40" width="64" height="4" rx="2"/></g>';
+    var pans = "";
+    var i;
+    for (i = 0; i < left.length; i += 1) {
+      pans +=
+        '<text class="q-terazi__label" x="24" y="' +
+        (58 + i * 11) +
+        '">' +
+        escapeHtml(left[i]) +
+        " kg</text>";
+    }
+    for (i = 0; i < right.length; i += 1) {
+      pans +=
+        '<text class="q-terazi__label" x="68" y="' +
+        (58 + i * 11) +
+        '">' +
+        escapeHtml(right[i]) +
+        " kg</text>";
+    }
+    var svg =
+      '<svg class="q-terazi__svg" viewBox="0 0 100 88" aria-hidden="true">' +
+      '<polygon class="q-terazi__stand" points="50,82 42,68 58,68"/>' +
+      '<rect class="q-terazi__pole" x="48" y="28" width="4" height="42" rx="2"/>' +
+      beam +
+      '<line class="q-terazi__cord" x1="24" y1="42" x2="24" y2="52"/>' +
+      '<line class="q-terazi__cord" x1="76" y1="42" x2="76" y2="52"/>' +
+      '<ellipse class="q-terazi__pan" cx="24" cy="56" rx="14" ry="5"/>' +
+      '<ellipse class="q-terazi__pan" cx="76" cy="56" rx="14" ry="5"/>' +
+      pans +
+      "</svg>";
+    return (
+      '<span class="q-terazi" role="img" aria-label="Terazi">' + svg + "</span>"
+    );
+  }
+
+  function wrapFracInlinePhrases(html) {
+    if (!html || html.indexOf("q-frac") < 0) return html;
+    html = html.replace(
+      /(\d+\s+sayısının\s+)(<span class="q-frac"[\s\S]*?<\/span>)([^<]*?(?:kaçtır\?|nedir\?|kaç\s))/gi,
+      '<span class="q-frac-sentence">$1$2$3</span>'
+    );
+    html = html.replace(
+      /(\d+\s*['\u2019]?(?:un|ın|in|ün|nın|nin|nun|nün)\s+)(<span class="q-frac"[\s\S]*?<\/span>)([^<]{0,36})/gi,
+      '<span class="q-frac-sentence">$1$2$3</span>'
+    );
+    html = html.replace(
+      /(<span class="q-frac"[\s\S]*?<\/span>\s*(?:[<>&;]|&lt;|&gt;|≤|≥)\s*)+<span class="q-frac"[\s\S]*?<\/span>/gi,
+      function (chunk) {
+        return '<span class="q-frac-chain">' + chunk + "</span>";
+      }
+    );
+    return html;
+  }
+
   function renderMarkupHtml(raw) {
     if (raw == null || raw === "") return "";
     let s = escapeHtml(String(raw));
     s = s.replace(FRAC_RE, function (_, a, b) {
       return stackedFractionHtml(a, b);
+    });
+    s = s.replace(FRACBAR_RE, function (_, a, b) {
+      return fracBarHtml(a, b);
+    });
+    s = s.replace(CLOCKARC_RE, function (_, h, m, fromNum, toNum) {
+      return analogClockArcHtml(h, m, fromNum, toNum);
+    });
+    s = s.replace(CLOCK_RE, function (_, kind, h, m) {
+      var k = String(kind || "a").toLowerCase();
+      if (k === "d" || k === "digital") {
+        return digitalClockHtml(h, m);
+      }
+      return analogClockHtmlPlain(h, m);
+    });
+    s = s.replace(PARA_RE, function (_, spec) {
+      return paraImgHtml(spec);
+    });
+    s = s.replace(TERAZI_RE, function (_, left, right) {
+      return teraziHtml(left, right);
     });
     s = s.replace(ADDSOL_MULTI_RE, function (_, ops) {
       return verticalAddSolutionFromOperands(parseAddOperands(ops));
@@ -1063,6 +1751,12 @@
     });
     s = s.replace(MUL_RE, function (_, a, b) {
       return verticalMulHtml(a, b);
+    });
+    s = s.replace(DIVSTEP_RE, function (_, a, b, step) {
+      return verticalDivStepHtml(a, b, step);
+    });
+    s = s.replace(DIVSOL_RE, function (_, a, b) {
+      return verticalDivSolutionHtml(a, b);
     });
     s = s.replace(DIV_RE, function (_, a, b) {
       return verticalDivHtml(a, b);
@@ -1090,6 +1784,7 @@
     });
     s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/\n/g, "<br>");
+    s = wrapFracInlinePhrases(s);
     return s;
   }
 

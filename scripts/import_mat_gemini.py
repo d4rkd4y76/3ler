@@ -38,10 +38,37 @@ def strip_markdown(s: str) -> str:
     return re.sub(r"\*\*(.+?)\*\*", r"\1", s or "")
 
 
+def apply_topic_patches(topic_id: str, questions: list[dict]) -> list[dict]:
+    if topic_id == "t07":
+        from patch_bolme_gemini import patch_question
+
+        return [patch_question(dict(q)) for q in questions]
+    if topic_id == "t08":
+        from patch_kesir_gemini import patch_question
+
+        return [patch_question(dict(q)) for q in questions]
+    if topic_id == "t09":
+        from patch_zaman_gemini import patch_question
+
+        return [patch_question(dict(q)) for q in questions]
+    if topic_id in ("t10", "t11"):
+        from patch_para_tartma_gemini import filter_for_topic, patch_question
+
+        scoped = filter_for_topic(topic_id, questions)
+        return [patch_question(dict(q)) for q in scoped]
+    return questions
+
+
 def fix_premise_text_split(q: dict) -> dict:
-    for key in ("text", "correct", "wrong1", "wrong2", "explanation"):
+    for key in ("text", "correct", "wrong1", "wrong2"):
         if q.get(key):
             q[key] = strip_markdown(str(q[key])).strip()
+    if q.get("explanation"):
+        expl = str(q["explanation"]).strip()
+        if "[[" not in expl:
+            q["explanation"] = strip_markdown(expl)
+        else:
+            q["explanation"] = expl
     if q.get("premise"):
         q["premise"] = strip_markdown(str(q["premise"])).strip() or None
 
@@ -119,6 +146,7 @@ def main() -> int:
     word_path = Path.home() / "Desktop" / "SORULAR WORD" / topic["word_file"]
 
     questions = [prepare_question(q) for q in load_raw(raw_path)]
+    questions = apply_topic_patches(topic_id, questions)
     validate(questions)
 
     write_json_pack(

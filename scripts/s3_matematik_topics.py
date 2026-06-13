@@ -42,6 +42,14 @@ TOPICS: list[dict] = [
             if i == 5
             else "mat3_carp_"
             if i == 6
+            else "mat3_bol_"
+            if i == 7
+            else "mat3_kesir_"
+            if i == 8
+            else "mat3_zaman_"
+            if i == 9
+            else "mat3_para_tartma_"
+            if i in (10, 11)
             else f"mat3_t{i:02d}_"
         ),
         "raw_file": (
@@ -57,6 +65,14 @@ TOPICS: list[dict] = [
             if i == 5
             else "carpma-gemini-raw.json"
             if i == 6
+            else "bolme-gemini-raw.json"
+            if i == 7
+            else "kesir-gemini-raw.json"
+            if i == 8
+            else "zaman-gemini-raw.json"
+            if i == 9
+            else "para-tartma-gemini-raw.json"
+            if i in (10, 11)
             else f"mat3-t{i:02d}-gemini-raw.json"
         ),
         "data_file": (
@@ -72,10 +88,22 @@ TOPICS: list[dict] = [
             if i == 5
             else "uclu-basamakli-carpma-s3-150.json"
             if i == 6
+            else "bolme-islemi-s3-180.json"
+            if i == 7
+            else "kesirler-s3-130.json"
+            if i == 8
+            else "zaman-olcme-s3-160.json"
+            if i == 9
+            else "paralarimiz-s3-90.json"
+            if i == 10
+            else "tartma-s3-90.json"
+            if i == 11
             else f"mat3-t{i:02d}-s3-150.json"
         ),
         "word_file": "Üç Basamaklı Doğal Sayılar (3. Sınıf) - 150 Soru - GÜNCEL v4.docx"
         if i == 1
+        else f"{name.split('(')[0].strip()} (3. Sınıf) - 180 Soru - GÜNCEL v4.docx"
+        if i == 7
         else f"{name.split('(')[0].strip()} (3. Sınıf) - 150 Soru - GÜNCEL v4.docx",
         "word_subtitle": f"Konu: {name}",
     }
