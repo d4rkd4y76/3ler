@@ -59,23 +59,74 @@ EXPL_VIS: dict[int, str] = {
 }
 
 EXPL_HINT: dict[str, str] = {
-    "ucgen_expl": "Her **köşede** bir nokta vardır; **3 kenar** birleşince **üçgen** oluşur.",
-    "kare_expl": "Etiketlere bak: **4 kenar** eşit, **4 köşe** vardır.",
-    "dikdortgen_expl": "**4 köşe** vardır; karşılıklı **kenarlar eşit** uzunluktadır.",
-    "daire_expl": "İçi **dolu** yuvarlak bölge; **köşe ve kenar yoktur**.",
-    "cember_expl": "Sadece **yuvarlak çizgi**; içi **boş**tur (halka gibi).",
-    "cember_vs_daire_expl": "Soldaki **içi boş çember**, sağdaki **içi dolu daire** — fark burada!",
-    "besgen_expl": "**5 kenar** ve **5 köşe** vardır; her kenar bir doğru parçasıdır.",
-    "altigen_expl": "**6 kenar** ve **6 köşe** vardır; arı petekleri böyledir.",
-    "sekizgen_expl": "**8 kenar** ve **8 köşe** vardır; DUR tabelası gibi düzenli bir sekizgendir.",
-    "kup_expl": "**6 yüz** (hepsi kare), **8 köşe**, **12 ayrıt** — etiketlere dikkat!",
-    "kare_prizma_expl": "Alt-üst **kare** taban; **4 yan yüz** dikdörtgendir.",
-    "dikdortgen_prizma_expl": "**6 yüz**ün hepsi dikdörtgen; **8 köşe**, **12 ayrıt**.",
-    "ucgen_prizma_expl": "**2 üçgen** taban + **3 dikdörtgen** yan = **5 yüz**, **6 köşe**, **9 ayrıt**.",
-    "silindir_expl": "**2 daire** taban + **1 eğri yan**; **köşe ve ayrıt yoktur**.",
-    "koni_expl": "Alt **daire** taban, üst **sivri tepe**; **köşe yoktur**.",
-    "kure_expl": "Tamamen **yuvarlak**; **1 eğri yüz**, **köşe/ayrıt yok**.",
-    "piramit_expl": "Alt **kare** taban, **4 üçgen** yan yüz; tepede **1 sivri köşe** daha.",
+    "ucgen_expl": (
+        "Şekilde **yalnızca sorulan parça** gösterilir. Mor numaralar **köşeleri**, "
+        "mavi numaralar **kenarları** saymana yardım eder."
+    ),
+    "kare_expl": (
+        "Şekilde **yalnızca sorulan parça** vurgulanır. Numaraları sırayla say."
+    ),
+    "dikdortgen_expl": (
+        "Mor **1-4** köşeleri, mavi **1-4** kenarları gösterir — toplam **4 köşe, 4 kenar**. "
+        "**a** ile işaretli üst ve alt kenarlar **eşit**, **b** ile işaretli sağ ve sol kenarlar **eşittir**. "
+        "Karşılıklı kenarlar birbirine eşit olur."
+    ),
+    "daire_expl": (
+        "Daire **içi dolu** yuvarlak bir bölgedir. Köşe noktası yoktur, düz kenar da yoktur — "
+        "her yer **yuvarlaktır**. Madeni para veya pizza dilimi gibi düşünebilirsin."
+    ),
+    "cember_expl": (
+        "Çember yalnızca **yuvarlak bir çizgidir**; ortası **boştur** (halka, yüzük gibi). "
+        "Köşe ve düz kenar yoktur. İçi dolu olan şekle **daire** denir."
+    ),
+    "cember_vs_daire_expl": (
+        "Soldaki **çember**: sadece çizgi, **içi boş**. Sağdaki **daire**: çizginin içi **dolu**. "
+        "İkisi de yuvarlaktır ama biri çizgi, diğeri alandır."
+    ),
+    "besgen_expl": (
+        "Mor numaralarla köşeleri 1'den 5'e say — **5 köşe**. Mavi numaralarla kenarları say — **5 kenar**. "
+        "Her kenar bir **doğru parçasıdır**; beşgen düzenli bir kapalı şekildir."
+    ),
+    "altigen_expl": (
+        "Köşeleri mor numaralarla 1'den 6'ya say — **6 köşe**. Kenarları mavi numaralarla say — **6 kenar**. "
+        "Arı petekleri altıgen şeklindedir."
+    ),
+    "sekizgen_expl": (
+        "Köşeleri mor numaralarla 1'den 8'e say — **8 köşe**. Kenarları mavi numaralarla say — **8 kenar**. "
+        "DUR trafik tabelası düzenli bir sekizgendir."
+    ),
+    "kup_expl": (
+        "Cismi parmağınla çevirerek bak. **Koyu çizgiler** kenarlardır (ayrıttır). "
+        "Yüzler **kare** şeklindedir. Küpte **6 yüz, 8 köşe, 12 ayrıt** vardır."
+    ),
+    "kare_prizma_expl": (
+        "Alt ve üst yüz **karedir**. Yan taraftaki yüzler **dikdörtgendir**. "
+        "**Koyu çizgiler** kenarlardır. Toplam **6 yüz, 8 köşe, 12 ayrıt** vardır."
+    ),
+    "dikdortgen_prizma_expl": (
+        "Tüm yüzler **dikdörtgendir**. Karşılıklı yüzler birbirine **eşittir**. "
+        "Süt kutusu veya ayakkabı kutusu gibi düşün. **6 yüz, 8 köşe, 12 ayrıt**."
+    ),
+    "ucgen_prizma_expl": (
+        "İki uçta **üçgen taban** vardır (üst ve alt). Aradaki **3 yan yüz dikdörtgendir**. "
+        "**Koyu çizgiler** kenarlardır. Toplam **5 yüz, 6 köşe, 9 ayrıt**."
+    ),
+    "silindir_expl": (
+        "Üstte ve altta **①② daire taban** vardır. Yan kısım **eğri bir yüzeydir**. "
+        "Köşe ve ayrıt **yoktur** — konserve kutusu veya pil gibi."
+    ),
+    "koni_expl": (
+        "Altta **daire taban**, üstte **tek bir tepe noktası** vardır. Yan yüz **eğridir**. "
+        "Dondurma külahı gibi; köşe yoktur, sadece **1 tepe** vardır."
+    ),
+    "kure_expl": (
+        "Küre tamamen **yuvarlaktır** — futbol topu veya portakal gibi. "
+        "Tek **eğri yüz** vardır; **köşe ve ayrıt yoktur**."
+    ),
+    "piramit_expl": (
+        "Altta **kare taban**, yanlarda **üçgen yüzler** vardır. Tepede **1 sivri köşe** daha bulunur. "
+        "**Koyu çizgiler** kenarlardır. Toplam **5 yüz, 5 köşe, 8 ayrıt**."
+    ),
 }
 
 DETECT_3D: list[tuple[str, str]] = [
@@ -85,8 +136,8 @@ DETECT_3D: list[tuple[str, str]] = [
     (r"piramit", "piramit"),
     (r"silindir|soba\s*borusu|pil\b|konserve", "silindir"),
     (r"\bkoni\b|külah|şapka|duba", "koni"),
-    (r"\bküre\b|\bkure\b|futbol\s*topu|portakal|top\s*şekli", "kure"),
-    (r"\bküp\b|\bkup\b|zar\b|zeka\s*küp", "kup"),
+    (r"küre|kure|futbol\s*topu|portakal|top\s*şekli", "kure"),
+    (r"küp|kup|zar\b|zeka\s*küp", "kup"),
 ]
 
 DETECT_2D: list[tuple[str, str]] = [
@@ -135,8 +186,54 @@ def question_num(qid: str) -> int:
     return int(m.group(1)) if m else 0
 
 
-def vis_tag(ns: str, kind: str) -> str:
-    return f"[[{ns}:{kind}]]"
+def vis_tag(ns: str, kind: str, focus: str | None = None) -> str:
+    base = kind if kind.endswith("_expl") else f"{kind}_expl"
+    if focus and focus != "temel":
+        return f"[[{ns}:{base}|{focus}]]"
+    return f"[[{ns}:{base}]]"
+
+
+def detect_focus(q: dict) -> str:
+    """Soru köküne göre görselde yalnızca ilgili parça gösterilir."""
+    text = " ".join(filter(None, [q.get("text"), q.get("premise")])).lower()
+
+    if re.search(r"kaç.*köşegen|köşegen.*kaç", text):
+        return "kosegen"
+    if re.search(r"kaç.*ayrıt|ayrıt.*kaç|kaç.*çizgi", text):
+        return "ayrit"
+    if re.search(r"kaç.*köşe|köşe.*kaç|köşesi vardır|köşesi yok", text):
+        return "kose"
+    if re.search(r"kaç.*yüz|yüz.*kaç|yüzeyi vardır|yüzey", text):
+        return "yuz"
+    if re.search(r"kaç.*kenar|kenar.*kaç", text):
+        return "kenar"
+    if any(
+        p in text
+        for p in (
+            "ne ad verilir",
+            "hangisidir",
+            "aşağıdakilerden hangisi",
+            "modelidir",
+            "örneğidir",
+            "benzer",
+        )
+    ):
+        return "temel"
+    if "köşegen" in text:
+        return "kosegen"
+    if "ayrıt" in text or "ayrit" in text:
+        return "ayrit"
+    if "köşe" in text:
+        return "kose"
+    if "yüz" in text:
+        return "yuz"
+    if "kenar" in text:
+        return "kenar"
+    if "eşit" in text and "karşılıklı" in text:
+        return "esit"
+    if "çember" in text and "daire" in text:
+        return "karsilastir"
+    return "temel"
 
 
 def parse_vis(spec: str) -> tuple[str, str]:
@@ -177,20 +274,118 @@ def premise_vis(n: int, q: dict) -> str | None:
     """Öncülde şekil yalnızca açık izin listesinde."""
     if n in PREMISE_VIS:
         ns, kind = parse_vis(PREMISE_VIS[n])
-        return vis_tag(ns, kind)
+        return f"[[{ns}:{kind}]]"
     return None
+
+
+def is_multi_solid_question(q: dict) -> bool:
+    """Birden fazla cisim sayılan sorularda tek cisim görseli yanıltıcı olur."""
+    text = " ".join(
+        filter(None, [q.get("text"), q.get("premise"), q.get("correct")])
+    ).lower()
+    if re.search(r"1\s*küp\s*ve\s*1|1\s*kup\s*ve\s*1", text, re.I):
+        return True
+    if re.search(r"2\s*tane\s*cisim|iki\s*cisim", text, re.I):
+        return True
+    if re.search(r"\d+\s*tane\s*küp.*prizma|\d+\s*tane\s*kup.*prizma", text, re.I):
+        return True
+    if re.search(r"2\s*tane\s*küp|2\s*tane\s*kup", text, re.I) and "prizma" in text:
+        return True
+    if re.search(r"toplam\s+(?:köşe|kose|ayrıt|ayrit|yüz|yuz)", text, re.I):
+        kup = len(re.findall(r"küp|kup", text, re.I))
+        prizma = len(re.findall(r"prizma", text, re.I))
+        if kup + prizma >= 2:
+            return True
+    return False
 
 
 def expl_vis(n: int, q: dict) -> str | None:
+    if is_multi_solid_question(q):
+        return None
+    focus = detect_focus(q)
     if n in EXPL_VIS:
         ns, kind = parse_vis(EXPL_VIS[n])
-        tag = vis_tag(ns, kind if kind.endswith("_expl") else f"{kind}_expl")
-        return tag.replace("_expl_expl", "_expl")
-    blob = " ".join(filter(None, [q.get("explanation"), q.get("correct"), q.get("text")]))
+        kind = kind.replace("_expl", "")
+        return vis_tag(ns, kind, focus)
+    blob = " ".join(
+        filter(
+            None,
+            [q.get("premise"), q.get("text"), q.get("explanation"), q.get("correct")],
+        )
+    )
     hit = detect_from_blob(blob, prefer_3d=n >= 26)
     if hit:
-        return vis_tag(hit[0], f"{hit[1]}_expl")
+        if hit[1] == "cember_vs_daire":
+            focus = "karsilastir"
+        return vis_tag(hit[0], hit[1], focus)
     return None
+
+
+def contextual_hint(tag: str, q: dict) -> str:
+    """Soru köküne göre ekranda görünen parçalarla sayım anlatımı."""
+    text = " ".join(
+        filter(None, [q.get("text"), q.get("premise"), q.get("explanation")])
+    ).lower()
+    is_cisim = "cisim:" in tag
+
+    if "ayrıt" in text or "ayrit" in text:
+        if "ucgen_prizma" in tag:
+            return (
+                "Cismi çevirerek bak: **koyu çizgiler ayrıttır** (kenar çizgileri). "
+                "Üst üçgende **3**, alt üçgende **3**, birleştiren dikey çizgilerde **3** olmak üzere "
+                "toplam **9 ayrıt** vardır."
+            )
+        if "kup" in tag:
+            return (
+                "Cismi çevirerek bak: **koyu çizgiler ayrıttır**. "
+                "Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → "
+                "toplam **12 ayrıt**."
+            )
+        if "kare_prizma" in tag or "dikdortgen_prizma" in tag:
+            return (
+                "Cismi çevirerek bak: **koyu çizgiler ayrıttır**. "
+                "Üst tabanda **4**, alt tabanda **4**, birleştiren dikey çizgilerde **4** → "
+                "toplam **12 ayrıt**."
+            )
+        if "piramit" in tag:
+            return (
+                "Cismi çevirerek bak: **koyu çizgiler ayrıttır**. "
+                "Kare piramitte taban kenarları ve yan üçgenlerin kenarları birlikte **8 ayrıt** eder."
+            )
+
+    if "köşe" in text or "kose" in text:
+        if "ucgen_prizma" in tag:
+            return (
+                "Cismi çevirerek bak: **kırmızı noktalar köşelerdir**. "
+                "Üst üçgende **3**, alt üçgende **3** olmak üzere toplam **6 köşe** vardır."
+            )
+        if "kup" in tag or "prizma" in tag:
+            return (
+                "Cismi çevirerek bak: **kırmızı noktalar köşelerdir**. "
+                "Bu prizmada **8 köşe** vardır (üstte 4, altta 4)."
+            )
+
+    if "yüz" in text or "yuz" in text:
+        if "ucgen_prizma" in tag:
+            return (
+                "Cismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = "
+                "toplam **5 yüz**."
+            )
+        if "kup" in tag:
+            return "Cismi çevirerek bak: **6 kare yüz** görürsün (alt, üst ve 4 yan)."
+        if "kure" in tag or "küre" in text:
+            return "Küre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**."
+
+    if "köşegen" in text:
+        if "kare" in tag:
+            return (
+                "Karede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. "
+                "4 köşeden **2 farklı köşegen** çizilebilir."
+            )
+
+    if is_cisim:
+        return expl_hint_for_tag(tag)
+    return expl_hint_for_tag(tag)
 
 
 def expl_hint_for_tag(tag: str) -> str:
@@ -285,11 +480,31 @@ def enhance_question(q: dict) -> dict:
 
     expl = (q.get("explanation") or "").strip()
     expl_tag = expl_vis(n, q)
-    if expl and expl_tag:
+    if expl_tag:
+        hint = contextual_hint(expl_tag, q) if "|" in expl_tag else ""
         body = clean_explanation_body(expl, expl_tag)
-        q["explanation"] = f"{expl_tag}\n\n{body}" if body else expl_tag
+        parts = [expl_tag]
+        if hint and hint not in body:
+            parts.append(hint)
+        if body:
+            parts.append(body)
+        q["explanation"] = "\n\n".join(parts)
     elif expl:
-        q["explanation"] = expl
+        body = clean_explanation_body(expl, None)
+        if is_multi_solid_question(q):
+            body = re.sub(
+                r"Mor\s+\*\*[^*]+\*\*[^.\n]*\.\s*",
+                "",
+                body,
+                flags=re.I,
+            )
+            body = re.sub(
+                r"Şekilde\s+\*\*mavi[^.\n]*\.\s*",
+                "",
+                body,
+                flags=re.I,
+            )
+        q["explanation"] = body.strip() if body else expl
 
     return q
 

@@ -39,6 +39,9 @@ function showExplanationAndNext() {
       proceedToNextQuestion();
       return;
     }
+    const wrongReviewActive = !!window.NOVA_WRONG_REVIEW_ACTIVE;
+    const wrongReviewItems = wrongReviewActive ? (window.__novaWrongReviewItems || []) : [];
+    const wrongReviewPos = wrongReviewActive ? (Number(window.__novaWrongReviewPos) || 0) : 0;
     const isLast =
       Array.isArray(gameQuestions) &&
       currentQuestionIndex >= gameQuestions.length - 1;
@@ -48,7 +51,7 @@ function showExplanationAndNext() {
         : "";
     const noteText = getExplanationOnly(currentQuestion);
     const chosenBtn = document.querySelector(".option-button.option-chosen");
-    const chosenRaw = chosenBtn
+    let chosenRaw = chosenBtn
       ? String(
           chosenBtn.getAttribute("data-opt-text") ||
             chosenBtn.innerText ||
@@ -56,9 +59,43 @@ function showExplanationAndNext() {
             ""
         ).trim()
       : "";
-    const isCorrect = chosenBtn
-      ? chosenBtn.classList.contains("correct")
-      : false;
+    if (wrongReviewActive && wrongReviewItems[wrongReviewPos]) {
+      var stored = String(wrongReviewItems[wrongReviewPos].chosen || "").trim();
+      if (typeof window.novaResolveOptionLabel === "function") {
+        chosenRaw = window.novaResolveOptionLabel(stored, currentQuestion);
+      } else if (stored) {
+        chosenRaw = stored;
+      }
+    } else if (chosenRaw && typeof window.novaResolveOptionLabel === "function") {
+      chosenRaw = window.novaResolveOptionLabel(chosenRaw, currentQuestion);
+    }
+    const isCorrect = wrongReviewActive
+      ? false
+      : chosenBtn
+        ? chosenBtn.classList.contains("correct")
+        : false;
+
+    var footerHtml = "";
+    if (wrongReviewActive && wrongReviewItems.length) {
+      var hasPrev = wrongReviewPos > 0;
+      var hasNext = wrongReviewPos < wrongReviewItems.length - 1;
+      footerHtml =
+        '<div class="explanation-nav-row">' +
+        '<button type="button" id="wrong-review-prev" class="next-question-button next-question-button--secondary"' +
+        (hasPrev ? "" : " disabled") +
+        ">← Önceki</button>" +
+        '<button type="button" id="wrong-review-next" class="next-question-button"' +
+        (hasNext ? "" : " disabled") +
+        ">" +
+        (hasNext ? "Sonraki →" : "Sonraki yok") +
+        "</button></div>" +
+        '<button type="button" id="wrong-review-exit" class="next-question-button next-question-button--ghost">Sonuç Ekranına Dön</button>';
+    } else {
+      footerHtml =
+        '<button type="button" id="next-question-button" class="next-question-button">' +
+        (isLast ? (window.NOVA_SP_REVIEW_MODE ? "Kontrolü Bitir" : "Sonuçları Gör") : "Sonraki Soru") +
+        "</button>";
+    }
 
     expl.innerHTML =
       '<div class="explanation-card ' +
@@ -89,9 +126,8 @@ function showExplanationAndNext() {
           novaMarkupHtml(noteText, true) +
           "</div></div>"
         : "") +
-      '<button type="button" id="next-question-button" class="next-question-button">' +
-      (isLast ? (window.NOVA_SP_REVIEW_MODE ? "Kontrolü Bitir" : "Sonuçları Gör") : "Sonraki Soru") +
-      "</button></div>";
+      footerHtml +
+      "</div>";
 
     expl.style.display = "block";
 
@@ -102,7 +138,47 @@ function showExplanationAndNext() {
       ) {
         window.NovaQuestionMarkup.initBunnyVideos(expl);
       }
+      if (
+        window.NovaCisim3DViewer &&
+        typeof window.NovaCisim3DViewer.mountAll === "function"
+      ) {
+        window.NovaCisim3DViewer.mountAll(expl);
+      }
     } catch (_) {}
+
+    if (wrongReviewActive && wrongReviewItems.length) {
+      var prevBtn = document.getElementById("wrong-review-prev");
+      var nextBtn = document.getElementById("wrong-review-next");
+      var exitBtn = document.getElementById("wrong-review-exit");
+      if (prevBtn) {
+        prevBtn.onclick = function () {
+          if (wrongReviewPos <= 0) return;
+          expl.style.display = "none";
+          expl.innerHTML = "";
+          if (typeof window.novaShowWrongReviewAt === "function") {
+            window.novaShowWrongReviewAt(wrongReviewPos - 1);
+          }
+        };
+      }
+      if (nextBtn) {
+        nextBtn.onclick = function () {
+          if (wrongReviewPos >= wrongReviewItems.length - 1) return;
+          expl.style.display = "none";
+          expl.innerHTML = "";
+          if (typeof window.novaShowWrongReviewAt === "function") {
+            window.novaShowWrongReviewAt(wrongReviewPos + 1);
+          }
+        };
+      }
+      if (exitBtn) {
+        exitBtn.onclick = function () {
+          if (typeof window.novaReturnToSpResultScreen === "function") {
+            window.novaReturnToSpResultScreen();
+          }
+        };
+      }
+      return;
+    }
 
     const nxt = document.getElementById("next-question-button");
     if (nxt) {

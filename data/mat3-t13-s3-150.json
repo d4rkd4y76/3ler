@@ -88,7 +88,7 @@
       "correct": "Çember",
       "wrong1": "Üçgen",
       "wrong2": "Kare",
-      "explanation": "[[sekil:cember_expl]]\n\nÇember yuvarlak bir eğriden oluşur; düz kenarı ve sivri köşesi yoktur.",
+      "explanation": "[[sekil:cember_expl|kose]]\n\nÇember yuvarlak bir eğriden oluşur; düz kenarı ve sivri köşesi yoktur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -100,7 +100,7 @@
         "correct": "Çember",
         "wrong1": "Üçgen",
         "wrong2": "Kare",
-        "explanation": "[[sekil:cember_expl]]\n\nÇember yuvarlak bir eğriden oluşur; düz kenarı ve sivri köşesi yoktur.",
+        "explanation": "[[sekil:cember_expl|kose]]\n\nÇember yuvarlak bir eğriden oluşur; düz kenarı ve sivri köşesi yoktur.",
         "url": null
       }
     },
@@ -165,7 +165,7 @@
       "correct": "Dikdörtgen",
       "wrong1": "Kare",
       "wrong2": "Üçgen",
-      "explanation": "[[sekil:dikdortgen_expl]]\n\nYazı tahtasının iki uzun, iki kısa kenarı olduğu için dikdörtgen modelidir.",
+      "explanation": "[[sekil:dikdortgen_expl|yuz]]\n\nYazı tahtasının iki uzun, iki kısa kenarı olduğu için dikdörtgen modelidir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -177,7 +177,7 @@
         "correct": "Dikdörtgen",
         "wrong1": "Kare",
         "wrong2": "Üçgen",
-        "explanation": "[[sekil:dikdortgen_expl]]\n\nYazı tahtasının iki uzun, iki kısa kenarı olduğu için dikdörtgen modelidir.",
+        "explanation": "[[sekil:dikdortgen_expl|yuz]]\n\nYazı tahtasının iki uzun, iki kısa kenarı olduğu için dikdörtgen modelidir.",
         "url": null
       }
     },
@@ -189,7 +189,7 @@
       "correct": "Kare",
       "wrong1": "Dikdörtgen",
       "wrong2": "Çember",
-      "explanation": "[[sekil:kare_expl]]\n\nSatranç tahtasının dört kenarı da birbirine eşit uzunluktadır, bu yüzden karedir.",
+      "explanation": "[[sekil:kare_expl|kenar]]\n\nSatranç tahtasının dört kenarı da birbirine eşit uzunluktadır, bu yüzden karedir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -201,7 +201,7 @@
         "correct": "Kare",
         "wrong1": "Dikdörtgen",
         "wrong2": "Çember",
-        "explanation": "[[sekil:kare_expl]]\n\nSatranç tahtasının dört kenarı da birbirine eşit uzunluktadır, bu yüzden karedir.",
+        "explanation": "[[sekil:kare_expl|kenar]]\n\nSatranç tahtasının dört kenarı da birbirine eşit uzunluktadır, bu yüzden karedir.",
         "url": null
       }
     },
@@ -213,7 +213,7 @@
       "correct": "Evet, ikisinin de 4 köşesi vardır.",
       "wrong1": "Hayır, karenin köşesi daha fazladır.",
       "wrong2": "Hayır, dikdörtgenin köşesi daha fazladır.",
-      "explanation": "[[sekil:kare_expl]]\n\nKare ve dikdörtgen dörtgenler ailesindendir ve her ikisinin de 4 köşesi, 4 kenarı vardır.",
+      "explanation": "[[sekil:kare_expl|kose]]\n\nKare ve dikdörtgen dörtgenler ailesindendir ve her ikisinin de 4 köşesi, 4 kenarı vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -230,7 +230,7 @@
         "correct": "Evet, ikisinin de 4 köşesi vardır.",
         "wrong1": "Hayır, karenin köşesi daha fazladır.",
         "wrong2": "Hayır, dikdörtgenin köşesi daha fazladır.",
-        "explanation": "[[sekil:kare_expl]]\n\nKare ve dikdörtgen dörtgenler ailesindendir ve her ikisinin de 4 köşesi, 4 kenarı vardır.",
+        "explanation": "[[sekil:kare_expl|kose]]\n\nKare ve dikdörtgen dörtgenler ailesindendir ve her ikisinin de 4 köşesi, 4 kenarı vardır.",
         "url": null
       }
     },
@@ -242,7 +242,7 @@
       "correct": "Üçgen",
       "wrong1": "Kare",
       "wrong2": "Dikdörtgen",
-      "explanation": "[[sekil:ucgen_expl]]\n\nKare ve dikdörtgenin 4 kenarı varken, üçgenin 3 kenarı vardır.",
+      "explanation": "[[sekil:ucgen_expl|kenar]]\n\nKare ve dikdörtgenin 4 kenarı varken, üçgenin 3 kenarı vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -254,7 +254,7 @@
         "correct": "Üçgen",
         "wrong1": "Kare",
         "wrong2": "Dikdörtgen",
-        "explanation": "[[sekil:ucgen_expl]]\n\nKare ve dikdörtgenin 4 kenarı varken, üçgenin 3 kenarı vardır.",
+        "explanation": "[[sekil:ucgen_expl|kenar]]\n\nKare ve dikdörtgenin 4 kenarı varken, üçgenin 3 kenarı vardır.",
         "url": null
       }
     },
@@ -295,7 +295,7 @@
       "correct": "Üçgen",
       "wrong1": "Kare",
       "wrong2": "Dikdörtgen",
-      "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin tüm köşeleri birbirine komşu olduğu için çapraz birleşecek köşe yoktur, köşegeni çizilemez.",
+      "explanation": "[[sekil:ucgen_expl|kosegen]]\n\nÜçgenin tüm köşeleri birbirine komşu olduğu için çapraz birleşecek köşe yoktur, köşegeni çizilemez.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -312,7 +312,7 @@
         "correct": "Üçgen",
         "wrong1": "Kare",
         "wrong2": "Dikdörtgen",
-        "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin tüm köşeleri birbirine komşu olduğu için çapraz birleşecek köşe yoktur, köşegeni çizilemez.",
+        "explanation": "[[sekil:ucgen_expl|kosegen]]\n\nÜçgenin tüm köşeleri birbirine komşu olduğu için çapraz birleşecek köşe yoktur, köşegeni çizilemez.",
         "url": null
       }
     },
@@ -324,7 +324,7 @@
       "correct": "2",
       "wrong1": "4",
       "wrong2": "1",
-      "explanation": "[[sekil:kare_expl]]\n\nTıpkı kare gibi dikdörtgenin de çapraz köşelerini birleştiren tam 2 adet köşegeni vardır.",
+      "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nTıpkı kare gibi dikdörtgenin de çapraz köşelerini birleştiren tam 2 adet köşegeni vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -336,7 +336,7 @@
         "correct": "2",
         "wrong1": "4",
         "wrong2": "1",
-        "explanation": "[[sekil:kare_expl]]\n\nTıpkı kare gibi dikdörtgenin de çapraz köşelerini birleştiren tam 2 adet köşegeni vardır.",
+        "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nTıpkı kare gibi dikdörtgenin de çapraz köşelerini birleştiren tam 2 adet köşegeni vardır.",
         "url": null
       }
     },
@@ -348,7 +348,7 @@
       "correct": "Hiç yoktur",
       "wrong1": "1 tane vardır",
       "wrong2": "Sonsuz tane vardır",
-      "explanation": "[[sekil:cember_expl]]\n\nKöşegen çizebilmek için önce köşelerin olması gerekir. Köşesi olmayan şeklin köşegeni de olmaz.",
+      "explanation": "[[sekil:cember_expl|kosegen]]\n\nKöşegen çizebilmek için önce köşelerin olması gerekir. Köşesi olmayan şeklin köşegeni de olmaz.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -365,7 +365,7 @@
         "correct": "Hiç yoktur",
         "wrong1": "1 tane vardır",
         "wrong2": "Sonsuz tane vardır",
-        "explanation": "[[sekil:cember_expl]]\n\nKöşegen çizebilmek için önce köşelerin olması gerekir. Köşesi olmayan şeklin köşegeni de olmaz.",
+        "explanation": "[[sekil:cember_expl|kosegen]]\n\nKöşegen çizebilmek için önce köşelerin olması gerekir. Köşesi olmayan şeklin köşegeni de olmaz.",
         "url": null
       }
     },
@@ -377,7 +377,7 @@
       "correct": "Hayır, üçgen olduğu için yoktur.",
       "wrong1": "Evet, 2 tane vardır.",
       "wrong2": "Evet, 3 tane vardır.",
-      "explanation": "[[sekil:ucgen_expl]]\n\n3 kenarı olan şekil üçgendir ve üçgenlerin köşegeni bulunmaz.",
+      "explanation": "[[sekil:ucgen_expl|kosegen]]\n\n3 kenarı olan şekil üçgendir ve üçgenlerin köşegeni bulunmaz.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -389,7 +389,7 @@
         "correct": "Hayır, üçgen olduğu için yoktur.",
         "wrong1": "Evet, 2 tane vardır.",
         "wrong2": "Evet, 3 tane vardır.",
-        "explanation": "[[sekil:ucgen_expl]]\n\n3 kenarı olan şekil üçgendir ve üçgenlerin köşegeni bulunmaz.",
+        "explanation": "[[sekil:ucgen_expl|kosegen]]\n\n3 kenarı olan şekil üçgendir ve üçgenlerin köşegeni bulunmaz.",
         "url": null
       }
     },
@@ -478,7 +478,7 @@
       "correct": "Kare ve Dikdörtgen",
       "wrong1": "Üçgen ve Kare",
       "wrong2": "Dikdörtgen ve Çember",
-      "explanation": "[[sekil:kare_expl]]\n\nKare ve dikdörtgenin her ikisinin de 4 kenarı, 4 köşesi ve 2 köşegeni vardır.",
+      "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nKare ve dikdörtgenin her ikisinin de 4 kenarı, 4 köşesi ve 2 köşegeni vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -490,7 +490,7 @@
         "correct": "Kare ve Dikdörtgen",
         "wrong1": "Üçgen ve Kare",
         "wrong2": "Dikdörtgen ve Çember",
-        "explanation": "[[sekil:kare_expl]]\n\nKare ve dikdörtgenin her ikisinin de 4 kenarı, 4 köşesi ve 2 köşegeni vardır.",
+        "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nKare ve dikdörtgenin her ikisinin de 4 kenarı, 4 köşesi ve 2 köşegeni vardır.",
         "url": null
       }
     },
@@ -502,7 +502,7 @@
       "correct": "3",
       "wrong1": "4",
       "wrong2": "0",
-      "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin 3 köşesi olduğu için teli tam 3 farklı noktadan bükerek köşe yapması gerekir.",
+      "explanation": "[[sekil:ucgen_expl|kose]]\n\nÜçgenin 3 köşesi olduğu için teli tam 3 farklı noktadan bükerek köşe yapması gerekir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -519,7 +519,7 @@
         "correct": "3",
         "wrong1": "4",
         "wrong2": "0",
-        "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin 3 köşesi olduğu için teli tam 3 farklı noktadan bükerek köşe yapması gerekir.",
+        "explanation": "[[sekil:ucgen_expl|kose]]\n\nÜçgenin 3 köşesi olduğu için teli tam 3 farklı noktadan bükerek köşe yapması gerekir.",
         "url": null
       }
     },
@@ -531,7 +531,7 @@
       "correct": "11",
       "wrong1": "10",
       "wrong2": "12",
-      "explanation": "[[sekil:ucgen_expl]]\n\nKare (4) + Dikdörtgen (4) + Üçgen (3) = Toplam 11 köşe eder.",
+      "explanation": "[[sekil:ucgen_expl|kose]]\n\nKare (4) + Dikdörtgen (4) + Üçgen (3) = Toplam 11 köşe eder.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -543,7 +543,7 @@
         "correct": "11",
         "wrong1": "10",
         "wrong2": "12",
-        "explanation": "[[sekil:ucgen_expl]]\n\nKare (4) + Dikdörtgen (4) + Üçgen (3) = Toplam 11 köşe eder.",
+        "explanation": "[[sekil:ucgen_expl|kose]]\n\nKare (4) + Dikdörtgen (4) + Üçgen (3) = Toplam 11 köşe eder.",
         "url": null
       }
     },
@@ -714,7 +714,7 @@
       "correct": "Küp",
       "wrong1": "Kare prizma",
       "wrong2": "Silindir",
-      "explanation": "[[cisim:kup_expl]]\n\nKüp, 6 yüzünün hepsi birbirine eşit karelerden oluşan özel bir geometrik cisimdir.",
+      "explanation": "[[cisim:kup_expl|yuz]]\n\nCismi çevirerek bak: **6 kare yüz** görürsün (alt, üst ve 4 yan).\n\nKüp, 6 yüzünün hepsi birbirine eşit karelerden oluşan özel bir geometrik cisimdir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -726,7 +726,7 @@
         "correct": "Küp",
         "wrong1": "Kare prizma",
         "wrong2": "Silindir",
-        "explanation": "[[cisim:kup_expl]]\n\nKüp, 6 yüzünün hepsi birbirine eşit karelerden oluşan özel bir geometrik cisimdir.",
+        "explanation": "[[cisim:kup_expl|yuz]]\n\nCismi çevirerek bak: **6 kare yüz** görürsün (alt, üst ve 4 yan).\n\nKüp, 6 yüzünün hepsi birbirine eşit karelerden oluşan özel bir geometrik cisimdir.",
         "url": null
       }
     },
@@ -762,7 +762,7 @@
       "correct": "6",
       "wrong1": "8",
       "wrong2": "12",
-      "explanation": "Küpün alt, üst ve 4 yan olmak üzere toplam 6 tane yüzü vardır.",
+      "explanation": "[[cisim:kup_expl|yuz]]\n\nCismi çevirerek bak: **6 kare yüz** görürsün (alt, üst ve 4 yan).\n\nKüpün alt, üst ve 4 yan olmak üzere toplam 6 tane yüzü vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -774,7 +774,7 @@
         "correct": "6",
         "wrong1": "8",
         "wrong2": "12",
-        "explanation": "Küpün alt, üst ve 4 yan olmak üzere toplam 6 tane yüzü vardır.",
+        "explanation": "[[cisim:kup_expl|yuz]]\n\nCismi çevirerek bak: **6 kare yüz** görürsün (alt, üst ve 4 yan).\n\nKüpün alt, üst ve 4 yan olmak üzere toplam 6 tane yüzü vardır.",
         "url": null
       }
     },
@@ -786,7 +786,7 @@
       "correct": "8",
       "wrong1": "6",
       "wrong2": "12",
-      "explanation": "Küpün üstte 4, altta 4 olmak üzere toplam 8 sivri köşesi vardır.",
+      "explanation": "[[cisim:kup_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nKüpün üstte 4, altta 4 olmak üzere toplam 8 sivri köşesi vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -798,7 +798,7 @@
         "correct": "8",
         "wrong1": "6",
         "wrong2": "12",
-        "explanation": "Küpün üstte 4, altta 4 olmak üzere toplam 8 sivri köşesi vardır.",
+        "explanation": "[[cisim:kup_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nKüpün üstte 4, altta 4 olmak üzere toplam 8 sivri köşesi vardır.",
         "url": null
       }
     },
@@ -810,7 +810,7 @@
       "correct": "12",
       "wrong1": "6",
       "wrong2": "8",
-      "explanation": "Küpün üstte 4, altta 4 ve yanlarda 4 olmak üzere toplam 12 ayrıtı vardır.",
+      "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüpün üstte 4, altta 4 ve yanlarda 4 olmak üzere toplam 12 ayrıtı vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -822,7 +822,7 @@
         "correct": "12",
         "wrong1": "6",
         "wrong2": "8",
-        "explanation": "Küpün üstte 4, altta 4 ve yanlarda 4 olmak üzere toplam 12 ayrıtı vardır.",
+        "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüpün üstte 4, altta 4 ve yanlarda 4 olmak üzere toplam 12 ayrıtı vardır.",
         "url": null
       }
     },
@@ -863,7 +863,7 @@
       "correct": "Kare Prizma",
       "wrong1": "Dikdörtgenler Prizması",
       "wrong2": "Üçgen Prizma",
-      "explanation": "[[cisim:kare_prizma_expl]]\n\nİsmini tabanındaki kareden alan, yanları dikdörtgen olan cisim kare prizmadır.",
+      "explanation": "[[cisim:kare_prizma_expl|yuz]]\n\nİsmini tabanındaki kareden alan, yanları dikdörtgen olan cisim kare prizmadır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -875,7 +875,7 @@
         "correct": "Kare Prizma",
         "wrong1": "Dikdörtgenler Prizması",
         "wrong2": "Üçgen Prizma",
-        "explanation": "[[cisim:kare_prizma_expl]]\n\nİsmini tabanındaki kareden alan, yanları dikdörtgen olan cisim kare prizmadır.",
+        "explanation": "[[cisim:kare_prizma_expl|yuz]]\n\nİsmini tabanındaki kareden alan, yanları dikdörtgen olan cisim kare prizmadır.",
         "url": null
       }
     },
@@ -911,7 +911,7 @@
       "correct": "Üçgen Prizma",
       "wrong1": "Koni",
       "wrong2": "Kare Prizma",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nİsmini tabanındaki üçgenden alan cisim üçgen prizmadır.",
+      "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\nİsmini tabanındaki üçgenden alan cisim üçgen prizmadır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -923,7 +923,7 @@
         "correct": "Üçgen Prizma",
         "wrong1": "Koni",
         "wrong2": "Kare Prizma",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nİsmini tabanındaki üçgenden alan cisim üçgen prizmadır.",
+        "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\nİsmini tabanındaki üçgenden alan cisim üçgen prizmadır.",
         "url": null
       }
     },
@@ -959,7 +959,7 @@
       "correct": "Silindir",
       "wrong1": "Koni",
       "wrong2": "Küre",
-      "explanation": "[[cisim:silindir_expl]]\n\nSoba borusu veya piller silindir geometrik cismine birer örnektir.",
+      "explanation": "[[cisim:silindir_expl|yuz]]\n\nSoba borusu veya piller silindir geometrik cismine birer örnektir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -971,7 +971,7 @@
         "correct": "Silindir",
         "wrong1": "Koni",
         "wrong2": "Küre",
-        "explanation": "[[cisim:silindir_expl]]\n\nSoba borusu veya piller silindir geometrik cismine birer örnektir.",
+        "explanation": "[[cisim:silindir_expl|yuz]]\n\nSoba borusu veya piller silindir geometrik cismine birer örnektir.",
         "url": null
       }
     },
@@ -1055,7 +1055,7 @@
       "correct": "Küre",
       "wrong1": "Silindir",
       "wrong2": "Koni",
-      "explanation": "[[cisim:kure_expl]]\n\nFutbol topu, portakal ve Dünya'mız tamamen eğri yüzeye sahip olan küreye örnektir.",
+      "explanation": "[[cisim:kure_expl|yuz]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nFutbol topu, portakal ve Dünya'mız tamamen eğri yüzeye sahip olan küreye örnektir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1067,7 +1067,7 @@
         "correct": "Küre",
         "wrong1": "Silindir",
         "wrong2": "Koni",
-        "explanation": "[[cisim:kure_expl]]\n\nFutbol topu, portakal ve Dünya'mız tamamen eğri yüzeye sahip olan küreye örnektir.",
+        "explanation": "[[cisim:kure_expl|yuz]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nFutbol topu, portakal ve Dünya'mız tamamen eğri yüzeye sahip olan küreye örnektir.",
         "url": null
       }
     },
@@ -1079,7 +1079,7 @@
       "correct": "Küre",
       "wrong1": "Küp",
       "wrong2": "Kare Prizma",
-      "explanation": "[[cisim:silindir_expl]]\n\nKüp ve prizmaların ayrıtları vardır ancak kürenin, silindirin ve koninin ayrıtı yoktur.",
+      "explanation": "[[cisim:silindir_expl|ayrit]]\n\nKüp ve prizmaların ayrıtları vardır ancak kürenin, silindirin ve koninin ayrıtı yoktur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1091,7 +1091,7 @@
         "correct": "Küre",
         "wrong1": "Küp",
         "wrong2": "Kare Prizma",
-        "explanation": "[[cisim:silindir_expl]]\n\nKüp ve prizmaların ayrıtları vardır ancak kürenin, silindirin ve koninin ayrıtı yoktur.",
+        "explanation": "[[cisim:silindir_expl|ayrit]]\n\nKüp ve prizmaların ayrıtları vardır ancak kürenin, silindirin ve koninin ayrıtı yoktur.",
         "url": null
       }
     },
@@ -1103,7 +1103,7 @@
       "correct": "Silindir",
       "wrong1": "Üçgen Prizma",
       "wrong2": "Dikdörtgenler Prizması",
-      "explanation": "[[cisim:silindir_expl]]\n\nSilindirin altı ve üstü yuvarlaktır, sivri bir köşesi kesinlikle yoktur.",
+      "explanation": "[[cisim:silindir_expl|kose]]\n\nSilindirin altı ve üstü yuvarlaktır, sivri bir köşesi kesinlikle yoktur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1115,7 +1115,7 @@
         "correct": "Silindir",
         "wrong1": "Üçgen Prizma",
         "wrong2": "Dikdörtgenler Prizması",
-        "explanation": "[[cisim:silindir_expl]]\n\nSilindirin altı ve üstü yuvarlaktır, sivri bir köşesi kesinlikle yoktur.",
+        "explanation": "[[cisim:silindir_expl|kose]]\n\nSilindirin altı ve üstü yuvarlaktır, sivri bir köşesi kesinlikle yoktur.",
         "url": null
       }
     },
@@ -1127,7 +1127,7 @@
       "correct": "Kare",
       "wrong1": "Dikdörtgen",
       "wrong2": "Üçgen",
-      "explanation": "[[sekil:kare_expl]]\n\nİsminden de anlaşıldığı gibi kare prizmanın alt ve üst tabanları karedir.",
+      "explanation": "[[sekil:kare_expl|yuz]]\n\nİsminden de anlaşıldığı gibi kare prizmanın alt ve üst tabanları karedir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1144,7 +1144,7 @@
         "correct": "Kare",
         "wrong1": "Dikdörtgen",
         "wrong2": "Üçgen",
-        "explanation": "[[sekil:kare_expl]]\n\nİsminden de anlaşıldığı gibi kare prizmanın alt ve üst tabanları karedir.",
+        "explanation": "[[sekil:kare_expl|yuz]]\n\nİsminden de anlaşıldığı gibi kare prizmanın alt ve üst tabanları karedir.",
         "url": null
       }
     },
@@ -1156,7 +1156,7 @@
       "correct": "12",
       "wrong1": "8",
       "wrong2": "6",
-      "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nKüp ve tüm dörtgen prizmaların 12 ayrıtı (çizgisi) vardır.",
+      "explanation": "[[cisim:dikdortgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst tabanda **4**, alt tabanda **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüp ve tüm dörtgen prizmaların 12 ayrıtı (çizgisi) vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1173,7 +1173,7 @@
         "correct": "12",
         "wrong1": "8",
         "wrong2": "6",
-        "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nKüp ve tüm dörtgen prizmaların 12 ayrıtı (çizgisi) vardır.",
+        "explanation": "[[cisim:dikdortgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst tabanda **4**, alt tabanda **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüp ve tüm dörtgen prizmaların 12 ayrıtı (çizgisi) vardır.",
         "url": null
       }
     },
@@ -1185,7 +1185,7 @@
       "correct": "Kare Prizma ve Dikdörtgenler Prizması",
       "wrong1": "Sadece Üçgen Prizma",
       "wrong2": "Silindir ve Koni",
-      "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nKüp, kare prizma ve dikdörtgenler prizmasının üçünde de 8 köşe, 12 ayrıt ve 6 yüz vardır.",
+      "explanation": "[[cisim:dikdortgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst tabanda **4**, alt tabanda **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüp, kare prizma ve dikdörtgenler prizmasının üçünde de 8 köşe, 12 ayrıt ve 6 yüz vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1197,7 +1197,7 @@
         "correct": "Kare Prizma ve Dikdörtgenler Prizması",
         "wrong1": "Sadece Üçgen Prizma",
         "wrong2": "Silindir ve Koni",
-        "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nKüp, kare prizma ve dikdörtgenler prizmasının üçünde de 8 köşe, 12 ayrıt ve 6 yüz vardır.",
+        "explanation": "[[cisim:dikdortgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst tabanda **4**, alt tabanda **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüp, kare prizma ve dikdörtgenler prizmasının üçünde de 8 köşe, 12 ayrıt ve 6 yüz vardır.",
         "url": null
       }
     },
@@ -1209,7 +1209,7 @@
       "correct": "Yüzeylerini oluşturan geometrik şekillerin farklı olması.",
       "wrong1": "Köşe sayılarının farklı olması.",
       "wrong2": "Ayrıt sayılarının farklı olması.",
-      "explanation": "[[sekil:kare_expl]]\n\nÜçünün de köşe ve ayrıt sayıları aynıdır (8 köşe, 12 ayrıt). Farkları yüzlerindeki kare ve dikdörtgen şekilleridir.",
+      "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nÜçünün de köşe ve ayrıt sayıları aynıdır (8 köşe, 12 ayrıt). Farkları yüzlerindeki kare ve dikdörtgen şekilleridir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1226,7 +1226,7 @@
         "correct": "Yüzeylerini oluşturan geometrik şekillerin farklı olması.",
         "wrong1": "Köşe sayılarının farklı olması.",
         "wrong2": "Ayrıt sayılarının farklı olması.",
-        "explanation": "[[sekil:kare_expl]]\n\nÜçünün de köşe ve ayrıt sayıları aynıdır (8 köşe, 12 ayrıt). Farkları yüzlerindeki kare ve dikdörtgen şekilleridir.",
+        "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nÜçünün de köşe ve ayrıt sayıları aynıdır (8 köşe, 12 ayrıt). Farkları yüzlerindeki kare ve dikdörtgen şekilleridir.",
         "url": null
       }
     },
@@ -1238,7 +1238,7 @@
       "correct": "4",
       "wrong1": "2",
       "wrong2": "6",
-      "explanation": "[[cisim:kare_prizma_expl]]\n\nKare prizmanın alt ve üstü kare (2 tane), etrafını saran yan yüzleri ise dikdörtgendir (4 tane).",
+      "explanation": "[[cisim:kare_prizma_expl|yuz]]\n\nKare prizmanın alt ve üstü kare (2 tane), etrafını saran yan yüzleri ise dikdörtgendir (4 tane).",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1250,7 +1250,7 @@
         "correct": "4",
         "wrong1": "2",
         "wrong2": "6",
-        "explanation": "[[cisim:kare_prizma_expl]]\n\nKare prizmanın alt ve üstü kare (2 tane), etrafını saran yan yüzleri ise dikdörtgendir (4 tane).",
+        "explanation": "[[cisim:kare_prizma_expl|yuz]]\n\nKare prizmanın alt ve üstü kare (2 tane), etrafını saran yan yüzleri ise dikdörtgendir (4 tane).",
         "url": null
       }
     },
@@ -1262,7 +1262,7 @@
       "correct": "5",
       "wrong1": "6",
       "wrong2": "4",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜçgen prizmada 2 tane üçgen (alt ve üst), 3 tane de dikdörtgen (yanlarda) olmak üzere 5 yüz vardır.",
+      "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\nÜçgen prizmada 2 tane üçgen (alt ve üst), 3 tane de dikdörtgen (yanlarda) olmak üzere 5 yüz vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1274,7 +1274,7 @@
         "correct": "5",
         "wrong1": "6",
         "wrong2": "4",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜçgen prizmada 2 tane üçgen (alt ve üst), 3 tane de dikdörtgen (yanlarda) olmak üzere 5 yüz vardır.",
+        "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\nÜçgen prizmada 2 tane üçgen (alt ve üst), 3 tane de dikdörtgen (yanlarda) olmak üzere 5 yüz vardır.",
         "url": null
       }
     },
@@ -1286,7 +1286,7 @@
       "correct": "6",
       "wrong1": "8",
       "wrong2": "5",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜst üçgende 3, alt üçgende 3 köşe olmak üzere toplam 6 köşesi vardır.",
+      "explanation": "[[cisim:ucgen_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Üst üçgende **3**, alt üçgende **3** olmak üzere toplam **6 köşe** vardır.\n\nÜst üçgende 3, alt üçgende 3 köşe olmak üzere toplam 6 köşesi vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1298,7 +1298,7 @@
         "correct": "6",
         "wrong1": "8",
         "wrong2": "5",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜst üçgende 3, alt üçgende 3 köşe olmak üzere toplam 6 köşesi vardır.",
+        "explanation": "[[cisim:ucgen_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Üst üçgende **3**, alt üçgende **3** olmak üzere toplam **6 köşe** vardır.\n\nÜst üçgende 3, alt üçgende 3 köşe olmak üzere toplam 6 köşesi vardır.",
         "url": null
       }
     },
@@ -1310,7 +1310,7 @@
       "correct": "9",
       "wrong1": "12",
       "wrong2": "6",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜstte 3, altta 3 ve yanları birleştiren 3 olmak üzere toplam 9 ayrıtı vardır.",
+      "explanation": "[[cisim:ucgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır** (kenar çizgileri). Üst üçgende **3**, alt üçgende **3**, birleştiren dikey çizgilerde **3** olmak üzere toplam **9 ayrıt** vardır.\n\nÜstte 3, altta 3 ve yanları birleştiren 3 olmak üzere toplam 9 ayrıtı vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1322,7 +1322,7 @@
         "correct": "9",
         "wrong1": "12",
         "wrong2": "6",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜstte 3, altta 3 ve yanları birleştiren 3 olmak üzere toplam 9 ayrıtı vardır.",
+        "explanation": "[[cisim:ucgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır** (kenar çizgileri). Üst üçgende **3**, alt üçgende **3**, birleştiren dikey çizgilerde **3** olmak üzere toplam **9 ayrıt** vardır.\n\nÜstte 3, altta 3 ve yanları birleştiren 3 olmak üzere toplam 9 ayrıtı vardır.",
         "url": null
       }
     },
@@ -1334,7 +1334,7 @@
       "correct": "2",
       "wrong1": "3",
       "wrong2": "1",
-      "explanation": "[[cisim:silindir_expl]]\n\nSilindirin altı ve üstü olmak üzere 2 tane düz yüzü (daire) vardır. Yan tarafı ise eğri yüzeydir.",
+      "explanation": "[[cisim:silindir_expl|ayrit]]\n\nSilindirin altı ve üstü olmak üzere 2 tane düz yüzü (daire) vardır. Yan tarafı ise eğri yüzeydir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1351,7 +1351,7 @@
         "correct": "2",
         "wrong1": "3",
         "wrong2": "1",
-        "explanation": "[[cisim:silindir_expl]]\n\nSilindirin altı ve üstü olmak üzere 2 tane düz yüzü (daire) vardır. Yan tarafı ise eğri yüzeydir.",
+        "explanation": "[[cisim:silindir_expl|ayrit]]\n\nSilindirin altı ve üstü olmak üzere 2 tane düz yüzü (daire) vardır. Yan tarafı ise eğri yüzeydir.",
         "url": null
       }
     },
@@ -1387,7 +1387,7 @@
       "correct": "Daire",
       "wrong1": "Üçgen",
       "wrong2": "Kare",
-      "explanation": "[[sekil:daire_expl]]\n\nKoninin tabanı tamamen yuvarlak ve düz bir dairedir.",
+      "explanation": "[[sekil:daire_expl|yuz]]\n\nKoninin tabanı tamamen yuvarlak ve düz bir dairedir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1399,7 +1399,7 @@
         "correct": "Daire",
         "wrong1": "Üçgen",
         "wrong2": "Kare",
-        "explanation": "[[sekil:daire_expl]]\n\nKoninin tabanı tamamen yuvarlak ve düz bir dairedir.",
+        "explanation": "[[sekil:daire_expl|yuz]]\n\nKoninin tabanı tamamen yuvarlak ve düz bir dairedir.",
         "url": null
       }
     },
@@ -1411,7 +1411,7 @@
       "correct": "Sadece 1 tane eğri yüzeyi vardır.",
       "wrong1": "2 tane düz yüzü vardır.",
       "wrong2": "Yüzü hiç yoktur.",
-      "explanation": "Kürenin dışını kaplayan, kesintisiz, tek bir yuvarlak eğri yüzeyi vardır.",
+      "explanation": "[[cisim:kure_expl|yuz]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nKürenin dışını kaplayan, kesintisiz, tek bir yuvarlak eğri yüzeyi vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1423,7 +1423,7 @@
         "correct": "Sadece 1 tane eğri yüzeyi vardır.",
         "wrong1": "2 tane düz yüzü vardır.",
         "wrong2": "Yüzü hiç yoktur.",
-        "explanation": "Kürenin dışını kaplayan, kesintisiz, tek bir yuvarlak eğri yüzeyi vardır.",
+        "explanation": "[[cisim:kure_expl|yuz]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nKürenin dışını kaplayan, kesintisiz, tek bir yuvarlak eğri yüzeyi vardır.",
         "url": null
       }
     },
@@ -1551,7 +1551,7 @@
       "correct": "Dikdörtgen",
       "wrong1": "Kare",
       "wrong2": "Daire",
-      "explanation": "[[sekil:dikdortgen_expl]]\n\nKare prizmanın yan yüzeyleri dikdörtgen olduğu için kağıtta dikdörtgen izi bırakır.",
+      "explanation": "[[sekil:dikdortgen_expl|yuz]]\n\nKare prizmanın yan yüzeyleri dikdörtgen olduğu için kağıtta dikdörtgen izi bırakır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1568,7 +1568,7 @@
         "correct": "Dikdörtgen",
         "wrong1": "Kare",
         "wrong2": "Daire",
-        "explanation": "[[sekil:dikdortgen_expl]]\n\nKare prizmanın yan yüzeyleri dikdörtgen olduğu için kağıtta dikdörtgen izi bırakır.",
+        "explanation": "[[sekil:dikdortgen_expl|yuz]]\n\nKare prizmanın yan yüzeyleri dikdörtgen olduğu için kağıtta dikdörtgen izi bırakır.",
         "url": null
       }
     },
@@ -1604,7 +1604,7 @@
       "correct": "Dikdörtgen",
       "wrong1": "Daire",
       "wrong2": "Kare",
-      "explanation": "[[cisim:silindir_expl]]\n\nSilindirin eğri yüzeyi açıldığında bir dikdörtgene dönüştüğü için bıraktığı iz de dikdörtgen olur.",
+      "explanation": "[[cisim:silindir_expl|yuz]]\n\nSilindirin eğri yüzeyi açıldığında bir dikdörtgene dönüştüğü için bıraktığı iz de dikdörtgen olur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1616,7 +1616,7 @@
         "correct": "Dikdörtgen",
         "wrong1": "Daire",
         "wrong2": "Kare",
-        "explanation": "[[cisim:silindir_expl]]\n\nSilindirin eğri yüzeyi açıldığında bir dikdörtgene dönüştüğü için bıraktığı iz de dikdörtgen olur.",
+        "explanation": "[[cisim:silindir_expl|yuz]]\n\nSilindirin eğri yüzeyi açıldığında bir dikdörtgene dönüştüğü için bıraktığı iz de dikdörtgen olur.",
         "url": null
       }
     },
@@ -1628,7 +1628,7 @@
       "correct": "Küre",
       "wrong1": "Silindir",
       "wrong2": "Koni",
-      "explanation": "[[cisim:silindir_expl]]\n\nSilindir ve koninin düz yüzleri vardır. Sadece eğri yüzü olan, köşesiz ve ayrıtsız cisim küredir.",
+      "explanation": "[[cisim:silindir_expl|ayrit]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nSilindir ve koninin düz yüzleri vardır. Sadece eğri yüzü olan, köşesiz ve ayrıtsız cisim küredir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1645,7 +1645,7 @@
         "correct": "Küre",
         "wrong1": "Silindir",
         "wrong2": "Koni",
-        "explanation": "[[cisim:silindir_expl]]\n\nSilindir ve koninin düz yüzleri vardır. Sadece eğri yüzü olan, köşesiz ve ayrıtsız cisim küredir.",
+        "explanation": "[[cisim:silindir_expl|ayrit]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nSilindir ve koninin düz yüzleri vardır. Sadece eğri yüzü olan, köşesiz ve ayrıtsız cisim küredir.",
         "url": null
       }
     },
@@ -1657,7 +1657,7 @@
       "correct": "Küp",
       "wrong1": "Kare Prizma",
       "wrong2": "Dikdörtgenler Prizması",
-      "explanation": "[[cisim:kup_expl]]\n\n6 yüzü de birbirinin aynısı (hepsi kare) olan tek prizma küptür.",
+      "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\n6 yüzü de birbirinin aynısı (hepsi kare) olan tek prizma küptür.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1674,7 +1674,7 @@
         "correct": "Küp",
         "wrong1": "Kare Prizma",
         "wrong2": "Dikdörtgenler Prizması",
-        "explanation": "[[cisim:kup_expl]]\n\n6 yüzü de birbirinin aynısı (hepsi kare) olan tek prizma küptür.",
+        "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\n6 yüzü de birbirinin aynısı (hepsi kare) olan tek prizma küptür.",
         "url": null
       }
     },
@@ -1686,7 +1686,7 @@
       "correct": "Üçgen Prizma",
       "wrong1": "Kare Prizma",
       "wrong2": "Koni",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\n5 yüzü olan ve içlerinde üçgen barındıran cisim üçgen prizmadır.",
+      "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\n5 yüzü olan ve içlerinde üçgen barındıran cisim üçgen prizmadır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1703,7 +1703,7 @@
         "correct": "Üçgen Prizma",
         "wrong1": "Kare Prizma",
         "wrong2": "Koni",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\n5 yüzü olan ve içlerinde üçgen barındıran cisim üçgen prizmadır.",
+        "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\n5 yüzü olan ve içlerinde üçgen barındıran cisim üçgen prizmadır.",
         "url": null
       }
     },
@@ -1715,7 +1715,7 @@
       "correct": "22",
       "wrong1": "20",
       "wrong2": "24",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\n1 küp = 8 köşe. 2 küp = 16 köşe. 1 üçgen prizma = 6 köşe. Toplam: 16 + 6 = 22 köşe.",
+      "explanation": "1 küp = 8 köşe. 2 küp = 16 köşe. 1 üçgen prizma = 6 köşe. Toplam: 16 + 6 = 22 köşe.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1727,7 +1727,7 @@
         "correct": "22",
         "wrong1": "20",
         "wrong2": "24",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\n1 küp = 8 köşe. 2 küp = 16 köşe. 1 üçgen prizma = 6 köşe. Toplam: 16 + 6 = 22 köşe.",
+        "explanation": "1 küp = 8 köşe. 2 küp = 16 köşe. 1 üçgen prizma = 6 köşe. Toplam: 16 + 6 = 22 köşe.",
         "url": null
       }
     },
@@ -1739,7 +1739,7 @@
       "correct": "8",
       "wrong1": "24",
       "wrong2": "12",
-      "explanation": "[[cisim:kare_prizma_expl]]\n\nKare prizmalar üst üste konulduğunda yine daha uzun bir kare prizma oluşur. Bir kare prizmanın her zaman 8 köşesi vardır.",
+      "explanation": "[[cisim:kare_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nKare prizmalar üst üste konulduğunda yine daha uzun bir kare prizma oluşur. Bir kare prizmanın her zaman 8 köşesi vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1751,7 +1751,7 @@
         "correct": "8",
         "wrong1": "24",
         "wrong2": "12",
-        "explanation": "[[cisim:kare_prizma_expl]]\n\nKare prizmalar üst üste konulduğunda yine daha uzun bir kare prizma oluşur. Bir kare prizmanın her zaman 8 köşesi vardır.",
+        "explanation": "[[cisim:kare_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nKare prizmalar üst üste konulduğunda yine daha uzun bir kare prizma oluşur. Bir kare prizmanın her zaman 8 köşesi vardır.",
         "url": null
       }
     },
@@ -1763,7 +1763,7 @@
       "correct": "1 Küp ve 1 Dikdörtgenler Prizması",
       "wrong1": "2 tane Üçgen Prizma",
       "wrong2": "1 Silindir ve 1 Koni",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nKüpün 6, dikdörtgenler prizmasının 6 yüzü vardır. 6 + 6 = 12 eder. (Üçgen prizmanın 5 yüzü vardır).",
+      "explanation": "Küpün 6, dikdörtgenler prizmasının 6 yüzü vardır. 6 + 6 = 12 eder. (Üçgen prizmanın 5 yüzü vardır).",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1775,7 +1775,7 @@
         "correct": "1 Küp ve 1 Dikdörtgenler Prizması",
         "wrong1": "2 tane Üçgen Prizma",
         "wrong2": "1 Silindir ve 1 Koni",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nKüpün 6, dikdörtgenler prizmasının 6 yüzü vardır. 6 + 6 = 12 eder. (Üçgen prizmanın 5 yüzü vardır).",
+        "explanation": "Küpün 6, dikdörtgenler prizmasının 6 yüzü vardır. 6 + 6 = 12 eder. (Üçgen prizmanın 5 yüzü vardır).",
         "url": null
       }
     },
@@ -1787,7 +1787,7 @@
       "correct": "12",
       "wrong1": "8",
       "wrong2": "6",
-      "explanation": "[[cisim:kup_expl]]\n\nİskelet yaparken ayrıtları oluştururuz. Küpün 12 ayrıtı olduğu için 12 çöp gerekir.",
+      "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nİskelet yaparken ayrıtları oluştururuz. Küpün 12 ayrıtı olduğu için 12 çöp gerekir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1799,7 +1799,7 @@
         "correct": "12",
         "wrong1": "8",
         "wrong2": "6",
-        "explanation": "[[cisim:kup_expl]]\n\nİskelet yaparken ayrıtları oluştururuz. Küpün 12 ayrıtı olduğu için 12 çöp gerekir.",
+        "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nİskelet yaparken ayrıtları oluştururuz. Küpün 12 ayrıtı olduğu için 12 çöp gerekir.",
         "url": null
       }
     },
@@ -1811,7 +1811,7 @@
       "correct": "Altıgen",
       "wrong1": "Sekizgen",
       "wrong2": "Beşgen",
-      "explanation": "[[sekil:altigen_expl]]\n\nÇokgenler kenar sayılarına göre isimlendirilir. 6 kenarı olan çokgen altıgendir.",
+      "explanation": "[[sekil:altigen_expl|kose]]\n\nÇokgenler kenar sayılarına göre isimlendirilir. 6 kenarı olan çokgen altıgendir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1823,7 +1823,7 @@
         "correct": "Altıgen",
         "wrong1": "Sekizgen",
         "wrong2": "Beşgen",
-        "explanation": "[[sekil:altigen_expl]]\n\nÇokgenler kenar sayılarına göre isimlendirilir. 6 kenarı olan çokgen altıgendir.",
+        "explanation": "[[sekil:altigen_expl|kose]]\n\nÇokgenler kenar sayılarına göre isimlendirilir. 6 kenarı olan çokgen altıgendir.",
         "url": null
       }
     },
@@ -1883,7 +1883,7 @@
       "correct": "1",
       "wrong1": "2",
       "wrong2": "0",
-      "explanation": "[[sekil:besgen_expl]]\n\nBeşgenin 5, karenin 4 köşesi vardır. 5 - 4 = 1.",
+      "explanation": "[[sekil:besgen_expl|kose]]\n\nBeşgenin 5, karenin 4 köşesi vardır. 5 - 4 = 1.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1895,7 +1895,7 @@
         "correct": "1",
         "wrong1": "2",
         "wrong2": "0",
-        "explanation": "[[sekil:besgen_expl]]\n\nBeşgenin 5, karenin 4 köşesi vardır. 5 - 4 = 1.",
+        "explanation": "[[sekil:besgen_expl|kose]]\n\nBeşgenin 5, karenin 4 köşesi vardır. 5 - 4 = 1.",
         "url": null
       }
     },
@@ -1907,7 +1907,7 @@
       "correct": "Sekizgen",
       "wrong1": "Altıgen",
       "wrong2": "Beşgen",
-      "explanation": "[[sekil:sekizgen_expl]]\n\nSekizgen (8), altıgen (6) ve beşgenden (5) daha fazla kenara sahiptir.",
+      "explanation": "[[sekil:sekizgen_expl|kenar]]\n\nSekizgen (8), altıgen (6) ve beşgenden (5) daha fazla kenara sahiptir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -1919,7 +1919,7 @@
         "correct": "Sekizgen",
         "wrong1": "Altıgen",
         "wrong2": "Beşgen",
-        "explanation": "[[sekil:sekizgen_expl]]\n\nSekizgen (8), altıgen (6) ve beşgenden (5) daha fazla kenara sahiptir.",
+        "explanation": "[[sekil:sekizgen_expl|kenar]]\n\nSekizgen (8), altıgen (6) ve beşgenden (5) daha fazla kenara sahiptir.",
         "url": null
       }
     },
@@ -2018,7 +2018,7 @@
       "correct": "16",
       "wrong1": "12",
       "wrong2": "24",
-      "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nBir dikdörtgenler prizmasında 8 köşe vardır. İki tanesinde 8 + 8 = 16 köşe olur.",
+      "explanation": "[[cisim:dikdortgen_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nBir dikdörtgenler prizmasında 8 köşe vardır. İki tanesinde 8 + 8 = 16 köşe olur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2030,7 +2030,7 @@
         "correct": "16",
         "wrong1": "12",
         "wrong2": "24",
-        "explanation": "[[cisim:dikdortgen_prizma_expl]]\n\nBir dikdörtgenler prizmasında 8 köşe vardır. İki tanesinde 8 + 8 = 16 köşe olur.",
+        "explanation": "[[cisim:dikdortgen_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nBir dikdörtgenler prizmasında 8 köşe vardır. İki tanesinde 8 + 8 = 16 köşe olur.",
         "url": null
       }
     },
@@ -2042,7 +2042,7 @@
       "correct": "24",
       "wrong1": "16",
       "wrong2": "32",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nBir üçgen prizmanın 6 köşesi vardır. 4 x 6 = 24 eder.",
+      "explanation": "[[cisim:ucgen_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Üst üçgende **3**, alt üçgende **3** olmak üzere toplam **6 köşe** vardır.\n\nBir üçgen prizmanın 6 köşesi vardır. 4 x 6 = 24 eder.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2054,7 +2054,7 @@
         "correct": "24",
         "wrong1": "16",
         "wrong2": "32",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nBir üçgen prizmanın 6 köşesi vardır. 4 x 6 = 24 eder.",
+        "explanation": "[[cisim:ucgen_prizma_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Üst üçgende **3**, alt üçgende **3** olmak üzere toplam **6 köşe** vardır.\n\nBir üçgen prizmanın 6 köşesi vardır. 4 x 6 = 24 eder.",
         "url": null
       }
     },
@@ -2066,7 +2066,7 @@
       "correct": "Kare veya Dikdörtgen",
       "wrong1": "Beşgen",
       "wrong2": "Çember",
-      "explanation": "[[sekil:kare_expl]]\n\nİki dik üçgen çapraz kenarlarından birleştiğinde 4 köşeli bir dörtgen oluşturur.",
+      "explanation": "[[sekil:kare_expl|kenar]]\n\nİki dik üçgen çapraz kenarlarından birleştiğinde 4 köşeli bir dörtgen oluşturur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2083,7 +2083,7 @@
         "correct": "Kare veya Dikdörtgen",
         "wrong1": "Beşgen",
         "wrong2": "Çember",
-        "explanation": "[[sekil:kare_expl]]\n\nİki dik üçgen çapraz kenarlarından birleştiğinde 4 köşeli bir dörtgen oluşturur.",
+        "explanation": "[[sekil:kare_expl|kenar]]\n\nİki dik üçgen çapraz kenarlarından birleştiğinde 4 köşeli bir dörtgen oluşturur.",
         "url": null
       }
     },
@@ -2196,7 +2196,7 @@
       "correct": "6 top, 9 kürdan",
       "wrong1": "8 top, 12 kürdan",
       "wrong2": "5 top, 6 kürdan",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜçgen prizmanın 6 köşesi (top) ve 9 ayrıtı (kürdan) vardır.",
+      "explanation": "[[cisim:ucgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır** (kenar çizgileri). Üst üçgende **3**, alt üçgende **3**, birleştiren dikey çizgilerde **3** olmak üzere toplam **9 ayrıt** vardır.\n\nÜçgen prizmanın 6 köşesi (top) ve 9 ayrıtı (kürdan) vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2213,7 +2213,7 @@
         "correct": "6 top, 9 kürdan",
         "wrong1": "8 top, 12 kürdan",
         "wrong2": "5 top, 6 kürdan",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜçgen prizmanın 6 köşesi (top) ve 9 ayrıtı (kürdan) vardır.",
+        "explanation": "[[cisim:ucgen_prizma_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır** (kenar çizgileri). Üst üçgende **3**, alt üçgende **3**, birleştiren dikey çizgilerde **3** olmak üzere toplam **9 ayrıt** vardır.\n\nÜçgen prizmanın 6 köşesi (top) ve 9 ayrıtı (kürdan) vardır.",
         "url": null
       }
     },
@@ -2225,7 +2225,7 @@
       "correct": "Koni",
       "wrong1": "Küre",
       "wrong2": "Silindir",
-      "explanation": "[[cisim:silindir_expl]]\n\nŞapka şekli ve tek düz yüzeyi olan, köşesi olmayan cisim konidir. (Silindirin 2 düz yüzü vardır).",
+      "explanation": "[[cisim:silindir_expl|yuz]]\n\nŞapka şekli ve tek düz yüzeyi olan, köşesi olmayan cisim konidir. (Silindirin 2 düz yüzü vardır).",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2242,7 +2242,7 @@
         "correct": "Koni",
         "wrong1": "Küre",
         "wrong2": "Silindir",
-        "explanation": "[[cisim:silindir_expl]]\n\nŞapka şekli ve tek düz yüzeyi olan, köşesi olmayan cisim konidir. (Silindirin 2 düz yüzü vardır).",
+        "explanation": "[[cisim:silindir_expl|yuz]]\n\nŞapka şekli ve tek düz yüzeyi olan, köşesi olmayan cisim konidir. (Silindirin 2 düz yüzü vardır).",
         "url": null
       }
     },
@@ -2254,7 +2254,7 @@
       "correct": "8",
       "wrong1": "6",
       "wrong2": "12",
-      "explanation": "[[cisim:silindir_expl]]\n\nKüpün 8 köşesi vardır. Silindirin 0 köşesi vardır. 8 - 0 = 8.",
+      "explanation": "[[cisim:silindir_expl|kose]]\n\nKüpün 8 köşesi vardır. Silindirin 0 köşesi vardır. 8 - 0 = 8.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2271,7 +2271,7 @@
         "correct": "8",
         "wrong1": "6",
         "wrong2": "12",
-        "explanation": "[[cisim:silindir_expl]]\n\nKüpün 8 köşesi vardır. Silindirin 0 köşesi vardır. 8 - 0 = 8.",
+        "explanation": "[[cisim:silindir_expl|kose]]\n\nKüpün 8 köşesi vardır. Silindirin 0 köşesi vardır. 8 - 0 = 8.",
         "url": null
       }
     },
@@ -2283,7 +2283,7 @@
       "correct": "2",
       "wrong1": "0",
       "wrong2": "4",
-      "explanation": "Küpün 8 köşesi ve 6 yüzü vardır (8+6=14). 12 ayrıtı vardır. 14 - 12 = 2. (Buna matematikte Euler Formülü denir).",
+      "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüpün 8 köşesi ve 6 yüzü vardır (8+6=14). 12 ayrıtı vardır. 14 - 12 = 2. (Buna matematikte Euler Formülü denir).",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2300,7 +2300,7 @@
         "correct": "2",
         "wrong1": "0",
         "wrong2": "4",
-        "explanation": "Küpün 8 köşesi ve 6 yüzü vardır (8+6=14). 12 ayrıtı vardır. 14 - 12 = 2. (Buna matematikte Euler Formülü denir).",
+        "explanation": "[[cisim:kup_expl|ayrit]]\n\nCismi çevirerek bak: **koyu çizgiler ayrıttır**. Üst karede **4**, alt karede **4**, birleştiren dikey çizgilerde **4** → toplam **12 ayrıt**.\n\nKüpün 8 köşesi ve 6 yüzü vardır (8+6=14). 12 ayrıtı vardır. 14 - 12 = 2. (Buna matematikte Euler Formülü denir).",
         "url": null
       }
     },
@@ -2312,7 +2312,7 @@
       "correct": "4",
       "wrong1": "2",
       "wrong2": "6",
-      "explanation": "[[cisim:kare_prizma_expl]]\n\nKare prizmanın alt ve üstü kare, yanlardaki 4 yüzeyi ise dikdörtgendir.",
+      "explanation": "[[cisim:kare_prizma_expl|yuz]]\n\nKare prizmanın alt ve üstü kare, yanlardaki 4 yüzeyi ise dikdörtgendir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2329,7 +2329,7 @@
         "correct": "4",
         "wrong1": "2",
         "wrong2": "6",
-        "explanation": "[[cisim:kare_prizma_expl]]\n\nKare prizmanın alt ve üstü kare, yanlardaki 4 yüzeyi ise dikdörtgendir.",
+        "explanation": "[[cisim:kare_prizma_expl|yuz]]\n\nKare prizmanın alt ve üstü kare, yanlardaki 4 yüzeyi ise dikdörtgendir.",
         "url": null
       }
     },
@@ -2341,7 +2341,7 @@
       "correct": "4",
       "wrong1": "6",
       "wrong2": "2",
-      "explanation": "Kurdele bir tam tur attığında alt, üst ve karşılıklı iki yan (veya 4 yan) olmak üzere döngü boyunca 4 yüzeyden geçer.",
+      "explanation": "[[cisim:dikdortgen_prizma_expl|yuz]]\n\nKurdele bir tam tur attığında alt, üst ve karşılıklı iki yan (veya 4 yan) olmak üzere döngü boyunca 4 yüzeyden geçer.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2358,7 +2358,7 @@
         "correct": "4",
         "wrong1": "6",
         "wrong2": "2",
-        "explanation": "Kurdele bir tam tur attığında alt, üst ve karşılıklı iki yan (veya 4 yan) olmak üzere döngü boyunca 4 yüzeyden geçer.",
+        "explanation": "[[cisim:dikdortgen_prizma_expl|yuz]]\n\nKurdele bir tam tur attığında alt, üst ve karşılıklı iki yan (veya 4 yan) olmak üzere döngü boyunca 4 yüzeyden geçer.",
         "url": null
       }
     },
@@ -2447,7 +2447,7 @@
       "correct": "4",
       "wrong1": "2",
       "wrong2": "8",
-      "explanation": "[[sekil:dikdortgen_expl]]\n\nKenar uzunlukları ne olursa olsun, bir dikdörtgenin her zaman 4 köşesi vardır.",
+      "explanation": "[[sekil:dikdortgen_expl|kose]]\n\nKenar uzunlukları ne olursa olsun, bir dikdörtgenin her zaman 4 köşesi vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2459,7 +2459,7 @@
         "correct": "4",
         "wrong1": "2",
         "wrong2": "8",
-        "explanation": "[[sekil:dikdortgen_expl]]\n\nKenar uzunlukları ne olursa olsun, bir dikdörtgenin her zaman 4 köşesi vardır.",
+        "explanation": "[[sekil:dikdortgen_expl|kose]]\n\nKenar uzunlukları ne olursa olsun, bir dikdörtgenin her zaman 4 köşesi vardır.",
         "url": null
       }
     },
@@ -2601,7 +2601,7 @@
       "correct": "Çember",
       "wrong1": "Daire",
       "wrong2": "Küre",
-      "explanation": "[[sekil:cember_expl]]\n\nİçi tamamen boş olan ve sadece dış çerçevesi bulunan yuvarlak çizgi çemberdir.",
+      "explanation": "[[sekil:cember_expl|kenar]]\n\nİçi tamamen boş olan ve sadece dış çerçevesi bulunan yuvarlak çizgi çemberdir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2613,7 +2613,7 @@
         "correct": "Çember",
         "wrong1": "Daire",
         "wrong2": "Küre",
-        "explanation": "[[sekil:cember_expl]]\n\nİçi tamamen boş olan ve sadece dış çerçevesi bulunan yuvarlak çizgi çemberdir.",
+        "explanation": "[[sekil:cember_expl|kenar]]\n\nİçi tamamen boş olan ve sadece dış çerçevesi bulunan yuvarlak çizgi çemberdir.",
         "url": null
       }
     },
@@ -2673,7 +2673,7 @@
       "correct": "5",
       "wrong1": "3",
       "wrong2": "10",
-      "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin 3 eşit kenarı vardır. 15'i 3'e bölersek bir kenarı 5 cm olur.",
+      "explanation": "[[sekil:ucgen_expl|kenar]]\n\nÜçgenin 3 eşit kenarı vardır. 15'i 3'e bölersek bir kenarı 5 cm olur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2690,7 +2690,7 @@
         "correct": "5",
         "wrong1": "3",
         "wrong2": "10",
-        "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin 3 eşit kenarı vardır. 15'i 3'e bölersek bir kenarı 5 cm olur.",
+        "explanation": "[[sekil:ucgen_expl|kenar]]\n\nÜçgenin 3 eşit kenarı vardır. 15'i 3'e bölersek bir kenarı 5 cm olur.",
         "url": null
       }
     },
@@ -2702,7 +2702,7 @@
       "correct": "20",
       "wrong1": "10",
       "wrong2": "21",
-      "explanation": "[[sekil:dikdortgen_expl]]\n\nİki kısa (3+3=6) ve iki uzun (7+7=14) kenar vardır. 6 + 14 = 20 cm.",
+      "explanation": "[[sekil:dikdortgen_expl|kenar]]\n\nİki kısa (3+3=6) ve iki uzun (7+7=14) kenar vardır. 6 + 14 = 20 cm.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2719,7 +2719,7 @@
         "correct": "20",
         "wrong1": "10",
         "wrong2": "21",
-        "explanation": "[[sekil:dikdortgen_expl]]\n\nİki kısa (3+3=6) ve iki uzun (7+7=14) kenar vardır. 6 + 14 = 20 cm.",
+        "explanation": "[[sekil:dikdortgen_expl|kenar]]\n\nİki kısa (3+3=6) ve iki uzun (7+7=14) kenar vardır. 6 + 14 = 20 cm.",
         "url": null
       }
     },
@@ -2760,7 +2760,7 @@
       "correct": "3",
       "wrong1": "4",
       "wrong2": "6",
-      "explanation": "[[sekil:kare_expl]]\n\nKare 4 kenarlı olduğu için 12'yi 4'e böleriz. Bir kenarı 3 cm olur.",
+      "explanation": "[[sekil:kare_expl|kenar]]\n\nKare 4 kenarlı olduğu için 12'yi 4'e böleriz. Bir kenarı 3 cm olur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2777,7 +2777,7 @@
         "correct": "3",
         "wrong1": "4",
         "wrong2": "6",
-        "explanation": "[[sekil:kare_expl]]\n\nKare 4 kenarlı olduğu için 12'yi 4'e böleriz. Bir kenarı 3 cm olur.",
+        "explanation": "[[sekil:kare_expl|kenar]]\n\nKare 4 kenarlı olduğu için 12'yi 4'e böleriz. Bir kenarı 3 cm olur.",
         "url": null
       }
     },
@@ -2789,7 +2789,7 @@
       "correct": "5",
       "wrong1": "4",
       "wrong2": "10",
-      "explanation": "Karenin 4 kenarı olduğu için 20'yi 4'e böleriz. 20 ÷ 4 = 5 cm.",
+      "explanation": "[[sekil:kare_expl|kenar]]\n\nKarenin 4 kenarı olduğu için 20'yi 4'e böleriz. 20 ÷ 4 = 5 cm.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2806,7 +2806,7 @@
         "correct": "5",
         "wrong1": "4",
         "wrong2": "10",
-        "explanation": "Karenin 4 kenarı olduğu için 20'yi 4'e böleriz. 20 ÷ 4 = 5 cm.",
+        "explanation": "[[sekil:kare_expl|kenar]]\n\nKarenin 4 kenarı olduğu için 20'yi 4'e böleriz. 20 ÷ 4 = 5 cm.",
         "url": null
       }
     },
@@ -2818,7 +2818,7 @@
       "correct": "8",
       "wrong1": "6",
       "wrong2": "12",
-      "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin 3 eşit kenarı var. 24'ü 3'e böleriz. 24 ÷ 3 = 8 cm.",
+      "explanation": "[[sekil:ucgen_expl|kenar]]\n\nÜçgenin 3 eşit kenarı var. 24'ü 3'e böleriz. 24 ÷ 3 = 8 cm.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2835,7 +2835,7 @@
         "correct": "8",
         "wrong1": "6",
         "wrong2": "12",
-        "explanation": "[[sekil:ucgen_expl]]\n\nÜçgenin 3 eşit kenarı var. 24'ü 3'e böleriz. 24 ÷ 3 = 8 cm.",
+        "explanation": "[[sekil:ucgen_expl|kenar]]\n\nÜçgenin 3 eşit kenarı var. 24'ü 3'e böleriz. 24 ÷ 3 = 8 cm.",
         "url": null
       }
     },
@@ -2871,7 +2871,7 @@
       "correct": "Daire",
       "wrong1": "Dikdörtgen",
       "wrong2": "Çember",
-      "explanation": "[[sekil:daire_expl]]\n\nSilindirin tabanları dairedir. Paralel kesildiğinde içi dolu yeni yuvarlaklar yani daireler elde edilir.",
+      "explanation": "[[sekil:daire_expl|yuz]]\n\nSilindirin tabanları dairedir. Paralel kesildiğinde içi dolu yeni yuvarlaklar yani daireler elde edilir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2888,7 +2888,7 @@
         "correct": "Daire",
         "wrong1": "Dikdörtgen",
         "wrong2": "Çember",
-        "explanation": "[[sekil:daire_expl]]\n\nSilindirin tabanları dairedir. Paralel kesildiğinde içi dolu yeni yuvarlaklar yani daireler elde edilir.",
+        "explanation": "[[sekil:daire_expl|yuz]]\n\nSilindirin tabanları dairedir. Paralel kesildiğinde içi dolu yeni yuvarlaklar yani daireler elde edilir.",
         "url": null
       }
     },
@@ -2900,7 +2900,7 @@
       "correct": "Dikdörtgen",
       "wrong1": "Kare",
       "wrong2": "Üçgen",
-      "explanation": "[[sekil:dikdortgen_expl]]\n\nKare prizmanın diklemesine uzun kesiti her zaman bir dikdörtgen oluşturur.",
+      "explanation": "[[sekil:dikdortgen_expl|yuz]]\n\nKare prizmanın diklemesine uzun kesiti her zaman bir dikdörtgen oluşturur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2917,7 +2917,7 @@
         "correct": "Dikdörtgen",
         "wrong1": "Kare",
         "wrong2": "Üçgen",
-        "explanation": "[[sekil:dikdortgen_expl]]\n\nKare prizmanın diklemesine uzun kesiti her zaman bir dikdörtgen oluşturur.",
+        "explanation": "[[sekil:dikdortgen_expl|yuz]]\n\nKare prizmanın diklemesine uzun kesiti her zaman bir dikdörtgen oluşturur.",
         "url": null
       }
     },
@@ -2929,7 +2929,7 @@
       "correct": "Kare (Karesel bölge)",
       "wrong1": "Küp",
       "wrong2": "Dikdörtgen",
-      "explanation": "[[sekil:kare_expl]]\n\nKüpün kağıda değen sadece alt yüzeyidir ve o da karedir. Bıraktığı iz içi dolu kare (karesel bölge) olur.",
+      "explanation": "[[sekil:kare_expl|yuz]]\n\nKüpün kağıda değen sadece alt yüzeyidir ve o da karedir. Bıraktığı iz içi dolu kare (karesel bölge) olur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2946,7 +2946,7 @@
         "correct": "Kare (Karesel bölge)",
         "wrong1": "Küp",
         "wrong2": "Dikdörtgen",
-        "explanation": "[[sekil:kare_expl]]\n\nKüpün kağıda değen sadece alt yüzeyidir ve o da karedir. Bıraktığı iz içi dolu kare (karesel bölge) olur.",
+        "explanation": "[[sekil:kare_expl|yuz]]\n\nKüpün kağıda değen sadece alt yüzeyidir ve o da karedir. Bıraktığı iz içi dolu kare (karesel bölge) olur.",
         "url": null
       }
     },
@@ -2958,7 +2958,7 @@
       "correct": "Kare",
       "wrong1": "Küp",
       "wrong2": "Dikdörtgen",
-      "explanation": "[[sekil:kare_expl]]\n\nÜç boyutlu bir küpe tam dik açıdan bakıldığında 2 boyutlu yüzeyi olan kare görülür.",
+      "explanation": "[[sekil:kare_expl|yuz]]\n\nÜç boyutlu bir küpe tam dik açıdan bakıldığında 2 boyutlu yüzeyi olan kare görülür.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -2970,7 +2970,7 @@
         "correct": "Kare",
         "wrong1": "Küp",
         "wrong2": "Dikdörtgen",
-        "explanation": "[[sekil:kare_expl]]\n\nÜç boyutlu bir küpe tam dik açıdan bakıldığında 2 boyutlu yüzeyi olan kare görülür.",
+        "explanation": "[[sekil:kare_expl|yuz]]\n\nÜç boyutlu bir küpe tam dik açıdan bakıldığında 2 boyutlu yüzeyi olan kare görülür.",
         "url": null
       }
     },
@@ -3030,7 +3030,7 @@
       "correct": "5",
       "wrong1": "8",
       "wrong2": "6",
-      "explanation": "[[cisim:piramit_expl]]\n\nTabandaki karede 4 köşe vardır, bir de hepsi tepede sivri bir noktada birleşir. 4 + 1 = 5 köşe.",
+      "explanation": "[[cisim:piramit_expl|kose]]\n\nTabandaki karede 4 köşe vardır, bir de hepsi tepede sivri bir noktada birleşir. 4 + 1 = 5 köşe.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3047,7 +3047,7 @@
         "correct": "5",
         "wrong1": "8",
         "wrong2": "6",
-        "explanation": "[[cisim:piramit_expl]]\n\nTabandaki karede 4 köşe vardır, bir de hepsi tepede sivri bir noktada birleşir. 4 + 1 = 5 köşe.",
+        "explanation": "[[cisim:piramit_expl|kose]]\n\nTabandaki karede 4 köşe vardır, bir de hepsi tepede sivri bir noktada birleşir. 4 + 1 = 5 köşe.",
         "url": null
       }
     },
@@ -3107,7 +3107,7 @@
       "correct": "Çember ve Daire",
       "wrong1": "Üçgen",
       "wrong2": "Silindir",
-      "explanation": "[[sekil:cember_vs_daire_expl]]\n\nYuvarlak olan iki boyutlu şekiller (çember/daire) köşe ve kenar barındırmazlar.",
+      "explanation": "[[sekil:cember_vs_daire_expl|kose]]\n\nYuvarlak olan iki boyutlu şekiller (çember/daire) köşe ve kenar barındırmazlar.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3124,7 +3124,7 @@
         "correct": "Çember ve Daire",
         "wrong1": "Üçgen",
         "wrong2": "Silindir",
-        "explanation": "[[sekil:cember_vs_daire_expl]]\n\nYuvarlak olan iki boyutlu şekiller (çember/daire) köşe ve kenar barındırmazlar.",
+        "explanation": "[[sekil:cember_vs_daire_expl|kose]]\n\nYuvarlak olan iki boyutlu şekiller (çember/daire) köşe ve kenar barındırmazlar.",
         "url": null
       }
     },
@@ -3136,7 +3136,7 @@
       "correct": "Evet, çizilebilir.",
       "wrong1": "Hayır, sadece üçgende çizilebilir.",
       "wrong2": "Hayır, sadece karede çizilebilir.",
-      "explanation": "[[sekil:besgen_expl]]\n\nÜçgen hariç (köşeleri hep komşu olduğu için), 4, 5, 6 vb. kenarlı tüm çokgenlerde köşegen çizilebilir.",
+      "explanation": "[[sekil:besgen_expl|kosegen]]\n\nÜçgen hariç (köşeleri hep komşu olduğu için), 4, 5, 6 vb. kenarlı tüm çokgenlerde köşegen çizilebilir.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3153,7 +3153,7 @@
         "correct": "Evet, çizilebilir.",
         "wrong1": "Hayır, sadece üçgende çizilebilir.",
         "wrong2": "Hayır, sadece karede çizilebilir.",
-        "explanation": "[[sekil:besgen_expl]]\n\nÜçgen hariç (köşeleri hep komşu olduğu için), 4, 5, 6 vb. kenarlı tüm çokgenlerde köşegen çizilebilir.",
+        "explanation": "[[sekil:besgen_expl|kosegen]]\n\nÜçgen hariç (köşeleri hep komşu olduğu için), 4, 5, 6 vb. kenarlı tüm çokgenlerde köşegen çizilebilir.",
         "url": null
       }
     },
@@ -3165,7 +3165,7 @@
       "correct": "İki adet üçgen",
       "wrong1": "İki adet dikdörtgen",
       "wrong2": "İki adet küçük kare",
-      "explanation": "[[sekil:kare_expl]]\n\nKareyi bir köşeden karşı köşeye çizgiyle böldüğümüzde tam 2 eşit üçgen elde ederiz.",
+      "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nKareyi bir köşeden karşı köşeye çizgiyle böldüğümüzde tam 2 eşit üçgen elde ederiz.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3182,7 +3182,7 @@
         "correct": "İki adet üçgen",
         "wrong1": "İki adet dikdörtgen",
         "wrong2": "İki adet küçük kare",
-        "explanation": "[[sekil:kare_expl]]\n\nKareyi bir köşeden karşı köşeye çizgiyle böldüğümüzde tam 2 eşit üçgen elde ederiz.",
+        "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nKareyi bir köşeden karşı köşeye çizgiyle böldüğümüzde tam 2 eşit üçgen elde ederiz.",
         "url": null
       }
     },
@@ -3194,7 +3194,7 @@
       "correct": "4",
       "wrong1": "2",
       "wrong2": "8",
-      "explanation": "[[sekil:kare_expl]]\n\nÇarpı (X) şeklinde iki köşegen çizildiğinde kare içi 4 küçük üçgene bölünür.",
+      "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nÇarpı (X) şeklinde iki köşegen çizildiğinde kare içi 4 küçük üçgene bölünür.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3211,7 +3211,7 @@
         "correct": "4",
         "wrong1": "2",
         "wrong2": "8",
-        "explanation": "[[sekil:kare_expl]]\n\nÇarpı (X) şeklinde iki köşegen çizildiğinde kare içi 4 küçük üçgene bölünür.",
+        "explanation": "[[sekil:kare_expl|kosegen]]\n\nKarede köşegen, **karşılıklı köşeleri birleştiren** kesik çizgidir. 4 köşeden **2 farklı köşegen** çizilebilir.\n\nÇarpı (X) şeklinde iki köşegen çizildiğinde kare içi 4 küçük üçgene bölünür.",
         "url": null
       }
     },
@@ -3247,7 +3247,7 @@
       "correct": "Silindir ve Koni",
       "wrong1": "Küre",
       "wrong2": "Küp",
-      "explanation": "[[cisim:silindir_expl]]\n\nKürenin sadece eğri yüzeyi vardır. Küpün sadece düz yüzeyi vardır. Silindir ve koninin ise her ikisi de vardır.",
+      "explanation": "[[cisim:silindir_expl|yuz]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nKürenin sadece eğri yüzeyi vardır. Küpün sadece düz yüzeyi vardır. Silindir ve koninin ise her ikisi de vardır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3264,7 +3264,7 @@
         "correct": "Silindir ve Koni",
         "wrong1": "Küre",
         "wrong2": "Küp",
-        "explanation": "[[cisim:silindir_expl]]\n\nKürenin sadece eğri yüzeyi vardır. Küpün sadece düz yüzeyi vardır. Silindir ve koninin ise her ikisi de vardır.",
+        "explanation": "[[cisim:silindir_expl|yuz]]\n\nKüre **tek eğri yüzeyden** oluşur; düz yüzü yoktur → **1 yüz**.\n\nKürenin sadece eğri yüzeyi vardır. Küpün sadece düz yüzeyi vardır. Silindir ve koninin ise her ikisi de vardır.",
         "url": null
       }
     },
@@ -3276,7 +3276,7 @@
       "correct": "1 Küp ve 1 Üçgen Prizma",
       "wrong1": "2 tane Küp",
       "wrong2": "1 Silindir ve 1 Koni",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nKüp (6 yüz, 12 ay, 8 k) + Üçgen Prizma (5 yüz, 9 ay, 6 k) = Toplam 11 yüz, 21 ayrıt, 14 köşe eder.",
+      "explanation": "Küp (6 yüz, 12 ay, 8 k) + Üçgen Prizma (5 yüz, 9 ay, 6 k) = Toplam 11 yüz, 21 ayrıt, 14 köşe eder.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3288,7 +3288,7 @@
         "correct": "1 Küp ve 1 Üçgen Prizma",
         "wrong1": "2 tane Küp",
         "wrong2": "1 Silindir ve 1 Koni",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nKüp (6 yüz, 12 ay, 8 k) + Üçgen Prizma (5 yüz, 9 ay, 6 k) = Toplam 11 yüz, 21 ayrıt, 14 köşe eder.",
+        "explanation": "Küp (6 yüz, 12 ay, 8 k) + Üçgen Prizma (5 yüz, 9 ay, 6 k) = Toplam 11 yüz, 21 ayrıt, 14 köşe eder.",
         "url": null
       }
     },
@@ -3329,7 +3329,7 @@
       "correct": "3",
       "wrong1": "4",
       "wrong2": "2",
-      "explanation": "Küpün bir köşesine tam karşıdan baktığımızda bize bakan 3 yüzeyini görebiliriz, diğer 3 yüzey arkada kalır.",
+      "explanation": "[[cisim:kup_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nKüpün bir köşesine tam karşıdan baktığımızda bize bakan 3 yüzeyini görebiliriz, diğer 3 yüzey arkada kalır.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3341,7 +3341,7 @@
         "correct": "3",
         "wrong1": "4",
         "wrong2": "2",
-        "explanation": "Küpün bir köşesine tam karşıdan baktığımızda bize bakan 3 yüzeyini görebiliriz, diğer 3 yüzey arkada kalır.",
+        "explanation": "[[cisim:kup_expl|kose]]\n\nCismi çevirerek bak: **kırmızı noktalar köşelerdir**. Bu prizmada **8 köşe** vardır (üstte 4, altta 4).\n\nKüpün bir köşesine tam karşıdan baktığımızda bize bakan 3 yüzeyini görebiliriz, diğer 3 yüzey arkada kalır.",
         "url": null
       }
     },
@@ -3353,7 +3353,7 @@
       "correct": "İki adet Dörtgen (Yamuk)",
       "wrong1": "İki adet Üçgen",
       "wrong2": "İki adet Beşgen",
-      "explanation": "[[sekil:altigen_expl]]\n\nDüzgün bir altıgeni karşılıklı iki köşesinden ortadan böldüğünüzde, her bir parça 4 kenarlı (yamuk/dörtgen) olur.",
+      "explanation": "[[sekil:altigen_expl|kose]]\n\nDüzgün bir altıgeni karşılıklı iki köşesinden ortadan böldüğünüzde, her bir parça 4 kenarlı (yamuk/dörtgen) olur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3365,7 +3365,7 @@
         "correct": "İki adet Dörtgen (Yamuk)",
         "wrong1": "İki adet Üçgen",
         "wrong2": "İki adet Beşgen",
-        "explanation": "[[sekil:altigen_expl]]\n\nDüzgün bir altıgeni karşılıklı iki köşesinden ortadan böldüğünüzde, her bir parça 4 kenarlı (yamuk/dörtgen) olur.",
+        "explanation": "[[sekil:altigen_expl|kose]]\n\nDüzgün bir altıgeni karşılıklı iki köşesinden ortadan böldüğünüzde, her bir parça 4 kenarlı (yamuk/dörtgen) olur.",
         "url": null
       }
     },
@@ -3377,7 +3377,7 @@
       "correct": "3",
       "wrong1": "2",
       "wrong2": "4",
-      "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜçgen prizmada 2 üçgen taban, onları birleştiren 3 adet dikdörtgen yan yüz bulunur.",
+      "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\nÜçgen prizmada 2 üçgen taban, onları birleştiren 3 adet dikdörtgen yan yüz bulunur.",
       "_stem_locked": true,
       "app": {
         "question": {
@@ -3394,7 +3394,7 @@
         "correct": "3",
         "wrong1": "2",
         "wrong2": "4",
-        "explanation": "[[cisim:ucgen_prizma_expl]]\n\nÜçgen prizmada 2 üçgen taban, onları birleştiren 3 adet dikdörtgen yan yüz bulunur.",
+        "explanation": "[[cisim:ucgen_prizma_expl|yuz]]\n\nCismi çevirerek bak: **2 üçgen taban** (üst ve alt) + **3 dikdörtgen yan yüz** = toplam **5 yüz**.\n\nÜçgen prizmada 2 üçgen taban, onları birleştiren 3 adet dikdörtgen yan yüz bulunur.",
         "url": null
       }
     }

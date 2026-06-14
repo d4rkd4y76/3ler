@@ -1028,6 +1028,10 @@
     ensureSpHeroFeatureBar();
     var bar = document.getElementById('nova-sp-hero-feature-bar');
     if (!bar) return;
+    if (window.NOVA_WRONG_REVIEW_ACTIVE) {
+      bar.hidden = true;
+      return;
+    }
     var perks = getActivePerks();
     if (!perks || !perks.spWrongRevealPerGame) {
       bar.hidden = true;
@@ -1202,8 +1206,13 @@
       var origDisp = displayCurrentQuestion;
       window.displayCurrentQuestion = function () {
         var r = origDisp.apply(this, arguments);
-        setTimeout(bindSpRevealOnOptions, 30);
-        refreshSpHeroFeatureBar();
+        if (!window.NOVA_WRONG_REVIEW_ACTIVE) {
+          setTimeout(bindSpRevealOnOptions, 30);
+          refreshSpHeroFeatureBar();
+        } else {
+          var bar = document.getElementById('nova-sp-hero-feature-bar');
+          if (bar) bar.hidden = true;
+        }
         return r;
       };
       displayCurrentQuestion.__heroLevelPatched = true;

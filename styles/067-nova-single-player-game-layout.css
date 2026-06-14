@@ -401,9 +401,36 @@ body.nova-sp-game-open{
   box-shadow: 0 8px 18px rgba(245, 158, 11, .26);
 }
 #single-player-game-screen .next-question-button:disabled{
-  opacity: .65;
+  opacity: .45;
   cursor: not-allowed;
-  filter: grayscale(.2);
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+#single-player-game-screen .explanation-nav-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+#single-player-game-screen .next-question-button--secondary{
+  color: #e2e8f0;
+  background: linear-gradient(135deg, rgba(51,65,85,.95), rgba(30,41,59,.95));
+  box-shadow: 0 8px 20px rgba(2, 6, 23, .35);
+}
+#single-player-game-screen .next-question-button--ghost{
+  margin-top: 10px;
+  color: #fde68a;
+  background: transparent;
+  border: 1px solid rgba(253, 224, 71, .35);
+  box-shadow: none;
+}
+#single-player-game-screen.nova-sp-wrong-review-active .timer-container{
+  display: none !important;
+}
+#single-player-game-screen.nova-sp-wrong-review-active #nova-sp-hero-feature-bar{
+  display: none !important;
 }
 
 /* Kahraman FX — doğru cevapta ortaya gelir, alev/hareket, çıkar */

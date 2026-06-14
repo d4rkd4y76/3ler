@@ -32,9 +32,9 @@
   const BUNNY_VID_RE = /\[\[\s*bunny\s*:\s*([^:\]]*)\s*:\s*([a-f0-9-]{8,})\s*\]\]/gi;
   const PARA_RE = /\[\[\s*para\s*:\s*([^\]]+?)\s*\]\]/gi;
   const TERAZI_RE = /\[\[\s*terazi\s*:\s*L\s*:\s*([^:\]]+?)\s*:\s*R\s*:\s*([^\]]+?)\s*\]\]/gi;
-  const GEO_BASIC_RE = /\[\[\s*geo\s*:\s*([a-z0-9_]+)\s*\]\]/gi;
-  const SEKIL_RE = /\[\[\s*sekil\s*:\s*([a-z0-9_]+)\s*\]\]/gi;
-  const CISIM_RE = /\[\[\s*cisim\s*:\s*([a-z0-9_]+)\s*\]\]/gi;
+  const GEO_BASIC_RE = /\[\[\s*geo\s*:\s*([a-z0-9_|]+)\s*\]\]/gi;
+  const SEKIL_RE = /\[\[\s*sekil\s*:\s*([a-z0-9_|]+)\s*\]\]/gi;
+  const CISIM_RE = /\[\[\s*cisim\s*:\s*([a-z0-9_|]+)\s*\]\]/gi;
   const EM_TAG_RE = /\{(kirmizi|mavi|yesil|kalin|k|m|y)\s*:\s*([^{}]+?)\}/gi;
   const IMG_RE = /^https?:\/\/\S+\.(png|jpe?g|gif|webp|svg)(\?\S*)?$/i;
   const BUNNY_IMG_RE = /^https?:\/\/[^/]+\.b-cdn\.net\/.+/i;
@@ -1769,10 +1769,18 @@
       return svg || "[[geo:" + kind + "]]";
     });
     s = s.replace(SEKIL_RE, function (_, kind) {
+      const k = String(kind || "").toLowerCase();
+      if (k.indexOf("_expl") >= 0 || k.indexOf("|") >= 0) {
+        return "[[sekil:" + kind + "]]";
+      }
       const svg = sekilCisimMarkupHtml("sekil", kind);
       return svg || "[[sekil:" + kind + "]]";
     });
     s = s.replace(CISIM_RE, function (_, kind) {
+      const k = String(kind || "").toLowerCase();
+      if (k.indexOf("_expl") >= 0 || k.indexOf("|") >= 0) {
+        return "[[cisim:" + kind + "]]";
+      }
       const svg = sekilCisimMarkupHtml("cisim", kind);
       return svg || "[[cisim:" + kind + "]]";
     });

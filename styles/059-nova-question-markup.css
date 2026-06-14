@@ -2080,13 +2080,19 @@
 }
 
 /* Açıklama görselleri — etiketli _expl */
-.q-geo--expl {
-  margin: 0.55em auto;
+.q-geo--focus {
+  display: block;
+  margin: 0.65em auto;
+  overflow: visible;
+}
+
+.q-geo--focus .q-geo-svg {
+  overflow: visible;
 }
 
 .q-geo-svg--expl {
-  width: min(260px, 94vw);
-  max-height: 210px;
+  width: min(320px, 96vw);
+  max-height: 240px;
 }
 
 .q-geo-callout {
@@ -2125,4 +2131,87 @@
   stroke: #0f172a;
   stroke-width: 3px;
   font-size: 12px;
+}
+
+/* Araç tarzı numaralı köşe / kenar etiketleri */
+.q-geo-vtx-label {
+  fill: #7c3aed;
+  font-size: 13px;
+  font-weight: 900;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.q-geo-edge-num {
+  fill: #2563eb;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2.5px;
+}
+
+.q-geo-caption {
+  fill: #475569;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.q-markup--readable .q-geo-vtx-label,
+#explanation-container .q-geo-vtx-label {
+  fill: #c4b5fd;
+  stroke: #0f172a;
+  font-size: 14px;
+}
+
+.q-markup--readable .q-geo-edge-num,
+#explanation-container .q-geo-edge-num {
+  fill: #93c5fd;
+  stroke: #0f172a;
+  font-size: 13px;
+}
+
+.q-markup--readable .q-geo-caption,
+#explanation-container .q-geo-caption {
+  fill: #e2e8f0;
+  stroke: #0f172a;
+  font-size: 11px;
+}
+
+/* 3B geometrik cisim — araçtaki interaktif model */
+.q-cisim-3d {
+  display: block;
+  width: min(340px, 100%);
+  margin: 0.65em auto;
+  text-align: center;
+}
+
+.q-cisim-3d-frame {
+  display: block;
+  width: 100%;
+  height: min(280px, 52vw);
+  min-height: 220px;
+  border: 0;
+  border-radius: 14px;
+  background: #0f172a;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.28);
+}
+
+.q-cisim-3d-hint {
+  margin: 0.35em 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.q-markup--readable .q-cisim-3d-hint,
+#explanation-container .q-cisim-3d-hint {
+  color: #cbd5e1;
 }

@@ -143,8 +143,21 @@ def question_num(qid: str) -> int:
     return int(m.group(1)) if m else 0
 
 
-def geo_tag(kind: str) -> str:
+def geo_tag(kind: str, focus: str | None = None) -> str:
+    if focus and focus != "temel":
+        return f"[[geo:{kind}|{focus}]]"
     return f"[[geo:{kind}]]"
+
+
+def detect_geo_focus(q: dict) -> str:
+    text = " ".join(filter(None, [q.get("text"), q.get("premise")])).lower()
+    if "kenar" in text and any(
+        k in text for k in ("doğru parça", "dogru parca", "kaç kenar", "üçgen", "ucgen", "kare")
+    ):
+        return "kenar"
+    if "köşe" in text or ("nokta" in text and "kaç" in text):
+        return "kose"
+    return "temel"
 
 
 def clock_tag(hour: int, minute: int = 0) -> str:
@@ -194,7 +207,8 @@ def resolve_premise_visual(n: int) -> str | None:
     return None
 
 
-def resolve_expl_visual(n: int) -> str | None:
+def resolve_expl_visual(n: int, q: dict | None = None) -> str | None:
+    q = q or {}
     if n in CLOCK_PREMISE:
         h, m = CLOCK_PREMISE[n]
         parts = [clock_tag(h, m)]
@@ -203,7 +217,13 @@ def resolve_expl_visual(n: int) -> str | None:
             parts.append(geo_tag(aci))
         return "\n\n".join(parts)
     kind = expl_kind(n)
-    return geo_tag(kind) if kind else None
+    if not kind:
+        return None
+    focus = "temel"
+    base = kind.replace("_expl", "")
+    if base in ("ucgen_abc", "kare", "dikdortgen"):
+        focus = detect_geo_focus(q)
+    return geo_tag(kind, focus)
 
 
 def expl_hint_for_tag(tag: str) -> str:
@@ -236,7 +256,7 @@ def enhance_question(q: dict) -> dict:
     q["premise"] = prepend_markup(q.get("premise"), prem_tag)
 
     expl = (q.get("explanation") or "").strip()
-    expl_tag = resolve_expl_visual(n)
+    expl_tag = resolve_expl_visual(n, q)
     if expl and expl_tag:
         body = expl
         if expl_tag in body:

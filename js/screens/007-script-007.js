@@ -6721,7 +6721,8 @@ logoutButton.addEventListener('click', async () => {
             scoreContainer.style.display = 'none';
             try{
               var spReset = document.getElementById('single-player-game-screen');
-              if(spReset) spReset.classList.remove('nova-sp-result-open');
+              if(spReset) spReset.classList.remove('nova-sp-result-open', 'nova-sp-wrong-review-active');
+              if (typeof window.novaClearWrongReviewState === 'function') window.novaClearWrongReviewState();
               var hudReset = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
               if(hudReset) hudReset.style.display = '';
             }catch(_){}
@@ -6972,9 +6973,18 @@ logoutButton.addEventListener('click', async () => {
     const totalQ = Array.isArray(gameQuestions) && gameQuestions.length
         ? gameQuestions.length
         : (window.NOVA_Q_LIMIT || 10);
-    questionNumber.textContent = `Soru ${currentQuestionIndex + 1}/${totalQ}`;
-    const progressPercentage = (currentQuestionIndex / totalQ) * 100;
-    progressBarInner.style.width = `${progressPercentage}%`;
+    const wrongReviewActive = !!window.NOVA_WRONG_REVIEW_ACTIVE;
+    const wrongReviewItems = wrongReviewActive ? (window.__novaWrongReviewItems || []) : [];
+    const wrongReviewPos = wrongReviewActive ? (Number(window.__novaWrongReviewPos) || 0) : 0;
+
+    if (wrongReviewActive && wrongReviewItems.length) {
+        questionNumber.textContent = `Yanlış ${wrongReviewPos + 1}/${wrongReviewItems.length}`;
+        progressBarInner.style.width = `${((wrongReviewPos + 1) / wrongReviewItems.length) * 100}%`;
+    } else {
+        questionNumber.textContent = `Soru ${currentQuestionIndex + 1}/${totalQ}`;
+        const progressPercentage = (currentQuestionIndex / totalQ) * 100;
+        progressBarInner.style.width = `${progressPercentage}%`;
+    }
 
 // Soru konteynerini temizle
 const questionContainer = document.querySelector('.question-container');
@@ -7081,7 +7091,7 @@ questionContainer.appendChild(textContainer);
             document.querySelector('.progress-container').style.display = 'block';
             const timerContainerEl = document.querySelector('.timer-container');
             if (timerContainerEl) {
-                timerContainerEl.style.display = window.NOVA_SP_REVIEW_MODE ? 'none' : 'block';
+                timerContainerEl.style.display = (window.NOVA_SP_REVIEW_MODE || wrongReviewActive) ? 'none' : 'block';
             }
             document.querySelector('.question-container').style.display = 'flex';
             optionsContainer.style.display = 'flex';
@@ -7118,8 +7128,22 @@ questionContainer.appendChild(textContainer);
                 reviewEditBar.style.display = 'flex';
             } else {
                 if (reviewEditBar) reviewEditBar.style.display = 'none';
-                resetTimer();
-                startTimer();
+                if (!wrongReviewActive) {
+                    resetTimer();
+                    startTimer();
+                } else {
+                    clearInterval(timer);
+                }
+            }
+
+            if (wrongReviewActive) {
+                var wrItem = wrongReviewItems[wrongReviewPos];
+                if (wrItem && typeof window.novaApplyWrongReviewAnswerState === 'function') {
+                    window.novaApplyWrongReviewAnswerState(wrItem.chosen, currentQuestion);
+                }
+                if (typeof showExplanationAndNext === 'function') {
+                    showExplanationAndNext();
+                }
             }
 
             if (typeof window.onNewQuestionLoaded === 'function') {
@@ -7130,6 +7154,8 @@ questionContainer.appendChild(textContainer);
         function selectOption(e) {
             const selectedButton = e.currentTarget || (e.target && e.target.closest && e.target.closest('.option-button'));
             if (!selectedButton) return;
+            if (window.NOVA_WRONG_REVIEW_ACTIVE) return;
+            try { window.__novaLastAnsweredIndex = currentQuestionIndex; } catch (_) {}
             const isCorrect = selectedButton.dataset.correct === 'true';
 
             document.querySelectorAll('.option-button').forEach(button => {
@@ -7155,6 +7181,28 @@ questionContainer.appendChild(textContainer);
 
             clearInterval(timer);
 
+            try {
+                var cq = gameQuestions[currentQuestionIndex];
+                var chosenOpt = String(selectedButton.getAttribute('data-opt-text') || '').trim();
+                var qStem = cq
+                    ? String(cq.actualQuestion || cq.question || '').trim()
+                    : '';
+                var infoVal = cq ? String(cq.info || '').trim() : '';
+                if (window.NovaTracker && typeof window.NovaTracker.recordAnswer === 'function') {
+                    window.NovaTracker.recordAnswer({
+                        questionIndex: currentQuestionIndex,
+                        chosen: chosenOpt,
+                        correct: cq ? String(cq.correct || '').trim() : '',
+                        isCorrect: isCorrect,
+                        q: qStem,
+                        explanation: cq
+                            ? String(cq.explanation || cq.aciklama || cq['açıklama'] || '').trim()
+                            : '',
+                        info: infoVal,
+                    });
+                }
+            } catch (_) {}
+
             if (isCorrect && typeof window.novaTryPlayKnightCorrectFx === 'function') {
                 window.novaTryPlayKnightCorrectFx().then(function () {
                     showExplanationAndNext();
@@ -7179,6 +7227,162 @@ function proceedToNextQuestion() {
 
 window.proceedToNextQuestion = proceedToNextQuestion;
 window.displayCurrentQuestion = displayCurrentQuestion;
+
+function novaResolveOptionLabel(chosen, q) {
+    if (!q) return String(chosen || '').trim();
+    var want = String(chosen || '').trim();
+    var opts = [q.correct, q.wrong1, q.wrong2]
+        .map(function (x) { return String(x || '').trim(); })
+        .filter(Boolean);
+    if (opts.indexOf(want) >= 0) return want;
+    var norm = want.replace(/\s+/g, ' ');
+    for (var i = 0; i < opts.length; i++) {
+        if (opts[i].replace(/\s+/g, ' ') === norm) return opts[i];
+    }
+    return want;
+}
+window.novaResolveOptionLabel = novaResolveOptionLabel;
+
+function novaApplyWrongReviewAnswerState(chosenText, question) {
+    var q = question || gameQuestions[currentQuestionIndex];
+    var chosen = novaResolveOptionLabel(chosenText, q);
+    var opts = document.querySelectorAll('.option-button');
+    var chosenBtn = null;
+    opts.forEach(function (btn) {
+        btn.disabled = true;
+        var raw = String(btn.getAttribute('data-opt-text') || '').trim();
+        if (!chosenBtn && raw === chosen) chosenBtn = btn;
+    });
+    opts.forEach(function (btn) {
+        if (btn === chosenBtn) {
+            btn.classList.add('wrong', 'option-chosen');
+        } else {
+            btn.classList.add('option-faded');
+        }
+        if (btn.dataset.correct === 'true') {
+            btn.classList.add('correct');
+        }
+    });
+}
+window.novaApplyWrongReviewAnswerState = novaApplyWrongReviewAnswerState;
+
+function novaExitResultUiForWrongReview() {
+    var spGame = document.getElementById('single-player-game-screen');
+    if (spGame) spGame.classList.remove('nova-sp-result-open');
+    var sc = scoreContainer || document.getElementById('score-container');
+    if (sc) sc.style.display = 'none';
+    var nova = document.getElementById('nova-summary');
+    if (nova) nova.classList.remove('nz-show');
+    if (questionNumber) questionNumber.style.display = 'block';
+    var pc = document.querySelector('.progress-container');
+    if (pc) pc.style.display = 'block';
+    var tc = document.querySelector('.timer-container');
+    if (tc) tc.style.display = 'none';
+    var qc = document.querySelector('.question-container');
+    if (qc) qc.style.display = 'flex';
+    if (optionsContainer) optionsContainer.style.display = 'flex';
+    var hud = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
+    if (hud) hud.style.display = '';
+    var expl = document.getElementById('explanation-container');
+    if (expl) {
+        expl.style.display = 'none';
+        expl.innerHTML = '';
+    }
+    var heroBar = document.getElementById('nova-sp-hero-feature-bar');
+    if (heroBar) heroBar.hidden = true;
+}
+
+function novaClearWrongReviewState() {
+    window.NOVA_WRONG_REVIEW_ACTIVE = false;
+    window.__novaWrongReviewItems = null;
+    window.__novaWrongReviewPos = 0;
+    var spGame = document.getElementById('single-player-game-screen');
+    if (spGame) spGame.classList.remove('nova-sp-wrong-review-active');
+}
+window.novaClearWrongReviewState = novaClearWrongReviewState;
+
+function novaReturnToSpResultScreen() {
+    novaClearWrongReviewState();
+    var expl = document.getElementById('explanation-container');
+    if (expl) {
+        expl.style.display = 'none';
+        expl.innerHTML = '';
+    }
+    var qc = document.querySelector('.question-container');
+    if (qc) qc.style.display = 'none';
+    if (optionsContainer) optionsContainer.style.display = 'none';
+    if (questionNumber) questionNumber.style.display = 'none';
+    var pc = document.querySelector('.progress-container');
+    if (pc) pc.style.display = 'none';
+    var tc = document.querySelector('.timer-container');
+    if (tc) tc.style.display = 'none';
+    var hud = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
+    if (hud) hud.style.display = 'none';
+    var spGame = document.getElementById('single-player-game-screen');
+    if (spGame) {
+        spGame.classList.add('nova-sp-result-open');
+    }
+    var sc = scoreContainer || document.getElementById('score-container');
+    if (sc) {
+        sc.style.display = 'flex';
+        sc.style.visibility = 'visible';
+        sc.style.opacity = '1';
+    }
+    var nova = document.getElementById('nova-summary');
+    if (nova) nova.classList.add('nz-show');
+}
+window.novaReturnToSpResultScreen = novaReturnToSpResultScreen;
+
+function novaShowWrongReviewAt(pos) {
+    var items = window.__novaWrongReviewItems || [];
+    if (!items.length) {
+        novaReturnToSpResultScreen();
+        return;
+    }
+    pos = Math.max(0, Math.min(pos, items.length - 1));
+    window.__novaWrongReviewPos = pos;
+    var item = items[pos];
+    var qList = gameQuestions && gameQuestions.length ? gameQuestions : (window.gameQuestions || []);
+    var qIdx = typeof item.questionIndex === 'number' && item.questionIndex >= 0
+        ? item.questionIndex
+        : -1;
+    if (qIdx < 0 || !qList[qIdx]) {
+        for (var i = 0; i < qList.length; i++) {
+            var qq = qList[i];
+            var qt = String((qq && (qq.question || qq.actualQuestion)) || '').trim();
+            if (qt && qt === String(item.q || '').trim()) {
+                qIdx = i;
+                break;
+            }
+        }
+    }
+    if (qIdx < 0 || !qList[qIdx]) {
+        if (typeof showAlert === 'function') {
+            showAlert('Bu yanlış soru yüklenemedi. Sonraki soruya geçiliyor.');
+        }
+        if (pos < items.length - 1) novaShowWrongReviewAt(pos + 1);
+        else novaReturnToSpResultScreen();
+        return;
+    }
+    currentQuestionIndex = qIdx;
+    window.__novaLastAnsweredIndex = qIdx;
+    displayCurrentQuestion();
+}
+window.novaShowWrongReviewAt = novaShowWrongReviewAt;
+
+function novaEnterWrongAnswersReview(wrongItems) {
+    if (!Array.isArray(wrongItems) || !wrongItems.length) return;
+    window.__novaWrongReviewItems = wrongItems.slice();
+    window.__novaWrongReviewPos = 0;
+    window.NOVA_WRONG_REVIEW_ACTIVE = true;
+    try { clearInterval(timer); } catch (_) {}
+    try { window.scrollTo(0, 0); } catch (_) {}
+    var spGame = document.getElementById('single-player-game-screen');
+    if (spGame) spGame.classList.add('nova-sp-wrong-review-active');
+    novaExitResultUiForWrongReview();
+    novaShowWrongReviewAt(0);
+}
+window.novaEnterWrongAnswersReview = novaEnterWrongAnswersReview;
 
 
         function endGame() {

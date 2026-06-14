@@ -11,18 +11,37 @@
       : null;
 
   function wrap(inner, label, w, h) {
+    var pad = 20;
     return (
-      '<span class="q-geo q-geo--basic q-geo--expl">' +
-      '<svg class="q-geo-svg q-geo-svg--basic q-geo-svg--expl" viewBox="0 0 ' +
-      w +
+      '<span class="q-geo q-geo--basic q-geo--expl q-geo--focus">' +
+      '<svg class="q-geo-svg q-geo-svg--basic q-geo-svg--expl" viewBox="' +
+      -pad +
       " " +
-      h +
-      '" role="img" aria-label="' +
+      -pad +
+      " " +
+      (w + pad * 2) +
+      " " +
+      (h + pad * 2) +
+      '" overflow="visible" role="img" aria-label="' +
       label +
       '">' +
       inner +
       "</svg></span>"
     );
+  }
+
+  function splitExplKind(kind) {
+    kind = String(kind || "").toLowerCase();
+    var focus = "temel";
+    if (kind.indexOf("|") >= 0) {
+      var parts = kind.split("|");
+      kind = parts[0];
+      focus = (parts[1] || "temel").trim();
+    }
+    if (kind.endsWith("_expl")) {
+      kind = kind.slice(0, -5);
+    }
+    return { base: kind, focus: focus };
   }
 
   function lineSeg(x1, y1, x2, y2, cls) {
@@ -211,8 +230,10 @@
     );
   }
 
-  function renderExpl(base) {
-    base = String(base || "").toLowerCase();
+  function renderExpl(kind) {
+    var parsed = splitExplKind(kind);
+    var base = parsed.base;
+    var focus = parsed.focus;
     var VX = 52;
     var VY = 118;
 
@@ -401,24 +422,31 @@
     }
 
     if (base === "ucgen_abc") {
-      return wrap(
+      var g =
         lineSeg(38, 115, 142, 115) +
-          lineSeg(142, 115, 90, 28) +
-          lineSeg(90, 28, 38, 115) +
-          callout(90, 108, "kenar", "middle") +
-          callout(122, 68, "kenar", "middle") +
-          callout(58, 68, "kenar", "middle") +
-          callout(90, 18, "3 kenar = 3 doğru parçası", "middle") +
+        lineSeg(142, 115, 90, 28) +
+        lineSeg(90, 28, 38, 115);
+      if (focus === "kenar") {
+        g +=
+          callout(90, 108, "1", "middle") +
+          callout(122, 68, "2", "middle") +
+          callout(58, 68, "3", "middle") +
+          callout(90, 12, "3 kenar", "middle");
+      } else if (focus === "kose") {
+        g +=
           pointCircle(38, 115, 6) +
           pointCircle(142, 115, 6) +
           pointCircle(90, 28, 6) +
           callout(28, 118, "A", "middle") +
           callout(152, 118, "B", "middle") +
-          callout(98, 24, "C", "start"),
-        "Üçgen açıklama",
-        180,
-        130
-      );
+          callout(98, 24, "C", "start") +
+          callout(90, 12, "3 köşe", "middle");
+      } else {
+        g +=
+          callout(90, 108, "kenar", "middle") +
+          callout(90, 12, "3 kenar = 3 doğru parçası", "middle");
+      }
+      return wrap(g, "Üçgen açıklama", 180, 130);
     }
 
     if (base === "ucgen_kollar") {
@@ -440,43 +468,59 @@
     }
 
     if (base === "kare") {
-      return wrap(
+      var g =
         lineSeg(48, 48, 132, 48) +
-          lineSeg(132, 48, 132, 132) +
-          lineSeg(132, 132, 48, 132) +
-          lineSeg(48, 132, 48, 48) +
-          callout(90, 38, "4 eşit kenar", "middle") +
-          callout(148, 90, "kenar", "start") +
-          callout(90, 148, "kenar", "middle") +
+        lineSeg(132, 48, 132, 132) +
+        lineSeg(132, 132, 48, 132) +
+        lineSeg(48, 132, 48, 48);
+      if (focus === "kenar") {
+        g +=
+          callout(90, 38, "1", "middle") +
+          callout(148, 90, "2", "start") +
+          callout(90, 148, "3", "middle") +
+          callout(32, 90, "4", "end") +
+          callout(90, 18, "4 kenar", "middle");
+      } else if (focus === "kose") {
+        g +=
           pointCircle(48, 48, 5) +
           pointCircle(132, 48, 5) +
           pointCircle(132, 132, 5) +
-          pointCircle(48, 132, 5),
-        "Kare açıklama",
-        180,
-        155
-      );
+          pointCircle(48, 132, 5) +
+          callout(90, 18, "4 köşe", "middle");
+      } else {
+        g += callout(90, 38, "4 eşit kenar", "middle");
+      }
+      return wrap(g, "Kare açıklama", 180, 155);
     }
 
     if (base === "dikdortgen") {
-      return wrap(
+      var g =
         lineSeg(42, 52, 138, 52) +
-          lineSeg(138, 52, 138, 108) +
-          lineSeg(138, 108, 42, 108) +
-          lineSeg(42, 108, 42, 52) +
+        lineSeg(138, 52, 138, 108) +
+        lineSeg(138, 108, 42, 108) +
+        lineSeg(42, 108, 42, 52);
+      if (focus === "kose") {
+        g +=
           callout(42, 46, "1", "middle") +
           callout(138, 46, "2", "middle") +
           callout(138, 114, "3", "middle") +
           callout(42, 114, "4", "middle") +
-          callout(90, 34, "4 köşe = 4 açı", "middle") +
           pointCircle(42, 52, 5) +
           pointCircle(138, 52, 5) +
           pointCircle(138, 108, 5) +
-          pointCircle(42, 108, 5),
-        "Dikdörtgen açıklama",
-        180,
-        125
-      );
+          pointCircle(42, 108, 5) +
+          callout(90, 28, "4 köşe = 4 açı", "middle");
+      } else if (focus === "kenar") {
+        g +=
+          callout(90, 42, "1", "middle") +
+          callout(152, 80, "2", "start") +
+          callout(90, 118, "3", "middle") +
+          callout(28, 80, "4", "end") +
+          callout(90, 18, "4 kenar", "middle");
+      } else {
+        g += callout(90, 34, "4 köşe = 4 açı", "middle");
+      }
+      return wrap(g, "Dikdörtgen açıklama", 180, 125);
     }
 
     if (base === "yatay") {
@@ -735,8 +779,8 @@
 
   global.__novaGeometryBasicSvg = function (kind) {
     kind = String(kind || "").toLowerCase();
-    if (kind.slice(-5) === "_expl") {
-      var expl = renderExpl(kind.slice(0, -5));
+    if (kind.indexOf("_expl") >= 0 || kind.indexOf("|") >= 0) {
+      var expl = renderExpl(kind);
       if (expl) return expl;
     }
     return origSvg ? origSvg(kind) : "";

@@ -117,33 +117,28 @@ function isInsideOptions(node){
         }catch(_){}
       });
     })(['startGame','startSinglePlayer','startCountdown','startNow']);
-    
-    document.addEventListener('click', function(e){
-      const btn = e.target.closest('.option-button, .answer-option, .option, .choice');
-      if(!btn) return;
-      setTimeout(()=>{
-        try {
-          const qText = findQuestionText();
-          const opts = Array.from(document.querySelectorAll('.option-button, .answer-option, .option, .choice'));
-          const correctBtn = opts.find(b => b.classList.contains('correct') || b.dataset.correct==='true');
-          const chosenText = (btn.innerText||btn.textContent||'').trim();
-          const correctText = (correctBtn && (correctBtn.innerText||correctBtn.textContent||'').trim()) || '';
-          const expEl = document.querySelector('.explanation-text, .explanation-container, .explanation-card, #explanation, .explanation');
-          const explanation = cleanupExplanation((expEl && (expEl.innerText||expEl.textContent)||'').trim());
-          const isCorrect = btn.classList.contains('correct') || (btn===correctBtn);
 
-          state.total += 1;
-          if(isCorrect){ state.correctCount += 1; }
-          else { (function(){
-  const infoImgEl = document.querySelector('.question-info-image');
-  const infoTextEl = document.querySelector('.question-info-text');
-  const infoImage = infoImgEl ? infoImgEl.src : '';
-  const infoText = (!infoImgEl && infoTextEl) ? ((infoTextEl.innerText||infoTextEl.textContent)||'').trim() : '';
-  state.items.push({ q:qText, chosen:chosenText, correct:correctText, explanation, infoImage, infoText, isCorrect:false });
-})(); }
-        } catch(err){ console.warn('NovaTracker capture error:', err); }
-      }, 250);
-    }, true);
+    function recordAnswer(payload) {
+      var p = payload || {};
+      if (p.isCorrect) {
+        state.total += 1;
+        state.correctCount += 1;
+        return;
+      }
+      state.total += 1;
+      var infoVal = String(p.info || '').trim();
+      var hasInfoImage = /^https?:\/\/.*\.(png|jpg|jpeg|gif|webp)(\?|$)/i.test(infoVal);
+      state.items.push({
+        q: String(p.q || '').trim(),
+        chosen: String(p.chosen || '').trim(),
+        correct: String(p.correct || '').trim(),
+        explanation: String(p.explanation || '').trim(),
+        infoImage: hasInfoImage ? infoVal : (String(p.infoImage || '').trim()),
+        infoText: hasInfoImage ? '' : (String(p.infoText || infoVal || '').trim()),
+        isCorrect: false,
+        questionIndex: typeof p.questionIndex === 'number' ? p.questionIndex : -1,
+      });
+    }
 
     function getBadge(rate){ if(rate>=90) return 'ELMAS'; if(rate>=75) return 'ALTIN'; if(rate>=60) return 'GÜMÜŞ'; return 'BRONZ'; }
 
@@ -226,6 +221,13 @@ function isInsideOptions(node){
       });
       wrap.classList.add('nz-show');
       try {
+        var rptBtn = document.getElementById('nzRepeatBtn');
+        if (rptBtn) {
+          rptBtn.disabled = items.length === 0;
+          rptBtn.classList.toggle('is-disabled', items.length === 0);
+        }
+      } catch (_) {}
+      try {
         if (typeof window.novaPolishSpResultScreen === 'function') {
           setTimeout(window.novaPolishSpResultScreen, 80);
           setTimeout(window.novaPolishSpResultScreen, 320);
@@ -236,6 +238,20 @@ function isInsideOptions(node){
           }, 120);
         }
       } catch (_) {}
+    }
+
+    function startWrongReview(){
+      if (!state.items.length) {
+        try {
+          if (typeof showAlert === 'function') showAlert('Listelenecek yanlış cevap yok. Harika iş!');
+        } catch (_) {}
+        return;
+      }
+      if (typeof window.novaEnterWrongAnswersReview === 'function') {
+        window.novaEnterWrongAnswersReview(state.items.slice());
+        return;
+      }
+      openModal();
     }
 
     function openModal(){
@@ -270,8 +286,10 @@ function isInsideOptions(node){
       modal.style.display='flex';
     }
 
-    return { state, renderSummary, openModal };
+    return { state, renderSummary, openModal, startWrongReview, recordAnswer };
   })();
+
+  window.NovaTracker = NovaTracker;
 
   // Observe score container visibility
   function observeScoreContainer(){
@@ -350,7 +368,7 @@ function isInsideOptions(node){
 
     const rpt=document.getElementById('nzRepeatBtn');
     const vid=document.getElementById('nzVideoBtn');
-    if(rpt) rpt.addEventListener('click', NovaTracker.openModal);
+    if(rpt) rpt.addEventListener('click', NovaTracker.startWrongReview);
     if(vid) vid.addEventListener('click', ()=>{
       // Prefer native lesson video action if present
       try{ document.getElementById('lesson-video-button')?.click(); }catch(_){}
