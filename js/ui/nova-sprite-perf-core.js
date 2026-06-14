@@ -643,6 +643,23 @@
         .catch(function () {})
         .finally(function () {
           window.__novaSpriteForcePreload = false;
+          try {
+            var clipFns = [
+              'novaYildizPerisiEnsureTrueClipsReady',
+              'novaFirtinaOkcuEnsureTrueClipsReady',
+              'novaTasMuhafizEnsureTrueClipsReady',
+              'novaGolgeParsiEnsureTrueClipsReady',
+              'novaBilgeBaykusEnsureTrueClipsReady',
+              'novaBuzEjderEnsureTrueClipsReady',
+              'novaAlevEjderEnsureTrueClipsReady',
+              'novaGeceEjderEnsureTrueClipsReady'
+            ];
+            clipFns.forEach(function (fnName) {
+              if (typeof window[fnName] === 'function') {
+                window[fnName](true).catch(function () {});
+              }
+            });
+          } catch (_) {}
           remountVisibleSpriteHosts();
         });
     }, 40);

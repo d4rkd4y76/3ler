@@ -177,6 +177,20 @@
     );
   }
 
+  function emphasisToolbarHtml() {
+    return (
+      '<div class="q-editor-em-bar">' +
+      '<span class="q-editor-em-bar__title">Metin vurgulama</span>' +
+      '<p class="q-editor-hint q-editor-hint--inline">Kelimeyi seçin, sonra stile tıklayın. Soru, öncül, şık ve açıklamada geçerlidir.</p>' +
+      '<div class="q-em-toolbar">' +
+      '<button type="button" class="btn small q-wrap-em q-wrap-em--bold" data-em="kalin" title="Seçili metni kalın yap">𝐁 Kalın</button>' +
+      '<button type="button" class="btn small q-wrap-em q-wrap-em--red" data-em="kirmizi" title="Parlak kırmızı">Kırmızı</button>' +
+      '<button type="button" class="btn small q-wrap-em q-wrap-em--blue" data-em="mavi" title="Parlak mavi">Mavi</button>' +
+      '<button type="button" class="btn small q-wrap-em q-wrap-em--green" data-em="yesil" title="Parlak yeşil">Yeşil</button>' +
+      "</div></div>"
+    );
+  }
+
   function enhancedEditorHtml(q, prefix, opts) {
     opts = opts || {};
     const fields = getQuestionFields(q);
@@ -234,6 +248,7 @@
       mathToolbarHtml() +
       '<p class="q-editor-hint q-editor-hint--inline">Soru, öncül, şık veya açıklama kutusuna tıklayın; araç imlecin olduğu alana eklenir.</p>' +
       "</div>" +
+      emphasisToolbarHtml() +
       '<div class="q-editor-columns">' +
       '<div class="q-editor-col q-editor-col--main">' +
       '<section class="q-editor-section">' +
@@ -754,6 +769,24 @@
         if (size == null || !size.trim()) return;
         const unit = prompt("Birim:", "cm") || "cm";
         mq.insertSolid(field, solid, size.trim(), unit.trim());
+        afterInsert();
+      });
+    });
+
+    dlg.querySelectorAll(".q-wrap-em").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const field = activeField();
+        if (!field) {
+          alert("Önce bir metin alanına tıklayın (soru, öncül, şık veya açıklama).");
+          return;
+        }
+        const em = btn.getAttribute("data-em") || "kalin";
+        if (typeof mq.wrapEmphasis === "function") {
+          if (!mq.wrapEmphasis(field, em)) {
+            alert("Önce vurgulanacak kelimeyi veya metni seçin.");
+            return;
+          }
+        }
         afterInsert();
       });
     });

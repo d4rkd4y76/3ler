@@ -413,7 +413,7 @@ def compute_div_steps(dividend: int, divisor: int) -> list[str]:
             )
             work = r1 * 10 + d2
             steps.append(
-                f"Yukarıdaki sayının **birler basamağını aşağıya indiririz ({d2})** → **{work}** olur. "
+                f"Sonraki adımda sayının **birler basamağını aşağıya indiririz ({d2})** → **{work}** olur. "
                 f"**{sayi_gen(work)}** içinde **{b}** kaç kez vardır? **{work // b if work else 0}** kez. "
                 f"Bölüme **{work // b if work else 0}** yazarız."
             )

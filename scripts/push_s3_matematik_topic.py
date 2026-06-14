@@ -103,7 +103,7 @@ def push_one(cfg: dict) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("topic", nargs="?", help="t01..t13 veya 'all'")
+    ap.add_argument("topic", nargs="?", help="t01..t15 veya 'all'")
     args = ap.parse_args()
 
     targets = TOPICS if (not args.topic or args.topic == "all") else [get_topic(args.topic)]

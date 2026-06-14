@@ -1385,64 +1385,68 @@
     }
   }
 
-  function playHeroFx(variant) {
-    return new Promise(function (resolve) {
-      if (fxBusy || !isSinglePlayerGameVisible()) { resolve(); return; }
-      var equippedId = getEquippedHeroId();
-      var def = getHeroDef(equippedId);
-      if (!def) { resolve(); return; }
+  var HERO_ENSURE_TRUE_CLIPS = {
+    star_fairy: 'novaYildizPerisiEnsureTrueClipsReady',
+    firtina_okcu: 'novaFirtinaOkcuEnsureTrueClipsReady',
+    tas_muhafiz: 'novaTasMuhafizEnsureTrueClipsReady',
+    golge_parsi: 'novaGolgeParsiEnsureTrueClipsReady',
+    bilge_baykus: 'novaBilgeBaykusEnsureTrueClipsReady',
+    buz_ejder: 'novaBuzEjderEnsureTrueClipsReady',
+    alev_ejder: 'novaAlevEjderEnsureTrueClipsReady',
+    gece_ejder: 'novaGeceEjderEnsureTrueClipsReady'
+  };
 
-      var arena = ensureArena();
-      arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece', 'nova-sp-theme-firtina', 'nova-sp-theme-tas');
-      arena.classList.add('nova-sp-theme-' + def.theme);
+  function ensureHeroTrueClipsReady(heroId, force) {
+    var fnName = HERO_ENSURE_TRUE_CLIPS[heroId];
+    if (!fnName || typeof window[fnName] !== 'function') {
+      return Promise.resolve(false);
+    }
+    return Promise.resolve(window[fnName](force !== false)).catch(function () { return false; });
+  }
 
-      var host = arena.querySelector('.nova-sp-hero-arena__host');
-      var payload = pickCheerPayload(variant);
-      var spriteOnly = heroUsesTrueSpriteClips(equippedId);
-      if (spriteOnly) {
-        arena.classList.add('nova-sp-hero-arena--sprite-only');
-        if (host) host.innerHTML = '';
-      } else {
-        renderSpeechPanel(arena, payload);
-        spawnScreenFx(arena, payload);
-        var svg = mountHeroInto(host, equippedId);
-        if (!svg) { resolve(); return; }
-      }
+  function preloadEquippedHeroTrueClips(force) {
+    return ensureHeroTrueClipsReady(getEquippedHeroId(), force);
+  }
 
-      fxBusy = true;
+  window.novaSpPreloadEquippedHeroTrueClips = preloadEquippedHeroTrueClips;
 
-      if (spriteOnly) {
-        if (equippedId === 'firtina_okcu' && typeof window.novaFirtinaOkcuEnsureTrueClipsReady === 'function') {
-          window.novaFirtinaOkcuEnsureTrueClipsReady();
-        } else if (equippedId === 'star_fairy' && typeof window.novaYildizPerisiEnsureTrueClipsReady === 'function') {
-          window.novaYildizPerisiEnsureTrueClipsReady();
-        } else if (equippedId === 'tas_muhafiz' && typeof window.novaTasMuhafizEnsureTrueClipsReady === 'function') {
-          window.novaTasMuhafizEnsureTrueClipsReady();
-        } else if (equippedId === 'golge_parsi' && typeof window.novaGolgeParsiEnsureTrueClipsReady === 'function') {
-          window.novaGolgeParsiEnsureTrueClipsReady();
-        } else if (equippedId === 'bilge_baykus' && typeof window.novaBilgeBaykusEnsureTrueClipsReady === 'function') {
-          window.novaBilgeBaykusEnsureTrueClipsReady();
-        } else if (equippedId === 'buz_ejder' && typeof window.novaBuzEjderEnsureTrueClipsReady === 'function') {
-          window.novaBuzEjderEnsureTrueClipsReady();
-        } else if (equippedId === 'alev_ejder' && typeof window.novaAlevEjderEnsureTrueClipsReady === 'function') {
-          window.novaAlevEjderEnsureTrueClipsReady();
-        } else if (equippedId === 'gece_ejder' && typeof window.novaGeceEjderEnsureTrueClipsReady === 'function') {
-          window.novaGeceEjderEnsureTrueClipsReady();
-        }
-      }
+  async function playHeroFx(variant) {
+    if (fxBusy || !isSinglePlayerGameVisible()) return;
+    var equippedId = getEquippedHeroId();
+    var def = getHeroDef(equippedId);
+    if (!def) return;
 
+    var arena = ensureArena();
+    arena.classList.remove('nova-sp-theme-blaze', 'nova-sp-theme-star', 'nova-sp-theme-turbo', 'nova-sp-theme-mythic', 'nova-sp-theme-simsek', 'nova-sp-theme-bilge', 'nova-sp-theme-buz', 'nova-sp-theme-alev', 'nova-sp-theme-gece', 'nova-sp-theme-firtina', 'nova-sp-theme-tas', 'nova-sp-theme-golge', 'nova-sp-theme-baykus');
+    arena.classList.add('nova-sp-theme-' + def.theme);
+
+    var host = arena.querySelector('.nova-sp-hero-arena__host');
+    var payload = pickCheerPayload(variant);
+    var spriteOnly = heroUsesTrueSpriteClips(equippedId);
+    if (spriteOnly) {
+      arena.classList.add('nova-sp-hero-arena--sprite-only');
+      if (host) host.innerHTML = '';
+      await ensureHeroTrueClipsReady(equippedId, true);
+    } else {
+      arena.classList.remove('nova-sp-hero-arena--sprite-only');
+      renderSpeechPanel(arena, payload);
+      spawnScreenFx(arena, payload);
+      var svg = mountHeroInto(host, equippedId);
+      if (!svg) return;
+    }
+
+    fxBusy = true;
+    try {
       arena.setAttribute('aria-hidden', 'false');
       arena.classList.add('is-active');
       ['is-centered', 'is-exiting', 'is-slamming', 'is-epic', 'is-caption-show'].forEach(function (c) {
         arena.classList.remove(c);
       });
-
-      runHeroSequence(arena, variant).then(function () {
-        hideArena(arena);
-        fxBusy = false;
-        resolve();
-      });
-    });
+      await runHeroSequence(arena, variant);
+    } finally {
+      hideArena(arena);
+      fxBusy = false;
+    }
   }
 
   function runHeroSequence(arena, variant) {
@@ -1963,6 +1967,9 @@
     window.novaOpenSinglePlayerGameScreen = function () {
       open.apply(this, arguments);
       hideArena();
+      if (typeof window.novaSpPreloadEquippedHeroTrueClips === 'function') {
+        window.novaSpPreloadEquippedHeroTrueClips(true);
+      }
       if (typeof window.novaFirtinaOkcuPreloadTrueClipsIfEquipped === 'function') {
         window.novaFirtinaOkcuPreloadTrueClipsIfEquipped();
       }

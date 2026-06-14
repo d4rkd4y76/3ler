@@ -213,6 +213,91 @@
   min-width: 36px;
 }
 
+.q-editor-em-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 113, 133, 0.28);
+  background: rgba(40, 20, 36, 0.42);
+}
+
+.q-editor-em-bar__title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fda4af;
+  letter-spacing: 0.03em;
+}
+
+.q-em-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.q-wrap-em--bold {
+  font-weight: 800;
+}
+
+.q-wrap-em--red {
+  color: #ff4d4d;
+  border-color: rgba(255, 77, 77, 0.45) !important;
+}
+
+.q-wrap-em--blue {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.45) !important;
+}
+
+.q-wrap-em--green {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.45) !important;
+}
+
+.q-markup .q-em {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.q-markup .q-em--bold,
+.q-markup strong.q-em--bold {
+  font-weight: 900;
+  color: inherit;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.12);
+}
+
+.q-markup .q-em--red {
+  color: #ff3b3b;
+  text-shadow: 0 0 10px rgba(255, 59, 59, 0.42);
+}
+
+.q-markup .q-em--blue {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.42);
+}
+
+.q-markup .q-em--green {
+  color: #4ade80;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.42);
+}
+
+#single-player-game-screen .explanation-container .q-em--red,
+#single-player-game-screen .explanation-note__body .q-em--red {
+  color: #ff5555;
+}
+
+#single-player-game-screen .explanation-container .q-em--blue,
+#single-player-game-screen .explanation-note__body .q-em--blue {
+  color: #5ecbff;
+}
+
+#single-player-game-screen .explanation-container .q-em--green,
+#single-player-game-screen .explanation-note__body .q-em--green {
+  color: #5ef59a;
+}
+
 .q-editor-columns {
   display: grid;
   grid-template-columns: 1fr min(300px, 38%);
@@ -1851,4 +1936,193 @@
   font-weight: 700;
   fill: #1e293b;
   font-family: system-ui, sans-serif;
+}
+
+/* 3. sınıf temel geometri — nokta, doğru, ışın, açı */
+.q-geo--basic {
+  display: block;
+  margin: 0.45em auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.q-geo-svg--basic {
+  width: min(220px, 88vw);
+  max-height: 180px;
+  margin: 0 auto;
+}
+
+.question-preamble-block .q-geo--basic .q-geo-svg--basic {
+  width: min(240px, 92vw);
+  max-height: 200px;
+}
+
+.q-geo-svg--sekil {
+  width: min(220px, 88vw);
+  max-height: 180px;
+  margin: 0 auto;
+  display: block;
+}
+
+.question-preamble-block .q-geo--sekil .q-geo-svg--sekil,
+.question-preamble-block .q-geo--solid .q-geo-svg--sekil {
+  width: min(240px, 92vw);
+  max-height: 200px;
+}
+
+.question-explanation-text .q-geo--sekil .q-geo-svg--sekil,
+.q-explanation .q-geo--sekil .q-geo-svg--sekil,
+#explanation-container .q-geo--sekil .q-geo-svg--sekil,
+#explanation-container .q-geo--solid .q-geo-svg--sekil {
+  width: min(200px, 84vw);
+  max-height: 160px;
+}
+
+.question-explanation-text .q-geo--basic .q-geo-svg--basic,
+.q-explanation .q-geo--basic .q-geo-svg--basic {
+  width: min(200px, 84vw);
+  max-height: 160px;
+}
+
+.q-geo-point {
+  fill: #dc2626;
+  stroke: #fff;
+  stroke-width: 3;
+  paint-order: stroke fill;
+}
+
+.q-geo-point--top {
+  filter: drop-shadow(0 0 1px #fff);
+}
+
+.q-geo-label--top {
+  paint-order: stroke fill;
+}
+
+.q-geo-grid {
+  stroke: rgba(100, 116, 139, 0.35);
+  stroke-width: 1;
+}
+
+.q-geo-angle-arc {
+  fill: none;
+  stroke: #eab308;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.q-geo-angle-arc--dik {
+  stroke: #eab308;
+  stroke-width: 2.5;
+}
+
+.q-geo-angle-wedge {
+  fill: rgba(250, 204, 21, 0.32);
+  stroke: none;
+}
+
+.q-geo-door {
+  stroke: #0ea5e9;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.q-geo-arrow {
+  fill: #0ea5e9;
+  stroke: none;
+}
+
+.q-geo-wall {
+  stroke: #64748b;
+  stroke-width: 4;
+  stroke-linecap: square;
+}
+
+.q-markup--readable .q-geo-point,
+#single-player-game-screen .explanation-container .q-geo-point,
+#explanation-container .q-geo-point {
+  fill: #f87171;
+  stroke: #0f172a;
+  stroke-width: 2.5;
+}
+
+.q-markup--readable .q-geo-angle-arc,
+#single-player-game-screen .explanation-container .q-geo-angle-arc,
+#explanation-container .q-geo-angle-arc {
+  fill: none;
+  stroke: #fde047;
+  stroke-width: 2.5;
+}
+
+.q-markup--readable .q-geo-arrow,
+#single-player-game-screen .explanation-container .q-geo-arrow,
+#explanation-container .q-geo-arrow {
+  fill: #7dd3fc;
+}
+
+.q-markup--readable .q-geo-angle-wedge,
+#single-player-game-screen .explanation-container .q-geo-angle-wedge,
+#explanation-container .q-geo-angle-wedge {
+  fill: rgba(253, 224, 71, 0.38);
+}
+
+.q-markup--readable .q-geo-door,
+#single-player-game-screen .explanation-container .q-geo-door,
+#explanation-container .q-geo-door {
+  stroke: #7dd3fc;
+}
+
+.q-markup--readable .q-geo-wall,
+#single-player-game-screen .explanation-container .q-geo-wall,
+#explanation-container .q-geo-wall {
+  stroke: #94a3b8;
+}
+
+/* Açıklama görselleri — etiketli _expl */
+.q-geo--expl {
+  margin: 0.55em auto;
+}
+
+.q-geo-svg--expl {
+  width: min(260px, 94vw);
+  max-height: 210px;
+}
+
+.q-geo-callout {
+  fill: #c2410c;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2.5px;
+}
+
+.q-geo-edge--dash {
+  stroke-dasharray: 7 5;
+  opacity: 0.85;
+}
+
+.q-geo-hl-yatay {
+  stroke: #eab308;
+  stroke-width: 4;
+}
+
+.q-geo-hl-dikey {
+  stroke: #22c55e;
+  stroke-width: 4;
+}
+
+.q-geo-hl-egik {
+  stroke: #a855f7;
+  stroke-width: 4;
+}
+
+.q-markup--readable .q-geo-callout,
+#explanation-container .q-geo-callout {
+  fill: #fde047;
+  stroke: #0f172a;
+  stroke-width: 3px;
+  font-size: 12px;
 }

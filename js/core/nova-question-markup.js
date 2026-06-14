@@ -2,7 +2,10 @@
  * Soru metni: kesirler [[1/3]], kesir modeli [[fracbar:3/8]], dikey toplama [[add:243+125]], dikey cikarma [[sub:485-234]],
  * cozum [[addsol:348+225]] / [[subsol:485-234]],
  * dikey çarpma [[mul:23×45]], bölme [[div:144÷12]], çözüm [[divsol:18÷3]], adım [[divstep:72÷4:1]]
- * geometri [[shape:kare:5:cm]], cisim [[solid:kup:4:cm]], saat [[clock:a:8:00]] / [[clock:d:14:30]], para [[para:10TL|5TL]], terazi [[terazi:L:2,3:R:5]], Bunny video [[bunny:host:videoId]]
+ * geometri [[shape:kare:5:cm]], temel geo [[geo:nokta]] [[geo:dogru]] [[geo:isin]] [[geo:parca]] [[geo:aci_dik]],
+ * şekil/cisim [[sekil:ucgen]] [[sekil:kare]] [[cisim:kup]] [[cisim:silindir]],
+ * cisim [[solid:kup:4:cm]], saat [[clock:a:8:00]] / [[clock:d:14:30]], para [[para:10TL|5TL]], terazi [[terazi:L:2,3:R:5]], Bunny video [[bunny:host:videoId]]
+ * Vurgu: {kirmizi:kelime} {mavi:kelime} {yesil:kelime} veya **kalın**
  * Öncül: infoBlocks (metin, madde, görsel, video) + geriye dönük info / infoItems
  */
 (function (global) {
@@ -29,6 +32,10 @@
   const BUNNY_VID_RE = /\[\[\s*bunny\s*:\s*([^:\]]*)\s*:\s*([a-f0-9-]{8,})\s*\]\]/gi;
   const PARA_RE = /\[\[\s*para\s*:\s*([^\]]+?)\s*\]\]/gi;
   const TERAZI_RE = /\[\[\s*terazi\s*:\s*L\s*:\s*([^:\]]+?)\s*:\s*R\s*:\s*([^\]]+?)\s*\]\]/gi;
+  const GEO_BASIC_RE = /\[\[\s*geo\s*:\s*([a-z0-9_]+)\s*\]\]/gi;
+  const SEKIL_RE = /\[\[\s*sekil\s*:\s*([a-z0-9_]+)\s*\]\]/gi;
+  const CISIM_RE = /\[\[\s*cisim\s*:\s*([a-z0-9_]+)\s*\]\]/gi;
+  const EM_TAG_RE = /\{(kirmizi|mavi|yesil|kalin|k|m|y)\s*:\s*([^{}]+?)\}/gi;
   const IMG_RE = /^https?:\/\/\S+\.(png|jpe?g|gif|webp|svg)(\?\S*)?$/i;
   const BUNNY_IMG_RE = /^https?:\/\/[^/]+\.b-cdn\.net\/.+/i;
 
@@ -1709,9 +1716,66 @@
     return html;
   }
 
+  function emClassForTag(tag) {
+    const t = String(tag || "").toLowerCase();
+    if (t === "kirmizi" || t === "k") return "q-em q-em--red";
+    if (t === "mavi" || t === "m") return "q-em q-em--blue";
+    if (t === "yesil" || t === "y") return "q-em q-em--green";
+    if (t === "kalin") return "q-em q-em--bold";
+    return "q-em";
+  }
+
+  function renderEmphasisTags(html) {
+    return html.replace(EM_TAG_RE, function (_, tag, inner) {
+      const cls = emClassForTag(tag);
+      const safe = String(inner);
+      if (String(tag).toLowerCase() === "kalin") {
+        return '<strong class="' + cls + '">' + safe + "</strong>";
+      }
+      return '<span class="' + cls + '">' + safe + "</span>";
+    });
+  }
+
+  function geometryBasicMarkupHtml(kind) {
+    const fn =
+      typeof global.__novaGeometryBasicSvg === "function"
+        ? global.__novaGeometryBasicSvg
+        : null;
+    if (!fn) return "";
+    const svg = fn(String(kind || "").toLowerCase());
+    return svg || "";
+  }
+
+  function sekilCisimMarkupHtml(type, kind) {
+    const k = String(kind || "").toLowerCase();
+    const fn =
+      type === "cisim"
+        ? typeof global.__novaCisimSvg === "function"
+          ? global.__novaCisimSvg
+          : null
+        : typeof global.__novaSekilSvg === "function"
+          ? global.__novaSekilSvg
+          : null;
+    if (!fn) return "";
+    const svg = fn(k);
+    return svg || "";
+  }
+
   function renderMarkupHtml(raw) {
     if (raw == null || raw === "") return "";
     let s = escapeHtml(String(raw));
+    s = s.replace(GEO_BASIC_RE, function (_, kind) {
+      const svg = geometryBasicMarkupHtml(kind);
+      return svg || "[[geo:" + kind + "]]";
+    });
+    s = s.replace(SEKIL_RE, function (_, kind) {
+      const svg = sekilCisimMarkupHtml("sekil", kind);
+      return svg || "[[sekil:" + kind + "]]";
+    });
+    s = s.replace(CISIM_RE, function (_, kind) {
+      const svg = sekilCisimMarkupHtml("cisim", kind);
+      return svg || "[[cisim:" + kind + "]]";
+    });
     s = s.replace(FRAC_RE, function (_, a, b) {
       return stackedFractionHtml(a, b);
     });
@@ -1782,7 +1846,8 @@
     s = s.replace(RESULT_RE, function (_, n) {
       return '<span class="q-final-result">' + escapeHtml(n) + "</span>";
     });
-    s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    s = renderEmphasisTags(s);
+    s = s.replace(/\*\*(.+?)\*\*/g, '<strong class="q-em q-em--bold">$1</strong>');
     s = s.replace(/\n/g, "<br>");
     s = wrapFracInlinePhrases(s);
     return s;
@@ -2166,6 +2231,34 @@
     input.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
+  function wrapSelection(input, left, right) {
+    if (!input) return false;
+    const start = input.selectionStart != null ? input.selectionStart : input.value.length;
+    const end = input.selectionEnd != null ? input.selectionEnd : start;
+    if (start === end) return false;
+    const v = input.value;
+    const sel = v.slice(start, end);
+    input.value = v.slice(0, start) + left + sel + right + v.slice(end);
+    const ns = start + left.length;
+    const ne = ns + sel.length;
+    input.focus();
+    if (input.setSelectionRange) input.setSelectionRange(ns, ne);
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    return true;
+  }
+
+  function wrapEmphasis(input, kind) {
+    if (!input) return false;
+    const k = String(kind || "").toLowerCase();
+    if (k === "kalin") {
+      return wrapSelection(input, "**", "**");
+    }
+    if (k === "kirmizi" || k === "mavi" || k === "yesil") {
+      return wrapSelection(input, "{" + k + ":", "}");
+    }
+    return false;
+  }
+
   function insertFraction(input, num, den) {
     insertAtCursor(input, "[[" + (num || "1") + "/" + (den || "3") + "]]");
   }
@@ -2224,6 +2317,8 @@
     bunnyVideoHtml: bunnyVideoHtml,
     isImageUrl: isImageUrl,
     insertAtCursor: insertAtCursor,
+    wrapSelection: wrapSelection,
+    wrapEmphasis: wrapEmphasis,
     insertFraction: insertFraction,
     insertMul: insertMul,
     insertDiv: insertDiv,

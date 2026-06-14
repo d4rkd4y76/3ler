@@ -91,9 +91,14 @@
   function loadClipAssets(clip) {
     if (!clip) return Promise.reject(new Error('clip-missing'));
     if (sheetCache[clip.sheet]) return sheetCache[clip.sheet];
-    sheetCache[clip.sheet] = loadImage(resolveUrl(clip.sheet)).then(function (img) {
-      return { clip: clip, img: img };
-    });
+    sheetCache[clip.sheet] = loadImage(resolveUrl(clip.sheet))
+      .then(function (img) {
+        return { clip: clip, img: img };
+      })
+      .catch(function (err) {
+        delete sheetCache[clip.sheet];
+        throw err;
+      });
     return sheetCache[clip.sheet];
   }
 
@@ -106,7 +111,10 @@
     })).then(function () {
       refillShuffleDeck();
       return true;
-    }).catch(function () { return false; });
+    }).catch(function () {
+      preloadAllPromise = null;
+      return false;
+    });
     return preloadAllPromise;
   }
 

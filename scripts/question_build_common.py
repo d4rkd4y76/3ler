@@ -151,9 +151,10 @@ def split_stem(text: str, premise: str | None) -> str:
 
 
 def to_app_payload(q: dict) -> dict:
-    q = normalize_question(q)
-    premise = (q.get("premise") or "").strip() or None
-    stem = split_stem(q.get("text") or "", premise)
+    locked = bool(q.get("_stem_locked"))
+    qn = dict(q) if locked else normalize_question(q)
+    premise = (qn.get("premise") or "").strip() or None
+    stem = split_stem(qn.get("text") or "", premise)
     info_blocks = None
     if premise:
         roman = parse_roman_items(premise)
@@ -168,10 +169,10 @@ def to_app_payload(q: dict) -> dict:
             "infoItems": None,
             "infoBlocks": info_blocks,
         },
-        "correct": q["correct"],
-        "wrong1": q["wrong1"],
-        "wrong2": q["wrong2"],
-        "explanation": q["explanation"],
+        "correct": qn["correct"],
+        "wrong1": qn["wrong1"],
+        "wrong2": qn["wrong2"],
+        "explanation": qn["explanation"],
         "url": None,
     }
 

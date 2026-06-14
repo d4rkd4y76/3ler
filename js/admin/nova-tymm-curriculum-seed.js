@@ -160,6 +160,7 @@
           'Paralarımız (Kuruş ve Lira ilişkisi, para problemleri)',
           'Tartma ve Sıvı Ölçme (Gram, Kilogram ve Litre problemleri)',
           'Geometri (Nokta, doğru, ışın, doğru parçası ve açı kavramları)',
+          'Geometrik Şekil ve Cisimler (Kare, dikdörtgen, üçgen, çember; küp, prizma, silindir vb.)',
           'Çevre ve Alan Ölçmeye Giriş',
           'Veri Toplama (Çetele tablosu, sıklık tablosu, şekil grafiği)'
         ]},

@@ -18,6 +18,7 @@ from question_build_common import (
     write_json_pack,
     write_word_doc,
 )
+from mat3_question_quality import finalize_question, prepare_question_light
 from s3_matematik_topics import get_topic, HEADING_ID, LESSON_ID
 
 DLLWRLD_PATH = ROOT / "dllwrld.json"
@@ -56,58 +57,19 @@ def apply_topic_patches(topic_id: str, questions: list[dict]) -> list[dict]:
 
         scoped = filter_for_topic(topic_id, questions)
         return [patch_question(dict(q)) for q in scoped]
+    if topic_id == "t12":
+        from patch_geometri_gemini import enhance_question
+
+        return [enhance_question(dict(q)) for q in questions]
+    if topic_id == "t13":
+        from patch_sekiller_gemini import enhance_question
+
+        return [enhance_question(dict(q)) for q in questions]
     return questions
 
 
-def fix_premise_text_split(q: dict) -> dict:
-    for key in ("text", "correct", "wrong1", "wrong2"):
-        if q.get(key):
-            q[key] = strip_markdown(str(q[key])).strip()
-    if q.get("explanation"):
-        expl = str(q["explanation"]).strip()
-        if "[[" not in expl:
-            q["explanation"] = strip_markdown(expl)
-        else:
-            q["explanation"] = expl
-    if q.get("premise"):
-        q["premise"] = strip_markdown(str(q["premise"])).strip() or None
-
-    premise = q.get("premise")
-    text = (q.get("text") or "").strip() or None
-    q["text"] = text
-
-    if premise and not text:
-        if premise.endswith("?"):
-            q["text"] = premise
-            q["premise"] = None
-        return q
-
-    if not text or not premise:
-        return q
-
-    for src, dst in BUNA_GORE:
-        if text.startswith(src):
-            rest = text[len(src) :]
-            q["text"] = dst + rest
-            break
-
-    if premise and q["text"].startswith("Ali'nin"):
-        q["text"] = "Yukarıdaki bilgilere göre " + q["text"][0].lower() + q["text"][1:]
-    elif premise and q["text"].startswith("Ali "):
-        q["text"] = "Yukarıdaki bilgilere göre " + q["text"][0].lower() + q["text"][1:]
-    return q
-
-
-def prepare_question(q: dict) -> dict:
-    q = fix_premise_text_split(dict(q))
-    q = normalize_question(q)
-    if q.get("premise") and q.get("text"):
-        t = q["text"]
-        if "Yukarı" not in t and "yukarı" not in t.lower():
-            p = q["premise"]
-            if len(p) > 20 and not p.endswith("?"):
-                q["text"] = "Yukarıdaki bilgilere göre " + t[0].lower() + t[1:]
-    return q
+def prepare_question(q: dict, *, topic_id: str | None = None) -> dict:
+    return prepare_question_light(q)
 
 
 def load_raw(path: Path) -> list[dict]:
@@ -145,8 +107,9 @@ def main() -> int:
     data_path = ROOT / "data" / topic["data_file"]
     word_path = Path.home() / "Desktop" / "SORULAR WORD" / topic["word_file"]
 
-    questions = [prepare_question(q) for q in load_raw(raw_path)]
+    questions = [prepare_question(q, topic_id=topic_id) for q in load_raw(raw_path)]
     questions = apply_topic_patches(topic_id, questions)
+    questions = [finalize_question(q) for q in questions]
     validate(questions)
 
     write_json_pack(

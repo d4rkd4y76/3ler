@@ -195,9 +195,9 @@ def patch_question(q: dict) -> dict:
     if qid in FRACBAR_PREMISE:
         frac = FRACBAR_PREMISE[qid]
         bar = f"[[fracbar:{frac}]]"
-        prem = q.get("premise") or ""
-        if bar not in prem:
-            q["premise"] = f"{prem}\n\n{bar}".strip()
+        expl = (q.get("explanation") or "").strip()
+        if bar not in expl:
+            q["explanation"] = f"{bar}\n\n{expl}".strip() if expl else bar
 
     if qid in UNIT_FRAC_OF:
         n, d, res = UNIT_FRAC_OF[qid]

@@ -360,7 +360,8 @@
     if (lbl) lbl.classList.add('nova-game-select__sr-label');
 
     trigger.addEventListener('click', function(e){
-      if (sel.disabled || wrap.classList.contains('nova-game-select--locked')) return;
+      if (sel.disabled) return;
+      if (wrap.classList.contains('nova-game-select--locked') && !window.NOVA_SP_REVIEW_MODE) return;
       e.preventDefault();
       e.stopPropagation();
       const open = wrap.classList.contains('nova-game-select--open');

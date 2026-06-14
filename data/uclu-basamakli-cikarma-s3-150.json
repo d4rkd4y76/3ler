@@ -16,7 +16,8 @@
       "correct": "Eksilen",
       "wrong1": "Çıkan",
       "wrong2": "Fark",
-      "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; en büyük sayının **Eksilen** olduğunu öğreniriz.\n\nÇıkarma işleminde kendisinden miktar eksiltilen en büyük sayıya 'Eksilen' denir.",
+      "explanation": "Çıkarma işleminde kendisinden miktar eksiltilen en büyük sayıya 'Eksilen' denir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir çıkarma işleminde en büyük sayıya ne ad verilir?",
@@ -27,7 +28,7 @@
         "correct": "Eksilen",
         "wrong1": "Çıkan",
         "wrong2": "Fark",
-        "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; en büyük sayının **Eksilen** olduğunu öğreniriz.\n\nÇıkarma işleminde kendisinden miktar eksiltilen en büyük sayıya 'Eksilen' denir.",
+        "explanation": "Çıkarma işleminde kendisinden miktar eksiltilen en büyük sayıya 'Eksilen' denir.",
         "url": null
       }
     },
@@ -39,7 +40,8 @@
       "correct": "Fark",
       "wrong1": "Toplam",
       "wrong2": "Eksilen",
-      "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; işlemin sonucunun **Fark** (kalan) olduğunu öğreniriz.\n\nÇıkarma işleminde elde edilen sonuca 'Fark' veya 'Kalan' denir.",
+      "explanation": "Çıkarma işleminde elde edilen sonuca 'Fark' veya 'Kalan' denir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir çıkarma işleminde işlemin sonucuna ne ad verilir?",
@@ -50,7 +52,7 @@
         "correct": "Fark",
         "wrong1": "Toplam",
         "wrong2": "Eksilen",
-        "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; işlemin sonucunun **Fark** (kalan) olduğunu öğreniriz.\n\nÇıkarma işleminde elde edilen sonuca 'Fark' veya 'Kalan' denir.",
+        "explanation": "Çıkarma işleminde elde edilen sonuca 'Fark' veya 'Kalan' denir.",
         "url": null
       }
     },
@@ -62,7 +64,8 @@
       "correct": "Değişmez, sayının kendisi olur.",
       "wrong1": "Sonuç 0 olur.",
       "wrong2": "Sayı 10 azalır.",
-      "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; **0** sayısının çıkarmada etkisiz eleman olduğunu anlarız.\n\n0 (sıfır) çıkarma işleminde etkisizdir. Hangi sayıdan 0 çıkarsa çıksın, sonuç sayının kendisi olur.",
+      "explanation": "0 (sıfır) çıkarma işleminde etkisizdir. Hangi sayıdan 0 çıkarsa çıksın, sonuç sayının kendisi olur.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir sayıdan 0 (sıfır) çıkarıldığında sonuç nasıl değişir?",
@@ -73,7 +76,7 @@
         "correct": "Değişmez, sayının kendisi olur.",
         "wrong1": "Sonuç 0 olur.",
         "wrong2": "Sayı 10 azalır.",
-        "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; **0** sayısının çıkarmada etkisiz eleman olduğunu anlarız.\n\n0 (sıfır) çıkarma işleminde etkisizdir. Hangi sayıdan 0 çıkarsa çıksın, sonuç sayının kendisi olur.",
+        "explanation": "0 (sıfır) çıkarma işleminde etkisizdir. Hangi sayıdan 0 çıkarsa çıksın, sonuç sayının kendisi olur.",
         "url": null
       }
     },
@@ -81,14 +84,15 @@
       "id": "mat3_cikarma_004",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:485-234]] işleminin sonucu kaçtır?",
+      "text": "485 - 234 işleminin sonucu kaçtır?",
       "correct": "251",
       "wrong1": "261",
       "wrong2": "241",
-      "explanation": "Bu soruda **485** ile **234** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:485-234]]\n**Birler basamağı**\n5 − 4 = **1**\n[[stephr]]\n**Onlar basamağı**\n8 − 3 = **5**\n[[stephr]]\n**Yüzler basamağı**\n4 − 2 = **2**\nSonuç: [[result:251]]",
+      "explanation": "Onluk bozma gerektirmeyen bir işlemdir. Birler: 5-4=1, Onlar: 8-3=5, Yüzler: 4-2=2. Sonuç 251.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:485-234]] işleminin sonucu kaçtır?",
+          "text": "485 - 234 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -96,7 +100,7 @@
         "correct": "251",
         "wrong1": "261",
         "wrong2": "241",
-        "explanation": "Bu soruda **485** ile **234** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:485-234]]\n**Birler basamağı**\n5 − 4 = **1**\n[[stephr]]\n**Onlar basamağı**\n8 − 3 = **5**\n[[stephr]]\n**Yüzler basamağı**\n4 − 2 = **2**\nSonuç: [[result:251]]",
+        "explanation": "Onluk bozma gerektirmeyen bir işlemdir. Birler: 5-4=1, Onlar: 8-3=5, Yüzler: 4-2=2. Sonuç 251.",
         "url": null
       }
     },
@@ -104,14 +108,15 @@
       "id": "mat3_cikarma_005",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:679-452]] işleminin sonucu kaçtır?",
+      "text": "679 - 452 işleminin sonucu kaçtır?",
       "correct": "227",
       "wrong1": "237",
       "wrong2": "217",
-      "explanation": "Bu soruda **679** ile **452** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:679-452]]\n**Birler basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Onlar basamağı**\n7 − 5 = **2**\n[[stephr]]\n**Yüzler basamağı**\n6 − 4 = **2**\nSonuç: [[result:227]]",
+      "explanation": "Onluk bozmadan çıkarma yapılır. 9-2=7, 7-5=2, 6-4=2. Sonuç 227.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:679-452]] işleminin sonucu kaçtır?",
+          "text": "679 - 452 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -119,7 +124,7 @@
         "correct": "227",
         "wrong1": "237",
         "wrong2": "217",
-        "explanation": "Bu soruda **679** ile **452** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:679-452]]\n**Birler basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Onlar basamağı**\n7 − 5 = **2**\n[[stephr]]\n**Yüzler basamağı**\n6 − 4 = **2**\nSonuç: [[result:227]]",
+        "explanation": "Onluk bozmadan çıkarma yapılır. 9-2=7, 7-5=2, 6-4=2. Sonuç 227.",
         "url": null
       }
     },
@@ -127,14 +132,15 @@
       "id": "mat3_cikarma_006",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:956-541]] işleminin sonucu kaçtır?",
+      "text": "956 - 541 işleminin sonucu kaçtır?",
       "correct": "415",
       "wrong1": "405",
       "wrong2": "425",
-      "explanation": "Bu soruda **956** ile **541** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:956-541]]\n**Birler basamağı**\n6 − 1 = **5**\n[[stephr]]\n**Onlar basamağı**\n5 − 4 = **1**\n[[stephr]]\n**Yüzler basamağı**\n9 − 5 = **4**\nSonuç: [[result:415]]",
+      "explanation": "Aynı basamaklar birbirinden çıkarılır: 6-1=5, 5-4=1, 9-5=4. Sonuç 415.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:956-541]] işleminin sonucu kaçtır?",
+          "text": "956 - 541 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -142,7 +148,7 @@
         "correct": "415",
         "wrong1": "405",
         "wrong2": "425",
-        "explanation": "Bu soruda **956** ile **541** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:956-541]]\n**Birler basamağı**\n6 − 1 = **5**\n[[stephr]]\n**Onlar basamağı**\n5 − 4 = **1**\n[[stephr]]\n**Yüzler basamağı**\n9 − 5 = **4**\nSonuç: [[result:415]]",
+        "explanation": "Aynı basamaklar birbirinden çıkarılır: 6-1=5, 5-4=1, 9-5=4. Sonuç 415.",
         "url": null
       }
     },
@@ -150,14 +156,15 @@
       "id": "mat3_cikarma_007",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:837-316]] işleminin sonucu kaçtır?",
+      "text": "837 - 316 işleminin sonucu kaçtır?",
       "correct": "521",
       "wrong1": "531",
       "wrong2": "511",
-      "explanation": "Bu soruda **837** ile **316** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:837-316]]\n**Birler basamağı**\n7 − 6 = **1**\n[[stephr]]\n**Onlar basamağı**\n3 − 1 = **2**\n[[stephr]]\n**Yüzler basamağı**\n8 − 3 = **5**\nSonuç: [[result:521]]",
+      "explanation": "Birler: 7-6=1. Onlar: 3-1=2. Yüzler: 8-3=5. Sonuç 521'dir.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:837-316]] işleminin sonucu kaçtır?",
+          "text": "837 - 316 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -165,7 +172,7 @@
         "correct": "521",
         "wrong1": "531",
         "wrong2": "511",
-        "explanation": "Bu soruda **837** ile **316** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:837-316]]\n**Birler basamağı**\n7 − 6 = **1**\n[[stephr]]\n**Onlar basamağı**\n3 − 1 = **2**\n[[stephr]]\n**Yüzler basamağı**\n8 − 3 = **5**\nSonuç: [[result:521]]",
+        "explanation": "Birler: 7-6=1. Onlar: 3-1=2. Yüzler: 8-3=5. Sonuç 521'dir.",
         "url": null
       }
     },
@@ -177,7 +184,8 @@
       "correct": "323",
       "wrong1": "333",
       "wrong2": "313",
-      "explanation": "**568** sayısının **245 eksiği** demek, bu sayıdan 245 çıkarmamız gerektiği anlamına gelir.\n\nOnluk bozmadan çıkarma:\n[[subsol:568-245]]\n**Birler basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Onlar basamağı**\n6 − 4 = **2**\n[[stephr]]\n**Yüzler basamağı**\n5 − 2 = **3**\nSonuç: [[result:323]]",
+      "explanation": "'Eksiği' ifadesi çıkarma işlemi gerektirir. 568 - 245 = 323.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "568 sayısının 245 eksiği kaçtır?",
@@ -188,7 +196,7 @@
         "correct": "323",
         "wrong1": "333",
         "wrong2": "313",
-        "explanation": "**568** sayısının **245 eksiği** demek, bu sayıdan 245 çıkarmamız gerektiği anlamına gelir.\n\nOnluk bozmadan çıkarma:\n[[subsol:568-245]]\n**Birler basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Onlar basamağı**\n6 − 4 = **2**\n[[stephr]]\n**Yüzler basamağı**\n5 − 2 = **3**\nSonuç: [[result:323]]",
+        "explanation": "'Eksiği' ifadesi çıkarma işlemi gerektirir. 568 - 245 = 323.",
         "url": null
       }
     },
@@ -200,7 +208,8 @@
       "correct": "400",
       "wrong1": "500",
       "wrong2": "300",
-      "explanation": "**700 − 300** işleminde sadece yüzlükleri zihinden çıkarırız; büyük tam yüzlükten küçük yüzlüğü eksiltiriz.\n\nOnluk bozmadan çıkarma:\n[[subsol:700-300]]\nSonuç: [[result:400]]",
+      "explanation": "Sadece yüzlükleri çıkarırız: 7 yüzlük - 3 yüzlük = 4 yüzlük (400).",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "700 sayısından zihinden 300 çıkarırsak sonuç kaç olur?",
@@ -211,7 +220,7 @@
         "correct": "400",
         "wrong1": "500",
         "wrong2": "300",
-        "explanation": "**700 − 300** işleminde sadece yüzlükleri zihinden çıkarırız; büyük tam yüzlükten küçük yüzlüğü eksiltiriz.\n\nOnluk bozmadan çıkarma:\n[[subsol:700-300]]\nSonuç: [[result:400]]",
+        "explanation": "Sadece yüzlükleri çıkarırız: 7 yüzlük - 3 yüzlük = 4 yüzlük (400).",
         "url": null
       }
     },
@@ -223,7 +232,8 @@
       "correct": "810",
       "wrong1": "800",
       "wrong2": "820",
-      "explanation": "**850 − 40** işleminde onluk basamağında zihinden çıkarma yaparız; yüzükler değişmeden kalır.\n\nOnluk bozmadan çıkarma:\n[[subsol:850-40]]\nSonuç: [[result:810]]",
+      "explanation": "Sadece onluk basamağında işlem yaparız: 5 onluk - 4 onluk = 1 onluk. Sonuç 810 olur.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "850 sayısından 40 sayısını zihinden çıkarırsak geriye kaç kalır?",
@@ -234,7 +244,7 @@
         "correct": "810",
         "wrong1": "800",
         "wrong2": "820",
-        "explanation": "**850 − 40** işleminde onluk basamağında zihinden çıkarma yaparız; yüzükler değişmeden kalır.\n\nOnluk bozmadan çıkarma:\n[[subsol:850-40]]\nSonuç: [[result:810]]",
+        "explanation": "Sadece onluk basamağında işlem yaparız: 5 onluk - 4 onluk = 1 onluk. Sonuç 810 olur.",
         "url": null
       }
     },
@@ -242,14 +252,15 @@
       "id": "mat3_cikarma_011",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:600-200]] işleminin sonucu kaçtır?",
+      "text": "600 - 200 işleminin sonucu kaçtır?",
       "correct": "400",
       "wrong1": "300",
       "wrong2": "500",
-      "explanation": "Bu soruda **600** ile **200** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:600-200]]\nSonuç: [[result:400]]",
+      "explanation": "6 yüzlükten 2 yüzlük çıkarsa 4 yüzlük kalır.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:600-200]] işleminin sonucu kaçtır?",
+          "text": "600 - 200 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -257,7 +268,7 @@
         "correct": "400",
         "wrong1": "300",
         "wrong2": "500",
-        "explanation": "Bu soruda **600** ile **200** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:600-200]]\nSonuç: [[result:400]]",
+        "explanation": "6 yüzlükten 2 yüzlük çıkarsa 4 yüzlük kalır.",
         "url": null
       }
     },
@@ -265,14 +276,15 @@
       "id": "mat3_cikarma_012",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:980-50]] işleminin zihinden yapılışı aşağıdakilerden hangisinin sonucudur?",
+      "text": "980 - 50 işleminin zihinden yapılışı aşağıdakilerden hangisinin sonucudur?",
       "correct": "930",
       "wrong1": "940",
       "wrong2": "920",
-      "explanation": "**980 − 50** işleminde onlukları zihinden çıkarırız; 98 onluktan 5 onluk eksilir.\n\nOnluk bozmadan çıkarma:\n[[subsol:980-50]]\nSonuç: [[result:930]]",
+      "explanation": "98 onluktan 5 onluk çıkarsa 93 onluk (930) kalır.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:980-50]] işleminin zihinden yapılışı aşağıdakilerden hangisinin sonucudur?",
+          "text": "980 - 50 işleminin zihinden yapılışı aşağıdakilerden hangisinin sonucudur?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -280,7 +292,7 @@
         "correct": "930",
         "wrong1": "940",
         "wrong2": "920",
-        "explanation": "**980 − 50** işleminde onlukları zihinden çıkarırız; 98 onluktan 5 onluk eksilir.\n\nOnluk bozmadan çıkarma:\n[[subsol:980-50]]\nSonuç: [[result:930]]",
+        "explanation": "98 onluktan 5 onluk çıkarsa 93 onluk (930) kalır.",
         "url": null
       }
     },
@@ -288,14 +300,15 @@
       "id": "mat3_cikarma_013",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:470-60]] işlemini zihinden yaptığımızda sonuç ne olur?",
+      "text": "470 - 60 işlemini zihinden yaptığımızda sonuç ne olur?",
       "correct": "410",
       "wrong1": "420",
       "wrong2": "400",
-      "explanation": "**470 − 60** işleminde onluk basamağında zihinden çıkarma yaparak sonucu buluruz.\n\nOnluk bozmadan çıkarma:\n[[subsol:470-60]]\nSonuç: [[result:410]]",
+      "explanation": "Onluklardan onluklar çıkarılır: 7 onluktan 6 onluk çıkarsa 1 onluk kalır. Sonuç 410.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:470-60]] işlemini zihinden yaptığımızda sonuç ne olur?",
+          "text": "470 - 60 işlemini zihinden yaptığımızda sonuç ne olur?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -303,7 +316,7 @@
         "correct": "410",
         "wrong1": "420",
         "wrong2": "400",
-        "explanation": "**470 − 60** işleminde onluk basamağında zihinden çıkarma yaparak sonucu buluruz.\n\nOnluk bozmadan çıkarma:\n[[subsol:470-60]]\nSonuç: [[result:410]]",
+        "explanation": "Onluklardan onluklar çıkarılır: 7 onluktan 6 onluk çıkarsa 1 onluk kalır. Sonuç 410.",
         "url": null
       }
     },
@@ -311,14 +324,15 @@
       "id": "mat3_cikarma_014",
       "level": "kolay",
       "premise": "Ayşe'nin 350 sayfası olan bir kitabı vardır. Ayşe kitabın 120 sayfasını okumuştur.",
-      "text": "Ayşe'nin okumadığı kaç sayfası kalmıştır?",
+      "text": "Buna göre ayşe'nin okumadığı kaç sayfası kalmıştır?",
       "correct": "230",
       "wrong1": "240",
       "wrong2": "220",
-      "explanation": "Okunmayan sayfa bulunur; toplam sayfadan okunan kısmı çıkarmak için **350 − 120** işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:350-120]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Yüzler basamağı**\n3 − 1 = **2**\nSonuç: [[result:230]]",
+      "explanation": "Okunmayan sayfayı bulmak için toplam sayfadan okunanı çıkarırız: 350 - 120 = 230.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ayşe'nin okumadığı kaç sayfası kalmıştır?",
+          "text": "Buna göre ayşe'nin okumadığı kaç sayfası kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -331,7 +345,7 @@
         "correct": "230",
         "wrong1": "240",
         "wrong2": "220",
-        "explanation": "Okunmayan sayfa bulunur; toplam sayfadan okunan kısmı çıkarmak için **350 − 120** işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:350-120]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Yüzler basamağı**\n3 − 1 = **2**\nSonuç: [[result:230]]",
+        "explanation": "Okunmayan sayfayı bulmak için toplam sayfadan okunanı çıkarırız: 350 - 120 = 230.",
         "url": null
       }
     },
@@ -339,14 +353,15 @@
       "id": "mat3_cikarma_015",
       "level": "kolay",
       "premise": "Ömer kumbarasında 480 TL biriktirmiştir. Bu paranın 250 TL'si ile kendisine akıllı saat almıştır.",
-      "text": "Ömer'in geriye kaç TL'si kalmıştır?",
+      "text": "Buna göre ömer'in geriye kaç TL'si kalmıştır?",
       "correct": "230",
       "wrong1": "220",
       "wrong2": "240",
-      "explanation": "Harcanan para eksilir; kalan parayı bulmak için **480 − 250** çıkarma işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:480-250]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Yüzler basamağı**\n4 − 2 = **2**\nSonuç: [[result:230]]",
+      "explanation": "Harcanan para eksilir. 480 - 250 = 230 TL kalır.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ömer'in geriye kaç TL'si kalmıştır?",
+          "text": "Buna göre ömer'in geriye kaç TL'si kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -359,7 +374,7 @@
         "correct": "230",
         "wrong1": "220",
         "wrong2": "240",
-        "explanation": "Harcanan para eksilir; kalan parayı bulmak için **480 − 250** çıkarma işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:480-250]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Yüzler basamağı**\n4 − 2 = **2**\nSonuç: [[result:230]]",
+        "explanation": "Harcanan para eksilir. 480 - 250 = 230 TL kalır.",
         "url": null
       }
     },
@@ -367,14 +382,15 @@
       "id": "mat3_cikarma_016",
       "level": "kolay",
       "premise": "Bir fırıncı sabah 456 ekmek pişirmiştir. Bu ekmeklerin 234 tanesi satılmıştır.",
-      "text": "Fırıncının satılmayan kaç ekmeği kalmıştır?",
+      "text": "Buna göre fırıncının satılmayan kaç ekmeği kalmıştır?",
       "correct": "222",
       "wrong1": "232",
       "wrong2": "212",
-      "explanation": "Satılmayan ekmek sayısı için pişirilen toplam ekmekten satılanları çıkarırız: **456 − 234**.\n\nOnluk bozmadan çıkarma:\n[[subsol:456-234]]\n**Birler basamağı**\n6 − 4 = **2**\n[[stephr]]\n**Onlar basamağı**\n5 − 3 = **2**\n[[stephr]]\n**Yüzler basamağı**\n4 − 2 = **2**\nSonuç: [[result:222]]",
+      "explanation": "Toplam ekmekten satılanları çıkarırız: 456 - 234 = 222.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre fırıncının satılmayan kaç ekmeği kalmıştır?",
+          "text": "Buna göre fırıncının satılmayan kaç ekmeği kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -387,7 +403,7 @@
         "correct": "222",
         "wrong1": "232",
         "wrong2": "212",
-        "explanation": "Satılmayan ekmek sayısı için pişirilen toplam ekmekten satılanları çıkarırız: **456 − 234**.\n\nOnluk bozmadan çıkarma:\n[[subsol:456-234]]\n**Birler basamağı**\n6 − 4 = **2**\n[[stephr]]\n**Onlar basamağı**\n5 − 3 = **2**\n[[stephr]]\n**Yüzler basamağı**\n4 − 2 = **2**\nSonuç: [[result:222]]",
+        "explanation": "Toplam ekmekten satılanları çıkarırız: 456 - 234 = 222.",
         "url": null
       }
     },
@@ -395,14 +411,15 @@
       "id": "mat3_cikarma_017",
       "level": "kolay",
       "premise": "Bahçemizdeki elma ağacında 275 elma vardı. Rüzgardan 142 tanesi yere düştü.",
-      "text": "Ağacın dalında kaç elma kalmıştır?",
+      "text": "Buna göre ağacın dalında kaç elma kalmıştır?",
       "correct": "133",
       "wrong1": "143",
       "wrong2": "123",
-      "explanation": "Ağaçta kalan elma sayısı için düşen elmalar çıkarılır: **275 − 142**.\n\nOnluk bozmadan çıkarma:\n[[subsol:275-142]]\n**Birler basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Onlar basamağı**\n7 − 4 = **3**\n[[stephr]]\n**Yüzler basamağı**\n2 − 1 = **1**\nSonuç: [[result:133]]",
+      "explanation": "Düşen elmalar ağaçtan eksilir: 275 - 142 = 133 elma.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ağacın dalında kaç elma kalmıştır?",
+          "text": "Buna göre ağacın dalında kaç elma kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -415,7 +432,7 @@
         "correct": "133",
         "wrong1": "143",
         "wrong2": "123",
-        "explanation": "Ağaçta kalan elma sayısı için düşen elmalar çıkarılır: **275 − 142**.\n\nOnluk bozmadan çıkarma:\n[[subsol:275-142]]\n**Birler basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Onlar basamağı**\n7 − 4 = **3**\n[[stephr]]\n**Yüzler basamağı**\n2 − 1 = **1**\nSonuç: [[result:133]]",
+        "explanation": "Düşen elmalar ağaçtan eksilir: 275 - 142 = 133 elma.",
         "url": null
       }
     },
@@ -423,14 +440,15 @@
       "id": "mat3_cikarma_018",
       "level": "kolay",
       "premise": "Okulumuzda 895 öğrenci vardır. Öğrencilerin 452'si kız öğrencidir.",
-      "text": "Okulumuzdaki erkek öğrenci sayısı kaçtır?",
+      "text": "Buna göre okulumuzdaki erkek öğrenci sayısı kaçtır?",
       "correct": "443",
       "wrong1": "453",
       "wrong2": "433",
-      "explanation": "Erkek öğrenci sayısı, toplam öğrenciden kız öğrenciler çıkarılarak bulunur: **895 − 452**.\n\nOnluk bozmadan çıkarma:\n[[subsol:895-452]]\n**Birler basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Onlar basamağı**\n9 − 5 = **4**\n[[stephr]]\n**Yüzler basamağı**\n8 − 4 = **4**\nSonuç: [[result:443]]",
+      "explanation": "Toplam öğrenci sayısından kızları çıkarırsak erkekleri buluruz: 895 - 452 = 443.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre okulumuzdaki erkek öğrenci sayısı kaçtır?",
+          "text": "Buna göre okulumuzdaki erkek öğrenci sayısı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -443,7 +461,7 @@
         "correct": "443",
         "wrong1": "453",
         "wrong2": "433",
-        "explanation": "Erkek öğrenci sayısı, toplam öğrenciden kız öğrenciler çıkarılarak bulunur: **895 − 452**.\n\nOnluk bozmadan çıkarma:\n[[subsol:895-452]]\n**Birler basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Onlar basamağı**\n9 − 5 = **4**\n[[stephr]]\n**Yüzler basamağı**\n8 − 4 = **4**\nSonuç: [[result:443]]",
+        "explanation": "Toplam öğrenci sayısından kızları çıkarırsak erkekleri buluruz: 895 - 452 = 443.",
         "url": null
       }
     },
@@ -451,14 +469,15 @@
       "id": "mat3_cikarma_019",
       "level": "kolay",
       "premise": "Mete 650 metre uzunluğundaki yolun 320 metresini yürümüştür.",
-      "text": "Mete'nin yürümesi gereken kaç metre yolu kalmıştır?",
+      "text": "Buna göre mete'nin yürümesi gereken kaç metre yolu kalmıştır?",
       "correct": "330",
       "wrong1": "340",
       "wrong2": "320",
-      "explanation": "Kalan yol, toplam mesafeden yürünen kısım çıkarılarak bulunur: **650 − 320**.\n\nOnluk bozmadan çıkarma:\n[[subsol:650-320]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Yüzler basamağı**\n6 − 3 = **3**\nSonuç: [[result:330]]",
+      "explanation": "Toplam yoldan yürünen kısmı çıkarırız: 650 - 320 = 330 metre.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre mete'nin yürümesi gereken kaç metre yolu kalmıştır?",
+          "text": "Buna göre mete'nin yürümesi gereken kaç metre yolu kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -471,7 +490,7 @@
         "correct": "330",
         "wrong1": "340",
         "wrong2": "320",
-        "explanation": "Kalan yol, toplam mesafeden yürünen kısım çıkarılarak bulunur: **650 − 320**.\n\nOnluk bozmadan çıkarma:\n[[subsol:650-320]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Yüzler basamağı**\n6 − 3 = **3**\nSonuç: [[result:330]]",
+        "explanation": "Toplam yoldan yürünen kısmı çıkarırız: 650 - 320 = 330 metre.",
         "url": null
       }
     },
@@ -479,14 +498,15 @@
       "id": "mat3_cikarma_020",
       "level": "kolay",
       "premise": "Bir kırtasiyede 785 adet kalem vardır. Kalemlerin 350 tanesi satılmıştır.",
-      "text": "Kırtasiyede satılmayan kaç kalem kalmıştır?",
+      "text": "Buna göre kırtasiyede satılmayan kaç kalem kalmıştır?",
       "correct": "435",
       "wrong1": "445",
       "wrong2": "425",
-      "explanation": "Satılmayan kalem sayısı için **785 − 350** çıkarma işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:785-350]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Yüzler basamağı**\n7 − 3 = **4**\nSonuç: [[result:435]]",
+      "explanation": "785'ten 350'yi onluk bozmadan çıkarırız: 785 - 350 = 435.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre kırtasiyede satılmayan kaç kalem kalmıştır?",
+          "text": "Buna göre kırtasiyede satılmayan kaç kalem kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -499,7 +519,7 @@
         "correct": "435",
         "wrong1": "445",
         "wrong2": "425",
-        "explanation": "Satılmayan kalem sayısı için **785 − 350** çıkarma işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:785-350]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Yüzler basamağı**\n7 − 3 = **4**\nSonuç: [[result:435]]",
+        "explanation": "785'ten 350'yi onluk bozmadan çıkarırız: 785 - 350 = 435.",
         "url": null
       }
     },
@@ -507,14 +527,15 @@
       "id": "mat3_cikarma_021",
       "level": "kolay",
       "premise": "Hasan'ın 58 misketi vardı. Oyun oynarken 23 misketini arkadaşına kaptırdı.",
-      "text": "Hasan'ın kaç misketi kaldı?",
+      "text": "Buna göre hasan'ın kaç misketi kaldı?",
       "correct": "35",
       "wrong1": "36",
       "wrong2": "34",
-      "explanation": "Kaybedilen misketler çıkarılır; kalan misket sayısı için **58 − 23** işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:58-23]]\n**Birler basamağı**\n8 − 3 = **5**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\nSonuç: [[result:35]]",
+      "explanation": "Kaybedilen misketler çıkarılır: 58 - 23 = 35.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre hasan'ın kaç misketi kaldı?",
+          "text": "Buna göre hasan'ın kaç misketi kaldı?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -527,7 +548,7 @@
         "correct": "35",
         "wrong1": "36",
         "wrong2": "34",
-        "explanation": "Kaybedilen misketler çıkarılır; kalan misket sayısı için **58 − 23** işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:58-23]]\n**Birler basamağı**\n8 − 3 = **5**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\nSonuç: [[result:35]]",
+        "explanation": "Kaybedilen misketler çıkarılır: 58 - 23 = 35.",
         "url": null
       }
     },
@@ -535,14 +556,15 @@
       "id": "mat3_cikarma_022",
       "level": "kolay",
       "premise": "Eksilenin 648, çıkanın 215 olduğu bir işlem veriliyor.",
-      "text": "Bu çıkarma işleminde fark kaçtır?",
+      "text": "Buna göre bu çıkarma işleminde fark kaçtır?",
       "correct": "433",
       "wrong1": "443",
       "wrong2": "423",
-      "explanation": "Fark bulunur; **Eksilen − Çıkan = Fark** kuralına göre **648 − 215** işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:648-215]]\n**Birler basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Onlar basamağı**\n4 − 1 = **3**\n[[stephr]]\n**Yüzler basamağı**\n6 − 2 = **4**\nSonuç: [[result:433]]",
+      "explanation": "Eksilen - Çıkan = Fark kuralına göre: 648 - 215 = 433.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre bu çıkarma işleminde fark kaçtır?",
+          "text": "Buna göre bu çıkarma işleminde fark kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -555,7 +577,7 @@
         "correct": "433",
         "wrong1": "443",
         "wrong2": "423",
-        "explanation": "Fark bulunur; **Eksilen − Çıkan = Fark** kuralına göre **648 − 215** işlemini yaparız.\n\nOnluk bozmadan çıkarma:\n[[subsol:648-215]]\n**Birler basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Onlar basamağı**\n4 − 1 = **3**\n[[stephr]]\n**Yüzler basamağı**\n6 − 2 = **4**\nSonuç: [[result:433]]",
+        "explanation": "Eksilen - Çıkan = Fark kuralına göre: 648 - 215 = 433.",
         "url": null
       }
     },
@@ -563,14 +585,15 @@
       "id": "mat3_cikarma_023",
       "level": "kolay",
       "premise": "Bir manavdaki 960 kg patatesin 420 kg'ı lokantalara satılmıştır.",
-      "text": "Manavın elinde kaç kg patates kalmıştır?",
+      "text": "Buna göre manavın elinde kaç kg patates kalmıştır?",
       "correct": "540",
       "wrong1": "550",
       "wrong2": "530",
-      "explanation": "Depoda kalan patates, toplam miktarından satılanlar çıkarılarak bulunur: **960 − 420**.\n\nOnluk bozmadan çıkarma:\n[[subsol:960-420]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n6 − 2 = **4**\n[[stephr]]\n**Yüzler basamağı**\n9 − 4 = **5**\nSonuç: [[result:540]]",
+      "explanation": "Satılan miktar toplamdan eksilir: 960 - 420 = 540 kg.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre manavın elinde kaç kg patates kalmıştır?",
+          "text": "Buna göre manavın elinde kaç kg patates kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -583,7 +606,7 @@
         "correct": "540",
         "wrong1": "550",
         "wrong2": "530",
-        "explanation": "Depoda kalan patates, toplam miktarından satılanlar çıkarılarak bulunur: **960 − 420**.\n\nOnluk bozmadan çıkarma:\n[[subsol:960-420]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n6 − 2 = **4**\n[[stephr]]\n**Yüzler basamağı**\n9 − 4 = **5**\nSonuç: [[result:540]]",
+        "explanation": "Satılan miktar toplamdan eksilir: 960 - 420 = 540 kg.",
         "url": null
       }
     },
@@ -591,14 +614,15 @@
       "id": "mat3_cikarma_024",
       "level": "kolay",
       "premise": null,
-      "text": "[[sub:777-222]] işleminin sonucu kaçtır?",
+      "text": "777 - 222 işleminin sonucu kaçtır?",
       "correct": "555",
       "wrong1": "666",
       "wrong2": "444",
-      "explanation": "Bu soruda **777** ile **222** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:777-222]]\n**Birler basamağı**\n7 − 2 = **5**\n[[stephr]]\n**Onlar basamağı**\n7 − 2 = **5**\n[[stephr]]\n**Yüzler basamağı**\n7 − 2 = **5**\nSonuç: [[result:555]]",
+      "explanation": "Her basamaktaki 7'den 2 çıkarılır: 555.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:777-222]] işleminin sonucu kaçtır?",
+          "text": "777 - 222 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -606,7 +630,7 @@
         "correct": "555",
         "wrong1": "666",
         "wrong2": "444",
-        "explanation": "Bu soruda **777** ile **222** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozmadan çıkarma:\n[[subsol:777-222]]\n**Birler basamağı**\n7 − 2 = **5**\n[[stephr]]\n**Onlar basamağı**\n7 − 2 = **5**\n[[stephr]]\n**Yüzler basamağı**\n7 − 2 = **5**\nSonuç: [[result:555]]",
+        "explanation": "Her basamaktaki 7'den 2 çıkarılır: 555.",
         "url": null
       }
     },
@@ -614,14 +638,15 @@
       "id": "mat3_cikarma_025",
       "level": "kolay",
       "premise": "Ahmet dedenin 68 yaşı vardır. Torunu ise 15 yaşındadır.",
-      "text": "Ahmet dede, torunundan kaç yaş büyüktür?",
+      "text": "Buna göre ahmet dede, torunundan kaç yaş büyüktür?",
       "correct": "53",
       "wrong1": "54",
       "wrong2": "52",
-      "explanation": "Yaş farkını bulmak için büyük yaştan küçük yaşı çıkarırız: **68 − 15**.\n\nOnluk bozmadan çıkarma:\n[[subsol:68-15]]\n**Birler basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Onlar basamağı**\n6 − 1 = **5**\nSonuç: [[result:53]]",
+      "explanation": "Yaş farkını bulmak için çıkarma yaparız: 68 - 15 = 53.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ahmet dede, torunundan kaç yaş büyüktür?",
+          "text": "Buna göre ahmet dede, torunundan kaç yaş büyüktür?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -634,7 +659,7 @@
         "correct": "53",
         "wrong1": "54",
         "wrong2": "52",
-        "explanation": "Yaş farkını bulmak için büyük yaştan küçük yaşı çıkarırız: **68 − 15**.\n\nOnluk bozmadan çıkarma:\n[[subsol:68-15]]\n**Birler basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Onlar basamağı**\n6 − 1 = **5**\nSonuç: [[result:53]]",
+        "explanation": "Yaş farkını bulmak için çıkarma yaparız: 68 - 15 = 53.",
         "url": null
       }
     },
@@ -642,14 +667,15 @@
       "id": "mat3_cikarma_026",
       "level": "orta",
       "premise": null,
-      "text": "[[sub:542-128]] işleminin sonucu kaçtır?",
+      "text": "542 - 128 işleminin sonucu kaçtır?",
       "correct": "414",
       "wrong1": "424",
       "wrong2": "404",
-      "explanation": "Bu soruda **542** ile **128** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozarak çıkarma:\n[[subsol:542-128]]\n**Birler basamağı**\n2'den 8 çıkmaz · onluk al · 12 − 8 = **4**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 2 = **1**\n[[stephr]]\n**Yüzler basamağı**\n5 − 1 = **4**\nSonuç: [[result:414]]",
+      "explanation": "Onluk bozma gerektirir. Birler: 2'den 8 çıkmaz, onluk alırız (12-8=4). Onlar: 3 kalır (3-2=1). Yüzler: 5-1=4. Sonuç 414.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:542-128]] işleminin sonucu kaçtır?",
+          "text": "542 - 128 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -657,7 +683,7 @@
         "correct": "414",
         "wrong1": "424",
         "wrong2": "404",
-        "explanation": "Bu soruda **542** ile **128** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk bozarak çıkarma:\n[[subsol:542-128]]\n**Birler basamağı**\n2'den 8 çıkmaz · onluk al · 12 − 8 = **4**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 2 = **1**\n[[stephr]]\n**Yüzler basamağı**\n5 − 1 = **4**\nSonuç: [[result:414]]",
+        "explanation": "Onluk bozma gerektirir. Birler: 2'den 8 çıkmaz, onluk alırız (12-8=4). Onlar: 3 kalır (3-2=1). Yüzler: 5-1=4. Sonuç 414.",
         "url": null
       }
     },
@@ -665,14 +691,15 @@
       "id": "mat3_cikarma_027",
       "level": "orta",
       "premise": null,
-      "text": "[[sub:715-342]] işleminin sonucu kaçtır?",
+      "text": "715 - 342 işleminin sonucu kaçtır?",
       "correct": "373",
       "wrong1": "383",
       "wrong2": "363",
-      "explanation": "Bu soruda **715** ile **342** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:715-342]]\n**Birler basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Onlar basamağı**\n1'den 4 çıkmaz · onluk al · 11 − 4 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 6 − 3 = **3**\nSonuç: [[result:373]]",
+      "explanation": "Yüzlük bozma gerektirir. Birler: 5-2=3. Onlar: 1'den 4 çıkmaz, yüzlük alırız (11-4=7). Yüzler: 6 kalır (6-3=3). Sonuç 373.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:715-342]] işleminin sonucu kaçtır?",
+          "text": "715 - 342 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -680,7 +707,7 @@
         "correct": "373",
         "wrong1": "383",
         "wrong2": "363",
-        "explanation": "Bu soruda **715** ile **342** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:715-342]]\n**Birler basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Onlar basamağı**\n1'den 4 çıkmaz · onluk al · 11 − 4 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 6 − 3 = **3**\nSonuç: [[result:373]]",
+        "explanation": "Yüzlük bozma gerektirir. Birler: 5-2=3. Onlar: 1'den 4 çıkmaz, yüzlük alırız (11-4=7). Yüzler: 6 kalır (6-3=3). Sonuç 373.",
         "url": null
       }
     },
@@ -688,14 +715,15 @@
       "id": "mat3_cikarma_028",
       "level": "orta",
       "premise": null,
-      "text": "[[sub:834-567]] işleminin sonucu kaçtır?",
+      "text": "834 - 567 işleminin sonucu kaçtır?",
       "correct": "267",
       "wrong1": "277",
       "wrong2": "257",
-      "explanation": "Bu soruda **834** ile **567** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:834-567]]\n**Birler basamağı**\n4'ten 7 çıkmaz · onluk al · 14 − 7 = **7**\n[[stephr]]\n**Onlar basamağı**\n2'den 6 çıkmaz · onluk al · 12 − 6 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 5 = **2**\nSonuç: [[result:267]]",
+      "explanation": "Hem onluk hem yüzlük bozulur. Birler: 14-7=7. Onlar: 12-6=6. Yüzler: 7-5=2. Sonuç 267.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:834-567]] işleminin sonucu kaçtır?",
+          "text": "834 - 567 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -703,7 +731,7 @@
         "correct": "267",
         "wrong1": "277",
         "wrong2": "257",
-        "explanation": "Bu soruda **834** ile **567** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:834-567]]\n**Birler basamağı**\n4'ten 7 çıkmaz · onluk al · 14 − 7 = **7**\n[[stephr]]\n**Onlar basamağı**\n2'den 6 çıkmaz · onluk al · 12 − 6 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 5 = **2**\nSonuç: [[result:267]]",
+        "explanation": "Hem onluk hem yüzlük bozulur. Birler: 14-7=7. Onlar: 12-6=6. Yüzler: 7-5=2. Sonuç 267.",
         "url": null
       }
     },
@@ -711,14 +739,15 @@
       "id": "mat3_cikarma_029",
       "level": "orta",
       "premise": null,
-      "text": "[[sub:623-248]] işleminin sonucu kaçtır?",
+      "text": "623 - 248 işleminin sonucu kaçtır?",
       "correct": "375",
       "wrong1": "385",
       "wrong2": "365",
-      "explanation": "Bu soruda **623** ile **248** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:623-248]]\n**Birler basamağı**\n3'ten 8 çıkmaz · onluk al · 13 − 8 = **5**\n[[stephr]]\n**Onlar basamağı**\n1'den 4 çıkmaz · onluk al · 11 − 4 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\nSonuç: [[result:375]]",
+      "explanation": "Birler: 13-8=5. Onlar: 11-4=7. Yüzler: 5-2=3. Sonuç 375.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:623-248]] işleminin sonucu kaçtır?",
+          "text": "623 - 248 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -726,7 +755,7 @@
         "correct": "375",
         "wrong1": "385",
         "wrong2": "365",
-        "explanation": "Bu soruda **623** ile **248** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:623-248]]\n**Birler basamağı**\n3'ten 8 çıkmaz · onluk al · 13 − 8 = **5**\n[[stephr]]\n**Onlar basamağı**\n1'den 4 çıkmaz · onluk al · 11 − 4 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\nSonuç: [[result:375]]",
+        "explanation": "Birler: 13-8=5. Onlar: 11-4=7. Yüzler: 5-2=3. Sonuç 375.",
         "url": null
       }
     },
@@ -734,14 +763,15 @@
       "id": "mat3_cikarma_030",
       "level": "orta",
       "premise": "...... - 145 = 320",
-      "text": "Yukarıdaki çıkarma işleminde noktalı yere (Eksilen sayı) kaç yazılmalıdır?",
+      "text": "Buna göre çıkarma işleminde noktalı yere (Eksilen sayı) kaç yazılmalıdır?",
       "correct": "465",
       "wrong1": "455",
       "wrong2": "475",
-      "explanation": "Eksilen bilinmiyor; **? − 145 = 320** için fark ile çıkan toplanır: **320 + 145**.\n\nEldesiz toplama (ters işlem):\n[[addsol:320+145]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n2 + 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\n3 + 1 = **4**\nSonuç: [[result:465]]",
+      "explanation": "Eksilen sayıyı bulmak için çıkan sayı ile fark toplanır: 320 + 145 = 465.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki çıkarma işleminde noktalı yere (Eksilen sayı) kaç yazılmalıdır?",
+          "text": "Buna göre çıkarma işleminde noktalı yere (Eksilen sayı) kaç yazılmalıdır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -754,7 +784,7 @@
         "correct": "465",
         "wrong1": "455",
         "wrong2": "475",
-        "explanation": "Eksilen bilinmiyor; **? − 145 = 320** için fark ile çıkan toplanır: **320 + 145**.\n\nEldesiz toplama (ters işlem):\n[[addsol:320+145]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n2 + 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\n3 + 1 = **4**\nSonuç: [[result:465]]",
+        "explanation": "Eksilen sayıyı bulmak için çıkan sayı ile fark toplanır: 320 + 145 = 465.",
         "url": null
       }
     },
@@ -762,14 +792,15 @@
       "id": "mat3_cikarma_031",
       "level": "orta",
       "premise": "600 - ...... = 240",
-      "text": "Yukarıdaki çıkarma işleminde noktalı yere (Çıkan sayı) kaç yazılmalıdır?",
+      "text": "Buna göre çıkarma işleminde noktalı yere (Çıkan sayı) kaç yazılmalıdır?",
       "correct": "360",
       "wrong1": "350",
       "wrong2": "340",
-      "explanation": "Çıkan bilinmiyor; **600 − ? = 240** için eksilenden fark çıkarılır: **600 − 240**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:600-240]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 4 çıkmaz · onluk al · 10 − 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\nSonuç: [[result:360]]",
+      "explanation": "Çıkan sayıyı bulmak için eksilenden fark çıkarılır: 600 - 240 = 360.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki çıkarma işleminde noktalı yere (Çıkan sayı) kaç yazılmalıdır?",
+          "text": "Buna göre çıkarma işleminde noktalı yere (Çıkan sayı) kaç yazılmalıdır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -782,7 +813,7 @@
         "correct": "360",
         "wrong1": "350",
         "wrong2": "340",
-        "explanation": "Çıkan bilinmiyor; **600 − ? = 240** için eksilenden fark çıkarılır: **600 − 240**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:600-240]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 4 çıkmaz · onluk al · 10 − 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\nSonuç: [[result:360]]",
+        "explanation": "Çıkan sayıyı bulmak için eksilenden fark çıkarılır: 600 - 240 = 360.",
         "url": null
       }
     },
@@ -794,10 +825,11 @@
       "correct": "404",
       "wrong1": "414",
       "wrong2": "394",
-      "explanation": "Eksilen = Çıkan + Fark kuralı uygulanır; **258 + 146** toplama işlemi yapılır.\n\nEldeli toplama (ters işlem):\n[[addsol:258+146]]\n**Birler basamağı**\n8 + 6 = **4** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n5 + 4 + elde 1 = **0** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n2 + 1 + elde 1 = **4**\nSonuç: [[result:404]]",
+      "explanation": "Eksilen = Çıkan + Fark kuralı uygulanır: 258 + 146 = 404.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre buna göre eksilen sayı kaçtır?",
+          "text": "Buna göre eksilen sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -810,7 +842,7 @@
         "correct": "404",
         "wrong1": "414",
         "wrong2": "394",
-        "explanation": "Eksilen = Çıkan + Fark kuralı uygulanır; **258 + 146** toplama işlemi yapılır.\n\nEldeli toplama (ters işlem):\n[[addsol:258+146]]\n**Birler basamağı**\n8 + 6 = **4** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n5 + 4 + elde 1 = **0** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n2 + 1 + elde 1 = **4**\nSonuç: [[result:404]]",
+        "explanation": "Eksilen = Çıkan + Fark kuralı uygulanır: 258 + 146 = 404.",
         "url": null
       }
     },
@@ -822,10 +854,11 @@
       "correct": "327",
       "wrong1": "337",
       "wrong2": "317",
-      "explanation": "Çıkanı bulmak için eksilenden fark çıkarılır: **512 − 185**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:512-185]]\n**Birler basamağı**\n2'den 5 çıkmaz · onluk al · 12 − 5 = **7**\n[[stephr]]\n**Onlar basamağı**\n0'dan 8 çıkmaz · onluk al · 10 − 8 = **2**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 1 = **3**\nSonuç: [[result:327]]",
+      "explanation": "Çıkanı bulmak için eksilenden farkı çıkarırız: 512 - 185 = 327.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre buna göre çıkan sayı kaçtır?",
+          "text": "Buna göre çıkan sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -838,7 +871,7 @@
         "correct": "327",
         "wrong1": "337",
         "wrong2": "317",
-        "explanation": "Çıkanı bulmak için eksilenden fark çıkarılır: **512 − 185**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:512-185]]\n**Birler basamağı**\n2'den 5 çıkmaz · onluk al · 12 − 5 = **7**\n[[stephr]]\n**Onlar basamağı**\n0'dan 8 çıkmaz · onluk al · 10 − 8 = **2**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 1 = **3**\nSonuç: [[result:327]]",
+        "explanation": "Çıkanı bulmak için eksilenden farkı çıkarırız: 512 - 185 = 327.",
         "url": null
       }
     },
@@ -846,14 +879,15 @@
       "id": "mat3_cikarma_034",
       "level": "orta",
       "premise": "Kemal'in 435 TL parası vardır. 289 TL değerinde bir bisiklet almak istiyor.",
-      "text": "Bisikleti aldıktan sonra Kemal'in kaç TL'si kalır?",
+      "text": "Buna göre bisikleti aldıktan sonra Kemal'in kaç TL'si kalır?",
       "correct": "146",
       "wrong1": "156",
       "wrong2": "136",
-      "explanation": "Kalan para bulunur; **435 − 289** çıkarma işlemini yaparız.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:435-289]]\n**Birler basamağı**\n5'ten 9 çıkmaz · onluk al · 15 − 9 = **6**\n[[stephr]]\n**Onlar basamağı**\n2'den 8 çıkmaz · onluk al · 12 − 8 = **4**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 2 = **1**\nSonuç: [[result:146]]",
+      "explanation": "Paradan bisikletin fiyatını onluk bozarak çıkarırız: 435 - 289 = 146 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre bisikleti aldıktan sonra Kemal'in kaç TL'si kalır?",
+          "text": "Buna göre bisikleti aldıktan sonra Kemal'in kaç TL'si kalır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -866,7 +900,7 @@
         "correct": "146",
         "wrong1": "156",
         "wrong2": "136",
-        "explanation": "Kalan para bulunur; **435 − 289** çıkarma işlemini yaparız.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:435-289]]\n**Birler basamağı**\n5'ten 9 çıkmaz · onluk al · 15 − 9 = **6**\n[[stephr]]\n**Onlar basamağı**\n2'den 8 çıkmaz · onluk al · 12 − 8 = **4**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 2 = **1**\nSonuç: [[result:146]]",
+        "explanation": "Paradan bisikletin fiyatını onluk bozarak çıkarırız: 435 - 289 = 146 TL.",
         "url": null
       }
     },
@@ -874,14 +908,15 @@
       "id": "mat3_cikarma_035",
       "level": "orta",
       "premise": "Bir kütüphanede 812 kitap vardır. Bu kitapların 456 tanesi roman, geriye kalanlar ise hikaye kitabıdır.",
-      "text": "Kütüphanede kaç tane hikaye kitabı vardır?",
+      "text": "Buna göre kütüphanede kaç tane hikaye kitabı vardır?",
       "correct": "356",
       "wrong1": "366",
       "wrong2": "346",
-      "explanation": "Hikâye kitabı sayısı, toplam kitaptan romanlar çıkarılarak bulunur: **812 − 456**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:812-456]]\n**Birler basamağı**\n2'den 6 çıkmaz · onluk al · 12 − 6 = **6**\n[[stephr]]\n**Onlar basamağı**\n0'dan 5 çıkmaz · onluk al · 10 − 5 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 4 = **3**\nSonuç: [[result:356]]",
+      "explanation": "Toplam kitaptan romanları çıkarırız: 812 - 456 = 356.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre kütüphanede kaç tane hikaye kitabı vardır?",
+          "text": "Buna göre kütüphanede kaç tane hikaye kitabı vardır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -894,7 +929,7 @@
         "correct": "356",
         "wrong1": "366",
         "wrong2": "346",
-        "explanation": "Hikâye kitabı sayısı, toplam kitaptan romanlar çıkarılarak bulunur: **812 − 456**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:812-456]]\n**Birler basamağı**\n2'den 6 çıkmaz · onluk al · 12 − 6 = **6**\n[[stephr]]\n**Onlar basamağı**\n0'dan 5 çıkmaz · onluk al · 10 − 5 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 4 = **3**\nSonuç: [[result:356]]",
+        "explanation": "Toplam kitaptan romanları çıkarırız: 812 - 456 = 356.",
         "url": null
       }
     },
@@ -902,14 +937,15 @@
       "id": "mat3_cikarma_036",
       "level": "orta",
       "premise": "Aylin 450 sayfalık kitabının ilk gün 128, ikinci gün 145 sayfasını okumuştur.",
-      "text": "Aylin'in okumadığı kaç sayfası kalmıştır?",
+      "text": "Buna göre aylin'in okumadığı kaç sayfası kalmıştır?",
       "correct": "177",
       "wrong1": "187",
       "wrong2": "167",
-      "explanation": "Önce okunan sayfalar toplanır, sonra toplam sayfadan çıkarılır; kalan okunmamış sayfa bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:128+145]]\n**Birler basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n2 + 4 + elde 1 = **7**\n[[stephr]]\n**Yüzler basamağı**\n1 + 1 = **2**\n→ **273**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:450-273]]\n**Birler basamağı**\n0'dan 3 çıkmaz · onluk al · 10 − 3 = **7**\n[[stephr]]\n**Onlar basamağı**\n4'ten 7 çıkmaz · onluk al · 14 − 7 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 2 = **1**\n→ **177**\n[[stephr]]\nSonuç: [[result:177]]",
+      "explanation": "Okunanlar toplanır: 128 + 145 = 273. Toplam sayfadan çıkarılır: 450 - 273 = 177.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre aylin'in okumadığı kaç sayfası kalmıştır?",
+          "text": "Buna göre aylin'in okumadığı kaç sayfası kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -922,7 +958,7 @@
         "correct": "177",
         "wrong1": "187",
         "wrong2": "167",
-        "explanation": "Önce okunan sayfalar toplanır, sonra toplam sayfadan çıkarılır; kalan okunmamış sayfa bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:128+145]]\n**Birler basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n2 + 4 + elde 1 = **7**\n[[stephr]]\n**Yüzler basamağı**\n1 + 1 = **2**\n→ **273**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:450-273]]\n**Birler basamağı**\n0'dan 3 çıkmaz · onluk al · 10 − 3 = **7**\n[[stephr]]\n**Onlar basamağı**\n4'ten 7 çıkmaz · onluk al · 14 − 7 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 2 = **1**\n→ **177**\n[[stephr]]\nSonuç: [[result:177]]",
+        "explanation": "Okunanlar toplanır: 128 + 145 = 273. Toplam sayfadan çıkarılır: 450 - 273 = 177.",
         "url": null
       }
     },
@@ -930,14 +966,15 @@
       "id": "mat3_cikarma_037",
       "level": "orta",
       "premise": "Bir mağazada 605 adet gömlek vardı. Sezon sonunda satılmayan 148 gömlek kalmıştır.",
-      "text": "Mağazada toplam kaç gömlek satılmıştır?",
+      "text": "Buna göre mağazada toplam kaç gömlek satılmıştır?",
       "correct": "457",
       "wrong1": "467",
       "wrong2": "447",
-      "explanation": "Satılan gömlek sayısı, başlangıçtaki stoktan kalanlar çıkarılarak bulunur: **605 − 148**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:605-148]]\n**Birler basamağı**\n5'ten 8 çıkmaz · sola boz · 15 − 8 = **7**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 1 = **4**\nSonuç: [[result:457]]",
+      "explanation": "Satılanı bulmak için eksilenden (605) farkı (148) çıkarırız: 605 - 148 = 457.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre mağazada toplam kaç gömlek satılmıştır?",
+          "text": "Buna göre mağazada toplam kaç gömlek satılmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -950,7 +987,7 @@
         "correct": "457",
         "wrong1": "467",
         "wrong2": "447",
-        "explanation": "Satılan gömlek sayısı, başlangıçtaki stoktan kalanlar çıkarılarak bulunur: **605 − 148**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:605-148]]\n**Birler basamağı**\n5'ten 8 çıkmaz · sola boz · 15 − 8 = **7**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 1 = **4**\nSonuç: [[result:457]]",
+        "explanation": "Satılanı bulmak için eksilenden (605) farkı (148) çıkarırız: 605 - 148 = 457.",
         "url": null
       }
     },
@@ -958,14 +995,15 @@
       "id": "mat3_cikarma_038",
       "level": "orta",
       "premise": "Cemil'in boyu 142 cm, kardeşi Can'ın boyu ise 115 cm'dir.",
-      "text": "Cemil, kardeşinden kaç cm daha uzundur?",
+      "text": "Buna göre cemil, kardeşinden kaç cm daha uzundur?",
       "correct": "27",
       "wrong1": "37",
       "wrong2": "17",
-      "explanation": "Boy farkı bulunur; uzun olan ile kısa olanın boyları çıkarılır: **142 − 115**.\n\nOnluk bozarak çıkarma:\n[[subsol:142-115]]\n**Birler basamağı**\n2'den 5 çıkmaz · onluk al · 12 − 5 = **7**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 1 = **2**\n[[stephr]]\n**Yüzler basamağı**\n1 − 1 = **0**\nSonuç: [[result:27]]",
+      "explanation": "Aralarındaki boy farkını bulmak için çıkarma yaparız: 142 - 115 = 27 cm.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre cemil, kardeşinden kaç cm daha uzundur?",
+          "text": "Buna göre cemil, kardeşinden kaç cm daha uzundur?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -978,7 +1016,7 @@
         "correct": "27",
         "wrong1": "37",
         "wrong2": "17",
-        "explanation": "Boy farkı bulunur; uzun olan ile kısa olanın boyları çıkarılır: **142 − 115**.\n\nOnluk bozarak çıkarma:\n[[subsol:142-115]]\n**Birler basamağı**\n2'den 5 çıkmaz · onluk al · 12 − 5 = **7**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 1 = **2**\n[[stephr]]\n**Yüzler basamağı**\n1 − 1 = **0**\nSonuç: [[result:27]]",
+        "explanation": "Aralarındaki boy farkını bulmak için çıkarma yaparız: 142 - 115 = 27 cm.",
         "url": null
       }
     },
@@ -986,14 +1024,15 @@
       "id": "mat3_cikarma_039",
       "level": "orta",
       "premise": "Okulumuzdaki 500 biletin sabah 215 tanesi satılmıştır. Geriye satılması gereken biletler kalmıştır.",
-      "text": "Satılmayan bilet sayısı kaçtır?",
+      "text": "Buna göre satılmayan bilet sayısı kaçtır?",
       "correct": "285",
       "wrong1": "295",
       "wrong2": "275",
-      "explanation": "Satılmayan bilet sayısı için **500 − 215** çıkarma işlemini yaparız.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:500-215]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 1 = **8**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 2 = **2**\nSonuç: [[result:285]]",
+      "explanation": "Sıfırlı çıkarma işlemi yapılır. 10-5=5, 9-1=8, 4-2=2. Sonuç 285.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre satılmayan bilet sayısı kaçtır?",
+          "text": "Buna göre satılmayan bilet sayısı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1006,7 +1045,7 @@
         "correct": "285",
         "wrong1": "295",
         "wrong2": "275",
-        "explanation": "Satılmayan bilet sayısı için **500 − 215** çıkarma işlemini yaparız.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:500-215]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 1 = **8**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 2 = **2**\nSonuç: [[result:285]]",
+        "explanation": "Sıfırlı çıkarma işlemi yapılır. 10-5=5, 9-1=8, 4-2=2. Sonuç 285.",
         "url": null
       }
     },
@@ -1014,14 +1053,15 @@
       "id": "mat3_cikarma_040",
       "level": "orta",
       "premise": "Yüzler basamağı 7, onlar basamağı 2, birler basamağı 5 olan sayıdan 348'i çıkarıyoruz.",
-      "text": "İşlemin sonucu kaçtır?",
+      "text": "Buna göre i̇şlemin sonucu kaçtır?",
       "correct": "377",
       "wrong1": "387",
       "wrong2": "367",
-      "explanation": "Önce **725** sayısı oluşturulur, ardından **348** çıkarılarak sonuç bulunur.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:725-348]]\n**Birler basamağı**\n5'ten 8 çıkmaz · onluk al · 15 − 8 = **7**\n[[stephr]]\n**Onlar basamağı**\n1'den 4 çıkmaz · onluk al · 11 − 4 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 6 − 3 = **3**\nSonuç: [[result:377]]",
+      "explanation": "Oluşan sayı 725'tir. 725 - 348 = 377.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre i̇şlemin sonucu kaçtır?",
+          "text": "Buna göre i̇şlemin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1034,7 +1074,7 @@
         "correct": "377",
         "wrong1": "387",
         "wrong2": "367",
-        "explanation": "Önce **725** sayısı oluşturulur, ardından **348** çıkarılarak sonuç bulunur.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:725-348]]\n**Birler basamağı**\n5'ten 8 çıkmaz · onluk al · 15 − 8 = **7**\n[[stephr]]\n**Onlar basamağı**\n1'den 4 çıkmaz · onluk al · 11 − 4 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 6 − 3 = **3**\nSonuç: [[result:377]]",
+        "explanation": "Oluşan sayı 725'tir. 725 - 348 = 377.",
         "url": null
       }
     },
@@ -1042,14 +1082,15 @@
       "id": "mat3_cikarma_041",
       "level": "orta",
       "premise": "Bir spor salonuna kayıtlı 412 üyenin 186'sı kadındır.",
-      "text": "Spor salonundaki erkek üye sayısı kaçtır?",
+      "text": "Buna göre spor salonundaki erkek üye sayısı kaçtır?",
       "correct": "226",
       "wrong1": "236",
       "wrong2": "216",
-      "explanation": "Erkek üye sayısı, toplam üyeden kadın üyeler çıkarılarak bulunur: **412 − 186**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:412-186]]\n**Birler basamağı**\n2'den 6 çıkmaz · onluk al · 12 − 6 = **6**\n[[stephr]]\n**Onlar basamağı**\n0'dan 8 çıkmaz · onluk al · 10 − 8 = **2**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 1 = **2**\nSonuç: [[result:226]]",
+      "explanation": "Toplam üyeden kadınları çıkarırız: 412 - 186 = 226.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre spor salonundaki erkek üye sayısı kaçtır?",
+          "text": "Buna göre spor salonundaki erkek üye sayısı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1062,7 +1103,7 @@
         "correct": "226",
         "wrong1": "236",
         "wrong2": "216",
-        "explanation": "Erkek üye sayısı, toplam üyeden kadın üyeler çıkarılarak bulunur: **412 − 186**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:412-186]]\n**Birler basamağı**\n2'den 6 çıkmaz · onluk al · 12 − 6 = **6**\n[[stephr]]\n**Onlar basamağı**\n0'dan 8 çıkmaz · onluk al · 10 − 8 = **2**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 1 = **2**\nSonuç: [[result:226]]",
+        "explanation": "Toplam üyeden kadınları çıkarırız: 412 - 186 = 226.",
         "url": null
       }
     },
@@ -1070,14 +1111,15 @@
       "id": "mat3_cikarma_042",
       "level": "orta",
       "premise": "Hangi sayıdan 185 çıkarırsak 340 kalır?",
-      "text": "Bu sorunun cevabı olan sayı kaçtır?",
+      "text": "Buna göre bu sorunun cevabı olan sayı kaçtır?",
       "correct": "525",
       "wrong1": "535",
       "wrong2": "515",
-      "explanation": "Eksilen aranır; **? − 185 = 340** için ters işlemle **340 + 185** toplanır.\n\nEldeli toplama (ters işlem):\n[[addsol:340+185]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n4 + 8 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n3 + 1 + elde 1 = **5**\nSonuç: [[result:525]]",
+      "explanation": "Eksileni arıyoruz. Ters işlem ile toplanır: 340 + 185 = 525.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre bu sorunun cevabı olan sayı kaçtır?",
+          "text": "Buna göre bu sorunun cevabı olan sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1090,7 +1132,7 @@
         "correct": "525",
         "wrong1": "535",
         "wrong2": "515",
-        "explanation": "Eksilen aranır; **? − 185 = 340** için ters işlemle **340 + 185** toplanır.\n\nEldeli toplama (ters işlem):\n[[addsol:340+185]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n4 + 8 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n3 + 1 + elde 1 = **5**\nSonuç: [[result:525]]",
+        "explanation": "Eksileni arıyoruz. Ters işlem ile toplanır: 340 + 185 = 525.",
         "url": null
       }
     },
@@ -1098,14 +1140,15 @@
       "id": "mat3_cikarma_043",
       "level": "orta",
       "premise": "Ali, Veli'den 15 yaş küçüktür. Veli 42 yaşındadır.",
-      "text": "Ali kaç yaşındadır?",
+      "text": "Buna göre ali kaç yaşındadır?",
       "correct": "27",
       "wrong1": "28",
       "wrong2": "26",
-      "explanation": "Ali'nin yaşı, Veli'nin yaşından **15** çıkarılarak bulunur: **42 − 15**.\n\nOnluk bozarak çıkarma:\n[[subsol:42-15]]\n**Birler basamağı**\n2'den 5 çıkmaz · onluk al · 12 − 5 = **7**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 1 = **2**\nSonuç: [[result:27]]",
+      "explanation": "Küçük olanın yaşını bulmak için çıkarma yaparız: 42 - 15 = 27.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ali kaç yaşındadır?",
+          "text": "Buna göre ali kaç yaşındadır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1118,7 +1161,7 @@
         "correct": "27",
         "wrong1": "28",
         "wrong2": "26",
-        "explanation": "Ali'nin yaşı, Veli'nin yaşından **15** çıkarılarak bulunur: **42 − 15**.\n\nOnluk bozarak çıkarma:\n[[subsol:42-15]]\n**Birler basamağı**\n2'den 5 çıkmaz · onluk al · 12 − 5 = **7**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 1 = **2**\nSonuç: [[result:27]]",
+        "explanation": "Küçük olanın yaşını bulmak için çıkarma yaparız: 42 - 15 = 27.",
         "url": null
       }
     },
@@ -1126,14 +1169,15 @@
       "id": "mat3_cikarma_044",
       "level": "orta",
       "premise": "Bir manavdaki 510 elmanın 245'i çürük çıkmıştır.",
-      "text": "Sağlam elmaların sayısı kaçtır?",
+      "text": "Buna göre sağlam elmaların sayısı kaçtır?",
       "correct": "265",
       "wrong1": "275",
       "wrong2": "255",
-      "explanation": "Sağlam elma sayısı, toplam elmadan çürükler çıkarılarak bulunur: **510 − 245**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:510-245]]\n**Birler basamağı**\n0'dan 5 çıkmaz · onluk al · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n0'dan 4 çıkmaz · onluk al · 10 − 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 2 = **2**\nSonuç: [[result:265]]",
+      "explanation": "Toplamdan çürükleri çıkarırız: 510 - 245 = 265.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre sağlam elmaların sayısı kaçtır?",
+          "text": "Buna göre sağlam elmaların sayısı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1146,7 +1190,7 @@
         "correct": "265",
         "wrong1": "275",
         "wrong2": "255",
-        "explanation": "Sağlam elma sayısı, toplam elmadan çürükler çıkarılarak bulunur: **510 − 245**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:510-245]]\n**Birler basamağı**\n0'dan 5 çıkmaz · onluk al · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n0'dan 4 çıkmaz · onluk al · 10 − 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 2 = **2**\nSonuç: [[result:265]]",
+        "explanation": "Toplamdan çürükleri çıkarırız: 510 - 245 = 265.",
         "url": null
       }
     },
@@ -1158,10 +1202,11 @@
       "correct": "433",
       "wrong1": "443",
       "wrong2": "423",
-      "explanation": "Eksilen = Çıkan + Fark kuralı uygulanır; **198 + 235** toplama işlemi yapılır.\n\nEldeli toplama (ters işlem):\n[[addsol:198+235]]\n**Birler basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n9 + 3 + elde 1 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 2 + elde 1 = **4**\nSonuç: [[result:433]]",
+      "explanation": "Eksilen = Çıkan + Fark. 235 + 198 = 433.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre buna göre eksilen sayı kaçtır?",
+          "text": "Buna göre eksilen sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1174,7 +1219,7 @@
         "correct": "433",
         "wrong1": "443",
         "wrong2": "423",
-        "explanation": "Eksilen = Çıkan + Fark kuralı uygulanır; **198 + 235** toplama işlemi yapılır.\n\nEldeli toplama (ters işlem):\n[[addsol:198+235]]\n**Birler basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n9 + 3 + elde 1 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 2 + elde 1 = **4**\nSonuç: [[result:433]]",
+        "explanation": "Eksilen = Çıkan + Fark. 235 + 198 = 433.",
         "url": null
       }
     },
@@ -1182,14 +1227,15 @@
       "id": "mat3_cikarma_046",
       "level": "orta",
       "premise": "A = 342, B = 168",
-      "text": "Yukarıda verilenlere göre A ile B'nin farkı kaçtır?",
+      "text": "Buna göre yukarıda verilenlere göre A ile B'nin farkı kaçtır?",
       "correct": "174",
       "wrong1": "184",
       "wrong2": "164",
-      "explanation": "A ile B'nin farkı istenir; **342 − 168** çıkarma işlemini yaparız.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:342-168]]\n**Birler basamağı**\n2'den 8 çıkmaz · onluk al · 12 − 8 = **4**\n[[stephr]]\n**Onlar basamağı**\n3'ten 6 çıkmaz · onluk al · 13 − 6 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 2 − 1 = **1**\nSonuç: [[result:174]]",
+      "explanation": "A'dan B'yi çıkarırız: 342 - 168 = 174.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıda verilenlere göre A ile B'nin farkı kaçtır?",
+          "text": "Buna göre yukarıda verilenlere göre A ile B'nin farkı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1202,7 +1248,7 @@
         "correct": "174",
         "wrong1": "184",
         "wrong2": "164",
-        "explanation": "A ile B'nin farkı istenir; **342 − 168** çıkarma işlemini yaparız.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:342-168]]\n**Birler basamağı**\n2'den 8 çıkmaz · onluk al · 12 − 8 = **4**\n[[stephr]]\n**Onlar basamağı**\n3'ten 6 çıkmaz · onluk al · 13 − 6 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 2 − 1 = **1**\nSonuç: [[result:174]]",
+        "explanation": "A'dan B'yi çıkarırız: 342 - 168 = 174.",
         "url": null
       }
     },
@@ -1210,14 +1256,15 @@
       "id": "mat3_cikarma_047",
       "level": "orta",
       "premise": "Eren 650 metrelik parkurun 275 metresini koşmuştur.",
-      "text": "Eren'in koşması gereken kaç metre yolu kalmıştır?",
+      "text": "Buna göre eren'in koşması gereken kaç metre yolu kalmıştır?",
       "correct": "375",
       "wrong1": "385",
       "wrong2": "365",
-      "explanation": "Kalan mesafe, toplam parkurdan koşulan kısım çıkarılarak bulunur: **650 − 275**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:650-275]]\n**Birler basamağı**\n0'dan 5 çıkmaz · onluk al · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n4'ten 7 çıkmaz · onluk al · 14 − 7 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\nSonuç: [[result:375]]",
+      "explanation": "Tüm yoldan koşulanı çıkarırız: 650 - 275 = 375 metre.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre eren'in koşması gereken kaç metre yolu kalmıştır?",
+          "text": "Buna göre eren'in koşması gereken kaç metre yolu kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1230,7 +1277,7 @@
         "correct": "375",
         "wrong1": "385",
         "wrong2": "365",
-        "explanation": "Kalan mesafe, toplam parkurdan koşulan kısım çıkarılarak bulunur: **650 − 275**.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:650-275]]\n**Birler basamağı**\n0'dan 5 çıkmaz · onluk al · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n4'ten 7 çıkmaz · onluk al · 14 − 7 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\nSonuç: [[result:375]]",
+        "explanation": "Tüm yoldan koşulanı çıkarırız: 650 - 275 = 375 metre.",
         "url": null
       }
     },
@@ -1238,14 +1285,15 @@
       "id": "mat3_cikarma_048",
       "level": "orta",
       "premise": "Rakamları birbirinden farklı en büyük üç basamaklı sayıdan 450 çıkarılıyor.",
-      "text": "Sonuç kaçtır?",
+      "text": "Buna göre sonuç kaçtır?",
       "correct": "537",
       "wrong1": "547",
       "wrong2": "527",
-      "explanation": "En büyük üç basamaklı sayıdan **450** çıkarılır: **987 − 450**.\n\nOnluk bozmadan çıkarma:\n[[subsol:987-450]]\n**Birler basamağı**\n7 − 0 = **7**\n[[stephr]]\n**Onlar basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Yüzler basamağı**\n9 − 4 = **5**\nSonuç: [[result:537]]",
+      "explanation": "Rakamları farklı en büyük 3 basamaklı sayı 987'dir. 987 - 450 = 537.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre sonuç kaçtır?",
+          "text": "Buna göre sonuç kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1258,7 +1306,7 @@
         "correct": "537",
         "wrong1": "547",
         "wrong2": "527",
-        "explanation": "En büyük üç basamaklı sayıdan **450** çıkarılır: **987 − 450**.\n\nOnluk bozmadan çıkarma:\n[[subsol:987-450]]\n**Birler basamağı**\n7 − 0 = **7**\n[[stephr]]\n**Onlar basamağı**\n8 − 5 = **3**\n[[stephr]]\n**Yüzler basamağı**\n9 − 4 = **5**\nSonuç: [[result:537]]",
+        "explanation": "Rakamları farklı en büyük 3 basamaklı sayı 987'dir. 987 - 450 = 537.",
         "url": null
       }
     },
@@ -1266,14 +1314,15 @@
       "id": "mat3_cikarma_049",
       "level": "orta",
       "premise": "400 sayısından hangi sayıyı çıkarırsak 165 kalır?",
-      "text": "Çıkarılan sayı kaçtır?",
+      "text": "Buna göre çıkarılan sayı kaçtır?",
       "correct": "235",
       "wrong1": "245",
       "wrong2": "225",
-      "explanation": "Çıkan aranır; **400 − 165** ile hangi sayının çıkarıldığı bulunur.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:400-165]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 6 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 1 = **2**\nSonuç: [[result:235]]",
+      "explanation": "Çıkanı bulmak için eksilenden farkı çıkarırız: 400 - 165 = 235.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre çıkarılan sayı kaçtır?",
+          "text": "Buna göre çıkarılan sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1286,7 +1335,7 @@
         "correct": "235",
         "wrong1": "245",
         "wrong2": "225",
-        "explanation": "Çıkan aranır; **400 − 165** ile hangi sayının çıkarıldığı bulunur.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:400-165]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 6 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 1 = **2**\nSonuç: [[result:235]]",
+        "explanation": "Çıkanı bulmak için eksilenden farkı çıkarırız: 400 - 165 = 235.",
         "url": null
       }
     },
@@ -1294,14 +1343,15 @@
       "id": "mat3_cikarma_050",
       "level": "orta",
       "premise": null,
-      "text": "[[sub:813-465]] işleminin sonucu kaçtır?",
+      "text": "813 - 465 işleminin sonucu kaçtır?",
       "correct": "348",
       "wrong1": "358",
       "wrong2": "338",
-      "explanation": "Bu soruda **813** ile **465** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:813-465]]\n**Birler basamağı**\n3'ten 5 çıkmaz · onluk al · 13 − 5 = **8**\n[[stephr]]\n**Onlar basamağı**\n0'dan 6 çıkmaz · onluk al · 10 − 6 = **4**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 4 = **3**\nSonuç: [[result:348]]",
+      "explanation": "13-5=8, 10-6=4, 7-4=3. Sonuç 348.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:813-465]] işleminin sonucu kaçtır?",
+          "text": "813 - 465 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -1309,7 +1359,7 @@
         "correct": "348",
         "wrong1": "358",
         "wrong2": "338",
-        "explanation": "Bu soruda **813** ile **465** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:813-465]]\n**Birler basamağı**\n3'ten 5 çıkmaz · onluk al · 13 − 5 = **8**\n[[stephr]]\n**Onlar basamağı**\n0'dan 6 çıkmaz · onluk al · 10 − 6 = **4**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 4 = **3**\nSonuç: [[result:348]]",
+        "explanation": "13-5=8, 10-6=4, 7-4=3. Sonuç 348.",
         "url": null
       }
     },
@@ -1317,14 +1367,15 @@
       "id": "mat3_cikarma_051",
       "level": "zor",
       "premise": null,
-      "text": "[[sub:700-286]] işleminin sonucu kaçtır?",
+      "text": "700 - 286 işleminin sonucu kaçtır?",
       "correct": "414",
       "wrong1": "424",
       "wrong2": "404",
-      "explanation": "Bu soruda **700** ile **286** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:700-286]]\n**Birler basamağı**\n0'dan 6 çıkmaz · sola boz · 10 − 6 = **4**\n[[stephr]]\n**Onlar basamağı**\n9 − 8 = **1**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 6 − 2 = **4**\nSonuç: [[result:414]]",
+      "explanation": "Komşudan komşuya bozma yapılır. Onlar 9, birler 10 olur. 10-6=4, 9-8=1, 6-2=4. Sonuç 414.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:700-286]] işleminin sonucu kaçtır?",
+          "text": "700 - 286 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -1332,7 +1383,7 @@
         "correct": "414",
         "wrong1": "424",
         "wrong2": "404",
-        "explanation": "Bu soruda **700** ile **286** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:700-286]]\n**Birler basamağı**\n0'dan 6 çıkmaz · sola boz · 10 − 6 = **4**\n[[stephr]]\n**Onlar basamağı**\n9 − 8 = **1**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 6 − 2 = **4**\nSonuç: [[result:414]]",
+        "explanation": "Komşudan komşuya bozma yapılır. Onlar 9, birler 10 olur. 10-6=4, 9-8=1, 6-2=4. Sonuç 414.",
         "url": null
       }
     },
@@ -1340,14 +1391,15 @@
       "id": "mat3_cikarma_052",
       "level": "zor",
       "premise": null,
-      "text": "[[sub:502-167]] işleminin sonucu kaçtır?",
+      "text": "502 - 167 işleminin sonucu kaçtır?",
       "correct": "335",
       "wrong1": "345",
       "wrong2": "325",
-      "explanation": "Bu soruda **502** ile **167** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:502-167]]\n**Birler basamağı**\n2'den 7 çıkmaz · sola boz · 12 − 7 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 6 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 1 = **3**\nSonuç: [[result:335]]",
+      "explanation": "Sıfır üzerinden bozdurma işlemi. 12-7=5, 9-6=3, 4-1=3. Sonuç 335.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "[[sub:502-167]] işleminin sonucu kaçtır?",
+          "text": "502 - 167 işleminin sonucu kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -1355,7 +1407,7 @@
         "correct": "335",
         "wrong1": "345",
         "wrong2": "325",
-        "explanation": "Bu soruda **502** ile **167** sayılarının farkını bularak işlemin sonucunu hesaplamamız isteniyor.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:502-167]]\n**Birler basamağı**\n2'den 7 çıkmaz · sola boz · 12 − 7 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 6 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 1 = **3**\nSonuç: [[result:335]]",
+        "explanation": "Sıfır üzerinden bozdurma işlemi. 12-7=5, 9-6=3, 4-1=3. Sonuç 335.",
         "url": null
       }
     },
@@ -1363,14 +1415,15 @@
       "id": "mat3_cikarma_053",
       "level": "zor",
       "premise": "Ali, 584 ve 239 sayılarını en yakın onluğa yuvarlayarak farkı tahmin ediyor.",
-      "text": "Tahmini sonuç ile gerçek sonuç arasındaki fark kaçtır?",
+      "text": "Buna göre tahmini sonuç ile gerçek sonuç arasındaki fark kaçtır?",
       "correct": "5",
       "wrong1": "4",
       "wrong2": "6",
-      "explanation": "Tahmini ve gerçek fark karşılaştırılır; önce yuvarlanmış sayılarla **580 − 240**, sonra **584 − 239** işlemi yapılır.\n\nOnluk bozmadan çıkarma:\n[[subsol:580-240]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n8 − 4 = **4**\n[[stephr]]\n**Yüzler basamağı**\n5 − 2 = **3**\n→ **340**\n[[stephr]]\nGerçek fark:\nOnluk bozarak çıkarma:\n[[subsol:584-239]]\n**Birler basamağı**\n4'ten 9 çıkmaz · onluk al · 14 − 9 = **5**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 7 − 3 = **4**\n[[stephr]]\n**Yüzler basamağı**\n5 − 2 = **3**\n→ **345**\n\n345 − 340 = **5** fark vardır.",
+      "explanation": "Tahmini: 580 - 240 = 340. Gerçek: 584 - 239 = 345. Fark: 345 - 340 = 5.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre tahmini sonuç ile gerçek sonuç arasındaki fark kaçtır?",
+          "text": "Buna göre tahmini sonuç ile gerçek sonuç arasındaki fark kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1383,7 +1436,7 @@
         "correct": "5",
         "wrong1": "4",
         "wrong2": "6",
-        "explanation": "Tahmini ve gerçek fark karşılaştırılır; önce yuvarlanmış sayılarla **580 − 240**, sonra **584 − 239** işlemi yapılır.\n\nOnluk bozmadan çıkarma:\n[[subsol:580-240]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n8 − 4 = **4**\n[[stephr]]\n**Yüzler basamağı**\n5 − 2 = **3**\n→ **340**\n[[stephr]]\nGerçek fark:\nOnluk bozarak çıkarma:\n[[subsol:584-239]]\n**Birler basamağı**\n4'ten 9 çıkmaz · onluk al · 14 − 9 = **5**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 7 − 3 = **4**\n[[stephr]]\n**Yüzler basamağı**\n5 − 2 = **3**\n→ **345**\n\n345 − 340 = **5** fark vardır.",
+        "explanation": "Tahmini: 580 - 240 = 340. Gerçek: 584 - 239 = 345. Fark: 345 - 340 = 5.",
         "url": null
       }
     },
@@ -1391,14 +1444,15 @@
       "id": "mat3_cikarma_054",
       "level": "zor",
       "premise": "Zeynep 814 ve 485 sayılarını en yakın onluğa yuvarlayarak farkı hesaplıyor.",
-      "text": "Zeynep'in bulduğu tahmini sonuç kaçtır?",
+      "text": "Buna göre zeynep'in bulduğu tahmini sonuç kaçtır?",
       "correct": "320",
       "wrong1": "330",
       "wrong2": "310",
-      "explanation": "Tahmini fark bulunur; **814** ve **485** en yakın onluğa yuvarlanır, ardından **810 − 490** yapılır.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:810-490]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n1'den 9 çıkmaz · onluk al · 11 − 9 = **2**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 4 = **3**\nSonuç: [[result:320]]",
+      "explanation": "814 -> 810'a, 485 -> 490'a yuvarlanır. 810 - 490 = 320.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre zeynep'in bulduğu tahmini sonuç kaçtır?",
+          "text": "Buna göre zeynep'in bulduğu tahmini sonuç kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1411,7 +1465,7 @@
         "correct": "320",
         "wrong1": "330",
         "wrong2": "310",
-        "explanation": "Tahmini fark bulunur; **814** ve **485** en yakın onluğa yuvarlanır, ardından **810 − 490** yapılır.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:810-490]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n1'den 9 çıkmaz · onluk al · 11 − 9 = **2**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 4 = **3**\nSonuç: [[result:320]]",
+        "explanation": "814 -> 810'a, 485 -> 490'a yuvarlanır. 810 - 490 = 320.",
         "url": null
       }
     },
@@ -1419,14 +1473,15 @@
       "id": "mat3_cikarma_055",
       "level": "zor",
       "premise": "Marketin deposunda 900 kg şeker vardır. 1. gün 245 kg, 2. gün 368 kg şeker satılmıştır.",
-      "text": "Depoda geriye kaç kg şeker kalmıştır?",
+      "text": "Buna göre depoda geriye kaç kg şeker kalmıştır?",
       "correct": "287",
       "wrong1": "297",
       "wrong2": "277",
-      "explanation": "Önce satılan şekerler toplanır, sonra depodaki toplam miktardan çıkarılır; kalan bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:245+368]]\n**Birler basamağı**\n5 + 8 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n4 + 6 + elde 1 = **1** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n2 + 3 + elde 1 = **6**\n→ **613**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:900-613]]\n**Birler basamağı**\n0'dan 3 çıkmaz · sola boz · 10 − 3 = **7**\n[[stephr]]\n**Onlar basamağı**\n9 − 1 = **8**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 8 − 6 = **2**\n→ **287**\n[[stephr]]\nSonuç: [[result:287]]",
+      "explanation": "Satılanlar toplanır: 245 + 368 = 613. Kalan bulunur: 900 - 613 = 287 kg.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre depoda geriye kaç kg şeker kalmıştır?",
+          "text": "Buna göre depoda geriye kaç kg şeker kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1439,7 +1494,7 @@
         "correct": "287",
         "wrong1": "297",
         "wrong2": "277",
-        "explanation": "Önce satılan şekerler toplanır, sonra depodaki toplam miktardan çıkarılır; kalan bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:245+368]]\n**Birler basamağı**\n5 + 8 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n4 + 6 + elde 1 = **1** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n2 + 3 + elde 1 = **6**\n→ **613**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:900-613]]\n**Birler basamağı**\n0'dan 3 çıkmaz · sola boz · 10 − 3 = **7**\n[[stephr]]\n**Onlar basamağı**\n9 − 1 = **8**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 8 − 6 = **2**\n→ **287**\n[[stephr]]\nSonuç: [[result:287]]",
+        "explanation": "Satılanlar toplanır: 245 + 368 = 613. Kalan bulunur: 900 - 613 = 287 kg.",
         "url": null
       }
     },
@@ -1451,10 +1506,11 @@
       "correct": "420",
       "wrong1": "410",
       "wrong2": "840",
-      "explanation": "Eksilen + çıkan + fark = 2 × eksilen kuralı kullanılır; eksilen **840 ÷ 2** ile bulunur.\n\nEksilen + çıkan + fark = 2 × eksilen kuralı uygulanır.\n840 ÷ 2 = **420** → eksilen **420**'dir.",
+      "explanation": "Kural: Eksilen, çıkan ve farkın toplamı her zaman eksilenin 2 katına eşittir. (E + Ç + F = 2E). 840 / 2 = 420.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre buna göre eksilen sayı kaçtır?",
+          "text": "Buna göre eksilen sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1467,7 +1523,7 @@
         "correct": "420",
         "wrong1": "410",
         "wrong2": "840",
-        "explanation": "Eksilen + çıkan + fark = 2 × eksilen kuralı kullanılır; eksilen **840 ÷ 2** ile bulunur.\n\nEksilen + çıkan + fark = 2 × eksilen kuralı uygulanır.\n840 ÷ 2 = **420** → eksilen **420**'dir.",
+        "explanation": "Kural: Eksilen, çıkan ve farkın toplamı her zaman eksilenin 2 katına eşittir. (E + Ç + F = 2E). 840 / 2 = 420.",
         "url": null
       }
     },
@@ -1475,14 +1531,15 @@
       "id": "mat3_cikarma_057",
       "level": "zor",
       "premise": "Aklımdaki sayıya 245 eklediğimde sonuç 600 oluyor.",
-      "text": "Aklımdaki sayıdan 120 çıkarırsam geriye kaç kalır?",
+      "text": "Buna göre aklımdaki sayıdan 120 çıkarırsam geriye kaç kalır?",
       "correct": "235",
       "wrong1": "245",
       "wrong2": "225",
-      "explanation": "Önce aklımdaki sayı bulunur, ardından **120** çıkarılarak kalan hesaplanır.\n\n**2 adımlı problem**:\n**1. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:600-245]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\n→ **355**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:355-120]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Yüzler basamağı**\n3 − 1 = **2**\n→ **235**\n[[stephr]]\nSonuç: [[result:235]]",
+      "explanation": "Önce sayı bulunur: 600 - 245 = 355. Sonra 120 çıkarılır: 355 - 120 = 235.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre aklımdaki sayıdan 120 çıkarırsam geriye kaç kalır?",
+          "text": "Buna göre aklımdaki sayıdan 120 çıkarırsam geriye kaç kalır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1495,7 +1552,7 @@
         "correct": "235",
         "wrong1": "245",
         "wrong2": "225",
-        "explanation": "Önce aklımdaki sayı bulunur, ardından **120** çıkarılarak kalan hesaplanır.\n\n**2 adımlı problem**:\n**1. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:600-245]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 5 − 2 = **3**\n→ **355**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:355-120]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n5 − 2 = **3**\n[[stephr]]\n**Yüzler basamağı**\n3 − 1 = **2**\n→ **235**\n[[stephr]]\nSonuç: [[result:235]]",
+        "explanation": "Önce sayı bulunur: 600 - 245 = 355. Sonra 120 çıkarılır: 355 - 120 = 235.",
         "url": null
       }
     },
@@ -1503,14 +1560,15 @@
       "id": "mat3_cikarma_058",
       "level": "zor",
       "premise": "Rakamları birbirinden farklı en büyük çift üç basamaklı sayıdan, en küçük tek üç basamaklı sayıyı çıkarıyoruz.",
-      "text": "Sonuç kaçtır?",
+      "text": "Buna göre sonuç kaçtır?",
       "correct": "883",
       "wrong1": "885",
       "wrong2": "893",
-      "explanation": "En büyük çift üç basamaklı ile en küçük tek üç basamaklı sayı çıkarılır: **986 − 103**.\n\nOnluk bozmadan çıkarma:\n[[subsol:986-103]]\n**Birler basamağı**\n6 − 3 = **3**\n[[stephr]]\n**Onlar basamağı**\n8 − 0 = **8**\n[[stephr]]\n**Yüzler basamağı**\n9 − 1 = **8**\nSonuç: [[result:883]]",
+      "explanation": "Rakamları farklı en büyük çift: 986. En küçük tek (rakamları farklı): 103. 986 - 103 = 883.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre sonuç kaçtır?",
+          "text": "Buna göre sonuç kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1523,7 +1581,7 @@
         "correct": "883",
         "wrong1": "885",
         "wrong2": "893",
-        "explanation": "En büyük çift üç basamaklı ile en küçük tek üç basamaklı sayı çıkarılır: **986 − 103**.\n\nOnluk bozmadan çıkarma:\n[[subsol:986-103]]\n**Birler basamağı**\n6 − 3 = **3**\n[[stephr]]\n**Onlar basamağı**\n8 − 0 = **8**\n[[stephr]]\n**Yüzler basamağı**\n9 − 1 = **8**\nSonuç: [[result:883]]",
+        "explanation": "Rakamları farklı en büyük çift: 986. En küçük tek (rakamları farklı): 103. 986 - 103 = 883.",
         "url": null
       }
     },
@@ -1531,14 +1589,15 @@
       "id": "mat3_cikarma_059",
       "level": "zor",
       "premise": "Bir çıkarma işleminde eksilen sayıyı 50 artırıp, çıkan sayıyı 20 azaltırsak fark nasıl değişir?",
-      "text": "Farkın durumu ne olur?",
+      "text": "Buna göre farkın durumu ne olur?",
       "correct": "70 artar",
       "wrong1": "30 artar",
       "wrong2": "70 azalır",
-      "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; eksilen artınca ve çıkan azalınca farkın nasıl değiştiğini düşünürüz.\n\nEksilenin artması farkı artırır (+50). Çıkanın azalması da farkı artırır (+20). Toplam 70 artar.",
+      "explanation": "Eksilenin artması farkı artırır (+50). Çıkanın azalması da farkı artırır (+20). Toplam 70 artar.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre farkın durumu ne olur?",
+          "text": "Buna göre farkın durumu ne olur?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1551,7 +1610,7 @@
         "correct": "70 artar",
         "wrong1": "30 artar",
         "wrong2": "70 azalır",
-        "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; eksilen artınca ve çıkan azalınca farkın nasıl değiştiğini düşünürüz.\n\nEksilenin artması farkı artırır (+50). Çıkanın azalması da farkı artırır (+20). Toplam 70 artar.",
+        "explanation": "Eksilenin artması farkı artırır (+50). Çıkanın azalması da farkı artırır (+20). Toplam 70 artar.",
         "url": null
       }
     },
@@ -1559,14 +1618,15 @@
       "id": "mat3_cikarma_060",
       "level": "zor",
       "premise": "Babama ait bir arabanın kilometresini gösteren sayaç 803'ü gösteriyordu. Babam önce 248 km, sonra 175 km yol gitti.",
-      "text": "Babamın 1500 km hedefine ulaşması için kaç km daha yol gitmesi gerekir?",
+      "text": "Buna göre babamın 1500 km hedefine ulaşması için kaç km daha yol gitmesi gerekir?",
       "correct": "274",
       "wrong1": "284",
       "wrong2": "264",
-      "explanation": "Önce gidilen km'ler toplanır, sonra hedef km'den çıkarılır; kalan yol bulunur.\n\n**3 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:803+248]]\n**Birler basamağı**\n3 + 8 = **1** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n0 + 4 + elde 1 = **5**\n[[stephr]]\n**Yüzler basamağı**\n8 + 2 = **0** · 1 elde\n→ **1051**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:1051+175]]\n**Birler basamağı**\n1 + 5 = **6**\n[[stephr]]\n**Onlar basamağı**\n5 + 7 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n0 + 1 + elde 1 = **2**\n[[stephr]]\n**Binler basamağı**\n1 + 0 = **1**\n→ **1226**\n[[stephr]]\n**3. adım**\nOnluk bozarak çıkarma:\n[[subsol:1500-1226]]\n**Birler basamağı**\n0'dan 6 çıkmaz · sola boz · 10 − 6 = **4**\n[[stephr]]\n**Onlar basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 2 = **2**\n[[stephr]]\n**Binler basamağı**\n1 − 1 = **0**\n→ **274**\n[[stephr]]\nSonuç: [[result:274]]",
+      "explanation": "Toplam ulaşılan km: 803 + 248 + 175 = 1226 km. Kalan yol: 1500 - 1226 = 274 km.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre babamın 1500 km hedefine ulaşması için kaç km daha yol gitmesi gerekir?",
+          "text": "Buna göre babamın 1500 km hedefine ulaşması için kaç km daha yol gitmesi gerekir?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1579,7 +1639,7 @@
         "correct": "274",
         "wrong1": "284",
         "wrong2": "264",
-        "explanation": "Önce gidilen km'ler toplanır, sonra hedef km'den çıkarılır; kalan yol bulunur.\n\n**3 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:803+248]]\n**Birler basamağı**\n3 + 8 = **1** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n0 + 4 + elde 1 = **5**\n[[stephr]]\n**Yüzler basamağı**\n8 + 2 = **0** · 1 elde\n→ **1051**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:1051+175]]\n**Birler basamağı**\n1 + 5 = **6**\n[[stephr]]\n**Onlar basamağı**\n5 + 7 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n0 + 1 + elde 1 = **2**\n[[stephr]]\n**Binler basamağı**\n1 + 0 = **1**\n→ **1226**\n[[stephr]]\n**3. adım**\nOnluk bozarak çıkarma:\n[[subsol:1500-1226]]\n**Birler basamağı**\n0'dan 6 çıkmaz · sola boz · 10 − 6 = **4**\n[[stephr]]\n**Onlar basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 2 = **2**\n[[stephr]]\n**Binler basamağı**\n1 − 1 = **0**\n→ **274**\n[[stephr]]\nSonuç: [[result:274]]",
+        "explanation": "Toplam ulaşılan km: 803 + 248 + 175 = 1226 km. Kalan yol: 1500 - 1226 = 274 km.",
         "url": null
       }
     },
@@ -1587,14 +1647,15 @@
       "id": "mat3_cikarma_061",
       "level": "zor",
       "premise": "A - 245 = 180\n450 - B = 160",
-      "text": "Yukarıda verilen işlemlere göre A - B kaçtır?",
+      "text": "Buna göre yukarıda verilen işlemlere göre A - B kaçtır?",
       "correct": "135",
       "wrong1": "145",
       "wrong2": "125",
-      "explanation": "Önce A ve B ayrı ayrı bulunur, sonra **A − B** farkı hesaplanır.\n\n**3 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:180+245]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n8 + 4 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 2 + elde 1 = **4**\n→ **425**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:450-160]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5'ten 6 çıkmaz · onluk al · 15 − 6 = **9**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 1 = **2**\n→ **290**\n[[stephr]]\n**3. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:425-290]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n2'den 9 çıkmaz · onluk al · 12 − 9 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 2 = **1**\n→ **135**\n[[stephr]]\nSonuç: [[result:135]]",
+      "explanation": "A = 180 + 245 = 425. B = 450 - 160 = 290. Fark: 425 - 290 = 135.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıda verilen işlemlere göre A - B kaçtır?",
+          "text": "Buna göre yukarıda verilen işlemlere göre A - B kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1607,7 +1668,7 @@
         "correct": "135",
         "wrong1": "145",
         "wrong2": "125",
-        "explanation": "Önce A ve B ayrı ayrı bulunur, sonra **A − B** farkı hesaplanır.\n\n**3 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:180+245]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n8 + 4 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 2 + elde 1 = **4**\n→ **425**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:450-160]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5'ten 6 çıkmaz · onluk al · 15 − 6 = **9**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 1 = **2**\n→ **290**\n[[stephr]]\n**3. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:425-290]]\n**Birler basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n2'den 9 çıkmaz · onluk al · 12 − 9 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 3 − 2 = **1**\n→ **135**\n[[stephr]]\nSonuç: [[result:135]]",
+        "explanation": "A = 180 + 245 = 425. B = 450 - 160 = 290. Fark: 425 - 290 = 135.",
         "url": null
       }
     },
@@ -1615,14 +1676,15 @@
       "id": "mat3_cikarma_062",
       "level": "zor",
       "premise": "Bir tiyatro salonunda 500 koltuk vardır. Kadın seyirci sayısı 186, erkek seyirci sayısı kadınlardan 35 eksiktir. Kalanlar çocuktur.",
-      "text": "Tiyatroda kaç çocuk seyirci vardır?",
+      "text": "Buna göre tiyatroda kaç çocuk seyirci vardır?",
       "correct": "163",
       "wrong1": "173",
       "wrong2": "153",
-      "explanation": "Önce erkek seyirci sayısı bulunur, yetişkinler toplanır, sonra toplam koltuktan çıkarılır; çocuk sayısı bulunur.\n\n**3 adımlı problem**:\n**1. adım**\nOnluk bozmadan çıkarma:\n[[subsol:186-35]]\n**Birler basamağı**\n6 − 5 = **1**\n[[stephr]]\n**Onlar basamağı**\n8 − 3 = **5**\n[[stephr]]\n**Yüzler basamağı**\n1 − 0 = **1**\n→ **151**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:186+151]]\n**Birler basamağı**\n6 + 1 = **7**\n[[stephr]]\n**Onlar basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 1 + elde 1 = **3**\n→ **337**\n[[stephr]]\n**3. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:500-337]]\n**Birler basamağı**\n0'dan 7 çıkmaz · sola boz · 10 − 7 = **3**\n[[stephr]]\n**Onlar basamağı**\n9 − 3 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 3 = **1**\n→ **163**\n[[stephr]]\nSonuç: [[result:163]]",
+      "explanation": "Erkek seyirci: 186 - 35 = 151. Yetişkin toplam: 186 + 151 = 337. Çocuk: 500 - 337 = 163.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre tiyatroda kaç çocuk seyirci vardır?",
+          "text": "Buna göre tiyatroda kaç çocuk seyirci vardır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1635,7 +1697,7 @@
         "correct": "163",
         "wrong1": "173",
         "wrong2": "153",
-        "explanation": "Önce erkek seyirci sayısı bulunur, yetişkinler toplanır, sonra toplam koltuktan çıkarılır; çocuk sayısı bulunur.\n\n**3 adımlı problem**:\n**1. adım**\nOnluk bozmadan çıkarma:\n[[subsol:186-35]]\n**Birler basamağı**\n6 − 5 = **1**\n[[stephr]]\n**Onlar basamağı**\n8 − 3 = **5**\n[[stephr]]\n**Yüzler basamağı**\n1 − 0 = **1**\n→ **151**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:186+151]]\n**Birler basamağı**\n6 + 1 = **7**\n[[stephr]]\n**Onlar basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 1 + elde 1 = **3**\n→ **337**\n[[stephr]]\n**3. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:500-337]]\n**Birler basamağı**\n0'dan 7 çıkmaz · sola boz · 10 − 7 = **3**\n[[stephr]]\n**Onlar basamağı**\n9 − 3 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 3 = **1**\n→ **163**\n[[stephr]]\nSonuç: [[result:163]]",
+        "explanation": "Erkek seyirci: 186 - 35 = 151. Yetişkin toplam: 186 + 151 = 337. Çocuk: 500 - 337 = 163.",
         "url": null
       }
     },
@@ -1643,14 +1705,15 @@
       "id": "mat3_cikarma_063",
       "level": "zor",
       "premise": "4, 0, 8 rakamlarını birer kez kullanarak yazılabilecek üç basamaklı en büyük sayı ile en küçük sayı arasındaki fark kaçtır?",
-      "text": "Bulunan sonuç kaçtır?",
+      "text": "Buna göre bulunan sonuç kaçtır?",
       "correct": "432",
       "wrong1": "422",
       "wrong2": "442",
-      "explanation": "En büyük ve en küçük sayı belirlenir, aralarındaki fark **840 − 408** ile bulunur.\n\nOnluk bozarak çıkarma:\n[[subsol:840-408]]\n**Birler basamağı**\n0'dan 8 çıkmaz · onluk al · 10 − 8 = **2**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 0 = **3**\n[[stephr]]\n**Yüzler basamağı**\n8 − 4 = **4**\nSonuç: [[result:432]]",
+      "explanation": "En büyük: 840. En küçük: 408 (0 başa gelmez). Fark: 840 - 408 = 432.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre bulunan sonuç kaçtır?",
+          "text": "Buna göre bulunan sonuç kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1663,7 +1726,7 @@
         "correct": "432",
         "wrong1": "422",
         "wrong2": "442",
-        "explanation": "En büyük ve en küçük sayı belirlenir, aralarındaki fark **840 − 408** ile bulunur.\n\nOnluk bozarak çıkarma:\n[[subsol:840-408]]\n**Birler basamağı**\n0'dan 8 çıkmaz · onluk al · 10 − 8 = **2**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 3 − 0 = **3**\n[[stephr]]\n**Yüzler basamağı**\n8 − 4 = **4**\nSonuç: [[result:432]]",
+        "explanation": "En büyük: 840. En küçük: 408 (0 başa gelmez). Fark: 840 - 408 = 432.",
         "url": null
       }
     },
@@ -1671,14 +1734,15 @@
       "id": "mat3_cikarma_064",
       "level": "zor",
       "premise": "Ahmet aklından bir sayı tutuyor. Bu sayıdan 185 çıkardığında geriye 265 kaldığını görüyor.",
-      "text": "Ahmet aklında tuttuğu sayıdan 300 çıkarsaydı geriye kaç kalırdı?",
+      "text": "Buna göre ahmet aklında tuttuğu sayıdan 300 çıkarsaydı geriye kaç kalırdı?",
       "correct": "150",
       "wrong1": "160",
       "wrong2": "140",
-      "explanation": "Önce aklındaki sayı bulunur, sonra **300** çıkarılarak kalan hesaplanır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:185+265]]\n**Birler basamağı**\n5 + 5 = **0** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n8 + 6 + elde 1 = **5** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 2 + elde 1 = **4**\n→ **450**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:450-300]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Yüzler basamağı**\n4 − 3 = **1**\n→ **150**\n[[stephr]]\nSonuç: [[result:150]]",
+      "explanation": "Aklındaki sayı: 185 + 265 = 450. 450'den 300 çıkarsa 150 kalır.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ahmet aklında tuttuğu sayıdan 300 çıkarsaydı geriye kaç kalırdı?",
+          "text": "Buna göre ahmet aklında tuttuğu sayıdan 300 çıkarsaydı geriye kaç kalırdı?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1691,7 +1755,7 @@
         "correct": "150",
         "wrong1": "160",
         "wrong2": "140",
-        "explanation": "Önce aklındaki sayı bulunur, sonra **300** çıkarılarak kalan hesaplanır.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:185+265]]\n**Birler basamağı**\n5 + 5 = **0** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n8 + 6 + elde 1 = **5** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n1 + 2 + elde 1 = **4**\n→ **450**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:450-300]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 0 = **5**\n[[stephr]]\n**Yüzler basamağı**\n4 − 3 = **1**\n→ **150**\n[[stephr]]\nSonuç: [[result:150]]",
+        "explanation": "Aklındaki sayı: 185 + 265 = 450. 450'den 300 çıkarsa 150 kalır.",
         "url": null
       }
     },
@@ -1699,14 +1763,15 @@
       "id": "mat3_cikarma_065",
       "level": "zor",
       "premise": "Kütüphanede 904 kitap vardı. Yıpranan 146 kitap geri dönüşüme gönderildi. Kütüphaneye 215 yeni kitap alındı.",
-      "text": "Son durumdaki kitap sayısı kaç olmuştur?",
+      "text": "Buna göre son durumdaki kitap sayısı kaç olmuştur?",
       "correct": "973",
       "wrong1": "983",
       "wrong2": "963",
-      "explanation": "Önce yıpranan kitaplar çıkarılır, sonra yeni kitaplar eklenir; son durum hesaplanır.\n\n**2 adımlı problem**:\n**1. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:904-146]]\n**Birler basamağı**\n4'ten 6 çıkmaz · sola boz · 14 − 6 = **8**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 8 − 1 = **7**\n→ **758**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:758+215]]\n**Birler basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n5 + 1 + elde 1 = **7**\n[[stephr]]\n**Yüzler basamağı**\n7 + 2 = **9**\n→ **973**\n[[stephr]]\nSonuç: [[result:973]]",
+      "explanation": "Eksilenler çıkarılır: 904 - 146 = 758. Eklenenler toplanır: 758 + 215 = 973.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre son durumdaki kitap sayısı kaç olmuştur?",
+          "text": "Buna göre son durumdaki kitap sayısı kaç olmuştur?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1719,7 +1784,7 @@
         "correct": "973",
         "wrong1": "983",
         "wrong2": "963",
-        "explanation": "Önce yıpranan kitaplar çıkarılır, sonra yeni kitaplar eklenir; son durum hesaplanır.\n\n**2 adımlı problem**:\n**1. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:904-146]]\n**Birler basamağı**\n4'ten 6 çıkmaz · sola boz · 14 − 6 = **8**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 8 − 1 = **7**\n→ **758**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:758+215]]\n**Birler basamağı**\n8 + 5 = **3** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n5 + 1 + elde 1 = **7**\n[[stephr]]\n**Yüzler basamağı**\n7 + 2 = **9**\n→ **973**\n[[stephr]]\nSonuç: [[result:973]]",
+        "explanation": "Eksilenler çıkarılır: 904 - 146 = 758. Eklenenler toplanır: 758 + 215 = 973.",
         "url": null
       }
     },
@@ -1727,14 +1792,15 @@
       "id": "mat3_cikarma_066",
       "level": "zor",
       "premise": "Hangi sayının 275 eksiğinin 140 fazlası 500 eder?",
-      "text": "Sayı kaçtır?",
+      "text": "Buna göre sayı kaçtır?",
       "correct": "635",
       "wrong1": "645",
       "wrong2": "625",
-      "explanation": "Ters işlem yapılır; önce **500 − 140**, sonra **360 + 275** ile sayı bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:500-140]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 4 çıkmaz · onluk al · 10 − 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 1 = **3**\n→ **360**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:360+275]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n6 + 7 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n3 + 2 + elde 1 = **6**\n→ **635**\n[[stephr]]\nSonuç: [[result:635]]",
+      "explanation": "Ters işlem yapılır. 500 - 140 = 360. 360 + 275 = 635.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre sayı kaçtır?",
+          "text": "Buna göre sayı kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1747,7 +1813,7 @@
         "correct": "635",
         "wrong1": "645",
         "wrong2": "625",
-        "explanation": "Ters işlem yapılır; önce **500 − 140**, sonra **360 + 275** ile sayı bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:500-140]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 4 çıkmaz · onluk al · 10 − 4 = **6**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 4 − 1 = **3**\n→ **360**\n[[stephr]]\n**2. adım**\nEldeli toplama (ters işlem):\n[[addsol:360+275]]\n**Birler basamağı**\n0 + 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n6 + 7 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n3 + 2 + elde 1 = **6**\n→ **635**\n[[stephr]]\nSonuç: [[result:635]]",
+        "explanation": "Ters işlem yapılır. 500 - 140 = 360. 360 + 275 = 635.",
         "url": null
       }
     },
@@ -1755,14 +1821,15 @@
       "id": "mat3_cikarma_067",
       "level": "zor",
       "premise": "Ceyda 850 TL ile alışverişe çıkmıştır. 345 TL'ye kaban, 185 TL'ye kazak almıştır.",
-      "text": "Ceyda'nın geriye kaç TL'si kalmıştır?",
+      "text": "Buna göre ceyda'nın geriye kaç TL'si kalmıştır?",
       "correct": "320",
       "wrong1": "330",
       "wrong2": "310",
-      "explanation": "Önce harcanan para toplanır, sonra **850** TL'den çıkarılır; kalan para bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:345+185]]\n**Birler basamağı**\n5 + 5 = **0** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n4 + 8 + elde 1 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n3 + 1 + elde 1 = **5**\n→ **530**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:850-530]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 3 = **2**\n[[stephr]]\n**Yüzler basamağı**\n8 − 5 = **3**\n→ **320**\n[[stephr]]\nSonuç: [[result:320]]",
+      "explanation": "Harcanan: 345 + 185 = 530 TL. Kalan: 850 - 530 = 320 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre ceyda'nın geriye kaç TL'si kalmıştır?",
+          "text": "Buna göre ceyda'nın geriye kaç TL'si kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1775,7 +1842,7 @@
         "correct": "320",
         "wrong1": "330",
         "wrong2": "310",
-        "explanation": "Önce harcanan para toplanır, sonra **850** TL'den çıkarılır; kalan para bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:345+185]]\n**Birler basamağı**\n5 + 5 = **0** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n4 + 8 + elde 1 = **3** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n3 + 1 + elde 1 = **5**\n→ **530**\n[[stephr]]\n**2. adım**\nOnluk bozmadan çıkarma:\n[[subsol:850-530]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n5 − 3 = **2**\n[[stephr]]\n**Yüzler basamağı**\n8 − 5 = **3**\n→ **320**\n[[stephr]]\nSonuç: [[result:320]]",
+        "explanation": "Harcanan: 345 + 185 = 530 TL. Kalan: 850 - 530 = 320 TL.",
         "url": null
       }
     },
@@ -1783,14 +1850,15 @@
       "id": "mat3_cikarma_068",
       "level": "zor",
       "premise": "İki sayının farkı 140'tır. Eksilen sayıya 60 ekler, çıkan sayıdan 20 çıkarırsak yeni fark kaç olur?",
-      "text": "Yeni fark kaçtır?",
+      "text": "Buna göre yeni fark kaçtır?",
       "correct": "220",
       "wrong1": "200",
       "wrong2": "180",
-      "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; eksilene ekleme ve çıkandan çıkarmanın farkı nasıl etkilediğini düşünürüz.\n\nEksilene eklemek farkı artırır (+60). Çıkandan çıkarmak da farkı artırır (+20). Yeni fark: 140 + 60 + 20 = 220.",
+      "explanation": "Eksilene eklemek farkı artırır (+60). Çıkandan çıkarmak da farkı artırır (+20). Yeni fark: 140 + 60 + 20 = 220.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre yeni fark kaçtır?",
+          "text": "Buna göre yeni fark kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1803,7 +1871,7 @@
         "correct": "220",
         "wrong1": "200",
         "wrong2": "180",
-        "explanation": "Bu soru çıkarma ile ilgili bir kavram sorusudur; eksilene ekleme ve çıkandan çıkarmanın farkı nasıl etkilediğini düşünürüz.\n\nEksilene eklemek farkı artırır (+60). Çıkandan çıkarmak da farkı artırır (+20). Yeni fark: 140 + 60 + 20 = 220.",
+        "explanation": "Eksilene eklemek farkı artırır (+60). Çıkandan çıkarmak da farkı artırır (+20). Yeni fark: 140 + 60 + 20 = 220.",
         "url": null
       }
     },
@@ -1811,14 +1879,15 @@
       "id": "mat3_cikarma_069",
       "level": "zor",
       "premise": "6A4 sayısından 27B sayısını çıkardığımızda sonuç 381 olmaktadır.",
-      "text": "Buna göre A + B kaçtır?",
+      "text": "Buna göre a + B kaçtır?",
       "correct": "8",
       "wrong1": "9",
       "wrong2": "7",
-      "explanation": "Basamak değerleri kullanılarak **6A4 − 27B = 381** işleminden A ve B bulunur.\n\nBirler: 4 - B = 1 ise B=3. Onlar: A'dan 7 çıkmaz, (10+A)-7=8 ise A=5. A+B = 5+3 = 8.",
+      "explanation": "Birler: 4 - B = 1 ise B=3. Onlar: A'dan 7 çıkmaz, (10+A)-7=8 ise A=5. A+B = 5+3 = 8.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre buna göre A + B kaçtır?",
+          "text": "Buna göre a + B kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1831,7 +1900,7 @@
         "correct": "8",
         "wrong1": "9",
         "wrong2": "7",
-        "explanation": "Basamak değerleri kullanılarak **6A4 − 27B = 381** işleminden A ve B bulunur.\n\nBirler: 4 - B = 1 ise B=3. Onlar: A'dan 7 çıkmaz, (10+A)-7=8 ise A=5. A+B = 5+3 = 8.",
+        "explanation": "Birler: 4 - B = 1 ise B=3. Onlar: A'dan 7 çıkmaz, (10+A)-7=8 ise A=5. A+B = 5+3 = 8.",
         "url": null
       }
     },
@@ -1839,14 +1908,15 @@
       "id": "mat3_cikarma_070",
       "level": "zor",
       "premise": "Yüzler basamağında 8 olan en küçük üç basamaklı sayıdan, onlar basamağı 4 olan en büyük iki basamaklı sayıyı çıkarırsak sonuç kaç olur?",
-      "text": "Bulunan sonuç kaçtır?",
+      "text": "Buna göre bulunan sonuç kaçtır?",
       "correct": "751",
       "wrong1": "761",
       "wrong2": "741",
-      "explanation": "En küçük üç basamaklı ile en büyük iki basamaklı sayı belirlenir; **800 − 49** ile fark bulunur.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:800-49]]\n**Birler basamağı**\n0'dan 9 çıkmaz · sola boz · 10 − 9 = **1**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 0 = **7**\nSonuç: [[result:751]]",
+      "explanation": "En küçük 3 basamaklı: 800. En büyük 2 basamaklı (onlar 4): 49. 800 - 49 = 751.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre bulunan sonuç kaçtır?",
+          "text": "Buna göre bulunan sonuç kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1859,7 +1929,7 @@
         "correct": "751",
         "wrong1": "761",
         "wrong2": "741",
-        "explanation": "En küçük üç basamaklı ile en büyük iki basamaklı sayı belirlenir; **800 − 49** ile fark bulunur.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:800-49]]\n**Birler basamağı**\n0'dan 9 çıkmaz · sola boz · 10 − 9 = **1**\n[[stephr]]\n**Onlar basamağı**\n9 − 4 = **5**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 0 = **7**\nSonuç: [[result:751]]",
+        "explanation": "En küçük 3 basamaklı: 800. En büyük 2 basamaklı (onlar 4): 49. 800 - 49 = 751.",
         "url": null
       }
     },
@@ -1867,14 +1937,15 @@
       "id": "mat3_cikarma_071",
       "level": "zor",
       "premise": "Bir çıkarma işleminde eksilen, çıkan ve farkın toplamı 600'dür. Çıkan sayı 125 olduğuna göre;",
-      "text": "Fark kaçtır?",
+      "text": "Buna göre fark kaçtır?",
       "correct": "175",
       "wrong1": "185",
       "wrong2": "165",
-      "explanation": "Eksilen + çıkan + fark kuralı ile eksilen bulunur, ardından fark **300 − 125** ile hesaplanır.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:300-125]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 2 − 1 = **1**\nSonuç: [[result:175]]",
+      "explanation": "Eksilen = 600 / 2 = 300. Fark = Eksilen - Çıkan = 300 - 125 = 175.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre fark kaçtır?",
+          "text": "Buna göre fark kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1887,7 +1958,7 @@
         "correct": "175",
         "wrong1": "185",
         "wrong2": "165",
-        "explanation": "Eksilen + çıkan + fark kuralı ile eksilen bulunur, ardından fark **300 − 125** ile hesaplanır.\n\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:300-125]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 2 − 1 = **1**\nSonuç: [[result:175]]",
+        "explanation": "Eksilen = 600 / 2 = 300. Fark = Eksilen - Çıkan = 300 - 125 = 175.",
         "url": null
       }
     },
@@ -1895,14 +1966,15 @@
       "id": "mat3_cikarma_072",
       "level": "zor",
       "premise": "Mert 3. günün sonunda 900 sayfalık kitabını bitirmeyi hedefliyor. 1. gün 285 sayfa, 2. gün 340 sayfa okumuştur.",
-      "text": "Mert'in hedefine ulaşması için 3. gün kaç sayfa okuması gerekir?",
+      "text": "Buna göre mert'in hedefine ulaşması için 3. gün kaç sayfa okuması gerekir?",
       "correct": "275",
       "wrong1": "285",
       "wrong2": "265",
-      "explanation": "Önce okunan sayfalar toplanır, hedef sayfadan çıkarılır; 3. gün okunması gereken sayfa bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:285+340]]\n**Birler basamağı**\n5 + 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n8 + 4 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n2 + 3 + elde 1 = **6**\n→ **625**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:900-625]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 8 − 6 = **2**\n→ **275**\n[[stephr]]\nSonuç: [[result:275]]",
+      "explanation": "Okunan: 285 + 340 = 625. Kalan: 900 - 625 = 275.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre mert'in hedefine ulaşması için 3. gün kaç sayfa okuması gerekir?",
+          "text": "Buna göre mert'in hedefine ulaşması için 3. gün kaç sayfa okuması gerekir?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1915,7 +1987,7 @@
         "correct": "275",
         "wrong1": "285",
         "wrong2": "265",
-        "explanation": "Önce okunan sayfalar toplanır, hedef sayfadan çıkarılır; 3. gün okunması gereken sayfa bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:285+340]]\n**Birler basamağı**\n5 + 0 = **5**\n[[stephr]]\n**Onlar basamağı**\n8 + 4 = **2** · 1 elde\n[[stephr]]\n**Yüzler basamağı**\n2 + 3 + elde 1 = **6**\n→ **625**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:900-625]]\n**Birler basamağı**\n0'dan 5 çıkmaz · sola boz · 10 − 5 = **5**\n[[stephr]]\n**Onlar basamağı**\n9 − 2 = **7**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 8 − 6 = **2**\n→ **275**\n[[stephr]]\nSonuç: [[result:275]]",
+        "explanation": "Okunan: 285 + 340 = 625. Kalan: 900 - 625 = 275.",
         "url": null
       }
     },
@@ -1923,14 +1995,15 @@
       "id": "mat3_cikarma_073",
       "level": "zor",
       "premise": "Ağaç dikme etkinliğinde hedeflenen fidan sayısı 800'dür. Sabah 314, öğleden sonra 256 fidan dikilmiştir.",
-      "text": "Dikilmesi gereken kaç fidan kalmıştır?",
+      "text": "Buna göre dikilmesi gereken kaç fidan kalmıştır?",
       "correct": "230",
       "wrong1": "240",
       "wrong2": "220",
-      "explanation": "Önce dikilen fidanlar toplanır, hedeften çıkarılır; kalan fidan sayısı bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:314+256]]\n**Birler basamağı**\n4 + 6 = **0** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n1 + 5 + elde 1 = **7**\n[[stephr]]\n**Yüzler basamağı**\n3 + 2 = **5**\n→ **570**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:800-570]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 7 çıkmaz · onluk al · 10 − 7 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 5 = **2**\n→ **230**\n[[stephr]]\nSonuç: [[result:230]]",
+      "explanation": "Dikilen: 314 + 256 = 570. Kalan: 800 - 570 = 230.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre dikilmesi gereken kaç fidan kalmıştır?",
+          "text": "Buna göre dikilmesi gereken kaç fidan kalmıştır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1943,7 +2016,7 @@
         "correct": "230",
         "wrong1": "240",
         "wrong2": "220",
-        "explanation": "Önce dikilen fidanlar toplanır, hedeften çıkarılır; kalan fidan sayısı bulunur.\n\n**2 adımlı problem**:\n**1. adım**\nEldeli toplama (ters işlem):\n[[addsol:314+256]]\n**Birler basamağı**\n4 + 6 = **0** · 1 elde\n[[stephr]]\n**Onlar basamağı**\n1 + 5 + elde 1 = **7**\n[[stephr]]\n**Yüzler basamağı**\n3 + 2 = **5**\n→ **570**\n[[stephr]]\n**2. adım**\nOnluk ve yüzlük bozarak çıkarma:\n[[subsol:800-570]]\n**Birler basamağı**\n0 − 0 = **0**\n[[stephr]]\n**Onlar basamağı**\n0'dan 7 çıkmaz · onluk al · 10 − 7 = **3**\n[[stephr]]\n**Yüzler basamağı**\nOnluk verdik · 7 − 5 = **2**\n→ **230**\n[[stephr]]\nSonuç: [[result:230]]",
+        "explanation": "Dikilen: 314 + 256 = 570. Kalan: 800 - 570 = 230.",
         "url": null
       }
     },
@@ -1951,14 +2024,15 @@
       "id": "mat3_cikarma_074",
       "level": "zor",
       "premise": "Ben 12 yaşındayım. Annem 38 yaşındadır.",
-      "text": "Annem kaç yıl önce 29 yaşındaydı?",
+      "text": "Buna göre annem kaç yıl önce 29 yaşındaydı?",
       "correct": "9",
       "wrong1": "10",
       "wrong2": "8",
-      "explanation": "Kaç yıl önce sorusu, şimdiki yaştan o yaş çıkarılarak bulunur: **38 − 29**.\n\nOnluk bozarak çıkarma:\n[[subsol:38-29]]\n**Birler basamağı**\n8'den 9 çıkmaz · onluk al · 18 − 9 = **9**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 2 − 2 = **0**\nSonuç: [[result:9]]",
+      "explanation": "Annenin yaşından 29'u çıkarırız: 38 - 29 = 9 yıl önce.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre annem kaç yıl önce 29 yaşındaydı?",
+          "text": "Buna göre annem kaç yıl önce 29 yaşındaydı?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1971,7 +2045,7 @@
         "correct": "9",
         "wrong1": "10",
         "wrong2": "8",
-        "explanation": "Kaç yıl önce sorusu, şimdiki yaştan o yaş çıkarılarak bulunur: **38 − 29**.\n\nOnluk bozarak çıkarma:\n[[subsol:38-29]]\n**Birler basamağı**\n8'den 9 çıkmaz · onluk al · 18 − 9 = **9**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 2 − 2 = **0**\nSonuç: [[result:9]]",
+        "explanation": "Annenin yaşından 29'u çıkarırız: 38 - 29 = 9 yıl önce.",
         "url": null
       }
     },
@@ -1979,14 +2053,15 @@
       "id": "mat3_cikarma_075",
       "level": "zor",
       "premise": "384 - 1■6 = 238 işleminde kare (■) yerine yazılması gereken rakam kaçtır?",
-      "text": "Bilinmeyen rakam kaçtır?",
+      "text": "Buna göre bilinmeyen rakam kaçtır?",
       "correct": "4",
       "wrong1": "5",
       "wrong2": "3",
-      "explanation": "Çıkan sayıdaki bilinmeyen rakam bulunur; **384 − 238 = 146** kontrolü yapılır.\n\nOnluk bozarak çıkarma:\n[[subsol:384-238]]\n**Birler basamağı**\n4'ten 8 çıkmaz · onluk al · 14 − 8 = **6**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 7 − 3 = **4**\n[[stephr]]\n**Yüzler basamağı**\n3 − 2 = **1**\nSonuç: [[result:146]]",
+      "explanation": "Çıkanı bulmak için eksilenden farkı çıkarırız: 384 - 238 = 146. Onlar basamağındaki rakam 4'tür.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdaki metne göre bilinmeyen rakam kaçtır?",
+          "text": "Buna göre bilinmeyen rakam kaçtır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1999,7 +2074,7 @@
         "correct": "4",
         "wrong1": "5",
         "wrong2": "3",
-        "explanation": "Çıkan sayıdaki bilinmeyen rakam bulunur; **384 − 238 = 146** kontrolü yapılır.\n\nOnluk bozarak çıkarma:\n[[subsol:384-238]]\n**Birler basamağı**\n4'ten 8 çıkmaz · onluk al · 14 − 8 = **6**\n[[stephr]]\n**Onlar basamağı**\nOnluk verdik · 7 − 3 = **4**\n[[stephr]]\n**Yüzler basamağı**\n3 − 2 = **1**\nSonuç: [[result:146]]",
+        "explanation": "Çıkanı bulmak için eksilenden farkı çıkarırız: 384 - 238 = 146. Onlar basamağındaki rakam 4'tür.",
         "url": null
       }
     }

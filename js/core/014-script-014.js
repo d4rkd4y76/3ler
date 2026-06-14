@@ -90,7 +90,7 @@ function showExplanationAndNext() {
           "</div></div>"
         : "") +
       '<button type="button" id="next-question-button" class="next-question-button">' +
-      (isLast ? "Sonuçları Gör" : "Sonraki Soru") +
+      (isLast ? (window.NOVA_SP_REVIEW_MODE ? "Kontrolü Bitir" : "Sonuçları Gör") : "Sonraki Soru") +
       "</button></div>";
 
     expl.style.display = "block";

@@ -50,6 +50,12 @@ TOPICS: list[dict] = [
             if i == 9
             else "mat3_para_tartma_"
             if i in (10, 11)
+            else "mat3_sekil_"
+            if i == 13
+            else "mat3_cevre_"
+            if i == 14
+            else "mat3_veri_"
+            if i == 15
             else f"mat3_t{i:02d}_"
         ),
         "raw_file": (
@@ -73,6 +79,14 @@ TOPICS: list[dict] = [
             if i == 9
             else "para-tartma-gemini-raw.json"
             if i in (10, 11)
+            else "geometri-gemini-raw.json"
+            if i == 12
+            else "geometrik-sekil-cisim-gemini-raw.json"
+            if i == 13
+            else "cevre-alan-gemini-raw.json"
+            if i == 14
+            else "veri-gemini-raw.json"
+            if i == 15
             else f"mat3-t{i:02d}-gemini-raw.json"
         ),
         "data_file": (
@@ -98,6 +112,14 @@ TOPICS: list[dict] = [
             if i == 10
             else "tartma-s3-90.json"
             if i == 11
+            else "mat3-t12-s3-150.json"
+            if i == 12
+            else "mat3-t13-s3-150.json"
+            if i == 13
+            else "mat3-t14-s3-150.json"
+            if i == 14
+            else "mat3-t15-s3-150.json"
+            if i == 15
             else f"mat3-t{i:02d}-s3-150.json"
         ),
         "word_file": "Üç Basamaklı Doğal Sayılar (3. Sınıf) - 150 Soru - GÜNCEL v4.docx"

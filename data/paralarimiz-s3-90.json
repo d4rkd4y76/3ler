@@ -17,6 +17,7 @@
       "wrong1": "Dolar",
       "wrong2": "Kuruş",
       "explanation": "Ülkemizin resmi para birimi Türk Lirası'dır. Kuruş ise Türk Lirası'nın alt birimidir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Türkiye Cumhuriyeti'nin resmi para birimi aşağıdakilerden hangisidir?",
@@ -40,6 +41,7 @@
       "wrong1": "Gram",
       "wrong2": "Lira",
       "explanation": "1 Türk Lirası'ndan daha küçük değerli madeni paralarımız kuruş ile ifade edilir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Türk Lirası'ndan daha küçük değerlerdeki paralarımızı ifade etmek için kullandığımız para birimi hangisidir?",
@@ -63,6 +65,7 @@
       "wrong1": "50",
       "wrong2": "10",
       "explanation": "1 Türk Lirası'nın içinde tam 100 adet 1 kuruş vardır. 1 TL = 100 kuruştur.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "1 Türk Lirası (TL) toplam kaç kuruşa (kr) eşittir?",
@@ -86,6 +89,7 @@
       "wrong1": "100 TL",
       "wrong2": "500 TL",
       "explanation": "Günümüzde tedavülde olan en büyük kağıt paramız 200 Türk Lirası'dır.\n\n[[para:200TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kullandığımız en büyük kağıt paramız (banknot) aşağıdakilerden hangisidir?",
@@ -109,6 +113,7 @@
       "wrong1": "1 TL",
       "wrong2": "10 TL",
       "explanation": "Kağıt (banknot) paralarımız 5 TL'den başlar. En küçüğü 5 TL'dir.\n\n[[para:5TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kullandığımız en küçük kağıt paramız aşağıdakilerden hangisidir?",
@@ -132,6 +137,7 @@
       "wrong1": "50 kuruş",
       "wrong2": "5 TL",
       "explanation": "Madeni paralarımız arasında en yüksek değerli olan 1 Türk Lirasıdır.\n\n[[para:1TL|50kr|25kr|10kr|5kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kullandığımız en büyük madeni paramız hangisidir?",
@@ -155,6 +161,7 @@
       "wrong1": "5 kuruş",
       "wrong2": "10 kuruş",
       "explanation": "Madeni paralarımızın değeri en küçük olanı 1 kuruştur.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kullandığımız en küçük madeni paramız hangisidir?",
@@ -173,14 +180,15 @@
       "id": "mat3_para_tartma_008",
       "level": "kolay",
       "premise": "[[para:50kr|50kr]]",
-      "text": "Kaç tane 50 kuruş bir araya gelirse 1 Türk Lirası eder?",
+      "text": "Buna göre kaç tane 50 kuruş bir araya gelirse 1 Türk Lirası eder?",
       "correct": "2",
       "wrong1": "4",
       "wrong2": "5",
       "explanation": "50 kuruş + 50 kuruş = 100 kuruş eder. 100 kuruş 1 TL olduğu için cevap 2'dir.\n\n[[para:50kr|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre kaç tane 50 kuruş bir araya gelirse 1 Türk Lirası eder?",
+          "text": "Buna göre kaç tane 50 kuruş bir araya gelirse 1 Türk Lirası eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -201,14 +209,15 @@
       "id": "mat3_para_tartma_009",
       "level": "kolay",
       "premise": "[[para:25kr|25kr|25kr|25kr]]",
-      "text": "Kaç tane 25 kuruş bir araya gelirse 1 Türk Lirası eder?",
+      "text": "Buna göre kaç tane 25 kuruş bir araya gelirse 1 Türk Lirası eder?",
       "correct": "4",
       "wrong1": "2",
       "wrong2": "5",
       "explanation": "4 tane 25 kuruş (25x4=100) 100 kuruş eder. Bu da 1 TL'dir.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre kaç tane 25 kuruş bir araya gelirse 1 Türk Lirası eder?",
+          "text": "Buna göre kaç tane 25 kuruş bir araya gelirse 1 Türk Lirası eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -229,14 +238,15 @@
       "id": "mat3_para_tartma_010",
       "level": "kolay",
       "premise": "[[para:10kr|10kr|10kr|10kr|10kr|10kr|10kr|10kr|10kr|10kr]]",
-      "text": "Kaç tane 10 kuruş bir araya gelirse 1 Türk Lirası eder?",
+      "text": "Buna göre kaç tane 10 kuruş bir araya gelirse 1 Türk Lirası eder?",
       "correct": "10",
       "wrong1": "5",
       "wrong2": "20",
       "explanation": "10 kere 10, 100 eder. 100 kuruş 1 TL olduğu için 10 tane gerekir.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre kaç tane 10 kuruş bir araya gelirse 1 Türk Lirası eder?",
+          "text": "Buna göre kaç tane 10 kuruş bir araya gelirse 1 Türk Lirası eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -262,6 +272,7 @@
       "wrong1": "Kr",
       "wrong2": "Tr",
       "explanation": "Türk Lirası kelimelerinin baş harfleri alınarak 'TL' şeklinde yazılır.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Matematik problemlerinde Türk Lirası'nın kısaltması nasıl yazılır?",
@@ -285,6 +296,7 @@
       "wrong1": "Kş",
       "wrong2": "Ku",
       "explanation": "Kuruş ölçü birimi standart olarak küçük harflerle 'kr' şeklinde kısaltılır.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Matematik problemlerinde kuruşun kısaltması nasıl yazılır?",
@@ -308,6 +320,7 @@
       "wrong1": "30 kr",
       "wrong2": "3000 kr",
       "explanation": "1 TL = 100 kr olduğuna göre, 3 TL = 3 x 100 = 300 kr eder.\n\n[[para:1TL|1TL|1TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "3 Türk Lirası toplam kaç kuruştur?",
@@ -331,6 +344,7 @@
       "wrong1": "80 kr",
       "wrong2": "8000 kr",
       "explanation": "1 TL = 100 kr olduğuna göre, 8 TL = 8 x 100 = 800 kr eder.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "8 Türk Lirası toplam kaç kuruştur?",
@@ -354,6 +368,7 @@
       "wrong1": "40 TL",
       "wrong2": "400 TL",
       "explanation": "Kuruşu Liraya çevirirken içinde kaç tane 100 olduğuna bakarız. 400 kr = 4 TL.\n\n[[para:1TL|1TL|1TL|1TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "400 kuruş toplam kaç Türk Lirası eder?",
@@ -377,6 +392,7 @@
       "wrong1": "70 TL",
       "wrong2": "77 TL",
       "explanation": "700 kuruşun içinde 7 tane 100 vardır. Bu yüzden 7 TL eder.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "700 kuruş toplam kaç Türk Lirası eder?",
@@ -400,6 +416,7 @@
       "wrong1": "105 kr",
       "wrong2": "51 kr",
       "explanation": "1 TL = 100 kuruştur. Üzerine 50 kuruş daha eklersek 150 kuruş olur.\n\n[[para:1TL|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "1 TL 50 kuruş toplam kaç kuruşa eşittir?",
@@ -423,6 +440,7 @@
       "wrong1": "252 kr",
       "wrong2": "25 kr",
       "explanation": "2 TL = 200 kuruştur. Üzerine 25 kuruş daha eklersek 225 kuruş olur.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "2 TL 25 kuruş toplam kaç kuruşa eşittir?",
@@ -446,6 +464,7 @@
       "wrong1": "35 TL",
       "wrong2": "3 TL 5 kr",
       "explanation": "350 kuruşun içindeki 300 kuruş 3 TL yapar. Geriye 50 kuruş kalır.\n\n[[para:1TL|1TL|1TL|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "350 kuruş nasıl ifade edilebilir?",
@@ -464,14 +483,15 @@
       "id": "mat3_para_tartma_020",
       "level": "kolay",
       "premise": "[[para:50TL|100TL|200TL]]",
-      "text": "Aşağıdakilerden hangisi kullandığımız kağıt paralardan biri DEĞİLDİR?",
+      "text": "Buna göre aşağıdakilerden hangisi kullandığımız kağıt paralardan biri değildir?",
       "correct": "25 TL",
       "wrong1": "50 TL",
       "wrong2": "100 TL",
       "explanation": "Kullandığımız kağıt paralar 5, 10, 20, 50, 100 ve 200 TL'dir. 25 TL diye bir kağıt para yoktur.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre aşağıdakilerden hangisi kullandığımız kağıt paralardan biri DEĞİLDİR?",
+          "text": "Buna göre aşağıdakilerden hangisi kullandığımız kağıt paralardan biri değildir?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -492,14 +512,15 @@
       "id": "mat3_para_tartma_021",
       "level": "kolay",
       "premise": "[[para:5kr|10kr|25kr|50kr|1TL]]",
-      "text": "Aşağıdakilerden hangisi kullandığımız madeni paralardan biri DEĞİLDİR?",
+      "text": "Buna göre aşağıdakilerden hangisi kullandığımız madeni paralardan biri değildir?",
       "correct": "20 kuruş",
       "wrong1": "25 kuruş",
       "wrong2": "50 kuruş",
       "explanation": "Madeni paralarımız 1, 5, 10, 25, 50 kuruş ve 1 TL'dir. 20 kuruş yoktur.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre aşağıdakilerden hangisi kullandığımız madeni paralardan biri DEĞİLDİR?",
+          "text": "Buna göre aşağıdakilerden hangisi kullandığımız madeni paralardan biri değildir?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -525,6 +546,7 @@
       "wrong1": "20 TL",
       "wrong2": "10 TL",
       "explanation": "Her 100 kuruş 1 TL'ye eşittir. 200 kuruş, 2 tane 100 kuruş olduğu için 2 TL'dir.\n\n[[para:1TL|1TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "200 kuruş kaç Türk Lirası'na eşittir?",
@@ -548,6 +570,7 @@
       "wrong1": "25 TL",
       "wrong2": "10 TL",
       "explanation": "50 - 35 = 15 TL para üstü alınır.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kasiyere 50 TL verdim, aldıklarım 35 TL tuttu. Kaç TL para üstü alırım?",
@@ -566,14 +589,15 @@
       "id": "mat3_para_tartma_024",
       "level": "orta",
       "premise": "[[para:10TL|10TL|10TL|5TL]]",
-      "text": "Kumbaramdan 3 tane 10 TL, 1 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
+      "text": "Buna göre kumbaramdan 3 tane 10 TL, 1 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
       "correct": "35 TL",
       "wrong1": "40 TL",
       "wrong2": "25 TL",
       "explanation": "3 tane 10 TL = 30 TL eder. 1 tane de 5 TL var. 30 + 5 = 35 TL eder.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre kumbaramdan 3 tane 10 TL, 1 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
+          "text": "Buna göre kumbaramdan 3 tane 10 TL, 1 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -599,6 +623,7 @@
       "wrong1": "15 TL",
       "wrong2": "25 TL",
       "explanation": "Kalemlerin fiyatı aynı olduğu için 5 ile 4'ü çarparız. 5 x 4 = 20 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 4 TL olan kurşun kalemden 5 tane aldım. Kırtasiyeciye kaç TL öderim?",
@@ -622,6 +647,7 @@
       "wrong1": "30 TL",
       "wrong2": "40 TL",
       "explanation": "1 haftada 7 gün vardır. 7 x 5 TL = 35 TL biriktirir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Günde 5 TL harçlık biriktiren Ali, 1 haftada (7 gün) toplam kaç TL biriktirir?",
@@ -645,6 +671,7 @@
       "wrong1": "5",
       "wrong2": "3",
       "explanation": "20'yi 5'e böldüğümüzde 4 sonucunu buluruz. (4 x 5 = 20)",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "20 TL'nin içinde toplam kaç tane 5 TL vardır?",
@@ -668,6 +695,7 @@
       "wrong1": "4",
       "wrong2": "10",
       "explanation": "100'ü 20'ye böldüğümüzde 5 sonucunu buluruz. (5 x 20 = 100)",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "100 TL'nin içinde toplam kaç tane 20 TL vardır?",
@@ -691,6 +719,7 @@
       "wrong1": "35 TL",
       "wrong2": "15 TL",
       "explanation": "Kalan parayı bulmak için çıkarma yaparız. 45 - 20 = 25 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Ayşe'nin 45 TL'si var. Kırtasiyede 20 TL harcadı. Geriye kaç TL'si kaldı?",
@@ -714,6 +743,7 @@
       "wrong1": "4 TL",
       "wrong2": "0 TL",
       "explanation": "3 defter: 3 x 6 = 18 TL tutar. Para üstü: 20 - 18 = 2 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 6 TL olan defterden 3 tane alıp kasiyere 20 TL verdim. Kaç TL para üstü alırım?",
@@ -737,6 +767,7 @@
       "wrong1": "20 TL",
       "wrong2": "30 TL",
       "explanation": "50'nin yarısı 25'tir. (50 / 2 = 25). Harcandığı için geriye yine 25 TL kalır.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "50 TL paramın yarısını harcadım. Geriye kaç TL param kaldı?",
@@ -755,14 +786,15 @@
       "id": "mat3_para_tartma_032",
       "level": "orta",
       "premise": "[[para:1TL|1TL|1TL|1TL|50kr|50kr]]",
-      "text": "Cebimde 4 tane 1 TL ve 2 tane 50 kuruş var. Toplam param kaç TL'dir?",
+      "text": "Buna göre cebimde 4 tane 1 TL ve 2 tane 50 kuruş var. Toplam param kaç TL'dir?",
       "correct": "5 TL",
       "wrong1": "6 TL",
       "wrong2": "4 TL",
       "explanation": "4 tane 1 TL = 4 TL. 2 tane 50 kr = 1 TL. Toplam: 4 + 1 = 5 TL.\n\n[[para:1TL|1TL|1TL|1TL|50kr|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre cebimde 4 tane 1 TL ve 2 tane 50 kuruş var. Toplam param kaç TL'dir?",
+          "text": "Buna göre cebimde 4 tane 1 TL ve 2 tane 50 kuruş var. Toplam param kaç TL'dir?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -788,6 +820,7 @@
       "wrong1": "100 TL",
       "wrong2": "70 TL",
       "explanation": "2 hafta 14 gündür. 14 x 10 TL = 140 TL biriktirir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kumbaraya her gün 10 TL atan bir çocuk 2 haftada (14 gün) kaç TL biriktirir?",
@@ -811,6 +844,7 @@
       "wrong1": "24 TL",
       "wrong2": "40 TL",
       "explanation": "Tanesi 8 TL olduğu için 4 ile çarparız. 4 x 8 = 32 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 8 TL olan silgilerden 4 tane alırsam satıcıya toplam ne kadar öderim?",
@@ -834,6 +868,7 @@
       "wrong1": "30 TL",
       "wrong2": "60 TL",
       "explanation": "1 kişi 15 TL ise 3 kişi için: 3 x 15 = 45 TL ödenir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir sinema bileti 15 TL'dir. 3 arkadaş sinemaya gidersek toplam kaç TL bilet parası öderiz?",
@@ -852,14 +887,15 @@
       "id": "mat3_para_tartma_036",
       "level": "orta",
       "premise": "[[para:20TL|20TL|50TL]]",
-      "text": "Cüzdanımda 2 tane 20 TL, 1 tane 50 TL var. Cüzdanımdaki toplam param kaç TL'dir?",
+      "text": "Buna göre cüzdanımda 2 tane 20 TL, 1 tane 50 TL var. Cüzdanımdaki toplam param kaç TL'dir?",
       "correct": "90 TL",
       "wrong1": "70 TL",
       "wrong2": "100 TL",
       "explanation": "2 tane 20 TL = 40 TL. Üzerine 50 TL eklersek: 40 + 50 = 90 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre cüzdanımda 2 tane 20 TL, 1 tane 50 TL var. Cüzdanımdaki toplam param kaç TL'dir?",
+          "text": "Buna göre cüzdanımda 2 tane 20 TL, 1 tane 50 TL var. Cüzdanımdaki toplam param kaç TL'dir?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -885,6 +921,7 @@
       "wrong1": "25 TL",
       "wrong2": "10 TL",
       "explanation": "75 - 60 = 15 TL indirim yapılmıştır.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Fiyatı 75 TL olan ayakkabı, indirimle 60 TL oldu. Ayakkabıya kaç TL indirim yapılmıştır?",
@@ -903,14 +940,15 @@
       "id": "mat3_para_tartma_038",
       "level": "orta",
       "premise": "[[para:50kr|50kr|50kr]]",
-      "text": "3 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
+      "text": "Buna göre 3 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
       "correct": "1 TL 50 kr",
       "wrong1": "1 TL",
       "wrong2": "2 TL",
       "explanation": "İki 50 kuruş 1 TL eder, üçüncüyle birlikte 1 TL 50 kr olur.\n\n[[para:50kr|50kr|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre 3 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
+          "text": "Buna göre 3 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -936,6 +974,7 @@
       "wrong1": "60 TL",
       "wrong2": "80 TL",
       "explanation": "Çikolatalar: 5 x 10 = 50 TL. Oyuncak: 20 TL. Toplam: 50 + 20 = 70 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 10 TL'den 5 tane çikolata ve 20 TL'lik bir oyuncak aldım. Toplam kaç TL öderim?",
@@ -959,6 +998,7 @@
       "wrong1": "35 TL",
       "wrong2": "20 TL",
       "explanation": "Harcamalar: 45 + 30 = 75 TL. Kalan: 100 - 75 = 25 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kumbaramda 100 TL var. 45 TL'siyle kitap, 30 TL'siyle kalem aldım. Geriye kaç TL'm kaldı?",
@@ -982,6 +1022,7 @@
       "wrong1": "28 TL",
       "wrong2": "12 TL",
       "explanation": "4 simit: 4 x 7 = 28 TL. Para üstü: 50 - 28 = 22 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir simit 7 TL'dir. 4 simit aldım ve fırıncıya 50 TL verdim. Kaç TL para üstü alırım?",
@@ -1005,6 +1046,7 @@
       "wrong1": "30 TL",
       "wrong2": "15 TL",
       "explanation": "Eşit paylaşım bölme işlemidir. 60 ÷ 3 = 20 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "60 TL'lik hesabı 3 arkadaş eşit olarak paylaştı. Kişi başı kaç TL öderler?",
@@ -1028,6 +1070,7 @@
       "wrong1": "150 TL",
       "wrong2": "100 TL",
       "explanation": "1 haftada 50 TL ise, 4 haftada: 4 x 50 = 200 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir haftada 50 TL biriktiren Mert, 1 ayda (4 hafta kabul edilerek) ne kadar biriktirir?",
@@ -1051,6 +1094,7 @@
       "wrong1": "9 TL",
       "wrong2": "8 TL 50 kr",
       "explanation": "Liralar: 6+2 = 8 TL. Kuruşlar: 40+50 = 90 kr. Birlikte: 8 TL 90 kr.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "6 TL 40 kr ile 2 TL 50 kr toplandığında sonuç ne olur?",
@@ -1074,6 +1118,7 @@
       "wrong1": "8",
       "wrong2": "12",
       "explanation": "40 TL'yi her gün 4'erli harcarsak: 40 ÷ 4 = 10 günde biter.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kumbaramda 40 TL var. Günde 4 TL harcayarak paramı kaç günde bitiririm?",
@@ -1097,6 +1142,7 @@
       "wrong1": "25 TL",
       "wrong2": "10 TL",
       "explanation": "Toplam para: 50 + 30 = 80 TL. Harcanan çıkarsa: 80 - 65 = 15 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Babam 50 TL, annem 30 TL verdi. İhtiyaçlarım için 65 TL harcadım. Geriye ne kadar param kaldı?",
@@ -1115,14 +1161,15 @@
       "id": "mat3_para_tartma_047",
       "level": "zor",
       "premise": null,
-      "text": "Tanesi 12 TL olan kalemlerden cebimdeki 50 TL ile EN FAZLA kaç tane alabilirim?",
+      "text": "Tanesi 12 TL olan kalemlerden cebimdeki 50 TL ile EN Fazla kaç tane alabilirim?",
       "correct": "4",
       "wrong1": "5",
       "wrong2": "3",
       "explanation": "12'şer sayarsak: 12, 24, 36, 48. En fazla 4 tane alınabilir (4x12=48 TL) ve 2 TL artar.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Tanesi 12 TL olan kalemlerden cebimdeki 50 TL ile EN FAZLA kaç tane alabilirim?",
+          "text": "Tanesi 12 TL olan kalemlerden cebimdeki 50 TL ile EN Fazla kaç tane alabilirim?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -1143,6 +1190,7 @@
       "wrong1": "10 TL",
       "wrong2": "20 TL",
       "explanation": "Aldıklarımın tutarı 120 + 80 = 200 TL. Verilen para da 200 TL olduğu için para üstü alınmaz (0 TL).",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Mağazadan 120 TL'ye pantolon, 80 TL'ye gömlek aldım. Kasaya 200 TL verirsem ne kadar para üstü alırım?",
@@ -1166,6 +1214,7 @@
       "wrong1": "3 TL",
       "wrong2": "5 TL",
       "explanation": "250 + 150 = 400 kuruş eder. 400 kuruş da 4 TL'dir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "250 kuruş ile 150 kuruşu toplarsak kaç Türk Lirası elde ederiz?",
@@ -1189,6 +1238,7 @@
       "wrong1": "55 TL",
       "wrong2": "75 TL",
       "explanation": "Elma: 3 x 15 = 45 TL. Soğan: 2 x 10 = 20 TL. Toplam: 45 + 20 = 65 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kilosu 15 TL olan elmadan 3 kg, kilosu 10 TL olan soğandan 2 kg aldım. Manava toplam kaç TL ödemeliyim?",
@@ -1212,6 +1262,7 @@
       "wrong1": "4 TL",
       "wrong2": "1 TL",
       "explanation": "8 tane 25 kuruş çarptığımızda 200 kuruş eder. 200 kr = 2 TL.\n\n[[para:25kr|25kr|25kr|25kr|25kr|25kr|25kr|25kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 25 kuruş olan sakızlardan 8 tane alırsam bakkala kaç TL öderim?",
@@ -1235,6 +1286,7 @@
       "wrong1": "80 TL",
       "wrong2": "55 TL",
       "explanation": "Kardeşimin harçlığı: 40 + 15 = 55 TL. İkimizin toplamı: 40 + 55 = 95 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kardeşim benden 15 TL daha fazla harçlık alıyor. Benim 40 TL harçlığım olduğuna göre, ikimizin toplam harçlığı kaç TL'dir?",
@@ -1258,6 +1310,7 @@
       "wrong1": "20 TL",
       "wrong2": "30 TL",
       "explanation": "1 defterden karı: 20 - 15 = 5 TL. 5 defterden karı: 5 x 5 = 25 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bakkal amca 15 TL'ye aldığı defteri 20 TL'ye satıyor. Bakkal 5 defter sattığında toplam kaç TL kar elde eder?",
@@ -1281,6 +1334,7 @@
       "wrong1": "6",
       "wrong2": "4",
       "explanation": "Eksik para: 80 - 65 = 15 TL. Günde 3 TL ile: 15 ÷ 3 = 5 günde tamamlarım.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Fiyatı 80 TL olan bir okul çantasını almak istiyorum. Kumbaramda 65 TL var. Günde 3 TL biriktirerek eksik olan paramı kaç günde tamamlarım?",
@@ -1299,14 +1353,15 @@
       "id": "mat3_para_tartma_055",
       "level": "zor",
       "premise": "[[para:5TL|5TL|5TL|5TL|5TL]]",
-      "text": "Tanesi 4 TL olan sulardan 6 tane aldım. Cebimde sadece 5 TL'lik kağıt paralar var. Hesabı ödemek için kasiyere EN AZ kaç tane 5 TL vermeliyim?",
+      "text": "Buna göre tanesi 4 TL olan sulardan 6 tane aldım. Cebimde sadece 5 TL'lik kağıt paralar var. Hesabı ödemek için kasiyere EN AZ kaç tane 5 TL vermeliyim?",
       "correct": "5",
       "wrong1": "4",
       "wrong2": "6",
       "explanation": "Sular 6 x 4 = 24 TL tuttu. 4 tane 5 TL (20) versem yetmez. 5 tane 5 TL (25) vermeliyim ki ödeme yapabileyim.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre tanesi 4 TL olan sulardan 6 tane aldım. Cebimde sadece 5 TL'lik kağıt paralar var. Hesabı ödemek için kasiyere EN AZ kaç tane 5 TL vermeliyim?",
+          "text": "Buna göre tanesi 4 TL olan sulardan 6 tane aldım. Cebimde sadece 5 TL'lik kağıt paralar var. Hesabı ödemek için kasiyere EN AZ kaç tane 5 TL vermeliyim?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1332,6 +1387,7 @@
       "wrong1": "6 TL",
       "wrong2": "4 TL",
       "explanation": "12 tanesi 60 TL ise, 1 tanesi: 60 ÷ 12 = 5 TL'dir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Düzinesi 60 TL olan kurşun kalemlerin 1 tanesi kaç TL'dir?",
@@ -1355,6 +1411,7 @@
       "wrong1": "30 TL",
       "wrong2": "10 TL",
       "explanation": "Yarısı 20 ise diğer yarısı da 20'dir. Tamamı 20 x 2 = 40 TL'dir.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Yarısı 20 TL olan bir yaş pastanın tamamı kaç TL'dir?",
@@ -1378,6 +1435,7 @@
       "wrong1": "50 TL",
       "wrong2": "20 TL",
       "explanation": "Çeyrek bulmak için 4'e böleriz. 100 ÷ 4 = 25 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "100 TL paramın çeyreği ile boya kalemi aldım. Boya kalemine kaç TL ödedim?",
@@ -1401,6 +1459,7 @@
       "wrong1": "5",
       "wrong2": "20",
       "explanation": "1 TL = 100 kuruştur. 100'ün içinde kaç tane 10 olduğuna bakarız (100 ÷ 10 = 10 tane).\n\n[[para:10kr|10kr|10kr|10kr|10kr|10kr|10kr|10kr|10kr|10kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Cebimdeki 1 Türk Lirası'nı sadece 10 kuruşluk madeni paralarla bozmak istesem bana kaç tane 10 kuruş verirler?",
@@ -1419,14 +1478,15 @@
       "id": "mat3_para_tartma_060",
       "level": "zor",
       "premise": "[[para:50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr]]",
-      "text": "Kumbaramı açtığımda içinden 12 tane 50 kuruş çıktı. Bu paranın toplam değeri kaç Türk Lirasıdır?",
+      "text": "Buna göre kumbaramı açtığımda içinden 12 tane 50 kuruş çıktı. Bu paranın toplam değeri kaç Türk Lirasıdır?",
       "correct": "6 TL",
       "wrong1": "12 TL",
       "wrong2": "24 TL",
       "explanation": "Her 2 tane 50 kuruş 1 TL eder. 12'nin içinde 6 tane 2 vardır. Yani 6 TL.\n\n[[para:50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre kumbaramı açtığımda içinden 12 tane 50 kuruş çıktı. Bu paranın toplam değeri kaç Türk Lirasıdır?",
+          "text": "Buna göre kumbaramı açtığımda içinden 12 tane 50 kuruş çıktı. Bu paranın toplam değeri kaç Türk Lirasıdır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1452,6 +1512,7 @@
       "wrong1": "45 TL",
       "wrong2": "65 TL",
       "explanation": "İkisinin verdiği paralar toplanır: 20 + 35 = 55 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Ali 20 TL, Can ise 35 TL verdi ve paralarını birleştirip bir futbol topu aldılar. Futbol topunun fiyatı ne kadardır?",
@@ -1475,6 +1536,7 @@
       "wrong1": "48 TL",
       "wrong2": "62 TL",
       "explanation": "Verilen paradan para üstü çıkarılırsa harcanan tutar bulunur. 50 - 12 = 38 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bakkala alışveriş için 50 TL verdim. Bakkal amca bana 12 TL para üstü verdi. Buna göre aldığım ürünler toplam kaç TL tutmuştur?",
@@ -1498,6 +1560,7 @@
       "wrong1": "8",
       "wrong2": "7",
       "explanation": "48 TL'yi 8'er 8'er biriktirirsek: 48 ÷ 8 = 6 günde alırız.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Fiyatı 48 TL olan bir oyuncak arabayı almak için kumbarama her gün 8 TL atıyorum. Bu oyuncağı kaçıncı günün sonunda alabilirim?",
@@ -1521,6 +1584,7 @@
       "wrong1": "20 TL",
       "wrong2": "40 TL",
       "explanation": "Toplam fiyatı kiloya bölersek 1 kiloyu buluruz. 90 ÷ 3 = 30 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Pazarda 3 kilosu 90 TL'ye satılan muzun 1 kilogramı kaç TL'dir?",
@@ -1544,6 +1608,7 @@
       "wrong1": "20 TL",
       "wrong2": "5 TL",
       "explanation": "Harcama: 65 + 25 = 90 TL. Para üstü: 100 - 90 = 10 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Bir tabak yemek 65 TL, bir kase çorba 25 TL'dir. 100 TL ile 1 yemek ve 1 çorba alan biri kaç TL para üstü alır?",
@@ -1562,14 +1627,15 @@
       "id": "mat3_para_tartma_131",
       "level": "orta",
       "premise": "[[para:20TL|20TL|10TL|5TL|5TL|5TL]]",
-      "text": "Kumbaramdan 2 tane 20 TL, 1 tane 10 TL ve 3 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
+      "text": "Buna göre kumbaramdan 2 tane 20 TL, 1 tane 10 TL ve 3 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
       "correct": "65 TL",
       "wrong1": "55 TL",
       "wrong2": "70 TL",
       "explanation": "20 + 20 = 40 TL. 10 TL eklersek 50 TL. 3 tane 5 TL = 15 TL. Toplam: 50 + 15 = 65 TL.\n\n[[para:20TL|20TL|10TL|5TL|5TL|5TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre kumbaramdan 2 tane 20 TL, 1 tane 10 TL ve 3 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
+          "text": "Buna göre kumbaramdan 2 tane 20 TL, 1 tane 10 TL ve 3 tane 5 TL çıktı. Kumbaramda toplam kaç TL vardır?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1590,14 +1656,15 @@
       "id": "mat3_para_tartma_132",
       "level": "orta",
       "premise": "[[para:25kr|25kr|25kr|25kr|25kr|25kr]]",
-      "text": "Cebimde 6 tane 25 kuruş var. Bu paraların toplam değeri ne kadar eder?",
+      "text": "Buna göre cebimde 6 tane 25 kuruş var. Bu paraların toplam değeri ne kadar eder?",
       "correct": "1 TL 50 kr",
       "wrong1": "1 TL",
       "wrong2": "2 TL",
       "explanation": "6 x 25 = 150 kuruş eder. 150 kuruş = 1 TL 50 kuruştur.\n\n[[para:25kr|25kr|25kr|25kr|25kr|25kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre cebimde 6 tane 25 kuruş var. Bu paraların toplam değeri ne kadar eder?",
+          "text": "Buna göre cebimde 6 tane 25 kuruş var. Bu paraların toplam değeri ne kadar eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1623,6 +1690,7 @@
       "wrong1": "5 TL 95 kr",
       "wrong2": "6 TL 50 kr",
       "explanation": "Liralar: 3 + 2 = 5 TL. Kuruşlar: 60 + 45 = 105 kr = 1 TL 5 kr. Toplam: 6 TL 5 kr.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "3 TL 60 kr ile 2 TL 45 kr toplandığında sonuç ne olur?",
@@ -1641,14 +1709,15 @@
       "id": "mat3_para_tartma_134",
       "level": "zor",
       "premise": null,
-      "text": "Tanesi 18 TL olan oyuncaklardan cebimdeki 85 TL ile EN FAZLA kaç tane alabilirim?",
+      "text": "Tanesi 18 TL olan oyuncaklardan cebimdeki 85 TL ile EN Fazla kaç tane alabilirim?",
       "correct": "4",
       "wrong1": "5",
       "wrong2": "3",
       "explanation": "18, 36, 54, 72 TL ile 4 tane alınabilir. 5 tane 90 TL tutar, paramız yetmez.",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Tanesi 18 TL olan oyuncaklardan cebimdeki 85 TL ile EN FAZLA kaç tane alabilirim?",
+          "text": "Tanesi 18 TL olan oyuncaklardan cebimdeki 85 TL ile EN Fazla kaç tane alabilirim?",
           "info": null,
           "infoItems": null,
           "infoBlocks": null
@@ -1669,6 +1738,7 @@
       "wrong1": "80 TL",
       "wrong2": "100 TL",
       "explanation": "50 + 20 = 70 TL. 2 tane 10 TL = 20 TL. Toplam: 70 + 20 = 90 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Cüzdanımda 1 tane 50 TL, 1 tane 20 TL ve 2 tane 10 TL var. Toplam kaç TL param vardır?",
@@ -1692,6 +1762,7 @@
       "wrong1": "30 TL",
       "wrong2": "20 TL",
       "explanation": "Eşit paylaşım bölme işlemidir. 125 ÷ 5 = 25 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "5 arkadaş 125 TL'lik yemek hesabını eşit paylaştı. Kişi başı kaç TL öder?",
@@ -1710,14 +1781,15 @@
       "id": "mat3_para_tartma_137",
       "level": "orta",
       "premise": "[[para:10kr|10kr|10kr|10kr|50kr|50kr|50kr|50kr|50kr|50kr]]",
-      "text": "4 tane 10 kuruş ile 6 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
+      "text": "Buna göre 4 tane 10 kuruş ile 6 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
       "correct": "3 TL 40 kr",
       "wrong1": "3 TL",
       "wrong2": "4 TL",
       "explanation": "4 x 10 = 40 kr. 6 x 50 = 300 kr. Toplam: 340 kr = 3 TL 40 kr.\n\n[[para:10kr|10kr|10kr|10kr|50kr|50kr|50kr|50kr|50kr|50kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre 4 tane 10 kuruş ile 6 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
+          "text": "Buna göre 4 tane 10 kuruş ile 6 tane 50 kuruş toplandığında değer olarak ne kadar eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1743,6 +1815,7 @@
       "wrong1": "40 TL",
       "wrong2": "36 TL",
       "explanation": "Harcanmayan kısım 2/5'tir. 2/5 = 24 TL ise tamamı: 24 ÷ 2 x 5 = 60 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kumbaramdaki paranın 3/5'ini harcadım, geriye 24 TL kaldı. Başlangıçta kumbaramda kaç TL vardı?",
@@ -1766,6 +1839,7 @@
       "wrong1": "14 TL",
       "wrong2": "28 TL",
       "explanation": "Yarım kilo alınca fiyat da yarıya düşer: 14 ÷ 2 = 7 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kilosu 14 TL olan muzdan yarım kilo aldım. Manava kaç TL öderim?",
@@ -1789,6 +1863,7 @@
       "wrong1": "13",
       "wrong2": "12",
       "explanation": "Eksik para: 88 - 35 = 53 TL. 53 ÷ 4 = 13, kalan 1 TL için bir gün daha gerekir. Toplam 14 gün.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Fiyatı 88 TL olan oyuncak için 35 TL'm var. Günde 4 TL biriktirirsem eksik paramı kaç günde tamamlarım?",
@@ -1812,6 +1887,7 @@
       "wrong1": "4 TL 75 kr",
       "wrong2": "6 TL",
       "explanation": "250 kr = 2 TL 50 kr. 1 TL 25 kr eklersek 3 TL 75 kr. 2 TL daha: 5 TL 75 kr.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "250 kuruş, 1 TL 25 kuruş ve 2 TL toplandığında sonuç ne olur?",
@@ -1830,14 +1906,15 @@
       "id": "mat3_para_tartma_142",
       "level": "zor",
       "premise": "[[para:50kr|50kr|50kr|1TL|1TL|1TL|1TL|1TL]]",
-      "text": "3 tane 50 kuruş ile 5 tane 1 TL toplandığında değer olarak ne kadar eder?",
+      "text": "Buna göre 3 tane 50 kuruş ile 5 tane 1 TL toplandığında değer olarak ne kadar eder?",
       "correct": "6 TL 50 kr",
       "wrong1": "5 TL 50 kr",
       "wrong2": "7 TL",
       "explanation": "3 x 50 = 150 kr = 1 TL 50 kr. 5 x 1 TL = 5 TL. Toplam: 6 TL 50 kr.\n\n[[para:50kr|50kr|50kr|1TL|1TL|1TL|1TL|1TL]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre 3 tane 50 kuruş ile 5 tane 1 TL toplandığında değer olarak ne kadar eder?",
+          "text": "Buna göre 3 tane 50 kuruş ile 5 tane 1 TL toplandığında değer olarak ne kadar eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -1863,6 +1940,7 @@
       "wrong1": "8 TL",
       "wrong2": "4 TL",
       "explanation": "2 defter: 2 x 22 = 44 TL. Para üstü: 50 - 44 = 6 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 22 TL olan defterden 2 tane alıp kasiyere 50 TL verdim. Kaç TL para üstü alırım?",
@@ -1886,6 +1964,7 @@
       "wrong1": "30 TL",
       "wrong2": "34 TL",
       "explanation": "Kardeşimin harçlığı: 27 + 8 = 35 TL. Toplam: 27 + 35 = 62 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kardeşim benden 8 TL daha fazla harçlık alıyor. İkimizin toplam harçlığı 62 TL ise benim harçlığım kaç TL'dir?",
@@ -1909,6 +1988,7 @@
       "wrong1": "170 TL",
       "wrong2": "200 TL",
       "explanation": "100 + 50 = 150 TL. 2 x 20 = 40 TL. Toplam: 150 + 40 = 190 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Cüzdanımda 1 tane 100 TL, 1 tane 50 TL ve 2 tane 20 TL var. Toplam kaç TL param vardır?",
@@ -1932,6 +2012,7 @@
       "wrong1": "6 TL",
       "wrong2": "3 TL",
       "explanation": "1 düzine 12 tanedir. 48 ÷ 12 = 4 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Düzinesi 48 TL olan kurşun kalemlerin 1 tanesi kaç TL'dir?",
@@ -1955,6 +2036,7 @@
       "wrong1": "750 kr",
       "wrong2": "8 TL",
       "explanation": "400 + 350 = 750 kuruş eder. 750 kr = 7 TL 50 kr.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "400 kuruş ile 350 kuruş toplandığında sonuç ne olur?",
@@ -1978,6 +2060,7 @@
       "wrong1": "4 TL",
       "wrong2": "1 TL",
       "explanation": "8 x 25 = 200 kuruş eder. 200 kr = 2 TL.\n\n[[para:25kr|25kr|25kr|25kr|25kr|25kr|25kr|25kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Tanesi 25 kuruş olan sakızlardan 8 tane aldım. Bakkala toplam kaç TL öderim?",
@@ -1996,14 +2079,15 @@
       "id": "mat3_para_tartma_149",
       "level": "orta",
       "premise": "[[para:1TL|1TL|50kr|50kr|50kr|25kr]]",
-      "text": "2 tane 1 TL, 3 tane 50 kuruş ve 1 tane 25 kuruş toplandığında değer olarak ne kadar eder?",
+      "text": "Buna göre 2 tane 1 TL, 3 tane 50 kuruş ve 1 tane 25 kuruş toplandığında değer olarak ne kadar eder?",
       "correct": "4 TL 25 kr",
       "wrong1": "3 TL 75 kr",
       "wrong2": "4 TL 50 kr",
       "explanation": "2 TL + (3 x 50 = 150 kr = 1 TL 50 kr) + 25 kr = 4 TL 25 kr.\n\n[[para:1TL|1TL|50kr|50kr|50kr|25kr]]",
+      "_stem_locked": true,
       "app": {
         "question": {
-          "text": "Yukarıdakine göre 2 tane 1 TL, 3 tane 50 kuruş ve 1 tane 25 kuruş toplandığında değer olarak ne kadar eder?",
+          "text": "Buna göre 2 tane 1 TL, 3 tane 50 kuruş ve 1 tane 25 kuruş toplandığında değer olarak ne kadar eder?",
           "info": null,
           "infoItems": null,
           "infoBlocks": [
@@ -2029,6 +2113,7 @@
       "wrong1": "28 TL",
       "wrong2": "8 TL",
       "explanation": "Toplam: 35 + 28 + 19 = 82 TL. Para üstü: 100 - 82 = 18 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Marketten 35 TL, 28 TL ve 19 TL tutan üç ürün aldım. Kasaya 100 TL verirsem kaç TL para üstü alırım?",
@@ -2052,6 +2137,7 @@
       "wrong1": "24 TL",
       "wrong2": "48 TL",
       "explanation": "Kilo ile fiyatı çarparız: 3 x 12 = 36 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Kilosu 12 TL olan biberden 3 kilogram alan bir müşteri manava kaç TL öder?",
@@ -2075,6 +2161,7 @@
       "wrong1": "6 TL",
       "wrong2": "2 TL",
       "explanation": "Yarım düzine 6 tanedir. 18 ÷ 6 = 3 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Yarım düzinesi 18 TL olan yumurtaların 1 tanesi kaç TL'dir?",
@@ -2098,6 +2185,7 @@
       "wrong1": "30 TL",
       "wrong2": "10 TL",
       "explanation": "Toplam para: 70 + 45 = 115 TL. Kalan: 115 - 95 = 20 TL.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Babam 70 TL, annem 45 TL verdi. Birlikte 95 TL harcadık. Geriye kaç TL paramız kaldı?",
@@ -2121,6 +2209,7 @@
       "wrong1": "8 TL 95 kr",
       "wrong2": "9 TL 50 kr",
       "explanation": "Liralar: 5 + 3 = 8 TL. Kuruşlar: 90 + 15 = 105 kr = 1 TL 5 kr. Toplam: 9 TL 5 kr.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "5 TL 90 kr ile 3 TL 15 kr toplandığında sonuç ne olur?",
@@ -2144,6 +2233,7 @@
       "wrong1": "27 TL",
       "wrong2": "13 TL",
       "explanation": "95 - 78 = 17 TL indirim yapılmıştır.",
+      "_stem_locked": true,
       "app": {
         "question": {
           "text": "Fiyatı 95 TL olan ayakkabı indirimle 78 TL oldu. Ayakkabıya kaç TL indirim yapılmıştır?",

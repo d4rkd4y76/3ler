@@ -23,6 +23,51 @@ function novaSortClassGradeRowsLocal(rows) {
 }
 try { window.novaSortClassGradeRowsLocal = novaSortClassGradeRowsLocal; } catch (_) {}
 
+/** Soru kontrol: aynı sınıf seviyesindeki yinelenen başlıkları tek satıra indir (SINIF3 tercih). */
+function novaDedupeReviewHeadingRows(rows) {
+    var CS = window.NovaCurriculumSort;
+    var gradeNum = CS && CS.extractGradeNumber
+        ? function (label) { return CS.extractGradeNumber(label); }
+        : function (label) {
+            var m = String(label || '').match(/([1-4])\s*\.?\s*SINIF/i);
+            return m ? parseInt(m[1], 10) : 0;
+        };
+    var canonicalId = CS && CS.canonicalHeadingIdForGrade
+        ? function (g) { return CS.canonicalHeadingIdForGrade(g); }
+        : function (g) {
+            return g >= 1 && g <= 4 ? 'SINIF' + g : '';
+        };
+    var byGrade = Object.create(null);
+    var extras = [];
+    (rows || []).forEach(function (item) {
+        if (!item || !item.id) return;
+        var grade = gradeNum(item.name || item.id);
+        if (!grade) {
+            extras.push(item);
+            return;
+        }
+        var canon = canonicalId(grade);
+        var existing = byGrade[grade];
+        if (!existing) {
+            byGrade[grade] = item;
+            return;
+        }
+        var newIsCanon = String(item.id).toUpperCase() === String(canon).toUpperCase();
+        var oldIsCanon = String(existing.id).toUpperCase() === String(canon).toUpperCase();
+        if (newIsCanon && !oldIsCanon) byGrade[grade] = item;
+    });
+    var out = [];
+    [1, 2, 3, 4].forEach(function (g) {
+        if (byGrade[g]) out.push(byGrade[g]);
+    });
+    extras.forEach(function (item) {
+        var dup = out.some(function (row) { return String(row.id) === String(item.id); });
+        if (!dup) out.push(item);
+    });
+    return out;
+}
+try { window.novaDedupeReviewHeadingRows = novaDedupeReviewHeadingRows; } catch (_) {}
+
 async function novaGetServerTimeMs() {
     return new Promise(function (resolve) {
         try {
@@ -3433,15 +3478,24 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             try { sessionStorage.setItem(key, JSON.stringify(payload)); } catch (_) {}
         }
 
+        function readCacheKey(path) {
+            var ver = (window.NOVA_CDN && window.NOVA_CDN.version) || 0;
+            if (String(path || '').indexOf('championData/') === 0) {
+                return 'nova_read_cache_v' + ver + '_' + path;
+            }
+            return 'nova_read_cache_' + path;
+        }
+
         async function readValCached(path, ttlMs) {
             const now = Date.now();
-            const m = NOVA_READ_CACHE_MEM[path];
+            const memKey = readCacheKey(path);
+            const m = NOVA_READ_CACHE_MEM[memKey];
             if (m && (now - m.ts) < ttlMs) return m.val;
 
-            const storageKey = 'nova_read_cache_' + path;
+            const storageKey = readCacheKey(path);
             const s = getSessionCache(storageKey);
             if (s && (now - Number(s.ts || 0)) < ttlMs) {
-                NOVA_READ_CACHE_MEM[path] = { ts: Number(s.ts || now), val: s.val };
+                NOVA_READ_CACHE_MEM[memKey] = { ts: Number(s.ts || now), val: s.val };
                 return s.val;
             }
 
@@ -3454,7 +3508,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                         const o = JSON.parse(raw);
                         if (o && (now - Number(o.ts || 0)) < ttlMs) {
                             const payload = { ts: Number(o.ts || now), val: o.val };
-                            NOVA_READ_CACHE_MEM[path] = payload;
+                            NOVA_READ_CACHE_MEM[memKey] = payload;
                             setSessionCache(storageKey, payload);
                             return o.val;
                         }
@@ -3467,7 +3521,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                     const cdnVal = await window.novaCdnFetchByPath(path, ttlMs);
                     if (cdnVal !== undefined) {
                         const cdnPayload = { ts: now, val: cdnVal };
-                        NOVA_READ_CACHE_MEM[path] = cdnPayload;
+                        NOVA_READ_CACHE_MEM[memKey] = cdnPayload;
                         setSessionCache(storageKey, cdnPayload);
                         if (path === 'championData/headings') {
                             try {
@@ -3487,7 +3541,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             const snap = await database.ref(path).once('value');
             const val = snap.exists() ? snap.val() : null;
             const payload = { ts: now, val: val };
-            NOVA_READ_CACHE_MEM[path] = payload;
+            NOVA_READ_CACHE_MEM[memKey] = payload;
             setSessionCache(storageKey, payload);
             if (path === 'championData/headings') {
                 try {
@@ -3495,6 +3549,17 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                 } catch (_) {}
             }
             return val;
+        }
+
+        function novaInvalidateReadValCache(path) {
+            if (!path) return;
+            try {
+                const memKey = readCacheKey(path);
+                delete NOVA_READ_CACHE_MEM[memKey];
+            } catch (_) {}
+            try {
+                sessionStorage.removeItem(readCacheKey(path));
+            } catch (_) {}
         }
 
         /** Başlık/ders/konu ağacı seyrek değişir; RTDB indirmesini ciddi azaltır. */
@@ -3514,6 +3579,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
 
         try {
             window.novaReadValCached = readValCached;
+            window.novaInvalidateReadValCache = novaInvalidateReadValCache;
             window.NOVA_CHAMPION_HEADINGS_TTL_MS = NOVA_CHAMPION_HEADINGS_TTL_MS;
         } catch (_) {}
 
@@ -3998,7 +4064,31 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             return true;
         }
 
+        function novaUnlockSpReviewClassSelect() {
+            if (!classSelect) return;
+            classSelect.disabled = false;
+            classSelect.style.pointerEvents = '';
+            classSelect.style.cursor = '';
+            classSelect.style.opacity = '';
+            delete classSelect.dataset.novaSpClassLocked;
+            delete classSelect.dataset.novaLockedHeadingId;
+            delete classSelect.dataset.novaLockedLabel;
+            const wrap = classSelect.closest('.nova-game-select');
+            if (wrap) {
+                wrap.classList.remove('nova-game-select--locked');
+                wrap.classList.toggle('nova-game-select--empty', !classSelect.value);
+                wrap.classList.toggle('nova-game-select--filled', !!classSelect.value);
+            }
+            if (typeof window.novaRefreshGameSelectMenu === 'function') {
+                window.novaRefreshGameSelectMenu(classSelect);
+            }
+        }
+
         async function enforceSinglePlayerClassLock(opts) {
+            if (window.NOVA_SP_REVIEW_MODE) {
+                novaUnlockSpReviewClassSelect();
+                return;
+            }
             if (!classSelect || !selectedStudent || !selectedStudent.classId) return;
             if (enforceSinglePlayerClassLockPromise) {
                 return enforceSinglePlayerClassLockPromise;
@@ -4084,6 +4174,7 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
             }
         }
         try { window.__novaEnforceSinglePlayerClassLock = enforceSinglePlayerClassLock; } catch (_) {}
+        try { window.novaUnlockSpReviewClassSelect = novaUnlockSpReviewClassSelect; } catch (_) {}
 
         const studentPhoto = document.getElementById('student-photo');
         const studentName = document.getElementById('student-name');
@@ -4322,6 +4413,8 @@ window.onload = async () => {
         // Cleanup işlemini başlat
         startRejectedInvitesCleanup();
         try { novaBindAdminPortalBtnOnce(); } catch (_) {}
+        try { if (typeof window.novaBindSoruKontrolBtnOnce === 'function') window.novaBindSoruKontrolBtnOnce(); } catch (_) {}
+        try { if (typeof window.novaBindSoruKontrolBtnOnce === 'function') window.novaBindSoruKontrolBtnOnce(); } catch (_) {}
 
         // Sınıf ve öğrenci seçimi için event listener'lar
         if (selectionClassSelect) {
@@ -4439,6 +4532,7 @@ window.onload = async () => {
             }
             try { if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi(); } catch(_) {}
             try { novaBindAdminPortalBtnOnce(); } catch(_) {}
+            try { if (typeof window.novaBindSoruKontrolBtnOnce === 'function') window.novaBindSoruKontrolBtnOnce(); } catch (_) {}
             try { await novaSyncAdminPortalFlag(); } catch(_) {}
 
         } else {
@@ -5787,6 +5881,11 @@ function showConfirmation(message) {
                         showAlert('Düello referansı kaldırılırken hata oluştu.');
                     });
                 } else {
+                    if (currentScreen && currentScreen.id === 'single-player-screen') {
+                        if (window.NOVA_SP_REVIEW_MODE && typeof window.novaExitSpReviewMode === 'function') {
+                            window.novaExitSpReviewMode();
+                        }
+                    }
                     if (currentScreen && currentScreen.id === 'single-player-screen' && typeof window.novaCloseSinglePlayerSelectScreen === 'function') {
                         window.novaCloseSinglePlayerSelectScreen();
                     } else if (currentScreen && currentScreen.id === 'single-player-game-screen' && typeof window.novaCloseSinglePlayerGameScreen === 'function') {
@@ -5809,6 +5908,7 @@ function showConfirmation(message) {
         });
 
         singlePlayerButton.addEventListener('click', async () => {
+            if (typeof window.novaExitSpReviewMode === 'function') window.novaExitSpReviewMode();
             if (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.clearChampionUiCaches === 'function') {
                 window.NovaCurriculumSort.clearChampionUiCaches();
             }
@@ -5834,16 +5934,30 @@ function showConfirmation(message) {
             } catch (_) {}
         });
 
-        startGameButton.addEventListener('click', () => {
+        startGameButton.addEventListener('click', async () => {
             const selectedClass = classSelect.value;
             const selectedSubject = subjectSelect.value;
             const selectedTopic = topicSelect.value;
 
-            if (selectedClass && selectedSubject && selectedTopic) {
-                fetchQuestions(selectedClass, selectedSubject, selectedTopic);
-            } else {
+            if (!selectedClass || !selectedSubject || !selectedTopic) {
                 showAlert('Lütfen tüm alanları doldurunuz.');
+                return;
             }
+
+            if (window.NOVA_SP_REVIEW_MODE) {
+                const prevLabel = startGameButton.textContent;
+                startGameButton.disabled = true;
+                startGameButton.textContent = 'Sorular yükleniyor…';
+                try {
+                    await fetchAllTopicQuestionsForReview(selectedClass, selectedSubject, selectedTopic);
+                } finally {
+                    startGameButton.textContent = prevLabel;
+                    try { checkSinglePlayerSelections(); } catch (_) {}
+                }
+                return;
+            }
+
+            fetchQuestions(selectedClass, selectedSubject, selectedTopic);
         });
 
 
@@ -5917,13 +6031,48 @@ async function fetchChampionData() {
         console.error("Sınıf bilgileri hata:", error);
     }
 }
+try { window.fetchChampionData = fetchChampionData; } catch (_) {}
 
 function populateChampionSelect(data) {
     const classSelectEl = document.getElementById('class-select');
     if (!classSelectEl || !data) return;
 
+    if (window.NOVA_SP_REVIEW_MODE) {
+        classSelectEl.innerHTML = '<option value="">Seçiniz</option>';
+        classSelectEl.disabled = false;
+        classSelectEl.style.pointerEvents = '';
+        classSelectEl.style.cursor = '';
+        classSelectEl.style.opacity = '';
+        delete classSelectEl.dataset.novaSpClassLocked;
+        delete classSelectEl.dataset.novaLockedHeadingId;
+        delete classSelectEl.dataset.novaLockedLabel;
+        const reviewWrap = classSelectEl.closest('.nova-game-select');
+        if (reviewWrap) {
+            reviewWrap.classList.remove('nova-game-select--locked');
+        }
+        novaSortClassGradeRowsLocal(novaDedupeReviewHeadingRows(data)).forEach(function (item) {
+            if (!item || !item.id) return;
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name || item.id;
+            classSelectEl.appendChild(option);
+        });
+        if (typeof window.novaRefreshGameSelectMenu === 'function') {
+            window.novaRefreshGameSelectMenu(classSelectEl);
+        }
+        if (typeof window.novaUnlockSpReviewClassSelect === 'function') {
+            window.novaUnlockSpReviewClassSelect();
+        }
+        try {
+            if (typeof window.novaCheckSinglePlayerSelections === 'function') {
+                window.novaCheckSinglePlayerSelections();
+            }
+        } catch (_) {}
+        return;
+    }
+
     const student = window.selectedStudent || null;
-    if (student && student.classId) {
+    if (student && student.classId && !window.NOVA_SP_REVIEW_MODE) {
         if (typeof window.__novaEnforceSinglePlayerClassLock === 'function') {
             window.__novaEnforceSinglePlayerClassLock({ reason: 'champion-populate', preserveLessons: true }).catch(function () {});
         }
@@ -6272,6 +6421,7 @@ function populateTopicsSelect(topicsData, topicSelectElement) {
                 startGameButton.disabled = true;
             }
         }
+        try { window.novaCheckSinglePlayerSelections = checkSinglePlayerSelections; } catch (_) {}
 
 selectionClassSelect.addEventListener('change', () => {
     if (selectionClassSelect.value === "") {
@@ -6334,7 +6484,9 @@ function checkLoginButtonState() {
                     }
                 } catch (_) {}
             }
-            enforceSinglePlayerClassLock({ preserveLessons: true });
+            if (!window.NOVA_SP_REVIEW_MODE) {
+                enforceSinglePlayerClassLock({ preserveLessons: true });
+            }
             startGameButton.classList.remove('active');
             startGameButton.disabled = true;
 
@@ -6477,11 +6629,24 @@ logoutButton.addEventListener('click', async () => {
             return [];
         }
 
+        /** Havuzdan rastgele N soru id — tüm listeyi karıştırmadan (O(N) yerine O(take)). */
+        function pickRandomQuestionIds(ids, takeCount) {
+            const pool = ids.slice();
+            const needed = Math.min(Math.max(1, takeCount), pool.length);
+            for (let i = 0; i < needed; i++) {
+                const j = i + Math.floor(Math.random() * (pool.length - i));
+                const tmp = pool[i];
+                pool[i] = pool[j];
+                pool[j] = tmp;
+            }
+            return pool.slice(0, needed);
+        }
+
         async function pickAndLoadTopicQuestionsExact(classId, subjectId, topicId, takeCount) {
             const needed = Math.max(1, Number(takeCount) || 10);
             const ids = await listTopicQuestionIdsExact(classId, subjectId, topicId);
             if (!ids.length || ids.length < needed) return null;
-            const selected = shuffleArray(ids.slice()).slice(0, needed);
+            const selected = pickRandomQuestionIds(ids, needed);
             const qBase = 'championData/headings/' + classId + '/lessons/' + subjectId + '/topics/' + topicId + '/questions/';
             const raws = await Promise.all(selected.map(function (qid) {
                 return readValCached(qBase + qid, NOVA_TOPIC_QUESTIONS_TTL_MS);
@@ -6580,6 +6745,9 @@ logoutButton.addEventListener('click', async () => {
                 if (typeof window.NOVA_HERO_LEVEL.refreshSpHeroFeatureBar === 'function') {
                     window.NOVA_HERO_LEVEL.refreshSpHeroFeatureBar();
                 }
+                if (typeof window.novaSpPreloadEquippedHeroTrueClips === 'function') {
+                    window.novaSpPreloadEquippedHeroTrueClips(true);
+                }
                 if (typeof window.novaBuzEjderPreloadTrueClipsIfEquipped === 'function') {
                     window.novaBuzEjderPreloadTrueClipsIfEquipped();
                 }
@@ -6598,7 +6766,139 @@ logoutButton.addEventListener('click', async () => {
         try {
             window.novaNormalizeHomeworkQuestionIds = novaNormalizeHomeworkQuestionIds;
             window.fetchHomeworkQuestionsByIds = fetchHomeworkQuestionsByIds;
+            window.fetchAllTopicQuestionsForReview = fetchAllTopicQuestionsForReview;
+            window.__novaFormatHwQuestionFromRaw = formatHwQuestionFromRaw;
         } catch (_) {}
+
+        function openSinglePlayerGameFromQuestions(opts) {
+            opts = opts || {};
+            if (typeof window.novaHideSinglePlayerSelectForGame === 'function') {
+                window.novaHideSinglePlayerSelectForGame();
+            } else if (singlePlayerScreen) {
+                singlePlayerScreen.style.display = 'none';
+            }
+            try { if (window.novaPerfBeforeGameScreen) window.novaPerfBeforeGameScreen('single-player-game-screen'); } catch (_) {}
+            if (typeof window.novaOpenSinglePlayerGameScreen === 'function') {
+                window.novaOpenSinglePlayerGameScreen();
+            } else if (singlePlayerGameScreen) {
+                singlePlayerGameScreen.style.display = 'flex';
+            }
+            try { if (window.novaSyncPerfRuntime) window.novaSyncPerfRuntime(); } catch (_) {}
+            if (scoreContainer) scoreContainer.style.display = 'none';
+            try {
+                var spReset = document.getElementById('single-player-game-screen');
+                if (spReset) spReset.classList.remove('nova-sp-result-open');
+                var hudReset = document.querySelector('#single-player-game-screen .nova-sp-game-hud');
+                if (hudReset) hudReset.style.display = '';
+            } catch (_) {}
+            displayCurrentQuestion();
+            if (!opts.skipHeroRefresh) novaSpRefreshHeroRevealAtGameStart();
+            if (!opts.skipMusic) {
+                singlePlayerQuestionMusic.currentTime = 0;
+                singlePlayerQuestionMusic.play().catch(function (err) {
+                    console.error('Tek Kişilik Oyun Müziği Çalınamadı:', err);
+                });
+            }
+        }
+
+        function resolveReviewHeadingId(classId) {
+            try {
+                if (window.NovaCurriculumSort) {
+                    const list = window.__novaChampionHeadingsList || [];
+                    const classSelectEl = document.getElementById('class-select');
+                    let label = '';
+                    if (classSelectEl && classSelectEl.options && classSelectEl.selectedIndex >= 0) {
+                        const op = classSelectEl.options[classSelectEl.selectedIndex];
+                        label = String((op && op.textContent) || '').trim();
+                    }
+                    const canonical = window.NovaCurriculumSort.resolveStudentHeadingId(label, list);
+                    if (canonical) return canonical;
+                }
+            } catch (_) {}
+            if (/^SINIF[1-4]$/i.test(String(classId || ''))) return String(classId).toUpperCase();
+            return classId;
+        }
+
+        async function fetchAllTopicQuestionsForReview(classId, subjectId, topicId) {
+            if (!classId || !subjectId || !topicId) {
+                showAlert('Lütfen sınıf, ders ve konu seçin.');
+                return;
+            }
+            classId = resolveReviewHeadingId(classId);
+            let ids = await listTopicQuestionIdsExact(classId, subjectId, topicId);
+            if (!ids.length) {
+                showAlert('Bu konuda soru bulunamadı.');
+                return;
+            }
+            ids = ids.slice().sort(function (a, b) {
+                return String(a).localeCompare(String(b), 'tr', { numeric: true, sensitivity: 'base' });
+            });
+
+            window.NOVA_Q_LIMIT_REVIEW_BACKUP = window.NOVA_Q_LIMIT;
+            window.NOVA_SP_REVIEW_MODE = true;
+            window.NOVA_Q_LIMIT = ids.length;
+            window.NOVA_SP_REVIEW_CTX = {
+                headingId: classId,
+                lessonId: subjectId,
+                topicId: topicId,
+                questionIds: ids.slice()
+            };
+
+            const base = 'championData/headings/' + classId + '/lessons/' + subjectId + '/topics/' + topicId + '/questions/';
+            const BATCH = 15;
+            const ordered = [];
+            const leafTtlMs = NOVA_TOPIC_QUESTIONS_TTL_MS;
+            let missing = 0;
+
+            try {
+                for (let i = 0; i < ids.length; i += BATCH) {
+                    const chunk = ids.slice(i, i + BATCH);
+                    const raws = await Promise.all(chunk.map(function (qid) {
+                        return readValCached(base + qid, leafTtlMs);
+                    }));
+                    for (let j = 0; j < raws.length; j++) {
+                        const raw = raws[j];
+                        const qid = chunk[j];
+                        if (!raw || typeof raw !== 'object') {
+                            missing += 1;
+                            console.warn('[soru-kontrol] soru bulunamadı:', qid);
+                            continue;
+                        }
+                        const fq = formatHwQuestionFromRaw(raw);
+                        if (!fq) {
+                            missing += 1;
+                            console.warn('[soru-kontrol] soru okunamadı:', qid);
+                            continue;
+                        }
+                        fq.__qid = qid;
+                        ordered.push(fq);
+                    }
+                }
+            } catch (error) {
+                console.error('Soru kontrol yüklenemedi:', error);
+                showAlert('Sorular yüklenirken hata oluştu.');
+                if (typeof window.novaExitSpReviewMode === 'function') window.novaExitSpReviewMode();
+                return;
+            }
+
+            if (!ordered.length) {
+                showAlert('Yüklenen soru yok.');
+                if (typeof window.novaExitSpReviewMode === 'function') window.novaExitSpReviewMode();
+                return;
+            }
+
+            gameQuestions = ordered;
+            window.gameQuestions = gameQuestions;
+            window.NOVA_Q_LIMIT = ordered.length;
+            currentQuestionIndex = 0;
+            score = 0;
+
+            if (missing > 0) {
+                console.warn('[soru-kontrol] eksik soru:', missing);
+            }
+
+            openSinglePlayerGameFromQuestions({ skipMusic: false });
+        }
 
         function fetchQuestions(classId, subjectId, topicId) {
     if (!classId || !subjectId || !topicId) {
@@ -6669,8 +6969,11 @@ logoutButton.addEventListener('click', async () => {
     }
 
     const currentQuestion = gameQuestions[currentQuestionIndex];
-    questionNumber.textContent = `Soru ${currentQuestionIndex + 1}/${window.NOVA_Q_LIMIT||10}`;
-    const progressPercentage = ((currentQuestionIndex) / (window.NOVA_Q_LIMIT||10)) * 100;
+    const totalQ = Array.isArray(gameQuestions) && gameQuestions.length
+        ? gameQuestions.length
+        : (window.NOVA_Q_LIMIT || 10);
+    questionNumber.textContent = `Soru ${currentQuestionIndex + 1}/${totalQ}`;
+    const progressPercentage = (currentQuestionIndex / totalQ) * 100;
     progressBarInner.style.width = `${progressPercentage}%`;
 
 // Soru konteynerini temizle
@@ -6776,13 +7079,48 @@ questionContainer.appendChild(textContainer);
             // Görünürlük ayarları
             questionNumber.style.display = 'block';
             document.querySelector('.progress-container').style.display = 'block';
-            document.querySelector('.timer-container').style.display = 'block';
+            const timerContainerEl = document.querySelector('.timer-container');
+            if (timerContainerEl) {
+                timerContainerEl.style.display = window.NOVA_SP_REVIEW_MODE ? 'none' : 'block';
+            }
             document.querySelector('.question-container').style.display = 'flex';
             optionsContainer.style.display = 'flex';
 
-            // Timer'ı sıfırla ve başlat
-            resetTimer();
-            startTimer();
+            var reviewEditBar = document.getElementById('nova-sp-review-edit-bar');
+            if (window.NOVA_SP_REVIEW_MODE) {
+                clearInterval(timer);
+                if (!reviewEditBar) {
+                    reviewEditBar = document.createElement('div');
+                    reviewEditBar.id = 'nova-sp-review-edit-bar';
+                    reviewEditBar.className = 'nova-sp-review-edit-bar';
+                    var spGameRoot = document.getElementById('single-player-game-screen');
+                    if (spGameRoot && optionsContainer && optionsContainer.parentNode) {
+                        spGameRoot.insertBefore(reviewEditBar, optionsContainer);
+                    }
+                }
+                reviewEditBar.innerHTML = '';
+                var reviewEditBtn = document.createElement('button');
+                reviewEditBtn.type = 'button';
+                reviewEditBtn.className = 'nova-sp-review-edit-btn';
+                reviewEditBtn.textContent = '✏️ Düzenle';
+                reviewEditBtn.addEventListener('click', function () {
+                    var qid = currentQuestion && currentQuestion.__qid;
+                    if (!qid && window.NOVA_SP_REVIEW_CTX && Array.isArray(window.NOVA_SP_REVIEW_CTX.questionIds)) {
+                        qid = window.NOVA_SP_REVIEW_CTX.questionIds[currentQuestionIndex];
+                    }
+                    if (qid && typeof window.novaOpenSpReviewQuestionEditor === 'function') {
+                        window.novaOpenSpReviewQuestionEditor(qid, currentQuestionIndex);
+                    } else if (typeof showAlert === 'function') {
+                        showAlert('Soru düzenleme açılamadı. Sayfayı yenileyip tekrar deneyin.');
+                    }
+                });
+                reviewEditBar.appendChild(reviewEditBtn);
+                reviewEditBar.style.display = 'flex';
+            } else {
+                if (reviewEditBar) reviewEditBar.style.display = 'none';
+                resetTimer();
+                startTimer();
+            }
 
             if (typeof window.onNewQuestionLoaded === 'function') {
                 window.onNewQuestionLoaded();
@@ -6940,9 +7278,13 @@ window.totalQuestions = totalQ; let message = '';
             try{ if (__sm){ __sm.style.display = 'none'; __sm.textContent = ''; } }catch(_){}
 
             if (score === 10) {
-                message = 'ŞAHANE';
-                messageClass = 'purple';
-                imageUrl = 'https://i.giphy.com/YX8IKLsJJXagt5rZMV.webp';
+                message = window.NOVA_SP_REVIEW_MODE ? 'Soru kontrolü tamamlandı' : 'ŞAHANE';
+                messageClass = window.NOVA_SP_REVIEW_MODE ? 'green' : 'purple';
+                imageUrl = window.NOVA_SP_REVIEW_MODE ? '' : 'https://i.giphy.com/YX8IKLsJJXagt5rZMV.webp';
+            } else if (window.NOVA_SP_REVIEW_MODE) {
+                message = totalQ + ' sorudan ' + score + ' doğru (kontrol modu)';
+                messageClass = 'green';
+                imageUrl = '';
             } else if (score >= 8 && score <= 9) {
                 message = 'Gayet İyi';
                 messageClass = 'green';
@@ -6977,7 +7319,7 @@ window.totalQuestions = totalQ; let message = '';
             }catch(_){}
 
             // Müzik çalma işlemi burada
-            if (score > 9) { // Örneğin, belirli bir başarı düzeyinde müzik çalınır
+            if (!window.NOVA_SP_REVIEW_MODE && score > 9) { // Örneğin, belirli bir başarı düzeyinde müzik çalınır
                 winnerMusic.currentTime = 0;
                 winnerMusic.play().catch(error => {
                     console.error("Kazanan müziği çalınamadı:", error);
@@ -7051,6 +7393,31 @@ finally{
 
         function novaSpResultGoBack() {
             stopAllMusic();
+            if (window.NOVA_SP_REVIEW_MODE) {
+                try {
+                    if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
+                        window.novaCloseSinglePlayerGameScreen({ showMain: false });
+                    } else if (singlePlayerGameScreen) {
+                        singlePlayerGameScreen.style.display = 'none';
+                    }
+                } catch (_) {}
+                resetGameScreens();
+                try {
+                    var spGame = document.getElementById('single-player-game-screen');
+                    if (spGame) spGame.classList.remove('nova-sp-result-open');
+                } catch (_) {}
+                gameQuestions = [];
+                currentQuestionIndex = 0;
+                score = 0;
+                window.NOVA_SP_REVIEW_MODE = true;
+                if (typeof window.novaEnterSpReviewMode === 'function') window.novaEnterSpReviewMode();
+                if (typeof window.novaOpenSinglePlayerSelectScreen === 'function') {
+                    window.novaOpenSinglePlayerSelectScreen();
+                } else if (singlePlayerScreen) {
+                    singlePlayerScreen.style.display = 'flex';
+                }
+                return;
+            }
             if (typeof window.novaCloseSinglePlayerGameScreen === 'function') {
                 window.novaCloseSinglePlayerGameScreen();
             } else {
