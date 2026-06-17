@@ -2215,3 +2215,272 @@
 #explanation-container .q-cisim-3d-hint {
   color: #cbd5e1;
 }
+
+/* Veri tabloları — sıklık, çetele, şekil grafiği */
+.q-veri {
+  display: block;
+  width: min(100%, 420px);
+  margin: 0.75em auto;
+  padding: 0.85em 1em;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 55%, #fdf4ff 100%);
+  border: 2px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  font-size: clamp(0.88rem, 2.4vw, 1rem);
+}
+
+.q-veri-title {
+  font-weight: 800;
+  font-size: 1.05em;
+  text-align: center;
+  margin-bottom: 0.65em;
+  color: #1e3a8a;
+  letter-spacing: 0.01em;
+}
+
+.q-veri-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+.q-veri-table th {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.45em 0.55em;
+  font-size: 0.82em;
+  text-align: center;
+}
+
+.q-veri-table td {
+  padding: 0.5em 0.55em;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+.q-veri-table tr:last-child td {
+  border-bottom: none;
+}
+
+.q-veri-table tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.q-veri-label {
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.q-veri-num {
+  text-align: center;
+  font-size: 1.15em;
+  color: #1d4ed8;
+}
+
+.q-veri-bar-cell {
+  width: 38%;
+  min-width: 70px;
+}
+
+.q-veri-bar {
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  min-width: 4px;
+  transition: width 0.3s ease;
+}
+
+.q-veri-tally-cell {
+  text-align: center;
+}
+
+.q-veri-tally {
+  display: inline-flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.q-veri-tally-group {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  padding: 2px 4px 2px 2px;
+  margin: 0 2px;
+}
+
+.q-veri-tally-line {
+  display: inline-block;
+  width: 3px;
+  height: 22px;
+  background: #334155;
+  border-radius: 1px;
+}
+
+.q-veri-tally-line--single {
+  height: 20px;
+  background: #64748b;
+}
+
+.q-veri-tally-slash {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 3px;
+  background: #dc2626;
+  transform: rotate(-32deg);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.q-veri-tally-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 800;
+  font-size: 0.85em;
+}
+
+.q-veri-tally-empty {
+  color: #94a3b8;
+}
+
+.q-veri-foot,
+.q-veri-hint {
+  margin-top: 0.55em;
+  padding: 0.45em 0.65em;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 0.88em;
+  color: #475569;
+  text-align: center;
+}
+
+.q-veri-not {
+  padding: 0.55em 0.75em;
+  border-radius: 10px;
+  background: #fffbeb;
+  border: 1px dashed #f59e0b;
+  color: #92400e;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+.q-veri-picto-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.q-veri-picto-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) 1fr auto;
+  gap: 0.45em;
+  align-items: center;
+  padding: 0.45em 0.55em;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.q-veri-picto-label {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.q-veri-picto-symbols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: flex-start;
+}
+
+.q-veri-picto-sym {
+  font-size: 1.35em;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.12));
+}
+
+.q-veri-picto-count {
+  font-size: 0.78em;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.q-veri-tally-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0.65em;
+  background: #fff;
+  border-radius: 10px;
+  min-height: 52px;
+}
+
+.q-veri-tally-demo--large .q-veri-tally-line {
+  height: 32px;
+  width: 4px;
+}
+
+.q-veri-tally-demo--large .q-veri-tally-slash {
+  height: 4px;
+}
+
+#single-player-game-screen .question-info-text .q-veri,
+#duel-game-screen .question-info-text .q-veri,
+.deneme-q-preamble .q-veri {
+  width: min(100%, 460px);
+}
+
+#single-player-game-screen .explanation-container .q-veri,
+#explanation-container .q-veri {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border-color: rgba(96, 165, 250, 0.45);
+}
+
+#single-player-game-screen .explanation-container .q-veri-title,
+#explanation-container .q-veri-title {
+  color: #93c5fd;
+}
+
+#single-player-game-screen .explanation-container .q-veri-table,
+#explanation-container .q-veri-table {
+  background: #1e293b;
+}
+
+#single-player-game-screen .explanation-container .q-veri-table td,
+#explanation-container .q-veri-table td {
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+#single-player-game-screen .explanation-container .q-veri-table tr:nth-child(even) td,
+#explanation-container .q-veri-table tr:nth-child(even) td {
+  background: #0f172a;
+}
+
+#single-player-game-screen .explanation-container .q-veri-label,
+#explanation-container .q-veri-label {
+  color: #f1f5f9;
+}
+
+#single-player-game-screen .explanation-container .q-veri-picto-row,
+#explanation-container .q-veri-picto-row {
+  background: #1e293b;
+  border-color: #334155;
+}

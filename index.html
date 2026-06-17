@@ -998,6 +998,7 @@
 <!-- Arka plan müziği kaldırıldı — yalnızca efekt sesleri (Web Audio) -->
 <link rel="stylesheet" href="styles/059-nova-question-markup.css?v=30260617cisim3dv2" />
 <script src="js/core/nova-sekil-visual.js?v=30260611sekil3"></script>
+<script src="js/core/nova-veri-visual.js?v=30260614veri3"></script>
 <script defer src="js/core/nova-turkish-hyphen.js?v=1"></script>
 <script defer src="js/core/nova-geo-basic.js?v=30260611geo6"></script>
 <script defer src="js/core/nova-geo-basic-expl.js?v=30260615focus1"></script>
@@ -1140,7 +1141,7 @@
       <button type="button" id="roborox-topics-back" class="roborox-topics-back" aria-label="Derslere dön" hidden>←</button>
       <div class="roborox-topics-head">
         <h3 id="roborox-topics-title"><span class="roborox-topics-brand-ico" aria-hidden="true">🐢</span> Kaptan Kabuk Anlatıyor</h3>
-        <p id="roborox-topics-subtitle">Öğrenme kartlarıyla konuları adım adım keşfet.</p>
+        <p id="roborox-topics-subtitle">Videolarla konuları adım adım keşfet.</p>
       </div>
       <button type="button" id="roborox-topics-close" class="roborox-topics-close" aria-label="Kapat">✕</button>
     </div>
@@ -1155,27 +1156,25 @@
     <span class="roborox-topic-intro__badge">Kaptan Kabuk Anlatıyor</span>
     <h2 id="roborox-topic-intro-title" class="roborox-topic-intro__title"></h2>
     <p id="roborox-topic-intro-cards" class="roborox-topic-intro__cards"></p>
-    <p id="roborox-topic-intro-hint" class="roborox-topic-intro__hint">Öğrenme kartları hazırlanıyor…</p>
+    <p id="roborox-topic-intro-hint" class="roborox-topic-intro__hint">Ders videosu hazırlanıyor…</p>
     <div class="roborox-topic-intro__progress" aria-hidden="true"><span class="roborox-topic-intro__progress-bar"></span></div>
   </div>
 </div>
 
-<!-- Öğrenme kartları tam ekran okuyucu -->
-<div id="roborox-reader-overlay" class="roborox-reader-overlay" aria-hidden="true" hidden>
-  <header class="roborox-reader-head">
-    <div class="roborox-reader-title" id="roborox-reader-title">Kaptan Kabuk Anlatıyor</div>
-    <div class="roborox-reader-count" id="roborox-reader-count"></div>
-    <button type="button" id="roborox-reader-close" class="roborox-reader-close" aria-label="Kapat">✕</button>
-  </header>
+<!-- Kaptan Kabuk — Bunny dikey tam ekran video okuyucu -->
+<div id="roborox-reader-overlay" class="roborox-reader-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Kaptan Kabuk ders videosu" hidden>
+  <button type="button" id="roborox-reader-exit" class="roborox-reader-exit" aria-label="Dersten çık" hidden>Dersten Çık</button>
   <div class="roborox-reader-stage">
-    <div class="roborox-page-viewport" id="roborox-page-viewport">
-      <img id="roborox-page-a" class="roborox-page-layer is-active" alt="" decoding="async" draggable="false"/>
-      <img id="roborox-page-b" class="roborox-page-layer" alt="" decoding="async" draggable="false"/>
+    <video id="roborox-reader-video" class="roborox-reader-video" playsinline webkit-playsinline preload="auto" hidden></video>
+    <div id="roborox-reader-iframe-wrap" class="roborox-reader-iframe-wrap" hidden>
+      <iframe id="roborox-reader-iframe" class="roborox-reader-iframe" title="Kaptan Kabuk ders videosu" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
+    <p id="roborox-reader-loading" class="roborox-reader-loading" hidden>Yükleniyor…</p>
   </div>
-  <footer class="roborox-reader-foot">
-    <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki Kart</button>
-    <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki Kart →</button>
+  <footer class="roborox-reader-foot" id="roborox-reader-nav-wrap" hidden>
+    <button type="button" id="roborox-reader-prev" class="roborox-reader-nav roborox-reader-nav--prev">← Önceki</button>
+    <span class="roborox-reader-count" id="roborox-reader-count"></span>
+    <button type="button" id="roborox-reader-next" class="roborox-reader-nav roborox-reader-nav--next">Sonraki →</button>
   </footer>
 </div>
 
@@ -1677,7 +1676,7 @@
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
-<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260611btns1" />
+<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260617kabukvid1" />
 <link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611center1" />
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
@@ -2159,8 +2158,8 @@
   });
 })();
 </script>
-<script defer src="js/core/nova-roborox-data.js?v=30260609roborox8"></script>
-<script defer src="js/ui/nova-roborox-learn.js?v=30260611kabuk1"></script>
+<script defer src="js/core/nova-roborox-data.js?v=30260617kabukvid1"></script>
+<script defer src="js/ui/nova-roborox-learn.js?v=30260617kabukvid1"></script>
 <script defer src="js/bootstrap.js"></script>
 
 </body>

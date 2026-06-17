@@ -60,15 +60,45 @@
     return [];
   }
 
+  function normalizeBunnyVideoEntry(raw) {
+    if (!raw || typeof raw !== "object") return null;
+    var videoId = String(raw.videoId || raw.id || "").trim();
+    if (!videoId) return null;
+    return {
+      libraryName: String(raw.libraryName || raw.host || "").trim(),
+      libraryId: String(raw.libraryId || "").trim(),
+      videoId: videoId,
+    };
+  }
+
+  function parseVideos(v) {
+    v = v || {};
+    if (Array.isArray(v.videos)) {
+      return v.videos.map(normalizeBunnyVideoEntry).filter(Boolean);
+    }
+    if (v.video && typeof v.video === "object") {
+      var one = normalizeBunnyVideoEntry(v.video);
+      return one ? [one] : [];
+    }
+    return [];
+  }
+
+  function topicHasContent(topic) {
+    return !!(topic && topic.videos && topic.videos.length);
+  }
+
   function parseTopic(id, v, lessonId) {
     v = v || {};
+    var videos = parseVideos(v);
+    var images = parseImages(v);
     return {
       id: id,
       lessonId: lessonId || "",
       title: String(v.title || "Konu").trim() || "Konu",
       order: Number(v.order) || 0,
       active: v.active !== false,
-      images: parseImages(v),
+      videos: videos,
+      images: images,
       updatedAt: Number(v.updatedAt) || 0,
     };
   }
@@ -81,7 +111,7 @@
         return parseTopic(tid, topicsRaw[tid], id);
       })
       .filter(function (t) {
-        return t.active && t.images.length > 0;
+        return t.active && topicHasContent(t);
       })
       .sort(function (a, b) {
         return a.order - b.order || a.title.localeCompare(b.title, "tr");
@@ -121,7 +151,7 @@
         return parseTopic(id, raw[id], "");
       })
       .filter(function (t) {
-        return t.active && t.images.length > 0;
+        return t.active && topicHasContent(t);
       })
       .sort(function (a, b) {
         return a.order - b.order || a.title.localeCompare(b.title, "tr");
@@ -162,6 +192,8 @@
     extractGrade: extractGrade,
     roboroxLearnPath: roboroxLearnPath,
     parseImages: parseImages,
+    parseVideos: parseVideos,
+    topicHasContent: topicHasContent,
     parseTopic: parseTopic,
     parseLesson: parseLesson,
     parseSnapshot: parseSnapshot,

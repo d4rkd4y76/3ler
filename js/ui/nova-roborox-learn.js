@@ -1,5 +1,5 @@
 /**
- * Kaptan Kabuk Anlatıyor — ders listesi → konu listesi → öğrenme kartı okuyucu
+ * Kaptan Kabuk Anlatıyor — ders listesi → konu listesi → Bunny dikey tam ekran video
  */
 (function () {
   "use strict";
@@ -8,9 +8,15 @@
   var BRAND_NAME = "Kaptan Kabuk Anlatıyor";
   var BRAND_EMOJI = "🐢";
 
-  function cardCountLabel(n) {
+  function videoCountLabel(n) {
     n = Math.max(0, Number(n) || 0);
-    return n + " Öğrenme Kartı";
+    return n + (n === 1 ? " Video" : " Video");
+  }
+
+  function topicContentCount(topic) {
+    if (!topic) return 0;
+    if (topic.videos && topic.videos.length) return topic.videos.length;
+    return topic.images ? topic.images.length : 0;
   }
 
   function topicItemHtml(title, meta, icon) {
@@ -47,6 +53,43 @@
       .replace(/"/g, "&quot;");
   }
 
+  function pickPlayback(cfg) {
+    if (window.novaBuildHikayePlayback) {
+      return window.novaBuildHikayePlayback(cfg);
+    }
+    if (!cfg) return null;
+    var videoId = String(cfg.videoId || "").trim();
+    if (!videoId) return null;
+    var libraryId = String(cfg.libraryId || "").trim();
+    if (libraryId) {
+      return {
+        mode: "iframe",
+        src:
+          "https://iframe.mediadelivery.net/embed/" +
+          libraryId +
+          "/" +
+          videoId +
+          "?autoplay=true&loop=false&muted=false&preload=true&responsive=true&rememberPosition=false",
+      };
+    }
+    var host = String(cfg.libraryName || "")
+      .trim()
+      .replace(/^https?:\/\//i, "")
+      .replace(/\.b-cdn\.net.*$/i, "");
+    if (host && host.length >= 8) {
+      return {
+        mode: "video",
+        src: "https://" + host + ".b-cdn.net/" + videoId + "/play_720p.mp4",
+      };
+    }
+    return null;
+  }
+
+  function buildMp4Candidates(host, videoId) {
+    var base = "https://" + host + ".b-cdn.net/" + videoId + "/";
+    return [base + "play_1080p.mp4", base + "play_720p.mp4", base + "play_480p.mp4", base + "play_360p.mp4"];
+  }
+
   const topicsModal = document.getElementById("roborox-topics-modal");
   const topicsList = document.getElementById("roborox-topics-list");
   const topicsClose = document.getElementById("roborox-topics-close");
@@ -60,37 +103,35 @@
   const learnHubTools = document.getElementById("learn-hub-tools");
 
   const reader = document.getElementById("roborox-reader-overlay");
-  const readerTitle = document.getElementById("roborox-reader-title");
+  const readerExit = document.getElementById("roborox-reader-exit");
   const readerCount = document.getElementById("roborox-reader-count");
-  const readerClose = document.getElementById("roborox-reader-close");
   const readerPrev = document.getElementById("roborox-reader-prev");
   const readerNext = document.getElementById("roborox-reader-next");
-  const pageViewport = document.getElementById("roborox-page-viewport");
-  const pageA = document.getElementById("roborox-page-a");
-  const pageB = document.getElementById("roborox-page-b");
+  const readerNavWrap = document.getElementById("roborox-reader-nav-wrap");
+  const readerVideo = document.getElementById("roborox-reader-video");
+  const readerIframeWrap = document.getElementById("roborox-reader-iframe-wrap");
+  const readerIframe = document.getElementById("roborox-reader-iframe");
+  const readerLoading = document.getElementById("roborox-reader-loading");
   const topicIntro = document.getElementById("roborox-topic-intro");
   const topicIntroTitle = document.getElementById("roborox-topic-intro-title");
   const topicIntroHint = document.getElementById("roborox-topic-intro-hint");
   const topicIntroCards = document.getElementById("roborox-topic-intro-cards");
 
-  const SLIDE_MS = 500;
   const INTRO_MIN_MS = 1100;
   const INTRO_MIN_PERF_MS = 580;
   const INTRO_MAX_MS = 2600;
   const INTRO_EXIT_MS = 380;
-  let activePage = pageA;
-  let idlePage = pageB;
 
   let viewMode = "lessons";
   let lessonsCache = [];
   let topicsCache = [];
   let selectedLesson = null;
   let studentGrade = null;
-  let images = [];
-  let pageIndex = 0;
-  let animating = false;
+  let videos = [];
+  let videoIndex = 0;
   let introActive = false;
-  let touchStartX = 0;
+  let readerReady = false;
+  let loadToken = 0;
 
   function lockScroll(on) {
     document.body.style.overflow = on ? "hidden" : "";
@@ -121,7 +162,7 @@
     } else if (gradeText) {
       topicsSubtitle.textContent = gradeText + " derslerin";
     } else {
-      topicsSubtitle.textContent = "Öğrenme kartlarıyla konuları adım adım keşfet.";
+      topicsSubtitle.textContent = "Videolarla konuları adım adım keşfet.";
     }
   }
 
@@ -165,30 +206,45 @@
     topicIntro.setAttribute("aria-hidden", "true");
   }
 
-  function preloadFirstImage(url, cb) {
-    if (!url) {
+  function preloadFirstVideo(topic, cb) {
+    var list = topic && topic.videos ? topic.videos : [];
+    if (!list.length) {
       cb(false);
       return;
     }
-    const img = new Image();
-    img.decoding = "async";
-    let done = false;
+    var play = pickPlayback(list[0]);
+    if (!play) {
+      cb(false);
+      return;
+    }
+    if (play.mode === "iframe") {
+      cb(true);
+      return;
+    }
+    var done = false;
     function finish(ok) {
       if (done) return;
       done = true;
       cb(!!ok);
     }
-    img.onload = function () {
+    window.setTimeout(function () {
+      finish(true);
+    }, 1200);
+    var v = document.createElement("video");
+    v.preload = "metadata";
+    v.muted = true;
+    v.playsInline = true;
+    v.onloadeddata = function () {
       finish(true);
     };
-    img.onerror = function () {
+    v.onerror = function () {
       finish(false);
     };
-    img.src = url;
+    v.src = play.src;
   }
 
   function playTopicIntro(topic) {
-    if (!topic || !topic.images.length || introActive) return;
+    if (!topic || !topicContentCount(topic) || introActive) return;
 
     if (!topicIntro || !topicIntroTitle || prefersReducedMotion()) {
       closeTopicsModal();
@@ -204,12 +260,12 @@
     const minMs = lowPerf ? INTRO_MIN_PERF_MS : INTRO_MIN_MS;
     const exitMs = lowPerf ? 260 : INTRO_EXIT_MS;
     let minTimeDone = false;
-    let imageReady = false;
+    let mediaReady = false;
     let introFinished = false;
 
     topicIntroTitle.textContent = topic.title;
-    if (topicIntroCards) topicIntroCards.textContent = cardCountLabel(topic.images.length);
-    if (topicIntroHint) topicIntroHint.textContent = "Öğrenme kartları hazırlanıyor…";
+    if (topicIntroCards) topicIntroCards.textContent = videoCountLabel(topicContentCount(topic));
+    if (topicIntroHint) topicIntroHint.textContent = "Ders videosu hazırlanıyor…";
     topicIntro.hidden = false;
     topicIntro.setAttribute("aria-hidden", "false");
     topicIntro.classList.add("open");
@@ -232,7 +288,7 @@
     }
 
     function tryFinishIntro() {
-      if (!minTimeDone || !imageReady || introFinished) return;
+      if (!minTimeDone || !mediaReady || introFinished) return;
       finishIntro();
     }
 
@@ -242,12 +298,12 @@
     }, minMs);
 
     window.setTimeout(function () {
-      imageReady = true;
+      mediaReady = true;
       tryFinishIntro();
     }, INTRO_MAX_MS);
 
-    preloadFirstImage(topic.images[0], function () {
-      imageReady = true;
+    preloadFirstVideo(topic, function () {
+      mediaReady = true;
       tryFinishIntro();
     });
   }
@@ -265,6 +321,226 @@
     } else if (typeof window.novaSyncPerfRuntime === "function") {
       window.novaSyncPerfRuntime();
     }
+  }
+
+  function setReaderLoading(on) {
+    if (!readerLoading) return;
+    readerLoading.hidden = !on;
+    if (on) readerLoading.removeAttribute("hidden");
+    else readerLoading.setAttribute("hidden", "");
+  }
+
+  function setExitVisible(on) {
+    if (!readerExit) return;
+    if (on) {
+      readerExit.hidden = false;
+      readerExit.removeAttribute("hidden");
+    } else {
+      readerExit.hidden = true;
+      readerExit.setAttribute("hidden", "");
+    }
+  }
+
+  function hideAllPlayers() {
+    if (readerVideo) {
+      readerVideo.hidden = true;
+      readerVideo.setAttribute("hidden", "");
+      try {
+        readerVideo.pause();
+        readerVideo.onended = null;
+        readerVideo.removeAttribute("src");
+        readerVideo.load();
+      } catch (_) {}
+    }
+    if (readerIframeWrap) {
+      readerIframeWrap.hidden = true;
+      readerIframeWrap.setAttribute("hidden", "");
+    }
+    if (readerIframe) {
+      try {
+        readerIframe.removeAttribute("src");
+      } catch (_) {}
+    }
+  }
+
+  function setReaderReady(on) {
+    readerReady = !!on;
+    if (reader) {
+      reader.classList.toggle("is-ready", readerReady);
+    }
+    setExitVisible(readerReady);
+  }
+
+  function loadVideoSource(video, srcOrList) {
+    var list = Array.isArray(srcOrList) ? srcOrList.slice() : [srcOrList];
+    return new Promise(function (resolve, reject) {
+      if (!video || !list.length) {
+        reject(new Error("no-video"));
+        return;
+      }
+      var idx = 0;
+      function tryNext() {
+        if (idx >= list.length) {
+          reject(new Error("video-error"));
+          return;
+        }
+        var src = list[idx];
+        idx += 1;
+        function cleanup() {
+          video.removeEventListener("canplay", onOk);
+          video.removeEventListener("loadeddata", onOk);
+          video.removeEventListener("error", onErr);
+        }
+        function onOk() {
+          if (video.readyState < 2) return;
+          cleanup();
+          resolve(src);
+        }
+        function onErr() {
+          cleanup();
+          tryNext();
+        }
+        video.addEventListener("canplay", onOk, { once: true });
+        video.addEventListener("loadeddata", onOk, { once: true });
+        video.addEventListener("error", onErr, { once: true });
+        video.src = src;
+        try {
+          video.load();
+        } catch (e) {
+          onErr();
+        }
+      }
+      tryNext();
+    });
+  }
+
+  function tryPlayVideo(video) {
+    try {
+      video.controls = false;
+      video.muted = false;
+      video.volume = 1;
+      video.playsInline = true;
+    } catch (_) {}
+    var p;
+    try {
+      p = video.play();
+    } catch (_) {
+      p = null;
+    }
+    if (p && typeof p.catch === "function") {
+      p.catch(function () {
+        try {
+          video.controls = true;
+          if (typeof window.showAlert === "function") {
+            window.showAlert("Ders videosu için ekrana dokunup oynatın.");
+          }
+        } catch (_) {}
+      });
+    }
+  }
+
+  function updateReaderUi() {
+    var multi = videos.length > 1;
+    if (readerNavWrap) {
+      readerNavWrap.hidden = !multi;
+      if (multi) readerNavWrap.removeAttribute("hidden");
+      else readerNavWrap.setAttribute("hidden", "");
+    }
+    if (readerCount) {
+      readerCount.textContent = videos.length ? videoIndex + 1 + " / " + videos.length : "";
+    }
+    if (readerPrev) readerPrev.disabled = videoIndex <= 0;
+    if (readerNext) readerNext.disabled = videoIndex >= videos.length - 1;
+  }
+
+  function revealReaderUi() {
+    setReaderLoading(false);
+    setReaderReady(true);
+    updateReaderUi();
+  }
+
+  function playVideoAt(index) {
+    if (!reader || index < 0 || index >= videos.length) return;
+    var token = ++loadToken;
+    videoIndex = index;
+    updateReaderUi();
+    setReaderReady(false);
+    setReaderLoading(true);
+    hideAllPlayers();
+
+    var cfg = videos[index];
+    var play = pickPlayback(cfg);
+    if (!play) {
+      setReaderLoading(false);
+      return;
+    }
+
+    function abort() {
+      return token !== loadToken;
+    }
+
+    if (play.mode === "iframe") {
+      if (readerIframeWrap) {
+        readerIframeWrap.hidden = false;
+        readerIframeWrap.removeAttribute("hidden");
+      }
+      if (readerIframe) {
+        readerIframe.setAttribute(
+          "allow",
+          "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+        );
+        readerIframe.onload = function () {
+          if (!abort()) revealReaderUi();
+        };
+        readerIframe.src = play.src;
+      }
+      window.setTimeout(function () {
+        if (!abort()) revealReaderUi();
+      }, 3500);
+      return;
+    }
+
+    if (readerVideo) {
+      readerVideo.hidden = false;
+      readerVideo.removeAttribute("hidden");
+    }
+
+    var host = String(cfg.libraryName || "")
+      .trim()
+      .replace(/^https?:\/\//i, "")
+      .replace(/\.b-cdn\.net.*$/i, "");
+    var mp4List = host.length >= 8 ? buildMp4Candidates(host, cfg.videoId) : [play.src];
+
+    loadVideoSource(readerVideo, mp4List)
+      .then(function () {
+        if (abort()) return;
+        revealReaderUi();
+        readerVideo.onended = function () {
+          if (videoIndex < videos.length - 1) {
+            playVideoAt(videoIndex + 1);
+          }
+        };
+        tryPlayVideo(readerVideo);
+      })
+      .catch(function () {
+        if (abort()) return;
+        var fallback = pickPlayback({
+          videoId: cfg.videoId,
+          libraryId: cfg.libraryId,
+          libraryName: "",
+        });
+        if (fallback && fallback.mode === "iframe" && readerIframe) {
+          hideAllPlayers();
+          if (readerIframeWrap) {
+            readerIframeWrap.hidden = false;
+            readerIframeWrap.removeAttribute("hidden");
+          }
+          readerIframe.src = fallback.src;
+          revealReaderUi();
+          return;
+        }
+        setReaderLoading(false);
+      });
   }
 
   function openLearnHub() {
@@ -328,7 +604,7 @@
       btn.type = "button";
       btn.className = "roborox-topic-item";
       btn.dataset.topicId = t.id;
-      btn.innerHTML = topicItemHtml(t.title, cardCountLabel(t.images.length), BRAND_EMOJI);
+      btn.innerHTML = topicItemHtml(t.title, videoCountLabel(topicContentCount(t)), BRAND_EMOJI);
       topicsList.appendChild(btn);
     });
     syncGradeSubtitle();
@@ -393,7 +669,7 @@
       topicsList.innerHTML =
         '<p class="roborox-topics-empty">Henüz ' +
         (gradeText ? "<strong>" + esc(gradeText) + "</strong> için " : "") +
-        "öğrenme kartı eklenmemiş.<br>Öğretmeniniz admin panelinden ders ve konu ekleyebilir.</p>";
+        "ders videosu eklenmemiş.<br>Öğretmeniniz admin panelinden ders ve konu ekleyebilir.</p>";
       syncGradeSubtitle();
     } catch (e) {
       topicsList.innerHTML =
@@ -401,64 +677,29 @@
     }
   }
 
-  function updateReaderUi() {
-    if (readerTitle) readerTitle.textContent = reader.dataset.title || BRAND_NAME;
-    if (readerCount) {
-      readerCount.textContent = images.length
-        ? "Kart " + (pageIndex + 1) + " / " + images.length
-        : "";
-    }
-    if (readerPrev) readerPrev.disabled = animating || pageIndex <= 0;
-    if (readerNext) readerNext.disabled = animating || pageIndex >= images.length - 1;
-  }
-
-  function resetPageClasses(img) {
-    if (!img) return;
-    img.className = "roborox-page-layer";
-  }
-
-  function showPage(img, url) {
-    if (!img) return;
-    resetPageClasses(img);
-    img.classList.add("is-active", "is-settled");
-    img.src = url || "";
-    img.alt =
-      (reader && reader.dataset.title ? reader.dataset.title : "Öğrenme Kartı") +
-      " — " +
-      (pageIndex + 1);
-  }
-
-  function preloadAdjacent() {
-    [pageIndex - 1, pageIndex + 1].forEach(function (i) {
-      if (i < 0 || i >= images.length) return;
-      const pre = new Image();
-      pre.decoding = "async";
-      pre.src = images[i];
-    });
-  }
-
   function openReader(topic, withIntroHandoff) {
-    if (!reader || !topic || !topic.images.length) return;
+    if (!reader || !topic) return;
+    if (!topic.videos || !topic.videos.length) return;
+
     ensureReaderPortal();
-    images = topic.images.slice();
-    pageIndex = 0;
-    animating = false;
+    videos = topic.videos.slice();
+    videoIndex = 0;
+    loadToken += 1;
     reader.dataset.title = topic.title;
-    activePage = pageA;
-    idlePage = pageB;
-    resetPageClasses(pageA);
-    resetPageClasses(pageB);
-    showPage(activePage, images[0]);
-    preloadAdjacent();
-    updateReaderUi();
     closeTopicsModal();
     reader.hidden = false;
-    reader.classList.remove("is-open-ready");
+    reader.classList.remove("is-open-ready", "is-ready");
     if (withIntroHandoff) reader.classList.add("is-opening");
     else reader.classList.remove("is-opening");
     reader.classList.add("open");
     reader.setAttribute("aria-hidden", "false");
     setReaderBodyLock(true);
+    setExitVisible(false);
+    setReaderLoading(true);
+    hideAllPlayers();
+    updateReaderUi();
+    playVideoAt(0);
+
     if (withIntroHandoff) {
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
@@ -473,105 +714,17 @@
 
   function closeReader() {
     if (!reader) return;
-    reader.classList.remove("open");
+    loadToken += 1;
+    reader.classList.remove("open", "is-ready", "is-opening", "is-open-ready");
     reader.setAttribute("aria-hidden", "true");
     reader.hidden = true;
-    resetPageClasses(pageA);
-    resetPageClasses(pageB);
-    if (pageA) pageA.removeAttribute("src");
-    if (pageB) pageB.removeAttribute("src");
-    images = [];
-    pageIndex = 0;
-    animating = false;
+    hideAllPlayers();
+    setReaderLoading(false);
+    setExitVisible(false);
+    videos = [];
+    videoIndex = 0;
     setReaderBodyLock(false);
     notifyMainScreenReturn();
-  }
-
-  function finishSlide(toIdx, incoming, outgoing) {
-    pageIndex = toIdx;
-    resetPageClasses(outgoing);
-    resetPageClasses(incoming);
-    incoming.classList.add("is-active", "is-settled");
-    animating = false;
-    updateReaderUi();
-    preloadAdjacent();
-  }
-
-  function whenPageReady(img, cb) {
-    if (!img) {
-      cb();
-      return;
-    }
-    if (img.complete && img.naturalWidth > 0) {
-      cb();
-      return;
-    }
-    function done() {
-      img.removeEventListener("load", done);
-      img.removeEventListener("error", done);
-      cb();
-    }
-    img.addEventListener("load", done);
-    img.addEventListener("error", done);
-  }
-
-  function runSlideTransition(incoming, outgoing, enterClass, exitClass, toIdx) {
-    incoming.classList.add(enterClass);
-    outgoing.classList.add("is-active");
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        incoming.classList.remove(enterClass);
-        incoming.classList.add("is-settled");
-        outgoing.classList.add(exitClass);
-      });
-    });
-
-    let finished = false;
-    function complete() {
-      if (finished) return;
-      finished = true;
-      activePage = incoming;
-      idlePage = outgoing;
-      finishSlide(toIdx, incoming, outgoing);
-    }
-
-    const timer = window.setTimeout(complete, SLIDE_MS + 80);
-    function onEnd(ev) {
-      if (ev.target !== incoming) return;
-      if (ev.propertyName !== "transform" && ev.propertyName !== "opacity") return;
-      window.clearTimeout(timer);
-      incoming.removeEventListener("transitionend", onEnd);
-      complete();
-    }
-    incoming.addEventListener("transitionend", onEnd, { passive: true });
-  }
-
-  function animatePage(direction) {
-    if (animating || !activePage || !idlePage || !pageViewport) return;
-    if (direction === "next" && pageIndex >= images.length - 1) return;
-    if (direction === "prev" && pageIndex <= 0) return;
-
-    const toIdx = direction === "next" ? pageIndex + 1 : pageIndex - 1;
-    const incoming = idlePage;
-    const outgoing = activePage;
-    const toUrl = images[toIdx];
-
-    animating = true;
-    updateReaderUi();
-
-    resetPageClasses(incoming);
-    resetPageClasses(outgoing);
-    incoming.src = toUrl;
-    incoming.alt = (reader.dataset.title || "Öğrenme Kartı") + " — " + (toIdx + 1);
-
-    const enterClass = direction === "next" ? "is-enter-right" : "is-enter-left";
-    const exitClass = direction === "next" ? "is-exit-left" : "is-exit-right";
-
-    whenPageReady(incoming, function () {
-      if (!animating || incoming.src !== toUrl) return;
-      runSlideTransition(incoming, outgoing, enterClass, exitClass, toIdx);
-    });
   }
 
   if (learnOpenBtn) {
@@ -639,50 +792,25 @@
     });
   }
 
-  if (readerClose) {
-    readerClose.addEventListener("click", closeReader);
+  if (readerExit) {
+    readerExit.addEventListener("click", closeReader);
   }
 
   if (readerPrev) {
     readerPrev.addEventListener("click", function () {
-      animatePage("prev");
+      if (videoIndex > 0) playVideoAt(videoIndex - 1);
     });
   }
 
   if (readerNext) {
     readerNext.addEventListener("click", function () {
-      animatePage("next");
+      if (videoIndex < videos.length - 1) playVideoAt(videoIndex + 1);
     });
-  }
-
-  if (pageViewport) {
-    pageViewport.addEventListener(
-      "touchstart",
-      function (e) {
-        if (animating) return;
-        if (!e.changedTouches || !e.changedTouches[0]) return;
-        touchStartX = e.changedTouches[0].clientX;
-      },
-      { passive: true }
-    );
-
-    pageViewport.addEventListener(
-      "touchend",
-      function (e) {
-        if (animating) return;
-        if (!e.changedTouches || !e.changedTouches[0]) return;
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) < 52) return;
-        if (dx < 0) animatePage("next");
-        else animatePage("prev");
-      },
-      { passive: true }
-    );
   }
 
   if (reader) {
     reader.addEventListener("click", function (e) {
-      if (e.target === reader && !animating) closeReader();
+      if (e.target === reader && readerReady) closeReader();
     });
   }
 
@@ -701,8 +829,8 @@
     }
     if (!reader || !reader.classList.contains("open")) return;
     if (e.key === "Escape") closeReader();
-    if (e.key === "ArrowRight") animatePage("next");
-    if (e.key === "ArrowLeft") animatePage("prev");
+    if (e.key === "ArrowRight" && videoIndex < videos.length - 1) playVideoAt(videoIndex + 1);
+    if (e.key === "ArrowLeft" && videoIndex > 0) playVideoAt(videoIndex - 1);
   });
 
   window.novaOpenRoboroxTopicsModal = openTopicsModal;

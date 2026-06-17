@@ -2584,8 +2584,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yüz' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Suda ilerlemek (yüzmek)",
-      "wrong1": "Kitap okumak",
-      "wrong2": "Lira",
+      "wrong1": "Kitap okumak (okumak)",
+      "wrong2": "Para birimi (lira)",
       "explanation": "Yüz kelimesi hem sayı, hem surat hem de suda yüzmek anlamlarına gelen eş sesli bir kelimedir.",
       "app": {
         "question": {
@@ -2600,8 +2600,8 @@
           ]
         },
         "correct": "Suda ilerlemek (yüzmek)",
-        "wrong1": "Kitap okumak",
-        "wrong2": "Lira",
+        "wrong1": "Kitap okumak (okumak)",
+        "wrong2": "Para birimi (lira)",
         "explanation": "Yüz kelimesi hem sayı, hem surat hem de suda yüzmek anlamlarına gelen eş sesli bir kelimedir.",
         "url": null
       }
@@ -2668,8 +2668,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'At' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Binek hayvanı olan at",
-      "wrong1": "Araba sürmek",
-      "wrong2": "Kaçmak",
+      "wrong1": "Araba kullanmak eylemi",
+      "wrong2": "Kaçmak fiili (kaçmak)",
       "explanation": "At kelimesi hem hayvan olan at hem de bir nesneyi fırlatmak (atmak) anlamına gelir.",
       "app": {
         "question": {
@@ -2684,8 +2684,8 @@
           ]
         },
         "correct": "Binek hayvanı olan at",
-        "wrong1": "Araba sürmek",
-        "wrong2": "Kaçmak",
+        "wrong1": "Araba kullanmak eylemi",
+        "wrong2": "Kaçmak fiili (kaçmak)",
         "explanation": "At kelimesi hem hayvan olan at hem de bir nesneyi fırlatmak (atmak) anlamına gelir.",
         "url": null
       }
@@ -2695,9 +2695,9 @@
       "level": "kolay",
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Çay' kelimesinin eş sesli anlamlarından birini ifade eder?",
-      "correct": "İçilen sıcak içecek",
-      "wrong1": "Büyük deniz",
-      "wrong2": "Kahve",
+      "correct": "İçilen sıcak içecek (çay)",
+      "wrong1": "Büyük su kütlesi (deniz)",
+      "wrong2": "Kahve içeceği (kahve)",
       "explanation": "Çay kelimesi hem sıcak bir içecek hem de dereden büyük akarsu anlamına gelir.",
       "app": {
         "question": {
@@ -2711,9 +2711,9 @@
             }
           ]
         },
-        "correct": "İçilen sıcak içecek",
-        "wrong1": "Büyük deniz",
-        "wrong2": "Kahve",
+        "correct": "İçilen sıcak içecek (çay)",
+        "wrong1": "Büyük su kütlesi (deniz)",
+        "wrong2": "Kahve içeceği (kahve)",
         "explanation": "Çay kelimesi hem sıcak bir içecek hem de dereden büyük akarsu anlamına gelir.",
         "url": null
       }
@@ -2724,8 +2724,8 @@
       "premise": "'Kır' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kır' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Şehir dışı yeşillik alan",
-      "wrong1": "Orman",
-      "wrong2": "Tamir etmek",
+      "wrong1": "Orman sözcüğünün diğer anlamı",
+      "wrong2": "Tamir etmek anlamında fiil",
       "explanation": "Kır kelimesi hem bir şeyi parçalamak (kırmak) hem de yeşillik doğa alanı anlamına gelir.",
       "app": {
         "question": {
@@ -2740,8 +2740,8 @@
           ]
         },
         "correct": "Şehir dışı yeşillik alan",
-        "wrong1": "Orman",
-        "wrong2": "Tamir etmek",
+        "wrong1": "Orman sözcüğünün diğer anlamı",
+        "wrong2": "Tamir etmek anlamında fiil",
         "explanation": "Kır kelimesi hem bir şeyi parçalamak (kırmak) hem de yeşillik doğa alanı anlamına gelir.",
         "url": null
       }
@@ -2779,9 +2779,9 @@
       "level": "kolay",
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yaş' kelimesinin eş sesli anlamlarından birini ifade eder?",
-      "correct": "Islak, kurumamış olan",
-      "wrong1": "Kuru",
-      "wrong2": "Güneşli",
+      "correct": "Islak, kurumamış olan anlamı",
+      "wrong1": "Kuru sözcüğünün diğer anlamı",
+      "wrong2": "Güneşli sözcüğünün diğer anlamı",
       "explanation": "Yaş kelimesi hem ıslaklık durumu hem de insanın doğduğundan beri geçen zamanı (ömür) ifade eder.",
       "app": {
         "question": {
@@ -2795,9 +2795,9 @@
             }
           ]
         },
-        "correct": "Islak, kurumamış olan",
-        "wrong1": "Kuru",
-        "wrong2": "Güneşli",
+        "correct": "Islak, kurumamış olan anlamı",
+        "wrong1": "Kuru sözcüğünün diğer anlamı",
+        "wrong2": "Güneşli sözcüğünün diğer anlamı",
         "explanation": "Yaş kelimesi hem ıslaklık durumu hem de insanın doğduğundan beri geçen zamanı (ömür) ifade eder.",
         "url": null
       }
@@ -2808,8 +2808,8 @@
       "premise": "'Ben' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ben' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Ciltte çıkan koyu renkli leke",
-      "wrong1": "Sen",
-      "wrong2": "Sivilce",
+      "wrong1": "Sen sözcüğünün diğer anlamı",
+      "wrong2": "Sivilce sözcüğünün diğer anlamı",
       "explanation": "Ben kelimesi hem kendimizi ifade ettiğimiz zamir hem de ciltteki leke anlamına gelir.",
       "app": {
         "question": {
@@ -2824,8 +2824,8 @@
           ]
         },
         "correct": "Ciltte çıkan koyu renkli leke",
-        "wrong1": "Sen",
-        "wrong2": "Sivilce",
+        "wrong1": "Sen sözcüğünün diğer anlamı",
+        "wrong2": "Sivilce sözcüğünün diğer anlamı",
         "explanation": "Ben kelimesi hem kendimizi ifade ettiğimiz zamir hem de ciltteki leke anlamına gelir.",
         "url": null
       }
@@ -2836,8 +2836,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kaz' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Toprağı eşelemek (kazmak)",
-      "wrong1": "Hızlı koşmak",
-      "wrong2": "Kürek",
+      "wrong1": "Hızlı koşmak anlamında fiil",
+      "wrong2": "Kürek sözcüğünün diğer anlamı",
       "explanation": "Kaz kelimesi hem bir kuş türü hem de toprağı oymak (kazmak) anlamına gelir.",
       "app": {
         "question": {
@@ -2852,8 +2852,8 @@
           ]
         },
         "correct": "Toprağı eşelemek (kazmak)",
-        "wrong1": "Hızlı koşmak",
-        "wrong2": "Kürek",
+        "wrong1": "Hızlı koşmak anlamında fiil",
+        "wrong2": "Kürek sözcüğünün diğer anlamı",
         "explanation": "Kaz kelimesi hem bir kuş türü hem de toprağı oymak (kazmak) anlamına gelir.",
         "url": null
       }
@@ -2865,7 +2865,7 @@
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dolu' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Hava olayı (buz yağışı)",
       "wrong1": "Boş kutu",
-      "wrong2": "Yağmur",
+      "wrong2": "Yağmur sözcüğünün diğer anlamı",
       "explanation": "Dolu kelimesi hem boşun zıttı hem de gökten yağan buz parçaları anlamına gelir.",
       "app": {
         "question": {
@@ -2881,7 +2881,7 @@
         },
         "correct": "Hava olayı (buz yağışı)",
         "wrong1": "Boş kutu",
-        "wrong2": "Yağmur",
+        "wrong2": "Yağmur sözcüğünün diğer anlamı",
         "explanation": "Dolu kelimesi hem boşun zıttı hem de gökten yağan buz parçaları anlamına gelir.",
         "url": null
       }
@@ -2892,8 +2892,8 @@
       "premise": "'Saç' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Saç' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Etrafa dağıtmak (saçmak)",
-      "wrong1": "Tarak",
-      "wrong2": "Toplamak",
+      "wrong1": "Tarak sözcüğünün diğer anlamı",
+      "wrong2": "Toplamak anlamında fiil",
       "explanation": "Saç kelimesi hem başımızdaki kıllar hem de etrafa serpmek/dağıtmak anlamına gelir.",
       "app": {
         "question": {
@@ -2908,8 +2908,8 @@
           ]
         },
         "correct": "Etrafa dağıtmak (saçmak)",
-        "wrong1": "Tarak",
-        "wrong2": "Toplamak",
+        "wrong1": "Tarak sözcüğünün diğer anlamı",
+        "wrong2": "Toplamak anlamında fiil",
         "explanation": "Saç kelimesi hem başımızdaki kıllar hem de etrafa serpmek/dağıtmak anlamına gelir.",
         "url": null
       }
@@ -2919,9 +2919,9 @@
       "level": "orta",
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bağ' kelimesinin eş sesli anlamlarından birini ifade eder?",
-      "correct": "Üzüm yetiştirilen yer",
+      "correct": "Üzüm yetiştirilen yer anlamı",
       "wrong1": "Ayakkabı boyası",
-      "wrong2": "Çözmek",
+      "wrong2": "Çözmek anlamında fiil",
       "explanation": "Bağ kelimesi hem ip/düğüm anlamına hem de üzüm tarlası anlamına gelir.",
       "app": {
         "question": {
@@ -2935,9 +2935,9 @@
             }
           ]
         },
-        "correct": "Üzüm yetiştirilen yer",
+        "correct": "Üzüm yetiştirilen yer anlamı",
         "wrong1": "Ayakkabı boyası",
-        "wrong2": "Çözmek",
+        "wrong2": "Çözmek anlamında fiil",
         "explanation": "Bağ kelimesi hem ip/düğüm anlamına hem de üzüm tarlası anlamına gelir.",
         "url": null
       }
@@ -2948,8 +2948,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yol' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Yabani otları koparmak (yolmak)",
-      "wrong1": "Sokak",
-      "wrong2": "Ekmek",
+      "wrong1": "Sokak sözcüğünün diğer anlamı",
+      "wrong2": "Ekmek anlamında fiil",
       "explanation": "Yol kelimesi hem üzerinde yürünen yer hem de çekip koparmak (yolmak) anlamına gelir.",
       "app": {
         "question": {
@@ -2964,8 +2964,8 @@
           ]
         },
         "correct": "Yabani otları koparmak (yolmak)",
-        "wrong1": "Sokak",
-        "wrong2": "Ekmek",
+        "wrong1": "Sokak sözcüğünün diğer anlamı",
+        "wrong2": "Ekmek anlamında fiil",
         "explanation": "Yol kelimesi hem üzerinde yürünen yer hem de çekip koparmak (yolmak) anlamına gelir.",
         "url": null
       }
@@ -2976,8 +2976,8 @@
       "premise": "'Dal' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dal' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Suya veya denize girmek (dalmak)",
-      "wrong1": "Yaprak",
-      "wrong2": "Yüzmek",
+      "wrong1": "Yaprak sözcüğünün diğer anlamı",
+      "wrong2": "Yüzmek anlamında fiil",
       "explanation": "Dal kelimesi hem ağacın kolları hem de suya hızla girmek (dalmak) anlamına gelir.",
       "app": {
         "question": {
@@ -2992,8 +2992,8 @@
           ]
         },
         "correct": "Suya veya denize girmek (dalmak)",
-        "wrong1": "Yaprak",
-        "wrong2": "Yüzmek",
+        "wrong1": "Yaprak sözcüğünün diğer anlamı",
+        "wrong2": "Yüzmek anlamında fiil",
         "explanation": "Dal kelimesi hem ağacın kolları hem de suya hızla girmek (dalmak) anlamına gelir.",
         "url": null
       }
@@ -3004,8 +3004,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'İç' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Sıvı tüketmek eylemi (içmek)",
-      "wrong1": "Dış",
-      "wrong2": "Yemek",
+      "wrong1": "Dış sözcüğünün diğer anlamı",
+      "wrong2": "Yemek anlamında fiil",
       "explanation": "İç kelimesi hem bir şeyin dâhilî kısmı (dışın zıttı) hem de içmek eylemi anlamına gelir.",
       "app": {
         "question": {
@@ -3020,8 +3020,8 @@
           ]
         },
         "correct": "Sıvı tüketmek eylemi (içmek)",
-        "wrong1": "Dış",
-        "wrong2": "Yemek",
+        "wrong1": "Dış sözcüğünün diğer anlamı",
+        "wrong2": "Yemek anlamında fiil",
         "explanation": "İç kelimesi hem bir şeyin dâhilî kısmı (dışın zıttı) hem de içmek eylemi anlamına gelir.",
         "url": null
       }
@@ -3087,9 +3087,9 @@
       "level": "orta",
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sağ' kelimesinin eş sesli anlamlarından birini ifade eder?",
-      "correct": "Yaşayan, hayatta olan",
-      "wrong1": "Ölü olmak",
-      "wrong2": "Sol",
+      "correct": "Yaşayan, hayatta olan anlamı",
+      "wrong1": "Ölü olmak anlamında fiil",
+      "wrong2": "Sol sözcüğünün diğer anlamı",
       "explanation": "Sağ kelimesi hem solun zıttı olan yön hem de hayatta olan/yaşayan anlamına gelir.",
       "app": {
         "question": {
@@ -3103,9 +3103,9 @@
             }
           ]
         },
-        "correct": "Yaşayan, hayatta olan",
-        "wrong1": "Ölü olmak",
-        "wrong2": "Sol",
+        "correct": "Yaşayan, hayatta olan anlamı",
+        "wrong1": "Ölü olmak anlamında fiil",
+        "wrong2": "Sol sözcüğünün diğer anlamı",
         "explanation": "Sağ kelimesi hem solun zıttı olan yön hem de hayatta olan/yaşayan anlamına gelir.",
         "url": null
       }
@@ -3117,7 +3117,7 @@
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Atlet' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Atletizm sporuyla uğraşan sporcu",
       "wrong1": "Gömlek giyen",
-      "wrong2": "Hakem",
+      "wrong2": "Hakem sözcüğünün diğer anlamı",
       "explanation": "Atlet kelimesi hem giyilen iç çamaşırı hem de koşu vb. sporlar yapan kişi anlamına gelir.",
       "app": {
         "question": {
@@ -3133,7 +3133,7 @@
         },
         "correct": "Atletizm sporuyla uğraşan sporcu",
         "wrong1": "Gömlek giyen",
-        "wrong2": "Hakem",
+        "wrong2": "Hakem sözcüğünün diğer anlamı",
         "explanation": "Atlet kelimesi hem giyilen iç çamaşırı hem de koşu vb. sporlar yapan kişi anlamına gelir.",
         "url": null
       }
@@ -3144,8 +3144,8 @@
       "premise": "'Kara' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kara' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Üzerinde yaşadığımız toprak parçası",
-      "wrong1": "Beyaz",
-      "wrong2": "Deniz",
+      "wrong1": "Siyahın karşıtı olan beyaz renk",
+      "wrong2": "Karadan büyük su kütlesi (deniz)",
       "explanation": "Kara kelimesi hem siyah renk hem de toprak parçası (kıta) anlamına gelir.",
       "app": {
         "question": {
@@ -3160,8 +3160,8 @@
           ]
         },
         "correct": "Üzerinde yaşadığımız toprak parçası",
-        "wrong1": "Beyaz",
-        "wrong2": "Deniz",
+        "wrong1": "Siyahın karşıtı olan beyaz renk",
+        "wrong2": "Karadan büyük su kütlesi (deniz)",
         "explanation": "Kara kelimesi hem siyah renk hem de toprak parçası (kıta) anlamına gelir.",
         "url": null
       }
@@ -3171,9 +3171,9 @@
       "level": "orta",
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yat' kelimesinin eş sesli anlamlarından birini ifade eder?",
-      "correct": "Deniz taşıtı, gemi",
-      "wrong1": "Uçak",
-      "wrong2": "Kalkmak",
+      "correct": "Deniz taşıtı, gemi anlamı",
+      "wrong1": "Uçak sözcüğünün diğer anlamı",
+      "wrong2": "Kalkmak anlamında fiil",
       "explanation": "Yat kelimesi hem uzanıp uyumak eylemi (yatmak) hem de lüks bir gemi türü anlamına gelir.",
       "app": {
         "question": {
@@ -3187,9 +3187,9 @@
             }
           ]
         },
-        "correct": "Deniz taşıtı, gemi",
-        "wrong1": "Uçak",
-        "wrong2": "Kalkmak",
+        "correct": "Deniz taşıtı, gemi anlamı",
+        "wrong1": "Uçak sözcüğünün diğer anlamı",
+        "wrong2": "Kalkmak anlamında fiil",
         "explanation": "Yat kelimesi hem uzanıp uyumak eylemi (yatmak) hem de lüks bir gemi türü anlamına gelir.",
         "url": null
       }
@@ -3200,8 +3200,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Al' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Bir şeyi elde etmek (almak)",
-      "wrong1": "Beyaz",
-      "wrong2": "Vermek",
+      "wrong1": "Beyaz sözcüğünün diğer anlamı",
+      "wrong2": "Vermek anlamında fiil",
       "explanation": "Al kelimesi hem kırmızı rengin eş anlamlısı hem de bir şeyi almak eylemidir.",
       "app": {
         "question": {
@@ -3216,8 +3216,8 @@
           ]
         },
         "correct": "Bir şeyi elde etmek (almak)",
-        "wrong1": "Beyaz",
-        "wrong2": "Vermek",
+        "wrong1": "Beyaz sözcüğünün diğer anlamı",
+        "wrong2": "Vermek anlamında fiil",
         "explanation": "Al kelimesi hem kırmızı rengin eş anlamlısı hem de bir şeyi almak eylemidir.",
         "url": null
       }
@@ -3256,8 +3256,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Diz' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Eşyaları sıraya koymak (dizmek)",
-      "wrong1": "Kol",
-      "wrong2": "Dağıtmak",
+      "wrong1": "İnsan vücudundaki kol uzvu",
+      "wrong2": "Eşyaları etrafa dağıtmak eylemi",
       "explanation": "Diz kelimesi hem bacağın ortasındaki eklem hem de sıralamak eylemidir.",
       "app": {
         "question": {
@@ -3272,8 +3272,8 @@
           ]
         },
         "correct": "Eşyaları sıraya koymak (dizmek)",
-        "wrong1": "Kol",
-        "wrong2": "Dağıtmak",
+        "wrong1": "İnsan vücudundaki kol uzvu",
+        "wrong2": "Eşyaları etrafa dağıtmak eylemi",
         "explanation": "Diz kelimesi hem bacağın ortasındaki eklem hem de sıralamak eylemidir.",
         "url": null
       }
@@ -3284,8 +3284,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'İn' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Vahşi hayvan yuvası (mağara)",
-      "wrong1": "Dışarı çıkmak",
-      "wrong2": "Dağ",
+      "wrong1": "Dışarı çıkmak anlamında fiil",
+      "wrong2": "Dağ sözcüğünün diğer anlamı",
       "explanation": "İn kelimesi hem aşağı inmek eylemi hem de hayvanların barındığı mağara anlamına gelir.",
       "app": {
         "question": {
@@ -3300,8 +3300,8 @@
           ]
         },
         "correct": "Vahşi hayvan yuvası (mağara)",
-        "wrong1": "Dışarı çıkmak",
-        "wrong2": "Dağ",
+        "wrong1": "Dışarı çıkmak anlamında fiil",
+        "wrong2": "Dağ sözcüğünün diğer anlamı",
         "explanation": "İn kelimesi hem aşağı inmek eylemi hem de hayvanların barındığı mağara anlamına gelir.",
         "url": null
       }
@@ -3312,8 +3312,8 @@
       "premise": "'El' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'El' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Yabancı kimse, tanıdık olmayan",
-      "wrong1": "Ayak",
-      "wrong2": "Kol",
+      "wrong1": "Ayak sözcüğünün diğer anlamı",
+      "wrong2": "Kol sözcüğünün diğer anlamı",
       "explanation": "El kelimesi hem organımız hem de yabancı, başkası anlamına gelir.",
       "app": {
         "question": {
@@ -3328,8 +3328,8 @@
           ]
         },
         "correct": "Yabancı kimse, tanıdık olmayan",
-        "wrong1": "Ayak",
-        "wrong2": "Kol",
+        "wrong1": "Ayak sözcüğünün diğer anlamı",
+        "wrong2": "Kol sözcüğünün diğer anlamı",
         "explanation": "El kelimesi hem organımız hem de yabancı, başkası anlamına gelir.",
         "url": null
       }
@@ -3340,8 +3340,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ekmek' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Tohumu toprağa gömmek (ekmek)",
-      "wrong1": "Çıkarmak",
-      "wrong2": "Biçmek",
+      "wrong1": "Çıkarmak anlamında fiil",
+      "wrong2": "Biçmek anlamında fiil",
       "explanation": "Ekmek kelimesi hem yediğimiz ekmek hem de toprağa tohum ekmek fiili olarak eş seslidir.",
       "app": {
         "question": {
@@ -3356,8 +3356,8 @@
           ]
         },
         "correct": "Tohumu toprağa gömmek (ekmek)",
-        "wrong1": "Çıkarmak",
-        "wrong2": "Biçmek",
+        "wrong1": "Çıkarmak anlamında fiil",
+        "wrong2": "Biçmek anlamında fiil",
         "explanation": "Ekmek kelimesi hem yediğimiz ekmek hem de toprağa tohum ekmek fiili olarak eş seslidir.",
         "url": null
       }
@@ -3368,8 +3368,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dik' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Toprağa bitki yerleştirmek",
-      "wrong1": "Eğik durmak",
-      "wrong2": "Sökmek",
+      "wrong1": "Eğik durmak anlamında fiil",
+      "wrong2": "Sökmek anlamında fiil",
       "explanation": "Dik kelimesi hem eğik olmayan (dik yokuş) hem de toprağa fidan yerleştirmek (dikmek) anlamına gelir.",
       "app": {
         "question": {
@@ -3384,8 +3384,8 @@
           ]
         },
         "correct": "Toprağa bitki yerleştirmek",
-        "wrong1": "Eğik durmak",
-        "wrong2": "Sökmek",
+        "wrong1": "Eğik durmak anlamında fiil",
+        "wrong2": "Sökmek anlamında fiil",
         "explanation": "Dik kelimesi hem eğik olmayan (dik yokuş) hem de toprağa fidan yerleştirmek (dikmek) anlamına gelir.",
         "url": null
       }
@@ -3396,8 +3396,8 @@
       "premise": "'Sal' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sal' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Bir şeyi serbest bırakmak (salmak)",
-      "wrong1": "Bağlamak",
-      "wrong2": "Tutmak",
+      "wrong1": "Bir şeyi sıkıca bağlamak eylemi",
+      "wrong2": "Elimizle bir şeyi tutmak eylemi",
       "explanation": "Sal kelimesi hem suda yüzen tahta araç hem de serbest bırakmak eylemi anlamına gelir.",
       "app": {
         "question": {
@@ -3412,8 +3412,8 @@
           ]
         },
         "correct": "Bir şeyi serbest bırakmak (salmak)",
-        "wrong1": "Bağlamak",
-        "wrong2": "Tutmak",
+        "wrong1": "Bir şeyi sıkıca bağlamak eylemi",
+        "wrong2": "Elimizle bir şeyi tutmak eylemi",
         "explanation": "Sal kelimesi hem suda yüzen tahta araç hem de serbest bırakmak eylemi anlamına gelir.",
         "url": null
       }
@@ -3424,8 +3424,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bel' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Toprağı kazmaya yarayan alet",
-      "wrong1": "Sırt",
-      "wrong2": "Çapa",
+      "wrong1": "Sırt sözcüğünün diğer anlamı",
+      "wrong2": "Çapa sözcüğünün diğer anlamı",
       "explanation": "Bel kelimesi hem vücudumuzun orta kısmı hem de toprağı kazmaya yarayan alet anlamına gelir.",
       "app": {
         "question": {
@@ -3440,8 +3440,8 @@
           ]
         },
         "correct": "Toprağı kazmaya yarayan alet",
-        "wrong1": "Sırt",
-        "wrong2": "Çapa",
+        "wrong1": "Sırt sözcüğünün diğer anlamı",
+        "wrong2": "Çapa sözcüğünün diğer anlamı",
         "explanation": "Bel kelimesi hem vücudumuzun orta kısmı hem de toprağı kazmaya yarayan alet anlamına gelir.",
         "url": null
       }
@@ -3452,8 +3452,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kız' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Birine öfkelenmek (kızmak)",
-      "wrong1": "Erkek",
-      "wrong2": "Sevinmek",
+      "wrong1": "Erkek sözcüğünün diğer anlamı",
+      "wrong2": "Sevinmek anlamında fiil",
       "explanation": "Kız kelimesi hem bir cinsiyet hem de öfkelenmek, sinirlenmek anlamına gelir.",
       "app": {
         "question": {
@@ -3468,8 +3468,8 @@
           ]
         },
         "correct": "Birine öfkelenmek (kızmak)",
-        "wrong1": "Erkek",
-        "wrong2": "Sevinmek",
+        "wrong1": "Erkek sözcüğünün diğer anlamı",
+        "wrong2": "Sevinmek anlamında fiil",
         "explanation": "Kız kelimesi hem bir cinsiyet hem de öfkelenmek, sinirlenmek anlamına gelir.",
         "url": null
       }
@@ -3480,8 +3480,8 @@
       "premise": "'Satır' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Satır' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Kesici, bıçak benzeri büyük alet",
-      "wrong1": "Sayfa",
-      "wrong2": "Bıçak",
+      "wrong1": "Sayfa sözcüğünün diğer anlamı",
+      "wrong2": "Bıçak sözcüğünün diğer anlamı",
       "explanation": "Satır kelimesi hem defterdeki yazı çizgileri hem de eti kesmeye yarayan alettir.",
       "app": {
         "question": {
@@ -3496,8 +3496,8 @@
           ]
         },
         "correct": "Kesici, bıçak benzeri büyük alet",
-        "wrong1": "Sayfa",
-        "wrong2": "Bıçak",
+        "wrong1": "Sayfa sözcüğünün diğer anlamı",
+        "wrong2": "Bıçak sözcüğünün diğer anlamı",
         "explanation": "Satır kelimesi hem defterdeki yazı çizgileri hem de eti kesmeye yarayan alettir.",
         "url": null
       }
@@ -3508,8 +3508,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Asma' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Bir şeyi havaya tutturmak (asmak)",
-      "wrong1": "Ağaç",
-      "wrong2": "İndirmek",
+      "wrong1": "Bahçede yetişen ağaç bitkisi",
+      "wrong2": "Bir şeyi aşağı indirmek eylemi",
       "explanation": "Asma kelimesi hem üzüm bitkisi hem de bir şeyi asmak fiili olarak eş seslidir.",
       "app": {
         "question": {
@@ -3524,8 +3524,8 @@
           ]
         },
         "correct": "Bir şeyi havaya tutturmak (asmak)",
-        "wrong1": "Ağaç",
-        "wrong2": "İndirmek",
+        "wrong1": "Bahçede yetişen ağaç bitkisi",
+        "wrong2": "Bir şeyi aşağı indirmek eylemi",
         "explanation": "Asma kelimesi hem üzüm bitkisi hem de bir şeyi asmak fiili olarak eş seslidir.",
         "url": null
       }
@@ -3564,8 +3564,8 @@
       "premise": "'Saz' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Saz' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Göl kenarında yetişen uzun otlar",
-      "wrong1": "Keman",
-      "wrong2": "Ağaç",
+      "wrong1": "Müzik aleti olarak keman çalgısı",
+      "wrong2": "Bahçede yetişen ağaç bitkisi",
       "explanation": "Saz kelimesi hem telli bir müzik aleti hem de su kenarında yetişen bitki (sazlık) anlamındadır.",
       "app": {
         "question": {
@@ -3580,8 +3580,8 @@
           ]
         },
         "correct": "Göl kenarında yetişen uzun otlar",
-        "wrong1": "Keman",
-        "wrong2": "Ağaç",
+        "wrong1": "Müzik aleti olarak keman çalgısı",
+        "wrong2": "Bahçede yetişen ağaç bitkisi",
         "explanation": "Saz kelimesi hem telli bir müzik aleti hem de su kenarında yetişen bitki (sazlık) anlamındadır.",
         "url": null
       }
@@ -3592,8 +3592,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dil' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Ağzımızdaki tat alma organı",
-      "wrong1": "Dişler",
-      "wrong2": "Söz",
+      "wrong1": "Dişler sözcüğünün diğer anlamı",
+      "wrong2": "Söz sözcüğünün diğer anlamı",
       "explanation": "Dil kelimesi hem organımız hem de konuştuğumuz lisan (Türkçe vb.) anlamına gelir.",
       "app": {
         "question": {
@@ -3608,8 +3608,8 @@
           ]
         },
         "correct": "Ağzımızdaki tat alma organı",
-        "wrong1": "Dişler",
-        "wrong2": "Söz",
+        "wrong1": "Dişler sözcüğünün diğer anlamı",
+        "wrong2": "Söz sözcüğünün diğer anlamı",
         "explanation": "Dil kelimesi hem organımız hem de konuştuğumuz lisan (Türkçe vb.) anlamına gelir.",
         "url": null
       }
@@ -3620,8 +3620,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Pas' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Futbolda topu arkadaşına atmak",
-      "wrong1": "Temiz",
-      "wrong2": "Şut",
+      "wrong1": "Temiz sözcüğünün diğer anlamı",
+      "wrong2": "Şut sözcüğünün diğer anlamı",
       "explanation": "Pas kelimesi hem demirin çürümesi (paslanması) hem de sporda topu başkasına vermek anlamına gelir.",
       "app": {
         "question": {
@@ -3636,8 +3636,8 @@
           ]
         },
         "correct": "Futbolda topu arkadaşına atmak",
-        "wrong1": "Temiz",
-        "wrong2": "Şut",
+        "wrong1": "Temiz sözcüğünün diğer anlamı",
+        "wrong2": "Şut sözcüğünün diğer anlamı",
         "explanation": "Pas kelimesi hem demirin çürümesi (paslanması) hem de sporda topu başkasına vermek anlamına gelir.",
         "url": null
       }
@@ -3648,8 +3648,8 @@
       "premise": "'Küp' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Küp' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Eskiden su konulan topraktan kap",
-      "wrong1": "Silindir",
-      "wrong2": "Şişe",
+      "wrong1": "Yuvarlak silindir şeklinde cisim",
+      "wrong2": "İçine sıvı konulan cam şişe",
       "explanation": "Küp kelimesi hem matematiksel geometrik şekil hem de testi benzeri su kabıdır.",
       "app": {
         "question": {
@@ -3664,8 +3664,8 @@
           ]
         },
         "correct": "Eskiden su konulan topraktan kap",
-        "wrong1": "Silindir",
-        "wrong2": "Şişe",
+        "wrong1": "Yuvarlak silindir şeklinde cisim",
+        "wrong2": "İçine sıvı konulan cam şişe",
         "explanation": "Küp kelimesi hem matematiksel geometrik şekil hem de testi benzeri su kabıdır.",
         "url": null
       }
@@ -3676,8 +3676,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Boz' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Griye çalan kahverengi renk",
-      "wrong1": "Çalıştırmak",
-      "wrong2": "Tamir etmek",
+      "wrong1": "Çalıştırmak anlamında fiil",
+      "wrong2": "Tamir etmek anlamında fiil",
       "explanation": "Boz kelimesi hem bozmak (çalışmaz hâle getirmek) eylemi hem de bir renk anlamına gelir.",
       "app": {
         "question": {
@@ -3692,8 +3692,8 @@
           ]
         },
         "correct": "Griye çalan kahverengi renk",
-        "wrong1": "Çalıştırmak",
-        "wrong2": "Tamir etmek",
+        "wrong1": "Çalıştırmak anlamında fiil",
+        "wrong2": "Tamir etmek anlamında fiil",
         "explanation": "Boz kelimesi hem bozmak (çalışmaz hâle getirmek) eylemi hem de bir renk anlamına gelir.",
         "url": null
       }
@@ -3704,8 +3704,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bere' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Deride oluşan küçük yara, iz",
-      "wrong1": "Atkı",
-      "wrong2": "Eldiven",
+      "wrong1": "Atkı sözcüğünün diğer anlamı",
+      "wrong2": "Eldiven sözcüğünün diğer anlamı",
       "explanation": "Bere kelimesi hem başa takılan şapka türü hem de darbe sonucu oluşan morluk/yara izidir.",
       "app": {
         "question": {
@@ -3720,8 +3720,8 @@
           ]
         },
         "correct": "Deride oluşan küçük yara, iz",
-        "wrong1": "Atkı",
-        "wrong2": "Eldiven",
+        "wrong1": "Atkı sözcüğünün diğer anlamı",
+        "wrong2": "Eldiven sözcüğünün diğer anlamı",
         "explanation": "Bere kelimesi hem başa takılan şapka türü hem de darbe sonucu oluşan morluk/yara izidir.",
         "url": null
       }
@@ -3732,8 +3732,8 @@
       "premise": "'Cilt' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Cilt' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Vücudumuzu kaplayan deri",
-      "wrong1": "Kapak",
-      "wrong2": "Sayfa",
+      "wrong1": "Kapak sözcüğünün diğer anlamı",
+      "wrong2": "Sayfa sözcüğünün diğer anlamı",
       "explanation": "Cilt kelimesi hem insan derisi hem de kitabın kalın dış kapağı anlamına gelir.",
       "app": {
         "question": {
@@ -3748,8 +3748,8 @@
           ]
         },
         "correct": "Vücudumuzu kaplayan deri",
-        "wrong1": "Kapak",
-        "wrong2": "Sayfa",
+        "wrong1": "Kapak sözcüğünün diğer anlamı",
+        "wrong2": "Sayfa sözcüğünün diğer anlamı",
         "explanation": "Cilt kelimesi hem insan derisi hem de kitabın kalın dış kapağı anlamına gelir.",
         "url": null
       }
@@ -3760,8 +3760,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kan' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Sözlere inanmak (kanmak)",
-      "wrong1": "Su içmek",
-      "wrong2": "Şüphelenmek",
+      "wrong1": "Su içmek anlamında fiil",
+      "wrong2": "Şüphelenmek anlamında fiil",
       "explanation": "Kan kelimesi hem vücudumuzdaki kırmızı sıvı hem de inanmak, aldanmak (kanmak) anlamına gelir.",
       "app": {
         "question": {
@@ -3776,8 +3776,8 @@
           ]
         },
         "correct": "Sözlere inanmak (kanmak)",
-        "wrong1": "Su içmek",
-        "wrong2": "Şüphelenmek",
+        "wrong1": "Su içmek anlamında fiil",
+        "wrong2": "Şüphelenmek anlamında fiil",
         "explanation": "Kan kelimesi hem vücudumuzdaki kırmızı sıvı hem de inanmak, aldanmak (kanmak) anlamına gelir.",
         "url": null
       }
@@ -3787,9 +3787,9 @@
       "level": "kolay",
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ek' kelimesinin eş sesli anlamlarından birini ifade eder?",
-      "correct": "Toprağa tohum gömmek",
-      "wrong1": "Eksik",
-      "wrong2": "Biçmek",
+      "correct": "Toprağa tohum gömmek eylemi",
+      "wrong1": "Eksik sözcüğünün diğer anlamı",
+      "wrong2": "Biçmek anlamında fiil",
       "explanation": "Ek kelimesi hem kelimenin sonuna gelen parça (ilave) hem de toprağa tohum ekmek anlamına gelir.",
       "app": {
         "question": {
@@ -3803,9 +3803,9 @@
             }
           ]
         },
-        "correct": "Toprağa tohum gömmek",
-        "wrong1": "Eksik",
-        "wrong2": "Biçmek",
+        "correct": "Toprağa tohum gömmek eylemi",
+        "wrong1": "Eksik sözcüğünün diğer anlamı",
+        "wrong2": "Biçmek anlamında fiil",
         "explanation": "Ek kelimesi hem kelimenin sonuna gelen parça (ilave) hem de toprağa tohum ekmek anlamına gelir.",
         "url": null
       }
@@ -3816,8 +3816,8 @@
       "premise": "'Kupa' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kupa' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Yarışma sonucunda alınan ödül",
-      "wrong1": "Sürahi",
-      "wrong2": "Oyun",
+      "wrong1": "Sürahi sözcüğünün diğer anlamı",
+      "wrong2": "Oyun sözcüğünün diğer anlamı",
       "explanation": "Kupa kelimesi hem şampiyonluk ödülü hem de çay/kahve içilen büyük bardak anlamına gelir.",
       "app": {
         "question": {
@@ -3832,8 +3832,8 @@
           ]
         },
         "correct": "Yarışma sonucunda alınan ödül",
-        "wrong1": "Sürahi",
-        "wrong2": "Oyun",
+        "wrong1": "Sürahi sözcüğünün diğer anlamı",
+        "wrong2": "Oyun sözcüğünün diğer anlamı",
         "explanation": "Kupa kelimesi hem şampiyonluk ödülü hem de çay/kahve içilen büyük bardak anlamına gelir.",
         "url": null
       }
@@ -3844,8 +3844,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Basma' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Üzerine desen basılmış pamuklu kumaş",
-      "wrong1": "Adım",
-      "wrong2": "Kıyafet",
+      "wrong1": "Yürürken yere basılan tek adım",
+      "wrong2": "Üzerimize giydiğimiz kıyafet",
       "explanation": "Basma kelimesi hem ayakla yere basmak eylemi hem de bir kumaş türü olarak eş seslidir.",
       "app": {
         "question": {
@@ -3860,8 +3860,8 @@
           ]
         },
         "correct": "Üzerine desen basılmış pamuklu kumaş",
-        "wrong1": "Adım",
-        "wrong2": "Kıyafet",
+        "wrong1": "Yürürken yere basılan tek adım",
+        "wrong2": "Üzerimize giydiğimiz kıyafet",
         "explanation": "Basma kelimesi hem ayakla yere basmak eylemi hem de bir kumaş türü olarak eş seslidir.",
         "url": null
       }
@@ -3872,8 +3872,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Şiş' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Şişmiş, kabarmış olma durumu",
-      "wrong1": "Tabak",
-      "wrong2": "Keskin",
+      "wrong1": "Tabak sözcüğünün diğer anlamı",
+      "wrong2": "Keskin sözcüğünün diğer anlamı",
       "explanation": "Şiş kelimesi hem et dizilen uzun demir çubuk hem de yara sonucu oluşan kabarıklık anlamındadır.",
       "app": {
         "question": {
@@ -3888,8 +3888,8 @@
           ]
         },
         "correct": "Şişmiş, kabarmış olma durumu",
-        "wrong1": "Tabak",
-        "wrong2": "Keskin",
+        "wrong1": "Tabak sözcüğünün diğer anlamı",
+        "wrong2": "Keskin sözcüğünün diğer anlamı",
         "explanation": "Şiş kelimesi hem et dizilen uzun demir çubuk hem de yara sonucu oluşan kabarıklık anlamındadır.",
         "url": null
       }
@@ -3900,8 +3900,8 @@
       "premise": "'Sır' kelimesi eş sesli (sesteş) bir kelimedir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sır' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Aynaların arkasına sürülen madde",
-      "wrong1": "Boya",
-      "wrong2": "Açık",
+      "wrong1": "Duvarları boyamak için kullanılan boya",
+      "wrong2": "Herkesin duyabileceği açık sır",
       "explanation": "Sır kelimesi hem gizli tutulan şey (sır saklamak) hem de aynaları parlatan maddedir.",
       "app": {
         "question": {
@@ -3916,8 +3916,8 @@
           ]
         },
         "correct": "Aynaların arkasına sürülen madde",
-        "wrong1": "Boya",
-        "wrong2": "Açık",
+        "wrong1": "Duvarları boyamak için kullanılan boya",
+        "wrong2": "Herkesin duyabileceği açık sır",
         "explanation": "Sır kelimesi hem gizli tutulan şey (sır saklamak) hem de aynaları parlatan maddedir.",
         "url": null
       }
@@ -3928,8 +3928,8 @@
       "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Koy' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Denizin karaya girdiği küçük körfez",
-      "wrong1": "Kitap okumak",
-      "wrong2": "Oyun",
+      "wrong1": "Kitap okumak anlamında fiil",
+      "wrong2": "Oyun sözcüğünün diğer anlamı",
       "explanation": "Koy kelimesi hem bir şeyi bir yere bırakmak (koymak) hem de denizdeki küçük girinti anlamına gelir.",
       "app": {
         "question": {
@@ -3944,8 +3944,8 @@
           ]
         },
         "correct": "Denizin karaya girdiği küçük körfez",
-        "wrong1": "Kitap okumak",
-        "wrong2": "Oyun",
+        "wrong1": "Kitap okumak anlamında fiil",
+        "wrong2": "Oyun sözcüğünün diğer anlamı",
         "explanation": "Koy kelimesi hem bir şeyi bir yere bırakmak (koymak) hem de denizdeki küçük girinti anlamına gelir.",
         "url": null
       }
@@ -3956,8 +3956,8 @@
       "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
       "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kırk' kelimesinin eş sesli anlamlarından birini ifade eder?",
       "correct": "Hayvanların yününü kesmek (kırkmak)",
-      "wrong1": "Elli",
-      "wrong2": "Uzamasına izin vermek",
+      "wrong1": "Elli sözcüğünün diğer anlamı",
+      "wrong2": "Uzamasına izin vermek anlamında fiil",
       "explanation": "Kırk kelimesi hem bir sayı (40) hem de hayvanların tüylerini makasla kesmek anlamına gelir.",
       "app": {
         "question": {
@@ -3972,8 +3972,8 @@
           ]
         },
         "correct": "Hayvanların yününü kesmek (kırkmak)",
-        "wrong1": "Elli",
-        "wrong2": "Uzamasına izin vermek",
+        "wrong1": "Elli sözcüğünün diğer anlamı",
+        "wrong2": "Uzamasına izin vermek anlamında fiil",
         "explanation": "Kırk kelimesi hem bir sayı (40) hem de hayvanların tüylerini makasla kesmek anlamına gelir.",
         "url": null
       }

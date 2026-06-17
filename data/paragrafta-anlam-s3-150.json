@@ -36,9 +36,9 @@
       "level": "kolay",
       "premise": null,
       "text": "Bir metni okuduktan sonra yazarın bize vermek istediği asıl derse veya mesaja ne denir?",
-      "correct": "Ana fikir (Ana düşünce)",
-      "wrong1": "Metnin konusu",
-      "wrong2": "Başlık",
+      "correct": "Ana fikir veya ana düşünce",
+      "wrong1": "Metnin konusu veya başlığı",
+      "wrong2": "Paragrafın giriş cümlesi",
       "explanation": "Yazarın okuyucuya iletmek istediği asıl mesaj veya öğüt 'ana fikir' olarak adlandırılır.",
       "app": {
         "question": {
@@ -47,9 +47,9 @@
           "infoItems": null,
           "infoBlocks": null
         },
-        "correct": "Ana fikir (Ana düşünce)",
-        "wrong1": "Metnin konusu",
-        "wrong2": "Başlık",
+        "correct": "Ana fikir veya ana düşünce",
+        "wrong1": "Metnin konusu veya başlığı",
+        "wrong2": "Paragrafın giriş cümlesi",
         "explanation": "Yazarın okuyucuya iletmek istediği asıl mesaj veya öğüt 'ana fikir' olarak adlandırılır.",
         "url": null
       }
@@ -147,8 +147,8 @@
       "premise": "Paragrafların ilk cümlesi olan giriş cümlesi, kendinden önceki bir cümleye bağlı olduğunu gösteren kelimelerle başlamaz.",
       "text": "Yukarıdaki bilgilere göre aşağıdakilerden hangisi bir paragrafın giriş cümlesi olabilir?",
       "correct": "Sağlıklı bir hayat için su içmek çok önemlidir.",
-      "wrong1": "Bu yüzden hemen hastaneye gitmeliyiz.",
-      "wrong2": "Fakat onlar da çok haklıydı.",
+      "wrong1": "Bu yüzden hemen hastaneye gitmemiz gerekir.",
+      "wrong2": "Fakat onlar da aslında çok haklıydılar.",
       "explanation": "Birinci seçenek bağımsız ve konuyu tanıtan bir cümledir. Diğer seçenekler öncesinde başka bir cümlenin söylendiğini gösterir.",
       "app": {
         "question": {
@@ -163,8 +163,8 @@
           ]
         },
         "correct": "Sağlıklı bir hayat için su içmek çok önemlidir.",
-        "wrong1": "Bu yüzden hemen hastaneye gitmeliyiz.",
-        "wrong2": "Fakat onlar da çok haklıydı.",
+        "wrong1": "Bu yüzden hemen hastaneye gitmemiz gerekir.",
+        "wrong2": "Fakat onlar da aslında çok haklıydılar.",
         "explanation": "Birinci seçenek bağımsız ve konuyu tanıtan bir cümledir. Diğer seçenekler öncesinde başka bir cümlenin söylendiğini gösterir.",
         "url": null
       }
@@ -174,7 +174,7 @@
       "level": "orta",
       "premise": "Sonuç cümlesi, paragrafta anlatılan konuyu toparlayıp bir yargıya (ana fikre) bağlayan bölümdür. Genellikle 'kısacası, özetle, sonuç olarak' gibi ifadeler bulunur.",
       "text": "Yukarıdaki metne göre aşağıdakilerden hangisi bir paragrafın sonuç cümlesi olmaya en uygundur?",
-      "correct": "Kısacası, planlı çalışan kişi hedefine her zaman ulaşır.",
+      "correct": "Kısacası, planlı çalışan kişi hedefine ulaşır.",
       "wrong1": "İlk olarak masamızı düzenli tutmalıyız.",
       "wrong2": "Bugün parka gidip oyun oynamak istiyordum.",
       "explanation": "'Kısacası' ifadesi ile başlayan bu cümle, anlatılanları özetleyip ana fikri veren bir sonuç cümlesidir.",
@@ -190,7 +190,7 @@
             }
           ]
         },
-        "correct": "Kısacası, planlı çalışan kişi hedefine her zaman ulaşır.",
+        "correct": "Kısacası, planlı çalışan kişi hedefine ulaşır.",
         "wrong1": "İlk olarak masamızı düzenli tutmalıyız.",
         "wrong2": "Bugün parka gidip oyun oynamak istiyordum.",
         "explanation": "'Kısacası' ifadesi ile başlayan bu cümle, anlatılanları özetleyip ana fikri veren bir sonuç cümlesidir.",
@@ -818,7 +818,7 @@
       "level": "orta",
       "premise": "Eskiden insanlar haberleşmek için dumanı, atlı habercileri veya posta güvercinlerini kullanırdı. Bu çok uzun sürerdi. Bugün ise cep telefonları ve internet sayesinde saniyeler içinde haberleşebiliyoruz.",
       "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
-      "correct": "Geçmişten günümüze haberleşmenin (iletişimin) gelişimi",
+      "correct": "Geçmişten günümüze haberleşmenin gelişimi",
       "wrong1": "Güvercinlerin uçuş hızları",
       "wrong2": "Cep telefonlarının fiyatları",
       "explanation": "Metin, eskinin ilkel iletişim araçları ile günümüzün modern araçlarını karşılaştırarak iletişimin gelişimini anlatmaktadır.",
@@ -834,7 +834,7 @@
             }
           ]
         },
-        "correct": "Geçmişten günümüze haberleşmenin (iletişimin) gelişimi",
+        "correct": "Geçmişten günümüze haberleşmenin gelişimi",
         "wrong1": "Güvercinlerin uçuş hızları",
         "wrong2": "Cep telefonlarının fiyatları",
         "explanation": "Metin, eskinin ilkel iletişim araçları ile günümüzün modern araçlarını karşılaştırarak iletişimin gelişimini anlatmaktadır.",
@@ -1267,8 +1267,8 @@
       "premise": "Ahmet, iki çikolatasından birini yanındaki hiç çikolatası olmayan arkadaşı Ali'ye verdi. Ali çok sevindi ve Ahmet'e teşekkür etti. O gün ikisi de çikolata yerken çok mutluydu.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Sahip olduklarımızı başkalarıyla paylaşmak herkesi mutlu eder.",
-      "wrong1": "Çikolata yemek dişleri çürütür.",
-      "wrong2": "Ali'nin hiç parası yoktur.",
+      "wrong1": "Çikolata yemek dişleri çürütür",
+      "wrong2": "Ali'nin hiç parası yoktur",
       "explanation": "Ahmet'in elindekini paylaşması ve bunun sonucunda her ikisinin de mutlu olması, 'paylaşmanın güzelliği' dersini verir.",
       "app": {
         "question": {
@@ -1283,8 +1283,8 @@
           ]
         },
         "correct": "Sahip olduklarımızı başkalarıyla paylaşmak herkesi mutlu eder.",
-        "wrong1": "Çikolata yemek dişleri çürütür.",
-        "wrong2": "Ali'nin hiç parası yoktur.",
+        "wrong1": "Çikolata yemek dişleri çürütür",
+        "wrong2": "Ali'nin hiç parası yoktur",
         "explanation": "Ahmet'in elindekini paylaşması ve bunun sonucunda her ikisinin de mutlu olması, 'paylaşmanın güzelliği' dersini verir.",
         "url": null
       }
@@ -1295,8 +1295,8 @@
       "premise": "Tavşan hızına güvenip bir ağacın altında uyumuş. Kaplumbağa ise hiç pes etmeden yavaş yavaş yürümeye devam etmiş. Tavşan uyandığında kaplumbağa çoktan yarışı kazanmış.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Yeteneklerimize güvenip tembellik etmemeli, sabır ve azimle çalışmalıyız.",
-      "wrong1": "Tavşanlar kaplumbağalardan her zaman daha hızlı koşar.",
-      "wrong2": "Ağaç gölgeleri uyumak için çok rahattır.",
+      "wrong1": "Tavşanlar kaplumbağalardan her zaman daha hızlı koşar",
+      "wrong2": "Ağaç gölgeleri uyumak için çok rahattır",
       "explanation": "Tavşanın kibri ve tembelliğine karşı kaplumbağanın azmi (pes etmemesi) başarıyı getirmiştir. Ana fikir azimle çalışmaktır.",
       "app": {
         "question": {
@@ -1311,8 +1311,8 @@
           ]
         },
         "correct": "Yeteneklerimize güvenip tembellik etmemeli, sabır ve azimle çalışmalıyız.",
-        "wrong1": "Tavşanlar kaplumbağalardan her zaman daha hızlı koşar.",
-        "wrong2": "Ağaç gölgeleri uyumak için çok rahattır.",
+        "wrong1": "Tavşanlar kaplumbağalardan her zaman daha hızlı koşar",
+        "wrong2": "Ağaç gölgeleri uyumak için çok rahattır",
         "explanation": "Tavşanın kibri ve tembelliğine karşı kaplumbağanın azmi (pes etmemesi) başarıyı getirmiştir. Ana fikir azimle çalışmaktır.",
         "url": null
       }
@@ -1323,8 +1323,8 @@
       "premise": "Ağustos böceği bütün yaz tembel tembel yatıp şarkı söylemiş. Kış gelip havalar soğuyunca aç kalmış. Bütün yaz durmadan çalışıp yuvasına yiyecek taşıyan karınca ise sıcacık yuvasında tok yatmış.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Geleceği düşünerek zamanında çalışıp hazırlık yapanlar, zor zamanlarda rahat ederler.",
-      "wrong1": "Ağustos böceklerinin sesi çok güzeldir.",
-      "wrong2": "Kış mevsiminde her yer karla kaplanır.",
+      "wrong1": "Ağustos böceklerinin sesi çok güzeldir",
+      "wrong2": "Kış mevsiminde her yer karla kaplanır",
       "explanation": "Karıncanın çalışkanlığı sayesinde kışı rahat geçirmesi, önceden tedbir alıp çalışmanın önemini vurgular.",
       "app": {
         "question": {
@@ -1339,8 +1339,8 @@
           ]
         },
         "correct": "Geleceği düşünerek zamanında çalışıp hazırlık yapanlar, zor zamanlarda rahat ederler.",
-        "wrong1": "Ağustos böceklerinin sesi çok güzeldir.",
-        "wrong2": "Kış mevsiminde her yer karla kaplanır.",
+        "wrong1": "Ağustos böceklerinin sesi çok güzeldir",
+        "wrong2": "Kış mevsiminde her yer karla kaplanır",
         "explanation": "Karıncanın çalışkanlığı sayesinde kışı rahat geçirmesi, önceden tedbir alıp çalışmanın önemini vurgular.",
         "url": null
       }
@@ -1351,8 +1351,8 @@
       "premise": "Bir hata yaptığımızda korkup yalan söylemek yerine dürüstçe itiraf etmeliyiz. Yalan söylemek o an kurtarıcı gibi görünse de zamanla ortaya çıkar ve insanların bize olan güvenini tamamen yıkar.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Ne olursa olsun her zaman dürüst olmalı ve yalan söylememeliyiz.",
-      "wrong1": "Yalan söylemek bazen eğlenceli olabilir.",
-      "wrong2": "Hata yapan insanlar her zaman cezalandırılır.",
+      "wrong1": "Yalan söylemek bazen eğlenceli olabilir",
+      "wrong2": "Hata yapan insanlar her zaman cezalandırılır",
       "explanation": "Metinde yalanın güven kaybına yol açacağı belirtilerek, dürüstlüğün önemi anlatılmıştır.",
       "app": {
         "question": {
@@ -1367,8 +1367,8 @@
           ]
         },
         "correct": "Ne olursa olsun her zaman dürüst olmalı ve yalan söylememeliyiz.",
-        "wrong1": "Yalan söylemek bazen eğlenceli olabilir.",
-        "wrong2": "Hata yapan insanlar her zaman cezalandırılır.",
+        "wrong1": "Yalan söylemek bazen eğlenceli olabilir",
+        "wrong2": "Hata yapan insanlar her zaman cezalandırılır",
         "explanation": "Metinde yalanın güven kaybına yol açacağı belirtilerek, dürüstlüğün önemi anlatılmıştır.",
         "url": null
       }
@@ -1379,8 +1379,8 @@
       "premise": "Bir tek çubuğu kırmak çok kolaydır, hemen ikiye bölünür. Ancak on tane çubuğu bir araya getirip sıkıca bağlarsanız, dünyanın en güçlü insanı bile onları kıramaz.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Birlikten kuvvet doğar, beraber hareket edersek daha güçlü oluruz.",
-      "wrong1": "Ağaç dalları çok çabuk kuruyup kırılır.",
-      "wrong2": "Çubukları bağlamak için kalın bir ip gerekir.",
+      "wrong1": "Ağaç dalları çok çabuk kuruyup kırılır",
+      "wrong2": "Çubukları bağlamak için kalın bir ip gerekir",
       "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin sembolüdür.",
       "app": {
         "question": {
@@ -1395,8 +1395,8 @@
           ]
         },
         "correct": "Birlikten kuvvet doğar, beraber hareket edersek daha güçlü oluruz.",
-        "wrong1": "Ağaç dalları çok çabuk kuruyup kırılır.",
-        "wrong2": "Çubukları bağlamak için kalın bir ip gerekir.",
+        "wrong1": "Ağaç dalları çok çabuk kuruyup kırılır",
+        "wrong2": "Çubukları bağlamak için kalın bir ip gerekir",
         "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin sembolüdür.",
         "url": null
       }
@@ -1407,8 +1407,8 @@
       "premise": "Kitap okuyan bir insanın kelime hazinesi çok geniştir. Kendini çok daha iyi ifade eder, girdiği her ortamda bilgisiyle saygı görür ve sorunlara farklı çözümler üretebilir.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Kitap okumak insanı hem geliştirir hem de toplumda daha saygın bir hale getirir.",
-      "wrong1": "Kitapların sayfaları çok kalın olur.",
-      "wrong2": "Çok konuşan insanlar her zaman haklıdır.",
+      "wrong1": "Kitapların sayfaları çok kalın olur",
+      "wrong2": "Çok konuşan insanlar her zaman haklıdır",
       "explanation": "Paragraf, kitap okumanın bilgi birikimini artırması ve saygı görmeyi sağlaması gibi değerlerini vurgulamaktadır.",
       "app": {
         "question": {
@@ -1423,8 +1423,8 @@
           ]
         },
         "correct": "Kitap okumak insanı hem geliştirir hem de toplumda daha saygın bir hale getirir.",
-        "wrong1": "Kitapların sayfaları çok kalın olur.",
-        "wrong2": "Çok konuşan insanlar her zaman haklıdır.",
+        "wrong1": "Kitapların sayfaları çok kalın olur",
+        "wrong2": "Çok konuşan insanlar her zaman haklıdır",
         "explanation": "Paragraf, kitap okumanın bilgi birikimini artırması ve saygı görmeyi sağlaması gibi değerlerini vurgulamaktadır.",
         "url": null
       }
@@ -1435,8 +1435,8 @@
       "premise": "Büyük bir buz dağını kırmak için koca bir balyozla bir kere vurmak yetmez. O balyozu pes etmeden, sabırla defalarca aynı yere vurmak gerekir. Ancak o zaman buz dağı çatlar.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Büyük engelleri aşmak için pes etmeden, sabır ve kararlılıkla mücadele etmek gerekir.",
-      "wrong1": "Buz dağları çok soğuk iklimlerde bulunur.",
-      "wrong2": "Balyoz kullanmak tehlikeli bir iştir.",
+      "wrong1": "Buz dağları çok soğuk iklimlerde bulunur",
+      "wrong2": "Balyoz kullanmak tehlikeli bir iştir",
       "explanation": "Metinde balyozun defalarca vurulması, zorluklar karşısında pes etmemeyi ve sürekliliği (azmi) temsil eder.",
       "app": {
         "question": {
@@ -1451,8 +1451,8 @@
           ]
         },
         "correct": "Büyük engelleri aşmak için pes etmeden, sabır ve kararlılıkla mücadele etmek gerekir.",
-        "wrong1": "Buz dağları çok soğuk iklimlerde bulunur.",
-        "wrong2": "Balyoz kullanmak tehlikeli bir iştir.",
+        "wrong1": "Buz dağları çok soğuk iklimlerde bulunur",
+        "wrong2": "Balyoz kullanmak tehlikeli bir iştir",
         "explanation": "Metinde balyozun defalarca vurulması, zorluklar karşısında pes etmemeyi ve sürekliliği (azmi) temsil eder.",
         "url": null
       }
@@ -1463,8 +1463,8 @@
       "premise": "Otobüste yaşlı bir teyzenin ayakta kaldığını gören Cem, hemen kalkıp ona yer verdi. Teyze ona gülümseyip dua etti. Cem o gün kendini çok iyi hissetti.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Büyüklerimize saygı göstermek ve onlara yardım etmek bizi de mutlu eden güzel bir erdemdir.",
-      "wrong1": "Otobüs yolculukları çok yorucudur.",
-      "wrong2": "Yaşlı insanlar her zaman otobüse biner.",
+      "wrong1": "Otobüs yolculukları çok yorucudur",
+      "wrong2": "Yaşlı insanlar her zaman otobüse biner",
       "explanation": "Cem'in yaşlılara gösterdiği saygı ve sonucunda hissettiği mutluluk metnin ana fikridir.",
       "app": {
         "question": {
@@ -1479,8 +1479,8 @@
           ]
         },
         "correct": "Büyüklerimize saygı göstermek ve onlara yardım etmek bizi de mutlu eden güzel bir erdemdir.",
-        "wrong1": "Otobüs yolculukları çok yorucudur.",
-        "wrong2": "Yaşlı insanlar her zaman otobüse biner.",
+        "wrong1": "Otobüs yolculukları çok yorucudur",
+        "wrong2": "Yaşlı insanlar her zaman otobüse biner",
         "explanation": "Cem'in yaşlılara gösterdiği saygı ve sonucunda hissettiği mutluluk metnin ana fikridir.",
         "url": null
       }
@@ -1491,8 +1491,8 @@
       "premise": "Ormanların kralı aslan, burnunun üstünde gezinen minik fareye acıyıp onu yememiş. Gün gelmiş, aslan avcıların ağına yakalanmış. O minik fare keskin dişleriyle ağı kemirerek aslanı kurtarmış.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Hiç kimseyi boyuna veya gücüne bakarak küçümsememeliyiz, gün gelir onlara muhtaç olabiliriz.",
-      "wrong1": "Aslanlar ormanın en korkutucu hayvanlarıdır.",
-      "wrong2": "Fareler peynir yemeyi çok severler.",
+      "wrong1": "Aslanlar ormanın en korkutucu hayvanlarıdır",
+      "wrong2": "Fareler peynir yemeyi çok severler",
       "explanation": "Hikayede aslanın minik bir fareye muhtaç kalması anlatılarak kimseyi küçümsememek gerektiği dersi verilmiştir.",
       "app": {
         "question": {
@@ -1507,8 +1507,8 @@
           ]
         },
         "correct": "Hiç kimseyi boyuna veya gücüne bakarak küçümsememeliyiz, gün gelir onlara muhtaç olabiliriz.",
-        "wrong1": "Aslanlar ormanın en korkutucu hayvanlarıdır.",
-        "wrong2": "Fareler peynir yemeyi çok severler.",
+        "wrong1": "Aslanlar ormanın en korkutucu hayvanlarıdır",
+        "wrong2": "Fareler peynir yemeyi çok severler",
         "explanation": "Hikayede aslanın minik bir fareye muhtaç kalması anlatılarak kimseyi küçümsememek gerektiği dersi verilmiştir.",
         "url": null
       }
@@ -1519,8 +1519,8 @@
       "premise": "Öfkeyle kalkan zararla oturur. İnsan sinirliyken doğru düşünemez ve sonradan çok pişman olacağı, sevdiklerini kıracağı sözler söyleyebilir. Kızgınken susmak en iyisidir.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Öfkeli olduğumuz anlarda karar vermemeli, sakinleşmeden konuşmamalıyız.",
-      "wrong1": "Sürekli susmak insanı hastalandırır.",
-      "wrong2": "İnsanlar birbirine hep kızgındır.",
+      "wrong1": "Sürekli susmak insanı hastalandırır",
+      "wrong2": "İnsanlar birbirine hep kızgındır",
       "explanation": "Yazar öfkenin zararlarından bahsederek sinirliyken sakinleşmeyi beklemek gerektiği öğüdünü (ana fikrini) vermektedir.",
       "app": {
         "question": {
@@ -1535,8 +1535,8 @@
           ]
         },
         "correct": "Öfkeli olduğumuz anlarda karar vermemeli, sakinleşmeden konuşmamalıyız.",
-        "wrong1": "Sürekli susmak insanı hastalandırır.",
-        "wrong2": "İnsanlar birbirine hep kızgındır.",
+        "wrong1": "Sürekli susmak insanı hastalandırır",
+        "wrong2": "İnsanlar birbirine hep kızgındır",
         "explanation": "Yazar öfkenin zararlarından bahsederek sinirliyken sakinleşmeyi beklemek gerektiği öğüdünü (ana fikrini) vermektedir.",
         "url": null
       }
@@ -1547,8 +1547,8 @@
       "premise": "Gülümsemek bulaşıcı bir hastalık gibidir ama iyi yönde! Sabah asık suratlı birine içtenlikle gülümsediğinizde, onun da yüzünde bir ışık parlar ve o da başkasına gülümser.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Olumlu ve güler yüzlü davranışlar etrafımızdaki insanlara da geçer ve onları mutlu eder.",
-      "wrong1": "Hastalıklar genellikle sabahları daha hızlı bulaşır.",
-      "wrong2": "Asık suratlı insanlarla asla konuşmamalıyız.",
+      "wrong1": "Hastalıklar genellikle sabahları daha hızlı bulaşır",
+      "wrong2": "Asık suratlı insanlarla asla konuşmamalıyız",
       "explanation": "Metinde gülümsemenin yayılma gücü üzerinden, pozitif bir tavrın tüm insanları iyi yönde etkileyeceği anlatılmaktadır.",
       "app": {
         "question": {
@@ -1563,8 +1563,8 @@
           ]
         },
         "correct": "Olumlu ve güler yüzlü davranışlar etrafımızdaki insanlara da geçer ve onları mutlu eder.",
-        "wrong1": "Hastalıklar genellikle sabahları daha hızlı bulaşır.",
-        "wrong2": "Asık suratlı insanlarla asla konuşmamalıyız.",
+        "wrong1": "Hastalıklar genellikle sabahları daha hızlı bulaşır",
+        "wrong2": "Asık suratlı insanlarla asla konuşmamalıyız",
         "explanation": "Metinde gülümsemenin yayılma gücü üzerinden, pozitif bir tavrın tüm insanları iyi yönde etkileyeceği anlatılmaktadır.",
         "url": null
       }
@@ -1575,8 +1575,8 @@
       "premise": "Tilki, ağzında koca bir peynir olan kargayı görünce ona 'Sesin ne güzel, bana bir şarkı söyle' diyerek iltifat etmiş. Karga şarkı söylemek için ağzını açınca peyniri düşürmüş ve tilki kapıp kaçmış.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Başkalarının sahte övgülerine ve tatlı sözlerine hemen aldanıp onlara inanmamalıyız.",
-      "wrong1": "Kargaların sesi gerçekten çok güzeldir.",
-      "wrong2": "Peynir çok lezzetli ve sağlıklı bir yiyecektir.",
+      "wrong1": "Kargaların sesi gerçekten çok güzeldir",
+      "wrong2": "Peynir çok lezzetli ve sağlıklı bir yiyecektir",
       "explanation": "Tilkinin sahte övgüsüne aldanan karganın hatası üzerinden 'sahte övgülere kanmamak gerektiği' dersi (ana fikir) verilmektedir.",
       "app": {
         "question": {
@@ -1591,8 +1591,8 @@
           ]
         },
         "correct": "Başkalarının sahte övgülerine ve tatlı sözlerine hemen aldanıp onlara inanmamalıyız.",
-        "wrong1": "Kargaların sesi gerçekten çok güzeldir.",
-        "wrong2": "Peynir çok lezzetli ve sağlıklı bir yiyecektir.",
+        "wrong1": "Kargaların sesi gerçekten çok güzeldir",
+        "wrong2": "Peynir çok lezzetli ve sağlıklı bir yiyecektir",
         "explanation": "Tilkinin sahte övgüsüne aldanan karganın hatası üzerinden 'sahte övgülere kanmamak gerektiği' dersi (ana fikir) verilmektedir.",
         "url": null
       }
@@ -1603,8 +1603,8 @@
       "premise": "Sağlıklı bir bedene sahip olmak en büyük hazinedir. Dünyanın en zengin insanı bile olsanız, hastanede yattığınız sürece o paranın size hiçbir faydası yoktur.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Hayattaki en değerli varlığımız sağlığımızdır, sağlığımızı hiçbir parayla satın alamayız.",
-      "wrong1": "Hastaneler çok büyük binalardır.",
-      "wrong2": "Zengin olmak için çok çalışmak gerekir.",
+      "wrong1": "Hastaneler çok büyük binalardır",
+      "wrong2": "Zengin olmak için çok çalışmak gerekir",
       "explanation": "Metinde sağlık olmadan zenginliğin anlamsız olduğu vurgulanarak sağlığın paha biçilemez olduğu dersi verilmiştir.",
       "app": {
         "question": {
@@ -1619,8 +1619,8 @@
           ]
         },
         "correct": "Hayattaki en değerli varlığımız sağlığımızdır, sağlığımızı hiçbir parayla satın alamayız.",
-        "wrong1": "Hastaneler çok büyük binalardır.",
-        "wrong2": "Zengin olmak için çok çalışmak gerekir.",
+        "wrong1": "Hastaneler çok büyük binalardır",
+        "wrong2": "Zengin olmak için çok çalışmak gerekir",
         "explanation": "Metinde sağlık olmadan zenginliğin anlamsız olduğu vurgulanarak sağlığın paha biçilemez olduğu dersi verilmiştir.",
         "url": null
       }
@@ -1631,8 +1631,8 @@
       "premise": "Papatya, diğer gösterişli güller kadar kırmızı ve büyük olmadığı için üzülüyormuş. Ancak bir gün küçük bir kız gelip 'Ne kadar saf ve zarif bir çiçek!' diyerek onu defterinin arasına koyunca kendi değerini anlamış.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Kendimizi başkalarıyla kıyaslamamalıyız, hepimizin kendine has bir güzelliği ve değeri vardır.",
-      "wrong1": "Güller papatyalardan daha güzel kokar.",
-      "wrong2": "Çiçekleri koparmak doğaya zarar verir.",
+      "wrong1": "Güller papatyalardan daha güzel kokar",
+      "wrong2": "Çiçekleri koparmak doğaya zarar verir",
       "explanation": "Papatyanın güllerle kendini kıyaslayıp üzülmesi ve sonra değerini fark etmesi, herkesin farklı ve özel olduğunu öğretir.",
       "app": {
         "question": {
@@ -1647,8 +1647,8 @@
           ]
         },
         "correct": "Kendimizi başkalarıyla kıyaslamamalıyız, hepimizin kendine has bir güzelliği ve değeri vardır.",
-        "wrong1": "Güller papatyalardan daha güzel kokar.",
-        "wrong2": "Çiçekleri koparmak doğaya zarar verir.",
+        "wrong1": "Güller papatyalardan daha güzel kokar",
+        "wrong2": "Çiçekleri koparmak doğaya zarar verir",
         "explanation": "Papatyanın güllerle kendini kıyaslayıp üzülmesi ve sonra değerini fark etmesi, herkesin farklı ve özel olduğunu öğretir.",
         "url": null
       }
@@ -1659,8 +1659,8 @@
       "premise": "Zaman çok değerli bir hazinedir. Kaybettiğimiz bir eşyayı veya parayı çalışarak yerine koyabiliriz ama boşa harcadığımız dünkü bir saati dünyaları versek de geri alamayız.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Zaman geri döndürülemez en kıymetli şeydir, bu yüzden vaktimizi asla boşa harcamamalıyız.",
-      "wrong1": "Para kazanmak için saatlerce çalışmak gerekir.",
-      "wrong2": "Kaybolan eşyalarımızı dikkatli aramalıyız.",
+      "wrong1": "Para kazanmak için saatlerce çalışmak gerekir",
+      "wrong2": "Kaybolan eşyalarımızı dikkatli aramalıyız",
       "explanation": "Metin, paranın yerine konabildiği ama zamanın geri gelmediği örneğiyle zamanın eşsiz değerini anlatıyor.",
       "app": {
         "question": {
@@ -1675,8 +1675,8 @@
           ]
         },
         "correct": "Zaman geri döndürülemez en kıymetli şeydir, bu yüzden vaktimizi asla boşa harcamamalıyız.",
-        "wrong1": "Para kazanmak için saatlerce çalışmak gerekir.",
-        "wrong2": "Kaybolan eşyalarımızı dikkatli aramalıyız.",
+        "wrong1": "Para kazanmak için saatlerce çalışmak gerekir",
+        "wrong2": "Kaybolan eşyalarımızı dikkatli aramalıyız",
         "explanation": "Metin, paranın yerine konabildiği ama zamanın geri gelmediği örneğiyle zamanın eşsiz değerini anlatıyor.",
         "url": null
       }
@@ -1687,8 +1687,8 @@
       "premise": "Tavşan koşuda çok yetenekliydi ama tembellik edip uyudu. Kaplumbağa ise koşamasa da hiç durmadan yürüdü ve kazandı. Hayatta da böyledir; çok zeki olup çalışmayan biri, normal ama çok çalışan birine yenilir.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Sadece yetenek ve zeka yeterli değildir, asıl başarıyı getiren şey sürekli ve kararlı çalışmaktır.",
-      "wrong1": "Tavşanlar her zaman yarışları kaybederler.",
-      "wrong2": "Ormanda yürüyüş yapmak sağlığa faydalıdır.",
+      "wrong1": "Tavşanlar her zaman yarışları kaybederler",
+      "wrong2": "Ormanda yürüyüş yapmak sağlığa faydalıdır",
       "explanation": "Yetenekli (tavşan) ile çalışkan (kaplumbağa) kıyaslaması yapılarak, emeksiz yeteneğin işe yaramayacağı vurgulanır.",
       "app": {
         "question": {
@@ -1703,8 +1703,8 @@
           ]
         },
         "correct": "Sadece yetenek ve zeka yeterli değildir, asıl başarıyı getiren şey sürekli ve kararlı çalışmaktır.",
-        "wrong1": "Tavşanlar her zaman yarışları kaybederler.",
-        "wrong2": "Ormanda yürüyüş yapmak sağlığa faydalıdır.",
+        "wrong1": "Tavşanlar her zaman yarışları kaybederler",
+        "wrong2": "Ormanda yürüyüş yapmak sağlığa faydalıdır",
         "explanation": "Yetenekli (tavşan) ile çalışkan (kaplumbağa) kıyaslaması yapılarak, emeksiz yeteneğin işe yaramayacağı vurgulanır.",
         "url": null
       }
@@ -1715,8 +1715,8 @@
       "premise": "Bilge bir adama 'Neden hiç hata yapmıyorsun?' diye sormuşlar. Adam gülmüş ve 'Çünkü çok hata yaptım ve her birinden bir ders çıkardım' demiş.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Hata yapmak başarısızlık değildir, asıl bilgelik o hatalardan ders çıkarıp onları tekrarlamamaktır.",
-      "wrong1": "Bilge insanlar asla hata yapmazlar.",
-      "wrong2": "Hata yapmaktan her zaman korkmalıyız.",
+      "wrong1": "Bilge insanlar asla hata yapmazlar",
+      "wrong2": "Hata yapmaktan her zaman korkmalıyız",
       "explanation": "Metinde hataların kötü bir şey olmadığı, aksine onlardan ders alırsak bizi geliştirdiği (bilgeleştirdiği) vurgulanır.",
       "app": {
         "question": {
@@ -1731,8 +1731,8 @@
           ]
         },
         "correct": "Hata yapmak başarısızlık değildir, asıl bilgelik o hatalardan ders çıkarıp onları tekrarlamamaktır.",
-        "wrong1": "Bilge insanlar asla hata yapmazlar.",
-        "wrong2": "Hata yapmaktan her zaman korkmalıyız.",
+        "wrong1": "Bilge insanlar asla hata yapmazlar",
+        "wrong2": "Hata yapmaktan her zaman korkmalıyız",
         "explanation": "Metinde hataların kötü bir şey olmadığı, aksine onlardan ders alırsak bizi geliştirdiği (bilgeleştirdiği) vurgulanır.",
         "url": null
       }
@@ -1743,8 +1743,8 @@
       "premise": "Kör bir adam, elinde fenerle gece yolda yürüyormuş. Görenler 'Sen körsün, fener senin neyine?' demişler. Adam, 'Fener benim için değil, sizin gibi gözü görenler çarpmasın diye' yanıtını vermiş.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "İnsanlar sadece kendilerini değil, çevrelerindeki diğer insanları da düşünerek hareket etmelidir.",
-      "wrong1": "Kör adamlar gece dışarı çıkmamalıdır.",
-      "wrong2": "El feneri karanlık yolları aydınlatır.",
+      "wrong1": "Kör adamlar gece dışarı çıkmamalıdır",
+      "wrong2": "El feneri karanlık yolları aydınlatır",
       "explanation": "Kör adamın kendi görememesine rağmen başkalarını düşünerek önlem alması, ince düşünceli olmayı (empatiyi) öğütler.",
       "app": {
         "question": {
@@ -1759,8 +1759,8 @@
           ]
         },
         "correct": "İnsanlar sadece kendilerini değil, çevrelerindeki diğer insanları da düşünerek hareket etmelidir.",
-        "wrong1": "Kör adamlar gece dışarı çıkmamalıdır.",
-        "wrong2": "El feneri karanlık yolları aydınlatır.",
+        "wrong1": "Kör adamlar gece dışarı çıkmamalıdır",
+        "wrong2": "El feneri karanlık yolları aydınlatır",
         "explanation": "Kör adamın kendi görememesine rağmen başkalarını düşünerek önlem alması, ince düşünceli olmayı (empatiyi) öğütler.",
         "url": null
       }
@@ -1771,8 +1771,8 @@
       "premise": "Damlaya damlaya göl olur. Kumbaraya atılan küçük bir demir para ilk gün önemsiz gelir. Ancak aylar boyunca biriken o bozuk paralarla sonunda çok istediğin o büyük bisikleti alabilirsin.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Küçük ve önemsiz gibi görünen birikimler, sabırla devam edildiğinde büyük değerlere ulaşır.",
-      "wrong1": "Sadece bozuk paralarla bisiklet alınabilir.",
-      "wrong2": "Sular damlayarak gölleri oluşturur.",
+      "wrong1": "Sadece bozuk paralarla bisiklet alınabilir",
+      "wrong2": "Sular damlayarak gölleri oluşturur",
       "explanation": "Metin, 'Damlaya damlaya göl olur' sözünü açıklayarak küçük tasarrufların (birikimlerin) büyüyüp faydalı olacağını öğretir.",
       "app": {
         "question": {
@@ -1787,8 +1787,8 @@
           ]
         },
         "correct": "Küçük ve önemsiz gibi görünen birikimler, sabırla devam edildiğinde büyük değerlere ulaşır.",
-        "wrong1": "Sadece bozuk paralarla bisiklet alınabilir.",
-        "wrong2": "Sular damlayarak gölleri oluşturur.",
+        "wrong1": "Sadece bozuk paralarla bisiklet alınabilir",
+        "wrong2": "Sular damlayarak gölleri oluşturur",
         "explanation": "Metin, 'Damlaya damlaya göl olur' sözünü açıklayarak küçük tasarrufların (birikimlerin) büyüyüp faydalı olacağını öğretir.",
         "url": null
       }
@@ -1799,8 +1799,8 @@
       "premise": "Meyve veren ağaç taşlanır. Toplum içinde başarılı olan, iyi işler yapan insanlar genellikle etrafındaki tembel veya kıskanç kişiler tarafından eleştirilir. Başarılı insan bu sözlere aldırmadan yoluna devam etmelidir.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Başarılı insanlar haksız eleştirilere takılmadan, kıskançlıklara aldırmadan hedeflerine yürümelidir.",
-      "wrong1": "Ağaçlara taş atmak çok tehlikeli bir davranıştır.",
-      "wrong2": "Kimse başarılı insanları sevmez.",
+      "wrong1": "Ağaçlara taş atmak çok tehlikeli bir davranıştır",
+      "wrong2": "Kimse başarılı insanları sevmez",
       "explanation": "Atasözü ile başlayan metin, başarılı insanların çekemeyenler tarafından eleştirilmesine rağmen pes etmemesi gerektiğini öğütler.",
       "app": {
         "question": {
@@ -1815,8 +1815,8 @@
           ]
         },
         "correct": "Başarılı insanlar haksız eleştirilere takılmadan, kıskançlıklara aldırmadan hedeflerine yürümelidir.",
-        "wrong1": "Ağaçlara taş atmak çok tehlikeli bir davranıştır.",
-        "wrong2": "Kimse başarılı insanları sevmez.",
+        "wrong1": "Ağaçlara taş atmak çok tehlikeli bir davranıştır",
+        "wrong2": "Kimse başarılı insanları sevmez",
         "explanation": "Atasözü ile başlayan metin, başarılı insanların çekemeyenler tarafından eleştirilmesine rağmen pes etmemesi gerektiğini öğütler.",
         "url": null
       }
@@ -1827,8 +1827,8 @@
       "premise": "Öfkelendiğinizde hemen tepki vermek yerine içinizden ona kadar sayın. Derin bir nefes alın. Göreceksiniz ki o ilk andaki yıkıcı siniriniz geçmiş olacak ve mantıklı düşünebileceksiniz.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Öfkeli anlarımızda ani tepkiler vermekten kaçınmalı ve sakinleşmeyi beklemeliyiz.",
-      "wrong1": "Ona kadar saymak matematik yeteneğimizi geliştirir.",
-      "wrong2": "Nefes tutmak akciğerlere çok faydalıdır.",
+      "wrong1": "Ona kadar saymak matematik yeteneğimizi geliştirir",
+      "wrong2": "Nefes tutmak akciğerlere çok faydalıdır",
       "explanation": "Yazar, öfke anında sakin kalmanın ve beklemenin hataları önleyeceğini (ana fikrini) vermektedir.",
       "app": {
         "question": {
@@ -1843,8 +1843,8 @@
           ]
         },
         "correct": "Öfkeli anlarımızda ani tepkiler vermekten kaçınmalı ve sakinleşmeyi beklemeliyiz.",
-        "wrong1": "Ona kadar saymak matematik yeteneğimizi geliştirir.",
-        "wrong2": "Nefes tutmak akciğerlere çok faydalıdır.",
+        "wrong1": "Ona kadar saymak matematik yeteneğimizi geliştirir",
+        "wrong2": "Nefes tutmak akciğerlere çok faydalıdır",
         "explanation": "Yazar, öfke anında sakin kalmanın ve beklemenin hataları önleyeceğini (ana fikrini) vermektedir.",
         "url": null
       }
@@ -1854,9 +1854,9 @@
       "level": "orta",
       "premise": "Eğitim bir ağaç dikmek gibidir. Fidanı toprağa koyduğunuz gün gölgesinde oturamaz, meyvesini yiyemezsiniz. Yıllarca bıkmadan sularsınız ve sonunda binlerce kişiye fayda sağlayan ulu bir çınar olur.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
-      "correct": "Eğitim uzun ve sabır gerektiren bir süreçtir ancak sonuçları gelecekte çok büyük faydalar sağlar.",
-      "wrong1": "Ağaç dikmek doğayı korumanın en iyi yoludur.",
-      "wrong2": "Çınar ağaçları her zaman meyve verir.",
+      "correct": "Eğitim sabır ister; gelecekte büyük faydalar sağlar.",
+      "wrong1": "Ağaç dikmek doğayı korumak için en iyi yoldur.",
+      "wrong2": "Çınar ağaçları her zaman bol meyve verir.",
       "explanation": "Eğitim ile fidan yetiştirmeyi benzeten bu metin, eğitimin hemen değil zamanla çok büyük sonuçlar vereceği mesajını taşır.",
       "app": {
         "question": {
@@ -1870,9 +1870,9 @@
             }
           ]
         },
-        "correct": "Eğitim uzun ve sabır gerektiren bir süreçtir ancak sonuçları gelecekte çok büyük faydalar sağlar.",
-        "wrong1": "Ağaç dikmek doğayı korumanın en iyi yoludur.",
-        "wrong2": "Çınar ağaçları her zaman meyve verir.",
+        "correct": "Eğitim sabır ister; gelecekte büyük faydalar sağlar.",
+        "wrong1": "Ağaç dikmek doğayı korumak için en iyi yoldur.",
+        "wrong2": "Çınar ağaçları her zaman bol meyve verir.",
         "explanation": "Eğitim ile fidan yetiştirmeyi benzeten bu metin, eğitimin hemen değil zamanla çok büyük sonuçlar vereceği mesajını taşır.",
         "url": null
       }
@@ -1883,8 +1883,8 @@
       "premise": "Gerçek arkadaşlık karanlıkta parlayan bir yıldıza benzer. İnsan mutlu günlerinde etrafında çok kişi bulur. Fakat zor bir duruma düştüğünde yanında sadece gerçek dostları kalır.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Gerçek dostlar, sadece iyi günlerimizde değil asıl kötü ve zor günlerimizde yanımızda olan kişilerdir.",
-      "wrong1": "Gökyüzündeki yıldızlar sadece karanlıkta parlar.",
-      "wrong2": "Mutlu günlerde arkadaşlarımızla bol bol gülmeliyiz.",
+      "wrong1": "Gökyüzündeki yıldızlar sadece karanlıkta parlar",
+      "wrong2": "Mutlu günlerde arkadaşlarımızla bol bol gülmeliyiz",
       "explanation": "Metin, iyi gün dostluğu ile gerçek dostluğu kıyaslamış ve gerçek dostun kötü günde belli olacağı dersini vermiştir.",
       "app": {
         "question": {
@@ -1899,8 +1899,8 @@
           ]
         },
         "correct": "Gerçek dostlar, sadece iyi günlerimizde değil asıl kötü ve zor günlerimizde yanımızda olan kişilerdir.",
-        "wrong1": "Gökyüzündeki yıldızlar sadece karanlıkta parlar.",
-        "wrong2": "Mutlu günlerde arkadaşlarımızla bol bol gülmeliyiz.",
+        "wrong1": "Gökyüzündeki yıldızlar sadece karanlıkta parlar",
+        "wrong2": "Mutlu günlerde arkadaşlarımızla bol bol gülmeliyiz",
         "explanation": "Metin, iyi gün dostluğu ile gerçek dostluğu kıyaslamış ve gerçek dostun kötü günde belli olacağı dersini vermiştir.",
         "url": null
       }
@@ -1911,8 +1911,8 @@
       "premise": "Bir demet çubuğu kırmak imkansızdır. Ama o demeti çözüp çubukları tek tek elinize aldığınızda hepsini kolayca kırarsınız. İnsanlar da böyledir; ayrılırsak zayıf, birleşirsek yenilmez oluruz.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "İnsanlar dayanışma ve birlik içinde olduklarında her türlü zorluğun üstesinden gelirler.",
-      "wrong1": "Çubukları kırmak çok güç gerektiren bir iştir.",
-      "wrong2": "Demet halindeki çubuklardan güzel ateş yakılır.",
+      "wrong1": "Çubukları kırmak çok güç gerektiren bir iştir",
+      "wrong2": "Demet halindeki çubuklardan güzel ateş yakılır",
       "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin (birlikten kuvvet doğar) sembolüdür.",
       "app": {
         "question": {
@@ -1927,8 +1927,8 @@
           ]
         },
         "correct": "İnsanlar dayanışma ve birlik içinde olduklarında her türlü zorluğun üstesinden gelirler.",
-        "wrong1": "Çubukları kırmak çok güç gerektiren bir iştir.",
-        "wrong2": "Demet halindeki çubuklardan güzel ateş yakılır.",
+        "wrong1": "Çubukları kırmak çok güç gerektiren bir iştir",
+        "wrong2": "Demet halindeki çubuklardan güzel ateş yakılır",
         "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin (birlikten kuvvet doğar) sembolüdür.",
         "url": null
       }
@@ -1939,8 +1939,8 @@
       "premise": "Karıncalar, yuvalarını su basmasın diye yüksek yerlere yaparlar. Ağustos böceği ise nereyi bulursa orada yatar. Bir sel geldiğinde karıncalar güvendeyken ağustos böceği boğulma tehlikesi geçirir.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Her zaman geleceği düşünerek tedbirli davranmalı, tehlikelere karşı önlem almalıyız.",
-      "wrong1": "Karıncalar çok yükseğe tırmanabilirler.",
-      "wrong2": "Ağustos böcekleri yüzmeyi çok iyi bilirler.",
+      "wrong1": "Karıncalar çok yükseğe tırmanabilirler",
+      "wrong2": "Ağustos böcekleri yüzmeyi çok iyi bilirler",
       "explanation": "Karıncaların önlem alması, tedbirli olmanın hayati önemini vurgulamaktadır.",
       "app": {
         "question": {
@@ -1955,8 +1955,8 @@
           ]
         },
         "correct": "Her zaman geleceği düşünerek tedbirli davranmalı, tehlikelere karşı önlem almalıyız.",
-        "wrong1": "Karıncalar çok yükseğe tırmanabilirler.",
-        "wrong2": "Ağustos böcekleri yüzmeyi çok iyi bilirler.",
+        "wrong1": "Karıncalar çok yükseğe tırmanabilirler",
+        "wrong2": "Ağustos böcekleri yüzmeyi çok iyi bilirler",
         "explanation": "Karıncaların önlem alması, tedbirli olmanın hayati önemini vurgulamaktadır.",
         "url": null
       }
@@ -1967,8 +1967,8 @@
       "premise": "Güzel sözler sihirli anahtarlar gibidir. Yanlışlıkla birine çarptığınızda kızarsanız kavga çıkar. Ama gülümseyerek 'Özür dilerim' derseniz o kişi size kızamaz. Nezaket tüm kapıları açar.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "İletişimde nazik ve kibar olmak, sorunları kolayca çözmemizi sağlar.",
-      "wrong1": "Anahtarlar kilitli kapıları açmak için kullanılır.",
-      "wrong2": "İnsanlara çarpmak büyük bir hatadır.",
+      "wrong1": "Anahtarlar kilitli kapıları açmak için kullanılır",
+      "wrong2": "İnsanlara çarpmak büyük bir hatadır",
       "explanation": "Metinde nezaketin (özür dilemenin) kavgaları önleyen gücü (ana fikir) anlatılmıştır.",
       "app": {
         "question": {
@@ -1983,8 +1983,8 @@
           ]
         },
         "correct": "İletişimde nazik ve kibar olmak, sorunları kolayca çözmemizi sağlar.",
-        "wrong1": "Anahtarlar kilitli kapıları açmak için kullanılır.",
-        "wrong2": "İnsanlara çarpmak büyük bir hatadır.",
+        "wrong1": "Anahtarlar kilitli kapıları açmak için kullanılır",
+        "wrong2": "İnsanlara çarpmak büyük bir hatadır",
         "explanation": "Metinde nezaketin (özür dilemenin) kavgaları önleyen gücü (ana fikir) anlatılmıştır.",
         "url": null
       }
@@ -1995,8 +1995,8 @@
       "premise": "Ayşe sınavdan düşük not alınca çok ağladı. Babası ona: 'Ağlamak notunu yükseltmez. Nerede hata yaptığını bul ve bir sonraki sınava daha iyi çalış' dedi. Ayşe çalışıp başardı.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Hatalarımız karşısında pes edip üzülmek yerine, onlardan ders çıkararak başarıya ulaşabiliriz.",
-      "wrong1": "Sınavlarda düşük not almak çok kötü bir durumdur.",
-      "wrong2": "Babalar çocuklarının ödevlerine her zaman yardım etmelidir.",
+      "wrong1": "Sınavlarda düşük not almak çok kötü bir durumdur",
+      "wrong2": "Babalar çocuklarının ödevlerine her zaman yardım etmelidir",
       "explanation": "Ayşe'nin ağlamak yerine çalışıp başarması, pes etmemek ve ders çıkarmak (ana fikir) ile ilgilidir.",
       "app": {
         "question": {
@@ -2011,8 +2011,8 @@
           ]
         },
         "correct": "Hatalarımız karşısında pes edip üzülmek yerine, onlardan ders çıkararak başarıya ulaşabiliriz.",
-        "wrong1": "Sınavlarda düşük not almak çok kötü bir durumdur.",
-        "wrong2": "Babalar çocuklarının ödevlerine her zaman yardım etmelidir.",
+        "wrong1": "Sınavlarda düşük not almak çok kötü bir durumdur",
+        "wrong2": "Babalar çocuklarının ödevlerine her zaman yardım etmelidir",
         "explanation": "Ayşe'nin ağlamak yerine çalışıp başarması, pes etmemek ve ders çıkarmak (ana fikir) ile ilgilidir.",
         "url": null
       }
@@ -2023,8 +2023,8 @@
       "premise": "Kutuplarda yaşayan penguenler birbirlerine sıkıca sarılarak soğuktan korunurlar. Eğer aralarından biri gruptan ayrılırsa donarak ölebilir. Hayatta kalmaları birbirlerine destek olmalarına bağlıdır.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Zorlu koşullarda hayatta kalmak ve başarılı olmak için dayanışma ve yardımlaşma şarttır.",
-      "wrong1": "Penguenler kutuplarda yaşayan sevimli kuşlardır.",
-      "wrong2": "Soğuk havalarda kalın giyinmek gerekir.",
+      "wrong1": "Penguenler kutuplarda yaşayan sevimli kuşlardır",
+      "wrong2": "Soğuk havalarda kalın giyinmek gerekir",
       "explanation": "Penguenlerin birbirine sarılması üzerinden yardımlaşmanın (dayanışmanın) önemi vurgulanmaktadır.",
       "app": {
         "question": {
@@ -2039,8 +2039,8 @@
           ]
         },
         "correct": "Zorlu koşullarda hayatta kalmak ve başarılı olmak için dayanışma ve yardımlaşma şarttır.",
-        "wrong1": "Penguenler kutuplarda yaşayan sevimli kuşlardır.",
-        "wrong2": "Soğuk havalarda kalın giyinmek gerekir.",
+        "wrong1": "Penguenler kutuplarda yaşayan sevimli kuşlardır",
+        "wrong2": "Soğuk havalarda kalın giyinmek gerekir",
         "explanation": "Penguenlerin birbirine sarılması üzerinden yardımlaşmanın (dayanışmanın) önemi vurgulanmaktadır.",
         "url": null
       }
@@ -2051,8 +2051,8 @@
       "premise": "Görevlerimizden kaçtığımızda o iş bitmez, aksine birikir. Yatağımızı toplamamak, ödevimizi yapmamak ileride büyük bir probleme dönüşür. Bu yüzden her işi vaktinde yapmalıyız.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Sorumluluklarımızı ertelememeli, yapmamız gereken işleri zamanında bitirmeliyiz.",
-      "wrong1": "Yatağımızı toplamak annemizin görevidir.",
-      "wrong2": "Çocukların çok fazla ödevi olmamalıdır.",
+      "wrong1": "Yatağımızı toplamak annemizin görevidir",
+      "wrong2": "Çocukların çok fazla ödevi olmamalıdır",
       "explanation": "Metinde küçük görevlerin birikmemesi için sorumlulukların vaktinde yerine getirilmesi öğütlenmiştir.",
       "app": {
         "question": {
@@ -2067,8 +2067,8 @@
           ]
         },
         "correct": "Sorumluluklarımızı ertelememeli, yapmamız gereken işleri zamanında bitirmeliyiz.",
-        "wrong1": "Yatağımızı toplamak annemizin görevidir.",
-        "wrong2": "Çocukların çok fazla ödevi olmamalıdır.",
+        "wrong1": "Yatağımızı toplamak annemizin görevidir",
+        "wrong2": "Çocukların çok fazla ödevi olmamalıdır",
         "explanation": "Metinde küçük görevlerin birikmemesi için sorumlulukların vaktinde yerine getirilmesi öğütlenmiştir.",
         "url": null
       }
@@ -2079,8 +2079,8 @@
       "premise": "Bazen en küçük canlılar bile ekosistem için çok önemlidir. Toprağı havalandıran solucanlar olmasaydı bitkiler büyüyemezdi. Dünyadaki her varlığın bir görevi vardır.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Doğadaki hiçbir canlı gereksiz değildir, her birinin hayatın devamı için önemli bir rolü vardır.",
-      "wrong1": "Solucanlar toprak altında yaşayan hayvanlardır.",
-      "wrong2": "Bitkilerin büyümesi için çok su gerekir.",
+      "wrong1": "Solucanlar toprak altında yaşayan hayvanlardır",
+      "wrong2": "Bitkilerin büyümesi için çok su gerekir",
       "explanation": "Solucan örneği ile doğadaki her canlının önemli olduğu ve saygı duyulması gerektiği mesajı verilir.",
       "app": {
         "question": {
@@ -2095,8 +2095,8 @@
           ]
         },
         "correct": "Doğadaki hiçbir canlı gereksiz değildir, her birinin hayatın devamı için önemli bir rolü vardır.",
-        "wrong1": "Solucanlar toprak altında yaşayan hayvanlardır.",
-        "wrong2": "Bitkilerin büyümesi için çok su gerekir.",
+        "wrong1": "Solucanlar toprak altında yaşayan hayvanlardır",
+        "wrong2": "Bitkilerin büyümesi için çok su gerekir",
         "explanation": "Solucan örneği ile doğadaki her canlının önemli olduğu ve saygı duyulması gerektiği mesajı verilir.",
         "url": null
       }
@@ -2107,8 +2107,8 @@
       "premise": "Büyük icatların çoğu hayal kurmakla başlamıştır. Uçan arabalar, uzay gemileri önce bir çocuğun hayaliydi, sonra gerçeğe dönüştü. Hayal kurmaktan asla vazgeçmeyin.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Büyük başarıların ve icatların temelinde sınırsız bir hayal gücü yatar.",
-      "wrong1": "Uzay gemileri yapmak çok pahalıdır.",
-      "wrong2": "Çocuklar her zaman oyun oynamak ister.",
+      "wrong1": "Uzay gemileri yapmak çok pahalıdır",
+      "wrong2": "Çocuklar her zaman oyun oynamak ister",
       "explanation": "Metinde hayal gücünün icatlar ve başarılar için ne kadar önemli olduğu vurgulanmaktadır.",
       "app": {
         "question": {
@@ -2123,8 +2123,8 @@
           ]
         },
         "correct": "Büyük başarıların ve icatların temelinde sınırsız bir hayal gücü yatar.",
-        "wrong1": "Uzay gemileri yapmak çok pahalıdır.",
-        "wrong2": "Çocuklar her zaman oyun oynamak ister.",
+        "wrong1": "Uzay gemileri yapmak çok pahalıdır",
+        "wrong2": "Çocuklar her zaman oyun oynamak ister",
         "explanation": "Metinde hayal gücünün icatlar ve başarılar için ne kadar önemli olduğu vurgulanmaktadır.",
         "url": null
       }
@@ -2135,8 +2135,8 @@
       "premise": "Ormana pikniğe gittiğinizde çöplerinizi bırakırsanız, o çöplerin doğada yok olması yüzlerce yıl sürer. Ayrıca hayvanlar o plastikleri yiyip hastalanabilir. Doğaya saygı göstermek zorundayız.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Doğayı ve çevremizi korumak hepimizin en önemli sorumluluğudur.",
-      "wrong1": "Piknikte mangal yakmak çok tehlikelidir.",
-      "wrong2": "Plastik poşetler çok dayanıklıdır.",
+      "wrong1": "Piknikte mangal yakmak çok tehlikelidir",
+      "wrong2": "Plastik poşetler çok dayanıklıdır",
       "explanation": "Metin, çöplerin doğaya zararları üzerinden çevre bilinci ve koruma dersi verir.",
       "app": {
         "question": {
@@ -2151,8 +2151,8 @@
           ]
         },
         "correct": "Doğayı ve çevremizi korumak hepimizin en önemli sorumluluğudur.",
-        "wrong1": "Piknikte mangal yakmak çok tehlikelidir.",
-        "wrong2": "Plastik poşetler çok dayanıklıdır.",
+        "wrong1": "Piknikte mangal yakmak çok tehlikelidir",
+        "wrong2": "Plastik poşetler çok dayanıklıdır",
         "explanation": "Metin, çöplerin doğaya zararları üzerinden çevre bilinci ve koruma dersi verir.",
         "url": null
       }
@@ -2163,8 +2163,8 @@
       "premise": "Kitaplıklar sadece tozlu raflar değildir; onlar uçan halılardır. Bir raf bizi dinozorlar çağına götürürken, diğer bir raf uzayın derinliklerine fırlatır. Kitap okuyan insanın canı asla sıkılmaz.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
       "correct": "Kitaplar bize zengin hayal dünyaları sunar ve keyifli maceralar yaşatır.",
-      "wrong1": "Kitaplıkların tozunu her gün almalıyız.",
-      "wrong2": "Dinozorlar eski çağlarda yaşamış büyük hayvanlardır.",
+      "wrong1": "Kitaplıkların tozunu her gün almalıyız",
+      "wrong2": "Dinozorlar eski çağlarda yaşamış büyük hayvanlardır",
       "explanation": "Yazar mecaz (uçan halı vb.) kullanarak kitapların bizi nasıl farklı dünyalara (hayallere) götürdüğünü anlatmıştır.",
       "app": {
         "question": {
@@ -2179,8 +2179,8 @@
           ]
         },
         "correct": "Kitaplar bize zengin hayal dünyaları sunar ve keyifli maceralar yaşatır.",
-        "wrong1": "Kitaplıkların tozunu her gün almalıyız.",
-        "wrong2": "Dinozorlar eski çağlarda yaşamış büyük hayvanlardır.",
+        "wrong1": "Kitaplıkların tozunu her gün almalıyız",
+        "wrong2": "Dinozorlar eski çağlarda yaşamış büyük hayvanlardır",
         "explanation": "Yazar mecaz (uçan halı vb.) kullanarak kitapların bizi nasıl farklı dünyalara (hayallere) götürdüğünü anlatmıştır.",
         "url": null
       }
@@ -2191,8 +2191,8 @@
       "premise": "Edison ampulü icat etmeden önce binlerce başarısız deneme yaptı. 'Neden vazgeçmiyorsun?' diyenlere 'Ben başarısız olmadım, sadece ampulü yakmayan binlerce yol buldum' cevabını verdi.",
       "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
       "correct": "Karşılaştığı başarısızlıklara rağmen asla pes etmemek ve olumlu düşünmek başarıyı getirir.",
-      "wrong1": "Eskiden elektrik faturasının çok ucuz olması.",
-      "wrong2": "Başkalarının ona sürekli yardım etmesi.",
+      "wrong1": "Eskiden elektrik faturasının çok ucuz olması",
+      "wrong2": "Başkalarının ona sürekli yardım etmesi",
       "explanation": "Metin, Edison'un başarısız denemelere rağmen olumlu düşünüp pes etmemesinin başarıyı getirdiğini anlatır.",
       "app": {
         "question": {
@@ -2207,8 +2207,8 @@
           ]
         },
         "correct": "Karşılaştığı başarısızlıklara rağmen asla pes etmemek ve olumlu düşünmek başarıyı getirir.",
-        "wrong1": "Eskiden elektrik faturasının çok ucuz olması.",
-        "wrong2": "Başkalarının ona sürekli yardım etmesi.",
+        "wrong1": "Eskiden elektrik faturasının çok ucuz olması",
+        "wrong2": "Başkalarının ona sürekli yardım etmesi",
         "explanation": "Metin, Edison'un başarısız denemelere rağmen olumlu düşünüp pes etmemesinin başarıyı getirdiğini anlatır.",
         "url": null
       }
@@ -2218,9 +2218,9 @@
       "level": "zor",
       "premise": "Hiçbir insan tek başına bir ev inşa edemez. Biri tuğlaları örer, diğeri camları takar, bir başkası boyayı yapar. Ancak herkes el ele verirse o ev tamamlanır.",
       "text": "Yukarıdaki paragrafın ana fikri nedir?",
-      "correct": "Büyük işler ancak insanların iş birliği ve dayanışmasıyla (beraberlikle) başarılabilir.",
-      "wrong1": "Ev yapmak için tuğla ve boya gereklidir.",
-      "wrong2": "İnşaat işçileri çok yorulurlar.",
+      "correct": "Büyük işler ancak insanların iş birliği ve dayanışmasıyla başarılabilir.",
+      "wrong1": "Ev yapmak için tuğla ve boya gereklidir",
+      "wrong2": "İnşaat işçileri çok yorulurlar",
       "explanation": "Metindeki ev inşaatı örneği üzerinden, başarı için insanların yardımlaşması ve birlikte çalışması gerektiği vurgulanmıştır.",
       "app": {
         "question": {
@@ -2234,9 +2234,9 @@
             }
           ]
         },
-        "correct": "Büyük işler ancak insanların iş birliği ve dayanışmasıyla (beraberlikle) başarılabilir.",
-        "wrong1": "Ev yapmak için tuğla ve boya gereklidir.",
-        "wrong2": "İnşaat işçileri çok yorulurlar.",
+        "correct": "Büyük işler ancak insanların iş birliği ve dayanışmasıyla başarılabilir.",
+        "wrong1": "Ev yapmak için tuğla ve boya gereklidir",
+        "wrong2": "İnşaat işçileri çok yorulurlar",
         "explanation": "Metindeki ev inşaatı örneği üzerinden, başarı için insanların yardımlaşması ve birlikte çalışması gerektiği vurgulanmıştır.",
         "url": null
       }
@@ -2610,7 +2610,7 @@
       "level": "orta",
       "premise": "Kumbara kumbara güzel kumbara,\nİçine attım beş on lira.\nDamla damla göl olurmuş,\nBirikince çok işe yararmış.",
       "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
-      "correct": "Tutumlu olma (tasarruf etme) bilinci",
+      "correct": "Tutumlu olma bilinci (tasarruf etme)",
       "wrong1": "Kumbaranın renginin güzelliği",
       "wrong2": "Çok para harcama isteği",
       "explanation": "Şiir, küçük paraları kumbarada biriktirerek tutumlu olma ve tasarruf bilincini hissettirmektedir.",
@@ -2626,7 +2626,7 @@
             }
           ]
         },
-        "correct": "Tutumlu olma (tasarruf etme) bilinci",
+        "correct": "Tutumlu olma bilinci (tasarruf etme)",
         "wrong1": "Kumbaranın renginin güzelliği",
         "wrong2": "Çok para harcama isteği",
         "explanation": "Şiir, küçük paraları kumbarada biriktirerek tutumlu olma ve tasarruf bilincini hissettirmektedir.",

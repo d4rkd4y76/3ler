@@ -15,7 +15,7 @@
       "text": "Yukarıdaki cümlede anlatılan olayın sebebi (nedeni) aşağıdakilerden hangisidir?",
       "correct": "Yağmurun çok şiddetli yağması",
       "wrong1": "Sokaklarda su birikmesi",
-      "wrong2": "Şemsiye açılması",
+      "wrong2": "Şemsiyenin açılması",
       "explanation": "Cümlede 'sokaklarda su birikintileri oluştu' durumunun gerçekleşme nedeni (sebebi) 'yağmur çok şiddetli yağdığı için' ifadesiyle açıklanmıştır.",
       "app": {
         "question": {
@@ -31,7 +31,7 @@
         },
         "correct": "Yağmurun çok şiddetli yağması",
         "wrong1": "Sokaklarda su birikmesi",
-        "wrong2": "Şemsiye açılması",
+        "wrong2": "Şemsiyenin açılması",
         "explanation": "Cümlede 'sokaklarda su birikintileri oluştu' durumunun gerçekleşme nedeni (sebebi) 'yağmur çok şiddetli yağdığı için' ifadesiyle açıklanmıştır.",
         "url": null
       }
@@ -407,7 +407,7 @@
       "text": "Yukarıdaki cümlede anlatılan olayın sebebi (nedeni) aşağıdakilerden hangisidir?",
       "correct": "Dişlerini düzenli fırçalamaması",
       "wrong1": "Dişlerinde çürükler oluşması",
-      "wrong2": "Şeker yemesi",
+      "wrong2": "Çok fazla şeker yemesi",
       "explanation": "Cümlede 'dişlerinde çürükler oluştu' durumunun gerçekleşme nedeni (sebebi) 'düzenli diş fırçalamadığı için' ifadesiyle açıklanmıştır.",
       "app": {
         "question": {
@@ -423,7 +423,7 @@
         },
         "correct": "Dişlerini düzenli fırçalamaması",
         "wrong1": "Dişlerinde çürükler oluşması",
-        "wrong2": "Şeker yemesi",
+        "wrong2": "Çok fazla şeker yemesi",
         "explanation": "Cümlede 'dişlerinde çürükler oluştu' durumunun gerçekleşme nedeni (sebebi) 'düzenli diş fırçalamadığı için' ifadesiyle açıklanmıştır.",
         "url": null
       }
@@ -546,8 +546,8 @@
       "premise": "Sürekli abur cubur yediği için kilo aldı ve sağlığı bozuldu.",
       "text": "Yukarıdaki cümlede anlatılan olayın sebebi (nedeni) aşağıdakilerden hangisidir?",
       "correct": "Sürekli abur cubur yemesi",
-      "wrong1": "Kilo alması",
-      "wrong2": "Meyve yememesi",
+      "wrong1": "Kilo alması ve şişmanlaması",
+      "wrong2": "Meyve yememesi alışkanlığı",
       "explanation": "Cümlede 'kilo aldı ve sağlığı bozuldu' durumunun gerçekleşme nedeni (sebebi) 'sürekli abur cubur yediği için' ifadesiyle açıklanmıştır.",
       "app": {
         "question": {
@@ -562,8 +562,8 @@
           ]
         },
         "correct": "Sürekli abur cubur yemesi",
-        "wrong1": "Kilo alması",
-        "wrong2": "Meyve yememesi",
+        "wrong1": "Kilo alması ve şişmanlaması",
+        "wrong2": "Meyve yememesi alışkanlığı",
         "explanation": "Cümlede 'kilo aldı ve sağlığı bozuldu' durumunun gerçekleşme nedeni (sebebi) 'sürekli abur cubur yediği için' ifadesiyle açıklanmıştır.",
         "url": null
       }
@@ -1526,8 +1526,8 @@
       "premise": "Asansör arızalandığı için sekizinci kata merdivenle çıkmak zorunda kaldı.",
       "text": "Yukarıdaki cümlede anlatılan olayın SONUCU aşağıdakilerden hangisidir?",
       "correct": "Sekizinci kata merdivenle çıkmak zorunda kalması",
-      "wrong1": "Asansörün arızalanması",
-      "wrong2": "Çok yorulması",
+      "wrong1": "Binadaki asansörün birden arızalanması",
+      "wrong2": "Merdiven çıkınca çok fazla yorulması",
       "explanation": "Cümlede olayın nedeni 'asansör arızalandığı için' şeklindedir. Bunun ardından ortaya çıkan durum yani sonuç 'sekizinci kata merdivenle çıkmak zorunda kaldı' olarak belirtilmiştir.",
       "app": {
         "question": {
@@ -1542,8 +1542,8 @@
           ]
         },
         "correct": "Sekizinci kata merdivenle çıkmak zorunda kalması",
-        "wrong1": "Asansörün arızalanması",
-        "wrong2": "Çok yorulması",
+        "wrong1": "Binadaki asansörün birden arızalanması",
+        "wrong2": "Merdiven çıkınca çok fazla yorulması",
         "explanation": "Cümlede olayın nedeni 'asansör arızalandığı için' şeklindedir. Bunun ardından ortaya çıkan durum yani sonuç 'sekizinci kata merdivenle çıkmak zorunda kaldı' olarak belirtilmiştir.",
         "url": null
       }
@@ -1581,9 +1581,9 @@
       "level": "orta",
       "premise": "Hastalandığı için arkadaşının doğum günü partisine katılamadı.",
       "text": "Yukarıdaki cümlede anlatılan olayın SONUCU aşağıdakilerden hangisidir?",
-      "correct": "Arkadaşının doğum günü partisine katılamaması",
-      "wrong1": "Hastalanması",
-      "wrong2": "Hediye alamaması",
+      "correct": "Arkadaşının doğum gününe katılamaması",
+      "wrong1": "Aniden ciddi bir hastalık geçirmesi",
+      "wrong2": "Doğum günü hediyesi alamaması",
       "explanation": "Cümlede olayın nedeni 'hastalandığı için' şeklindedir. Bunun ardından ortaya çıkan durum yani sonuç 'arkadaşının doğum günü partisine katılamadı' olarak belirtilmiştir.",
       "app": {
         "question": {
@@ -1597,9 +1597,9 @@
             }
           ]
         },
-        "correct": "Arkadaşının doğum günü partisine katılamaması",
-        "wrong1": "Hastalanması",
-        "wrong2": "Hediye alamaması",
+        "correct": "Arkadaşının doğum gününe katılamaması",
+        "wrong1": "Aniden ciddi bir hastalık geçirmesi",
+        "wrong2": "Doğum günü hediyesi alamaması",
         "explanation": "Cümlede olayın nedeni 'hastalandığı için' şeklindedir. Bunun ardından ortaya çıkan durum yani sonuç 'arkadaşının doğum günü partisine katılamadı' olarak belirtilmiştir.",
         "url": null
       }

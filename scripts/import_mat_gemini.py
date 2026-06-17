@@ -65,6 +65,14 @@ def apply_topic_patches(topic_id: str, questions: list[dict]) -> list[dict]:
         from patch_sekiller_gemini import enhance_question
 
         return [enhance_question(dict(q)) for q in questions]
+    if topic_id == "t14":
+        from patch_cevre_alan_gemini import enhance_question
+
+        return [enhance_question(dict(q)) for q in questions]
+    if topic_id == "t15":
+        from patch_veri_gemini import enhance_question
+
+        return [enhance_question(dict(q)) for q in questions]
     return questions
 
 

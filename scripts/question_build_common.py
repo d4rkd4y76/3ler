@@ -123,6 +123,9 @@ def normalize_question(q: dict) -> dict:
     if premise and "İncelenen boşluk:" in q.get("text", ""):
         q["text"] = re.sub(r"\s*İncelenen boşluk:.*$", "", q["text"]).strip()
 
+    from patch_mcq_common import apply_mcq_balance
+
+    q = apply_mcq_balance(q)
     return q
 
 

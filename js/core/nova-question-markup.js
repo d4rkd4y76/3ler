@@ -5,6 +5,7 @@
  * geometri [[shape:kare:5:cm]], temel geo [[geo:nokta]] [[geo:dogru]] [[geo:isin]] [[geo:parca]] [[geo:aci_dik]],
  * şekil/cisim [[sekil:ucgen]] [[sekil:kare]] [[cisim:kup]] [[cisim:silindir]],
  * cisim [[solid:kup:4:cm]], saat [[clock:a:8:00]] / [[clock:d:14:30]], para [[para:10TL|5TL]], terazi [[terazi:L:2,3:R:5]], Bunny video [[bunny:host:videoId]]
+ * veri [[veri:siklik|Başlık|🍎 Elma:15]] [[veri:cetele|...]] [[veri:grafik|...]] [[veri:cetele_sayi:7]]
  * Vurgu: {kirmizi:kelime} {mavi:kelime} {yesil:kelime} veya **kalın**
  * Öncül: infoBlocks (metin, madde, görsel, video) + geriye dönük info / infoItems
  */
@@ -35,6 +36,7 @@
   const GEO_BASIC_RE = /\[\[\s*geo\s*:\s*([a-z0-9_|]+)\s*\]\]/gi;
   const SEKIL_RE = /\[\[\s*sekil\s*:\s*([a-z0-9_|]+)\s*\]\]/gi;
   const CISIM_RE = /\[\[\s*cisim\s*:\s*([a-z0-9_|]+)\s*\]\]/gi;
+  const VERI_RE = /\[\[\s*veri\s*:\s*([a-z_]+)\s*(?:\|\s*([^\]]*))?\s*\]\]/gi;
   const EM_TAG_RE = /\{(kirmizi|mavi|yesil|kalin|k|m|y)\s*:\s*([^{}]+?)\}/gi;
   const IMG_RE = /^https?:\/\/\S+\.(png|jpe?g|gif|webp|svg)(\?\S*)?$/i;
   const BUNNY_IMG_RE = /^https?:\/\/[^/]+\.b-cdn\.net\/.+/i;
@@ -1736,6 +1738,15 @@
     });
   }
 
+  function veriVisualMarkupHtml(kind, spec) {
+    const fn =
+      global.NovaVeriVisual && typeof global.NovaVeriVisual.veriMarkupHtml === "function"
+        ? global.NovaVeriVisual.veriMarkupHtml
+        : null;
+    if (!fn) return "";
+    return fn(kind, spec || "");
+  }
+
   function geometryBasicMarkupHtml(kind) {
     const fn =
       typeof global.__novaGeometryBasicSvg === "function"
@@ -1783,6 +1794,10 @@
       }
       const svg = sekilCisimMarkupHtml("cisim", kind);
       return svg || "[[cisim:" + kind + "]]";
+    });
+    s = s.replace(VERI_RE, function (_, kind, spec) {
+      const html = veriVisualMarkupHtml(kind, spec);
+      return html || "[[veri:" + kind + "|" + (spec || "") + "]]";
     });
     s = s.replace(FRAC_RE, function (_, a, b) {
       return stackedFractionHtml(a, b);

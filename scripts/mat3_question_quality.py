@@ -22,6 +22,24 @@ STEM_PREFIX_RE = re.compile(
 SHOUT_WORD_RE = re.compile(r"\b[A-ZÇĞİÖŞÜ]{3,}\b")
 ROMAN_NUMERAL_RE = re.compile(r"^[IVXLCDM]+$")
 
+# Türkçe büyük/küçük harf (Python .lower() I→i yapar; doğrusu I→ı, İ→i)
+_TR_UPPER = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"
+_TR_LOWER = "abcçdefgğhıijklmnoöprsştuüvyz"
+_TR_CASE_MAP = str.maketrans(_TR_UPPER, _TR_LOWER)
+
+
+def tr_lower(text: str) -> str:
+    return text.translate(_TR_CASE_MAP)
+
+
+def lower_shout_word(word: str) -> str:
+    """BÜYÜK vurgulu kelimeyi cümle içinde doğru Türkçe küçük harfe çevirir."""
+    if ROMAN_NUMERAL_RE.match(word):
+        return word
+    if len(word) >= 3 and word.isupper():
+        return tr_lower(word)
+    return word
+
 CAPS_REPLACEMENTS: list[tuple[str, str]] = [
     ("DİĞERLERİNDEN AZDIR", "diğerlerinden azdır"),
     ("EN FAZLADIR", "en fazladır"),
@@ -63,12 +81,7 @@ def de_shout(text: str) -> str:
         text = text.replace(old, new)
 
     def lower_word(m: re.Match) -> str:
-        w = m.group(0)
-        if ROMAN_NUMERAL_RE.match(w):
-            return w
-        if w.isupper() and len(w) >= 3:
-            return w[0] + w[1:].lower()
-        return w
+        return lower_shout_word(m.group(0))
 
     return SHOUT_WORD_RE.sub(lower_word, text)
 
