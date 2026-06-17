@@ -104,10 +104,6 @@
 
   const reader = document.getElementById("roborox-reader-overlay");
   const readerExit = document.getElementById("roborox-reader-exit");
-  const readerCount = document.getElementById("roborox-reader-count");
-  const readerPrev = document.getElementById("roborox-reader-prev");
-  const readerNext = document.getElementById("roborox-reader-next");
-  const readerNavWrap = document.getElementById("roborox-reader-nav-wrap");
   const readerVideo = document.getElementById("roborox-reader-video");
   const readerIframeWrap = document.getElementById("roborox-reader-iframe-wrap");
   const readerIframe = document.getElementById("roborox-reader-iframe");
@@ -247,13 +243,13 @@
     if (!topic || !topicContentCount(topic) || introActive) return;
 
     if (!topicIntro || !topicIntroTitle || prefersReducedMotion()) {
-      closeTopicsModal();
+      hideTopicsModal();
       openReader(topic, false);
       return;
     }
 
     introActive = true;
-    closeTopicsModal();
+    hideTopicsModal();
     ensureIntroPortal();
 
     const lowPerf = isLowPerfMode();
@@ -439,31 +435,15 @@
     }
   }
 
-  function updateReaderUi() {
-    var multi = videos.length > 1;
-    if (readerNavWrap) {
-      readerNavWrap.hidden = !multi;
-      if (multi) readerNavWrap.removeAttribute("hidden");
-      else readerNavWrap.setAttribute("hidden", "");
-    }
-    if (readerCount) {
-      readerCount.textContent = videos.length ? videoIndex + 1 + " / " + videos.length : "";
-    }
-    if (readerPrev) readerPrev.disabled = videoIndex <= 0;
-    if (readerNext) readerNext.disabled = videoIndex >= videos.length - 1;
-  }
-
   function revealReaderUi() {
     setReaderLoading(false);
     setReaderReady(true);
-    updateReaderUi();
   }
 
   function playVideoAt(index) {
     if (!reader || index < 0 || index >= videos.length) return;
     var token = ++loadToken;
     videoIndex = index;
-    updateReaderUi();
     setReaderReady(false);
     setReaderLoading(true);
     hideAllPlayers();
@@ -560,11 +540,34 @@
     notifyMainScreenReturn();
   }
 
-  function closeTopicsModal() {
+  function hideTopicsModal() {
     if (!topicsModal) return;
     topicsModal.classList.remove("open");
     topicsModal.setAttribute("aria-hidden", "true");
     topicsModal.hidden = true;
+  }
+
+  function restoreTopicsModal() {
+    if (!topicsModal) return;
+    if (viewMode === "topics" && selectedLesson) {
+      renderTopics();
+      setBackVisible(true);
+    } else if (viewMode === "flat") {
+      renderTopics();
+      setBackVisible(false);
+    } else {
+      renderLessons();
+      setBackVisible(false);
+    }
+    syncGradeSubtitle();
+    topicsModal.hidden = false;
+    topicsModal.classList.add("open");
+    topicsModal.setAttribute("aria-hidden", "false");
+    lockScroll(true);
+  }
+
+  function closeTopicsModal() {
+    hideTopicsModal();
     viewMode = "lessons";
     selectedLesson = null;
     setBackVisible(false);
@@ -686,7 +689,7 @@
     videoIndex = 0;
     loadToken += 1;
     reader.dataset.title = topic.title;
-    closeTopicsModal();
+    hideTopicsModal();
     reader.hidden = false;
     reader.classList.remove("is-open-ready", "is-ready");
     if (withIntroHandoff) reader.classList.add("is-opening");
@@ -697,7 +700,6 @@
     setExitVisible(false);
     setReaderLoading(true);
     hideAllPlayers();
-    updateReaderUi();
     playVideoAt(0);
 
     if (withIntroHandoff) {
@@ -724,7 +726,7 @@
     videos = [];
     videoIndex = 0;
     setReaderBodyLock(false);
-    notifyMainScreenReturn();
+    restoreTopicsModal();
   }
 
   if (learnOpenBtn) {
@@ -796,18 +798,6 @@
     readerExit.addEventListener("click", closeReader);
   }
 
-  if (readerPrev) {
-    readerPrev.addEventListener("click", function () {
-      if (videoIndex > 0) playVideoAt(videoIndex - 1);
-    });
-  }
-
-  if (readerNext) {
-    readerNext.addEventListener("click", function () {
-      if (videoIndex < videos.length - 1) playVideoAt(videoIndex + 1);
-    });
-  }
-
   if (reader) {
     reader.addEventListener("click", function (e) {
       if (e.target === reader && readerReady) closeReader();
@@ -829,8 +819,6 @@
     }
     if (!reader || !reader.classList.contains("open")) return;
     if (e.key === "Escape") closeReader();
-    if (e.key === "ArrowRight" && videoIndex < videos.length - 1) playVideoAt(videoIndex + 1);
-    if (e.key === "ArrowLeft" && videoIndex > 0) playVideoAt(videoIndex - 1);
   });
 
   window.novaOpenRoboroxTopicsModal = openTopicsModal;

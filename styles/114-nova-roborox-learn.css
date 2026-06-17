@@ -746,66 +746,8 @@ body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
 }
 
-.roborox-reader-foot {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 38%, rgba(0, 0, 0, 0.88) 100%);
-  pointer-events: none;
-}
-
-.roborox-reader-foot > * {
-  pointer-events: auto;
-}
-
-.roborox-reader-count {
-  font-size: clamp(0.75rem, 3vw, 0.88rem);
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.92);
-  white-space: nowrap;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.roborox-reader-nav {
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-weight: 800;
-  font-size: clamp(0.8rem, 3.2vw, 0.9rem);
-  cursor: pointer;
-  min-width: clamp(96px, 24vw, 118px);
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  background: rgba(15, 23, 42, 0.55);
-  color: #fef3c7;
-}
-
-.roborox-reader-nav:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.roborox-reader-nav:not(:disabled):active {
-  transform: scale(0.96);
-}
-
-.roborox-reader-nav--next {
-  background: linear-gradient(145deg, rgba(250, 204, 21, 0.28), rgba(234, 179, 8, 0.18));
-  border-color: rgba(250, 204, 21, 0.45);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .roborox-reader-exit,
-  .roborox-reader-nav {
+  .roborox-reader-exit {
     transition: none;
   }
 }
