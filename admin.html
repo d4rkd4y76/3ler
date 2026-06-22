@@ -856,7 +856,7 @@ window.NovaAdminExport = (function(){
 
     <div id="roboroxLearnView" class="view">
       <h2>Kaptan Kabuk Anlatıyor</h2>
-      <div class="sub">Seçili sınıf için <strong>ders</strong> ve <strong>konu</strong> oluşturun. Öğrenci önce kendi sınıfının derslerini, sonra konularını görür. Konu içeriği <strong>Bunny Stream dikey video</strong> olarak tam ekran oynatılır. Veritabanı: <span class="mono" id="roborox_learn_path_hint">/roboroxLearn</span></div>
+      <div class="sub">Seçili sınıf için <strong>ders</strong> ve <strong>konu</strong> oluşturun. Her konunun içine <strong>alt başlıklar (bölümler)</strong> ekleyebilir; her alt başlığa Bunny Stream dikey video bağlanır. Öğrenci konuya girince alt başlıkları görür ve seçtiği bölümü tam ekran izler. Veritabanı: <span class="mono" id="roborox_learn_path_hint">/roboroxLearn</span></div>
       <div class="toolbar mt8" style="gap:8px;flex-wrap:wrap">
         <button type="button" class="btn acc" id="roborox_learn_seed_lessons">Varsayılan dersleri oluştur</button>
         <button type="button" class="btn" id="roborox_learn_reload">Yenile</button>
@@ -895,10 +895,15 @@ window.NovaAdminExport = (function(){
               <input type="checkbox" id="roborox_learn_active" checked />
               <span>Aktif (öğrencide görünsün)</span>
             </label>
-            <label>Bunny videoları (dikey, tam ekran)</label>
-            <div class="soft small">Her video için <b>Kütüphane adı</b> = Bunny CDN hostname (<span class="mono">vz-xxxxx</span>), <b>Video ID</b> = GUID. <b>Kütüphane ID</b> = embed yedek (isteğe bağlı). Birden fazla video eklerseniz öğrenci sırayla izler.</div>
-            <div id="roborox_learn_videos" class="mt8" style="display:flex;flex-direction:column;gap:10px"></div>
-            <button type="button" class="btn sm mt8" id="roborox_learn_video_add">+ Video ekle</button>
+            <label>Alt başlıklar (bölümler)</label>
+            <div class="soft small">Her alt başlık için bir başlık ve Bunny video ekleyin. Öğrenci konuya girince alt başlıkları görür; her bölümün videosu ayrı oynatılır. Eski düz video listesi geriye uyumludur.</div>
+            <div id="roborox_learn_sections" class="mt8" style="display:flex;flex-direction:column;gap:12px"></div>
+            <button type="button" class="btn sm mt8" id="roborox_learn_section_add">+ Alt başlık ekle</button>
+            <details class="mt12" id="roborox_learn_legacy_videos_wrap" style="display:none">
+              <summary class="soft small" style="cursor:pointer">Eski düz video listesi (geriye uyumluluk)</summary>
+              <div id="roborox_learn_videos" class="mt8" style="display:flex;flex-direction:column;gap:10px"></div>
+              <button type="button" class="btn sm mt8" id="roborox_learn_video_add">+ Video ekle</button>
+            </details>
             <div class="toolbar mt12">
               <button type="button" class="btn acc" id="roborox_learn_save">Konuyu Kaydet</button>
               <button type="button" class="btn" id="roborox_learn_clear">Konu Formunu Temizle</button>
@@ -1304,7 +1309,7 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-admin-cdn.js?v=30260604cdn1"></script>
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
-<script src="js/core/nova-roborox-data.js?v=30260617kabukvid1"></script>
+<script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
 <script>
 /** =============================
  * NASK ADMİN PANEL – RTDB bağlayıcı
@@ -1544,6 +1549,9 @@ window.NovaAdminExport = (function(){
   const roboroxLearnActive = $('#roborox_learn_active');
   const roboroxLearnVideos = $('#roborox_learn_videos');
   const roboroxLearnVideoAdd = $('#roborox_learn_video_add');
+  const roboroxLearnSections = $('#roborox_learn_sections');
+  const roboroxLearnSectionAdd = $('#roborox_learn_section_add');
+  const roboroxLearnLegacyVideosWrap = $('#roborox_learn_legacy_videos_wrap');
   const roboroxLearnEditId = $('#roborox_learn_edit_id');
   const roboroxLearnLessonSelect = $('#roborox_learn_lesson_select');
   const roboroxLearnSave = $('#roborox_learn_save');
@@ -1588,8 +1596,21 @@ window.NovaAdminExport = (function(){
     if(roboroxLearnTitle) roboroxLearnTitle.value = '';
     if(roboroxLearnOrder) roboroxLearnOrder.value = '1';
     if(roboroxLearnActive) roboroxLearnActive.checked = true;
+    novaRoboroxRenderSectionRows([]);
     novaRoboroxRenderVideoRows([]);
+    if(roboroxLearnLegacyVideosWrap) roboroxLearnLegacyVideosWrap.style.display = 'none';
     if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Yeni Konu Ekle';
+  }
+
+  function novaRoboroxVideoFieldsHtml(video, idx, prefix){
+    video = video || {};
+    prefix = prefix || '';
+    return '<label>Kütüphane adı (vz-…)</label>' +
+      '<input type="text" class="roborox-video-library-name" data-field-prefix="' + novaRoboroxEsc(prefix) + '" placeholder="vz-xxxxxxxx" value="' + novaRoboroxEsc(video.libraryName || '') + '" />' +
+      '<label class="mt8">Video ID (GUID)</label>' +
+      '<input type="text" class="roborox-video-id" data-field-prefix="' + novaRoboroxEsc(prefix) + '" placeholder="00000000-0000-0000-0000-000000000000" value="' + novaRoboroxEsc(video.videoId || '') + '" />' +
+      '<label class="mt8">Kütüphane ID (isteğe bağlı)</label>' +
+      '<input type="text" class="roborox-video-library-id" data-field-prefix="' + novaRoboroxEsc(prefix) + '" placeholder="123456" value="' + novaRoboroxEsc(video.libraryId || '') + '" />';
   }
 
   function novaRoboroxVideoRowHtml(video, idx){
@@ -1599,13 +1620,132 @@ window.NovaAdminExport = (function(){
         '<strong>Video ' + (idx + 1) + '</strong>' +
         '<button type="button" class="btn sm warn roborox-video-remove" data-video-remove="' + idx + '">Kaldır</button>' +
       '</div>' +
-      '<label>Kütüphane adı (vz-…)</label>' +
-      '<input type="text" class="roborox-video-library-name" placeholder="vz-xxxxxxxx" value="' + novaRoboroxEsc(video.libraryName || '') + '" />' +
-      '<label class="mt8">Video ID (GUID)</label>' +
-      '<input type="text" class="roborox-video-id" placeholder="00000000-0000-0000-0000-000000000000" value="' + novaRoboroxEsc(video.videoId || '') + '" />' +
-      '<label class="mt8">Kütüphane ID (isteğe bağlı)</label>' +
-      '<input type="text" class="roborox-video-library-id" placeholder="123456" value="' + novaRoboroxEsc(video.libraryId || '') + '" />' +
+      novaRoboroxVideoFieldsHtml(video, idx, '') +
     '</div>';
+  }
+
+  function novaRoboroxSectionRowHtml(section, idx){
+    section = section || {};
+    const videos = Array.isArray(section.videos) && section.videos.length ? section.videos : [{}];
+    const videosHtml = videos.map(function(v, vi){
+      return '<div class="card roborox-section-video-row" data-section-video-idx="' + vi + '" style="padding:10px;margin:8px 0 0;background:#f8fafc">' +
+        '<div class="flex" style="justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">' +
+          '<strong>Video ' + (vi + 1) + '</strong>' +
+          '<button type="button" class="btn sm warn roborox-section-video-remove" data-section-idx="' + idx + '" data-section-video-remove="' + vi + '">Kaldır</button>' +
+        '</div>' +
+        novaRoboroxVideoFieldsHtml(v, vi, 'sec-' + idx) +
+      '</div>';
+    }).join('');
+    return '<div class="card roborox-section-row" data-section-idx="' + idx + '" style="padding:12px;margin:0;border:1px solid #d1fae5">' +
+      '<input type="hidden" class="roborox-section-id" value="' + novaRoboroxEsc(section.id || '') + '" />' +
+      '<div class="flex" style="justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px">' +
+        '<strong>Alt başlık ' + (idx + 1) + '</strong>' +
+        '<button type="button" class="btn sm warn roborox-section-remove" data-section-remove="' + idx + '">Alt başlığı kaldır</button>' +
+      '</div>' +
+      '<label>Alt başlık adı</label>' +
+      '<input type="text" class="roborox-section-title" placeholder="Örn: Giriş, Uygulama, Özet" value="' + novaRoboroxEsc(section.title || '') + '" />' +
+      '<label class="mt8">Sıra</label>' +
+      '<input type="number" class="roborox-section-order" value="' + novaRoboroxEsc(section.order != null ? section.order : (idx + 1)) + '" min="0" step="1" />' +
+      '<label class="flex mt8" style="gap:10px;align-items:center">' +
+        '<input type="checkbox" class="roborox-section-active"' + (section.active === false ? '' : ' checked') + ' />' +
+        '<span>Aktif</span>' +
+      '</label>' +
+      '<div class="mt8"><strong>Bunny videoları</strong></div>' +
+      '<div class="roborox-section-videos" data-section-videos="' + idx + '">' + videosHtml + '</div>' +
+      '<button type="button" class="btn sm mt8 roborox-section-video-add" data-section-video-add="' + idx + '">+ Bu alt başlığa video ekle</button>' +
+    '</div>';
+  }
+
+  function novaRoboroxRenderSectionRows(sections){
+    if(!roboroxLearnSections) return;
+    sections = Array.isArray(sections) ? sections : [];
+    if(!sections.length){
+      roboroxLearnSections.innerHTML = novaRoboroxSectionRowHtml({ title: '', order: 1, active: true, videos: [{}] }, 0);
+      return;
+    }
+    roboroxLearnSections.innerHTML = sections.map(function(s, i){ return novaRoboroxSectionRowHtml(s, i); }).join('');
+  }
+
+  function novaRoboroxCollectVideosFromSectionRow(row){
+    const out = [];
+    if(!row) return out;
+    row.querySelectorAll('.roborox-section-video-row').forEach(function(vrow){
+      const libraryName = String((vrow.querySelector('.roborox-video-library-name') || {}).value || '').trim();
+      const videoId = String((vrow.querySelector('.roborox-video-id') || {}).value || '').trim();
+      const libraryId = String((vrow.querySelector('.roborox-video-library-id') || {}).value || '').trim();
+      if(!videoId) return;
+      out.push({ libraryName: libraryName, videoId: videoId, libraryId: libraryId });
+    });
+    return out;
+  }
+
+  function novaRoboroxCollectSectionsFromForm(){
+    if(!roboroxLearnSections) return [];
+    const rows = roboroxLearnSections.querySelectorAll('.roborox-section-row');
+    const out = [];
+    rows.forEach(function(row, i){
+      const title = String((row.querySelector('.roborox-section-title') || {}).value || '').trim();
+      const order = Number((row.querySelector('.roborox-section-order') || {}).value) || (i + 1);
+      const active = !!((row.querySelector('.roborox-section-active') || {}).checked);
+      const id = String((row.querySelector('.roborox-section-id') || {}).value || '').trim();
+      const videos = novaRoboroxCollectVideosFromSectionRow(row);
+      if(!title && !videos.length) return;
+      out.push({ id: id, title: title || ('Alt başlık ' + (i + 1)), order: order, active: active, videos: videos });
+    });
+    return out;
+  }
+
+  function novaRoboroxSectionsToFirebaseMap(sections){
+    const map = {};
+    (sections || []).forEach(function(sec, i){
+      const id = String(sec.id || '').trim() || ('sec_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 7));
+      map[id] = {
+        title: sec.title,
+        order: Number(sec.order) || (i + 1),
+        active: sec.active !== false,
+        videos: sec.videos || [],
+        updatedAt: Date.now()
+      };
+    });
+    return map;
+  }
+
+  function novaRoboroxParseSectionsFromRaw(v){
+    const R = window.NovaRoboroxData;
+    if(R && R.parseSections) return R.parseSections(v || {});
+    const raw = v && v.sections && typeof v.sections === 'object' ? v.sections : {};
+    return Object.keys(raw).map(function(id){
+      const s = raw[id] || {};
+      return {
+        id: id,
+        title: s.title || id,
+        order: Number(s.order) || 0,
+        active: s.active !== false,
+        videos: novaRoboroxParseVideosFromRaw(s)
+      };
+    }).sort(function(a,b){ return a.order - b.order; });
+  }
+
+  function novaRoboroxTopicFormFromRaw(v){
+    const sections = novaRoboroxParseSectionsFromRaw(v);
+    const flatVideos = novaRoboroxParseVideosFromRaw(v);
+    if(sections.length){
+      novaRoboroxRenderSectionRows(sections.map(function(s){
+        return { id: s.id, title: s.title, order: s.order, active: s.active, videos: s.videos && s.videos.length ? s.videos : [{}] };
+      }));
+      novaRoboroxRenderVideoRows([]);
+      if(roboroxLearnLegacyVideosWrap) roboroxLearnLegacyVideosWrap.style.display = 'none';
+      return;
+    }
+    if(flatVideos.length){
+      novaRoboroxRenderSectionRows([{ title: 'Ana video', order: 1, active: true, videos: flatVideos }]);
+      novaRoboroxRenderVideoRows(flatVideos);
+      if(roboroxLearnLegacyVideosWrap) roboroxLearnLegacyVideosWrap.style.display = '';
+      return;
+    }
+    novaRoboroxRenderSectionRows([]);
+    novaRoboroxRenderVideoRows([]);
+    if(roboroxLearnLegacyVideosWrap) roboroxLearnLegacyVideosWrap.style.display = 'none';
   }
 
   function novaRoboroxRenderVideoRows(videos){
@@ -1638,9 +1778,19 @@ window.NovaAdminExport = (function(){
 
   function novaRoboroxTopicVideoCount(topic){
     if(!topic) return 0;
+    const R = window.NovaRoboroxData;
+    if(R && R.topicUsesSections && R.topicUsesSections(topic)) return topic.sections.length;
+    if(Array.isArray(topic.sections) && topic.sections.length) return topic.sections.length;
     if(Array.isArray(topic.videos) && topic.videos.length) return topic.videos.length;
     if(Array.isArray(topic.images) && topic.images.length) return topic.images.length;
     return 0;
+  }
+
+  function novaRoboroxTopicCountLabel(topic){
+    const R = window.NovaRoboroxData;
+    if(R && R.topicContentLabel) return R.topicContentLabel(topic);
+    const n = novaRoboroxTopicVideoCount(topic);
+    return n + ' video';
   }
 
   function novaRoboroxLessonResetForm(){
@@ -1704,7 +1854,7 @@ window.NovaAdminExport = (function(){
           topicEl.innerHTML =
             '<div class="flex" style="justify-content:space-between;gap:8px;align-items:flex-start">' +
               '<div><strong>' + novaRoboroxEsc(topic.title) + '</strong><div class="soft">' +
-              novaRoboroxTopicVideoCount(topic) + ' video · sıra ' + topic.order +
+              novaRoboroxTopicCountLabel(topic) + ' · sıra ' + topic.order +
               (topic.active ? '' : ' · <span class="danger">pasif</span>') +
               '</div></div>' +
               '<div class="flex" style="gap:6px;flex-shrink:0">' +
@@ -1712,6 +1862,17 @@ window.NovaAdminExport = (function(){
               '<button type="button" class="btn sm warn" data-roborox-topic-del="' + novaRoboroxEsc(lesson.id) + '" data-roborox-topic-id="' + novaRoboroxEsc(topic.id) + '">Sil</button>' +
               '</div></div>';
           roboroxLearnList.appendChild(topicEl);
+          (topic.sections || []).forEach(function(sec){
+            const secEl = document.createElement('div');
+            secEl.className = 'item';
+            secEl.style.marginLeft = '36px';
+            secEl.innerHTML =
+              '<div class="soft"><strong>' + novaRoboroxEsc(sec.title) + '</strong> · ' +
+              (sec.videos ? sec.videos.length : 0) + ' video · sıra ' + sec.order +
+              (sec.active !== false ? '' : ' · <span class="danger">pasif</span>') +
+              '</div>';
+            roboroxLearnList.appendChild(secEl);
+          });
         });
       });
       return;
@@ -1727,7 +1888,7 @@ window.NovaAdminExport = (function(){
         el.innerHTML =
           '<div class="flex" style="justify-content:space-between;gap:8px;align-items:flex-start">' +
             '<div><strong>' + novaRoboroxEsc(row.title) + '</strong><div class="soft">' +
-            novaRoboroxTopicVideoCount(row) + ' video · sıra ' + row.order +
+            novaRoboroxTopicCountLabel(row) + ' · sıra ' + row.order +
             (row.active ? '' : ' · <span class="danger">pasif</span>') +
             '</div></div>' +
             '<div class="flex" style="gap:6px;flex-shrink:0">' +
@@ -1818,9 +1979,10 @@ window.NovaAdminExport = (function(){
     roboroxLearnSave.addEventListener('click', async function(){
       if(!rdb){ roboroxLearnStatus.textContent = 'RTDB yok.'; return; }
       const title = String(roboroxLearnTitle && roboroxLearnTitle.value || '').trim();
-      const videos = novaRoboroxCollectVideosFromForm();
+      const sections = novaRoboroxCollectSectionsFromForm();
+      const sectionsWithVideo = sections.filter(function(s){ return s.videos && s.videos.length; });
       if(!title){ roboroxLearnStatus.textContent = 'Konu başlığı gerekli.'; return; }
-      if(!videos.length){ roboroxLearnStatus.textContent = 'En az bir Bunny video girin.'; return; }
+      if(!sectionsWithVideo.length){ roboroxLearnStatus.textContent = 'En az bir alt başlık ve Bunny video girin.'; return; }
       const editId = String(roboroxLearnEditId && roboroxLearnEditId.value || '').trim();
       const lessonId = String(roboroxLearnLessonSelect && roboroxLearnLessonSelect.value || '').trim();
       const id = editId || ('rl_' + Date.now());
@@ -1832,7 +1994,7 @@ window.NovaAdminExport = (function(){
               title: title,
               order: Number(roboroxLearnOrder && roboroxLearnOrder.value) || 0,
               active: !!(roboroxLearnActive && roboroxLearnActive.checked),
-              videos: videos,
+              sections: novaRoboroxSectionsToFirebaseMap(sectionsWithVideo),
               updatedAt: Date.now()
             });
             novaRoboroxLearnResetForm();
@@ -1847,7 +2009,7 @@ window.NovaAdminExport = (function(){
           title: title,
           order: Number(roboroxLearnOrder && roboroxLearnOrder.value) || 0,
           active: !!(roboroxLearnActive && roboroxLearnActive.checked),
-          videos: videos,
+          sections: novaRoboroxSectionsToFirebaseMap(sectionsWithVideo),
           updatedAt: Date.now()
         });
         novaRoboroxLearnResetForm();
@@ -1863,6 +2025,54 @@ window.NovaAdminExport = (function(){
   if(roboroxLearnClear && !roboroxLearnClear.dataset.bound){
     roboroxLearnClear.dataset.bound = '1';
     roboroxLearnClear.addEventListener('click', novaRoboroxLearnResetForm);
+  }
+
+  if(roboroxLearnSectionAdd && !roboroxLearnSectionAdd.dataset.bound){
+    roboroxLearnSectionAdd.dataset.bound = '1';
+    roboroxLearnSectionAdd.addEventListener('click', function(){
+      const sections = novaRoboroxCollectSectionsFromForm();
+      sections.push({ title: '', order: sections.length + 1, active: true, videos: [{}] });
+      novaRoboroxRenderSectionRows(sections);
+    });
+  }
+
+  if(roboroxLearnSections && !roboroxLearnSections.dataset.bound){
+    roboroxLearnSections.dataset.bound = '1';
+    roboroxLearnSections.addEventListener('click', function(ev){
+      const removeSectionBtn = ev.target.closest('[data-section-remove]');
+      if(removeSectionBtn){
+        const sections = novaRoboroxCollectSectionsFromForm();
+        const idx = Number(removeSectionBtn.getAttribute('data-section-remove'));
+        if(!isNaN(idx)) sections.splice(idx, 1);
+        novaRoboroxRenderSectionRows(sections.length ? sections : [{ title: '', order: 1, active: true, videos: [{}] }]);
+        return;
+      }
+      const addVideoBtn = ev.target.closest('[data-section-video-add]');
+      if(addVideoBtn){
+        const sections = novaRoboroxCollectSectionsFromForm();
+        const idx = Number(addVideoBtn.getAttribute('data-section-video-add'));
+        if(isNaN(idx) || !sections[idx]) return;
+        if(!Array.isArray(sections[idx].videos)) sections[idx].videos = [];
+        sections[idx].videos.push({ libraryName: '', videoId: '', libraryId: '' });
+        novaRoboroxRenderSectionRows(sections);
+        return;
+      }
+      const removeVideoBtn = ev.target.closest('[data-section-video-remove]');
+      if(removeVideoBtn){
+        const sections = novaRoboroxCollectSectionsFromForm();
+        const sidx = Number(removeVideoBtn.getAttribute('data-section-idx'));
+        const vidx = Number(removeVideoBtn.getAttribute('data-section-video-remove'));
+        if(isNaN(sidx) || !sections[sidx]) return;
+        if(!Array.isArray(sections[sidx].videos)) sections[sidx].videos = [];
+        if(!isNaN(vidx)) sections[sidx].videos.splice(vidx, 1);
+        if(!sections[sidx].videos.length) sections[sidx].videos.push({});
+        novaRoboroxRenderSectionRows(sections);
+      }
+    });
+  }
+
+  if(!roboroxLearnSections || !roboroxLearnSections.children.length){
+    novaRoboroxRenderSectionRows([]);
   }
 
   if(roboroxLearnVideoAdd && !roboroxLearnVideoAdd.dataset.bound){
@@ -1984,7 +2194,7 @@ window.NovaAdminExport = (function(){
           if(roboroxLearnTitle) roboroxLearnTitle.value = String(v.title || '');
           if(roboroxLearnOrder) roboroxLearnOrder.value = String(Number(v.order) || 0);
           if(roboroxLearnActive) roboroxLearnActive.checked = v.active !== false;
-          novaRoboroxRenderVideoRows(novaRoboroxParseVideosFromRaw(v));
+          novaRoboroxTopicFormFromRaw(v);
           if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Konuyu Düzenle';
           roboroxLearnStatus.textContent = 'Konu düzenleme: ' + topicId;
         }catch(e){
@@ -2017,7 +2227,7 @@ window.NovaAdminExport = (function(){
           if(roboroxLearnTitle) roboroxLearnTitle.value = String(v.title || '');
           if(roboroxLearnOrder) roboroxLearnOrder.value = String(Number(v.order) || 0);
           if(roboroxLearnActive) roboroxLearnActive.checked = v.active !== false;
-          novaRoboroxRenderVideoRows(novaRoboroxParseVideosFromRaw(v));
+          novaRoboroxTopicFormFromRaw(v);
           if(roboroxLearnFormTitle) roboroxLearnFormTitle.textContent = 'Eski Konuyu Düzenle (düz liste)';
           roboroxLearnStatus.textContent = 'Eski düz konu düzenleme: ' + id;
         }catch(e){

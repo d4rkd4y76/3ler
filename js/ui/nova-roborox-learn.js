@@ -14,9 +14,20 @@
   }
 
   function topicContentCount(topic) {
+    if (R && R.topicContentCount) return R.topicContentCount(topic);
     if (!topic) return 0;
+    if (topic.sections && topic.sections.length) return topic.sections.length;
     if (topic.videos && topic.videos.length) return topic.videos.length;
     return topic.images ? topic.images.length : 0;
+  }
+
+  function topicContentLabel(topic) {
+    if (R && R.topicContentLabel) return R.topicContentLabel(topic);
+    return videoCountLabel(topicContentCount(topic));
+  }
+
+  function topicUsesSections(topic) {
+    return R && R.topicUsesSections ? R.topicUsesSections(topic) : !!(topic && topic.sections && topic.sections.length);
   }
 
   function topicItemHtml(title, meta, icon) {
@@ -121,7 +132,9 @@
   let viewMode = "lessons";
   let lessonsCache = [];
   let topicsCache = [];
+  let sectionsCache = [];
   let selectedLesson = null;
+  let selectedTopic = null;
   let studentGrade = null;
   let videos = [];
   let videoIndex = 0;
@@ -153,7 +166,12 @@
     var className = String((student && student.className) || "").trim();
     studentGrade = R && R.extractGrade ? R.extractGrade(className || (student && student.classId)) : null;
     var gradeText = R && R.gradeLabel ? R.gradeLabel(studentGrade) : "";
-    if (viewMode === "topics" && selectedLesson) {
+    if (viewMode === "sections" && selectedTopic) {
+      topicsSubtitle.textContent =
+        (gradeText ? gradeText + " · " : "") +
+        (selectedLesson ? selectedLesson.name + " · " : "") +
+        selectedTopic.title;
+    } else if (viewMode === "topics" && selectedLesson) {
       topicsSubtitle.textContent = (gradeText ? gradeText + " · " : "") + selectedLesson.name;
     } else if (gradeText) {
       topicsSubtitle.textContent = gradeText + " derslerin";
@@ -202,8 +220,13 @@
     topicIntro.setAttribute("aria-hidden", "true");
   }
 
-  function preloadFirstVideo(topic, cb) {
-    var list = topic && topic.videos ? topic.videos : [];
+  function preloadFirstVideo(topic, section, cb) {
+    var list = [];
+    if (section && section.videos && section.videos.length) {
+      list = section.videos;
+    } else if (topic && topic.videos) {
+      list = topic.videos;
+    }
     if (!list.length) {
       cb(false);
       return;
@@ -239,12 +262,14 @@
     v.src = play.src;
   }
 
-  function playTopicIntro(topic) {
-    if (!topic || !topicContentCount(topic) || introActive) return;
+  function playTopicIntro(topic, section) {
+    var playVideos = section && section.videos && section.videos.length ? section.videos : topic && topic.videos;
+    var playCount = playVideos ? playVideos.length : 0;
+    if (!topic || !playCount || introActive) return;
 
     if (!topicIntro || !topicIntroTitle || prefersReducedMotion()) {
       hideTopicsModal();
-      openReader(topic, false);
+      openReader(topic, section, false);
       return;
     }
 
@@ -259,8 +284,12 @@
     let mediaReady = false;
     let introFinished = false;
 
-    topicIntroTitle.textContent = topic.title;
-    if (topicIntroCards) topicIntroCards.textContent = videoCountLabel(topicContentCount(topic));
+    topicIntroTitle.textContent = section ? section.title : topic.title;
+    if (topicIntroCards) {
+      topicIntroCards.textContent = section
+        ? videoCountLabel(playCount)
+        : topicContentLabel(topic);
+    }
     if (topicIntroHint) topicIntroHint.textContent = "Ders videosu hazırlanıyor…";
     topicIntro.hidden = false;
     topicIntro.setAttribute("aria-hidden", "false");
@@ -278,7 +307,7 @@
       window.setTimeout(function () {
         hideTopicIntro();
         lockScroll(false);
-        openReader(topic, true);
+        openReader(topic, section, true);
         introActive = false;
       }, exitMs);
     }
@@ -298,7 +327,7 @@
       tryFinishIntro();
     }, INTRO_MAX_MS);
 
-    preloadFirstVideo(topic, function () {
+    preloadFirstVideo(topic, section, function () {
       mediaReady = true;
       tryFinishIntro();
     });
@@ -549,7 +578,10 @@
 
   function restoreTopicsModal() {
     if (!topicsModal) return;
-    if (viewMode === "topics" && selectedLesson) {
+    if (viewMode === "sections" && selectedTopic) {
+      renderSections();
+      setBackVisible(true);
+    } else if (viewMode === "topics" && selectedLesson) {
       renderTopics();
       setBackVisible(true);
     } else if (viewMode === "flat") {
@@ -570,6 +602,8 @@
     hideTopicsModal();
     viewMode = "lessons";
     selectedLesson = null;
+    selectedTopic = null;
+    sectionsCache = [];
     setBackVisible(false);
     lockScroll(false);
     notifyMainScreenReturn();
@@ -599,6 +633,50 @@
     setBackVisible(false);
   }
 
+  function sectionItemHtml(section, index) {
+    var num = String(index + 1).padStart(2, "0");
+    var videoN = section.videos ? section.videos.length : 0;
+    return (
+      '<span class="roborox-section-item__num" aria-hidden="true">' +
+      esc(num) +
+      "</span>" +
+      '<span class="roborox-topic-item__body">' +
+      '<span class="roborox-topic-item__title">' +
+      esc(section.title) +
+      "</span>" +
+      '<span class="roborox-topic-item__meta">' +
+      esc(videoCountLabel(videoN)) +
+      "</span></span>" +
+      '<span class="roborox-section-item__play" aria-hidden="true">▶</span>'
+    );
+  }
+
+  function renderSections() {
+    if (!topicsList) return;
+    topicsList.innerHTML = "";
+    if (selectedTopic) {
+      var header = document.createElement("div");
+      header.className = "roborox-sections-header";
+      header.innerHTML =
+        '<span class="roborox-sections-header__badge">Konu</span>' +
+        '<h4 class="roborox-sections-header__title">' +
+        esc(selectedTopic.title) +
+        "</h4>" +
+        '<p class="roborox-sections-header__hint">Alt başlığı seçerek videoyu izle</p>';
+      topicsList.appendChild(header);
+    }
+    sectionsCache.forEach(function (s, i) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "roborox-topic-item roborox-section-item";
+      btn.dataset.sectionId = s.id;
+      btn.innerHTML = sectionItemHtml(s, i);
+      topicsList.appendChild(btn);
+    });
+    syncGradeSubtitle();
+    setBackVisible(true);
+  }
+
   function renderTopics() {
     if (!topicsList) return;
     topicsList.innerHTML = "";
@@ -607,26 +685,51 @@
       btn.type = "button";
       btn.className = "roborox-topic-item";
       btn.dataset.topicId = t.id;
-      btn.innerHTML = topicItemHtml(t.title, videoCountLabel(topicContentCount(t)), BRAND_EMOJI);
+      btn.innerHTML = topicItemHtml(t.title, topicContentLabel(t), BRAND_EMOJI);
       topicsList.appendChild(btn);
     });
     syncGradeSubtitle();
     setBackVisible(true);
   }
 
+  function showTopicSections(topic) {
+    if (!topic) return;
+    selectedTopic = topic;
+    viewMode = "sections";
+    sectionsCache = topic.sections.slice();
+    renderSections();
+  }
+
   function showLessonTopics(lesson) {
     if (!lesson) return;
     selectedLesson = lesson;
+    selectedTopic = null;
+    sectionsCache = [];
     viewMode = "topics";
     topicsCache = lesson.topics.slice();
     renderTopics();
   }
 
+  function goBackFromSections() {
+    if (viewMode !== "sections" || !selectedLesson) return;
+    selectedTopic = null;
+    sectionsCache = [];
+    viewMode = "topics";
+    topicsCache = selectedLesson.topics.slice();
+    renderTopics();
+  }
+
   function goBackToLessons() {
+    if (viewMode === "sections") {
+      goBackFromSections();
+      return;
+    }
     if (viewMode !== "topics" || !lessonsCache.length) return;
     viewMode = "lessons";
     selectedLesson = null;
+    selectedTopic = null;
     topicsCache = [];
+    sectionsCache = [];
     renderLessons();
   }
 
@@ -680,15 +783,21 @@
     }
   }
 
-  function openReader(topic, withIntroHandoff) {
+  function openReader(topic, section, withIntroHandoff) {
     if (!reader || !topic) return;
-    if (!topic.videos || !topic.videos.length) return;
+    var playVideos =
+      section && section.videos && section.videos.length
+        ? section.videos
+        : topic.videos && topic.videos.length
+          ? topic.videos
+          : null;
+    if (!playVideos || !playVideos.length) return;
 
     ensureReaderPortal();
-    videos = topic.videos.slice();
+    videos = playVideos.slice();
     videoIndex = 0;
     loadToken += 1;
-    reader.dataset.title = topic.title;
+    reader.dataset.title = section ? section.title : topic.title;
     hideTopicsModal();
     reader.hidden = false;
     reader.classList.remove("is-open-ready", "is-ready");
@@ -784,13 +893,27 @@
         if (lesson) showLessonTopics(lesson);
         return;
       }
+      const sectionBtn = e.target.closest("[data-section-id]");
+      if (sectionBtn) {
+        const sid = sectionBtn.getAttribute("data-section-id");
+        const section = sectionsCache.find(function (s) {
+          return s.id === sid;
+        });
+        if (section && selectedTopic) playTopicIntro(selectedTopic, section);
+        return;
+      }
       const btn = e.target.closest("[data-topic-id]");
       if (!btn) return;
       const id = btn.getAttribute("data-topic-id");
       const topic = topicsCache.find(function (t) {
         return t.id === id;
       });
-      if (topic) playTopicIntro(topic);
+      if (!topic) return;
+      if (topicUsesSections(topic)) {
+        showTopicSections(topic);
+        return;
+      }
+      playTopicIntro(topic, null);
     });
   }
 
@@ -810,6 +933,10 @@
       return;
     }
     if (topicsModal && topicsModal.classList.contains("open") && e.key === "Escape") {
+      if (viewMode === "sections" && selectedLesson) {
+        goBackFromSections();
+        return;
+      }
       if (viewMode === "topics" && lessonsCache.length) {
         goBackToLessons();
         return;

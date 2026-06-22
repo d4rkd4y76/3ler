@@ -357,6 +357,88 @@
   font-size: 0.9rem;
 }
 
+/* Konu içi alt başlık (bölüm) listesi */
+.roborox-sections-header {
+  margin: 0 0 14px;
+  padding: 16px 16px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(52, 211, 153, 0.08));
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+
+.roborox-sections-header__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #047857;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.roborox-sections-header__title {
+  margin: 10px 0 0;
+  font-size: 1.12rem;
+  font-weight: 900;
+  color: #14532d;
+  line-height: 1.3;
+}
+
+.roborox-sections-header__hint {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  color: #4b5563;
+  line-height: 1.35;
+}
+
+.roborox-section-item {
+  align-items: center;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+.roborox-section-item:hover {
+  border-color: rgba(5, 150, 105, 0.45);
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.18);
+}
+
+.roborox-section-item__num {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #065f46;
+  background: linear-gradient(145deg, #6ee7b7, #34d399);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.roborox-section-item__play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: #fff;
+  background: linear-gradient(145deg, #10b981, #059669);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+.roborox-section-item .roborox-topic-item__body {
+  gap: 6px;
+}
+
 /* Konu açılış animasyonu */
 .roborox-topic-intro {
   position: fixed;

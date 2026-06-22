@@ -83,13 +83,82 @@
     return [];
   }
 
+  function sectionHasContent(section) {
+    return !!(section && section.videos && section.videos.length);
+  }
+
+  function parseSection(id, v) {
+    v = v || {};
+    var videos = parseVideos(v);
+    return {
+      id: id,
+      title: String(v.title || "Bölüm").trim() || "Bölüm",
+      order: Number(v.order) || 0,
+      active: v.active !== false,
+      videos: videos,
+      updatedAt: Number(v.updatedAt) || 0,
+    };
+  }
+
+  function parseSections(v) {
+    v = v || {};
+    if (v.sections && typeof v.sections === "object" && !Array.isArray(v.sections)) {
+      return Object.keys(v.sections)
+        .map(function (sid) {
+          return parseSection(sid, v.sections[sid]);
+        })
+        .filter(function (s) {
+          return s.active && sectionHasContent(s);
+        })
+        .sort(function (a, b) {
+          return a.order - b.order || a.title.localeCompare(b.title, "tr");
+        });
+    }
+    if (Array.isArray(v.sections)) {
+      return v.sections
+        .map(function (s, i) {
+          return parseSection(String((s && s.id) || "sec_" + i), s);
+        })
+        .filter(function (s) {
+          return s.active && sectionHasContent(s);
+        })
+        .sort(function (a, b) {
+          return a.order - b.order || a.title.localeCompare(b.title, "tr");
+        });
+    }
+    return [];
+  }
+
   function topicHasContent(topic) {
-    return !!(topic && topic.videos && topic.videos.length);
+    if (!topic) return false;
+    if (topic.sections && topic.sections.length) return true;
+    return !!(topic.videos && topic.videos.length);
+  }
+
+  function topicUsesSections(topic) {
+    return !!(topic && topic.sections && topic.sections.length);
+  }
+
+  function topicContentCount(topic) {
+    if (!topic) return 0;
+    if (topicUsesSections(topic)) return topic.sections.length;
+    if (topic.videos && topic.videos.length) return topic.videos.length;
+    return topic.images ? topic.images.length : 0;
+  }
+
+  function topicContentLabel(topic) {
+    if (topicUsesSections(topic)) {
+      var n = topic.sections.length;
+      return n + (n === 1 ? " Bölüm" : " Bölüm");
+    }
+    var c = topicContentCount(topic);
+    return c + (c === 1 ? " Video" : " Video");
   }
 
   function parseTopic(id, v, lessonId) {
     v = v || {};
-    var videos = parseVideos(v);
+    var sections = parseSections(v);
+    var videos = sections.length ? [] : parseVideos(v);
     var images = parseImages(v);
     return {
       id: id,
@@ -97,6 +166,7 @@
       title: String(v.title || "Konu").trim() || "Konu",
       order: Number(v.order) || 0,
       active: v.active !== false,
+      sections: sections,
       videos: videos,
       images: images,
       updatedAt: Number(v.updatedAt) || 0,
@@ -193,7 +263,13 @@
     roboroxLearnPath: roboroxLearnPath,
     parseImages: parseImages,
     parseVideos: parseVideos,
+    parseSection: parseSection,
+    parseSections: parseSections,
+    sectionHasContent: sectionHasContent,
     topicHasContent: topicHasContent,
+    topicUsesSections: topicUsesSections,
+    topicContentCount: topicContentCount,
+    topicContentLabel: topicContentLabel,
     parseTopic: parseTopic,
     parseLesson: parseLesson,
     parseSnapshot: parseSnapshot,
