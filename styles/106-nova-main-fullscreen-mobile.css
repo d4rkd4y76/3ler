@@ -73,7 +73,8 @@ body.nova-main-screen-visible #main-screen.container {
   }
 
   /* Alt menü — doğal akış, ekranın dibinde, kesilmez (position:fixed YOK) */
-  #main-screen > .buttons {
+  #main-screen > .buttons,
+  #main-screen > .nova-main-lobby.buttons {
     position: relative !important;
     flex: 0 0 auto !important;
     flex-shrink: 0 !important;
@@ -92,7 +93,7 @@ body.nova-main-screen-visible #main-screen.container {
     pointer-events: auto !important;
   }
 
-  #main-screen > .buttons button {
+  #main-screen > .buttons button:not(.nova-lobby-tile):not(.nova-lobby-menu-item):not(.nova-lobby-menu-head) {
     flex-shrink: 0 !important;
     width: 100% !important;
   }
@@ -114,11 +115,12 @@ body.nova-main-screen-visible #main-screen.container {
 
 @media (max-width: 768px) and (max-height: 640px),
        (max-width: 1024px) and (max-height: 640px) and (hover: none) and (pointer: coarse) {
-  #main-screen > .buttons {
+  #main-screen > .buttons,
+  #main-screen > .nova-main-lobby.buttons {
     gap: 5px !important;
   }
 
-  #main-screen > .buttons button {
+  #main-screen > .buttons button:not(.nova-lobby-tile):not(.nova-lobby-menu-item):not(.nova-lobby-menu-head) {
     min-height: 38px !important;
     padding: 7px 12px !important;
     font-size: 0.82rem !important;

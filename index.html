@@ -379,30 +379,7 @@
 </button>
 </div>
 </div>
-<div class="main-profile-hero nova-main-hub" id="main-profile-hero">
-<div class="main-screen-hero-left nova-main-left-hub" id="main-screen-hud-left">
-<div class="nova-main-left-egg-slot" id="nova-main-left-egg-slot" aria-hidden="false"></div>
-<div class="nova-bonus-drawer" id="nova-bonus-drawer">
-<script>
-(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
-</script>
-<button type="button" class="nova-game-btn nova-game-btn--yumurta nova-bonus-chest-toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
-<span class="nova-game-btn__icon" aria-hidden="true">🥚</span>
-<span class="nova-game-btn__text">
-<span class="nova-game-btn__title nova-game-btn__title--stack">Yumurta<br>Etkinliği</span>
-</span>
-<span class="nova-bonus-drawer__chevron" aria-hidden="true">▼</span>
-</button>
-<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
-<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="nova-bonus-mini-btn nova-bonus-mini-btn--puzzle" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">
-<span class="nova-bonus-mini-btn__ico" aria-hidden="true">🧩</span>
-<span class="nova-bonus-mini-btn__txt">BULMACA</span>
-</button>
-</span>
-</div>
-</div>
-</div>
+<div class="main-profile-hero nova-main-hub nova-main-hub--clean" id="main-profile-hero">
 <div class="main-screen-hero-center nova-main-stage">
 <div class="nova-main-stage__frame">
 <nav class="nova-main-carousel-nav" id="nova-main-tabs" role="tablist" aria-label="Profil görünümü">
@@ -412,6 +389,11 @@
 <div class="nova-main-carousel-nav__center">
 <div class="nova-hub-tab-title-slot" id="nova-main-tab-title-slot">
 <span class="nova-hub-tab-title" id="nova-main-tab-label" role="tab" aria-live="polite">AVATAR</span>
+</div>
+<div class="nova-main-carousel-nav__dots" id="nova-main-tab-dots" aria-hidden="true">
+<span class="nova-main-carousel-nav__dot is-active"></span>
+<span class="nova-main-carousel-nav__dot"></span>
+<span class="nova-main-carousel-nav__dot"></span>
 </div>
 </div>
 <button type="button" class="nova-main-carousel-nav__arrow nova-main-carousel-nav__arrow--next" id="nova-main-tab-next" data-nova-main-tab-dir="next" aria-label="Sonraki görünüm">
@@ -429,7 +411,6 @@
 </div>
 <div class="nova-main-tab-panel" id="nova-main-tab-kahraman" role="tabpanel" aria-labelledby="nova-main-tab-btn-kahraman" hidden>
 <div class="nova-main-hero-showcase-wrap nova-main-tab-hero-body">
-<div class="nova-main-hero-showcase__title" aria-hidden="false">KAHRAMANIN</div>
 <div class="nova-main-hero-showcase" id="nova-main-hero-showcase" aria-hidden="true">
 <div class="nova-main-hero-showcase__frame">
 <div class="nova-main-hero-showcase__head" id="nova-main-hero-showcase-head">
@@ -471,34 +452,79 @@
 </div>
 </div>
 </div>
-<div class="main-screen-hero-right nova-main-right-rail" id="main-screen-quest-slot">
-<button class="nova-game-btn nova-game-btn--learn profile-tools-button nova-main-rail-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç" data-nova-game-btn-upgraded="1">
-<span class="nova-game-btn__icon" aria-hidden="true">📚</span>
-<span class="nova-game-btn__text">
-<span class="nova-game-btn__title">ÖĞREN</span>
+<div class="nova-hub-quick-bar" id="nova-hub-quick-bar">
+<div class="main-screen-hero-left nova-main-left-hub" id="main-screen-hud-left">
+<div class="nova-main-left-egg-slot" id="nova-main-left-egg-slot" aria-hidden="false"></div>
+<div class="nova-bonus-drawer" id="nova-bonus-drawer">
+<script>
+(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
+</script>
+<button type="button" class="nova-game-btn nova-game-btn--yumurta nova-bonus-chest-toggle nova-hub-chip" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
+<span class="nova-game-btn__icon" aria-hidden="true">🥚</span>
+<span class="nova-game-btn__text"><span class="nova-game-btn__title">Yumurta</span></span>
+<span class="nova-bonus-drawer__chevron" aria-hidden="true">▾</span>
+</button>
+<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
+<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
+<button type="button" class="nova-bonus-mini-btn nova-bonus-mini-btn--puzzle" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">
+<span class="nova-bonus-mini-btn__ico" aria-hidden="true">🧩</span>
+<span class="nova-bonus-mini-btn__txt">BULMACA</span>
+</button>
 </span>
+</div>
+</div>
+</div>
+<div class="main-screen-hero-right nova-main-right-rail" id="main-screen-quest-slot">
+<button class="nova-game-btn nova-game-btn--learn profile-tools-button nova-main-rail-btn nova-learn-rail-btn nova-hub-chip" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç" data-nova-game-btn-upgraded="1">
+<span class="nova-game-btn__icon" aria-hidden="true">📚</span>
+<span class="nova-game-btn__text"><span class="nova-game-btn__title">Öğren</span></span>
 </button>
 </div>
 </div>
-<div class="buttons">
-<button class="single-player" type="button"><span class="main-menu-icon" aria-hidden="true">▶</span><span class="main-menu-label">Tek Kişilik Oyun</span></button>
-<button class="find-duel-button" id="findDuelButton" type="button">
-<span class="button-content">
-<i class="duel-icon" aria-hidden="true">⚔</i>
-<span class="main-menu-label">Düello Ara</span>
-</span>
+</div>
+<section class="nova-main-lobby buttons" id="nova-main-lobby" aria-label="Oyun menüsü">
+<div class="nova-lobby-rail-host">
+<div class="nova-lobby-rail" id="nova_lobby_rail" role="list">
+<button class="nova-lobby-tile nova-lobby-tile--solo single-player" type="button" role="listitem">
+<span class="nova-lobby-tile__aura nova-lobby-tile__aura--solo" aria-hidden="true"></span>
+<span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--solo" aria-hidden="true"><span class="nova-lobby-tile__icon">▶</span></span>
+<span class="main-menu-label nova-lobby-tile__name">Tek Kişilik Oyun</span>
+</button>
+<button class="nova-lobby-tile nova-lobby-tile--duel find-duel-button" id="findDuelButton" type="button" role="listitem">
+<span class="nova-lobby-tile__aura nova-lobby-tile__aura--duel" aria-hidden="true"></span>
+<span class="button-content nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--duel" aria-hidden="true"><i class="duel-icon nova-lobby-tile__icon">⚔</i></span>
+<span class="main-menu-label nova-lobby-tile__name">Düello Ara</span>
 <div class="button-glow"></div>
 </button>
-<div class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 ⚡ düello enerjisi.</div>
-<button class="kupa-siralama-button" id="kupa-siralama-button" type="button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;"><span class="main-menu-icon" aria-hidden="true">🏆</span><span class="main-menu-label">Sezon Sıralaması</span></button>
-<button class="logout-button" id="logout-button" type="button"><span class="main-menu-icon" aria-hidden="true">↩</span><span class="main-menu-label">Çıkış Yap</span></button>
+<button class="nova-lobby-tile nova-lobby-tile--rank kupa-siralama-button" id="kupa-siralama-button" type="button" role="listitem" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;">
+<span class="nova-lobby-tile__aura nova-lobby-tile__aura--rank" aria-hidden="true"></span>
+<span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--rank" aria-hidden="true"><span class="main-menu-icon nova-lobby-tile__icon">🏆</span></span>
+<span class="main-menu-label nova-lobby-tile__name">Sezon Sıralaması</span>
+</button>
+<div class="nova-lobby-tile-slot" id="nova_lobby_settings_slot" role="listitem"></div>
+<button class="nova-lobby-tile nova-lobby-tile--exit logout-button" id="logout-button" type="button" role="listitem">
+<span class="nova-lobby-tile__aura nova-lobby-tile__aura--exit" aria-hidden="true"></span>
+<span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--exit" aria-hidden="true"><span class="nova-lobby-tile__icon">↩</span></span>
+<span class="main-menu-label nova-lobby-tile__name">Çıkış Yap</span>
+</button>
+<div class="nova-admin-portal-slot nova-lobby-tile-slot" id="nova_admin_portal_slot" hidden role="listitem">
+<button type="button" class="nova-lobby-tile nova-lobby-tile--admin nova-admin-portal-btn" id="nova_admin_portal_btn" aria-label="Yönetici paneline geç">
+<span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--admin" aria-hidden="true"><span class="main-menu-icon nova-lobby-tile__icon">⚙</span></span>
+<span class="main-menu-label nova-lobby-tile__name">Yönetici</span>
+</button>
 </div>
-<div class="nova-admin-portal-slot" id="nova_admin_portal_slot" hidden>
-<button type="button" class="nova-admin-portal-btn" id="nova_admin_portal_btn" aria-label="Yönetici paneline geç"><span class="main-menu-icon" aria-hidden="true">⚙</span><span class="main-menu-label">Yönetici</span></button>
+<div class="nova-admin-portal-slot nova-soru-kontrol-slot nova-lobby-tile-slot" id="nova_soru_kontrol_slot" hidden role="listitem">
+<button type="button" class="nova-lobby-tile nova-lobby-tile--review nova-admin-portal-btn nova-soru-kontrol-btn" id="nova_soru_kontrol_btn" aria-label="Soru kontrol modunu aç">
+<span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--review" aria-hidden="true"><span class="main-menu-icon nova-lobby-tile__icon">🔍</span></span>
+<span class="main-menu-label nova-lobby-tile__name">Soru Kontrol</span>
+</button>
 </div>
-<div class="nova-admin-portal-slot nova-soru-kontrol-slot" id="nova_soru_kontrol_slot" hidden>
-<button type="button" class="nova-admin-portal-btn nova-soru-kontrol-btn" id="nova_soru_kontrol_btn" aria-label="Soru kontrol modunu aç"><span class="main-menu-icon" aria-hidden="true">🔍</span><span class="main-menu-label">Soru Kontrol</span></button>
 </div>
+<span class="nova-lobby-rail-edge nova-lobby-rail-edge--left" aria-hidden="true"></span>
+<span class="nova-lobby-rail-edge nova-lobby-rail-edge--right" aria-hidden="true"></span>
+</div>
+<p class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 ⚡ düello enerjisi.</p>
+</section>
 <div class="nask-game-signature" aria-hidden="true">NASK GAMES</div>
 </div>
 <!-- Giriş panosu (DOM’da erken: Firebase cache ile yarışmayı önler) -->
@@ -1645,6 +1671,7 @@
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
 <script defer src="js/ui/nova-main-screen-tabs.js?v=30260611enerji1"></script>
 <script defer src="js/ui/nova-hub-game-buttons.js?v=30260611btns1"></script>
+<script defer src="js/ui/nova-main-lobby-deck.js?v=30260629lobby2"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
@@ -1674,6 +1701,8 @@
 <link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260622kabuksec1" />
 <link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611center1" />
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
+<link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260629lobby2" />
+<link rel="stylesheet" href="styles/122-nova-main-clean-hub.css?v=30260629clean1" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */

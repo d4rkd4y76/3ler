@@ -13,7 +13,8 @@
   padding-right: max(4px, env(safe-area-inset-right, 0px));
 }
 
-#main-screen .main-profile-hero.nova-main-hub + .buttons {
+#main-screen .main-profile-hero.nova-main-hub + .buttons,
+#main-screen .main-profile-hero.nova-main-hub + .nova-main-lobby.buttons {
   margin-top: clamp(18px, 4.5vw, 30px) !important;
   padding-top: clamp(6px, 1.5vw, 10px) !important;
 }
