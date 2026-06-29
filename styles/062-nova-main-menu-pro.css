@@ -4,24 +4,24 @@
   gap: clamp(10px, 2vw, 14px) !important;
 }
 
-/* Global eski çizgili/parlayan pseudo elementleri temizle */
-#main-screen > .buttons button::before,
-#main-screen > .buttons button::after,
-#main-screen > .buttons .single-player::before,
-#main-screen > .buttons .single-player::after,
-#main-screen > .buttons .find-duel-button::before,
-#main-screen > .buttons .find-duel-button::after,
-#main-screen > .buttons .kupa-siralama-button::before,
-#main-screen > .buttons .kupa-siralama-button::after,
-#main-screen > .buttons .logout-button::before,
-#main-screen > .buttons .logout-button::after {
+/* Global eski çizgili/parlayan pseudo elementleri temizle (lobby hariç) */
+#main-screen > .buttons:not(.nova-main-lobby) button::before,
+#main-screen > .buttons:not(.nova-main-lobby) button::after,
+#main-screen > .buttons:not(.nova-main-lobby) .single-player::before,
+#main-screen > .buttons:not(.nova-main-lobby) .single-player::after,
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button::before,
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button::after,
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button::before,
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button::after,
+#main-screen > .buttons:not(.nova-main-lobby) .logout-button::before,
+#main-screen > .buttons:not(.nova-main-lobby) .logout-button::after {
   content: none !important;
   display: none !important;
   background: none !important;
   animation: none !important;
 }
 
-#main-screen > .buttons button {
+#main-screen > .buttons:not(.nova-main-lobby) button {
   width: 100%;
   min-height: 52px !important;
   padding: 12px 18px !important;
@@ -43,18 +43,18 @@
   transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
-#main-screen > .buttons button:hover {
+#main-screen > .buttons:not(.nova-main-lobby) button:hover {
   transform: translateY(-1px) !important;
   border-color: rgba(226, 232, 240, 0.45) !important;
   box-shadow: 0 10px 24px rgba(2, 6, 23, 0.44) !important;
 }
 
-#main-screen > .buttons button:active {
+#main-screen > .buttons:not(.nova-main-lobby) button:active {
   transform: translateY(0) !important;
 }
 
 /* Metin butonun tam ortasında kalsın */
-#main-screen > .buttons .main-menu-label {
+#main-screen > .buttons:not(.nova-main-lobby) .main-menu-label {
   position: absolute;
   left: 0;
   right: 0;
@@ -64,8 +64,8 @@
 }
 
 /* İkon sola sabit, metnin merkezini bozmuyor */
-#main-screen > .buttons .main-menu-icon,
-#main-screen > .buttons .find-duel-button .duel-icon {
+#main-screen > .buttons:not(.nova-main-lobby) .main-menu-icon,
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button .duel-icon {
   position: absolute;
   left: 14px;
   top: 50%;
@@ -81,12 +81,12 @@
   line-height: 1;
 }
 
-#main-screen > .buttons .main-menu-icon {
+#main-screen > .buttons:not(.nova-main-lobby) .main-menu-icon {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-#main-screen > .buttons .find-duel-button .button-content {
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button .button-content {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -95,40 +95,40 @@
   position: static !important;
 }
 
-/* Tonlar */
-#main-screen > .buttons .single-player {
+/* Tonlar — lobby hariç */
+#main-screen > .buttons:not(.nova-main-lobby) .single-player {
   border-color: rgba(129, 140, 248, 0.42) !important;
 }
-#main-screen > .buttons .single-player .main-menu-icon {
+#main-screen > .buttons:not(.nova-main-lobby) .single-player .main-menu-icon {
   color: #c7d2fe;
 }
 
-#main-screen > .buttons .find-duel-button {
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button {
   border-color: rgba(245, 158, 11, 0.45) !important;
   background: linear-gradient(180deg, rgba(66, 47, 18, 0.92), rgba(39, 28, 12, 0.92)) !important;
 }
-#main-screen > .buttons .find-duel-button .duel-icon {
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button .duel-icon {
   color: #fbbf24;
   background: rgba(245, 158, 11, 0.16);
   border: 1px solid rgba(251, 191, 36, 0.26);
   animation: none !important;
 }
 
-#main-screen > .buttons .kupa-siralama-button {
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button {
   border-color: rgba(94, 234, 212, 0.4) !important;
 }
-#main-screen > .buttons .kupa-siralama-button .main-menu-icon {
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button .main-menu-icon {
   color: #99f6e4;
 }
 
-#main-screen > .buttons #nova_perf_open_btn.kupa-siralama-button {
+#main-screen > .buttons:not(.nova-main-lobby) #nova_perf_open_btn.kupa-siralama-button {
   border-color: rgba(196, 181, 253, 0.4) !important;
 }
-#main-screen > .buttons #nova_perf_open_btn .main-menu-icon {
+#main-screen > .buttons:not(.nova-main-lobby) #nova_perf_open_btn .main-menu-icon {
   color: #ddd6fe;
 }
 
-#main-screen > .buttons .logout-button {
+#main-screen > .buttons:not(.nova-main-lobby) .logout-button {
   min-height: 46px !important;
   background: linear-gradient(180deg, rgba(55, 26, 30, 0.9), rgba(35, 16, 20, 0.9)) !important;
   border-color: rgba(248, 113, 113, 0.4) !important;
@@ -149,7 +149,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #main-screen > .buttons button:hover {
+  #main-screen > .buttons:not(.nova-main-lobby) button:hover {
     transform: none !important;
   }
 }

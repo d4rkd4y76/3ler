@@ -111,7 +111,6 @@
   }
 
   function upgradeAll() {
-    upgradeLearnFab();
     upgradeHomeworkFab();
     upgradeQuestFab();
     stripRailSubtitles();

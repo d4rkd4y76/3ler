@@ -1,0 +1,282 @@
+/* Ana ekran merkez vitrin — arena temasına entegre cam kapsül */
+
+#main-screen .nova-main-stage {
+  max-width: min(100%, 360px) !important;
+}
+
+/* Tek katmanlı cam kapsül — iç içe kutu hissi kaldırıldı */
+#main-screen .nova-main-stage__frame {
+  position: relative;
+  padding: clamp(10px, 2.4vw, 14px) clamp(10px, 2.4vw, 14px) clamp(12px, 2.8vw, 16px) !important;
+  border-radius: clamp(22px, 5vw, 28px) !important;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(251, 191, 36, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(124, 58, 237, 0.12) 0%, transparent 52%),
+    linear-gradient(168deg, rgba(15, 23, 42, 0.52) 0%, rgba(8, 12, 28, 0.62) 100%) !important;
+  border: 1px solid rgba(251, 191, 36, 0.22) !important;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 36px rgba(251, 191, 36, 0.06) !important;
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  overflow: visible !important;
+}
+
+#main-screen .nova-main-stage__frame::before {
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(253, 224, 71, 0.55) 20%,
+    rgba(251, 191, 36, 0.85) 50%,
+    rgba(253, 224, 71, 0.55) 80%,
+    transparent
+  );
+  opacity: 0.75;
+}
+
+#main-screen .nova-main-stage__frame::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -8%, rgba(255, 255, 255, 0.08) 0%, transparent 55%);
+  z-index: 0;
+}
+
+/* Sekme gezintisi — hafif, üst kenara gömülü */
+#main-screen .nova-main-carousel-nav {
+  position: relative;
+  z-index: 2;
+  grid-template-columns: 28px minmax(0, 1fr) 28px !important;
+  gap: 6px !important;
+  margin-bottom: clamp(8px, 2vw, 10px) !important;
+  padding: 4px 6px !important;
+  border-radius: 999px !important;
+  background: rgba(2, 6, 23, 0.38) !important;
+  border: 1px solid rgba(251, 191, 36, 0.14) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+#main-screen .nova-main-carousel-nav__arrow {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(251, 191, 36, 0.28) !important;
+  background: rgba(15, 23, 42, 0.72) !important;
+  color: #fde68a !important;
+  font-size: 1rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22) !important;
+}
+
+#main-screen .nova-main-carousel-nav__arrow:hover:not(:disabled) {
+  border-color: rgba(253, 224, 71, 0.55) !important;
+  background: rgba(30, 41, 59, 0.82) !important;
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.18) !important;
+}
+
+#main-screen .nova-hub-tab-title {
+  font-size: clamp(10px, 2.5vw, 12px) !important;
+  letter-spacing: 0.2em !important;
+  color: #fde68a !important;
+  text-shadow: 0 0 12px rgba(251, 191, 36, 0.35);
+}
+
+/* İç koyu kutu kaldırıldı — arka plan görünür */
+#main-screen .nova-main-tab-panels {
+  position: relative;
+  z-index: 1;
+  min-height: clamp(196px, 40vw, 260px) !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: clamp(14px, 3.2vw, 18px) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+/* — Avatar: spot ışığı + kart sunumu — */
+#main-screen .nova-main-tab-avatar-body {
+  position: relative;
+  padding: clamp(6px, 1.5vw, 10px) 0 clamp(4px, 1vw, 8px) !important;
+  gap: clamp(10px, 2.4vw, 14px) !important;
+}
+
+#main-screen .nova-main-tab-avatar-body::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  transform: translateX(-50%);
+  width: min(88%, 210px);
+  height: 72%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 40%, rgba(251, 191, 36, 0.16) 0%, rgba(124, 58, 237, 0.06) 42%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#main-screen .nova-main-tab-avatar-body::after {
+  display: none !important;
+  content: none !important;
+}
+
+#main-screen .nova-main-tab-avatar-body .student-photo {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 178px) !important;
+  max-height: min(44vw, 224px) !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border-radius: clamp(14px, 3.2vw, 18px) !important;
+  background: #fff !important;
+  object-fit: cover !important;
+  box-sizing: border-box !important;
+  filter:
+    drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 18px rgba(251, 191, 36, 0.12));
+  transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+#main-screen .nova-main-tab-avatar-body .student-photo.avatar-framed {
+  border-style: solid !important;
+  border-width: 5px !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 10px 22px rgba(0, 0, 0, 0.45) !important;
+}
+
+#main-screen .nova-main-tab-avatar-body .avatar-frame-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: min(100%, 178px);
+  margin: 0 auto;
+}
+
+#main-screen .nova-main-tab-avatar-body .student-photo:hover {
+  transform: translateY(-3px) scale(1.015);
+  filter:
+    drop-shadow(0 14px 28px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 24px rgba(251, 191, 36, 0.2));
+}
+
+#main-screen .nova-main-tab-avatar-body .student-name-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+#main-screen .nova-main-tab-avatar-body #student-name {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: min(100%, 240px);
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+#main-screen .nova-main-tab-avatar-body #student-name .nova-name-frame {
+  padding: 4px 16px 5px !important;
+  border-width: 2px !important;
+  font-size: clamp(0.88rem, 3.1vw, 1.12rem) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+
+#main-screen .nova-main-tab-avatar-body #student-name .nova-name-frame .nf-inner {
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+#main-screen .nova-main-tab-avatar-body #student-name .nova-name-basic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px 5px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.22), rgba(124, 58, 237, 0.16));
+  border: 2px solid rgba(253, 224, 71, 0.38);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #fff7ed !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* Kahraman vitrin — aynı cam dili */
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 8px;
+  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
+  font-size: clamp(9px, 2.2vw, 10px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fde68a;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+}
+
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__frame {
+  border-radius: clamp(16px, 3.6vw, 20px) !important;
+  border: 1px solid rgba(251, 191, 36, 0.22) !important;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(124, 58, 237, 0.14), transparent 58%),
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(251, 191, 36, 0.1), transparent 55%),
+    rgba(2, 6, 23, 0.42) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.24) !important;
+}
+
+/* Lig paneli — iç kutu yerine hafif cam */
+#main-screen .nova-main-tab-lig-body {
+  padding: clamp(8px, 2vw, 12px) clamp(4px, 1vw, 8px) !important;
+}
+
+#main-screen .nova-main-tab-lig-body .nova-lig-stats {
+  border-color: rgba(251, 191, 36, 0.18) !important;
+  background:
+    linear-gradient(168deg, rgba(20, 27, 52, 0.82) 0%, rgba(11, 16, 34, 0.9) 48%, rgba(8, 11, 24, 0.94) 100%) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(253, 224, 71, 0.08) !important;
+}
+
+@media (max-width: 420px) {
+  #main-screen .nova-main-stage {
+    max-width: 100% !important;
+  }
+
+  #main-screen .nova-main-tab-avatar-body .student-photo {
+    width: min(100%, 162px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen .nova-main-tab-avatar-body .student-photo {
+    transition: none !important;
+  }
+}

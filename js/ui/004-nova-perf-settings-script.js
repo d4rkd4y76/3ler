@@ -450,9 +450,8 @@
 
   function ensureUi() {
     if (document.getElementById('nova_perf_open_btn')) return;
-    const settingsSlot =
-      document.getElementById('nova_lobby_settings_slot') ||
-      document.querySelector('#main-screen .buttons');
+    if (document.getElementById('nova-main-lobby')) return;
+    const settingsSlot = document.querySelector('#main-screen .buttons:not(.nova-main-lobby)');
     if (!settingsSlot) return;
     const btn = document.createElement('button');
     btn.id = 'nova_perf_open_btn';

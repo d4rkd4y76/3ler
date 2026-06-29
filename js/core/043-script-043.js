@@ -102,11 +102,22 @@
       fab.style.display = e.isIntersecting ? 'inline-flex' : 'none';
     });
   }, {threshold: .1});
-  window.addEventListener('load', ()=>{
+  function bootHomeworkFab() {
     ensureFab();
+    try {
+      if (typeof window.novaUpgradeHubGameButtons === 'function') window.novaUpgradeHubGameButtons();
+      if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+    } catch (_) {}
     const ms = document.getElementById('main-screen');
-    if(ms) io.observe(ms);
-  });
+    if (ms) io.observe(ms);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootHomeworkFab, { once: true });
+  } else {
+    bootHomeworkFab();
+  }
+  window.addEventListener('load', bootHomeworkFab);
 
   const hwListEl = document.getElementById('hw_list');
   const hwTitleEl = document.getElementById('hw_title');

@@ -16,13 +16,13 @@
   filter:brightness(1.05);
 }
 
-#nova_perf_open_btn.kupa-siralama-button{
+#nova_perf_open_btn.kupa-siralama-button:not(.nova-lobby-tile){
   background:linear-gradient(135deg,#8b5cf6 0%,#ec4899 100%) !important;
   color:#fff !important;
   box-shadow:0 8px 18px rgba(236,72,153,.35) !important;
   border:1px solid rgba(255,255,255,.25) !important;
 }
-#nova_perf_open_btn.kupa-siralama-button:hover{
+#nova_perf_open_btn.kupa-siralama-button:not(.nova-lobby-tile):hover{
   filter:brightness(1.07) !important;
   transform:translateY(-1px) !important;
 }

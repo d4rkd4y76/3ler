@@ -60,8 +60,8 @@
   }
 
   function ensureDenemeFab(){
-    const ms = document.getElementById('main-screen');
-    if(!ms || document.getElementById('deneme_fab_wrap')) return;
+    const slot = document.getElementById('main-screen-deneme-slot');
+    if(!slot || document.getElementById('deneme_fab_wrap')) return;
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.id = 'deneme_fab';
@@ -72,7 +72,7 @@
     wrap.id = 'deneme_fab_wrap';
     wrap.className = 'deneme-fab-wrap deneme-fab-wrap--off';
     wrap.appendChild(btn);
-    ms.appendChild(wrap);
+    slot.appendChild(wrap);
 
     btn.addEventListener('click', function(){
       if(denemeUiMode === 'off'){
@@ -106,8 +106,23 @@
         w.style.display = e.isIntersecting ? 'inline-flex' : 'none';
       });
     }, {threshold: .1});
+    const ms = document.getElementById('main-screen');
     if(ms) io.observe(ms);
   }
+
+  function bootDenemeFab() {
+    ensureDenemeFab();
+    try {
+      if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+    } catch (_) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootDenemeFab, { once: true });
+  } else {
+    bootDenemeFab();
+  }
+  window.addEventListener('load', bootDenemeFab);
 
   let denemeState = null;
 
@@ -1101,9 +1116,5 @@
   document.getElementById('deneme_optik_close').addEventListener('click', closeOptikPanel);
   document.getElementById('deneme_optik_panel').addEventListener('click', function(e){
     if(e.target && e.target.id === 'deneme_optik_panel') closeOptikPanel();
-  });
-
-  window.addEventListener('load', function(){
-    ensureDenemeFab();
   });
 })();
