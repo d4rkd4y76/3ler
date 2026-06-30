@@ -344,6 +344,8 @@
 <!-- Ana Ekran -->
 <div class="container" id="main-screen" style="display: none; position: relative;">
 <div id="nova-main-bg-video-layer" class="nova-main-bg-video-layer" aria-hidden="true">
+  <img id="nova-main-bg-image-backdrop" class="nova-main-bg-backdrop nova-main-bg-image-backdrop" alt="" hidden decoding="async"/>
+  <video id="nova-main-bg-video-backdrop" class="nova-main-bg-backdrop nova-main-bg-video-backdrop" muted loop playsinline webkit-playsinline autoplay preload="auto" disablepictureinpicture aria-hidden="true" tabindex="-1" hidden></video>
   <img id="nova-main-bg-image" class="nova-main-bg-image" alt="" hidden decoding="async"/>
   <video id="nova-main-bg-video" class="nova-main-bg-video" muted loop playsinline webkit-playsinline autoplay preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-hidden="true" tabindex="-1"></video>
   <div id="nova-main-bg-video-iframe-wrap" class="nova-main-bg-video-iframe-wrap" hidden>
@@ -520,7 +522,6 @@
 <span class="nova-lobby-rail-edge nova-lobby-rail-edge--left" aria-hidden="true"></span>
 <span class="nova-lobby-rail-edge nova-lobby-rail-edge--right" aria-hidden="true"></span>
 </div>
-<p class="duel-entry-gate-note" id="duel-entry-gate-note" aria-live="polite">Düello için gerekli: en az 3 kupa ve 15 ⚡ düello enerjisi.</p>
 </section>
 <div class="nask-game-signature" aria-hidden="true">NASK GAMES</div>
 </div>
@@ -699,7 +700,7 @@
 <img alt="Sonuç Resmi" class="final-image" id="score-image" style="display:none;"/>
 <!-- "Geri Dön" butonu -->
 <button class="end-game-button" id="final-back-button">Geri Dön</button>
-<button class="end-game-button play-again-button" id="btnTekrar">Tekrar Oyna</button><button class="lesson-video-button" id="lesson-video-button">🎬 Ders videosunu izle</button>
+<button class="end-game-button play-again-button" id="btnTekrar">Tekrar Oyna</button><button class="lesson-video-button" id="lesson-video-button">🐢 Kaptan Kabuk Anlatıyor</button>
 </div>
 </div>
 <!-- Düello Seçim Ekranı -->
@@ -1043,7 +1044,7 @@
 <script defer src="js/ui/005-nova-screen-loader.js"></script>
 <script defer src="js/core/nova-store-avatar-categories.js?v=30260605storeboot2"></script>
 <script defer src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
-<script defer src="js/core/008-script-008.js?v=30260611enerji1"></script>
+<script defer src="js/core/008-script-008.js?v=30260629duelgate1"></script>
 <script defer src="js/core/009-script-009.js?v=30260605rank3"></script>
 <script defer src="js/core/010-script-010.js?v=30260604qbadges2"></script>
 <script defer src="js/ui/011-script-011.js"></script>
@@ -1067,8 +1068,10 @@
 </div>
 </div>
 <!-- Nova: RTDB Adapter for Lesson Video URL (supports Firebase v8 & v9) -->
+<script defer src="js/core/nova-roborox-data.js?v=30260629kaptan4"></script>
+<script defer src="js/ui/nova-roborox-learn.js?v=30260629kaptan5"></script>
 <script defer src="js/core/015-script-015.js"></script>
-<script defer src="js/core/016-script-016.js"></script>
+<script defer src="js/core/016-script-016.js?v=30260629kaptan4"></script>
 <!-- Nova: precise duel analytics hook (wraps updateDuelScore) -->
 <script defer src="js/core/017-script-017.js"></script>
 <!-- Nova: Topic performance logger (<=4 correct -> record, keep last 25) -->
@@ -1109,7 +1112,7 @@
 <div class="nova-result-actions-card nz-card">
 <div class="nz-actions">
 <button class="nz-btn nz-primary" id="nzRepeatBtn" type="button">Yanlışları Tekrar Et</button>
-<button class="nz-btn nz-video" id="nzVideoBtn" type="button"><span aria-hidden="true" class="nz-cta-icon">▶</span> Ders Videosu</button>
+<button class="nz-btn nz-video" id="nzVideoBtn" type="button"><span aria-hidden="true" class="nz-cta-icon">🐢</span> Kaptan Kabuk Anlatıyor</button>
 </div>
 </div>
 <div class="nz-wrong-list" hidden id="nzWrongList"></div>
@@ -1187,6 +1190,11 @@
 <!-- Kaptan Kabuk — Bunny dikey tam ekran video okuyucu -->
 <div id="roborox-reader-overlay" class="roborox-reader-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Kaptan Kabuk ders videosu" hidden>
   <button type="button" id="roborox-reader-exit" class="roborox-reader-exit" aria-label="Dersten çık" hidden>Dersten Çık</button>
+  <div class="roborox-reader-nav" id="roborox-reader-nav" hidden>
+    <button type="button" id="roborox-reader-nav-prev" class="roborox-reader-nav-btn" disabled>← Önceki</button>
+    <span id="roborox-reader-nav-label" class="roborox-reader-nav-label">Video 1 / 1</span>
+    <button type="button" id="roborox-reader-nav-next" class="roborox-reader-nav-btn roborox-reader-nav-btn--next">Sonraki Video →</button>
+  </div>
   <div class="roborox-reader-stage">
     <video id="roborox-reader-video" class="roborox-reader-video" playsinline webkit-playsinline preload="auto" hidden></video>
     <div id="roborox-reader-iframe-wrap" class="roborox-reader-iframe-wrap" hidden>
@@ -1375,27 +1383,80 @@
 
 
 <!-- === NOVA HOMEWORK MODULE === -->
-<link rel="stylesheet" href="styles/056-style-056.css" />
-<div id="homework-screen" role="dialog" aria-modal="true" aria-labelledby="hw_title">
-  <div class="hw-wrap">
-    <aside class="hw-left">
-      <div class="hw-topbar">
-        <div style="font-weight:800; letter-spacing:.4px">📚 Ödevlerim</div>
-        <button class="hw-close" id="hw_close">✖</button>
+<link rel="stylesheet" href="styles/056-style-056.css?v=30260629hw1" />
+<div id="homework-screen" class="hw-studio" role="dialog" aria-modal="true" aria-labelledby="hw_screen_title">
+  <div class="hw-studio__backdrop" aria-hidden="true"></div>
+  <div class="hw-studio__shell">
+    <header class="hw-studio__header">
+      <div class="hw-studio__brand">
+        <span class="hw-studio__brand-icon" aria-hidden="true">🚀</span>
+        <div class="hw-studio__brand-text">
+          <h1 class="hw-studio__title" id="hw_screen_title">Ödevlerim</h1>
+          <p class="hw-studio__subtitle" id="hw_subtitle">Öğretmeninin verdiği görevler burada</p>
+        </div>
       </div>
-      <ul class="hw-list" id="hw_list"></ul>
-    </aside>
-    <section class="hw-right">
-      <div class="hw-title" id="hw_title">Ödev seçiniz</div>
-      <div class="hw-desc" id="hw_desc">Öğretmeninizin verdiği ödev burada görünecek.</div>
-      <div style="padding:0 18px 8px">
-        <div class="hw-meta" id="hw_meta"></div>
-      </div>
-      <div class="hw-actions">
-        <button class="hw-btn secondary" id="hw_video">🎬 Ders Videosu</button>
-        <button class="hw-btn" id="hw_start">🚀 Sorulara Geç</button>
-      </div>
-    </section>
+      <button type="button" class="hw-studio__close" id="hw_close" aria-label="Kapat">
+        <span aria-hidden="true">✕</span>
+      </button>
+    </header>
+
+    <div class="hw-studio__body">
+      <aside class="hw-studio__list-panel" aria-label="Ödev listesi">
+        <div class="hw-studio__stats" id="hw_stats" hidden></div>
+        <ul class="hw-list hw-studio__list" id="hw_list"></ul>
+      </aside>
+
+      <section class="hw-studio__detail" aria-label="Ödev detayı">
+        <div class="hw-studio__detail-inner" id="hw_detail">
+          <div class="hw-studio__hero">
+            <span class="hw-studio__subject-icon" id="hw_subject_icon" aria-hidden="true">📝</span>
+            <span class="hw-studio__status-chip" id="hw_status_chip">Bekliyor</span>
+          </div>
+          <h2 class="hw-title" id="hw_title">Ödev seç</h2>
+          <p class="hw-desc" id="hw_desc" hidden></p>
+
+          <div class="hw-studio__cards">
+            <div class="hw-studio__card">
+              <span class="hw-studio__card-icon" aria-hidden="true">❓</span>
+              <div class="hw-studio__card-body">
+                <span class="hw-studio__card-label">Soru sayısı</span>
+                <span class="hw-studio__card-value" id="hw_meta">—</span>
+              </div>
+            </div>
+            <div class="hw-studio__card">
+              <span class="hw-studio__card-icon" aria-hidden="true">📅</span>
+              <div class="hw-studio__card-body">
+                <span class="hw-studio__card-label">Verildi</span>
+                <span class="hw-studio__card-value" id="hw_date">—</span>
+              </div>
+            </div>
+            <div class="hw-studio__card hw-studio__card--wide" id="hw_topic_card" hidden>
+              <span class="hw-studio__card-icon" aria-hidden="true">📚</span>
+              <div class="hw-studio__card-body">
+                <span class="hw-studio__card-label">Konu</span>
+                <span class="hw-studio__card-value" id="hw_topic">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hw-studio__tip" id="hw_tip" hidden>
+            <span class="hw-studio__tip-icon" aria-hidden="true">💡</span>
+            <p class="hw-studio__tip-text"></p>
+          </div>
+        </div>
+
+        <footer class="hw-actions hw-studio__actions">
+          <button type="button" class="hw-btn hw-btn--video secondary" id="hw_video">
+            <span class="hw-btn__icon" aria-hidden="true">🐢</span>
+            <span class="hw-btn__label">Kaptan Kabuk Anlatıyor</span>
+          </button>
+          <button type="button" class="hw-btn hw-btn--start" id="hw_start">
+            <span class="hw-btn__icon" aria-hidden="true">🚀</span>
+            <span class="hw-btn__label">Ödevi Başlat</span>
+          </button>
+        </footer>
+      </section>
+    </div>
   </div>
 </div>
 
@@ -1466,12 +1527,13 @@
   </div>
 </div>
 
-<script defer src="js/core/043-script-043.js"></script>
+<script defer src="js/core/043-script-043.js?v=30260629kaptan4"></script>
 <!-- === /NOVA HOMEWORK MODULE === -->
 
-<script defer src="js/core/044-script-044.js"></script>
+<script defer src="js/core/044-script-044.js?v=30260629deneme2"></script>
 
-<script defer src="js/core/045-nova-weekly-quests.js"></script>
+<link rel="stylesheet" href="styles/124-nova-weekly-quests-studio.css?v=30260629wq1" />
+<script defer src="js/core/045-nova-weekly-quests.js?v=30260629wq2"></script>
 
 <script defer src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
 <script defer src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
@@ -1665,10 +1727,10 @@
 <script defer src="js/ui/008-nova-battle-hero.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
 <script defer src="js/ui/nova-dragon-egg.js?v=30260608degg1"></script>
-<script defer src="js/ui/nova-main-screen-bg-video.js?v=30260608bootv8"></script>
+<script defer src="js/ui/nova-main-screen-bg-video.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-tabs.js?v=30260611enerji1"></script>
 <script defer src="js/ui/nova-hub-game-buttons.js?v=30260629kaptan1"></script>
-<script defer src="js/ui/nova-main-lobby-deck.js?v=30260629lobby2"></script>
+<script defer src="js/ui/nova-main-lobby-deck.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
@@ -1693,13 +1755,13 @@
 <link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=30260606opt1" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260611sorukontrol4" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
-<link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260606maindock2" />
+<link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260629deskframe1" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
-<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260622kabuksec1" />
+<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260629kaptan6" />
 <link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611center1" />
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
-<link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260629kaptan1" />
-<link rel="stylesheet" href="styles/123-nova-main-stage-arena.css?v=30260629stage3" />
+<link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260629deskbg2" />
+<link rel="stylesheet" href="styles/123-nova-main-stage-arena.css?v=30260629stage5" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
@@ -2179,8 +2241,6 @@
   });
 })();
 </script>
-<script defer src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
-<script defer src="js/ui/nova-roborox-learn.js?v=30260629kaptan1"></script>
 <script defer src="js/bootstrap.js"></script>
 
 </body>

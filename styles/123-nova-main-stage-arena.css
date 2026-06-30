@@ -130,18 +130,39 @@
   content: none !important;
 }
 
+#main-screen .nova-main-tab-avatar-body .avatar-frame-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(100%, 160px);
+  max-width: 160px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: clamp(14px, 3.2vw, 17px);
+  line-height: 0;
+  background: #0f172a;
+}
+
 #main-screen .nova-main-tab-avatar-body .student-photo {
   position: relative;
   z-index: 1;
-  width: min(100%, 178px) !important;
-  max-height: min(44vw, 224px) !important;
-  height: auto !important;
-  aspect-ratio: 4 / 5;
-  margin: 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
   padding: 0 !important;
-  border-radius: clamp(14px, 3.2vw, 18px) !important;
-  background: #fff !important;
+  aspect-ratio: unset !important;
+  border-radius: inherit !important;
+  background: transparent !important;
   object-fit: cover !important;
+  object-position: center center !important;
   box-sizing: border-box !important;
   filter:
     drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45))
@@ -151,19 +172,11 @@
 
 #main-screen .nova-main-tab-avatar-body .student-photo.avatar-framed {
   border-style: solid !important;
-  border-width: 5px !important;
+  border-width: 3px !important;
+  border-radius: inherit !important;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
     0 10px 22px rgba(0, 0, 0, 0.45) !important;
-}
-
-#main-screen .nova-main-tab-avatar-body .avatar-frame-wrap {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  width: min(100%, 178px);
-  margin: 0 auto;
 }
 
 #main-screen .nova-main-tab-avatar-body .student-photo:hover {
@@ -270,8 +283,13 @@
     max-width: 100% !important;
   }
 
-  #main-screen .nova-main-tab-avatar-body .student-photo {
-    width: min(100%, 162px) !important;
+  #main-screen .nova-main-tab-avatar-body .avatar-frame-wrap {
+    width: min(100%, 152px);
+    max-width: 152px;
+  }
+
+  #main-screen .nova-main-tab-avatar-body .student-photo.avatar-framed {
+    border-width: 2.5px !important;
   }
 }
 

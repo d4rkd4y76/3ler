@@ -776,6 +776,83 @@ body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope {
   transform: translateX(-50%) scale(0.97);
 }
 
+.roborox-reader-nav {
+  position: absolute;
+  left: 50%;
+  bottom: max(72px, calc(58px + env(safe-area-inset-bottom, 0px)));
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(92vw, 420px);
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .roborox-reader-nav {
+    bottom: max(78px, calc(64px + env(safe-area-inset-bottom, 0px)));
+  }
+}
+
+.roborox-reader-nav-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.roborox-reader-nav-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.roborox-reader-nav-btn--next {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35);
+}
+
+.roborox-reader-nav-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.roborox-reader-nav-btn:disabled,
+.roborox-reader-nav-btn.is-passive {
+  opacity: 0.52;
+  cursor: not-allowed;
+  box-shadow: none;
+  filter: grayscale(0.45) saturate(0.55);
+  background: linear-gradient(135deg, #64748b, #475569) !important;
+  color: #cbd5e1;
+  transform: none;
+}
+
+.roborox-reader-nav-btn--next:disabled,
+.roborox-reader-nav-btn--next.is-passive {
+  background: linear-gradient(135deg, #64748b, #475569) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .roborox-reader-stage {
   position: absolute;
   inset: 0;

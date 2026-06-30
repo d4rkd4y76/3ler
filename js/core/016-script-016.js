@@ -139,53 +139,25 @@
 
   async function openVideo(){
     try{
-      const url = await resolveLessonVideoUrl();
       const sel = window.__novaSelection__ || {};
-      const crumb = byId('lesson-video-breadcrumb');
-      const title = byId('lesson-video-title');
-      if (crumb) {
-        const parts = [sel.classText, sel.subjectText, sel.topicText].filter(Boolean);
-        crumb.textContent = parts.length ? parts.join(' • ') : 'Ders & Konu';
+      if (typeof window.novaOpenKaptanKabukForChampionTopic === 'function') {
+        const ok = await window.novaOpenKaptanKabukForChampionTopic({
+          headingId: sel.classId,
+          lessonId: sel.subjectId,
+          topicId: sel.topicId,
+          onClose: closeVideoScreen
+        });
+        if (ok) return;
       }
-      if (title) title.textContent = 'Ders Videosu';
-      if (!url){
-        if (typeof window.showAlert === 'function') {
-          window.showAlert('Bu ders için video URL’si henüz tanımlı değil. Veritabanına eklendiğinde buradan izlenebilecek.');
-        } else {
-          alert('Bu ders için video URL’si henüz tanımlı değil. Veritabanına eklendiğinde buradan izlenebilecek.');
-        }
-        return;
+      if (typeof window.showAlert === 'function') {
+        window.showAlert('Bu konu için Kaptan Kabuk anlatımı henüz bağlanmamış. Öğretmenin admin panelinden müfredat konusuna Kaptan Kabuk ilişkilendirmesi yapması gerekir.');
+      } else {
+        alert('Bu konu için Kaptan Kabuk anlatımı henüz bağlanmamış.');
       }
-      // Ensure it is an embeddable YouTube URL
-      let embedUrl = url.trim();
-      if (embedUrl.includes('watch?v=')) {
-        embedUrl = embedUrl.replace('watch?v=', 'embed/');
-      }
-      // Basic safety: only allow youtube/embed for now
-      const ok = /^https:\/\/www\.youtube\.com\/embed\//.test(embedUrl) || /^https:\/\/youtube\.com\/embed\//.test(embedUrl);
-      if (!ok){
-        // attempt to coerce youtu.be
-        if (embedUrl.includes('youtu.be/')) {
-          const vid = embedUrl.split('youtu.be/')[1].split(/[?&#]/)[0];
-          embedUrl = 'https://www.youtube.com/embed/' + vid;
-        }
-      }
-      embedUrl = window.novaNormalizeYouTubeEmbed(embedUrl) || embedUrl;
-      if (!/^https:\/\/www\.youtube-nocookie\.com\/embed\/[A-Za-z0-9_-]+/.test(embedUrl)) {
-        if (typeof window.showAlert === 'function') window.showAlert('Geçerli bir YouTube gömme bağlantısı algılanamadı. Admin panelinde watch veya embed linkini kontrol edin.');
-        else alert('Geçerli bir YouTube gömme bağlantısı algılanamadı.');
-        return;
-      }
-      if (videoIframe) {
-        try { videoIframe.referrerPolicy = 'strict-origin-when-cross-origin'; } catch(_){}
-        videoIframe.src = embedUrl;
-      }
-      syncLessonVideoYoutubeFallback(embedUrl);
-      showOnly(videoScreen);
     }catch(err){
       console.error(err);
-      if (typeof window.showAlert === 'function') window.showAlert('Video yüklenirken bir hata oluştu.');
-      else alert('Video yüklenirken bir hata oluştu.');
+      if (typeof window.showAlert === 'function') window.showAlert('Anlatım açılırken bir hata oluştu.');
+      else alert('Anlatım açılırken bir hata oluştu.');
     }
   }
 

@@ -25,6 +25,146 @@
     return denemeRoot(stu) + suffix;
   }
 
+  var DENEME_META_CACHE_KEY = 'nova_deneme_meta_cache_v2';
+  var DENEME_PERSIST_KEY = 'nova_deneme_persist_v3';
+  var DENEME_SAT_POLL_MS = 15 * 60 * 1000;
+
+  function denemeMetaCacheStorageKey(stu){
+    return DENEME_META_CACHE_KEY + ':' + denemePath(stu, 'denemeMeta');
+  }
+
+  function denemePersistStorageKey(stu){
+    return DENEME_PERSIST_KEY + ':' + denemePath(stu, 'denemeMeta');
+  }
+
+  function denemeTodayKeyTR(){
+    try{
+      return new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Istanbul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(new Date());
+    }catch(_){
+      var d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+  }
+
+  function isDenemeSaturdayTR(){
+    try{
+      var wd = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Istanbul', weekday: 'short' }).format(new Date());
+      return wd === 'Sat';
+    }catch(_){
+      return new Date().getDay() === 6;
+    }
+  }
+
+  function readDenemeMetaCache(stu){
+    try{
+      var raw = sessionStorage.getItem(denemeMetaCacheStorageKey(stu));
+      if(!raw) return null;
+      var o = JSON.parse(raw);
+      if(!o || !o.meta) return null;
+      if(o.meta.ended) return o.meta;
+      if(o.dayKey !== denemeTodayKeyTR()) return null;
+      return o.meta;
+    }catch(_){ return null; }
+  }
+
+  function readDenemePersist(stu){
+    try{
+      var raw = localStorage.getItem(denemePersistStorageKey(stu));
+      if(!raw) return null;
+      return JSON.parse(raw);
+    }catch(_){ return null; }
+  }
+
+  function writeDenemePersist(stu, meta){
+    try{
+      var m = meta || {};
+      var ended = !!m.ended;
+      var adminPassive = !ended && m.enabled === false;
+      localStorage.setItem(denemePersistStorageKey(stu), JSON.stringify({
+        meta: m,
+        ended: ended,
+        adminPassive: adminPassive,
+        updatedAt: Date.now()
+      }));
+    }catch(_){}
+  }
+
+  function clearDenemePersist(stu){
+    try{ localStorage.removeItem(denemePersistStorageKey(stu)); }catch(_){}
+  }
+
+  function applyDenemeFromPersist(btn, stu){
+    var p = readDenemePersist(stu);
+    if(p && (p.ended || (p.meta && p.meta.ended))){
+      applyDenemeFabState(btn, Object.assign({}, p.meta || {}, { ended: true }));
+      return 'result';
+    }
+    if(p && p.adminPassive){
+      applyDenemeFabState(btn, { enabled: false, ended: false });
+      return 'admin_off';
+    }
+    if(p && p.meta){
+      applyDenemeFabState(btn, p.meta);
+      return 'cached';
+    }
+    applyDenemeFabState(btn, {});
+    return 'unknown';
+  }
+
+  function denemeNetworkAllowed(stu){
+    if(isDenemeSaturdayTR()) return true;
+    var p = readDenemePersist(stu);
+    if(p && p.adminPassive) return false;
+    return false;
+  }
+
+  function writeDenemeMetaCache(stu, meta){
+    try{
+      sessionStorage.setItem(denemeMetaCacheStorageKey(stu), JSON.stringify({
+        meta: meta || {},
+        dayKey: denemeTodayKeyTR(),
+        ts: Date.now()
+      }));
+      writeDenemePersist(stu, meta);
+    }catch(_){}
+  }
+
+  function msUntilNextSaturdayTR(){
+    try{
+      var now = new Date();
+      var fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Europe/Istanbul',
+        weekday: 'short',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: false
+      });
+      var parts = fmt.formatToParts(now);
+      function part(type){ var p = parts.find(function(x){ return x.type === type; }); return p ? p.value : ''; }
+      var wd = part('weekday');
+      var hour = Number(part('hour') || 0);
+      var minute = Number(part('minute') || 0);
+      var second = Number(part('second') || 0);
+      var daysUntil = wd === 'Sat' ? 7 : ((6 - ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(wd) + 7) % 7) || 7;
+      if(wd === 'Sat') daysUntil = 7;
+      var secsToday = hour * 3600 + minute * 60 + second;
+      var secsUntilMidnight = 86400 - secsToday;
+      return ((daysUntil - 1) * 86400 + secsUntilMidnight) * 1000 + 300000;
+    }catch(_){
+      var d = new Date();
+      var day = d.getDay();
+      var add = day === 6 ? 7 : ((6 - day + 7) % 7) || 7;
+      var next = new Date(d.getFullYear(), d.getMonth(), d.getDate() + add, 0, 5, 0);
+      return Math.max(60000, next - d);
+    }
+  }
+
   function shuffleArr(a){
     const arr = a.slice();
     for(let i=arr.length;i>0;){
@@ -74,9 +214,31 @@
     wrap.appendChild(btn);
     slot.appendChild(wrap);
 
+    var refreshDenemeMeta = null;
+
     btn.addEventListener('click', function(){
       if(denemeUiMode === 'off'){
-        try{ if(typeof window.showAlert === 'function') window.showAlert('Deneme şu an kapalı. Öğretmenin açmasını bekleyebilirsin.'); else alert('Deneme kapalı.'); }catch(_){ alert('Deneme kapalı.'); }
+        if(typeof refreshDenemeMeta === 'function'){
+          refreshDenemeMeta(function(){
+            if(denemeUiMode === 'exam'){
+              if(typeof window.novaOpenDenemeExam === 'function') window.novaOpenDenemeExam();
+              return;
+            }
+            if(denemeUiMode === 'result'){
+              if(typeof window.novaOpenDenemeResult === 'function') window.novaOpenDenemeResult();
+              return;
+            }
+            try{
+              if(typeof window.showAlert === 'function') window.showAlert('Deneme şu an kapalı. Öğretmen panelinden açılmasını bekleyebilirsin.');
+              else alert('Deneme kapalı.');
+            }catch(_){ alert('Deneme kapalı.'); }
+          });
+        }else{
+          try{
+            if(typeof window.showAlert === 'function') window.showAlert('Deneme şu an kapalı. Öğretmen panelinden açılmasını bekleyebilirsin.');
+            else alert('Deneme kapalı.');
+          }catch(_){ alert('Deneme kapalı.'); }
+        }
         return;
       }
       if(denemeUiMode === 'result'){
@@ -91,11 +253,126 @@
       var stu0 = getSelStudent();
       if(d0 && d0.ref){
         var metaPath = denemePath(stu0, 'denemeMeta');
-        d0.ref(metaPath).off('value');
-        d0.ref(metaPath).on('value', function(snap){
-          var meta = snap && snap.exists ? (snap.exists() ? (snap.val() || {}) : {}) : {};
-          applyDenemeFabState(btn, meta);
-        });
+        var metaRef = d0.ref(metaPath);
+        var denemeMetaPollId = null;
+        var denemeMetaWakeTimer = null;
+
+        function applyDenemeMetaLocal(meta){
+          applyDenemeFabState(btn, meta || {});
+        }
+
+        function refreshDenemeMetaImpl(cb){
+          if(!denemeNetworkAllowed(stu0)){
+            applyDenemeFromPersist(btn, stu0);
+            if(typeof cb === 'function'){
+              var p0 = readDenemePersist(stu0);
+              cb(p0 && p0.meta ? p0.meta : {});
+            }
+            return;
+          }
+          metaRef.once('value').then(function(snap){
+            var meta = snap && snap.exists ? (snap.exists() ? (snap.val() || {}) : {}) : {};
+            writeDenemeMetaCache(stu0, meta);
+            applyDenemeMetaLocal(meta);
+            if(!meta.enabled && !meta.ended){
+              stopDenemeMetaPoll();
+            }else if(meta.ended){
+              stopDenemeMetaPoll();
+            }
+            if(typeof cb === 'function') cb(meta);
+          }).catch(function(){
+            applyDenemeFromPersist(btn, stu0);
+            var p1 = readDenemePersist(stu0);
+            if(typeof cb === 'function') cb(p1 && p1.meta ? p1.meta : {});
+          });
+        }
+        refreshDenemeMeta = refreshDenemeMetaImpl;
+
+        function startDenemeMetaPollIfNeeded(meta){
+          stopDenemeMetaPoll();
+          if(!isDenemeSaturdayTR()) return;
+          if(!meta || !meta.enabled || meta.ended) return;
+          denemeMetaPollId = setInterval(function(){
+            try{
+              if(!isDenemeSaturdayTR()){
+                stopDenemeMetaPoll();
+                applyDenemeFromPersist(btn, stu0);
+                scheduleDenemeSaturdayWake();
+                return;
+              }
+              var ms = document.getElementById('main-screen');
+              if(!ms || ms.getAttribute('hidden') !== null) return;
+              var d = window.getComputedStyle(ms).display;
+              if(d === 'none' || d === '') return;
+            }catch(_){ return; }
+            refreshDenemeMetaImpl();
+          }, DENEME_SAT_POLL_MS);
+        }
+
+        function stopDenemeMetaPoll(){
+          if(denemeMetaPollId){
+            clearInterval(denemeMetaPollId);
+            denemeMetaPollId = null;
+          }
+        }
+
+        function scheduleDenemeSaturdayWake(){
+          if(denemeMetaWakeTimer){
+            clearTimeout(denemeMetaWakeTimer);
+            denemeMetaWakeTimer = null;
+          }
+          if(isDenemeSaturdayTR()) return;
+          denemeMetaWakeTimer = setTimeout(function(){
+            denemeMetaWakeTimer = null;
+            if(isDenemeSaturdayTR()) startDenemeMetaWatch();
+            else scheduleDenemeSaturdayWake();
+          }, msUntilNextSaturdayTR());
+        }
+
+        function startDenemeMetaWatch(){
+          stopDenemeMetaPoll();
+          var persistState = applyDenemeFromPersist(btn, stu0);
+
+          if(persistState === 'result'){
+            scheduleDenemeSaturdayWake();
+            return;
+          }
+
+          if(persistState === 'admin_off' && !isDenemeSaturdayTR()){
+            scheduleDenemeSaturdayWake();
+            return;
+          }
+
+          if(!isDenemeSaturdayTR()){
+            scheduleDenemeSaturdayWake();
+            return;
+          }
+
+          var cached = readDenemeMetaCache(stu0);
+          if(cached) applyDenemeMetaLocal(cached);
+          refreshDenemeMetaImpl(function(meta){
+            startDenemeMetaPollIfNeeded(meta);
+          });
+        }
+
+        startDenemeMetaWatch();
+        try{
+          var msDen = document.getElementById('main-screen');
+          if(msDen){
+            var moDen = new MutationObserver(function(){
+              try{
+                var vis = msDen.getAttribute('hidden') === null && window.getComputedStyle(msDen).display !== 'none';
+                if(!vis) return;
+                if(denemeUiMode === 'result') return;
+                if(readDenemePersist(stu0) && readDenemePersist(stu0).adminPassive && !isDenemeSaturdayTR()) return;
+                if(isDenemeSaturdayTR() && !denemeMetaPollId){
+                  refreshDenemeMetaImpl(function(meta){ startDenemeMetaPollIfNeeded(meta); });
+                }
+              }catch(_){}
+            });
+            moDen.observe(msDen, { attributes: true, attributeFilter: ['style', 'class', 'hidden'] });
+          }
+        }catch(_){}
       }
     }catch(_){}
 
@@ -545,6 +822,11 @@
           });
         });
         dbs.ref().update(upd);
+        try{
+          writeDenemePersist(stu, { ended: true, enabled: false });
+          var fabBtn = document.getElementById('deneme_fab');
+          if(fabBtn) applyDenemeFabState(fabBtn, { ended: true, enabled: false });
+        }catch(_p){}
         try{
           if(typeof window.novaQuestRecord === 'function'){
             window.novaQuestRecord('deneme_completed', { correct: st.score, total: total, durationMs: durationMs });

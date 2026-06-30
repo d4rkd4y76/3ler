@@ -21,6 +21,7 @@
     'matchingGame/',
     'classContent/',
     'denemeQuestions',
+    'roboroxLearn/',
     'store/',
     'lessonVideoLookup/',
     'platformMeta/hikayeVideo',
@@ -157,6 +158,7 @@
 
   function bootstrapFromRtdb() {
     try {
+      if (typeof global.novaCdnIsEnabled === 'function' && global.novaCdnIsEnabled()) return;
       if (typeof firebase === 'undefined' || !firebase.database) return;
       firebase
         .database()

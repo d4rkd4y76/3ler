@@ -8,6 +8,11 @@
   ];
 
   const stateCache = { key:'', ts:0, val:null };
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
   function db(){ try{ return firebase.database(); }catch(_){ return null; } }
   function sel(){
     try{
@@ -35,7 +40,7 @@
     if(parts.length !== 3) return '';
     const s = new Date(Number(parts[0]), Number(parts[1])-1, Number(parts[2]));
     const e = new Date(s.getTime()); e.setDate(e.getDate()+6);
-    return s.toLocaleDateString('tr-TR') + ' - ' + e.toLocaleDateString('tr-TR');
+    return s.toLocaleDateString('tr-TR') + ' – ' + e.toLocaleDateString('tr-TR');
   }
   function defaultState(wid){
     const progress = {}; QUESTS.forEach(q=>progress[q.id]=0);
@@ -56,96 +61,39 @@
     stateCache.key = key; stateCache.ts = Date.now(); stateCache.val = next;
     return next;
   }
+
   function ensureQuestUi(){
+    var legacy = document.getElementById('weekly-quest-screen');
+    if (legacy && !legacy.classList.contains('wq-studio')) {
+      legacy.remove();
+      var oldStyle = document.getElementById('weekly-quest-style');
+      if (oldStyle) oldStyle.remove();
+    }
     if(document.getElementById('weekly-quest-screen')) return;
-    const st = document.createElement('style');
-    st.id = 'weekly-quest-style';
-    st.textContent = `
-      .quest-fab-wrap{display:inline-flex;position:relative;z-index:60;pointer-events:auto;overflow:visible}
-      .quest-fab{
-        position:relative; z-index:10000; overflow:visible; border:none; cursor:pointer; color:#f8fbff;
-        border-radius:16px; padding:10px 14px; min-height:44px; min-width:min-content; max-width:none; font-weight:900; letter-spacing:.3px;
-        box-sizing:border-box;
-        background:linear-gradient(135deg,#22d3ee,#22c55e 45%,#84cc16);
-        box-shadow:0 0 0 2px rgba(255,255,255,.28) inset, 0 12px 26px rgba(0,0,0,.30), 0 0 22px rgba(34,211,238,.58);
-        display:inline-flex; align-items:center; justify-content:center; gap:6px; transition: filter .18s ease, box-shadow .2s ease;
-        animation: questFabPulse 1.5s ease-in-out infinite;
-        text-align:center; white-space:nowrap;
-      }
-      .quest-fab:hover{ filter:brightness(1.12); box-shadow:0 0 0 2px rgba(255,255,255,.34) inset, 0 14px 28px rgba(0,0,0,.34), 0 0 30px rgba(52,211,153,.72); }
-      .quest-fab .q-badge{
-        position:absolute; top:0; right:0; left:auto; bottom:auto; margin:0;
-        transform:translate(30%, -38%); transform-origin:center center;
-        min-width:22px; min-height:22px; height:22px; border-radius:999px; background:linear-gradient(180deg,#fb7185,#e11d48); color:#fff;
-        font-size:11px; line-height:0; font-weight:900; font-variant-numeric:tabular-nums;
-        display:grid; place-items:center; padding:0 6px;
-        box-sizing:border-box;
-        box-shadow:0 2px 8px rgba(0,0,0,.35), 0 0 0 2px rgba(17,24,39,.6);
-        pointer-events:none; z-index:3;
-      }
-      @keyframes questFabPulse{
-        0%,100%{ filter:brightness(1); box-shadow:0 0 0 2px rgba(255,255,255,.28) inset, 0 12px 26px rgba(0,0,0,.30), 0 0 22px rgba(34,211,238,.58); }
-        50%{ filter:brightness(1.1); box-shadow:0 0 0 2px rgba(255,255,255,.34) inset, 0 14px 30px rgba(0,0,0,.34), 0 0 32px rgba(52,211,153,.65); }
-      }
-      #weekly-quest-screen{ display:none; position:fixed; inset:0; z-index:12000; background:radial-gradient(1400px 700px at 80% -10%, rgba(34,197,94,.20), transparent 60%), #0b1220; color:#e6eefb; }
-      .wq-wrap{ max-width:980px; margin:0 auto; height:100%; display:flex; flex-direction:column; padding:16px; gap:12px; }
-      .wq-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:16px; background:rgba(12,18,31,.72); border:1px solid rgba(255,255,255,.08); }
-      .wq-title{ font-weight:900; font-size:20px; }
-      .wq-sub{ font-size:13px; opacity:.86; margin-top:2px; }
-      .wq-close{ border:none; border-radius:12px; padding:10px 12px; background:#1f2937; color:#cfe5ff; font-weight:800; cursor:pointer; }
-      .wq-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; overflow:auto; padding-bottom:6px; }
-      .wq-card{ background:linear-gradient(165deg,rgba(17,24,39,.9),rgba(8,15,27,.95)); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:14px; }
-      .wq-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-      .wq-task{ font-size:15px; font-weight:800; line-height:1.35; }
-      .wq-reward{ font-size:13px; color:#c7f9d5; font-weight:800; white-space:nowrap; }
-      .wq-progress{ margin-top:10px; height:9px; border-radius:999px; background:#0f172a; overflow:hidden; border:1px solid rgba(255,255,255,.08);}
-      .wq-progress > i{ display:block; height:100%; background:linear-gradient(90deg,#22c55e,#84cc16); width:0%; transition:width .25s ease; }
-      .wq-meta{ margin-top:8px; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#9fb4d8; }
-      .wq-claim{ margin-top:10px; width:100%; border:none; border-radius:12px; padding:10px; font-weight:900; cursor:pointer; }
-      .wq-claim.ready{ background:linear-gradient(135deg,#fde047,#f59e0b); color:#111827; }
-      .wq-claim.locked{ background:#1f2937; color:#9ca3af; cursor:not-allowed; }
-      .wq-claim.done{ background:#065f46; color:#d1fae5; cursor:default; }
-      .wq-hero-bonus-hint{ margin-top:6px; font-size:11px; font-weight:800; color:#c4b5fd; line-height:1.35; }
-      #wq-toast{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%) scale(.95); opacity:0; pointer-events:none; z-index:12100; }
-      #wq-toast.show{ animation:wqPop .9s ease forwards; }
-      @keyframes wqPop{
-        0%{opacity:0; transform:translate(-50%,-44%) scale(.85)}
-        25%{opacity:1; transform:translate(-50%,-50%) scale(1.03)}
-        75%{opacity:1; transform:translate(-50%,-50%) scale(1)}
-        100%{opacity:0; transform:translate(-50%,-58%) scale(.97)}
-      }
-      .wq-toast-card{ padding:16px 18px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(8,15,27,.95); box-shadow:0 18px 36px rgba(0,0,0,.42); font-weight:900; color:#eafff1; }
-      #wq-reward-overlay{ position:fixed; inset:0; z-index:12120; display:none; align-items:center; justify-content:center; background:rgba(3,8,20,.62); backdrop-filter:blur(4px); }
-      #wq-reward-overlay.open{ display:flex; }
-      #wq-reward-overlay .wq-reward-card{
-        position:relative; overflow:hidden; width:min(580px,92vw);
-        border-radius:20px; padding:20px 18px 16px;
-        background:linear-gradient(170deg,#1e293b,#0b1220 58%, #0f172a);
-        border:1px solid rgba(148,163,184,.45);
-        box-shadow:0 22px 54px rgba(0,0,0,.56), inset 0 1px 0 rgba(255,255,255,.16);
-      }
-      #wq-reward-overlay .wq-reward-card::before{ content:''; position:absolute; inset:-24% auto auto -18%; width:240px; height:240px; border-radius:999px; background:radial-gradient(circle, rgba(34,211,238,.24), transparent 72%); pointer-events:none; }
-      #wq-reward-overlay .wq-reward-card::after{ content:''; position:absolute; inset:auto -16% -30% auto; width:260px; height:260px; border-radius:999px; background:radial-gradient(circle, rgba(59,130,246,.22), transparent 72%); pointer-events:none; }
-      #wq-reward-overlay .wq-reward-head{ font-size:12px; font-weight:900; letter-spacing:.08em; color:#c7d2fe; text-transform:uppercase; }
-      #wq-reward-overlay .wq-reward-amount{ margin-top:8px; font-size:clamp(34px,8.2vw,64px); font-weight:900; color:#7dd3fc; text-shadow:0 0 18px rgba(34,211,238,.36); }
-      #wq-reward-overlay .wq-reward-sub{ margin-top:6px; color:#dbeafe; font-weight:700; }
-      #wq-reward-overlay .wq-reward-meta{ margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; }
-      #wq-reward-overlay .wq-chip{ padding:7px 10px; border-radius:999px; background:rgba(15,23,42,.72); border:1px solid rgba(148,163,184,.4); color:#e2e8f0; font-weight:800; font-size:12px; }
-      #wq-reward-overlay .wq-chip.bonus{ display:none; border-color:rgba(253,224,71,.86); color:#fef3c7; background:linear-gradient(90deg,rgba(120,53,15,.72),rgba(245,158,11,.52)); box-shadow:0 0 14px rgba(250,204,21,.32); }
-      #wq-reward-overlay.champion .wq-reward-card{
-        background:linear-gradient(170deg,#1e293b,#0f172a 48%, #422006);
-        border-color:rgba(253,224,71,.72);
-        box-shadow:0 22px 54px rgba(0,0,0,.56), inset 0 1px 0 rgba(255,255,255,.16), 0 0 72px rgba(250,204,21,.28);
-      }
-      #wq-reward-overlay.champion .wq-reward-amount{ color:#fde68a; text-shadow:0 0 22px rgba(250,204,21,.52); }
-      #wq-reward-overlay.champion .wq-chip.bonus{ display:inline-flex; }
-      #wq-reward-overlay .wq-reward-ok{ margin-top:14px; border:none; border-radius:12px; padding:10px 14px; background:linear-gradient(180deg,#22c55e,#16a34a); color:#fff; font-weight:900; cursor:pointer; }
-      @media (max-width: 760px){ .wq-grid{ grid-template-columns:1fr; } .wq-title{ font-size:18px; } }
-    `;
-    document.head.appendChild(st);
     const pane = document.createElement('div');
     pane.id = 'weekly-quest-screen';
-    pane.innerHTML = '<div class="wq-wrap"><div class="wq-top"><div><div class="wq-title">🎁 Haftalık Hediye Görevleri</div><div class="wq-sub" id="wq_week_label">-</div></div><button class="wq-close" id="wq_close_btn">Kapat ✕</button></div><div class="wq-grid" id="wq_grid"></div></div>';
+    pane.className = 'wq-studio';
+    pane.setAttribute('role', 'dialog');
+    pane.setAttribute('aria-modal', 'true');
+    pane.setAttribute('aria-labelledby', 'wq_screen_title');
+    pane.innerHTML =
+      '<div class="wq-studio__backdrop" aria-hidden="true"></div>' +
+      '<div class="wq-studio__shell">' +
+        '<header class="wq-studio__header">' +
+          '<div class="wq-studio__brand">' +
+            '<span class="wq-studio__brand-icon" aria-hidden="true">🎁</span>' +
+            '<div class="wq-studio__brand-text">' +
+              '<h1 class="wq-studio__title" id="wq_screen_title">Haftalık Görevler</h1>' +
+              '<p class="wq-studio__subtitle" id="wq_week_label">Bu haftanın maceraları</p>' +
+            '</div>' +
+          '</div>' +
+          '<button type="button" class="wq-studio__close" id="wq_close_btn" aria-label="Kapat">✕</button>' +
+        '</header>' +
+        '<div class="wq-studio__stats" id="wq_stats"></div>' +
+        '<div class="wq-studio__body">' +
+          '<div class="wq-studio__grid" id="wq_grid"></div>' +
+        '</div>' +
+      '</div>';
     document.body.appendChild(pane);
     const toast = document.createElement('div');
     toast.id = 'wq-toast';
@@ -153,12 +101,24 @@
     document.body.appendChild(toast);
     const reward = document.createElement('div');
     reward.id = 'wq-reward-overlay';
-    reward.innerHTML = '<div class="wq-reward-card"><div class="wq-reward-head">Görev Ödülü Toplandı</div><div class="wq-reward-amount"><span id="wq_reward_num">+0</span> 💎</div><div class="wq-reward-sub" id="wq_reward_sub">Ödül hesabına eklendi.</div><div class="wq-reward-meta"><div class="wq-chip" id="wq_reward_task">Görev</div><div class="wq-chip bonus" id="wq_reward_bonus">👑 Rozet x2 bonus aktif</div><div class="wq-chip bonus" id="wq_reward_hero_bonus" style="display:none">🦸 Kahraman bonusu</div></div><button class="wq-reward-ok" id="wq_reward_ok" type="button">Harika!</button></div>';
+    reward.innerHTML =
+      '<div class="wq-reward-card">' +
+        '<div class="wq-reward-head">Görev Ödülü Toplandı</div>' +
+        '<div class="wq-reward-amount"><span id="wq_reward_num">+0</span> 💎</div>' +
+        '<div class="wq-reward-sub" id="wq_reward_sub">Ödül hesabına eklendi.</div>' +
+        '<div class="wq-reward-meta">' +
+          '<div class="wq-chip" id="wq_reward_task">Görev</div>' +
+          '<div class="wq-chip bonus" id="wq_reward_bonus">👑 Rozet x2 bonus aktif</div>' +
+          '<div class="wq-chip bonus" id="wq_reward_hero_bonus" style="display:none">🦸 Kahraman bonusu</div>' +
+        '</div>' +
+        '<button class="wq-reward-ok" id="wq_reward_ok" type="button">Harika!</button>' +
+      '</div>';
     document.body.appendChild(reward);
     const okBtn = document.getElementById('wq_reward_ok');
     if(okBtn) okBtn.addEventListener('click', function(){ reward.classList.remove('open', 'champion'); });
     document.getElementById('wq_close_btn').addEventListener('click', closeQuestScreen);
   }
+
   function ensureQuestFab(){
     const ms = document.getElementById('main-screen');
     if(!ms || document.getElementById('quest_fab_wrap')) return;
@@ -176,6 +136,7 @@
     var hudL = document.getElementById('main-screen-hud-left');
     (questSlot || hudL || ms).appendChild(wrap);
   }
+
   function toast(msg){
     const el = document.getElementById('wq-toast');
     const txt = document.getElementById('wq_toast_text');
@@ -185,6 +146,7 @@
     void el.offsetWidth;
     el.classList.add('show');
   }
+
   function showQuestRewardOverlay(total, multiplier, quest){
     const ov = document.getElementById('wq-reward-overlay');
     if(!ov) return;
@@ -219,6 +181,7 @@
       if (typeof window.novaPlayDiamondRewardSfx === 'function') window.novaPlayDiamondRewardSfx();
     }catch(_){}
   }
+
   async function claimQuestReward(qid){
     const d = db(); const s = sel();
     if(!d || !s || !s.studentId || !s.classId) return;
@@ -255,40 +218,83 @@
     try{ if(typeof updateDiamondCount === 'function') updateDiamondCount(); }catch(_){}
     await renderQuestPanel();
   }
+
+  function renderQuestStats(st){
+    const statsEl = document.getElementById('wq_stats');
+    if(!statsEl || !st) return;
+    const progress = st.progress || {};
+    const claimed = st.claimed || {};
+    var ready = 0;
+    var done = 0;
+    var gemsLeft = 0;
+    QUESTS.forEach(function(q){
+      var val = Number(progress[q.id] || 0);
+      var isClaimed = !!claimed[q.id];
+      if(isClaimed) done++;
+      else if(val >= q.target) ready++;
+      else gemsLeft += Number(q.reward || 0);
+    });
+    statsEl.innerHTML =
+      '<div class="wq-studio__stat wq-studio__stat--ready"><strong>' + ready + '</strong><span>Toplanabilir</span></div>' +
+      '<div class="wq-studio__stat wq-studio__stat--done"><strong>' + done + '</strong><span>Tamamlandı</span></div>' +
+      '<div class="wq-studio__stat wq-studio__stat--gems"><strong>' + gemsLeft + '</strong><span>Kalan ödül 💎</span></div>';
+  }
+
   async function renderQuestPanel(){
     ensureQuestUi();
     const label = document.getElementById('wq_week_label');
     const grid = document.getElementById('wq_grid');
     if(!label || !grid) return;
     const st = await ensureWeeklyState(false);
-    if(!st){ grid.innerHTML = '<div class="wq-card">Öğrenci bilgisi bulunamadı.</div>'; return; }
+    if(!st){
+      grid.innerHTML = '<div class="wq-studio__empty">Öğrenci bilgisi bulunamadı.</div>';
+      return;
+    }
     label.textContent = 'Hafta: ' + weekLabel(st.weekId);
+    renderQuestStats(st);
     const progress = st.progress || {};
     const claimed = st.claimed || {};
     grid.innerHTML = '';
-    QUESTS.forEach((q)=>{
+    QUESTS.forEach(function(q){
       const val = Number(progress[q.id] || 0);
       const pct = Math.max(0, Math.min(100, Math.round((val / q.target) * 100)));
       const done = val >= q.target;
       const isClaimed = !!claimed[q.id];
-      const card = document.createElement('div');
-      card.className = 'wq-card';
+      const cardState = isClaimed ? 'done' : (done ? 'ready' : 'locked');
+      const statusText = isClaimed ? 'Bitti ✓' : (done ? 'Hazır!' : 'Devam');
       var heroBonusHint = '';
       try{
         var s = sel();
         if(s && typeof window.NOVA_HERO_LEVEL !== 'undefined'){
           var hb = window.NOVA_HERO_LEVEL.getQuestBonusDiamonds(s);
-          if(hb > 0) heroBonusHint = '<div class="wq-hero-bonus-hint">🦸 Kahraman bonusu: toplandığında +' + hb + ' 💎 ek</div>';
+          if(hb > 0) heroBonusHint = '<p class="wq-card__hero-hint">🦸 Kahraman bonusu: toplandığında +' + hb + ' 💎 ek</p>';
         }
       }catch(_){}
-      card.innerHTML = '<div class="wq-row"><div class="wq-task">'+q.icon+' '+q.title+'</div><div class="wq-reward">+'+q.reward+' 💎</div></div>' + heroBonusHint +
-        '<div class="wq-progress"><i style="width:'+pct+'%"></i></div>' +
-        '<div class="wq-meta"><span>İlerleme</span><span>'+val+' / '+q.target+'</span></div>';
+      const card = document.createElement('article');
+      card.className = 'wq-card wq-card--' + cardState;
+      card.innerHTML =
+        '<div class="wq-card__top">' +
+          '<span class="wq-card__icon" aria-hidden="true">' + esc(q.icon) + '</span>' +
+          '<div class="wq-card__body">' +
+            '<h3 class="wq-card__title">' + esc(q.title) + '</h3>' +
+            '<span class="wq-card__reward">+' + q.reward + ' 💎</span>' +
+          '</div>' +
+          '<span class="wq-card__status">' + statusText + '</span>' +
+        '</div>' +
+        heroBonusHint +
+        '<div class="wq-card__progress-wrap">' +
+          '<div class="wq-card__progress-meta">' +
+            '<span>İlerleme</span>' +
+            '<strong>' + val + ' / ' + q.target + '</strong>' +
+          '</div>' +
+          '<div class="wq-card__bar"><i style="width:' + pct + '%"></i></div>' +
+        '</div>';
       const btn = document.createElement('button');
-      btn.className = 'wq-claim ' + (isClaimed ? 'done' : (done ? 'ready' : 'locked'));
-      btn.textContent = isClaimed ? 'Toplandı ✅' : (done ? 'Ödülü Topla' : 'Devam Et');
+      btn.type = 'button';
+      btn.className = 'wq-card__claim wq-card__claim--' + (isClaimed ? 'done' : (done ? 'ready' : 'locked'));
+      btn.textContent = isClaimed ? 'Toplandı ✅' : (done ? 'Ödülü Topla 🎉' : 'Devam Et');
       if(!isClaimed && done){
-        btn.addEventListener('click', ()=> claimQuestReward(q.id));
+        btn.addEventListener('click', function(){ claimQuestReward(q.id); });
       } else {
         btn.disabled = true;
       }
@@ -297,6 +303,7 @@
     });
     refreshQuestBadge();
   }
+
   async function refreshQuestBadge(){
     const badge = document.getElementById('quest_badge');
     if(!badge) return;
@@ -305,12 +312,13 @@
     const progress = st.progress || {};
     const claimed = st.claimed || {};
     let ready = 0;
-    QUESTS.forEach((q)=>{
+    QUESTS.forEach(function(q){
       if(Number(progress[q.id]||0) >= q.target && !claimed[q.id]) ready++;
     });
     badge.hidden = ready <= 0;
     badge.textContent = ready > 9 ? '9+' : String(ready);
   }
+
   async function recordQuest(eventType, payload){
     try{
       const d = db(); const s = sel();
@@ -320,10 +328,10 @@
       if(!targets.length) return;
       await ensureWeeklyState(false);
       const updates = [];
-      targets.forEach((q)=>{
+      targets.forEach(function(q){
         if(q.onlyPureSingle && payload.isHomework) return;
         updates.push(
-          d.ref('weeklyMissions/'+s.studentId+'/progress/'+q.id).transaction((cur)=>{
+          d.ref('weeklyMissions/'+s.studentId+'/progress/'+q.id).transaction(function(cur){
             const v = Number(cur||0) + 1;
             return v > q.target ? q.target : v;
           })
@@ -336,6 +344,7 @@
       refreshQuestBadge();
     }catch(e){ console.warn('novaQuestRecord', e); }
   }
+
   function openQuestScreen(){
     ensureQuestUi();
     const pane = document.getElementById('weekly-quest-screen');
@@ -344,11 +353,21 @@
     document.body.style.overflow = 'hidden';
     renderQuestPanel();
   }
+
   function closeQuestScreen(){
     const pane = document.getElementById('weekly-quest-screen');
     if(pane) pane.style.display = 'none';
     document.body.style.overflow = '';
+    try{
+      if (typeof window.novaReturnToMainScreen === 'function') {
+        window.novaReturnToMainScreen({ light: true, skipPerf: true });
+      } else if (typeof window.novaEnsureLoggedInUi === 'function') {
+        window.novaEnsureLoggedInUi({ light: true });
+      }
+      if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
+    }catch(_){}
   }
+
   window.novaQuestRecord = recordQuest;
   document.addEventListener('DOMContentLoaded', function(){
     ensureQuestUi();

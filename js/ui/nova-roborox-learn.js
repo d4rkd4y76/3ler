@@ -125,6 +125,10 @@
   const topicIntroTitle = document.getElementById("roborox-topic-intro-title");
   const topicIntroHint = document.getElementById("roborox-topic-intro-hint");
   const topicIntroCards = document.getElementById("roborox-topic-intro-cards");
+  const readerNav = document.getElementById("roborox-reader-nav");
+  const readerNavLabel = document.getElementById("roborox-reader-nav-label");
+  const readerNavPrev = document.getElementById("roborox-reader-nav-prev");
+  const readerNavNext = document.getElementById("roborox-reader-nav-next");
 
   const INTRO_MIN_MS = 1100;
   const INTRO_MIN_PERF_MS = 580;
@@ -143,6 +147,7 @@
   let introActive = false;
   let readerReady = false;
   let loadToken = 0;
+  let directOpenMode = null;
 
   function lockScroll(on) {
     document.body.style.overflow = on ? "hidden" : "";
@@ -215,6 +220,78 @@
     }
   }
 
+  function collectPlaybackVideos(topic, section) {
+    if (section && section.videos && section.videos.length) {
+      return section.videos.slice();
+    }
+    if (directOpenMode && directOpenMode.flattenSections && topicUsesSections(topic)) {
+      var out = [];
+      (topic.sections || []).forEach(function (s) {
+        if (s.active !== false && s.videos && s.videos.length) {
+          out = out.concat(s.videos);
+        }
+      });
+      if (out.length) return out;
+    }
+    if (topic.videos && topic.videos.length) return topic.videos.slice();
+    return [];
+  }
+
+  function updateReaderNav() {
+    if (!readerNav) return;
+    var total = videos.length;
+    if (total < 1) {
+      readerNav.hidden = true;
+      readerNav.setAttribute("hidden", "");
+      return;
+    }
+    readerNav.hidden = false;
+    readerNav.removeAttribute("hidden");
+    if (readerNavLabel) {
+      readerNavLabel.textContent = "Video " + (videoIndex + 1) + " / " + total;
+    }
+    if (readerNavPrev) {
+      readerNavPrev.disabled = videoIndex <= 0;
+      readerNavPrev.classList.toggle("is-passive", videoIndex <= 0);
+    }
+    if (readerNavNext) {
+      var noNext = videoIndex >= total - 1;
+      readerNavNext.disabled = noNext;
+      readerNavNext.classList.toggle("is-passive", noNext);
+      readerNavNext.textContent = "Sonraki Video →";
+      readerNavNext.setAttribute("aria-disabled", noNext ? "true" : "false");
+    }
+  }
+
+  function dismissAllKaptanKabukUi() {
+    introActive = false;
+    directOpenMode = null;
+    hideTopicIntro();
+    hideTopicsModal();
+    loadToken += 1;
+    if (reader) {
+      reader.classList.remove("open", "is-ready", "is-opening", "is-open-ready");
+      reader.setAttribute("aria-hidden", "true");
+      reader.hidden = true;
+    }
+    hideAllPlayers();
+    setReaderLoading(false);
+    setExitVisible(false);
+    if (readerNav) {
+      readerNav.hidden = true;
+      readerNav.setAttribute("hidden", "");
+    }
+    videos = [];
+    videoIndex = 0;
+    setReaderBodyLock(false);
+    lockScroll(false);
+    viewMode = "lessons";
+    selectedLesson = null;
+    selectedTopic = null;
+    sectionsCache = [];
+    setBackVisible(false);
+  }
+
   function hideTopicIntro() {
     if (!topicIntro) return;
     topicIntro.classList.remove("open", "is-enter", "is-exit");
@@ -223,12 +300,7 @@
   }
 
   function preloadFirstVideo(topic, section, cb) {
-    var list = [];
-    if (section && section.videos && section.videos.length) {
-      list = section.videos;
-    } else if (topic && topic.videos) {
-      list = topic.videos;
-    }
+    var list = collectPlaybackVideos(topic, section);
     if (!list.length) {
       cb(false);
       return;
@@ -265,9 +337,15 @@
   }
 
   function playTopicIntro(topic, section) {
-    var playVideos = section && section.videos && section.videos.length ? section.videos : topic && topic.videos;
+    var playVideos = collectPlaybackVideos(topic, section);
     var playCount = playVideos ? playVideos.length : 0;
-    if (!topic || !playCount || introActive) return;
+    if (!topic || !playCount) {
+      if (typeof window.showAlert === "function") {
+        window.showAlert("Bu konuda henüz video eklenmemiş.");
+      }
+      return;
+    }
+    if (introActive) return;
 
     if (!topicIntro || !topicIntroTitle || prefersReducedMotion()) {
       hideTopicsModal();
@@ -288,9 +366,7 @@
 
     topicIntroTitle.textContent = section ? section.title : topic.title;
     if (topicIntroCards) {
-      topicIntroCards.textContent = section
-        ? videoCountLabel(playCount)
-        : topicContentLabel(topic);
+      topicIntroCards.textContent = videoCountLabel(playCount);
     }
     if (topicIntroHint) topicIntroHint.textContent = "Ders videosu hazırlanıyor…";
     topicIntro.hidden = false;
@@ -469,6 +545,7 @@
   function revealReaderUi() {
     setReaderLoading(false);
     setReaderReady(true);
+    updateReaderNav();
   }
 
   function playVideoAt(index) {
@@ -526,11 +603,7 @@
       .then(function () {
         if (abort()) return;
         revealReaderUi();
-        readerVideo.onended = function () {
-          if (videoIndex < videos.length - 1) {
-            playVideoAt(videoIndex + 1);
-          }
-        };
+        readerVideo.onended = null;
         tryPlayVideo(readerVideo);
       })
       .catch(function () {
@@ -601,6 +674,19 @@
   }
 
   function closeTopicsModal() {
+    if (directOpenMode && directOpenMode.kind === "sections") {
+      var cb = directOpenMode.onClose;
+      directOpenMode = null;
+      hideTopicsModal();
+      viewMode = "lessons";
+      selectedLesson = null;
+      selectedTopic = null;
+      sectionsCache = [];
+      setBackVisible(false);
+      lockScroll(false);
+      if (typeof cb === "function") cb();
+      return;
+    }
     hideTopicsModal();
     viewMode = "lessons";
     selectedLesson = null;
@@ -735,6 +821,175 @@
     renderLessons();
   }
 
+  async function fetchRoboroxRawAtPath(path) {
+    const database = db();
+    if (!database) return {};
+    var raw = null;
+    if (typeof window.novaCdnFetchByPath === "function") {
+      const fromCdn = await window.novaCdnFetchByPath(path, 15 * 60 * 1000);
+      if (fromCdn !== undefined) raw = fromCdn;
+    }
+    if (raw === null) {
+      const snap = await database.ref(path).get();
+      raw = snap.exists() ? snap.val() || {} : {};
+    }
+    return raw;
+  }
+
+  function roboroxPathForHeading(headingId) {
+    if (!R || !headingId) return null;
+    return R.roboroxLearnPath({ classId: String(headingId), className: String(headingId) });
+  }
+
+  function resolveRoboroxTopicFromRaw(raw, lessonId, topicId) {
+    if (!R || !R.parseSnapshot) return null;
+    const parsed = R.parseSnapshot(raw);
+    if (parsed.mode === "lessons") {
+      if (lessonId) {
+        const lesson = parsed.lessons.find(function (l) {
+          return l.id === lessonId;
+        });
+        if (!lesson) return null;
+        const topic = lesson.topics.find(function (t) {
+          return t.id === topicId;
+        });
+        if (!topic) return null;
+        return { lesson: lesson, topic: topic };
+      }
+      for (var li = 0; li < parsed.lessons.length; li++) {
+        var les = parsed.lessons[li];
+        var top = les.topics.find(function (t) {
+          return t.id === topicId;
+        });
+        if (top) return { lesson: les, topic: top };
+      }
+      return null;
+    }
+    const topic = parsed.flatTopics.find(function (t) {
+      return t.id === topicId;
+    });
+    return topic ? { lesson: null, topic: topic } : null;
+  }
+
+  async function resolveRoboroxTopic(lessonId, topicId, customPath) {
+    if (!topicId) return null;
+    var paths = [];
+    if (customPath) paths.push(customPath);
+    try {
+      var studentPath = roboroxLearnPath();
+      if (studentPath && paths.indexOf(studentPath) < 0) paths.push(studentPath);
+    } catch (_) {}
+    if (paths.indexOf("roboroxLearn") < 0) paths.push("roboroxLearn");
+    for (var pi = 0; pi < paths.length; pi++) {
+      try {
+        var raw = await fetchRoboroxRawAtPath(paths[pi]);
+        var found = resolveRoboroxTopicFromRaw(raw, lessonId, topicId);
+        if (found) return found;
+      } catch (_) {}
+    }
+    return null;
+  }
+
+  async function novaFetchKaptanKabukLink(headingId, championLessonId, championTopicId) {
+    const database = db();
+    if (!database || !headingId || !championLessonId || !championTopicId) return null;
+    try {
+      const snap = await database
+        .ref(
+          "championData/headings/" +
+            headingId +
+            "/lessons/" +
+            championLessonId +
+            "/topics/" +
+            championTopicId +
+            "/kaptanKabuk"
+        )
+        .get();
+      if (!snap.exists()) return null;
+      const v = snap.val() || {};
+      const lessonId = String(v.lessonId || v.roboroxLessonId || "").trim();
+      const topicId = String(v.topicId || v.roboroxTopicId || "").trim();
+      if (!topicId) return null;
+      return { lessonId: lessonId, topicId: topicId };
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function openDirectSectionsModal(topic, lesson, onClose) {
+    directOpenMode = { onClose: onClose, kind: "sections" };
+    selectedTopic = topic;
+    selectedLesson = lesson;
+    viewMode = "sections";
+    sectionsCache = topic.sections.slice();
+    if (topicsSubtitle) topicsSubtitle.textContent = topic.title;
+    topicsModal.hidden = false;
+    topicsModal.classList.add("open");
+    topicsModal.setAttribute("aria-hidden", "false");
+    renderSections();
+    setBackVisible(false);
+    lockScroll(true);
+  }
+
+  async function novaOpenKaptanKabukTopic(options) {
+    options = options || {};
+    const lessonId = String(options.lessonId || "").trim();
+    const topicId = String(options.topicId || "").trim();
+    const onClose = typeof options.onClose === "function" ? options.onClose : null;
+    if (!topicId) {
+      if (typeof window.showAlert === "function") {
+        window.showAlert("Kaptan Kabuk bağlantısı eksik.");
+      }
+      return false;
+    }
+    const found = await resolveRoboroxTopic(lessonId, topicId, options.roboroxPath || null);
+    if (!found || !found.topic) {
+      if (typeof window.showAlert === "function") {
+        window.showAlert("Kaptan Kabuk anlatımı bulunamadı. Admin panelinden kontrol edin.");
+      }
+      return false;
+    }
+    const topic = found.topic;
+    directOpenMode = { onClose: onClose, kind: "reader", flattenSections: true };
+    if (options.sectionId && topicUsesSections(topic)) {
+      const section = topic.sections.find(function (s) {
+        return s.id === options.sectionId;
+      });
+      if (section) {
+        directOpenMode.flattenSections = false;
+        playTopicIntro(topic, section);
+        return true;
+      }
+    }
+    var playlist = collectPlaybackVideos(topic, null);
+    if (!playlist.length) {
+      if (typeof window.showAlert === "function") {
+        window.showAlert("Bu konuda henüz video eklenmemiş.");
+      }
+      directOpenMode = null;
+      return false;
+    }
+    playTopicIntro(topic, null);
+    return true;
+  }
+
+  async function novaOpenKaptanKabukForChampionTopic(options) {
+    options = options || {};
+    const link = await novaFetchKaptanKabukLink(options.headingId, options.lessonId, options.topicId);
+    if (!link || !link.topicId) return false;
+    var roboroxPath = options.roboroxPath || null;
+    if (!roboroxPath && options.headingId) {
+      roboroxPath = roboroxPathForHeading(options.headingId);
+    }
+    return novaOpenKaptanKabukTopic({
+      lessonId: link.lessonId,
+      topicId: link.topicId,
+      onClose: options.onClose,
+      sectionId: options.sectionId,
+      roboroxPath: roboroxPath,
+    });
+  }
+
   async function loadRoboroxContent() {
     if (!topicsList) return;
     topicsList.innerHTML = '<p class="roborox-topics-empty">Yükleniyor…</p>';
@@ -749,8 +1004,8 @@
       return;
     }
     try {
-      const snap = await database.ref(roboroxLearnPath()).get();
-      const raw = snap.exists() ? snap.val() || {} : {};
+      const path = roboroxLearnPath();
+      const raw = await fetchRoboroxRawAtPath(path);
       const parsed = R.parseSnapshot(raw);
 
       if (parsed.mode === "lessons" && parsed.lessons.length) {
@@ -787,12 +1042,7 @@
 
   function openReader(topic, section, withIntroHandoff) {
     if (!reader || !topic) return;
-    var playVideos =
-      section && section.videos && section.videos.length
-        ? section.videos
-        : topic.videos && topic.videos.length
-          ? topic.videos
-          : null;
+    var playVideos = collectPlaybackVideos(topic, section);
     if (!playVideos || !playVideos.length) return;
 
     ensureReaderPortal();
@@ -837,6 +1087,19 @@
     videos = [];
     videoIndex = 0;
     setReaderBodyLock(false);
+    if (directOpenMode) {
+      var cb = directOpenMode.onClose;
+      directOpenMode = null;
+      hideTopicsModal();
+      viewMode = "lessons";
+      selectedLesson = null;
+      selectedTopic = null;
+      sectionsCache = [];
+      setBackVisible(false);
+      lockScroll(false);
+      if (typeof cb === "function") cb();
+      return;
+    }
     restoreTopicsModal();
   }
 
@@ -907,7 +1170,10 @@
         const section = sectionsCache.find(function (s) {
           return s.id === sid;
         });
-        if (section && selectedTopic) playTopicIntro(selectedTopic, section);
+        if (section && selectedTopic) {
+          if (directOpenMode) directOpenMode.kind = "reader";
+          playTopicIntro(selectedTopic, section);
+        }
         return;
       }
       const btn = e.target.closest("[data-topic-id]");
@@ -927,6 +1193,17 @@
 
   if (readerExit) {
     readerExit.addEventListener("click", closeReader);
+  }
+
+  if (readerNavNext) {
+    readerNavNext.addEventListener("click", function () {
+      if (videoIndex < videos.length - 1) playVideoAt(videoIndex + 1);
+    });
+  }
+  if (readerNavPrev) {
+    readerNavPrev.addEventListener("click", function () {
+      if (videoIndex > 0) playVideoAt(videoIndex - 1);
+    });
   }
 
   if (reader) {
@@ -959,4 +1236,8 @@
   window.novaOpenRoboroxTopicsModal = openTopicsModal;
   window.novaOpenLearnHubModal = openLearnHub;
   window.novaOpenKaptanKabuk = openTopicsModal;
+  window.novaFetchKaptanKabukLink = novaFetchKaptanKabukLink;
+  window.novaOpenKaptanKabukTopic = novaOpenKaptanKabukTopic;
+  window.novaOpenKaptanKabukForChampionTopic = novaOpenKaptanKabukForChampionTopic;
+  window.novaDismissKaptanKabukOverlays = dismissAllKaptanKabukUi;
 })();

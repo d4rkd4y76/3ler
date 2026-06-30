@@ -48,6 +48,8 @@
 
     let fullAttached = false;
     let didSeedSummary = false;
+    let hwPollId = null;
+
     function attachFullListener(){
       if (fullAttached) return;
       fullAttached = true;
@@ -68,30 +70,48 @@
       });
     }
 
-    sumRef.on('value', (snap)=>{
-      try{
-        if (snap && snap.exists && snap.exists()){
-          const raw = snap.val();
-          if (raw !== null && raw !== '' && Number.isFinite(Number(raw))){
-            if (fullAttached){
-              fullRef.off('value');
-              fullAttached = false;
+    function refreshHomeworkBadge(){
+      sumRef.once('value').then(function(snap){
+        try{
+          if (snap && snap.exists && snap.exists()){
+            const raw = snap.val();
+            if (raw !== null && raw !== '' && Number.isFinite(Number(raw))){
+              if (fullAttached){
+                fullRef.off('value');
+                fullAttached = false;
+              }
+              applyPendingCount(Number(raw));
+              return;
             }
-            applyPendingCount(Number(raw));
-            return;
           }
+          attachFullListener();
+        }catch(_){
+          attachFullListener();
         }
+      }).catch(function(err){
+        try{
+          console.warn('studentHomeworkSummary okunamadı (kurallar?), tam ödev ağacına geçiliyor:', err && err.message ? err.message : err);
+        }catch(_){}
         attachFullListener();
-      }catch(_){
-        attachFullListener();
-      }
-    }, (err)=>{
-      try{
-        console.warn('studentHomeworkSummary dinlenemedi (kurallar?), tam ödev ağacına geçiliyor:', err && err.message ? err.message : err);
-        sumRef.off('value');
-      }catch(_){}
-      attachFullListener();
-    });
+      });
+    }
+
+    function startHomeworkPoll(){
+      if (hwPollId) return;
+      refreshHomeworkBadge();
+      hwPollId = setInterval(function(){
+        try{
+          const ms = document.getElementById('main-screen');
+          if (!ms || ms.getAttribute('hidden') !== null) return;
+          const d = window.getComputedStyle(ms).display;
+          if (d === 'none' || d === '') return;
+        }catch(_){ return; }
+        if (fullAttached) return;
+        refreshHomeworkBadge();
+      }, 90000);
+    }
+
+    startHomeworkPoll();
   }
   // Observe main-screen visibility toggles
   const io = new IntersectionObserver((entries)=>{
@@ -123,13 +143,151 @@
   const hwTitleEl = document.getElementById('hw_title');
   const hwDescEl = document.getElementById('hw_desc');
   const hwMetaEl = document.getElementById('hw_meta');
+  const hwDateEl = document.getElementById('hw_date');
+  const hwTopicCard = document.getElementById('hw_topic_card');
+  const hwTopicEl = document.getElementById('hw_topic');
+  const hwStatsEl = document.getElementById('hw_stats');
+  const hwSubtitleEl = document.getElementById('hw_subtitle');
+  const hwSubjectIconEl = document.getElementById('hw_subject_icon');
+  const hwStatusChip = document.getElementById('hw_status_chip');
+  const hwTipBox = document.getElementById('hw_tip');
+  const hwTipEl = document.querySelector('#hw_tip .hw-studio__tip-text');
   const hwVideoBtn = document.getElementById('hw_video');
   const hwStartBtn = document.getElementById('hw_start');
+  const hwStartLabel = hwStartBtn ? hwStartBtn.querySelector('.hw-btn__label') : null;
   const hwScreen = document.getElementById('homework-screen');
   const hwClose = document.getElementById('hw_close');
   let selectedHw = null;
   let hwCache = {};
   let hwStatusById = {};
+  const hwLabelCache = {};
+
+  function novaCoerceHomeworkPaths(d) {
+    const raw = d || {};
+    const h = raw.headingId || raw.heading_id || raw.classHeadingId || raw.heading;
+    const l = raw.lessonId || raw.lesson_id || raw.subjectId || raw.lesson;
+    const t = raw.topicId || raw.topic_id || raw.topic;
+    return {
+      h: (h != null && h !== '') ? String(h) : '',
+      l: (l != null && l !== '') ? String(l) : '',
+      t: (t != null && t !== '') ? String(t) : ''
+    };
+  }
+
+  async function hwFetchChampionName(type, h, l, t){
+    const key = type + '|' + h + '|' + l + '|' + (t || '');
+    if (Object.prototype.hasOwnProperty.call(hwLabelCache, key)) return hwLabelCache[key];
+    const d = db();
+    if (!d || !h || !l) { hwLabelCache[key] = ''; return ''; }
+    let path = '';
+    if (type === 'lesson') path = 'championData/headings/' + h + '/lessons/' + l + '/name';
+    else if (type === 'topic' && t) path = 'championData/headings/' + h + '/lessons/' + l + '/topics/' + t + '/name';
+    else { hwLabelCache[key] = ''; return ''; }
+    try {
+      const snap = await d.ref(path).get();
+      const val = snap.exists() ? String(snap.val() || '').trim() : '';
+      hwLabelCache[key] = val;
+      return val;
+    } catch (_) {
+      hwLabelCache[key] = '';
+      return '';
+    }
+  }
+
+  async function hwEnrichDetail(d){
+    if (!d || typeof d !== 'object') return d || {};
+    const paths = novaCoerceHomeworkPaths(d);
+    if (!paths.h || !paths.l || !paths.t) return d;
+    const lessonName = d.lessonName || await hwFetchChampionName('lesson', paths.h, paths.l);
+    const topicName = d.topicName || await hwFetchChampionName('topic', paths.h, paths.l, paths.t);
+    return Object.assign({}, d, { lessonName: lessonName, topicName: topicName });
+  }
+
+  function hwTeacherNote(d){
+    return String((d && d.description) || '').trim();
+  }
+
+  function hwSetTeacherNote(note){
+    const text = String(note || '').trim();
+    if (hwTipBox) hwTipBox.hidden = !text;
+    if (hwTipEl) hwTipEl.textContent = text;
+  }
+
+  function hwEsc(s){
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function hwSubjectIcon(d){
+    const t = ((d && d.lessonName) || '') + ' ' + ((d && d.title) || '') + ' ' + ((d && d.topicName) || '');
+    const x = t.toLocaleLowerCase('tr-TR');
+    if (/fen|bilim|ışık|isik|ses|madde|canl/.test(x)) return '🔬';
+    if (/matemat|sayı|sayi|kesir|ölç|olc|geometri/.test(x)) return '🔢';
+    if (/türk|turk|okuma|yazma|dil|metin|anlama/.test(x)) return '📖';
+    if (/sosyal|tarih|harita|vatandaş|vatandas|coğraf|cograf/.test(x)) return '🌍';
+    if (/ingiliz|english|foreign/.test(x)) return '🇬🇧';
+    if (/müzik|muzik|resim|sanat/.test(x)) return '🎨';
+    return '📝';
+  }
+
+  function hwFormatDate(ts){
+    try{
+      return new Date(Number(ts) || Date.now()).toLocaleString('tr-TR', {
+        day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'
+      });
+    }catch(_){
+      return '—';
+    }
+  }
+
+  function hwListMessage(text){
+    hwListEl.innerHTML = '';
+    const li = document.createElement('li');
+    li.className = 'hw-studio__item hw-studio__item--message';
+    li.textContent = text;
+    hwListEl.appendChild(li);
+    if (hwStatsEl) hwStatsEl.hidden = true;
+  }
+
+  function hwRenderStats(items){
+    if (!hwStatsEl) return;
+    const pending = items.filter(function(x){ return x.status !== 'completed'; }).length;
+    const done = items.filter(function(x){ return x.status === 'completed'; }).length;
+    hwStatsEl.hidden = false;
+    hwStatsEl.innerHTML =
+      '<div class="hw-studio__stat hw-studio__stat--pending"><strong>' + pending + '</strong><span>Bekleyen</span></div>' +
+      '<div class="hw-studio__stat hw-studio__stat--done"><strong>' + done + '</strong><span>Tamamlanan</span></div>';
+    if (hwSubtitleEl){
+      hwSubtitleEl.textContent = pending
+        ? (pending + ' ödev seni bekliyor')
+        : (done ? 'Tüm ödevlerin tamamlandı 🎉' : 'Öğretmeninin verdiği görevler burada');
+    }
+  }
+
+  function hwSetStartLabel(text, doneMode){
+    if (hwStartLabel) hwStartLabel.textContent = text;
+    else if (hwStartBtn) hwStartBtn.textContent = text;
+    if (hwStartBtn){
+      hwStartBtn.classList.toggle('is-done', !!doneMode);
+    }
+  }
+
+  function hwShowEmptyDetail(){
+    if (hwSubjectIconEl) hwSubjectIconEl.textContent = '📭';
+    if (hwStatusChip){
+      hwStatusChip.textContent = 'Boş';
+      hwStatusChip.className = 'hw-studio__status-chip hw-studio__status-chip--pending';
+    }
+    hwTitleEl.textContent = 'Henüz ödev yok';
+    hwDescEl.textContent = 'Öğretmenin yeni ödev verdiğinde burada görünecek. Beklerken ders tekrarı yapabilirsin.';
+    if (hwMetaEl) hwMetaEl.textContent = '—';
+    if (hwDateEl) hwDateEl.textContent = '—';
+    if (hwTopicCard) hwTopicCard.hidden = true;
+    hwSetTeacherNote('');
+    if (hwDescEl) hwDescEl.hidden = true;
+    hwSetStartLabel('Ödev yok', false);
+    if (hwStartBtn) hwStartBtn.disabled = true;
+    if (hwVideoBtn) hwVideoBtn.disabled = true;
+  }
 
   function db(){ try{ return firebase.database(); }catch(_){ return null; } }
   function sid(){ try{ return selectedStudent && selectedStudent.studentId; }catch(_){ return null; } }
@@ -140,27 +298,42 @@
     loadStudentHomeworks();
   }
   hwClose.addEventListener('click', ()=>{
+    try {
+      if (typeof window.novaDismissKaptanKabukOverlays === 'function') {
+        window.novaDismissKaptanKabukOverlays();
+      }
+    } catch (_) {}
     hwScreen.style.display = 'none';
     document.body.style.overflow = '';
+    document.body.classList.remove('roborox-reader-open');
+    try { document.documentElement.classList.remove('roborox-reader-open'); } catch (_) {}
     try{
-      if (typeof window.novaEnsureLoggedInUi === 'function') window.novaEnsureLoggedInUi();
+      if (typeof window.novaReturnToMainScreen === 'function') {
+        window.novaReturnToMainScreen({ light: true, skipPerf: true });
+      } else if (typeof window.novaEnsureLoggedInUi === 'function') {
+        window.novaEnsureLoggedInUi();
+      }
       if (typeof window.novaFixHudFabLayout === 'function') window.novaFixHudFabLayout();
     }catch(_){}
   });
 
   async function loadStudentHomeworks(){
     try{
-      hwListEl.innerHTML = '<li>Yükleniyor…</li>';
-      const s = sid(); const d = db(); if(!s||!d){ hwListEl.innerHTML='<li>Giriş yapınız.</li>'; return; }
+      hwListMessage('Yükleniyor…');
+      const s = sid(); const d = db();
+      if(!s||!d){
+        hwListMessage('Giriş yapınız.');
+        hwShowEmptyDetail();
+        return;
+      }
       const snap = await d.ref('studentHomework/'+s).get();
       const list = snap.exists()? snap.val() : {};
       const rawItems = Object.entries(list).map(([hwId, info])=>({hwId, status: info?.status||'assigned', assignedAt: info?.assignedAt||0}));
       if(!rawItems.length){
         hwCache = {};
         hwStatusById = {};
-        hwListEl.innerHTML = '<li>Şu an ödev yok.</li>';
-        hwTitleEl.textContent='Ödev yok';
-        hwDescEl.textContent='Yeni ödev verildiğinde burada göreceksiniz.';
+        hwListMessage('Şu an ödev yok 🎈');
+        hwShowEmptyDetail();
         return;
       }
 
@@ -193,29 +366,50 @@
         return acc;
       }, {});
 
+      await Promise.all(items.map(async function(it){
+        details[it.hwId] = await hwEnrichDetail(details[it.hwId]);
+      }));
+      hwCache = details;
+
       if (!items.length) {
-        hwListEl.innerHTML = '<li>Şu an ödev yok.</li>';
-        hwTitleEl.textContent = 'Ödev yok';
-        hwDescEl.textContent = 'Yeni ödev verildiğinde burada göreceksiniz.';
+        hwListMessage('Şu an ödev yok 🎈');
+        hwShowEmptyDetail();
         return;
       }
 
+      items.sort(function(a, b){
+        const ac = a.status === 'completed' ? 1 : 0;
+        const bc = b.status === 'completed' ? 1 : 0;
+        if (ac !== bc) return ac - bc;
+        return Number(b.assignedAt || 0) - Number(a.assignedAt || 0);
+      });
+
+      hwRenderStats(items);
       hwListEl.innerHTML = '';
-      items.forEach(it=>{
-        const hw = details[it.hwId]||{};
+      items.forEach(function(it){
+        const hw = details[it.hwId] || {};
+        const done = it.status === 'completed';
         const li = document.createElement('li');
         li.setAttribute('data-id', it.hwId);
-        const badge = it.status==='completed' ? '✅' : (it.status==='assigned' ? '🟡' : '⏳');
-        li.innerHTML = '<div><div style="font-weight:700">'+(hw.title||'Ödev')+'</div><div class="hw-meta">'+(new Date(hw.createdAt||Date.now())).toLocaleString('tr-TR')+'</div></div><div>'+badge+'</div>';
-        li.addEventListener('click', ()=> selectHw(it.hwId, it.status));
+        li.className = 'hw-studio__item' + (done ? ' is-done' : '');
+        li.innerHTML =
+          '<span class="hw-studio__item-icon" aria-hidden="true">' + hwSubjectIcon(hw) + '</span>' +
+          '<span class="hw-studio__item-body">' +
+            '<span class="hw-studio__item-title">' + hwEsc(hw.title || 'Ödev') + '</span>' +
+            '<span class="hw-studio__item-meta">' + hwEsc(hwFormatDate(hw.createdAt || it.assignedAt)) + '</span>' +
+          '</span>' +
+          '<span class="hw-studio__item-badge ' + (done ? 'hw-studio__item-badge--done' : 'hw-studio__item-badge--pending') + '">' +
+            (done ? 'Bitti' : 'Bekliyor') +
+          '</span>';
+        li.addEventListener('click', function(){ selectHw(it.hwId, it.status); });
         hwListEl.appendChild(li);
       });
 
-      const firstPending = items.find(x=>x.status!=='completed') || items[0];
+      const firstPending = items.find(function(x){ return x.status !== 'completed'; }) || items[0];
       selectHw(firstPending.hwId, firstPending.status);
     }catch(e){
       console.warn('loadStudentHomeworks', e);
-      hwListEl.innerHTML = '<li>Ödevler alınamadı.</li>';
+      hwListMessage('Ödevler alınamadı.');
     }
   }
 
@@ -223,8 +417,17 @@
     const effectiveStatus = status || hwStatusById[hwId] || 'assigned';
     selectedHw = { id: hwId, detail: hwCache[hwId]||{}, status: effectiveStatus };
     const d = selectedHw.detail;
+    const done = effectiveStatus === 'completed';
+
+    if (hwSubjectIconEl) hwSubjectIconEl.textContent = hwSubjectIcon(d);
+    if (hwStatusChip){
+      hwStatusChip.textContent = done ? 'Tamamlandı ✓' : 'Yapılacak';
+      hwStatusChip.className = 'hw-studio__status-chip ' + (done ? 'hw-studio__status-chip--done' : 'hw-studio__status-chip--pending');
+    }
+
     hwTitleEl.textContent = d.title || 'Ödev';
-    hwDescEl.textContent = d.description || '';
+    if (hwDescEl) hwDescEl.hidden = true;
+
     const qMeta = (function () {
       const ids = d.questionIds;
       if (ids && typeof ids === 'object') {
@@ -233,177 +436,67 @@
       }
       return d.questionCount || 10;
     })();
-    hwMetaEl.textContent = 'Soru sayısı: ' + qMeta + (d.questionIds ? ' (sabit set)' : '');
-    document.querySelectorAll('#hw_list li').forEach(li=> li.classList.toggle('active', li.getAttribute('data-id')===hwId));
+    if (hwMetaEl) hwMetaEl.textContent = String(qMeta) + ' soru';
+    if (hwDateEl) hwDateEl.textContent = hwFormatDate(d.createdAt);
 
-    // Reuse already-loaded status to avoid an extra DB read on every selection.
-    const btn = hwStartBtn;
-    if (btn){
-      if (effectiveStatus === 'completed'){
-        btn.textContent = 'Ödev Tamamlandı';
-        btn.disabled = false; // keep click to show warning
-      }else{
-        btn.textContent = 'Ödevi Başlat';
-        btn.disabled = false;
+    const topicParts = [d.lessonName, d.topicName].filter(Boolean);
+    if (hwTopicCard && hwTopicEl){
+      if (topicParts.length){
+        hwTopicCard.hidden = false;
+        hwTopicEl.textContent = topicParts.join(' · ');
+      } else {
+        hwTopicCard.hidden = true;
       }
     }
 
+    hwSetTeacherNote(hwTeacherNote(d));
+
+    document.querySelectorAll('#hw_list .hw-studio__item').forEach(function(li){
+      li.classList.toggle('is-active', li.getAttribute('data-id') === hwId);
+    });
+
+    if (hwVideoBtn) hwVideoBtn.disabled = false;
+    if (hwStartBtn) hwStartBtn.disabled = false;
+    if (done){
+      hwSetStartLabel('Tamamlandı', true);
+    } else {
+      hwSetStartLabel('Ödevi Başlat', false);
+    }
   }
 
-  // Video open
-  
+  // Kaptan Kabuk anlatım
 hwVideoBtn.addEventListener('click', async ()=>{
-  if(!selectedHw) return;
-  const d = selectedHw.detail||{};
-
-  // Helper: normalize to YouTube /embed/ URL if possible
-  function toEmbed(u){
-    if (!u || typeof u !== 'string') return null;
-    let s = u.trim();
-    if (s.includes('watch?v=')) s = s.replace('watch?v=', 'embed/');
-    else if (s.includes('youtu.be/')) {
-      const vid = s.split('youtu.be/')[1].split(/[?&#]/)[0];
-      s = 'https://www.youtube.com/embed/' + vid;
-    }
-    if (!/^https:\/\/(www\.)?youtube\.com\/embed\//.test(s) && !/^https:\/\/youtube\.com\/embed\//.test(s) &&
-        !/^https:\/\/(www\.)?youtube-nocookie\.com\/embed\//.test(s)) return null;
-    if (typeof window.novaNormalizeYouTubeEmbed === 'function') s = window.novaNormalizeYouTubeEmbed(s) || s;
-    return s;
-  }
-
-  // Helper: ensure we have an in-app viewer; prefer existing "lesson video screen", otherwise build overlay
-  function openInApp(embedUrl, breadcrumbParts){
-    // Try the shared lesson video screen first (same UI as single player)
-    try {
-      const title = document.getElementById('lesson-video-title');
-      if (title) title.textContent = 'Ders Videosu';
-      const crumb = document.getElementById('lesson-video-breadcrumb');
-      if (crumb) crumb.textContent = (breadcrumbParts && breadcrumbParts.length) ? breadcrumbParts.join(' • ') : 'Ders & Konu';
-
-      if (typeof videoIframe !== 'undefined' && videoIframe && typeof showOnly === 'function' && typeof videoScreen !== 'undefined') {
-        try { videoIframe.referrerPolicy = 'strict-origin-when-cross-origin'; } catch(_){}
-        videoIframe.src = embedUrl;
-        try { if (typeof window.novaSetLessonVideoYoutubeFallback === 'function') window.novaSetLessonVideoYoutubeFallback(embedUrl); } catch(_){}
-        try { window.scrollTo({top:0, behavior:'auto'}); } catch(_){}
-        showOnly(videoScreen);
-        return true;
-      }
-    } catch(_) {}
-
-    // If shared screen infra isn't present, build a lightweight overlay viewer inside the app
-    let overlay = document.getElementById('nova-video-overlay');
-    if (!overlay){
-      overlay = document.createElement('div');
-      overlay.id = 'nova-video-overlay';
-      overlay.setAttribute('role','dialog');
-      overlay.setAttribute('aria-modal','true');
-      overlay.style.position = 'fixed';
-      overlay.style.inset = '0';
-      overlay.style.background = 'rgba(0,0,0,.8)';
-      overlay.style.zIndex = '9999';
-      overlay.style.display = 'flex';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.padding = '2rem';
-
-      const wrap = document.createElement('div');
-      wrap.style.width = 'min(92vw, 1200px)';
-      wrap.style.aspectRatio = '16 / 9';
-      wrap.style.background = '#000';
-      wrap.style.position = 'relative';
-      wrap.style.borderRadius = '12px';
-      wrap.style.boxShadow = '0 10px 40px rgba(0,0,0,.5)';
-      wrap.style.overflow = 'hidden';
-
-      const btn = document.createElement('button');
-      btn.textContent = '✕';
-      btn.setAttribute('aria-label','Kapat');
-      btn.style.position = 'absolute';
-      btn.style.top = '8px';
-      btn.style.right = '10px';
-      btn.style.fontSize = '20px';
-      btn.style.lineHeight = '1';
-      btn.style.padding = '6px 10px';
-      btn.style.border = 'none';
-      btn.style.borderRadius = '8px';
-      btn.style.cursor = 'pointer';
-      btn.style.background = 'rgba(255,255,255,.85)';
-      btn.style.backdropFilter = 'blur(6px)';
-      btn.addEventListener('click', ()=>{
-        try { overlay.remove(); } catch(_){}
-      });
-
-      const iframe = document.createElement('iframe');
-      iframe.id = 'nova-video-iframe';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.allowFullscreen = true;
-      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.border = '0';
-
-      wrap.appendChild(iframe);
-      wrap.appendChild(btn);
-      overlay.appendChild(wrap);
-      document.body.appendChild(overlay);
-    }
-    const iframe = overlay.querySelector('iframe#nova-video-iframe');
-    if (iframe) iframe.src = embedUrl;
-    overlay.style.display = 'flex';
-    try { window.scrollTo({top:0, behavior:'auto'}); } catch(_){}
-    return true;
-  }
-
-  // 1) Prefer admin override
-  if (d.videoOverride){
-    const embed = toEmbed(d.videoOverride);
-    if (embed){
-      const parts = [];
-      if (d.headingName) parts.push(d.headingName);
-      if (d.lessonName) parts.push(d.lessonName);
-      if (d.topicName) parts.push(d.topicName);
-      openInApp(embed, parts);
+  try {
+    if(!selectedHw) return;
+    const d = selectedHw.detail||{};
+    const paths = novaCoerceHomeworkPaths(d);
+    if (!paths.h || !paths.l || !paths.t) {
+      await showAlert('Bu ödev kaydında sınıf/ders/konu bilgisi eksik.');
       return;
     }
-    console.warn('videoOverride provided but not a valid YouTube URL; falling back to resolver.');
-  }
-
-  // 2) Fallback to the same resolver as single-player (stays in-app)
-  try{
-    window.__novaSelection__ = Object.assign({}, window.__novaSelection__||{}, {
-      classId: d.headingId||'',
-      subjectId: d.lessonId||'',
-      topicId: d.topicId||'',
-    });
-    if (typeof openVideo === 'function') {
-      openVideo(); // expected to use shared video screen
-    } else {
-      // minimal in-app fallback: if resolver publishes a custom event with a URL, capture it
-      const handler = (ev)=>{
-        if (!ev || !ev.detail || !ev.detail.url) return;
-        const embed = toEmbed(ev.detail.url);
-        if (embed) openInApp(embed, []);
-        window.removeEventListener('nova:resolved-lesson-video', handler);
-      };
-      window.addEventListener('nova:resolved-lesson-video', handler, {once:true});
-      try{ window.dispatchEvent(new Event('nova:open-lesson-video')); }catch(_){}
+    if (typeof window.novaOpenKaptanKabukForChampionTopic !== 'function') {
+      await showAlert('Kaptan Kabuk modülü henüz yüklenmedi. Sayfayı yenileyip tekrar deneyin.');
+      return;
     }
-  }catch(e){
-    console.warn('Video open error', e);
+    const ok = await window.novaOpenKaptanKabukForChampionTopic({
+      headingId: paths.h,
+      lessonId: paths.l,
+      topicId: paths.t,
+      onClose: function(){
+        if (hwScreen) {
+          hwScreen.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+    if (!ok) {
+      await showAlert('Bu konu için Kaptan Kabuk anlatımı henüz bağlanmamış. Admin panelinde müfredat konusuna Kaptan Kabuk ders/konusu ilişkilendirin.');
+    }
+  } catch (e) {
+    console.warn('hw kaptan kabuk', e);
+    try { await showAlert('Anlatım açılırken hata oluştu. Sayfayı yenileyip tekrar deneyin.'); } catch (_) {}
   }
-}); // Start homework game
-
-  function novaCoerceHomeworkPaths(d) {
-    const raw = d || {};
-    const h = raw.headingId || raw.heading_id || raw.classHeadingId || raw.heading;
-    const l = raw.lessonId || raw.lesson_id || raw.subjectId || raw.lesson;
-    const t = raw.topicId || raw.topic_id || raw.topic;
-    return {
-      h: (h != null && h !== '') ? String(h) : '',
-      l: (l != null && l !== '') ? String(l) : '',
-      t: (t != null && t !== '') ? String(t) : ''
-    };
-  }
+});
 
   hwStartBtn.addEventListener('click', async ()=>{
     if(!selectedHw) return;

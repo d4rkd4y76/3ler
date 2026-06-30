@@ -66,6 +66,12 @@ body.nova-main-bg-gradient-fallback #main-screen::before {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   pointer-events: none;
+  z-index: 1;
+}
+
+.nova-main-bg-backdrop {
+  display: none !important;
+  pointer-events: none;
 }
 
 .nova-main-bg-image[hidden] {
@@ -162,4 +168,70 @@ body.nova-main-bg-video-on #main-screen.container {
   transform: translate(-50%, -50%);
   border: 0;
   pointer-events: none;
+}
+
+/* Masaüstü: arka plan yalnızca #main-screen çerçevesinde (tam tarayıcı değil) */
+@media (min-width: 901px) and (hover: hover) and (pointer: fine) {
+  body.nova-main-screen-visible {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: clamp(10px, 2vh, 22px) clamp(12px, 2vw, 20px) !important;
+    min-height: 100dvh !important;
+    min-height: 100svh !important;
+    background: #020611 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nova-main-screen-visible #main-screen,
+  body.nova-main-screen-visible #main-screen.container {
+    position: relative !important;
+    width: min(96vw, 1400px) !important;
+    max-width: 1400px !important;
+    min-height: min(94vh, 900px) !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nova-main-bg-video-on .nova-main-bg-video-layer {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit;
+  }
+
+  body.nova-main-bg-video-on .nova-main-bg-video,
+  body.nova-main-bg-video-on .nova-main-bg-image {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center 38%;
+    border-radius: inherit;
+  }
+
+  body.nova-main-bg-video-on .nova-main-bg-video-scrim {
+    border-radius: inherit;
+  }
+
+  body.nova-main-bg-video-on .nova-main-bg-video-iframe-wrap.is-bg-fallback {
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: inherit;
+  }
+
+  body.nova-main-bg-video-on .nova-main-bg-video-iframe-wrap.is-bg-fallback .nova-main-bg-video-iframe {
+    width: 140vmax;
+    height: 140vmax;
+  }
+}
+
+#main-screen .duel-entry-gate-note,
+.duel-entry-gate-note {
+  display: none !important;
+  visibility: hidden !important;
 }

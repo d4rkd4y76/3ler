@@ -198,7 +198,7 @@ async function checkDuelEligibility(studentId, classId, preloaded){
     if (preloaded && typeof preloaded === 'object') {
       const cup = Number(preloaded.cup || 0);
       const credits = Number(preloaded.credits || 0);
-      return { eligible: cup >= 3 && credits >= 15, cup, credits };
+      return { eligible: true, cup, credits };
     }
     const [cupSnap, creditsSnap] = await Promise.all([
       database.ref(`classes/${classId}/students/${studentId}/gameCup`).once('value'),
@@ -206,44 +206,26 @@ async function checkDuelEligibility(studentId, classId, preloaded){
     ]);
     const cup = cupSnap.exists() ? Number(cupSnap.val() || 0) : 0;
     const credits = creditsSnap.exists() ? Number(creditsSnap.val() || 0) : 0;
-    return { eligible: cup >= 3 && credits >= 15, cup, credits };
+    return { eligible: true, cup, credits };
   }catch(e){
     console.warn('duel eligibility check failed:', e);
-    return { eligible: false, cup: 0, credits: 0 };
+    return { eligible: true, cup: 0, credits: 0 };
   }
 }
 
 async function refreshDuelEntryGateNote(){
   try{
-    if (!selectedStudent || !selectedStudent.studentId || !selectedStudent.classId) return;
     const note = document.getElementById('duel-entry-gate-note');
     const btn = document.getElementById('findDuelButton');
-    if (!note || !btn) return;
-    const gate = await checkDuelEligibility(selectedStudent.studentId, selectedStudent.classId);
-    const cup = Number(gate.cup || 0);
-    const credits = Number(gate.credits || 0);
-    const sig = `${gate.eligible ? 1 : 0}:${cup}:${credits}`;
-    if (window.__duelGateNoteSig === sig) return;
-    window.__duelGateNoteSig = sig;
-    if (gate.eligible){
-      note.classList.remove('locked');
-      note.classList.remove('ready');
+    if (note) {
       note.textContent = '';
       note.style.display = 'none';
+      note.hidden = true;
+      note.setAttribute('hidden', '');
+    }
+    if (btn) {
       btn.classList.remove('locked');
       btn.disabled = false;
-    } else {
-      note.classList.remove('ready');
-      note.classList.add('locked');
-      note.style.display = '';
-      const missCup = Math.max(0, 3 - cup);
-      const missCredits = Math.max(0, 15 - credits);
-      const parts = [];
-      if (missCup > 0) parts.push(`${missCup} kupa`);
-      if (missCredits > 0) parts.push(`${missCredits} düello enerjisi`);
-      note.textContent = `Düelloya katılman için ${parts.join(', ')} daha lazım.`;
-      btn.classList.add('locked');
-      btn.disabled = true;
     }
   }catch(_){}
 }
@@ -511,13 +493,6 @@ async function processAutoMatchPair(m) {
       const t = document.getElementById('autoMatchTitle');
       const s = document.getElementById('autoMatchSubtext');
       if (t) t.textContent = 'Yeni rakip aranıyor';
-      if (!eligMe.eligible) {
-         if (s) s.textContent = 'Düello için en az 3 kupa ve 15 ⚡ düello enerjisi gerekiyor.';
-         await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello enerjisi gerekir.');
-         document.getElementById('matchmakingScreen').style.display = 'none';
-         stopAutoMatchCoordinator();
-         return;
-      }
       if (s) s.textContent = 'Rakip şartı karşılamıyordu, yeni rakip aranıyor...';
       tryAutoMatchEnqueueTx();
       return;
@@ -547,16 +522,6 @@ async function processAutoMatchPair(m) {
          tryAutoMatchEnqueueTx();
          return;
       }
-   }
-
-   const cMe = credMe.exists() ? Number(credMe.val()) : 0;
-   const cOth = credOth.exists() ? Number(credOth.val()) : 0;
-   if (cMe < 15 || cOth < 15) {
-      await clearAutoMatchCoordinatorMatch(m.id, classId);
-      await showAlert('Eşleşme iptal: düello enerjisi uygun değil.');
-      document.getElementById('matchmakingScreen').style.display = 'none';
-      stopAutoMatchCoordinator();
-      return;
    }
 
    // Kupa farkı engeli kaldırıldı: otomatik eşleşmede kupa farkı ne olursa olsun devam edilir.
@@ -592,10 +557,6 @@ async function processAutoMatchPair(m) {
 // Düello Arama butonuna tıklandığında
 document.getElementById('findDuelButton').addEventListener('click', async () => {
    const myGate = await checkDuelEligibility(selectedStudent.studentId, selectedStudent.classId);
-   if (!myGate.eligible) {
-      await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello enerjisi gerekir.');
-      return;
-   }
    cleanupMatchmakingListeners();
    try {
       if (typeof window.novaEpicShowLeagueReveal === 'function') {

@@ -119,29 +119,6 @@
   .mt16{margin-top:16px}
   .mt24{margin-top:24px}
   .center{display:flex; align-items:center; justify-content:center}
-  /* Turnuva panosu (öğrenci düello.html ile aynı görünüm dili) */
-  #tour_pano_wrap{background:linear-gradient(165deg,rgba(14,116,144,.12),rgba(15,23,42,.5));border:1px solid rgba(34,211,238,.2);border-radius:18px;padding:14px 12px 18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .nova-tour-pano-board{margin:4px 0 0;padding:12px 8px 16px;border-radius:18px;background:linear-gradient(165deg,rgba(14,116,144,.18),rgba(15,23,42,.65));border:1px solid rgba(34,211,238,.22);box-shadow:0 12px 36px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05);overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .nova-tour-pano-board-inner{display:flex;align-items:flex-start;gap:0;min-width:min-content;padding-bottom:6px}
-  .nova-tour-pano-col{flex:0 0 auto;display:flex;flex-direction:column;gap:14px;padding:0 8px;position:relative}
-  .nova-tour-pano-col-matches{display:flex;flex-direction:column;gap:10px;align-items:stretch}
-  .nova-tour-pano-col::after{content:"";position:absolute;top:22px;right:-5px;bottom:20px;width:0;border-right:2px solid rgba(255,255,255,.18)}
-  .nova-tour-pano-col:last-child::after{display:none}
-  .nova-tour-pano-col-h{font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#a5f3fc;text-align:center;margin-bottom:2px}
-  .nova-tour-pano-match{width:156px;border-radius:14px;padding:8px 8px 6px;background:rgba(15,23,42,.9);border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-  .nova-tour-pano-match[data-status=active]{border-color:rgba(250,204,21,.4);box-shadow:0 0 0 1px rgba(250,204,21,.12),0 8px 24px rgba(250,204,21,.1)}
-  .nova-tour-pano-pill{display:flex;align-items:center;gap:6px;padding:5px 7px;border-radius:999px;margin-bottom:4px;background:rgba(2,6,23,.55);border:1px solid rgba(148,163,184,.22);min-width:0}
-  .nova-tour-pano-pill--win{border-color:rgba(52,211,153,.5);background:rgba(6,78,59,.32)}
-  .nova-tour-pano-pill--lose{opacity:.55}
-  .nova-tour-pano-pill img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.18);flex-shrink:0}
-  .nova-tour-pano-pill span{font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:#f8fafc}
-  .nova-tour-pano-st{margin-top:4px;text-align:center;font-size:10px;font-weight:800;letter-spacing:.03em;color:#94a3b8}
-  .nova-tour-pano-st.is-done{color:#6ee7b7}
-  .nova-tour-pano-st.is-live{color:#fde68a}
-  .nova-tour-pano-st.is-wait{color:#cbd5e1}
-  .nova-tour-pano-arrow{align-self:center;flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:24px;color:rgba(255,255,255,.3);font-size:18px;font-weight:900;padding:0 2px}
-  .nova-tour-muted{color:var(--muted);font-size:12px;line-height:1.4}
-
   /* Minimal close button for dialogs */
   .dlg-x{position:absolute; top:8px; right:8px; border:1px solid var(--border); background:#121939; color:#cbd5ff;
          width:24px; height:24px; border-radius:6px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:700; line-height:1}
@@ -331,7 +308,6 @@ window.NovaAdminExport = (function(){
       <div class="tab" data-view="cdnView">☁️ CDN Yayın</div>
       <div class="tab" data-view="mainScreenBgView">🎬 Ana ekran arka plan</div>
       <div class="tab" data-view="hikayeVideoView">📖 Hikaye</div>
-      <div class="tab" data-view="tournamentView">🏆 Turnuva</div>
       <div class="tab" data-view="resetView">♻️ Sıfırlama</div>
     </div>
   </nav>
@@ -398,7 +374,7 @@ window.NovaAdminExport = (function(){
     <!-- QUESTIONS -->
     <div id="questionsView" class="view">
       <h2>2) Sorular</h2>
-      <div class="sub">Yapı: <span class="mono">championData/headings/{headingId}/lessons/{lessonId}/topics/{topicId}/questions/{qid}</span> ve videoUrl. Ayrıca <span class="mono">/lessonVideoLookup/DERS/KONU</span> yedeği destekleniyor.</div>
+      <div class="sub">Yapı: <span class="mono">championData/headings/{headingId}/lessons/{lessonId}/topics/{topicId}/questions/{qid}</span>. Öğrenci anlatımı için konuyu <strong>Kaptan Kabuk</strong> ile ilişkilendirin (<span class="mono">kaptanKabuk</span>).</div>
       <div class="card mt12" style="border-color:rgba(251,191,36,.45)">
         <h3>TYMM müfredat (1–4. sınıf)</h3>
         <div class="sub">Tüm mevcut <b>ders / konu / düello sorularını</b> siler; TYMM’deki <b>sırayla</b> konu başlıklarını oluşturur (her konuda <span class="mono">order</span>: 1, 2, 3…). Soru gövdeleri boş. Sıra bozuksa müfredatı bir kez daha yükleyin. Geri alınamaz — önce yedek alın.</div>
@@ -439,26 +415,36 @@ window.NovaAdminExport = (function(){
             </div>
           </div>
           <div class="card mt12">
-            <h3>Ders Videosu</h3>
-            <label>Topic videoUrl (embed)</label>
-            <input id="topicVideoUrl" type="text" placeholder="https://www.youtube.com/embed/…"/>
-            <div class="toolbar">
-              <button class="btn acc" id="btnSaveTopicVideo">💾 Kaydet</button>
-              <button class="btn" id="btnClearTopicVideo">Temizle</button>
-              <span class="hint">Sadece <span class="mono">/embed/</span> URL’leri kabul edilir. Uygulama önce konu <span class="mono">videoUrl</span>’ünü, yoksa <span class="mono">lessonVideoLookup</span> değerini kullanır.</span>
+            <h3>🐢 Kaptan Kabuk Anlatıyor</h3>
+            <p class="hint">Bu müfredat konusunu Kaptan Kabuk ders/konusu ile eşleştirin. Öğrenci «Kaptan Kabuk Anlatıyor» butonuna basınca doğrudan anlatım ekranına gider.</p>
+            <label>Kaptan Kabuk dersi</label>
+            <select id="kaptanKabukLessonSelect"><option value="">— Seçin —</option></select>
+            <label class="mt8">Kaptan Kabuk konusu</label>
+            <select id="kaptanKabukTopicSelect"><option value="">— Önce ders seçin —</option></select>
+            <div class="toolbar mt8">
+              <button type="button" class="btn acc" id="btnSaveKaptanKabukLink">💾 İlişkilendirmeyi Kaydet</button>
+              <button type="button" class="btn" id="btnClearKaptanKabukLink">Temizle</button>
             </div>
-            <div class="hr"></div>
-            <label>LessonVideoLookup (Yedek)</label>
-            <div class="grid cols-2">
-              <div><input id="lvlLessonName" type="text" placeholder="Ders adı (örn: MATEMATİK)"/></div>
-              <div><input id="lvlTopicName" type="text" placeholder="Konu adı"/></div>
-            </div>
-            <label>Video URL (embed)</label>
-            <input id="lvlUrl" type="text" placeholder="https://www.youtube.com/embed/…"/>
-            <div class="toolbar">
-              <button class="btn" id="btnSaveLvl">💾 Yedeğe Kaydet</button>
-              <span class="hint">Şema & notlar DB’deki <span class="mono">_nova_meta.lessonVideoUrl_spec</span> altında dokümante edilmiştir.</span>
-            </div>
+            <details class="mt12">
+              <summary class="soft small" style="cursor:pointer">Eski YouTube video (isteğe bağlı yedek)</summary>
+              <label class="mt8">Topic videoUrl (embed)</label>
+              <input id="topicVideoUrl" type="text" placeholder="https://www.youtube.com/embed/…"/>
+              <div class="toolbar">
+                <button class="btn acc" id="btnSaveTopicVideo">💾 Kaydet</button>
+                <button class="btn" id="btnClearTopicVideo">Temizle</button>
+              </div>
+              <div class="hr"></div>
+              <label>LessonVideoLookup (Yedek)</label>
+              <div class="grid cols-2">
+                <div><input id="lvlLessonName" type="text" placeholder="Ders adı (örn: MATEMATİK)"/></div>
+                <div><input id="lvlTopicName" type="text" placeholder="Konu adı"/></div>
+              </div>
+              <label>Video URL (embed)</label>
+              <input id="lvlUrl" type="text" placeholder="https://www.youtube.com/embed/…"/>
+              <div class="toolbar">
+                <button class="btn" id="btnSaveLvl">💾 Yedeğe Kaydet</button>
+              </div>
+            </details>
           </div>
         </div>
 
@@ -629,64 +615,6 @@ window.NovaAdminExport = (function(){
           </div>
         </div>
       </div>
-      </div>
-    </div>
-
-    <!-- ANA EKRAN DUYURUSU -->
-    <div id="tournamentView" class="view">
-      <h2>Turnuva</h2>
-      <div class="sub">Öğrenci uygulamasında turnuva butonu görünür. Aşağıda canlı <b>turnuva panosu</b> (eşleşmeler ve sonuçlar) öğrenci ekranıyla aynı mantıkta gösterilir. Veri: <span class="mono">tournamentMeta</span>, <span class="mono">tournamentRegs/{sezon}</span>, <span class="mono">tournamentMatches/{sezon}</span>.</div>
-      <div class="card">
-        <label>Sezon kimliği</label>
-        <input type="text" id="tour_season_id" placeholder="örn: 2026_bahar" />
-        <label class="flex mt8" style="gap:10px;align-items:center">
-          <input type="checkbox" id="tour_enabled" />
-          <span>Turnuvayı etkinleştir (öğrencide buton)</span>
-        </label>
-        <label>Planlanan başlangıç (yerel saat)</label>
-        <input type="datetime-local" id="tour_start_local" />
-        <div class="hint">Boş bırakılırsa zaman kilidi yok. <b>Gelecek bir tarih seçtiysen</b>, o saate kadar öğrencide turnuva butonu <b>görünmez</b>. Sadece “Etkinleştir” kullanacaksan tarih-saati temizle.</div>
-        <div class="toolbar mt12">
-          <button type="button" class="btn acc" id="tour_save_meta">Meta kaydet</button>
-          <button type="button" class="btn" id="tour_load_meta">Yenile</button>
-        </div>
-        <div class="hint mt8" id="tour_meta_status"></div>
-      </div>
-      <div class="card mt12">
-        <h3>Otomatik zamanlayıcı (önerilen)</h3>
-        <div class="sub">Kayıt süresi dolunca eşleşmeler otomatik kurulur; ardından <b>30 saniye</b> hazır bekleme ve maçlar başlar.</div>
-        <label>Kayıt penceresi süresi</label>
-        <select id="tour_reg_duration_ms">
-          <option value="60000">1 dakika</option>
-          <option value="300000" selected>5 dakika</option>
-          <option value="600000">10 dakika</option>
-          <option value="1800000">30 dakika</option>
-        </select>
-        <div class="hint">Bu süre, aşağıdaki “kayıt penceresini başlat” ve “yeni turnuva başlat” ile Firebase’e yazılır. Seçim tarayıcıda hatırlanır.</div>
-        <button type="button" class="btn acc mt8" id="tour_start_10min">Kayıt penceresini başlat</button>
-      </div>
-      <div class="card mt12">
-        <h3>Kayıtlı öğrenciler</h3>
-        <div class="sub">Bu sezonda turnuvaya kayıt olan öğrenciler (<span class="mono">tournamentRegs/{sezon}</span>). Kayıt penceresi açıkken liste canlı güncellenir.</div>
-        <div id="tour_regs_wrap">
-          <div id="tour_regs_mount" class="nova-tour-muted">Listeyi görmek için “Yenile”ye basın veya Turnuva sekmesini açın.</div>
-        </div>
-      </div>
-      <div class="card mt12">
-        <h3>Turnuva panosu</h3>
-        <div class="sub">Öğrenci uygulamasındaki pano ile uyumlu eşleşme görünümü. Sezon alanını kaydettikten veya “Yenile” ile yükledikten sonra canlı güncellenir.</div>
-        <div id="tour_pano_wrap">
-          <div id="tour_pano_mount" class="nova-tour-muted">Yüklemek için “Yenile”ye basın veya sekmeyi açın.</div>
-        </div>
-      </div>
-      <div class="card mt12" style="border-color:rgba(248,113,113,.35)">
-        <h3>Silme ve yeni turnuva</h3>
-        <div class="sub">Aşağıdaki işlemler <b>sezon kimliği</b> alanındaki sezona (veya kayıtlı meta sezonuna) uygulanır: <span class="mono">tournamentMeta</span>, <span class="mono">tournamentRegs/{sezon}</span>, <span class="mono">tournamentMatches/{sezon}</span>, <span class="mono">tournamentPlayerIndex/{sezon}</span>.</div>
-        <div class="toolbar mt12" style="flex-wrap:wrap;gap:8px">
-          <button type="button" class="btn" style="background:#7f1d1d;border-color:#b91c1c;color:#fecaca" id="tour_delete_all">Mevcut turnuvayı sil</button>
-          <button type="button" class="btn acc" id="tour_new_start">Yeni turnuva başlat</button>
-        </div>
-        <div class="hint mt8" id="tour_danger_status"></div>
       </div>
     </div>
 
@@ -1443,7 +1371,6 @@ window.NovaAdminExport = (function(){
     if(target==='cdnView'){ try{ window.novaLoadCdnAdmin && window.novaLoadCdnAdmin(); }catch(e){ console.warn(e);} }
     if(target==='mainScreenBgView'){ try{ window.novaLoadMainScreenBgAdmin && window.novaLoadMainScreenBgAdmin(); }catch(e){ console.warn(e);} }
     if(target==='hikayeVideoView'){ try{ window.novaLoadHikayeVideoAdmin && window.novaLoadHikayeVideoAdmin(); }catch(e){ console.warn(e);} }
-    if(target==='tournamentView'){ try{ window.novaLoadTournamentAdmin && window.novaLoadTournamentAdmin(); }catch(e){ console.warn(e);} }
     $$('.tab').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
     const id = t.getAttribute('data-view');
@@ -2646,736 +2573,6 @@ window.NovaAdminExport = (function(){
     if(el) el.addEventListener('input', updateHikayePreviewFromInputs);
   });
 
-  function tourShuffle(arr){
-    const a = arr.slice();
-    for(let i=a.length;i>0;){
-      const j = Math.floor(Math.random()*i);
-      i--; [a[i],a[j]]=[a[j],a[i]];
-    }
-    return a;
-  }
-
-  const TOUR_REG_MS_OPTIONS = [60000, 300000, 600000, 1800000];
-  function tourGetRegWindowMs(){
-    const el = $('#tour_reg_duration_ms');
-    const raw = el && el.value ? parseInt(el.value, 10) : NaN;
-    if (TOUR_REG_MS_OPTIONS.indexOf(raw) >= 0) return raw;
-    return 300000;
-  }
-  function tourFormatRegDurationLabel(ms){
-    const n = Math.round(Number(ms) / 60000);
-    return n + ' dk';
-  }
-  (function initTourRegDurationSelect(){
-    const sel = $('#tour_reg_duration_ms');
-    if (!sel) return;
-    const key = 'nova_admin_tour_reg_ms';
-    try{
-      const saved = localStorage.getItem(key);
-      if (saved && TOUR_REG_MS_OPTIONS.indexOf(parseInt(saved, 10)) >= 0) sel.value = String(saved);
-    }catch(_e){}
-    sel.addEventListener('change', ()=>{
-      try{ localStorage.setItem(key, sel.value); }catch(_e){}
-    });
-  })();
-
-  window.novaLoadTournamentAdmin = async function(){
-    const sid = $('#tour_season_id');
-    const st = $('#tour_meta_status');
-    if(!rdb || !sid){ return; }
-    st.textContent = 'Yükleniyor…';
-    try{
-      const snap = await rdb.ref('tournamentMeta').get();
-      const v = snap.exists() ? (snap.val()||{}) : {};
-      sid.value = typeof v.seasonId === 'string' ? v.seasonId : '2026_bahar';
-      $('#tour_enabled').checked = !!v.enabled;
-      const t = v.scheduledStartAt ? Number(v.scheduledStartAt) : null;
-      const dl = $('#tour_start_local');
-      if(dl && t){
-        const d = new Date(t);
-        const pad = n=>String(n).padStart(2,'0');
-        dl.value = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-      } else if(dl) dl.value = '';
-      st.textContent = v.updatedAt ? ('Son kayıt: '+fmtTime(v.updatedAt)) : 'Kayıt yok.';
-      if (sid && !sid._novaTourPanoSeasonBound){
-        sid._novaTourPanoSeasonBound = true;
-        sid.addEventListener('change', ()=>{ try{ novaTourBindPanoLive(); }catch(e){ console.warn(e); } });
-      }
-      try{ await novaTourBindPanoLive(); }catch(e){ console.warn(e); }
-    }catch(e){
-      st.textContent = 'Hata: '+(e&&e.message||e);
-    }
-  };
-
-  $('#tour_save_meta') && $('#tour_save_meta').addEventListener('click', async ()=>{
-    const metaSt = $('#tour_meta_status');
-    if(!rdb){ metaSt.textContent='RTDB yok.'; return; }
-    const seasonId = String($('#tour_season_id').value||'').trim() || '2026_bahar';
-    let scheduledStartAt = null;
-    const raw = $('#tour_start_local').value;
-    if(raw){
-      const t = new Date(raw).getTime();
-      if(!isNaN(t)) scheduledStartAt = t;
-    }
-    metaSt.textContent = 'Kaydediliyor…';
-    try{
-      const prevSnap = await rdb.ref('tournamentMeta').get();
-      const prev = prevSnap.exists() ? (prevSnap.val()||{}) : {};
-      let statusVal = prev.status || 'off';
-      if (!$('#tour_enabled').checked) statusVal = 'off';
-      else if (statusVal === 'off' || !statusVal) statusVal = 'registration';
-      await rdb.ref('tournamentMeta').set(Object.assign({}, prev, {
-        enabled: !!$('#tour_enabled').checked,
-        seasonId: seasonId,
-        status: statusVal,
-        scheduledStartAt: scheduledStartAt,
-        updatedAt: Date.now()
-      }));
-      metaSt.textContent = 'Kaydedildi.';
-    }catch(e){
-      metaSt.textContent = 'Hata: '+(e&&e.message||e);
-    }
-  });
-
-  async function novaTourBuildGroupsCore(seasonId, opts){
-    const o = opts || {};
-    const regsSnap = await rdb.ref('tournamentRegs/'+seasonId).get();
-    const regs = regsSnap.exists() ? (regsSnap.val()||{}) : {};
-    const ids = Object.keys(regs);
-    if(ids.length < 2){
-      await rdb.ref('tournamentMeta').update({ schedulePhase: 'idle', registrationError: 'Yetersiz kayıt (min 2)', updatedAt: Date.now() });
-      throw new Error('En az 2 kayıt gerekli.');
-    }
-    if (o.useBuildLock){
-      const tr = await rdb.ref('tournamentMeta/groupsBuiltAt').transaction(function(c){ return c != null ? undefined : Date.now(); });
-      if (!tr.committed) return 0;
-    }
-    const shuffled = tourShuffle(ids);
-    const pairs = [];
-    for(let i=0;i<shuffled.length;i+=2) pairs.push(shuffled.slice(i, i+2));
-    const updates = {};
-    const ts = Date.now();
-    pairs.forEach((g, gi)=>{
-      const matchId = 'r1_m'+gi+'_'+ts;
-      const players = g.map(id=>({
-        id: id,
-        name: (regs[id]&&regs[id].name) || id,
-        photo: (regs[id]&&regs[id].photo) || ''
-      }));
-      updates['tournamentMatches/'+seasonId+'/'+matchId] = {
-        phase: 'r1',
-        bracketRound: 1,
-        matchKind: 'fill5',
-        status: 'pending',
-        players: players,
-        ready: {},
-        eliminated: {},
-        createdAt: ts
-      };
-      g.forEach(id=>{
-        updates['tournamentPlayerIndex/'+seasonId+'/'+id] = { matchId: matchId, phase: 'r1' };
-      });
-    });
-    await rdb.ref().update(updates);
-    const metaPatch = {
-      status: 'running',
-      seasonId: seasonId,
-      updatedAt: ts,
-      groupsBuiltAt: ts
-    };
-    metaPatch.schedulePhase = 'ready_countdown';
-    metaPatch.readyPhaseEndsAt = ts + 30000;
-    metaPatch.readyPhaseDoneAt = null;
-    metaPatch.registrationError = null;
-    metaPatch['locks/matchStart'] = null;
-    await rdb.ref('tournamentMeta').update(metaPatch);
-    return pairs.length;
-  }
-
-  function inferBracketRoundAdmin(m){
-    if (m && typeof m.bracketRound === 'number' && m.bracketRound > 0) return m.bracketRound;
-    const ph = (m && m.phase) || 'r1';
-    if (ph === 'r3') return 3;
-    if (ph === 'r2') return 2;
-    return 1;
-  }
-
-  function escAttrTour(s){
-    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
-  }
-  function bracketRoundPlayerSigTour(mx){
-    const pl = (mx.players||[]).map(p=>String(p.id||p.studentId||'')).filter(Boolean);
-    pl.sort();
-    return pl.join('|');
-  }
-  function bracketMatchDisplayDoneTour(all, mid){
-    const mx = all[mid];
-    if (!mx) return false;
-    const st = mx.status || 'pending';
-    const wid = mx.winnerId;
-    if (st === 'done' || (wid && st !== 'cancelled')) return true;
-    const keys = Object.keys(all||{});
-    for (let ki = 0; ki < keys.length; ki++){
-      const cid = keys[ki];
-      if (cid === mid) continue;
-      const ch = all[cid];
-      const fd = ch && ch.feederMatchIds;
-      if (!fd || fd.indexOf(mid) < 0) continue;
-      const chst = ch.status || 'pending';
-      if (chst === 'done' || ch.winnerId) return true;
-      if (chst === 'active') return true;
-      if (ch.players && ch.players.length >= 2) return true;
-    }
-    return false;
-  }
-  function dedupeBracketMatchIdsForRoundTour(all, mids){
-    const buckets = {};
-    mids.forEach(mid=>{
-      const mx = all[mid];
-      if (!mx) return;
-      const sig = bracketRoundPlayerSigTour(mx);
-      if (!sig){
-        buckets['_empty_'+mid] = [mid];
-        return;
-      }
-      if (!buckets[sig]) buckets[sig] = [];
-      buckets[sig].push(mid);
-    });
-    const out = [];
-    Object.keys(buckets).forEach(sig=>{
-      const group = buckets[sig];
-      if (group.length === 1){
-        out.push(group[0]);
-        return;
-      }
-      group.sort((a,b)=>{
-        const ca = Number((all[a] && all[a].createdAt) || 0);
-        const cb = Number((all[b] && all[b].createdAt) || 0);
-        if (cb !== ca) return cb - ca;
-        return String(a).localeCompare(String(b));
-      });
-      out.push(group[0]);
-    });
-    return out.sort((a,b)=>String(a).localeCompare(String(b)));
-  }
-  function nameFromRegsTour(regs, id){
-    if (!id) return '—';
-    const r0 = regs && regs[id];
-    return (r0 && r0.name) || String(id);
-  }
-  function renderBracketBoardHtmlAdmin(all, regs, meta){
-    const mids = Object.keys(all||{});
-    if (!mids.length){
-      return '<p class="nova-tour-muted">Henüz eşleşme oluşturulmadı.</p>';
-    }
-    const roundMap = {};
-    mids.forEach(mid=>{
-      const br = inferBracketRoundAdmin(all[mid]);
-      if (!roundMap[br]) roundMap[br] = [];
-      roundMap[br].push(mid);
-    });
-    const rounds = Object.keys(roundMap).map(Number).sort((a,b)=>a-b);
-    let html = '<div class="nova-tour-pano-board"><div class="nova-tour-pano-board-inner">';
-    rounds.forEach((rnum, colIdx)=>{
-      const rMids = dedupeBracketMatchIdsForRoundTour(all, roundMap[rnum].slice().sort());
-      const single = rMids.length === 1 && all[rMids[0]];
-      const label = single && (single.isFinal || (single.phase||'') === 'r3')
-        ? 'Final'
-        : 'Tur '+rnum;
-      const isLastCol = colIdx === rounds.length - 1;
-      html += '<div class="nova-tour-pano-col"><div class="nova-tour-pano-col-h">'+label+'</div><div class="nova-tour-pano-col-matches">';
-      rMids.forEach(mid=>{
-        const mx = all[mid];
-        const st = mx.status || 'pending';
-        const wid = mx.winnerId;
-        const players = mx.players || [];
-        const done = bracketMatchDisplayDoneTour(all, mid);
-        if (st === 'cancelled' && !players.length) return;
-        const stClass = done ? 'is-done' : (st === 'active' ? 'is-live' : 'is-wait');
-        const stText = done ? 'Bitti' : (st === 'active' ? 'Devam ediyor' : (st === 'cancelled' ? 'İptal' : 'Bekleniyor'));
-        html += '<div class="nova-tour-pano-match" data-status="'+escAttrTour(done ? 'done' : st)+'">';
-        if (!players.length){
-          html += '<p class="nova-tour-muted" style="margin:0;font-size:11px">Oyuncu bekleniyor</p>';
-        }
-        players.forEach(p=>{
-          const pid = p.id || p.studentId;
-          const rr = regs && regs[pid];
-          const name = (rr && rr.name) || p.name || pid;
-          let photo = (rr && rr.photo) || p.photo || '';
-          if (!photo) photo = 'https://via.placeholder.com/64?text=%F0%9F%91%A4';
-          let cls = 'nova-tour-pano-pill';
-          if (wid && pid === wid) cls += ' nova-tour-pano-pill--win';
-          else if (wid && pid !== wid) cls += ' nova-tour-pano-pill--lose';
-          html += '<div class="'+cls+'"><img src="'+escAttrTour(photo)+'" alt=""/><span>'+escAttrTour(name)+'</span></div>';
-        });
-        if (players.length === 1 && mx.bye){
-          html += '<p class="nova-tour-muted" style="margin:4px 0 0;font-size:10px;text-align:center">Bu turda rakip çıkmadı (bay).</p>';
-        }
-        html += '<div class="nova-tour-pano-st '+stClass+'">'+stText+'</div>';
-        html += '</div>';
-      });
-      html += '</div></div>';
-      if (!isLastCol) html += '<div class="nova-tour-pano-arrow" aria-hidden="true">›</div>';
-    });
-    html += '</div></div>';
-    if (meta && meta.championId){
-      const cn = nameFromRegsTour(regs, meta.championId);
-      html += '<div style="margin-top:10px;padding:10px 12px;border-radius:14px;background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.32);font-weight:900;color:#fef08a;text-align:center">🏆 Şampiyon: '+escAttrTour(cn)+'</div>';
-    }
-    return html;
-  }
-
-  let _novaTourPanoCleanup = null;
-  async function novaTourRefreshPano(){
-    const mount = $('#tour_pano_mount');
-    if (!rdb || !mount) return;
-    mount.innerHTML = '<span class="nova-tour-muted">Yükleniyor…</span>';
-    try{
-      const seasonId = await novaTourResolveSeasonId();
-      const [regSnap, msSnap, metaSnap] = await Promise.all([
-        rdb.ref('tournamentRegs/'+seasonId).get(),
-        rdb.ref('tournamentMatches/'+seasonId).get(),
-        rdb.ref('tournamentMeta').get()
-      ]);
-      const regs = regSnap.exists() ? (regSnap.val()||{}) : {};
-      const all = msSnap.exists() ? (msSnap.val()||{}) : {};
-      const meta = metaSnap.exists() ? (metaSnap.val()||{}) : {};
-      mount.innerHTML = renderBracketBoardHtmlAdmin(all, regs, meta);
-    }catch(e){
-      mount.innerHTML = '<span class="danger">Pano yüklenemedi: '+(e&&e.message||e)+'</span>';
-    }
-  }
-
-  function renderTournamentRegsTableHtml(regs){
-    const raw = regs && typeof regs === 'object' ? regs : {};
-    const ids = Object.keys(raw);
-    if (!ids.length){
-      return '<p class="muted" style="margin:0">Bu sezon için henüz kayıt yok.</p>';
-    }
-    const sorted = ids.slice().sort((a,b)=>{
-      const ta = Number((raw[a] && raw[a].at) || 0);
-      const tb = Number((raw[b] && raw[b].at) || 0);
-      if (tb !== ta) return tb - ta;
-      return String(a).localeCompare(String(b));
-    });
-    const rows = sorted.map(id=>{
-      const r = raw[id] || {};
-      const name = r.name || '—';
-      let photo = String(r.photo || '').trim();
-      if (!photo) photo = 'https://via.placeholder.com/64?text=%F0%9F%91%A4';
-      const classId = String(r.classId || '').trim() || '—';
-      const at = r.at ? fmtTime(r.at) : '—';
-      return '<tr>'+
-        '<td style="width:48px;vertical-align:middle"><img src="'+escAttrTour(photo)+'" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--border)"/></td>'+
-        '<td><b>'+escAttrTour(name)+'</b><div class="mono small muted" style="margin-top:2px">'+escAttrTour(id)+'</div></td>'+
-        '<td class="mono small">'+escAttrTour(classId)+'</td>'+
-        '<td class="small">'+escAttrTour(at)+'</td>'+
-        '</tr>';
-    }).join('');
-    return '<p class="pill" style="margin:0 0 10px">Toplam: <b>'+sorted.length+'</b> kayıt</p>'+
-      '<div class="list" style="max-height:420px"><table><thead><tr><th style="width:48px"></th><th>Ad</th><th>Sınıf (ID)</th><th>Kayıt zamanı</th></tr></thead><tbody>'+
-      rows+
-      '</tbody></table></div>';
-  }
-
-  async function novaTourRefreshRegs(){
-    const mount = $('#tour_regs_mount');
-    if (!rdb || !mount) return;
-    mount.innerHTML = '<span class="nova-tour-muted">Yükleniyor…</span>';
-    try{
-      const seasonId = await novaTourResolveSeasonId();
-      const snap = await rdb.ref('tournamentRegs/'+seasonId).get();
-      const regs = snap.exists() ? (snap.val()||{}) : {};
-      mount.innerHTML = renderTournamentRegsTableHtml(regs);
-    }catch(e){
-      mount.innerHTML = '<span class="danger">Liste yüklenemedi: '+(e&&e.message||e)+'</span>';
-    }
-  }
-
-  async function novaTourBindPanoLive(){
-    if (typeof _novaTourPanoCleanup === 'function'){
-      try{ _novaTourPanoCleanup(); }catch(_e){}
-    }
-    _novaTourPanoCleanup = null;
-    if (!rdb) return;
-    const seasonId = await novaTourResolveSeasonId();
-    const mRef = rdb.ref('tournamentMatches/'+seasonId);
-    const metaRef = rdb.ref('tournamentMeta');
-    const regRef = rdb.ref('tournamentRegs/'+seasonId);
-    const fnPano = ()=>{ novaTourRefreshPano(); };
-    const fnRegs = ()=>{ novaTourRefreshRegs(); };
-    mRef.on('value', fnPano);
-    metaRef.on('value', fnPano);
-    regRef.on('value', fnRegs);
-    _novaTourPanoCleanup = function(){
-      try{ mRef.off('value', fnPano); }catch(_e){}
-      try{ metaRef.off('value', fnPano); }catch(_e){}
-      try{ regRef.off('value', fnRegs); }catch(_e){}
-    };
-    await Promise.all([novaTourRefreshPano(), novaTourRefreshRegs()]);
-  }
-  function assignMatchKindForBracketRoundAdmin(bracketRound){
-    const br = Number(bracketRound) || 1;
-    if (br <= 1) return 'fill5';
-    if (br === 2) return 'puzzle5';
-    if (br === 3) return 'mixed_221';
-    return 'final_mix';
-  }
-  function inferTournamentMatchKindAdmin(M){
-    if (!M) return 'fill5';
-    if (M.matchKind) return M.matchKind;
-    const br = inferBracketRoundAdmin(M);
-    return assignMatchKindForBracketRoundAdmin(br);
-  }
-
-  async function tournamentCollectDuelStepsAdmin(seasonId, players){
-    const p0 = players && players[0];
-    const stu = p0 && (p0.id || p0.studentId);
-    if (!stu) return null;
-    const regSnap = await rdb.ref('tournamentRegs/'+seasonId+'/'+stu).get();
-    const cid = regSnap.exists() ? String((regSnap.val()||{}).classId||'').trim() : '';
-    if (!cid) return null;
-    const lsSnap = await rdb.ref('championData/headings/'+cid+'/lessons').get();
-    if (!lsSnap.exists()) return null;
-    const lids = Object.keys(lsSnap.val()||{});
-    async function tryLesson(li){
-      if (li >= lids.length) return null;
-      const lid = lids[li];
-      const tsSnap = await rdb.ref('championData/headings/'+cid+'/lessons/'+lid+'/topics').get();
-      if (!tsSnap.exists()) return tryLesson(li+1);
-      const tids = Object.keys(tsSnap.val()||{});
-      async function tryTopic(ti){
-        if (ti >= tids.length) return tryLesson(li+1);
-        const tid = tids[ti];
-        const qsSnap = await rdb.ref('championData/headings/'+cid+'/lessons/'+lid+'/topics/'+tid+'/questions').get();
-        if (!qsSnap.exists()) return tryTopic(ti+1);
-        const qm = qsSnap.val()||{};
-        const qids = Object.keys(qm).filter(function(k){ return qm[k]; });
-        if (qids.length < 7) return tryTopic(ti+1);
-        const picked = tourShuffle(qids).slice(0,7);
-        return picked.map(function(qid){
-          return { type:'duel', classId:cid, lessonId:lid, topicId:tid, qid:qid };
-        });
-      }
-      return tryTopic(0);
-    }
-    return tryLesson(0);
-  }
-
-  async function novaTourProcessOneMatchReady(seasonId, matchId, M){
-    const players = M.players || [];
-    const base = 'tournamentMatches/'+seasonId+'/'+matchId;
-    if (players.length === 1){
-      const only = players[0];
-      const oid = only.id || only.studentId;
-      const upd0 = {};
-      upd0[base+'/status'] = 'done';
-      upd0[base+'/winnerId'] = oid;
-      upd0[base+'/standings'] = [{ id: oid, name: only.name, photo: only.photo, correct: 0, ms: 0 }];
-      upd0[base+'/finishedAt'] = Date.now();
-      await rdb.ref().update(upd0);
-      return;
-    }
-    const ready = M.ready || {};
-    const eliminated = {};
-    const active = [];
-    players.forEach(function(p){
-      const id = p.id || p.studentId;
-      if (ready[id]) active.push(p);
-      else eliminated[id] = true;
-    });
-    const upd = {};
-    upd[base+'/eliminated'] = eliminated;
-    upd[base+'/players'] = active;
-    if (active.length < 2){
-      upd[base+'/status'] = 'cancelled';
-      upd[base+'/cancelReason'] = 'Yetersiz hazır oyuncu';
-      await rdb.ref().update(upd);
-      return;
-    }
-    const kind = inferTournamentMatchKindAdmin(M);
-    if (kind === 'fill5'){
-      const qs = await rdb.ref('fillBlanks/questionIds').get();
-      const qm = qs.exists() ? qs.val() : {};
-      let qids = Object.keys(qm || {}).filter(function(k){ return qm[k]; });
-      if (qids.length < 5){
-        upd[base+'/status'] = 'pending';
-        upd[base+'/r1Error'] = 'Yeterli boşluk sorusu yok (min 5).';
-        await rdb.ref().update(upd);
-        return;
-      }
-      qids = tourShuffle(qids).slice(0,5);
-      upd[base+'/fillBlankQids'] = qids;
-      upd[base+'/matchKind'] = 'fill5';
-      upd[base+'/currentQ'] = 0;
-      upd[base+'/questionOpenedAt'] = Date.now();
-      upd[base+'/status'] = 'active';
-      upd[base+'/answers'] = {};
-      await rdb.ref().update(upd);
-      return;
-    }
-    if (kind === 'puzzle5'){
-      const qs = await rdb.ref('dailyPuzzles/questionIds').get();
-      const qm = qs.exists() ? qs.val() : {};
-      let qids = Object.keys(qm || {}).filter(function(k){ return qm[k]; });
-      if (qids.length < 5){
-        upd[base+'/status'] = 'pending';
-        upd[base+'/r1Error'] = 'Yeterli bulmaca sorusu yok (min 5).';
-        await rdb.ref().update(upd);
-        return;
-      }
-      qids = tourShuffle(qids).slice(0,5);
-      upd[base+'/puzzleQids'] = qids;
-      upd[base+'/matchKind'] = 'puzzle5';
-      upd[base+'/currentQ'] = 0;
-      upd[base+'/questionOpenedAt'] = Date.now();
-      upd[base+'/status'] = 'active';
-      upd[base+'/answers'] = {};
-      await rdb.ref().update(upd);
-      return;
-    }
-    if (kind === 'mixed_221' || kind === 'final_mix'){
-      function buildMixedStepsFromPoolsAdmin(snaps, duelSteps, k){
-        function keysFrom(snap){
-          const qm = snap && snap.exists() ? snap.val() || {} : {};
-          return Object.keys(qm).filter(function(x){ return qm[x]; });
-        }
-        let fb = tourShuffle(keysFrom(snaps[0]).slice());
-        let pz = tourShuffle(keysFrom(snaps[1]).slice());
-        let mg = tourShuffle(keysFrom(snaps[2]).slice());
-        const steps = duelSteps && duelSteps.length ? duelSteps.slice() : [];
-        function take(type, arr, n){
-          for (let i = 0; i < n; i++){
-            if (!arr.length) return false;
-            steps.push({ type, qid: arr.shift() });
-          }
-          return true;
-        }
-        let ok = true;
-        if (k === 'mixed_221'){
-          ok = take('fill', fb, 2) && take('puzzle', pz, 2) && take('match', mg, 1);
-        } else {
-          ok = (duelSteps && duelSteps.length >= 7) && take('fill', fb, 3) && take('puzzle', pz, 3) && take('match', mg, 2);
-        }
-        const needLen = k === 'mixed_221' ? 5 : 15;
-        if (!ok || steps.length < needLen) return null;
-        return steps;
-      }
-      if (kind === 'final_mix'){
-        const duelSteps = await tournamentCollectDuelStepsAdmin(seasonId, players);
-        if (!duelSteps || duelSteps.length < 7){
-          upd[base+'/status'] = 'pending';
-          upd[base+'/r1Error'] = 'Büyük final için düello soruları yüklenemedi (kayıtlı sınıf / championData).';
-          await rdb.ref().update(upd);
-          return;
-        }
-        const snaps = await Promise.all([
-          rdb.ref('fillBlanks/questionIds').get(),
-          rdb.ref('dailyPuzzles/questionIds').get(),
-          rdb.ref('matchingGame/questionIds').get()
-        ]);
-        const steps = buildMixedStepsFromPoolsAdmin(snaps, duelSteps, kind);
-        if (!steps){
-          upd[base+'/status'] = 'pending';
-          upd[base+'/r1Error'] = 'Turnuva için yeterli soru yok (boşluk / bulmaca / eşleştirme havuzları).';
-          await rdb.ref().update(upd);
-          return;
-        }
-        upd[base+'/tournamentSteps'] = steps;
-        upd[base+'/matchKind'] = kind;
-        upd[base+'/currentQ'] = 0;
-        upd[base+'/questionOpenedAt'] = Date.now();
-        upd[base+'/status'] = 'active';
-        upd[base+'/answers'] = {};
-        await rdb.ref().update(upd);
-        return;
-      }
-      const snaps = await Promise.all([
-        rdb.ref('fillBlanks/questionIds').get(),
-        rdb.ref('dailyPuzzles/questionIds').get(),
-        rdb.ref('matchingGame/questionIds').get()
-      ]);
-      const steps = buildMixedStepsFromPoolsAdmin(snaps, null, kind);
-      if (!steps){
-        upd[base+'/status'] = 'pending';
-        upd[base+'/r1Error'] = 'Turnuva için yeterli soru yok (boşluk / bulmaca / eşleştirme havuzları).';
-        await rdb.ref().update(upd);
-        return;
-      }
-      upd[base+'/tournamentSteps'] = steps;
-      upd[base+'/matchKind'] = kind;
-      upd[base+'/currentQ'] = 0;
-      upd[base+'/questionOpenedAt'] = Date.now();
-      upd[base+'/status'] = 'active';
-      upd[base+'/answers'] = {};
-      await rdb.ref().update(upd);
-      return;
-    }
-    const qs = await rdb.ref('fillBlanks/questionIds').get();
-    const qm = qs.exists() ? qs.val() : {};
-    let qids = Object.keys(qm || {}).filter(function(k){ return qm[k]; });
-    if (qids.length < 5){
-      upd[base+'/status'] = 'pending';
-      upd[base+'/r1Error'] = 'Yeterli fillBlanks sorusu yok (min 5).';
-      await rdb.ref().update(upd);
-      return;
-    }
-    qids = tourShuffle(qids).slice(0,5);
-    upd[base+'/fillBlankQids'] = qids;
-    upd[base+'/currentQ'] = 0;
-    upd[base+'/questionOpenedAt'] = Date.now();
-    upd[base+'/status'] = 'active';
-    upd[base+'/answers'] = {};
-    await rdb.ref().update(upd);
-  }
-
-  async function novaTourProcessReadyPhase(m){
-    const seasonId = String(m.seasonId || '2026_bahar').trim();
-    const ms = await rdb.ref('tournamentMatches/'+seasonId).get();
-    if(!ms.exists()){
-      await rdb.ref('tournamentMeta').update({ schedulePhase: 'idle', readyPhaseDoneAt: Date.now(), updatedAt: Date.now() });
-      return;
-    }
-    const matches = ms.val() || {};
-    const mids = Object.keys(matches);
-    for (let i = 0; i < mids.length; i++){
-      await novaTourProcessOneMatchReady(seasonId, mids[i], matches[mids[i]]);
-    }
-    await rdb.ref('tournamentMeta').update({
-      schedulePhase: 'matches_live',
-      readyPhaseDoneAt: Date.now(),
-      status: 'running',
-      updatedAt: Date.now()
-    });
-  }
-
-  $('#tour_start_10min') && $('#tour_start_10min').addEventListener('click', async ()=>{
-    const metaSt = $('#tour_meta_status');
-    if(!rdb){ if(metaSt) metaSt.textContent='RTDB yok.'; return; }
-    const seasonId = String($('#tour_season_id').value||'').trim() || '2026_bahar';
-    const regMs = tourGetRegWindowMs();
-    const now = Date.now();
-    try{
-      await rdb.ref('tournamentMeta').update({
-        enabled: true,
-        seasonId: seasonId,
-        status: 'registration',
-        schedulePhase: 'reg_countdown',
-        registrationEndsAt: now + regMs,
-        groupsBuiltAt: null,
-        readyPhaseEndsAt: null,
-        readyPhaseDoneAt: null,
-        'locks/groupBuild': null,
-        'locks/matchStart': null,
-        updatedAt: now
-      });
-      $('#tour_enabled').checked = true;
-      if(metaSt) metaSt.textContent = 'Kayıt penceresi başladı (' + tourFormatRegDurationLabel(regMs) + ').';
-      try{ await novaTourBindPanoLive(); }catch(_e){}
-    }catch(e){
-      if(metaSt) metaSt.textContent = 'Hata: '+(e&&e.message||e);
-    }
-  });
-
-  $('#tour_load_meta') && $('#tour_load_meta').addEventListener('click', ()=> window.novaLoadTournamentAdmin && window.novaLoadTournamentAdmin());
-
-  setInterval(async function(){
-    if(!rdb) return;
-    try{
-      const snap = await rdb.ref('tournamentMeta').get();
-      if(!snap.exists()) return;
-      const m = snap.val() || {};
-      const now = Date.now();
-      if(m.schedulePhase === 'reg_countdown' && m.registrationEndsAt && now >= m.registrationEndsAt && !m.groupsBuiltAt){
-        const sid = String(m.seasonId || $('#tour_season_id').value || '2026_bahar').trim();
-        try{
-          await novaTourBuildGroupsCore(sid, { useBuildLock: true });
-        }catch(_e){}
-      }
-      if(m.schedulePhase === 'ready_countdown' && m.readyPhaseEndsAt && now >= m.readyPhaseEndsAt && !m.readyPhaseDoneAt){
-        const tr = await rdb.ref('tournamentMeta/locks/matchStart').transaction(function(c){ return c != null ? undefined : now; });
-        if(tr.committed){
-          await novaTourProcessReadyPhase(m);
-        }
-      }
-    }catch(_e){}
-  }, 2000);
-
-  async function novaTourResolveSeasonId(){
-    if(!rdb) return String($('#tour_season_id').value||'').trim() || '2026_bahar';
-    try{
-      const snap = await rdb.ref('tournamentMeta').get();
-      const m = snap.exists() ? (snap.val()||{}) : {};
-      const fromMeta = typeof m.seasonId === 'string' ? m.seasonId.trim() : '';
-      const fromField = String($('#tour_season_id').value||'').trim();
-      return fromField || fromMeta || '2026_bahar';
-    }catch(_e){
-      return String($('#tour_season_id').value||'').trim() || '2026_bahar';
-    }
-  }
-
-  async function novaTourPurgeEverythingForSeason(seasonId){
-    const sid = String(seasonId||'').trim() || '2026_bahar';
-    await Promise.all([
-      rdb.ref('tournamentMeta').remove(),
-      rdb.ref('tournamentRegs/'+sid).remove(),
-      rdb.ref('tournamentMatches/'+sid).remove(),
-      rdb.ref('tournamentPlayerIndex/'+sid).remove()
-    ]);
-  }
-
-  $('#tour_delete_all') && $('#tour_delete_all').addEventListener('click', async ()=>{
-    const out = $('#tour_danger_status');
-    if(!rdb){ if(out) out.textContent='RTDB yok.'; return; }
-    if(!confirm('Tüm turnuva verileri silinecek (meta, kayıtlar, maçlar, indeks). Emin misiniz?')) return;
-    if(out) out.textContent = 'Siliniyor…';
-    try{
-      const sid = await novaTourResolveSeasonId();
-      await novaTourPurgeEverythingForSeason(sid);
-      if(out) out.textContent = 'Silindi (sezon: '+sid+').';
-      try{ $('#tour_enabled').checked = false; }catch(_e){}
-      if(window.novaLoadTournamentAdmin) await window.novaLoadTournamentAdmin();
-    }catch(e){
-      if(out) out.textContent = 'Hata: '+(e&&e.message||e);
-    }
-  });
-
-  $('#tour_new_start') && $('#tour_new_start').addEventListener('click', async ()=>{
-    const out = $('#tour_danger_status');
-    const metaSt = $('#tour_meta_status');
-    if(!rdb){ if(out) out.textContent='RTDB yok.'; return; }
-    const regMs = tourGetRegWindowMs();
-    if(!confirm('Mevcut turnuva verileri silinecek; ardından seçilen sürede (' + tourFormatRegDurationLabel(regMs) + ') yeni kayıt penceresi açılacak. Devam?')) return;
-    if(out) out.textContent = 'Sıfırlanıyor…';
-    try{
-      const sid = await novaTourResolveSeasonId();
-      await novaTourPurgeEverythingForSeason(sid);
-      const now = Date.now();
-      await rdb.ref('tournamentMeta').set({
-        enabled: true,
-        seasonId: sid,
-        status: 'registration',
-        schedulePhase: 'reg_countdown',
-        registrationEndsAt: now + regMs,
-        groupsBuiltAt: null,
-        readyPhaseEndsAt: null,
-        readyPhaseDoneAt: null,
-        updatedAt: now
-      });
-      await rdb.ref('tournamentMeta').update({
-        'locks/groupBuild': null,
-        'locks/matchStart': null
-      });
-      $('#tour_season_id').value = sid;
-      $('#tour_enabled').checked = true;
-      if(out) out.textContent = 'Yeni turnuva başlatıldı (' + tourFormatRegDurationLabel(regMs) + ' kayıt). Sezon: '+sid;
-      if(metaSt) metaSt.textContent = 'Kayıt penceresi başladı (' + tourFormatRegDurationLabel(regMs) + ').';
-      if(window.novaLoadTournamentAdmin) await window.novaLoadTournamentAdmin();
-    }catch(e){
-      if(out) out.textContent = 'Hata: '+(e&&e.message||e);
-    }
-  });
-
   // =====================================
   // 1) Sınıflar & Öğrenciler
   // =====================================
@@ -3802,12 +2999,14 @@ window.NovaAdminExport = (function(){
     if(sorted.length){ topicSelect.value = sorted[0].id; }
     topicVideoUrl.value = (topicSelect.selectedOptions[0] && topicSelect.selectedOptions[0].getAttribute('data-video')) || '';
     await reloadQuestions();
+    try { await syncKaptanKabukFormFromTopic(); } catch (_) {}
   }
   headingSelect.addEventListener('change', loadLessons);
   lessonSelect.addEventListener('change', loadTopics);
   topicSelect.addEventListener('change', ()=>{
     topicVideoUrl.value = (topicSelect.selectedOptions[0] && topicSelect.selectedOptions[0].getAttribute('data-video')) || '';
     reloadQuestions();
+    syncKaptanKabukFormFromTopic();
   });
 
 btnAddHeading.addEventListener('click', async ()=>{
@@ -4061,6 +3260,134 @@ btnAddHeading.addEventListener('click', async ()=>{
     await rdb.ref(`lessonVideoLookup/${L}/${T}`).set(url||'');
     alert('lessonVideoLookup güncellendi.');
   });
+
+  // — Kaptan Kabuk ↔ müfredat konusu ilişkilendirme —
+  const kaptanKabukLessonSelect = $('#kaptanKabukLessonSelect');
+  const kaptanKabukTopicSelect = $('#kaptanKabukTopicSelect');
+  const btnSaveKaptanKabukLink = $('#btnSaveKaptanKabukLink');
+  const btnClearKaptanKabukLink = $('#btnClearKaptanKabukLink');
+  let __kaptanKabukLessonsCache = [];
+
+  function curriculumRoboroxPath(h){
+    const R = window.NovaRoboroxData;
+    const opt = headingSelect && headingSelect.selectedOptions && headingSelect.selectedOptions[0];
+    const name = (opt && opt.textContent) || h || '';
+    if (R && R.roboroxLearnPath) return R.roboroxLearnPath({ classId: h, className: name });
+    return 'roboroxLearn';
+  }
+
+  function fillKaptanKabukTopicOptions(lessonId, selectedTopicId){
+    if (!kaptanKabukTopicSelect) return;
+    kaptanKabukTopicSelect.innerHTML = '<option value="">— Konu seçin —</option>';
+    const lesson = __kaptanKabukLessonsCache.find(function(l){ return l.id === lessonId; });
+    if (!lesson || !lesson.topics || !lesson.topics.length) return;
+    lesson.topics.forEach(function(t){
+      const o = document.createElement('option');
+      o.value = t.id;
+      o.textContent = t.title || t.id;
+      kaptanKabukTopicSelect.appendChild(o);
+    });
+    if (selectedTopicId) kaptanKabukTopicSelect.value = selectedTopicId;
+  }
+
+  async function loadKaptanKabukLinkOptions(selectedLink){
+    if (!kaptanKabukLessonSelect || !kaptanKabukTopicSelect) return;
+    const h = headingSelect.value;
+    kaptanKabukLessonSelect.innerHTML = '<option value="">— Yükleniyor —</option>';
+    kaptanKabukTopicSelect.innerHTML = '<option value="">— Önce ders seçin —</option>';
+    __kaptanKabukLessonsCache = [];
+    if (!h){
+      kaptanKabukLessonSelect.innerHTML = '<option value="">— Başlık seçin —</option>';
+      return;
+    }
+    const R = window.NovaRoboroxData;
+    if (!R || !R.parseSnapshot){
+      kaptanKabukLessonSelect.innerHTML = '<option value="">— Modül yok —</option>';
+      return;
+    }
+    try {
+      const path = curriculumRoboroxPath(h);
+      const snap = await rdb.ref(path).get();
+      const raw = snap.exists() ? snap.val() || {} : {};
+      const parsed = R.parseSnapshot(raw);
+      kaptanKabukLessonSelect.innerHTML = '<option value="">— Seçin —</option>';
+      if (parsed.mode === 'lessons' && parsed.lessons.length){
+        __kaptanKabukLessonsCache = parsed.lessons.map(function(l){
+          return { id: l.id, name: l.name, topics: l.topics || [] };
+        });
+        __kaptanKabukLessonsCache.forEach(function(l){
+          const o = document.createElement('option');
+          o.value = l.id;
+          o.textContent = l.name || l.id;
+          kaptanKabukLessonSelect.appendChild(o);
+        });
+      } else if (parsed.flatTopics.length){
+        __kaptanKabukLessonsCache = [{ id: '__flat__', name: 'Tüm konular', topics: parsed.flatTopics }];
+        const o = document.createElement('option');
+        o.value = '__flat__';
+        o.textContent = 'Tüm konular';
+        kaptanKabukLessonSelect.appendChild(o);
+      } else {
+        kaptanKabukLessonSelect.innerHTML = '<option value="">— Kaptan Kabuk içeriği yok —</option>';
+      }
+      if (selectedLink && selectedLink.topicId){
+        var selLesson = selectedLink.lessonId || '';
+        if (!selLesson && __kaptanKabukLessonsCache.some(function(l){ return l.id === '__flat__'; })){
+          selLesson = '__flat__';
+        }
+        if (selLesson) kaptanKabukLessonSelect.value = selLesson;
+        fillKaptanKabukTopicOptions(selLesson || kaptanKabukLessonSelect.value, selectedLink.topicId);
+      }
+    } catch (e) {
+      kaptanKabukLessonSelect.innerHTML = '<option value="">— Yüklenemedi —</option>';
+      console.warn('loadKaptanKabukLinkOptions', e);
+    }
+  }
+
+  async function syncKaptanKabukFormFromTopic(){
+    const h = headingSelect.value, l = lessonSelect.value, t = topicSelect.value;
+    if (!h || !l || !t){
+      await loadKaptanKabukLinkOptions(null);
+      return;
+    }
+    let link = null;
+    try {
+      const snap = await rdb.ref(`championData/headings/${h}/lessons/${l}/topics/${t}/kaptanKabuk`).get();
+      if (snap.exists()) link = snap.val() || null;
+    } catch (_) {}
+    await loadKaptanKabukLinkOptions(link);
+  }
+
+  if (kaptanKabukLessonSelect){
+    kaptanKabukLessonSelect.addEventListener('change', function(){
+      fillKaptanKabukTopicOptions(kaptanKabukLessonSelect.value, '');
+    });
+  }
+  if (btnSaveKaptanKabukLink){
+    btnSaveKaptanKabukLink.addEventListener('click', async function(){
+      const h = headingSelect.value, l = lessonSelect.value, t = topicSelect.value;
+      const kkLesson = kaptanKabukLessonSelect ? kaptanKabukLessonSelect.value : '';
+      const kkTopic = kaptanKabukTopicSelect ? kaptanKabukTopicSelect.value : '';
+      if (!h || !l || !t) return alert('Müfredat konusu seçin.');
+      if (!kkLesson || !kkTopic) return alert('Kaptan Kabuk ders ve konu seçin.');
+      await rdb.ref(`championData/headings/${h}/lessons/${l}/topics/${t}/kaptanKabuk`).set({
+        lessonId: kkLesson === '__flat__' ? '' : kkLesson,
+        topicId: kkTopic,
+        updatedAt: Date.now()
+      });
+      alert('Kaptan Kabuk ilişkilendirmesi kaydedildi.');
+    });
+  }
+  if (btnClearKaptanKabukLink){
+    btnClearKaptanKabukLink.addEventListener('click', async function(){
+      const h = headingSelect.value, l = lessonSelect.value, t = topicSelect.value;
+      if (!h || !l || !t) return;
+      await rdb.ref(`championData/headings/${h}/lessons/${l}/topics/${t}/kaptanKabuk`).remove();
+      if (kaptanKabukLessonSelect) kaptanKabukLessonSelect.value = '';
+      if (kaptanKabukTopicSelect) kaptanKabukTopicSelect.innerHTML = '<option value="">— Önce ders seçin —</option>';
+      alert('İlişkilendirme temizlendi.');
+    });
+  }
 
   // =====================================
   // 3) Mağaza
