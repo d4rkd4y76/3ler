@@ -17,7 +17,6 @@
     'matchmakingScreen'
   ];
   const ULTRA_SCALE = 0.74;
-  const SINGLE_PLAYER_ULTRA_SCALE = 0.86;
   const PERF_TIERS = ['main', 'sp', 'hq', 'native'];
   const MODES = [
     {
@@ -145,8 +144,8 @@
     const bodyZoom = ultra ? ULTRA_SCALE : 1;
     document.body.style.setProperty('--nova-perf-scale', String(bodyZoom));
     document.body.style.setProperty('--nova-perf-body-zoom', String(bodyZoom));
-    document.body.style.setProperty('--nova-perf-counter-zoom', String(1 / bodyZoom));
-    document.body.style.setProperty('--nova-perf-sp-boost', String(SINGLE_PLAYER_ULTRA_SCALE / bodyZoom));
+    document.body.style.setProperty('--nova-perf-counter-zoom', '1');
+    document.body.style.setProperty('--nova-perf-sp-boost', '1');
   }
 
   function clearPerfTier() {
@@ -425,6 +424,9 @@
     try {
       new MutationObserver(function () {
         if (document.documentElement.classList.contains('nova-has-session')) {
+          try {
+            if (typeof window.novaPerfEarlySessionScale === 'function') window.novaPerfEarlySessionScale();
+          } catch (_) {}
           lastRuntimeKey = '';
           schedulePerfSync();
         } else {
@@ -433,15 +435,10 @@
         }
       }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     } catch (_) {}
-    setInterval(function () {
-      if ((window.__novaPerfMode || getDefaultMode()) === 'ultra') schedulePerfSync();
-    }, 2500);
     window.addEventListener('resize', function () {
-      schedulePerfSync();
       syncUnifiedFrameLiteClass();
     });
     window.addEventListener('orientationchange', function () {
-      schedulePerfSync();
       syncUnifiedFrameLiteClass();
     });
     window.addEventListener('pageshow', schedulePerfSync);

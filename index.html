@@ -7,6 +7,11 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- Comfortaa — ana yazı tipi (display=swap: yüklendikten sonra Comfortaa'ya geçer) -->
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;text=D%C3%9CELLOX&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles/base.css" />
 <link rel="stylesheet" href="styles/layout.css" />
 <link rel="stylesheet" href="styles/components.css" />
@@ -49,6 +54,8 @@
   }
 </style>
 <link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611logincompact1" />
+<link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260611perf2" />
+<link rel="stylesheet" href="styles/117-nova-perf-scale-v2.css?v=30260629scalefix1" />
 <script id="nova-login-instant-head">
 (function () {
   try {
@@ -78,11 +85,9 @@
   } catch (_) {}
 })();
 </script>
+<script src="js/ui/nova-perf-early-boot.js?v=30260629scalefix1"></script>
 <script src="js/ui/nova-session-hydrate.js?v=30260611session2"></script>
 <title>Düellox</title>
-<!-- Comfortaa Font -->
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;text=D%C3%9CELLOX&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles/002-style-002.css" />
 <link rel="stylesheet" href="styles/003-style-003.css" />
 <link rel="stylesheet" href="styles/004-style-004.css" />
@@ -96,7 +101,7 @@
 <link rel="stylesheet" href="styles/012-nova-extra-frames.css" />
 <link rel="stylesheet" href="styles/013-nova-ranking-table-photo-override.css?v=30260526rank1" />
 <link rel="stylesheet" href="styles/060-nova-ranking-player-names.css?v=30260526rank1" />
-<link rel="stylesheet" href="styles/077-nova-season-ranking-v2.css?v=30260530rank1" />
+<link rel="stylesheet" href="styles/077-nova-season-ranking-v2.css?v=30260629rank3" />
 <link rel="stylesheet" href="styles/098-nova-rank-epic-dragon.css?v=30260601rankepic1" />
 <link rel="stylesheet" href="styles/014-nova-store-fix.css" />
 <link rel="stylesheet" href="styles/015-style-015.css" />
@@ -181,7 +186,7 @@
 </style>
 </head>
 <body data-nova-back='1'>
-
+<script>window.novaPerfApplyBodyEarly&&window.novaPerfApplyBodyEarly();</script>
 <div id="nova_sprite_boot_overlay" class="nova-sprite-boot-overlay" role="status" aria-live="polite" aria-busy="true" hidden>
   <div class="nova-sprite-boot-bg" aria-hidden="true"></div>
   <div class="nova-sprite-boot-hero-layer" aria-hidden="true">
@@ -1068,8 +1073,8 @@
 </div>
 </div>
 <!-- Nova: RTDB Adapter for Lesson Video URL (supports Firebase v8 & v9) -->
-<script defer src="js/core/nova-roborox-data.js?v=30260629kaptan4"></script>
-<script defer src="js/ui/nova-roborox-learn.js?v=30260629kaptan5"></script>
+<script defer src="js/core/nova-roborox-data.js?v=30260629kaptan7"></script>
+<script defer src="js/ui/nova-roborox-learn.js?v=30260629kaptan8"></script>
 <script defer src="js/core/015-script-015.js"></script>
 <script defer src="js/core/016-script-016.js?v=30260629kaptan4"></script>
 <!-- Nova: precise duel analytics hook (wraps updateDuelScore) -->
@@ -1537,7 +1542,7 @@
 
 <script defer src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
 <script defer src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
-<script defer src="js/ui/004-nova-perf-settings-script.js?v=30260629kaptan1"></script>
+<script defer src="js/ui/004-nova-perf-settings-script.js?v=30260629scalefix1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
 <script defer src="js/screens/047-script-047.js?v=30260605avatarcat1"></script>
@@ -1749,15 +1754,13 @@
 <link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260605bonushit4" />
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/107-nova-main-hud-frame-fit.css?v=30260611hubfit1" />
-<link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260611perf2" />
-<link rel="stylesheet" href="styles/117-nova-perf-scale-v2.css?v=30260611loginfix1" />
 <link rel="stylesheet" href="styles/115-nova-main-stability.css?v=30260608bootv8" />
 <link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=30260606opt1" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260611sorukontrol4" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
 <link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260629deskframe1" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
-<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260629kaptan6" />
+<link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260629kaptan8" />
 <link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611center1" />
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
 <link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260629deskbg2" />

@@ -76,11 +76,45 @@
     if (Array.isArray(v.videos)) {
       return v.videos.map(normalizeBunnyVideoEntry).filter(Boolean);
     }
+    if (v.videos && typeof v.videos === "object") {
+      return Object.keys(v.videos)
+        .sort(function (a, b) {
+          var na = Number(a);
+          var nb = Number(b);
+          if (!isNaN(na) && !isNaN(nb) && na !== nb) return na - nb;
+          return String(a).localeCompare(String(b), "tr");
+        })
+        .map(function (k) {
+          return normalizeBunnyVideoEntry(v.videos[k]);
+        })
+        .filter(Boolean);
+    }
     if (v.video && typeof v.video === "object") {
       var one = normalizeBunnyVideoEntry(v.video);
       return one ? [one] : [];
     }
     return [];
+  }
+
+  function collectTopicPlaylist(topic, section) {
+    if (section && section.videos && section.videos.length) {
+      return section.videos.slice();
+    }
+    var out = [];
+    if (topic && topic.sections && topic.sections.length) {
+      topic.sections.forEach(function (s) {
+        if (s.active !== false && s.videos && s.videos.length) {
+          out = out.concat(s.videos);
+        }
+      });
+    }
+    if (out.length) return out;
+    if (topic && topic.videos && topic.videos.length) return topic.videos.slice();
+    return [];
+  }
+
+  function topicVideoCount(topic) {
+    return collectTopicPlaylist(topic, null).length;
   }
 
   function sectionHasContent(section) {
@@ -141,13 +175,15 @@
 
   function topicContentCount(topic) {
     if (!topic) return 0;
-    if (topicUsesSections(topic)) return topic.sections.length;
-    if (topic.videos && topic.videos.length) return topic.videos.length;
+    var n = topicVideoCount(topic);
+    if (n > 0) return n;
     return topic.images ? topic.images.length : 0;
   }
 
   function topicContentLabel(topic) {
     if (topicUsesSections(topic)) {
+      var videoN = topicVideoCount(topic);
+      if (videoN > 0) return videoN + (videoN === 1 ? " Video" : " Video");
       var n = topic.sections.length;
       return n + (n === 1 ? " Bölüm" : " Bölüm");
     }
@@ -270,6 +306,8 @@
     topicUsesSections: topicUsesSections,
     topicContentCount: topicContentCount,
     topicContentLabel: topicContentLabel,
+    collectTopicPlaylist: collectTopicPlaylist,
+    topicVideoCount: topicVideoCount,
     parseTopic: parseTopic,
     parseLesson: parseLesson,
     parseSnapshot: parseSnapshot,

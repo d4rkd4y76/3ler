@@ -776,6 +776,13 @@ body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope {
   transform: translateX(-50%) scale(0.97);
 }
 
+.roborox-reader-nav[hidden],
+.roborox-reader-nav.is-solo {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .roborox-reader-nav {
   position: absolute;
   left: 50%;

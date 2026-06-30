@@ -2055,6 +2055,7 @@ async function handleLogin() {
         try {
           document.documentElement.classList.add('nova-has-session', 'nova-boot-pending');
           document.body.classList.remove('nova-login-fast-visible');
+          if (typeof window.novaPerfEarlySessionScale === 'function') window.novaPerfEarlySessionScale();
         } catch (_) {}
 
         studentSelectionScreen.style.display = 'none';

@@ -221,26 +221,46 @@
   }
 
   function collectPlaybackVideos(topic, section) {
+    if (R && R.collectTopicPlaylist) {
+      return R.collectTopicPlaylist(topic, section);
+    }
     if (section && section.videos && section.videos.length) {
       return section.videos.slice();
     }
-    if (directOpenMode && directOpenMode.flattenSections && topicUsesSections(topic)) {
-      var out = [];
+    var out = [];
+    if (topic && topic.sections && topic.sections.length) {
       (topic.sections || []).forEach(function (s) {
         if (s.active !== false && s.videos && s.videos.length) {
           out = out.concat(s.videos);
         }
       });
-      if (out.length) return out;
     }
-    if (topic.videos && topic.videos.length) return topic.videos.slice();
+    if (out.length) return out;
+    if (topic && topic.videos && topic.videos.length) return topic.videos.slice();
     return [];
+  }
+
+  function normalizePlaylist(list) {
+    var out = [];
+    var seen = {};
+    (list || []).forEach(function (v) {
+      if (!v) return;
+      var videoId = String(v.videoId || v.id || "").trim();
+      if (!videoId) return;
+      var key = videoId + "|" + String(v.libraryId || v.libraryName || "");
+      if (seen[key]) return;
+      seen[key] = true;
+      out.push(v);
+    });
+    return out;
   }
 
   function updateReaderNav() {
     if (!readerNav) return;
     var total = videos.length;
-    if (total < 1) {
+    var solo = total <= 1;
+    readerNav.classList.toggle("is-solo", solo);
+    if (solo) {
       readerNav.hidden = true;
       readerNav.setAttribute("hidden", "");
       return;
@@ -555,6 +575,7 @@
     setReaderReady(false);
     setReaderLoading(true);
     hideAllPlayers();
+    updateReaderNav();
 
     var cfg = videos[index];
     var play = pickPlayback(cfg);
@@ -1046,8 +1067,9 @@
     if (!playVideos || !playVideos.length) return;
 
     ensureReaderPortal();
-    videos = playVideos.slice();
+    videos = normalizePlaylist(playVideos);
     videoIndex = 0;
+    updateReaderNav();
     loadToken += 1;
     reader.dataset.title = section ? section.title : topic.title;
     hideTopicsModal();
@@ -1183,10 +1205,6 @@
         return t.id === id;
       });
       if (!topic) return;
-      if (topicUsesSections(topic)) {
-        showTopicSections(topic);
-        return;
-      }
       playTopicIntro(topic, null);
     });
   }
