@@ -288,6 +288,9 @@
     directOpenMode = null;
     hideTopicIntro();
     hideTopicsModal();
+    try {
+      if (typeof window.novaCloseBirlestirelim === "function") window.novaCloseBirlestirelim();
+    } catch (_) {}
     loadToken += 1;
     if (reader) {
       reader.classList.remove("open", "is-ready", "is-opening", "is-open-ready");
@@ -730,6 +733,9 @@
   function renderLessons() {
     if (!topicsList) return;
     topicsList.innerHTML = "";
+    if (typeof window.novaBirlestirelimInjectEntry === "function") {
+      window.novaBirlestirelimInjectEntry(topicsList);
+    }
     lessonsCache.forEach(function (lesson) {
       const btn = document.createElement("button");
       btn.type = "button";
@@ -1044,6 +1050,9 @@
         selectedLesson = null;
         renderTopics();
         setBackVisible(false);
+        if (typeof window.novaBirlestirelimInjectEntry === "function") {
+          window.novaBirlestirelimInjectEntry(topicsList);
+        }
         return;
       }
 
@@ -1054,6 +1063,9 @@
         '<p class="roborox-topics-empty">Henüz ' +
         (gradeText ? "<strong>" + esc(gradeText) + "</strong> için " : "") +
         "ders videosu eklenmemiş.<br>Öğretmeniniz admin panelinden ders ve konu ekleyebilir.</p>";
+      if (typeof window.novaBirlestirelimInjectEntry === "function") {
+        window.novaBirlestirelimInjectEntry(topicsList);
+      }
       syncGradeSubtitle();
     } catch (e) {
       topicsList.innerHTML =

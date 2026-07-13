@@ -803,6 +803,10 @@
         ".validate": "(!newData.exists()) || newData.isNumber()"
       }
     },
+    "birlestirelim": {
+      ".read": true,
+      ".write": true
+    },
     "hikayeVideo": {
       ".read": true,
       ".write": true,

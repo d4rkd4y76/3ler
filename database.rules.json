@@ -857,6 +857,39 @@
         ".validate": "(!newData.exists()) || newData.isNumber()"
       }
     },
+    "birlestirelim": {
+      ".read": true,
+      ".write": true,
+      "media": {
+        "$key": {
+          "imageUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "audioUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "narrationAudioUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "updatedAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          }
+        }
+      },
+      "letters": {
+        "$letter": {
+          "audioUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "updatedAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          }
+        }
+      },
+      "updatedAt": {
+        ".validate": "(!newData.exists()) || newData.isNumber()"
+      }
+    },
     "roboroxLearn": {
       ".read": true,
       ".write": true,

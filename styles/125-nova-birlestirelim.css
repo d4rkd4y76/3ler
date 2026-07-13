@@ -1,0 +1,991 @@
+/* BİRLEŞTİRELİM — neşeli çocuk arayüzü + ses vurguları */
+
+body.birles-lock {
+  overflow: hidden !important;
+}
+
+.birles-entry {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 14px 14px 14px 12px !important;
+  border: 0 !important;
+  border-radius: 22px !important;
+  cursor: pointer;
+  text-align: left;
+  color: #1b3a4b;
+  background:
+    linear-gradient(135deg, #fff7e8 0%, #e8fff8 55%, #e3f6ff 100%) !important;
+  box-shadow:
+    0 12px 28px rgba(27, 58, 75, 0.14),
+    inset 0 0 0 2px rgba(6, 214, 160, 0.45) !important;
+  overflow: hidden;
+  animation: birlesEntryGlow 3s ease-in-out infinite;
+}
+
+.birles-entry::before {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% -30%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: skewX(-18deg);
+  animation: birlesEntryShine 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.birles-entry__ico {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #ff7a59, #ffd166 55%, #06d6a0);
+  box-shadow: 0 8px 18px rgba(255, 122, 89, 0.35);
+}
+
+.birles-entry__go {
+  margin-left: auto;
+  font-size: 1.2rem;
+  color: #ff7a59;
+}
+
+@keyframes birlesEntryGlow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-0.4deg);
+  }
+}
+
+@keyframes birlesEntryShine {
+  0%,
+  30% {
+    left: -35%;
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    left: 125%;
+    opacity: 0;
+  }
+}
+
+.birles-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 12050;
+  display: none;
+  align-items: stretch;
+  justify-content: center;
+  padding: max(10px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.55), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(76, 201, 240, 0.4), transparent 40%),
+    radial-gradient(circle at 70% 85%, rgba(6, 214, 160, 0.35), transparent 45%),
+    linear-gradient(160deg, #123047 0%, #1b4332 48%, #264653 100%);
+}
+
+.birles-overlay.open {
+  display: flex;
+  animation: birlesFadeIn 0.38s ease both;
+}
+
+@keyframes birlesFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-shell {
+  position: relative;
+  width: min(820px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #fffdf8 0%, #f3fffb 48%, #eef9ff 100%);
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.7);
+}
+
+.birles-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 16px 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), transparent);
+}
+
+.birles-top-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.birles-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ff7a59;
+}
+
+#birles-title {
+  margin: 2px 0 0;
+  font-family: "Fredoka", "Baloo 2", "Nunito", sans-serif;
+  font-size: clamp(1.45rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #1b3a4b;
+}
+
+.birles-sub {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #567183;
+}
+
+.birles-icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(27, 58, 75, 0.08);
+  color: #1b3a4b;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.birles-body {
+  flex: 1;
+  overflow: auto;
+  padding: 6px 16px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.birles-hub {
+  position: relative;
+}
+
+.birles-confetti {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, #ff7a59 0 4px, transparent 5px),
+    radial-gradient(circle at 88% 14%, #ffd166 0 5px, transparent 6px),
+    radial-gradient(circle at 70% 8%, #4cc9f0 0 4px, transparent 5px),
+    radial-gradient(circle at 30% 6%, #06d6a0 0 3px, transparent 4px);
+  opacity: 0.55;
+}
+
+.birles-hero-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffe8c8, #d8fff3 55%, #d7f3ff);
+  box-shadow: 0 10px 24px rgba(27, 58, 75, 0.1);
+  margin-bottom: 16px;
+}
+
+.birles-hero-mark {
+  animation: birlesHeroBounce 2.4s ease-in-out infinite;
+}
+
+@keyframes birlesHeroBounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(4deg);
+  }
+}
+
+.birles-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.birles-hero-copy strong {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.15rem;
+  color: #1b3a4b;
+}
+
+.birles-hero-copy span {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: #4f6b7c;
+  font-weight: 600;
+}
+
+.birles-path-label {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a93a3;
+}
+
+.birles-sound-rail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.birles-sound-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 16px 14px 14px;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  text-align: left;
+  color: #1b3a4b;
+  background: #fff;
+  box-shadow:
+    0 12px 26px rgba(27, 58, 75, 0.12),
+    inset 0 0 0 3px color-mix(in srgb, var(--chip, #06d6a0) 60%, white);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1.2), box-shadow 0.2s ease;
+  animation: birlesChipIn 0.45s ease both;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes birlesChipIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-sound-chip:hover,
+.birles-sound-chip:focus-visible {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 18px 34px rgba(27, 58, 75, 0.16),
+    0 0 0 5px var(--glow, rgba(6, 214, 160, 0.28));
+}
+
+.birles-sound-chip__ord {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--chip, #06d6a0);
+}
+
+.birles-sound-chip__letter {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--chip, #06d6a0);
+}
+
+.birles-sound-chip__letter small {
+  margin-left: 4px;
+  font-size: 1.2rem;
+  opacity: 0.72;
+}
+
+.birles-sound-chip__title {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.birles-sound-chip__hint {
+  font-size: 0.78rem;
+  color: #6b8494;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.birles-listen-main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 16px;
+  margin-bottom: 16px;
+  border: 0;
+  border-radius: 28px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, var(--chip, #06d6a0), #1b3a4b 70%);
+  box-shadow: 0 16px 34px rgba(27, 58, 75, 0.25);
+  overflow: hidden;
+}
+
+.birles-listen-main__ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  animation: birlesRing 1.8s ease-out infinite;
+}
+
+@keyframes birlesRing {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.birles-listen-main__letter {
+  position: relative;
+  z-index: 1;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  animation: birlesPulse 1.6s ease-in-out infinite;
+}
+
+.birles-listen-main__cap {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+@keyframes birlesPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.birles-fusion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.birles-fusion-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(27, 58, 75, 0.1);
+  cursor: pointer;
+  text-align: left;
+  color: #1b3a4b;
+  transition: transform 0.18s ease;
+}
+
+.birles-fusion-card:hover {
+  transform: translateY(-3px);
+}
+
+.birles-fusion-card:active {
+  transform: scale(0.97);
+}
+
+.birles-fusion-card__media {
+  height: 78px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, #ffe8c8, #d8fff3);
+}
+
+.birles-fusion-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.birles-fusion-card__badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #06d6a0;
+}
+
+.birles-fusion-card__result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.birles-miss {
+  font-family: inherit;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #ffe0d6;
+  color: #c1121f;
+}
+
+.birles-fusion-card__label {
+  font-size: 0.8rem;
+  color: #6b8494;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.birles-play__narration {
+  margin: 0 0 12px;
+  text-align: center;
+  font-weight: 800;
+  color: #1b3a4b;
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+.birles-audio-hint {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #c1121f;
+  background: #ffe8e2;
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+.birles-stage {
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 10px;
+  transition: opacity 0.35s ease, min-height 0.35s ease;
+}
+
+.birles-stage.is-quiet {
+  min-height: 48px;
+  opacity: 0.35;
+}
+
+.birles-tray {
+  min-height: 0;
+  margin: 4px auto 14px;
+  max-width: 560px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.birles-tray.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.birles-tray__label {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a93a3;
+  margin-bottom: 8px;
+}
+
+.birles-tray__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 16px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(232, 255, 248, 0.98));
+  box-shadow:
+    inset 0 0 0 2px rgba(6, 214, 160, 0.3),
+    0 12px 28px rgba(27, 58, 75, 0.12);
+  min-height: 92px;
+}
+
+.birles-tray__row--final {
+  background: linear-gradient(160deg, #e8fff6, #fff4e0);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 122, 89, 0.28),
+    0 14px 32px rgba(27, 58, 75, 0.14);
+}
+
+.birles-tray__plus {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #7a93a3;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.birles-tray__plus.is-fade,
+.birles-tray.is-merging .birles-tray__plus {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.birles-tray-chip {
+  border: 0;
+  cursor: pointer;
+  min-width: 70px;
+  min-height: 64px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(160deg, var(--chip, #06d6a0), #1b3a4b);
+  box-shadow: 0 10px 20px rgba(27, 58, 75, 0.18);
+  transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
+}
+
+.birles-tray-chip.is-dim {
+  opacity: 0.38;
+  filter: grayscale(0.2);
+  transform: scale(0.92);
+}
+
+.birles-tray-chip.is-speaking,
+.birles-tray-chip.is-waiting {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 5px rgba(255, 209, 102, 0.45),
+    0 14px 28px rgba(255, 122, 89, 0.35);
+  background: linear-gradient(160deg, #ffd166, #ff7a59);
+  animation: birlesSpeakBounce 0.45s ease infinite alternate;
+}
+
+.birles-tray-chip.is-arrive {
+  animation: birlesTrayArrive 0.75s cubic-bezier(0.2, 0.9, 0.2, 1.2) both;
+}
+
+.birles-tray.is-merging .birles-tray-chip.is-join:first-of-type {
+  animation: birlesTraySlideRight 1s ease forwards;
+}
+.birles-tray.is-merging .birles-tray-chip.is-join:last-of-type {
+  animation: birlesTraySlideLeft 1s ease forwards;
+}
+
+.birles-tray-chip--word {
+  min-width: 132px;
+  min-height: 78px;
+  font-size: 2rem;
+  background: linear-gradient(160deg, #06d6a0, #ffd166 55%, #ff7a59);
+  box-shadow:
+    0 0 0 6px rgba(6, 214, 160, 0.22),
+    0 16px 34px rgba(27, 58, 75, 0.2);
+}
+
+.birles-card.is-fly-down {
+  animation: birlesFlyDown 0.8s cubic-bezier(0.4, 0.05, 0.2, 1) forwards;
+  z-index: 5;
+}
+
+@keyframes birlesFlyDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(64px) scale(0.82);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(108px) scale(0.45);
+    opacity: 0;
+  }
+}
+
+@keyframes birlesTrayArrive {
+  0% {
+    transform: translateY(-30px) scale(0.45);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(3px) scale(1.08);
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes birlesTraySlideRight {
+  to {
+    transform: translateX(36px) scale(0.82);
+    opacity: 0.2;
+  }
+}
+@keyframes birlesTraySlideLeft {
+  to {
+    transform: translateX(-36px) scale(0.82);
+    opacity: 0.2;
+  }
+}
+
+.birles-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.birles-plus {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #7a93a3;
+}
+
+.birles-card {
+  position: relative;
+  min-width: 88px;
+  min-height: 104px;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  color: #1b3a4b;
+  background: transparent;
+  animation: birlesCardIn 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.2) both;
+}
+
+.birles-card__face {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-width: 88px;
+  min-height: 104px;
+  padding: 14px 18px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow:
+    0 14px 28px rgba(27, 58, 75, 0.14),
+    inset 0 0 0 3px color-mix(in srgb, var(--chip, #06d6a0) 55%, white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.birles-card__txt {
+  font-size: clamp(1.7rem, 6.5vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.birles-card__pulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Okunan ses vurgusu */
+.birles-card.is-speaking .birles-card__face {
+  transform: scale(1.14);
+  background: linear-gradient(160deg, #ffd166, #ff7a59);
+  color: #fff;
+  box-shadow:
+    0 0 0 6px rgba(255, 122, 89, 0.35),
+    0 18px 36px rgba(255, 122, 89, 0.45);
+  animation: birlesSpeakBounce 0.45s ease infinite alternate;
+}
+
+.birles-card.is-speaking .birles-card__pulse {
+  opacity: 1;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.55), transparent 70%);
+  animation: birlesSpeakGlow 0.7s ease-out infinite;
+}
+
+.birles-card.is-dim .birles-card__face {
+  opacity: 0.42;
+  transform: scale(0.92);
+  filter: grayscale(0.25);
+}
+
+.birles-card.is-joining .birles-card__face {
+  background: linear-gradient(160deg, #4cc9f0, #06d6a0);
+  color: #fff;
+}
+
+.birles-card.is-merged .birles-card__face,
+.birles-card--result .birles-card__face,
+.birles-card--final .birles-card__face {
+  min-width: 128px;
+  background: linear-gradient(160deg, var(--chip, #06d6a0), #1b3a4b);
+  color: #fff;
+  box-shadow:
+    0 0 0 7px rgba(6, 214, 160, 0.28),
+    0 20px 40px var(--glow, rgba(6, 214, 160, 0.45));
+  animation: birlesMergedPop 0.65s cubic-bezier(0.2, 0.9, 0.2, 1.35) both;
+}
+
+.birles-card.is-merged.is-speaking .birles-card__face {
+  background: linear-gradient(160deg, #06d6a0, #ffd166 55%, #ff7a59);
+  animation: birlesMergedGlow 0.55s ease infinite alternate;
+}
+
+@keyframes birlesSpeakBounce {
+  from {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  to {
+    transform: scale(1.18) rotate(2deg);
+  }
+}
+
+@keyframes birlesSpeakGlow {
+  from {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  to {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes birlesMergedPop {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.2;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes birlesMergedGlow {
+  from {
+    filter: brightness(1);
+    transform: scale(1.08);
+  }
+  to {
+    filter: brightness(1.12);
+    transform: scale(1.16);
+  }
+}
+
+.birles-card--chunk .birles-card__face {
+  min-width: 100px;
+  background: linear-gradient(180deg, #fff, #eefbff);
+}
+
+@keyframes birlesCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-cards.is-merge .birles-card:first-child {
+  animation: birlesSlideRight 0.75s ease forwards;
+}
+.birles-cards.is-merge .birles-card:last-child {
+  animation: birlesSlideLeft 0.75s ease forwards;
+}
+.birles-cards.is-merge .birles-plus {
+  animation: birlesFadeOut 0.35s ease forwards;
+}
+
+@keyframes birlesSlideRight {
+  to {
+    transform: translateX(34px) scale(0.88);
+    opacity: 0.3;
+  }
+}
+@keyframes birlesSlideLeft {
+  to {
+    transform: translateX(-34px) scale(0.88);
+    opacity: 0.3;
+  }
+}
+@keyframes birlesFadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.birles-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 14px;
+  text-align: center;
+}
+
+.birles-reveal[hidden] {
+  display: none !important;
+}
+
+.birles-reveal.is-pop {
+  animation: birlesMergedPop 0.6s ease both;
+}
+
+.birles-reveal img,
+.birles-reveal__img {
+  width: min(240px, 72vw);
+  height: 160px;
+  object-fit: cover;
+  border-radius: 24px;
+  background: linear-gradient(160deg, #ffe8c8, #d8fff3 50%, #d7f3ff);
+  box-shadow: 0 16px 34px rgba(27, 58, 75, 0.18);
+}
+
+.birles-reveal--textonly {
+  padding-top: 4px;
+}
+
+.birles-reveal__placeholder {
+  display: none !important;
+}
+
+.birles-reveal strong {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 2.15rem;
+  color: #1b3a4b;
+}
+
+.birles-reveal span {
+  font-weight: 800;
+  color: #06d6a0;
+  font-size: 1.05rem;
+}
+
+.birles-play-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.birles-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-weight: 800;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #06d6a0, #1b3a4b);
+  box-shadow: 0 12px 24px rgba(27, 58, 75, 0.22);
+}
+
+.birles-btn--ghost {
+  background: rgba(27, 58, 75, 0.08);
+  color: #1b3a4b;
+  box-shadow: none;
+}
+
+.birles-admin-row {
+  display: grid;
+  grid-template-columns: 88px 1fr 1fr auto;
+  gap: 8px;
+  align-items: end;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.birles-admin-row label {
+  display: block;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.birles-admin-preview {
+  width: 72px;
+  height: 54px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 640px) {
+  .birles-sound-rail,
+  .birles-fusion-grid {
+    grid-template-columns: 1fr;
+  }
+  .birles-admin-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-entry,
+  .birles-entry::before,
+  .birles-listen-main__letter,
+  .birles-listen-main__ring,
+  .birles-hero-mark,
+  .birles-card,
+  .birles-card.is-speaking .birles-card__face,
+  .birles-reveal.is-pop {
+    animation: none !important;
+  }
+}

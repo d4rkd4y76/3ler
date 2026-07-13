@@ -71,7 +71,7 @@
   .card{background:linear-gradient(180deg, #101633, #0e142c); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow:var(--shadow)}
   .card h3{margin:0 0 10px; font-size:15px}
   label{display:block; font-size:12px; color:var(--muted); margin-top:8px}
-  input[type="text"], input[type="number"], input[type="password"], select, textarea{
+  input[type="text"], input[type="number"], input[type="password"], input[type="url"], select, textarea{
     width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border);
     background:#0b1130; color:var(--ink); outline:none;
   }
@@ -117,6 +117,31 @@
   .mt8{margin-top:8px}
   .mt12{margin-top:12px}
   .mt16{margin-top:16px}
+  .birles-admin-row{display:grid;grid-template-columns:88px 1fr 1fr;gap:8px;align-items:end;padding:10px 0;border-bottom:1px solid var(--border)}
+  .birles-admin-row label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+  .birles-admin-preview{width:72px;height:54px;border-radius:10px;object-fit:cover;background:rgba(255,255,255,.06);border:1px solid var(--border)}
+  .birles-admin-tabs{display:flex;flex-wrap:wrap;gap:10px}
+  .birles-admin-tab{
+    min-width:76px; padding:14px 16px; border-radius:16px; border:1px solid var(--border);
+    background:linear-gradient(180deg,#151c3f,#101633); color:var(--ink); cursor:pointer;
+    font-weight:800; font-size:22px; line-height:1; text-align:center;
+  }
+  .birles-admin-tab small{display:block;margin-top:6px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  .birles-admin-tab.is-active{
+    border-color:#3b82f6; background:linear-gradient(180deg,#2563eb,#1d4ed8); color:#fff;
+    box-shadow:0 10px 24px rgba(37,99,235,.35);
+  }
+  .birles-admin-tab.is-active small{color:rgba(255,255,255,.85)}
+  .birles-admin-tab .birles-admin-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-left:6px;background:#f59e0b;vertical-align:middle}
+  .birles-admin-tab.is-ready .birles-admin-dot{background:#22c55e}
+  .birles-admin-sec{margin:0 0 8px;font-size:13px;color:#a5b4fc;text-transform:uppercase;letter-spacing:.06em}
+  .birles-admin-fusion{
+    border:1px solid var(--border); border-radius:14px; padding:12px; margin:0 0 12px;
+    background:rgba(11,16,32,.45);
+  }
+  .birles-admin-fusion__title{font-weight:800;font-size:18px;margin:0 0 4px}
+  .birles-admin-fusion__label{color:var(--muted);font-size:12px;margin:0 0 10px}
+  @media (max-width:900px){.birles-admin-row{grid-template-columns:1fr}}
   .mt24{margin-top:24px}
   .center{display:flex; align-items:center; justify-content:center}
   /* Minimal close button for dialogs */
@@ -305,6 +330,7 @@ window.NovaAdminExport = (function(){
       <div class="tab" data-view="announcementView">📢 Ana ekran duyurusu</div>
       <div class="tab" data-view="girisPanosuView">🖥️ Giriş panosu</div>
       <div class="tab" data-view="roboroxLearnView">🐢 Kaptan Kabuk</div>
+      <div class="tab" data-view="birlestirelimView">🔗 Birleştirelim</div>
       <div class="tab" data-view="cdnView">☁️ CDN Yayın</div>
       <div class="tab" data-view="mainScreenBgView">🎬 Ana ekran arka plan</div>
       <div class="tab" data-view="hikayeVideoView">📖 Hikaye</div>
@@ -782,6 +808,59 @@ window.NovaAdminExport = (function(){
       </div>
     </div>
 
+    <div id="birlestirelimView" class="view">
+      <h2>BİRLEŞTİRELİM — 1. Grup Sesler</h2>
+      <div class="sub">Önce bir ses seç. Sadece o sesin harf/hece/kelime Bunny URL’lerini görürsün. Veritabanı: <span class="mono">/birlestirelim</span></div>
+      <div class="toolbar mt8" style="gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn" id="birles_admin_reload">Yenile</button>
+        <button type="button" class="btn acc" id="birles_admin_save_all">Bu sesi / tümünü kaydet</button>
+      </div>
+      <div class="hint mt8" id="birles_admin_status"></div>
+
+      <div class="card mt12">
+        <h3 style="margin:0 0 8px">Bunny Stream CDN hostname (zorunlu)</h3>
+        <p class="soft small" style="margin:0 0 10px">
+          <code>player.mediadelivery.net/play/…</code> sayfa linki tarayıcıda ses olarak çalınmaz.
+          Hikaye / Kaptan Kabuk’taki gibi <b>vz-xxxxxxxx</b> (Bunny pull zone) yaz.
+          Uygulama bunu <code>https://vz-….b-cdn.net/{videoId}/play_720p.mp4</code> adresine çevirir.
+        </p>
+        <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;align-items:end">
+          <div style="flex:1;min-width:220px">
+            <label for="birles_admin_library_name">Kütüphane adı (CDN host)</label>
+            <input type="text" id="birles_admin_library_name" placeholder="vz-xxxxxxxx" />
+          </div>
+          <button type="button" class="btn" id="birles_admin_save_host">Hostname kaydet</button>
+        </div>
+        <p class="soft small mt8" id="birles_admin_host_hint">Hostname kayıtlı değil — mediadelivery linkleri çalışmaz.</p>
+      </div>
+
+      <div class="card mt12">
+        <h3 style="margin:0 0 10px">Ses seç</h3>
+        <p class="soft small" style="margin:0 0 12px">Her kutuya tıkla → yalnızca o sesin URL alanları açılır.</p>
+        <div id="birles_admin_sound_tabs" class="birles-admin-tabs" role="tablist"></div>
+      </div>
+
+      <div id="birles_admin_sound_panel" class="card mt12" hidden>
+        <div class="birles-admin-panel-head">
+          <h3 id="birles_admin_panel_title" style="margin:0">—</h3>
+          <p id="birles_admin_panel_hint" class="soft small" style="margin:6px 0 0"></p>
+        </div>
+
+        <div class="mt16">
+          <h4 class="birles-admin-sec">Harf sesi</h4>
+          <div id="birles_admin_letter_list"></div>
+        </div>
+
+        <div class="mt16">
+          <h4 class="birles-admin-sec">Bu seste birleştirmeler (ses + görsel)</h4>
+          <p class="soft small">Her birleştirme için Bunny ses URL’si; kelimelerde ayrıca görsel URL.</p>
+          <div id="birles_admin_fusion_list" class="mt8"></div>
+        </div>
+      </div>
+
+      <p id="birles_admin_empty_pick" class="soft mt12">Yukarıdan bir ses seçerek başla (örn. <b>a</b> veya <b>n</b>).</p>
+    </div>
+
     <div id="roboroxLearnView" class="view">
       <h2>Kaptan Kabuk Anlatıyor</h2>
       <div class="sub">Seçili sınıf için <strong>ders</strong> ve <strong>konu</strong> oluşturun. Her konunun içine <strong>alt başlıklar (bölümler)</strong> ekleyebilir; her alt başlığa Bunny Stream dikey video bağlanır. Öğrenci konuya girince alt başlıkları görür ve seçtiği bölümü tam ekran izler. Veritabanı: <span class="mono" id="roborox_learn_path_hint">/roboroxLearn</span></div>
@@ -1238,6 +1317,8 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
+<script src="js/core/nova-birlestirelim-data.js?v=30260714birles9"></script>
+<script src="js/ui/nova-kids-voice.js?v=30260714birles9"></script>
 <script>
 /** =============================
  * NASK ADMİN PANEL – RTDB bağlayıcı
@@ -1368,6 +1449,7 @@ window.NovaAdminExport = (function(){
     if(target==='announcementView'){ try{ window.novaLoadAppDuyuruAdmin && window.novaLoadAppDuyuruAdmin(); }catch(e){ console.warn(e);} }
     if(target==='girisPanosuView'){ try{ window.novaLoadGirisPanosuAdmin && window.novaLoadGirisPanosuAdmin(); }catch(e){ console.warn(e);} }
     if(target==='roboroxLearnView'){ try{ window.novaLoadRoboroxLearnAdmin && window.novaLoadRoboroxLearnAdmin(); }catch(e){ console.warn(e);} }
+    if(target==='birlestirelimView'){ try{ window.novaLoadBirlestirelimAdmin && window.novaLoadBirlestirelimAdmin(); }catch(e){ console.warn(e);} }
     if(target==='cdnView'){ try{ window.novaLoadCdnAdmin && window.novaLoadCdnAdmin(); }catch(e){ console.warn(e);} }
     if(target==='mainScreenBgView'){ try{ window.novaLoadMainScreenBgAdmin && window.novaLoadMainScreenBgAdmin(); }catch(e){ console.warn(e);} }
     if(target==='hikayeVideoView'){ try{ window.novaLoadHikayeVideoAdmin && window.novaLoadHikayeVideoAdmin(); }catch(e){ console.warn(e);} }
@@ -2572,6 +2654,628 @@ window.NovaAdminExport = (function(){
   [hikayeLibraryName, hikayeLibraryId, hikayeVideoId].forEach(function(el){
     if(el) el.addEventListener('input', updateHikayePreviewFromInputs);
   });
+
+  // ---- BİRLEŞTİRELİM (1. grup ses medyası) ----
+  (function setupBirlestirelimAdmin(){
+    let cache = { media: {}, letters: {}, settings: {} };
+    let activeSoundId = '';
+
+    function escHtml(s){
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function normalizeHostLocal(name){
+      let n = String(name || '').trim();
+      if(!n) return '';
+      n = n.replace(/^https?:\/\//i, '');
+      n = n.replace(/\.b-cdn\.net.*$/i, '');
+      n = n.replace(/\/+$/g, '');
+      return n;
+    }
+
+    function urlStatus(url){
+      url = String(url || '').trim();
+      if(!url) return { ok:false, warn:true, tip:'Boş' };
+      if(/….b-cdn\.net|…\.b-cdn|\.\.\.b-cdn/i.test(url) || /https:\/\/…\./.test(url)){
+        return { ok:false, warn:true, tip:'Örnek/eksik URL — gerçek linki yapıştır' };
+      }
+      if(/mediadelivery\.net\/(?:play|embed)\//i.test(url)){
+        const host = normalizeHostLocal(cache.settings && cache.settings.libraryName);
+        if(!host){
+          return { ok:false, warn:true, tip:'Çalmak için yukarıya vz-… hostname yaz (Hikaye sekmesinden kopyala)' };
+        }
+        return { ok:true, warn:false, tip:'Stream → MP4' };
+      }
+      if(/\.(mp3|wav|ogg|m4a|mp4)(\?|#|$)/i.test(url) || /\.b-cdn\.net\//i.test(url)){
+        return { ok:true, warn:false, tip:'Doğrudan dosya' };
+      }
+      return { ok:false, warn:true, tip:'Bilinmeyen format' };
+    }
+
+    function statusIcon(st){
+      if(st.ok) return '<span title="'+escHtml(st.tip)+'">✅</span>';
+      return '<span title="'+escHtml(st.tip)+'">⚠️</span>';
+    }
+
+    function syncHostUi(){
+      const ui = els();
+      const host = normalizeHostLocal(cache.settings && cache.settings.libraryName);
+      if(ui.libraryName && document.activeElement !== ui.libraryName){
+        ui.libraryName.value = host || '';
+      }
+      if(ui.hostHint){
+        ui.hostHint.textContent = host
+          ? ('Aktif: https://' + host + '.b-cdn.net/{videoId}/play_720p.mp4')
+          : 'Hostname kayıtlı değil — mediadelivery linkleri çalışmaz.';
+      }
+      if(window.NovaKidsVoice && window.NovaKidsVoice.setLocalMedia){
+        window.NovaKidsVoice.setLocalMedia({ settings: cache.settings || {} });
+      }
+    }
+
+    function els(){
+      return {
+        statusEl: document.getElementById('birles_admin_status'),
+        tabs: document.getElementById('birles_admin_sound_tabs'),
+        panel: document.getElementById('birles_admin_sound_panel'),
+        emptyPick: document.getElementById('birles_admin_empty_pick'),
+        panelTitle: document.getElementById('birles_admin_panel_title'),
+        panelHint: document.getElementById('birles_admin_panel_hint'),
+        letterList: document.getElementById('birles_admin_letter_list'),
+        fusionList: document.getElementById('birles_admin_fusion_list'),
+        reloadBtn: document.getElementById('birles_admin_reload'),
+        saveBtn: document.getElementById('birles_admin_save_all'),
+        libraryName: document.getElementById('birles_admin_library_name'),
+        saveHostBtn: document.getElementById('birles_admin_save_host'),
+        hostHint: document.getElementById('birles_admin_host_hint')
+      };
+    }
+
+    function sounds(){
+      const D = window.NovaBirlestirelimData;
+      if(D && D.GROUP1_SOUNDS && D.GROUP1_SOUNDS.length) return D.GROUP1_SOUNDS;
+      return [
+        { id:'a', letter:'a', displayUpper:'A', title:'a sesi', hint:'İlk ses', color:'#e4572e', fusions:[{id:'a_intro', result:'a', label:'a sesini dinle', kind:'ses', parts:['a'], steps:[['a']]}] },
+        { id:'n', letter:'n', displayUpper:'N', title:'n sesi', hint:'a + n', color:'#2a9d8f', fusions:[] },
+        { id:'e', letter:'e', displayUpper:'E', title:'e sesi', hint:'a n e', color:'#457b9d', fusions:[] },
+        { id:'t', letter:'t', displayUpper:'T', title:'t sesi', hint:'a n e t', color:'#9b5de5', fusions:[] },
+        { id:'i', letter:'i', displayUpper:'İ', title:'i sesi', hint:'… + i', color:'#f4a261', fusions:[] },
+        { id:'l', letter:'l', displayUpper:'L', title:'l sesi', hint:'1. grup', color:'#06d6a0', fusions:[] }
+      ];
+    }
+
+    function getSound(id){
+      const list = sounds();
+      for(let i=0;i<list.length;i++){ if(list[i].id === id) return list[i]; }
+      return null;
+    }
+
+    function tokensForFusion(f){
+      const seen = {};
+      const out = [];
+      function add(t, kind){
+        t = String(t||'').trim().toLowerCase();
+        if(!t || seen[t]) return;
+        seen[t] = true;
+        out.push({ key:t, kind:kind||'ses' });
+      }
+      (f.parts||[]).forEach(function(p){ if(String(p).length > 1) add(p,'parça'); });
+      (f.steps||[]).forEach(function(step){
+        (step||[]).forEach(function(p){ if(String(p).length > 1) add(p,'parça'); });
+        if(step && step.length === 2) add(String(step[0])+String(step[1]), 'birleşim');
+      });
+      if(f.result) add(f.result, f.kind||'sonuç');
+      if(f.mediaKey) add(f.mediaKey, f.kind||'kelime');
+      return out;
+    }
+
+    function completeness(sound){
+      if(!sound) return { ready:false, filled:0, total:0 };
+      let filled = 0, total = 1;
+      if(cache.letters[sound.id] && cache.letters[sound.id].audioUrl) filled++;
+      (sound.fusions||[]).forEach(function(f){
+        tokensForFusion(f).forEach(function(tok){
+          total++;
+          if(cache.media[tok.key] && cache.media[tok.key].audioUrl) filled++;
+        });
+        if(f.mediaKey){
+          total++;
+          if(cache.media[f.mediaKey] && cache.media[f.mediaKey].imageUrl) filled++;
+        }
+      });
+      return { ready: filled >= total && total > 0, filled: filled, total: total };
+    }
+
+    function harvestVisible(){
+      const ui = els();
+      if(!ui.letterList || !ui.fusionList) return;
+      ui.letterList.querySelectorAll('[data-letter-key]').forEach(function(row){
+        const key = row.getAttribute('data-letter-key');
+        const audioUrl = String((row.querySelector('[data-field="audioUrl"]')||{}).value||'').trim();
+        if(audioUrl) cache.letters[key] = { audioUrl: audioUrl, updatedAt: Date.now() };
+        else delete cache.letters[key];
+      });
+
+      /* Aynı token (ör. "ne") birden fazla birleştirmede tekrarlanır.
+         Boş satır dolu satırı silmesin — dolu URL'yi tercih et. */
+      const audioBest = {};
+      const audioSeen = {};
+      ui.fusionList.querySelectorAll('[data-audio-key]').forEach(function(row){
+        const key = row.getAttribute('data-audio-key');
+        if(!key) return;
+        audioSeen[key] = true;
+        const audioUrl = String((row.querySelector('[data-field="audioUrl"]')||{}).value||'').trim();
+        if(audioUrl) audioBest[key] = audioUrl;
+      });
+      Object.keys(audioSeen).forEach(function(key){
+        cache.media[key] = cache.media[key] || {};
+        if(audioBest[key]){
+          cache.media[key].audioUrl = audioBest[key];
+          cache.media[key].updatedAt = Date.now();
+        } else {
+          delete cache.media[key].audioUrl;
+          if(!cache.media[key].imageUrl) delete cache.media[key];
+        }
+      });
+
+      const imageBest = {};
+      const imageSeen = {};
+      ui.fusionList.querySelectorAll('[data-media-key]').forEach(function(row){
+        const key = row.getAttribute('data-media-key');
+        if(!key) return;
+        imageSeen[key] = true;
+        const imageUrl = String((row.querySelector('[data-field="imageUrl"]')||{}).value||'').trim();
+        if(imageUrl) imageBest[key] = imageUrl;
+      });
+      Object.keys(imageSeen).forEach(function(key){
+        cache.media[key] = cache.media[key] || {};
+        if(imageBest[key]){
+          cache.media[key].imageUrl = imageBest[key];
+          cache.media[key].updatedAt = Date.now();
+        } else {
+          delete cache.media[key].imageUrl;
+          if(!cache.media[key].audioUrl) delete cache.media[key];
+        }
+      });
+    }
+
+    function renderTabs(){
+      const ui = els();
+      if(!ui.tabs) return;
+      ui.tabs.innerHTML = sounds().map(function(s){
+        const c = completeness(s);
+        const active = s.id === activeSoundId ? ' is-active' : '';
+        const ready = c.ready ? ' is-ready' : '';
+        return '<button type="button" class="birles-admin-tab'+active+ready+'" data-sound-tab="'+escHtml(s.id)+'">'+
+          escHtml(s.displayUpper || s.letter || s.id)+
+          '<span class="birles-admin-dot" title="'+c.filled+'/'+c.total+'"></span>'+
+          '<small>'+escHtml(s.title||s.id)+'</small></button>';
+      }).join('');
+      ui.tabs.querySelectorAll('[data-sound-tab]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          selectSound(btn.getAttribute('data-sound-tab'));
+        });
+      });
+    }
+
+    function renderSoundPanel(sound){
+      const ui = els();
+      if(!ui.panel || !ui.letterList || !ui.fusionList) return;
+      if(!sound){
+        ui.panel.hidden = true;
+        if(ui.emptyPick) ui.emptyPick.hidden = false;
+        return;
+      }
+      ui.panel.hidden = false;
+      if(ui.emptyPick) ui.emptyPick.hidden = true;
+      if(ui.panelTitle) ui.panelTitle.textContent = (sound.displayUpper || sound.letter) + ' · ' + (sound.title || sound.id);
+      if(ui.panelHint) ui.panelHint.textContent = (sound.hint || '') + ' — yalnızca bu sesin birleştirmeleri';
+
+      const letterCur = cache.letters[sound.id] || {};
+      const letterSt = urlStatus(letterCur.audioUrl);
+      ui.letterList.innerHTML =
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" style="grid-template-columns:72px 1fr 88px 44px">'+
+        '<div style="font-size:34px;font-weight:800;text-align:center;padding-top:10px;color:#ffd166">'+escHtml(sound.letter||sound.id)+'</div>'+
+        '<div><label>Bunny ses URL (harf)</label><input type="url" data-field="audioUrl" value="'+escHtml(letterCur.audioUrl||'')+'" placeholder="https://player.mediadelivery.net/play/…/GUID veya …b-cdn.net/…mp3"></div>'+
+        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div>'+
+        '<div class="soft small" style="padding-top:22px">'+statusIcon(letterSt)+'</div></div>';
+
+      const fusions = sound.fusions || [];
+      if(!fusions.length){
+        ui.fusionList.innerHTML = '<p class="soft small">Bu ses için henüz birleştirme tanımı yok.</p>';
+        bindUrlWatchers(ui.letterList);
+        return;
+      }
+
+      ui.fusionList.innerHTML = fusions.map(function(f){
+        const tokens = tokensForFusion(f);
+        const imageBlock = f.mediaKey ? (function(){
+          const cur = cache.media[f.mediaKey] || {};
+          const prev = cur.imageUrl ? '<img class="birles-admin-preview" src="'+escHtml(cur.imageUrl)+'" alt="">' : '<div class="birles-admin-preview"></div>';
+          return '<div class="birles-admin-row" data-media-key="'+escHtml(f.mediaKey)+'" style="grid-template-columns:88px 1fr">'+
+            prev+
+            '<div><label>'+escHtml(f.result)+' · görsel URL</label><input type="url" data-field="imageUrl" value="'+escHtml(cur.imageUrl||'')+'" placeholder="https://….b-cdn.net/'+escHtml(f.mediaKey)+'.jpg"></div>'+
+            '</div>';
+        })() : '';
+
+        const audioRows = tokens.map(function(tok){
+          const cur = cache.media[tok.key] || {};
+          const st = urlStatus(cur.audioUrl);
+          return '<div class="birles-admin-row" data-audio-key="'+escHtml(tok.key)+'" style="grid-template-columns:88px 1fr 88px 44px">'+
+            '<div style="font-size:18px;font-weight:800;padding-top:16px">'+escHtml(tok.key)+'</div>'+
+            '<div><label>'+escHtml(tok.kind)+' ses URL</label><input type="url" data-field="audioUrl" value="'+escHtml(cur.audioUrl||'')+'" placeholder="player.mediadelivery.net/play/… veya .mp3"></div>'+
+            '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div>'+
+            '<div class="soft small" style="padding-top:22px">'+statusIcon(st)+'</div></div>';
+        }).join('');
+
+        return '<div class="birles-admin-fusion" data-fusion-id="'+escHtml(f.id)+'">'+
+          '<p class="birles-admin-fusion__title">'+escHtml(f.result)+'</p>'+
+          '<p class="birles-admin-fusion__label">'+escHtml(f.label||'')+' · '+escHtml(f.kind||'birleştirme')+'</p>'+
+          audioRows + imageBlock +
+          '</div>';
+      }).join('');
+
+      bindUrlWatchers(ui.letterList);
+      bindUrlWatchers(ui.fusionList);
+    }
+
+    function bindUrlWatchers(root){
+      if(!root) return;
+      root.querySelectorAll('input[data-field="audioUrl"]').forEach(function(inp){
+        inp.addEventListener('input', function(){
+          const row = inp.closest('.birles-admin-row');
+          if(!row) return;
+          const key = row.getAttribute('data-audio-key') || row.getAttribute('data-letter-key');
+          const iconCell = row.querySelector('.soft.small');
+          if(iconCell) iconCell.innerHTML = statusIcon(urlStatus(inp.value));
+          /* Aynı token’ın diğer satırlarını da güncelle (ne birden fazla yerde) */
+          if(key){
+            const val = inp.value;
+            const fusionList = document.getElementById('birles_admin_fusion_list');
+            if(fusionList){
+              fusionList.querySelectorAll('[data-audio-key="'+key+'"] input[data-field="audioUrl"]').forEach(function(other){
+                if(other === inp) return;
+                if(other.value !== val) other.value = val;
+                const orow = other.closest('.birles-admin-row');
+                const oicon = orow && orow.querySelector('.soft.small');
+                if(oicon) oicon.innerHTML = statusIcon(urlStatus(val));
+              });
+            }
+          }
+        });
+      });
+      root.querySelectorAll('[data-test-audio]').forEach(function(btn){
+        btn.addEventListener('click', async function(){
+          const row = btn.closest('.birles-admin-row');
+          const inp = row && row.querySelector('input[data-field="audioUrl"]');
+          const url = inp && String(inp.value || '').trim();
+          const ui = els();
+          if(!url){
+            if(ui.statusEl) ui.statusEl.textContent = 'Test: URL boş.';
+            return;
+          }
+          harvestVisible();
+          syncHostUi();
+          openBirlesTestPlayer(url, ui);
+        });
+      });
+    }
+
+    function closeBirlesTestPlayer(){
+      const box = document.getElementById('birles_admin_test_player');
+      if(box) box.remove();
+      try{ window.NovaKidsVoice && window.NovaKidsVoice.stop && window.NovaKidsVoice.stop(); }catch(_){}
+    }
+
+    function openBirlesTestPlayer(url, ui){
+      closeBirlesTestPlayer();
+      const KV = window.NovaKidsVoice;
+      if(!KV){
+        if(ui.statusEl) ui.statusEl.textContent = 'Ses motoru yüklenmedi — hard refresh (Ctrl+F5) yap.';
+        return;
+      }
+      syncHostUi();
+
+      const parsed = KV.parseBunnyUrl ? KV.parseBunnyUrl(url) : null;
+      const host = normalizeHostLocal((cache.settings && cache.settings.libraryName) || (KV.getLibraryHost && KV.getLibraryHost()) || '');
+      const candidates = [];
+
+      if(parsed && parsed.kind === 'stream'){
+        if(host){
+          candidates.push('https://' + host + '.b-cdn.net/' + parsed.videoId + '/play_720p.mp4');
+          candidates.push('https://' + host + '.b-cdn.net/' + parsed.videoId + '/play_480p.mp4');
+          candidates.push('https://' + host + '.b-cdn.net/' + parsed.videoId + '/play_360p.mp4');
+        }
+        candidates.push('https://iframe.mediadelivery.net/embed/' + parsed.libraryId + '/' + parsed.videoId + '?autoplay=true&muted=false&preload=true');
+      }else if(parsed && parsed.kind === 'cdn-guid'){
+        candidates.push('https://' + parsed.libraryName + '.b-cdn.net/' + parsed.videoId + '/play_720p.mp4');
+        candidates.push(url);
+      }else{
+        candidates.push(url);
+      }
+
+      const box = document.createElement('div');
+      box.id = 'birles_admin_test_player';
+      box.style.cssText = 'position:fixed;right:16px;bottom:16px;z-index:99999;width:min(420px,94vw);background:#0f172a;border:1px solid #334155;border-radius:14px;padding:12px;box-shadow:0 16px 40px rgba(0,0,0,.45);color:#e2e8f0;font:13px/1.4 system-ui,sans-serif';
+      box.innerHTML =
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">'+
+          '<b>Ses testi</b>'+
+          '<button type="button" class="btn" id="birles_test_close" style="padding:4px 10px">Kapat</button>'+
+        '</div>'+
+        '<p id="birles_test_msg" style="margin:0 0 8px;color:#94a3b8;font-size:12px">Hazırlanıyor…</p>'+
+        '<div id="birles_test_stage" style="background:#020617;border-radius:10px;overflow:hidden;min-height:120px"></div>'+
+        '<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">'+
+          '<button type="button" class="btn acc" id="birles_test_play">▶ Çal</button>'+
+          '<button type="button" class="btn" id="birles_test_next">Sonraki aday</button>'+
+        '</div>'+
+        '<p id="birles_test_url" style="margin:8px 0 0;font-size:11px;word-break:break-all;color:#64748b"></p>';
+      document.body.appendChild(box);
+
+      const stage = box.querySelector('#birles_test_stage');
+      const msg = box.querySelector('#birles_test_msg');
+      const urlEl = box.querySelector('#birles_test_url');
+      let idx = 0;
+      let media = null;
+
+      function setMsg(t){ if(msg) msg.textContent = t; if(ui && ui.statusEl) ui.statusEl.textContent = 'Test: ' + t; }
+
+      if(!host && parsed && parsed.kind === 'stream'){
+        setMsg('Uyarı: vz-… hostname yok. Önce MP4 adayları atlanır; embed dene. Hikaye sekmesindeki CDN hostunu buraya kopyala.');
+      }
+
+      function mountCandidate(i){
+        idx = i;
+        stage.innerHTML = '';
+        media = null;
+        if(i >= candidates.length){
+          setMsg('Hiçbir aday çalmadı. Hostname (vz-) yanlış olabilir veya video private.');
+          return;
+        }
+        const src = candidates[i];
+        urlEl.textContent = (i+1) + '/' + candidates.length + ' · ' + src;
+
+        if(/iframe\.mediadelivery\.net\/embed\//i.test(src)){
+          const iframe = document.createElement('iframe');
+          iframe.src = src;
+          iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+          iframe.allowFullscreen = true;
+          iframe.style.cssText = 'width:100%;height:200px;border:0;display:block;background:#000';
+          stage.appendChild(iframe);
+          media = iframe;
+          setMsg('Bunny embed açıldı. Ses gelmezse alttaki ▶ Çal’a bas (gerekirse player içindeki play).');
+          return;
+        }
+
+        const video = document.createElement('video');
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'auto';
+        video.muted = false;
+        video.volume = 1;
+        video.style.cssText = 'width:100%;max-height:220px;display:block;background:#000';
+        video.src = src;
+        stage.appendChild(video);
+        media = video;
+        setMsg('Video yüklendi. ▶ Çal’a bas — ses gelmeli.');
+        video.addEventListener('error', function(){
+          setMsg('Bu aday yüklenmedi (404/CORS). Sonraki adayı dene.');
+        }, { once:true });
+        video.addEventListener('loadeddata', function(){
+          setMsg('Hazır (' + Math.round(video.duration||0) + 'sn). ▶ Çal');
+        }, { once:true });
+      }
+
+      box.querySelector('#birles_test_close').onclick = closeBirlesTestPlayer;
+      box.querySelector('#birles_test_next').onclick = function(){ mountCandidate(idx + 1); };
+      box.querySelector('#birles_test_play').onclick = async function(){
+        if(!media){ setMsg('Aday yok'); return; }
+        if(media.tagName === 'IFRAME'){
+          setMsg('Embed: player içindeki play ikonuna tıkla. Ses yoksa hostname ile MP4 gerekir.');
+          return;
+        }
+        try{
+          media.muted = false;
+          media.volume = 1;
+          await media.play();
+          setMsg('Çalıyor ✅ — hoparlörü kontrol et');
+        }catch(err){
+          setMsg('Oynatma engellendi: ' + ((err && err.message) || err) + ' — kontrole tıkla');
+          try{ media.controls = true; }catch(_){}
+        }
+      };
+
+      mountCandidate(0);
+      /* İlk adayı otomatik dene (tıklama jesti hâlâ geçerli) */
+      window.setTimeout(function(){
+        const playBtn = box.querySelector('#birles_test_play');
+        if(playBtn && media && media.tagName === 'VIDEO') playBtn.click();
+      }, 200);
+    }
+
+    function selectSound(id){
+      harvestVisible();
+      activeSoundId = String(id||'');
+      renderTabs();
+      renderSoundPanel(getSound(activeSoundId));
+    }
+
+    function render(){
+      const ui = els();
+      if(!ui.tabs){
+        if(ui.statusEl) ui.statusEl.textContent = 'Form alanları bulunamadı (HTML).';
+        return false;
+      }
+      try{
+        renderTabs();
+        renderSoundPanel(activeSoundId ? getSound(activeSoundId) : null);
+        return true;
+      }catch(err){
+        console.error('birlestirelim render', err);
+        if(ui.statusEl) ui.statusEl.textContent = 'Form çizim hatası: ' + (err && err.message ? err.message : err);
+        return false;
+      }
+    }
+
+    function collect(){
+      harvestVisible();
+      const ui = els();
+      if(ui.libraryName){
+        cache.settings = cache.settings || {};
+        cache.settings.libraryName = normalizeHostLocal(ui.libraryName.value);
+      }
+      const media = {};
+      const letters = {};
+      Object.keys(cache.media || {}).forEach(function(k){
+        const row = cache.media[k];
+        if(!row) return;
+        const imageUrl = String(row.imageUrl||'').trim();
+        const audioUrl = String(row.audioUrl||'').trim();
+        if(imageUrl || audioUrl){
+          media[k] = { updatedAt: Date.now() };
+          if(imageUrl) media[k].imageUrl = imageUrl;
+          if(audioUrl) media[k].audioUrl = audioUrl;
+        }
+      });
+      Object.keys(cache.letters || {}).forEach(function(k){
+        const row = cache.letters[k];
+        const audioUrl = row && String(row.audioUrl||'').trim();
+        if(audioUrl) letters[k] = { audioUrl: audioUrl, updatedAt: Date.now() };
+      });
+      const settings = {};
+      const host = normalizeHostLocal(cache.settings && cache.settings.libraryName);
+      if(host) settings.libraryName = host;
+      return { media: media, letters: letters, settings: settings, updatedAt: Date.now() };
+    }
+
+    function readBirlestirelimSnap(){
+      return new Promise(function(resolve, reject){
+        if(!rdb){ reject(new Error('RTDB yok')); return; }
+        var settled = false;
+        var t = setTimeout(function(){
+          if(settled) return;
+          settled = true;
+          reject(new Error('Zaman aşımı (8sn)'));
+        }, 8000);
+        try{
+          rdb.ref('birlestirelim').once('value', function(snap){
+            if(settled) return;
+            settled = true;
+            clearTimeout(t);
+            resolve(snap);
+          }, function(err){
+            if(settled) return;
+            settled = true;
+            clearTimeout(t);
+            reject(err || new Error('okuma hatası'));
+          });
+        }catch(e){
+          if(settled) return;
+          settled = true;
+          clearTimeout(t);
+          reject(e);
+        }
+      });
+    }
+
+    window.novaLoadBirlestirelimAdmin = async function(){
+      const ui = els();
+      if(!activeSoundId) activeSoundId = 'a';
+      render();
+      if(ui.statusEl) ui.statusEl.textContent = 'Kayıtlı URL’ler okunuyor…';
+      if(!rdb){
+        if(ui.statusEl) ui.statusEl.textContent = 'RTDB yok — yine de URL girebilirsin; kaydetmek için Firebase gerekir.';
+        return;
+      }
+      try{
+        const snap = await readBirlestirelimSnap();
+        const v = (snap && snap.exists && snap.exists()) ? (snap.val()||{}) : ((snap && snap.val) ? (snap.val()||{}) : {});
+        cache.media = (v.media && typeof v.media === 'object') ? v.media : {};
+        cache.letters = (v.letters && typeof v.letters === 'object') ? v.letters : {};
+        cache.settings = (v.settings && typeof v.settings === 'object') ? v.settings : {};
+        if(!cache.settings.libraryName){
+          try{
+            const hik = await rdb.ref('platformMeta/hikayeVideo').once('value');
+            const hv = hik && hik.val && hik.val();
+            if(hv && hv.libraryName){
+              cache.settings.libraryName = normalizeHostLocal(hv.libraryName);
+            }
+          }catch(_){}
+        }
+        syncHostUi();
+        render();
+        if(ui.statusEl){
+          const host = normalizeHostLocal(cache.settings.libraryName);
+          ui.statusEl.textContent = (v.updatedAt
+            ? ('Son kayıt: ' + (typeof fmtTime === 'function' ? fmtTime(v.updatedAt) : new Date(v.updatedAt).toLocaleString('tr-TR')))
+            : 'Hazır') + (host ? (' · CDN: ' + host) : ' · Önce vz-… hostname kaydet') + ' · Ses seçip URL ekle.';
+        }
+      }catch(e){
+        render();
+        if(ui.statusEl) ui.statusEl.textContent = 'Okuma uyarısı: ' + (e && e.message ? e.message : e) + ' — Form açık; kaydetmeyi dene.';
+      }
+    };
+
+    const boot = els();
+    if(boot.reloadBtn) boot.reloadBtn.addEventListener('click', function(){ window.novaLoadBirlestirelimAdmin && window.novaLoadBirlestirelimAdmin(); });
+    if(boot.saveHostBtn){
+      boot.saveHostBtn.addEventListener('click', async function(){
+        const ui = els();
+        const host = normalizeHostLocal(ui.libraryName && ui.libraryName.value);
+        cache.settings = cache.settings || {};
+        cache.settings.libraryName = host;
+        syncHostUi();
+        if(!rdb){
+          if(ui.statusEl) ui.statusEl.textContent = 'RTDB yok — hostname sadece bu oturumda.';
+          return;
+        }
+        try{
+          await rdb.ref('birlestirelim/settings').update({ libraryName: host || null });
+          if(ui.statusEl) ui.statusEl.textContent = host
+            ? ('Hostname kaydedildi: ' + host)
+            : 'Hostname temizlendi.';
+        }catch(e){
+          if(ui.statusEl) ui.statusEl.textContent = 'Hostname kayıt hatası: ' + (e && e.message ? e.message : e);
+        }
+      });
+    }
+    if(boot.saveBtn){
+      boot.saveBtn.addEventListener('click', async function(){
+        const ui = els();
+        if(!rdb){ if(ui.statusEl) ui.statusEl.textContent = 'RTDB yok.'; return; }
+        if(ui.statusEl) ui.statusEl.textContent = 'Kaydediliyor…';
+        const payload = collect();
+        function countMediaDelivery(map){
+          return Object.keys(map || {}).filter(function(k){
+            return /mediadelivery\.net\/(?:play|embed)\//i.test(String((map[k] && map[k].audioUrl) || ''));
+          }).length;
+        }
+        const mediadeliveryCount = countMediaDelivery(payload.media) + countMediaDelivery(payload.letters);
+        if(mediadeliveryCount && !(payload.settings && payload.settings.libraryName)){
+          if(ui.statusEl) ui.statusEl.textContent = 'Kaydetmeden önce yukarıya Bunny CDN hostname (vz-…) yaz — aksi halde player linkleri çalmaz.';
+          return;
+        }
+        try{
+          await rdb.ref('birlestirelim').set(payload);
+          cache = { media: payload.media, letters: payload.letters, settings: payload.settings || {} };
+          syncHostUi();
+          render();
+          if(ui.statusEl) ui.statusEl.textContent = 'Kaydedildi. Öğrenci ekranında Birleştirelim’i kapatıp yeniden aç.';
+        }catch(e){
+          const msg = (e && e.message) ? String(e.message) : String(e);
+          if(/PERMISSION_DENIED/i.test(msg)){
+            if(ui.statusEl) ui.statusEl.textContent = 'Kayıt hatası: /birlestirelim yazma izni yok.';
+          }else if(ui.statusEl){
+            ui.statusEl.textContent = 'Kayıt hatası: ' + msg;
+          }
+        }
+      });
+    }
+  })();
+
 
   // =====================================
   // 1) Sınıflar & Öğrenciler
