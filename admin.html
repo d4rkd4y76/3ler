@@ -119,7 +119,7 @@
   .mt16{margin-top:16px}
   .birles-admin-row{display:grid;grid-template-columns:88px 1fr 1fr;gap:8px;align-items:end;padding:10px 0;border-bottom:1px solid var(--border)}
   .birles-admin-row label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
-  .birles-admin-preview{width:72px;height:54px;border-radius:10px;object-fit:cover;background:rgba(255,255,255,.06);border:1px solid var(--border)}
+  .birles-admin-preview{width:72px;height:72px;border-radius:12px;object-fit:cover;background:rgba(255,255,255,.06);border:1px solid var(--border)}
   .birles-admin-tabs{display:flex;flex-wrap:wrap;gap:10px}
   .birles-admin-tab{
     min-width:76px; padding:14px 16px; border-radius:16px; border:1px solid var(--border);
@@ -835,8 +835,20 @@ window.NovaAdminExport = (function(){
       </div>
 
       <div class="card mt12">
+        <h3 style="margin:0 0 10px">Grup seç</h3>
+        <p class="soft small" style="margin:0 0 12px">Maarif Modeli ses grupları · her grupta ses seçeceksin.</p>
+        <div id="birles_admin_group_tabs" class="birles-admin-tabs" role="tablist"></div>
+      </div>
+
+      <div class="card mt12">
+        <h3 style="margin:0 0 10px">Grup seç</h3>
+        <p class="soft small" style="margin:0 0 12px">Maarif Modeli: 1–5. grup sesler.</p>
+        <div id="birles_admin_group_tabs" class="birles-admin-tabs" role="tablist"></div>
+      </div>
+
+      <div class="card mt12">
         <h3 style="margin:0 0 10px">Ses seç</h3>
-        <p class="soft small" style="margin:0 0 12px">Her kutuya tıkla → yalnızca o sesin URL alanları açılır.</p>
+        <p class="soft small" style="margin:0 0 12px">Her kutuya tıkla → yalnızca o sesin URL alanları açılır. <b>İzle videosu</b> = 9:16 Bunny Stream (player/embed veya mp4).</p>
         <div id="birles_admin_sound_tabs" class="birles-admin-tabs" role="tablist"></div>
       </div>
 
@@ -1317,8 +1329,8 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
-<script src="js/core/nova-birlestirelim-data.js?v=30260714birles9"></script>
-<script src="js/ui/nova-kids-voice.js?v=30260714birles9"></script>
+<script src="js/core/nova-birlestirelim-data.js?v=30260714birles13"></script>
+<script src="js/ui/nova-kids-voice.js?v=30260714birles13"></script>
 <script>
 /** =============================
  * NASK ADMİN PANEL – RTDB bağlayıcı
@@ -2659,6 +2671,7 @@ window.NovaAdminExport = (function(){
   (function setupBirlestirelimAdmin(){
     let cache = { media: {}, letters: {}, settings: {} };
     let activeSoundId = '';
+    let activeGroupId = 'grup1';
 
     function escHtml(s){
       return String(s == null ? '' : s)
@@ -2720,6 +2733,7 @@ window.NovaAdminExport = (function(){
     function els(){
       return {
         statusEl: document.getElementById('birles_admin_status'),
+        groupTabs: document.getElementById('birles_admin_group_tabs'),
         tabs: document.getElementById('birles_admin_sound_tabs'),
         panel: document.getElementById('birles_admin_sound_panel'),
         emptyPick: document.getElementById('birles_admin_empty_pick'),
@@ -2735,9 +2749,13 @@ window.NovaAdminExport = (function(){
       };
     }
 
-    function sounds(){
+    function groups(){
       const D = window.NovaBirlestirelimData;
-      if(D && D.GROUP1_SOUNDS && D.GROUP1_SOUNDS.length) return D.GROUP1_SOUNDS;
+      if(D && D.GROUPS && D.GROUPS.length) return D.GROUPS;
+      return [{ id:'grup1', title:'1. Grup', subtitle:'A · N · E · T · İ · L', sounds: soundsAllFallback() }];
+    }
+
+    function soundsAllFallback(){
       return [
         { id:'a', letter:'a', displayUpper:'A', title:'a sesi', hint:'İlk ses', color:'#e4572e', fusions:[{id:'a_intro', result:'a', label:'a sesini dinle', kind:'ses', parts:['a'], steps:[['a']]}] },
         { id:'n', letter:'n', displayUpper:'N', title:'n sesi', hint:'a + n', color:'#2a9d8f', fusions:[] },
@@ -2748,9 +2766,29 @@ window.NovaAdminExport = (function(){
       ];
     }
 
+    function sounds(){
+      const g = getGroup(activeGroupId);
+      if(g && g.sounds && g.sounds.length) return g.sounds;
+      const D = window.NovaBirlestirelimData;
+      if(D && D.GROUP1_SOUNDS && D.GROUP1_SOUNDS.length) return D.GROUP1_SOUNDS;
+      return soundsAllFallback();
+    }
+
+    function getGroup(id){
+      const list = groups();
+      for(let i=0;i<list.length;i++){ if(list[i].id === id) return list[i]; }
+      return list[0] || null;
+    }
+
     function getSound(id){
       const list = sounds();
       for(let i=0;i<list.length;i++){ if(list[i].id === id) return list[i]; }
+      /* Tüm gruplarda ara */
+      const all = groups();
+      for(let gi=0;gi<all.length;gi++){
+        const arr = all[gi].sounds || [];
+        for(let i=0;i<arr.length;i++){ if(arr[i].id === id) return arr[i]; }
+      }
       return null;
     }
 
@@ -2793,11 +2831,26 @@ window.NovaAdminExport = (function(){
     function harvestVisible(){
       const ui = els();
       if(!ui.letterList || !ui.fusionList) return;
+      const letterBest = {};
       ui.letterList.querySelectorAll('[data-letter-key]').forEach(function(row){
         const key = row.getAttribute('data-letter-key');
+        if(!key) return;
+        letterBest[key] = letterBest[key] || { audioUrl: '', videoUrl: '' };
         const audioUrl = String((row.querySelector('[data-field="audioUrl"]')||{}).value||'').trim();
-        if(audioUrl) cache.letters[key] = { audioUrl: audioUrl, updatedAt: Date.now() };
-        else delete cache.letters[key];
+        const videoUrl = String((row.querySelector('[data-field="videoUrl"]')||{}).value||'').trim();
+        if(audioUrl) letterBest[key].audioUrl = audioUrl;
+        if(videoUrl) letterBest[key].videoUrl = videoUrl;
+      });
+      Object.keys(letterBest).forEach(function(key){
+        const audioUrl = letterBest[key].audioUrl;
+        const videoUrl = letterBest[key].videoUrl;
+        if(audioUrl || videoUrl){
+          cache.letters[key] = { updatedAt: Date.now() };
+          if(audioUrl) cache.letters[key].audioUrl = audioUrl;
+          if(videoUrl) cache.letters[key].videoUrl = videoUrl;
+        } else {
+          delete cache.letters[key];
+        }
       });
 
       /* Aynı token (ör. "ne") birden fazla birleştirmede tekrarlanır.
@@ -2843,6 +2896,26 @@ window.NovaAdminExport = (function(){
       });
     }
 
+    function renderGroupTabs(){
+      const ui = els();
+      if(!ui.groupTabs) return;
+      ui.groupTabs.innerHTML = groups().map(function(g){
+        const active = g.id === activeGroupId ? ' is-active' : '';
+        return '<button type="button" class="birles-admin-tab'+active+'" data-group-tab="'+escHtml(g.id)+'">'+
+          escHtml(g.title)+
+          '<small>'+escHtml(g.subtitle||'')+'</small></button>';
+      }).join('');
+      ui.groupTabs.querySelectorAll('[data-group-tab]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          harvestVisible();
+          activeGroupId = btn.getAttribute('data-group-tab');
+          const list = sounds();
+          activeSoundId = list[0] ? list[0].id : '';
+          render();
+        });
+      });
+    }
+
     function renderTabs(){
       const ui = els();
       if(!ui.tabs) return;
@@ -2877,12 +2950,17 @@ window.NovaAdminExport = (function(){
 
       const letterCur = cache.letters[sound.id] || {};
       const letterSt = urlStatus(letterCur.audioUrl);
+      const videoSt = urlStatus(letterCur.videoUrl);
       ui.letterList.innerHTML =
         '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" style="grid-template-columns:72px 1fr 88px 44px">'+
         '<div style="font-size:34px;font-weight:800;text-align:center;padding-top:10px;color:#ffd166">'+escHtml(sound.letter||sound.id)+'</div>'+
-        '<div><label>Bunny ses URL (harf)</label><input type="url" data-field="audioUrl" value="'+escHtml(letterCur.audioUrl||'')+'" placeholder="https://player.mediadelivery.net/play/…/GUID veya …b-cdn.net/…mp3"></div>'+
+        '<div><label>Bunny ses URL (harf)</label><input type="url" data-field="audioUrl" value="'+escHtml(letterCur.audioUrl||'')+'" placeholder="https://….b-cdn.net/'+escHtml(sound.id)+'.mp3"></div>'+
         '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div>'+
-        '<div class="soft small" style="padding-top:22px">'+statusIcon(letterSt)+'</div></div>';
+        '<div class="soft small" style="padding-top:22px">'+statusIcon(letterSt)+'</div></div>'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" style="grid-template-columns:72px 1fr 44px">'+
+        '<div class="soft small" style="padding-top:22px">▶ İzle</div>'+
+        '<div><label>Nasıl yapılır videosu (9:16 Bunny)</label><input type="url" data-field="videoUrl" value="'+escHtml(letterCur.videoUrl||'')+'" placeholder="https://player.mediadelivery.net/play/…/GUID veya …mp4"></div>'+
+        '<div class="soft small" style="padding-top:22px">'+statusIcon(videoSt)+'</div></div>';
 
       const fusions = sound.fusions || [];
       if(!fusions.length){
@@ -2898,7 +2976,7 @@ window.NovaAdminExport = (function(){
           const prev = cur.imageUrl ? '<img class="birles-admin-preview" src="'+escHtml(cur.imageUrl)+'" alt="">' : '<div class="birles-admin-preview"></div>';
           return '<div class="birles-admin-row" data-media-key="'+escHtml(f.mediaKey)+'" style="grid-template-columns:88px 1fr">'+
             prev+
-            '<div><label>'+escHtml(f.result)+' · görsel URL</label><input type="url" data-field="imageUrl" value="'+escHtml(cur.imageUrl||'')+'" placeholder="https://….b-cdn.net/'+escHtml(f.mediaKey)+'.jpg"></div>'+
+            '<div><label>'+escHtml(f.result)+' · görsel URL (kare / 1:1)</label><input type="url" data-field="imageUrl" value="'+escHtml(cur.imageUrl||'')+'" placeholder="https://….b-cdn.net/'+escHtml(f.mediaKey)+'.jpg"></div>'+
             '</div>';
         })() : '';
 
@@ -3110,6 +3188,8 @@ window.NovaAdminExport = (function(){
         return false;
       }
       try{
+        if(!activeGroupId) activeGroupId = 'grup1';
+        renderGroupTabs();
         renderTabs();
         renderSoundPanel(activeSoundId ? getSound(activeSoundId) : null);
         return true;
@@ -3142,8 +3222,14 @@ window.NovaAdminExport = (function(){
       });
       Object.keys(cache.letters || {}).forEach(function(k){
         const row = cache.letters[k];
-        const audioUrl = row && String(row.audioUrl||'').trim();
-        if(audioUrl) letters[k] = { audioUrl: audioUrl, updatedAt: Date.now() };
+        if(!row) return;
+        const audioUrl = String(row.audioUrl||'').trim();
+        const videoUrl = String(row.videoUrl||'').trim();
+        if(audioUrl || videoUrl){
+          letters[k] = { updatedAt: Date.now() };
+          if(audioUrl) letters[k].audioUrl = audioUrl;
+          if(videoUrl) letters[k].videoUrl = videoUrl;
+        }
       });
       const settings = {};
       const host = normalizeHostLocal(cache.settings && cache.settings.libraryName);
@@ -3183,7 +3269,11 @@ window.NovaAdminExport = (function(){
 
     window.novaLoadBirlestirelimAdmin = async function(){
       const ui = els();
-      if(!activeSoundId) activeSoundId = 'a';
+      if(!activeGroupId) activeGroupId = 'grup1';
+      if(!activeSoundId){
+        const list = sounds();
+        activeSoundId = list[0] ? list[0].id : 'a';
+      }
       render();
       if(ui.statusEl) ui.statusEl.textContent = 'Kayıtlı URL’ler okunuyor…';
       if(!rdb){

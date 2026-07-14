@@ -150,10 +150,10 @@ body.birles-lock {
 
 #birles-title {
   margin: 2px 0 0;
-  font-family: "Fredoka", "Baloo 2", "Nunito", sans-serif;
+  font-family: "Comfortaa", "Baloo 2", "Nunito", sans-serif;
   font-size: clamp(1.45rem, 5vw, 2rem);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   color: #1b3a4b;
 }
 
@@ -253,10 +253,180 @@ body.birles-lock {
   color: #7a93a3;
 }
 
+.birles-group-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 12px;
+  margin: 0 0 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.birles-group-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.birles-group-tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px 8px 8px;
+  cursor: pointer;
+  background: rgba(27, 58, 75, 0.08);
+  color: #446273;
+  font-weight: 800;
+  font-size: 0.82rem;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.birles-group-tab__n {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #1b3a4b;
+  font-size: 0.72rem;
+}
+.birles-group-tab.is-active {
+  background: linear-gradient(135deg, #ff7a59, #ffd166 70%);
+  color: #1b3a4b;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(255, 122, 89, 0.28);
+}
+.birles-group-tab.is-active .birles-group-tab__n {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.birles-group-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.birles-group-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  padding: 18px 16px 16px;
+  border: 0;
+  border-radius: 24px;
+  cursor: pointer;
+  text-align: left;
+  color: #1b3a4b;
+  background:
+    linear-gradient(145deg, #ffffff 0%, #fff8ef 40%, #e8fff8 100%);
+  box-shadow:
+    0 14px 28px rgba(27, 58, 75, 0.12),
+    inset 0 0 0 3px color-mix(in srgb, var(--chip, #06d6a0) 45%, white);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1.2), box-shadow 0.2s ease;
+  animation: birlesChipIn 0.5s ease both;
+  animation-delay: var(--delay, 0s);
+}
+.birles-group-card:hover,
+.birles-group-card:focus-visible {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 20px 36px rgba(27, 58, 75, 0.16),
+    0 0 0 5px color-mix(in srgb, var(--chip, #06d6a0) 28%, transparent);
+}
+.birles-group-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--chip, #06d6a0);
+}
+.birles-group-card__title {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.birles-group-card__letters {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--chip, #06d6a0);
+  line-height: 1.3;
+}
+.birles-group-card__meta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #6b8494;
+}
+.birles-group-card__go {
+  margin-top: 4px;
+  font-weight: 800;
+  color: #ff7a59;
+}
+
+.birles-group-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  margin-bottom: 12px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--chip, #06d6a0) 22%, white), #eef9ff);
+  box-shadow: 0 8px 20px rgba(27, 58, 75, 0.08);
+}
+.birles-group-banner__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.birles-group-banner__text strong {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.2rem;
+  color: #1b3a4b;
+}
+.birles-group-banner__text span {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #567183;
+}
+.birles-izle-btn--tiny {
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  align-self: center;
+}
+
+.birles-fusion-grid--hece {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.birles-fusion-grid--ses {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.birles-fusion-grid--word {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .birles-sound-rail {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+}
+
+.birles-sound-chip-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: birlesChipIn 0.45s ease both;
+  animation-delay: var(--delay, 0s);
 }
 
 .birles-sound-chip {
@@ -265,6 +435,7 @@ body.birles-lock {
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  width: 100%;
   padding: 16px 14px 14px;
   border: 0;
   border-radius: 22px;
@@ -276,8 +447,66 @@ body.birles-lock {
     0 12px 26px rgba(27, 58, 75, 0.12),
     inset 0 0 0 3px color-mix(in srgb, var(--chip, #06d6a0) 60%, white);
   transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1.2), box-shadow 0.2s ease;
-  animation: birlesChipIn 0.45s ease both;
-  animation-delay: var(--delay, 0s);
+}
+
+.birles-izle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: stretch;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #1b3a4b;
+  background: linear-gradient(135deg, #ffe08a, #ffb4a2);
+  box-shadow: 0 6px 14px rgba(255, 122, 89, 0.22);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.birles-izle-btn__ico {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.62rem;
+  background: #fff;
+  color: #ff7a59;
+}
+.birles-izle-btn:hover,
+.birles-izle-btn:focus-visible {
+  transform: translateY(-1px) scale(1.02);
+}
+.birles-izle-btn.is-empty {
+  filter: grayscale(0.35);
+  opacity: 0.72;
+}
+.birles-izle-btn--hero {
+  flex-direction: column;
+  gap: 2px;
+  min-width: 88px;
+  border-radius: 22px;
+  padding: 14px 12px;
+  align-self: stretch;
+}
+.birles-izle-btn--hero small {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.birles-sound-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+.birles-sound-hero .birles-listen-main {
+  margin-bottom: 0;
 }
 
 @keyframes birlesChipIn {
@@ -408,23 +637,29 @@ body.birles-lock {
 
 .birles-fusion-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .birles-fusion-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px;
+  gap: 5px;
+  padding: 10px;
   border: 0;
-  border-radius: 20px;
+  border-radius: 18px;
   background: #fff;
-  box-shadow: 0 10px 22px rgba(27, 58, 75, 0.1);
+  box-shadow: 0 8px 18px rgba(27, 58, 75, 0.1);
   cursor: pointer;
   text-align: left;
   color: #1b3a4b;
   transition: transform 0.18s ease;
+}
+
+.birles-fusion-card--hece,
+.birles-fusion-card--ses {
+  padding: 8px;
+  border-radius: 16px;
 }
 
 .birles-fusion-card:hover {
@@ -436,22 +671,30 @@ body.birles-lock {
 }
 
 .birles-fusion-card__media {
-  height: 78px;
-  border-radius: 16px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
   overflow: hidden;
   display: grid;
   place-items: center;
   background: linear-gradient(160deg, #ffe8c8, #d8fff3);
 }
 
+.birles-fusion-card--hece .birles-fusion-card__media,
+.birles-fusion-card--ses .birles-fusion-card__media {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+}
+
 .birles-fusion-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .birles-fusion-card__badge {
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   color: #06d6a0;
@@ -460,26 +703,32 @@ body.birles-lock {
 .birles-fusion-card__result {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: "Fredoka", "Baloo 2", sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.15rem;
   font-weight: 700;
+  line-height: 1.1;
+}
+
+.birles-fusion-card--hece .birles-fusion-card__result,
+.birles-fusion-card--ses .birles-fusion-card__result {
+  font-size: 1.05rem;
 }
 
 .birles-miss {
   font-family: inherit;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 800;
-  padding: 3px 7px;
+  padding: 2px 6px;
   border-radius: 999px;
   background: #ffe0d6;
   color: #c1121f;
 }
 
 .birles-fusion-card__label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #6b8494;
-  line-height: 1.3;
+  line-height: 1.25;
   font-weight: 600;
 }
 
@@ -891,12 +1140,79 @@ body.birles-lock {
 
 .birles-reveal img,
 .birles-reveal__img {
-  width: min(240px, 72vw);
-  height: 160px;
+  width: min(220px, 58vw);
+  height: min(220px, 58vw);
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 24px;
+  object-position: center;
+  border-radius: 22px;
   background: linear-gradient(160deg, #ffe8c8, #d8fff3 50%, #d7f3ff);
   box-shadow: 0 16px 34px rgba(27, 58, 75, 0.18);
+}
+
+/* 9:16 nasıl yapılır videosu */
+.birles-howto {
+  position: fixed;
+  inset: 0;
+  z-index: 13000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.birles-howto__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 24, 36, 0.72);
+}
+.birles-howto__sheet {
+  position: relative;
+  z-index: 1;
+  width: min(360px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #fffdf8, #eef9ff);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.4);
+}
+.birles-howto__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(27, 58, 75, 0.1);
+  color: #1b3a4b;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.birles-howto__title {
+  margin: 0 40px 0 4px;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1b3a4b;
+}
+.birles-howto__frame {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: min(72vh, 640px);
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b1220;
+  box-shadow: inset 0 0 0 2px rgba(27, 58, 75, 0.08);
+}
+.birles-howto__media {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+  background: #000;
 }
 
 .birles-reveal--textonly {
@@ -961,15 +1277,24 @@ body.birles-lock {
 
 .birles-admin-preview {
   width: 72px;
-  height: 54px;
-  border-radius: 10px;
+  height: 72px;
+  border-radius: 12px;
   object-fit: cover;
   background: rgba(255, 255, 255, 0.06);
 }
 
 @media (max-width: 640px) {
-  .birles-sound-rail,
-  .birles-fusion-grid {
+  .birles-sound-rail {
+    grid-template-columns: 1fr;
+  }
+  .birles-fusion-grid,
+  .birles-fusion-grid--word {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .birles-fusion-grid--hece {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .birles-sound-hero {
     grid-template-columns: 1fr;
   }
   .birles-admin-row {
