@@ -562,13 +562,12 @@
     var body = document.getElementById("birles-body");
     if (!body) return;
     var hasVideo = !!howToVideoUrl(sound);
-    var ses = [];
     var hece = [];
     var kelime = [];
     (sound.fusions || []).forEach(function (f) {
       var kind = String(f.kind || f.type || "hece").toLowerCase();
-      if (kind === "ses" || f.type === "intro") ses.push(f);
-      else if (kind === "kelime" || f.mediaKey) kelime.push(f);
+      if (kind === "ses" || f.type === "intro") return; /* üstteki dinle butonu yeterli */
+      if (kind === "kelime" || f.mediaKey) kelime.push(f);
       else hece.push(f);
     });
 
@@ -614,7 +613,6 @@
       html += "</div>";
     }
 
-    section("Ses tanıma", ses, "birles-fusion-grid--ses");
     section("Heceler", hece, "birles-fusion-grid--hece");
     section("Kelimeler", kelime, "birles-fusion-grid--word");
 
@@ -828,14 +826,31 @@
     var stage = document.getElementById("birles-stage");
     var vv = voice();
     if (!stage) return null;
+    var hasRight = right != null && right !== "";
+
+    /* Tek harfli hece (örn. eti → e): birleştirme animasyonu yok */
+    if (!hasRight) {
+      stage.classList.remove("is-merging", "is-quiet");
+      stage.innerHTML =
+        '<div class="birles-cards birles-cards--ready">' +
+        cardHtml(left, String(left).length > 1 ? "chunk" : "letter") +
+        "</div>";
+      bindTokenClicks(stage);
+      await pace(320);
+      if (token !== animToken) return null;
+      var solo = stage.querySelector(".birles-card");
+      await playWithHighlight(solo, left);
+      if (token !== animToken) return null;
+      await pace(180);
+      return String(left);
+    }
+
     stage.classList.remove("is-merging", "is-quiet");
     stage.innerHTML =
       '<div class="birles-cards birles-cards--ready">' +
       cardHtml(left, String(left).length > 1 ? "chunk" : "letter") +
-      (right != null && right !== ""
-        ? '<span class="birles-plus" aria-hidden="true">+</span>' +
-          cardHtml(right, String(right).length > 1 ? "chunk" : "letter")
-        : "") +
+      '<span class="birles-plus" aria-hidden="true">+</span>' +
+      cardHtml(right, String(right).length > 1 ? "chunk" : "letter") +
       "</div>";
     bindTokenClicks(stage);
     await pace(420);
@@ -845,7 +860,7 @@
     await playWithHighlight(cards[0], left);
     if (token !== animToken) return null;
     await pace(260);
-    if (right != null && right !== "" && cards[1]) {
+    if (cards[1]) {
       await playWithHighlight(cards[1], right);
       if (token !== animToken) return null;
       await pace(260);
@@ -857,11 +872,11 @@
     if (wrap) wrap.classList.add("is-merge");
     cards = stage.querySelectorAll(".birles-card");
     if (cards[0]) cards[0].classList.add("is-joining");
-    if (right != null && right !== "" && cards[1]) cards[1].classList.add("is-joining");
+    if (cards[1]) cards[1].classList.add("is-joining");
     await pace(980);
     if (token !== animToken) return null;
 
-    var merged = right != null && right !== "" ? String(left) + String(right) : String(left);
+    var merged = String(left) + String(right);
     stage.classList.remove("is-merging");
     stage.innerHTML =
       '<div class="birles-cards birles-cards--result">' + cardHtml(merged, "result") + "</div>";
@@ -1012,9 +1027,15 @@
     if (mode === "syllables" && fusion.syllables && fusion.syllables.length) {
       for (var i = 0; i < fusion.syllables.length; i++) {
         if (token !== animToken) return;
-        var syl = fusion.syllables[i];
-        setNarr(syl[0] + " + " + syl[1] + " → …");
-        var mergedSyl = await stageMerge(syl[0], syl[1], token);
+        var syl = fusion.syllables[i] || [];
+        var left = syl[0];
+        var right = syl.length > 1 ? syl[1] : null;
+        if (right != null && right !== "") {
+          setNarr(left + " + " + right + " → …");
+        } else {
+          setNarr(left + " geliyor…");
+        }
+        var mergedSyl = await stageMerge(left, right, token);
         if (token !== animToken || mergedSyl == null) return;
         setNarr(mergedSyl + " hecesi aşağı iniyor");
         await dropToTray(tray, mergedSyl, token);

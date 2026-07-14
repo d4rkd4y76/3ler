@@ -138,9 +138,19 @@
   .birles-admin-fusion{
     border:1px solid var(--border); border-radius:14px; padding:12px; margin:0 0 12px;
     background:rgba(11,16,32,.45);
+    position:relative;
+  }
+  .birles-admin-fusion__head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin:0 0 10px;
   }
   .birles-admin-fusion__title{font-weight:800;font-size:18px;margin:0 0 4px}
-  .birles-admin-fusion__label{color:var(--muted);font-size:12px;margin:0 0 10px}
+  .birles-admin-fusion__label{color:var(--muted);font-size:12px;margin:0}
+  .birles-admin-x{
+    flex:0 0 auto; width:36px; height:36px; border-radius:10px; border:1px solid rgba(248,113,113,.45);
+    background:rgba(127,29,29,.35); color:#fecaca; font-size:22px; font-weight:800; line-height:1;
+    cursor:pointer; display:inline-flex; align-items:center; justify-content:center; padding:0;
+  }
+  .birles-admin-x:hover{background:rgba(185,28,28,.55); filter:brightness(1.08)}
   @media (max-width:900px){.birles-admin-row{grid-template-columns:1fr}}
   .mt24{margin-top:24px}
   .center{display:flex; align-items:center; justify-content:center}
@@ -1329,8 +1339,8 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-curriculum-sort.js?v=30260604sort1"></script>
 <script src="js/admin/nova-tymm-curriculum-seed.js?v=30260604tymm3"></script>
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
-<script src="js/core/nova-birlestirelim-data.js?v=30260714birles13"></script>
-<script src="js/ui/nova-kids-voice.js?v=30260714birles13"></script>
+<script src="js/core/nova-birlestirelim-data.js?v=30260714birles20"></script>
+<script src="js/ui/nova-kids-voice.js?v=30260714birles18"></script>
 <script>
 /** =============================
  * NASK ADMİN PANEL – RTDB bağlayıcı
@@ -2669,9 +2679,18 @@ window.NovaAdminExport = (function(){
 
   // ---- BİRLEŞTİRELİM (1. grup ses medyası) ----
   (function setupBirlestirelimAdmin(){
-    let cache = { media: {}, letters: {}, settings: {} };
+    let cache = { media: {}, letters: {}, settings: {}, removed: {} };
     let activeSoundId = '';
     let activeGroupId = 'grup1';
+
+    function syncRemovedToData(){
+      try{
+        const D = window.NovaBirlestirelimData;
+        if(D && typeof D.setRemovedFusions === 'function'){
+          D.setRemovedFusions(cache.removed || {});
+        }
+      }catch(_){}
+    }
 
     function escHtml(s){
       return String(s == null ? '' : s)
@@ -2811,11 +2830,19 @@ window.NovaAdminExport = (function(){
       return out;
     }
 
+    function fusionListFor(sound){
+      if(!sound) return [];
+      const rem = (cache.removed && cache.removed[sound.id]) || {};
+      return (sound.fusions || []).filter(function(f){
+        return f && !rem[f.id];
+      });
+    }
+
     function completeness(sound){
       if(!sound) return { ready:false, filled:0, total:0 };
       let filled = 0, total = 1;
       if(cache.letters[sound.id] && cache.letters[sound.id].audioUrl) filled++;
-      (sound.fusions||[]).forEach(function(f){
+      fusionListFor(sound).forEach(function(f){
         tokensForFusion(f).forEach(function(tok){
           total++;
           if(cache.media[tok.key] && cache.media[tok.key].audioUrl) filled++;
@@ -2962,15 +2989,16 @@ window.NovaAdminExport = (function(){
         '<div><label>Nasıl yapılır videosu (9:16 Bunny)</label><input type="url" data-field="videoUrl" value="'+escHtml(letterCur.videoUrl||'')+'" placeholder="https://player.mediadelivery.net/play/…/GUID veya …mp4"></div>'+
         '<div class="soft small" style="padding-top:22px">'+statusIcon(videoSt)+'</div></div>';
 
-      const fusions = sound.fusions || [];
+      const fusions = fusionListFor(sound);
       if(!fusions.length){
-        ui.fusionList.innerHTML = '<p class="soft small">Bu ses için henüz birleştirme tanımı yok.</p>';
+        ui.fusionList.innerHTML = '<p class="soft small">Bu ses için birleştirme kalmadı (veya hepsi kaldırıldı). Kaydetmeyi unutma.</p>';
         bindUrlWatchers(ui.letterList);
         return;
       }
 
       ui.fusionList.innerHTML = fusions.map(function(f){
         const tokens = tokensForFusion(f);
+        const isIntro = f.type === 'intro' || f.kind === 'ses';
         const imageBlock = f.mediaKey ? (function(){
           const cur = cache.media[f.mediaKey] || {};
           const prev = cur.imageUrl ? '<img class="birles-admin-preview" src="'+escHtml(cur.imageUrl)+'" alt="">' : '<div class="birles-admin-preview"></div>';
@@ -2990,15 +3018,52 @@ window.NovaAdminExport = (function(){
             '<div class="soft small" style="padding-top:22px">'+statusIcon(st)+'</div></div>';
         }).join('');
 
+        const removeBtn = isIntro
+          ? ''
+          : '<button type="button" class="birles-admin-x" data-remove-fusion="'+escHtml(f.id)+'" title="Bu birleştirmeyi kaldır" aria-label="Kaldır">×</button>';
+
         return '<div class="birles-admin-fusion" data-fusion-id="'+escHtml(f.id)+'">'+
-          '<p class="birles-admin-fusion__title">'+escHtml(f.result)+'</p>'+
-          '<p class="birles-admin-fusion__label">'+escHtml(f.label||'')+' · '+escHtml(f.kind||'birleştirme')+'</p>'+
+          '<div class="birles-admin-fusion__head">'+
+            '<div>'+
+              '<p class="birles-admin-fusion__title">'+escHtml(f.result)+'</p>'+
+              '<p class="birles-admin-fusion__label">'+escHtml(f.label||'')+' · '+escHtml(f.kind||'birleştirme')+'</p>'+
+            '</div>'+
+            removeBtn+
+          '</div>'+
           audioRows + imageBlock +
           '</div>';
       }).join('');
 
       bindUrlWatchers(ui.letterList);
       bindUrlWatchers(ui.fusionList);
+      bindRemoveButtons(ui.fusionList, sound);
+    }
+
+    function bindRemoveButtons(root, sound){
+      if(!root || !sound) return;
+      root.querySelectorAll('[data-remove-fusion]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          const fusionId = btn.getAttribute('data-remove-fusion');
+          if(!fusionId) return;
+          const card = btn.closest('.birles-admin-fusion');
+          const title = card && card.querySelector('.birles-admin-fusion__title');
+          const label = (title && title.textContent) || fusionId;
+          if(!window.confirm('“' + label + '” birleştirmesini kaldırmak istiyor musun?\n\nKaydet’e basınca öğrenci ekranından da silinir.')){
+            return;
+          }
+          harvestVisible();
+          cache.removed = cache.removed || {};
+          cache.removed[sound.id] = cache.removed[sound.id] || {};
+          cache.removed[sound.id][fusionId] = true;
+          syncRemovedToData();
+          const ui = els();
+          if(ui.statusEl){
+            ui.statusEl.textContent = '“' + label + '” kaldırıldı — kalıcı olması için Kaydet’e bas.';
+          }
+          renderTabs();
+          renderSoundPanel(getSound(activeSoundId));
+        });
+      });
     }
 
     function bindUrlWatchers(root){
@@ -3234,7 +3299,17 @@ window.NovaAdminExport = (function(){
       const settings = {};
       const host = normalizeHostLocal(cache.settings && cache.settings.libraryName);
       if(host) settings.libraryName = host;
-      return { media: media, letters: letters, settings: settings, updatedAt: Date.now() };
+      const removed = {};
+      Object.keys(cache.removed || {}).forEach(function(soundId){
+        const row = cache.removed[soundId];
+        if(!row || typeof row !== 'object') return;
+        const ids = Object.keys(row).filter(function(fid){ return !!row[fid]; });
+        if(ids.length){
+          removed[soundId] = {};
+          ids.forEach(function(fid){ removed[soundId][fid] = true; });
+        }
+      });
+      return { media: media, letters: letters, settings: settings, removed: removed, updatedAt: Date.now() };
     }
 
     function readBirlestirelimSnap(){
@@ -3286,6 +3361,8 @@ window.NovaAdminExport = (function(){
         cache.media = (v.media && typeof v.media === 'object') ? v.media : {};
         cache.letters = (v.letters && typeof v.letters === 'object') ? v.letters : {};
         cache.settings = (v.settings && typeof v.settings === 'object') ? v.settings : {};
+        cache.removed = (v.removed && typeof v.removed === 'object') ? v.removed : {};
+        syncRemovedToData();
         if(!cache.settings.libraryName){
           try{
             const hik = await rdb.ref('platformMeta/hikayeVideo').once('value');
@@ -3350,7 +3427,13 @@ window.NovaAdminExport = (function(){
         }
         try{
           await rdb.ref('birlestirelim').set(payload);
-          cache = { media: payload.media, letters: payload.letters, settings: payload.settings || {} };
+          cache = {
+            media: payload.media,
+            letters: payload.letters,
+            settings: payload.settings || {},
+            removed: payload.removed || {}
+          };
+          syncRemovedToData();
           syncHostUi();
           render();
           if(ui.statusEl) ui.statusEl.textContent = 'Kaydedildi. Öğrenci ekranında Birleştirelim’i kapatıp yeniden aç.';

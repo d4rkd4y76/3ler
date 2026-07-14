@@ -477,6 +477,15 @@
     return lastPlayInfo;
   }
 
+  function applyRemovedFromPayload(v) {
+    try {
+      var D = typeof window !== "undefined" ? window.NovaBirlestirelimData : null;
+      if (D && typeof D.setRemovedFusions === "function") {
+        D.setRemovedFusions((v && v.removed && typeof v.removed === "object") ? v.removed : {});
+      }
+    } catch (_) {}
+  }
+
   function loadMediaFromFirebase() {
     var database = db();
     if (!database) return Promise.resolve({ media: {}, letters: {}, settings: {} });
@@ -488,8 +497,9 @@
         mediaCache = v.media && typeof v.media === "object" ? v.media : {};
         letterCache = v.letters && typeof v.letters === "object" ? v.letters : {};
         settingsCache = v.settings && typeof v.settings === "object" ? v.settings : {};
+        applyRemovedFromPayload(v);
         if (settingsCache.libraryName) {
-          return { media: mediaCache, letters: letterCache, settings: settingsCache };
+          return { media: mediaCache, letters: letterCache, settings: settingsCache, removed: v.removed || {} };
         }
         return database
           .ref("platformMeta/hikayeVideo")
@@ -498,10 +508,10 @@
             var hv = (hs && hs.val && hs.val()) || {};
             if (hv.libraryName) settingsCache.libraryName = normalizeHost(hv.libraryName);
             if (!settingsCache.libraryId && hv.libraryId) settingsCache.libraryId = String(hv.libraryId);
-            return { media: mediaCache, letters: letterCache, settings: settingsCache };
+            return { media: mediaCache, letters: letterCache, settings: settingsCache, removed: v.removed || {} };
           })
           .catch(function () {
-            return { media: mediaCache, letters: letterCache, settings: settingsCache };
+            return { media: mediaCache, letters: letterCache, settings: settingsCache, removed: v.removed || {} };
           });
       })
       .catch(function () {

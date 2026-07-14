@@ -360,10 +360,6 @@
         hece("n", "i"),
         hece("i", "t"),
         hece("t", "i"),
-        hece("i", "a"),
-        hece("a", "i"),
-        hece("i", "e"),
-        hece("e", "i"),
         chain("e", "t", "i", {"mediaKey":"eti","narration":"et ile i birleşiyor. eti!","celebrate":"Yaşasın! eti kelimesi!"}),
         chain("i", "n", "a", {"mediaKey":"ina"}),
         chain("a", "n", "i", {"mediaKey":"ani"}),
@@ -1714,6 +1710,279 @@
     }
   ];
 
+  /**
+   * 1. sınıf kelime bankası — yalnız çocukların anlayacağı anlamlı Türkçe sözcükler.
+   * Uydurma / yabancı isim (nina, tina…) ve gereksiz adlar yok.
+   * Her seste yalnızca o ana kadar öğrenilen harfler geçer.
+   */
+  var WORD_BANK = {
+    a: [],
+    n: ["ana"],
+    e: ["anne", "nane", "nene"],
+    t: ["at", "et", "ata", "tane", "anten", "tat", "net"],
+    i: ["eti", "inat", "nine", "ninni"],
+    l: [
+      "al", "el", "ali", "eli", "ile", "nal", "tel", "alt",
+      "lale", "elle", "elli", "ilan", "aile", "alet", "lila", "atlet", "ilet", "telli",
+      "anlat", "etli", "anten", "tane"
+    ],
+    o: ["ot", "ol", "oto", "ona", "not", "nota", "olta", "alo", "otel", "olan"],
+    k: [
+      "kek", "tek", "kan", "kol", "tak", "ilk", "iki",
+      "kale", "inek", "kola", "kilo", "leke", "elek", "ekle", "toka", "kilit", "kekik",
+      "kantin", "otlak", "konak", "kakao", "tekne", "kalk"
+    ],
+    u: [
+      "un", "okul", "kutu", "koku", "kule", "unut", "kulak",
+      "konuk", "tutkal", "kukla", "okullu", "kutulu"
+    ],
+    r: [
+      "ara", "kar", "nar", "tar", "kare", "kara", "kira", "lira",
+      "koru", "kuru", "okur", "iri", "erik", "renk", "kart", "orta", "tren",
+      "roket", "kurt", "korku", "karne", "erken", "arı", "karton"
+    ],
+    ı: [
+      "kır", "tık", "akıl", "alın", "kalın", "karın", "kırık", "ılık",
+      "nalın", "kartı", "arı"
+    ],
+    m: [
+      "ama", "mum", "kum", "mor", "elma", "mama", "kalem", "emek", "ekmek", "liman",
+      "orman", "umut", "tamam", "keman", "motor", "maket", "marul", "limon", "armut",
+      "makarna", "market", "minik", "komik", "tamir", "mola", "metre", "mısır"
+    ],
+    ü: [
+      "ütü", "ürün", "tüm", "kül", "ümit", "türlü", "küme",
+      "ülke", "tünel", "ünlü", "ülkem", "kütük", "kürk"
+    ],
+    s: [
+      "su", "ses", "son", "sus", "saat", "masa", "isim", "sıra", "sokak", "usta",
+      "simit", "kasa", "süt", "sütlü", "eski", "susam", "resim", "sakin", "süs",
+      "sırt", "süslü", "süre"
+    ],
+    ö: ["kök", "örtü", "örnek", "kömür", "önlük", "öteki"],
+    y: [
+      "ay", "oy", "yan", "yat", "yol", "yer", "ayı", "yıl", "ayak", "yaka", "kaya",
+      "oyun", "yemek", "ayna", "iyi", "uyu", "yük", "yay", "köy", "öykü",
+      "yürek", "yumak", "yunus", "yirmi", "yayla", "yüksek"
+    ],
+    d: [
+      "ad", "dal", "dil", "ada", "dede", "dayı", "dere", "dilek", "kadın",
+      "dolu", "yedi", "odun", "dana", "deri", "dudak", "kedi", "dört", "dost",
+      "deniz", "dünya", "dikkat", "dükkan", "dondurma", "domates", "defter", "doğru", "davul"
+    ],
+    z: [
+      "az", "söz", "yüz", "kız", "muz", "deniz", "yazı", "temiz", "uzun",
+      "kuzu", "üzüm", "taze", "zil", "tuz", "sözlük", "buz", "zeka"
+    ],
+    ç: [
+      "aç", "uç", "üç", "çay", "çok", "çek", "saç", "çiçek", "için", "çakı", "çekiç",
+      "uçak", "çilek", "ölçü", "çanta", "çamur", "çikolata", "çocuk", "çatı", "çene",
+      "uçurtma", "çim", "çukur", "çizgi", "çember"
+    ],
+    b: [
+      "bal", "ben", "bir", "buz", "boy", "abi", "baba", "bebek", "balık", "burun",
+      "boya", "büyük", "börek", "boru", "bere", "bardak", "bulut", "bisiklet",
+      "bakkal", "biber", "bayram", "böcek", "balıkçı", "boncuk"
+    ],
+    g: [
+      "gel", "gül", "göz", "göl", "gün", "gez", "git", "güzel", "gaga",
+      "gölge", "gemi", "gözlük", "gökyüzü", "gitar", "gıdık", "gülücük"
+    ],
+    c: ["can", "cam", "acı", "gece", "çocuk", "inci", "bacak", "amca", "cuma", "ocak", "cümle", "cami", "cüce", "cadde"],
+    ş: [
+      "aş", "eş", "iş", "kuş", "baş", "yaş", "beş", "şeker", "şişe", "kaşık", "şarkı",
+      "diş", "kış", "boş", "koşu", "yaşa", "şemsiye", "aşçı", "kaş", "şimşek", "şirin", "şaşkın"
+    ],
+    p: [
+      "ip", "top", "kap", "sap", "para", "kapı", "sepet", "tepe", "pamuk", "köpük",
+      "ipek", "pide", "pil", "pul", "kupa", "portakal", "papatya", "park",
+      "parmak", "pasta", "şapka", "patates", "piyano", "pati"
+    ],
+    h: [
+      "hala", "halı", "haber", "hemen", "sahil", "hoca", "bahar", "sabah",
+      "harita", "hediye", "helva", "hikaye", "horoz", "hurma", "hayır"
+    ],
+    v: [
+      "ev", "var", "ver", "vazo", "mavi", "hava", "deve", "kivi", "evet", "yuva",
+      "sevgi", "ceviz", "vatan", "valiz", "kova", "tavuk", "çivi", "vapur", "vakit",
+      "havuç", "hayvan", "hafta"
+    ],
+    ğ: [
+      "dağ", "yağ", "bağ", "ağaç", "yağmur", "düğün", "soğuk", "doğa", "ağır",
+      "düğme", "öğle", "kağıt", "oğlak", "tuğla", "öğrenci", "soğan", "yağlı"
+    ],
+    f: [
+      "fil", "kafa", "fide", "fare", "defter", "fırın", "zürafa", "futbol",
+      "fındık", "fasulye", "fırça", "fermuar", "fener", "filiz", "çiftçi", "şeftali"
+    ],
+    j: ["jet", "jel", "jöle", "jaket", "jilet"]
+  };
+
+  /* Standart 2 harfli heceler (ilkokul tabloları: CV / VC — ünlü+ünlü yok) */
+  var HECE_BANK = {
+    n: ["an", "na"],
+    e: ["en", "ne", "et", "te", "an", "na"],
+    t: ["at", "ta", "et", "te", "an", "na", "en", "ne"],
+    i: ["in", "ni", "it", "ti", "an", "na", "en", "ne", "at", "ta", "et", "te"],
+    l: ["al", "la", "el", "le", "il", "li", "an", "na", "en", "ne", "in", "ni", "at", "ta", "et", "te", "it", "ti"],
+    o: ["on", "ot", "to", "ol", "lo", "an", "na", "en", "ne", "al", "la", "el", "le", "in", "ni", "at", "ta", "et", "te", "il", "li"],
+    k: ["ak", "ka", "ek", "ke", "ik", "ki", "ok", "ko", "an", "na", "el", "le", "ol", "lo", "at", "ta", "et", "te", "il", "li", "al", "la"],
+    u: ["un", "nu", "ut", "tu", "ul", "lu", "uk", "ku", "an", "na", "ok", "ko", "ol", "lo", "ak", "ka", "el", "le", "at", "ta", "ek", "ke"],
+    r: ["ar", "ra", "er", "re", "ir", "ri", "or", "ro", "ur", "ru", "an", "na", "el", "le", "ok", "ko", "un", "nu", "ak", "ka", "ol", "lo"],
+    ı: ["ık", "kı", "ıl", "lı", "ın", "nı", "ıt", "tı", "ır", "rı", "ak", "ka", "ar", "ra", "an", "na", "el", "le", "ok", "ko", "un", "nu"],
+    m: ["am", "ma", "em", "me", "im", "mi", "om", "mo", "um", "mu", "ım", "mı", "an", "na", "el", "le", "ok", "ko", "ar", "ra", "ak", "ka"],
+    ü: ["ün", "nü", "üt", "tü", "ül", "lü", "ük", "kü", "ür", "rü", "üm", "mü", "an", "na", "el", "le", "ok", "ko", "am", "ma", "um", "mu"],
+    s: ["as", "sa", "es", "se", "is", "si", "os", "so", "us", "su", "ıs", "sı", "üs", "sü", "an", "na", "el", "le", "um", "mu", "ün", "nü"],
+    ö: ["ön", "nö", "öt", "tö", "öl", "lö", "ök", "kö", "ör", "rö", "öm", "mö", "ös", "sö", "an", "na", "el", "le", "um", "mu", "üs", "sü"],
+    y: ["ay", "ya", "ey", "ye", "iy", "yi", "oy", "yo", "uy", "yu", "ıy", "yı", "üy", "yü", "öy", "yö", "an", "na", "el", "le", "ok", "ko", "ös", "sö"],
+    d: ["ad", "da", "ed", "de", "id", "di", "od", "do", "ud", "du", "ıd", "dı", "üd", "dü", "öd", "dö", "an", "na", "ay", "ya", "el", "le", "oy", "yo"],
+    z: ["az", "za", "ez", "ze", "iz", "zi", "oz", "zo", "uz", "zu", "ız", "zı", "üz", "zü", "öz", "zö", "an", "na", "ay", "ya", "el", "le", "ad", "da"],
+    ç: ["aç", "ça", "eç", "çe", "iç", "çi", "oç", "ço", "uç", "çu", "ıç", "çı", "üç", "çü", "öç", "çö", "an", "na", "ay", "ya", "az", "za"],
+    b: ["ab", "ba", "eb", "be", "ib", "bi", "ob", "bo", "ub", "bu", "ıb", "bı", "üb", "bü", "öb", "bö", "an", "na", "al", "la", "ay", "ya", "aç", "ça"],
+    g: ["ag", "ga", "eg", "ge", "ig", "gi", "og", "go", "ug", "gu", "ıg", "gı", "üg", "gü", "ög", "gö", "an", "na", "el", "le", "ay", "ya", "ab", "ba"],
+    c: ["ac", "ca", "ec", "ce", "ic", "ci", "oc", "co", "uc", "cu", "ıc", "cı", "üc", "cü", "öc", "cö", "an", "na", "aç", "ça", "ab", "ba", "ag", "ga"],
+    ş: ["aş", "şa", "eş", "şe", "iş", "şi", "oş", "şo", "uş", "şu", "ış", "şı", "üş", "şü", "öş", "şö", "an", "na", "ay", "ya", "ab", "ba", "ac", "ca"],
+    p: ["ap", "pa", "ep", "pe", "ip", "pi", "op", "po", "up", "pu", "ıp", "pı", "üp", "pü", "öp", "pö", "an", "na", "ay", "ya", "aş", "şa", "ab", "ba"],
+    h: ["ah", "ha", "eh", "he", "ih", "hi", "oh", "ho", "uh", "hu", "ıh", "hı", "üh", "hü", "öh", "hö", "an", "na", "ap", "pa", "ay", "ya", "aş", "şa"],
+    v: ["av", "va", "ev", "ve", "iv", "vi", "ov", "vo", "uv", "vu", "ıv", "vı", "üv", "vü", "öv", "vö", "an", "na", "ah", "ha", "ay", "ya", "ap", "pa"],
+    ğ: ["ağ", "ğa", "eğ", "ğe", "iğ", "ği", "oğ", "ğo", "uğ", "ğu", "ığ", "ğı", "üğ", "ğü", "öğ", "ğö", "an", "na", "ay", "ya", "av", "va", "ah", "ha"],
+    f: ["af", "fa", "ef", "fe", "if", "fi", "of", "fo", "uf", "fu", "ıf", "fı", "üf", "fü", "öf", "fö", "an", "na", "ay", "ya", "ağ", "ğa", "av", "va"],
+    j: ["aj", "ja", "ej", "je", "ij", "ji", "oj", "jo", "uj", "ju", "ıj", "jı", "üj", "jü", "öj", "jö", "an", "na", "af", "fa", "ay", "ya", "ağ", "ğa"]
+  };
+
+  /* Kesin yasak: uydurma, yabancı isim, uygunsuz veya 1. sınıf düzeyine aykırı */
+  var WORD_BLOCKLIST = {
+    nina: 1, tina: 1, lita: 1, atila: 1, nail: 1, talat: 1, nalan: 1, naile: 1,
+    elina: 1, nil: 1, okan: 1, kenan: 1, atakan: 1, rana: 1, mert: 1, murat: 1,
+    emel: 1, mete: 1, kemal: 1, melike: 1, mine: 1, hakan: 1, onat: 1, inan: 1,
+    ene: 1, ane: 1, ala: 1, ele: 1, tal: 1, il: 1, loto: 1, kelek: 1, teknik: 1,
+    tutku: 1, kutlu: 1, kulun: 1, kutla: 1, unutkan: 1, tokluk: 1, kula: 1, ulu: 1,
+    olum: 1, ölüm: 1, kor: 1, kör: 1, kaza: 1, omur: 1, ömür: 1, sonuk: 1, sönük: 1,
+    ajan: 1, juri: 1, jüri: 1, jaguar: 1, firma: 1, afacan: 1, foto: 1, far: 1,
+    cimri: 1, cikcik: 1, helal: 1, zemzem: 1, zambak: 1, cetin: 1, çetin: 1,
+    cakal: 1, çakal: 1, cozum: 1, çözüm: 1, secim: 1, seçim: 1, cini: 1, çini: 1,
+    genc: 1, genç: 1, gelin: 1, gida: 1, gıda: 1, gures: 1, güreş: 1, gurultu: 1, gürültü: 1,
+    gelenek: 1, giysi: 1, gormek: 1, görmek: 1, gaz: 1, bina: 1, bolge: 1, bölge: 1,
+    battaniye: 1, bezelye: 1, buzlu: 1, dollar: 1, dolar: 1, demlik: 1, dakika: 1,
+    deger: 1, değer: 1, domuz: 1, durust: 1, dürüst: 1, adet: 1, sandal: 1,
+    yali: 1, yalı: 1, yavru: 1, yillik: 1, yıllık: 1, yasemin: 1, yikama: 1, yıkama: 1,
+    yunmak: 1, yenmek: 1, yalama: 1, yuklu: 1, yüklü: 1, sayil: 1, sayıl: 1,
+    oren: 1, ören: 1, odeme: 1, ödeme: 1, sonmek: 1, sönmek: 1, ortmek: 1, örtmek: 1,
+    ortulu: 1, örtülü: 1, kokten: 1, kökten: 1, orten: 1, örten: 1, komurluk: 1, kömürlük: 1,
+    us: 1, üs: 1, sorma: 1, surme: 1, sürme: 1, sila: 1, sıla: 1, sabir: 1, sabır: 1,
+    esas: 1, surekli: 1, sürekli: 1, sert: 1, sinif: 1, sınıf: 1, kusursuz: 1, sicak: 1, sıcak: 1,
+    utum: 1, ütüm: 1, utulemek: 1, ütülemek: 1, urunlu: 1, ürünlü: 1, turu: 1, türü: 1,
+    utulu: 1, ütülü: 1, unlem: 1, ünlem: 1, kultur: 1, kültür: 1, lule: 1, lüle: 1, tur: 1, tür: 1,
+    ulku: 1, ülkü: 1, koklu: 1, köklü: 1, onem: 1, önem: 1, tokat: 1, orak: 1, katkı: 1, katki: 1,
+    kiril: 1, kırıl: 1,
+    lama: 1, mala: 1, mamut: 1, imam: 1, emir: 1, kamer: 1, mekik: 1, tirmik: 1, tırmık: 1,
+    meltem: 1, ormanlik: 1, ormanlık: 1, elmaci: 1, elmacı: 1, kumsal: 1, mini: 1,
+    irak: 1, ırak: 1, kıran: 1, alınan: 1, alik: 1, alık: 1, tiril: 1, tırıl: 1, kitir: 1, kıtır: 1,
+    inal: 1, ınal: 1, kari: 1, karı: 1, alinlik: 1, alınlık: 1, ilikca: 1, ılıkça: 1, arilar: 1, arılar: 1,
+    kurak: 1, kareli: 1, trafik: 1, trafiku: 1, trafikü: 1, ürküt: 1, trafik: 1, tert: 1, ertesi: 1, trafik: 1, trafiknak: 1,
+    trafik: 1, karinca: 1, karınca: 1, kilitli: 1, ten: 1, tan: 1, an: 1
+  };
+
+  var HECE_BLOCKLIST = {
+    ea: 1, ae: 1, oa: 1, ao: 1, oe: 1, eo: 1, oi: 1, io: 1, ua: 1, au: 1, ue: 1, eu: 1,
+    ui: 1, iu: 1, uo: 1, ou: 1, ia: 1, ai: 1, ie: 1, ei: 1, no: 1,
+    oç: 1, ıb: 1, ıg: 1, ıj: 1, ıh: 1, ıv: 1, ıf: 1, ıd: 1, öb: 1, öc: 1, öj: 1, öh: 1, öv: 1, öf: 1, öş: 1, öç: 1,
+    ug: 1, ag: 1, eg: 1, ig: 1, og: 1, ğo: 1, ğa: 1, ğe: 1, ği: 1, ğu: 1, ğı: 1, ğü: 1, ğö: 1
+  };
+
+  var VOWELS_TR = { a: 1, e: 1, ı: 1, i: 1, o: 1, ö: 1, u: 1, ü: 1 };
+
+  var LETTER_ORDER = [
+    "a", "n", "e", "t", "i", "l",
+    "o", "k", "u", "r", "ı", "m",
+    "ü", "s", "ö", "y", "d", "z",
+    "ç", "b", "g", "c", "ş",
+    "p", "h", "v", "ğ", "f", "j"
+  ];
+
+  function allowedLettersFor(soundId) {
+    var idx = LETTER_ORDER.indexOf(String(soundId || "").toLocaleLowerCase("tr-TR"));
+    if (idx < 0) return null;
+    var set = {};
+    for (var i = 0; i <= idx; i++) set[LETTER_ORDER[i]] = true;
+    return set;
+  }
+
+  function wordLettersOk(word, allowed) {
+    if (!allowed) return true;
+    var chars = Array.from(String(word || "").toLocaleLowerCase("tr-TR"));
+    for (var i = 0; i < chars.length; i++) {
+      if (!allowed[chars[i]]) return false;
+    }
+    return chars.length > 0;
+  }
+
+  function isVowelVowelHece(token) {
+    token = String(token || "").toLocaleLowerCase("tr-TR");
+    if (token.length !== 2) return false;
+    var chars = Array.from(token);
+    return !!(VOWELS_TR[chars[0]] && VOWELS_TR[chars[1]]);
+  }
+
+  function rebuildMeaningfulWords() {
+    GROUPS.forEach(function (g) {
+      (g.sounds || []).forEach(function (s) {
+        var allowed = allowedLettersFor(s.id);
+        var letter = String(s.letter || s.id || "").toLocaleLowerCase("tr-TR");
+        var intros = [];
+        var wordSet = {};
+        var kelimeler = [];
+
+        /* Önce kelimeler — al/el/at gibi anlamlılar yalnız burada kalsın */
+        (WORD_BANK[s.id] || []).forEach(function (w) {
+          w = String(w || "").toLocaleLowerCase("tr-TR");
+          if (!w || wordSet[w] || WORD_BLOCKLIST[w]) return;
+          if (!wordLettersOk(w, allowed)) return;
+          if (w.indexOf(letter) < 0) return;
+          wordSet[w] = true;
+          kelimeler.push(
+            wordFusion(w, {
+              mediaKey: w,
+              celebrate: "Harika! " + w + " kelimesini okudun!"
+            })
+          );
+        });
+
+        var heceSeen = {};
+        var heceler = [];
+        function pushHece(token) {
+          token = String(token || "").toLocaleLowerCase("tr-TR");
+          if (!token || token.length !== 2 || heceSeen[token]) return;
+          /* Kelime bölümünde olanı heceye tekrar koyma (el, at, un…) */
+          if (wordSet[token]) return;
+          if (HECE_BLOCKLIST[token] || isVowelVowelHece(token)) return;
+          if (!wordLettersOk(token, allowed)) return;
+          if (token.indexOf(letter) < 0) return;
+          heceSeen[token] = true;
+          var chars = Array.from(token);
+          heceler.push(hece(chars[0], chars[1]));
+        }
+
+        (s.fusions || []).forEach(function (f) {
+          if (!f) return;
+          if (f.type === "intro" || f.kind === "ses") {
+            intros.push(f);
+            return;
+          }
+          if (f.mode === "syllables" || f.mode === "chain") return;
+          if (f.kind === "kelime" || f.type === "kelime" || f.mediaKey) return;
+          if (f.type === "hece" || f.kind === "hece") pushHece(f.result);
+        });
+
+        (HECE_BANK[s.id] || []).forEach(pushHece);
+
+        s.fusions = intros.concat(heceler, kelimeler);
+      });
+    });
+  }
+
+  rebuildMeaningfulWords();
+
   function allSounds() {
     var out = [];
     GROUPS.forEach(function (g) {
@@ -1788,13 +2057,51 @@
     return GROUPS[0] || null;
   }
 
+  /** Admin’den kaldırılan birleştirmeler: { [soundId]: { [fusionId]: true } } */
+  var removedFusions = {};
+
+  function setRemovedFusions(map) {
+    removedFusions = map && typeof map === "object" ? map : {};
+  }
+
+  function getRemovedFusions() {
+    return removedFusions;
+  }
+
+  function isFusionRemoved(soundId, fusionId) {
+    soundId = String(soundId || "").toLowerCase();
+    fusionId = String(fusionId || "");
+    return !!(removedFusions[soundId] && removedFusions[soundId][fusionId]);
+  }
+
+  function markFusionRemoved(soundId, fusionId) {
+    soundId = String(soundId || "").toLowerCase();
+    fusionId = String(fusionId || "");
+    if (!soundId || !fusionId) return;
+    if (!removedFusions[soundId]) removedFusions[soundId] = {};
+    removedFusions[soundId][fusionId] = true;
+  }
+
+  function visibleFusions(sound) {
+    if (!sound) return [];
+    return (sound.fusions || []).filter(function (f) {
+      return f && !isFusionRemoved(sound.id, f.id);
+    });
+  }
+
   function getSound(id) {
     id = String(id || "").toLowerCase();
     var list = allSounds();
+    var raw = null;
     for (var i = 0; i < list.length; i++) {
-      if (list[i].id === id) return list[i];
+      if (list[i].id === id) {
+        raw = list[i];
+        break;
+      }
     }
-    return null;
+    if (!raw) return null;
+    if (!removedFusions[raw.id]) return raw;
+    return Object.assign({}, raw, { fusions: visibleFusions(raw) });
   }
 
   function getFusion(soundId, fusionId) {
@@ -1827,6 +2134,11 @@
     getGroup: getGroup,
     getSound: getSound,
     getFusion: getFusion,
+    setRemovedFusions: setRemovedFusions,
+    getRemovedFusions: getRemovedFusions,
+    markFusionRemoved: markFusionRemoved,
+    isFusionRemoved: isFusionRemoved,
+    visibleFusions: visibleFusions,
     syllabifyTR: syllabifyTR
   };
 })(typeof window !== "undefined" ? window : globalThis);
