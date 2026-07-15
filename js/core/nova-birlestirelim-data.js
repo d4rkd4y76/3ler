@@ -105,15 +105,60 @@
     return wordFusion(result, opts);
   }
 
+  function capitalizeTR(word) {
+    var chars = Array.from(String(word || ""));
+    if (!chars.length) return "";
+    chars[0] = chars[0].toLocaleUpperCase("tr-TR");
+    return chars.join("");
+  }
+
+  /** Maarif: özel isimler büyük harfle (Ali, Ata, Nil…) */
+  var PROPER_NAMES = {
+    ali: 1,
+    ata: 1,
+    nil: 1,
+    ela: 1,
+    nalan: 1,
+    nail: 1,
+    naile: 1,
+    talat: 1
+  };
+
+  function isProperName(word) {
+    return !!PROPER_NAMES[String(word || "").toLocaleLowerCase("tr-TR")];
+  }
+
+  /** Küçük harfli heceleri görünen (büyük harfli) kelimeye hizala: Ali → A + li */
+  function alignSyllableDisplay(displayWord, lowerSyllables) {
+    var chars = Array.from(String(displayWord || ""));
+    var out = [];
+    var idx = 0;
+    for (var i = 0; i < (lowerSyllables || []).length; i++) {
+      var n = Array.from(lowerSyllables[i]).length;
+      out.push(chars.slice(idx, idx + n).join("") || lowerSyllables[i]);
+      idx += n;
+    }
+    return out;
+  }
+
+  function formatDisplayWord(lowerWord, forceCapital) {
+    lowerWord = String(lowerWord || "").toLocaleLowerCase("tr-TR");
+    if (forceCapital || isProperName(lowerWord)) return capitalizeTR(lowerWord);
+    return lowerWord;
+  }
+
   function wordFusion(result, opts) {
     opts = opts || {};
-    result = String(result || "").toLocaleLowerCase("tr-TR");
+    var lower = String(result || "").toLocaleLowerCase("tr-TR");
+    var display = formatDisplayWord(lower, !!opts.proper);
+    result = lower;
     var syls = syllabifyTR(result);
+    var displaySyls = alignSyllableDisplay(display, syls);
     var letters = Array.from(result);
 
     if (syls.length <= 1) {
       if (letters.length <= 2) {
-        return hece(letters[0] || "", letters[1] || "", {
+        var h = hece(letters[0] || "", letters[1] || "", {
           id: opts.id,
           mediaKey: opts.mediaKey === false ? false : opts.mediaKey || true,
           kind: "kelime",
@@ -121,6 +166,9 @@
           narration: opts.narration,
           celebrate: opts.celebrate
         });
+        h.result = display;
+        h.label = opts.label || (displaySyls.join(" + ") || letters.join(" + ")) + " → " + display;
+        return h;
       }
       /* Tek heceli kapalı (CVC…): harfleri sırayla birleştir — hâlâ tek hece */
       var steps = [];
@@ -140,11 +188,12 @@
         mode: "chain",
         parts: letters,
         steps: steps,
-        result: result,
+        result: display,
+        say: result,
         kind: "kelime",
-        label: opts.label || letters.join(" + ") + " → " + result,
-        narration: opts.narration || ("Şimdi " + result + " kelimesini birleştirelim!"),
-        celebrate: opts.celebrate || ("Muhteşem! " + result + "!")
+        label: opts.label || letters.join(" + ") + " → " + display,
+        narration: opts.narration || ("Şimdi " + display + " kelimesini birleştirelim!"),
+        celebrate: opts.celebrate || ("Muhteşem! " + display + "!")
       };
       if (opts.mediaKey !== false) {
         oMono.mediaKey = opts.mediaKey && opts.mediaKey !== true ? opts.mediaKey : result;
@@ -152,26 +201,41 @@
       return oMono;
     }
 
-    /* Çok heceli: fi-de, a-na, an-ne */
-    var syllables = syls.map(sylParts);
-    var leftLabel = syls.join(" + ");
+    /* Çok heceli: fi-de, a-na, an-ne — ekranda özel isim büyük harfli */
+    var syllables = displaySyls.map(function (ds, i) {
+      var parts = sylParts(syls[i]);
+      if (!isProperName(result) && !opts.proper) return parts;
+      /* İlk hecenin ilk harfi büyük kalsın: A + li */
+      var dChars = Array.from(ds);
+      var pChars = [];
+      var p = 0;
+      for (var pi = 0; pi < parts.length; pi++) {
+        var plen = Array.from(parts[pi]).length;
+        pChars.push(dChars.slice(p, p + plen).join("") || parts[pi]);
+        p += plen;
+      }
+      return pChars;
+    });
+    var leftLabel = displaySyls.join(" + ");
     var o = {
       id: opts.id || result,
       type: "kelime",
       mode: "syllables",
       parts: letters,
       syllables: syllables,
+      displaySyllables: displaySyls,
+      say: result,
       steps: syllables.map(function (s) {
         return s.slice();
       }),
-      result: result,
+      result: display,
       kind: "kelime",
-      label: opts.label || leftLabel + " → " + result,
+      label: opts.label || leftLabel + " → " + display,
       narration:
         syls.length === 2
-          ? opts.narration || ("Önce " + syls[0] + ", sonra " + syls[1] + "; en sonda " + result + "!")
-          : opts.narration || ("Heceleri birleştirelim: " + syls.join(" · ") + " → " + result + "!"),
-      celebrate: opts.celebrate || ("Süper! " + result + " kelimesi!")
+          ? opts.narration || ("Önce " + displaySyls[0] + ", sonra " + displaySyls[1] + "; en sonda " + display + "!")
+          : opts.narration || ("Heceleri birleştirelim: " + displaySyls.join(" · ") + " → " + display + "!"),
+      celebrate: opts.celebrate || ("Süper! " + display + " kelimesi!")
     };
     if (opts.mediaKey !== false) {
       o.mediaKey = opts.mediaKey && opts.mediaKey !== true ? opts.mediaKey : result;
@@ -198,6 +262,7 @@
   function normalizeFusion(f) {
     if (!f || typeof f !== "object") return f;
     if (f.type === "intro" || f.kind === "ses") return f;
+    if (f.kind === "cumle" || f.type === "cumle" || f.mode === "sentence") return f;
     var word = String(f.result || "").toLocaleLowerCase("tr-TR");
     if (word.length < 3) return f;
     if (f.kind !== "kelime" && f.type !== "kelime" && !f.mediaKey && f.mode !== "chain" && f.mode !== "syllables") {
@@ -1976,10 +2041,160 @@
 
         (HECE_BANK[s.id] || []).forEach(pushHece);
 
-        s.fusions = intros.concat(heceler, kelimeler);
+        var cumleler = [];
+        (SENTENCE_BANK[s.id] || []).forEach(function (raw) {
+          var f = sentenceFusion(raw);
+          if (!f) return;
+          if (!sentenceLettersOk(f, allowed)) return;
+          cumleler.push(f);
+        });
+
+        s.fusions = intros.concat(heceler, kelimeler, cumleler);
       });
     });
   }
+
+  /**
+   * Maarif Modeli (TYMM Türkçe):
+   * 1. harf grubunda (ANETİL) → ses, hece, sözcük.
+   * 2. harf grubundan itibaren → cümle (+ metin) çalışmaları başlar.
+   * Bu yüzden cümleler "o" sesinden itibaren eklenir; yalnız öğrenilen harfler kullanılır.
+   */
+  function sentenceFusion(text, opts) {
+    opts = opts || {};
+    text = String(text || "").trim();
+    if (!text) return null;
+    var display = /[.!?]$/.test(text) ? text : text + ".";
+    var body = display.replace(/[.!?]+$/g, "");
+    var tokens = body.split(/\s+/).filter(Boolean);
+    if (!tokens.length) return null;
+
+    function letterCapitalIn(token) {
+      if (!token) return false;
+      var first = Array.from(token)[0];
+      return first === first.toLocaleUpperCase("tr-TR") && first !== first.toLocaleLowerCase("tr-TR");
+    }
+
+    var words = tokens.map(function (tok, i) {
+      var clean = String(tok).replace(/^[,;:]+|[,;:]+$/g, "");
+      var say = clean.toLocaleLowerCase("tr-TR");
+      /* Maarif: cümle başı + özel isim büyük harf */
+      var shown = formatDisplayWord(say, i === 0 || letterCapitalIn(clean) || isProperName(say));
+      var syls = syllabifyTR(say);
+      var displaySyls = alignSyllableDisplay(shown, syls);
+      return {
+        text: shown,
+        say: say,
+        syllables: syls,
+        displaySyllables: displaySyls
+      };
+    });
+
+    /* result metnini düzeltilmiş büyük/küçük harflerle yeniden kur */
+    display =
+      words
+        .map(function (w) {
+          return w.text;
+        })
+        .join(" ") + ".";
+
+    var idBase = words
+      .map(function (w) {
+        return w.say;
+      })
+      .join("_");
+    return {
+      id: opts.id || "cumle_" + idBase,
+      type: "cumle",
+      kind: "cumle",
+      mode: "sentence",
+      result: display,
+      words: words,
+      parts: words.map(function (w) {
+        return w.say;
+      }),
+      label:
+        opts.label ||
+        words
+          .map(function (w) {
+            return (w.displaySyllables || w.syllables).join("-");
+          })
+          .join(" · "),
+      narration: opts.narration || "Cümleyi hece hece okuyalım!",
+      celebrate: opts.celebrate || "Harika! Cümleyi okudun!"
+    };
+  }
+
+  function sentenceLettersOk(fusion, allowed) {
+    if (!fusion || !fusion.words) return false;
+    for (var i = 0; i < fusion.words.length; i++) {
+      if (!wordLettersOk(fusion.words[i].say, allowed)) return false;
+    }
+    return true;
+  }
+
+  /* 2. grup itibarıyla anlamlı, somut cümleler (Maarif + ilkokul tabloları) */
+  var SENTENCE_BANK = {
+    o: [
+      "Ali oto al.",
+      "Lale ot al.",
+      "Ata ot at.",
+      "Anne not al.",
+      "Ali nal al.",
+      "Lale ile Ali el ele.",
+      "Ali ona ot al.",
+      "Anne ona not al."
+    ],
+    k: [
+      "Ali kek al.",
+      "Lale toka tak.",
+      "Anne kekik al.",
+      "Ali inek al.",
+      "Ali iki kilo al.",
+      "Lale kola al.",
+      "Anne elek al.",
+      "Ali tek kale al."
+    ],
+    u: [
+      "Anne kutu al.",
+      "Lale un al.",
+      "Ali kule al.",
+      "Anne kukla al.",
+      "Lale kutu al.",
+      "Ali okul notu al.",
+      "Anne konuk al.",
+      "Ali koku al."
+    ],
+    r: [
+      "Ali nar al.",
+      "Anne erik al.",
+      "Ali kart al.",
+      "Anne lira al.",
+      "Ali tren ara.",
+      "Lale erik al.",
+      "Ali kara kurt ara.",
+      "Anne renk al."
+    ],
+    ı: [
+      "Ali arı ara.",
+      "Anne nalın al.",
+      "Ali akıl al.",
+      "Ali kırık tel al.",
+      "Anne kalın nar al.",
+      "Ali ılık nar al."
+    ],
+    m: [
+      "Anne elma al.",
+      "Ali elma al.",
+      "Ali kalem al.",
+      "Anne ekmek al.",
+      "Lale limon al.",
+      "Ali elma ile limon al.",
+      "Anne mama al.",
+      "Ali kum al.",
+      "Elma tat."
+    ]
+  };
 
   rebuildMeaningfulWords();
 
