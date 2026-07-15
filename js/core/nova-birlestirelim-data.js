@@ -170,29 +170,26 @@
         h.label = opts.label || (displaySyls.join(" + ") || letters.join(" + ")) + " → " + display;
         return h;
       }
-      /* Tek heceli kapalı (CVC…): harfleri sırayla birleştir — hâlâ tek hece */
-      var steps = [];
-      var acc = letters[0];
-      for (var i = 1; i < letters.length; i++) {
-        if (i === 1) {
-          steps.push([letters[0], letters[1]]);
-          acc = letters[0] + letters[1];
-        } else {
-          steps.push([acc, letters[i]]);
-          acc = acc + letters[i];
-        }
-      }
+      /*
+       * Tek heceli kelime (tren, kart, renk…): HECEYE AYRILMAZ.
+       * Harf harf tr→tre→tren YANLIŞ — “tr” ünlüsüz, hece değildir.
+       * Doğru birleştirme: kapalı hece = gövde + son ünsüz → tre + n → tren
+       */
+      var monoParts = sylParts(result);
+      var monoDisplay = alignSyllableDisplay(display, monoParts);
       var oMono = {
         id: opts.id || result,
         type: "kelime",
-        mode: "chain",
-        parts: letters,
-        steps: steps,
+        mode: "simple",
+        parts: monoParts,
+        steps: [monoDisplay.slice()],
         result: display,
         say: result,
         kind: "kelime",
-        label: opts.label || letters.join(" + ") + " → " + display,
-        narration: opts.narration || ("Şimdi " + display + " kelimesini birleştirelim!"),
+        label: opts.label || monoDisplay.join(" + ") + " → " + display,
+        narration:
+          opts.narration ||
+          (display + " tek hecedir. " + monoDisplay.join(" + ") + " → " + display + "!"),
         celebrate: opts.celebrate || ("Muhteşem! " + display + "!")
       };
       if (opts.mediaKey !== false) {

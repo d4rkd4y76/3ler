@@ -525,31 +525,87 @@
     var isCumle = kind === "cumle" || f.mode === "sentence";
     var isWord = !isCumle && (kind === "kelime" || !!f.mediaKey);
     var isSes = kind === "ses" || f.type === "intro";
-    var thumb;
-    if (isSes) {
-      thumb = '<span class="birles-fusion-card__badge">SES</span>';
-    } else if (isCumle) {
-      thumb = '<span class="birles-fusion-card__badge">CÜMLE</span>';
-    } else if (isWord) {
-      thumb = '<span class="birles-fusion-card__badge">KELİME</span>';
-    } else {
-      thumb = '<span class="birles-fusion-card__badge">HECE</span>';
-    }
+    var med = isWord && f.mediaKey ? mediaFor(f.mediaKey) : null;
+    var hasImg = !!(med && med.imageUrl);
+    var badge = isSes ? "SES" : isCumle ? "CÜMLE" : isWord ? "KELİME" : "HECE";
     var cardClass = isCumle ? "cumle" : isWord ? "word" : isSes ? "ses" : "hece";
+    var mediaInner;
+
+    if (isWord && hasImg) {
+      mediaInner =
+        '<img class="birles-fusion-card__img" src="' +
+        esc(med.imageUrl) +
+        '" alt="" loading="lazy" />';
+    } else if (isWord) {
+      /* Simetrik vitrin: foto yoksa baş harf değil — birleştirme illüstrasyonu */
+      var gid = "bfa_" + String(f.id || f.result || "x").replace(/[^a-zA-Z0-9_-]/g, "_");
+      mediaInner =
+        '<span class="birles-fusion-card__placeholder" aria-hidden="true">' +
+        '<svg class="birles-fusion-card__art" viewBox="0 0 160 160" focusable="false">' +
+        "<defs>" +
+        '<linearGradient id="' +
+        gid +
+        '_sky" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0%" stop-color="#FFF3D6"/>' +
+        '<stop offset="55%" stop-color="#D7F6EE"/>' +
+        '<stop offset="100%" stop-color="#DCEEFF"/>' +
+        "</linearGradient>" +
+        '<linearGradient id="' +
+        gid +
+        '_left" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0%" stop-color="#FF9B6A"/>' +
+        '<stop offset="100%" stop-color="#FFD166"/>' +
+        "</linearGradient>" +
+        '<linearGradient id="' +
+        gid +
+        '_right" x1="0" y1="1" x2="1" y2="0">' +
+        '<stop offset="0%" stop-color="#2EC4B6"/>' +
+        '<stop offset="100%" stop-color="#7BDFF2"/>' +
+        "</linearGradient>" +
+        "</defs>" +
+        '<rect width="160" height="160" rx="28" fill="url(#' +
+        gid +
+        '_sky)"/>' +
+        '<circle cx="128" cy="34" r="16" fill="#FFE08A" opacity="0.95"/>' +
+        '<path d="M18 118c18-22 38-22 56 0 18-26 40-26 58 0v28H18z" fill="#B8E0D2" opacity="0.55"/>' +
+        '<rect x="28" y="52" width="42" height="54" rx="14" fill="url(#' +
+        gid +
+        '_left)"/>' +
+        '<rect x="90" y="52" width="42" height="54" rx="14" fill="url(#' +
+        gid +
+        '_right)"/>' +
+        '<path d="M70 72h20M70 88h20" stroke="#16324F" stroke-width="5" stroke-linecap="round" opacity="0.55"/>' +
+        '<circle cx="80" cy="80" r="7" fill="#16324F" opacity="0.7"/>' +
+        '<path d="M46 122h68" stroke="#16324F" stroke-width="4" stroke-linecap="round" opacity="0.18"/>' +
+        '<circle cx="42" cy="38" r="4" fill="#FF8A5C" opacity="0.7"/>' +
+        '<circle cx="58" cy="28" r="3" fill="#2EC4B6" opacity="0.65"/>' +
+        '<circle cx="104" cy="124" r="3.5" fill="#FFD166" opacity="0.8"/>' +
+        "</svg>" +
+        "</span>";
+    } else {
+      mediaInner = "";
+    }
+
     return (
       '<button type="button" class="birles-fusion-card birles-fusion-card--' +
       esc(cardClass) +
-      ' birles-fusion-card--badge-only" data-fusion="' +
+      (isWord ? " birles-fusion-card--showcase" : " birles-fusion-card--badge-only") +
+      '" data-fusion="' +
       esc(f.id) +
       '">' +
       '<span class="birles-fusion-card__media">' +
-      thumb +
+      mediaInner +
+      '<span class="birles-fusion-card__badge">' +
+      badge +
       "</span>" +
+      "</span>" +
+      '<span class="birles-fusion-card__body">' +
       '<span class="birles-fusion-card__result">' +
       esc(f.result) +
       "</span>" +
       '<span class="birles-fusion-card__label">' +
       esc(f.label) +
+      "</span>" +
       "</span>" +
       "</button>"
     );

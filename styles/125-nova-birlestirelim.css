@@ -685,6 +685,12 @@ body.birles-lock {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+  align-items: stretch;
+}
+
+.birles-fusion-grid--word {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .birles-fusion-grid--cumle {
@@ -704,12 +710,18 @@ body.birles-lock {
   height: auto;
   min-width: 72px;
   flex-shrink: 0;
+  aspect-ratio: auto;
 }
 
 .birles-fusion-card--cumle .birles-fusion-card__result {
   font-size: 1.18rem;
   line-height: 1.35;
   flex: 1;
+}
+
+.birles-fusion-card--cumle .birles-fusion-card__body {
+  flex: 1;
+  min-width: 0;
 }
 
 .birles-sentence-board {
@@ -901,7 +913,7 @@ body.birles-lock {
   cursor: pointer;
   text-align: left;
   color: #1b3a4b;
-  transition: transform 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .birles-fusion-card--hece,
@@ -913,6 +925,7 @@ body.birles-lock {
 
 .birles-fusion-card:hover {
   transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(27, 58, 75, 0.14);
 }
 
 .birles-fusion-card:active {
@@ -920,6 +933,7 @@ body.birles-lock {
 }
 
 .birles-fusion-card__media {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 14px;
@@ -935,7 +949,62 @@ body.birles-lock {
   border-radius: 12px;
 }
 
-/* Görselsiz kartlarda boş kare yerine kompakt etiket şeridi */
+/* Kelime vitrini: foto olsun/olmasın aynı kare + aynı alt yazı bloğu */
+.birles-fusion-card--showcase {
+  height: 100%;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 22px;
+  box-shadow:
+    0 10px 24px rgba(27, 58, 75, 0.1),
+    inset 0 0 0 1px rgba(27, 58, 75, 0.04);
+}
+
+.birles-fusion-card--showcase .birles-fusion-card__media {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.75), transparent 45%),
+    linear-gradient(155deg, #fff1d6 0%, #d8f7ee 55%, #dff0ff 100%);
+}
+
+.birles-fusion-card--showcase .birles-fusion-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 3.1rem;
+}
+
+.birles-fusion-card--showcase .birles-fusion-card__badge {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  z-index: 2;
+  padding: 4px 9px;
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  box-shadow: 0 4px 12px rgba(27, 58, 75, 0.16);
+}
+
+.birles-fusion-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.birles-fusion-card__art {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.25s ease;
+}
+
+.birles-fusion-card--showcase:hover .birles-fusion-card__art {
+  transform: scale(1.06);
+}
+
+/* Görselsiz hece/cümle: kompakt etiket şeridi */
 .birles-fusion-card--badge-only .birles-fusion-card__media {
   aspect-ratio: auto;
   min-height: 40px;
@@ -948,11 +1017,16 @@ body.birles-lock {
   padding: 8px 12px;
 }
 
+.birles-fusion-card--badge-only .birles-fusion-card__badge {
+  position: static;
+}
+
 .birles-fusion-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
 }
 
 .birles-fusion-card__badge {
@@ -966,14 +1040,16 @@ body.birles-lock {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #0d3b4a;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 2px 8px rgba(27, 58, 75, 0.12);
 }
 
 .birles-fusion-card--word .birles-fusion-card__badge {
   color: #0f5c4c;
-  background: #fff;
-  box-shadow: inset 0 0 0 2px #2a9d8f;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 4px 12px rgba(27, 58, 75, 0.14),
+    inset 0 0 0 2px #2a9d8f;
 }
 
 .birles-fusion-card--cumle .birles-fusion-card__badge {
@@ -985,6 +1061,12 @@ body.birles-lock {
 .birles-fusion-card--hece .birles-fusion-card__badge {
   color: #5a3d12;
   box-shadow: inset 0 0 0 2px #e9a84a;
+}
+
+.birles-fusion-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .birles-fusion-card__result {
