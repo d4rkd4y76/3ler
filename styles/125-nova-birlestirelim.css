@@ -724,106 +724,230 @@ body.birles-lock {
   min-width: 0;
 }
 
-.birles-sentence-board {
-  margin: 0 0 16px;
-  padding: 12px 14px 14px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #ffffff, #f3faf8);
-  border: 2px solid rgba(27, 58, 75, 0.1);
-  box-shadow: 0 10px 28px rgba(27, 58, 75, 0.08);
+/* ── Cümle sahnesi (yalnızca birles-play--cumle) ── */
+.birles-play--cumle .birles-play__narration {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #16324f;
+  margin-bottom: 14px;
 }
 
-.birles-sentence-board__hint {
-  margin: 0 0 8px;
+.birles-sentence-board {
+  position: relative;
+  margin: 0 0 18px;
+  padding: 16px 16px 18px;
+  border-radius: 26px;
+  background:
+    radial-gradient(120% 90% at 10% 0%, rgba(255, 225, 150, 0.35), transparent 42%),
+    radial-gradient(100% 80% at 90% 10%, rgba(46, 196, 182, 0.18), transparent 45%),
+    linear-gradient(180deg, #ffffff 0%, #f4fbf8 100%);
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  box-shadow:
+    0 18px 40px rgba(22, 50, 79, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.birles-sentence-board::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--chip, #2a9d8f), #ffb703);
+}
+
+.birles-sentence-board.is-intro {
+  animation: birles-sentence-intro 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-sentence-board__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 0 2px 0 8px;
+}
+
+.birles-sentence-board__kicker {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #16324f;
+}
+
+.birles-sentence-board__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 6px 12px;
+  border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #6b8796;
-  text-align: center;
+  color: #fff;
+  background: #16324f;
+  box-shadow: 0 6px 14px rgba(22, 50, 79, 0.22);
 }
 
 .birles-sentence-bar {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
+  align-items: stretch;
+  gap: 12px;
   justify-content: center;
-  min-height: 52px;
+  min-height: 72px;
+  padding: 18px 2px 2px;
 }
 
+/* Cümle üstte hep tam görünür — belirgin kelime kartları */
 .birles-sentence-word {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
-  border-radius: 14px;
-  background: rgba(27, 58, 75, 0.06);
+  min-height: 58px;
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: #fff;
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  box-shadow: 0 8px 18px rgba(22, 50, 79, 0.08);
+  opacity: 1;
+  transform: none;
   transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.35s ease,
-    opacity 0.3s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-  border: 2px solid transparent;
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
 }
 
-.birles-sentence-word.is-pending {
-  opacity: 0.55;
+/* Tik: yan değil üst — satırı kaydırmaz */
+.birles-sentence-word__mark {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  border-radius: 50%;
+  background: #1f8a70;
+  box-shadow:
+    0 4px 10px rgba(31, 138, 112, 0.35),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
 }
 
-.birles-sentence-word.is-active,
-.birles-sentence-word.is-pulling {
-  opacity: 1;
-  background: color-mix(in srgb, var(--chip, #2a9d8f) 28%, #fff);
-  border-color: var(--chip, #2a9d8f);
-  box-shadow: 0 8px 20px color-mix(in srgb, var(--chip, #2a9d8f) 35%, transparent);
-  transform: scale(1.06);
-}
-
-.birles-sentence-word.is-pulling {
-  animation: birles-word-lift 0.45s ease forwards;
-}
-
-.birles-sentence-word.is-away {
-  opacity: 0.28;
-  background: transparent;
-  border-style: dashed;
-  border-color: color-mix(in srgb, var(--chip, #2a9d8f) 55%, #94a3b8);
-  color: transparent;
-  box-shadow: none;
-  transform: scale(0.96);
-}
-
-.birles-sentence-word.is-away .birles-sentence-word__text {
-  visibility: hidden;
-}
-
-.birles-sentence-word.is-done {
-  opacity: 1;
-  background: #16a34a;
-  border-color: #15803d;
-  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.35);
-  transform: scale(1.02);
-}
-
-.birles-sentence-word.is-done .birles-sentence-word__text {
-  color: #fff;
+.birles-sentence-word__mark::after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 10px;
+  margin: 4px auto 0;
+  border: solid #fff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
 }
 
 .birles-sentence-word__text {
-  font-weight: 800;
-  font-size: 1.4rem;
-  line-height: 1.2;
-  color: #143447;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.55rem, 4.8vw, 1.95rem);
+  line-height: 1.15;
+  color: #12293a;
+  letter-spacing: 0.01em;
+}
+
+.birles-sentence-word.is-focus {
+  z-index: 2;
+  transform: translateY(-4px) scale(1.06);
+  border-color: var(--chip, #2a9d8f);
+  background: linear-gradient(180deg, #ffffff, #eefaf7);
+  box-shadow:
+    0 16px 32px color-mix(in srgb, var(--chip, #2a9d8f) 28%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--chip, #2a9d8f) 22%, transparent);
+}
+
+.birles-sentence-word.is-focus .birles-sentence-word__text {
+  color: #12293a;
+}
+
+/* Son okuma: diğerleri sönük, okunan kelime belirgin — komşuları kapatmaz */
+.birles-sentence-board.is-reading-pass .birles-sentence-word:not(.is-speaking-now) {
+  opacity: 0.42;
+  filter: saturate(0.75);
+  transform: scale(0.97);
+}
+
+.birles-sentence-word.is-speaking-now {
+  z-index: 5;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: translateY(-3px) scale(1.06);
+  border-color: var(--chip, #2a9d8f);
+  border-width: 3px;
+  background: linear-gradient(180deg, #fffef8, #e7faf4);
+  box-shadow:
+    0 12px 24px color-mix(in srgb, var(--chip, #2a9d8f) 32%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--chip, #2a9d8f) 24%, transparent);
+  animation: birles-sentence-speak-pulse 0.9s ease-in-out infinite;
+}
+
+.birles-sentence-word.is-speaking-now .birles-sentence-word__text {
+  color: #0d3b4a;
+  font-size: clamp(1.6rem, 4.9vw, 2.05rem);
+}
+
+.birles-sentence-word.is-read {
+  border-color: color-mix(in srgb, #1f8a70 55%, rgba(22, 50, 79, 0.12));
+  background: linear-gradient(180deg, #ffffff, #e9f8f2);
+  box-shadow: 0 10px 22px rgba(31, 138, 112, 0.16);
+}
+
+.birles-sentence-word.is-read .birles-sentence-word__mark {
+  display: block;
+}
+
+.birles-sentence-word.is-read .birles-sentence-word__text {
+  color: #12293a;
+}
+
+.birles-sentence-word.is-pop {
+  animation: birles-sentence-word-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes birles-sentence-speak-pulse {
+  0%,
+  100% {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+      0 12px 24px color-mix(in srgb, var(--chip, #2a9d8f) 28%, transparent),
+      0 0 0 4px color-mix(in srgb, var(--chip, #2a9d8f) 20%, transparent);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow:
+      0 14px 28px color-mix(in srgb, var(--chip, #2a9d8f) 36%, transparent),
+      0 0 0 5px color-mix(in srgb, var(--chip, #2a9d8f) 30%, transparent);
+  }
 }
 
 .birles-sentence-dot {
-  font-weight: 900;
-  font-size: 1.5rem;
-  color: #1b3a4b;
-  padding: 0 2px;
+  display: inline-flex;
+  align-items: flex-end;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  color: #16324f;
+  padding: 0 4px 10px;
 }
 
 .birles-drop-zone {
@@ -843,8 +967,63 @@ body.birles-lock {
   color: #6b8796;
 }
 
+.birles-play--cumle .birles-stage {
+  min-height: 210px;
+  margin: 4px 0 8px;
+  padding: 18px 14px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 251, 248, 0.95)),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 10px,
+      rgba(22, 50, 79, 0.015) 10px,
+      rgba(22, 50, 79, 0.015) 11px
+    );
+  border: 2px dashed color-mix(in srgb, var(--chip, #2a9d8f) 35%, rgba(22, 50, 79, 0.12));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.birles-play--cumle .birles-stage.is-quiet {
+  min-height: 72px;
+  opacity: 0.55;
+  border-style: solid;
+}
+
+.birles-drop-zone--cumle {
+  gap: 12px;
+}
+
+.birles-drop-zone--cumle .birles-drop-zone__cap {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  color: #16324f;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(22, 50, 79, 0.08);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.birles-play--cumle .birles-cards--cumle-hero .birles-card__face {
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  min-width: 120px;
+  padding: 18px 22px;
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(22, 50, 79, 0.16);
+}
+
 .birles-cards--drop-in {
-  animation: birles-drop-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: birles-drop-in 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-cards--return-up {
+  animation: birles-return-up 0.58s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.birles-play--cumle .birles-cards--return-up .birles-card {
+  box-shadow: 0 14px 28px rgba(22, 50, 79, 0.16);
 }
 
 .birles-cards--split .birles-card {
@@ -859,30 +1038,52 @@ body.birles-lock {
   animation-delay: 0.16s;
 }
 
-@keyframes birles-word-lift {
+@keyframes birles-sentence-intro {
   0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: translateY(-6px) scale(1.1);
+    opacity: 0.55;
+    transform: translateY(-8px) scale(0.98);
   }
   100% {
-    transform: translateY(-2px) scale(1.06);
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes birles-sentence-word-pop {
+  0% {
+    transform: scale(0.96);
+  }
+  45% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
 @keyframes birles-drop-in {
   0% {
     opacity: 0;
-    transform: translateY(-72px) scale(0.72);
+    transform: translateY(-96px) scale(0.68);
   }
-  70% {
+  68% {
     opacity: 1;
-    transform: translateY(6px) scale(1.05);
+    transform: translateY(8px) scale(1.06);
   }
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes birles-return-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110px) scale(0.72);
   }
 }
 
@@ -1650,6 +1851,227 @@ body.birles-lock {
   border-radius: 12px;
   object-fit: cover;
   background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Metinler (Netflix tarzı vitrin + okuyucu) ── */
+.birles-fusion-section--metin {
+  margin-top: 8px;
+}
+
+.birles-metin-rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 4px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.birles-metin-tile {
+  flex: 0 0 min(72vw, 260px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #143447;
+  cursor: pointer;
+  text-align: left;
+  scroll-snap-align: start;
+}
+
+.birles-metin-tile__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #ffe8c8, #d8fff3 50%, #cfe8ff);
+  box-shadow: 0 14px 30px rgba(22, 50, 79, 0.16);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.birles-metin-tile:hover .birles-metin-tile__poster,
+.birles-metin-tile:focus-visible .birles-metin-tile__poster {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(22, 50, 79, 0.22);
+}
+
+.birles-metin-tile__img,
+.birles-metin-tile__ph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.birles-metin-tile__ph {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55), transparent 40%),
+    linear-gradient(145deg, #ffd9a8, #9fe8d8 55%, #9ec9ef);
+}
+
+.birles-metin-tile__shade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 58%;
+  background: linear-gradient(180deg, transparent, rgba(10, 24, 36, 0.78));
+}
+
+.birles-metin-tile__title {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: clamp(1.15rem, 3.6vw, 1.35rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.birles-metin-tile__meta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #5f7584;
+  padding: 0 4px;
+}
+
+.birles-metin-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.birles-metin-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #102536;
+  box-shadow: 0 18px 42px rgba(16, 37, 54, 0.22);
+}
+
+.birles-metin-hero__img,
+.birles-metin-hero__ph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.birles-metin-hero__ph {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.2), transparent 40%),
+    linear-gradient(135deg, #2a9d8f, #1b3a4b 55%, #16324f);
+}
+
+.birles-metin-hero__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 18, 28, 0.1) 20%, rgba(8, 18, 28, 0.78) 100%);
+}
+
+.birles-metin-hero__copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 18px 18px 20px;
+}
+
+.birles-metin-hero__kicker {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.birles-metin-hero__title {
+  margin: 0;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: clamp(1.7rem, 5.5vw, 2.35rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.12;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Hikâye: sürekli paragraf, madde yok */
+.birles-metin-story {
+  margin: 0;
+  padding: 18px 16px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff, #f4fbf8);
+  border: 2px solid rgba(22, 50, 79, 0.08);
+  box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
+}
+
+.birles-metin-story__p {
+  margin: 0 0 14px;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: clamp(1.25rem, 4.2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.7;
+  color: #12293a;
+}
+
+.birles-metin-story__p:last-child {
+  margin-bottom: 0;
+}
+
+.birles-metin-word {
+  display: inline;
+  padding: 2px 3px;
+  border-radius: 8px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.birles-metin-word.is-speaking-now,
+.birles-metin-word.is-focus {
+  background: color-mix(in srgb, var(--chip, #2a9d8f) 28%, #fff);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--chip, #2a9d8f) 30%, transparent);
+  color: #0d3b4a;
+}
+
+.birles-metin-word.is-read {
+  color: #1f6f5c;
+}
+
+.birles-metin-dot {
+  font-weight: 800;
+}
+
+.birles-metin-stage {
+  min-height: 160px;
+  margin: 0;
+}
+
+.birles-metin-stage.is-quiet {
+  min-height: 48px;
+  opacity: 0.45;
+}
+
+.birles-metin-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
 }
 
 @media (max-width: 640px) {

@@ -618,9 +618,14 @@
     var hece = [];
     var kelime = [];
     var cumle = [];
+    var metin = [];
     (sound.fusions || []).forEach(function (f) {
       var kind = String(f.kind || f.type || "hece").toLowerCase();
       if (kind === "ses" || f.type === "intro") return;
+      if (kind === "metin" || f.mode === "text") {
+        metin.push(f);
+        return;
+      }
       if (kind === "cumle" || f.mode === "sentence") {
         cumle.push(f);
         return;
@@ -679,6 +684,43 @@
     section("Kelimeler", kelime, "birles-fusion-grid--word");
     section("Cümleler", cumle, "birles-fusion-grid--cumle");
 
+    if (metin.length) {
+      html +=
+        '<section class="birles-fusion-section birles-fusion-section--metin">' +
+        '<header class="birles-fusion-section__head">' +
+        '<h3 class="birles-path-label">Metinler</h3>' +
+        '<span class="birles-fusion-section__count">' +
+        metin.length +
+        "</span>" +
+        "</header>" +
+        '<div class="birles-metin-rail" role="list">' +
+        metin
+          .map(function (f) {
+            var med = f.mediaKey ? mediaFor(f.mediaKey) : null;
+            var cover = med && med.imageUrl
+              ? '<img class="birles-metin-tile__img" src="' +
+                esc(med.imageUrl) +
+                '" alt="" loading="lazy" />'
+              : '<span class="birles-metin-tile__ph" aria-hidden="true"></span>';
+            return (
+              '<button type="button" class="birles-metin-tile" role="listitem" data-metin="' +
+              esc(f.id) +
+              '">' +
+              '<span class="birles-metin-tile__poster">' +
+              cover +
+              '<span class="birles-metin-tile__shade"></span>' +
+              '<span class="birles-metin-tile__title">' +
+              esc(f.title || f.result) +
+              "</span>" +
+              "</span>" +
+              '<span class="birles-metin-tile__meta">Hikâye</span>' +
+              "</button>"
+            );
+          })
+          .join("") +
+        "</div></section>";
+    }
+
     html += "</div>";
     body.innerHTML = html;
     body.querySelector("[data-listen-letter]").addEventListener("click", function () {
@@ -698,6 +740,224 @@
       btn.addEventListener("click", function () {
         startFusion(sound.id, btn.getAttribute("data-fusion"));
       });
+    });
+    body.querySelectorAll("[data-metin]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        ensureMedia().then(function () {
+          openTextReader(sound.id, btn.getAttribute("data-metin"));
+        });
+      });
+    });
+  }
+
+  function openTextReader(soundId, fusionId) {
+    var D = data();
+    if (!D) return;
+    var sound = D.getSound(soundId);
+    var fusion = D.getFusion(soundId, fusionId);
+    if (!sound || !fusion) return;
+    var body = document.getElementById("birles-body");
+    if (!body) return;
+    setBack(true, function () {
+      animToken += 1;
+      openSound(sound.id);
+    });
+    setHeader(fusion.title || fusion.result, "Hikâye · " + sound.title.toUpperCase(), "Metin");
+    var med = fusion.mediaKey ? mediaFor(fusion.mediaKey) : null;
+    var coverHtml =
+      med && med.imageUrl
+        ? '<img class="birles-metin-hero__img" src="' +
+          esc(med.imageUrl) +
+          '" alt="' +
+          esc(fusion.title || "") +
+          '" />'
+        : '<div class="birles-metin-hero__ph" aria-hidden="true"></div>';
+
+    var storyWords = [];
+    var storyHtml = "";
+    (fusion.sentences || []).forEach(function (sf, si) {
+      storyHtml += '<p class="birles-metin-story__p">';
+      (sf.words || []).forEach(function (w, wi) {
+        var idx = storyWords.length;
+        storyWords.push(w);
+        storyHtml +=
+          '<span class="birles-metin-word" data-sw="' +
+          idx +
+          '">' +
+          esc(w.text) +
+          "</span>";
+        if (wi < sf.words.length - 1) storyHtml += " ";
+      });
+      storyHtml += '<span class="birles-metin-dot">.</span></p>';
+    });
+
+    body.innerHTML =
+      '<div class="birles-metin-view" style="--chip:' +
+      esc(sound.color) +
+      '">' +
+      '<div class="birles-metin-hero">' +
+      coverHtml +
+      '<div class="birles-metin-hero__veil"></div>' +
+      '<div class="birles-metin-hero__copy">' +
+      '<p class="birles-metin-hero__kicker">Hikâye</p>' +
+      '<h2 class="birles-metin-hero__title">' +
+      esc(fusion.title || fusion.result) +
+      "</h2>" +
+      "</div></div>" +
+      '<div class="birles-metin-story" id="birles-metin-story" aria-label="Hikâye metni">' +
+      storyHtml +
+      "</div>" +
+      '<div class="birles-stage birles-metin-stage" id="birles-metin-stage" aria-live="polite"></div>' +
+      '<div class="birles-metin-actions">' +
+      '<button type="button" class="birles-btn" id="birles-metin-readall">Metni oku</button>' +
+      '<button type="button" class="birles-btn birles-btn--ghost" id="birles-metin-back">Sese dön</button>' +
+      "</div></div>";
+
+    var stage = document.getElementById("birles-metin-stage");
+    function setMetinNarr() {
+      /* Ortadaki düz açıklama kaldırıldı — sessiz tutulur */
+    }
+    function wordNode(i) {
+      return body.querySelector('.birles-metin-word[data-sw="' + i + '"]');
+    }
+    function setWordState(i, state) {
+      body.querySelectorAll(".birles-metin-word").forEach(function (el, idx) {
+        el.classList.remove("is-focus", "is-speaking-now");
+        if (state === "reset") {
+          el.classList.remove("is-read");
+          return;
+        }
+        if (idx < i) el.classList.add("is-read");
+        if (idx === i && state === "focus") el.classList.add("is-focus", "is-speaking-now");
+      });
+    }
+
+    async function playStoryWord(word, token) {
+      var displaySyls =
+        word.displaySyllables && word.displaySyllables.length
+          ? word.displaySyllables.slice()
+          : word.syllables && word.syllables.length
+            ? word.syllables.slice()
+            : [word.text || word.say];
+      var audioSyls =
+        word.syllables && word.syllables.length ? word.syllables.slice() : [word.say];
+      var vv = voice();
+
+      stage.classList.remove("is-quiet");
+      setMetinNarr(word.text);
+      stage.innerHTML =
+        '<div class="birles-drop-zone birles-drop-zone--cumle">' +
+        '<p class="birles-drop-zone__cap">Kelime</p>' +
+        '<div class="birles-cards birles-cards--ready birles-cards--drop-in birles-cards--cumle-hero">' +
+        cardHtml(word.text, "result") +
+        "</div></div>";
+      await pace(480);
+      if (token !== animToken) return false;
+
+      if (displaySyls.length > 1) {
+        setMetinNarr(displaySyls.join(" + "));
+        stage.innerHTML =
+          '<div class="birles-drop-zone birles-drop-zone--cumle">' +
+          '<p class="birles-drop-zone__cap">Heceler</p>' +
+          '<div class="birles-cards birles-cards--ready birles-cards--split">' +
+          displaySyls
+            .map(function (sy, si) {
+              return (
+                (si ? '<span class="birles-plus" aria-hidden="true">+</span>' : "") +
+                cardHtml(sy, String(sy).length > 1 ? "chunk" : "letter")
+              );
+            })
+            .join("") +
+          "</div></div>";
+        await pace(280);
+        if (token !== animToken) return false;
+        var cards = stage.querySelectorAll(".birles-card");
+        for (var si = 0; si < displaySyls.length; si++) {
+          if (token !== animToken) return false;
+          setMetinNarr(displaySyls[si]);
+          await playWithHighlight(cards[si], audioSyls[si] || displaySyls[si].toLocaleLowerCase("tr-TR"));
+          await pace(120);
+        }
+        var wrap = stage.querySelector(".birles-cards");
+        if (wrap) wrap.classList.add("is-merge");
+        setMetinNarr(displaySyls.join(" + ") + " → " + word.text);
+        await pace(620);
+        if (token !== animToken) return false;
+      }
+
+      stage.innerHTML =
+        '<div class="birles-drop-zone birles-drop-zone--cumle">' +
+        '<p class="birles-drop-zone__cap">Kelime</p>' +
+        '<div class="birles-cards birles-cards--result birles-cards--cumle-hero">' +
+        cardHtml(word.text, "result") +
+        "</div></div>";
+      var resultCard = stage.querySelector(".birles-card");
+      if (resultCard) resultCard.classList.add("is-merged", "is-speaking");
+      setMetinNarr(word.text);
+      if (vv) await vv.playToken(word.say, { waitUntilEnd: true });
+      await pace(160);
+      if (resultCard) resultCard.classList.remove("is-speaking");
+
+      var up = stage.querySelector(".birles-cards");
+      if (up) up.classList.add("birles-cards--return-up");
+      await pace(420);
+      if (token !== animToken) return false;
+      stage.innerHTML = "";
+      stage.classList.add("is-quiet");
+      return token === animToken;
+    }
+
+    async function runStoryReading() {
+      var token = ++animToken;
+      setWordState(0, "reset");
+      setMetinNarr(fusion.title || "Hikâyeyi okuyalım");
+      stage.classList.add("is-quiet");
+      stage.innerHTML = "";
+      await pace(500);
+      if (token !== animToken) return;
+
+      for (var i = 0; i < storyWords.length; i++) {
+        if (token !== animToken) return;
+        setWordState(i, "focus");
+        var wEl = wordNode(i);
+        if (wEl && wEl.scrollIntoView) {
+          try {
+            wEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          } catch (e) {}
+        }
+        if (!(await playStoryWord(storyWords[i], token))) return;
+        var done = wordNode(i);
+        if (done) {
+          done.classList.remove("is-focus", "is-speaking-now");
+          done.classList.add("is-read");
+        }
+        await pace(120);
+      }
+
+      if (token !== animToken) return;
+      setMetinNarr(fusion.celebrate || "Harika! Hikâyeyi okudun!");
+      stage.classList.remove("is-quiet");
+      stage.innerHTML =
+        '<div class="birles-drop-zone birles-drop-zone--cumle">' +
+        '<p class="birles-drop-zone__cap">Hikâye bitti</p>' +
+        '<div class="birles-cards birles-cards--result birles-cards--cumle-hero birles-cards--drop-in">' +
+        cardHtml(fusion.title || "Harika!", "result") +
+        "</div></div>";
+    }
+
+    document.getElementById("birles-metin-readall").addEventListener("click", function () {
+      ensureMedia().then(function () {
+        runStoryReading();
+      });
+    });
+    document.getElementById("birles-metin-back").addEventListener("click", function () {
+      animToken += 1;
+      openSound(sound.id);
+    });
+
+    /* Açılınca hikâye okuması başlasın */
+    ensureMedia().then(function () {
+      runStoryReading();
     });
   }
 
@@ -727,14 +987,20 @@
     if (isCumle && fusion.words && fusion.words.length) {
       sentenceBar =
         '<div class="birles-sentence-board" id="birles-sentence-bar" aria-label="Cümle">' +
-        '<p class="birles-sentence-board__hint">Cümlemiz</p>' +
+        '<div class="birles-sentence-board__top">' +
+        '<span class="birles-sentence-board__kicker">Cümle</span>' +
+        '<span class="birles-sentence-board__step" id="birles-sentence-step">1 / ' +
+        fusion.words.length +
+        "</span>" +
+        "</div>" +
         '<div class="birles-sentence-bar">' +
         fusion.words
           .map(function (w, i) {
             return (
-              '<span class="birles-sentence-word is-pending" data-word-i="' +
+              '<span class="birles-sentence-word" data-word-i="' +
               i +
               '">' +
+              '<span class="birles-sentence-word__mark" aria-hidden="true"></span>' +
               '<span class="birles-sentence-word__text">' +
               esc(w.text) +
               "</span>" +
@@ -742,7 +1008,7 @@
             );
           })
           .join("") +
-        '<span class="birles-sentence-dot">.</span>' +
+        '<span class="birles-sentence-dot" aria-hidden="true">.</span>' +
         "</div></div>";
     }
     body.innerHTML =
@@ -1107,57 +1373,85 @@
       return bar && bar.querySelector('.birles-sentence-word[data-word-i="' + i + '"]');
     }
 
-    function markWord(i, state) {
+    function setStep(i) {
+      var stepEl = document.getElementById("birles-sentence-step");
+      if (stepEl) {
+        stepEl.textContent = i < words.length ? i + 1 + " / " + words.length : "Tamam";
+      }
+    }
+
+    /** Üst cümle hep okunur; yalnızca odak / okundu işaretleri */
+    function setFocus(i) {
       if (!bar) return;
+      setStep(i);
       bar.querySelectorAll(".birles-sentence-word").forEach(function (el, idx) {
-        el.classList.remove("is-active", "is-done", "is-pending", "is-pulling", "is-away");
-        if (state === "reset") {
-          el.classList.add("is-pending");
-          return;
-        }
-        if (idx < i) el.classList.add("is-done");
-        else if (idx === i) el.classList.add(state === "pulling" ? "is-pulling" : "is-active");
-        else el.classList.add("is-pending");
+        el.classList.remove("is-focus");
+        if (idx === i) el.classList.add("is-focus");
       });
     }
 
-    function markDone(i) {
-      var el = wordEl(i);
-      if (!el) return;
-      el.classList.remove("is-active", "is-pulling", "is-away", "is-pending");
-      el.classList.add("is-done");
+    function clearFocus() {
+      if (!bar) return;
+      bar.querySelectorAll(".birles-sentence-word").forEach(function (el) {
+        el.classList.remove("is-focus");
+      });
     }
 
-    /** Kelime yukarıdan aşağı iner, sahnede büyür */
-    async function dropWordFromSentence(i, word) {
-      markWord(i, "pulling");
-      setNarr(word.text + " aşağı geliyor…");
-      await pace(420);
-      if (token !== animToken) return false;
+    function resetSentenceWords() {
+      if (!bar) return;
+      bar.classList.remove("is-reading-pass", "is-intro");
+      bar.querySelectorAll(".birles-sentence-word").forEach(function (el) {
+        el.classList.remove("is-focus", "is-read", "is-pop", "is-speaking-now");
+      });
+      setStep(0);
+    }
 
+    function markRead(i) {
       var el = wordEl(i);
-      if (el) el.classList.add("is-away");
+      if (!el) return;
+      el.classList.remove("is-focus");
+      el.classList.add("is-read");
+      el.classList.add("is-pop");
+      window.setTimeout(function () {
+        el.classList.remove("is-pop");
+      }, 420);
+    }
 
+    function stagePanel(cap, cardsHtml, extraCardsClass) {
+      return (
+        '<div class="birles-drop-zone birles-drop-zone--cumle">' +
+        '<p class="birles-drop-zone__cap">' +
+        esc(cap) +
+        "</p>" +
+        '<div class="birles-cards birles-cards--ready' +
+        (extraCardsClass ? " " + extraCardsClass : "") +
+        '">' +
+        cardsHtml +
+        "</div></div>"
+      );
+    }
+
+    /** Kelime sahnede düşer — üstteki yazı yerinde kalır */
+    async function dropWordFromSentence(i, word) {
+      setFocus(i);
+      setNarr(word.text);
       stage.classList.remove("is-quiet");
-      stage.innerHTML =
-        '<div class="birles-drop-zone">' +
-        '<p class="birles-drop-zone__cap">Bu kelimeyi heceliyoruz</p>' +
-        '<div class="birles-cards birles-cards--ready birles-cards--drop-in">' +
-        cardHtml(word.text, "result") +
-        "</div></div>";
+      stage.innerHTML = stagePanel(
+        "Aşağı iniyor",
+        cardHtml(word.text, "result"),
+        "birles-cards--drop-in birles-cards--cumle-hero"
+      );
       bindTokenClicks(stage);
       await pace(620);
       return token === animToken;
     }
 
-    /** Sahnedeki kelimeyi hecelere ayır (görünen büyük harf + ses küçük token) */
+    /** Hemen hecelere ayır ve oku */
     async function splitAndReadSyllables(word, displaySyls, audioSyls) {
       audioSyls = audioSyls || displaySyls;
-      setNarr(displaySyls.join(" + ") + " diye ayıralım");
-      stage.innerHTML =
-        '<div class="birles-drop-zone">' +
-        '<p class="birles-drop-zone__cap">Heceler</p>' +
-        '<div class="birles-cards birles-cards--ready birles-cards--split">' +
+      setNarr(displaySyls.join("  ·  "));
+      stage.innerHTML = stagePanel(
+        "Hecelere ayır",
         displaySyls
           .map(function (sy, si) {
             return (
@@ -1165,65 +1459,86 @@
               cardHtml(sy, String(sy).length > 1 ? "chunk" : "letter")
             );
           })
-          .join("") +
-        "</div></div>";
+          .join(""),
+        "birles-cards--split"
+      );
       bindTokenClicks(stage);
-      await pace(480);
+      await pace(360);
       if (token !== animToken) return false;
 
       var cards = stage.querySelectorAll(".birles-card");
       for (var si = 0; si < displaySyls.length; si++) {
         if (token !== animToken) return false;
-        setNarr(displaySyls[si] + " hecesi");
+        setNarr(displaySyls[si]);
         await playWithHighlight(cards[si], audioSyls[si] || displaySyls[si].toLocaleLowerCase("tr-TR"));
-        await pace(220);
+        await pace(180);
       }
       return token === animToken;
     }
 
-    /** Heceleri birleştirip kelimeyi oku */
+    /** Heceleri birleştir */
     async function mergeSyllablesToWord(word, displaySyls) {
       setNarr(displaySyls.join(" + ") + " → " + word.text);
       var wrap = stage.querySelector(".birles-cards");
       if (wrap) wrap.classList.add("is-merge");
       stage.classList.add("is-merging");
-      await pace(900);
+      await pace(760);
       if (token !== animToken) return false;
 
       stage.classList.remove("is-merging");
-      stage.innerHTML =
-        '<div class="birles-drop-zone">' +
-        '<p class="birles-drop-zone__cap">Kelime</p>' +
-        '<div class="birles-cards birles-cards--result">' +
-        cardHtml(word.text, "result") +
-        "</div></div>";
+      stage.innerHTML = stagePanel(
+        "Birleşti",
+        cardHtml(word.text, "result"),
+        "birles-cards--result birles-cards--cumle-hero"
+      );
       bindTokenClicks(stage);
       var resultCard = stage.querySelector(".birles-card");
       if (resultCard) resultCard.classList.add("is-merged", "is-speaking");
-      await pace(160);
+      await pace(140);
       if (vv) await vv.playToken(word.say, { waitUntilEnd: true });
-      await pace(280);
+      await pace(220);
       if (resultCard) resultCard.classList.remove("is-speaking");
       return token === animToken;
     }
 
-    /* 1) Önce tüm cümleyi bir kez göster */
-    markWord(0, "reset");
+    /** Birleşen kelime yukarı, cümledeki yerine döner */
+    async function returnWordToSentence(i, word) {
+      setNarr(word.text + " yerine dönüyor");
+      var wrap = stage.querySelector(".birles-cards");
+      if (wrap) {
+        wrap.classList.remove("birles-cards--drop-in", "birles-cards--split", "is-merge");
+        wrap.classList.add("birles-cards--return-up");
+      }
+      await pace(560);
+      if (token !== animToken) return false;
+      markRead(i);
+      stage.innerHTML = "";
+      stage.classList.add("is-quiet");
+      renderTray([]);
+      await pace(200);
+      return token === animToken;
+    }
+
+    /* 1) Cümlenin tamamı üstte — tekrar dinle’de tikler sıfırlanır */
+    resetSentenceWords();
     renderTray([]);
     stage.classList.add("is-quiet");
     stage.innerHTML = "";
-    setNarr("Önce cümleyi görelim: " + fusion.result);
-    await pace(900);
+    setNarr(fusion.result);
+    if (bar) bar.classList.add("is-intro");
+    await pace(820);
+    if (bar) bar.classList.remove("is-intro");
     if (token !== animToken) return;
 
     for (var wi = 0; wi < words.length; wi++) {
       if (token !== animToken) return;
       var word = words[wi];
-      var syls = word.displaySyllables && word.displaySyllables.length
-        ? word.displaySyllables.slice()
-        : word.syllables && word.syllables.length
-          ? word.syllables.slice()
-          : [word.text || word.say];
+      var syls =
+        word.displaySyllables && word.displaySyllables.length
+          ? word.displaySyllables.slice()
+          : word.syllables && word.syllables.length
+            ? word.syllables.slice()
+            : [word.text || word.say];
       var audioSyls = word.syllables && word.syllables.length ? word.syllables.slice() : [word.say];
 
       if (!(await dropWordFromSentence(wi, word))) return;
@@ -1238,44 +1553,41 @@
         if (!(await mergeSyllablesToWord(word, syls))) return;
       }
 
-      /* Yukarıda yeşil — kelime tamam */
-      markDone(wi);
-      setNarr(word.text + " tamam!");
-      await pace(480);
-      if (token !== animToken) return;
-      stage.innerHTML = "";
-      stage.classList.add("is-quiet");
-      renderTray([]);
-      await pace(220);
+      if (!(await returnWordToSentence(wi, word))) return;
     }
 
     if (token !== animToken) return;
-    markWord(words.length);
-    setNarr("Cümleyi okuyalım: " + fusion.result);
+    clearFocus();
+    setStep(words.length);
+    setNarr(fusion.result);
     stage.classList.remove("is-quiet");
-    stage.innerHTML =
-      '<div class="birles-drop-zone">' +
-      '<p class="birles-drop-zone__cap">Cümle</p>' +
-      '<div class="birles-cards birles-cards--result">' +
-      cardHtml(fusion.result.replace(/\.+$/, ""), "result") +
-      "</div></div>";
+    stage.innerHTML = stagePanel(
+      "Cümleyi okuyalım",
+      cardHtml(fusion.result, "result"),
+      "birles-cards--result birles-cards--cumle-hero birles-cards--drop-in"
+    );
     var finalCard = stage.querySelector(".birles-card");
     if (finalCard) finalCard.classList.add("is-merged", "is-speaking");
+    if (bar) bar.classList.add("is-reading-pass");
 
     for (var rj = 0; rj < words.length; rj++) {
       if (token !== animToken) return;
-      var wEl = wordEl(rj);
-      if (wEl) {
-        wEl.classList.remove("is-done");
-        wEl.classList.add("is-active");
+      if (bar) {
+        bar.querySelectorAll(".birles-sentence-word").forEach(function (el, idx) {
+          el.classList.toggle("is-speaking-now", idx === rj);
+          el.classList.remove("is-focus");
+        });
       }
+      setStep(rj);
+      setNarr(words[rj].text);
       if (vv) await vv.playToken(words[rj].say, { waitUntilEnd: true });
-      await pace(120);
-      if (wEl) {
-        wEl.classList.remove("is-active");
-        wEl.classList.add("is-done");
-      }
+      await pace(140);
+      var spoken = wordEl(rj);
+      if (spoken) spoken.classList.remove("is-speaking-now");
+      markRead(rj);
     }
+    if (bar) bar.classList.remove("is-reading-pass");
+    clearFocus();
     if (finalCard) finalCard.classList.remove("is-speaking");
   }
 
@@ -1300,6 +1612,8 @@
         reveal.classList.remove("is-pop");
         void reveal.offsetWidth;
         reveal.classList.add("is-pop");
+        var wordElReveal = document.getElementById("birles-reveal-word");
+        if (wordElReveal) wordElReveal.textContent = fusion.result;
         var msgC = document.getElementById("birles-reveal-msg");
         if (msgC) msgC.textContent = fusion.celebrate || "Harika!";
       }

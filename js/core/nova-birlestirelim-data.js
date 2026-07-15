@@ -260,6 +260,7 @@
     if (!f || typeof f !== "object") return f;
     if (f.type === "intro" || f.kind === "ses") return f;
     if (f.kind === "cumle" || f.type === "cumle" || f.mode === "sentence") return f;
+    if (f.kind === "metin" || f.type === "metin" || f.mode === "text") return f;
     var word = String(f.result || "").toLocaleLowerCase("tr-TR");
     if (word.length < 3) return f;
     if (f.kind !== "kelime" && f.type !== "kelime" && !f.mediaKey && f.mode !== "chain" && f.mode !== "syllables") {
@@ -2046,16 +2047,24 @@
           cumleler.push(f);
         });
 
-        s.fusions = intros.concat(heceler, kelimeler, cumleler);
+        var metinler = [];
+        (TEXT_BANK[s.id] || []).forEach(function (entry) {
+          var f = textFusion(entry);
+          if (!f) return;
+          if (!textLettersOk(f, allowed)) return;
+          metinler.push(f);
+        });
+
+        s.fusions = intros.concat(heceler, kelimeler, cumleler, metinler);
       });
     });
   }
 
   /**
-   * Maarif Modeli (TYMM Türkçe):
+   * Maarif Modeli (TYMM Türkçe Öğretim Programı):
    * 1. harf grubunda (ANETİL) → ses, hece, sözcük.
-   * 2. harf grubundan itibaren → cümle (+ metin) çalışmaları başlar.
-   * Bu yüzden cümleler "o" sesinden itibaren eklenir; yalnız öğrenilen harfler kullanılır.
+   * 2. harf grubundan itibaren → cümle ve METİN çalışmaları başlar (o sesinden).
+   * Metinler kısa, somut, anlamlı; yalnız o ana kadar öğrenilen harfler.
    */
   function sentenceFusion(text, opts) {
     opts = opts || {};
@@ -2193,6 +2202,213 @@
     ]
   };
 
+  /** Kısa ilkokuma metni: 3–5 somut cümle (TYMM: anlaşılır, mantık hatasız) */
+  function textFusion(entry, opts) {
+    opts = opts || {};
+    if (!entry || typeof entry !== "object") return null;
+    var title = String(entry.title || "").trim();
+    var lines = entry.lines || entry.sentences || [];
+    if (!title || !lines.length) return null;
+    var sentences = [];
+    for (var i = 0; i < lines.length; i++) {
+      var s = sentenceFusion(lines[i]);
+      if (s) sentences.push(s);
+    }
+    if (!sentences.length) return null;
+    var slug = String(entry.id || ("metin_" + title))
+      .toLocaleLowerCase("tr-TR")
+      .replace(/\s+/g, "_")
+      .replace(/[^a-z0-9çğıöşü_]/gi, "");
+    var mediaKey = entry.mediaKey || slug;
+    return {
+      id: slug,
+      type: "metin",
+      kind: "metin",
+      mode: "text",
+      title: title,
+      result: title,
+      label: opts.label || sentences.length + " cümle",
+      sentences: sentences,
+      lines: sentences.map(function (sf) {
+        return sf.result;
+      }),
+      mediaKey: mediaKey,
+      narration: opts.narration || ("Metnimiz: " + title),
+      celebrate: opts.celebrate || ("Harika! “" + title + "” metnini okudun!")
+    };
+  }
+
+  function textLettersOk(fusion, allowed) {
+    if (!fusion || !fusion.sentences || !fusion.sentences.length) return false;
+    for (var i = 0; i < fusion.sentences.length; i++) {
+      if (!sentenceLettersOk(fusion.sentences[i], allowed)) return false;
+    }
+    return true;
+  }
+
+  /**
+   * 2. grup (o → m) hikâye metinleri — kısa, anlamlı kurgu.
+   * Harf birikimine sadık (ve/bir/bu yok); başlık kapakta gösterilir.
+   */
+  var TEXT_BANK = {
+    o: [
+      {
+        id: "metin_o_ali_oto",
+        title: "Ali'nin Otosu",
+        mediaKey: "metin_o_ali_oto",
+        lines: [
+          "Ali oto al.",
+          "Anne Ali oto al.",
+          "Ali oto ile el ele.",
+          "Lale ona not al.",
+          "Ata ot at."
+        ]
+      },
+      {
+        id: "metin_o_lale_ot",
+        title: "Lale'nin Otu",
+        mediaKey: "metin_o_lale_ot",
+        lines: [
+          "Lale ot al.",
+          "Anne Lale ot al.",
+          "Ali ona ot al.",
+          "Lale ile Ali el ele.",
+          "Ali nal al."
+        ]
+      }
+    ],
+    k: [
+      {
+        id: "metin_k_ali_kek",
+        title: "Tatlı Kek",
+        mediaKey: "metin_k_ali_kek",
+        lines: [
+          "Anne kek al.",
+          "Ali kek tat.",
+          "Lale kola al.",
+          "Ali iki kilo al.",
+          "Anne ile Ali kek el ele."
+        ]
+      },
+      {
+        id: "metin_k_toka",
+        title: "Lale'nin Tokası",
+        mediaKey: "metin_k_toka",
+        lines: [
+          "Lale toka tak.",
+          "Anne Lale toka al.",
+          "Ali kale al.",
+          "Ali inek al.",
+          "Lale ile Ali el ele."
+        ]
+      }
+    ],
+    u: [
+      {
+        id: "metin_u_kutu",
+        title: "Kutu Oyunu",
+        mediaKey: "metin_u_kutu",
+        lines: [
+          "Anne kutu al.",
+          "Ali kutu al.",
+          "Lale un al.",
+          "Anne kukla al.",
+          "Ali koku al."
+        ]
+      },
+      {
+        id: "metin_u_okul",
+        title: "Okula Not",
+        mediaKey: "metin_u_okul",
+        lines: [
+          "Ali okul notu al.",
+          "Anne Ali okul al.",
+          "Anne konuk al.",
+          "Ali kule al.",
+          "Lale kutu al."
+        ]
+      }
+    ],
+    r: [
+      {
+        id: "metin_r_nar",
+        title: "Kırmızı Nar",
+        mediaKey: "metin_r_nar",
+        lines: [
+          "Ali nar al.",
+          "Anne erik al.",
+          "Lale erik al.",
+          "Anne renk al.",
+          "Ali kara nar al."
+        ]
+      },
+      {
+        id: "metin_r_tren",
+        title: "Tren Nerede",
+        mediaKey: "metin_r_tren",
+        lines: [
+          "Ali tren ara.",
+          "Anne lira al.",
+          "Ali kart al.",
+          "Ali kara kurt ara.",
+          "Lale tren ara."
+        ]
+      }
+    ],
+    ı: [
+      {
+        id: "metin_i_ari",
+        title: "Minik Arı",
+        mediaKey: "metin_i_ari",
+        lines: [
+          "Ali arı ara.",
+          "Anne nalın al.",
+          "Ali ılık nar al.",
+          "Anne kalın nar al.",
+          "Ali arı ile el ele."
+        ]
+      },
+      {
+        id: "metin_i_akil",
+        title: "Akıllı Ali",
+        mediaKey: "metin_i_akil",
+        lines: [
+          "Ali akıl al.",
+          "Ali kırık tel al.",
+          "Anne nalın al.",
+          "Ali kartı al.",
+          "Anne Ali alın al."
+        ]
+      }
+    ],
+    m: [
+      {
+        id: "metin_m_elma",
+        title: "Elma Zamanı",
+        mediaKey: "metin_m_elma",
+        lines: [
+          "Anne elma al.",
+          "Ali elma al.",
+          "Ali kalem al.",
+          "Anne ekmek al.",
+          "Elma tat."
+        ]
+      },
+      {
+        id: "metin_m_limon",
+        title: "Limonlu Elma",
+        mediaKey: "metin_m_limon",
+        lines: [
+          "Lale limon al.",
+          "Ali elma ile limon al.",
+          "Anne mama al.",
+          "Ali kum al.",
+          "Elma tat."
+        ]
+      }
+    ]
+  };
+
   rebuildMeaningfulWords();
 
   function allSounds() {
@@ -2233,6 +2449,10 @@
     }
     allSounds().forEach(function (s) {
       (s.fusions || []).forEach(function (f) {
+        if (f.kind === "metin" || f.mode === "text") {
+          if (f.mediaKey) add(f.mediaKey, "metin", s.id);
+          return;
+        }
         (f.parts || []).forEach(function (p) {
           if (String(p).length > 1) add(p, "parça", s.id);
         });
