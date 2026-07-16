@@ -1793,16 +1793,25 @@ body.birles-lock {
   display: none !important;
 }
 
-.birles-reveal strong {
+.birles-reveal__word[hidden],
+.birles-reveal--msgonly .birles-reveal__word {
+  display: none !important;
+}
+
+.birles-reveal strong,
+.birles-reveal__word {
   font-family: "Fredoka", "Baloo 2", sans-serif;
   font-size: 2.15rem;
   color: #1b3a4b;
 }
 
-.birles-reveal span {
+.birles-reveal span,
+.birles-reveal__msg {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
   font-weight: 800;
-  color: #06d6a0;
-  font-size: 1.05rem;
+  color: #0f6b56;
+  font-size: 1.12rem;
+  letter-spacing: 0.01em;
 }
 
 .birles-play-actions {
@@ -2009,62 +2018,194 @@ body.birles-lock {
   text-shadow: 0 3px 16px rgba(0, 0, 0, 0.45);
 }
 
-/* Hikâye: sürekli paragraf, madde yok */
+/* Hikâye: cümleler yan yana tek akış · heceleme kelimenin üstünde */
 .birles-metin-story {
   margin: 0;
-  padding: 18px 16px;
-  border-radius: 22px;
+  padding: 28px 20px 24px;
+  border-radius: 26px;
   background: linear-gradient(180deg, #ffffff, #f4fbf8);
   border: 2px solid rgba(22, 50, 79, 0.08);
-  box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
+  box-shadow: 0 14px 32px rgba(22, 50, 79, 0.09);
+  overflow: visible;
 }
 
-.birles-metin-story__p {
-  margin: 0 0 14px;
+.birles-metin-story.is-finished {
+  box-shadow:
+    0 14px 32px rgba(22, 50, 79, 0.09),
+    0 0 0 3px color-mix(in srgb, var(--chip, #2a9d8f) 35%, transparent);
+}
+
+.birles-metin-story__flow {
+  margin: 0;
   font-family: "Fredoka", "Baloo 2", sans-serif;
-  font-size: clamp(1.25rem, 4.2vw, 1.55rem);
-  font-weight: 600;
-  line-height: 1.7;
+  font-size: clamp(1.55rem, 5.4vw, 2.05rem);
+  font-weight: 700;
+  line-height: 2.05;
   color: #12293a;
-}
-
-.birles-metin-story__p:last-child {
-  margin-bottom: 0;
+  text-wrap: pretty;
 }
 
 .birles-metin-word {
-  display: inline;
-  padding: 2px 3px;
-  border-radius: 8px;
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 3px 5px;
+  margin: 0 1px;
+  border-radius: 10px;
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
+    background 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
 }
 
-.birles-metin-word.is-speaking-now,
-.birles-metin-word.is-focus {
-  background: color-mix(in srgb, var(--chip, #2a9d8f) 28%, #fff);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--chip, #2a9d8f) 30%, transparent);
+.birles-metin-word__txt {
+  display: inline-block;
+}
+
+.birles-metin-word.is-live {
+  z-index: 6;
+  background: color-mix(in srgb, var(--chip, #2a9d8f) 18%, #fff);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--chip, #2a9d8f) 32%, transparent);
+  transform: translateY(-1px);
+}
+
+.birles-metin-word.is-speak .birles-metin-word__txt,
+.birles-metin-word.is-speak {
   color: #0d3b4a;
 }
 
+.birles-metin-word__txt.is-ghost {
+  color: color-mix(in srgb, #12293a 28%, #ffffff);
+  opacity: 0.55;
+  text-shadow: none;
+}
+
 .birles-metin-word.is-read {
-  color: #1f6f5c;
+  color: #1a7a62;
+}
+
+.birles-metin-word.is-read .birles-metin-word__txt {
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, #1a7a62 35%, transparent);
 }
 
 .birles-metin-dot {
   font-weight: 800;
+  margin-right: 0.15em;
 }
 
-.birles-metin-stage {
-  min-height: 160px;
+/* Kelimenin üstünde hece balonu */
+.birles-metin-float {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px) scale(0.92);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #fff;
+  border: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #16324f);
+  box-shadow: 0 14px 28px rgba(16, 37, 54, 0.2);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  animation: birles-metin-float-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  z-index: 8;
+}
+
+.birles-metin-float::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  background: #fff;
+  border-right: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #16324f);
+  border-bottom: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #16324f);
+  transform: rotate(45deg);
+}
+
+.birles-metin-float__syl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6em;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #16324f;
+  background: #f3faf8;
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.birles-metin-float__syl.is-on {
+  background: linear-gradient(135deg, #ff9b6a, #ffd166);
+  border-color: transparent;
+  color: #16324f;
+  transform: scale(1.12);
+  box-shadow: 0 8px 16px rgba(255, 155, 106, 0.35);
+}
+
+.birles-metin-float__plus {
+  font-weight: 800;
+  color: #7a93a3;
+  font-size: 0.95rem;
+}
+
+.birles-metin-float__word {
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0d3b4a;
+  padding: 2px 8px;
+}
+
+.birles-metin-float.is-merging .birles-metin-float__syl {
+  transform: scale(0.92);
+  opacity: 0.85;
+}
+
+.birles-metin-float.is-word {
+  border-color: var(--chip, #2a9d8f);
+  background: linear-gradient(180deg, #fffef8, #e8faf4);
+}
+
+.birles-metin-float.is-out {
+  animation: birles-metin-float-out 0.28s ease forwards;
+}
+
+@keyframes birles-metin-float-in {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes birles-metin-float-out {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.9);
+  }
+}
+
+.birles-metin-done {
   margin: 0;
-}
-
-.birles-metin-stage.is-quiet {
-  min-height: 48px;
-  opacity: 0.45;
+  text-align: center;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a7a62;
 }
 
 .birles-metin-actions {
