@@ -299,15 +299,6 @@ function isInsideOptions(node){
       const visible=(getComputedStyle(sc).display!=='none' && sc.offsetParent!==null) || sc.classList.contains('show') || sc.classList.contains('active');
       if(visible && !NovaTracker.state.finished){
         NovaTracker.state.finished=true;
-        try{
-          var totalQ = Number(NovaTracker.state.total || 0);
-          var correctQ = Number(NovaTracker.state.correctCount || 0);
-          var isHw = !!window.NOVA_ACTIVE_HOMEWORK;
-          if(typeof window.novaQuestRecord === 'function'){
-            window.novaQuestRecord('single_played', { total: totalQ, correct: correctQ, isHomework: isHw });
-            if(correctQ >= 8) window.novaQuestRecord('single_8plus', { total: totalQ, correct: correctQ, isHomework: isHw });
-          }
-        }catch(_){}
         try {
           var backBtn = document.getElementById('result-back-btn');
           if (backBtn) { backBtn.style.display = 'inline-flex'; }

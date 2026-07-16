@@ -197,16 +197,11 @@ async function checkDuelEligibility(studentId, classId, preloaded){
   try{
     if (preloaded && typeof preloaded === 'object') {
       const cup = Number(preloaded.cup || 0);
-      const credits = Number(preloaded.credits || 0);
-      return { eligible: true, cup, credits };
+      return { eligible: true, cup, credits: 0 };
     }
-    const [cupSnap, creditsSnap] = await Promise.all([
-      database.ref(`classes/${classId}/students/${studentId}/gameCup`).once('value'),
-      database.ref(`classes/${classId}/students/${studentId}/duelCredits`).once('value')
-    ]);
+    const cupSnap = await database.ref(`classes/${classId}/students/${studentId}/gameCup`).once('value');
     const cup = cupSnap.exists() ? Number(cupSnap.val() || 0) : 0;
-    const credits = creditsSnap.exists() ? Number(creditsSnap.val() || 0) : 0;
-    return { eligible: true, cup, credits };
+    return { eligible: true, cup, credits: 0 };
   }catch(e){
     console.warn('duel eligibility check failed:', e);
     return { eligible: true, cup: 0, credits: 0 };
@@ -448,11 +443,9 @@ async function processAutoMatchPair(m) {
       }
    } catch (_) {}
 
-   const [inMe, inOth, credMe, credOth, cupMe, cupOth, lpAutoMap] = await Promise.all([
+   const [inMe, inOth, cupMe, cupOth, lpAutoMap] = await Promise.all([
       database.ref(`classes/${classId}/students/${mySid}/inDuel`).once('value'),
       database.ref(`classes/${other.classId}/students/${other.sid}/inDuel`).once('value'),
-      database.ref(`classes/${classId}/students/${mySid}/duelCredits`).once('value'),
-      database.ref(`classes/${other.classId}/students/${other.sid}/duelCredits`).once('value'),
       database.ref(`classes/${classId}/students/${mySid}/gameCup`).once('value'),
       database.ref(`classes/${other.classId}/students/${other.sid}/gameCup`).once('value'),
       fetchLoggedInPlayersMapLimited()
@@ -485,8 +478,8 @@ async function processAutoMatchPair(m) {
    }catch(_){}
 
   const [eligMe, eligOth] = await Promise.all([
-      checkDuelEligibility(mySid, classId, { cup: cupMe.exists() ? Number(cupMe.val()) : 0, credits: credMe.exists() ? Number(credMe.val()) : 0 }),
-      checkDuelEligibility(other.sid, other.classId, { cup: cupOth.exists() ? Number(cupOth.val()) : 0, credits: credOth.exists() ? Number(credOth.val()) : 0 })
+      checkDuelEligibility(mySid, classId, { cup: cupMe.exists() ? Number(cupMe.val()) : 0 }),
+      checkDuelEligibility(other.sid, other.classId, { cup: cupOth.exists() ? Number(cupOth.val()) : 0 })
    ]);
    if (!eligMe.eligible || !eligOth.eligible) {
       await clearAutoMatchCoordinatorMatch(m.id, classId);
@@ -1048,28 +1041,35 @@ async function claimSeriesAvatarFrame(item){
       return;
     }
     const cost = Number(item && item.price || 0);
-    const currentCredits = Number(userData.duelCredits || 0);
-    if (currentCredits < cost){
-      await showAlert(`Yetersiz düello enerjisi. Gerekli: ${cost}, mevcut: ${currentCredits}.`);
+    const currentDiamonds = Number(userData.diamond || 0);
+    if (cost > 0 && currentDiamonds < cost){
+      await showAlert(`Yetersiz elmas. Gerekli: ${cost}, mevcut: ${currentDiamonds}.`);
       return;
     }
-    const ok = await showConfirmation(`${cost} düello enerjisi ile "${item.name}" avatar çerçevesini açmak istiyor musun?`);
+    const ok = cost > 0
+      ? await showConfirmation(`${cost} 💎 ile "${item.name}" avatar çerçevesini açmak istiyor musun?`)
+      : await showConfirmation(`"${item.name}" avatar çerçevesini ücretsiz açmak istiyor musun?`);
     if (!ok) return;
-    await studentRef.update({
-      duelCredits: currentCredits - cost,
-      [`purchasedAvatarFrames/${item.id}`]: true
-    });
+    const updates = { [`purchasedAvatarFrames/${item.id}`]: true };
+    if (cost > 0) updates.diamond = currentDiamonds - cost;
+    await studentRef.update(updates);
     const nextData = {
       ...userData,
-      duelCredits: currentCredits - cost,
+      diamond: cost > 0 ? currentDiamonds - cost : currentDiamonds,
       purchasedAvatarFrames: { ...(userData.purchasedAvatarFrames || {}), [item.id]: true }
     };
     try{
       const key = `${selectedStudent.classId}:${selectedStudent.studentId}`;
       __storeStudentCache = { key, ts: Date.now(), data: nextData };
     }catch(_){}
+    try {
+      const cd = document.getElementById('currentDiamonds');
+      if (cd) cd.textContent = String(nextData.diamond || 0);
+    } catch(_){}
     await renderAvatarFrameStore(nextData, document.getElementById('profilePhotosContainer'));
-    await showAlert(`🏆 ${item.name} açıldı! (${cost} ⚡ düello enerjisi harcandı)`);
+    await showAlert(cost > 0
+      ? `🏆 ${item.name} açıldı! (${cost} 💎 harcandı)`
+      : `🏆 ${item.name} açıldı!`);
     try { await novaRefreshCharacterInventoryIfOpen(); } catch (_) {}
   }catch(e){
     console.error('Series frame claim error:', e);
@@ -1445,30 +1445,11 @@ async function loadProfilePhotos(category, opts) {
    document.getElementById('currentDiamonds').textContent = userData.diamond || 0;
 
   if (category === 'duel') {
-       const duelStore = document.getElementById('duelCreditsStore');
+       // Düello enerjisi mağazası kaldırıldı — avatar kategorisine yönlendir
        const container = document.getElementById('profilePhotosContainer');
-       duelStore.style.display = 'block';
-       container.style.display = 'none';
-
-       // Sınırsız hak kontrolü
-       if (userData.unlimitedCreditsUntil && userData.unlimitedCreditsUntil > Date.now()) {
-           // Tüm butonları devre dışı bırak
-           document.querySelectorAll('.credit-package .buy-button').forEach(button => {
-               button.disabled = true;
-               button.style.opacity = '0.5';
-               button.style.cursor = 'not-allowed';
-               button.textContent = 'Sınırsız Hak Aktif';
-               button.onclick = null;
-           });
-
-           // Stats güncelle
-           const creditsStats = document.getElementById('credits-stats');
-           const creditsValue = document.getElementById('duel-credits-value');
-           const daysLeft = Math.ceil((userData.unlimitedCreditsUntil - Date.now()) / (1000 * 60 * 60 * 24));
-           
-           creditsStats.classList.add('unlimited');
-           creditsValue.innerHTML = `<span class="unlimited-badge">${daysLeft}GÜN</span>`;
-       }
+       if (container) container.style.display = 'grid';
+       const fallback = (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' && window.novaGetDefaultAvatarCategoryKeys()[0]) || 'bilim_kosesi';
+       await loadProfilePhotos(fallback);
        return;
    }
 
@@ -1476,7 +1457,6 @@ async function loadProfilePhotos(category, opts) {
       const containerNF = document.getElementById('profilePhotosContainer');
       const scrollNF = containerNF ? containerNF.scrollTop : 0;
       containerNF.style.display = 'grid';
-      document.getElementById('duelCreditsStore').style.display = 'none';
       await loadNameFrameCatalogFromDB();
       await renderNameFrameStore(userData, containerNF);
       if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(containerNF, scrollNF);
@@ -1487,7 +1467,6 @@ async function loadProfilePhotos(category, opts) {
       const containerAF = document.getElementById('profilePhotosContainer');
       const scrollAF = containerAF ? containerAF.scrollTop : 0;
       containerAF.style.display = 'grid';
-      document.getElementById('duelCreditsStore').style.display = 'none';
       await renderAvatarFrameStore(userData, containerAF);
       if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(containerAF, scrollAF);
       return;
@@ -1496,7 +1475,6 @@ async function loadProfilePhotos(category, opts) {
    const container = document.getElementById('profilePhotosContainer');
    const scrollTop = container ? container.scrollTop : 0;
    container.style.display = 'grid';
-   document.getElementById('duelCreditsStore').style.display = 'none';
    container.innerHTML = '';
 
    try {
@@ -1767,7 +1745,7 @@ async function renderAvatarFrameStore(userData, container){
         ${isOwned
           ? ''
           : (canClaim
-              ? `<span class="purchased-badge">🔥 Köşe Tamamlandı • ${cost} ⚡</span>`
+              ? `<span class="purchased-badge">🔥 Köşe Tamamlandı • ${cost} 💎</span>`
               : `<span class="series-lock-note">${escapeHtml(item.unlockRuleText || 'Köşeyi tamamla')}<br>${unlock.owned}/${unlock.total}</span>`)}
       </div>
       <div class="series-lock-note" style="margin-top:6px;max-width:220px;padding:8px 10px;border-radius:10px;border:1px solid rgba(148,163,184,.3);background:linear-gradient(180deg,rgba(30,41,59,.5),rgba(15,23,42,.65));color:#e2e8f0;line-height:1.35">
@@ -1775,9 +1753,9 @@ async function renderAvatarFrameStore(userData, container){
         <div style="margin-bottom:4px">${escapeHtml(perkLine)}</div>
         <div style="font-size:11px;color:#cbd5e1;margin-bottom:3px">🎯 ${escapeHtml(statusLine)}</div>
         <div style="font-size:11px;color:#a5b4fc;margin-bottom:3px">🧩 ${escapeHtml(progressLine)}</div>
-        <div style="font-size:11px;color:#fcd34d">⚡ Açılış bedeli: ${cost} düello enerjisi</div>
+        <div style="font-size:11px;color:#fcd34d">💎 Açılış bedeli: ${cost} elmas</div>
       </div>
-      ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : (canClaim ? 'use-button' : 'buy-button')}" ${!isOwned && !canClaim ? 'disabled' : ''}>${isOwned ? 'Kullan' : (canClaim ? `⚡ ${cost} Enerji ile Aç` : 'Kilitli')}</button>`}
+      ${isActive ? novaStoreInUseMarkup() : `<button type="button" class="profile-photo-button ${isOwned ? 'use-button' : (canClaim ? 'use-button' : 'buy-button')}" ${!isOwned && !canClaim ? 'disabled' : ''}>${isOwned ? 'Kullan' : (canClaim ? `💎 ${cost} Elmas ile Aç` : 'Kilitli')}</button>`}
     `;
     const button = card.querySelector('.profile-photo-button');
     if (button) {
@@ -1927,7 +1905,6 @@ async function novaWaitStoreFirstPaint() {
     const mainTabs = document.getElementById('novaStoreMainTabs');
     const subNav = document.getElementById('novaStoreSubNav');
     const container = document.getElementById('profilePhotosContainer');
-    const duel = document.getElementById('duelCreditsStore');
     const diamonds = document.getElementById('currentDiamonds');
     const hasMainTabs = mainTabs && mainTabs.querySelector('.nova-store-main-tab');
     const hasSubNav = subNav && subNav.querySelector('.nova-store-sub-btn');
@@ -1936,9 +1913,8 @@ async function novaWaitStoreFirstPaint() {
       container.querySelector('.no-champion') ||
       container.querySelector('.error')
     );
-    const duelReady = duel && duel.style.display !== 'none' && duel.querySelector('.credit-package');
     const walletReady = diamonds && String(diamonds.textContent || '').trim() !== '';
-    if (hasMainTabs && hasSubNav && walletReady && (hasProducts || duelReady)) {
+    if (hasMainTabs && hasSubNav && walletReady && hasProducts) {
       await new Promise(function (r) { requestAnimationFrame(function () { requestAnimationFrame(r); }); });
       return;
     }
@@ -2958,7 +2934,6 @@ function novaSyncMainScreenScrollLock(){
       'characterInventoryOverlay',
       'profileOverlay',
       'friends-screen',
-      'homework-screen',
       'daily-puzzle-screen',
       'fillblank-screen',
       'match-screen',
@@ -3216,119 +3191,24 @@ function resetRegistrationForm() {
 
 document.querySelectorAll('.category-button').forEach(button => {
     button.addEventListener('click', () => {
-        // Aktif kategoriyi güncelle
         document.querySelectorAll('.category-button').forEach(b => b.classList.remove('active'));
         button.classList.add('active');
-        
-        // Doğru içeriği göster
-        const duelStore = document.getElementById('duelCreditsStore');
         const photosContainer = document.getElementById('profilePhotosContainer');
-        
+        if (photosContainer) photosContainer.style.display = 'grid';
         if (button.dataset.category === 'duel') {
-            duelStore.style.display = 'block';
-            photosContainer.style.display = 'none';
+            const fallback = (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' && window.novaGetDefaultAvatarCategoryKeys()[0]) || 'bilim_kosesi';
+            loadProfilePhotos(fallback);
         } else {
-            duelStore.style.display = 'none';
-            photosContainer.style.display = 'grid';
             loadProfilePhotos(button.dataset.category);
         }
     });
 });
 
-// Düello enerjisi satın alma fonksiyonu
+// Düello enerjisi satın alma kaldırıldı
 async function purchaseCredits(amount, cost) {
-    // Satın almaya başlamadan önce onay soruyoruz
-    const confirmed = await showConfirmation("Bu düello biletini satın almak istediğinizden emin misiniz?");
-    if (!confirmed) return;
-    
-    try {
-        const studentRef = database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`);
-        const snapshot = await studentRef.once('value');
-        const userData = snapshot.val();
-        const currentDiamonds = userData.diamond || 0;
-        const currentCredits = userData.duelCredits || 0;
-
-        if (currentDiamonds < cost) {
-            await showAlert('Yeterli elmasınız yok!');
-            return;
-        }
-
-        await studentRef.update({
-            diamond: currentDiamonds - cost,
-            duelCredits: currentCredits + amount
-        });
-        try{
-          const key = `${selectedStudent.classId}:${selectedStudent.studentId}`;
-          __storeStudentCache = { key, ts: Date.now(), data: { ...(userData||{}), diamond: currentDiamonds - cost, duelCredits: currentCredits + amount } };
-        }catch(_){}
-
-        // Ana ekrandaki değerleri hemen güncelleyelim
-        document.getElementById('currentDiamonds').textContent = currentDiamonds - cost;
-        document.getElementById('duel-credits-value').textContent = currentCredits + amount;
-        try { refreshDuelEntryGateNote(); } catch(_){}
-        
-        await showAlert('⚡ Düello enerjisi satın alma başarılı!');
-        
-    } catch (error) {
-        console.error('Satın alma hatası:', error);
-        await showAlert('Satın alma işlemi başarısız oldu!');
-    }
+    try { await showAlert('Düello enerjisi artık kullanılmıyor.'); } catch(_){}
 }
 
-
 async function purchaseUnlimited(cost) {
-    // Satın almaya başlamadan önce kullanıcıdan onay alalım.
-    const confirmed = await showConfirmation("Bu ürünü satın almak istediğinizden emin misiniz?");
-    if (!confirmed) {
-        return;
-    }
-    
-    try {
-        const studentRef = database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}`);
-        const snapshot = await studentRef.once('value');
-        const userData = snapshot.val();
-        const currentDiamonds = userData.diamond || 0;
-
-        if (currentDiamonds < cost) {
-            await showAlert('Yeterli elmasınız yok!');
-            return;
-        }
-
-        const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-        // Yeni sürenin bitiş tarihini hesaplıyoruz.
-        const newUnlimitedUntil = Date.now() + thirtyDaysInMs;
-        
-        await studentRef.update({
-            diamond: currentDiamonds - cost,
-            unlimitedCreditsUntil: newUnlimitedUntil
-        });
-        try{
-          const key = `${selectedStudent.classId}:${selectedStudent.studentId}`;
-          __storeStudentCache = { key, ts: Date.now(), data: { ...(userData||{}), diamond: currentDiamonds - cost, unlimitedCreditsUntil: newUnlimitedUntil } };
-        }catch(_){}
-
-        document.getElementById('currentDiamonds').textContent = currentDiamonds - cost;
-        const creditsStats = document.getElementById('credits-stats');
-        const creditsValue = document.getElementById('duel-credits-value');
-       
-        creditsStats.classList.add('unlimited');
-        // Yeni süreye göre kaç gün kalacağını hesaplayıp görüntülüyoruz.
-        creditsValue.innerHTML = `<span class="unlimited-badge">${Math.ceil((newUnlimitedUntil - Date.now())/(1000*60*60*24))}GÜN</span>`;
-
-        // Tüm düello paketi butonlarını devre dışı bırakıyoruz.
-        const allPackageButtons = document.querySelectorAll('.credit-package .buy-button');
-        allPackageButtons.forEach(button => {
-            button.disabled = true;
-            button.style.opacity = '0.5';
-            button.style.cursor = 'not-allowed';
-            button.textContent = 'Sınırsız Hak Aktif';
-            button.onclick = null;
-        });
-
-        await showAlert('⚡ Sınırsız düello enerjisi aktifleştirildi!');
-       
-    } catch (error) {let chosen = shuffleArray(allQuestions).slice(0, 10);
-        console.error('Satın alma hatası:', error);
-        await showAlert('Satın alma işlemi başarısız oldu!');
-    }
+    try { await showAlert('Düello enerjisi artık kullanılmıyor.'); } catch(_){}
 }

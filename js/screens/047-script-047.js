@@ -198,6 +198,7 @@
     if (typeof window.novaSortAvatarStoreKeys === 'function') {
       cats = window.novaSortAvatarStoreKeys(cats);
     }
+    cats = (cats || []).filter(function (k) { return k && k !== 'duel'; });
     const labelFor = (k) => {
       if (typeof window.novaAvatarCategoryLabel === 'function') return window.novaAvatarCategoryLabel(k);
       try {
@@ -214,18 +215,13 @@
       btn.addEventListener('click', ()=>{
         document.querySelectorAll('.category-button').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        const duelStore = document.getElementById('duelCreditsStore');
         const photosContainer = document.getElementById('profilePhotosContainer');
-        if (duelStore && photosContainer){
-          if (k==='duel'){ duelStore.style.display='block'; photosContainer.style.display='none'; }
-          else { duelStore.style.display='none'; photosContainer.style.display='grid'; }
-        }
-        if (k!=='duel') loadProfilePhotos(k);
+        if (photosContainer) photosContainer.style.display='grid';
+        loadProfilePhotos(k);
       });
       area.appendChild(btn);
     });
-    // Auto-load first non-duel category's photos lazily
-    const first = cats.find(c=>c!=='duel'); if (first) loadProfilePhotos(first);
+    const first = cats[0]; if (first) loadProfilePhotos(first);
   }
   // Try to override existing renderer if available
   try { window.renderStoreCategoryButtons = renderStoreCategoryButtons_optimized; } catch(_){}

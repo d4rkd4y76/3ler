@@ -108,9 +108,7 @@
   const topicsSubtitle = document.getElementById("roborox-topics-subtitle");
 
   const learnHubModal = document.getElementById("learn-hub-modal");
-  const learnOpenBtn =
-    document.getElementById("learn-open-button") ||
-    document.getElementById("nova_kaptan_kabuk_btn");
+  const learnOpenBtn = document.getElementById("nova_kaptan_kabuk_btn");
   const learnHubClose = document.getElementById("learn-hub-close");
   const learnHubRoborox = document.getElementById("learn-hub-roborox");
   const learnHubTools = document.getElementById("learn-hub-tools");
@@ -1139,10 +1137,6 @@
 
   if (learnOpenBtn) {
     learnOpenBtn.addEventListener("click", function () {
-      if (learnOpenBtn.id === "nova_kaptan_kabuk_btn") {
-        openTopicsModal();
-        return;
-      }
       openLearnHub();
     });
   }

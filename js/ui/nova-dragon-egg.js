@@ -1207,23 +1207,28 @@
       bindOpenButtonIfNeeded();
       return wrap;
     }
-    var anchor = document.getElementById('nova-main-left-egg-slot');
+    var anchor =
+      document.getElementById('nova-main-left-egg-slot') ||
+      document.getElementById('nova-store-egg-slot');
     if (!anchor) {
       anchor = document.querySelector('#main-screen-hud-left .nova-main-hero-showcase-wrap');
     }
     if (!anchor) return null;
     wrap = document.createElement('div');
     wrap.id = 'nova-dragon-egg-wrap';
-    wrap.className = 'nova-dragon-egg-wrap';
+    wrap.className = 'nova-dragon-egg-wrap nova-dragon-egg-wrap--store';
     wrap.innerHTML =
       '<div class="nova-dragon-egg-panel">' +
-      '<div class="nova-dragon-egg-panel__title">Ejderha Yumurtası</div>' +
-      '<button type="button" class="nova-dragon-egg-entry" id="nova_dragon_egg_open" aria-label="Ejderha yumurtası ekranını aç">' +
+      '<div class="nova-dragon-egg-panel__title">Yumurta Kır</div>' +
+      '<button type="button" class="nova-dragon-egg-entry" id="nova_dragon_egg_open" aria-label="Ejderha yumurtasını kır">' +
       '<div class="nova-dragon-egg-hub" id="nova_dragon_egg_hub"></div>' +
       '<span class="nova-dragon-egg-entry__total" id="nova_dragon_egg_total">0 yumurta</span>' +
       '</button></div>';
-    if (anchor.id === 'nova-main-left-egg-slot') {
+    if (anchor.id === 'nova-main-left-egg-slot' || anchor.classList.contains('nova-store-egg-banner__mount')) {
       anchor.appendChild(wrap);
+    } else if (anchor.id === 'nova-store-egg-slot') {
+      var mount = anchor.querySelector('.nova-store-egg-banner__mount') || anchor;
+      mount.appendChild(wrap);
     } else {
       anchor.insertAdjacentElement('afterend', wrap);
     }

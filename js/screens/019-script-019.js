@@ -32,6 +32,7 @@
     if (typeof window.novaSortAvatarStoreKeys === 'function') {
       keys = window.novaSortAvatarStoreKeys(keys);
     }
+    keys = (keys || []).filter(function (k) { return k && k !== 'duel'; });
 
     area.style.display = 'flex';
     area.innerHTML = '';
@@ -48,18 +49,9 @@
           b.classList.remove('active');
         });
         btn.classList.add('active');
-        var duelStore = document.getElementById('duelCreditsStore');
         var photosContainer = document.getElementById('profilePhotosContainer');
         var target = btn.dataset.categoryRaw || btn.dataset.category;
-        if (duelStore && photosContainer) {
-          if (target === 'duel') {
-            duelStore.style.display = 'block';
-            photosContainer.style.display = 'none';
-          } else {
-            duelStore.style.display = 'none';
-            photosContainer.style.display = 'grid';
-          }
-        }
+        if (photosContainer) photosContainer.style.display = 'grid';
         if (typeof window.loadProfilePhotos === 'function') {
           window.loadProfilePhotos(target);
         }

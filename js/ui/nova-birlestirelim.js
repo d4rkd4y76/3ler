@@ -1045,9 +1045,13 @@
     var body = document.getElementById("birles-body");
     if (!body) return;
     var isCumle = fusion.kind === "cumle" || fusion.mode === "sentence";
+    var isKelime =
+      !isCumle &&
+      (fusion.kind === "kelime" || fusion.type === "kelime" || !!fusion.mediaKey);
     var med = fusion.mediaKey ? mediaFor(fusion.mediaKey) : null;
     var hasImg = !!(med && med.imageUrl);
     var sentenceBar = "";
+    var wordBoard = "";
     if (isCumle && fusion.words && fusion.words.length) {
       sentenceBar =
         '<div class="birles-sentence-board" id="birles-sentence-bar" aria-label="Cümle">' +
@@ -1075,17 +1079,30 @@
         '<span class="birles-sentence-dot" aria-hidden="true">.</span>' +
         "</div></div>";
     }
+    if (isKelime) {
+      wordBoard =
+        '<div class="birles-word-target" id="birles-word-target" aria-label="Hedef kelime">' +
+        '<p class="birles-word-target__hint">Bu kelimeyi heceliyoruz</p>' +
+        '<p class="birles-word-target__word">' +
+        esc(fusion.result) +
+        "</p>" +
+        "</div>";
+    }
     body.innerHTML =
       '<div class="birles-play' +
       (isCumle ? " birles-play--cumle" : "") +
+      (isKelime ? " birles-play--kelime" : "") +
       '" style="--chip:' +
       esc(sound.color) +
       ";--glow:" +
       esc(sound.glow) +
       '">' +
-      '  <p class="birles-play__narration" id="birles-narration">' +
-      esc(fusion.narration || "") +
+      '  <p class="birles-play__narration" id="birles-narration"' +
+      (isKelime ? " hidden" : "") +
+      ">" +
+      esc(isKelime ? "" : fusion.narration || "") +
       "</p>" +
+      wordBoard +
       sentenceBar +
       '  <div class="birles-stage" id="birles-stage" aria-live="polite"></div>' +
       '  <div class="birles-tray" id="birles-tray" aria-label="Birleşen heceler"></div>' +
@@ -1154,9 +1171,21 @@
   }
 
   function setNarr(text) {
+    if (quietProcessNarr) return;
     var narr = document.getElementById("birles-narration");
     if (narr && text) narr.textContent = text;
   }
+
+  function setNarrForce(text) {
+    var narr = document.getElementById("birles-narration");
+    if (!narr) return;
+    if (text) {
+      narr.hidden = false;
+      narr.textContent = text;
+    }
+  }
+
+  var quietProcessNarr = false;
 
   function pace(ms) {
     return wait(reducedMotion ? Math.min(ms, 160) : ms);
@@ -1364,7 +1393,7 @@
     }
 
     if (tray.length === 1) {
-      renderTray(tray, { label: "Sonuç" });
+      renderTray(tray, { label: quietProcessNarr ? "Kelime" : "Sonuç" });
       var only = trayEl && trayEl.querySelector(".birles-tray-chip");
       if (only) only.classList.add("is-speaking", "is-final");
       if (vv) await vv.playToken(tray[0], { waitUntilEnd: true });
@@ -1372,8 +1401,8 @@
       return tray[0];
     }
 
-    setNarr(tray.join(" + ") + " → birleşiyor!");
-    renderTray(tray, { label: "Şimdi altta birleştiriyoruz" });
+    if (!quietProcessNarr) setNarr(tray.join(" + ") + " → birleşiyor!");
+    renderTray(tray, { label: quietProcessNarr ? "Heceler" : "Şimdi altta birleştiriyoruz" });
     await pace(520);
     if (token !== animToken) return null;
 
@@ -1386,7 +1415,7 @@
     }
 
     if (trayEl) trayEl.classList.add("is-merging");
-    renderTray(tray, { label: "Birleşiyor…", merging: true });
+    renderTray(tray, { label: quietProcessNarr ? "Heceler" : "Birleşiyor…", merging: true });
     /* merging re-render wiped speaking — add join class via class on tray */
     trayEl = document.getElementById("birles-tray");
     if (trayEl) {
@@ -1660,13 +1689,19 @@
     var reveal = document.getElementById("birles-reveal");
     if (!stage) return;
     if (reveal) reveal.hidden = true;
-    setNarr(fusion.narration || "");
+    var isKelime =
+      fusion.kind === "kelime" ||
+      fusion.type === "kelime" ||
+      (!!fusion.mediaKey && fusion.kind !== "cumle" && fusion.mode !== "sentence");
+    quietProcessNarr = !!isKelime;
+    if (!isKelime) setNarr(fusion.narration || "");
     setHint("");
     renderTray([]);
     stage.classList.remove("is-quiet");
     if (vv) vv.stop();
 
     if (fusion.mode === "sentence" || fusion.kind === "cumle") {
+      quietProcessNarr = false;
       await runSentenceAnimation(sound, fusion, token);
       if (token !== animToken) return;
       if (reveal) {
@@ -1683,7 +1718,7 @@
         var msgC = document.getElementById("birles-reveal-msg");
         if (msgC) msgC.textContent = fusion.celebrate || "Harika! Cümleyi okudun!";
       }
-      setNarr(fusion.celebrate || "Harika! Cümleyi okudun!");
+      setNarrForce(fusion.celebrate || "Harika! Cümleyi okudun!");
       await pace(320);
       return;
     }
@@ -1698,26 +1733,24 @@
         var syl = fusion.syllables[i] || [];
         var left = syl[0];
         var right = syl.length > 1 ? syl[1] : null;
-        if (right != null && right !== "") {
-          setNarr(left + " + " + right + " → …");
-        } else {
-          setNarr(left + " geliyor…");
+        if (!isKelime) {
+          if (right != null && right !== "") setNarr(left + " + " + right + " → …");
+          else setNarr(left + " geliyor…");
         }
         var mergedSyl = await stageMerge(left, right, token);
         if (token !== animToken || mergedSyl == null) return;
-        setNarr(mergedSyl + " hecesi aşağı iniyor");
+        if (!isKelime) setNarr(mergedSyl + " hecesi aşağı iniyor");
         await dropToTray(tray, mergedSyl, token);
         if (token !== animToken) return;
       }
       finalWord = await trayMerge(tray, token);
       if (token !== animToken || finalWord == null) return;
     } else if (mode === "chain" && fusion.steps && fusion.steps.length > 1) {
-      /* Örn ala: a+l → al (aşağı) ; a aşağı ; altta al+a → ala */
       var first = fusion.steps[0];
-      setNarr(first[0] + " + " + first[1] + " → …");
+      if (!isKelime) setNarr(first[0] + " + " + first[1] + " → …");
       var firstMerged = await stageMerge(first[0], first[1], token);
       if (token !== animToken || firstMerged == null) return;
-      setNarr(firstMerged + " aşağı iniyor");
+      if (!isKelime) setNarr(firstMerged + " aşağı iniyor");
       await dropToTray(tray, firstMerged, token);
       if (token !== animToken) return;
 
@@ -1725,15 +1758,13 @@
         if (token !== animToken) return;
         var step = fusion.steps[si];
         var nextPiece = step[1] != null ? step[1] : step[0];
-        /* Zincir: soldaki tepside, sağdaki yeni parça yukarıda okunup alta iner */
-        setNarr("Şimdi " + nextPiece + " geliyor");
+        if (!isKelime) setNarr("Şimdi " + nextPiece + " geliyor");
         await sendPieceDown(tray, nextPiece, token);
         if (token !== animToken) return;
       }
       finalWord = await trayMerge(tray, token);
       if (token !== animToken || finalWord == null) return;
     } else {
-      /* Tek adım: yalnızca sahnede */
       var steps = fusion.steps && fusion.steps.length ? fusion.steps : [fusion.parts.slice()];
       var pair = steps[0] || fusion.parts || [fusion.result];
       finalWord = await stageMerge(pair[0], pair[1], token);
@@ -1759,7 +1790,8 @@
       var msg = document.getElementById("birles-reveal-msg");
       if (msg) msg.textContent = fusion.celebrate || "Harika!";
     }
-    setNarr(fusion.celebrate || "Harika!");
+    quietProcessNarr = false;
+    setNarrForce(fusion.celebrate || "Harika!");
     await pace(220);
     if (vv) await vv.playToken(fusion.mediaKey || fusion.say || fusion.result, { waitUntilEnd: true });
     await pace(320);

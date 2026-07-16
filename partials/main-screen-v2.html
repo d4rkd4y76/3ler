@@ -21,14 +21,11 @@
 
 <div class="nova-v2-shell">
 <header class="main-screen-top-bar nova-main-top-dock nova-v2-hud" id="main-screen-top-bar">
-<div class="main-screen-odev-anchor nova-v2-hud__slot nova-v2-hud__slot--left" id="main-screen-odev-slot">
+<div class="main-screen-char-anchor nova-v2-hud__slot nova-v2-hud__slot--left" id="main-screen-char-slot">
 <button type="button" class="nova-v2-chip nova-v2-chip--char nova-character-chip" id="nova_character_open_btn" aria-label="Karakter sandığı">
 <span class="nova-v2-chip__icon char-chip-icon" aria-hidden="true">🎒</span>
 <span class="nova-v2-chip__label char-chip-label">Karakter</span>
 </button>
-</div>
-<div class="main-screen-deneme-column nova-v2-hud__slot nova-v2-hud__slot--center" id="main-screen-deneme-column">
-<div class="main-screen-deneme-slot nova-v2-deneme-mount" id="main-screen-deneme-slot"></div>
 </div>
 <div class="main-screen-store-anchor nova-v2-hud__slot nova-v2-hud__slot--right" id="main-screen-hud-right">
 <button type="button" class="nova-v2-chip nova-v2-chip--store nova-store-chip" id="nova_store_open_btn" aria-label="Mağaza">
@@ -40,7 +37,7 @@
 
 <section class="main-profile-hero nova-v2-arena" id="main-profile-hero">
 <aside class="main-screen-hero-left main-screen-hero-left--showcase nova-v2-hero-col" id="main-screen-hud-left">
-<div class="nova-v2-panel nova-v2-panel--hero">
+<div class="nova-main-left-egg-slot" id="nova-main-left-egg-slot" aria-hidden="false"></div><div class="nova-v2-panel nova-v2-panel--hero">
 <div class="nova-main-hero-showcase-wrap">
 <div class="nova-main-hero-showcase__title nova-v2-hero-title" aria-hidden="false">Kahramanın</div>
 <div class="nova-main-hero-showcase" id="nova-main-hero-showcase" aria-hidden="true">
@@ -82,12 +79,6 @@
 <span class="stats-value diamond-value nova-v2-stat__val" id="diamond-value">0</span>
 <span class="nova-v2-stat__lbl">Elmas</span>
 </div>
-<div class="stats-item credits-stats nova-v2-stat nova-v2-stat--duel" id="credits-stats">
-<span class="stats-icon nova-v2-stat__ico" aria-hidden="true">⚡</span>
-<span class="stats-value credits-value nova-v2-stat__val" id="duel-credits-value">0</span>
-<span class="nova-v2-stat__lbl">Enerji</span>
-<div class="tip-title" style="display: none;">Düello Enerjisi</div>
-</div>
 </div>
 </div>
 </div>
@@ -96,26 +87,6 @@
 <aside class="main-screen-hero-right nova-v2-mission-col" id="main-screen-quest-slot">
 <div class="nova-v2-panel nova-v2-panel--missions">
 <p class="nova-v2-missions-head" aria-hidden="true">Görevler</p>
-<button class="profile-tools-button nova-v2-mission-btn nova-learn-rail-btn" id="learn-open-button" type="button" aria-label="Öğren menüsünü aç">
-<span class="profile-tools-icon nova-v2-mission-btn__ico" aria-hidden="true">📚</span>
-<span class="profile-tools-text nova-v2-mission-btn__txt">Öğren</span>
-</button>
-<div class="nova-bonus-drawer nova-v2-bonus" id="nova-bonus-drawer">
-<script>
-(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
-</script>
-<button type="button" class="nova-bonus-drawer__toggle nova-v2-mission-btn nova-v2-mission-btn--bonus" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
-<span class="nova-bonus-drawer__toggle-icon nova-v2-mission-btn__ico" aria-hidden="true">✨</span>
-<span class="nova-bonus-drawer__toggle-label nova-v2-mission-btn__txt">Bonus</span>
-<span class="nova-bonus-drawer__chevron nova-v2-mission-chevron" aria-hidden="true">▾</span>
-</button>
-<div class="nova-bonus-drawer__panel nova-v2-bonus-panel" id="nova_bonus_drawer_panel" hidden>
-<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="puzzle-fab nova-v2-bonus-fab" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">🧩 Bulmaca</button>
-<span class="nova-fab-reward-tag nova-fab-reward-tag--egg" aria-hidden="true">🐉</span>
-</span>
-</div>
-</div>
 </div>
 </aside>
 </section>
@@ -134,7 +105,7 @@
 <span class="nova-v2-play__sub">Canlı rakip</span>
 </span>
 </button>
-<div class="duel-entry-gate-note nova-v2-duel-note" id="duel-entry-gate-note" aria-live="polite">Düello: 3+ kupa, 15 ⚡ düello enerjisi</div>
+<div class="duel-entry-gate-note nova-v2-duel-note" id="duel-entry-gate-note" aria-live="polite" hidden></div>
 <button class="kupa-siralama-button nova-v2-play nova-v2-play--rank" id="kupa-siralama-button" type="button" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;">
 <span class="main-menu-icon nova-v2-play__ico" aria-hidden="true">🏆</span>
 <span class="main-menu-label nova-v2-play__lbl">Sıralama</span>

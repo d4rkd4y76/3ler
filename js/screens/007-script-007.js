@@ -1798,19 +1798,8 @@ function fetchAndDisplayGameCup(force) {
 try { window.fetchAndDisplayGameCup = fetchAndDisplayGameCup; } catch (_) {}
 
 function applyMainScreenCreditsState(userData){
-    try{
-      const creditsStats = document.getElementById('credits-stats');
-      const creditsValue = document.getElementById('duel-credits-value');
-      if (!creditsStats || !creditsValue) return;
-      if (userData.unlimitedCreditsUntil && userData.unlimitedCreditsUntil > Date.now()) {
-          creditsStats.classList.add('unlimited');
-          const daysLeft = Math.ceil((userData.unlimitedCreditsUntil - Date.now()) / (1000 * 60 * 60 * 24));
-          creditsValue.innerHTML = `<span class="unlimited-badge">${daysLeft}Gün</span>`;
-      } else {
-          creditsStats.classList.remove('unlimited');
-          creditsValue.textContent = userData.duelCredits || 0;
-      }
-    }catch(_){}
+    /* Düello kredisi UI kaldırıldı */
+    return;
 }
 
 function novaRequestHudFabRelayout(opts){
@@ -2232,10 +2221,10 @@ async function searchFriends() {
 
 /**
  * Düello puanlama (tek kaynak):
- * - Oyun normal biter: kazanan +6 kupa +15 düello enerjisi +10 elmas, kaybeden yalnızca -3 kupa alır.
+ * - Oyun normal biter: kazanan +6 kupa +10 elmas, kaybeden yalnızca -3 kupa alır.
  *   Seri avatar çerçevesi takılıysa (ve kazandıysa) ekstra kupa verir: +4 (Dünya/Kızlar/Süper), +2 (Temel).
  * - Süre doldu (TIME_OUT): kupa +6/-3 (mevcut senaryoya göre).
- * - Eşleşmeden sonra çıkma: çıkan -15 düello enerjisi; kupa değişmez; rakibe kredi verilmez.
+ * - Eşleşmeden sonra çıkma: kupa değişmez; düello kredisi yok.
  */
 async function updateDuelScore(type, data) {
     const {inviterId, inviterClassId, invitedId, invitedClassId} = data;
@@ -2270,32 +2259,7 @@ async function updateDuelScore(type, data) {
         const localId = currentStudentId || currentUid || selectedId;
 
         const isLeaver = (localId && (localId === dcId));
-        // Eşleşmeden sonra çıkan: sadece çıkan oyuncu -15 düello enerjisi (rakibe kredi verilmez; kupa değişmez)
-        try {
-            const invId = data && (data.inviterId || data.hostId);
-            const invClassId = data && (data.inviterClassId || data.hostClassId);
-            const inId = data && (data.invitedId || data.guestId);
-            const inClassId = data && (data.invitedClassId || data.guestClassId);
-            const dcId2 = data && (data.disconnectedId || data.playerId || data.uid || data.studentId);
-            const dcClassId2 = data && (data.disconnectedClassId || data.classId || data.classID);
-
-            if (!isLeaver && dcId2) {
-                let leaverId = dcId2, leaverClassId = dcClassId2 || null;
-                if (invId && inId) {
-                    if (dcId2 === invId) { leaverClassId = leaverClassId || invClassId; }
-                    else if (dcId2 === inId) { leaverClassId = leaverClassId || inClassId; }
-                }
-                if (leaverId && leaverClassId) {
-                    await database.ref(`classes/${leaverClassId}/students/${leaverId}/duelCredits`).transaction(v => {
-                        const n = (v || 0) - 15;
-                        return n < 0 ? 0 : n;
-                    });
-                }
-            }
-        } catch (e) {
-            console.warn('DISCONNECTED kredi dağıtımı hatası:', e);
-        }
-
+        // Eşleşmeden sonra çıkan: kupa değişmez (düello kredisi yok)
 
         if (isLeaver) {
             // YALNIZCA ayrılan istemcide ban yaz ve uyarı göster
@@ -2317,7 +2281,7 @@ async function updateDuelScore(type, data) {
         } else {
             // Bu istemci ayrılan kişi DEĞİL → sadece bilgi ver (ban yazma!)
             if (typeof showAlert === 'function') {
-                await showAlert('Rakibiniz oyundan ayrıldı. Çıkan oyuncunun 15 düello enerjisi düşürüldü (kupa değişmedi).');
+                await showAlert('Rakibiniz oyundan ayrıldı. Kupa değişmedi.');
             }
         }
     } catch (err) {
@@ -2353,16 +2317,12 @@ async function updateDuelScore(type, data) {
                 if (canApply && winnerId && loserId) {
                     let duelDiamondGain = 10;
                     var heroCupBonus = 0;
-                    var heroCreditBonus = 0;
                     await Promise.all([
                         database.ref(`classes/${winnerClassId}/students/${winnerId}`).transaction(user => {
                           user = user || {};
                           heroCupBonus = (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.getDuelCupBonus)
                             ? window.NOVA_HERO_LEVEL.getDuelCupBonus(user) : 0;
-                          heroCreditBonus = (typeof window.NOVA_HERO_LEVEL !== 'undefined' && window.NOVA_HERO_LEVEL.getDuelCreditBonusOnWin)
-                            ? window.NOVA_HERO_LEVEL.getDuelCreditBonusOnWin(user) : 0;
                           user.gameCup = Number(user.gameCup || 0) + 6 + extraCup + heroCupBonus;
-                          user.duelCredits = Number(user.duelCredits || 0) + 15 + heroCreditBonus;
                           duelDiamondGain = 10;
                           user.diamond = Math.min(25000, Number(user.diamond || 0) + 10);
                           user.lastDiamondUpdate = Date.now();
@@ -2371,20 +2331,12 @@ async function updateDuelScore(type, data) {
                         database.ref(`classes/${loserClassId}/students/${loserId}/gameCup`).transaction(current => Math.max((current || 0) - 3, 0))
                     ]);
                     try{
-                      var localStu = (typeof selectedStudent !== 'undefined' && selectedStudent) ? selectedStudent : null;
-                      if(localStu && localStu.studentId && winnerId === localStu.studentId && typeof window.novaQuestRecord === 'function'){
-                        window.novaQuestRecord('duel_win', { winnerId: winnerId, loserId: loserId });
-                      }
-                    }catch(_){}
-                    try{
                       var localStu2 = (typeof selectedStudent !== 'undefined' && selectedStudent) ? selectedStudent : null;
                       if (extraCup > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
                         await showAlert(`🔥 Çerçeve bonusu aktif: +${extraCup} ekstra kupa kazandın!`);
                       }
                       if (heroCupBonus > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
-                        await showAlert(`🦸 Kahraman bonusu: +${heroCupBonus} ek kupa${heroCreditBonus > 0 ? (' ve +' + heroCreditBonus + ' düello enerjisi') : ''}!`);
-                      } else if (heroCreditBonus > 0 && localStu2 && localStu2.studentId && winnerId === localStu2.studentId) {
-                        await showAlert(`🦸 Kahraman bonusu: +${heroCreditBonus} düello enerjisi!`);
+                        await showAlert(`🦸 Kahraman bonusu: +${heroCupBonus} ek kupa!`);
                       }
                     }catch(_){}
                 } else {
@@ -4527,63 +4479,7 @@ window.totalQuestions = totalQ; let message = '';
                     console.error("Kazanan müziği çalınamadı:", error);
                 });
             }
-        
-            // NOVA: Homework result writeback
-            try {
-                if (window.NOVA_ACTIVE_HOMEWORK) {
-                    (async function(){
-                        try{
-                            var d = (typeof firebase!=='undefined' && firebase.database) ? firebase.database() : null;
-                            var s = (typeof selectedStudent!=='undefined' && selectedStudent && selectedStudent.studentId) ? selectedStudent.studentId : null;
-                            if(d && s){
-                                var hw = window.NOVA_ACTIVE_HOMEWORK;
-                                var total = Array.isArray(window.gameQuestions) ? window.gameQuestions.length : (window.NOVA_Q_LIMIT||10);
-                                var correct = Number(window.score||0);
-                                var startedAt = window.NOVA_HW_STARTED_AT || Date.now();
-                                var finishedAt = Date.now();
-                                var payload = { correct: correct, total: total, startedAt: startedAt, finishedAt: finishedAt, durationMs: Math.max(0, finishedAt - startedAt) };
-                                await d.ref('homeworkResults/'+hw.hwId+'/'+s).set(payload);
-                                await d.ref('studentHomework/'+s+'/'+hw.hwId).update({ status:'completed', completedAt: finishedAt, correct: correct, total: total });
-                                try{
-                                  await d.ref('studentHomeworkSummary/'+s+'/pendingCount').transaction(function(curr){
-                                    var n = Math.max(0, Math.floor(Number(curr == null ? 0 : curr)));
-                                    return Math.max(0, n - 1);
-                                  });
-                                }catch(_e){}
-                                try{
-                                  if (typeof window.novaQuestRecord === 'function') {
-                                    window.novaQuestRecord('homework_completed', { correct: correct, total: total, hwId: hw.hwId });
-                                  }
-                                }catch(_){}
-                            }
-                        }catch(e){ console.warn('Homework write failed', e); }
-                        
-                        // NOVA_HW_REWARD_HOOK: award diamonds once based on homework percent
-                        try{
-                          (async ()=>{
-                            const hw = window.NOVA_ACTIVE_HOMEWORK;
-                            const sObj = (typeof selectedStudent!=='undefined') ? selectedStudent : null;
-                            if(hw && sObj && sObj.studentId && sObj.classId){
-                              const totalQ = Array.isArray(window.gameQuestions) ? window.gameQuestions.length : (window.NOVA_Q_LIMIT||10);
-                              const correctQ = Number(window.score||0);
-                              await awardHomeworkDiamonds(hw.hwId, correctQ, totalQ, sObj);
-                            }
-                          })();
-                        }catch(_){ console.warn('HW reward hook failed', _); }
-finally{
-                            window.NOVA_ACTIVE_HOMEWORK = null;
-    // NOVA_HW_BACK_HOOK: Ensure back button is visible on results
-    try{
-      var endBtn = document.getElementById('final-back-button');
-      if (endBtn) endBtn.style.display = 'inline-flex';
-    }catch(_){}
-    
-                            window.NOVA_Q_LIMIT = null;
-                            window.NOVA_HW_STARTED_AT = null;
-                        }
-                    })();
-                }
-            } catch(_){}
+
             } catch (e) {
                 console.error('endGame', e);
             } finally {
@@ -5087,31 +4983,13 @@ try {
             checkDuelEligibility(player.studentId, player.classId)
         ]);
         if (!meGate.eligible) {
-            await showAlert('Düello daveti göndermek için en az 3 kupa ve 15 düello enerjisi gerekir.');
+            await showAlert('Düello daveti göndermek için en az 3 kupa gerekir.');
             return;
         }
         if (!otherGate.eligible) {
-            await showAlert(`${player.name} düelloya uygun değil (en az 3 kupa ve 15 ⚡ düello enerjisi gerekir).`);
+            await showAlert(`${player.name} düelloya uygun değil (en az 3 kupa gerekir).`);
             return;
         }
-
-        // --- 1. Kredi Kontrolleri ---
-        // Davet edenin kredi kontrolü
-        const inviterCreditsSnap = await database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/duelCredits`).once('value');
-        const inviterCredits = inviterCreditsSnap.exists() ? inviterCreditsSnap.val() : 0;
-        if (inviterCredits < 0) {
-            await showAlert('Düello başlatmak için en az 3 düello enerjisine sahip olmalısınız.');
-            return;
-        }
-
-        // Davet edilecek oyuncunun kredi kontrolü
-        const invitedCreditsSnap = await database.ref(`classes/${player.classId}/students/${player.studentId}/duelCredits`).once('value');
-        const invitedCredits = invitedCreditsSnap.exists() ? invitedCreditsSnap.val() : 0;
-        if (invitedCredits < 0) {
-            await showAlert(`${player.name} yeterli düello enerjisine sahip değil.`);
-            return;
-        }
-        // --- Kredi Kontrolleri Bitiş ---
 
         let inviterInLoggedIn = false;
         try {
@@ -5606,7 +5484,7 @@ invitationAcceptButton.addEventListener('click', async () => {
     if (currentInvitation && selectedStudent && selectedStudent.studentId && selectedStudent.classId) {
         const myGate = await checkDuelEligibility(selectedStudent.studentId, selectedStudent.classId);
         if (!myGate.eligible) {
-            await showAlert('Düelloya katılmak için en az 3 kupa ve 15 düello enerjisi gerekir.');
+            await showAlert('Düelloya katılmak için en az 3 kupa gerekir.');
             try { await database.ref(`invitations/${selectedStudent.studentId}`).remove(); } catch(_) {}
             invitationOverlay.style.display = 'none';
             currentInvitation = null;
@@ -7544,15 +7422,13 @@ function endDuelGame() {
         const winnerRows = winnerId
           ? [
               `<li><span>🏆 Kupa</span><b>+${winnerCupGain}</b></li>`,
-              `<li><span>💎 Elmas</span><b>+10</b></li>`,
-              `<li><span>⚡ Düello Enerjisi</span><b>+15</b></li>`
+              `<li><span>💎 Elmas</span><b>+10</b></li>`
             ]
           : [`<li><span>🤝 Sonuç</span><b>Berabere</b></li>`];
         const loserRows = winnerId
           ? [
               `<li><span>🏆 Kupa</span><b>-3</b></li>`,
-              `<li><span>💎 Elmas</span><b>0</b></li>`,
-              `<li><span>⚡ Düello Enerjisi</span><b>0</b></li>`
+              `<li><span>💎 Elmas</span><b>0</b></li>`
             ]
           : [`<li><span>🤝 Sonuç</span><b>Berabere</b></li>`];
         duelFinalContainer.classList.remove('nova-duel-final-win','nova-duel-final-lose','nova-duel-final-tie');
@@ -7616,7 +7492,6 @@ function endDuelGame() {
           if (!host) return;
           const cupDelta = localWon ? Number(winnerCupGain || 6) : (localLost ? -3 : 0);
           const diaDelta = localWon ? 10 : 0;
-          const crDelta = localWon ? 15 : 0;
           host.innerHTML = `
             <div class="nova-duel-report-head ${localWon ? 'win' : (localLost ? 'lose' : 'tie')}">
               ${localWon ? '🏅 ÖDÜL RAPORU' : (localLost ? '🎯 KAYIP RAPORU' : '🤝 MAÇ RAPORU')}
@@ -7632,11 +7507,6 @@ function endDuelGame() {
                 <div class="icon">💎</div>
                 <div class="label">Elmas</div>
                 <div class="value" id="nova_duel_delta_dia">0</div>
-              </article>
-              <article class="nova-duel-report-tile plus">
-                <div class="icon">⚡</div>
-                <div class="label">Düello Enerjisi</div>
-                <div class="value" id="nova_duel_delta_cr">0</div>
               </article>` : ''}
               ${(!localWon && !localLost) ? `
               <article class="nova-duel-report-tile tie">
@@ -7653,12 +7523,8 @@ function endDuelGame() {
           }
           if (localWon) {
             const diaEl = document.getElementById('nova_duel_delta_dia');
-            const crEl = document.getElementById('nova_duel_delta_cr');
             if (diaEl) {
               animateNumber(diaEl, 0, diaDelta, { duration: 1000, forceSign: true });
-            }
-            if (crEl) {
-              animateNumber(crEl, 0, crDelta, { duration: 1100, forceSign: true });
             }
           }
         }
@@ -7815,7 +7681,7 @@ if (winnerId && loserId) {
                 avatarFrame: resolvedAvatarFrame,
                 className: String(it.className || it.class || ''),
                 gameCup: Number(it.gameCup || it.cup || 0),
-                matchCount: Number(it.matchCount || it.duelCredits || 0),
+                matchCount: Number(it.matchCount || 0),
                 heroId: heroId,
                 heroLevel: Math.max(0, Math.min(4, Number(heroLevel) || 0)),
                 photo: String(it.photo || 'https://via.placeholder.com/50')
@@ -7888,7 +7754,7 @@ if (winnerId && loserId) {
                         avatarFrame: resolvedAvatarFrame,
                         className: className,
                         gameCup: (student && student.gameCup) || 0,
-                        matchCount: (student && student.duelCredits) || 0,
+                        matchCount: (student && student.matchCount) || 0,
                         heroId: heroId,
                         heroLevel: Math.max(0, Math.min(4, Number(heroLevel) || 0)),
                         photo: (student && student.photo) || 'https://via.placeholder.com/50'

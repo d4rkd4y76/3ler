@@ -241,12 +241,11 @@
   gap: clamp(4px, 1.5vw, 12px);
   flex-shrink: 0;
 }
-#main-screen .main-screen-top-bar .main-screen-odev-anchor,
-#main-screen .main-screen-top-bar .main-screen-deneme-column,
+#main-screen .main-screen-top-bar .main-screen-char-anchor,
 #main-screen .main-screen-top-bar .main-screen-store-anchor{
   min-width: 0;
 }
-#main-screen .main-screen-top-bar .main-screen-odev-anchor,
+#main-screen .main-screen-top-bar .main-screen-char-anchor,
 #main-screen .main-screen-top-bar .main-screen-store-anchor{
   display: flex;
   align-items: center;
@@ -257,7 +256,7 @@
 #main-screen .main-screen-top-bar .main-screen-store-anchor{
   justify-content: flex-end;
 }
-#main-screen .main-screen-top-bar .main-screen-odev-anchor{
+#main-screen .main-screen-top-bar .main-screen-char-anchor{
   position: relative;
   justify-self: start;
   align-self: center;
@@ -267,28 +266,6 @@
   left: auto;
   z-index: 5;
   pointer-events: auto;
-}
-#main-screen .main-screen-top-bar .main-screen-odev-anchor #homework_fab.homework-fab{
-  margin: 0 !important;
-}
-#main-screen .main-screen-top-bar .main-screen-deneme-column{
-  position: relative;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(6px, 1.6vw, 10px);
-  min-width: 0;
-  max-width: min(200px, 44vw);
-  align-self: center;
-}
-#main-screen .main-screen-top-bar .main-screen-deneme-column .main-screen-deneme-slot{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 0;
-  width: 100%;
 }
 #main-screen .main-screen-top-bar .main-screen-store-anchor{
   position: relative;

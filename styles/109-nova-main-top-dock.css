@@ -91,14 +91,6 @@ body.nova-perf-ultra #main-screen .main-screen-top-bar.nova-main-top-dock {
     inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
-#main-screen .nova-main-top-dock .main-screen-deneme-column {
-  max-width: min(200px, 40vw);
-}
-
-#main-screen .nova-main-top-dock .deneme-fab-wrap {
-  margin: 0 auto;
-}
-
 @media (max-width: 768px) {
   #main-screen .main-screen-top-bar.nova-main-top-dock {
     width: calc(100% - clamp(8px, 2.8vw, 14px));
@@ -108,9 +100,5 @@ body.nova-perf-ultra #main-screen .main-screen-top-bar.nova-main-top-dock {
 
   #main-screen .nova-main-top-dock::before {
     border-radius: calc(clamp(14px, 3.6vw, 18px) - 1px);
-  }
-
-  #main-screen .nova-main-top-dock .main-screen-deneme-column {
-    max-width: min(168px, 38vw);
   }
 }

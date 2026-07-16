@@ -99,7 +99,6 @@
       defaultOrder[c.key] = Number(c.order);
     });
 
-    var duel = keys.indexOf('duel') >= 0 ? ['duel'] : [];
     var rest = keys.filter(function (k) {
       return k !== 'duel';
     });
@@ -116,7 +115,7 @@
       return labelForAvatarCategory(a).localeCompare(labelForAvatarCategory(b), 'tr');
     });
 
-    return duel.concat(rest);
+    return rest;
   }
 
   function autoKeyFromTurkishLabel(label) {

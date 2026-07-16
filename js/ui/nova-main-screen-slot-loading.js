@@ -211,8 +211,6 @@
 
     syncHost(document.querySelector('.trophy-stats'), !!st.cup, SLOT_LABELS.cup);
 
-    syncHost(document.querySelector('.credits-stats'), !!st.credits, SLOT_LABELS.credits);
-
     syncHost(document.querySelector('.diamond-stats'), !!st.diamond, SLOT_LABELS.diamond);
 
     return st;

@@ -31,7 +31,6 @@
   function labelForKey(k) {
     if (k === '__nameFrames') return 'İsim Çerçevesi';
     if (k === '__avatarFrames') return 'Avatar Çerçevesi';
-    if (k === 'duel') return '⚡ Düello Enerjisi';
     if (typeof window.novaAvatarCategoryLabel === 'function') {
       return window.novaAvatarCategoryLabel(k);
     }
@@ -44,24 +43,17 @@
 
   function sortAvatarKeys(keys) {
     if (typeof window.novaSortAvatarStoreKeys === 'function') {
-      var duel = keys.indexOf('duel') >= 0;
-      var sorted = window.novaSortAvatarStoreKeys(keys);
-      if (duel && sorted.indexOf('duel') < 0) sorted.unshift('duel');
-      return sorted;
+      return window.novaSortAvatarStoreKeys(keys).filter(function (k) { return k !== 'duel'; });
     }
-    keys = unique(keys).filter(function (k) { return k && !PSEUDO_KEYS[k]; });
+    keys = unique(keys).filter(function (k) { return k && k !== 'duel' && !PSEUDO_KEYS[k]; });
     var meta = window.storeCategoryMeta || {};
-    var hasDuel = keys.indexOf('duel') >= 0;
-    var rest = keys.filter(function (k) { return k !== 'duel'; });
-    rest.sort(function (a, b) {
+    keys.sort(function (a, b) {
       var oa = (meta[a] && meta[a].order != null) ? Number(meta[a].order) : 1e12;
       var ob = (meta[b] && meta[b].order != null) ? Number(meta[b].order) : 1e12;
       if (oa !== ob) return oa - ob;
       return labelForKey(a).localeCompare(labelForKey(b), 'tr');
     });
-    var out = [];
-    if (hasDuel) out.push('duel');
-    return out.concat(rest);
+    return keys;
   }
 
   function collectAvatarKeys() {
@@ -82,7 +74,7 @@
       keys = unique(keys);
     }
     keys = unique(keys).filter(function (k) {
-      if (!k || PSEUDO_KEYS[k]) return false;
+      if (!k || k === 'duel' || PSEUDO_KEYS[k]) return false;
       if (typeof window.novaIsPseudoStoreCategory === 'function' && window.novaIsPseudoStoreCategory(k)) return false;
       return true;
     });
@@ -93,21 +85,9 @@
   }
 
   function setPanelsForCategory(cat) {
-    var duelStore = document.getElementById('duelCreditsStore');
     var photosContainer = document.getElementById('profilePhotosContainer');
-    if (!duelStore || !photosContainer) return;
-    if (cat === '__battleHeroesTemel' || cat === '__battleHeroesEpik' || cat === '__battleHeroes') {
-      duelStore.style.display = 'none';
-      photosContainer.style.display = 'grid';
-      return;
-    }
-    if (cat === 'duel') {
-      duelStore.style.display = 'block';
-      photosContainer.style.display = 'none';
-    } else {
-      duelStore.style.display = 'none';
-      photosContainer.style.display = 'grid';
-    }
+    if (!photosContainer) return;
+    photosContainer.style.display = 'grid';
   }
 
   function activateSubButton(cat) {

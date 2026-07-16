@@ -1311,6 +1311,39 @@ body.birles-lock {
   line-height: 1.4;
 }
 
+.birles-word-target {
+  margin: 0 0 14px;
+  padding: 16px 18px 18px;
+  border-radius: 22px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff, #f3faf8);
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
+}
+
+.birles-word-target__hint {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b8796;
+}
+
+.birles-word-target__word {
+  margin: 0;
+  font-family: "Fredoka", "Baloo 2", sans-serif;
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #12293a;
+  letter-spacing: 0.02em;
+}
+
+.birles-play--kelime .birles-play__narration[hidden] {
+  display: none !important;
+}
+
 .birles-audio-hint {
   margin: 0 0 10px;
   text-align: center;

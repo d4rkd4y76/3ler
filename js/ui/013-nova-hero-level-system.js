@@ -3,7 +3,7 @@
   var MAX_LEVEL = 4;
   var Z_OVERLAY = 101200;
 
-  /** Test: seviye yükseltme 1 elmas + 1 düello enerjisi (prod öncesi kapat) */
+  /** Test: seviye yükseltme 1 elmas (prod öncesi kapat) */
   var NOVA_TEST_HERO_ECONOMY = true;
   try {
     if (typeof window.NOVA_TEST_HERO_ECONOMY === 'boolean') {
@@ -14,15 +14,15 @@
   } catch (_) {}
 
   var UPGRADE_COSTS = {
-    2: { diamonds: 5000, duelCredits: 1000 },
-    3: { diamonds: 5000, duelCredits: 2000 },
-    4: { diamonds: 5000, duelCredits: 2500 }
+    2: { diamonds: 5000, duelCredits: 0 },
+    3: { diamonds: 5000, duelCredits: 0 },
+    4: { diamonds: 5000, duelCredits: 0 }
   };
 
   var UPGRADE_COSTS_TEST = {
-    2: { diamonds: 1, duelCredits: 1 },
-    3: { diamonds: 1, duelCredits: 1 },
-    4: { diamonds: 1, duelCredits: 1 }
+    2: { diamonds: 1, duelCredits: 0 },
+    3: { diamonds: 1, duelCredits: 0 },
+    4: { diamonds: 1, duelCredits: 0 }
   };
 
   var UPGRADE_CHANCE = {
@@ -41,36 +41,29 @@
   var PERK_LINES = {
     1: [
       'Düello galibiyeti: +1 ek kupa',
-      'Boşluk · Bulmaca · Eşleştir: yanlışta 1 ek deneme hakkı',
       'Tek kişilik: oyunda 1 kez yanlış şıkkı kırmızıyla göster'
     ],
     2: [
       'Seviye 1 özelliklerinin tamamı',
       'Düello galibiyeti: toplam +3 ek kupa (+2 bonus)',
-      'Görev ödülü: tamamlanan her görevde +20 💎 kahraman bonusu',
       'Tek kişilik: oyunda 2 kez yanlış şıkkı göster'
     ],
     3: [
       'Seviye 2 özelliklerinin tamamı',
       'Düello galibiyeti: toplam +8 ek kupa (+5 bonus)',
-      '⚡ Düello galibiyeti: +10 düello enerjisi',
-      'Görev ödülü: tamamlanan her görevde +120 💎 kahraman bonusu (toplam)',
       'Tek kişilik: 2 soruda yanlış şık gösterme (oyun başına 2 hak)'
     ],
     4: [
       'Seviye 3 özelliklerinin tamamı',
-      'Düello galibiyeti: toplam +18 ek kupa (+10 bonus)',
-      '⚡ Düello galibiyeti: +30 düello enerjisi (toplam)',
-      'Görev ödülü: tamamlanan her görevde +320 💎 kahraman bonusu (toplam)',
-      'Boşluk · Bulmaca · Eşleştir: kazanılan elmaslar 2 kat'
+      'Düello galibiyeti: toplam +18 ek kupa (+10 bonus)'
     ]
   };
 
   var CUMULATIVE = {
-    1: { duelCupBonus: 1, duelCreditBonusOnWin: 0, questBonusDiamonds: 0, spWrongRevealPerGame: 1, dailyRetryOnWrong: true, dailyDiamondMultiplier: 1 },
-    2: { duelCupBonus: 3, duelCreditBonusOnWin: 0, questBonusDiamonds: 20, spWrongRevealPerGame: 2, dailyRetryOnWrong: true, dailyDiamondMultiplier: 1 },
-    3: { duelCupBonus: 8, duelCreditBonusOnWin: 10, questBonusDiamonds: 120, spWrongRevealPerGame: 2, dailyRetryOnWrong: true, dailyDiamondMultiplier: 1 },
-    4: { duelCupBonus: 18, duelCreditBonusOnWin: 30, questBonusDiamonds: 320, spWrongRevealPerGame: 2, dailyRetryOnWrong: true, dailyDiamondMultiplier: 2 }
+    1: { duelCupBonus: 1, duelCreditBonusOnWin: 0, questBonusDiamonds: 0, spWrongRevealPerGame: 1, dailyRetryOnWrong: false, dailyDiamondMultiplier: 1 },
+    2: { duelCupBonus: 3, duelCreditBonusOnWin: 0, questBonusDiamonds: 0, spWrongRevealPerGame: 2, dailyRetryOnWrong: false, dailyDiamondMultiplier: 1 },
+    3: { duelCupBonus: 8, duelCreditBonusOnWin: 0, questBonusDiamonds: 0, spWrongRevealPerGame: 2, dailyRetryOnWrong: false, dailyDiamondMultiplier: 1 },
+    4: { duelCupBonus: 18, duelCreditBonusOnWin: 0, questBonusDiamonds: 0, spWrongRevealPerGame: 2, dailyRetryOnWrong: false, dailyDiamondMultiplier: 1 }
   };
 
   var dailyRetryUsed = {};
@@ -457,20 +450,8 @@
     if (p.duelCupBonus > 0) {
       lines.push('Düello galibiyeti: toplam +' + p.duelCupBonus + ' ek kupa');
     }
-    if (p.duelCreditBonusOnWin > 0) {
-      lines.push('⚡ Düello galibiyeti: +' + p.duelCreditBonusOnWin + ' düello enerjisi');
-    }
-    if (p.questBonusDiamonds > 0) {
-      lines.push('Görev ödülü: tamamlanan her görevde +' + p.questBonusDiamonds + ' 💎 kahraman bonusu');
-    }
-    if (p.dailyRetryOnWrong) {
-      lines.push('Boşluk · Bulmaca · Eşleştir: yanlışta 1 ek deneme hakkı');
-    }
     if (p.spWrongRevealPerGame > 0) {
       lines.push('Tek kişilik: oyunda ' + p.spWrongRevealPerGame + ' kez yanlış şıkkı göster');
-    }
-    if (p.dailyDiamondMultiplier > 1) {
-      lines.push('Boşluk · Bulmaca · Eşleştir: kazanılan elmaslar ' + p.dailyDiamondMultiplier + ' kat');
     }
     return lines;
   }
@@ -605,9 +586,7 @@
       if (costEl) {
         costEl.innerHTML =
           '<span class="nh-level-stat__label">Maliyet</span>'
-          + '<span class="nh-level-stat__value">💎 ' + cost.diamonds
-          + (cost.duelCredits ? ' · ⚡ ' + cost.duelCredits : '')
-          + '</span>'
+          + '<span class="nh-level-stat__value">💎 ' + cost.diamonds + '</span>'
           + '<span class="nh-level-stat__note">Başarısız olsa da harcanır</span>';
       }
       if (chanceEl) {
@@ -621,8 +600,7 @@
         renderPerkList(document.getElementById('nh_level_perks_next'), next);
       }
       var diamonds = Number(data.diamond) || 0;
-      var credits = Number(data.duelCredits) || 0;
-      var canPay = diamonds >= cost.diamonds && credits >= cost.duelCredits;
+      var canPay = diamonds >= cost.diamonds;
       if (rollBtn) {
         rollBtn.disabled = !canPay;
         rollBtn.textContent = canPay
@@ -800,15 +778,12 @@
     if (!cost) return;
 
     var diamonds = Number(user.diamond) || 0;
-    var credits = Number(user.duelCredits) || 0;
-    if (diamonds < cost.diamonds || credits < cost.duelCredits) {
-      showResultBanner('fail', 'BAŞARISIZ', 'Yeterli elmas veya ⚡ düello enerjin yok.');
+    if (diamonds < cost.diamonds) {
+      showResultBanner('fail', 'BAŞARISIZ', 'Yeterli elmasın yok.');
       return;
     }
 
-    var msg = cost.duelCredits
-      ? (cost.diamonds + ' 💎 ve ' + cost.duelCredits + ' ⚡ düello enerjisi harcanacak. Başarı şansı %' + Math.round(chance * 100) + '. Devam?')
-      : (cost.diamonds + ' 💎 harcanacak. Başarı şansı %' + Math.round(chance * 100) + '. Devam?');
+    var msg = cost.diamonds + ' 💎 harcanacak. Başarı şansı %' + Math.round(chance * 100) + '. Devam?';
     var ok = await nhDialogConfirm(msg);
     if (!ok) return;
 
@@ -853,7 +828,6 @@
     try {
       await ref.update({
         diamond: diamonds - cost.diamonds,
-        duelCredits: credits - cost.duelCredits,
         ['purchasedBattleHeroes/' + heroId]: {
           level: newLevel,
           upgradedAt: Date.now()
@@ -900,7 +874,6 @@
     uiState.data = user;
     try {
       s.diamond = user.diamond;
-      s.duelCredits = user.duelCredits;
       s.purchasedBattleHeroes = user.purchasedBattleHeroes;
       window.selectedStudent = s;
       localStorage.setItem('selectedStudent', JSON.stringify(s));
@@ -909,8 +882,6 @@
       if (typeof updateDiamondCount === 'function') updateDiamondCount();
       var cv = document.getElementById('currentDiamonds');
       if (cv) cv.textContent = String(user.diamond || 0);
-      var dv = document.getElementById('duel-credits-value');
-      if (dv) dv.textContent = String(user.duelCredits || 0);
     } catch (_) {}
 
     var preview = document.getElementById('nh_level_hero_preview');

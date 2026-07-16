@@ -1,5 +1,5 @@
 /**
- * Bunny CDN — statik içerik (sorular, mağaza, ağaç, deneme).
+ * Bunny CDN — statik içerik (sorular, mağaza, ağaç).
  * platformMeta/cdn RTDB kaydı yüklendikten sonra enabled olur.
  */
 (function (global) {
@@ -20,7 +20,6 @@
     'dailyPuzzles/',
     'matchingGame/',
     'classContent/',
-    'denemeQuestions',
     'roboroxLearn/',
     'store/',
     'lessonVideoLookup/',

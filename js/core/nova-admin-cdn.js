@@ -12,7 +12,6 @@
     'dailyPuzzles/',
     'matchingGame/',
     'classContent/',
-    'denemeQuestions',
     'store/',
     'lessonVideoLookup/',
     'platformMeta/hikayeVideo',

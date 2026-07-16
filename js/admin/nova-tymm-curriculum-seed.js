@@ -312,9 +312,6 @@
           updates['classContent/' + key + '/' + game + '/questionIds'] = {};
         }
       });
-      if (block.denemeQuestions) {
-        updates['classContent/' + key + '/denemeQuestions'] = {};
-      }
     });
     if (Object.keys(updates).length) {
       await rdb.ref().update(updates);

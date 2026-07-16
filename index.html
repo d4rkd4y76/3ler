@@ -179,12 +179,6 @@
 <link rel="preload" as="image" href="https://dlxstore.b-cdn.net/A_highly_detailed%2C_cinematic_masterpiece%2C_202606081224%20(1).jpeg" fetchpriority="high" />
 <link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=30260608bootv8" />
 <link rel="stylesheet" href="styles/114-nova-main-slot-loading.css?v=30260608bootv8" />
-<style id="nova-bonus-drawer-critical-css">
-#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel{display:none!important;visibility:hidden!important;max-height:0!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;pointer-events:none!important}
-#main-screen #puzzle_fab_wrap,#main-screen #fillblank_fab_wrap,#main-screen #match_fab_wrap{display:none!important;visibility:hidden!important;pointer-events:none!important}
-#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #puzzle_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #fillblank_fab_wrap,#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #match_fab_wrap{display:flex!important;visibility:visible!important;pointer-events:auto!important}
-#main-screen #main-screen-quest-slot>#puzzle_fab_wrap,#main-screen #main-screen-quest-slot>#fillblank_fab_wrap,#main-screen #main-screen-quest-slot>#match_fab_wrap{display:none!important;visibility:hidden!important;pointer-events:none!important}
-</style>
 </head>
 <body data-nova-back='1'>
 <script>window.novaPerfApplyBodyEarly&&window.novaPerfApplyBodyEarly();</script>
@@ -375,9 +369,6 @@
 <span class="char-chip-label">KARAKTER</span>
 </button>
 </div>
-<div class="main-screen-deneme-column" id="main-screen-deneme-column">
-<div class="main-screen-deneme-slot" id="main-screen-deneme-slot"></div>
-</div>
 <div class="main-screen-store-anchor" id="main-screen-hud-right">
 <button type="button" class="nova-store-chip" id="nova_store_open_btn" aria-label="Mağaza — avatar, çerçeve ve kahramanlar">
 <span class="store-chip-ring" aria-hidden="true"></span>
@@ -388,29 +379,6 @@
 </div>
 </div>
 <div class="main-profile-hero nova-main-hub" id="main-profile-hero">
-<div class="main-screen-hero-left nova-main-left-hub" id="main-screen-hud-left">
-<div class="nova-main-left-egg-slot" id="nova-main-left-egg-slot" aria-hidden="false"></div>
-<div class="nova-bonus-drawer" id="nova-bonus-drawer">
-<script>
-(function(){var d=document.getElementById('nova-bonus-drawer');if(!d)return;d.classList.remove('is-open');var p=document.getElementById('nova_bonus_drawer_panel');if(p){p.hidden=true;p.setAttribute('hidden','');}var t=document.getElementById('nova_bonus_drawer_toggle');if(t)t.setAttribute('aria-expanded','false');})();
-</script>
-<button type="button" class="nova-game-btn nova-game-btn--yumurta nova-bonus-chest-toggle" id="nova_bonus_drawer_toggle" aria-expanded="false" aria-controls="nova_bonus_drawer_panel">
-<span class="nova-game-btn__icon" aria-hidden="true">🥚</span>
-<span class="nova-game-btn__text">
-<span class="nova-game-btn__title nova-game-btn__title--stack">Yumurta<br>Etkinliği</span>
-</span>
-<span class="nova-bonus-drawer__chevron" aria-hidden="true">▾</span>
-</button>
-<div class="nova-bonus-drawer__panel" id="nova_bonus_drawer_panel" hidden>
-<span class="puzzle-fab-wrap" id="puzzle_fab_wrap">
-<button type="button" class="nova-bonus-mini-btn nova-bonus-mini-btn--puzzle" id="puzzle_fab" title="Doğru çözümde rastgele ejderha yumurtası">
-<span class="nova-bonus-mini-btn__ico" aria-hidden="true">🧩</span>
-<span class="nova-bonus-mini-btn__txt">BULMACA</span>
-</button>
-</span>
-</div>
-</div>
-</div>
 <div class="main-screen-hero-center nova-main-stage">
 <div class="nova-main-stage__frame">
 <nav class="nova-main-carousel-nav" id="nova-main-tabs" role="tablist" aria-label="Profil görünümü">
@@ -467,19 +435,12 @@
 <span class="nova-lig-stat__icon stats-icon" aria-hidden="true">💎</span>
 <span class="nova-lig-stat__track"><span class="nova-lig-stat__value stats-value diamond-value" id="diamond-value">0</span></span>
 </div>
-<div class="nova-lig-stat nova-lig-stat--energy stats-item credits-stats" id="credits-stats" role="listitem">
-<span class="nova-lig-stat__icon stats-icon" aria-hidden="true">⚡</span>
-<span class="nova-lig-stat__track"><span class="nova-lig-stat__value stats-value credits-value" id="duel-credits-value">0</span></span>
-<div class="tip-title" style="display: none;">Düello Enerjisi</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="main-screen-hero-right nova-main-right-rail" id="main-screen-quest-slot">
 </div>
 </div>
 <section class="nova-main-lobby buttons" id="nova-main-lobby" aria-label="Oyun menüsü">
@@ -970,6 +931,14 @@
 <button type="button" id="profileCloseButton" aria-label="Mağazayı kapat">✖</button>
 </div>
 </header>
+<section class="nova-store-egg-banner" id="nova-store-egg-slot" aria-label="Ejderha yumurtası kır">
+  <div class="nova-store-egg-banner__copy">
+    <span class="nova-store-egg-banner__badge">Özel</span>
+    <h3 class="nova-store-egg-banner__title">Yumurta Kır</h3>
+    <p class="nova-store-egg-banner__desc">Yumurtalarını burada kır — sürpriz ödüller seni bekliyor.</p>
+  </div>
+  <div class="nova-store-egg-banner__mount" id="nova-main-left-egg-slot" aria-hidden="false"></div>
+</section>
 <section class="nova-store-nav-section" aria-label="Mağaza bölümleri">
 <div class="nova-store-main-tabs" id="novaStoreMainTabs" role="tablist" aria-label="Ana mağaza sekmeleri"></div>
 <div class="nova-store-sub-nav" id="novaStoreSubNav" role="tablist" aria-label="Alt kategoriler"></div>
@@ -1544,7 +1513,6 @@
 <link rel="stylesheet" href="styles/124-nova-weekly-quests-studio.css?v=30260629wq1" />
 <script defer src="js/core/045-nova-weekly-quests.js?v=30260629wq2"></script>
 
-<script defer src="js/features/047-nova-bonus-drawer.js?v=30260605bonushit4"></script>
 <script defer src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
 <script defer src="js/ui/004-nova-perf-settings-script.js?v=30260629scalefix1"></script>
 
@@ -1735,7 +1703,7 @@
 <script defer src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
 <script defer src="js/ui/008-nova-battle-hero.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
-<script defer src="js/ui/nova-dragon-egg.js?v=30260608degg1"></script>
+<script defer src="js/ui/nova-dragon-egg.js?v=30260716kids2"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-tabs.js?v=30260611enerji1"></script>
 <script defer src="js/ui/nova-hub-game-buttons.js?v=30260629kaptan1"></script>
@@ -1770,6 +1738,7 @@
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
 <link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260629deskbg2" />
 <link rel="stylesheet" href="styles/123-nova-main-stage-arena.css?v=30260629stage5" />
+<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260716kids2" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
