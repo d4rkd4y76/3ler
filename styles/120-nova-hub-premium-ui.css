@@ -320,7 +320,9 @@
 #main-screen .nova-main-right-rail .quest-fab-wrap {
   order: 2 !important;
   width: 100% !important;
-  display: flex !important;
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 #main-screen .nova-main-right-rail .quest-fab-wrap #quest_fab {

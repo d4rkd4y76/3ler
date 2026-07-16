@@ -101,11 +101,23 @@
   }
 
   function studentNameReady() {
-    var student = getStoredStudent();
-    if (!student || !student.studentName) return true;
     var el = document.getElementById('student-name');
-    if (!el) return true;
-    return String(el.textContent || '').trim().length > 0;
+    if (!el) return false;
+    var painted = String(el.textContent || '').trim().length > 0;
+    var student = getStoredStudent();
+    if (!student || !student.studentName) {
+      return painted || window.__novaMainScreenProfileApplied === true;
+    }
+    return painted;
+  }
+
+  function profilePhotoDecoded() {
+    var el = document.getElementById('student-photo');
+    if (!el) return false;
+    try {
+      if (el.complete && el.naturalWidth > 0) return true;
+    } catch (_) {}
+    return false;
   }
 
   function profilePhotoReady() {
@@ -113,22 +125,55 @@
     var expected = String(
       window.__novaMainScreenExpectedPhoto || (student && student.photo) || ''
     ).trim();
-    if (!expected) return window.__novaMainScreenProfileApplied === true;
-    var el = document.getElementById('student-photo');
-    if (!el) return true;
-    if (el.complete && el.naturalWidth > 0) return true;
-    return window.__novaMainScreenProfileApplied === true && el.src && el.src.indexOf('http') === 0;
+    if (!expected) return true;
+    return profilePhotoDecoded();
   }
 
   function profilePhotoBootReady() {
-    var student = getStoredStudent();
-    if (!student || !student.photo) return true;
-    var el = document.getElementById('student-photo');
-    if (!el) return true;
-    if (el.complete && el.naturalWidth > 0) return true;
-    if (window.__novaMainScreenProfileApplied === true) return true;
-    var src = String(el.currentSrc || el.src || '').trim();
-    return src.indexOf('http') === 0;
+    return profilePhotoReady();
+  }
+
+  function mainChromeReady() {
+    var dock = document.getElementById('main-screen-top-bar');
+    var lobby = document.getElementById('nova-main-lobby');
+    var tabs = document.getElementById('nova-main-tabs');
+    if (!dock || !lobby || !tabs) return false;
+    try {
+      var dr = dock.getBoundingClientRect();
+      var lr = lobby.getBoundingClientRect();
+      if (dr.width < 40 || dr.height < 16) return false;
+      if (lr.width < 40 || lr.height < 16) return false;
+    } catch (_) {
+      return false;
+    }
+    return true;
+  }
+
+  function mainBgPaintReady() {
+    try {
+      if (window.__novaMainBgPaintReady) return true;
+    } catch (_) {}
+    try {
+      if (document.body.classList.contains('nova-main-bg-video-on')) return true;
+      if (document.body.classList.contains('nova-main-bg-gradient-fallback')) return true;
+    } catch (_) {}
+    var layer = document.getElementById('nova-main-bg-video-layer');
+    if (!layer) return true;
+    if (layer.classList.contains('is-active') || layer.classList.contains('is-gradient-fallback')) {
+      return true;
+    }
+    var v = document.getElementById('nova-main-bg-video');
+    if (v && !v.hidden && v.readyState >= 2) return true;
+    var img = document.getElementById('nova-main-bg-image');
+    if (img && !img.hidden && img.complete && img.naturalWidth > 0) return true;
+    var wrap = document.getElementById('nova-main-bg-video-iframe-wrap');
+    if (wrap && !wrap.hidden) return true;
+    /* Diğer HUD hazırken arka plan sonsuza kadar bekletmesin */
+    if (mainChromeReady() && studentNameReady() && profilePhotoReady()) {
+      if (!window.__novaMainBgWaitStarted) window.__novaMainBgWaitStarted = Date.now();
+      if (Date.now() - window.__novaMainBgWaitStarted > 3800) return true;
+    }
+    return false;
   }
 
   function heroBootReady() {
@@ -180,23 +225,18 @@
   }
 
   function bootHandoffReady() {
-    if (lazyTabsActive()) {
-      return studentNameReady() && profilePhotoBootReady();
-    }
     return (
+      mainChromeReady() &&
       studentNameReady() &&
-      creditsReady() &&
-      (cupHudReady() || leagueBadgeReady() || cupCacheAvailable())
+      profilePhotoBootReady() &&
+      mainBgPaintReady()
     );
   }
 
   window.novaBootHandoffReady = bootHandoffReady;
 
   function mainScreenShellReady() {
-    if (lazyTabsActive()) {
-      return studentNameReady();
-    }
-    if (!studentNameReady()) return false;
+    if (!studentNameReady() || !mainChromeReady()) return false;
     if (!creditsReady()) {
       var cred = document.getElementById('duel-credits-value');
       if (cred && String(cred.textContent || '').trim() === '') {
@@ -209,40 +249,36 @@
   window.novaMainScreenShellReady = mainScreenShellReady;
 
   function mainScreenElementsReady() {
-    if (lazyTabsActive()) {
-      return studentNameReady() && profilePhotoReady();
+    if (!mainChromeReady() || !studentNameReady() || !profilePhotoReady() || !mainBgPaintReady()) {
+      return false;
     }
+    if (lazyTabsActive()) return true;
     return (
       leagueBadgeReady() &&
       cupHudReady() &&
       starsReady() &&
       creditsReady() &&
-      heroReady() &&
-      studentNameReady() &&
-      profilePhotoReady()
+      heroReady()
     );
   }
 
   function mainScreenReadinessRatio() {
     var booting = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
-    if (lazyTabsActive()) {
-      var lazyChecks = [
-        booting ? profilePhotoBootReady() : profilePhotoReady(),
-        studentNameReady()
-      ];
-      var lazyN = 0;
-      for (var j = 0; j < lazyChecks.length; j++) if (lazyChecks[j]) lazyN += 1;
-      return lazyN / lazyChecks.length;
-    }
     var checks = [
-      leagueBadgeReady(),
-      cupHudReady(),
-      starsReady(),
-      creditsReady(),
-      booting ? heroBootReady() : heroReady(),
+      mainChromeReady(),
       studentNameReady(),
-      booting ? profilePhotoBootReady() : profilePhotoReady()
+      booting ? profilePhotoBootReady() : profilePhotoReady(),
+      mainBgPaintReady()
     ];
+    if (!lazyTabsActive()) {
+      checks.push(
+        leagueBadgeReady(),
+        cupHudReady(),
+        starsReady(),
+        creditsReady(),
+        booting ? heroBootReady() : heroReady()
+      );
+    }
     var n = 0;
     for (var i = 0; i < checks.length; i++) if (checks[i]) n += 1;
     return n / checks.length;
@@ -316,6 +352,16 @@
     }
     if (!profilePhotoReady() && typeof window.novaApplyMainScreenProfileUi === 'function') {
       kicks.push(window.novaApplyMainScreenProfileUi().catch(function () {}));
+    }
+    if (!mainBgPaintReady() && typeof window.novaSyncMainScreenBgVideo === 'function') {
+      kicks.push(
+        Promise.race([
+          Promise.resolve(window.novaSyncMainScreenBgVideo(false)).catch(function () {}),
+          new Promise(function (r) {
+            setTimeout(r, 2400);
+          })
+        ])
+      );
     }
     if (kicks.length) await Promise.all(kicks);
   }
@@ -412,9 +458,14 @@
     }
     if (!opts.boot && typeof window.novaSyncMainScreenBgVideo === 'function') {
       var bgP = window.novaSyncMainScreenBgVideo(false);
-      if (opts.awaitBg) {
+      if (opts.awaitBg || opts.afterBoot || light) {
         try {
-          await bgP;
+          await Promise.race([
+            Promise.resolve(bgP),
+            new Promise(function (r) {
+              setTimeout(r, 3200);
+            })
+          ]);
         } catch (_) {}
       } else if (bgP && typeof bgP.catch === 'function') {
         bgP.catch(function () {});
@@ -458,7 +509,8 @@
 
       try {
         await window.novaStabilizeMainScreen({
-          awaitBg: false,
+          awaitBg: true,
+          afterBoot: !!opts.afterBoot,
           boot: !!opts.boot,
           light: !!opts.afterBoot && !opts.force,
           force: !!opts.force
@@ -467,16 +519,18 @@
 
       if (!mainScreenElementsReady()) {
         await window.novaWaitUntilMainScreenElementsReady({
-          maxMs: opts.boot ? (isPhoneBoot() ? BOOT_WAIT_PHONE_MS : BOOT_WAIT_MAX_MS) : 5000,
+          maxMs: opts.boot || opts.afterBoot ? (isPhoneBoot() ? 4500 : 7000) : 5000,
           kickMs: 64
         });
       }
 
       var ok = mainScreenElementsReady();
-      try {
-        document.dispatchEvent(new CustomEvent('nova:main-screen-ready'));
-      } catch (_) {}
-      window.__novaMainScreenBootReady = true;
+      window.__novaMainScreenBootReady = ok;
+      if (ok) {
+        try {
+          document.dispatchEvent(new CustomEvent('nova:main-screen-ready'));
+        } catch (_) {}
+      }
       return ok;
     })().finally(function () {
       setTimeout(function () {

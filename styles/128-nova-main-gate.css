@@ -105,3 +105,36 @@ body.nova-main-gate-on .nova-slot-loading-label {
   visibility: hidden !important;
   opacity: 0 !important;
 }
+
+/* Kapı açıkken eski buton/rail kalıntıları + fadeInUp flash yok */
+html.nova-main-gate-on #main-screen.container,
+html.nova-main-gate-on #main-screen,
+body.nova-main-gate-on #main-screen.container,
+body.nova-main-gate-on #main-screen {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html.nova-main-gate-on .nova-main-left-hub,
+html.nova-main-gate-on .nova-main-right-rail,
+html.nova-main-gate-on #main-screen-hud-left,
+html.nova-main-gate-on #main-screen-quest-slot,
+html.nova-main-gate-on #homework_fab,
+html.nova-main-gate-on #quest_fab,
+html.nova-main-gate-on .quest-fab-wrap,
+html.nova-main-gate-on .deneme-fab-wrap,
+html.nova-main-gate-on #learn-open-button,
+html.nova-main-gate-on #nova-bonus-drawer,
+html.nova-main-gate-on #puzzle_fab_wrap,
+html.nova-main-gate-on #fillblank_fab_wrap,
+html.nova-main-gate-on #match_fab_wrap,
+body.nova-main-gate-on .nova-main-left-hub,
+body.nova-main-gate-on .nova-main-right-rail {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}

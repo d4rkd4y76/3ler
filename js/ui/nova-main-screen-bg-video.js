@@ -468,6 +468,9 @@
     if (!layer) return;
     layer.classList.toggle('is-active', !!on);
     document.body.classList.toggle('nova-main-bg-video-on', !!on && isMainScreenVisible());
+    try {
+      window.__novaMainBgPaintReady = !!on;
+    } catch (_) {}
     if (on) {
       layer.classList.remove('is-gradient-fallback');
       document.body.classList.remove('nova-main-bg-gradient-fallback');
@@ -490,6 +493,9 @@
     }
     layer.classList.add('is-gradient-fallback', 'is-active');
     document.body.classList.add('nova-main-bg-gradient-fallback', 'nova-main-bg-video-on');
+    try {
+      window.__novaMainBgPaintReady = true;
+    } catch (_) {}
     state.currentMode = 'gradient';
     state.currentSrc = '';
   }

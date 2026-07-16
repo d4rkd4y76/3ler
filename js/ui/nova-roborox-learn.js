@@ -1137,7 +1137,8 @@
 
   if (learnOpenBtn) {
     learnOpenBtn.addEventListener("click", function () {
-      openLearnHub();
+      /* Ara hub yok — direkt Kaptan Kabuk Anlatıyor */
+      openTopicsModal();
     });
   }
 

@@ -19,19 +19,17 @@
   padding-top: clamp(6px, 1.5vw, 10px) !important;
 }
 
-/* — Sol kolon: ejderha yumurtası + bonus — */
+/* — Sol kolon kaldırıldı (yumurta üst dock’ta) — kalıntı flash yok — */
 #main-screen .nova-main-left-hub {
-  max-width: min(136px, 33vw) !important;
-  width: min(136px, 33vw) !important;
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  max-width: 0 !important;
   min-width: 0 !important;
-  justify-self: end !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  justify-content: flex-start !important;
-  gap: clamp(10px, 2.4vw, 14px) !important;
-  padding-top: clamp(4px, 1vw, 8px) !important;
-  padding-bottom: clamp(8px, 2vw, 14px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 #main-screen .nova-main-left-egg-slot {
@@ -50,11 +48,15 @@
 }
 
 #main-screen .nova-main-right-rail {
-  max-width: min(136px, 33vw) !important;
-  width: min(136px, 33vw) !important;
-  justify-self: start !important;
-  padding-bottom: clamp(8px, 2vw, 14px) !important;
-  gap: clamp(8px, 2vw, 11px) !important;
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 /* — Merkez sahne — */
@@ -361,7 +363,7 @@
   place-items: center !important;
 }
 
-/* Kahraman: çerçeveye sığ + tam orta (telefon + masaüstü) */
+/* Kahraman: çerçeveye sığ + tam orta (telefon + masaüstü) — büyük ve net */
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-main-hero-host,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-gece-sprite,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-alev-sprite,
@@ -382,12 +384,12 @@
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-golge-sprite__canvas,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-baykus-sprite__canvas {
   box-sizing: border-box !important;
-  width: min(78%, 210px) !important;
-  height: min(78%, 210px) !important;
-  max-width: min(78%, 210px) !important;
-  max-height: min(78%, 210px) !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
+  width: min(96%, 420px) !important;
+  height: min(96%, 420px) !important;
+  max-width: min(96%, 100%) !important;
+  max-height: min(96%, 100%) !important;
+  min-width: min(72%, 220px) !important;
+  min-height: min(72%, 220px) !important;
   margin: 0 auto !important;
   object-fit: contain !important;
   opacity: 1 !important;
@@ -415,10 +417,12 @@
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot canvas,
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-svg,
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot [class*='-sprite__canvas'] {
-    width: min(72%, 260px) !important;
-    height: min(72%, 260px) !important;
-    max-width: min(72%, 260px) !important;
-    max-height: min(72%, 260px) !important;
+    width: min(94%, 460px) !important;
+    height: min(94%, 460px) !important;
+    max-width: min(94%, 100%) !important;
+    max-height: min(94%, 100%) !important;
+    min-width: min(70%, 280px) !important;
+    min-height: min(70%, 280px) !important;
   }
 }
 

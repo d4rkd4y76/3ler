@@ -888,3 +888,413 @@
   animation: none !important;
   background: none !important;
 }
+
+/* — SESLER: Kaptan Kabuk yanı — */
+#main-screen .nova-lobby-tile--birles {
+  flex: 0 0 clamp(118px, 29vw, 138px);
+  width: clamp(118px, 29vw, 138px);
+  min-height: var(--nova-lobby-tile-h);
+  height: var(--nova-lobby-tile-h);
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 209, 102, 0.55) 0%, transparent 46%),
+    radial-gradient(circle at 88% 86%, rgba(46, 196, 182, 0.4) 0%, transparent 42%),
+    linear-gradient(168deg, #ff8a5c 0%, #f97316 38%, #0d9488 78%, #0f766e 100%);
+  box-shadow:
+    0 0 0 2px rgba(253, 186, 116, 0.65),
+    0 0 0 4px rgba(255, 138, 92, 0.2),
+    0 12px 0 rgba(124, 45, 18, 0.55),
+    0 22px 40px rgba(15, 118, 110, 0.38),
+    0 0 34px rgba(255, 138, 92, 0.28);
+  animation: novaLobbyBirlesPulse 3.1s ease-in-out infinite;
+}
+
+@keyframes novaLobbyBirlesPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px rgba(253, 186, 116, 0.55),
+      0 0 0 4px rgba(255, 138, 92, 0.16),
+      0 12px 0 rgba(124, 45, 18, 0.55),
+      0 22px 40px rgba(15, 118, 110, 0.34),
+      0 0 26px rgba(255, 138, 92, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px rgba(254, 215, 170, 0.85),
+      0 0 0 4px rgba(45, 212, 191, 0.28),
+      0 12px 0 rgba(124, 45, 18, 0.55),
+      0 22px 44px rgba(15, 118, 110, 0.42),
+      0 0 46px rgba(45, 212, 191, 0.32);
+  }
+}
+
+#main-screen .nova-lobby-tile--birles .nova-lobby-tile__aura--birles {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.16) 0%, transparent 40%),
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.035) 0deg 16deg, transparent 16deg 32deg);
+}
+
+#main-screen .nova-lobby-tile__shine--birles {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#main-screen .nova-lobby-tile__shine--birles::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 48%;
+  height: 180%;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.38) 50%, transparent 62%);
+  transform: skewX(-12deg);
+  animation: novaLobbyKaptanShine 4.8s ease-in-out infinite;
+}
+
+#main-screen .nova-lobby-tile--birles .nova-lobby-tile__icon-wrap--birles {
+  border-color: rgba(254, 215, 170, 0.7) !important;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.42), rgba(124, 45, 18, 0.35)) !important;
+}
+
+#main-screen .nova-lobby-tile--birles .nova-lobby-tile__icon--birles {
+  font-size: clamp(1.55rem, 5.8vw, 2rem) !important;
+  color: #fff7ed;
+  text-shadow: none;
+  display: grid;
+  place-items: center;
+  line-height: 0;
+}
+
+#main-screen .nova-lobby-tile--birles .nova-lobby-tile__icon--birles svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+#main-screen .nova-lobby-tile--birles[hidden] {
+  display: none !important;
+}
+
+/* — MACERA: TEK / DÜELLO açılır — */
+#main-screen .nova-lobby-adventure {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+  scroll-snap-align: center;
+}
+
+#main-screen .nova-lobby-tile--macera {
+  flex: 0 0 var(--nova-lobby-tile-w, clamp(112px, 28vw, 132px));
+  width: var(--nova-lobby-tile-w, clamp(112px, 28vw, 132px));
+  min-height: var(--nova-lobby-tile-h, clamp(122px, 30vw, 142px));
+  height: var(--nova-lobby-tile-h, clamp(122px, 30vw, 142px));
+  background:
+    radial-gradient(circle at 50% 12%, rgba(196, 181, 253, 0.5) 0%, transparent 48%),
+    radial-gradient(circle at 18% 88%, rgba(56, 189, 248, 0.35) 0%, transparent 42%),
+    linear-gradient(168deg, #7c3aed 0%, #4f46e5 42%, #0e7490 100%);
+  box-shadow:
+    0 0 0 2px rgba(196, 181, 253, 0.62),
+    0 12px 0 rgba(49, 46, 129, 0.68),
+    0 22px 40px rgba(30, 27, 75, 0.45),
+    0 0 36px rgba(129, 140, 248, 0.28);
+}
+
+#main-screen .nova-lobby-adventure.is-open .nova-lobby-tile--macera {
+  filter: brightness(1.08);
+  box-shadow:
+    0 0 0 2px rgba(221, 214, 254, 0.9),
+    0 12px 0 rgba(49, 46, 129, 0.68),
+    0 22px 44px rgba(30, 27, 75, 0.5),
+    0 0 48px rgba(167, 139, 250, 0.4);
+}
+
+#main-screen .nova-lobby-tile--macera .nova-lobby-tile__aura--macera {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.14) 0%, transparent 40%),
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.04) 0deg 14deg, transparent 14deg 28deg);
+}
+
+#main-screen .nova-lobby-tile__shine--macera {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#main-screen .nova-lobby-tile__shine--macera::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 48%;
+  height: 180%;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.32) 50%, transparent 62%);
+  transform: skewX(-12deg);
+  animation: novaLobbyKaptanShine 5s ease-in-out infinite;
+}
+
+#main-screen .nova-lobby-tile--macera .nova-lobby-tile__icon-wrap--macera {
+  border-color: rgba(221, 214, 254, 0.7) !important;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.4), rgba(49, 46, 129, 0.45)) !important;
+}
+
+#main-screen .nova-lobby-tile--macera .nova-lobby-tile__icon--macera {
+  font-size: clamp(1.55rem, 5.8vw, 2rem) !important;
+  line-height: 0;
+  display: grid;
+  place-items: center;
+  color: #ede9fe;
+}
+
+#main-screen .nova-lobby-tile--macera .nova-lobby-tile__icon--macera svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.35));
+}
+
+#main-screen .nova-lobby-adventure__flyout,
+body > .nova-lobby-adventure__flyout,
+#nova_macera_flyout.nova-lobby-adventure__flyout {
+  position: fixed;
+  inset: 0;
+  z-index: 100120;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding:
+    max(16px, env(safe-area-inset-top))
+    max(14px, env(safe-area-inset-right))
+    var(--macera-clearance, calc(var(--nova-lobby-tile-h, 148px) + 72px + env(safe-area-inset-bottom, 0px)))
+    max(14px, env(safe-area-inset-left));
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+#main-screen .nova-lobby-adventure__flyout[hidden],
+body > .nova-lobby-adventure__flyout[hidden],
+#nova_macera_flyout[hidden] {
+  display: none !important;
+}
+
+#main-screen .nova-lobby-adventure__scrim,
+body > .nova-lobby-adventure__flyout .nova-lobby-adventure__scrim,
+#nova_macera_flyout .nova-lobby-adventure__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 17, 0.62);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+#main-screen .nova-lobby-adventure__panel,
+body > .nova-lobby-adventure__flyout .nova-lobby-adventure__panel,
+#nova_macera_flyout .nova-lobby-adventure__panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  margin: 0;
+  padding: clamp(16px, 3.6vw, 22px);
+  border-radius: clamp(22px, 5vw, 28px);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(129, 140, 248, 0.28) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(30, 41, 59, 0.96) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1.5px solid rgba(196, 181, 253, 0.42);
+  box-shadow:
+    0 24px 48px rgba(2, 6, 23, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(18px) scale(0.94);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+}
+
+#main-screen .nova-lobby-adventure.is-anim .nova-lobby-adventure__panel,
+#nova_macera_flyout.is-anim .nova-lobby-adventure__panel,
+body.nova-macera-open #nova_macera_flyout.is-anim .nova-lobby-adventure__panel {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+#main-screen .nova-lobby-adventure__hint,
+#nova_macera_flyout .nova-lobby-adventure__hint {
+  margin: 0 0 clamp(12px, 2.8vw, 16px);
+  text-align: center;
+  font-family: 'Comfortaa', system-ui, sans-serif;
+  font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#main-screen .nova-lobby-adventure__choices,
+#nova_macera_flyout .nova-lobby-adventure__choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 3vw, 16px);
+}
+
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex: none !important;
+  min-height: clamp(132px, 28vw, 158px) !important;
+  height: clamp(132px, 28vw, 158px) !important;
+  transform-origin: center center;
+  opacity: 0;
+  transform: translateY(16px) scale(0.88);
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(8px, 2vw, 12px) !important;
+  grid-template-rows: none !important;
+  grid-template-columns: none !important;
+  place-items: center;
+  border-radius: clamp(20px, 5vw, 26px);
+  border: 2px solid transparent;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(14px, 3vw, 18px) !important;
+  box-sizing: border-box;
+}
+
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile .nova-lobby-tile__aura,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile .nova-lobby-tile__shine,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile::before {
+  position: absolute !important;
+  inset: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile__icon-wrap,
+#nova_macera_flyout .nova-lobby-adventure__choices .button-content.nova-lobby-tile__icon-wrap {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
+}
+
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile__name,
+#nova_macera_flyout .nova-lobby-adventure__choices .main-menu-label {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
+  text-align: center !important;
+  width: auto !important;
+  line-height: 1.1 !important;
+}
+
+#main-screen .nova-lobby-adventure.is-anim .nova-lobby-adventure__choices .nova-lobby-tile--solo,
+#nova_macera_flyout.is-anim .nova-lobby-adventure__choices .nova-lobby-tile--solo {
+  animation: novaMaceraChoiceIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.06s forwards;
+}
+
+#main-screen .nova-lobby-adventure.is-anim .nova-lobby-adventure__choices .nova-lobby-tile--duel,
+#nova_macera_flyout.is-anim .nova-lobby-adventure__choices .nova-lobby-tile--duel {
+  animation: novaMaceraChoiceIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.14s forwards;
+}
+
+@keyframes novaMaceraChoiceIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen .nova-lobby-tile--birles,
+  #main-screen .nova-lobby-tile--macera {
+    animation: none !important;
+  }
+
+  #main-screen .nova-lobby-adventure__panel,
+  #main-screen .nova-lobby-adventure__choices .nova-lobby-tile {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  #main-screen .nova-lobby-tile--birles {
+    border-color: rgba(253, 186, 116, 0.72) !important;
+  }
+
+  #main-screen .nova-lobby-tile--macera {
+    border-color: rgba(196, 181, 253, 0.72) !important;
+  }
+}
+
+/* Body'ye taşınan Macera paneli — TEK / DÜELLO görünümü */
+#nova_macera_flyout .nova-lobby-tile--solo {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(110, 231, 183, 0.45) 0%, transparent 52%),
+    linear-gradient(168deg, #059669 0%, #0d9488 42%, #0369a1 100%) !important;
+  box-shadow:
+    0 0 0 1.5px rgba(167, 243, 208, 0.55),
+    0 10px 0 rgba(4, 47, 46, 0.65),
+    0 20px 36px rgba(4, 47, 46, 0.45) !important;
+  border-color: rgba(167, 243, 208, 0.62) !important;
+}
+
+#nova_macera_flyout .nova-lobby-tile--duel {
+  background:
+    radial-gradient(circle at 50% 8%, rgba(254, 240, 138, 0.55) 0%, transparent 48%),
+    linear-gradient(168deg, #f59e0b 0%, #dc2626 46%, #7f1d1d 100%) !important;
+  box-shadow:
+    0 0 0 2px rgba(253, 224, 71, 0.62),
+    0 12px 0 rgba(69, 26, 3, 0.68),
+    0 24px 40px rgba(127, 29, 29, 0.42) !important;
+  border-color: rgba(253, 224, 71, 0.72) !important;
+}
+
+#nova_macera_flyout .nova-lobby-tile__icon-wrap {
+  width: clamp(52px, 14vw, 64px);
+  height: clamp(52px, 14vw, 64px);
+  border-radius: 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  display: grid;
+  place-items: center;
+  background: rgba(15, 23, 42, 0.28);
+  margin: 0 auto;
+}
+
+#nova_macera_flyout .nova-lobby-tile__icon,
+#nova_macera_flyout .duel-icon {
+  font-size: clamp(1.4rem, 5vw, 1.75rem);
+  line-height: 1;
+  font-style: normal;
+  margin: 0;
+}
+
+#nova_macera_flyout .nova-lobby-tile__name,
+#nova_macera_flyout .main-menu-label {
+  font-family: 'Comfortaa', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 3.4vw, 1.1rem);
+  letter-spacing: 0.06em;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}

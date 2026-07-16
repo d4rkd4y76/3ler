@@ -387,6 +387,8 @@
 
 #main-screen > .nova-main-lobby.buttons .nova-lobby-tile,
 #main-screen > .nova-main-lobby.buttons .nova-lobby-tile--kaptan,
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--birles,
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--macera,
 #main-screen > .nova-main-lobby.buttons .nova-lobby-tile--solo,
 #main-screen > .nova-main-lobby.buttons .nova-lobby-tile--duel,
 #main-screen > .nova-main-lobby.buttons .nova-lobby-tile--rank,
@@ -411,12 +413,51 @@
   border-width: 2px !important;
 }
 
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--birles[hidden],
+#main-screen #nova_birlestir_lobby_btn[hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile,
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile--solo,
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile--duel,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile--solo,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile--duel {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  flex: none !important;
+  min-height: clamp(132px, 28vw, 158px) !important;
+  height: clamp(132px, 28vw, 158px) !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(8px, 2vw, 12px) !important;
+  grid-template-rows: none !important;
+  grid-template-columns: none !important;
+  padding: clamp(14px, 3vw, 18px) !important;
+}
+
 #main-screen .nova-lobby-tile__icon-wrap,
 #main-screen .nova-lobby-tile__icon-wrap--solo,
 #main-screen .nova-lobby-tile__icon-wrap--duel,
 #main-screen .nova-lobby-tile__icon-wrap--rank,
 #main-screen .nova-lobby-tile__icon-wrap--exit,
 #main-screen .nova-lobby-tile__icon-wrap--kaptan,
+#main-screen .nova-lobby-tile__icon-wrap--birles,
+#main-screen .nova-lobby-tile__icon-wrap--macera,
 #main-screen .nova-lobby-tile__icon-wrap--admin,
 #main-screen .nova-lobby-tile__icon-wrap--review,
 #main-screen .nova-lobby-tile--kaptan .nova-lobby-tile__icon-wrap--kaptan,
@@ -506,4 +547,38 @@
     --nova-lobby-tile-w: clamp(124px, 30vw, 148px) !important;
     --nova-lobby-tile-h: clamp(132px, 32vw, 156px) !important;
   }
+}
+
+/* Eski FAB / ray kalıntıları — 120 display:grid kurallarını ez */
+#main-screen .nova-main-left-hub,
+#main-screen .nova-main-right-rail,
+#main-screen #main-screen-hud-left,
+#main-screen #main-screen-quest-slot,
+#main-screen #homework_fab,
+#main-screen #quest_fab,
+#main-screen #homework_fab.homework-fab,
+#main-screen #quest_fab.quest-fab,
+#main-screen #homework_fab.homework-fab.nova-game-btn,
+#main-screen #quest_fab.quest-fab.nova-game-btn,
+#main-screen .quest-fab-wrap,
+#main-screen .deneme-fab-wrap,
+#main-screen #learn-open-button,
+#main-screen #nova-bonus-drawer:not(.is-open),
+#main-screen #puzzle_fab_wrap,
+#main-screen #fillblank_fab_wrap,
+#main-screen #match_fab_wrap {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  min-width: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: none !important;
 }

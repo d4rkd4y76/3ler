@@ -275,12 +275,11 @@
           this.wrap.closest &&
           this.wrap.closest('.nova-main-tab-hero-body .nova-main-hero-showcase');
         if (inKahramanFrame) {
-          /* Ana vitrin: alt-ankor kırpmasın, tam ortada sığsın */
+          /* Ana vitrin: ortada, çerçeveyi dolduracak kadar büyük */
           this.anchorBottom = false;
-          if (typeof prevScale === 'number' && prevScale > 0.85) {
-            this.scaleMul = Math.min(prevScale, 1.05);
-            this.drawScale = 0;
-          }
+          var base = typeof prevScale === 'number' && prevScale > 0 ? prevScale : 1;
+          this.scaleMul = Math.max(base, 1.55);
+          if (!this.drawScale || this.drawScale < 1.2) this.drawScale = 1.35;
         }
         try {
           return baseDraw.apply(this, arguments);

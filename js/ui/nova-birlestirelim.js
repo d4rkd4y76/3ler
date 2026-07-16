@@ -1797,51 +1797,19 @@
     await pace(320);
   }
 
-  /** Kaptan Kabuk listesine özel giriş kartı */
+  /** Kaptan Kabuk listesine artık eklenmez — lobby kısayolu kullanılıyor */
   function injectEntryButton(listEl) {
-    if (!listEl || !isGrade1()) return null;
-    if (listEl.querySelector("[data-birlestirelim-entry]")) return listEl.querySelector("[data-birlestirelim-entry]");
-
-    var btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "roborox-topic-item birles-entry";
-    btn.setAttribute("data-birlestirelim-entry", "1");
-    btn.innerHTML =
-      '<span class="birles-entry__ico" aria-hidden="true">' +
-      '<svg viewBox="0 0 64 64" width="36" height="36">' +
-      '<defs><linearGradient id="beG" x1="0" y1="0" x2="1" y2="1">' +
-      '<stop offset="0%" stop-color="#ff8a5c"/><stop offset="100%" stop-color="#2ec4b6"/>' +
-      "</linearGradient></defs>" +
-      '<rect x="6" y="12" width="20" height="26" rx="6" fill="url(#beG)"/>' +
-      '<rect x="38" y="22" width="20" height="26" rx="6" fill="#ffd166"/>' +
-      '<path d="M26 25h12M26 39h12" stroke="#16324f" stroke-width="3.2" stroke-linecap="round"/>' +
-      '<circle cx="32" cy="32" r="4.5" fill="#16324f"/>' +
-      "</svg></span>" +
-      '<span class="roborox-topic-item__body">' +
-      '<span class="roborox-topic-item__title">BİRLEŞTİRELİM</span>' +
-      '<span class="roborox-topic-item__meta">5 ses grubu · hece &amp; kelime</span>' +
-      "</span>" +
-      '<span class="birles-entry__go" aria-hidden="true">✦</span>';
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      openHub();
-    });
-    listEl.insertBefore(btn, listEl.firstChild);
-    return btn;
+    if (!listEl) return null;
+    var old = listEl.querySelector("[data-birlestirelim-entry]");
+    if (old) old.remove();
+    return null;
   }
 
   function refreshEntryInOpenModal() {
     var list = document.getElementById("roborox-topics-list");
     if (!list) return;
-    var modal = document.getElementById("roborox-topics-modal");
-    if (!modal || !modal.classList.contains("open")) return;
-    if (!isGrade1()) {
-      var old = list.querySelector("[data-birlestirelim-entry]");
-      if (old) old.remove();
-      return;
-    }
-    injectEntryButton(list);
+    var old = list.querySelector("[data-birlestirelim-entry]");
+    if (old) old.remove();
   }
 
   document.addEventListener("keydown", function (e) {

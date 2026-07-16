@@ -2,8 +2,8 @@
 (function () {
   'use strict';
 
-  var MIN_SHOW_MS = 420;
-  var MAX_SHOW_MS = 2800;
+  var MIN_SHOW_MS = 520;
+  var MAX_SHOW_MS = 9000;
   var POLL_MS = 50;
   var startedAt = 0;
   var shown = false;
@@ -56,11 +56,22 @@
     return 0;
   }
 
+  function elementsReady() {
+    try {
+      if (typeof window.novaMainScreenElementsReady === 'function') {
+        return !!window.novaMainScreenElementsReady();
+      }
+    } catch (_) {}
+    return readiness() >= 0.999;
+  }
+
   function setVisual(ratio) {
-    displayRatio = Math.max(displayRatio, ratio);
-    /* Akıcı dolum: hedefe yumuşak yaklaş */
-    var shownR = Math.max(0.08, Math.min(0.98, displayRatio * 0.92 + 0.06));
-    if (ratio >= 1) shownR = 1;
+    displayRatio = Math.max(displayRatio, Math.max(0, Math.min(1, ratio)));
+    /* Yüzde gerçek ilerlemeyi takip etsin; sadece hafif yumuşatma */
+    var shownR = displayRatio;
+    if (shownR < 1) {
+      shownR = Math.max(0.04, Math.min(0.97, displayRatio));
+    }
     var fill = fillEl();
     if (fill) fill.style.width = Math.round(shownR * 1000) / 10 + '%';
     var pct = pctEl();
@@ -85,7 +96,7 @@
       document.documentElement.classList.add('nova-main-gate-on');
       if (document.body) document.body.classList.add('nova-main-gate-on');
     } catch (_) {}
-    setVisual(Math.max(displayRatio, 0.1));
+    setVisual(Math.max(displayRatio, readiness(), 0.05));
   }
 
   function hideGate() {
@@ -119,7 +130,7 @@
     }
     if (g) {
       g.classList.add('is-leaving');
-      setTimeout(finish, 320);
+      setTimeout(finish, 280);
     } else {
       finish();
     }
@@ -130,8 +141,9 @@
     var ratio = readiness();
     setVisual(ratio);
     var elapsed = Date.now() - (startedAt || Date.now());
-    var ready = force || ratio >= 0.999 || !!window.__novaMainScreenBootReady;
-    if (ready && elapsed >= MIN_SHOW_MS) {
+    var trulyReady = elementsReady() && ratio >= 0.999;
+    /* force sadece gerçekten hazırsa kapatır — erken event ile kapanmaz */
+    if ((force || trulyReady) && trulyReady && elapsed >= MIN_SHOW_MS) {
       hideGate();
       return;
     }
