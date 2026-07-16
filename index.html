@@ -30,21 +30,21 @@
     position: fixed !important; inset: 0 !important; z-index: 99990 !important;
     zoom: 1 !important; transform: none !important; isolation: isolate;
   }
-  html:not(.nova-has-session) #nova_sprite_boot_overlay,
   html:not(.nova-has-session) #main-screen { display: none !important; visibility: hidden !important; }
-  /* Oturum varken: açılış splash yok — ana ekran anında */
+  html:not(.nova-has-session) #nova-main-gate { display: none !important; }
+  /* Oturum varken: ana ekran + hazırlık kapısı */
   html.nova-has-session #student-selection-screen {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
   }
-  html.nova-has-session #nova_sprite_boot_overlay {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
   html.nova-has-session #main-screen {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  html.nova-has-session #nova-main-gate:not([hidden]):not(.is-done) {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -55,7 +55,6 @@
   #homework-screen,
   #daily-puzzle-screen:not(.open),
   #duelCreditsStore,
-  #nova_sprite_boot_overlay,
   #main-screen-quest-slot,
   .nova-main-right-rail,
   .nova-main-left-hub,
@@ -98,7 +97,7 @@
     inset: 0 !important;
   }
 </style>
-<link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611logincompact1" />
+<link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260717gate1" />
 <link rel="stylesheet" href="styles/108-nova-perf-no-zoom-flash.css?v=30260611perf2" />
 <link rel="stylesheet" href="styles/117-nova-perf-scale-v2.css?v=30260629scalefix1" />
 <script id="nova-login-instant-head">
@@ -112,7 +111,7 @@
     if (!raw) return;
     var o = JSON.parse(raw);
     if (o && o.studentId && o.classId) {
-      document.documentElement.classList.add('nova-has-session', 'nova-main-screen-visible');
+      document.documentElement.classList.add('nova-has-session', 'nova-main-screen-visible', 'nova-main-gate-on');
       document.documentElement.classList.remove('nova-boot-pending');
       try { window.selectedStudent = o; } catch (_) {}
     }
@@ -206,8 +205,32 @@
 
 <link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=30260629lobbyfix1" />
 <link rel="stylesheet" href="styles/114-nova-main-slot-loading.css?v=30260716boot0" />
+<link rel="stylesheet" href="styles/128-nova-main-gate.css?v=30260717gate1" />
 </head>
 <body data-nova-back='1'>
+<div id="nova-main-gate" class="nova-main-gate" hidden aria-hidden="true" role="status" aria-live="polite" aria-label="Ana ekran yükleniyor">
+  <p class="nova-main-gate__brand">DÜELLOX</p>
+  <p class="nova-main-gate__hint">Hazırlanıyor…</p>
+  <div class="nova-main-gate__track" aria-hidden="true">
+    <span class="nova-main-gate__fill"></span>
+  </div>
+  <p class="nova-main-gate__pct">0%</p>
+</div>
+<script>
+(function () {
+  try {
+    if (document.documentElement.classList.contains('nova-has-session')) {
+      var g = document.getElementById('nova-main-gate');
+      if (g) {
+        g.hidden = false;
+        g.removeAttribute('hidden');
+        g.classList.add('is-open');
+        g.setAttribute('aria-hidden', 'false');
+      }
+    }
+  } catch (_) {}
+})();
+</script>
 <script>window.novaPerfApplyBodyEarly&&window.novaPerfApplyBodyEarly();</script>
 <script id="nova-session-main-early">
 (function () {
@@ -1492,8 +1515,9 @@
 <script defer src="js/ui/nova-main-lobby-deck.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
-<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
-<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260716boot0"></script>
+<script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260717gate1"></script>
+<script defer src="js/ui/nova-main-gate-loader.js?v=30260717gate1"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260717gate1"></script>
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260716boot0"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260614wrongreview2"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260611maintabs2"></script>
@@ -1520,7 +1544,7 @@
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260716resim1" />
 <link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260716lobby1" />
 <link rel="stylesheet" href="styles/123-nova-main-stage-arena.css?v=30260629stage5" />
-<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260717egg4" />
+<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260717dock1" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */

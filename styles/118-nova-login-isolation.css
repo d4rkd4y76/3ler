@@ -19,7 +19,7 @@ html:not(.nova-has-session) body {
   animation: none !important;
 }
 
-html:not(.nova-has-session) #nova_sprite_boot_overlay,
+html:not(.nova-has-session) #nova-main-gate,
 html:not(.nova-has-session) #main-screen,
 html:not(.nova-has-session) #result-back-btn {
   display: none !important;
@@ -28,7 +28,7 @@ html:not(.nova-has-session) #result-back-btn {
   pointer-events: none !important;
 }
 
-html:not(.nova-has-session) body.nova-sprite-boot-active #nova_sprite_boot_overlay {
+html:not(.nova-has-session) body.nova-sprite-boot-active #nova-main-gate {
   display: none !important;
   visibility: hidden !important;
 }

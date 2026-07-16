@@ -43,6 +43,9 @@
       }
     } catch (_) {}
     try {
+      if (typeof window.novaMainGateStart === 'function') window.novaMainGateStart();
+    } catch (_) {}
+    try {
       var login = document.getElementById('student-selection-screen');
       if (login) login.style.display = 'none';
     } catch (_) {}
@@ -117,6 +120,19 @@
 
   window.novaForceBootHandoff = function () {
     return finishBoot();
+  };
+
+  window.novaSpriteBootReset = function () {
+    window.__novaSpriteBootDone = false;
+    window.__novaSpriteBootActive = false;
+    window.__novaSpriteBootHandoffDispatched = false;
+    try {
+      document.documentElement.classList.remove('nova-main-gate-on');
+      if (document.body) document.body.classList.remove('nova-main-gate-on', 'nova-sprite-boot-active');
+    } catch (_) {}
+    try {
+      if (typeof window.novaMainGateHide === 'function') window.novaMainGateHide();
+    } catch (_) {}
   };
 
   function autoStart() {

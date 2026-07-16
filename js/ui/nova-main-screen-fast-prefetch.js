@@ -520,9 +520,6 @@
         typeof window.novaPrefetchMainScreenBgMedia === 'function'
           ? window.novaPrefetchMainScreenBgMedia().catch(function () {})
           : Promise.resolve(),
-        typeof window.novaPreloadBootSheet === 'function'
-          ? window.novaPreloadBootSheet().catch(function () {})
-          : Promise.resolve(),
         typeof window.novaPreloadDragonEggAssets === 'function'
           ? window.novaPreloadDragonEggAssets().catch(function () {})
           : Promise.resolve()

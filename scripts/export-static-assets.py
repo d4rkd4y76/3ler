@@ -28,7 +28,6 @@ COPY_DIRS = (
 ROOT_MEDIA = (
     "duello-bg-loop.mp4",
     "ana_ekran_egg.mp4",
-    "kaynaklar_yukleniyor.mp4",
     "yeni_loading.mp4",
 )
 

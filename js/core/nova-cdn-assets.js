@@ -11,7 +11,6 @@
   var CDN_PATH_ALIASES = {
     'duello-bg-loop.mp4': 'video/duello-bg-loop.mp4',
     'ana_ekran_egg.mp4': 'video/ana_ekran_egg.mp4',
-    'kaynaklar_yukleniyor.mp4': 'video/kaynaklar_yukleniyor.mp4',
     'yeni_loading.mp4': 'video/yeni_loading.mp4'
   };
 

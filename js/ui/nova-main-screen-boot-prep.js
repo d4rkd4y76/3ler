@@ -473,12 +473,10 @@
       }
 
       var ok = mainScreenElementsReady();
-      if (ok) {
-        try {
-          document.dispatchEvent(new CustomEvent('nova:main-screen-ready'));
-        } catch (_) {}
-      }
-      window.__novaMainScreenBootReady = ok;
+      try {
+        document.dispatchEvent(new CustomEvent('nova:main-screen-ready'));
+      } catch (_) {}
+      window.__novaMainScreenBootReady = true;
       return ok;
     })().finally(function () {
       setTimeout(function () {
