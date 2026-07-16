@@ -278,8 +278,13 @@
           /* Ana vitrin: ortada, çerçeveyi dolduracak kadar büyük */
           this.anchorBottom = false;
           var base = typeof prevScale === 'number' && prevScale > 0 ? prevScale : 1;
-          this.scaleMul = Math.max(base, 1.55);
-          if (!this.drawScale || this.drawScale < 1.2) this.drawScale = 1.35;
+          var phone =
+            (typeof window.novaSpritePerfIsPhone === 'function' && window.novaSpritePerfIsPhone()) ||
+            (window.innerWidth || 0) <= 900;
+          this.scaleMul = Math.max(base, phone ? 1.95 : 1.55);
+          if (!this.drawScale || this.drawScale < (phone ? 1.45 : 1.2)) {
+            this.drawScale = phone ? 1.65 : 1.35;
+          }
         }
         try {
           return baseDraw.apply(this, arguments);
