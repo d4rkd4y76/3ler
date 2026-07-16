@@ -343,6 +343,8 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                         if (wait) wait.textContent = 'Kapatmak için ' + sec + ' sn';
                     }, 1000);
                     ov.classList.add('open');
+                    ov.removeAttribute('hidden');
+                    ov.hidden = false;
                     ov.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
                     function closePanel() {
@@ -351,6 +353,8 @@ if (duelFinalBackBtn) duelFinalBackBtn.addEventListener('click', async () => {
                             sessionStorage.setItem(GIRIS_SS_KEY, '1');
                         } catch (_s) {}
                         ov.classList.remove('open');
+                        ov.setAttribute('hidden', '');
+                        ov.hidden = true;
                         ov.setAttribute('aria-hidden', 'true');
                         document.body.style.overflow = '';
                         hideGirisMedia(imgEl, vidEl, iframeWrap, iframe);
@@ -2042,8 +2046,10 @@ async function handleLogin() {
         try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch (_) {}
 
         try {
-          document.documentElement.classList.add('nova-has-session', 'nova-boot-pending');
+          document.documentElement.classList.add('nova-has-session', 'nova-main-screen-visible');
+          document.documentElement.classList.remove('nova-boot-pending');
           document.body.classList.remove('nova-login-fast-visible');
+          document.body.classList.add('nova-main-screen-visible');
           if (typeof window.novaPerfEarlySessionScale === 'function') window.novaPerfEarlySessionScale();
         } catch (_) {}
 
@@ -2061,9 +2067,6 @@ async function handleLogin() {
 
         if (typeof window.novaStartSpriteBoot === 'function') {
             await window.novaStartSpriteBoot({ trigger: 'login' });
-            if (typeof window.novaForceBootHandoff === 'function') {
-                try { await window.novaForceBootHandoff('login-complete'); } catch (_) {}
-            }
         } else {
             mainScreen.style.removeProperty('display');
         }

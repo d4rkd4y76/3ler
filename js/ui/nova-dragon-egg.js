@@ -1201,36 +1201,47 @@
       wrap.remove();
       wrap = null;
     }
-    if (wrap) {
-      var oldHint = wrap.querySelector('.nova-dragon-egg-entry__hint');
-      if (oldHint) oldHint.remove();
+    if (wrap && wrap.classList.contains('nova-dragon-egg-wrap--store') && wrap.querySelector('.nova-store-egg-cta')) {
       bindOpenButtonIfNeeded();
       return wrap;
+    }
+    if (wrap) {
+      wrap.remove();
+      wrap = null;
     }
     var anchor =
       document.getElementById('nova-main-left-egg-slot') ||
       document.getElementById('nova-store-egg-slot');
-    if (!anchor) {
-      anchor = document.querySelector('#main-screen-hud-left .nova-main-hero-showcase-wrap');
-    }
     if (!anchor) return null;
+
+    var iceUrl = eggPngUrl('ice');
+    var nightUrl = eggPngUrl('night');
+    var fireUrl = eggPngUrl('fire');
+
     wrap = document.createElement('div');
     wrap.id = 'nova-dragon-egg-wrap';
     wrap.className = 'nova-dragon-egg-wrap nova-dragon-egg-wrap--store';
     wrap.innerHTML =
-      '<div class="nova-dragon-egg-panel">' +
-      '<div class="nova-dragon-egg-panel__title">Yumurta Kır</div>' +
-      '<button type="button" class="nova-dragon-egg-entry" id="nova_dragon_egg_open" aria-label="Ejderha yumurtasını kır">' +
-      '<div class="nova-dragon-egg-hub" id="nova_dragon_egg_hub"></div>' +
-      '<span class="nova-dragon-egg-entry__total" id="nova_dragon_egg_total">0 yumurta</span>' +
-      '</button></div>';
-    if (anchor.id === 'nova-main-left-egg-slot' || anchor.classList.contains('nova-store-egg-banner__mount')) {
+      '<button type="button" class="nova-store-egg-cta" id="nova_dragon_egg_open" aria-label="Yumurta kır">' +
+      '<div class="nova-store-egg-cta__eggs" id="nova_dragon_egg_hub" aria-hidden="true">' +
+      '<img class="nova-store-egg-cta__egg nova-store-egg-cta__egg--ice" src="' + iceUrl + '" alt="" decoding="async"/>' +
+      '<img class="nova-store-egg-cta__egg nova-store-egg-cta__egg--night" src="' + nightUrl + '" alt="" decoding="async"/>' +
+      '<img class="nova-store-egg-cta__egg nova-store-egg-cta__egg--fire" src="' + fireUrl + '" alt="" decoding="async"/>' +
+      '</div>' +
+      '<div class="nova-store-egg-cta__meta">' +
+      '<span class="nova-store-egg-cta__title">Yumurta Kır</span>' +
+      '<span class="nova-store-egg-cta__count" id="nova_dragon_egg_total">0 yumurta</span>' +
+      '</div>' +
+      '<span class="nova-store-egg-cta__go" aria-hidden="true">Kır</span>' +
+      '</button>';
+
+    if (anchor.id === 'nova-main-left-egg-slot' || anchor.classList.contains('nova-store-egg-slot__mount')) {
       anchor.appendChild(wrap);
     } else if (anchor.id === 'nova-store-egg-slot') {
-      var mount = anchor.querySelector('.nova-store-egg-banner__mount') || anchor;
+      var mount = anchor.querySelector('#nova-main-left-egg-slot') || anchor;
       mount.appendChild(wrap);
     } else {
-      anchor.insertAdjacentElement('afterend', wrap);
+      anchor.appendChild(wrap);
     }
     bindOpenButtonIfNeeded();
     return wrap;
@@ -1427,7 +1438,12 @@
   function ensureHubRunning() {
     ensureHubMarkup();
     var hub = document.getElementById('nova_dragon_egg_hub');
-    if (hub && !hub.querySelector('canvas')) playHubLoop(hub);
+    if (!hub) return null;
+    // Mağaza: PNG yumurtalar — canvas animasyonu gerekmez
+    if (hub.classList.contains('nova-store-egg-cta__eggs') || hub.querySelector('img.nova-store-egg-cta__egg')) {
+      return hub;
+    }
+    if (!hub.querySelector('canvas')) playHubLoop(hub);
     return hub;
   }
 

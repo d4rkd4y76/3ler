@@ -12,12 +12,12 @@
 }
 
 .nova-main-bg-video-layer {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #020611;
+  background: transparent;
   opacity: 0;
   transition: opacity 0.35s ease;
 }
@@ -151,7 +151,7 @@ body.nova-main-bg-video-on #main-screen.container {
 .nova-main-bg-video-iframe-wrap.is-bg-fallback {
   display: block !important;
   visibility: visible !important;
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;

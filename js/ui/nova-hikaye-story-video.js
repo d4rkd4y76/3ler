@@ -527,15 +527,8 @@
   }
 
   function queueStoryAfterBoot() {
-    if (state.queued || state.active) return;
-    state.queued = true;
-    waitForBootIdle(14000).then(function () {
-      state.queued = false;
-      if (!isBootIdle() || !isMainScreenReady()) return;
-      setTimeout(function () {
-        showHikayeStoryVideo();
-      }, 350);
-    });
+    /* Açılışta otomatik hikaye videosu kapalı — ana ekranı bloklamasın */
+    return;
   }
 
   function bindEvents() {

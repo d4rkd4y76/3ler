@@ -361,7 +361,7 @@
   line-height: 1.12 !important;
   color: #fff !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 #main-screen .nova-lobby-tile .button-content {
@@ -458,12 +458,12 @@
 }
 
 #main-screen .nova-lobby-tile--kaptan .nova-lobby-tile__icon-wrap--kaptan {
-  width: 62px !important;
-  height: 62px !important;
-  min-width: 62px !important;
-  min-height: 62px !important;
-  max-width: 62px !important;
-  max-height: 62px !important;
+  width: var(--nova-lobby-icon-box, 58px) !important;
+  height: var(--nova-lobby-icon-box, 58px) !important;
+  min-width: var(--nova-lobby-icon-box, 58px) !important;
+  min-height: var(--nova-lobby-icon-box, 58px) !important;
+  max-width: var(--nova-lobby-icon-box, 58px) !important;
+  max-height: var(--nova-lobby-icon-box, 58px) !important;
   border-radius: 18px !important;
   border: 2px solid rgba(165, 243, 252, 0.72) !important;
   background:
@@ -477,7 +477,7 @@
 }
 
 #main-screen .nova-lobby-tile--kaptan .nova-lobby-tile__icon {
-  font-size: 30px !important;
+  font-size: var(--nova-lobby-icon-size, 26px) !important;
   filter: drop-shadow(0 2px 8px rgba(8, 47, 73, 0.45));
 }
 
@@ -503,7 +503,7 @@
 }
 
 #main-screen > .nova-main-lobby.buttons .nova-lobby-tile--kaptan {
-  width: clamp(118px, 29vw, 138px) !important;
+  width: var(--nova-lobby-tile-w) !important;
 }
 
 /* — Tek Kişilik: zümrüt portal — */

@@ -32,25 +32,70 @@
   }
   html:not(.nova-has-session) #nova_sprite_boot_overlay,
   html:not(.nova-has-session) #main-screen { display: none !important; visibility: hidden !important; }
-  html:not(.nova-has-session).nova-boot-pending #nova_sprite_boot_overlay {
-    display: none !important; visibility: hidden !important; opacity: 0 !important;
-  }
-  html.nova-has-session #student-selection-screen,
-  html.nova-boot-pending #student-selection-screen {
+  /* Oturum varken: açılış splash yok — ana ekran anında */
+  html.nova-has-session #student-selection-screen {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
   }
-  html.nova-boot-pending #main-screen {
+  html.nova-has-session #nova_sprite_boot_overlay {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
   }
-  html.nova-has-session.nova-boot-pending #nova_sprite_boot_overlay[hidden] {
+  html.nova-has-session #main-screen {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  /* Kaldırılan özellik kalıntıları — ilk boyamada asla görünmesin */
+  #giris-panosu-overlay:not(.open),
+  #homework-screen,
+  #daily-puzzle-screen:not(.open),
+  #duelCreditsStore,
+  #nova_sprite_boot_overlay,
+  #main-screen-quest-slot,
+  .nova-main-right-rail,
+  .nova-main-left-hub,
+  #main-screen-hud-left,
+  #homework_fab,
+  #quest_fab,
+  .quest-fab-wrap,
+  .deneme-fab-wrap,
+  #learn-open-button,
+  #nova-bonus-drawer,
+  #puzzle_fab_wrap,
+  #fillblank_fab_wrap,
+  #match_fab_wrap {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+  #giris-panosu-overlay:not(.open) video,
+  #giris-panosu-overlay:not(.open) iframe,
+  #giris-panosu-overlay:not(.open) img {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  #giris-panosu-overlay.open {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 100200 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(2, 6, 17, 0.88) !important;
+  }
+  #nova-main-bg-video-layer {
+    position: absolute !important;
+    inset: 0 !important;
   }
 </style>
 <link rel="stylesheet" href="styles/118-nova-login-isolation.css?v=30260611logincompact1" />
@@ -67,20 +112,9 @@
     if (!raw) return;
     var o = JSON.parse(raw);
     if (o && o.studentId && o.classId) {
-      document.documentElement.classList.add('nova-has-session');
+      document.documentElement.classList.add('nova-has-session', 'nova-main-screen-visible');
+      document.documentElement.classList.remove('nova-boot-pending');
       try { window.selectedStudent = o; } catch (_) {}
-      var bootDone = false;
-      var hardReload = false;
-      try {
-        bootDone = sessionStorage.getItem('nova_sprite_boot_done_v9') === '1';
-      } catch (_) {}
-      try {
-        var nav = performance.getEntriesByType('navigation')[0];
-        if (nav && nav.type === 'reload') hardReload = true;
-      } catch (_) {}
-      if (!bootDone || hardReload) {
-        document.documentElement.classList.add('nova-boot-pending');
-      }
     }
   } catch (_) {}
 })();
@@ -141,10 +175,6 @@
 <script src="js/core/nova-cdn-fetch.js?v=30260604cdn1"></script>
 <script src="js/core/nova-cdn-assets.js?v=30260606cdnassets1"></script>
 
-<script defer src="js/core/002-script-002.js?v=30260605bonushit4"></script>
-<script defer src="js/core/003-nova-matching-game.js?v=30260605bonushit4"></script>
-<link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=30260629lobbyfix1" />
-<script defer src="js/core/005-nova-daily-puzzle.js?v=30260527hero_retry1"></script>
 <script defer src="js/core/006-script-006.js"></script>
 
 
@@ -174,52 +204,16 @@
 
 <link rel="stylesheet" href="styles/043-nova-image-center-css.css" />
 
-<link rel="stylesheet" href="styles/044-nova-homework-above-photo.css" />
-
-<link rel="preload" as="image" href="https://dlxstore.b-cdn.net/A_highly_detailed%2C_cinematic_masterpiece%2C_202606081224%20(1).jpeg" fetchpriority="high" />
-<link rel="stylesheet" href="styles/103-nova-sprite-boot.css?v=30260608bootv8" />
-<link rel="stylesheet" href="styles/114-nova-main-slot-loading.css?v=30260608bootv8" />
+<link rel="stylesheet" href="styles/034-nova-perf-settings-style.css?v=30260629lobbyfix1" />
+<link rel="stylesheet" href="styles/114-nova-main-slot-loading.css?v=30260716boot0" />
 </head>
 <body data-nova-back='1'>
 <script>window.novaPerfApplyBodyEarly&&window.novaPerfApplyBodyEarly();</script>
-<div id="nova_sprite_boot_overlay" class="nova-sprite-boot-overlay" role="status" aria-live="polite" aria-busy="true" hidden>
-  <div class="nova-sprite-boot-bg" aria-hidden="true"></div>
-  <div class="nova-sprite-boot-hero-layer" aria-hidden="true">
-    <img
-      class="nova-sprite-boot-hero-img"
-      src="https://dlxstore.b-cdn.net/A_highly_detailed%2C_cinematic_masterpiece%2C_202606081224%20(1).jpeg"
-      alt=""
-      decoding="async"
-      fetchpriority="high"
-    />
-  </div>
-  <div class="nova-sprite-boot-scanline" aria-hidden="true"></div>
-  <div class="nova-sprite-boot-vignette" aria-hidden="true"></div>
-  <div class="nova-sprite-boot-flash" aria-hidden="true"></div>
-  <header class="nova-sprite-boot-top-brand">
-    <h1 class="nova-sprite-boot-game" lang="tr" aria-label="Düellox">D&#220;ELLOX</h1>
-    <p class="nova-sprite-boot-publisher">NASK GAMES <span>Yapımcı</span></p>
-  </header>
-  <footer class="nova-sprite-boot-bottom-dock">
-    <div class="nova-sprite-boot-loading-head">
-      <h2 class="nova-sprite-boot-loading-title">Kaynaklar yükleniyor<span>Kahramanlar ve dünyalar hazırlanıyor</span></h2>
-      <p class="nova-sprite-boot-pct">0%</p>
-    </div>
-    <div class="nova-sprite-boot-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Yükleme ilerlemesi">
-      <span class="nova-sprite-boot-bar" aria-hidden="true"></span>
-      <span class="nova-sprite-boot-bar-glow"></span>
-    </div>
-    <p class="nova-sprite-boot-status">Kaynaklar hazırlanıyor…</p>
-  </footer>
-</div>
-<script id="nova-boot-overlay-early">
+<script id="nova-session-main-early">
 (function () {
   try {
-    var root = document.documentElement;
-    if (!root.classList.contains('nova-has-session') || !root.classList.contains('nova-boot-pending')) return;
-    var ov = document.getElementById('nova_sprite_boot_overlay');
-    if (ov) ov.hidden = false;
-    if (document.body) document.body.classList.add('nova-sprite-boot-active');
+    if (!document.documentElement.classList.contains('nova-has-session')) return;
+    if (document.body) document.body.classList.add('nova-main-screen-visible');
   } catch (_) {}
 })();
 </script>
@@ -336,7 +330,7 @@
 <script defer src="js/core/007-invite-ban-utils.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script defer src="js/screens/007-script-007.js?v=30260614wrongreview2"></script>
+<script defer src="js/screens/007-script-007.js?v=30260716clean1"></script>
 <script defer src="js/screens/022-nova-kids-login-js.js?v=30260606loginarena1"></script>
 <link rel="stylesheet" href="styles/048-nova-main-hud-layout.css?v=30260611hubdesk1" />
 <link rel="stylesheet" href="styles/062-nova-main-menu-pro.css?v=30260629lobbyfix1" />
@@ -345,9 +339,9 @@
 <div class="container" id="main-screen" style="display: none; position: relative;">
 <div id="nova-main-bg-video-layer" class="nova-main-bg-video-layer" aria-hidden="true">
   <img id="nova-main-bg-image-backdrop" class="nova-main-bg-backdrop nova-main-bg-image-backdrop" alt="" hidden decoding="async"/>
-  <video id="nova-main-bg-video-backdrop" class="nova-main-bg-backdrop nova-main-bg-video-backdrop" muted loop playsinline webkit-playsinline autoplay preload="auto" disablepictureinpicture aria-hidden="true" tabindex="-1" hidden></video>
+  <video id="nova-main-bg-video-backdrop" class="nova-main-bg-backdrop nova-main-bg-video-backdrop" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1" hidden></video>
   <img id="nova-main-bg-image" class="nova-main-bg-image" alt="" hidden decoding="async"/>
-  <video id="nova-main-bg-video" class="nova-main-bg-video" muted loop playsinline webkit-playsinline autoplay preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-hidden="true" tabindex="-1"></video>
+  <video id="nova-main-bg-video" class="nova-main-bg-video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-hidden="true" tabindex="-1"></video>
   <div id="nova-main-bg-video-iframe-wrap" class="nova-main-bg-video-iframe-wrap" hidden>
     <iframe id="nova-main-bg-video-iframe" class="nova-main-bg-video-iframe" title="" tabindex="-1" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
@@ -450,39 +444,38 @@
 <span class="nova-lobby-tile__aura nova-lobby-tile__aura--kaptan" aria-hidden="true"></span>
 <span class="nova-lobby-tile__shine nova-lobby-tile__shine--kaptan" aria-hidden="true"></span>
 <span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--kaptan" aria-hidden="true"><span class="nova-lobby-tile__icon">🐢</span></span>
-<span class="main-menu-label nova-lobby-tile__name nova-lobby-tile__name--kaptan"><span class="nova-lobby-tile__name-line">Kaptan</span><span class="nova-lobby-tile__name-line">Kabuk</span></span>
+<span class="main-menu-label nova-lobby-tile__name nova-lobby-tile__name--kaptan"><span class="nova-lobby-tile__name-line">KAPTAN</span><span class="nova-lobby-tile__name-line">KABUK</span></span>
 </button>
-<button class="nova-lobby-tile nova-lobby-tile--solo single-player" type="button" role="listitem">
+<button class="nova-lobby-tile nova-lobby-tile--solo single-player" type="button" role="listitem" aria-label="Tek oyun">
 <span class="nova-lobby-tile__aura nova-lobby-tile__aura--solo" aria-hidden="true"></span>
 <span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--solo" aria-hidden="true"><span class="nova-lobby-tile__icon">▶</span></span>
-<span class="main-menu-label nova-lobby-tile__name">Tek Kişilik Oyun</span>
+<span class="main-menu-label nova-lobby-tile__name"><span class="nova-lobby-tile__name-line">TEK</span><span class="nova-lobby-tile__name-line">OYUN</span></span>
 </button>
-<button class="nova-lobby-tile nova-lobby-tile--duel find-duel-button" id="findDuelButton" type="button" role="listitem">
+<button class="nova-lobby-tile nova-lobby-tile--duel find-duel-button" id="findDuelButton" type="button" role="listitem" aria-label="Düello">
 <span class="nova-lobby-tile__aura nova-lobby-tile__aura--duel" aria-hidden="true"></span>
 <span class="button-content nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--duel" aria-hidden="true"><i class="duel-icon nova-lobby-tile__icon">⚔</i></span>
-<span class="main-menu-label nova-lobby-tile__name">Düello Ara</span>
-<div class="button-glow"></div>
+<span class="main-menu-label nova-lobby-tile__name">DÜELLO</span>
 </button>
-<button class="nova-lobby-tile nova-lobby-tile--rank kupa-siralama-button" id="kupa-siralama-button" type="button" role="listitem" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;">
+<button class="nova-lobby-tile nova-lobby-tile--rank kupa-siralama-button" id="kupa-siralama-button" type="button" role="listitem" onclick="window.openSeasonRankingPanel && window.openSeasonRankingPanel(); return false;" aria-label="Sıralama">
 <span class="nova-lobby-tile__aura nova-lobby-tile__aura--rank" aria-hidden="true"></span>
 <span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--rank" aria-hidden="true"><span class="main-menu-icon nova-lobby-tile__icon">🏆</span></span>
-<span class="main-menu-label nova-lobby-tile__name">Sezon Sıralaması</span>
+<span class="main-menu-label nova-lobby-tile__name">SIRALAMA</span>
 </button>
-<button class="nova-lobby-tile nova-lobby-tile--exit logout-button" id="logout-button" type="button" role="listitem">
+<button class="nova-lobby-tile nova-lobby-tile--exit logout-button" id="logout-button" type="button" role="listitem" aria-label="Çıkış yap">
 <span class="nova-lobby-tile__aura nova-lobby-tile__aura--exit" aria-hidden="true"></span>
 <span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--exit" aria-hidden="true"><span class="nova-lobby-tile__icon">↩</span></span>
-<span class="main-menu-label nova-lobby-tile__name">Çıkış Yap</span>
+<span class="main-menu-label nova-lobby-tile__name"><span class="nova-lobby-tile__name-line">ÇIKIŞ</span><span class="nova-lobby-tile__name-line">YAP</span></span>
 </button>
 <div class="nova-admin-portal-slot nova-lobby-tile-slot" id="nova_admin_portal_slot" hidden role="listitem">
 <button type="button" class="nova-lobby-tile nova-lobby-tile--admin nova-admin-portal-btn" id="nova_admin_portal_btn" aria-label="Yönetici paneline geç">
 <span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--admin" aria-hidden="true"><span class="main-menu-icon nova-lobby-tile__icon">⚙</span></span>
-<span class="main-menu-label nova-lobby-tile__name">Yönetici</span>
+<span class="main-menu-label nova-lobby-tile__name">YÖNETİCİ</span>
 </button>
 </div>
 <div class="nova-admin-portal-slot nova-soru-kontrol-slot nova-lobby-tile-slot" id="nova_soru_kontrol_slot" hidden role="listitem">
 <button type="button" class="nova-lobby-tile nova-lobby-tile--review nova-admin-portal-btn nova-soru-kontrol-btn" id="nova_soru_kontrol_btn" aria-label="Soru kontrol modunu aç">
 <span class="nova-lobby-tile__icon-wrap nova-lobby-tile__icon-wrap--review" aria-hidden="true"><span class="main-menu-icon nova-lobby-tile__icon">🔍</span></span>
-<span class="main-menu-label nova-lobby-tile__name">Soru Kontrol</span>
+<span class="main-menu-label nova-lobby-tile__name"><span class="nova-lobby-tile__name-line">SORU</span><span class="nova-lobby-tile__name-line">KONTROL</span></span>
 </button>
 </div>
 </div>
@@ -492,14 +485,14 @@
 </section>
 <div class="nask-game-signature" aria-hidden="true">NASK GAMES</div>
 </div>
-<!-- Giriş panosu (DOM’da erken: Firebase cache ile yarışmayı önler) -->
-<div id="giris-panosu-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Giriş panosu">
+<!-- Giriş panosu (yalnızca .open ile görünür) -->
+<div id="giris-panosu-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Giriş panosu" hidden>
   <div id="giris-panosu-inner">
     <button type="button" id="giris-panosu-close" aria-label="Kapat" disabled>✕</button>
     <p id="giris-panosu-wait" class="giris-panosu-wait"></p>
-    <img id="giris-panosu-img" alt="" decoding="async" width="1080" height="1920"/>
-    <video id="giris-panosu-video" playsinline preload="metadata"></video>
-    <div id="giris-panosu-iframe-wrap">
+    <img id="giris-panosu-img" alt="" decoding="async" hidden style="display:none"/>
+    <video id="giris-panosu-video" playsinline preload="none" hidden style="display:none"></video>
+    <div id="giris-panosu-iframe-wrap" hidden style="display:none">
       <iframe id="giris-panosu-iframe" title="Giriş videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
   </div>
@@ -547,29 +540,6 @@
 </div>
 <button type="button" class="nova-degg-screen__crack-btn" id="nova_dragon_egg_crack_btn" disabled>Yumurtayı Kır</button>
 <p class="nova-degg-screen__pity" id="nova_dragon_egg_pity" hidden></p>
-</div>
-</div>
-<!-- === NOVA: Günün bulmacası === -->
-<div class="nova-perf-hq-scope" id="daily-puzzle-screen" aria-hidden="true">
-<div class="dp-card" id="daily_puzzle_card">
-<div class="dp-head">
-<div>
-<div class="dp-title">Günün Bulmacası</div>
-<div class="dp-sub" id="dp_date_label"></div>
-</div>
-<button type="button" class="dp-close" id="dp_close_btn">Kapat</button>
-</div>
-<div id="dp_play_area">
-<div class="dp-hint" id="dp_hint"></div>
-<div class="dp-slots" id="dp_slots"></div>
-<div class="dp-pool" id="dp_pool"></div>
-<div class="dp-actions">
-<button type="button" class="dp-btn dp-btn-del" id="dp_back_btn">← Sil</button>
-<button type="button" class="dp-btn dp-btn-check" id="dp_check_btn">Kontrol Et</button>
-</div>
-<div class="dp-msg" id="dp_msg"></div>
-</div>
-<div id="dp_done_area" style="display:none" class="dp-done"></div>
 </div>
 </div>
 <!-- Ranking Panel (Sezon sıralaması — görünürlük .open ile) -->
@@ -931,13 +901,8 @@
 <button type="button" id="profileCloseButton" aria-label="Mağazayı kapat">✖</button>
 </div>
 </header>
-<section class="nova-store-egg-banner" id="nova-store-egg-slot" aria-label="Ejderha yumurtası kır">
-  <div class="nova-store-egg-banner__copy">
-    <span class="nova-store-egg-banner__badge">Özel</span>
-    <h3 class="nova-store-egg-banner__title">Yumurta Kır</h3>
-    <p class="nova-store-egg-banner__desc">Yumurtalarını burada kır — sürpriz ödüller seni bekliyor.</p>
-  </div>
-  <div class="nova-store-egg-banner__mount" id="nova-main-left-egg-slot" aria-hidden="false"></div>
+<section class="nova-store-egg-slot" id="nova-store-egg-slot" aria-label="Yumurta kır">
+  <div class="nova-store-egg-slot__mount" id="nova-main-left-egg-slot"></div>
 </section>
 <section class="nova-store-nav-section" aria-label="Mağaza bölümleri">
 <div class="nova-store-main-tabs" id="novaStoreMainTabs" role="tablist" aria-label="Ana mağaza sekmeleri"></div>
@@ -945,50 +910,6 @@
 <div class="profile-categories nova-store-categories" id="novaStoreLegacyCategories" hidden aria-hidden="true"></div>
 </section>
 <div class="nova-store-stage">
-<!-- Düello Enerjisi Mağazası -->
-<div class="duel-credits-store" id="duelCreditsStore" style="display: none;">
-<div class="credits-packages-container">
-<!-- 100 Hak Paketi -->
-<div class="credit-package">
-<div class="package-header">
-<span class="package-amount">⚡ 100 Düello Enerjisi</span>
-</div>
-<div class="package-price">
-<span class="diamond-amount">100</span>
-<span class="diamond-icon">💎</span>
-</div>
-<button class="buy-button" onclick="purchaseCredits(100, 100)">
-                        Satın Al
-                    </button>
-</div>
-<!-- 300 Hak Paketi -->
-<div class="credit-package">
-<div class="package-header">
-<span class="package-amount">⚡ 300 Düello Enerjisi</span>
-</div>
-<div class="package-price">
-<span class="diamond-amount">250</span>
-<span class="diamond-icon">💎</span>
-</div>
-<button class="buy-button" onclick="purchaseCredits(300, 250)">
-                        Satın Al
-                    </button>
-</div>
-<!-- 750 Hak Paketi -->
-<div class="credit-package">
-<div class="package-header">
-<span class="package-amount">⚡ 750 Düello Enerjisi</span>
-</div>
-<div class="package-price">
-<span class="diamond-amount">500</span>
-<span class="diamond-icon">💎</span>
-</div>
-<button class="buy-button" onclick="purchaseCredits(750, 500)">
-                        Satın Al
-                    </button>
-</div>
-</div>
-</div>
 <!-- Profil Fotoğrafları Konteyneri -->
 <div class="profile-photos-container nova-store-products" id="profilePhotosContainer"></div>
 </div>
@@ -1360,160 +1281,16 @@
 <script defer src="js/core/042-nova-image-cap-js.js?v=30260526sp_fix4"></script>
 
 
-<!-- === NOVA HOMEWORK MODULE === -->
-<link rel="stylesheet" href="styles/056-style-056.css?v=30260629hw1" />
-<div id="homework-screen" class="hw-studio" role="dialog" aria-modal="true" aria-labelledby="hw_screen_title">
-  <div class="hw-studio__backdrop" aria-hidden="true"></div>
-  <div class="hw-studio__shell">
-    <header class="hw-studio__header">
-      <div class="hw-studio__brand">
-        <span class="hw-studio__brand-icon" aria-hidden="true">🚀</span>
-        <div class="hw-studio__brand-text">
-          <h1 class="hw-studio__title" id="hw_screen_title">Ödevlerim</h1>
-          <p class="hw-studio__subtitle" id="hw_subtitle">Öğretmeninin verdiği görevler burada</p>
-        </div>
-      </div>
-      <button type="button" class="hw-studio__close" id="hw_close" aria-label="Kapat">
-        <span aria-hidden="true">✕</span>
-      </button>
-    </header>
-
-    <div class="hw-studio__body">
-      <aside class="hw-studio__list-panel" aria-label="Ödev listesi">
-        <div class="hw-studio__stats" id="hw_stats" hidden></div>
-        <ul class="hw-list hw-studio__list" id="hw_list"></ul>
-      </aside>
-
-      <section class="hw-studio__detail" aria-label="Ödev detayı">
-        <div class="hw-studio__detail-inner" id="hw_detail">
-          <div class="hw-studio__hero">
-            <span class="hw-studio__subject-icon" id="hw_subject_icon" aria-hidden="true">📝</span>
-            <span class="hw-studio__status-chip" id="hw_status_chip">Bekliyor</span>
-          </div>
-          <h2 class="hw-title" id="hw_title">Ödev seç</h2>
-          <p class="hw-desc" id="hw_desc" hidden></p>
-
-          <div class="hw-studio__cards">
-            <div class="hw-studio__card">
-              <span class="hw-studio__card-icon" aria-hidden="true">❓</span>
-              <div class="hw-studio__card-body">
-                <span class="hw-studio__card-label">Soru sayısı</span>
-                <span class="hw-studio__card-value" id="hw_meta">—</span>
-              </div>
-            </div>
-            <div class="hw-studio__card">
-              <span class="hw-studio__card-icon" aria-hidden="true">📅</span>
-              <div class="hw-studio__card-body">
-                <span class="hw-studio__card-label">Verildi</span>
-                <span class="hw-studio__card-value" id="hw_date">—</span>
-              </div>
-            </div>
-            <div class="hw-studio__card hw-studio__card--wide" id="hw_topic_card" hidden>
-              <span class="hw-studio__card-icon" aria-hidden="true">📚</span>
-              <div class="hw-studio__card-body">
-                <span class="hw-studio__card-label">Konu</span>
-                <span class="hw-studio__card-value" id="hw_topic">—</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hw-studio__tip" id="hw_tip" hidden>
-            <span class="hw-studio__tip-icon" aria-hidden="true">💡</span>
-            <p class="hw-studio__tip-text"></p>
-          </div>
-        </div>
-
-        <footer class="hw-actions hw-studio__actions">
-          <button type="button" class="hw-btn hw-btn--video secondary" id="hw_video">
-            <span class="hw-btn__icon" aria-hidden="true">🐢</span>
-            <span class="hw-btn__label">Kaptan Kabuk Anlatıyor</span>
-          </button>
-          <button type="button" class="hw-btn hw-btn--start" id="hw_start">
-            <span class="hw-btn__icon" aria-hidden="true">🚀</span>
-            <span class="hw-btn__label">Ödevi Başlat</span>
-          </button>
-        </footer>
-      </section>
-    </div>
-  </div>
-</div>
-
-<!-- Deneme kuralları (tam ekran) → kapatınca 3-2-1 -->
-<div id="deneme-intro-rules" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Deneme kuralları">
-  <div id="deneme-intro-rules-inner">
-    <button type="button" id="deneme-intro-rules-close" aria-label="Kapat ve devam et">✕</button>
-    <img id="deneme-intro-rules-img" src="https://i.ibb.co/5xXcDxRR/Gemini-Generated-mage-drdxbodrdxbodrdx.jpg" alt="Düellomatik mini deneme kuralları" width="1080" height="1920" decoding="async" fetchpriority="high"/>
-    <video id="deneme-intro-rules-video" playsinline preload="auto"></video>
-  </div>
-</div>
-<div id="deneme-intro-countdown" aria-hidden="true" aria-live="polite">
-  <p id="deneme-intro-count-msg">Denemeniz başlıyor</p>
-  <div id="deneme-intro-count-num" aria-hidden="true">3</div>
-</div>
 <!-- Hikaye videosu (Bunny Stream — admin /hikayeVideo) -->
 <div id="nova-hikaye-video-overlay" class="nova-hikaye-video-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Hikaye videosu">
-  <video id="nova-hikaye-video-el" class="nova-hikaye-video-overlay__video" playsinline webkit-playsinline preload="auto" hidden></video>
+  <video id="nova-hikaye-video-el" class="nova-hikaye-video-overlay__video" playsinline webkit-playsinline preload="none" hidden></video>
   <div id="nova-hikaye-video-iframe-wrap" class="nova-hikaye-video-overlay__iframe-wrap" hidden>
     <iframe id="nova-hikaye-video-iframe" class="nova-hikaye-video-overlay__iframe" title="Hikaye videosu" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <p id="nova-hikaye-video-loading" class="nova-hikaye-video-overlay__loading" hidden>Yükleniyor…</p>
   <button type="button" id="nova-hikaye-video-skip" class="nova-hikaye-video-overlay__skip" aria-label="Hikaye videosunu geç" hidden>HİKAYE VİDEOSUNU GEÇ</button>
 </div>
-<!-- === NOVA DENEME EXAM (ilkokul dostu ayrı ekran) === -->
-<div id="deneme-exam-screen" aria-hidden="true" style="display:none">
-  <div class="deneme-kids-bg" aria-hidden="true"></div>
-  <div class="deneme-kids-inner">
-    <header class="deneme-kids-top">
-      <div class="deneme-kids-title">Mini Deneme</div>
-      <div class="deneme-kids-meta">
-        <span id="deneme_prog_label">Soru 0 / 0</span>
-        <span id="deneme_time_label">⏱ 0:00</span>
-      </div>
-      <div class="deneme-kids-progress"><div id="deneme_prog_bar"></div></div>
-    </header>
-    <main class="deneme-kids-main">
-      <div id="deneme_question_wrap"></div>
-      <div id="deneme_options_grid" class="deneme-options-grid"></div>
-      <button type="button" id="deneme_optik_btn" class="deneme-optik-fab">📝 Optik</button>
-      <div id="deneme_optik_panel" class="deneme-optik-panel" aria-hidden="true">
-        <div class="deneme-optik-card">
-          <div class="deneme-optik-top">
-            <div class="deneme-optik-title">Optik Form</div>
-            <button type="button" id="deneme_optik_close" class="deneme-optik-close">Kapat</button>
-          </div>
-          <div id="deneme_optik_q" class="deneme-optik-q">Optik form hazirlaniyor...</div>
-          <div id="deneme_optik_choices" class="deneme-optik-sheet"></div>
-          <div class="deneme-optik-help">Cevaplari yalnizca bu optik formdan isaretleyin.</div>
-        </div>
-      </div>
-      <div id="deneme_optik_warn" class="deneme-optik-warn">Lutfen optik forma isleyin.</div>
-      <div id="deneme_explain" style="display:none"></div>
-      <div class="deneme-nav" id="deneme_nav">
-        <button type="button" class="deneme-nav-btn prev" id="deneme_prev_btn">◀ Önceki</button>
-        <div class="deneme-nav-mid" id="deneme_nav_mid">Cevaplanan: 0/0</div>
-        <button type="button" class="deneme-nav-btn next" id="deneme_next_btn2">Sonraki ▶</button>
-      </div>
-      <button type="button" class="deneme-finish-early" id="deneme_finish_early_btn">Denemeyi Bitir</button>
-      <div id="deneme_finish" class="deneme-finish-card" style="display:none">
-        <div style="font-size:3rem">🎉</div>
-        <h3 id="deneme_finish_title">Harika!</h3>
-        <div class="deneme-finish-stats" id="deneme_finish_stats"></div>
-        <div id="deneme_answers_wrap" style="display:none"></div>
-        <button type="button" class="deneme-finish-back" id="deneme_finish_back">Ana ekrana dön</button>
-      </div>
-    </main>
-  </div>
-</div>
 
-<script defer src="js/core/043-script-043.js?v=30260629kaptan4"></script>
-<!-- === /NOVA HOMEWORK MODULE === -->
-
-<script defer src="js/core/044-script-044.js?v=30260629deneme2"></script>
-
-<link rel="stylesheet" href="styles/124-nova-weekly-quests-studio.css?v=30260629wq1" />
-<script defer src="js/core/045-nova-weekly-quests.js?v=30260629wq2"></script>
-
-<script defer src="js/features/046-nova-move-homework-above-photo.js?v=30260605bonushit4"></script>
 <script defer src="js/ui/004-nova-perf-settings-script.js?v=30260629scalefix1"></script>
 
 <!-- NOVA OPTIMIZATIONS: DROP-IN EGRESS REDUCER -->
@@ -1703,16 +1480,15 @@
 <script defer src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
 <script defer src="js/ui/008-nova-battle-hero.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
-<script defer src="js/ui/nova-dragon-egg.js?v=30260716kids2"></script>
+<script defer src="js/ui/nova-dragon-egg.js?v=30260716egg3"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-tabs.js?v=30260611enerji1"></script>
-<script defer src="js/ui/nova-hub-game-buttons.js?v=30260629kaptan1"></script>
 <script defer src="js/ui/nova-main-lobby-deck.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
 <script defer src="js/ui/nova-main-screen-boot-prep.js?v=30260611maintabs1"></script>
-<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260611session2"></script>
-<script defer src="js/ui/nova-hikaye-story-video.js?v=30260604hikaye5"></script>
+<script defer src="js/ui/nova-sprite-preload-boot.js?v=30260716boot0"></script>
+<script defer src="js/ui/nova-hikaye-story-video.js?v=30260716boot0"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260614wrongreview2"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260611maintabs2"></script>
 <script defer src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
@@ -1730,15 +1506,15 @@
 <link rel="stylesheet" href="styles/109-nova-main-top-dock.css?v=30260606opt1" />
 <link rel="stylesheet" href="styles/110-nova-admin-portal-footer.css?v=30260611sorukontrol4" />
 <link rel="stylesheet" href="styles/111-nova-hikaye-story-video.css?v=30260604hikaye5" />
-<link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260629deskframe1" />
+<link rel="stylesheet" href="styles/112-nova-main-screen-bg-video.css?v=30260716clean1" />
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
 <link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260629kaptan8" />
 <link rel="stylesheet" href="styles/125-nova-birlestirelim.css?v=30260714birles42" />
 <link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611center1" />
 <link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
-<link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260629deskbg2" />
+<link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260716lobby1" />
 <link rel="stylesheet" href="styles/123-nova-main-stage-arena.css?v=30260629stage5" />
-<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260716kids2" />
+<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260716lobby1" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */
