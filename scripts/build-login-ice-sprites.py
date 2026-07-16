@@ -24,6 +24,9 @@ PAD = 4
 
 
 def find_login_video() -> str:
+    preferred = os.path.join(ROOT, "giris-ekrani-source.mp4")
+    if os.path.isfile(preferred):
+        return preferred
     for name in os.listdir(ROOT):
         if not name.lower().endswith(".mp4"):
             continue
@@ -38,9 +41,9 @@ def find_login_video() -> str:
     for name in os.listdir(ROOT):
         if name.lower().endswith(".mp4") and "EKRAN" in name.upper():
             path = os.path.join(ROOT, name)
-            if os.path.basename(path) != "ana_ekran_egg.mp4":
+            if os.path.basename(path) not in ("ana_ekran_egg.mp4", "giris-ekrani-source.mp4"):
                 return path
-    raise SystemExit("GİRİŞ EKRANI.mp4 bulunamadı")
+    raise SystemExit("giris-ekrani-source.mp4 / GİRİŞ EKRANI.mp4 bulunamadı")
 
 
 def dark_mask(rgb: np.ndarray) -> np.ndarray:
