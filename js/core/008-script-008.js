@@ -1425,7 +1425,13 @@ async function loadProfilePhotos(category, opts) {
   } catch (e) { console.warn('Kategori tazeleme uyarısı:', e); }
 
   // İstenen kategorinin detayları yoksa sadece o dalı çek (full tree çekme)
-  if (!Array.isArray(photoCategories[category]) || !photoCategories[category].length) {
+  if (
+    category !== '__allResimler' &&
+    category !== '__nameFrames' &&
+    category !== '__avatarFrames' &&
+    String(category).indexOf('__battleHeroes') !== 0 &&
+    (!Array.isArray(photoCategories[category]) || !photoCategories[category].length)
+  ) {
     try {
       if (window.__novaStoreCdnPhotos && window.__novaStoreCdnPhotos[category]) {
         photoCategories[category] = novaMapStoreCategoryObject(window.__novaStoreCdnPhotos[category]);
@@ -1445,13 +1451,64 @@ async function loadProfilePhotos(category, opts) {
    document.getElementById('currentDiamonds').textContent = userData.diamond || 0;
 
   if (category === 'duel') {
-       // Düello enerjisi mağazası kaldırıldı — avatar kategorisine yönlendir
+       // Düello enerjisi mağazası kaldırıldı — resimler listesine yönlendir
        const container = document.getElementById('profilePhotosContainer');
        if (container) container.style.display = 'grid';
-       const fallback = (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' && window.novaGetDefaultAvatarCategoryKeys()[0]) || 'bilim_kosesi';
-       await loadProfilePhotos(fallback);
+       await loadProfilePhotos('__allResimler');
        return;
    }
+
+  if (category === '__allResimler') {
+      const containerAll = document.getElementById('profilePhotosContainer');
+      if (containerAll) {
+        containerAll.style.display = 'grid';
+        if (!containerAll.childElementCount) {
+          containerAll.innerHTML = '<div class="no-champion">Resimler yükleniyor…</div>';
+        }
+      }
+      let keys = [];
+      try {
+        if (typeof photoCategories === 'object' && photoCategories) {
+          keys = keys.concat(Object.keys(photoCategories));
+        }
+        if (window.storeCategoryMeta) {
+          keys = keys.concat(Object.keys(window.storeCategoryMeta));
+        }
+        if (typeof window.novaGetDefaultAvatarCategoryKeys === 'function') {
+          keys = keys.concat(window.novaGetDefaultAvatarCategoryKeys());
+        }
+      } catch (_) {}
+      keys = Array.from(new Set(keys)).filter(function (k) {
+        if (!k || k === 'duel') return false;
+        if (String(k).indexOf('__') === 0) return false;
+        return true;
+      });
+      if (!keys.length) keys = ['bilim_kosesi', 'liderler_kosesi', 'padisahlar_kosesi'];
+      await Promise.all(keys.map(async function (k) {
+        if (Array.isArray(photoCategories[k]) && photoCategories[k].length) return;
+        try {
+          if (window.__novaStoreCdnPhotos && window.__novaStoreCdnPhotos[k]) {
+            photoCategories[k] = novaMapStoreCategoryObject(window.__novaStoreCdnPhotos[k]);
+            return;
+          }
+          const catSnap = await database.ref(`store/profilePhotos/${k}`).once('value');
+          const o = catSnap.exists() ? (catSnap.val() || {}) : {};
+          photoCategories[k] = novaMapStoreCategoryObject(o);
+        } catch (_) {
+          if (!photoCategories[k]) photoCategories[k] = [];
+        }
+      }));
+      const seen = Object.create(null);
+      const merged = [];
+      keys.forEach(function (k) {
+        (photoCategories[k] || []).forEach(function (p) {
+          if (!p || !p.url || seen[p.url]) return;
+          seen[p.url] = 1;
+          merged.push(Object.assign({}, p, { price: 0, category: k }));
+        });
+      });
+      photoCategories.__allResimler = merged;
+  }
 
   if (category === '__nameFrames') {
       const containerNF = document.getElementById('profilePhotosContainer');
@@ -1501,7 +1558,7 @@ async function loadProfilePhotos(category, opts) {
           if (card) cards.push(card);
        });
        if (!cards.length) {
-         container.innerHTML = '<div class="no-champion">Bu kategoride henüz ürün yok veya sana özel görünür ürün bulunmuyor.</div>';
+         container.innerHTML = '<div class="no-champion">Henüz resim yok. Admin panelinden RESMİN bölümüne resim ekle.</div>';
          if (seq === __storeLoadSeq) novaRestoreStoreProductsScroll(container, scrollTop);
          return;
        }
@@ -1549,16 +1606,17 @@ function createPhotoCard(photo, purchasedPhotos, category, container, index) {
     const encodedUrl = btoa(photo.url);
     const isPurchased = purchasedPhotos[encodedUrl];
     const isActive = isPurchased && isStoreAvatarActive(photo.url);
+    const isResimTab = category === '__allResimler' || Number(photo.price) === 0;
     const actionHtml = isActive
         ? novaStoreInUseMarkup()
-        : `<button type="button" class="profile-photo-button ${isPurchased ? 'use-button' : 'buy-button'}">${isPurchased ? 'Kullan' : 'Satın Al'}</button>`;
+        : `<button type="button" class="profile-photo-button ${isPurchased ? 'use-button' : 'buy-button'}">${isPurchased ? 'Kullan' : (isResimTab ? 'Seç' : 'Satın Al')}</button>`;
 
     div.innerHTML = `
         <div class="nova-store-preview">
-        <img src="${photo.url}" class="profile-photo nova-store-avatar-img" alt="${photo.name || 'Avatar'}" loading="lazy" decoding="async" onerror="this.style.opacity=0.35;this.alt='Görsel yüklenemedi'">
+        <img src="${photo.url}" class="profile-photo nova-store-avatar-img" alt="${photo.name || 'Resim'}" loading="lazy" decoding="async" onerror="this.style.opacity=0.35;this.alt='Görsel yüklenemedi'">
         </div>
         <div class="profile-photo-price">
-            ${isPurchased ? '' : `${photo.price} <span class="diamond-icon">💎</span>`}
+            ${isPurchased || isResimTab ? '<span class="purchased-badge">Ücretsiz</span>' : `${photo.price} <span class="diamond-icon">💎</span>`}
         </div>
         ${actionHtml}
     `;
@@ -1567,7 +1625,7 @@ function createPhotoCard(photo, purchasedPhotos, category, container, index) {
     if (button) {
       button.onclick = () => isPurchased
         ? useProfilePhoto(photo.url)
-        : buyProfilePhoto(photo);
+        : buyProfilePhoto(Object.assign({}, photo, { price: isResimTab ? 0 : photo.price }));
     }
 
     
@@ -1837,38 +1895,45 @@ async function buyProfilePhoto(photo){
     const userData = snapshot.val() || {};
     const currentDiamonds = userData.diamond || 0;
     const cost = Number(photo.price) || 0;
-    if (currentDiamonds < cost){
+    if (cost > 0 && currentDiamonds < cost){
       await showAlert('Yeterli elmasınız yok!');
       return;
     }
-    // Onay
-    const ok = await showConfirmation(`${cost} 💎 karşılığında bu görseli satın almak istediğinize emin misiniz?`);
-    if(!ok) return;
+    if (cost > 0) {
+      const ok = await showConfirmation(`${cost} 💎 karşılığında bu görseli satın almak istediğinize emin misiniz?`);
+      if(!ok) return;
+    }
 
-    // purchasedPhotos anahtarını URL üzerinden btoa ile tutuyoruz (mevcut sistemle uyumlu)
     const encodedUrl = btoa(photo.url);
     const purchasedRef = database.ref(`classes/${selectedStudent.classId}/students/${selectedStudent.studentId}/purchasedPhotos/${encodedUrl}`);
 
-    // Bakiyeden düş ve satın alındı olarak işaretle
-    await studentRef.update({ diamond: currentDiamonds - cost });
+    if (cost > 0) {
+      await studentRef.update({ diamond: currentDiamonds - cost });
+    }
     await purchasedRef.set(true);
     try{
       const key = `${selectedStudent.classId}:${selectedStudent.studentId}`;
-      __storeStudentCache = { key, ts: Date.now(), data: { ...(userData||{}), diamond: currentDiamonds - cost, purchasedPhotos: { ...(userData.purchasedPhotos || {}), [encodedUrl]: true } } };
+      __storeStudentCache = { key, ts: Date.now(), data: { ...(userData||{}), diamond: cost > 0 ? (currentDiamonds - cost) : currentDiamonds, purchasedPhotos: { ...(userData.purchasedPhotos || {}), [encodedUrl]: true } } };
     }catch(_){}
 
-    // Cache güncelle
     const purchasedCache = getFromCache(CACHE_KEYS.PURCHASED) || {};
     purchasedCache[encodedUrl] = true;
     saveToCache(CACHE_KEYS.PURCHASED, purchasedCache);
 
-    document.getElementById('currentDiamonds').textContent = currentDiamonds - cost;
-    await showAlert('✅ Satın alındı! Artık bu resmi kullanabilirsiniz.');
+    if (cost > 0) {
+      document.getElementById('currentDiamonds').textContent = currentDiamonds - cost;
+      await showAlert('✅ Satın alındı! Artık bu resmi kullanabilirsiniz.');
+    }
+
+    // Ücretsiz resimde hemen uygula
+    if (cost === 0 && typeof useProfilePhoto === 'function') {
+      await useProfilePhoto(photo.url);
+    }
 
     const cat = novaResolveStoreCategory(
-      (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || ''
+      (typeof window.novaGetActiveStoreCategory === 'function' && window.novaGetActiveStoreCategory()) || '__allResimler'
     );
-    await loadProfilePhotos(cat);
+    await loadProfilePhotos(cat === '__allResimler' || cat.indexOf('__') === 0 ? cat : '__allResimler');
     try { await novaRefreshCharacterInventoryIfOpen(); } catch (_) {}
   } catch(e){
     console.error('Satın alma hatası:', e);
@@ -1900,18 +1965,25 @@ document.getElementById('profileCloseButton')?.addEventListener('click', () => {
 
 // === NOVA: Mağaza açılış yardımcıları ===
 async function novaWaitStoreFirstPaint() {
-  const deadline = Date.now() + 10000;
+  const deadline = Date.now() + 4000;
   while (Date.now() < deadline) {
     const mainTabs = document.getElementById('novaStoreMainTabs');
     const subNav = document.getElementById('novaStoreSubNav');
     const container = document.getElementById('profilePhotosContainer');
     const diamonds = document.getElementById('currentDiamonds');
     const hasMainTabs = mainTabs && mainTabs.querySelector('.nova-store-main-tab');
-    const hasSubNav = subNav && subNav.querySelector('.nova-store-sub-btn');
+    // RESMİN sekmesinde alt kategori yok — gizli subNav da “hazır” sayılır
+    const hasSubNav =
+      !subNav ||
+      subNav.hidden ||
+      subNav.classList.contains('is-hidden') ||
+      subNav.style.display === 'none' ||
+      !!subNav.querySelector('.nova-store-sub-btn');
     const hasProducts = container && (
       container.querySelector('.profile-photo-item') ||
       container.querySelector('.no-champion') ||
-      container.querySelector('.error')
+      container.querySelector('.error') ||
+      container.childElementCount > 0
     );
     const walletReady = diamonds && String(diamonds.textContent || '').trim() !== '';
     if (hasMainTabs && hasSubNav && walletReady && hasProducts) {
@@ -1924,8 +1996,9 @@ async function novaWaitStoreFirstPaint() {
 
 async function novaPrepareStoreForDisplay(openOpts) {
   openOpts = openOpts || {};
+  // Sprite preload mağaza açılışını bloklamasın
   if (!window.__novaSpriteAssetsReady && typeof window.novaSpritePreloadAll === 'function') {
-    try { await window.novaSpritePreloadAll(); } catch (_) {}
+    try { window.novaSpritePreloadAll(); } catch (_) {}
   }
   __storeLastCategory = '';
   __storeLastCategoryTs = 0;
@@ -1985,7 +2058,9 @@ async function novaOpenStore(openOpts) {
     overlay.setAttribute('aria-hidden', 'false');
     if (shell) shell.classList.remove('nova-store-shell--booting');
   } finally {
-    if (loaderShown && typeof window.novaHideScreenLoader === 'function') {
+    if (loaderShown && typeof window.novaForceHideScreenLoader === 'function') {
+      window.novaForceHideScreenLoader();
+    } else if (loaderShown && typeof window.novaHideScreenLoader === 'function') {
       window.novaHideScreenLoader();
     }
   }
@@ -2417,47 +2492,21 @@ async function novaRenderCharacterInventory() {
         <span class="char-inv-stat-pill"><span class="e">💎</span> ${diamonds}</span>
         <span class="char-inv-stat-pill"><span class="e">🏆</span> ${cup}</span>
       </div>
-      <p class="char-inv-summary-line">🎁 Hazine: <b>${photoEntries.length}</b> avatar · <b>${ownedFrameCount}</b> isim süsü · <b>${extraOwnedAvatar}</b> avatar çerçevesi</p>
+      <p class="char-inv-summary-line">Kahramanını ve çerçevelerini buradan seç</p>
       ${starsHtml ? `<div class="char-inv-hero-stats" style="margin-top:6px">${starsHtml}</div>` : ''}
     </div>
   `;
 
-  if (!photoEntries.length) {
-    panelP.innerHTML = `
-      <div class="char-inv-empty">
-        <div class="big" aria-hidden="true">🎭</div>
-        <h3>Henüz avatarın yok</h3>
-        <p>Mağazadan sana özel avatarlar seçebilirsin. Satın aldıkların burada listelenir.</p>
-        <button type="button" class="char-inv-cta char-inv-cta-store">Mağazaya git 🛒</button>
-      </div>`;
-  } else {
-    let i = 0;
-    panelP.innerHTML = `<div class="char-inv-grid" id="char_inv_grid_photos"></div>`;
-    const gridP = document.getElementById('char_inv_grid_photos');
-    const photoNodes = photoEntries.map((entry) => {
-      const title = escapeHtml((entry.meta && entry.meta.name) || 'Özel avatar');
-      const eq = entry.url === currentPhoto;
-      const delay = (i++ * 0.05).toFixed(2);
-      return charInvNodeFromHtml(`
-        <div class="char-inv-card${eq ? ' equipped' : ''}" style="animation-delay:${delay}s">
-          ${eq ? '<span class="char-inv-badge">Takılı</span>' : ''}
-          <div class="char-inv-thumb-wrap">
-            <img class="char-inv-thumb" src="${novaCharSafeAttr(entry.url)}" alt="">
-          </div>
-          <div class="char-inv-card-title">${title}</div>
-          ${eq
-            ? '<span class="char-inv-in-use" role="status">Kullanımda</span>'
-            : `<button type="button" class="char-inv-action" data-char-use-photo="${novaCharSafeAttr(entry.url)}">👕 Giy</button>`}
-        </div>`);
-    }).filter(Boolean);
-    await charInvAppendProgressive(gridP, photoNodes, renderSeq);
+  if (panelP) {
+    panelP.innerHTML = '';
+    panelP.hidden = true;
   }
 
   const framesList = [{ id: 'default', name: 'Klasik çerçeve' }];
   NAME_FRAME_ITEMS.forEach((item) => {
     if (ownedFrames[item.id]) framesList.push({ id: item.id, name: item.name });
   });
-  const avatarFramesList = [{ id: 'default', name: 'Klasik avatar çerçevesi' }];
+  const avatarFramesList = [{ id: 'default', name: 'Klasik resim çerçevesi' }];
   SERIES_AVATAR_FRAME_ITEMS.forEach((item) => {
     if (ownedAvatarFrames[item.id]) avatarFramesList.push({ id: item.id, name: item.name });
   });
@@ -2465,12 +2514,9 @@ async function novaRenderCharacterInventory() {
   let j = 0;
   let k = 0;
   panelF.innerHTML =
-    `<div class="char-inv-summary-line" style="margin:0 0 10px"><b>✨ İsim Süslerim</b></div>` +
+    `<div class="char-inv-summary-line" style="margin:0 0 10px"><b>✨ İsim Çerçeveleri</b></div>` +
     `<div class="char-inv-grid" id="char_inv_grid_nameframes"></div>` +
-    (extraOwnedAvatar === 0
-      ? `<p class="char-inv-summary-line" style="margin:10px 0 12px">💡 İpucu: Mağazada “Avatar Çerçevesi” bölümünden neon çerçeveler açabilirsin.</p>`
-      : '') +
-    `<div class="char-inv-summary-line" style="margin:4px 0 10px"><b>🧿 Avatar Çerçevelerim</b></div>` +
+    `<div class="char-inv-summary-line" style="margin:14px 0 10px"><b>🖼️ Resim Çerçeveleri</b></div>` +
     `<div class="char-inv-grid" id="char_inv_grid_avatarframes"></div>`;
 
   const nfGrid = document.getElementById('char_inv_grid_nameframes');
@@ -2587,6 +2633,22 @@ async function novaOpenCharacterInventory() {
   ov.style.display = 'flex';
   ov.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  try {
+    document.querySelectorAll('[data-char-tab]').forEach((b) => {
+      const on = b.getAttribute('data-char-tab') === 'heroes';
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    const pPhotos = document.getElementById('char_inv_panel_photos');
+    const pFrames = document.getElementById('char_inv_panel_frames');
+    const pHeroes = document.getElementById('char_inv_panel_heroes');
+    if (pPhotos) {
+      pPhotos.hidden = true;
+      pPhotos.style.display = 'none';
+    }
+    if (pFrames) pFrames.hidden = true;
+    if (pHeroes) pHeroes.hidden = false;
+  } catch (_) {}
   try {
     if (typeof window.novaShowScreenLoader === 'function') window.novaShowScreenLoader('character');
     __charInvLastSig = '';
@@ -2851,18 +2913,16 @@ function novaWireCharacterInventoryUi() {
       const pPhotos = document.getElementById('char_inv_panel_photos');
       const pFrames = document.getElementById('char_inv_panel_frames');
       const pHeroes = document.getElementById('char_inv_panel_heroes');
+      if (pPhotos) {
+        pPhotos.hidden = true;
+        pPhotos.style.display = 'none';
+      }
       if (tab === 'frames') {
-        if (pPhotos) pPhotos.hidden = true;
         if (pFrames) pFrames.hidden = false;
         if (pHeroes) pHeroes.hidden = true;
-      } else if (tab === 'heroes') {
-        if (pPhotos) pPhotos.hidden = true;
+      } else {
         if (pFrames) pFrames.hidden = true;
         if (pHeroes) pHeroes.hidden = false;
-      } else {
-        if (pPhotos) pPhotos.hidden = false;
-        if (pFrames) pFrames.hidden = true;
-        if (pHeroes) pHeroes.hidden = true;
       }
     });
   });

@@ -1,13 +1,13 @@
-/* Mağaza hub — AVATAR | ÇERÇEVELER | KAHRAMANLAR */
+/* Mağaza hub — RESMİN | ÇERÇEVELER | KAHRAMANLAR */
 (function () {
   var MAIN_TABS = [
-    { id: 'avatar', label: 'AVATAR', icon: '🧑' },
+    { id: 'avatar', label: 'RESMİN', icon: '🖼️' },
     { id: 'frames', label: 'ÇERÇEVELER', icon: '✨' },
     { id: 'heroes', label: 'KAHRAMANLAR', icon: '🤖' }
   ];
   var FRAME_SUB = [
     { id: '__nameFrames', label: 'İsim Çerçevesi' },
-    { id: '__avatarFrames', label: 'Avatar Çerçevesi' }
+    { id: '__avatarFrames', label: 'Resim Çerçevesi' }
   ];
   var HERO_SUB = [
     { id: '__battleHeroesTemel', label: 'Temel' },
@@ -18,7 +18,8 @@
     __avatarFrames: 1,
     __battleHeroes: 1,
     __battleHeroesTemel: 1,
-    __battleHeroesEpik: 1
+    __battleHeroesEpik: 1,
+    __allResimler: 1
   };
 
   var state = { main: 'avatar', sub: null };
@@ -30,7 +31,7 @@
 
   function labelForKey(k) {
     if (k === '__nameFrames') return 'İsim Çerçevesi';
-    if (k === '__avatarFrames') return 'Avatar Çerçevesi';
+    if (k === '__avatarFrames') return 'Resim Çerçevesi';
     if (typeof window.novaAvatarCategoryLabel === 'function') {
       return window.novaAvatarCategoryLabel(k);
     }
@@ -127,16 +128,21 @@
     var sub = document.getElementById('novaStoreSubNav');
     if (!sub) return;
     sub.innerHTML = '';
+    // RESMİN: alt kategori yok — tek düz liste
+    if (state.main === 'avatar') {
+      sub.classList.add('is-hidden');
+      sub.setAttribute('hidden', '');
+      sub.style.display = 'none';
+      return;
+    }
     sub.classList.remove('is-hidden');
+    sub.removeAttribute('hidden');
+    sub.style.display = '';
     var items;
     if (state.main === 'heroes') {
       items = HERO_SUB.slice();
-    } else if (state.main === 'frames') {
-      items = FRAME_SUB.slice();
     } else {
-      items = collectAvatarKeys().map(function (k) {
-      return { id: k, label: labelForKey(k) };
-      });
+      items = FRAME_SUB.slice();
     }
     items.forEach(function (item, i) {
       var btn = document.createElement('button');
@@ -167,8 +173,7 @@
     } else if (mainId === 'frames') {
       cat = preferredSub || '__nameFrames';
     } else {
-      var keys = collectAvatarKeys();
-      cat = preferredSub || keys[0] || (typeof window.novaGetDefaultAvatarCategoryKeys === 'function' ? window.novaGetDefaultAvatarCategoryKeys()[0] : 'bilim_kosesi');
+      cat = '__allResimler';
     }
     var loadOpts = hubOpts.bootOnly ? { bootOnly: true } : null;
     var loadPromise = loadCategory(cat, loadOpts);
@@ -218,6 +223,7 @@
   };
 
   function getActiveStoreCategory() {
+    if (state.main === 'avatar') return '__allResimler';
     if (state.sub) return state.sub;
     var subBtn = document.querySelector('#novaStoreSubNav .nova-store-sub-btn.active');
     if (subBtn && subBtn.dataset.category) return subBtn.dataset.category;

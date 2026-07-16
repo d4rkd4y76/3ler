@@ -183,12 +183,19 @@
   function syncEggChipImages() {
     EGG_TYPES.forEach(function (t) {
       var chip = document.querySelector('#nova-dragon-egg-screen .nova-dragon-egg-chip[data-egg="' + t + '"]');
-      if (!chip) return;
-      var img = chip.querySelector('.nova-dragon-egg-chip__img');
-      if (!img) return;
-      var url = eggPngUrl(t);
-      if (url && img.getAttribute('src') !== url) img.src = url;
+      if (chip) {
+        var img = chip.querySelector('.nova-dragon-egg-chip__img');
+        if (img) {
+          var url = eggPngUrl(t);
+          if (url && img.getAttribute('src') !== url) img.src = url;
+        }
+      }
     });
+    var topFire = document.querySelector('#nova_top_egg_open .egg-chip-img--fire');
+    if (topFire) {
+      var fireUrl = eggPngUrl('fire');
+      if (fireUrl && topFire.getAttribute('src') !== fireUrl) topFire.src = fireUrl;
+    }
   }
 
   function loadImage(url) {
@@ -1084,6 +1091,18 @@
     }
     var entry = document.getElementById('nova_dragon_egg_open');
     if (entry) entry.classList.toggle('has-eggs', total > 0);
+    var topEgg = document.getElementById('nova_top_egg_open');
+    if (topEgg) topEgg.classList.toggle('has-eggs', total > 0);
+    var badge = document.getElementById('nova_top_egg_badge');
+    if (badge) {
+      if (total < 1) {
+        badge.hidden = true;
+        badge.textContent = '0';
+      } else {
+        badge.hidden = false;
+        badge.textContent = total > 99 ? '99+' : String(total);
+      }
+    }
   }
 
   function renderScreenInventory(stu) {
@@ -1113,13 +1132,14 @@
   }
 
   function bindOpenButtonIfNeeded() {
-    var openBtn = document.getElementById('nova_dragon_egg_open');
-    if (!openBtn || openBtn.__novaEggOpenBound) return;
-    openBtn.__novaEggOpenBound = true;
-    openBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      openEggScreen();
+    document.querySelectorAll('#nova_dragon_egg_open, #nova_top_egg_open').forEach(function (openBtn) {
+      if (!openBtn || openBtn.__novaEggOpenBound) return;
+      openBtn.__novaEggOpenBound = true;
+      openBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openEggScreen();
+      });
     });
   }
 
@@ -1131,7 +1151,7 @@
         function (e) {
           var t = e.target;
           if (!t || !t.closest) return;
-          var btn = t.closest('#nova_dragon_egg_open, .nova-dragon-egg-entry');
+          var btn = t.closest('#nova_dragon_egg_open, #nova_top_egg_open, .nova-dragon-egg-entry, .nova-egg-chip');
           if (!btn) return;
           var main = document.getElementById('main-screen');
           if (!main || !main.contains(btn)) return;

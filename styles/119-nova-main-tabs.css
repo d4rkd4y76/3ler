@@ -280,10 +280,97 @@
 }
 
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__frame {
-  min-height: clamp(230px, 50vw, 310px);
+  min-height: clamp(260px, 56vw, 360px);
+  display: flex;
+  flex-direction: column;
+  /* stretch: abspos hero body has no in-flow width — center collapses it to 0 */
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__head {
+  width: 100%;
+  align-self: stretch;
+  flex: 0 0 auto;
+  z-index: 4;
+}
+
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__body {
+  position: relative !important;
+  flex: 1 1 auto !important;
+  align-self: stretch !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: clamp(200px, 48vw, 280px) !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone.is-visible {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-float,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-main-hero-float {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--star .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--tas .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--golge .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--baykus .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--firtina .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--buz .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--alev .nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--gece .nova-main-hero-slot {
+  position: absolute !important;
+  inset: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  place-items: center !important;
+}
+
+/* Kahraman: çerçeveye sığ + tam orta (telefon + masaüstü) */
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-gece-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-alev-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-buz-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-yildiz-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-tas-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-golge-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-baykus-sprite,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-firtina-sprite,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot canvas,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-svg,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-buz-sprite__canvas,
@@ -294,16 +381,45 @@
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-tas-sprite__canvas,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-golge-sprite__canvas,
 #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-baykus-sprite__canvas {
-  width: clamp(132px, 36vw, 178px) !important;
-  height: clamp(128px, 35vw, 172px) !important;
-  max-width: clamp(132px, 36vw, 178px) !important;
-  max-height: clamp(128px, 35vw, 172px) !important;
-  min-width: clamp(132px, 36vw, 178px) !important;
-  min-height: clamp(128px, 35vw, 172px) !important;
+  box-sizing: border-box !important;
+  width: min(78%, 210px) !important;
+  height: min(78%, 210px) !important;
+  max-width: min(78%, 210px) !important;
+  max-height: min(78%, 210px) !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  align-self: center !important;
 }
 
-#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot {
-  inset: 0 0 4px 0 !important;
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot [class*='-sprite--main'],
+#main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot [class*='-sprite'] {
+  align-items: center !important;
+  justify-content: center !important;
+  display: flex !important;
+}
+
+/* Pending placeholder asla sprite'ı gizlemesin (rozette görünürken slot boş kalmasın) */
+#main-screen .nova-main-tab-hero-body #nova-main-hero-slot.nova-slot-pending .nova-main-hero-host,
+#main-screen .nova-main-tab-hero-body #nova-main-hero-slot.nova-slot-pending canvas,
+#main-screen .nova-main-tab-hero-body #nova-main-hero-slot.nova-slot-pending .nova-hero-svg {
+  visibility: visible !important;
+}
+
+@media (min-width: 720px) {
+  #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-main-hero-host,
+  #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot [class*='-sprite'],
+  #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot canvas,
+  #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-svg,
+  #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot [class*='-sprite__canvas'] {
+    width: min(72%, 260px) !important;
+    height: min(72%, 260px) !important;
+    max-width: min(72%, 260px) !important;
+    max-height: min(72%, 260px) !important;
+  }
 }
 
 /* Lig paneli */
@@ -312,8 +428,11 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: clamp(14px, 3vw, 20px) !important;
-  padding: clamp(10px, 2.5vw, 16px) clamp(8px, 2vw, 12px) !important;
+  justify-content: center !important;
+  gap: clamp(18px, 4vw, 28px) !important;
+  padding: clamp(14px, 3.2vw, 22px) clamp(10px, 2.4vw, 16px) !important;
+  min-height: 100%;
+  box-sizing: border-box;
 }
 
 #main-screen .nova-main-tab-lig-body .star-frame {
@@ -326,7 +445,7 @@
   width: 100%;
   display: flex !important;
   justify-content: center;
-  min-height: clamp(52px, 12vw, 72px);
+  min-height: clamp(88px, 22vw, 120px);
 }
 
 #main-screen .nova-main-tab-lig-body #student-rank {
@@ -338,14 +457,21 @@
 }
 
 #main-screen .nova-main-tab-lig-body #student-rank .nova-lig {
-  transform: scale(0.52);
-  transform-origin: center top;
+  transform: scale(0.92);
+  transform-origin: center center;
 }
 
 #main-screen .nova-main-tab-lig-body .student-stats-container {
   width: 100%;
+  max-width: min(320px, 92%) !important;
   display: block !important;
   visibility: visible !important;
+}
+
+#main-screen .nova-main-tab-lig-body .nova-lig-stats {
+  --nls-pad-x: 20px !important;
+  --nls-row-h: 56px !important;
+  --nls-icon: 36px !important;
 }
 
 #main-screen .nova-main-tab-lig-body .student-stats {

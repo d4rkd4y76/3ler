@@ -268,9 +268,28 @@
               : 'high';
           } catch (_) {}
         }
+        var prevAnchor = this.anchorBottom;
+        var prevScale = this.scaleMul;
+        var inKahramanFrame =
+          this.wrap &&
+          this.wrap.closest &&
+          this.wrap.closest('.nova-main-tab-hero-body .nova-main-hero-showcase');
+        if (inKahramanFrame) {
+          /* Ana vitrin: alt-ankor kırpmasın, tam ortada sığsın */
+          this.anchorBottom = false;
+          if (typeof prevScale === 'number' && prevScale > 0.85) {
+            this.scaleMul = Math.min(prevScale, 1.05);
+            this.drawScale = 0;
+          }
+        }
         try {
           return baseDraw.apply(this, arguments);
         } finally {
+          this.anchorBottom = prevAnchor;
+          if (inKahramanFrame) {
+            this.scaleMul = prevScale;
+            this.drawScale = 0;
+          }
           this._novaTickPaused = wasPaused;
         }
       };

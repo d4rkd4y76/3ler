@@ -96,9 +96,15 @@
   function finishHeroTabUi() {
     var shell = document.getElementById('nova-main-hero-showcase');
     var zone = document.getElementById('nova-main-hero-zone');
+    var slot = document.getElementById('nova-main-hero-slot');
     if (shell && zone && zone.classList.contains('is-visible')) {
       shell.classList.add('is-visible');
       shell.setAttribute('aria-hidden', 'false');
+    }
+    if (slot) {
+      slot.classList.remove('nova-slot-pending', 'nova-slot-pending--hero');
+      var pendingLbl = slot.querySelector('.nova-slot-loading-label');
+      if (pendingLbl) pendingLbl.remove();
     }
     try {
       if (typeof window.novaRefreshMainHeroStars === 'function') {
@@ -110,6 +116,20 @@
         window.novaSpriteRefreshMainHeroCanvases();
       }
     } catch (_) {}
+  }
+
+  function heroHostCollapsed() {
+    var slot = document.getElementById('nova-main-hero-slot');
+    if (!slot) return true;
+    var host = slot.querySelector('[data-nova-main-hero]');
+    if (!host) return true;
+    var body = document.querySelector('#main-screen .nova-main-hero-showcase__body');
+    if (body) {
+      var bw = body.clientWidth || body.getBoundingClientRect().width || 0;
+      if (bw < 40) return true;
+    }
+    var r = host.getBoundingClientRect();
+    return (r.width || 0) < 40 || (r.height || 0) < 40;
   }
 
   function setTab(name) {
@@ -190,14 +210,20 @@
   }
 
   function ensureKahramanTab() {
-    if (loaded.kahraman && kahramanContentReady()) {
+    if (loaded.kahraman && kahramanContentReady() && !heroHostCollapsed()) {
       finishHeroTabUi();
+      requestAnimationFrame(function () {
+        if (typeof window.novaSpriteRefreshMainHeroCanvases === 'function') {
+          window.novaSpriteRefreshMainHeroCanvases();
+        }
+      });
       return heroLoadPromise || Promise.resolve();
     }
     if (heroLoadPromise && !kahramanContentReady()) {
       return heroLoadPromise;
     }
 
+    loaded.kahraman = false;
     showKahramanLoading(true);
     heroLoadPromise = afterPanelPaint(function () {
       if (typeof window.novaRefreshMainScreenHero === 'function') {
@@ -205,14 +231,21 @@
       }
     })
       .then(function () {
-        if (!kahramanContentReady() && typeof window.novaRefreshMainScreenHero === 'function') {
+        if ((!kahramanContentReady() || heroHostCollapsed()) && typeof window.novaRefreshMainScreenHero === 'function') {
           return window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
         }
       })
       .then(function () {
         finishHeroTabUi();
-        if (kahramanContentReady()) loaded.kahraman = true;
-        setTimeout(finishHeroTabUi, 220);
+        if (kahramanContentReady() && !heroHostCollapsed()) loaded.kahraman = true;
+        setTimeout(function () {
+          finishHeroTabUi();
+          if (heroHostCollapsed() && typeof window.novaRefreshMainScreenHero === 'function') {
+            window.novaRefreshMainScreenHero({ urgent: true, force: true }).catch(function () {});
+          } else if (typeof window.novaSpriteRefreshMainHeroCanvases === 'function') {
+            window.novaSpriteRefreshMainHeroCanvases();
+          }
+        }, 220);
       })
       .finally(function () {
         showKahramanLoading(false);

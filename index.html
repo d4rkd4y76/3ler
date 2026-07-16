@@ -363,6 +363,17 @@
 <span class="char-chip-label">KARAKTER</span>
 </button>
 </div>
+<div class="main-screen-egg-anchor" id="main-screen-egg-slot">
+<button type="button" class="nova-egg-chip" id="nova_top_egg_open" aria-label="Yumurta kır">
+<span class="egg-chip-ring" aria-hidden="true"></span>
+<span class="egg-chip-shine" aria-hidden="true"></span>
+<span class="egg-chip-orb" aria-hidden="true">
+<img class="egg-chip-img egg-chip-img--fire" src="egg_open/fire_dragon_egg.png" alt="" width="96" height="120" decoding="async" fetchpriority="high"/>
+</span>
+<span class="egg-chip-label">YUMURTA</span>
+<span class="egg-chip-badge" id="nova_top_egg_badge" hidden>0</span>
+</button>
+</div>
 <div class="main-screen-store-anchor" id="main-screen-hud-right">
 <button type="button" class="nova-store-chip" id="nova_store_open_btn" aria-label="Mağaza — avatar, çerçeve ve kahramanlar">
 <span class="store-chip-ring" aria-hidden="true"></span>
@@ -857,24 +868,23 @@
 <div class="char-inv-bg" aria-hidden="true"></div>
 <header class="char-inv-header">
 <div>
-<p class="char-inv-kicker">Senin sandığın</p>
+<p class="char-inv-kicker">Senin eşyaların</p>
 <h2 id="char_inv_title">KARAKTER</h2>
 </div>
 <div class="char-inv-header-actions">
-<button type="button" class="char-inv-lesson-btn" id="char_inv_lesson_status">📘 DERS DURUMUM</button>
+<button type="button" class="char-inv-lesson-btn" id="char_inv_lesson_status">📘 DERSLERİM</button>
 <button type="button" class="char-inv-goto-store" id="char_inv_open_store">🛒 Mağaza</button>
 <button type="button" class="char-inv-close" id="char_inv_close" aria-label="Kapat">✖</button>
 </div>
 </header>
 <section class="char-inv-hero" id="char_inv_hero" aria-live="polite"></section>
-<nav class="char-inv-tabs" role="tablist" aria-label="Envanter sekmeleri">
-<button type="button" role="tab" class="char-inv-tab active" id="char_tab_photos" data-char-tab="photos" aria-selected="true" aria-controls="char_inv_panel_photos">🎭 Avatarların</button>
-<button type="button" role="tab" class="char-inv-tab" id="char_tab_frames" data-char-tab="frames" aria-selected="false" aria-controls="char_inv_panel_frames">✨ Çerçeveler</button>
-<button type="button" role="tab" class="char-inv-tab char-inv-tab--heroes" id="char_tab_heroes" data-char-tab="heroes" aria-selected="false" aria-controls="char_inv_panel_heroes">🤖 Kahramanlar</button>
+<nav class="char-inv-tabs" role="tablist" aria-label="Karakter sekmeleri">
+<button type="button" role="tab" class="char-inv-tab char-inv-tab--heroes active" id="char_tab_heroes" data-char-tab="heroes" aria-selected="true" aria-controls="char_inv_panel_heroes">🤖 KAHRAMANLAR</button>
+<button type="button" role="tab" class="char-inv-tab" id="char_tab_frames" data-char-tab="frames" aria-selected="false" aria-controls="char_inv_panel_frames">✨ ÇERÇEVELER</button>
 </nav>
-<div class="char-inv-panel" id="char_inv_panel_photos" role="tabpanel" aria-labelledby="char_tab_photos"></div>
+<div class="char-inv-panel" id="char_inv_panel_heroes" role="tabpanel" aria-labelledby="char_tab_heroes"></div>
 <div class="char-inv-panel" id="char_inv_panel_frames" role="tabpanel" aria-labelledby="char_tab_frames" hidden></div>
-<div class="char-inv-panel" id="char_inv_panel_heroes" role="tabpanel" aria-labelledby="char_tab_heroes" hidden></div>
+<div class="char-inv-panel" id="char_inv_panel_photos" role="tabpanel" hidden aria-hidden="true" style="display:none"></div>
 <div class="char-lesson-status-panel" id="char_lesson_status_panel" hidden>
 <div class="char-lesson-status-head">
 <button type="button" class="char-lesson-back" id="char_lesson_status_back" aria-label="Geri">← Geri</button>
@@ -891,7 +901,7 @@
 <div class="nova-store-title-block">
 <p class="nova-store-kicker">NASK GAMES</p>
 <h2 class="store-title">Mağaza <span class="cart-icon" aria-hidden="true">🛒</span></h2>
-<p class="nova-store-sub">Avatar, çerçeve ve kahramanlar — tek ekranda.</p>
+<p class="nova-store-sub">Resmin, çerçeve ve kahramanlar — tek ekranda.</p>
 </div>
 <div class="store-controls nova-store-actions">
 <div class="current-diamonds nova-store-wallet">
@@ -940,7 +950,7 @@
 <script defer src="js/ui/005-nova-screen-loader.js"></script>
 <script defer src="js/core/nova-store-avatar-categories.js?v=30260605storeboot2"></script>
 <script defer src="js/core/nova-store-name-frames.js?v=30260605nameframes1"></script>
-<script defer src="js/core/008-script-008.js?v=30260629duelgate1"></script>
+<script defer src="js/core/008-script-008.js?v=30260716fix2"></script>
 <script defer src="js/core/009-script-009.js?v=30260605rank3"></script>
 <script defer src="js/core/010-script-010.js?v=30260604qbadges2"></script>
 <script defer src="js/ui/011-script-011.js"></script>
@@ -1425,12 +1435,12 @@
 <link rel="stylesheet" href="styles/065-nova-registration-premium.css?v=30260606loginarena2" />
 <link rel="stylesheet" href="styles/116-nova-login-arena.css?v=30260611loginfix2" />
 <script defer src="js/screens/050-script-050.js?v=30260605avatarcat1"></script>
-<script defer src="js/ui/012-nova-store-hub.js?v=30260611enerji1"></script>
+<script defer src="js/ui/012-nova-store-hub.js?v=30260716resim1"></script>
 <!-- Eski SVG temel kahraman scriptleri kaldırıldı (performans) — Alev Bot, Turbo, Çılgın Kanat, Buba, Pati -->
 <script defer src="js/ui/011e-nova-hero-sp-fx-core.js?v=30260528epic1"></script>
 <link rel="stylesheet" href="styles/098-nova-firtina-okcu-hero.css?v=30260604firtinadet1" />
 <link rel="stylesheet" href="styles/099-nova-yildiz-perisi-hero.css?v=30260603yildiztas1" />
-<script defer src="js/ui/nova-sprite-perf-core.js?v=30260611spfix1"></script>
+<script defer src="js/ui/nova-sprite-perf-core.js?v=30260716hero4"></script>
 <script defer src="js/ui/012ae-nova-yildiz-perisi-sprite-manifest.js?v=30260603yildiztas1"></script>
 <script defer src="js/ui/012ae-nova-yildiz-perisi-vitrin-video.js?v=30260611spfix1"></script>
 <script defer src="js/ui/012ag-nova-yildiz-perisi-true-manifest.js?v=30260602yildiz2"></script>
@@ -1478,11 +1488,11 @@
 <script defer src="js/ui/012yg-nova-gece-ejder-true-manifest.js?v=30260602gecetrue1"></script>
 <script defer src="js/ui/012yh-nova-gece-ejder-true-player.js?v=30260611spfix1"></script>
 <script defer src="js/ui/012z-nova-epic-dragon-shared.js?v=30260530epic1"></script>
-<script defer src="js/ui/008-nova-battle-hero.js?v=30260611spfix1"></script>
+<script defer src="js/ui/008-nova-battle-hero.js?v=30260716hero3"></script>
 <script defer src="js/ui/nova-dragon-egg-manifest.js?v=30260605degg10"></script>
-<script defer src="js/ui/nova-dragon-egg.js?v=30260716egg3"></script>
+<script defer src="js/ui/nova-dragon-egg.js?v=30260717egg3"></script>
 <script defer src="js/ui/nova-main-screen-bg-video.js?v=30260629deskbg2"></script>
-<script defer src="js/ui/nova-main-screen-tabs.js?v=30260611enerji1"></script>
+<script defer src="js/ui/nova-main-screen-tabs.js?v=30260716hero3"></script>
 <script defer src="js/ui/nova-main-lobby-deck.js?v=30260629deskbg2"></script>
 <script defer src="js/ui/nova-main-screen-fast-prefetch.js?v=30260611spfix1"></script>
 <script defer src="js/ui/nova-main-screen-slot-loading.js?v=30260611maintabs1"></script>
@@ -1491,7 +1501,7 @@
 <script defer src="js/ui/nova-hikaye-story-video.js?v=30260716boot0"></script>
 <script defer src="js/ui/013-nova-hero-level-system.js?v=30260614wrongreview2"></script>
 <script defer src="js/ui/014-nova-hero-main-ui.js?v=30260611maintabs2"></script>
-<script defer src="js/ui/015-nova-store-detail.js?v=30260605avatarcat1"></script>
+<script defer src="js/ui/015-nova-store-detail.js?v=30260716resim1"></script>
 <link rel="stylesheet" href="styles/115-nova-player-card-modal.css?v=30260606playercard9" />
 <script defer src="js/ui/nova-player-card-modal.js?v=30260606playercard7"></script>
 <!-- === /NOVA PATCH === -->
@@ -1499,7 +1509,7 @@
 <script defer src="js/core/052-script-052.js"></script>
 <script defer src="js/features/053-script-053.js"></script>
 <script defer src="js/core/054-nova-single-result-screen-guard.js?v=30260526sp_fix3"></script>
-<link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260605bonushit4" />
+<link rel="stylesheet" href="styles/105-nova-main-hero-left-showcase.css?v=30260716hero4" />
 <link rel="stylesheet" href="styles/106-nova-main-fullscreen-mobile.css?v=30260606maindock2" />
 <link rel="stylesheet" href="styles/107-nova-main-hud-frame-fit.css?v=30260611hubfit1" />
 <link rel="stylesheet" href="styles/115-nova-main-stability.css?v=30260608bootv8" />
@@ -1510,11 +1520,11 @@
 <link rel="stylesheet" href="styles/113-nova-dragon-egg.css?v=30260606degg70" />
 <link rel="stylesheet" href="styles/114-nova-roborox-learn.css?v=30260629kaptan8" />
 <link rel="stylesheet" href="styles/125-nova-birlestirelim.css?v=30260714birles42" />
-<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260611center1" />
-<link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260611rail2" />
+<link rel="stylesheet" href="styles/119-nova-main-tabs.css?v=30260716hero4" />
+<link rel="stylesheet" href="styles/120-nova-hub-premium-ui.css?v=30260716resim1" />
 <link rel="stylesheet" href="styles/121-nova-main-lobby.css?v=30260716lobby1" />
 <link rel="stylesheet" href="styles/123-nova-main-stage-arena.css?v=30260629stage5" />
-<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260716lobby1" />
+<link rel="stylesheet" href="styles/127-nova-main-kids-scale.css?v=30260717egg3" />
 <link rel="stylesheet" href="styles/088-nova-avatar-frames-unified.css?v=30260605frames1" />
 <style id="nask-tools-style">
 /* Araçlar butonu ana ekranda 105 CSS ile stillenir; burada yedek */

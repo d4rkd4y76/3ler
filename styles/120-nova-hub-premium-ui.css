@@ -671,7 +671,7 @@
 /* ═══ LİG — Premium kaynak HUD ═══ */
 #main-screen .nova-main-tab-lig-body .student-stats-container {
   width: 100%;
-  max-width: 212px;
+  max-width: min(320px, 92%);
   margin: clamp(8px, 1.6vw, 12px) auto 0;
   padding: 0;
   perspective: none;
@@ -679,9 +679,9 @@
 }
 
 #main-screen .nova-main-tab-lig-body .nova-lig-stats {
-  --nls-pad-x: 16px;
-  --nls-row-h: 44px;
-  --nls-icon: 30px;
+  --nls-pad-x: 20px;
+  --nls-row-h: 56px;
+  --nls-icon: 36px;
   display: flex !important;
   flex-direction: column !important;
   width: 100%;

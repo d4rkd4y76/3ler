@@ -263,16 +263,16 @@
         } catch (_) {}
         var isActive = !!(livePurchased && typeof isStoreAvatarActive === 'function' && isStoreAvatarActive(photo.url));
         openStoreDetail({
-          kicker: (typeof window.novaAvatarCategoryLabel === 'function' ? window.novaAvatarCategoryLabel(category) : category) || 'Avatar',
-          title: photo.name || 'Avatar',
-          desc: photo.desc || 'Profilinde kullanabileceğin özel avatar.',
-          priceHtml: livePurchased ? '' : (photo.price + ' <span class="diamond-icon">💎</span>'),
+          kicker: 'RESMİN',
+          title: photo.name || 'Resim',
+          desc: photo.desc || 'Dokun ve kullan — ücretsiz.',
+          priceHtml: '<span class="purchased-badge">Ücretsiz</span>',
           previewClass: 'nova-store-detail-preview--avatar',
           previewHtml: '<div class="nova-store-preview nova-store-preview--avatar nova-store-detail-vitrine">'
             + '<img src="' + esc(photo.url) + '" class="profile-photo nova-store-avatar-img" alt="">'
             + '</div>',
           btnClass: livePurchased ? 'use-button' : 'buy-button',
-          btnText: livePurchased ? 'Kullan' : 'Satın Al',
+          btnText: livePurchased ? 'Kullan' : 'Seç',
           btnDisabled: !!(livePurchased && isActive),
           inUse: isActive,
           onAction: async function () {
@@ -281,12 +281,12 @@
               return;
             }
             if (livePurchased) await useProfilePhoto(photo.url);
-            else await buyProfilePhoto(photo);
+            else await buyProfilePhoto(Object.assign({}, photo, { price: 0 }));
             closeStoreDetail();
             if (typeof window.novaRefreshStoreInPlace === 'function') {
               window.novaRefreshStoreInPlace();
             } else if (typeof loadProfilePhotos === 'function') {
-              loadProfilePhotos(category);
+              loadProfilePhotos('__allResimler');
             }
           }
         });

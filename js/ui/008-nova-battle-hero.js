@@ -610,15 +610,24 @@
         if (c && c.width > 8 && c.height > 8) {
           var cssW = c.clientWidth || c.getBoundingClientRect().width || 0;
           var cssH = c.clientHeight || c.getBoundingClientRect().height || 0;
+          var hostR = existing.getBoundingClientRect();
+          var bodyEl = zone.closest('.nova-main-hero-showcase__body') || document.querySelector('#main-screen .nova-main-hero-showcase__body');
+          var bodyW = bodyEl ? (bodyEl.clientWidth || bodyEl.getBoundingClientRect().width || 0) : 0;
           var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          var collapsed =
+            cssW < 40 ||
+            cssH < 40 ||
+            (hostR.width || 0) < 40 ||
+            (hostR.height || 0) < 40 ||
+            (bodyW > 0 && bodyW < 40);
           var undersized =
             cssW > 24 &&
             cssH > 24 &&
             (c.width < cssW * dpr * 0.72 || c.height < cssH * dpr * 0.72);
-          if (!undersized) return;
+          if (!collapsed && !undersized) return;
           unmountHeroFromHost(existing);
           existing.remove();
-        } else if (existing.querySelector('svg')) {
+        } else if (existing.querySelector('svg') && (existing.clientWidth || 0) >= 40) {
           return;
         } else {
           unmountHeroFromHost(existing);
