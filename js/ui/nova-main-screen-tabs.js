@@ -10,7 +10,7 @@
   var heroLoadPromise = null;
   var activeTab = 'avatar';
   var TAB_ORDER = ['avatar', 'kahraman', 'lig'];
-  var TAB_LABELS = { avatar: 'AVATAR', kahraman: 'KAHRAMAN', lig: 'LİG' };
+  var TAB_LABELS = { avatar: 'RESMİN', kahraman: 'KAHRAMAN', lig: 'LİG' };
 
   function tabIndex(name) {
     var idx = TAB_ORDER.indexOf(name);

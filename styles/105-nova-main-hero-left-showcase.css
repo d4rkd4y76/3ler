@@ -47,21 +47,9 @@
   max-width: 100%;
 }
 
-/* — KAHRAMANIN başlığı — */
+/* — Eski KAHRAMANIN başlığı gizli — */
 #main-screen .nova-main-hero-showcase__title {
-  width: 100%;
-  text-align: center;
-  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
-  font-size: clamp(8px, 2.1vw, 10px);
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #fde68a;
-  text-shadow:
-    0 0 12px rgba(251, 191, 36, 0.45),
-    0 1px 2px rgba(0, 0, 0, 0.85);
-  line-height: 1.1;
-  padding: 0 2px;
+  display: none !important;
 }
 
 /* — Premium vitrin — */
