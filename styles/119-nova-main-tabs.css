@@ -411,15 +411,15 @@
   visibility: visible !important;
 }
 
-/* Telefon: çerçeveyi biraz küçült, kahramanı doldur */
+/* Telefon: çerçeve yüksekliğini koru, host slotu doldursun (ölçek JS’te kahraman bazlı) */
 @media (max-width: 900px), (pointer: coarse) {
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__frame {
-    min-height: clamp(200px, 48vw, 280px) !important;
-    max-height: min(52vh, 320px) !important;
+    min-height: clamp(260px, 56vw, 360px) !important;
+    max-height: none !important;
   }
 
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase__body {
-    min-height: clamp(168px, 42vw, 240px) !important;
+    min-height: clamp(200px, 48vw, 280px) !important;
   }
 
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot,
@@ -431,7 +431,8 @@
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--buz .nova-main-hero-slot,
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--alev .nova-main-hero-slot,
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-zone--gece .nova-main-hero-slot {
-    inset: 4px !important;
+    inset: 6px !important;
+    overflow: hidden !important;
   }
 
   #main-screen .nova-main-tab-hero-body .nova-main-hero-showcase .nova-main-hero-slot .nova-main-hero-host,
@@ -459,8 +460,6 @@
     max-height: 100% !important;
     min-width: 0 !important;
     min-height: 0 !important;
-    transform: scale(1.18) !important;
-    transform-origin: center center !important;
   }
 }
 
@@ -476,7 +475,6 @@
     max-height: min(94%, 100%) !important;
     min-width: min(70%, 280px) !important;
     min-height: min(70%, 280px) !important;
-    transform: none !important;
   }
 }
 

@@ -249,36 +249,19 @@
   window.novaMainScreenShellReady = mainScreenShellReady;
 
   function mainScreenElementsReady() {
-    if (!mainChromeReady() || !studentNameReady() || !profilePhotoReady() || !mainBgPaintReady()) {
-      return false;
-    }
+    /* Kapı: iskelet hazır olsun — arka plan/kahraman sonradan gelsin */
+    if (!mainChromeReady() || !studentNameReady()) return false;
     if (lazyTabsActive()) return true;
-    return (
-      leagueBadgeReady() &&
-      cupHudReady() &&
-      starsReady() &&
-      creditsReady() &&
-      heroReady()
-    );
+    if (!creditsReady()) {
+      var cred = document.getElementById('duel-credits-value');
+      if (cred && String(cred.textContent || '').trim() === '') cred.textContent = '0';
+    }
+    return true;
   }
 
   function mainScreenReadinessRatio() {
-    var booting = !!(window.__novaSpriteBootActive || window.__novaBootMainPrep);
-    var checks = [
-      mainChromeReady(),
-      studentNameReady(),
-      booting ? profilePhotoBootReady() : profilePhotoReady(),
-      mainBgPaintReady()
-    ];
-    if (!lazyTabsActive()) {
-      checks.push(
-        leagueBadgeReady(),
-        cupHudReady(),
-        starsReady(),
-        creditsReady(),
-        booting ? heroBootReady() : heroReady()
-      );
-    }
+    /* Sadece iskelet — foto/kahraman/arka plan kapıyı tutmasın */
+    var checks = [mainChromeReady(), studentNameReady()];
     var n = 0;
     for (var i = 0; i < checks.length; i++) if (checks[i]) n += 1;
     return n / checks.length;

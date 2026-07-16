@@ -2,8 +2,8 @@
 (function () {
   'use strict';
 
-  var MIN_SHOW_MS = 520;
-  var MAX_SHOW_MS = 9000;
+  var MIN_SHOW_MS = 280;
+  var MAX_SHOW_MS = 4200;
   var POLL_MS = 50;
   var startedAt = 0;
   var shown = false;

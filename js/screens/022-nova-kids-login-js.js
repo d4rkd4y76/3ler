@@ -21,6 +21,11 @@
   });
 
   function validate(){
+    try {
+      if (cls && typeof window.novaLockSelectToFixedGrade === 'function' && !(cls.value || '').trim()) {
+        window.novaLockSelectToFixedGrade(cls, window.NOVA_LOGIN_FIXED_GRADE || 1);
+      }
+    } catch (_) {}
     const ok = (cls?.value || '').trim() !== '' &&
                (user?.value || '').trim().length >= 2 &&
                (pass?.value || '').trim().length >= 4;
@@ -45,14 +50,19 @@
   try{
     const saved = JSON.parse(localStorage.getItem('duello_login_pref')||'{}');
     if(saved.user) user.value = saved.user;
-    if(saved.cls) { for(const o of cls.options){ if(o.value === saved.cls){ cls.value = saved.cls; break; } } }
+    /* Sınıf sabit 1. sınıf — kayıtlı sınıf tercihini yok say */
     if('rem' in saved) remember.checked = !!saved.rem;
   }catch(_){}
+  try {
+    if (cls && typeof window.novaLockSelectToFixedGrade === 'function') {
+      window.novaLockSelectToFixedGrade(cls, window.NOVA_LOGIN_FIXED_GRADE || 1);
+    }
+  } catch (_) {}
   function persist(){
     try{
       localStorage.setItem('duello_login_pref', JSON.stringify({
         user: remember.checked ? user.value : '',
-        cls: remember.checked ? cls.value : '',
+        cls: '',
         rem: remember.checked
       }));
     }catch(_){}
@@ -82,5 +92,20 @@
   // Şifremi unuttum delege
   document.getElementById('forgot')?.addEventListener('click', () => {
     document.dispatchEvent(new Event('duello:forgotPassword'));
+  });
+
+  // Kayıt Ol — 008 script gelmeden önce paneli açabilsin
+  const regBtn = document.getElementById('register-button');
+  const regOverlay = document.getElementById('registrationOverlay');
+  regBtn?.addEventListener('click', function () {
+    if (!regOverlay) return;
+    regOverlay.style.display = 'flex';
+    regOverlay.classList.add('is-open');
+    try {
+      if (typeof window.novaEnhanceGameSelects === 'function') {
+        window.novaEnhanceGameSelects(regOverlay);
+      }
+    } catch (_) {}
+    document.dispatchEvent(new Event('duello:openRegistration'));
   });
 })();

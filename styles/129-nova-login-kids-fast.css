@@ -1,0 +1,448 @@
+/* 1. sınıf giriş — sade, hızlı, yumuşak tonlar (ağır blur/aurora yok) */
+
+#student-selection-screen.nova-login-arena {
+  --nl-sky: #7ec8e3;
+  --nl-deep: #0b4f6c;
+  --nl-sun: #f6c945;
+  --nl-cream: #fff8e7;
+  --nl-ink: #1e3a4c;
+  --nl-muted: #5a7a8c;
+  --nl-panel: #ffffff;
+  --nl-border: rgba(11, 79, 108, 0.14);
+  --nl-err: #e85d5d;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  color: var(--nl-ink) !important;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, #7ec8e3 0%, transparent 55%),
+    linear-gradient(180deg, #b8e4f5 0%, #e8f6fc 42%, #fff8e7 100%) !important;
+  animation: none !important;
+}
+
+html:not(.nova-has-session) #student-selection-screen.nova-login-arena,
+html:not(.nova-has-session) body {
+  background: #b8e4f5 !important;
+}
+
+/* Ağır efekt katmanlarını kapat */
+#student-selection-screen .nova-login-arena__stars,
+#student-selection-screen .nova-login-arena__aurora,
+#student-selection-screen .nova-login-arena__orb,
+#student-selection-screen .nova-login-arena__logo-glow,
+#student-selection-screen .nova-login-arena__duel-art,
+#student-selection-screen .nova-login-arena__grid {
+  display: none !important;
+  animation: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+#student-selection-screen .nova-login-arena__bg {
+  background: transparent !important;
+}
+
+#student-selection-screen .nova-login-arena__shell {
+  gap: clamp(16px, 3vw, 24px) !important;
+  padding: max(16px, env(safe-area-inset-top)) clamp(16px, 4vw, 28px) max(18px, env(safe-area-inset-bottom)) !important;
+}
+
+#student-selection-screen .nova-login-arena__brand-badge {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(11, 79, 108, 0.12) !important;
+  color: var(--nl-deep) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+#student-selection-screen.nova-login-arena .nova-login-arena__title {
+  background: none !important;
+  -webkit-text-fill-color: var(--nl-deep) !important;
+  color: var(--nl-deep) !important;
+  filter: none !important;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.55) !important;
+  font-size: clamp(40px, 9vw, 64px) !important;
+}
+
+#student-selection-screen .nova-login-arena__title-x {
+  background: none !important;
+  -webkit-text-fill-color: #e8a317 !important;
+  color: #e8a317 !important;
+}
+
+#student-selection-screen .nova-login-arena__tagline {
+  color: var(--nl-muted) !important;
+  font-weight: 600 !important;
+}
+
+#student-selection-screen .nova-login-arena__feat {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(11, 79, 108, 0.1) !important;
+  color: var(--nl-deep) !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+#student-selection-screen .nova-login-arena__publisher {
+  color: rgba(30, 58, 76, 0.45) !important;
+}
+
+#student-selection-screen.nova-login-arena .nova-login-arena__panel.card {
+  background: #ffffff !important;
+  border: 2px solid rgba(11, 79, 108, 0.1) !important;
+  box-shadow: 0 12px 32px rgba(11, 79, 108, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 24px !important;
+}
+
+#student-selection-screen .nova-login-arena__panel::before {
+  background: linear-gradient(90deg, transparent, #f6c945, #7ec8e3, transparent) !important;
+  opacity: 0.9 !important;
+}
+
+#student-selection-screen .nova-login-arena__panel-header h2 {
+  color: var(--nl-deep) !important;
+}
+
+#student-selection-screen .nova-login-arena__panel-header h2 span {
+  color: var(--nl-muted) !important;
+}
+
+#student-selection-screen.nova-login-arena .register-link {
+  border: 2px solid rgba(11, 79, 108, 0.18) !important;
+  background: #e8f6fc !important;
+  color: var(--nl-deep) !important;
+}
+
+#student-selection-screen.nova-login-arena .nova-login-field-label {
+  color: var(--nl-deep) !important;
+}
+
+#student-selection-screen.nova-login-arena .field {
+  background: #f4fafc !important;
+  border: 2px solid rgba(11, 79, 108, 0.12) !important;
+  box-shadow: none !important;
+}
+
+#student-selection-screen.nova-login-arena .field:focus-within {
+  border-color: #3aa0c8 !important;
+  box-shadow: 0 0 0 3px rgba(126, 200, 227, 0.45) !important;
+}
+
+#student-selection-screen.nova-login-arena input,
+#student-selection-screen.nova-login-arena select {
+  color: var(--nl-ink) !important;
+  background: transparent !important;
+}
+
+#student-selection-screen.nova-login-arena .cta {
+  background: linear-gradient(180deg, #ffd56a 0%, #f0b429 100%) !important;
+  color: #5a3d00 !important;
+  border: none !important;
+  box-shadow: 0 6px 0 #d49a12 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+#student-selection-screen.nova-login-arena .cta:not(:disabled):hover {
+  filter: brightness(1.03) !important;
+  transform: translateY(-1px) !important;
+}
+
+#student-selection-screen.nova-login-arena .cta:disabled {
+  opacity: 0.55 !important;
+  box-shadow: 0 4px 0 #c9a84a !important;
+}
+
+#student-selection-screen.nova-login-arena .helper,
+#student-selection-screen.nova-login-arena .muted,
+#student-selection-screen.nova-login-arena .link {
+  color: var(--nl-muted) !important;
+}
+
+#student-selection-screen.nova-login-arena .error {
+  color: var(--nl-err) !important;
+}
+
+/* Form alanları her zaman tıklanabilir (menü body'de açılır) */
+#student-selection-screen.nova-login-arena .row,
+#student-selection-screen.nova-login-arena .field,
+#student-selection-screen.nova-login-arena input,
+#student-selection-screen.nova-login-arena .nova-game-select__trigger {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 6;
+}
+
+#student-selection-screen.nova-login-arena .field--class {
+  z-index: 40;
+}
+
+/* Menü açıkken satırı kilitleme — gizli menü yüzünden form kilitlenmesin */
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .row,
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .actions,
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .helper,
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .cta {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  filter: none !important;
+}
+
+/* Kayıt Ol — tıklanabilir ve okunaklı */
+#student-selection-screen.nova-login-arena .nova-login-arena__panel-header {
+  position: relative;
+  z-index: 50;
+}
+#student-selection-screen.nova-login-arena .register-link {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 51;
+  cursor: pointer !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(11, 79, 108, 0.18) !important;
+  background: #e8f6fc !important;
+  color: #0b4f6c !important;
+  box-shadow: none !important;
+}
+
+/* Sınıf seçici — açık tema, okunaklı yazı */
+#student-selection-screen .field--class:has(.nova-game-select--login),
+#student-selection-screen .field:has(.nova-game-select--login) {
+  background: #f4fafc !important;
+  border: 2px solid rgba(11, 79, 108, 0.14) !important;
+  box-shadow: none !important;
+}
+#student-selection-screen .nova-game-select--login .nova-game-select__trigger,
+#student-selection-screen .nova-game-select--login .nova-game-select__value,
+#student-selection-screen .nova-game-select--login.nova-game-select--empty .nova-game-select__value {
+  color: #1e3a4c !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+#student-selection-screen .nova-game-select--login.nova-game-select--empty .nova-game-select__value {
+  color: #5a7a8c !important;
+  font-weight: 700 !important;
+}
+#student-selection-screen .nova-game-select--login .nova-game-select__chev {
+  background: #e8f6fc !important;
+  border: 1px solid rgba(11, 79, 108, 0.16) !important;
+  color: #0b4f6c !important;
+}
+
+/* Açılır menü (giriş + kayıt) — krem/gök mavisi */
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register,
+.nova-game-select--login .nova-game-select__menu,
+.nova-game-select--register .nova-game-select__menu,
+.nova-game-select__menu--login,
+.nova-game-select__menu--register {
+  background: #fffdf7 !important;
+  border: 2px solid rgba(11, 79, 108, 0.14) !important;
+  box-shadow: 0 16px 40px rgba(11, 79, 108, 0.18) !important;
+  color: #1e3a4c !important;
+}
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__option,
+.nova-game-select--login .nova-game-select__option,
+.nova-game-select--register .nova-game-select__option,
+.nova-game-select__menu--login .nova-game-select__option,
+.nova-game-select__menu--register .nova-game-select__option {
+  color: #1e3a4c !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(11, 79, 108, 0.06) !important;
+}
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option:hover,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option:focus-visible,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option[aria-selected="true"],
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__option:hover,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__option:focus-visible,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__option[aria-selected="true"],
+.nova-game-select--login .nova-game-select__option:hover,
+.nova-game-select--login .nova-game-select__option[aria-selected="true"],
+.nova-game-select--register .nova-game-select__option:hover,
+.nova-game-select--register .nova-game-select__option[aria-selected="true"],
+.nova-game-select__menu--login .nova-game-select__option:hover,
+.nova-game-select__menu--login .nova-game-select__option[aria-selected="true"],
+.nova-game-select__menu--register .nova-game-select__option:hover,
+.nova-game-select__menu--register .nova-game-select__option[aria-selected="true"] {
+  background: #e8f6fc !important;
+  color: #0b4f6c !important;
+  box-shadow: none !important;
+}
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__opt-title,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__opt-title,
+.nova-game-select__menu--login .nova-game-select__opt-title,
+.nova-game-select__menu--register .nova-game-select__opt-title {
+  color: #0b4f6c !important;
+}
+body > .nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__opt-detail,
+body > .nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__opt-detail,
+.nova-game-select__menu--login .nova-game-select__opt-detail,
+.nova-game-select__menu--register .nova-game-select__opt-detail {
+  color: #5a7a8c !important;
+}
+#student-selection-screen .nova-game-select--curriculum-value .nova-game-select__val-title,
+.nova-game-select--login.nova-game-select--curriculum-value .nova-game-select__val-title,
+.nova-game-select--register.nova-game-select--curriculum-value .nova-game-select__val-title {
+  color: #0b4f6c !important;
+}
+#student-selection-screen .nova-game-select--curriculum-value .nova-game-select__val-detail,
+.nova-game-select--login.nova-game-select--curriculum-value .nova-game-select__val-detail,
+.nova-game-select--register.nova-game-select--curriculum-value .nova-game-select__val-detail {
+  color: #5a7a8c !important;
+}
+
+/* Kayıt modalı — 1. sınıf açık tema */
+.nova-register-overlay.registration-overlay {
+  background: rgba(11, 79, 108, 0.28) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  z-index: 102600 !important;
+}
+.nova-register-card.registration-content {
+  background: #ffffff !important;
+  border: 2px solid rgba(11, 79, 108, 0.12) !important;
+  box-shadow: 0 18px 48px rgba(11, 79, 108, 0.18) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: #1e3a4c !important;
+}
+.nova-register-card.registration-content::before {
+  background: linear-gradient(90deg, transparent, #f6c945, #7ec8e3, transparent) !important;
+}
+.nova-register-header.registration-header {
+  border-bottom: 1px solid rgba(11, 79, 108, 0.1) !important;
+}
+.nova-register-badge {
+  color: #0b4f6c !important;
+  background: #e8f6fc !important;
+  border: 1px solid rgba(11, 79, 108, 0.14) !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+}
+.nova-register-header h2,
+#registerModalTitle {
+  color: #0b4f6c !important;
+  -webkit-text-fill-color: #0b4f6c !important;
+  text-shadow: none !important;
+  background: none !important;
+}
+.nova-register-header .registration-subtitle {
+  color: #5a7a8c !important;
+}
+.nova-register-close.close-button {
+  border: 1px solid rgba(11, 79, 108, 0.16) !important;
+  background: #f4fafc !important;
+  color: #0b4f6c !important;
+}
+.nova-register-close:hover {
+  background: #e8f6fc !important;
+  border-color: rgba(11, 79, 108, 0.28) !important;
+}
+.nova-register-label {
+  color: #0b4f6c !important;
+}
+.nova-register-control,
+.registration-form .nova-register-control {
+  background: #f4fafc !important;
+  border: 2px solid rgba(11, 79, 108, 0.12) !important;
+  box-shadow: none !important;
+}
+.registration-form .registration-input,
+.nova-register-form .registration-input {
+  color: #1e3a4c !important;
+  background: transparent !important;
+}
+.registration-form .registration-input::placeholder {
+  color: #8aa3b3 !important;
+}
+.registration-tip {
+  color: #5a7a8c !important;
+}
+.nova-register-submit,
+.registration-submit.nova-register-submit {
+  background: linear-gradient(180deg, #ffd56a 0%, #f0b429 100%) !important;
+  color: #5a3d00 !important;
+  border: none !important;
+  box-shadow: 0 6px 0 #d49a12 !important;
+  text-shadow: none !important;
+}
+.nova-register-submit:disabled,
+.registration-submit.nova-register-submit:disabled {
+  opacity: 0.55 !important;
+}
+.nova-register-error,
+.registration-error {
+  color: #e85d5d !important;
+}
+
+#verificationOverlay.verification-overlay {
+  background: rgba(11, 79, 108, 0.28) !important;
+  z-index: 102700 !important;
+}
+#verificationOverlay .verification-content {
+  background: #ffffff !important;
+  border: 2px solid rgba(11, 79, 108, 0.12) !important;
+  color: #1e3a4c !important;
+  box-shadow: 0 18px 48px rgba(11, 79, 108, 0.18) !important;
+}
+
+.registration-form .nova-game-select--register .nova-game-select__trigger,
+.registration-form .nova-game-select--login .nova-game-select__trigger,
+.registration-form .nova-game-select--register .nova-game-select__value,
+.registration-form .nova-game-select--login .nova-game-select__value,
+.registration-form .nova-game-select--register.nova-game-select--empty .nova-game-select__value,
+.registration-form .nova-game-select--login.nova-game-select--empty .nova-game-select__value {
+  color: #1e3a4c !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.registration-form .nova-game-select--register.nova-game-select--empty .nova-game-select__value,
+.registration-form .nova-game-select--login.nova-game-select--empty .nova-game-select__value {
+  color: #5a7a8c !important;
+}
+.registration-form .nova-game-select--register .nova-game-select__chev,
+.registration-form .nova-game-select--login .nova-game-select__chev {
+  background: #e8f6fc !important;
+  border: 1px solid rgba(11, 79, 108, 0.16) !important;
+  color: #0b4f6c !important;
+}
+#registrationOverlay.nova-game-form-dropdown-open .nova-register-submit,
+#registrationOverlay.nova-game-form-dropdown-open .nova-register-field:not(:has(.nova-game-select--open)) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  filter: none !important;
+}
+
+/* İlk karede animasyon bekleme yok */
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__stars,
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__aurora,
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__orb,
+html:not(.nova-has-session):not(.nova-login-ready) #student-selection-screen .nova-login-arena__logo-glow {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+@media (max-width: 900px) {
+  #student-selection-screen .nova-login-arena__features,
+  #student-selection-screen .nova-login-arena__tagline,
+  #student-selection-screen .nova-login-arena__publisher {
+    display: none !important;
+  }
+}
+
+/* Sınıf seçimi kapalı — arka planda 1. sınıf */
+.nova-login-class-auto,
+#student-selection-screen .field--class.nova-login-class-auto,
+#registrationOverlay .nova-register-field.nova-login-class-auto {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}

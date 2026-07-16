@@ -23,6 +23,73 @@ function novaSortClassGradeRowsLocal(rows) {
 }
 try { window.novaSortClassGradeRowsLocal = novaSortClassGradeRowsLocal; } catch (_) {}
 
+/** Giriş/kayıt: sınıf seçimi kapalı — arka planda sabit seviye */
+window.NOVA_LOGIN_FIXED_GRADE = 1;
+
+function novaExtractClassGradeLabel(label) {
+    try {
+        if (window.NovaCurriculumSort && typeof window.NovaCurriculumSort.extractGradeNumber === 'function') {
+            var g = Number(window.NovaCurriculumSort.extractGradeNumber(label) || 0);
+            if (g) return g;
+        }
+    } catch (_) {}
+    var s = String(label || '');
+    var m = s.match(/([1-4])\s*\.?\s*S[ıiIİ]N[ıiIİ]F/i);
+    if (m) return Number(m[1]);
+    var m2 = s.match(/\b([1-4])\b/);
+    return m2 ? Number(m2[1]) : 0;
+}
+
+function novaPickFixedGradeClassId(rows, grade) {
+    var want = Number(grade || window.NOVA_LOGIN_FIXED_GRADE || 1);
+    var list = Array.isArray(rows) ? rows : [];
+    var hit = null;
+    for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        if (!item) continue;
+        var id = String(item.id || item.value || '').trim();
+        var name = String(item.name || item.text || item.label || '').trim();
+        if (!id) continue;
+        if (novaExtractClassGradeLabel(name || id) === want) {
+            hit = id;
+            break;
+        }
+    }
+    return hit || '';
+}
+
+function novaLockSelectToFixedGrade(selectEl, grade) {
+    if (!selectEl || !selectEl.options) return '';
+    var want = Number(grade || window.NOVA_LOGIN_FIXED_GRADE || 1);
+    var match = null;
+    for (var i = 0; i < selectEl.options.length; i++) {
+        var op = selectEl.options[i];
+        if (!op || !op.value) continue;
+        if (novaExtractClassGradeLabel(op.textContent || op.value) === want) {
+            match = op;
+            break;
+        }
+    }
+    if (!match) return '';
+    selectEl.value = match.value;
+    try {
+        selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+        selectEl.dispatchEvent(new Event('input', { bubbles: true }));
+    } catch (_) {}
+    try {
+        if (typeof window.novaRefreshGameSelectMenu === 'function') {
+            window.novaRefreshGameSelectMenu(selectEl);
+        }
+    } catch (_) {}
+    return String(selectEl.value || '');
+}
+
+try {
+    window.novaExtractClassGradeLabel = novaExtractClassGradeLabel;
+    window.novaPickFixedGradeClassId = novaPickFixedGradeClassId;
+    window.novaLockSelectToFixedGrade = novaLockSelectToFixedGrade;
+} catch (_) {}
+
 /** Soru kontrol: aynı sınıf seviyesindeki yinelenen başlıkları tek satıra indir (SINIF3 tercih). */
 function novaDedupeReviewHeadingRows(rows) {
     var CS = window.NovaCurriculumSort;
@@ -1995,17 +2062,27 @@ const selectionNameInput = document.getElementById('selection-name-input');
 
 // Login butonuna yeni kontrol fonksiyonu
 async function handleLogin() {
+    try {
+        if (selectionClassSelect && typeof window.novaLockSelectToFixedGrade === 'function') {
+            window.novaLockSelectToFixedGrade(selectionClassSelect, window.NOVA_LOGIN_FIXED_GRADE || 1);
+        }
+    } catch (_) {}
     const enteredUsername = selectionNameInput.value.trim();
     const selectedClass = selectionClassSelect.value;
     const enteredPassword = studentPasswordInput.value.trim();
 
     if (!enteredUsername || !selectedClass || !enteredPassword) {
-        studentSelectionError.textContent = 'Lütfen tüm alanları doldurunuz.';
+        studentSelectionError.textContent = !selectedClass
+            ? '1. sınıf henüz hazır değil. Biraz sonra tekrar dene.'
+            : 'Lütfen tüm alanları doldurunuz.';
         return;
     }
 
     try {
         // Kullanıcı adını veritabanında ara
+        try {
+          if (typeof window.novaUnlockDeferredCss === 'function') window.novaUnlockDeferredCss();
+        } catch (_) {}
         const studentsRef = database.ref(`classes/${selectedClass}/students`);
         const snapshot = await studentsRef.orderByChild('name').equalTo(enteredUsername).once('value');
 
@@ -2046,8 +2123,12 @@ async function handleLogin() {
         try { localStorage.setItem('selectedStudent', JSON.stringify(selectedStudent)); } catch (_) {}
 
         try {
+          if (typeof window.novaUnlockDeferredCss === 'function') window.novaUnlockDeferredCss();
+        } catch (_) {}
+
+        try {
           document.documentElement.classList.add('nova-has-session', 'nova-main-screen-visible');
-          document.documentElement.classList.remove('nova-boot-pending');
+          document.documentElement.classList.remove('nova-boot-pending', 'nova-guest-boot');
           document.body.classList.remove('nova-login-fast-visible');
           document.body.classList.add('nova-main-screen-visible');
           if (typeof window.novaPerfEarlySessionScale === 'function') window.novaPerfEarlySessionScale();
@@ -2064,9 +2145,10 @@ async function handleLogin() {
             studentPhoto.style.display = 'none';
         }
         applyOwnAvatarFrame();
+        setNameWithFrame(studentName, studentInfo.name, selectedStudent.nameFrame);
 
         if (typeof window.novaStartSpriteBoot === 'function') {
-            await window.novaStartSpriteBoot({ trigger: 'login' });
+            window.novaStartSpriteBoot({ trigger: 'login' });
         } else {
             mainScreen.style.removeProperty('display');
         }
@@ -2074,20 +2156,25 @@ async function handleLogin() {
             window.novaReturnToMainScreen({ skipPerf: true });
         }
 
-        setNameWithFrame(studentName, studentInfo.name, selectedStudent.nameFrame);
-        await addLoggedInPlayer(selectedStudent);
-        startInvitationListener(selectedStudent.studentId);
-        if (typeof window.fetchAndDisplayGameCup === 'function' && !window.__novaMainScreenPrefetchDone) {
-          window.fetchAndDisplayGameCup();
-        }
-        if (!window.__novaMainScreenLoadDone) {
-            onMainScreenLoad();
-        }
+        /* Ağır Firebase işleri ana ekranı bloklamasın */
+        Promise.resolve()
+          .then(function () { return addLoggedInPlayer(selectedStudent); })
+          .then(function () {
+            startInvitationListener(selectedStudent.studentId);
+            if (typeof window.fetchAndDisplayGameCup === 'function' && !window.__novaMainScreenPrefetchDone) {
+              window.fetchAndDisplayGameCup();
+            }
+            if (!window.__novaMainScreenLoadDone) onMainScreenLoad();
+          })
+          .catch(function (err) { console.warn('login post-ui', err); });
+
         try {
-            await enforceSinglePlayerClassLock({ reason: 'login', preserveLessons: true });
+            enforceSinglePlayerClassLock({ reason: 'login', preserveLessons: true }).catch(function () {});
         } catch (_) {}
 
-        await novaSyncAdminPortalFlag();
+        try {
+            novaSyncAdminPortalFlag().catch(function () {});
+        } catch (_) {}
 
     } catch (error) {
         console.error("Login hatası:", error);
@@ -4819,6 +4906,11 @@ function populateClassSelect(classesData) {
     });
     classNameMap = map;
     window.classNameMap = map;
+    try {
+        if (typeof window.novaLockSelectToFixedGrade === 'function') {
+            window.novaLockSelectToFixedGrade(selectionClassSelectEl, window.NOVA_LOGIN_FIXED_GRADE || 1);
+        }
+    } catch (_) {}
 }
 
 (function novaKickLoginClassFetchEarly() {

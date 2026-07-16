@@ -318,6 +318,10 @@
   function enhanceSelect(sel){
     if (!sel || sel.tagName !== 'SELECT' || sel.dataset.novaGameSelectDone === '1') return;
     if (sel.multiple || sel.size > 1) return;
+    /* Giriş/kayıt sınıf alanı gizli — özel seçici gereksiz */
+    if (sel.id === 'selection-class-select' || sel.id === 'registerClassSelect') {
+      if (sel.closest('.nova-login-class-auto') || sel.hasAttribute('hidden')) return;
+    }
 
     const tone = sel.closest('#single-player-screen') || sel.closest('#duel-selection-screen')
       ? 'arena'

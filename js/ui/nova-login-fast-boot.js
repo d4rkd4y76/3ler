@@ -1,7 +1,6 @@
 /* Giriş ekranı — parse sırasında anında göster (oturum yoksa) */
 
 (function () {
-
   'use strict';
 
   function hasStoredStudent() {
@@ -29,23 +28,18 @@
     try {
       document.documentElement.classList.add('nova-login-ready');
     } catch (_) {}
+    try {
+      if (typeof window.novaUnlockDeferredCss === 'function') {
+        window.novaUnlockDeferredCss();
+      }
+    } catch (_) {}
   }
 
   function scheduleLoginReady() {
-    function afterPaint() {
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          markLoginReady();
-        });
-      });
-    }
-    try {
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(afterPaint).catch(afterPaint);
-        return;
-      }
-    } catch (_) {}
-    afterPaint();
+    /* Font bekleme yok — ilk boyamada hazır say */
+    requestAnimationFrame(function () {
+      markLoginReady();
+    });
   }
 
   function revealLogin() {
@@ -59,6 +53,9 @@
             window.selectedStudent = JSON.parse(localStorage.getItem('selectedStudent') || 'null');
           } catch (_) {}
         }
+      } catch (_) {}
+      try {
+        if (typeof window.novaUnlockDeferredCss === 'function') window.novaUnlockDeferredCss();
       } catch (_) {}
       return;
     }
@@ -94,13 +91,17 @@
     document.addEventListener('DOMContentLoaded', revealLogin, { once: true });
   }
 
-  document.addEventListener('focusin', function (e) {
-    if (hasStoredStudent()) return;
-    var t = e.target;
-    if (!t || t.id !== 'student-password-input') return;
-    neutralizeBodyScale();
-    try {
-      if (typeof window.novaSyncPerfRuntime === 'function') window.novaSyncPerfRuntime();
-    } catch (_) {}
-  }, true);
+  document.addEventListener(
+    'focusin',
+    function (e) {
+      if (hasStoredStudent()) return;
+      var t = e.target;
+      if (!t || t.id !== 'student-password-input') return;
+      neutralizeBodyScale();
+      try {
+        if (typeof window.novaSyncPerfRuntime === 'function') window.novaSyncPerfRuntime();
+      } catch (_) {}
+    },
+    true
+  );
 })();

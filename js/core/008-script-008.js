@@ -3032,8 +3032,20 @@ const verificationOverlay = document.getElementById('verificationOverlay');
 
 // Modal açma/kapama olayları
 if (registerButton) {
-    registerButton.addEventListener('click', () => {
-        if (registrationOverlay) registrationOverlay.style.display = 'flex';
+    function novaOpenRegistrationPanel() {
+        if (registrationOverlay) {
+            registrationOverlay.style.display = 'flex';
+            registrationOverlay.classList.add('is-open');
+        }
+        loadClassesForRegistration();
+        try {
+            if (window.novaEnhanceGameSelects && registrationOverlay) {
+                window.novaEnhanceGameSelects(registrationOverlay);
+            }
+        } catch (_) {}
+    }
+    registerButton.addEventListener('click', novaOpenRegistrationPanel);
+    document.addEventListener('duello:openRegistration', function () {
         loadClassesForRegistration();
         try {
             if (window.novaEnhanceGameSelects && registrationOverlay) {
@@ -3045,7 +3057,10 @@ if (registerButton) {
 
 if (closeRegistration) {
     closeRegistration.addEventListener('click', () => {
-        if (registrationOverlay) registrationOverlay.style.display = 'none';
+        if (registrationOverlay) {
+            registrationOverlay.style.display = 'none';
+            registrationOverlay.classList.remove('is-open');
+        }
         resetRegistrationForm();
     });
 }
@@ -3061,6 +3076,11 @@ function appendSortedClassOptions(selectEl, rows) {
         option.textContent = c.name || c.id;
         selectEl.appendChild(option);
     });
+    try {
+        if (typeof window.novaLockSelectToFixedGrade === 'function') {
+            window.novaLockSelectToFixedGrade(selectEl, window.NOVA_LOGIN_FIXED_GRADE || 1);
+        }
+    } catch (_) {}
 }
 
 async function loadClassesForRegistration() {
@@ -3104,6 +3124,11 @@ async function loadClassesForRegistration() {
 
 // Form validasyon fonksiyonu
 function validateRegistrationForm() {
+    try {
+        if (registerClassSelect && typeof window.novaLockSelectToFixedGrade === 'function') {
+            window.novaLockSelectToFixedGrade(registerClassSelect, window.NOVA_LOGIN_FIXED_GRADE || 1);
+        }
+    } catch (_) {}
     const username = registerUsername.value.trim();
     const password = registerPassword.value;
     const email = registerEmail.value.trim();
@@ -3114,7 +3139,9 @@ function validateRegistrationForm() {
     // Tüm alanların doluluğunu kontrol et
     if (!username || !password || !email || !classId) {
         isValid = false;
-        errorMessage = 'Tüm alanları doldurun';
+        errorMessage = !classId
+            ? '1. sınıf henüz hazır değil. Biraz sonra tekrar dene.'
+            : 'Tüm alanları doldurun';
     }
     // Kullanıcı adı uzunluk kontrolü
     else if (username.length > 11) {

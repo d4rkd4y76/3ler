@@ -39,6 +39,110 @@
     return (window.innerWidth || 0) <= 768;
   }
 
+  window.novaSpritePerfIsPhone = isPhoneDevice;
+
+  /**
+   * KAHRAMAN sekmesi — her kahraman için ayrı telefon / masaüstü sığdırma.
+   * scale: fit * scale (1.0 = kenara değmeden sığ, >1 hafif doldurur)
+   * ox/oy: host CSS translate yüzdesi (kesilmeden ince ayar)
+   */
+  var KAHRAMAN_LAYOUT = {
+    star_fairy: {
+      phone: { scale: 1.2, maxFill: 1.08, oy: '2%', ox: '0%' },
+      desk: { scale: 1.08, maxFill: 1.04, oy: '0%', ox: '0%' }
+    },
+    tas_muhafiz: {
+      phone: { scale: 1.16, maxFill: 1.07, oy: '5%', ox: '0%' },
+      desk: { scale: 1.06, maxFill: 1.03, oy: '2%', ox: '0%' }
+    },
+    golge_parsi: {
+      phone: { scale: 1.26, maxFill: 1.1, oy: '-1%', ox: '0%' },
+      desk: { scale: 1.12, maxFill: 1.05, oy: '0%', ox: '0%' }
+    },
+    bilge_baykus: {
+      phone: { scale: 1.24, maxFill: 1.09, oy: '3%', ox: '0%' },
+      desk: { scale: 1.1, maxFill: 1.04, oy: '1%', ox: '0%' }
+    },
+    firtina_okcu: {
+      phone: { scale: 1.18, maxFill: 1.08, oy: '4%', ox: '0%' },
+      desk: { scale: 1.07, maxFill: 1.04, oy: '2%', ox: '0%' }
+    },
+    buz_ejder: {
+      phone: { scale: 1.22, maxFill: 1.09, oy: '2%', ox: '0%' },
+      desk: { scale: 1.1, maxFill: 1.05, oy: '1%', ox: '0%' }
+    },
+    alev_ejder: {
+      phone: { scale: 1.22, maxFill: 1.09, oy: '2%', ox: '0%' },
+      desk: { scale: 1.1, maxFill: 1.05, oy: '1%', ox: '0%' }
+    },
+    gece_ejder: {
+      phone: { scale: 1.22, maxFill: 1.09, oy: '2%', ox: '0%' },
+      desk: { scale: 1.1, maxFill: 1.05, oy: '1%', ox: '0%' }
+    }
+  };
+
+  function resolveKahramanHeroId(eng) {
+    try {
+      var wrap = eng && eng.wrap;
+      if (!wrap) return '';
+      if (wrap.getAttribute && wrap.getAttribute('data-nova-main-hero')) {
+        return String(wrap.getAttribute('data-nova-main-hero') || '').trim();
+      }
+      var host = wrap.closest ? wrap.closest('[data-nova-main-hero]') : null;
+      if (host) return String(host.getAttribute('data-nova-main-hero') || '').trim();
+      var slot = wrap.closest ? wrap.closest('#nova-main-hero-slot, [class*="nova-main-hero-slot--"]') : null;
+      if (slot) {
+        var h2 = slot.querySelector('[data-nova-main-hero]');
+        if (h2) return String(h2.getAttribute('data-nova-main-hero') || '').trim();
+      }
+    } catch (_) {}
+    try {
+      return String(window.__novaEquippedHeroId || '').trim();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function resolveKahramanLayout(eng) {
+    var phone =
+      (typeof window.novaSpritePerfIsPhone === 'function' && window.novaSpritePerfIsPhone()) ||
+      (window.innerWidth || 0) <= 900;
+    var id = resolveKahramanHeroId(eng);
+    var pack = KAHRAMAN_LAYOUT[id] || null;
+    var cfg = pack ? (phone ? pack.phone : pack.desk) : null;
+    if (!cfg) {
+      cfg = phone
+        ? { scale: 1.2, maxFill: 1.08, oy: '2%', ox: '0%' }
+        : { scale: 1.08, maxFill: 1.04, oy: '0%', ox: '0%' };
+    }
+    return {
+      heroId: id,
+      phone: phone,
+      scale: cfg.scale,
+      maxFill: cfg.maxFill,
+      oy: cfg.oy || '0%',
+      ox: cfg.ox || '0%',
+      anchorBottom: false
+    };
+  }
+
+  function applyKahramanHostNudge(eng, layout) {
+    try {
+      var wrap = eng && eng.wrap;
+      if (!wrap) return;
+      var host =
+        (wrap.getAttribute && wrap.getAttribute('data-nova-main-hero') && wrap) ||
+        (wrap.closest && wrap.closest('[data-nova-main-hero]')) ||
+        wrap;
+      if (!host || !host.style) return;
+      var ox = layout.ox || '0%';
+      var oy = layout.oy || '0%';
+      host.style.transform = 'translate3d(' + ox + ', ' + oy + ', 0)';
+      host.style.transformOrigin = 'center center';
+      host.dataset.novaKahramanNudge = '1';
+    } catch (_) {}
+  }
+
   function isVisibleEl(el) {
     if (!el || !el.isConnected) return false;
     try {
@@ -252,6 +356,28 @@
       ensureGlobalLoop();
     };
 
+    var baseComputeDrawScale = p.computeDrawScale;
+    if (typeof baseComputeDrawScale === 'function') {
+      p.computeDrawScale = function () {
+        if (this._novaKahramanFitActive && this.manifest && this.canvas) {
+          var m = this.manifest;
+          var cw = this.canvas.width;
+          var ch = this.canvas.height;
+          if (!m.frameWidth || !m.frameHeight || !cw || !ch) {
+            return baseComputeDrawScale.apply(this, arguments);
+          }
+          var fit = Math.min(cw / m.frameWidth, ch / m.frameHeight);
+          var mul = typeof this.scaleMul === 'number' && this.scaleMul > 0 ? this.scaleMul : 1;
+          var maxFill = typeof this._novaKahramanMaxFill === 'number' ? this._novaKahramanMaxFill : 1.06;
+          var scale = fit * mul;
+          var maxScale = Math.min(cw / m.frameWidth, ch / m.frameHeight) * maxFill;
+          if (scale > maxScale) scale = maxScale;
+          return scale;
+        }
+        return baseComputeDrawScale.apply(this, arguments);
+      };
+    }
+
     var baseDraw = p.draw;
     if (typeof baseDraw === 'function') {
       p.draw = function () {
@@ -270,30 +396,35 @@
         }
         var prevAnchor = this.anchorBottom;
         var prevScale = this.scaleMul;
+        var prevDrawScale = this.drawScale;
+        var prevFit = this._novaKahramanFitActive;
+        var prevMaxFill = this._novaKahramanMaxFill;
         var inKahramanFrame =
           this.wrap &&
           this.wrap.closest &&
           this.wrap.closest('.nova-main-tab-hero-body .nova-main-hero-showcase');
+
         if (inKahramanFrame) {
-          /* Ana vitrin: ortada, çerçeveyi dolduracak kadar büyük */
-          this.anchorBottom = false;
-          var base = typeof prevScale === 'number' && prevScale > 0 ? prevScale : 1;
-          var phone =
-            (typeof window.novaSpritePerfIsPhone === 'function' && window.novaSpritePerfIsPhone()) ||
-            (window.innerWidth || 0) <= 900;
-          this.scaleMul = Math.max(base, phone ? 1.95 : 1.55);
-          if (!this.drawScale || this.drawScale < (phone ? 1.45 : 1.2)) {
-            this.drawScale = phone ? 1.65 : 1.35;
-          }
+          var layout = resolveKahramanLayout(this);
+          this._novaKahramanFitActive = true;
+          this._novaKahramanMaxFill = layout.maxFill;
+          this.anchorBottom = !!layout.anchorBottom;
+          this.scaleMul = layout.scale;
+          /* Her karede yeniden ölç — sabit küçük drawScale kullanma */
+          this.drawScale = 0;
+          applyKahramanHostNudge(this, layout);
+        } else {
+          this._novaKahramanFitActive = false;
         }
+
         try {
           return baseDraw.apply(this, arguments);
         } finally {
           this.anchorBottom = prevAnchor;
-          if (inKahramanFrame) {
-            this.scaleMul = prevScale;
-            this.drawScale = 0;
-          }
+          this.scaleMul = prevScale;
+          this.drawScale = inKahramanFrame ? 0 : prevDrawScale;
+          this._novaKahramanFitActive = prevFit;
+          this._novaKahramanMaxFill = prevMaxFill;
           this._novaTickPaused = wasPaused;
         }
       };
