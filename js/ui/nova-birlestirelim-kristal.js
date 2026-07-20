@@ -1,7 +1,7 @@
 /**
  * Kristal Mağarası — 9:16 video + 6 çerçeveli çoklu seçim
  * Admin: birlestirelim/letters/{soundId}/kristal =
- *   { question?, images:[{imageUrl,correct,label,glow}] }
+ *   { question?, images:[{imageUrl,correct,label,glow,audioUrl}] }
  */
 (function (global) {
   "use strict";
@@ -18,6 +18,156 @@
   var warmPromise = null;
   var finishing = false;
   var layoutBound = null;
+  var nameTourAudio = null;
+  var nameTourToken = 0;
+  var sfxCtx = null;
+
+  function ensureSfxCtx() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    if (!sfxCtx) sfxCtx = new AC();
+    if (sfxCtx.state === "suspended") {
+      try {
+        sfxCtx.resume();
+      } catch (_) {}
+    }
+    return sfxCtx;
+  }
+
+  /** Yüksek, net tik — doğru cevap */
+  function playCorrectSfx() {
+    var ctx = ensureSfxCtx();
+    if (!ctx) return;
+    var t0 = ctx.currentTime;
+    function ping(freq, delay, gainPeak, dur) {
+      var osc = ctx.createOscillator();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, t0 + delay);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t0 + delay);
+      g.gain.exponentialRampToValueAtTime(gainPeak, t0 + delay + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + delay + dur);
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.start(t0 + delay);
+      osc.stop(t0 + delay + dur + 0.02);
+    }
+    ping(880, 0, 0.42, 0.14);
+    ping(1320, 0.07, 0.32, 0.16);
+    ping(1760, 0.13, 0.18, 0.12);
+  }
+
+  /** Net yanlış sesi */
+  function playWrongSfx() {
+    var ctx = ensureSfxCtx();
+    if (!ctx) return;
+    var t0 = ctx.currentTime;
+    var osc = ctx.createOscillator();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(320, t0);
+    osc.frequency.exponentialRampToValueAtTime(140, t0 + 0.18);
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.4, t0 + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.22);
+    osc.connect(g);
+    g.connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + 0.24);
+
+    var osc2 = ctx.createOscillator();
+    osc2.type = "square";
+    osc2.frequency.setValueAtTime(180, t0);
+    osc2.frequency.exponentialRampToValueAtTime(90, t0 + 0.16);
+    var g2 = ctx.createGain();
+    g2.gain.setValueAtTime(0.0001, t0);
+    g2.gain.exponentialRampToValueAtTime(0.12, t0 + 0.02);
+    g2.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.18);
+    osc2.connect(g2);
+    g2.connect(ctx.destination);
+    osc2.start(t0);
+    osc2.stop(t0 + 0.2);
+  }
+
+  function stopNameTour() {
+    nameTourToken += 1;
+    if (nameTourAudio) {
+      try {
+        nameTourAudio.pause();
+        nameTourAudio.src = "";
+      } catch (_) {}
+      nameTourAudio = null;
+    }
+    if (hostEl) {
+      hostEl.querySelectorAll(".birles-kristal__name.is-speaking").forEach(function (el) {
+        el.classList.remove("is-speaking");
+      });
+    }
+  }
+
+  function playNameAudioTour(data) {
+    stopNameTour();
+    var token = nameTourToken;
+    var queue = [];
+    for (var i = 0; i < SLOT_COUNT; i++) {
+      var img = data.images[i] || {};
+      if (!img.correct || !img.label) continue;
+      var url = String(img.audioUrl || "").trim();
+      if (!url) continue;
+      queue.push({ index: i, url: url });
+    }
+    if (!queue.length || !hostEl) return;
+
+    function clearSpeaking() {
+      if (!hostEl) return;
+      hostEl.querySelectorAll(".birles-kristal__name.is-speaking").forEach(function (el) {
+        el.classList.remove("is-speaking");
+      });
+    }
+
+    function playAt(qi) {
+      if (token !== nameTourToken || !hostEl) return;
+      clearSpeaking();
+      if (qi >= queue.length) return;
+      var item = queue[qi];
+      var nameEl = hostEl.querySelector(".birles-kristal__name--" + item.index);
+      if (nameEl) nameEl.classList.add("is-speaking");
+
+      var audio = new Audio();
+      nameTourAudio = audio;
+      audio.preload = "auto";
+      try {
+        audio.setAttribute("playsinline", "");
+        audio.playsInline = true;
+      } catch (_) {}
+
+      var settled = false;
+      function next() {
+        if (settled) return;
+        settled = true;
+        if (nameTourAudio === audio) nameTourAudio = null;
+        clearSpeaking();
+        setTimeout(function () {
+          playAt(qi + 1);
+        }, 180);
+      }
+
+      audio.addEventListener("ended", next);
+      audio.addEventListener("error", next);
+      audio.src = item.url;
+      var p = audio.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(function () {
+          next();
+        });
+      }
+    }
+
+    setTimeout(function () {
+      if (token !== nameTourToken) return;
+      playAt(0);
+    }, 720);
+  }
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -109,7 +259,8 @@
         imageUrl: String(row.imageUrl || row.url || "").trim(),
         correct: !!(row.correct === true || row.correct === 1 || row.correct === "1"),
         label: String(row.label || row.name || "").trim(),
-        glow: String(row.glow || row.highlight || "").trim()
+        glow: String(row.glow || row.highlight || "").trim(),
+        audioUrl: String(row.audioUrl || row.mp3 || row.soundUrl || "").trim()
       });
     }
     return {
@@ -373,6 +524,7 @@
   function close() {
     openToken += 1;
     finishing = false;
+    stopNameTour();
     unbindLayout();
     clearKristalHtmlFlag();
     try {
@@ -442,6 +594,10 @@
     hostEl.querySelectorAll("[data-kristal-slot]").forEach(function (btn) {
       btn.classList.add("is-locked");
     });
+
+    try {
+      playNameAudioTour(data);
+    } catch (_) {}
   }
 
   function finishSuccess() {
@@ -455,8 +611,13 @@
     var img = data.images[idx];
     if (!img || !img.imageUrl) return;
 
+    try {
+      ensureSfxCtx();
+    } catch (_) {}
+
     if (img.correct) {
       picked[idx] = true;
+      playCorrectSfx();
       markSlot(btn, true);
       btn.classList.add("is-locked");
       if (allCorrectFound(data)) {
@@ -467,6 +628,7 @@
       return;
     }
 
+    playWrongSfx();
     markSlot(btn, false);
     btn.classList.add("is-locked");
     setTimeout(function () {

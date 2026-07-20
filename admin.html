@@ -2595,6 +2595,7 @@ window.NovaAdminExport = (function(){
         var correct = !!(row.correct === true || row.correct === 1 || row.correct === '1');
         var label = String(row.label || row.name || '').trim();
         var glow = String(row.glow || row.highlight || '').trim();
+        var audioUrl = String(row.audioUrl || row.mp3 || row.soundUrl || '').trim();
         var prev = url
           ? '<img class="birles-admin-preview" src="'+escHtml(url)+'" alt="" style="aspect-ratio:3/4;width:72px;height:auto;object-fit:cover">'
           : '<div class="birles-admin-preview" style="aspect-ratio:3/4;width:72px;height:96px"></div>';
@@ -2608,6 +2609,8 @@ window.NovaAdminExport = (function(){
           '<input type="text" data-field="kristalLabel" value="'+escHtml(label)+'" placeholder="ör. araba"></div>'+
           '<div><label>Vurgula · kelime içinde parlayacak ses(ler)</label>'+
           '<input type="text" data-field="kristalGlow" value="'+escHtml(glow)+'" placeholder="ör. '+escHtml(String(letter).toLocaleLowerCase('tr-TR'))+'  veya  a,el"></div>'+
+          '<div><label>Kelime MP3 URL (isimler gelince sırayla çalar)</label>'+
+          '<input type="url" data-field="kristalAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-'+(i+1)+'.mp3"></div>'+
           '</div>'+
           '<div style="padding-top:18px">'+
           '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:800">'+
@@ -2617,7 +2620,7 @@ window.NovaAdminExport = (function(){
       return '<div class="birles-admin-fusion" style="margin-top:12px">'+
         '<div class="birles-admin-fusion__head"><div>'+
         '<p class="birles-admin-fusion__title">Kristal Mağarası</p>'+
-        '<p class="birles-admin-fusion__label">6 çerçeve · isim + vurgulanacak ses · doğru olanları işaretle</p>'+
+        '<p class="birles-admin-fusion__label">6 çerçeve · isim + vurgu + kelime MP3 · doğru olanları işaretle</p>'+
         '</div></div>'+
         '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-kristal-question="1" style="grid-template-columns:1fr">'+
         '<div><label>Soru metni (boş = Hangilerinde “'+escHtml(letter)+'” sesi var?)</label>'+
@@ -2686,9 +2689,10 @@ window.NovaAdminExport = (function(){
           const imgUrl = String((row.querySelector('[data-field="kristalImageUrl"]')||{}).value||'').trim();
           const label = String((row.querySelector('[data-field="kristalLabel"]')||{}).value||'').trim();
           const glow = String((row.querySelector('[data-field="kristalGlow"]')||{}).value||'').trim();
+          const audioUrl = String((row.querySelector('[data-field="kristalAudioUrl"]')||{}).value||'').trim();
           const correctEl = row.querySelector('[data-field="kristalCorrect"]');
           const correct = !!(correctEl && correctEl.checked);
-          kristalBest[key].images[Number(kIdx)] = { imageUrl: imgUrl, correct: correct, label: label, glow: glow };
+          kristalBest[key].images[Number(kIdx)] = { imageUrl: imgUrl, correct: correct, label: label, glow: glow, audioUrl: audioUrl };
         }
       });
       Object.keys(letterBest).forEach(function(key){
@@ -2712,7 +2716,8 @@ window.NovaAdminExport = (function(){
             var u = String(row.imageUrl || '').trim();
             var lab = String(row.label || '').trim();
             var gl = String(row.glow || '').trim();
-            imgs.push({ imageUrl: u, correct: !!row.correct, label: lab, glow: gl });
+            var au = String(row.audioUrl || '').trim();
+            imgs.push({ imageUrl: u, correct: !!row.correct, label: lab, glow: gl, audioUrl: au });
             if(u) hasKristal = true;
           }
           if(hasKristal || kristal.question){
@@ -3203,7 +3208,8 @@ window.NovaAdminExport = (function(){
               imageUrl: iu,
               correct: !!(ir.correct === true || ir.correct === 1 || ir.correct === '1'),
               label: String(ir.label || ir.name || '').trim(),
-              glow: String(ir.glow || ir.highlight || '').trim()
+              glow: String(ir.glow || ir.highlight || '').trim(),
+              audioUrl: String(ir.audioUrl || ir.mp3 || ir.soundUrl || '').trim()
             });
             if(iu) hasKristal = true;
           }

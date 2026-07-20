@@ -4950,6 +4950,44 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-kristal.is-names-on .birles-kristal__name--4 { transition-delay: 0.33s; }
 .birles-kristal.is-names-on .birles-kristal__name--5 { transition-delay: 0.4s; }
 
+/* MP3 çalarken aktif kelime — büyüt + vurgulu harfler daha belirgin */
+.birles-kristal__name.is-speaking {
+  z-index: 8 !important;
+  opacity: 1 !important;
+  transform: translateY(-6px) scale(1.42) !important;
+  transition:
+    opacity 0.25s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  filter: drop-shadow(0 0 14px rgba(180, 140, 255, 0.85));
+}
+
+.birles-kristal__name.is-speaking .birles-kristal__name-plate {
+  font-size: clamp(1.15rem, 4.6vmin, 1.75rem);
+  padding: 0.42em 0.5em 0.48em;
+  border-color: rgba(255, 230, 160, 0.95);
+  background:
+    linear-gradient(165deg, rgba(70, 40, 110, 0.98) 0%, rgba(28, 14, 52, 0.99) 100%);
+  box-shadow:
+    0 0 0 2px rgba(255, 210, 120, 0.55),
+    0 0 22px rgba(200, 150, 255, 0.75),
+    0 8px 22px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.birles-kristal__name.is-speaking .birles-kristal__gem {
+  transform: scale(1.45);
+  animation: none;
+  margin: 0 0.1em;
+  padding: 0.06em 0.14em 0.08em;
+  font-size: 1.12em;
+  border-color: #fff;
+  box-shadow:
+    0 0 0 2px rgba(255, 220, 120, 0.75),
+    0 0 16px rgba(255, 230, 150, 0.95),
+    0 0 28px rgba(180, 120, 255, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
 /* Vurgulanan harf — net okunur + mor/beyaz kristal rozet */
 .birles-kristal__gem {
   display: inline-block;
