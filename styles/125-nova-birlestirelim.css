@@ -4573,13 +4573,20 @@ html.nova-perf-ultra-early.nova-has-session
   min-height: -webkit-fill-available;
   max-width: none !important;
   max-height: none !important;
-  z-index: 13100;
-  display: block;
+  z-index: 14000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   padding: 0;
   margin: 0;
   background: #05030c;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+#birlestirelim-overlay[data-kristal-under="1"] {
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .birles-kristal__backdrop {

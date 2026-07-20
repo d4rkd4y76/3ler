@@ -972,6 +972,11 @@
     });
   }
 
+  try {
+    window.__birlesClearHubCover = clearBirlesHubCoverLayout;
+    window.__birlesScheduleHubCover = scheduleBirlesHubCover;
+  } catch (_) {}
+
   function ensureBirlesZoomMask() {
     var mask = document.getElementById("birles-zoom-mask");
     if (mask) return mask;

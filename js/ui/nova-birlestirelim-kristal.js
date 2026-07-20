@@ -200,6 +200,7 @@
     });
   }
 
+/* Foto yüklemesi asla sonsuza kadar bekletmesin */
   function waitPhotosInDom(root) {
     var imgs = root ? root.querySelectorAll(".birles-kristal__photo") : [];
     var tasks = [];
@@ -207,7 +208,10 @@
       (function (el) {
         tasks.push(
           new Promise(function (resolve) {
+            var done = false;
             function finish() {
+              if (done) return;
+              done = true;
               resolve();
             }
             if (el.complete && el.naturalWidth > 0) {
@@ -230,6 +234,7 @@
               { once: true }
             );
             el.addEventListener("error", finish, { once: true });
+            setTimeout(finish, 8000);
           })
         );
       })(imgs[i]);
@@ -359,6 +364,22 @@
       document.body.classList.remove("birles-kristal-fs");
       if (typeof window.novaSyncPerfRuntime === "function") {
         window.novaSyncPerfRuntime();
+      }
+    } catch (_) {}
+    try {
+      var birlesOv = document.getElementById("birlestirelim-overlay");
+      if (birlesOv && birlesOv.getAttribute("data-kristal-under") === "1") {
+        birlesOv.removeAttribute("data-kristal-under");
+        if (birlesOv.classList.contains("open")) {
+          birlesOv.style.setProperty("visibility", "visible", "important");
+          birlesOv.style.setProperty("pointer-events", "auto", "important");
+        } else {
+          birlesOv.style.removeProperty("visibility");
+          birlesOv.style.removeProperty("pointer-events");
+        }
+        if (typeof window.__birlesScheduleHubCover === "function") {
+          window.__birlesScheduleHubCover();
+        }
       }
     } catch (_) {}
     if (hostEl && hostEl.parentNode) hostEl.parentNode.removeChild(hostEl);
@@ -524,6 +545,19 @@
       warm(packRef);
     } catch (_) {}
 
+    /* Ses Evreni hub cover (zoom telafisi) yeşil ekranı kristalin üstüne taşımasın */
+    try {
+      if (typeof window.__birlesClearHubCover === "function") {
+        window.__birlesClearHubCover();
+      }
+      var birlesOv = document.getElementById("birlestirelim-overlay");
+      if (birlesOv) {
+        birlesOv.setAttribute("data-kristal-under", "1");
+        birlesOv.style.setProperty("visibility", "hidden", "important");
+        birlesOv.style.setProperty("pointer-events", "none", "important");
+      }
+    } catch (_) {}
+
     var box = document.createElement("div");
     box.id = "birles-kristal-overlay";
     box.className = "birles-kristal is-booting";
@@ -550,13 +584,12 @@
       "    </div>" +
       "  </div>" +
       "</div>" +
-      '  <p class="birles-kristal__ask">' +
+      '<p class="birles-kristal__ask">' +
       esc(q) +
       "</p>" +
-      '  <button type="button" class="birles-kristal__close" data-kristal-close="1" aria-label="Kapat">✕</button>' +
-      '  <p class="birles-kristal__hint">Doğru olanların hepsine dokun</p>' +
-      '  <button type="button" class="birles-kristal__exit" data-kristal-done="1" hidden aria-hidden="true" aria-label="Kapat">✕</button>' +
-      "</div>";
+      '<button type="button" class="birles-kristal__close" data-kristal-close="1" aria-label="Kapat">✕</button>' +
+      '<p class="birles-kristal__hint">Doğru olanların hepsine dokun</p>' +
+      '<button type="button" class="birles-kristal__exit" data-kristal-done="1" hidden aria-hidden="true" aria-label="Kapat">✕</button>';
 
     document.body.appendChild(box);
     hostEl = box;
@@ -606,15 +639,28 @@
     var minShow = new Promise(function (r) {
       setTimeout(r, 480);
     });
+    var warmOk = Promise.resolve(warmPromise).catch(function () {
+      return null;
+    });
 
     Promise.all([
-      waitVideoReady(vid, 25000),
+      waitVideoReady(vid, 12000),
       waitPhotosInDom(box),
-      warmPromise || Promise.resolve(),
+      warmOk,
       minShow
-    ]).then(function () {
-      revealReady(box, vid, token);
-    });
+    ])
+      .then(function () {
+        revealReady(box, vid, token);
+      })
+      .catch(function () {
+        revealReady(box, vid, token);
+      });
+
+    /* Emniyet: en geç 3.5 sn’de sahneyi göster */
+    setTimeout(function () {
+      if (token !== openToken || !box || !box.parentNode) return;
+      if (!box.classList.contains("is-ready")) revealReady(box, vid, token);
+    }, 3500);
   }
 
   global.NovaBirlestirelimKristal = {
