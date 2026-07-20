@@ -2067,6 +2067,30 @@
       var pct = Math.max(6, Math.round((cur / total) * 100));
       var allTxt = pool ? "Tümü" : activeLane.allLabel || "Tümü";
       var waitTxt = pool ? "Bekle" : "Dinleniyor…";
+      if (pool) {
+        return (
+          '<div class="birles-fs-dock" role="toolbar" aria-label="Oyun kontrolleri">' +
+          '<div class="birles-fs-dock__bar">' +
+          '<span class="birles-fs-dock__prog" aria-live="polite">' +
+          esc(laneProgressLabel()) +
+          "</span>" +
+          '<div class="birles-fs-dock__actions">' +
+          '<button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--replay" id="birles-replay" aria-label="Tekrar" title="Tekrar">🔁</button>' +
+          '<button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--soft" id="birles-lane-all">' +
+          esc(allTxt) +
+          "</button>" +
+          '<button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--go is-locked" id="birles-next" disabled aria-disabled="true" title="Gösterim bitince açılır">' +
+          esc(waitTxt) +
+          "</button>" +
+          "</div>" +
+          "</div>" +
+          /* gizli track — ilerleme yüzdesi senkronu için */ "" +
+          '<div class="birles-lane-bar__track" hidden aria-hidden="true"><span style="width:' +
+          pct +
+          '%"></span></div>' +
+          "</div>"
+        );
+      }
       return (
         '<div class="birles-play-actions birles-lane-bar">' +
         '<div class="birles-lane-bar__track" aria-hidden="true"><span style="width:' +
@@ -2082,6 +2106,18 @@
         '<button type="button" class="birles-btn birles-btn--go is-locked" id="birles-next" disabled aria-disabled="true" title="Gösterim bitince açılır">' +
         esc(waitTxt) +
         "</button>" +
+        "</div>"
+      );
+    }
+    if (pool) {
+      return (
+        '<div class="birles-fs-dock" role="toolbar" aria-label="Oyun kontrolleri">' +
+        '<div class="birles-fs-dock__bar">' +
+        '<div class="birles-fs-dock__actions birles-fs-dock__actions--solo">' +
+        '<button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--replay" id="birles-replay" aria-label="Tekrar" title="Tekrar">🔁</button>' +
+        '<button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--go" id="birles-next">Devam</button>' +
+        "</div>" +
+        "</div>" +
         "</div>"
       );
     }
