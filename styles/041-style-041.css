@@ -1,0 +1,15 @@
+/* === NOVA: Wrong Review Öncül (Info) Styles === */
+.nz-info { margin: 8px 0 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.nz-info-img {
+  max-width: 180px; max-height: 130px; width: auto; height: auto;
+  border-radius: 12px; border: 1.5px solid #e5e7eb;
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+  background: #fff; padding: 6px; object-fit: contain;
+}
+.nz-info-text {
+  background: #fff7ed; border: 1.5px dashed #f59e0b; color: #7c2d12;
+  padding: 8px 10px; border-radius: 10px; font-size: .95rem; line-height: 1.35;
+}
+@media (max-width: 480px){
+  .nz-info-img { max-width: 44vw; max-height: 28vh; }
+}

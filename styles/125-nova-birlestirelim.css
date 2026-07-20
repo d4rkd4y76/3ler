@@ -1,0 +1,6298 @@
+﻿/* BÄ°RLEÅTÄ°RELÄ°M â€” neÅŸeli Ã§ocuk arayÃ¼zÃ¼ + ses vurgularÄ± */
+
+/* TÃ¼m oyun metni: ComfortaaOkul (uygulama geneli â€” 131) */
+#birlestirelim-overlay,
+#birlestirelim-overlay button,
+#birlestirelim-overlay .birles-card,
+#birlestirelim-overlay .birles-card__txt,
+#birlestirelim-overlay .birles-tray-chip,
+#birlestirelim-overlay .birles-tray-chip--word,
+#birlestirelim-overlay .birles-hece-seg,
+#birlestirelim-overlay .birles-sentence-word__text,
+#birlestirelim-overlay .birles-cumle-result-word,
+#birlestirelim-overlay .birles-play__narration {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
+}
+
+body.birles-lock {
+  overflow: hidden !important;
+}
+
+body.birles-pool-fs {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+.birles-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 12050;
+  display: none;
+  align-items: stretch;
+  justify-content: center;
+  padding: max(10px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.55), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(76, 201, 240, 0.4), transparent 40%),
+    radial-gradient(circle at 70% 85%, rgba(6, 214, 160, 0.35), transparent 45%),
+    linear-gradient(160deg, #123047 0%, #1b4332 48%, #264653 100%);
+}
+
+.birles-overlay.open {
+  display: flex;
+  animation: birlesFadeIn 0.38s ease both;
+}
+
+@keyframes birlesFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-shell {
+  position: relative;
+  width: min(820px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #fffdf8 0%, #f3fffb 48%, #eef9ff 100%);
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.7);
+}
+
+.birles-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 16px 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), transparent);
+}
+
+.birles-top-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.birles-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--birles-accent, #e76f51);
+}
+
+#birles-title {
+  margin: 2px 0 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.45rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1b3a4b;
+}
+
+.birles-sub {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #567183;
+}
+
+/* ── Profesyonel başlıklar: SES EVRENİ + 1. GRUP ── */
+.birles-top--universe,
+.birles-top--group {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  padding: 14px 16px 8px;
+}
+
+.birles-top--universe {
+  background:
+    radial-gradient(ellipse 70% 100% at 50% -35%, rgba(86, 170, 230, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), transparent);
+}
+
+.birles-top--group {
+  background:
+    radial-gradient(ellipse 65% 100% at 50% -35%, color-mix(in srgb, var(--chip, #e76f51) 14%, transparent), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), transparent);
+}
+
+.birles-top--universe .birles-top-text,
+.birles-top--group .birles-top-text {
+  grid-column: 2;
+  text-align: center;
+  position: relative;
+}
+
+.birles-top--universe #birles-back,
+.birles-top--group #birles-back {
+  grid-column: 1;
+}
+
+.birles-top--universe .birles-close,
+.birles-top--group .birles-close {
+  grid-column: 3;
+}
+
+#birles-title.birles-title--universe,
+#birles-title.birles-title--group {
+  position: relative;
+  display: inline-block;
+  margin: 0 !important;
+  padding: 4px 8px 10px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-weight: 800 !important;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #16324f;
+  -webkit-text-fill-color: #16324f;
+  text-shadow: none;
+  filter: none;
+}
+
+#birles-title.birles-title--universe {
+  font-size: clamp(1.55rem, 5.6vw, 2.15rem) !important;
+  letter-spacing: 0.12em;
+  color: #1a4a6e;
+  -webkit-text-fill-color: #1a4a6e;
+  background: linear-gradient(180deg, #2b6a9e 0%, #1a4a6e 55%, #16324f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.9));
+}
+
+#birles-title.birles-title--group {
+  font-size: clamp(1.4rem, 5vw, 1.9rem) !important;
+  letter-spacing: 0.1em;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--chip, #e76f51) 55%, #16324f) 0%,
+    color-mix(in srgb, var(--chip, #e76f51) 75%, #1a3044) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.9));
+}
+
+#birles-title.birles-title--universe::after,
+#birles-title.birles-title--group::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  height: 3px;
+  border-radius: 999px;
+}
+
+#birles-title.birles-title--universe::after {
+  width: min(86%, 200px);
+  background: linear-gradient(90deg, transparent, #4a9fd8 20%, #6bb3e0 50%, #4a9fd8 80%, transparent);
+  opacity: 0.85;
+}
+
+#birles-title.birles-title--group::after {
+  width: min(72%, 140px);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--chip, #e76f51) 70%, #ffd166) 25%,
+    var(--chip, #e76f51) 50%,
+    color-mix(in srgb, var(--chip, #e76f51) 70%, #ffd166) 75%,
+    transparent
+  );
+  opacity: 0.9;
+}
+
+.birles-icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(27, 58, 75, 0.08);
+  color: #1b3a4b;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.birles-body {
+  flex: 1;
+  overflow: auto;
+  padding: 6px 16px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.birles-body:has(.birles-hub--flower) {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.birles-hub {
+  position: relative;
+}
+
+/* â”€â”€ Grup seÃ§im Â· dÃ¼nya portal kartlarÄ± (oyun) â”€â”€ */
+.birles-hub--groups {
+  position: relative;
+  padding: 8px 0 22px;
+  min-height: min(70vh, 540px);
+}
+
+.birles-body:has(.birles-hub--groups) {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.birles-groups-scene {
+  position: absolute;
+  inset: -10px -6px 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.birles-groups-scene__nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.65;
+  animation: birlesNebulaDrift 12s ease-in-out infinite;
+}
+
+.birles-groups-scene__nebula--1 {
+  width: 62%;
+  height: 45%;
+  top: -12%;
+  left: -14%;
+  background: radial-gradient(circle, rgba(255, 190, 90, 0.55), transparent 70%);
+}
+
+.birles-groups-scene__nebula--2 {
+  width: 58%;
+  height: 42%;
+  bottom: -10%;
+  right: -12%;
+  background: radial-gradient(circle, rgba(88, 190, 255, 0.45), transparent 72%);
+  animation-delay: -5s;
+}
+
+.birles-groups-scene__cloud {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35);
+  animation: birlesCloudFloat 9s ease-in-out infinite;
+}
+
+.birles-groups-scene__cloud--1 {
+  width: 72px;
+  height: 28px;
+  top: 8%;
+  right: 6%;
+}
+
+.birles-groups-scene__cloud--2 {
+  width: 56px;
+  height: 22px;
+  bottom: 14%;
+  left: 4%;
+  animation-delay: -3s;
+}
+
+.birles-groups-scene__dust {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffe08a;
+  box-shadow: 0 0 10px rgba(255, 210, 80, 0.8);
+  animation: birlesDustTwinkle 3.5s ease-in-out infinite;
+}
+
+.birles-groups-scene__dust--1 { top: 18%; left: 12%; }
+.birles-groups-scene__dust--2 { top: 42%; right: 14%; animation-delay: 1.1s; }
+.birles-groups-scene__dust--3 { bottom: 22%; left: 28%; animation-delay: 2.2s; }
+
+@keyframes birlesNebulaDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8px, -6px) scale(1.05); }
+}
+
+@keyframes birlesCloudFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes birlesDustTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.birles-group-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+/* â”€â”€ DÃ¼nya kartÄ± â”€â”€ */
+.birles-wcard {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  animation: birlesWcardIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--delay, 0s);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes birlesWcardIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+.birles-wcard__shadow {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(22, 50, 79, 0.22);
+  filter: blur(6px);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.birles-wcard__shell {
+  position: relative;
+  display: block;
+  padding: 3px;
+  border-radius: 26px;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--chip, #2a9d8f) 55%, #ffffff) 0%,
+    color-mix(in srgb, var(--chip, #2a9d8f) 85%, #1a3044) 100%
+  );
+  box-shadow:
+    0 14px 32px color-mix(in srgb, var(--chip, #2a9d8f) 28%, rgba(22, 50, 79, 0.2)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.birles-wcard__aura {
+  position: absolute;
+  inset: -4px;
+  border-radius: 30px;
+  background: radial-gradient(
+    circle at 50% 40%,
+    color-mix(in srgb, var(--chip, #2a9d8f) 35%, transparent),
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.birles-wcard__frame {
+  position: relative;
+  display: block;
+  min-height: 118px;
+  padding: 28px 12px 12px;
+  border-radius: 23px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, color-mix(in srgb, var(--chip, #2a9d8f) 22%, #ffffff), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--chip, #2a9d8f) 12%, transparent), transparent 50%),
+    linear-gradient(180deg, #fffef9 0%, color-mix(in srgb, var(--soft, #f7fffc) 92%, #ffffff) 55%, #f8fbff 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.85);
+}
+
+.birles-wcard.has-egg .birles-wcard__frame {
+  padding-right: 62px;
+}
+
+.birles-wcard__frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.birles-wcard__ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  min-width: 132px;
+  max-width: 72%;
+  padding: 7px 22px 9px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--chip, #2a9d8f) 92%, #ffffff) 0%,
+    var(--chip, #2a9d8f) 100%
+  );
+  border-radius: 0 0 16px 16px;
+  box-shadow:
+    0 6px 14px color-mix(in srgb, var(--chip, #2a9d8f) 35%, transparent),
+    inset 0 2px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.birles-wcard__ribbon::before,
+.birles-wcard__ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  background: color-mix(in srgb, var(--chip, #2a9d8f) 70%, #1a3044);
+}
+
+.birles-wcard__ribbon::before {
+  left: -10px;
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.birles-wcard__ribbon::after {
+  right: -10px;
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.birles-wcard__ribbon-text {
+  display: block;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(0.82rem, 3vw, 0.96rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-shadow: 0 2px 0 color-mix(in srgb, var(--chip, #2a9d8f) 65%, #1a3044);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.birles-wcard__flag {
+  position: static;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--chip, #2a9d8f) 75%, #16324f);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 3px 8px rgba(22, 50, 79, 0.1),
+    inset 0 0 0 2px color-mix(in srgb, var(--chip, #2a9d8f) 25%, transparent);
+}
+
+.birles-wcard.is-started .birles-wcard__flag {
+  color: #fff;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--chip, #2a9d8f) 90%, #fff) 0%, var(--chip, #2a9d8f) 100%);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--chip, #2a9d8f) 38%, transparent);
+}
+
+.birles-wcard.is-complete .birles-wcard__flag {
+  color: #7a5200;
+  background: linear-gradient(180deg, #fff6c8 0%, #ffd54a 100%);
+  box-shadow: 0 3px 12px rgba(255, 190, 40, 0.35);
+}
+
+.birles-wcard__crown {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  z-index: 4;
+  font-size: 1.1rem;
+  filter: drop-shadow(0 2px 4px rgba(255, 190, 40, 0.5));
+  animation: birlesCrownBob 2.5s ease-in-out infinite;
+}
+
+@keyframes birlesCrownBob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-3px) rotate(4deg); }
+}
+
+.birles-wcard__layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.birles-wcard__portal {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 68px;
+  gap: 0;
+}
+
+.birles-wcard__pedestal {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 20px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.birles-wcard__pedestal i {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #e8edf2 0%, #b8c5d4 100%);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.birles-wcard__pedestal i:first-child {
+  bottom: 0;
+  width: 52px;
+  height: 10px;
+}
+
+.birles-wcard__pedestal i:last-child {
+  bottom: 6px;
+  width: 38px;
+  height: 8px;
+  opacity: 0.85;
+}
+
+.birles-wcard__crystal {
+  position: relative;
+  z-index: 1;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 2px;
+}
+
+.birles-wcard__crystal-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.85);
+  border-right-color: color-mix(in srgb, var(--chip, #2a9d8f) 70%, transparent);
+  opacity: 0.85;
+  animation: birlesCrystalSpin 4s linear infinite;
+}
+
+.birles-wcard.is-complete .birles-wcard__crystal-ring {
+  border-top-color: #ffe566;
+  border-right-color: #ffb300;
+  animation-duration: 2.5s;
+}
+
+@keyframes birlesCrystalSpin {
+  to { transform: rotate(360deg); }
+}
+
+.birles-wcard__crystal-core {
+  position: absolute;
+  inset: 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #fff;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.55) 0%, transparent 42%),
+    linear-gradient(155deg, color-mix(in srgb, var(--chip, #2a9d8f) 70%, #fff) 0%, var(--chip, #2a9d8f) 50%, color-mix(in srgb, var(--chip, #2a9d8f) 80%, #1a3044) 100%);
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--chip, #2a9d8f) 45%, transparent),
+    inset 0 3px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 2px 0 color-mix(in srgb, var(--chip, #2a9d8f) 60%, #1a3044);
+}
+
+.birles-wcard__stars,
+.birles-wstar,
+.birles-wcard__star-num {
+  display: none !important;
+}
+
+/* Ejderha yumurtası rozeti — çerçeve sağ üst */
+.birles-wcard__eggbadge {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 52px;
+  pointer-events: none;
+}
+
+.birles-wcard__eggbadge-shine {
+  position: absolute;
+  inset: -6px -8px auto -8px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 200, 80, 0.55) 0%,
+    rgba(255, 140, 40, 0.2) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.birles-wcard__eggbadge-ring {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    linear-gradient(155deg, #fff4c8 0%, #f0b040 42%, #c45a12 100%);
+  box-shadow:
+    0 0 0 2px rgba(255, 245, 210, 0.95),
+    0 0 0 4px rgba(180, 90, 20, 0.45),
+    0 6px 14px rgba(140, 60, 10, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -3px 6px rgba(120, 40, 0, 0.25);
+}
+
+.birles-wcard__eggbadge-egg {
+  display: block;
+  width: 30px;
+  height: auto;
+  filter: drop-shadow(0 2px 3px rgba(80, 20, 0, 0.35));
+  transform: translateY(1px);
+}
+
+.birles-wcard__eggbadge-chip {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: -6px;
+  padding: 2px 7px 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #2a1a0e 0%, #4a2c14 45%, #1a1008 100%);
+  box-shadow:
+    0 2px 0 #0e0804,
+    0 4px 10px rgba(22, 50, 79, 0.22),
+    inset 0 1px 0 rgba(255, 220, 140, 0.35),
+    inset 0 0 0 1px rgba(255, 190, 80, 0.35);
+}
+
+.birles-wcard__eggbadge-plus {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #ffe29a;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.55),
+    0 0 8px rgba(255, 180, 60, 0.55);
+}
+
+.birles-wcard__eggbadge-check {
+  display: grid;
+  place-items: center;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  font-size: 0.52rem;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(160deg, #5adf8a, #2f9e57);
+  box-shadow: 0 1px 3px rgba(20, 80, 40, 0.4);
+}
+
+.birles-wcard__eggbadge.is-ready .birles-wcard__eggbadge-ring {
+  animation: birlesEggBadgePulse 2.2s ease-in-out infinite;
+}
+
+.birles-wcard__eggbadge.is-ready .birles-wcard__eggbadge-shine {
+  animation: birlesEggBadgeGlow 2.2s ease-in-out infinite;
+}
+
+.birles-wcard__eggbadge.is-claimed .birles-wcard__eggbadge-ring {
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.55), transparent 42%),
+    linear-gradient(155deg, #d8efe0 0%, #6fbf88 45%, #2f7a4a 100%);
+  box-shadow:
+    0 0 0 2px rgba(230, 255, 240, 0.9),
+    0 0 0 4px rgba(40, 120, 70, 0.4),
+    0 5px 12px rgba(30, 80, 50, 0.28),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.birles-wcard__eggbadge.is-claimed .birles-wcard__eggbadge-shine {
+  background: radial-gradient(
+    circle,
+    rgba(120, 220, 160, 0.4) 0%,
+    transparent 70%
+  );
+}
+
+@keyframes birlesEggBadgePulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+@keyframes birlesEggBadgeGlow {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.birles-wcard__chest {
+  display: none !important;
+}
+
+.birles-wcard__mid {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.birles-wcard__runes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.birles-wrune {
+  animation: birlesRuneIn 0.5s ease both;
+  animation-delay: calc(var(--ri, 0) * 0.05s + var(--delay, 0s));
+}
+
+@keyframes birlesRuneIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.8); }
+  to { opacity: 1; transform: none; }
+}
+
+.birles-wrune__gem {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 36px;
+  clip-path: polygon(50% 0%, 92% 22%, 92% 72%, 50% 100%, 8% 72%, 8% 22%);
+  background: linear-gradient(180deg, #ffffff 0%, #eef3f8 100%);
+  box-shadow:
+    0 3px 0 color-mix(in srgb, var(--chip, #2a9d8f) 25%, rgba(22, 50, 79, 0.15)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -4px 8px rgba(22, 50, 79, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.birles-wrune__letter {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 900;
+  line-height: 1;
+  color: color-mix(in srgb, var(--chip, #2a9d8f) 70%, #16324f);
+}
+
+.birles-wrune.is-lit .birles-wrune__gem {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--chip, #2a9d8f) 80%, #fff) 0%,
+    var(--chip, #2a9d8f) 100%
+  );
+  box-shadow:
+    0 3px 0 color-mix(in srgb, var(--chip, #2a9d8f) 55%, #1a3044),
+    0 0 14px color-mix(in srgb, var(--chip, #2a9d8f) 45%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.birles-wrune.is-lit .birles-wrune__letter {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.birles-wcard__trail {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.birles-wcard__tube {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 11px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.1);
+  box-shadow: inset 0 2px 4px rgba(22, 50, 79, 0.12);
+  overflow: hidden;
+}
+
+.birles-wcard__tube i {
+  display: block;
+  height: 100%;
+  width: calc(var(--gpct, 0) * 1%);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--chip, #2a9d8f), #ffe08a);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--chip, #2a9d8f) 40%, transparent);
+  transition: width 0.45s ease;
+}
+
+.birles-wcard__tube-shine {
+  position: absolute;
+  inset: 1px 8px 1px 4px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), transparent);
+  pointer-events: none;
+}
+
+.birles-wcard__trail-label {
+  flex-shrink: 0;
+  font-size: 0.64rem;
+  font-weight: 900;
+  color: #7a93a3;
+  letter-spacing: 0.03em;
+}
+
+.birles-wcard__aside {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 54px;
+  padding-top: 2px;
+}
+
+.birles-wcard__chest {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 8px 4px 5px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #5a3d1e 0%, #3d2812 100%);
+  box-shadow:
+    0 4px 0 #2a1a0a,
+    0 6px 14px rgba(22, 50, 79, 0.2),
+    inset 0 1px 0 rgba(255, 220, 120, 0.25);
+}
+
+.birles-wcard__chest-lid {
+  position: absolute;
+  top: -3px;
+  left: 4px;
+  right: 4px;
+  height: 6px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #8a5e28 0%, #5a3d1e 100%);
+}
+
+.birles-wcard__chest.is-ready {
+  animation: birlesChestBounce 2s ease-in-out infinite;
+}
+
+@keyframes birlesChestBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.birles-wcard__chest-egg {
+  display: block;
+  width: 22px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.birles-wcard__chest-tag {
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: #ffe08a;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.birles-wcard__chest-check {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #fff;
+  background: #3d9a5f;
+}
+
+.birles-wcard__launch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+}
+
+.birles-wcard__launch-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 45%, transparent);
+  opacity: 0;
+  animation: birlesLaunchPulse 2.5s ease-out infinite;
+}
+
+@keyframes birlesLaunchPulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+.birles-wcard__launch-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--chip, #2a9d8f) 75%, #ffffff) 0%,
+    var(--chip, #2a9d8f) 55%,
+    color-mix(in srgb, var(--chip, #2a9d8f) 85%, #1a3044) 100%
+  );
+  box-shadow:
+    0 6px 0 color-mix(in srgb, var(--chip, #2a9d8f) 55%, #1a3044),
+    0 10px 22px color-mix(in srgb, var(--chip, #2a9d8f) 38%, transparent),
+    inset 0 3px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.birles-wcard__launch-btn span {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #fff;
+  margin-left: 3px;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.birles-wcard__glint {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.7);
+  filter: blur(1px);
+  animation: birlesGlintFlash 4s ease-in-out infinite;
+}
+
+.birles-wcard__glint--1 {
+  width: 6px;
+  height: 6px;
+  top: 22%;
+  left: 18%;
+}
+
+.birles-wcard__glint--2 {
+  width: 4px;
+  height: 4px;
+  bottom: 24%;
+  right: 22%;
+  animation-delay: 1.8s;
+}
+
+@keyframes birlesGlintFlash {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  45% { opacity: 0.9; transform: scale(1); }
+  55% { opacity: 0; }
+}
+
+.birles-wcard.is-complete .birles-wcard__shell {
+  background: linear-gradient(165deg, #ffe08a 0%, #e9a825 50%, #c88612 100%);
+}
+
+.birles-wcard.is-complete .birles-wcard__frame {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 230, 120, 0.35), transparent 55%),
+    linear-gradient(180deg, #fffef5 0%, #fff8e0 100%);
+}
+
+.birles-wcard:hover .birles-wcard__shell,
+.birles-wcard:focus-visible .birles-wcard__shell {
+  transform: translateY(-4px);
+}
+
+.birles-wcard:hover .birles-wcard__aura,
+.birles-wcard:focus-visible .birles-wcard__aura {
+  opacity: 1;
+}
+
+.birles-wcard:hover .birles-wcard__shadow,
+.birles-wcard:focus-visible .birles-wcard__shadow {
+  transform: scale(1.05);
+  opacity: 0.32;
+}
+
+.birles-wcard:hover .birles-wcard__launch-btn,
+.birles-wcard:focus-visible .birles-wcard__launch-btn {
+  transform: scale(1.08);
+}
+
+.birles-wcard:active .birles-wcard__shell {
+  transform: translateY(1px);
+}
+
+.birles-wcard:active .birles-wcard__launch-btn {
+  transform: scale(0.95) translateY(3px);
+  box-shadow:
+    0 2px 0 color-mix(in srgb, var(--chip, #2a9d8f) 55%, #1a3044),
+    0 4px 10px color-mix(in srgb, var(--chip, #2a9d8f) 28%, transparent);
+}
+
+.birles-wcard:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 380px) {
+  .birles-wcard__portal { width: 58px; }
+  .birles-wcard__crystal { width: 48px; height: 48px; }
+  .birles-wrune__gem { width: 28px; height: 32px; }
+  .birles-wcard__launch { width: 48px; height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-groups-scene__nebula,
+  .birles-groups-scene__cloud,
+  .birles-groups-scene__dust,
+  .birles-wcard__crystal-ring,
+  .birles-wcard__eggbadge.is-ready .birles-wcard__eggbadge-ring,
+  .birles-wcard__eggbadge.is-ready .birles-wcard__eggbadge-shine,
+  .birles-wcard__launch-pulse,
+  .birles-wcard__glint,
+  .birles-wcard__crown {
+    animation: none !important;
+  }
+
+  .birles-wcard {
+    animation: none !important;
+  }
+
+  .birles-wrune {
+    animation: none !important;
+  }
+}
+
+.birles-path-label {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a93a3;
+}
+
+.birles-fusion-section {
+  margin: 0 0 28px;
+  padding: 0 0 22px;
+  border-bottom: 1px solid rgba(27, 58, 75, 0.1);
+}
+.birles-fusion-section:last-child {
+  margin-bottom: 8px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.birles-fusion-section__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 4px 2px 10px;
+  border-bottom: 3px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #1b3a4b);
+}
+
+.birles-fusion-section__head .birles-path-label {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1b3a4b;
+  line-height: 1.2;
+}
+
+.birles-fusion-section__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: #1b3a4b;
+  box-shadow: 0 4px 10px rgba(27, 58, 75, 0.18);
+}
+
+.birles-group-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  margin-bottom: 12px;
+  border-radius: 22px;
+  border: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 42%, transparent);
+  background: linear-gradient(
+    120deg,
+    var(--soft, #eaf8f5) 0%,
+    color-mix(in srgb, var(--chip, #2a9d8f) 12%, #ffffff) 55%,
+    #ffffff 100%
+  );
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--chip, #2a9d8f) 16%, transparent);
+}
+
+.birles-group-banner--soft {
+  border-width: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 0% 50%, color-mix(in srgb, var(--chip, #2a9d8f) 18%, transparent), transparent 60%),
+    linear-gradient(120deg, #fffdf8 0%, var(--soft, #eaf8f5) 55%, #ffffff 100%);
+  box-shadow:
+    0 10px 24px rgba(27, 58, 75, 0.08),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.9);
+}
+.birles-group-banner__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.birles-group-banner__text strong {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.2rem;
+  color: #1b3a4b;
+}
+.birles-group-banner__text span {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--chip, #2a9d8f) 55%, #567183);
+}
+.birles-group-banner__prog {
+  margin-top: 2px;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  color: color-mix(in srgb, var(--chip, #2a9d8f) 72%, #16324f) !important;
+}
+.birles-izle-btn--tiny {
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  align-self: center;
+}
+/* Gruplar: pembe/turuncu deÄŸil â€” aktif grup rengi */
+.birles-izle-btn--group {
+  color: #fff !important;
+  background: var(--chip, #2a9d8f) !important;
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--chip, #2a9d8f) 36%, transparent) !important;
+}
+
+/* â”€â”€ Ses Ã§iÃ§eÄŸi Â· oyun arenasÄ± + yÃ¶rÃ¼nge yÄ±ldÄ±zlarÄ± â”€â”€ */
+.birles-hub--flower {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 0 0 4px;
+}
+
+.birles-flower-stage {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: min(82vh, 560px);
+  padding: 4px 0 12px;
+  overflow: visible;
+}
+
+.birles-flower-arena {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 36px;
+  overflow: hidden;
+}
+
+.birles-flower-arena__glow {
+  position: absolute;
+  inset: 2% 1% 4%;
+  border-radius: 40px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 252, 245, 0.55) 38%, transparent 72%),
+    radial-gradient(circle at 22% 28%, color-mix(in srgb, var(--chip, #2a9d8f) 18%, transparent), transparent 48%),
+    radial-gradient(circle at 78% 72%, rgba(120, 190, 255, 0.16), transparent 46%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.7) 0%, rgba(240, 252, 255, 0.35) 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.85),
+    inset 0 -18px 40px rgba(27, 58, 75, 0.04);
+}
+
+.birles-flower-arena__spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 220, 120, 0.7);
+  box-shadow: 0 0 12px rgba(255, 200, 80, 0.5);
+  animation: birlesArenaSpark 4.5s ease-in-out infinite;
+}
+
+.birles-flower-arena__spark--1 {
+  top: 14%;
+  left: 18%;
+  animation-delay: 0s;
+}
+
+.birles-flower-arena__spark--2 {
+  top: 22%;
+  right: 14%;
+  width: 4px;
+  height: 4px;
+  animation-delay: 1.4s;
+}
+
+.birles-flower-arena__spark--3 {
+  bottom: 18%;
+  left: 24%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 2.6s;
+}
+
+@keyframes birlesArenaSpark {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.birles-flower {
+  --orb: clamp(96px, 27vw, 122px);
+  --halo: 26px;
+  position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.birles-flower--dense {
+  --orb: clamp(86px, 24vw, 108px);
+  --halo: 24px;
+  width: min(100%, 540px);
+}
+
+.birles-flower__ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.birles-flower__ring--outer {
+  inset: 14%;
+  border: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 22%, transparent);
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--chip, #2a9d8f) 12%, transparent),
+    inset 0 0 20px rgba(255, 255, 255, 0.35);
+  opacity: 0.7;
+}
+
+.birles-flower__ring--inner {
+  inset: 24%;
+  border: 2px dashed color-mix(in srgb, var(--chip, #2a9d8f) 32%, transparent);
+  opacity: 0.5;
+}
+
+.birles-flower__center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(160px, 44vw, 220px);
+  height: clamp(160px, 44vw, 220px);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, transparent 68%);
+  box-shadow: 0 0 48px color-mix(in srgb, var(--chip, #2a9d8f) 16%, transparent);
+  overflow: visible;
+  animation: none;
+  will-change: auto;
+}
+
+.birles-flower__mascot {
+  display: block;
+  width: 138%;
+  height: 138%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+  pointer-events: none;
+  transform: translateZ(0);
+  filter: drop-shadow(0 16px 28px rgba(22, 50, 79, 0.28));
+}
+
+.birles-flower__seed {
+  display: none;
+}
+
+@keyframes birlesFlowerPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+.birles-flower-petal {
+  position: absolute;
+  z-index: 3;
+  width: calc(var(--orb) + 16px);
+  height: calc(var(--orb) + var(--halo));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  animation: birlesPetalBloom 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 0.07s);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.birles-flower-petal__cluster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.birles-flower-petal__stars-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: clamp(3px, 0.75vw, 5px);
+  min-height: clamp(15px, 4vw, 19px);
+  padding: 0 2px;
+  pointer-events: none;
+}
+
+.birles-orbit-star {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(15px, 4vw, 19px);
+  height: clamp(15px, 4vw, 19px);
+  margin: 0;
+  z-index: 2;
+}
+
+.birles-orbit-star::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 1px 5px rgba(22, 50, 79, 0.14),
+    inset 0 0 0 1.5px rgba(74, 98, 120, 0.28);
+  z-index: -1;
+}
+
+.birles-orbit-star__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 1px 2px rgba(22, 50, 79, 0.2));
+}
+
+.birles-orbit-star__icon path {
+  fill: #7d93ad;
+  stroke: #3d5268;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+}
+
+.birles-orbit-star.is-lit::before {
+  background: linear-gradient(180deg, #fffef5 0%, #fff4cc 100%);
+  box-shadow:
+    0 0 10px rgba(255, 190, 40, 0.55),
+    0 1px 6px rgba(22, 50, 79, 0.1),
+    inset 0 0 0 1.5px rgba(255, 200, 50, 0.55);
+}
+
+.birles-orbit-star.is-lit .birles-orbit-star__icon {
+  filter:
+    drop-shadow(0 0 4px rgba(255, 210, 50, 0.95))
+    drop-shadow(0 0 8px rgba(255, 170, 20, 0.6));
+  animation: birlesStarTwinkle 2.4s ease-in-out infinite;
+  animation-delay: calc(var(--star-i, 0) * 0.15s);
+}
+
+.birles-orbit-star.is-lit .birles-orbit-star__icon path {
+  fill: #ffba00;
+  stroke: #fff8e0;
+  stroke-width: 1.2;
+}
+
+@keyframes birlesStarTwinkle {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.birles-flower-petal__orb {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: var(--orb);
+  height: var(--orb);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 26%, #ffffff 0%, #fffef9 38%, #f4faff 100%);
+  border: 4px solid var(--chip, #06d6a0);
+  box-shadow:
+    0 16px 32px rgba(22, 50, 79, 0.14),
+    0 0 0 7px color-mix(in srgb, var(--chip, #06d6a0) 12%, transparent),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -6px 16px color-mix(in srgb, var(--chip, #06d6a0) 8%, transparent);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  overflow: hidden;
+}
+
+.birles-flower-petal__shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    transparent 42%,
+    transparent 58%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+.birles-flower-petal__letter {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(2.25rem, 8.8vw, 2.95rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--chip, #06d6a0);
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
+  -webkit-font-smoothing: antialiased;
+}
+
+.birles-flower-petal__sub {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 2px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1rem, 3.6vw, 1.18rem);
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in srgb, var(--chip, #06d6a0) 72%, #16324f);
+  opacity: 0.9;
+}
+
+.birles-flower-petal.is-complete .birles-flower-petal__orb {
+  border-color: #e9a825;
+  box-shadow:
+    0 16px 32px rgba(22, 50, 79, 0.14),
+    0 0 0 7px rgba(233, 168, 37, 0.22),
+    0 0 28px rgba(255, 200, 60, 0.25),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95);
+}
+
+.birles-flower-petal.is-complete .birles-orbit-star.is-lit .birles-orbit-star__icon path {
+  fill: #ffd033;
+  stroke: #fff;
+}
+
+.birles-flower-petal:hover .birles-flower-petal__cluster,
+.birles-flower-petal:focus-visible .birles-flower-petal__cluster {
+  transform: scale(1.06);
+}
+
+.birles-flower-petal:hover .birles-flower-petal__orb,
+.birles-flower-petal:focus-visible .birles-flower-petal__orb {
+  border-color: color-mix(in srgb, var(--chip, #06d6a0) 85%, #143447);
+  box-shadow:
+    0 20px 38px rgba(22, 50, 79, 0.18),
+    0 0 0 8px var(--glow, rgba(6, 214, 160, 0.22)),
+    inset 0 2px 0 rgba(255, 255, 255, 0.98);
+}
+
+.birles-flower-petal:focus-visible {
+  outline: none;
+}
+
+.birles-flower-petal:active .birles-flower-petal__cluster {
+  transform: scale(0.96);
+}
+
+.birles-flower--solo .birles-flower-petal {
+  --orb: clamp(118px, 34vw, 148px);
+  --halo: 28px;
+}
+
+.birles-flower--solo .birles-flower__ring--inner {
+  opacity: 0.25;
+}
+
+.birles-flower--solo .birles-flower__center {
+  opacity: 1;
+}
+
+@keyframes birlesPetalBloom {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.45);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 380px) {
+  .birles-flower {
+    --orb: 86px;
+    --halo: 22px;
+    width: min(100%, 360px);
+  }
+  .birles-flower--dense {
+    --orb: 78px;
+    --halo: 20px;
+  }
+  .birles-flower-petal__letter {
+    font-size: 2.1rem;
+  }
+  .birles-flower-stage {
+    min-height: min(82vw, 400px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-flower-petal,
+  .birles-flower__center,
+  .birles-flower-arena__spark,
+  .birles-orbit-star.is-lit .birles-orbit-star__icon {
+    animation: none !important;
+  }
+}
+
+.birles-fusion-grid--hece {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.birles-sound-rail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.birles-sound-chip-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: birlesChipIn 0.45s ease both;
+  animation-delay: var(--delay, 0s);
+}
+
+.birles-sound-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 16px 14px 14px;
+  border: 3px solid var(--chip, #06d6a0);
+  border-radius: 22px;
+  cursor: pointer;
+  text-align: left;
+  color: #1b3a4b;
+  background: #fff;
+  box-shadow: 0 12px 26px rgba(27, 58, 75, 0.12);
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1.2), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.birles-izle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: stretch;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #1b3a4b;
+  background: linear-gradient(135deg, #ffe08a, #ffb4a2);
+  box-shadow: 0 6px 14px rgba(255, 122, 89, 0.22);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.birles-izle-btn__ico {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.62rem;
+  background: #fff;
+  color: #ff7a59;
+}
+.birles-izle-btn:hover,
+.birles-izle-btn:focus-visible {
+  transform: translateY(-1px) scale(1.02);
+}
+.birles-izle-btn.is-empty {
+  filter: grayscale(0.35);
+  opacity: 0.72;
+}
+.birles-izle-btn--hero {
+  flex-direction: column;
+  gap: 2px;
+  min-width: 88px;
+  border-radius: 22px;
+  padding: 14px 12px;
+  align-self: stretch;
+}
+.birles-izle-btn--hero small {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.birles-sound-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+.birles-sound-hero .birles-listen-main {
+  margin-bottom: 0;
+}
+.birles-sound-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: stretch;
+  min-width: 96px;
+}
+
+.birles-yaz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #143447;
+  background: linear-gradient(135deg, #b8f2e6, #7bdff2);
+  box-shadow: 0 6px 14px rgba(58, 134, 255, 0.18);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.birles-yaz-btn__ico {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  background: #fff;
+  color: #1b6b8a;
+}
+.birles-yaz-btn--hero {
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 88px;
+  border-radius: 22px;
+  padding: 14px 12px;
+}
+.birles-yaz-btn--hero small {
+  font-size: 0.62rem;
+  font-weight: 700;
+  opacity: 0.75;
+}
+.birles-yaz-btn:hover,
+.birles-yaz-btn:focus-visible {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* â”€â”€ Harf yazÄ±lÄ±ÅŸÄ± (Maarif Â· dik temel) â”€â”€ */
+.birles-yaz {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 2px 18px;
+  --chip: #e4572e;
+}
+.birles-yaz__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.birles-yaz__cases {
+  display: inline-flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(27, 58, 75, 0.06);
+}
+.birles-yaz__case {
+  min-width: 48px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b3a4b;
+  cursor: pointer;
+}
+.birles-yaz__case.is-on {
+  background: #fff;
+  color: color-mix(in srgb, var(--chip) 80%, #1b3a4b);
+  box-shadow: 0 4px 14px rgba(27, 58, 75, 0.12);
+}
+.birles-yaz__meta {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: rgba(20, 52, 71, 0.62);
+}
+.birles-yaz__stage {
+  position: relative;
+  border-radius: 22px;
+  overflow: visible;
+  background:
+    radial-gradient(90% 70% at 50% 0%, color-mix(in srgb, var(--chip) 14%, transparent), transparent 60%),
+    #f4f8fb;
+  box-shadow: 0 12px 32px rgba(27, 58, 75, 0.1);
+}
+.birles-yaz__svg {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  height: auto;
+  touch-action: none;
+  overflow: visible;
+}
+.birles-yaz__stage.is-shake {
+  animation: birles-yaz-shake 0.45s ease;
+}
+@keyframes birles-yaz-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+.birles-yaz__hit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  touch-action: none;
+}
+.birles-yaz__paper {
+  fill: #fffef8;
+  stroke: rgba(27, 58, 75, 0.08);
+  stroke-width: 1.5;
+}
+.birles-yaz__guide {
+  stroke: rgba(58, 134, 255, 0.28);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.birles-yaz__guide--mid {
+  stroke: rgba(255, 140, 0, 0.45);
+  stroke-dasharray: 4 5;
+}
+.birles-yaz__ghost {
+  stroke: rgba(27, 58, 75, 0.1);
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  shape-rendering: geometricPrecision;
+}
+.birles-yaz__stroke {
+  stroke: color-mix(in srgb, var(--chip) 75%, #1b3a4b);
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  shape-rendering: geometricPrecision;
+  transition: none !important;
+  -webkit-transition: none !important;
+}
+.birles-yaz__stroke.is-done {
+  stroke: #1a7a62;
+}
+.birles-yaz__stroke.is-live {
+  stroke: #ff8c1a;
+}
+.birles-yaz__stroke.is-fail {
+  stroke: #d62828;
+}
+.birles-yaz__user {
+  stroke: rgba(27, 58, 75, 0.35);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+}
+.birles-yaz__pen {
+  fill: #ff8c1a;
+  stroke: #fff;
+  stroke-width: 2;
+  pointer-events: none;
+}
+/* SVG circle: hidden attribute gÃ¼venilir deÄŸil */
+.birles-yaz__pen[hidden] {
+  display: none !important;
+}
+/* SVG g: hidden attribute her tarayÄ±cÄ±da gÃ¼venilir deÄŸil */
+.birles-yaz__dot[hidden],
+.birles-yaz__dot:not(.is-on) {
+  display: none !important;
+}
+.birles-yaz__dot.is-on {
+  display: inline !important;
+}
+.birles-yaz__dot-ring {
+  fill: rgba(255, 183, 3, 0.42);
+  stroke: rgba(255, 255, 255, 0.95);
+  stroke-width: 2.2;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+.birles-yaz__dot-num {
+  fill: rgba(26, 18, 0, 0.92);
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  paint-order: stroke fill;
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 1.6;
+}
+.birles-yaz__dot.is-on .birles-yaz__dot-ring {
+  animation: birles-yaz-pulse 1s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes birles-yaz-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.birles-yaz__tip {
+  margin: 0;
+  min-height: 1.3em;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1b3a4b;
+}
+.birles-yaz__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.birles-yaz-act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 88px;
+  padding: 12px 8px 14px;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  color: #143447;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.birles-yaz-act__ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08);
+}
+.birles-yaz-act__txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  line-height: 1.15;
+}
+.birles-yaz-act__txt strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.birles-yaz-act__txt small {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.72;
+}
+.birles-yaz-act--demo {
+  color: #fff;
+  background: linear-gradient(165deg, #5fd0ff 0%, #2a9df4 45%, #1b6fd4 100%);
+  box-shadow:
+    0 8px 0 #1558a8,
+    0 14px 24px rgba(42, 157, 244, 0.32);
+}
+.birles-yaz-act--demo .birles-yaz-act__ico {
+  color: #1b6fd4;
+}
+.birles-yaz-act--write {
+  color: #0f3d32;
+  background: linear-gradient(165deg, #9dffc4 0%, #3dd68c 50%, #1fad6a 100%);
+  box-shadow:
+    0 8px 0 #158a52,
+    0 14px 24px rgba(31, 173, 106, 0.3);
+}
+.birles-yaz-act--write .birles-yaz-act__ico {
+  color: #158a52;
+}
+.birles-yaz-act--back {
+  color: #4a3418;
+  background: linear-gradient(165deg, #ffe29a 0%, #ffc14a 55%, #f0a202 100%);
+  box-shadow:
+    0 8px 0 #c47d00,
+    0 14px 24px rgba(240, 162, 2, 0.28);
+}
+.birles-yaz-act--back .birles-yaz-act__ico {
+  color: #b36b00;
+}
+.birles-yaz-act:hover,
+.birles-yaz-act:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+.birles-yaz-act:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.18),
+    0 8px 14px rgba(0, 0, 0, 0.12);
+}
+.birles-yaz-act.is-on {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+.birles-yaz__status {
+  margin: 0;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.birles-yaz__status.is-ok {
+  color: #1a7a62;
+}
+.birles-yaz__status.is-bad {
+  color: #c1121f;
+}
+
+@media (max-width: 420px) {
+  .birles-yaz__actions {
+    gap: 8px;
+  }
+  .birles-yaz-act {
+    min-height: 82px;
+    padding: 10px 6px 12px;
+    border-radius: 18px;
+  }
+  .birles-yaz-act__ico {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+  }
+  .birles-yaz-act__txt strong {
+    font-size: 0.86rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-yaz__stroke {
+    transition: none !important;
+  }
+  .birles-yaz__dot.is-on .birles-yaz__dot-ring,
+  .birles-yaz__stage.is-shake {
+    animation: none !important;
+  }
+}
+
+@keyframes birlesChipIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-sound-chip:hover,
+.birles-sound-chip:focus-visible {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--chip, #06d6a0);
+  box-shadow:
+    0 18px 34px rgba(27, 58, 75, 0.16),
+    0 0 0 4px var(--glow, rgba(6, 214, 160, 0.28));
+}
+
+.birles-sound-chip__ord {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--chip, #06d6a0);
+}
+
+.birles-sound-chip__letter {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--chip, #06d6a0);
+}
+
+.birles-sound-chip__letter small {
+  margin-left: 4px;
+  font-size: 1.2rem;
+  opacity: 0.72;
+}
+
+.birles-sound-chip__title {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.birles-sound-chip__hint {
+  font-size: 0.78rem;
+  color: #6b8494;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.birles-listen-main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 16px;
+  margin-bottom: 16px;
+  border: 0;
+  border-radius: 28px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, var(--chip, #06d6a0), #1b3a4b 70%);
+  box-shadow: 0 16px 34px rgba(27, 58, 75, 0.25);
+  overflow: hidden;
+}
+
+.birles-listen-main__ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  animation: birlesRing 1.8s ease-out infinite;
+}
+
+@keyframes birlesRing {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.birles-listen-main__letter {
+  position: relative;
+  z-index: 1;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  animation: birlesPulse 1.6s ease-in-out infinite;
+}
+
+.birles-listen-main__cap {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+@keyframes birlesPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.birles-fusion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.birles-fusion-grid--word {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.birles-fusion-grid--cumle {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.birles-fusion-card--cumle {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+}
+
+.birles-fusion-card--cumle .birles-fusion-card__media {
+  width: auto;
+  height: auto;
+  min-width: 72px;
+  flex-shrink: 0;
+  aspect-ratio: auto;
+}
+
+.birles-fusion-card--cumle .birles-fusion-card__result {
+  font-size: 1.18rem;
+  line-height: 1.35;
+  flex: 1;
+}
+
+.birles-fusion-card--cumle .birles-fusion-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* â”€â”€ CÃ¼mle sahnesi (yalnÄ±zca birles-play--cumle) â”€â”€ */
+.birles-play--cumle .birles-play__narration {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #16324f;
+  margin-bottom: 14px;
+}
+
+.birles-sentence-board {
+  position: relative;
+  margin: 0 0 18px;
+  padding: 16px 16px 18px;
+  border-radius: 26px;
+  background:
+    radial-gradient(120% 90% at 10% 0%, rgba(255, 225, 150, 0.35), transparent 42%),
+    radial-gradient(100% 80% at 90% 10%, rgba(46, 196, 182, 0.18), transparent 45%),
+    linear-gradient(180deg, #ffffff 0%, #f4fbf8 100%);
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  box-shadow:
+    0 18px 40px rgba(22, 50, 79, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.birles-sentence-board::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--chip, #2a9d8f), #ffb703);
+}
+
+.birles-sentence-board.is-intro {
+  animation: birles-sentence-intro 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-sentence-board__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 0 2px 0 8px;
+}
+
+.birles-sentence-board__kicker {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #16324f;
+}
+
+.birles-sentence-board__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: #16324f;
+  box-shadow: 0 6px 14px rgba(22, 50, 79, 0.22);
+}
+
+.birles-sentence-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 12px;
+  justify-content: center;
+  min-height: 72px;
+  padding: 18px 2px 2px;
+}
+
+/* CÃ¼mle Ã¼stte hep tam gÃ¶rÃ¼nÃ¼r â€” belirgin kelime kartlarÄ± */
+.birles-sentence-word {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: #fff;
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  box-shadow: 0 8px 18px rgba(22, 50, 79, 0.08);
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+/* Tik: yan deÄŸil Ã¼st â€” satÄ±rÄ± kaydÄ±rmaz */
+.birles-sentence-word__mark {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  border-radius: 50%;
+  background: #1f8a70;
+  box-shadow:
+    0 4px 10px rgba(31, 138, 112, 0.35),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.birles-sentence-word__mark::after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 10px;
+  margin: 4px auto 0;
+  border: solid #fff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.birles-sentence-word__text {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.55rem, 4.8vw, 1.95rem);
+  line-height: 1.15;
+  color: #12293a;
+  letter-spacing: 0.01em;
+}
+
+.birles-sentence-word.is-focus {
+  z-index: 2;
+  transform: translateY(-4px) scale(1.06);
+  border-color: var(--chip, #2a9d8f);
+  background: linear-gradient(180deg, #ffffff, #eefaf7);
+  box-shadow:
+    0 16px 32px color-mix(in srgb, var(--chip, #2a9d8f) 28%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--chip, #2a9d8f) 22%, transparent);
+}
+
+.birles-sentence-word.is-focus .birles-sentence-word__text {
+  color: #12293a;
+  font-weight: 700;
+}
+
+/* Son okuma: diÄŸerleri sÃ¶nÃ¼k, okunan kelime belirgin â€” komÅŸularÄ± kapatmaz */
+.birles-sentence-board.is-reading-pass .birles-sentence-word:not(.is-speaking-now) {
+  opacity: 0.42;
+  filter: saturate(0.75);
+  transform: scale(0.97);
+}
+
+.birles-sentence-word.is-speaking-now {
+  z-index: 5;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: translateY(-3px) scale(1.06);
+  border-color: #e85d04;
+  border-width: 3px;
+  background: linear-gradient(180deg, #fff8ef, #ffe8cc);
+  box-shadow:
+    0 12px 24px rgba(232, 93, 4, 0.28),
+    0 0 0 4px rgba(232, 93, 4, 0.2);
+  animation: birles-sentence-speak-pulse 0.9s ease-in-out infinite;
+}
+
+.birles-sentence-word.is-speaking-now .birles-sentence-word__text {
+  color: #e85d04;
+  font-weight: 700 !important;
+  font-size: clamp(1.6rem, 4.9vw, 2.05rem);
+}
+
+.birles-sentence-word.is-read {
+  border-color: color-mix(in srgb, #1f8a70 55%, rgba(22, 50, 79, 0.12));
+  background: linear-gradient(180deg, #ffffff, #e9f8f2);
+  box-shadow: 0 10px 22px rgba(31, 138, 112, 0.16);
+}
+
+.birles-sentence-word.is-read .birles-sentence-word__mark {
+  display: block;
+}
+
+.birles-sentence-word.is-read .birles-sentence-word__text {
+  color: #1a6b55;
+  font-weight: 700 !important;
+}
+
+.birles-sentence-word.is-pop {
+  animation: birles-sentence-word-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes birles-sentence-speak-pulse {
+  0%,
+  100% {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+      0 12px 24px rgba(232, 93, 4, 0.26),
+      0 0 0 4px rgba(232, 93, 4, 0.18);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow:
+      0 14px 28px rgba(232, 93, 4, 0.34),
+      0 0 0 5px rgba(232, 93, 4, 0.26);
+  }
+}
+
+.birles-sentence-dot {
+  display: inline-flex;
+  align-items: flex-end;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  color: #16324f;
+  padding: 0 4px 10px;
+}
+
+.birles-drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.birles-drop-zone__cap {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b8796;
+}
+
+.birles-play--cumle .birles-stage {
+  min-height: 210px;
+  margin: 4px 0 8px;
+  padding: 18px 14px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 251, 248, 0.95)),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 10px,
+      rgba(22, 50, 79, 0.015) 10px,
+      rgba(22, 50, 79, 0.015) 11px
+    );
+  border: 2px dashed color-mix(in srgb, var(--chip, #2a9d8f) 35%, rgba(22, 50, 79, 0.12));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.birles-play--cumle .birles-stage.is-quiet {
+  min-height: 72px;
+  opacity: 0.55;
+  border-style: solid;
+}
+
+.birles-drop-zone--cumle {
+  gap: 12px;
+}
+
+.birles-drop-zone--cumle .birles-drop-zone__cap {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  color: #16324f;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(22, 50, 79, 0.08);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.birles-play--cumle .birles-cards--cumle-hero .birles-card__face {
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  min-width: 120px;
+  padding: 18px 22px;
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(22, 50, 79, 0.16);
+}
+
+.birles-card__txt--cumle {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.55rem, 5.5vw, 2.15rem);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  display: inline;
+  text-wrap: balance;
+}
+
+.birles-cumle-result-word {
+  font-family: inherit;
+  font-weight: 700;
+  color: #0a4d3c;
+  border-radius: 10px;
+  padding: 0 0.14em;
+  transition: color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* Okunan kelime: turuncu vurgu â€” kalÄ±nlÄ±k aynÄ± kalsÄ±n */
+.birles-cumle-result-word.is-on {
+  font-weight: 700 !important;
+  color: #e85d04;
+  background: rgba(255, 183, 77, 0.38);
+  box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.22);
+}
+
+/* OkunmuÅŸ kelime: incelmesin, sadece hafif sÃ¶nÃ¼k kalsÄ±n */
+.birles-cumle-result-word.is-done {
+  font-weight: 700 !important;
+  color: #1a6b55;
+  background: transparent;
+  box-shadow: none;
+}
+
+.birles-cumle-result-dot {
+  font-weight: 700;
+  color: #1a6b55;
+}
+
+.birles-card--cumle-result.is-merged .birles-card__face {
+  min-width: min(92vw, 420px);
+  padding: 16px 20px;
+}
+
+.birles-cards--drop-in {
+  animation: birles-drop-in 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-cards--return-up {
+  animation: birles-return-up 0.58s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.birles-play--cumle .birles-cards--return-up .birles-card {
+  box-shadow: 0 14px 28px rgba(22, 50, 79, 0.16);
+}
+
+.birles-cards--split .birles-card {
+  animation: birles-split-pop 0.4s ease both;
+}
+
+.birles-cards--split .birles-card:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+.birles-cards--split .birles-card:nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+@keyframes birles-sentence-intro {
+  0% {
+    opacity: 0.55;
+    transform: translateY(-8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes birles-sentence-word-pop {
+  0% {
+    transform: scale(0.96);
+  }
+  45% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes birles-drop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-96px) scale(0.68);
+  }
+  68% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes birles-return-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110px) scale(0.72);
+  }
+}
+
+@keyframes birles-split-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.birles-play--cumle .birles-tray {
+  display: none;
+}
+
+.birles-fusion-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(27, 58, 75, 0.1);
+  cursor: pointer;
+  text-align: left;
+  color: #1b3a4b;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.birles-fusion-card--hece {
+  padding: 10px;
+  border-radius: 16px;
+  gap: 7px;
+}
+
+.birles-fusion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(27, 58, 75, 0.14);
+}
+
+.birles-fusion-card:active {
+  transform: scale(0.97);
+}
+
+.birles-fusion-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, #ffe8c8, #d8fff3);
+}
+
+.birles-fusion-card--hece .birles-fusion-card__media {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+}
+
+/* Kelime vitrini: foto olsun/olmasÄ±n aynÄ± kare + aynÄ± alt yazÄ± bloÄŸu */
+.birles-fusion-card--showcase {
+  height: 100%;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 22px;
+  box-shadow:
+    0 10px 24px rgba(27, 58, 75, 0.1),
+    inset 0 0 0 1px rgba(27, 58, 75, 0.04);
+}
+
+.birles-fusion-card--showcase .birles-fusion-card__media {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.75), transparent 45%),
+    linear-gradient(155deg, #fff1d6 0%, #d8f7ee 55%, #dff0ff 100%);
+}
+
+.birles-fusion-card--showcase .birles-fusion-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 3.1rem;
+}
+
+.birles-fusion-card--showcase .birles-fusion-card__badge {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  z-index: 2;
+  padding: 4px 9px;
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  box-shadow: 0 4px 12px rgba(27, 58, 75, 0.16);
+}
+
+.birles-fusion-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.birles-fusion-card__art {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.25s ease;
+}
+
+.birles-fusion-card--showcase:hover .birles-fusion-card__art {
+  transform: scale(1.06);
+}
+
+/* GÃ¶rselsiz hece/cÃ¼mle: kompakt etiket ÅŸeridi */
+.birles-fusion-card--badge-only .birles-fusion-card__media {
+  aspect-ratio: auto;
+  min-height: 40px;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #e8f7f2, #fff4e4);
+}
+
+.birles-fusion-card--cumle.birles-fusion-card--badge-only .birles-fusion-card__media {
+  min-height: 36px;
+  padding: 8px 12px;
+}
+
+.birles-fusion-card--badge-only .birles-fusion-card__badge {
+  position: static;
+}
+
+.birles-fusion-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.birles-fusion-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0d3b4a;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 2px 8px rgba(27, 58, 75, 0.12);
+}
+
+.birles-fusion-card--word .birles-fusion-card__badge {
+  color: #0f5c4c;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 4px 12px rgba(27, 58, 75, 0.14),
+    inset 0 0 0 2px #2a9d8f;
+}
+
+.birles-fusion-card--cumle .birles-fusion-card__badge {
+  color: #1b3a4b;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px #3d7ea6;
+}
+
+.birles-fusion-card--hece .birles-fusion-card__badge {
+  color: #5a3d12;
+  box-shadow: inset 0 0 0 2px #e9a84a;
+}
+
+.birles-fusion-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.birles-fusion-card__result {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.birles-fusion-card--hece .birles-fusion-card__result {
+  font-size: 1.05rem;
+}
+
+.birles-miss {
+  font-family: inherit;
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #ffe0d6;
+  color: #c1121f;
+}
+
+.birles-fusion-card__label {
+  font-size: 0.72rem;
+  color: #5f7584;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.birles-play__narration {
+  display: none !important;
+}
+
+.birles-yaz__tip,
+.birles-yaz__status {
+  display: none !important;
+}
+
+.birles-reveal__msg,
+.birles-piramit-done,
+.birles-metin-done,
+.birles-hece-board__kicker {
+  display: none !important;
+}
+
+/* â”€â”€ Kelime heceleme panosu: Ã¼stte kelime, altta heceler â”€â”€ */
+.birles-hece-board {
+  margin: 0 0 16px;
+  padding: 18px 16px 20px;
+  border-radius: 24px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(255, 209, 102, 0.22), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f3faf8 100%);
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  box-shadow:
+    0 16px 36px rgba(22, 50, 79, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.birles-hece-board--spotlight {
+  animation: birles-hece-board-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-hece-board__kicker {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--chip, #2a9d8f) 75%, #5a7385);
+}
+
+.birles-hece-board__full {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin: 0 auto 14px;
+  padding: 10px 6px 14px;
+  min-height: 3.6rem;
+}
+
+.birles-hece-seg {
+  display: inline-block;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(2rem, 7.5vw, 2.85rem);
+  font-weight: 700;
+  /* g/y/ÄŸ/j/p kuyruklarÄ± iÃ§in yÃ¼kseklik + alt pay */
+  line-height: 1.45;
+  color: #1a3344;
+  padding: 0.12em 0.14em 0.48em;
+  border-radius: 12px;
+  overflow: visible;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    text-shadow 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.birles-hece-seg.is-on {
+  color: #0d3b4a;
+  background: linear-gradient(135deg, #ff9b6a, #ffd166);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 10px 22px rgba(255, 155, 106, 0.35);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  z-index: 2;
+  position: relative;
+  padding: 0.14em 0.2em 0.52em;
+}
+
+.birles-hece-seg.is-done {
+  /* YumuÅŸak yeÅŸil vurgu â€” neon + beyaz yazÄ± yok */
+  color: #0a4d3c;
+  background: #e6f7f0;
+  padding: 0.14em 0.22em 0.55em;
+  box-shadow: none;
+  position: relative;
+}
+
+.birles-hece-seg.is-done::after {
+  content: "";
+  position: absolute;
+  left: 0.18em;
+  right: 0.18em;
+  /* KuyruÄŸun ALTINDA â€” harfi kesmesin */
+  bottom: 0.14em;
+  height: 5px;
+  border-radius: 999px;
+  background: #1a9b75;
+  opacity: 1;
+}
+
+.birles-hece-board.is-complete .birles-hece-seg {
+  color: #0d3b4a;
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+  padding: 0.12em 0.16em 0.55em;
+  position: relative;
+}
+
+.birles-hece-board.is-complete .birles-hece-seg::after {
+  content: "";
+  position: absolute;
+  left: 0.14em;
+  right: 0.14em;
+  bottom: 0.12em;
+  height: 6px;
+  border-radius: 999px;
+  /* Sabit koyu yeÅŸil â€” ses rengi (pembe) kullanÄ±lmaz; telefonda net gÃ¶rÃ¼nsÃ¼n */
+  background: #178a68;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 640px) {
+  .birles-hece-seg.is-done::after,
+  .birles-hece-board.is-complete .birles-hece-seg::after {
+    height: 7px;
+    bottom: 0.1em;
+  }
+}
+
+@keyframes birles-hece-board-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes birles-hece-board-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+}
+
+.birles-play--kelime .birles-hece-board {
+  margin-bottom: 18px;
+}
+
+.birles-play__narration[hidden] {
+  display: none !important;
+}
+
+.birles-audio-hint {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #c1121f;
+  background: #ffe8e2;
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+.birles-stage {
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 10px;
+  transition: opacity 0.35s ease, min-height 0.35s ease;
+}
+
+/* ── Havuz birleştirme · tam ekran (yeni katman) ── */
+.birles-overlay.is-pool-play {
+  padding: 0 !important;
+  margin: 0;
+  background: #041018;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.birles-overlay.is-pool-play .birles-shell {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  background: #041018;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.birles-overlay.is-pool-play .birles-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  padding: max(10px, env(safe-area-inset-top, 0px)) 14px 10px;
+  background: linear-gradient(180deg, rgba(4, 16, 24, 0.72) 0%, transparent 100%);
+}
+
+.birles-overlay.is-pool-play .birles-top-text {
+  display: none;
+}
+
+.birles-overlay.is-pool-play .birles-top #birles-title,
+.birles-overlay.is-pool-play .birles-top .birles-sub,
+.birles-overlay.is-pool-play .birles-top .birles-eyebrow {
+  color: #eaf7ff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+}
+
+.birles-overlay.is-pool-play .birles-icon-btn {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 0;
+}
+
+.birles-overlay.is-pool-play .birles-body {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: block;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.birles-play--pool {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  background: #041018;
+  overflow: hidden;
+}
+
+.birles-pool {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.birles-pool__stagebox {
+  /* JS yoksa bile COVER — 100vw×177.78vw letterbox yapıyordu */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 100vw, 100dvw, calc(100vh * 9 / 16), calc(100dvh * 9 / 16));
+  height: max(100%, 100vh, 100dvh, calc(100vw * 16 / 9), calc(100dvw * 16 / 9));
+  min-width: 0;
+  min-height: 0;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background: #041018;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Opacity katmanda (div) — telefonda <video> opacity geçişi güvenilir değil */
+.birles-pool__layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.birles-pool__layer--boom {
+  z-index: 2;
+}
+
+.birles-pool__layer.is-on {
+  opacity: 1;
+}
+
+.birles-pool__vid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  opacity: 1;
+  pointer-events: none;
+  /* Katman opacity yönetir; video’da transition yok */
+  transition: none;
+}
+
+.birles-pool__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 42%,
+    rgba(12, 48, 72, 0.55) 0%,
+    rgba(4, 16, 24, 0.92) 70%,
+    #041018 100%
+  );
+  will-change: opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.birles-pool__ui {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.birles-play--pool .birles-hece-board {
+  position: absolute;
+  top: 11%;
+  left: 8%;
+  right: 8%;
+  z-index: 3;
+  margin: 0;
+  padding: 10px 12px 12px;
+  border-radius: 18px;
+  background: rgba(8, 24, 40, 0.45);
+  border: 1px solid rgba(180, 230, 255, 0.28);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(6px);
+  pointer-events: auto;
+}
+
+.birles-play--pool .birles-stage {
+  position: absolute;
+  top: 26%;
+  left: 0;
+  right: 0;
+  min-height: 0;
+  height: 22%;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  z-index: 4;
+}
+
+.birles-play--pool .birles-tray {
+  position: absolute;
+  top: 48%;
+  left: 6%;
+  right: 6%;
+  margin: 0;
+  max-width: none;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.birles-play--pool .birles-tray__label {
+  color: rgba(220, 245, 255, 0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.birles-play--pool .birles-reveal {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  transform: translateX(-50%);
+  z-index: 5;
+  margin: 0;
+  max-width: 42%;
+  pointer-events: none;
+}
+
+.birles-play--pool .birles-reveal__img {
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.birles-pool__burst {
+  position: absolute;
+  left: 50%;
+  top: 28%;
+  z-index: 6;
+  margin: 0;
+  min-width: 42%;
+  max-width: 78%;
+  padding: 0.35em 0.7em 0.42em;
+  transform: translate(-50%, 36px) scale(0.78);
+  opacity: 0;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(2.35rem, 11vmin, 3.8rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  text-shadow:
+    0 3px 0 rgba(10, 40, 70, 0.55),
+    0 0 22px rgba(160, 235, 255, 1),
+    0 0 48px rgba(80, 180, 255, 0.85);
+  background: linear-gradient(
+    165deg,
+    rgba(20, 50, 90, 0.72) 0%,
+    rgba(8, 30, 55, 0.78) 100%
+  );
+  border: 2.5px solid rgba(230, 250, 255, 0.9);
+  border-radius: 22px;
+  box-shadow:
+    0 0 0 3px rgba(60, 140, 200, 0.35),
+    0 0 36px rgba(100, 210, 255, 0.75),
+    0 14px 32px rgba(0, 20, 40, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.birles-pool__burst.is-rise {
+  opacity: 1;
+  transform: translate(-50%, -28px) scale(1);
+}
+
+.birles-play--pool .birles-card.is-dim .birles-card__face {
+  opacity: 0.88;
+  transform: scale(0.98);
+  filter: none;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.9) 0%, rgba(220, 240, 255, 0.86) 100%);
+}
+
+.birles-pool__boot {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  background: rgba(4, 16, 24, 0.72);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  pointer-events: auto;
+}
+
+.birles-pool__boot[hidden] {
+  display: none !important;
+}
+
+.birles-play--pool.is-booting .birles-pool__ui {
+  visibility: hidden;
+}
+
+.birles-pool__boot-orb {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0%, #9be7ff 28%, #2a8fc4 70%, #0a3a55 100%);
+  box-shadow: 0 0 28px rgba(100, 210, 255, 0.65);
+  animation: birlesPoolBootPulse 1.5s ease-in-out infinite;
+}
+
+.birles-pool__boot-title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #eaf7ff;
+}
+
+.birles-pool__boot-text {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(210, 235, 250, 0.8);
+}
+
+.birles-pool__boot-bar {
+  width: min(220px, 70vw);
+  height: 4px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.birles-pool__boot-bar > i {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5ec8f0, #b8f0ff, #5ec8f0);
+  animation: birlesPoolBootBar 1.1s ease-in-out infinite;
+}
+
+@keyframes birlesPoolBootPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes birlesPoolBootBar {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+.birles-play--pool .birles-stage.is-finale,
+.birles-play--pool .birles-tray.is-finale {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.birles-play--pool .birles-card__face {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.92) 0%, rgba(210, 240, 255, 0.88) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 10px 28px rgba(0, 40, 70, 0.35),
+    0 0 18px rgba(100, 200, 255, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: #12364a;
+  backdrop-filter: blur(4px);
+}
+
+.birles-play--pool .birles-plus {
+  color: #dff6ff;
+  text-shadow: 0 0 12px rgba(120, 220, 255, 0.8);
+}
+
+.birles-play--pool .birles-card.is-merged .birles-card__face,
+.birles-play--pool .birles-card--result .birles-card__face,
+.birles-play--pool .birles-card--final .birles-card__face {
+  background: linear-gradient(160deg, #9be7ff 0%, #4eb8e8 55%, #2a7fad 100%);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 0 28px rgba(100, 210, 255, 0.7),
+    0 12px 28px rgba(0, 40, 70, 0.4);
+}
+
+.birles-play--pool .birles-tray-chip {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(180, 230, 255, 0.55);
+  box-shadow: 0 6px 16px rgba(0, 30, 50, 0.3);
+}
+
+.birles-play--pool .birles-play-actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  flex: none;
+  margin: 0;
+  padding: 10px 12px max(14px, env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, transparent, rgba(4, 16, 24, 0.88) 28%, rgba(4, 16, 24, 0.96));
+  pointer-events: auto;
+}
+
+.birles-play--pool .birles-lane-bar__progress {
+  color: #dff4ff;
+}
+
+.birles-play--pool .birles-btn--soft {
+  background: rgba(255, 255, 255, 0.14);
+  color: #eaf7ff;
+}
+
+.birles-play--pool .birles-btn--go {
+  box-shadow: 0 8px 20px rgba(0, 180, 160, 0.35);
+}
+
+.birles-stage.is-quiet {
+  min-height: 48px;
+  opacity: 0.35;
+}
+
+.birles-tray {
+  min-height: 0;
+  margin: 4px auto 14px;
+  max-width: 560px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.birles-tray.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.birles-tray__label {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a93a3;
+  margin-bottom: 8px;
+}
+
+.birles-tray__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 16px;
+  border-radius: 24px;
+  background: #f2fbf7;
+  background-image: linear-gradient(180deg, #f7fdfb 0%, #e8f8f1 100%);
+  /* Telefonda inset gÃ¶lge yerine gerÃ§ek Ã§erÃ§eve */
+  border: 4px solid #148a68 !important;
+  outline: 2px solid rgba(20, 138, 104, 0.35);
+  outline-offset: 1px;
+  box-shadow: 0 12px 28px rgba(26, 155, 117, 0.18);
+  min-height: 92px;
+  box-sizing: border-box;
+}
+
+.birles-tray__row--final {
+  background: #e8f8f1;
+  background-image: linear-gradient(180deg, #f2fcf7 0%, #e0f6ec 100%);
+  border: 4px solid #0f7a5c !important;
+  outline: 2px solid rgba(15, 122, 92, 0.4);
+  outline-offset: 1px;
+  box-shadow: 0 12px 28px rgba(26, 155, 117, 0.2);
+}
+
+.birles-tray__plus {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #148a68;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.birles-tray__plus.is-fade,
+.birles-tray.is-merging .birles-tray__plus {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.birles-tray-chip {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  border: 4px solid #0f7a5c !important;
+  outline: 2px solid rgba(15, 122, 92, 0.35);
+  outline-offset: 0;
+  cursor: pointer;
+  min-width: 70px;
+  min-height: 64px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
+  font-size: clamp(1.55rem, 6vw, 2rem);
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: #0a4d3c !important;
+  background: #d4f3e6 !important;
+  box-shadow: 0 8px 16px rgba(26, 155, 117, 0.22);
+  transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease, border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.birles-tray-chip__txt,
+.birles-tray-chip > span {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: inherit;
+  line-height: 1.1;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.birles-tray-chip.is-dim {
+  opacity: 0.38;
+  filter: grayscale(0.2);
+  transform: scale(0.92);
+}
+
+.birles-tray-chip.is-speaking,
+.birles-tray-chip.is-waiting {
+  transform: scale(1.08);
+  border-color: #0f7a5c !important;
+  outline-color: rgba(15, 122, 92, 0.45);
+  box-shadow: 0 12px 24px rgba(26, 155, 117, 0.28);
+  background: #c8eedc !important;
+  color: #0a4d3c !important;
+  animation: birlesSpeakBounce 0.45s ease infinite alternate;
+}
+
+.birles-tray-chip.is-arrive {
+  animation: birlesTrayArrive 0.75s cubic-bezier(0.2, 0.9, 0.2, 1.2) both;
+}
+
+.birles-tray.is-merging .birles-tray-chip.is-join:first-of-type {
+  animation: birlesTraySlideRight 1s ease forwards;
+}
+.birles-tray.is-merging .birles-tray-chip.is-join:last-of-type {
+  animation: birlesTraySlideLeft 1s ease forwards;
+}
+
+.birles-tray-chip--word {
+  min-width: 132px;
+  min-height: 78px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
+  /* Ãœst heceleme (.birles-hece-seg) ile aynÄ± aÄŸÄ±rlÄ±k/Ã¶lÃ§ek */
+  font-size: clamp(2rem, 7.5vw, 2.85rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: #1a3344 !important;
+  background: #e6f7f0 !important;
+  border: 4px solid #0f7a5c !important;
+  outline: 2px solid rgba(15, 122, 92, 0.4);
+  outline-offset: 0;
+  box-shadow: 0 10px 22px rgba(26, 155, 117, 0.28);
+}
+
+.birles-tray-chip--word .birles-tray-chip__txt,
+.birles-tray-chip--word > span {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: inherit !important;
+  color: inherit !important;
+}
+
+.birles-tray-chip--word.is-speaking,
+.birles-tray-chip--word.is-waiting {
+  /* Kelime hazÄ±r: okunurken de yeÅŸil Ã§erÃ§eve korunsun */
+  color: #0a4d3c !important;
+  background: #c8eedc !important;
+  border-color: #0a5c45 !important;
+  outline-color: rgba(10, 92, 69, 0.45);
+  box-shadow: 0 12px 26px rgba(26, 155, 117, 0.32);
+  animation: birlesMergedGlow 0.55s ease infinite alternate;
+}
+
+@media (max-width: 640px) {
+  .birles-tray__row,
+  .birles-tray__row--final {
+    border-width: 4px !important;
+    border-color: #0f7a5c !important;
+    border-style: solid !important;
+    padding: 14px 12px;
+    outline-width: 2px;
+    box-shadow: 0 10px 22px rgba(26, 155, 117, 0.2);
+  }
+
+  .birles-tray-chip {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    border-width: 4px !important;
+    border-color: #0f7a5c !important;
+    border-style: solid !important;
+    min-width: 76px;
+    min-height: 70px;
+    font-size: clamp(1.55rem, 6.5vw, 2rem) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 8px 18px rgba(26, 155, 117, 0.24);
+  }
+
+  .birles-tray-chip--word {
+    border-width: 4px !important;
+    border-color: #0a5c45 !important;
+    min-width: min(88vw, 240px);
+    min-height: 88px;
+    font-size: clamp(2rem, 8vw, 2.85rem) !important;
+    font-weight: 700 !important;
+  }
+}
+
+.birles-card.is-fly-down {
+  animation: birlesFlyDown 0.8s cubic-bezier(0.4, 0.05, 0.2, 1) forwards;
+  z-index: 5;
+}
+
+@keyframes birlesFlyDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(64px) scale(0.82);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(108px) scale(0.45);
+    opacity: 0;
+  }
+}
+
+@keyframes birlesTrayArrive {
+  0% {
+    transform: translateY(-30px) scale(0.45);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(3px) scale(1.08);
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes birlesTraySlideRight {
+  to {
+    transform: translateX(36px) scale(0.82);
+    opacity: 0.2;
+  }
+}
+@keyframes birlesTraySlideLeft {
+  to {
+    transform: translateX(-36px) scale(0.82);
+    opacity: 0.2;
+  }
+}
+
+.birles-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.birles-plus {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #7a93a3;
+}
+
+.birles-card {
+  position: relative;
+  min-width: 88px;
+  min-height: 104px;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  color: #1b3a4b;
+  background: transparent;
+  animation: birlesCardIn 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.2) both;
+}
+
+.birles-card__face {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-width: 88px;
+  min-height: 104px;
+  padding: 14px 18px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow:
+    0 14px 28px rgba(27, 58, 75, 0.14),
+    inset 0 0 0 3px color-mix(in srgb, var(--chip, #06d6a0) 55%, white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.birles-card__txt {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.7rem, 6.5vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.birles-card__pulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Okunan ses vurgusu */
+.birles-card.is-speaking .birles-card__face {
+  transform: scale(1.14);
+  background: linear-gradient(160deg, #ffd166, #ff7a59);
+  color: #fff;
+  box-shadow:
+    0 0 0 6px rgba(255, 122, 89, 0.35),
+    0 18px 36px rgba(255, 122, 89, 0.45);
+  animation: birlesSpeakBounce 0.45s ease infinite alternate;
+}
+
+.birles-card.is-speaking .birles-card__pulse {
+  opacity: 1;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.55), transparent 70%);
+  animation: birlesSpeakGlow 0.7s ease-out infinite;
+}
+
+.birles-card.is-dim .birles-card__face {
+  opacity: 0.78;
+  transform: scale(0.97);
+  filter: none;
+}
+
+.birles-card.is-joining .birles-card__face {
+  background: linear-gradient(160deg, #4cc9f0, #06d6a0);
+  color: #fff;
+}
+
+.birles-card.is-merged .birles-card__face,
+.birles-card--result .birles-card__face,
+.birles-card--final .birles-card__face {
+  min-width: 128px;
+  /* YumuÅŸak yeÅŸil â€” telefonda inset gÃ¶lge yerine gerÃ§ek border */
+  background: #e6f7f0;
+  color: #0a4d3c;
+  border: 4px solid #0f7a5c !important;
+  outline: 2px solid rgba(15, 122, 92, 0.35);
+  box-shadow: 0 14px 28px rgba(26, 155, 117, 0.22);
+  animation: birlesMergedPop 0.65s cubic-bezier(0.2, 0.9, 0.2, 1.35) both;
+}
+
+.birles-card.is-merged .birles-card__txt,
+.birles-card--result .birles-card__txt,
+.birles-card--final .birles-card__txt {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: clamp(2rem, 7.5vw, 2.85rem) !important;
+  color: #1a3344 !important;
+}
+
+.birles-card.is-merged.is-speaking .birles-card__face {
+  background: #d4f0e4;
+  color: #0a4d3c;
+  border-color: #0a5c45 !important;
+  box-shadow: 0 18px 36px rgba(26, 155, 117, 0.28);
+  animation: birlesMergedGlow 0.55s ease infinite alternate;
+}
+
+/* CÃ¼mle: tek heceli kelime de yeÅŸil vurgulansÄ±n (turuncu speak yok) */
+.birles-play--cumle .birles-card.is-speaking .birles-card__face,
+.birles-play--cumle .birles-card--cumle-solo.is-speaking .birles-card__face {
+  transform: scale(1.08);
+  background: #c8eedc !important;
+  color: #0a4d3c !important;
+  border: 4px solid #0f7a5c !important;
+  outline: 2px solid rgba(15, 122, 92, 0.4);
+  box-shadow: 0 14px 28px rgba(26, 155, 117, 0.28) !important;
+  animation: birlesMergedGlow 0.55s ease infinite alternate;
+}
+
+.birles-play--cumle .birles-card.is-speaking .birles-card__txt,
+.birles-play--cumle .birles-card--cumle-solo.is-speaking .birles-card__txt {
+  color: #1a3344 !important;
+}
+
+.birles-play--cumle .birles-card.is-speaking .birles-card__pulse {
+  background: radial-gradient(circle, rgba(26, 155, 117, 0.35), transparent 70%);
+}
+
+@keyframes birlesSpeakBounce {
+  from {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  to {
+    transform: scale(1.18) rotate(2deg);
+  }
+}
+
+@keyframes birlesSpeakGlow {
+  from {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  to {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes birlesMergedPop {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.2;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes birlesMergedGlow {
+  from {
+    filter: brightness(1);
+    transform: scale(1.08);
+  }
+  to {
+    filter: brightness(1.12);
+    transform: scale(1.16);
+  }
+}
+
+@keyframes birlesCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-cards.is-merge .birles-card:first-child {
+  animation: birlesSlideRight 0.75s ease forwards;
+}
+.birles-cards.is-merge .birles-card:last-child {
+  animation: birlesSlideLeft 0.75s ease forwards;
+}
+.birles-cards.is-merge .birles-plus {
+  animation: birlesFadeOut 0.35s ease forwards;
+}
+
+@keyframes birlesSlideRight {
+  to {
+    transform: translateX(34px) scale(0.88);
+    opacity: 0.3;
+  }
+}
+@keyframes birlesSlideLeft {
+  to {
+    transform: translateX(-34px) scale(0.88);
+    opacity: 0.3;
+  }
+}
+@keyframes birlesFadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.birles-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 14px;
+  text-align: center;
+}
+
+.birles-reveal[hidden] {
+  display: none !important;
+}
+
+.birles-reveal.is-pop {
+  animation: birlesMergedPop 0.6s ease both;
+}
+
+.birles-reveal img,
+.birles-reveal__img {
+  width: min(220px, 58vw);
+  height: min(220px, 58vw);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 22px;
+  background: linear-gradient(160deg, #ffe8c8, #d8fff3 50%, #d7f3ff);
+  box-shadow: 0 16px 34px rgba(27, 58, 75, 0.18);
+}
+
+/* 9:16 nasÄ±l yapÄ±lÄ±r videosu */
+.birles-howto {
+  position: fixed;
+  inset: 0;
+  z-index: 13000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.birles-howto__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 24, 36, 0.72);
+}
+.birles-howto__sheet {
+  position: relative;
+  z-index: 1;
+  width: min(360px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #fffdf8, #eef9ff);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.4);
+}
+.birles-howto__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(27, 58, 75, 0.1);
+  color: #1b3a4b;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.birles-howto__title {
+  margin: 0 40px 0 4px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1b3a4b;
+}
+.birles-howto__frame {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: min(72vh, 640px);
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b1220;
+  box-shadow: inset 0 0 0 2px rgba(27, 58, 75, 0.08);
+}
+.birles-howto__media {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+  background: #000;
+}
+
+/* ── Kristal Mağarası · viewport’u kaplayan 9:16 (cover) ── */
+.birles-kristal {
+  position: fixed;
+  inset: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  width: 100vw;
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  z-index: 13100;
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: #05030c;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.birles-kristal__backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #05030c;
+  z-index: 0;
+}
+
+/* Yükleme kapısı — video+foto hazır olana kadar */
+.birles-kristal__boot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: min(280px, 78vw);
+  padding: 28px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: auto;
+}
+
+.birles-kristal.is-ready .birles-kristal__boot {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.94);
+  pointer-events: none;
+}
+
+.birles-kristal__boot-close {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.birles-kristal__boot-crystal {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 6px;
+}
+
+.birles-kristal__boot-facet {
+  position: absolute;
+  inset: 12px;
+  background: linear-gradient(145deg, #9ee7ff 0%, #4eb8e8 42%, #2a6f9e 100%);
+  clip-path: polygon(50% 0%, 92% 28%, 78% 92%, 22% 92%, 8% 28%);
+  box-shadow: 0 0 24px rgba(90, 190, 255, 0.45);
+  animation: birlesKristalSpin 2.4s ease-in-out infinite;
+}
+
+.birles-kristal__boot-facet--2 {
+  inset: 20px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.75), rgba(160, 230, 255, 0.2));
+  opacity: 0.85;
+  animation-delay: -0.6s;
+}
+
+.birles-kristal__boot-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120, 210, 255, 0.35) 0%, transparent 68%);
+  animation: birlesKristalPulse 1.6s ease-in-out infinite;
+}
+
+.birles-kristal__boot-title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #eaf7ff;
+  letter-spacing: 0.02em;
+}
+
+.birles-kristal__boot-text {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(210, 230, 245, 0.72);
+}
+
+.birles-kristal__boot-bar {
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.birles-kristal__boot-bar > i {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5ec8f0, #b8f0ff, #5ec8f0);
+  background-size: 200% 100%;
+  animation: birlesKristalBar 1.15s ease-in-out infinite;
+}
+
+@keyframes birlesKristalSpin {
+  0%,
+  100% {
+    transform: rotate(-6deg) scale(1);
+  }
+  50% {
+    transform: rotate(8deg) scale(1.06);
+  }
+}
+
+@keyframes birlesKristalPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes birlesKristalBar {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+/* 9:16 sahne — COVER (JS + CSS); asla 100vw×177.78vw letterbox yok */
+.birles-kristal__stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: max(100%, 100vw, 100dvw, calc(100vh * 9 / 16), calc(100dvh * 9 / 16));
+  height: max(100%, 100vh, 100dvh, calc(100vw * 16 / 9), calc(100dvw * 16 / 9));
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.97);
+  filter: blur(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s ease;
+}
+
+.birles-kristal.is-ready .birles-kristal__stage {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  filter: blur(0);
+  pointer-events: none;
+}
+
+.birles-kristal.is-ready .birles-kristal__frame {
+  pointer-events: auto;
+}
+
+.birles-kristal__close {
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top, 0px));
+  right: max(10px, env(safe-area-inset-right, 0px));
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 1.05rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.birles-kristal.is-ready .birles-kristal__close {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.birles-kristal__ask {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  left: 52px;
+  right: 52px;
+  z-index: 4;
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(0.92rem, 2.8vmin, 1.2rem);
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  color: #f4fbff;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.75),
+    0 2px 12px rgba(80, 160, 255, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.birles-kristal.is-ready .birles-kristal__ask {
+  opacity: 1;
+}
+
+.birles-kristal__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0614;
+  border-radius: 0;
+}
+
+.birles-kristal__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+}
+
+.birles-kristal__slots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* Çerçeve cam alanları — 720×1280 karedan ölçülmüş % (2×3) */
+.birles-kristal__slot {
+  position: absolute;
+  width: 18.6%;
+  /* alt hizası korunur; üst boşluğu kapatmak için biraz yukarı + daha yüksek */
+  height: 14.7%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.birles-kristal__slot--0 { left: 18.9%; top: 14.2%; }
+.birles-kristal__slot--1 { left: 63.2%; top: 14.2%; }
+.birles-kristal__slot--2 { left: 18.9%; top: 40.7%; }
+.birles-kristal__slot--3 { left: 63.2%; top: 40.7%; }
+.birles-kristal__slot--4 { left: 18.9%; top: 67.4%; }
+.birles-kristal__slot--5 { left: 63.2%; top: 67.4%; }
+
+/* Çerçeve altı cisim adı — çerçeveye bağlı plaket */
+.birles-kristal__name {
+  position: absolute;
+  z-index: 3;
+  width: 20.2%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.birles-kristal__name.is-blank {
+  display: none;
+}
+
+/* Slot 18.6% → plaket 20.2% (merkez hizalı: −0.8%) */
+.birles-kristal__name--0 { left: 18.1%; top: calc(14.2% + 14.7% + 0.15%); }
+.birles-kristal__name--1 { left: 62.4%; top: calc(14.2% + 14.7% + 0.15%); }
+.birles-kristal__name--2 { left: 18.1%; top: calc(40.7% + 14.7% + 0.15%); }
+.birles-kristal__name--3 { left: 62.4%; top: calc(40.7% + 14.7% + 0.15%); }
+.birles-kristal__name--4 { left: 18.1%; top: calc(67.4% + 14.7% + 0.15%); }
+.birles-kristal__name--5 { left: 62.4%; top: calc(67.4% + 14.7% + 0.15%); }
+
+.birles-kristal__name-peg {
+  display: block;
+  width: 12px;
+  height: 7px;
+  margin-bottom: -1px;
+  background: linear-gradient(180deg, #c4a6e8 0%, #6b4a9a 55%, #3d2a5c 100%);
+  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+  box-shadow: 0 0 6px rgba(180, 140, 255, 0.45);
+}
+
+.birles-kristal__name-plate {
+  display: block;
+  width: 100%;
+  padding: 0.32em 0.4em 0.36em;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(0.82rem, 2.75vmin, 1.18rem);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  /* Admin’deki büyük/küçük harf aynen korunur */
+  text-transform: none;
+  color: #f7f2ff;
+  background:
+    linear-gradient(165deg, rgba(48, 28, 72, 0.97) 0%, rgba(18, 10, 34, 0.98) 100%);
+  border: 1.5px solid rgba(200, 170, 255, 0.5);
+  border-radius: 9px;
+  box-shadow:
+    0 0 0 1px rgba(60, 30, 100, 0.55),
+    0 5px 16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
+.birles-kristal.is-names-on .birles-kristal__name:not(.is-blank) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.birles-kristal.is-names-on .birles-kristal__name--0 { transition-delay: 0.05s; }
+.birles-kristal.is-names-on .birles-kristal__name--1 { transition-delay: 0.12s; }
+.birles-kristal.is-names-on .birles-kristal__name--2 { transition-delay: 0.19s; }
+.birles-kristal.is-names-on .birles-kristal__name--3 { transition-delay: 0.26s; }
+.birles-kristal.is-names-on .birles-kristal__name--4 { transition-delay: 0.33s; }
+.birles-kristal.is-names-on .birles-kristal__name--5 { transition-delay: 0.4s; }
+
+/* Vurgulanan harf — net okunur + mor/beyaz kristal rozet */
+.birles-kristal__gem {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  margin: 0 0.14em;
+  padding: 0.02em 0.1em 0.04em;
+  border-radius: 0.28em;
+  font-weight: 900;
+  line-height: 1.05;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(210, 175, 255, 0.55) 35%,
+      rgba(120, 70, 200, 0.65) 100%
+    );
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(90, 40, 160, 0.55),
+    0 0 10px rgba(180, 130, 255, 0.75),
+    0 0 18px rgba(140, 80, 230, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  text-shadow:
+    0 1px 1px rgba(40, 10, 80, 0.9),
+    0 0 6px rgba(255, 255, 255, 0.55);
+  transform-origin: center;
+  animation: birlesKristalGem 1.8s ease-in-out infinite;
+}
+
+.birles-kristal__gem::before {
+  content: "";
+  position: absolute;
+  inset: 15% 18% auto 18%;
+  height: 28%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+@keyframes birlesKristalGem {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(90, 40, 160, 0.5),
+      0 0 8px rgba(170, 120, 255, 0.55),
+      0 0 14px rgba(130, 70, 210, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(120, 60, 200, 0.7),
+      0 0 14px rgba(220, 190, 255, 0.95),
+      0 0 24px rgba(170, 100, 255, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    transform: scale(1.08);
+  }
+}
+
+.birles-kristal__slot:not(.is-empty):active {
+  transform: scale(0.97);
+}
+
+.birles-kristal__slot.is-empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+.birles-kristal__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.birles-kristal__badge {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  z-index: 2;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.birles-kristal__slot.is-right .birles-kristal__badge,
+.birles-kristal__slot.is-wrong .birles-kristal__badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.birles-kristal__slot.is-right .birles-kristal__badge {
+  background: linear-gradient(160deg, #5adf8a, #2f9e57);
+  box-shadow: 0 4px 12px rgba(47, 158, 87, 0.55);
+}
+
+.birles-kristal__slot.is-wrong .birles-kristal__badge {
+  background: linear-gradient(160deg, #ff7b7b, #d62828);
+  box-shadow: 0 4px 12px rgba(214, 40, 40, 0.5);
+}
+
+.birles-kristal__slot.is-right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 3px rgba(90, 220, 130, 0.85);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.birles-kristal__slot.is-wrong::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 3px rgba(230, 70, 70, 0.85);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.birles-kristal__hint {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  z-index: 4;
+  margin: 0;
+  font-size: clamp(0.72rem, 2.2vmin, 0.85rem);
+  font-weight: 700;
+  text-align: center;
+  color: rgba(230, 240, 255, 0.78);
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.birles-kristal.is-ready .birles-kristal__hint {
+  opacity: 1;
+}
+
+.birles-kristal.is-done .birles-kristal__hint {
+  display: none;
+}
+
+.birles-kristal.is-done .birles-kristal__close {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Bitince altta büyük kapat — alt sıra plaketlerinin üstünde net */
+.birles-kristal__exit {
+  position: fixed;
+  left: 50%;
+  bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  z-index: 12;
+  width: clamp(58px, 15vmin, 76px);
+  height: clamp(58px, 15vmin, 76px);
+  margin: 0;
+  padding: 0;
+  border: 2.5px solid rgba(245, 230, 255, 0.85);
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0.85);
+  background: linear-gradient(160deg, #7a45b8 0%, #3a1a68 55%, #1e0e38 100%);
+  color: #fff;
+  font-size: clamp(1.5rem, 5.2vmin, 2rem);
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 5px rgba(20, 8, 40, 0.55),
+    0 10px 28px rgba(0, 0, 0, 0.55),
+    0 0 28px rgba(180, 120, 255, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.birles-kristal.is-done .birles-kristal__exit:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+
+.birles-kristal__exit:active {
+  transform: translateX(-50%) scale(0.94);
+}
+
+.birles-reveal--textonly {
+  padding-top: 4px;
+}
+
+.birles-reveal__word[hidden],
+.birles-reveal--msgonly .birles-reveal__word {
+  display: none !important;
+}
+
+.birles-reveal strong,
+.birles-reveal__word {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 2.15rem;
+  color: #1b3a4b;
+}
+
+.birles-reveal span,
+.birles-reveal__msg {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-weight: 800;
+  color: #0f6b56;
+  font-size: 1.12rem;
+  letter-spacing: 0.01em;
+}
+
+.birles-play-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.birles-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-weight: 800;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #06d6a0, #1b3a4b);
+  box-shadow: 0 12px 24px rgba(27, 58, 75, 0.22);
+}
+
+.birles-btn--ghost {
+  background: rgba(27, 58, 75, 0.08);
+  color: #1b3a4b;
+  box-shadow: none;
+}
+
+/* â”€â”€ Metinler (Netflix tarzÄ± vitrin + okuyucu) â”€â”€ */
+.birles-fusion-section--metin {
+  margin-top: 8px;
+}
+
+/* â”€â”€ Piramit (akÄ±cÄ± okuma Â· cÃ¼mle â†” hikÃ¢ye) â”€â”€ */
+.birles-fusion-section--piramit {
+  margin-top: 8px;
+}
+
+.birles-piramit-rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 2px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  --chip: #3a86ff;
+}
+
+.birles-piramit-tile {
+  --chip: inherit;
+  flex: 0 0 min(72vw, 248px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--chip) 22%, #fff8e8) 0%,
+      #fff 38%,
+      color-mix(in srgb, var(--chip) 10%, #f3fafc) 100%
+    );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--chip) 28%, transparent),
+    0 12px 28px rgba(20, 40, 55, 0.12);
+  color: #143447;
+  cursor: pointer;
+  text-align: left;
+  scroll-snap-align: start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.birles-piramit-tile:hover,
+.birles-piramit-tile:focus-visible {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--chip) 55%, #ffb703),
+    0 18px 36px rgba(20, 40, 55, 0.16);
+  outline: none;
+}
+
+.birles-piramit-tile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px 0;
+}
+
+.birles-piramit-tile__speed {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.birles-piramit-tile__dash {
+  display: block;
+  height: 3px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--chip) 70%, #ff8a00);
+  transform-origin: left center;
+  animation: birles-piramit-dash 1.1s ease-in-out infinite;
+}
+
+.birles-piramit-tile__dash:nth-child(1) {
+  width: 8px;
+  opacity: 0.45;
+  animation-delay: 0s;
+}
+.birles-piramit-tile__dash:nth-child(2) {
+  width: 14px;
+  opacity: 0.7;
+  animation-delay: 0.12s;
+}
+.birles-piramit-tile__dash:nth-child(3) {
+  width: 22px;
+  opacity: 1;
+  animation-delay: 0.24s;
+}
+
+@keyframes birles-piramit-dash {
+  0%,
+  100% {
+    transform: scaleX(0.55);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.birles-piramit-tile__tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3a2200;
+  background: linear-gradient(90deg, #ffb703, #ff8c1a);
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.35);
+}
+
+.birles-piramit-tile__title {
+  display: block;
+  padding: 0 14px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #102836;
+}
+
+.birles-piramit-tile__diamond {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin: 2px 12px 0;
+  padding: 12px 8px 14px;
+  min-height: 132px;
+  border-radius: 16px;
+  background:
+    radial-gradient(80% 70% at 50% 40%, color-mix(in srgb, var(--chip) 18%, transparent), transparent 70%),
+    linear-gradient(180deg, rgba(16, 40, 54, 0.06), rgba(16, 40, 54, 0.02));
+}
+
+.birles-piramit-tile__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w, 40%);
+  height: 9px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--chip) 42%, #d7e6ef);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: filter 0.15s ease;
+}
+
+.birles-piramit-tile__bar.is-peak {
+  height: 12px;
+  background: linear-gradient(90deg, #ffb703, color-mix(in srgb, var(--chip) 65%, #ff8c1a));
+  box-shadow: 0 2px 10px rgba(255, 140, 0, 0.35);
+}
+
+.birles-piramit-tile__bar-txt {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 200px;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #102836;
+  background: rgba(255, 255, 255, 0.92);
+  pointer-events: none;
+}
+
+.birles-piramit-tile__bar.is-peak .birles-piramit-tile__bar-txt {
+  background: #fff6d8;
+  font-size: 0.64rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.birles-piramit-tile:hover .birles-piramit-tile__bar:not(.is-peak) {
+  filter: brightness(1.08);
+}
+
+.birles-piramit-tile__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 14px 14px;
+}
+
+.birles-piramit-tile__meta {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(20, 52, 71, 0.55);
+}
+
+.birles-piramit-tile__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--chip) 85%, #1b3a4b),
+    color-mix(in srgb, var(--chip) 55%, #ff8c1a)
+  );
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--chip) 35%, transparent);
+}
+
+.birles-piramit-tile__go::after {
+  content: "â†’";
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-piramit-tile__dash {
+    animation: none;
+    opacity: 0.85;
+    transform: none;
+  }
+}
+
+.birles-piramit-view {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 2px 2px 18px;
+  --chip: #3a86ff;
+}
+
+.birles-piramit-hero {
+  text-align: center;
+  padding: 4px 8px 0;
+}
+
+.birles-piramit-hero__kicker {
+  margin: 0 0 4px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--chip) 80%, #1b3a4b);
+}
+
+.birles-piramit-hero__title {
+  margin: 0 0 4px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.7rem, 5.5vw, 2.25rem);
+  font-weight: 800;
+  color: #123247;
+  letter-spacing: 0.01em;
+}
+
+.birles-piramit-hero__lead {
+  margin: 0 auto;
+  max-width: 28rem;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgba(20, 52, 71, 0.65);
+}
+
+.birles-piramit-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 14px 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 3px solid color-mix(in srgb, var(--chip) 42%, rgba(255, 209, 102, 0.55));
+  background:
+    radial-gradient(100% 70% at 50% -10%, color-mix(in srgb, var(--chip) 28%, #ffe08a), transparent 58%),
+    radial-gradient(80% 50% at 100% 100%, rgba(255, 183, 3, 0.16), transparent 50%),
+    linear-gradient(180deg, #fffef9 0%, #f3fbf8 55%, #eef8ff 100%);
+  box-shadow:
+    0 18px 40px rgba(27, 58, 75, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.birles-piramit-line {
+  margin: 0;
+  padding: 8px 16px 12px;
+  border-radius: 16px;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  /* BÃ¼yÃ¼k punto; sÄ±ÄŸmazsa JS kÃ¼Ã§Ã¼ltÃ¼r â€” width:100% YASAK (Ã¶lÃ§Ã¼mÃ¼ bozar) */
+  font-size: clamp(1.45rem, 5.2vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: 0.015em;
+  line-height: 1.55;
+  color: #143447;
+  width: max-content;
+  max-width: none;
+  box-sizing: border-box;
+  white-space: nowrap;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.birles-piramit-line.is-live {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--chip) 45%, #ffe566),
+    color-mix(in srgb, var(--chip) 25%, #ffd166)
+  );
+  color: #0a1f2c;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--chip) 88%, #ff8a00),
+    0 10px 24px color-mix(in srgb, var(--chip) 38%, transparent);
+  transform: scale(1.06);
+}
+
+.birles-piramit-line.is-read,
+.birles-piramit-line.is-done {
+  color: rgba(27, 58, 75, 0.38);
+}
+
+.birles-piramit-stack.is-finished .birles-piramit-line {
+  color: #0c7a52;
+}
+
+.birles-piramit-word {
+  display: inline-block;
+  padding: 2px 5px 4px;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.birles-piramit-word.is-live,
+.birles-piramit-word.is-speak {
+  background: #ffb703;
+  color: #1a1200;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.5);
+  font-weight: 800;
+  transform: scale(1.04);
+}
+
+.birles-piramit-word.is-read {
+  opacity: 0.5;
+}
+
+.birles-piramit-stack.is-fast .birles-piramit-line.is-live {
+  transform: scale(1.04);
+}
+
+.birles-piramit-done {
+  margin: 4px 0 0;
+  padding: 12px 16px;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+  font-weight: 800;
+  color: #0d6b4f;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #d8fff0, #fff4d4);
+  border: 2px solid rgba(26, 155, 117, 0.28);
+  box-shadow: 0 8px 20px rgba(26, 155, 117, 0.12);
+}
+
+.birles-piramit-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.birles-piramit-actions .birles-btn {
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .birles-piramit-stack {
+    gap: 7px;
+    padding: 18px 10px 20px;
+  }
+
+  .birles-piramit-line {
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+    padding: 7px 12px 11px;
+  }
+}
+
+.birles-metin-rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 4px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.birles-metin-tile {
+  flex: 0 0 min(72vw, 260px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #143447;
+  cursor: pointer;
+  text-align: left;
+  scroll-snap-align: start;
+}
+
+.birles-metin-tile__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #ffe8c8, #d8fff3 50%, #cfe8ff);
+  box-shadow: 0 14px 30px rgba(22, 50, 79, 0.16);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.birles-metin-tile:hover .birles-metin-tile__poster,
+.birles-metin-tile:focus-visible .birles-metin-tile__poster {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(22, 50, 79, 0.22);
+}
+
+.birles-metin-tile__img,
+.birles-metin-tile__ph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.birles-metin-tile__ph {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55), transparent 40%),
+    linear-gradient(145deg, #ffd9a8, #9fe8d8 55%, #9ec9ef);
+}
+
+.birles-metin-tile__shade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 58%;
+  background: linear-gradient(180deg, transparent, rgba(10, 24, 36, 0.78));
+}
+
+.birles-metin-tile__title {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.15rem, 3.6vw, 1.35rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.birles-metin-tile__meta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #5f7584;
+  padding: 0 4px;
+}
+
+.birles-metin-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.birles-metin-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #102536;
+  box-shadow: 0 18px 42px rgba(16, 37, 54, 0.22);
+}
+
+.birles-metin-hero__img,
+.birles-metin-hero__ph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.birles-metin-hero__ph {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.2), transparent 40%),
+    linear-gradient(135deg, #2a9d8f, #1b3a4b 55%, #16324f);
+}
+
+.birles-metin-hero__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 18, 28, 0.1) 20%, rgba(8, 18, 28, 0.78) 100%);
+}
+
+.birles-metin-hero__copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 18px 18px 20px;
+}
+
+.birles-metin-hero__kicker {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.birles-metin-hero__title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.7rem, 5.5vw, 2.35rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.12;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* HikÃ¢ye: cÃ¼mleler yan yana tek akÄ±ÅŸ Â· heceleme kelimenin Ã¼stÃ¼nde */
+.birles-metin-story {
+  margin: 0;
+  padding: 28px 20px 24px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #ffffff, #f4fbf8);
+  border: 2px solid rgba(22, 50, 79, 0.08);
+  box-shadow: 0 14px 32px rgba(22, 50, 79, 0.09);
+  overflow: visible;
+}
+
+.birles-metin-story.is-finished {
+  box-shadow:
+    0 14px 32px rgba(22, 50, 79, 0.09),
+    0 0 0 3px color-mix(in srgb, var(--chip, #2a9d8f) 35%, transparent);
+}
+
+.birles-metin-story__flow {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.55rem, 5.4vw, 2.05rem);
+  font-weight: 700;
+  line-height: 2.05;
+  color: #12293a;
+  text-wrap: pretty;
+}
+
+.birles-metin-word {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 3px 5px;
+  margin: 0 1px;
+  border-radius: 10px;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.birles-metin-word__txt {
+  display: inline-block;
+}
+
+.birles-metin-word.is-live {
+  z-index: 6;
+  background: color-mix(in srgb, var(--chip, #2a9d8f) 18%, #fff);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--chip, #2a9d8f) 32%, transparent);
+  transform: translateY(-1px);
+}
+
+.birles-metin-word.is-speak .birles-metin-word__txt,
+.birles-metin-word.is-speak {
+  color: #0d3b4a;
+}
+
+.birles-metin-word__txt.is-ghost {
+  color: color-mix(in srgb, #12293a 28%, #ffffff);
+  opacity: 0.55;
+  text-shadow: none;
+}
+
+.birles-metin-word.is-read {
+  color: #1a7a62;
+}
+
+.birles-metin-word.is-read .birles-metin-word__txt {
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, #1a7a62 35%, transparent);
+}
+
+.birles-metin-dot {
+  font-weight: 800;
+  margin-right: 0.15em;
+}
+
+/* Kelimenin Ã¼stÃ¼nde hece balonu */
+.birles-metin-float {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px) scale(0.92);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #fff;
+  border: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #16324f);
+  box-shadow: 0 14px 28px rgba(16, 37, 54, 0.2);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  animation: birles-metin-float-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  z-index: 8;
+}
+
+.birles-metin-float::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  background: #fff;
+  border-right: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #16324f);
+  border-bottom: 2px solid color-mix(in srgb, var(--chip, #2a9d8f) 55%, #16324f);
+  transform: rotate(45deg);
+}
+
+.birles-metin-float__syl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6em;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #16324f;
+  background: #f3faf8;
+  border: 2px solid rgba(22, 50, 79, 0.1);
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.birles-metin-float__syl.is-on {
+  background: linear-gradient(135deg, #ff9b6a, #ffd166);
+  border-color: transparent;
+  color: #16324f;
+  transform: scale(1.12);
+  box-shadow: 0 8px 16px rgba(255, 155, 106, 0.35);
+}
+
+.birles-metin-float__plus {
+  font-weight: 800;
+  color: #7a93a3;
+  font-size: 0.95rem;
+}
+
+.birles-metin-float__word {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0d3b4a;
+  padding: 2px 8px;
+}
+
+.birles-metin-float.is-merging .birles-metin-float__syl {
+  transform: scale(0.92);
+  opacity: 0.85;
+}
+
+.birles-metin-float.is-word {
+  border-color: var(--chip, #2a9d8f);
+  background: linear-gradient(180deg, #fffef8, #e8faf4);
+}
+
+.birles-metin-float.is-out {
+  animation: birles-metin-float-out 0.28s ease forwards;
+}
+
+@keyframes birles-metin-float-in {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes birles-metin-float-out {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.9);
+  }
+}
+
+.birles-metin-done {
+  margin: 0;
+  text-align: center;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a7a62;
+}
+
+.birles-metin-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .birles-sound-rail {
+    grid-template-columns: 1fr;
+  }
+  .birles-fusion-grid,
+  .birles-fusion-grid--word {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .birles-fusion-grid--hece {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .birles-sound-hero {
+    grid-template-columns: 1fr;
+  }
+  .birles-sound-hero__actions {
+    flex-direction: row;
+    min-width: 0;
+  }
+  .birles-izle-btn--hero,
+  .birles-yaz-btn--hero {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-listen-main__letter,
+  .birles-listen-main__ring,
+  .birles-card,
+  .birles-card.is-speaking .birles-card__face,
+  .birles-reveal.is-pop {
+    animation: none !important;
+  }
+}
+
+
+
+/* â”€â”€ Soft storybook sound hub Â· lanes â”€â”€ */
+.birles-sound-view--story {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 0 18px;
+}
+
+.birles-sound-hero--story {
+  margin-bottom: 4px;
+}
+
+.birles-sound-hero--evren {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.birles-ses-evreni {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 26px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #0e2238;
+  box-shadow:
+    0 16px 36px rgba(22, 50, 79, 0.16),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.55);
+  aspect-ratio: 16 / 9;
+  max-height: min(46vh, 320px);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.birles-ses-evreni:hover,
+.birles-ses-evreni:focus-visible {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 20px 42px rgba(22, 50, 79, 0.2),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.75);
+  outline: none;
+}
+
+.birles-ses-evreni:active {
+  transform: scale(0.985);
+}
+
+.birles-ses-evreni.is-ping .birles-ses-evreni__letter-wrap {
+  animation: birlesEvrenPing 0.55s ease;
+}
+
+@keyframes birlesEvrenPing {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  40% { transform: translate(-50%, -50%) scale(1.12); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.birles-ses-evreni__vid {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  background: #0e2238;
+}
+
+.birles-ses-evreni__letter-wrap {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 248, 230, 0.95))
+    drop-shadow(0 0 18px rgba(255, 255, 255, 0.65))
+    drop-shadow(0 3px 8px rgba(18, 40, 70, 0.5));
+}
+
+.birles-ses-evreni__letter {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(4.2rem, 18vw, 6.2rem);
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--chip, #5b4fd6);
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  /* AÃ§Ä±k dumanda okunaklÄ±k: kalÄ±n aÃ§Ä±k stroke + dolgu */
+  -webkit-text-stroke: 4.5px rgba(255, 252, 245, 0.98);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 0.9),
+    0 3px 10px rgba(20, 45, 80, 0.4);
+}
+
+.birles-ses-evreni__lower {
+  margin-top: 4px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.55rem, 6.2vw, 2.15rem);
+  font-weight: 700;
+  color: color-mix(in srgb, var(--chip, #5b4fd6) 85%, #16324f);
+  -webkit-text-stroke: 2.5px rgba(255, 252, 245, 0.96);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 1),
+    0 1px 4px rgba(20, 45, 80, 0.3);
+}
+
+.birles-ses-evreni__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: #16324f;
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: 0 6px 16px rgba(22, 50, 79, 0.16);
+  pointer-events: none;
+}
+
+.birles-sound-hero--evren .birles-sound-hero__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  min-width: 0;
+  width: 100%;
+}
+
+.birles-sound-hero--evren .birles-izle-btn--hero,
+.birles-sound-hero--evren .birles-yaz-btn--hero {
+  flex: 1 1 0;
+}
+
+@media (max-width: 640px) {
+  .birles-ses-evreni {
+    border-radius: 22px;
+    max-height: min(42vh, 280px);
+  }
+  .birles-ses-evreni__hint {
+    font-size: 0.72rem;
+    padding: 6px 12px;
+    bottom: 6%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-ses-evreni.is-ping .birles-ses-evreni__letter-wrap {
+    animation: none !important;
+  }
+}
+
+.birles-lanes-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 4px 2px 2px;
+}
+
+.birles-lanes-head .birles-path-label {
+  margin: 0;
+}
+
+.birles-lanes-head__hint {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(22, 50, 79, 0.55);
+}
+
+.birles-lanes-head__prog {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.88);
+  box-shadow: inset 0 0 0 1px rgba(22, 50, 79, 0.06);
+}
+
+.birles-lanes-head__prog-main {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #16324f;
+}
+
+.birles-lanes-head__prog-group {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(22, 50, 79, 0.62);
+}
+
+.birles-lane-card.is-starred {
+  box-shadow:
+    0 10px 24px rgba(22, 50, 79, 0.1),
+    inset 0 0 0 2px color-mix(in srgb, #e9a825 55%, var(--lane));
+}
+
+.birles-lane-card__star {
+  color: #e9a825;
+  font-size: 0.95em;
+  vertical-align: 0.05em;
+}
+
+.birles-lane-card.is-starred .birles-lane-card__go {
+  background: linear-gradient(135deg, #ffe8a3, #e9a825);
+  color: #5a3d0a;
+}
+
+/* YÄ±ldÄ±z Ã¶dÃ¼l overlay */
+.birles-star-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(18, 36, 58, 0.55);
+  cursor: pointer;
+}
+
+.birles-star-fx.is-out {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.birles-star-fx__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: min(92vw, 440px);
+  text-align: center;
+  pointer-events: none;
+}
+
+.birles-star-fx__vid {
+  display: block;
+  width: min(82vw, 380px);
+  height: auto;
+  background: transparent;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
+}
+
+.birles-star-fx__vid.is-hidden,
+.birles-star-fx__canvas.is-hidden {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.birles-star-fx__canvas {
+  display: block;
+  width: min(82vw, 380px);
+  height: auto;
+  background: transparent;
+  image-rendering: auto;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35));
+}
+
+.birles-star-fx__title {
+  margin: 8px 0 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+  font-weight: 800;
+  color: #fff8e7;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.birles-star-fx__sub {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255, 248, 230, 0.95);
+}
+
+@keyframes birlesStarFxIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.birles-egg-toast {
+  display: none;
+}
+
+.birles-egg-reward {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(255, 214, 120, 0.28), transparent 62%),
+    rgba(10, 22, 40, 0.72);
+  cursor: pointer;
+  animation: birlesEggRewardIn 0.35s ease;
+}
+
+.birles-egg-reward.is-out {
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.birles-egg-reward__panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: min(92vw, 420px);
+  padding: 22px 18px 20px;
+  border-radius: 28px;
+  text-align: center;
+  background:
+    linear-gradient(165deg, #fffdf6 0%, #fff1cc 42%, #ffe8a8 100%);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.birles-egg-reward__kicker {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a56b12;
+}
+
+.birles-egg-reward__title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.35rem, 5.2vw, 1.75rem);
+  font-weight: 800;
+  color: #16324f;
+}
+
+.birles-egg-reward__plus {
+  margin: 4px 0 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(3.4rem, 16vw, 4.6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: #e76f2d;
+  text-shadow:
+    0 3px 0 #fff6d8,
+    0 10px 24px rgba(231, 111, 45, 0.35);
+  animation: birlesEggPlusPop 0.7s cubic-bezier(0.22, 1.35, 0.36, 1) both;
+}
+
+.birles-egg-reward__sub {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #8a5a12;
+}
+
+.birles-egg-reward__eggs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(8px, 3vw, 18px);
+  margin: 4px 0 10px;
+  width: 100%;
+}
+
+.birles-egg-reward__egg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 0;
+  max-width: 130px;
+  animation: birlesEggBounce 0.7s cubic-bezier(0.22, 1.2, 0.36, 1) both;
+  animation-delay: calc(0.12s + var(--i, 0) * 0.1s);
+}
+
+.birles-egg-reward__egg img {
+  display: block;
+  width: min(28vw, 118px);
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(22, 50, 79, 0.28));
+}
+
+.birles-egg-reward__egg:nth-child(2) img {
+  width: min(34vw, 142px);
+  max-height: 178px;
+  transform: translateY(-6px);
+}
+
+.birles-egg-reward__egg-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #16324f;
+}
+
+.birles-egg-reward__hint {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(22, 50, 79, 0.55);
+}
+
+.birles-egg-reward__confetti {
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  width: 10px;
+  height: 14px;
+  border-radius: 3px;
+  z-index: 1;
+  transform: translateX(-50%);
+  animation: birlesEggConfetti var(--dur, 2.2s) linear var(--delay, 0s) both;
+  pointer-events: none;
+}
+
+@keyframes birlesEggRewardIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes birlesEggPlusPop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes birlesEggBounce {
+  0% { transform: translateY(28px) scale(0.6); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes birlesEggConfetti {
+  0% {
+    transform: translate(-50%, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), 110vh) rotate(var(--rot, 360deg));
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-egg-reward,
+  .birles-egg-reward__plus,
+  .birles-egg-reward__egg,
+  .birles-egg-reward__confetti {
+    animation: none !important;
+  }
+}
+
+.birles-lanes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.birles-lane-card {
+  --lane: #2a9d8f;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 22px;
+  cursor: pointer;
+  text-align: left;
+  color: #16324f;
+  background:
+    radial-gradient(ellipse 70% 80% at 0% 0%, color-mix(in srgb, var(--lane) 22%, transparent), transparent 55%),
+    linear-gradient(135deg, #fffdf8 0%, #f4fffb 55%, #fff6ea 100%);
+  box-shadow:
+    0 10px 24px rgba(22, 50, 79, 0.08),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.95);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.birles-lane-card:hover,
+.birles-lane-card:focus-visible {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 14px 28px rgba(22, 50, 79, 0.12),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 1);
+}
+
+.birles-lane-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.birles-lane-card--hece { --lane: #f4a261; }
+.birles-lane-card--kelime { --lane: #2a9d8f; }
+.birles-lane-card--cumle { --lane: #e9c46a; }
+.birles-lane-card--piramit { --lane: #9b5de5; }
+.birles-lane-card--metin { --lane: #3a86ff; }
+.birles-lane-card--kristal { --lane: #7b61ff; }
+
+.birles-lane-card__ico {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--lane) 18%, #fff);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--lane) 25%, transparent);
+}
+
+.birles-lane-card__ico svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+}
+
+.birles-lane-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.birles-lane-card__title {
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.birles-lane-card__sub {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(22, 50, 79, 0.58);
+  line-height: 1.25;
+}
+
+.birles-lane-card__count {
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 8px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #16324f;
+  background: color-mix(in srgb, var(--lane) 22%, #fff);
+}
+
+.birles-lane-card__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--lane), color-mix(in srgb, var(--lane) 55%, #16324f));
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--lane) 35%, transparent);
+}
+
+@media (max-width: 640px) {
+  .birles-lane-card {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "ico body count"
+      "ico go go";
+    gap: 8px 10px;
+    padding: 12px 12px;
+  }
+  .birles-lane-card__ico { grid-area: ico; width: 48px; height: 48px; }
+  .birles-lane-card__body { grid-area: body; }
+  .birles-lane-card__count { grid-area: count; }
+  .birles-lane-card__go { grid-area: go; width: 100%; }
+}
+
+.birles-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 0 14px;
+}
+
+.birles-gallery--story {
+  animation: birlesLevelPop 0.4s ease both;
+}
+
+.birles-gallery__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  padding: 6px 0 8px;
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.96) 55%, rgba(255, 253, 248, 0));
+}
+
+.birles-fusion-section--gallery {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.birles-gallery .birles-fusion-grid,
+.birles-gallery .birles-piramit-rail,
+.birles-gallery .birles-metin-rail {
+  animation: birlesLevelPop 0.45s ease both;
+}
+
+.birles-lane-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 12px 10px;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse 80% 90% at 10% 0%, rgba(255, 209, 102, 0.18), transparent 50%),
+    linear-gradient(180deg, #fffdf8 0%, #f3fffb 100%);
+  box-shadow:
+    0 10px 24px rgba(22, 50, 79, 0.08),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.9);
+}
+
+.birles-lane-bar__track {
+  flex: 1 1 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(22, 50, 79, 0.1);
+  overflow: hidden;
+}
+
+.birles-lane-bar__track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffd166, #2a9d8f);
+  transition: width 0.35s ease;
+}
+
+.birles-lane-bar__progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #16324f;
+  background: rgba(22, 50, 79, 0.08);
+}
+
+.birles-btn--go {
+  color: #fff;
+  background: linear-gradient(135deg, #2a9d8f, #1b6b5a);
+  box-shadow: 0 6px 0 #145a45, 0 10px 22px rgba(42, 157, 143, 0.28);
+}
+
+.birles-btn--go.is-locked,
+.birles-btn--go:disabled {
+  color: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(135deg, #8aa8a3, #6d8a84);
+  box-shadow: 0 4px 0 #5a736e, 0 6px 14px rgba(22, 50, 79, 0.12);
+  cursor: not-allowed;
+  opacity: 0.78;
+}
+
+.birles-btn--soft {
+  color: #16324f;
+  background: linear-gradient(135deg, #fff8e8, #ffe4bc);
+  box-shadow: 0 6px 0 #e0c07a, 0 8px 18px rgba(200, 140, 40, 0.18);
+}
+
+@media (max-width: 640px) {
+  .birles-lane-bar { gap: 8px; padding: 10px 8px; }
+  .birles-lane-bar .birles-btn {
+    padding: 12px 16px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-gallery--story,
+  .birles-gallery .birles-fusion-grid,
+  .birles-gallery .birles-piramit-rail,
+  .birles-gallery .birles-metin-rail,
+  .birles-lane-card {
+    animation: none !important;
+  }
+}

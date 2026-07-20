@@ -1,0 +1,597 @@
+/* Ana ekran — büyük butonlar + ortalanmış vitrin; yumurta üst barda */
+
+/* ── Üst şerit: Karakter | Yumurta | Mağaza ── */
+#main-screen .main-screen-top-bar.nova-main-top-dock {
+  max-width: min(100%, 560px) !important;
+  width: calc(100% - clamp(8px, 2.4vw, 16px)) !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: clamp(12px, 3.2vw, 18px) !important;
+  padding:
+    clamp(8px, 2vw, 12px)
+    clamp(10px, 2.6vw, 14px) !important;
+}
+
+#main-screen .main-screen-top-bar .main-screen-odev-anchor,
+#main-screen .main-screen-top-bar .main-screen-store-anchor {
+  display: flex !important;
+  align-items: center !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+#main-screen .main-screen-top-bar .main-screen-odev-anchor {
+  justify-content: flex-end !important;
+  padding-right: 2px !important;
+}
+
+#main-screen .main-screen-top-bar .main-screen-store-anchor {
+  justify-content: flex-start !important;
+  padding-left: 2px !important;
+}
+
+#main-screen .main-screen-top-bar .main-screen-egg-anchor {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin: 0 clamp(2px, 1vw, 6px) !important;
+  z-index: 2;
+}
+
+#main-screen .main-screen-top-bar .nova-character-chip,
+#main-screen .main-screen-top-bar .nova-store-chip {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: clamp(48px, 12.5vw, 58px) !important;
+  height: auto !important;
+  padding: clamp(7px, 1.8vw, 10px) clamp(8px, 2vw, 12px) !important;
+  border-radius: clamp(14px, 3.4vw, 16px) !important;
+  gap: clamp(4px, 1.2vw, 6px) !important;
+  font-size: clamp(0.78rem, 2.7vw, 0.92rem) !important;
+  box-sizing: border-box !important;
+  justify-content: center !important;
+}
+
+#main-screen .main-screen-top-bar .nova-character-chip .char-chip-icon,
+#main-screen .main-screen-top-bar .nova-store-chip .store-chip-icon {
+  font-size: clamp(1.05rem, 3.6vw, 1.28rem) !important;
+}
+
+#main-screen .main-screen-top-bar .nova-character-chip .char-chip-label,
+#main-screen .main-screen-top-bar .nova-store-chip .store-chip-label {
+  font-size: clamp(0.72rem, 2.5vw, 0.88rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+}
+
+#main-screen .main-screen-top-bar .nova-character-chip .char-chip-ring,
+#main-screen .main-screen-top-bar .nova-store-chip .store-chip-ring {
+  inset: -3px !important;
+  border-radius: calc(clamp(14px, 3.4vw, 16px) + 3px) !important;
+}
+
+/* Yuvarlak yumurta — üçlünün ortası (HD, ayrık yumurtalar) */
+#main-screen .nova-egg-chip {
+  --egg-size: clamp(70px, 18vw, 86px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: var(--egg-size);
+  height: var(--egg-size);
+  margin: 0;
+  padding: 6px 4px 8px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  color: #fef3c7;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.34) 0%, transparent 36%),
+    radial-gradient(circle at 72% 78%, rgba(56, 189, 248, 0.16) 0%, transparent 46%),
+    radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.18) 0%, transparent 42%),
+    linear-gradient(160deg, #243049 0%, #0f172a 48%, #0b1220 100%);
+  box-shadow:
+    0 0 0 2px rgba(251, 191, 36, 0.88),
+    0 0 0 4px rgba(15, 23, 42, 0.92),
+    0 0 0 6px rgba(212, 175, 55, 0.38),
+    0 14px 30px rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -10px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+  isolation: isolate;
+}
+
+#main-screen .nova-egg-chip:hover {
+  transform: translateY(-2px) scale(1.04);
+  filter: brightness(1.05);
+  box-shadow:
+    0 0 0 2px rgba(253, 224, 71, 0.95),
+    0 0 0 4px rgba(15, 23, 42, 0.92),
+    0 0 0 7px rgba(251, 191, 36, 0.48),
+    0 16px 34px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -10px 18px rgba(0, 0, 0, 0.28);
+}
+
+#main-screen .nova-egg-chip:active {
+  transform: scale(0.96);
+}
+
+#main-screen .nova-egg-chip .egg-chip-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(253, 224, 71, 0.32);
+  pointer-events: none;
+  animation: novaEggChipRing 2.8s ease-out infinite;
+}
+
+#main-screen .nova-egg-chip .egg-chip-shine {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    transparent 42%,
+    transparent 58%,
+    rgba(251, 191, 36, 0.08) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+#main-screen .nova-egg-chip .egg-chip-orb {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78%;
+  height: 58%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#main-screen .nova-egg-chip .egg-chip-img {
+  position: relative;
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 88%;
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+  mix-blend-mode: normal;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  filter:
+    drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 12px rgba(251, 146, 60, 0.45));
+  pointer-events: none;
+  user-select: none;
+}
+
+#main-screen .nova-egg-chip .egg-chip-img--fire {
+  height: 108%;
+  max-width: 92%;
+  z-index: 2;
+  transform: translateZ(0) translateY(1px) scale(1.08);
+  filter:
+    drop-shadow(0 4px 6px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 14px rgba(251, 146, 60, 0.5))
+    drop-shadow(0 0 22px rgba(245, 158, 11, 0.28));
+}
+
+#main-screen .nova-egg-chip .egg-chip-label {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
+  font-size: clamp(0.58rem, 2.1vw, 0.72rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fde68a;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.75),
+    0 0 10px rgba(251, 191, 36, 0.35);
+}
+
+#main-screen .nova-egg-chip .egg-chip-badge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  z-index: 4;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1.5px solid rgba(254, 243, 199, 0.9);
+  background: linear-gradient(145deg, #fbbf24, #d97706 55%, #b45309);
+  color: #fffbeb;
+  font-family: 'Baloo 2', 'Comfortaa', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(180, 83, 9, 0.5);
+}
+
+#main-screen .nova-egg-chip .egg-chip-badge[hidden] {
+  display: none !important;
+}
+
+#main-screen .nova-egg-chip.has-eggs {
+  box-shadow:
+    0 0 0 2px rgba(253, 224, 71, 0.98),
+    0 0 0 4px rgba(15, 23, 42, 0.92),
+    0 0 0 7px rgba(251, 191, 36, 0.5),
+    0 16px 34px rgba(245, 158, 11, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -10px 18px rgba(0, 0, 0, 0.28);
+}
+
+@keyframes novaEggChipRing {
+  0% { transform: scale(1); opacity: 0.5; }
+  70% { transform: scale(1.1); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 720px) {
+  #main-screen .nova-egg-chip {
+    --egg-size: 88px;
+  }
+
+  #main-screen .nova-egg-chip .egg-chip-orb {
+    width: 80%;
+    height: 60%;
+  }
+
+  #main-screen .nova-egg-chip .egg-chip-img--fire {
+    height: 112%;
+    max-width: 94%;
+    transform: translateZ(0) translateY(1px) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen .nova-egg-chip .egg-chip-ring {
+    animation: none !important;
+  }
+}
+
+/* ── Avatar / kahraman: tam orta ── */
+#main-screen .main-profile-hero.nova-main-hub {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: min(100%, 560px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: max(8px, env(safe-area-inset-left, 0px)) !important;
+  padding-right: max(8px, env(safe-area-inset-right, 0px)) !important;
+  grid-template-columns: none !important;
+  grid-template-areas: none !important;
+  column-gap: 0 !important;
+}
+
+#main-screen .nova-main-left-hub,
+#main-screen #main-screen-hud-left,
+#main-screen .nova-main-right-rail,
+#main-screen #main-screen-quest-slot {
+  display: none !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+#main-screen .nova-main-stage,
+#main-screen .main-screen-hero-center.nova-main-stage {
+  max-width: min(100%, 520px) !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  justify-self: center !important;
+  flex: 1 1 auto !important;
+}
+
+#main-screen .nova-main-stage__frame {
+  min-height: clamp(280px, 48vh, 420px) !important;
+  padding: clamp(14px, 3.2vw, 20px) !important;
+  border-radius: clamp(24px, 5.2vw, 32px) !important;
+}
+
+#main-screen .nova-main-tab-panels {
+  min-height: clamp(200px, 36vh, 320px) !important;
+}
+
+#main-screen .student-photo {
+  width: clamp(140px, 36vw, 200px) !important;
+  height: clamp(140px, 36vw, 200px) !important;
+  border-radius: clamp(28px, 6vw, 40px) !important;
+}
+
+#main-screen .student-name,
+#main-screen #student-name {
+  font-size: clamp(1.2rem, 4.4vw, 1.55rem) !important;
+  margin-top: 12px !important;
+  text-align: center !important;
+}
+
+#main-screen .nova-main-hero-zone,
+#main-screen #nova-main-hero-slot {
+  min-height: clamp(220px, 42vh, 320px) !important;
+}
+
+/* KAHRAMAN sekmesi: min-height taşırmasın, ortada kalsın */
+#main-screen .nova-main-tab-hero-body .nova-main-hero-zone,
+#main-screen .nova-main-tab-hero-body #nova-main-hero-slot,
+#main-screen .nova-main-tab-hero-body .nova-main-hero-float {
+  min-height: 0 !important;
+}
+
+#main-screen .nova-main-carousel-nav {
+  grid-template-columns: 40px minmax(0, 1fr) 40px !important;
+  gap: 8px !important;
+  margin-bottom: clamp(10px, 2.4vw, 14px) !important;
+  padding: clamp(6px, 1.6vw, 9px) !important;
+}
+
+#main-screen .nova-main-carousel-nav__arrow {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 1.4rem !important;
+  border-radius: 12px !important;
+}
+
+#main-screen #nova-main-tab-label {
+  font-size: clamp(1.05rem, 3.6vw, 1.25rem) !important;
+}
+
+/* ── Alt menü: eşit boyut + büyük harf + aynı logo kutusu ── */
+#main-screen .nova-main-lobby {
+  --nova-lobby-tile-w: clamp(138px, 34vw, 168px) !important;
+  --nova-lobby-tile-h: clamp(148px, 36vw, 178px) !important;
+  --nova-lobby-icon-box: clamp(68px, 17vw, 82px) !important;
+  --nova-lobby-icon-size: clamp(30px, 7.5vw, 38px) !important;
+}
+
+#main-screen > .nova-main-lobby.buttons {
+  max-width: min(980px, 100%) !important;
+  margin-top: clamp(10px, 2.4vw, 16px) !important;
+}
+
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--kaptan:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--birles:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--macera:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--solo:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--duel:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--rank:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--exit:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--admin:not([hidden]),
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--review:not([hidden]),
+#main-screen > .nova-main-lobby.buttons #nova_perf_open_btn.nova-lobby-tile:not([hidden]) {
+  flex: 0 0 var(--nova-lobby-tile-w) !important;
+  width: var(--nova-lobby-tile-w) !important;
+  min-width: var(--nova-lobby-tile-w) !important;
+  max-width: var(--nova-lobby-tile-w) !important;
+  min-height: var(--nova-lobby-tile-h) !important;
+  height: var(--nova-lobby-tile-h) !important;
+  max-height: var(--nova-lobby-tile-h) !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-rows: 1fr auto !important;
+  align-items: center !important;
+  justify-items: center !important;
+  border-radius: clamp(20px, 5vw, 26px) !important;
+  padding: clamp(12px, 2.8vw, 16px) clamp(8px, 2vw, 12px) clamp(10px, 2.4vw, 14px) !important;
+  border-width: 2px !important;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  cursor: pointer !important;
+}
+
+#main-screen > .nova-main-lobby.buttons .nova-lobby-tile--birles[hidden],
+#main-screen #nova_birlestir_lobby_btn[hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+/* SESLER: görünürken tıklama katmanı en üstte */
+#main-screen > .nova-main-lobby.buttons #nova_birlestir_lobby_btn.nova-lobby-tile--birles:not([hidden]) {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 8 !important;
+  touch-action: manipulation !important;
+}
+
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile,
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile--solo,
+#main-screen .nova-lobby-adventure__choices .nova-lobby-tile--duel,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile--solo,
+#nova_macera_flyout .nova-lobby-adventure__choices .nova-lobby-tile--duel {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  flex: none !important;
+  min-height: clamp(132px, 28vw, 158px) !important;
+  height: clamp(132px, 28vw, 158px) !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(8px, 2vw, 12px) !important;
+  grid-template-rows: none !important;
+  grid-template-columns: none !important;
+  padding: clamp(14px, 3vw, 18px) !important;
+}
+
+#main-screen .nova-lobby-tile__icon-wrap,
+#main-screen .nova-lobby-tile__icon-wrap--solo,
+#main-screen .nova-lobby-tile__icon-wrap--duel,
+#main-screen .nova-lobby-tile__icon-wrap--rank,
+#main-screen .nova-lobby-tile__icon-wrap--exit,
+#main-screen .nova-lobby-tile__icon-wrap--kaptan,
+#main-screen .nova-lobby-tile__icon-wrap--birles,
+#main-screen .nova-lobby-tile__icon-wrap--macera,
+#main-screen .nova-lobby-tile__icon-wrap--admin,
+#main-screen .nova-lobby-tile__icon-wrap--review,
+#main-screen .nova-lobby-tile--kaptan .nova-lobby-tile__icon-wrap--kaptan,
+#main-screen .nova-lobby-tile--duel .nova-lobby-tile__icon-wrap--duel,
+#main-screen .nova-lobby-tile .button-content.nova-lobby-tile__icon-wrap {
+  width: var(--nova-lobby-icon-box) !important;
+  height: var(--nova-lobby-icon-box) !important;
+  min-width: var(--nova-lobby-icon-box) !important;
+  min-height: var(--nova-lobby-icon-box) !important;
+  max-width: var(--nova-lobby-icon-box) !important;
+  max-height: var(--nova-lobby-icon-box) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: clamp(16px, 4vw, 20px) !important;
+  display: grid !important;
+  place-items: center !important;
+  transform: none !important;
+  align-self: center !important;
+  justify-self: center !important;
+}
+
+#main-screen .nova-lobby-tile__icon,
+#main-screen .nova-lobby-tile .main-menu-icon,
+#main-screen .nova-lobby-tile .duel-icon,
+#main-screen .nova-lobby-tile--kaptan .nova-lobby-tile__icon,
+#main-screen .nova-lobby-tile--solo .nova-lobby-tile__icon,
+#main-screen .nova-lobby-tile--duel .duel-icon {
+  font-size: var(--nova-lobby-icon-size) !important;
+  line-height: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+#main-screen .nova-lobby-tile .nova-lobby-tile__name,
+#main-screen .nova-lobby-tile .main-menu-label,
+#main-screen .nova-lobby-tile__name--kaptan,
+#main-screen .nova-lobby-tile--exit .nova-lobby-tile__name {
+  font-size: clamp(0.78rem, 2.8vw, 0.95rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.12 !important;
+  margin-top: 6px !important;
+  min-height: 2.35em !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: #fff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+#main-screen .nova-lobby-tile__name-line {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  text-transform: uppercase !important;
+}
+
+/* Mağaza yumurta CTA kaldırıldı — üst bardaki yuvarlak buton kullanılıyor */
+
+@media (min-width: 900px) {
+  #main-screen .nova-main-lobby {
+    --nova-lobby-tile-w: 168px !important;
+    --nova-lobby-tile-h: 178px !important;
+    --nova-lobby-icon-box: 82px !important;
+    --nova-lobby-icon-size: 38px !important;
+  }
+
+  #main-screen .nova-main-stage {
+    max-width: 560px !important;
+  }
+
+  #main-screen .nova-main-stage__frame {
+    min-height: 440px !important;
+  }
+}
+
+@media (max-height: 720px) {
+  #main-screen .nova-main-stage__frame {
+    min-height: clamp(220px, 40vh, 300px) !important;
+  }
+
+  #main-screen .nova-main-lobby {
+    --nova-lobby-tile-w: clamp(124px, 30vw, 148px) !important;
+    --nova-lobby-tile-h: clamp(132px, 32vw, 156px) !important;
+  }
+}
+
+/* Eski FAB / ray kalıntıları — 120 display:grid kurallarını ez */
+#main-screen .nova-main-left-hub,
+#main-screen .nova-main-right-rail,
+#main-screen #main-screen-hud-left,
+#main-screen #main-screen-quest-slot,
+#main-screen #homework_fab,
+#main-screen #quest_fab,
+#main-screen #homework_fab.homework-fab,
+#main-screen #quest_fab.quest-fab,
+#main-screen #homework_fab.homework-fab.nova-game-btn,
+#main-screen #quest_fab.quest-fab.nova-game-btn,
+#main-screen .quest-fab-wrap,
+#main-screen .deneme-fab-wrap,
+#main-screen #learn-open-button,
+#main-screen #nova-bonus-drawer:not(.is-open),
+#main-screen #puzzle_fab_wrap,
+#main-screen #fillblank_fab_wrap,
+#main-screen #match_fab_wrap {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  min-width: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: none !important;
+}

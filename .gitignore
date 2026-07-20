@@ -1,0 +1,37 @@
+# GitHub 100 MB sınırı — büyük videolar Bunny Stream / Storage'da tutulur
+/EN SON GÜNCELLLL.mp4
+
+# RTDB yedeği ve üretilen CDN paketleri
+dllwrld.json
+dist/
+cdn-config.local.json
+cdn-admin.local.json
+bunny-upload.local.ps1
+scripts/bunny-password.txt
+
+# Kökteki kaynak / yedek videolar (çalışan kopyalar assets/birles/ altında)
+/GİRİŞ EKRANI.mp4
+/giris-ekrani-source.mp4
+/ana_ekran_egg.mp4
+/yeni_loading.mp4
+/gruporta.mp4
+/sesarka.mp4
+/ses_evreni.mp4
+/yldz.mp4
+/kristal_magarasi.mp4
+/kristal_magarası.mp4
+/PATLAMA SON.mp4
+/SES PATLAMA YENİ.mp4
+/SES PATLAMA YENI.mp4
+/ses patlama.mp4
+/ses birleştirme.mp4
+/SES BİRLEŞTİRME LOOP.mp4
+
+# Birleştirelim debug / yedek (kullanılmayan)
+assets/birles/_src_backup/
+assets/birles/*_probe.*
+assets/birles/ses_evreni_*
+assets/birles/alpha_mask.png
+assets/birles/direct_key.png
+assets/birles/keyed_check.png
+assets/birles/key_*.png

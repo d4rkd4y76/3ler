@@ -1,0 +1,184 @@
+/* Base dark space backdrop toggled when duel screen is active */
+body.nova-dark-duel {
+  background: radial-gradient(1200px 800px at 50% 10%, #0f172a 0%, #0b1020 40%, #050811 70%, #000 100%) !important;
+  transition: background 500ms ease;
+  color: #e5e7eb;
+}
+
+/* Make primary duel container transparent so the starfield shows */
+.nova-dark-duel .duel-game-container {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Readability-first card for the question */
+.nova-dark-duel .question-container {
+  background: rgba(17, 24, 39, 0.92) !important;  /* slate-900 */
+  border: 2px solid #3b82f6 !important;           /* blue-500 */
+  border-radius: 14px !important;
+  color: #eaf2ff !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,.65);
+}
+
+/* Question text contrast */
+.nova-dark-duel .question-text {
+  color: #eaf2ff !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,.65);
+  font-size: 1.18em !important;
+  line-height: 1.35 !important;
+}
+
+/* Options: high-contrast dark pill buttons */
+.nova-dark-duel .option-button {
+  background: linear-gradient(180deg,#1f2937,#111827) !important; /* gray-800 to 900 */
+  color: #f8fafc !important; /* slate-50 */
+  border: 2px solid #334155 !important; /* slate-700 */
+  box-shadow: 0 8px 16px rgba(0,0,0,.35) !important;
+  font-weight: 800 !important;
+  letter-spacing: .25px;
+}
+.nova-dark-duel .option-button:hover {
+  background: linear-gradient(180deg,#334155,#1f2937) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 14px 28px rgba(0,0,0,.5) !important;
+}
+.nova-dark-duel .option-button.correct {
+  background: linear-gradient(180deg,#16a34a,#065f46) !important; /* green */
+  border-color: #22c55e !important;
+  text-shadow: 0 0 10px rgba(34,197,94,.7);
+}
+.nova-dark-duel .option-button.wrong {
+  background: linear-gradient(180deg,#b91c1c,#7f1d1d) !important; /* red */
+  border-color: #ef4444 !important;
+  text-shadow: 0 0 10px rgba(239,68,68,.6);
+}
+
+/* Timer & progress for dark mode */
+.nova-dark-duel .progress-bar {
+  background: #0b1220 !important;
+  border: 1px solid #1f2937 !important;
+}
+.nova-dark-duel .progress-bar-inner {
+  background: linear-gradient(90deg,#22c55e,#84cc16) !important;
+}
+.nova-dark-duel .timer {
+  color: #fca5a5 !important;
+  text-shadow: 0 0 8px rgba(252,165,165,.6);
+}
+
+/* Players info cards get subtle glow */
+.nova-dark-duel .duel-player-score {
+  background: rgba(2,6,23,.75) !important;
+  box-shadow: inset 0 0 0 1px rgba(59,130,246,.35), 0 10px 30px rgba(0,0,0,.6) !important;
+  color: #e5e7eb;
+}
+
+/* Remove any top-side duel indicator banners/texts (without touching scores) */
+.nova-hidden-banner { display: none !important; }
+
+/* Starfield overlay */
+#nova-starfield, #nova-nebula {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+#nova-starfield {
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.7) 0, rgba(255,255,255,0) 60%),
+    radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,.8) 0, rgba(255,255,255,0) 60%),
+    radial-gradient(1.2px 1.2px at 40% 80%, rgba(255,255,255,.6) 0, rgba(255,255,255,0) 60%),
+    radial-gradient(1.8px 1.8px at 85% 60%, rgba(255,255,255,.75) 0, rgba(255,255,255,0) 60%);
+  animation: novaTwinkle 4s infinite alternate ease-in-out;
+  opacity: .6;
+}
+#nova-nebula {
+  background: radial-gradient(800px 400px at 30% 60%, rgba(59,130,246,.15), transparent 50%),
+              radial-gradient(700px 350px at 70% 30%, rgba(147,51,234,.12), transparent 50%);
+  filter: blur(2px);
+  opacity: .9;
+  animation: novaDrift 18s infinite alternate ease-in-out;
+}
+@keyframes novaTwinkle {
+  0% { opacity: .35; transform: translateY(0px); }
+  100% { opacity: .7; transform: translateY(-6px); }
+}
+@keyframes novaDrift {
+  0% { transform: translateX(-10px) translateY(0); }
+  100% { transform: translateX(10px) translateY(-6px); }
+}
+
+/* Center-screen feedback banner */
+#nova-judge {
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%) scale(.9);
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 54px);
+  letter-spacing: .8px;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,.6);
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  z-index: 999999;
+  opacity: 0;
+  pointer-events: none;
+}
+#nova-judge.nova-show {
+  animation: novaJudgeIn .25s ease-out forwards, novaJudgeHold 1.2s ease .25s forwards, novaJudgeOut .35s ease 1.45s forwards;
+}
+#nova-judge.nova-correct {
+  background: linear-gradient(135deg,#16a34a,#22c55e);
+  border: 2px solid rgba(34,197,94,.7);
+}
+#nova-judge.nova-wrong {
+  background: linear-gradient(135deg,#b91c1c,#ef4444);
+  border: 2px solid rgba(239,68,68,.7);
+}
+@keyframes novaJudgeIn { from{opacity:0; transform: translate(-50%,-50%) scale(.6) rotate(-8deg);} to{opacity:1; transform: translate(-50%,-50%) scale(1) rotate(0deg);} }
+@keyframes novaJudgeHold { from{transform: translate(-50%,-50%) scale(1);} to{transform: translate(-50%,-50%) scale(1);} }
+@keyframes novaJudgeOut { from{opacity:1; transform: translate(-50%,-50%) scale(1);} to{opacity:0; transform: translate(-50%,-70%) scale(.94);} }
+
+/* Upgraded +1 animation: arcs toward nearest score and emits star particles */
+.nova-plus {
+  position: fixed;
+  font-weight: 900;
+  font-size: clamp(26px, 3.5vw, 44px);
+  color: #22c55e;
+  text-shadow: 0 0 15px rgba(34,197,94,.75);
+  z-index: 999999;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  animation: novaPlusFloat 1.2s forwards cubic-bezier(.2,.7,.2,1);
+}
+@keyframes novaPlusFloat {
+  0%   { opacity: 0; transform: translate(-50%,-50%) scale(.7) rotate(-8deg); }
+  10%  { opacity: 1; transform: translate(-50%,-50%) scale(1.1) rotate(0deg); }
+  60%  { opacity: .9; transform: translate(var(--dx, 140px), var(--dy, -180px)) scale(1.2) rotate(8deg); }
+  100% { opacity: 0; transform: translate(var(--tx, 300px), var(--ty, -320px)) scale(.85) rotate(12deg); }
+}
+.nova-star {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,.9), 0 0 20px rgba(59,130,246,.6);
+  pointer-events: none;
+  z-index: 999998;
+  animation: novaStarOut .9s forwards ease-out;
+}
+@keyframes novaStarOut {
+  from { opacity: .95; transform: translate(0,0) scale(1); }
+  to   { opacity: 0; transform: translate(var(--sx, 80px), var(--sy, -120px)) scale(.2); }
+}
+
+/* Ensure any accidental black text in dark theme is light */
+.nova-dark-duel * {
+  color-scheme: dark;
+}
+.nova-dark-duel .question-container *,
+.nova-dark-duel .options-container * {
+  color: inherit;
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kesir Atölyesi</title>
+  <link rel="stylesheet" href="../tool-sound.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-style="pro">
+  <div class="app">
+    <header class="topbar topbar--with-sound">
+      <button type="button" class="chip-btn" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="title">
+        <h1>Kesir Atölyesi</h1>
+        <p>Pizza ve çubuklarla kesirleri öğren, dene, oyuna çevir.</p>
+      </div>
+      <button type="button" class="chip-btn--sound" id="toggle-sound" aria-pressed="false" title="Seslendir">🔊</button>
+    </header>
+
+    <main class="layout">
+      <section class="panel panel-stage" aria-label="Kesir atölyesi">
+        <div class="stage stage-full">
+          <div class="controlbar" aria-label="Kontrol barı">
+            <div class="controlbar__row">
+              <div class="seg-tabs" role="tablist" aria-label="Atölye modları">
+                <button type="button" class="seg-tab active tab-btn" data-tab="learn" role="tab" aria-selected="true">Öğren</button>
+                <button type="button" class="seg-tab tab-btn" data-tab="practice" role="tab" aria-selected="false">Uygula</button>
+              </div>
+              <div class="mini-pills">
+                <span class="mini-pill" id="mode-pill">Mod: Öğren</span>
+                <span class="mini-pill mini-pill--good" id="score-pill">Puan: 0</span>
+              </div>
+            </div>
+
+            <div class="controlbar__row controlbar__row--grid">
+              <div class="mini-field">
+                <div class="mini-label">Payda</div>
+                <div class="mini-stepper">
+                  <button type="button" class="mini-btn" id="denom-dec" aria-label="Paydayı azalt">−</button>
+                  <output id="denom-out" class="mini-out">4</output>
+                  <button type="button" class="mini-btn" id="denom-inc" aria-label="Paydayı artır">+</button>
+                </div>
+              </div>
+
+              <div class="mini-field mini-field--wide">
+                <div class="mini-label">Pay</div>
+                <div class="mini-slider">
+                  <input id="numer" type="range" min="0" max="4" value="1" />
+                  <span class="frac-mini" aria-label="Seçilen kesir">
+                    <output id="numer-out" class="frac-mini__num">1</output>
+                    <span class="frac-mini__bar" aria-hidden="true"></span>
+                    <output id="frac-out" class="frac-mini__den">4</output>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mini-read" id="big-name">“Bir bölü dört — 1’de 4”</div>
+            </div>
+          </div>
+
+          <div class="visual" id="visual" aria-label="Kesir görselleştirmesi">
+            <div class="seg-toggle seg-float" role="group" aria-label="Model seçimi">
+              <button type="button" class="seg-btn active" data-model="pizza">🍕 Pizza</button>
+              <button type="button" class="seg-btn" data-model="bar">🧱 Çubuk</button>
+            </div>
+            <svg id="pizza-svg" class="pizza" viewBox="-110 -110 220 220" aria-label="Pizza modeli" role="img"></svg>
+            <div id="bar-wrap" class="bar-wrap" aria-label="Çubuk modeli" role="img">
+              <div class="bar" id="bar"></div>
+              <div class="bar-legend">
+                <span>0</span>
+                <span>1 bütün</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="facts facts-compact" aria-label="Bilgi">
+            <span class="fact-chip"><b>Kesir:</b> <span id="fact-frac">1/4</span></span>
+            <span class="fact-chip"><b>Tür:</b> <span id="fact-type">Basit kesir</span></span>
+            <span class="fact-chip"><b>Okunuş:</b> <span id="fact-read">Bir bölü dört — 1’de 4</span></span>
+          </div>
+
+          <div class="toast toast-bar" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+          <div class="task-sheet" id="task-card" aria-label="Görev">
+            <div class="task-sheet__head">
+              <div>
+                <div class="task-kicker">SORU</div>
+                <div class="task-title" id="task-title">Görev</div>
+                <div class="task-sub" id="task-sub">Aşağıdaki kesri görselde göster.</div>
+              </div>
+              <button type="button" class="mini-ghost" id="new-task-btn">Yeni</button>
+            </div>
+            <div class="task-sheet__body" id="task-body">
+              <div class="task-line"><b id="task-fraction">1/4</b> kesrini yap!</div>
+              <div class="task-actions">
+                <button type="button" class="mini-primary" id="check-btn">Kontrol</button>
+                <button type="button" class="mini-secondary" id="hint-btn">İpucu</button>
+              </div>
+              <div class="task-msg" id="task-msg" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <span class="signature" aria-hidden="true">NASK GAMES</span>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../tool-sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

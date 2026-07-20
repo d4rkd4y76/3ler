@@ -1,0 +1,104 @@
+/* Üst HUD şeridi — profesyonel cam panel (saydam, blur yok = akıcı) */
+
+#main-screen .main-screen-top-bar.nova-main-top-dock {
+  position: relative;
+  z-index: 14;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  width: calc(100% - clamp(10px, 3.2vw, 20px));
+  max-width: min(100%, 540px);
+  margin: 0 auto clamp(10px, 2.4vw, 14px);
+  padding:
+    clamp(11px, 2.8vw, 14px)
+    clamp(14px, 3.4vw, 18px)
+    clamp(10px, 2.4vw, 13px);
+  gap: clamp(8px, 2vw, 12px);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border-radius: clamp(16px, 4vw, 22px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(8, 12, 26, 0.42);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.05) 24%,
+      rgba(12, 18, 36, 0.28) 62%,
+      rgba(6, 10, 22, 0.48) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  contain: layout style;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Üst cam parıltısı */
+#main-screen .nova-main-top-dock::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: calc(clamp(16px, 4vw, 22px) - 1px);
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.02) 38%,
+    transparent 72%
+  );
+}
+
+/* Alt ince vurgu — abartısız altın */
+#main-screen .nova-main-top-dock::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 1px;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.35) 30%,
+    rgba(253, 224, 71, 0.55) 50%,
+    rgba(212, 175, 55, 0.35) 70%,
+    transparent
+  );
+}
+
+#main-screen .nova-main-top-dock > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Normal mod: hafif dış gölge */
+body:not(.nova-perf-ultra) #main-screen .main-screen-top-bar.nova-main-top-dock {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* Akıcı mod: yalnızca inset — dış gölge yok */
+body.nova-perf-ultra #main-screen .main-screen-top-bar.nova-main-top-dock {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  #main-screen .main-screen-top-bar.nova-main-top-dock {
+    width: calc(100% - clamp(8px, 2.8vw, 14px));
+    margin-bottom: clamp(8px, 2vw, 10px);
+    border-radius: clamp(14px, 3.6vw, 18px);
+  }
+
+  #main-screen .nova-main-top-dock::before {
+    border-radius: calc(clamp(14px, 3.6vw, 18px) - 1px);
+  }
+}

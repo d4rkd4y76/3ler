@@ -1,0 +1,16 @@
+/* Extra spacing so lists never collide with gauge */
+#nova-summary .nz-gauge{margin-top:6px;margin-bottom:6px}
+
+/* Eye-catching "Ders Videosu" */
+#nzVideoBtn{
+  background: linear-gradient(135deg,#111827 0%, #1f2937 50%, #0f172a 100%);
+  color:#fff; border:0; position:relative; overflow:hidden;
+}
+#nzVideoBtn::after{
+  content:""; position:absolute; inset:0;
+  background: radial-gradient(120% 120% at 0% 0%, rgba(255,255,255,.18), transparent 50%);
+  pointer-events:none; mix-blend:overlay;
+}
+#nzVideoBtn .nz-cta-icon{margin-right:8px;display:inline-block;transform:translateY(2px)}
+@keyframes pulseCTA{0%{box-shadow:0 0 0 0 rgba(16,185,129,.45)}70%{box-shadow:0 0 0 14px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+#nzVideoBtn{animation:pulseCTA 2.4s ease-out infinite;border-radius:12px}

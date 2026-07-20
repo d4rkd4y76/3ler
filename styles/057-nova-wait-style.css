@@ -1,0 +1,20 @@
+#duel-wait-overlay{
+    position:fixed; inset:0; display:none;
+    align-items:center; justify-content:center; flex-direction:column;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(13,17,23,.95), rgba(2,6,23,.98) 40%, rgba(0,0,0,.99) 70%);
+    backdrop-filter: blur(2px);
+    z-index: 2147483000; /* above everything */
+    color:#e5e7eb; font-weight:900; letter-spacing:1.5px; text-align:center;
+  }
+  #duel-wait-overlay .wait-spinner{
+    width:64px; height:64px; border-radius:50%;
+    border:6px solid rgba(255,255,255,.15);
+    border-top-color:#ff8a00;
+    animation: novaSpin 1s linear infinite;
+    margin-bottom:18px;
+  }
+  #duel-wait-overlay .wait-text{
+    font-size: clamp(18px, 2.6vw, 28px);
+    text-shadow: 0 0 8px rgba(255,138,0,.25);
+  }
+  @keyframes novaSpin{ to{ transform: rotate(360deg); } }

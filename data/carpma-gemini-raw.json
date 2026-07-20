@@ -1,0 +1,502 @@
+[
+  {
+    "id": "mat3_carp_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "6 x 7 işleminin sonucu kaçtır?",
+    "correct": "42",
+    "wrong1": "48",
+    "wrong2": "36",
+    "explanation": "Çarpım tablosunda 6 kere 7, 42 eder. Çarpma işlemi, toplananları aynı olan toplama işleminin kısa yoludur (6 tane 7'nin toplamı)."
+  },
+  {
+    "id": "mat3_carp_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "8 x 5 işleminin sonucu kaçtır?",
+    "correct": "40",
+    "wrong1": "45",
+    "wrong2": "35",
+    "explanation": "Çarpım tablosunda 8 kere 5, 40 eder. 5'er ritmik sayarak da bulabiliriz: 5, 10, 15, 20, 25, 30, 35, 40."
+  },
+  {
+    "id": "mat3_carp_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "9 x 4 işleminin sonucu kaçtır?",
+    "correct": "36",
+    "wrong1": "45",
+    "wrong2": "32",
+    "explanation": "Çarpım tablosunda 9 kere 4, 36 eder. Çarpma işleminde çarpanların yeri değişse de çarpım (sonuç) değişmez (4 x 9 = 36)."
+  },
+  {
+    "id": "mat3_carp_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "7 x 7 işleminin sonucu kaçtır?",
+    "correct": "49",
+    "wrong1": "42",
+    "wrong2": "56",
+    "explanation": "Çarpım tablosunda 7 kere 7, 49 eder. Bu, 7 sayısının kendisiyle çarpımıdır."
+  },
+  {
+    "id": "mat3_carp_005",
+    "level": "kolay",
+    "premise": null,
+    "text": "8 x 8 işleminin sonucu kaçtır?",
+    "correct": "64",
+    "wrong1": "56",
+    "wrong2": "72",
+    "explanation": "Çarpım tablosunda 8 kere 8, 64'tür."
+  },
+  {
+    "id": "mat3_carp_006",
+    "level": "kolay",
+    "premise": null,
+    "text": "3 x 9 işleminin sonucu kaçtır?",
+    "correct": "27",
+    "wrong1": "24",
+    "wrong2": "30",
+    "explanation": "Çarpım tablosunda 3 kere 9, 27 eder."
+  },
+  {
+    "id": "mat3_carp_007",
+    "level": "kolay",
+    "premise": "Bir sınıfta 8 adet öğrenci sırası vardır. Her sırada 2 öğrenci oturmaktadır.",
+    "text": "Bu sınıfta oturan toplam öğrenci sayısı kaçtır?",
+    "correct": "16",
+    "wrong1": "18",
+    "wrong2": "14",
+    "explanation": "Toplam öğrenci sayısını bulmak için sıra sayısı ile her sıradaki öğrenci sayısını çarparız: 8 x 2 = 16 öğrenci."
+  },
+  {
+    "id": "mat3_carp_008",
+    "level": "kolay",
+    "premise": "Zeynep her gün düzenli olarak 5 sayfa hikaye kitabı okumaktadır.",
+    "text": "Zeynep hızını değiştirmeden okumaya devam ederse 6 günde toplam kaç sayfa kitap okur?",
+    "correct": "30",
+    "wrong1": "25",
+    "wrong2": "35",
+    "explanation": "Her gün aynı miktarda sayfa okunduğu için 6 tane 5'i çarparız. 6 x 5 = 30 sayfa okur."
+  },
+  {
+    "id": "mat3_carp_009",
+    "level": "kolay",
+    "premise": "Ali, odasındaki 4 vazonun her birine 4 adet çiçek koymuştur.",
+    "text": "Vazolardaki toplam çiçek sayısı kaçtır?",
+    "correct": "16",
+    "wrong1": "12",
+    "wrong2": "20",
+    "explanation": "Vazo sayısı (4) ile her birindeki çiçek sayısını (4) çarpmalıyız. 4 x 4 = 16 çiçek vardır."
+  },
+  {
+    "id": "mat3_carp_010",
+    "level": "kolay",
+    "premise": "Bir boya kutusunda 7 adet renkli kalem bulunmaktadır. Kırtasiyeci bu kutulardan 5 tane satmıştır.",
+    "text": "Kırtasiyecinin sattığı toplam renkli kalem sayısı kaçtır?",
+    "correct": "35",
+    "wrong1": "30",
+    "wrong2": "40",
+    "explanation": "Satılan kutu sayısı (5) ile içindeki kalem sayısını (7) çarparak toplamı buluruz: 7 x 5 = 35 kalem."
+  },
+  {
+    "id": "mat3_carp_011",
+    "level": "kolay",
+    "premise": "Bir çiftlikte 9 tane koyun otlamaktadır.",
+    "text": "Çiftlikteki koyunların ayak sayıları toplamı kaçtır?",
+    "correct": "36",
+    "wrong1": "40",
+    "wrong2": "32",
+    "explanation": "Bir koyunun 4 ayağı vardır. 9 koyunun toplam ayak sayısını bulmak için 9 x 4 = 36 işlemini yaparız."
+  },
+  {
+    "id": "mat3_carp_012",
+    "level": "kolay",
+    "premise": "Manavdan kilosu 8 TL olan domateslerden 3 kilogram aldık.",
+    "text": "Manava domatesler için toplam kaç TL ödememiz gerekir?",
+    "correct": "24",
+    "wrong1": "21",
+    "wrong2": "27",
+    "explanation": "1 kilogram domates 8 TL ise, 3 kilogram domatesin fiyatını bulmak için çarpma işlemi yaparız. 8 x 3 = 24 TL öderiz."
+  },
+  {
+    "id": "mat3_carp_013",
+    "level": "kolay",
+    "premise": null,
+    "text": "15 sayısını 10 ile kısa yoldan çarptığımızda sonuç kaç olur?",
+    "correct": "150",
+    "wrong1": "105",
+    "wrong2": "151",
+    "explanation": "Bir sayıyı 10 ile kısa yoldan çarpmak için o sayının sonuna bir tane '0' (sıfır) ekleriz. 15'in yanına 0 ekleyince 150 olur."
+  },
+  {
+    "id": "mat3_carp_014",
+    "level": "kolay",
+    "premise": null,
+    "text": "32 x 10 işleminin sonucu kaçtır?",
+    "correct": "320",
+    "wrong1": "302",
+    "wrong2": "32",
+    "explanation": "32 sayısının sonuna bir adet 0 ekleyerek sonucu kısa yoldan 320 olarak buluruz."
+  },
+  {
+    "id": "mat3_carp_015",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi sayıyı 10 ile çarparsak sonuç 240 olur?",
+    "correct": "24",
+    "wrong1": "2400",
+    "wrong2": "40",
+    "explanation": "10 ile çarpılmış bir sayının sonundaki 0'ı sildiğimizde asıl sayıyı buluruz. 240'tan 0'ı silersek sayı 24'tür."
+  },
+  {
+    "id": "mat3_carp_016",
+    "level": "kolay",
+    "premise": null,
+    "text": "23 x 3 işleminin sonucu kaçtır?",
+    "correct": "69",
+    "wrong1": "59",
+    "wrong2": "79",
+    "explanation": "Eldesiz çarpma işleminde önce birler basamağı (3 x 3 = 9), sonra onlar basamağı (2 x 3 = 6) çarpılır. Yan yana yazıldığında sonuç 69 olur."
+  },
+  {
+    "id": "mat3_carp_017",
+    "level": "kolay",
+    "premise": null,
+    "text": "42 x 2 işleminin sonucu kaçtır?",
+    "correct": "84",
+    "wrong1": "82",
+    "wrong2": "94",
+    "explanation": "Sırayla çarpıyoruz: 2 x 2 = 4 (Birler), 4 x 2 = 8 (Onlar). Elde olmadığı için doğrudan 84 sonucuna ulaşırız."
+  },
+  {
+    "id": "mat3_carp_018",
+    "level": "orta",
+    "premise": null,
+    "text": "26 x 3 işleminin sonucu kaçtır?",
+    "correct": "78",
+    "wrong1": "68",
+    "wrong2": "88",
+    "explanation": "Önce birler basamağı çarpılır (6 x 3 = 18). 18'in 8'i yazılır, elde var 1 onluk. Sonra onlar basamağı çarpılır (2 x 3 = 6). Eldeki 1 onluk eklenir (6 + 1 = 7). Sonuç 78 olur."
+  },
+  {
+    "id": "mat3_carp_019",
+    "level": "orta",
+    "premise": null,
+    "text": "35 x 4 işleminin sonucu kaçtır?",
+    "correct": "140",
+    "wrong1": "130",
+    "wrong2": "150",
+    "explanation": "Önce 5 x 4 = 20, sıfırı yazılır elde var 2. Sonra 3 x 4 = 12, eldeki 2 eklenince 14 olur. Sonuç 140'tır."
+  },
+  {
+    "id": "mat3_carp_020",
+    "level": "orta",
+    "premise": null,
+    "text": "48 x 2 işleminin sonucu kaçtır?",
+    "correct": "96",
+    "wrong1": "86",
+    "wrong2": "106",
+    "explanation": "8 x 2 = 16, 6'sı yazılır elde var 1. 4 x 2 = 8, elde 1 eklenince 9 olur. Sonuç 96."
+  },
+  {
+    "id": "mat3_carp_021",
+    "level": "orta",
+    "premise": null,
+    "text": "17 x 5 işleminin sonucu kaçtır?",
+    "correct": "85",
+    "wrong1": "75",
+    "wrong2": "95",
+    "explanation": "7 x 5 = 35, 5'i yazılır elde var 3. 1 x 5 = 5, eldeki 3 eklenince 8 olur. Sonuç 85."
+  },
+  {
+    "id": "mat3_carp_022",
+    "level": "orta",
+    "premise": null,
+    "text": "29 x 3 işleminin sonucu kaçtır?",
+    "correct": "87",
+    "wrong1": "77",
+    "wrong2": "97",
+    "explanation": "9 x 3 = 27, 7'si yazılır elde var 2. 2 x 3 = 6, eldeki 2 eklenince 8 olur. Sonuç 87'dir."
+  },
+  {
+    "id": "mat3_carp_023",
+    "level": "orta",
+    "premise": null,
+    "text": "14 x 6 işleminin sonucu kaçtır?",
+    "correct": "84",
+    "wrong1": "74",
+    "wrong2": "94",
+    "explanation": "4 x 6 = 24, 4'ü yazılır elde var 2. 1 x 6 = 6, eldeki 2 eklenince 8 olur. Sonuç 84."
+  },
+  {
+    "id": "mat3_carp_024",
+    "level": "orta",
+    "premise": null,
+    "text": "25 x 5 işleminin sonucu kaçtır?",
+    "correct": "125",
+    "wrong1": "115",
+    "wrong2": "135",
+    "explanation": "5 x 5 = 25, 5'i yazılır elde var 2. 2 x 5 = 10, eldeki 2 eklenince 12 olur. Sonuç 125."
+  },
+  {
+    "id": "mat3_carp_025",
+    "level": "orta",
+    "premise": "Bir tiyatro salonunda 24 sıra bulunmaktadır. Her sırada 5 kişi yan yana oturabilmektedir.",
+    "text": "Tüm koltuklar dolu olduğuna göre salonda kaç kişi vardır?",
+    "correct": "120",
+    "wrong1": "110",
+    "wrong2": "130",
+    "explanation": "Sıra sayısı ile her sıradaki kişi sayısını çarpmalıyız: 24 x 5 = 120 kişi."
+  },
+  {
+    "id": "mat3_carp_026",
+    "level": "orta",
+    "premise": "Çiftliğimizdeki inek günde 18 litre süt vermektedir.",
+    "text": "Bu inek bir haftada toplam kaç litre süt verir?",
+    "correct": "126",
+    "wrong1": "116",
+    "wrong2": "136",
+    "explanation": "Bir hafta 7 gündür. Günlük süt miktarı ile gün sayısını çarparız. 18 x 7 = 126 litre süt eder."
+  },
+  {
+    "id": "mat3_carp_027",
+    "level": "orta",
+    "premise": "Kırtasiyedeki resim defterlerinin tanesi 28 TL'dir. Ali, kendisi ve 2 kardeşi için birer tane defter alacaktır.",
+    "text": "Ali defterler için toplam kaç TL ödeme yapar?",
+    "correct": "84",
+    "wrong1": "74",
+    "wrong2": "94",
+    "explanation": "Ali ve 2 kardeşi toplam 3 kişi yapar. Yani 3 defter alınacaktır. 28 x 3 = 84 TL öder."
+  },
+  {
+    "id": "mat3_carp_028",
+    "level": "orta",
+    "premise": "Bir yolcu otobüsünde 36 yolcu bulunmaktadır.",
+    "text": "Aynı kapasitedeki tamamen dolu 3 otobüste toplam kaç yolcu vardır?",
+    "correct": "108",
+    "wrong1": "98",
+    "wrong2": "118",
+    "explanation": "Bir otobüsteki yolcu sayısı ile otobüs sayısını çarparız: 36 x 3 = 108 yolcu."
+  },
+  {
+    "id": "mat3_carp_029",
+    "level": "orta",
+    "premise": "Günde 45 sayfa kitap okuyan Ayşe, okuma hızını hiç değiştirmemiştir.",
+    "text": "Ayşe 4 günde toplam kaç sayfa kitap okur?",
+    "correct": "180",
+    "wrong1": "160",
+    "wrong2": "200",
+    "explanation": "Günlük okunan sayfa sayısı (45) ile gün sayısını (4) çarparız: 45 x 4 = 180 sayfa."
+  },
+  {
+    "id": "mat3_carp_030",
+    "level": "orta",
+    "premise": "Bir otoparkta 4 kat vardır. Her katta 25 araç park edebilmektedir.",
+    "text": "Otopark tamamen dolu olduğunda otoparkta kaç araç bulunur?",
+    "correct": "100",
+    "wrong1": "80",
+    "wrong2": "120",
+    "explanation": "Kat sayısı (4) ile her kattaki araç kapasitesini (25) çarparız: 25 x 4 = 100 araç."
+  },
+  {
+    "id": "mat3_carp_031",
+    "level": "orta",
+    "premise": "Bir çiftlikte 16 kümes ve her kümeste 8 tavuk vardır.",
+    "text": "Bu çiftlikteki toplam tavuk sayısı kaçtır?",
+    "correct": "128",
+    "wrong1": "118",
+    "wrong2": "138",
+    "explanation": "Kümes sayısı (16) ile her kümesteki tavuk sayısını (8) çarpmalıyız: 16 x 8 = 128 tavuk."
+  },
+  {
+    "id": "mat3_carp_032",
+    "level": "orta",
+    "premise": "Marketten tanesi 12 TL olan çikolatalardan 7 tane aldım.",
+    "text": "Kasiyere çikolatalar için ne kadar ödemeliyim?",
+    "correct": "84",
+    "wrong1": "74",
+    "wrong2": "94",
+    "explanation": "Çikolatanın fiyatı (12) ile alınan adet sayısını (7) çarparız: 12 x 7 = 84 TL."
+  },
+  {
+    "id": "mat3_carp_033",
+    "level": "orta",
+    "premise": "Sınıfımızdaki 18 sıranın her birinde 2 öğrenci oturmaktadır.",
+    "text": "Buna göre sınıfımızın öğrenci mevcudu kaçtır?",
+    "correct": "36",
+    "wrong1": "32",
+    "wrong2": "40",
+    "explanation": "Sıra sayısı (18) ile her sıradaki öğrenci sayısını (2) çarparız: 18 x 2 = 36 öğrenci."
+  },
+  {
+    "id": "mat3_carp_034",
+    "level": "orta",
+    "premise": "Bir kutuda 24 adet şeker vardır.",
+    "text": "Bu kutulardan 5 tane alan Can, toplam kaç adet şeker almış olur?",
+    "correct": "120",
+    "wrong1": "110",
+    "wrong2": "130",
+    "explanation": "Bir kutudaki şeker sayısı (24) ile kutu sayısını (5) çarparız: 24 x 5 = 120 şeker."
+  },
+  {
+    "id": "mat3_carp_035",
+    "level": "zor",
+    "premise": null,
+    "text": "67 x 8 işleminin sonucu kaçtır?",
+    "correct": "536",
+    "wrong1": "526",
+    "wrong2": "546",
+    "explanation": "7 x 8 = 56 (elde var 5). 6 x 8 = 48. Eldeki 5 eklenince 48 + 5 = 53 olur. Sonuç 536'dır."
+  },
+  {
+    "id": "mat3_carp_036",
+    "level": "zor",
+    "premise": null,
+    "text": "89 x 6 işleminin sonucu kaçtır?",
+    "correct": "534",
+    "wrong1": "524",
+    "wrong2": "544",
+    "explanation": "9 x 6 = 54 (elde var 5). 8 x 6 = 48. Eldeki 5 eklenince 48 + 5 = 53. Sonuç 534."
+  },
+  {
+    "id": "mat3_carp_037",
+    "level": "zor",
+    "premise": null,
+    "text": "74 x 9 işleminin sonucu kaçtır?",
+    "correct": "666",
+    "wrong1": "656",
+    "wrong2": "676",
+    "explanation": "4 x 9 = 36 (elde var 3). 7 x 9 = 63. Eldeki 3 eklenince 63 + 3 = 66. Sonuç 666."
+  },
+  {
+    "id": "mat3_carp_038",
+    "level": "zor",
+    "premise": null,
+    "text": "98 x 7 işleminin sonucu kaçtır?",
+    "correct": "686",
+    "wrong1": "676",
+    "wrong2": "696",
+    "explanation": "8 x 7 = 56 (elde var 5). 9 x 7 = 63. Eldeki 5 eklenince 63 + 5 = 68. Sonuç 686."
+  },
+  {
+    "id": "mat3_carp_039",
+    "level": "zor",
+    "premise": null,
+    "text": "85 x 8 işleminin sonucu kaçtır?",
+    "correct": "680",
+    "wrong1": "670",
+    "wrong2": "690",
+    "explanation": "5 x 8 = 40 (elde var 4). 8 x 8 = 64. Eldeki 4 eklenince 64 + 4 = 68. Sonuç 680."
+  },
+  {
+    "id": "mat3_carp_040",
+    "level": "zor",
+    "premise": "Ahmet, tanesi 15 TL olan kalemlerden 4 tane, fiyatı 20 TL olan bir silgi almıştır.",
+    "text": "Ahmet kırtasiyeye toplam kaç TL borçlanmıştır?",
+    "correct": "80",
+    "wrong1": "60",
+    "wrong2": "100",
+    "explanation": "Önce kalemlerin tutarını bulmalıyız: 15 x 4 = 60 TL. Daha sonra silginin fiyatını ekleriz: 60 + 20 = 80 TL."
+  },
+  {
+    "id": "mat3_carp_041",
+    "level": "zor",
+    "premise": "Sınıfımızda 16 sıra vardır. Öğrenciler sıralara 2'şerli oturmuş ancak 3 kişi ayakta kalmıştır.",
+    "text": "Bu bilgilere göre sınıf mevcudumuz kaçtır?",
+    "correct": "35",
+    "wrong1": "32",
+    "wrong2": "38",
+    "explanation": "Önce sıralarda oturanları hesaplarız: 16 x 2 = 32 kişi. Sonra ayakta kalan 3 kişiyi ekleriz: 32 + 3 = 35 öğrenci."
+  },
+  {
+    "id": "mat3_carp_042",
+    "level": "zor",
+    "premise": "Ayşe tatilde her gün 25 problem çözmüştür. 4 günün sonunda çözdüğü problemlerin 12 tanesinin yanlış olduğunu fark etmiştir.",
+    "text": "Ayşe'nin doğru çözdüğü problem sayısı kaçtır?",
+    "correct": "88",
+    "wrong1": "100",
+    "wrong2": "76",
+    "explanation": "Önce toplam çözülen problemi buluruz: 25 x 4 = 100 problem. Yanlışları çıkararak doğruları buluruz: 100 - 12 = 88 doğru."
+  },
+  {
+    "id": "mat3_carp_043",
+    "level": "zor",
+    "premise": "Bir fırıncı sabah erkenden 45 adet ekmek üretmiştir. Bu ekmekleri 3 bakkala onar onar toptan satmıştır.",
+    "text": "Fırıncının elinde satılmamış kaç adet ekmek kalmıştır?",
+    "correct": "15",
+    "wrong1": "30",
+    "wrong2": "35",
+    "explanation": "Fırıncı 3 bakkala 10'ar ekmek sattığına göre toplam 3 x 10 = 30 ekmek satmıştır. Kalan ekmek: 45 - 30 = 15 adettir."
+  },
+  {
+    "id": "mat3_carp_044",
+    "level": "zor",
+    "premise": "Kerem, tanesi 35 TL olan hikaye kitaplarından 2 tane alarak kasaya 100 TL uzatmıştır.",
+    "text": "Kerem kasadan kaç TL para üstü almalıdır?",
+    "correct": "30",
+    "wrong1": "70",
+    "wrong2": "40",
+    "explanation": "Önce alınan kitapların toplam tutarını bulmalıyız: 35 x 2 = 70 TL. Para üstünü hesaplamak için verdiğimiz paradan harcadığımız tutarı çıkarırız: 100 - 70 = 30 TL."
+  },
+  {
+    "id": "mat3_carp_045",
+    "level": "zor",
+    "premise": "Bir ilçe kütüphanesinde 8 adet büyük kitaplık vardır. Her kitaplıkta 25 adet kitap bulunmaktadır. Kütüphaneye yeni 40 kitap daha bağışlanmıştır.",
+    "text": "Kütüphanedeki toplam kitap sayısı kaç olmuştur?",
+    "correct": "240",
+    "wrong1": "200",
+    "wrong2": "280",
+    "explanation": "Önce kitaplıklardaki toplam kitap sayısını buluruz: 25 x 8 = 200 kitap. Daha sonra bağışlanan kitapları ekleriz: 200 + 40 = 240 kitap."
+  },
+  {
+    "id": "mat3_carp_046",
+    "level": "zor",
+    "premise": "Zeynep'in kumbarasında 45 TL'si vardır. Kardeşinin parası ise Zeynep'in parasının 3 katından 20 TL eksiktir.",
+    "text": "Buna göre Zeynep'in kardeşinin kaç TL parası vardır?",
+    "correct": "115",
+    "wrong1": "135",
+    "wrong2": "95",
+    "explanation": "Önce Zeynep'in parasının 3 katını bulmalıyız: 45 x 3 = 135 TL. Sonra 20 TL eksiğini hesaplarız: 135 - 20 = 115 TL."
+  },
+  {
+    "id": "mat3_carp_047",
+    "level": "zor",
+    "premise": "Bir çiftlikte 14 koyun, 18 tavuk ve 6 inek bulunmaktadır.",
+    "text": "Bu çiftlikteki hayvanların ayak sayıları toplamı kaçtır?",
+    "correct": "116",
+    "wrong1": "106",
+    "wrong2": "126",
+    "explanation": "Koyunların 4 ayağı vardır (14 x 4 = 56). Tavukların 2 ayağı vardır (18 x 2 = 36). İneklerin 4 ayağı vardır (6 x 4 = 24). Toplam ayak sayısı: 56 + 36 + 24 = 116 olur."
+  },
+  {
+    "id": "mat3_carp_048",
+    "level": "zor",
+    "premise": "Bir mağaza sahibi, tanesi 45 TL olan okul tişörtlerinden yarım düzine satın almıştır.",
+    "text": "Mağaza sahibi bu tişörtler için toptancıya toplam kaç TL ödemiştir?",
+    "correct": "270",
+    "wrong1": "540",
+    "wrong2": "225",
+    "explanation": "Bir düzine 12 adettir. Yarım düzine ise 12'nin yarısı olan 6 adettir. Toplam tutar: 45 x 6 = 270 TL."
+  },
+  {
+    "id": "mat3_carp_049",
+    "level": "zor",
+    "premise": "Bir terzi her takım elbise için 4 metre kumaş kullanmaktadır. Terzinin elinde 50 metrelik bir top kumaş vardır. Terzi 9 takım elbise dikmiştir.",
+    "text": "Terzinin elinde geriye kaç metre kumaş kalmıştır?",
+    "correct": "14",
+    "wrong1": "16",
+    "wrong2": "12",
+    "explanation": "Önce kullanılan kumaş miktarını buluruz: 9 x 4 = 36 metre. Kalan kumaşı bulmak için toplam kumaştan çıkarırız: 50 - 36 = 14 metre."
+  },
+  {
+    "id": "mat3_carp_050",
+    "level": "zor",
+    "premise": "Dört katlı bir apartmanın her katında 4 daire vardır. Her dairenin 5 penceresi ve her pencerenin 2 açılır kanadı bulunmaktadır.",
+    "text": "Bu apartmandaki pencerelerin toplam açılır kanat sayısı kaçtır?",
+    "correct": "160",
+    "wrong1": "80",
+    "wrong2": "120",
+    "explanation": "Daire sayısı: 4 x 4 = 16. Pencere sayısı: 16 x 5 = 80. Kanat sayısı: 80 x 2 = 160 kanat."
+  }
+]

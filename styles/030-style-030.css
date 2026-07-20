@@ -1,0 +1,44 @@
+/* === Nova Patch: Center actions row on result screen === */
+.nz-actions, .result-actions, .buttons-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100%;
+  margin: 8px 0 4px 0;
+}
+/* Make the two buttons visually balanced */
+.nz-actions .nz-btn, .result-actions .nz-btn {
+  min-width: 180px;
+  justify-content: center;
+}
+@media (max-width: 640px){
+  .nz-actions, .result-actions, .buttons-row { flex-direction: column !important; }
+  .nz-actions .nz-btn, .result-actions .nz-btn { width: 100%; }
+}
+/* Semi-transparent, but clear Back button for results screen */
+#result-back-btn{
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 9999;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(17, 24, 39, 0.65); /* slate-900 @ 65% */
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  font-weight: 700;
+  backdrop-filter: blur(2px);
+  display: none; /* only visible on result screen */
+}
+#result-back-btn .ico {
+  display:inline-block;
+  width: 18px; height: 18px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.15);
+  text-align:center; line-height:18px;
+}
+#result-back-btn:hover{ transform: translateY(-1px); }
+#result-back-btn:active{ transform: translateY(0); }

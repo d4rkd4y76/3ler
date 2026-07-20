@@ -1,0 +1,39 @@
+/* Ses butonu — noktalama atölyesi ile uyumlu */
+.chip-btn--sound {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chip-btn--sound[aria-pressed="true"] {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+.topbar--with-sound {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.topbar-row--with-sound {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.topbar-row--with-sound .topbar-row-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}

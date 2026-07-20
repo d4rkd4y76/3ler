@@ -1,0 +1,30 @@
+/* === Nova Override: 440x550 oranlı dikdörtgen (köşeleri yuvarlatılmış) çerçeve === */
+/* Tüm görseller aynı oran ve stil: */
+.student-photo,
+.player-photo,
+.friend-photo,
+.duel-player-photo,
+.duel-player-score img,
+.ranking-player-photo,
+.players-list img {
+  border-radius: 12px !important;
+  object-fit: cover !important;
+  display: block;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Orana göre her ekrandaki boyutlar (genişlik sabit, yükseklik = genişlik * 1.25) */
+.student-photo { width: 160px !important; height: 200px !important; }          /* 160 * 1.25 = 200 */
+.player-photo { width: 50px !important; height: 62px !important; }
+.friend-photo { width: 50px !important; height: 62px !important; }
+.players-list img { width: 50px !important; height: 62px !important; }
+.duel-player-photo { width: 80px !important; height: 100px !important; }
+.duel-player-score img { width: 70px !important; height: 88px !important; }
+.ranking-player-photo { width: 60px !important; height: 75px !important; }
+
+/* İsteğe bağlı: ana/duel/ranking kutuları içinde taşmayı gizle */
+.duel-player-score,
+.players-list li {
+  overflow: hidden;
+}

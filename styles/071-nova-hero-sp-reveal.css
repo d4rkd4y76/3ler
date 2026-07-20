@@ -1,0 +1,90 @@
+/* Tek kişilik — kahraman yanlış şık gösterme */
+
+.nova-sp-hero-feature-bar{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 12;
+  grid-column: 1 / -1;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(124, 58, 237, .22), rgba(14, 165, 233, .15));
+  border: 1px solid rgba(167, 139, 250, .4);
+  font-size: 12px;
+  font-weight: 800;
+  color: #e9d5ff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, .2);
+}
+.nova-sp-hero-feature-bar__icon{ font-size: 18px; }
+.nova-sp-hero-feature-bar__text{ flex: 1; line-height: 1.3; }
+.nova-sp-hero-feature-bar__count{
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, .65);
+  color: #fde68a;
+  font-variant-numeric: tabular-nums;
+}
+
+.nova-sp-hero-reveal-btn{
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.nova-sp-hero-feature-bar.is-disabled{ opacity: .55; }
+.nova-sp-hero-reveal-btn:disabled{ cursor: not-allowed; }
+
+#single-player-game-screen .option-button.nova-hero-revealed-wrong,
+#options-container .option-button.nova-hero-revealed-wrong{
+  position: relative;
+  background: linear-gradient(180deg, #fecaca, #ef4444) !important;
+  border: 2px solid #b91c1c !important;
+  border-color: #b91c1c !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .45), 0 8px 22px rgba(185, 28, 28, .45) !important;
+  animation: nhRevealWrongPop .55s cubic-bezier(.34, 1.2, .64, 1) both;
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+.option-button.nova-hero-revealed-wrong::after{
+  content: '✕';
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 14px;
+  font-weight: 900;
+  opacity: .9;
+}
+@keyframes nhRevealWrongPop{
+  0%{ transform: scale(.92); opacity: .6; }
+  45%{ transform: scale(1.04); }
+  100%{ transform: scale(1); opacity: 1; }
+}
+
+/* Kahraman uçuş animasyonu (yanlış şık göster) */
+.nh-sp-fly-hero{
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  z-index: 101400;
+  pointer-events: none;
+  display: grid;
+  place-items: end center;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.55));
+}
+.nh-sp-fly-hero .nova-hero-svg{
+  width: 52px;
+  height: auto;
+  max-height: 56px;
+}

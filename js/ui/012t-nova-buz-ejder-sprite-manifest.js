@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-buz-ejder-main-sprite.py */
+window.NOVA_BUZ_EJDER_SPRITE_BASE="hero/ice_dragon/sprite/";
+window.NOVA_BUZ_EJDER_SPRITE_MANIFEST = {"version":5,"base":"hero/ice_dragon/sprite/","sheet":"buz-ejder-idle.webp","frameWidth":371,"frameHeight":268,"cols":6,"rows":7,"frameCount":42,"loopEnd":36,"fps":12,"blendFrames":6,"sheetWidth":2226,"sheetHeight":1876,"anchor":"center","main":{"sheet":"buz-ejder-main.webp","frameWidth":374,"frameHeight":296,"cols":7,"rows":8,"frameCount":56,"loopEnd":48,"fps":12,"blendFrames":8,"sheetWidth":2618,"sheetHeight":2368,"anchor":"bottom"},"scale":{"store":1.18,"detail":1.16,"main":1.32}};

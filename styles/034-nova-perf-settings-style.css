@@ -1,0 +1,302 @@
+.nova-settings-chip{
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:12px;
+  padding:8px 10px;
+  background:linear-gradient(180deg,#1f2937,#0f172a);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+.nova-settings-chip:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.05);
+}
+
+#nova_perf_open_btn.kupa-siralama-button:not(.nova-lobby-tile){
+  background:linear-gradient(135deg,#8b5cf6 0%,#ec4899 100%) !important;
+  color:#fff !important;
+  box-shadow:0 8px 18px rgba(236,72,153,.35) !important;
+  border:1px solid rgba(255,255,255,.25) !important;
+}
+#nova_perf_open_btn.kupa-siralama-button:not(.nova-lobby-tile):hover{
+  filter:brightness(1.07) !important;
+  transform:translateY(-1px) !important;
+}
+
+/* —— Ayarlar paneli —— */
+.nova-perf-overlay{
+  position:fixed;
+  inset:0;
+  z-index:100020;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  background:rgba(2,8,23,.62);
+  backdrop-filter:blur(6px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .22s ease, visibility .22s ease;
+}
+.nova-perf-overlay--open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.nova-perf-overlay .nova-perf-card{
+  width:min(420px, 100%);
+  max-height:min(88dvh, 640px);
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(165deg,#111827 0%,#0b1220 100%);
+  color:#e2e8f0;
+  border:1px solid rgba(148,163,184,.22);
+  border-radius:20px;
+  box-shadow:0 28px 60px rgba(2,6,23,.45);
+  overflow:hidden;
+  transform:translateY(10px) scale(.98);
+  transition:transform .24s cubic-bezier(.22,1,.36,1);
+}
+.nova-perf-overlay--open .nova-perf-card{
+  transform:translateY(0) scale(1);
+}
+
+.nova-perf-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:18px 18px 12px;
+  border-bottom:1px solid rgba(148,163,184,.14);
+}
+.nova-perf-title{
+  margin:0;
+  font-size:1.15rem;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#f8fafc;
+}
+.nova-perf-lead{
+  margin:6px 0 0;
+  font-size:.8rem;
+  line-height:1.45;
+  color:#94a3b8;
+  font-weight:500;
+}
+.nova-perf-lead strong{
+  color:#86efac;
+  font-weight:700;
+}
+.nova-perf-close{
+  flex-shrink:0;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:12px;
+  background:rgba(148,163,184,.12);
+  color:#cbd5e1;
+  font-size:1.35rem;
+  line-height:1;
+  cursor:pointer;
+  transition:background .16s ease, color .16s ease;
+}
+.nova-perf-close:hover{
+  background:rgba(148,163,184,.22);
+  color:#fff;
+}
+
+.nova-perf-options{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:12px 14px 10px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.nova-perf-option{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 12px;
+  border:1px solid rgba(148,163,184,.2);
+  border-radius:14px;
+  background:rgba(15,23,42,.55);
+  cursor:pointer;
+  transition:border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+.nova-perf-option:hover{
+  border-color:rgba(148,163,184,.38);
+  background:rgba(30,41,59,.65);
+}
+.nova-perf-option--active{
+  border-color:rgba(96,165,250,.55);
+  background:linear-gradient(135deg,rgba(30,58,138,.35),rgba(15,23,42,.75));
+  box-shadow:0 0 0 1px rgba(96,165,250,.18) inset;
+}
+.nova-perf-option--featured.nova-perf-option--active{
+  border-color:rgba(74,222,128,.5);
+  background:linear-gradient(135deg,rgba(22,101,52,.28),rgba(15,23,42,.78));
+  box-shadow:0 0 0 1px rgba(74,222,128,.16) inset;
+}
+
+.nova-perf-option-input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.nova-perf-option-check{
+  flex-shrink:0;
+  width:20px;
+  height:20px;
+  margin-top:2px;
+  border-radius:50%;
+  border:2px solid rgba(148,163,184,.45);
+  background:transparent;
+  position:relative;
+  transition:border-color .16s ease, background .16s ease;
+}
+.nova-perf-option--active .nova-perf-option-check{
+  border-color:#60a5fa;
+  background:#3b82f6;
+}
+.nova-perf-option--featured.nova-perf-option--active .nova-perf-option-check{
+  border-color:#4ade80;
+  background:#22c55e;
+}
+.nova-perf-option--active .nova-perf-option-check::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#fff;
+  transform:translate(-50%,-50%);
+}
+
+.nova-perf-option-main{
+  flex:1;
+  min-width:0;
+}
+.nova-perf-option-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:3px;
+}
+.nova-perf-option-title{
+  font-size:.92rem;
+  font-weight:750;
+  color:#f1f5f9;
+  line-height:1.25;
+}
+.nova-perf-tag{
+  flex-shrink:0;
+  font-size:.62rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:3px 7px;
+  border-radius:999px;
+  color:#cbd5e1;
+  background:rgba(148,163,184,.16);
+  border:1px solid rgba(148,163,184,.22);
+}
+.nova-perf-tag--recommended{
+  color:#bbf7d0;
+  background:rgba(34,197,94,.18);
+  border-color:rgba(74,222,128,.35);
+}
+.nova-perf-option-desc{
+  display:block;
+  font-size:.76rem;
+  line-height:1.4;
+  color:#94a3b8;
+  font-weight:500;
+}
+
+.nova-perf-footer{
+  padding:10px 14px 14px;
+  border-top:1px solid rgba(148,163,184,.12);
+}
+.nova-perf-done{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:12px 16px;
+  font-size:.92rem;
+  font-weight:800;
+  color:#fff;
+  cursor:pointer;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);
+  box-shadow:0 10px 24px rgba(37,99,235,.32);
+  transition:filter .16s ease, transform .16s ease;
+}
+.nova-perf-done:hover{
+  filter:brightness(1.06);
+  transform:translateY(-1px);
+}
+.nova-perf-done:active{
+  transform:translateY(0);
+}
+
+@media (max-width: 480px){
+  .nova-perf-header{ padding:16px 14px 10px; }
+  .nova-perf-options{ padding:10px 12px 8px; }
+  .nova-perf-option{ padding:11px 10px; gap:10px; }
+  .nova-perf-option-title{ font-size:.88rem; }
+}
+
+/* —— Performans modları: ölçek 117-nova-perf-scale-v2.css (tier sistemi) —— */
+
+/* Akıcı mod: bulmaca/boşluk/eşleştirme tam çözünürlükte kalır (.nova-perf-hq-active) */
+body.nova-perf-performance:not(.nova-perf-hq-active) .fb-confetti,
+body.nova-perf-performance:not(.nova-perf-hq-active) .dp-confetti,
+body.nova-perf-performance:not(.nova-perf-hq-active) .confetti,
+body.nova-perf-performance:not(.nova-perf-hq-active) .particle{
+  animation-duration:.45s !important;
+  opacity:.75 !important;
+}
+body.nova-perf-performance:not(.nova-perf-hq-active) .match-link{
+  animation:none !important;
+  stroke-dasharray:0 !important;
+}
+body.nova-perf-performance:not(.nova-perf-hq-active) *{
+  transition-duration:.12s !important;
+}
+body.nova-perf-performance:not(.nova-perf-hq-active) .card,
+body.nova-perf-performance:not(.nova-perf-hq-active) .profile-change-content,
+body.nova-perf-performance:not(.nova-perf-hq-active) .duel-game-container{
+  box-shadow:none !important;
+}
+body.nova-perf-ultra:not(.nova-perf-hq-active) .fb-confetti,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .dp-confetti,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .confetti,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .particle{
+  display:none !important;
+}
+body.nova-perf-ultra:not(.nova-perf-hq-active) .match-link,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .surprise-box{
+  animation:none !important;
+  filter:none !important;
+}
+body.nova-perf-ultra:not(.nova-perf-hq-active) *:not(.avatar-framed):not(.store-avatar-frame):not(.nova-name-frame):not(.nova-name-frame *):not(.nova-name-basic):not(.roborox-page-layer){
+  backdrop-filter:none !important;
+  transition:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+}
+body.nova-perf-ultra:not(.nova-perf-hq-active) .avatar-framed,
+body.nova-perf-ultra:not(.nova-perf-hq-active) .store-avatar-frame{
+  filter:none !important;
+  transition:border-color .35s ease, box-shadow .35s ease !important;
+}

@@ -1,0 +1,36 @@
+/* --- NOVA: EFSANE özel buton stili --- */
+.category-button.legendary{
+  position: relative;
+  font-weight: 800;
+  letter-spacing: .5px;
+  border: 0;
+  outline: 0;
+  background: linear-gradient(180deg,#ff8a00 0%, #ff3d00 60%, #8b0000 100%);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(255,61,0,.35), inset 0 0 12px rgba(255,255,255,.15);
+}
+.category-button.legendary::before,
+.category-button.legendary::after{
+  content: '';
+  position: absolute;
+  left: -6px; right: -6px;
+  height: 55%;
+  top: -10px;
+  background: radial-gradient(ellipse at bottom, rgba(255,200,0,.75), rgba(255,0,0,.0) 60%);
+  filter: blur(6px);
+  animation: flame-flicker 1.2s infinite ease-in-out alternate;
+  pointer-events: none;
+}
+.category-button.legendary::after{
+  top: auto; bottom: -12px;
+  background: radial-gradient(ellipse at top, rgba(255,120,0,.6), rgba(255,0,0,0) 60%);
+  height: 45%;
+}
+@keyframes flame-flicker{
+  0%{ transform: translateY(0) scale(1); opacity:.9;}
+  100%{ transform: translateY(-2px) scale(1.03); opacity:1;}
+}
+.category-button.legendary:hover{
+  box-shadow: 0 10px 24px rgba(255,61,0,.55), inset 0 0 20px rgba(255,255,255,.25);
+  transform: translateY(-1px);
+}

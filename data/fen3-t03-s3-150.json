@@ -1,0 +1,3822 @@
+{
+  "meta": {
+    "topicId": "t03",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_fen_bilimleri",
+    "title": "Kuvveti Tanıyalım (İtme-çekme kuvveti, hareket çeşitleri)",
+    "grade": 3,
+    "count": 140
+  },
+  "questions": [
+    {
+      "id": "fen3_kuv_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Canlı veya cansız varlıkların bulundukları yerden başka bir yere gitmesine veya konum değiştirmesine ne ad verilir?",
+      "correct": "Hareket",
+      "wrong1": "Kuvvet",
+      "wrong2": "Denge",
+      "explanation": "Bir şeyin yerini değiştirmesine hareket denir. Kuş uçar, top yuvarlanır; bunların hepsi harekettir. Kuvvet hareketi başlatan etkidir, denge ise sabit durmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Canlı veya cansız varlıkların bulundukları yerden başka bir yere gitmesine veya konum değiştirmesine ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hareket",
+        "wrong1": "Kuvvet",
+        "wrong2": "Denge",
+        "explanation": "Bir şeyin yerini değiştirmesine hareket denir. Kuş uçar, top yuvarlanır; bunların hepsi harekettir. Kuvvet hareketi başlatan etkidir, denge ise sabit durmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_002",
+      "level": "kolay",
+      "premise": "Canlı varlıklar kendiliğinden hareket edebilirken, cansız varlıklar kendiliğinden hareket edemez.",
+      "text": "Buna göre aşağıdakilerden hangisi dışarıdan bir etki (kuvvet) olmadan kendiliğinden hareket edebilir?",
+      "correct": "Gökyüzünde uçan kuş",
+      "wrong1": "Yokuşta duran bisiklet",
+      "wrong2": "Masanın üzerindeki kitap",
+      "explanation": "Kuş canlıdır; kanatlarını çırparak kendi kendine uçabilir. Bisiklet ve kitap cansızdır; onları hareket ettirmek için birinin itmesi veya çekmesi gerekir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdakilerden hangisi dışarıdan bir etki (kuvvet) olmadan kendiliğinden hareket edebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Canlı varlıklar kendiliğinden hareket edebilirken, cansız varlıklar kendiliğinden hareket edemez."
+            }
+          ]
+        },
+        "correct": "Gökyüzünde uçan kuş",
+        "wrong1": "Yokuşta duran bisiklet",
+        "wrong2": "Masanın üzerindeki kitap",
+        "explanation": "Kuş canlıdır; kanatlarını çırparak kendi kendine uçabilir. Bisiklet ve kitap cansızdır; onları hareket ettirmek için birinin itmesi veya çekmesi gerekir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_003",
+      "level": "kolay",
+      "premise": "Cansız varlıklar kendiliklerinden hareket edemezler.",
+      "text": "Buna göre yerde duran bir futbol topunun hareket edebilmesi için aşağıdakilerden hangisi gereklidir?",
+      "correct": "Dışarıdan itme ya da çekme kuvveti uygulanması",
+      "wrong1": "Güneş ışığı alması",
+      "wrong2": "Topun yuvarlak olması",
+      "explanation": "Futbol topu cansızdır, kendi başına hareket edemez. Birinin ayağıyla vurması gibi dışarıdan itme veya çekme gerekir. Güneş ışığı veya yuvarlak olması bunu sağlamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yerde duran bir futbol topunun hareket edebilmesi için aşağıdakilerden hangisi gereklidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cansız varlıklar kendiliklerinden hareket edemezler."
+            }
+          ]
+        },
+        "correct": "Dışarıdan itme ya da çekme kuvveti uygulanması",
+        "wrong1": "Güneş ışığı alması",
+        "wrong2": "Topun yuvarlak olması",
+        "explanation": "Futbol topu cansızdır, kendi başına hareket edemez. Birinin ayağıyla vurması gibi dışarıdan itme veya çekme gerekir. Güneş ışığı veya yuvarlak olması bunu sağlamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_004",
+      "level": "orta",
+      "premise": "Bitkiler de canlıdır ve onların da hareket özellikleri vardır.",
+      "text": "Buna göre ayçiçeği bitkisinin (günebakan) gün boyunca çiçeğini Güneş'e doğru çevirmesi ne tür bir harekettir?",
+      "correct": "Yönelme hareketi",
+      "wrong1": "Yer değiştirme hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Ayçiçeği yerinden kalkmaz ama çiçeğini Güneş'e çevirir. Işığa doğru dönme hareketine yönelme denir. Yer değiştirme yürümek gibi gitmektir, sallanma ise ileri geri git geldir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ayçiçeği bitkisinin (günebakan) gün boyunca çiçeğini Güneş'e doğru çevirmesi ne tür bir harekettir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bitkiler de canlıdır ve onların da hareket özellikleri vardır."
+            }
+          ]
+        },
+        "correct": "Yönelme hareketi",
+        "wrong1": "Yer değiştirme hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Ayçiçeği yerinden kalkmaz ama çiçeğini Güneş'e çevirir. Işığa doğru dönme hareketine yönelme denir. Yer değiştirme yürümek gibi gitmektir, sallanma ise ileri geri git geldir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_005",
+      "level": "kolay",
+      "premise": "Hareket türlerinden biri 'Hızlanma' hareketidir.",
+      "text": "Buna göre aşağıdaki durumlardan hangisinde cisim hızlanma hareketi yapmaktadır?",
+      "correct": "Yeşil ışık yandığında harekete geçen otomobil",
+      "wrong1": "Kırmızı ışığı görüp frene basan araba",
+      "wrong2": "Durağa yaklaşan otobüs",
+      "explanation": "Yeşil ışıkta duran araba harekete geçer ve giderek daha hızlı olur. Hızın artmasına hızlanma denir. Frene basan araba yavaşlar, durağa yaklaşan otobüs de yavaşlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdaki durumlardan hangisinde cisim hızlanma hareketi yapmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket türlerinden biri 'Hızlanma' hareketidir."
+            }
+          ]
+        },
+        "correct": "Yeşil ışık yandığında harekete geçen otomobil",
+        "wrong1": "Kırmızı ışığı görüp frene basan araba",
+        "wrong2": "Durağa yaklaşan otobüs",
+        "explanation": "Yeşil ışıkta duran araba harekete geçer ve giderek daha hızlı olur. Hızın artmasına hızlanma denir. Frene basan araba yavaşlar, durağa yaklaşan otobüs de yavaşlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_006",
+      "level": "kolay",
+      "premise": "Hareket türlerinden biri 'Yavaşlama' hareketidir.",
+      "text": "Buna göre aşağıdaki durumlardan hangisinde yavaşlama hareketi gözlemlenir?",
+      "correct": "İstasyona yaklaşan tren",
+      "wrong1": "Dalından kopup yere düşen elma",
+      "wrong2": "Yokuş aşağı yuvarlanan kar topu",
+      "explanation": "Tren istasyonda durmak için hızını azaltır. Hızın azalmasına yavaşlama denir. Düşen elma ve yokuş aşağı yuvarlanan kar topu ise hızlanır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdaki durumlardan hangisinde yavaşlama hareketi gözlemlenir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket türlerinden biri 'Yavaşlama' hareketidir."
+            }
+          ]
+        },
+        "correct": "İstasyona yaklaşan tren",
+        "wrong1": "Dalından kopup yere düşen elma",
+        "wrong2": "Yokuş aşağı yuvarlanan kar topu",
+        "explanation": "Tren istasyonda durmak için hızını azaltır. Hızın azalmasına yavaşlama denir. Düşen elma ve yokuş aşağı yuvarlanan kar topu ise hızlanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Ağacın dalından koparak yere doğru düşmeye başlayan bir elma nasıl bir hareket yapar?",
+      "correct": "Hızlanma hareketi",
+      "wrong1": "Yavaşlama hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Elma ağaçtan kopunca aşağı düşer ve gittikçe hızlanır. Dünya onu aşağı çektiği için hızı artar. Yavaşlama hızın azalmasıdır, sallanma ise ileri geri git geldir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Ağacın dalından koparak yere doğru düşmeye başlayan bir elma nasıl bir hareket yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hızlanma hareketi",
+        "wrong1": "Yavaşlama hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Elma ağaçtan kopunca aşağı düşer ve gittikçe hızlanır. Dünya onu aşağı çektiği için hızı artar. Yavaşlama hızın azalmasıdır, sallanma ise ileri geri git geldir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_008",
+      "level": "orta",
+      "premise": "Havaya doğru dik olarak atılan bir topun hızı zamanla değişir.",
+      "text": "Buna göre top havaya doğru çıkarken nasıl bir hareket yapar?",
+      "correct": "Yavaşlama hareketi",
+      "wrong1": "Hızlanma hareketi",
+      "wrong2": "Dönme hareketi",
+      "explanation": "Yukarı atılan top Dünya'nın çekme kuvvetine karşı çıkar. Bu yüzden tepeye çıkana kadar giderek yavaşlar. Aşağı düşerken ise tekrar hızlanır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre top havaya doğru çıkarken nasıl bir hareket yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Havaya doğru dik olarak atılan bir topun hızı zamanla değişir."
+            }
+          ]
+        },
+        "correct": "Yavaşlama hareketi",
+        "wrong1": "Hızlanma hareketi",
+        "wrong2": "Dönme hareketi",
+        "explanation": "Yukarı atılan top Dünya'nın çekme kuvvetine karşı çıkar. Bu yüzden tepeye çıkana kadar giderek yavaşlar. Aşağı düşerken ise tekrar hızlanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_009",
+      "level": "orta",
+      "premise": "Havaya atılan top en tepeye ulaştıktan sonra aşağı düşmeye başlar.",
+      "text": "Buna göre top yere doğru düşerken nasıl bir hareket yapar?",
+      "correct": "Hızlanma hareketi",
+      "wrong1": "Yavaşlama hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Top en yüksek noktadan sonra aşağı düşmeye başlar. Dünya onu aşağı çektiği için hızı giderek artar. Bu yüzden yere düşerken hızlanma hareketi yapar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre top yere doğru düşerken nasıl bir hareket yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Havaya atılan top en tepeye ulaştıktan sonra aşağı düşmeye başlar."
+            }
+          ]
+        },
+        "correct": "Hızlanma hareketi",
+        "wrong1": "Yavaşlama hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Top en yüksek noktadan sonra aşağı düşmeye başlar. Dünya onu aşağı çektiği için hızı giderek artar. Bu yüzden yere düşerken hızlanma hareketi yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir merkez veya eksen etrafında dairesel turlar atarak yapılan harekete ne ad verilir?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Yavaşlama hareketi",
+      "explanation": "Bir nokta etrafında tam tur atan harekete dönme denir. Dünya kendi etrafında döner, tekerlek de böyle döner. Sallanma ileri geri git geldir, yavaşlama ise hızın azalmasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir merkez veya eksen etrafında dairesel turlar atarak yapılan harekete ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Yavaşlama hareketi",
+        "explanation": "Bir nokta etrafında tam tur atan harekete dönme denir. Dünya kendi etrafında döner, tekerlek de böyle döner. Sallanma ileri geri git geldir, yavaşlama ise hızın azalmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yazın sıcak havalarda serinlemek için çalıştırdığımız vantilatörün pervanesi hangi hareketi yapar?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Yön değiştirme hareketi",
+      "explanation": "Vantilatörün pervanesi ortadaki mil etrafında sürekli döner. Bu yüzden dönme hareketi yapar. Sallanma ileri geri git gelmek, yön değiştirme ise başka tarafa sapmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yazın sıcak havalarda serinlemek için çalıştırdığımız vantilatörün pervanesi hangi hareketi yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Yön değiştirme hareketi",
+        "explanation": "Vantilatörün pervanesi ortadaki mil etrafında sürekli döner. Bu yüzden dönme hareketi yapar. Sallanma ileri geri git gelmek, yön değiştirme ise başka tarafa sapmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "Lunaparktaki atlıkarınca veya dönme dolap hangi hareket türüne örnektir?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Hızlanma hareketi",
+      "explanation": "Atlıkarınca ve dönme dolap ortadaki eksen etrafında daire çizer. Bu dönme hareketidir. Sallanma bir noktadan ileri geri sallanmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Lunaparktaki atlıkarınca veya dönme dolap hangi hareket türüne örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Hızlanma hareketi",
+        "explanation": "Atlıkarınca ve dönme dolap ortadaki eksen etrafında daire çizer. Bu dönme hareketidir. Sallanma bir noktadan ileri geri sallanmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bisiklet, otomobil ve kamyon gibi taşıtların tekerlekleri yolda ilerlerken nasıl bir hareket yapar?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Yavaşlama hareketi",
+      "explanation": "Tekerlekler yolda ilerlerken kendi merkezleri etrafında döner. Bu dönme hareketidir. Sallanma ileri geri git gelmek, yavaşlama ise hızın azalmasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bisiklet, otomobil ve kamyon gibi taşıtların tekerlekleri yolda ilerlerken nasıl bir hareket yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Yavaşlama hareketi",
+        "explanation": "Tekerlekler yolda ilerlerken kendi merkezleri etrafında döner. Bu dönme hareketidir. Sallanma ileri geri git gelmek, yavaşlama ise hızın azalmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sabit bir noktaya bağlı olarak ileri-geri veya sağa-sola doğru kavis çizerek yapılan ritmik harekete ne ad verilir?",
+      "correct": "Sallanma hareketi",
+      "wrong1": "Dönme hareketi",
+      "wrong2": "Hızlanma hareketi",
+      "explanation": "Bir noktaya bağlı cisim ileri geri gidip gelirse sallanma hareketi yapar. Salıncak ve sarkaç böyle hareket eder. Dönme bir merkez etrafında tam tur atmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sabit bir noktaya bağlı olarak ileri-geri veya sağa-sola doğru kavis çizerek yapılan ritmik harekete ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sallanma hareketi",
+        "wrong1": "Dönme hareketi",
+        "wrong2": "Hızlanma hareketi",
+        "explanation": "Bir noktaya bağlı cisim ileri geri gidip gelirse sallanma hareketi yapar. Salıncak ve sarkaç böyle hareket eder. Dönme bir merkez etrafında tam tur atmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çocuk parkındaki salıncakların yaptığı hareket türü aşağıdakilerden hangisidir?",
+      "correct": "Sallanma hareketi",
+      "wrong1": "Dönme hareketi",
+      "wrong2": "Yön değiştirme hareketi",
+      "explanation": "Salıncak bağlı olduğu yerden ileri geri sallanır. Bu ritmik harekete sallanma denir. Dönme bir merkez etrafında tam tur atmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çocuk parkındaki salıncakların yaptığı hareket türü aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sallanma hareketi",
+        "wrong1": "Dönme hareketi",
+        "wrong2": "Yön değiştirme hareketi",
+        "explanation": "Salıncak bağlı olduğu yerden ileri geri sallanır. Bu ritmik harekete sallanma denir. Dönme bir merkez etrafında tam tur atmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_016",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bebekleri uyutmak için beşik kullanıldığında beşiğin yaptığı hareket nedir?",
+      "correct": "Sallanma hareketi",
+      "wrong1": "Dönme hareketi",
+      "wrong2": "Hızlanma hareketi",
+      "explanation": "Beşik sağa sola yatıp kalkarak sallanır. Bu sallanma hareketidir. Dönme bir merkez etrafında tam tur atmak, hızlanma ise giderek hızlanmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bebekleri uyutmak için beşik kullanıldığında beşiğin yaptığı hareket nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sallanma hareketi",
+        "wrong1": "Dönme hareketi",
+        "wrong2": "Hızlanma hareketi",
+        "explanation": "Beşik sağa sola yatıp kalkarak sallanır. Bu sallanma hareketidir. Dönme bir merkez etrafında tam tur atmak, hızlanma ise giderek hızlanmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_017",
+      "level": "orta",
+      "premise": "Hareket eden bir varlığın önüne çıkan bir engele çarpması veya dışarıdan bir kuvvet alması sonucu gittiği tarafı değiştirmesine yön değiştirme denir.",
+      "text": "Buna göre aşağıdakilerden hangisi yön değiştirme hareketine örnektir?",
+      "correct": "Kalecinin üzerine gelen topu tokatlayarak dışarı atması",
+      "wrong1": "Havadan yere dik bir şekilde düşen taş",
+      "wrong2": "Kırmızı ışıkta duran araba",
+      "explanation": "Kaleci topu başka tarafa gönderince topun gittiği yön değişir. Buna yön değiştirme denir. Düz düşen taş aynı yönde gider, kırmızı ışıkta duran araba hareket etmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdakilerden hangisi yön değiştirme hareketine örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket eden bir varlığın önüne çıkan bir engele çarpması veya dışarıdan bir kuvvet alması sonucu gittiği tarafı değiştirmesine yön değiştirme denir."
+            }
+          ]
+        },
+        "correct": "Kalecinin üzerine gelen topu tokatlayarak dışarı atması",
+        "wrong1": "Havadan yere dik bir şekilde düşen taş",
+        "wrong2": "Kırmızı ışıkta duran araba",
+        "explanation": "Kaleci topu başka tarafa gönderince topun gittiği yön değişir. Buna yön değiştirme denir. Düz düşen taş aynı yönde gider, kırmızı ışıkta duran araba hareket etmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_018",
+      "level": "orta",
+      "premise": null,
+      "text": "Düz bir yolda ilerleyen otomobilin bir viraja (kıvrımlı yola) geldiğinde sağa veya sola sapması ne tür bir harekettir?",
+      "correct": "Yön değiştirme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Dönme hareketi",
+      "explanation": "Araba viraja girince direksiyonla sağa veya sola sapar. Gittiği yol değiştiği için yön değiştirme hareketi yapar. Sallanma ileri geri git gelmek, dönme ise bir merkez etrafında tam tur atmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Düz bir yolda ilerleyen otomobilin bir viraja (kıvrımlı yola) geldiğinde sağa veya sola sapması ne tür bir harekettir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yön değiştirme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Dönme hareketi",
+        "explanation": "Araba viraja girince direksiyonla sağa veya sola sapar. Gittiği yol değiştiği için yön değiştirme hareketi yapar. Sallanma ileri geri git gelmek, dönme ise bir merkez etrafında tam tur atmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_019",
+      "level": "orta",
+      "premise": null,
+      "text": "Masa tenisi maçında sporcular topa raketle sırayla vurmaktadır. Rakete çarpan top hangi hareketi yapar?",
+      "correct": "Yön değiştirme hareketi",
+      "wrong1": "Dönme hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Masa tenisinde top rakete her çarptığında başka tarafa gider. Gittiği yön değiştiği için yön değiştirme hareketi yapar. Dönme kendi etrafında dönmek, sallanma ise ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Masa tenisi maçında sporcular topa raketle sırayla vurmaktadır. Rakete çarpan top hangi hareketi yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yön değiştirme hareketi",
+        "wrong1": "Dönme hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Masa tenisinde top rakete her çarptığında başka tarafa gider. Gittiği yön değiştiği için yön değiştirme hareketi yapar. Dönme kendi etrafında dönmek, sallanma ise ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_020",
+      "level": "zor",
+      "premise": "Hareket halindeki cisimler aynı anda veya ardı ardına farklı hareketler yapabilir.",
+      "text": "Buna göre bilardo oynarken duvara (banta) hızla çarpan topun hareketi nasıl tanımlanır?",
+      "correct": "Banta çarpınca yön değiştirir ve sürtünmeden dolayı yavaşlar",
+      "wrong1": "Çarpınca sadece daha da hızlanır.",
+      "wrong2": "Çarpınca sallanma hareketi yapar.",
+      "explanation": "Top banta çarpınca sekip başka yöne gider; bu yön değiştirmedir. Çarpma ve sürtünme de topu yavaşlatır. Sadece hızlanmaz ve sallanma hareketi de yapmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bilardo oynarken duvara (banta) hızla çarpan topun hareketi nasıl tanımlanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket halindeki cisimler aynı anda veya ardı ardına farklı hareketler yapabilir."
+            }
+          ]
+        },
+        "correct": "Banta çarpınca yön değiştirir ve sürtünmeden dolayı yavaşlar",
+        "wrong1": "Çarpınca sadece daha da hızlanır.",
+        "wrong2": "Çarpınca sallanma hareketi yapar.",
+        "explanation": "Top banta çarpınca sekip başka yöne gider; bu yön değiştirmedir. Çarpma ve sürtünme de topu yavaşlatır. Sadece hızlanmaz ve sallanma hareketi de yapmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Duran bir cismi hareket ettiren, hareket eden cismi durduran, cismin hızını veya yönünü değiştirebilen etkiye ne denir?",
+      "correct": "Kuvvet",
+      "wrong1": "Enerji",
+      "wrong2": "Ağırlık",
+      "explanation": "Kuvvet cisimleri hareket ettirebilir, durdurabilir, hızlandırabilir veya yönünü değiştirebilir. İtme ve çekme kuvvetin uygulanma şeklidir. Enerji güç kaynağıdır, ağırlık ise cismin ne kadar ağır olduğudur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Duran bir cismi hareket ettiren, hareket eden cismi durduran, cismin hızını veya yönünü değiştirebilen etkiye ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kuvvet",
+        "wrong1": "Enerji",
+        "wrong2": "Ağırlık",
+        "explanation": "Kuvvet cisimleri hareket ettirebilir, durdurabilir, hızlandırabilir veya yönünü değiştirebilir. İtme ve çekme kuvvetin uygulanma şeklidir. Enerji güç kaynağıdır, ağırlık ise cismin ne kadar ağır olduğudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_022",
+      "level": "kolay",
+      "premise": "Kuvvet temelde iki farklı şekilde uygulanır.",
+      "text": "Buna göre bir cismi kendimizden uzağa (ileriye) doğru hareket ettirmek için ona hangi kuvveti uygularız?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Dönme kuvveti",
+      "explanation": "Cismi kendimizden uzağa göndermek itme kuvvetidir. Bebek arabasını önümüze itmek gibi düşünebilirsin. Çekme ise cismi kendimize doğru yaklaştırmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir cismi kendimizden uzağa (ileriye) doğru hareket ettirmek için ona hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvet temelde iki farklı şekilde uygulanır."
+            }
+          ]
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Dönme kuvveti",
+        "explanation": "Cismi kendimizden uzağa göndermek itme kuvvetidir. Bebek arabasını önümüze itmek gibi düşünebilirsin. Çekme ise cismi kendimize doğru yaklaştırmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_023",
+      "level": "kolay",
+      "premise": "Kuvvet temelde iki farklı şekilde uygulanır.",
+      "text": "Buna göre bir cismi kendimize doğru (yakına) hareket ettirmek için ona hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Hızlanma kuvveti",
+      "explanation": "Cismi kendimize doğru yaklaştırmak çekme kuvvetidir. Valizi arkadan sürüklemek veya ipi çekmek böyledir. İtme ise cismi uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir cismi kendimize doğru (yakına) hareket ettirmek için ona hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvet temelde iki farklı şekilde uygulanır."
+            }
+          ]
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Hızlanma kuvveti",
+        "explanation": "Cismi kendimize doğru yaklaştırmak çekme kuvvetidir. Valizi arkadan sürüklemek veya ipi çekmek böyledir. İtme ise cismi uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Market arabasını veya bebek arabasını önümüzde sürerek ilerletmek için onlara hangi kuvveti uygularız?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Sallanma kuvveti",
+      "explanation": "Market veya bebek arabasını önümüzde ileri itiriz. Cismi kendimizden uzağa gönderdiğimiz için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Market arabasını veya bebek arabasını önümüzde sürerek ilerletmek için onlara hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Sallanma kuvveti",
+        "explanation": "Market veya bebek arabasını önümüzde ileri itiriz. Cismi kendimizden uzağa gönderdiğimiz için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "Tekerlekli valizimizi (bavulumuzu) sapından tutup arkamızdan sürükleyerek götürürken valize hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Durdurma kuvveti",
+      "explanation": "Valizi sapından tutup arkamızdan sürüklerken kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Tekerlekli valizimizi (bavulumuzu) sapından tutup arkamızdan sürükleyerek götürürken valize hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Durdurma kuvveti",
+        "explanation": "Valizi sapından tutup arkamızdan sürüklerken kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "Açık olan bir çekmeceyi kapatmak için çekmeceye hangi kuvveti uygularız?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Döndürme kuvveti",
+      "explanation": "Açık çekmeceyi içeri sokmak için uzağa iteriz. Bu itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir; çekmeceyi açarken çekme kullanılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Açık olan bir çekmeceyi kapatmak için çekmeceye hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Döndürme kuvveti",
+        "explanation": "Açık çekmeceyi içeri sokmak için uzağa iteriz. Bu itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir; çekmeceyi açarken çekme kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kapalı olan bir buzdolabının kapağını açmak için kapağın kulpuna hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Sallama kuvveti",
+      "explanation": "Buzdolabı kapağını kendimize doğru çekerek açarız. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir; kapağı kapatırken itme kullanılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kapalı olan bir buzdolabının kapağını açmak için kapağın kulpuna hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Sallama kuvveti",
+        "explanation": "Buzdolabı kapağını kendimize doğru çekerek açarız. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir; kapağı kapatırken itme kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_028",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yerde duran bir futbol topuna ayağımızla sertçe vurduğumuzda topa hangi kuvveti uygulamış oluruz?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Yavaşlatma kuvveti",
+      "explanation": "Ayağımızla topa vurmak topu uzağa fırlatır. Cismi kendimizden uzağa gönderdiğimiz için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yerde duran bir futbol topuna ayağımızla sertçe vurduğumuzda topa hangi kuvveti uygulamış oluruz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Yavaşlatma kuvveti",
+        "explanation": "Ayağımızla topa vurmak topu uzağa fırlatır. Cismi kendimizden uzağa gönderdiğimiz için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okulun kapı ziline veya bilgisayarın tuşlarına parmağımızla basarken uyguladığımız kuvvet nedir?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Dönme kuvveti",
+      "explanation": "Düğmeye basmak onu içeri iter. Parmağımızla ileriye doğru bastırdığımız için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okulun kapı ziline veya bilgisayarın tuşlarına parmağımızla basarken uyguladığımız kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Dönme kuvveti",
+        "explanation": "Düğmeye basmak onu içeri iter. Parmağımızla ileriye doğru bastırdığımız için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kazağımızı veya çorabımızı üzerimize giyerken (yukarı doğru asılırken) hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Hızlandırma kuvveti",
+      "explanation": "Kazağı veya çorabı giyerken kıyafeti kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kazağımızı veya çorabımızı üzerimize giyerken (yukarı doğru asılırken) hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Hızlandırma kuvveti",
+        "explanation": "Kazağı veya çorabı giyerken kıyafeti kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_031",
+      "level": "orta",
+      "premise": null,
+      "text": "Prizde takılı olan bir fişi prizden çıkarmak (sökmek) için fişe hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Yavaşlama hareketi",
+      "explanation": "Fişi prizden çıkarırken kendimize doğru çekeriz. Bu çekme kuvvetidir. Prize takarken ise fişi içeri iteriz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Prizde takılı olan bir fişi prizden çıkarmak (sökmek) için fişe hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Yavaşlama hareketi",
+        "explanation": "Fişi prizden çıkarırken kendimize doğru çekeriz. Bu çekme kuvvetidir. Prize takarken ise fişi içeri iteriz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_032",
+      "level": "orta",
+      "premise": null,
+      "text": "Televizyonun fişini prize takarken fişe hangi kuvveti uygularız?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Sallama kuvveti",
+      "explanation": "Fişi prize takarken duvara doğru iteriz. Cismi ileriye gönderdiğimiz için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Televizyonun fişini prize takarken fişe hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Sallama kuvveti",
+        "explanation": "Fişi prize takarken duvara doğru iteriz. Cismi ileriye gönderdiğimiz için itme kuvvetidir. Çekme ise cismi kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_033",
+      "level": "orta",
+      "premise": "Halat çekme yarışmasında iki takım karşı karşıya geçer ve ortadaki çizgiyi geçmemeye çalışır.",
+      "text": "Buna göre bu yarışmada kazanmak isteyen bir takımın halata hangi kuvveti uygulaması gerekir?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Yön değiştirme kuvveti",
+      "explanation": "Halat çekme yarışında ipi kendimize doğru güçlüce çekeriz. Adı üzerinde çekme kuvveti kullanılır. İtme ise cismi uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu yarışmada kazanmak isteyen bir takımın halata hangi kuvveti uygulaması gerekir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Halat çekme yarışmasında iki takım karşı karşıya geçer ve ortadaki çizgiyi geçmemeye çalışır."
+            }
+          ]
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Yön değiştirme kuvveti",
+        "explanation": "Halat çekme yarışında ipi kendimize doğru güçlüce çekeriz. Adı üzerinde çekme kuvveti kullanılır. İtme ise cismi uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_034",
+      "level": "orta",
+      "premise": "Spor müsabakalarında itme ve çekme kuvvetleri sıkça kullanılır.",
+      "text": "Buna göre gülle atma sporu yapan bir sporcu, ağır güllesini boynundan uzaklara fırlatırken hangi kuvveti kullanır?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Sallanma kuvveti",
+      "explanation": "Gülle atıcı gülleyi kendinden uzağa fırlatır. Cismi ileriye gönderdiği için itme kuvveti kullanır. Çekme ise cismi kendine doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre gülle atma sporu yapan bir sporcu, ağır güllesini boynundan uzaklara fırlatırken hangi kuvveti kullanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Spor müsabakalarında itme ve çekme kuvvetleri sıkça kullanılır."
+            }
+          ]
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Sallanma kuvveti",
+        "explanation": "Gülle atıcı gülleyi kendinden uzağa fırlatır. Cismi ileriye gönderdiği için itme kuvveti kullanır. Çekme ise cismi kendine doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_035",
+      "level": "orta",
+      "premise": null,
+      "text": "Ayakkabımızı giydikten sonra bağcıklarını bağlarken ipleri sıkılaştırmak için iki ucu tutarak ne yaparız?",
+      "correct": "İplere çekme kuvveti uygularız.",
+      "wrong1": "İplere itme kuvveti uygularız.",
+      "wrong2": "İplere sadece dönme hareketi yaptırırız.",
+      "explanation": "Bağcıkları sıkarken ipleri zıt yönlere çekeriz. İpleri kendimize doğru asıldığımız için çekme kuvveti uygularız. İtme ise uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Ayakkabımızı giydikten sonra bağcıklarını bağlarken ipleri sıkılaştırmak için iki ucu tutarak ne yaparız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İplere çekme kuvveti uygularız.",
+        "wrong1": "İplere itme kuvveti uygularız.",
+        "wrong2": "İplere sadece dönme hareketi yaptırırız.",
+        "explanation": "Bağcıkları sıkarken ipleri zıt yönlere çekeriz. İpleri kendimize doğru asıldığımız için çekme kuvveti uygularız. İtme ise uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_036",
+      "level": "orta",
+      "premise": null,
+      "text": "Gökyüzünde uçurtma uçuran bir çocuk, rüzgârın uçurtmayı alıp gitmemesi için ipe hangi kuvveti uygular?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Yavaşlama kuvveti",
+      "explanation": "Uçurtma ipini kendimize doğru çekerek uçurtmayı tutarız. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Gökyüzünde uçurtma uçuran bir çocuk, rüzgârın uçurtmayı alıp gitmemesi için ipe hangi kuvveti uygular?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Yavaşlama kuvveti",
+        "explanation": "Uçurtma ipini kendimize doğru çekerek uçurtmayı tutarız. Bu çekme kuvvetidir. İtme ise cismi uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_037",
+      "level": "zor",
+      "premise": "Bazı durumlarda cisimlere hem itme hem de çekme kuvveti peş peşe ve sürekli uygulanır.",
+      "text": "Buna göre aşağıdaki eylemlerden hangisinde hem itme hem çekme kuvvetini birlikte kullanırız?",
+      "correct": "Testere ile kalın bir odunu keserken",
+      "wrong1": "Odanın ışığını yakmak için düğmeye basarken",
+      "wrong2": "Pencereden dışarı bakarken",
+      "explanation": "Testereyle odun keserken testereyi ileri iter, geri çekeriz. Hem itme hem çekme bir arada kullanılır. Düğmeye basmak sadece itme, pencereden bakmak ise kuvvet uygulamamaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdaki eylemlerden hangisinde hem itme hem çekme kuvvetini birlikte kullanırız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bazı durumlarda cisimlere hem itme hem de çekme kuvveti peş peşe ve sürekli uygulanır."
+            }
+          ]
+        },
+        "correct": "Testere ile kalın bir odunu keserken",
+        "wrong1": "Odanın ışığını yakmak için düğmeye basarken",
+        "wrong2": "Pencereden dışarı bakarken",
+        "explanation": "Testereyle odun keserken testereyi ileri iter, geri çekeriz. Hem itme hem çekme bir arada kullanılır. Düğmeye basmak sadece itme, pencereden bakmak ise kuvvet uygulamamaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_038",
+      "level": "zor",
+      "premise": "Diş fırçalamak veya yeri süpürmek hareket barındırır.",
+      "text": "Buna göre dişlerimizi fırçalarken fırçayı dişlerimizin üzerinde hareket ettiririz. Bu sırada fırçaya hangi kuvvetleri uygularız?",
+      "correct": "İtme ve Çekme kuvvetini art arda uygularız",
+      "wrong1": "Sadece itme kuvveti uygularız.",
+      "wrong2": "Sadece dönme kuvveti uygularız.",
+      "explanation": "Diş fırçalarken fırçayı ileri iter, geri çekeriz. İki kuvvet de art arda kullanılır. Sadece itme veya sadece dönme yeterli değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dişlerimizi fırçalarken fırçayı dişlerimizin üzerinde hareket ettiririz. Bu sırada fırçaya hangi kuvvetleri uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Diş fırçalamak veya yeri süpürmek hareket barındırır."
+            }
+          ]
+        },
+        "correct": "İtme ve Çekme kuvvetini art arda uygularız",
+        "wrong1": "Sadece itme kuvveti uygularız.",
+        "wrong2": "Sadece dönme kuvveti uygularız.",
+        "explanation": "Diş fırçalarken fırçayı ileri iter, geri çekeriz. İki kuvvet de art arda kullanılır. Sadece itme veya sadece dönme yeterli değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_039",
+      "level": "orta",
+      "premise": "Ağır bir masayı iki kişi taşımaktadır. Arkadaki kişi masayı ilerletmek için iter.",
+      "text": "Buna göre öndeki kişi masanın ilerlemesi için masaya hangi kuvveti uygulamalıdır?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Durdurma kuvveti",
+      "explanation": "Öndeki kişi masayı kendine doğru çeker. Arkadaki iter; ikisi de masayı aynı yöne götürür. Öndekinin yaptığı çekme kuvvetidir, itme değil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre öndeki kişi masanın ilerlemesi için masaya hangi kuvveti uygulamalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağır bir masayı iki kişi taşımaktadır. Arkadaki kişi masayı ilerletmek için iter."
+            }
+          ]
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Durdurma kuvveti",
+        "explanation": "Öndeki kişi masayı kendine doğru çeker. Arkadaki iter; ikisi de masayı aynı yöne götürür. Öndekinin yaptığı çekme kuvvetidir, itme değil.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_040",
+      "level": "orta",
+      "premise": "Oyun parkında tahterevalliye binen iki arkadaştan yere dokunan çocuk, ayaklarıyla yeri aşağı doğru bastırarak havalanır.",
+      "text": "Buna göre çocuk ayaklarıyla yere hangi kuvveti uygulamıştır?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Sallanma kuvveti",
+      "explanation": "Tahterevallide yere aşağı bastırmak yeri uzağa itmektir. Bu itme kuvvetidir ve beden yukarı kalkar. Çekme ise cismi kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çocuk ayaklarıyla yere hangi kuvveti uygulamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Oyun parkında tahterevalliye binen iki arkadaştan yere dokunan çocuk, ayaklarıyla yeri aşağı doğru bastırarak havalanır."
+            }
+          ]
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Sallanma kuvveti",
+        "explanation": "Tahterevallide yere aşağı bastırmak yeri uzağa itmektir. Bu itme kuvvetidir ve beden yukarı kalkar. Çekme ise cismi kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_041",
+      "level": "kolay",
+      "premise": "Kuvvetin etkilerinden biri de cisimleri harekete geçirmesidir.",
+      "text": "Buna göre duran bir cismi hareket ettirmek için aşağıdaki eylemlerden hangisi yapılmalıdır?",
+      "correct": "Cisme yeterli itme ya da çekme kuvveti uygulamak",
+      "wrong1": "Cismin sadece şeklini değiştirmek",
+      "wrong2": "Cismi uzaktan izlemek",
+      "explanation": "Cansız cisimler kendi kendine hareket edemez. Onları hareket ettirmek için itme veya çekme kuvveti gerekir. Sadece izlemek veya şeklini değiştirmek hareket ettirmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre duran bir cismi hareket ettirmek için aşağıdaki eylemlerden hangisi yapılmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvetin etkilerinden biri de cisimleri harekete geçirmesidir."
+            }
+          ]
+        },
+        "correct": "Cisme yeterli itme ya da çekme kuvveti uygulamak",
+        "wrong1": "Cismin sadece şeklini değiştirmek",
+        "wrong2": "Cismi uzaktan izlemek",
+        "explanation": "Cansız cisimler kendi kendine hareket edemez. Onları hareket ettirmek için itme veya çekme kuvveti gerekir. Sadece izlemek veya şeklini değiştirmek hareket ettirmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_042",
+      "level": "orta",
+      "premise": null,
+      "text": "Süngeri elimizle sıktığımızda küçülür, bıraktığımızda eski haline döner. Bu durum kuvvetin hangi etkisine örnektir, ancak 3. sınıf sınırlarında bu etkiye ne ad verilir?",
+      "correct": "Süngere itme, yani sıkıştırma uygulanması",
+      "wrong1": "Bu sadece bir yavaşlatma kuvvetidir.",
+      "wrong2": "Bu bir sallanma hareketidir.",
+      "explanation": "Süngeri sıkmak her yönden bastırmaktır; buna itme kuvveti denir. Sünger küçülür, bırakınca eski haline döner. Bu yavaşlama veya sallanma değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Süngeri elimizle sıktığımızda küçülür, bıraktığımızda eski haline döner. Bu durum kuvvetin hangi etkisine örnektir, ancak 3. sınıf sınırlarında bu etkiye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Süngere itme, yani sıkıştırma uygulanması",
+        "wrong1": "Bu sadece bir yavaşlatma kuvvetidir.",
+        "wrong2": "Bu bir sallanma hareketidir.",
+        "explanation": "Süngeri sıkmak her yönden bastırmaktır; buna itme kuvveti denir. Sünger küçülür, bırakınca eski haline döner. Bu yavaşlama veya sallanma değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_043",
+      "level": "orta",
+      "premise": "Hareketli bir cisme, hareket yönüyle aynı yönde bir kuvvet uygularsak cismin hareketinde nasıl bir değişiklik olur?",
+      "text": "Buna göre cismin hızında ne gözlenir?",
+      "correct": "Cisim hızlanır.",
+      "wrong1": "Cisim yavaşlar ve durur.",
+      "wrong2": "Cisim yön değiştirir.",
+      "explanation": "Cisme gittiği yönde kuvvet uygularsak hızı artar. Giden arabayı arkadan itmek gibi düşünebilirsin. Zıt yönde kuvvet uygularsak cisim yavaşlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre cismin hızında ne gözlenir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareketli bir cisme, hareket yönüyle aynı yönde bir kuvvet uygularsak cismin hareketinde nasıl bir değişiklik olur?"
+            }
+          ]
+        },
+        "correct": "Cisim hızlanır.",
+        "wrong1": "Cisim yavaşlar ve durur.",
+        "wrong2": "Cisim yön değiştirir.",
+        "explanation": "Cisme gittiği yönde kuvvet uygularsak hızı artar. Giden arabayı arkadan itmek gibi düşünebilirsin. Zıt yönde kuvvet uygularsak cisim yavaşlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_044",
+      "level": "orta",
+      "premise": "Hareket eden cisimlere, hareketlerine zıt (ters) yönde bir kuvvet uygularsak hareketleri değişir.",
+      "text": "Buna göre bize doğru yuvarlanarak gelen bir topun önüne ayağımızı koyduğumuzda top ne yapar?",
+      "correct": "Top yavaşlar veya durur.",
+      "wrong1": "Top daha çok hızlanır.",
+      "wrong2": "Top kendi etrafında döner.",
+      "explanation": "Bize doğru gelen topun önüne ayağımızı koymak zıt yönde kuvvet uygular. Top yavaşlar veya durur. Aynı yönde kuvvet uygulasaydık top hızlanırdı.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bize doğru yuvarlanarak gelen bir topun önüne ayağımızı koyduğumuzda top ne yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket eden cisimlere, hareketlerine zıt (ters) yönde bir kuvvet uygularsak hareketleri değişir."
+            }
+          ]
+        },
+        "correct": "Top yavaşlar veya durur.",
+        "wrong1": "Top daha çok hızlanır.",
+        "wrong2": "Top kendi etrafında döner.",
+        "explanation": "Bize doğru gelen topun önüne ayağımızı koymak zıt yönde kuvvet uygular. Top yavaşlar veya durur. Aynı yönde kuvvet uygulasaydık top hızlanırdı.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_045",
+      "level": "zor",
+      "premise": "Kuvvetin etkilerinden biri de yön değiştirmedir.",
+      "text": "Buna göre voleybol oynarken karşı takımdan gelen sert bir topu, kollarımızla vurarak tekrar karşıya gönderdiğimizde topun hangi özelliklerini değiştirmiş oluruz?",
+      "correct": "Yönünü ve Hızını",
+      "wrong1": "Sadece Rengini",
+      "wrong2": "Sallanma özelliğini",
+      "explanation": "Voleybolda topa vurunca hem yönünü hem hızını değiştiririz. Top bize gelirken biz onu geri göndeririz. Renk değişmez, sallanma da olmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre voleybol oynarken karşı takımdan gelen sert bir topu, kollarımızla vurarak tekrar karşıya gönderdiğimizde topun hangi özelliklerini değiştirmiş oluruz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvetin etkilerinden biri de yön değiştirmedir."
+            }
+          ]
+        },
+        "correct": "Yönünü ve Hızını",
+        "wrong1": "Sadece Rengini",
+        "wrong2": "Sallanma özelliğini",
+        "explanation": "Voleybolda topa vurunca hem yönünü hem hızını değiştiririz. Top bize gelirken biz onu geri göndeririz. Renk değişmez, sallanma da olmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_046",
+      "level": "kolay",
+      "premise": "Doğadaki olaylar da cisimlere itme ve çekme kuvveti uygular.",
+      "text": "Buna göre denizde yelkenlerini açmış ilerleyen bir gemiyi hareket ettiren asıl doğal kuvvet hangisidir?",
+      "correct": "Rüzgârın yelkenleri itme kuvveti",
+      "wrong1": "Suyun gemiyi çekme kuvveti",
+      "wrong2": "Güneşin gemiyi ısıtması",
+      "explanation": "Rüzgâr yelkenlere çarparak gemiyi ileri iter. Bu doğal bir itme kuvvetidir. Su gemiyi çekmez, Güneş'in ısıtması da gemiyi hareket ettirmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre denizde yelkenlerini açmış ilerleyen bir gemiyi hareket ettiren asıl doğal kuvvet hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğadaki olaylar da cisimlere itme ve çekme kuvveti uygular."
+            }
+          ]
+        },
+        "correct": "Rüzgârın yelkenleri itme kuvveti",
+        "wrong1": "Suyun gemiyi çekme kuvveti",
+        "wrong2": "Güneşin gemiyi ısıtması",
+        "explanation": "Rüzgâr yelkenlere çarparak gemiyi ileri iter. Bu doğal bir itme kuvvetidir. Su gemiyi çekmez, Güneş'in ısıtması da gemiyi hareket ettirmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_047",
+      "level": "kolay",
+      "premise": "Mıknatıslar temas gerektirmeden, görünmez bir kuvvet uygularlar.",
+      "text": "Buna göre bir mıknatısı masanın üzerindeki demir ataşlara yaklaştırdığımızda ataşların mıknatısa doğru zıplaması hangi kuvvete örnektir?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Sallanma kuvveti",
+      "explanation": "Mıknatıs demir ataşları kendine doğru çeker. Temas etmeden çektiği için çekme kuvvetidir. İtme uzağa göndermek, sallanma ise ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir mıknatısı masanın üzerindeki demir ataşlara yaklaştırdığımızda ataşların mıknatısa doğru zıplaması hangi kuvvete örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mıknatıslar temas gerektirmeden, görünmez bir kuvvet uygularlar."
+            }
+          ]
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Sallanma kuvveti",
+        "explanation": "Mıknatıs demir ataşları kendine doğru çeker. Temas etmeden çektiği için çekme kuvvetidir. İtme uzağa göndermek, sallanma ise ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_048",
+      "level": "orta",
+      "premise": "Buzdolabı kapaklarının etrafında gizli mıknatıs şeritleri bulunur.",
+      "text": "Buna göre buzdolabı kapağını açmaya çalıştığımızda biraz zorlanmamızın sebebi nedir?",
+      "correct": "Mıknatısın kapağı gövdeye çekmesi",
+      "wrong1": "Buzdolabının bizi itmesi.",
+      "wrong2": "Kapağın çok ağır olması.",
+      "explanation": "Buzdolabı kapağındaki mıknatıs gövdeyi çeker ve kapak yapışır. Açmak için bu çekme kuvvetinden daha güçlü çekmemiz gerekir. Buzdolabı bizi itmez, kapak ağırlığı da asıl sebep değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre buzdolabı kapağını açmaya çalıştığımızda biraz zorlanmamızın sebebi nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Buzdolabı kapaklarının etrafında gizli mıknatıs şeritleri bulunur."
+            }
+          ]
+        },
+        "correct": "Mıknatısın kapağı gövdeye çekmesi",
+        "wrong1": "Buzdolabının bizi itmesi.",
+        "wrong2": "Kapağın çok ağır olması.",
+        "explanation": "Buzdolabı kapağındaki mıknatıs gövdeyi çeker ve kapak yapışır. Açmak için bu çekme kuvvetinden daha güçlü çekmemiz gerekir. Buzdolabı bizi itmez, kapak ağırlığı da asıl sebep değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_049",
+      "level": "orta",
+      "premise": "Yer çekimi dünyadaki her şeyi merkeze çeken görünmez bir kuvvettir.",
+      "text": "Buna göre elinden bardağı düşüren bir çocuğun bardağının havada kalmayıp yere düşmesinin sebebi olan yer çekimi, aslında hangi kuvvettir?",
+      "correct": "Dünya'nın cisimlere uyguladığı Çekme kuvvetidir.",
+      "wrong1": "Havanın cisimlere uyguladığı İtme kuvvetidir.",
+      "wrong2": "Uzayın uyguladığı döndürme kuvvetidir.",
+      "explanation": "Yer çekimi Dünya'nın her şeyi kendine doğru çekmesidir. Bardak elden düşünce aşağı iner çünkü Dünya onu çeker. Hava itmez, uzay da döndürmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre elinden bardağı düşüren bir çocuğun bardağının havada kalmayıp yere düşmesinin sebebi olan yer çekimi, aslında hangi kuvvettir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yer çekimi dünyadaki her şeyi merkeze çeken görünmez bir kuvvettir."
+            }
+          ]
+        },
+        "correct": "Dünya'nın cisimlere uyguladığı Çekme kuvvetidir.",
+        "wrong1": "Havanın cisimlere uyguladığı İtme kuvvetidir.",
+        "wrong2": "Uzayın uyguladığı döndürme kuvvetidir.",
+        "explanation": "Yer çekimi Dünya'nın her şeyi kendine doğru çekmesidir. Bardak elden düşünce aşağı iner çünkü Dünya onu çeker. Hava itmez, uzay da döndürmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_050",
+      "level": "zor",
+      "premise": "Akan bir nehrin üzerine bırakılan oyuncak bir kayık akıntıyla birlikte hızla ilerler.",
+      "text": "Buna göre bu kayığı hareket ettiren doğal kuvvetin kaynağı nedir?",
+      "correct": "Suyun itme kuvveti",
+      "wrong1": "Rüzgârın çekme kuvveti",
+      "wrong2": "Kayığın kendi motoru",
+      "explanation": "Akan su önündeki kayığı ileri iter. Su hareket halinde olduğu için itme kuvveti uygular. Rüzgâr burada çekme yapmaz, kayığın motoru da yoktur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu kayığı hareket ettiren doğal kuvvetin kaynağı nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Akan bir nehrin üzerine bırakılan oyuncak bir kayık akıntıyla birlikte hızla ilerler."
+            }
+          ]
+        },
+        "correct": "Suyun itme kuvveti",
+        "wrong1": "Rüzgârın çekme kuvveti",
+        "wrong2": "Kayığın kendi motoru",
+        "explanation": "Akan su önündeki kayığı ileri iter. Su hareket halinde olduğu için itme kuvveti uygular. Rüzgâr burada çekme yapmaz, kayığın motoru da yoktur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_051",
+      "level": "zor",
+      "premise": "Zıt yönlü kuvvetler eşit büyüklükteyse cisim hareket edemez.",
+      "text": "Buna göre halat çekme yarışında iki takım da ipi çok güçlü ama tamamen eşit güçte kendilerine çekmektedir. İpe ne olur?",
+      "correct": "İp hareketsiz kalır (dengede durur).",
+      "wrong1": "İp havaya uçar.",
+      "wrong2": "İp sürekli olarak sağa sola sallanır.",
+      "explanation": "İki takım ipi eşit güçle çekerse kuvvetler birbirini dengeler. İp hareket etmez, ortada kalır. Havaya uçmaz ve sürekli sallanmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre halat çekme yarışında iki takım da ipi çok güçlü ama tamamen eşit güçte kendilerine çekmektedir. İpe ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt yönlü kuvvetler eşit büyüklükteyse cisim hareket edemez."
+            }
+          ]
+        },
+        "correct": "İp hareketsiz kalır (dengede durur).",
+        "wrong1": "İp havaya uçar.",
+        "wrong2": "İp sürekli olarak sağa sola sallanır.",
+        "explanation": "İki takım ipi eşit güçle çekerse kuvvetler birbirini dengeler. İp hareket etmez, ortada kalır. Havaya uçmaz ve sürekli sallanmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_052",
+      "level": "zor",
+      "premise": "Zıt yönlü kuvvetler farklı büyüklükteyse cisim büyük kuvvetin yönünde hareket eder.",
+      "text": "Buna göre bir masayı sağ tarafından Ali itiyor. Masanın sol tarafından ise Ayşe tam zıt yöne itiyor. Ali, Ayşe'den çok daha güçlü olduğuna göre masa ne tarafa hareket eder?",
+      "correct": "Masa, güçlü olan Ali'nin ittiği yöne (sol tarafa) hareket eder.",
+      "wrong1": "Masa, zayıf olan Ayşe'nin ittiği yöne (sağ tarafa) hareket eder.",
+      "wrong2": "Masa kesinlikle hareket etmez.",
+      "explanation": "Ali sağdan, Ayşe soldan iter. Ali daha güçlü olduğu için Ali'nin ittiği yöne gider; yani sola. Eşit olsalardı masa dururdu.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir masayı sağ tarafından Ali itiyor. Masanın sol tarafından ise Ayşe tam zıt yöne itiyor. Ali, Ayşe'den çok daha güçlü olduğuna göre masa ne tarafa hareket eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt yönlü kuvvetler farklı büyüklükteyse cisim büyük kuvvetin yönünde hareket eder."
+            }
+          ]
+        },
+        "correct": "Masa, güçlü olan Ali'nin ittiği yöne (sol tarafa) hareket eder.",
+        "wrong1": "Masa, zayıf olan Ayşe'nin ittiği yöne (sağ tarafa) hareket eder.",
+        "wrong2": "Masa kesinlikle hareket etmez.",
+        "explanation": "Ali sağdan, Ayşe soldan iter. Ali daha güçlü olduğu için Ali'nin ittiği yöne gider; yani sola. Eşit olsalardı masa dururdu.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_053",
+      "level": "kolay",
+      "premise": "Hareket eden cisimlere müdahale etmek bazen çok tehlikelidir.",
+      "text": "Buna göre aşağıdaki hareketli cisimlerden hangisine elimizle dokunup onu durdurmaya çalışmak güvenlidir?",
+      "correct": "Yerde yavaşça yuvarlanan plastik bir topa",
+      "wrong1": "Hızla dönen bir çamaşır makinesi kazanına",
+      "wrong2": "Yokuş aşağı kayarak gelen ağır bir kızağa",
+      "explanation": "Yavaş yuvarlanan hafif topu durdurmak güvenlidir. Dönen çamaşır makinesine dokunmak veya ağır kızağı durdurmak çok tehlikelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdaki hareketli cisimlerden hangisine elimizle dokunup onu durdurmaya çalışmak güvenlidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket eden cisimlere müdahale etmek bazen çok tehlikelidir."
+            }
+          ]
+        },
+        "correct": "Yerde yavaşça yuvarlanan plastik bir topa",
+        "wrong1": "Hızla dönen bir çamaşır makinesi kazanına",
+        "wrong2": "Yokuş aşağı kayarak gelen ağır bir kızağa",
+        "explanation": "Yavaş yuvarlanan hafif topu durdurmak güvenlidir. Dönen çamaşır makinesine dokunmak veya ağır kızağı durdurmak çok tehlikelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_054",
+      "level": "kolay",
+      "premise": "Çalışmakta olan aletlerin hareket özellikleri tehlike yaratabilir.",
+      "text": "Buna göre çalışan (dönen) bir vantilatörün pervanesine parmağımızı sokarsak ne olur?",
+      "correct": "Pervanenin çarpıp yaralanmaya neden olması",
+      "wrong1": "Vantilatör aniden yavaşlayıp durur ve hiçbir şey olmaz.",
+      "wrong2": "Pervane parmağımızı sadece gıdıklar.",
+      "explanation": "Dönen vantilatör pervanesi çok hızlı ve serttir. Parmağımızı sokarsak ciddi yaralanırız. Vantilatör durmaz ve sadece gıdıklamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çalışan (dönen) bir vantilatörün pervanesine parmağımızı sokarsak ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çalışmakta olan aletlerin hareket özellikleri tehlike yaratabilir."
+            }
+          ]
+        },
+        "correct": "Pervanenin çarpıp yaralanmaya neden olması",
+        "wrong1": "Vantilatör aniden yavaşlayıp durur ve hiçbir şey olmaz.",
+        "wrong2": "Pervane parmağımızı sadece gıdıklar.",
+        "explanation": "Dönen vantilatör pervanesi çok hızlı ve serttir. Parmağımızı sokarsak ciddi yaralanırız. Vantilatör durmaz ve sadece gıdıklamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_055",
+      "level": "orta",
+      "premise": "Okul koridorlarında koşmak yasaktır çünkü kontrolsüz hareket tehlikelidir.",
+      "text": "Buna göre koridorda hızla koşan bir öğrenci, aniden köşeyi döndüğünde karşıdan gelen arkadaşıyla çarpışırsa bu durum hangi kuvvet/hareket tehlikesine girer?",
+      "correct": "Hızlı çarpışan cisimlerin birbirine zarar verebilmesine",
+      "wrong1": "Sadece sallanma hareketi tehlikesine",
+      "wrong2": "Dönme hareketi tehlikesine",
+      "explanation": "Koridorda hızla koşan öğrenci büyük bir kuvvetle çarpışır. Bu çarpışma yaralanmaya yol açabilir. Sallanma veya dönme tehlikesi değil, ani çarpma tehlikelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre koridorda hızla koşan bir öğrenci, aniden köşeyi döndüğünde karşıdan gelen arkadaşıyla çarpışırsa bu durum hangi kuvvet/hareket tehlikesine girer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okul koridorlarında koşmak yasaktır çünkü kontrolsüz hareket tehlikelidir."
+            }
+          ]
+        },
+        "correct": "Hızlı çarpışan cisimlerin birbirine zarar verebilmesine",
+        "wrong1": "Sadece sallanma hareketi tehlikesine",
+        "wrong2": "Dönme hareketi tehlikesine",
+        "explanation": "Koridorda hızla koşan öğrenci büyük bir kuvvetle çarpışır. Bu çarpışma yaralanmaya yol açabilir. Sallanma veya dönme tehlikesi değil, ani çarpma tehlikelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_056",
+      "level": "orta",
+      "premise": "Hareket halindeki taşıtlara binmek veya onlardan inmek büyük risk taşır.",
+      "text": "Buna göre durakta tam olarak durmamış, hala yavaşça ilerleyen bir otobüsten atlayarak inmeye çalışan bir kişinin yaşayabileceği en büyük tehlike nedir?",
+      "correct": "Dengesini kaybedip düşmesi ve ezilme tehlikesi yaşaması",
+      "wrong1": "Otobüsün birden yön değiştirip uçması",
+      "wrong2": "Gideceği yere daha çabuk varması",
+      "explanation": "Hareket halindeki otobüsten atlamak çok tehlikelidir. Vücudumuz hâlâ ileri gitmek ister, denge bozulur ve yere düşeriz. Ezilme riski vardır; otobüs uçmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre durakta tam olarak durmamış, hala yavaşça ilerleyen bir otobüsten atlayarak inmeye çalışan bir kişinin yaşayabileceği en büyük tehlike nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket halindeki taşıtlara binmek veya onlardan inmek büyük risk taşır."
+            }
+          ]
+        },
+        "correct": "Dengesini kaybedip düşmesi ve ezilme tehlikesi yaşaması",
+        "wrong1": "Otobüsün birden yön değiştirip uçması",
+        "wrong2": "Gideceği yere daha çabuk varması",
+        "explanation": "Hareket halindeki otobüsten atlamak çok tehlikelidir. Vücudumuz hâlâ ileri gitmek ister, denge bozulur ve yere düşeriz. Ezilme riski vardır; otobüs uçmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_057",
+      "level": "orta",
+      "premise": "Hareket halindeki araçlardan sarkmak tehlikelidir.",
+      "text": "Buna göre okul servisinin açık penceresinden kolunu veya kafasını dışarı çıkaran bir öğrenci, hangi tehlikeyle kesinlikle karşı karşıya kalabilir?",
+      "correct": "Dışarıdaki bir cisme çarpıp ağır yaralanma tehlikesi",
+      "wrong1": "Sadece rüzgâr çarpıp üşümesi tehlikesi",
+      "wrong2": "Otobüsün camının kırılması tehlikesi",
+      "explanation": "Araç hızlı giderken kol veya kafa dışarı çıkarsa sabit bir cisme çarpabilir. Bu çok tehlikeli bir kuvvetle yaralanmaya yol açar. Sadece üşümek veya cam kırılması asıl tehlike değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre okul servisinin açık penceresinden kolunu veya kafasını dışarı çıkaran bir öğrenci, hangi tehlikeyle kesinlikle karşı karşıya kalabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket halindeki araçlardan sarkmak tehlikelidir."
+            }
+          ]
+        },
+        "correct": "Dışarıdaki bir cisme çarpıp ağır yaralanma tehlikesi",
+        "wrong1": "Sadece rüzgâr çarpıp üşümesi tehlikesi",
+        "wrong2": "Otobüsün camının kırılması tehlikesi",
+        "explanation": "Araç hızlı giderken kol veya kafa dışarı çıkarsa sabit bir cisme çarpabilir. Bu çok tehlikeli bir kuvvetle yaralanmaya yol açar. Sadece üşümek veya cam kırılması asıl tehlike değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_058",
+      "level": "orta",
+      "premise": "Taşıtların güvenli bir şekilde yavaşlayıp durması için frenleri vardır ve zaman gerekir.",
+      "text": "Buna göre yola kaçan topumuzun peşinden aniden yola fırlamak neden çok tehlikelidir?",
+      "correct": "Arabaların aniden duramayarak bize çarpabilmesi",
+      "wrong1": "Sadece trafik polisinden ceza alacağımız için.",
+      "wrong2": "Arabaların tekerlekleri plastikten yapılmadığı için.",
+      "explanation": "Hızlı arabalar çok ağırdır ve anında duramaz. Yola aniden fırlamak arabaların bize çarpmasına neden olabilir. Sadece ceza almak veya tekerlek maddesi tehlike değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yola kaçan topumuzun peşinden aniden yola fırlamak neden çok tehlikelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Taşıtların güvenli bir şekilde yavaşlayıp durması için frenleri vardır ve zaman gerekir."
+            }
+          ]
+        },
+        "correct": "Arabaların aniden duramayarak bize çarpabilmesi",
+        "wrong1": "Sadece trafik polisinden ceza alacağımız için.",
+        "wrong2": "Arabaların tekerlekleri plastikten yapılmadığı için.",
+        "explanation": "Hızlı arabalar çok ağırdır ve anında duramaz. Yola aniden fırlamak arabaların bize çarpmasına neden olabilir. Sadece ceza almak veya tekerlek maddesi tehlike değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_059",
+      "level": "zor",
+      "premise": "Kışın sokağımızdaki yokuş buzlanmış ve kaygandır.",
+      "text": "Buna göre buzlu yokuşta kayarak aşağı doğru gelen (freni tutmayan) bir arabayı durdurmak için insan gücü (itme kuvveti) işe yarar mı?",
+      "correct": "İnsan gücünün ağır arabayı durduramaması",
+      "wrong1": "Evet, birkaç kişi arabayı önden kolayca durdurabilir.",
+      "wrong2": "Evet, çünkü araba buzun üzerinde çok hafifler.",
+      "explanation": "Buzlu yokuştan inen ağır araba çok büyük bir kuvvetle gelir. İnsan gücüyle durdurmak imkânsızdır ve ezilme tehlikesi vardır. Birkaç kişi kolayca durduramaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre buzlu yokuşta kayarak aşağı doğru gelen (freni tutmayan) bir arabayı durdurmak için insan gücü (itme kuvveti) işe yarar mı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kışın sokağımızdaki yokuş buzlanmış ve kaygandır."
+            }
+          ]
+        },
+        "correct": "İnsan gücünün ağır arabayı durduramaması",
+        "wrong1": "Evet, birkaç kişi arabayı önden kolayca durdurabilir.",
+        "wrong2": "Evet, çünkü araba buzun üzerinde çok hafifler.",
+        "explanation": "Buzlu yokuştan inen ağır araba çok büyük bir kuvvetle gelir. İnsan gücüyle durdurmak imkânsızdır ve ezilme tehlikesi vardır. Birkaç kişi kolayca durduramaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_060",
+      "level": "zor",
+      "premise": "Doğal afetler genellikle devasa büyüklükteki hareketli kütlelerin sebep olduğu yıkımlardır.",
+      "text": "Buna göre dik bir yamaçtaki kar kütlesinin koparak aşağı doğru yuvarlanıp hızlanması sonucu oluşan tehlikeli doğa olayına ne ad verilir?",
+      "correct": "Çığ",
+      "wrong1": "Sel",
+      "wrong2": "Heyelan",
+      "explanation": "Dağdan kopan kar kütlesi aşağı yuvarlanır ve giderek hızlanır. Bu tehlikeli olaya çığ denir. Sel suyla, heyelan toprak kaymasıyla ilgilidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dik bir yamaçtaki kar kütlesinin koparak aşağı doğru yuvarlanıp hızlanması sonucu oluşan tehlikeli doğa olayına ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğal afetler genellikle devasa büyüklükteki hareketli kütlelerin sebep olduğu yıkımlardır."
+            }
+          ]
+        },
+        "correct": "Çığ",
+        "wrong1": "Sel",
+        "wrong2": "Heyelan",
+        "explanation": "Dağdan kopan kar kütlesi aşağı yuvarlanır ve giderek hızlanır. Bu tehlikeli olaya çığ denir. Sel suyla, heyelan toprak kaymasıyla ilgilidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_061",
+      "level": "zor",
+      "premise": "Doğal afetler suların veya havanın uyguladığı devasa kuvvetlerdir.",
+      "text": "Buna göre aşırı yağışlar sonucu suların hızla akarak (büyük bir itme kuvvetiyle) önüne gelen evleri ve ağaçları sürüklemesine ne ad verilir?",
+      "correct": "Sel",
+      "wrong1": "Deprem",
+      "wrong2": "Çığ",
+      "explanation": "Çok yağmur sonrası akan sular evleri ve ağaçları sürükler. Bu büyük itme kuvvetiyle oluşan olaya sel denir. Deprem yer sarsıntısı, çığ kar kütlesidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşırı yağışlar sonucu suların hızla akarak (büyük bir itme kuvvetiyle) önüne gelen evleri ve ağaçları sürüklemesine ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğal afetler suların veya havanın uyguladığı devasa kuvvetlerdir."
+            }
+          ]
+        },
+        "correct": "Sel",
+        "wrong1": "Deprem",
+        "wrong2": "Çığ",
+        "explanation": "Çok yağmur sonrası akan sular evleri ve ağaçları sürükler. Bu büyük itme kuvvetiyle oluşan olaya sel denir. Deprem yer sarsıntısı, çığ kar kütlesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_062",
+      "level": "zor",
+      "premise": "Fırtına ve kasırga rüzgarın çok hızlı estiği doğa olaylarıdır.",
+      "text": "Buna göre fırtınalı bir havada sokakta yürürken çatıların altından veya büyük ağaçların yanından geçmek neden sakıncalıdır?",
+      "correct": "Rüzgârın kiremit ve dal düşürebilmesi",
+      "wrong1": "Rüzgar bizi bulutlara kadar uçuracağı için",
+      "wrong2": "Ağaçların bize çekme kuvveti uygulayacağı için",
+      "explanation": "Şiddetli rüzgâr kiremit ve dalları uçurabilir. Çatı altında veya büyük ağaç yanında geçmek tehlikelidir. Rüzgâr bizi bulutlara uçurmaz, ağaç da bizi çekmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre fırtınalı bir havada sokakta yürürken çatıların altından veya büyük ağaçların yanından geçmek neden sakıncalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtına ve kasırga rüzgarın çok hızlı estiği doğa olaylarıdır."
+            }
+          ]
+        },
+        "correct": "Rüzgârın kiremit ve dal düşürebilmesi",
+        "wrong1": "Rüzgar bizi bulutlara kadar uçuracağı için",
+        "wrong2": "Ağaçların bize çekme kuvveti uygulayacağı için",
+        "explanation": "Şiddetli rüzgâr kiremit ve dalları uçurabilir. Çatı altında veya büyük ağaç yanında geçmek tehlikelidir. Rüzgâr bizi bulutlara uçurmaz, ağaç da bizi çekmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_063",
+      "level": "kolay",
+      "premise": "Evimizde annemiz çivi çakarken veya babamız duvara matkapla delik açarken aletler kullanır.",
+      "text": "Buna göre matkabın (ucunun) çalışma prensibinde en belirgin hareket türü nedir?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Yavaşlama hareketi",
+      "explanation": "Matkap ucu çok hızlı döner ve duvara delik açar. Bu dönme hareketidir. Sallanma ileri geri git gelmek, yavaşlama ise hızın azalmasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre matkabın (ucunun) çalışma prensibinde en belirgin hareket türü nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Evimizde annemiz çivi çakarken veya babamız duvara matkapla delik açarken aletler kullanır."
+            }
+          ]
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Yavaşlama hareketi",
+        "explanation": "Matkap ucu çok hızlı döner ve duvara delik açar. Bu dönme hareketidir. Sallanma ileri geri git gelmek, yavaşlama ise hızın azalmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_064",
+      "level": "kolay",
+      "premise": null,
+      "text": "Mutfaktaki mikser veya çırpıcı aleti, ayran veya kek hamuru yaparken malzemelere hangi hareketi yaptırır?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Yön değiştirme hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Mikserin çırpıcı ucu kendi etrafında döner. Malzemeleri karıştırmak için dönme hareketi yapar. Yön değiştirme başka tarafa sapmak, sallanma ise ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Mutfaktaki mikser veya çırpıcı aleti, ayran veya kek hamuru yaparken malzemelere hangi hareketi yaptırır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Yön değiştirme hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Mikserin çırpıcı ucu kendi etrafında döner. Malzemeleri karıştırmak için dönme hareketi yapar. Yön değiştirme başka tarafa sapmak, sallanma ise ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_065",
+      "level": "orta",
+      "premise": "Farklı hareketler birbiriyle karıştırılabilir.",
+      "text": "Buna göre topaç çevirmek ile salıncakta sallanmak arasındaki EN belirgin fark nedir?",
+      "correct": "Topacın dönmesi, salıncağın sallanması",
+      "wrong1": "Topaç yavaşlar, salıncak ise sürekli hızlanır.",
+      "wrong2": "Topaç itme ile, salıncak çekme ile çalışır.",
+      "explanation": "Topaç bir merkez etrafında daire çizer; bu dönmedir. Salıncak ise ileri geri sallanır. İkisi farklı hareket türleridir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre topaç çevirmek ile salıncakta sallanmak arasındaki EN belirgin fark nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Farklı hareketler birbiriyle karıştırılabilir."
+            }
+          ]
+        },
+        "correct": "Topacın dönmesi, salıncağın sallanması",
+        "wrong1": "Topaç yavaşlar, salıncak ise sürekli hızlanır.",
+        "wrong2": "Topaç itme ile, salıncak çekme ile çalışır.",
+        "explanation": "Topaç bir merkez etrafında daire çizer; bu dönmedir. Salıncak ise ileri geri sallanır. İkisi farklı hareket türleridir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_066",
+      "level": "orta",
+      "premise": null,
+      "text": "Kalemi kalemtıraşla (açacakla) açarken kalemi yuvanın içinde sürekli sağa veya sola çeviririz. Bu hareketin adı nedir?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Hızlanma hareketi",
+      "explanation": "Kalemi kalemtıraşta çevirmek kendi etrafında dönmektir. Tam tur atan harekete dönme denir. Sallanma ileri geri git gelmek, hızlanma ise giderek hızlanmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kalemi kalemtıraşla (açacakla) açarken kalemi yuvanın içinde sürekli sağa veya sola çeviririz. Bu hareketin adı nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Hızlanma hareketi",
+        "explanation": "Kalemi kalemtıraşta çevirmek kendi etrafında dönmektir. Tam tur atan harekete dönme denir. Sallanma ileri geri git gelmek, hızlanma ise giderek hızlanmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_067",
+      "level": "orta",
+      "premise": null,
+      "text": "Şişenin kapağını (çevir-aç kapak) açmaya veya kapatmaya çalıştığımızda kapağa hangi hareketi yaptırmış oluruz?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Yön değiştirme hareketi",
+      "explanation": "Şişe kapağını çevirerek açarız veya kapatırız. Kapak kendi etrafında döner. Sallanma ileri geri git gelmek, yön değiştirme ise başka tarafa sapmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Şişenin kapağını (çevir-aç kapak) açmaya veya kapatmaya çalıştığımızda kapağa hangi hareketi yaptırmış oluruz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Yön değiştirme hareketi",
+        "explanation": "Şişe kapağını çevirerek açarız veya kapatırız. Kapak kendi etrafında döner. Sallanma ileri geri git gelmek, yön değiştirme ise başka tarafa sapmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_068",
+      "level": "orta",
+      "premise": "Ağır nesneleri taşımak zordur.",
+      "text": "Buna göre ağır bir buzdolabını tek başımıza iterek hareket ettirmek çok zor iken, altına tekerlekli bir taşıyıcı koyduğumuzda neden kolayca itebiliriz?",
+      "correct": "Tekerleklerin sürtünmeyi azaltması",
+      "wrong1": "Tekerlekler buzdolabının ağırlığını yok eder.",
+      "wrong2": "Tekerlekler buzdolabını sadece sallar.",
+      "explanation": "Tekerlekler dönerek ilerler ve sürtünmeyi azaltır. Bu yüzden ağır buzdolabını itmek kolaylaşır. Tekerlek ağırlığı yok etmez, sadece sallamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ağır bir buzdolabını tek başımıza iterek hareket ettirmek çok zor iken, altına tekerlekli bir taşıyıcı koyduğumuzda neden kolayca itebiliriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağır nesneleri taşımak zordur."
+            }
+          ]
+        },
+        "correct": "Tekerleklerin sürtünmeyi azaltması",
+        "wrong1": "Tekerlekler buzdolabının ağırlığını yok eder.",
+        "wrong2": "Tekerlekler buzdolabını sadece sallar.",
+        "explanation": "Tekerlekler dönerek ilerler ve sürtünmeyi azaltır. Bu yüzden ağır buzdolabını itmek kolaylaşır. Tekerlek ağırlığı yok etmez, sadece sallamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_069",
+      "level": "zor",
+      "premise": "Bir kaza durumunu analiz edelim.",
+      "text": "Buna göre sokakta hızla koşan bir çocuk, aniden önüne fırlayan bir kediyi ezip zarar vermemek için koşu yönünü sert bir şekilde değiştirip yolun kenarındaki çimlere atlıyor. Çocuğun yaptığı BU hareket dizisi ne ifade eder?",
+      "correct": "Yön değiştirip sonra düşerek durması",
+      "wrong1": "Sadece yön değiştirme yapmıştır.",
+      "wrong2": "Sürekli hızlanmaya devam edip havaya uçmuştur.",
+      "explanation": "Çocuk kediden kaçmak için yönünü değiştirir. Sonra çimlere atlayıp yavaşlayarak durur. Hem yön değiştirme hem yavaşlama bir arada olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sokakta hızla koşan bir çocuk, aniden önüne fırlayan bir kediyi ezip zarar vermemek için koşu yönünü sert bir şekilde değiştirip yolun kenarındaki çimlere atlıyor. Çocuğun yaptığı BU hareket dizisi ne ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kaza durumunu analiz edelim."
+            }
+          ]
+        },
+        "correct": "Yön değiştirip sonra düşerek durması",
+        "wrong1": "Sadece yön değiştirme yapmıştır.",
+        "wrong2": "Sürekli hızlanmaya devam edip havaya uçmuştur.",
+        "explanation": "Çocuk kediden kaçmak için yönünü değiştirir. Sonra çimlere atlayıp yavaşlayarak durur. Hem yön değiştirme hem yavaşlama bir arada olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_070",
+      "level": "zor",
+      "premise": "Bisikletli biri yokuş yukarı çıkarken pedallara neden çok daha fazla itme kuvveti uygulamak zorundadır?",
+      "text": "Buna göre bunun kuvvet ile ilişkisi nedir?",
+      "correct": "Yer çekimine karşı daha çok itme gücü gerekmesi",
+      "wrong1": "Çünkü yokuş yukarı çıkarken rüzgâr hiç esmez.",
+      "wrong2": "Çünkü bisikletin tekerlekleri yokuşta dönmeyi bırakır.",
+      "explanation": "Yokuş yukarı çıkarken Dünya bisikleti aşağı çeker. Bu çekme kuvvetine karşı daha fazla pedal çevirmek, yani itmek gerekir. Rüzgârın esmemesi veya tekerleklerin durması asıl sebep değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bunun kuvvet ile ilişkisi nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bisikletli biri yokuş yukarı çıkarken pedallara neden çok daha fazla itme kuvveti uygulamak zorundadır?"
+            }
+          ]
+        },
+        "correct": "Yer çekimine karşı daha çok itme gücü gerekmesi",
+        "wrong1": "Çünkü yokuş yukarı çıkarken rüzgâr hiç esmez.",
+        "wrong2": "Çünkü bisikletin tekerlekleri yokuşta dönmeyi bırakır.",
+        "explanation": "Yokuş yukarı çıkarken Dünya bisikleti aşağı çeker. Bu çekme kuvvetine karşı daha fazla pedal çevirmek, yani itmek gerekir. Rüzgârın esmemesi veya tekerleklerin durması asıl sebep değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_071",
+      "level": "zor",
+      "premise": "Sürtünme kuvveti hareket eden cisimleri yavaşlatan görünmez bir zıt kuvvettir.",
+      "text": "Buna göre toprak bir zeminde tekerlekli valiz sürmek mi daha kolaydır, yoksa fayans gibi pürüzsüz düz bir zeminde mi?",
+      "correct": "Fayans zeminde sürtünmenin daha az olması",
+      "wrong1": "Toprak zeminde daha kolaydır çünkü tekerlekler toprağa batıp kaybolur.",
+      "wrong2": "İkisi de tamamen aynıdır, hiç fark etmez.",
+      "explanation": "Pürüzsüz fayans zeminde tekerlek daha kolay döner. Sürtünme az olduğu için valizi itmek daha kolaydır. Toprak zemin daha çok tutar, ikisi aynı değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toprak bir zeminde tekerlekli valiz sürmek mi daha kolaydır, yoksa fayans gibi pürüzsüz düz bir zeminde mi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sürtünme kuvveti hareket eden cisimleri yavaşlatan görünmez bir zıt kuvvettir."
+            }
+          ]
+        },
+        "correct": "Fayans zeminde sürtünmenin daha az olması",
+        "wrong1": "Toprak zeminde daha kolaydır çünkü tekerlekler toprağa batıp kaybolur.",
+        "wrong2": "İkisi de tamamen aynıdır, hiç fark etmez.",
+        "explanation": "Pürüzsüz fayans zeminde tekerlek daha kolay döner. Sürtünme az olduğu için valizi itmek daha kolaydır. Toprak zemin daha çok tutar, ikisi aynı değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_072",
+      "level": "zor",
+      "premise": "Sürtünme kuvvetinin hareketi yavaşlattığını biliyoruz.",
+      "text": "Buna göre kışın yolların buzlanması arabalar için neden tehlikelidir?",
+      "correct": "Buzda sürtünmenin azalıp arabanın kayması",
+      "wrong1": "Çünkü buzlu yolda arabalar çok çabuk durur.",
+      "wrong2": "Çünkü buz sadece yayanın yürümesini engeller.",
+      "explanation": "Buzlu yolda tekerlek ile yol arasındaki tutunma azalır. Fren yapılsa bile araba kayarak durmakta zorlanır. Buz sadece yayanın yürümesini engellemez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kışın yolların buzlanması arabalar için neden tehlikelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sürtünme kuvvetinin hareketi yavaşlattığını biliyoruz."
+            }
+          ]
+        },
+        "correct": "Buzda sürtünmenin azalıp arabanın kayması",
+        "wrong1": "Çünkü buzlu yolda arabalar çok çabuk durur.",
+        "wrong2": "Çünkü buz sadece yayanın yürümesini engeller.",
+        "explanation": "Buzlu yolda tekerlek ile yol arasındaki tutunma azalır. Fren yapılsa bile araba kayarak durmakta zorlanır. Buz sadece yayanın yürümesini engellemez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_073",
+      "level": "kolay",
+      "premise": null,
+      "text": "Dışarı çıkmak için kapının kolundan tutup kapıyı odanın dışına doğru itiyorsunuz. Bu sırada kapıya hangi kuvveti uygulamış olursunuz?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Durdurma kuvveti",
+      "explanation": "Kapıyı dışarı doğru açmak cismi uzağa göndermektir. Bu itme kuvvetidir. Kendimize doğru açmak ise çekme kuvvetidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Dışarı çıkmak için kapının kolundan tutup kapıyı odanın dışına doğru itiyorsunuz. Bu sırada kapıya hangi kuvveti uygulamış olursunuz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Durdurma kuvveti",
+        "explanation": "Kapıyı dışarı doğru açmak cismi uzağa göndermektir. Bu itme kuvvetidir. Kendimize doğru açmak ise çekme kuvvetidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_074",
+      "level": "kolay",
+      "premise": null,
+      "text": "Odaya girmek için kapıyı kendinize doğru açıyorsunuz. Bu sırada kapıya hangi kuvveti uygulamış olursunuz?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Hızlandırma kuvveti",
+      "explanation": "Kapıyı kendimize doğru açmak çekme kuvvetidir. Cismi bedenimize yaklaştırırız. Dışarı itmek ise itme kuvvetidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Odaya girmek için kapıyı kendinize doğru açıyorsunuz. Bu sırada kapıya hangi kuvveti uygulamış olursunuz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Hızlandırma kuvveti",
+        "explanation": "Kapıyı kendimize doğru açmak çekme kuvvetidir. Cismi bedenimize yaklaştırırız. Dışarı itmek ise itme kuvvetidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_075",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bilgisayarın veya telefonun şarj kablosunu prizden sökerken kabloya hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Sallama kuvveti",
+      "explanation": "Şarj kablosunu prizden çıkarırken kendimize doğru çekeriz. Bu çekme kuvvetidir. Prize takarken ise itme kullanılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bilgisayarın veya telefonun şarj kablosunu prizden sökerken kabloya hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Sallama kuvveti",
+        "explanation": "Şarj kablosunu prizden çıkarırken kendimize doğru çekeriz. Bu çekme kuvvetidir. Prize takarken ise itme kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_076",
+      "level": "orta",
+      "premise": null,
+      "text": "Bir inşaat işçisi el arabasına kum doldurmuş ve kollarından tutarak önünde sürerek götürmektedir. El arabasına uygulanan kuvvet nedir?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Dönme kuvveti",
+      "explanation": "El arabasını önünde ileri sürmek cismi uzağa göndermektir. Bu itme kuvvetidir. Arkadan sürüklemek çekme olurdu.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir inşaat işçisi el arabasına kum doldurmuş ve kollarından tutarak önünde sürerek götürmektedir. El arabasına uygulanan kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Dönme kuvveti",
+        "explanation": "El arabasını önünde ileri sürmek cismi uzağa göndermektir. Bu itme kuvvetidir. Arkadan sürüklemek çekme olurdu.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_077",
+      "level": "zor",
+      "premise": "Arızalanan bir otomobili yolda itmek zorunda kalan üç arkadaş, arabayı düz yolda yavaşça ilerletebilmektedir.",
+      "text": "Buna göre yol aniden yokuş yukarı çıkmaya başlarsa arabanın hareketinde ve gereken kuvvette nasıl bir değişim olur?",
+      "correct": "Arabanın yavaşlayıp daha çok güç istemesi",
+      "wrong1": "Araba aniden hızlanır, daha az kuvvet gerekir.",
+      "wrong2": "Araba olduğu yerde dönmeye başlar.",
+      "explanation": "Yokuş yukarı çıkarken Dünya arabayı aşağı çeker. Araba yavaşlar ve itmek için daha fazla güç gerekir. Yokuşta araba hızlanmaz ve dönmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yol aniden yokuş yukarı çıkmaya başlarsa arabanın hareketinde ve gereken kuvvette nasıl bir değişim olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arızalanan bir otomobili yolda itmek zorunda kalan üç arkadaş, arabayı düz yolda yavaşça ilerletebilmektedir."
+            }
+          ]
+        },
+        "correct": "Arabanın yavaşlayıp daha çok güç istemesi",
+        "wrong1": "Araba aniden hızlanır, daha az kuvvet gerekir.",
+        "wrong2": "Araba olduğu yerde dönmeye başlar.",
+        "explanation": "Yokuş yukarı çıkarken Dünya arabayı aşağı çeker. Araba yavaşlar ve itmek için daha fazla güç gerekir. Yokuşta araba hızlanmaz ve dönmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_078",
+      "level": "zor",
+      "premise": "Kuvvet, hareket halindeki cismin yönünü değiştirebilir.",
+      "text": "Buna göre tenis raketiyle üzerine hızla gelen topa sertçe vuran bir sporcu, kuvvetin hangi iki etkisini birden kullanmış olur?",
+      "correct": "Yön değiştirme ve Hızlanma",
+      "wrong1": "Sallanma ve Yavaşlama",
+      "wrong2": "Durdurma ve Yavaşlama",
+      "explanation": "Tenisçi topa vurunca hem yönünü değiştirir hem hızlandırır. Gelen topu geri ve daha hızlı gönderir. Sallanma veya sadece durdurma değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre tenis raketiyle üzerine hızla gelen topa sertçe vuran bir sporcu, kuvvetin hangi iki etkisini birden kullanmış olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvet, hareket halindeki cismin yönünü değiştirebilir."
+            }
+          ]
+        },
+        "correct": "Yön değiştirme ve Hızlanma",
+        "wrong1": "Sallanma ve Yavaşlama",
+        "wrong2": "Durdurma ve Yavaşlama",
+        "explanation": "Tenisçi topa vurunca hem yönünü değiştirir hem hızlandırır. Gelen topu geri ve daha hızlı gönderir. Sallanma veya sadece durdurma değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_079",
+      "level": "orta",
+      "premise": "Bir bardağa sürahiden su dolduruyoruz.",
+      "text": "Buna göre su dolu bardağı yerinden alıp ağzımıza götürmek için sırasıyla hangi eylemleri ve kuvvetleri uygularız?",
+      "correct": "Bardağı sıkıca tutup sonra yukarı kaldırmak",
+      "wrong1": "Sadece bardağı iteriz.",
+      "wrong2": "Bardağı sadece sallarız.",
+      "explanation": "Bardağı tutmak için parmaklarımızla sıkıştırırız; bu itme gibidir. Sonra bardağı yukarı kaldırırız; bu çekme gibidir. Sadece itmek veya sallamak yeterli değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre su dolu bardağı yerinden alıp ağzımıza götürmek için sırasıyla hangi eylemleri ve kuvvetleri uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir bardağa sürahiden su dolduruyoruz."
+            }
+          ]
+        },
+        "correct": "Bardağı sıkıca tutup sonra yukarı kaldırmak",
+        "wrong1": "Sadece bardağı iteriz.",
+        "wrong2": "Bardağı sadece sallarız.",
+        "explanation": "Bardağı tutmak için parmaklarımızla sıkıştırırız; bu itme gibidir. Sonra bardağı yukarı kaldırırız; bu çekme gibidir. Sadece itmek veya sallamak yeterli değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_080",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sabah yataktan kalkarken üzerimizdeki yorganı ayak ucumuza doğru atarız. Bu işlem sırasında yorgana hangi kuvveti uygulamış oluruz?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Dönme kuvveti",
+      "explanation": "Yorganı ayak ucuna atmak onu kendimizden uzağa göndermektir. Bu itme kuvvetidir. Kendimize çekmek çekme olurdu.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sabah yataktan kalkarken üzerimizdeki yorganı ayak ucumuza doğru atarız. Bu işlem sırasında yorgana hangi kuvveti uygulamış oluruz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Dönme kuvveti",
+        "explanation": "Yorganı ayak ucuna atmak onu kendimizden uzağa göndermektir. Bu itme kuvvetidir. Kendimize çekmek çekme olurdu.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_081",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bulaşık yıkarken musluğu açmak için klasik çevirmeli musluğun başına hangi hareketi yaptırırız?",
+      "correct": "Döndürme (Dönme) hareketi",
+      "wrong1": "Sallama hareketi",
+      "wrong2": "Yön değiştirme",
+      "explanation": "Çevirmeli musluğu açmak için başlığı kendi etrafında döndürürüz. Bu dönme hareketidir. Sallamak ileri geri git gelmek, yön değiştirmek başka tarafa sapmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bulaşık yıkarken musluğu açmak için klasik çevirmeli musluğun başına hangi hareketi yaptırırız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Döndürme (Dönme) hareketi",
+        "wrong1": "Sallama hareketi",
+        "wrong2": "Yön değiştirme",
+        "explanation": "Çevirmeli musluğu açmak için başlığı kendi etrafında döndürürüz. Bu dönme hareketidir. Sallamak ileri geri git gelmek, yön değiştirmek başka tarafa sapmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_082",
+      "level": "orta",
+      "premise": null,
+      "text": "Spor salonunda barfiks çeken (yüksekteki demire asılıp kendini yukarı kaldıran) bir sporcu, kaslarını kullanarak kendi bedenine hangi kuvveti uygular?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Yön değiştirme",
+      "explanation": "Barfiks çekerken ellerle demiri tutup bedeni yukarı çekeriz. Kendimize doğru asıldığımız için çekme kuvvetidir. Yeri aşağı itmek şınavda itme olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Spor salonunda barfiks çeken (yüksekteki demire asılıp kendini yukarı kaldıran) bir sporcu, kaslarını kullanarak kendi bedenine hangi kuvveti uygular?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Yön değiştirme",
+        "explanation": "Barfiks çekerken ellerle demiri tutup bedeni yukarı çekeriz. Kendimize doğru asıldığımız için çekme kuvvetidir. Yeri aşağı itmek şınavda itme olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_083",
+      "level": "orta",
+      "premise": null,
+      "text": "Spor salonunda şınav çeken (yerde elleri üzerinde yüzüstü yatarken bedenini yukarı kaldıran) bir sporcu yeri elleriyle bastırdığında yere hangi kuvveti uygular?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Sallanma",
+      "explanation": "Şınavda ellerle yeri aşağı iteriz. Yeri kendimizden uzağa bastırdığımız için itme kuvvetidir. Barfiks çekmek çekme kuvvetidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Spor salonunda şınav çeken (yerde elleri üzerinde yüzüstü yatarken bedenini yukarı kaldıran) bir sporcu yeri elleriyle bastırdığında yere hangi kuvveti uygular?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Sallanma",
+        "explanation": "Şınavda ellerle yeri aşağı iteriz. Yeri kendimizden uzağa bastırdığımız için itme kuvvetidir. Barfiks çekmek çekme kuvvetidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_084",
+      "level": "zor",
+      "premise": "Hareket eden cisimlerin hızları ve ağırlıkları ne kadar fazlaysa tehlikeleri o kadar büyüktür.",
+      "text": "Buna göre aynı hızla (koşarak) üzerinize doğru gelen bir çocuğu mu yoksa aynı hızda yuvarlanarak gelen kocaman bir kayayı mı durdurmak daha tehlikelidir? Neden?",
+      "correct": "Kayanın daha ağır olduğu için daha tehlikeli olması",
+      "wrong1": "Çocuğu durdurmak daha tehlikelidir, çünkü o da bir canlıdır.",
+      "wrong2": "İkisini de durdurmak aynı derecede kolaydır, çünkü hızları aynıdır.",
+      "explanation": "Aynı hızda gelse bile kaya çocuktan çok daha ağırdır. Kayayı durdurmak çok daha tehlikelidir. Hız aynı olsa bile ağırlık farkı büyük tehlike yaratır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aynı hızla (koşarak) üzerinize doğru gelen bir çocuğu mu yoksa aynı hızda yuvarlanarak gelen kocaman bir kayayı mı durdurmak daha tehlikelidir? Neden?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket eden cisimlerin hızları ve ağırlıkları ne kadar fazlaysa tehlikeleri o kadar büyüktür."
+            }
+          ]
+        },
+        "correct": "Kayanın daha ağır olduğu için daha tehlikeli olması",
+        "wrong1": "Çocuğu durdurmak daha tehlikelidir, çünkü o da bir canlıdır.",
+        "wrong2": "İkisini de durdurmak aynı derecede kolaydır, çünkü hızları aynıdır.",
+        "explanation": "Aynı hızda gelse bile kaya çocuktan çok daha ağırdır. Kayayı durdurmak çok daha tehlikelidir. Hız aynı olsa bile ağırlık farkı büyük tehlike yaratır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_085",
+      "level": "orta",
+      "premise": "Bir kalemtıraş (açacak) ile kurşun kalemimizin ucunu açıyoruz.",
+      "text": "Buna göre kalemi kalemtıraşın içine soktuktan sonra kalemtıraşı sabit tutup kalemi bileğimizle sürekli tek yöne çeviriyoruz. Kalem hangi hareketi yapmaktadır?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Yön değiştirme hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Kalemi kalemtıraşta çevirmek kendi etrafında dönmektir. Tam tur atan harekete dönme denir. Yön değiştirme başka tarafa sapmak, sallanma ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kalemi kalemtıraşın içine soktuktan sonra kalemtıraşı sabit tutup kalemi bileğimizle sürekli tek yöne çeviriyoruz. Kalem hangi hareketi yapmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kalemtıraş (açacak) ile kurşun kalemimizin ucunu açıyoruz."
+            }
+          ]
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Yön değiştirme hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Kalemi kalemtıraşta çevirmek kendi etrafında dönmektir. Tam tur atan harekete dönme denir. Yön değiştirme başka tarafa sapmak, sallanma ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_086",
+      "level": "orta",
+      "premise": null,
+      "text": "Evimizde çay içerken içine şeker atarız. Çay bardağının içindeki şekeri eritmek için çay kaşığıyla hangi hareketi yaparız?",
+      "correct": "Dönme (Karıştırma) hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Hızlanma hareketi",
+      "explanation": "Çay kaşığıyla şekeri karıştırırken kaşık bardağın içinde döner. Bu dönme hareketidir. Sallanma ileri geri git gelmek, hızlanma ise giderek hızlanmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Evimizde çay içerken içine şeker atarız. Çay bardağının içindeki şekeri eritmek için çay kaşığıyla hangi hareketi yaparız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme (Karıştırma) hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Hızlanma hareketi",
+        "explanation": "Çay kaşığıyla şekeri karıştırırken kaşık bardağın içinde döner. Bu dönme hareketidir. Sallanma ileri geri git gelmek, hızlanma ise giderek hızlanmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_087",
+      "level": "zor",
+      "premise": "Kuvvet duran cismi hareket ettirdiği gibi, yavaş hareket eden cismi de hızlandırabilir.",
+      "text": "Buna göre aşağı inen bir asansörün içindeyken asansör aniden hızlanarak düşmeye başlasaydı, bedenimizde nasıl bir etki hissederdik?",
+      "correct": "Ayaklarımızın altından yer çekiliyormuş gibi hafifleme hissi yaşardık",
+      "wrong1": "Ayaklarımızla yere daha sert (ağır) basardık.",
+      "wrong2": "Sağa ve sola doğru sallanırdık.",
+      "explanation": "Asansör aniden aşağı hızlanırsa vücudumuz yukarıda kalmak ister. Ayaklarımız hafifler gibi hissederiz. Ağır basmak yukarı çıkarken olur, sallanma da değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağı inen bir asansörün içindeyken asansör aniden hızlanarak düşmeye başlasaydı, bedenimizde nasıl bir etki hissederdik?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvet duran cismi hareket ettirdiği gibi, yavaş hareket eden cismi de hızlandırabilir."
+            }
+          ]
+        },
+        "correct": "Ayaklarımızın altından yer çekiliyormuş gibi hafifleme hissi yaşardık",
+        "wrong1": "Ayaklarımızla yere daha sert (ağır) basardık.",
+        "wrong2": "Sağa ve sola doğru sallanırdık.",
+        "explanation": "Asansör aniden aşağı hızlanırsa vücudumuz yukarıda kalmak ister. Ayaklarımız hafifler gibi hissederiz. Ağır basmak yukarı çıkarken olur, sallanma da değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_088",
+      "level": "zor",
+      "premise": "Fırtınalı bir günde rüzgâr arkamızdan (sırtımızdan) esiyorsa yürümek kolaylaşır.",
+      "text": "Buna göre aynı sokakta rüzgâra doğru (yüzümüz rüzgâra dönük) yürürsek adım atmak neden zorlaşır?",
+      "correct": "Rüzgârın itme kuvveti hareketimize zıt (ters) yönde etki ettiği için bizi yavaşlatır",
+      "wrong1": "Rüzgâr sadece arkadan estiği zaman itme kuvveti uygular.",
+      "wrong2": "Rüzgâr yüzümüze çarptığında dönme hareketi yaptırır.",
+      "explanation": "Rüzgâra doğru yürürken rüzgâr bize karşı iter ve bizi yavaşlatır. Arkadan esen rüzgâr ise ilerlemeyi kolaylaştırır. Rüzgâr sadece arkadan itmez, yüze çarptığında da itme yapar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aynı sokakta rüzgâra doğru (yüzümüz rüzgâra dönük) yürürsek adım atmak neden zorlaşır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtınalı bir günde rüzgâr arkamızdan (sırtımızdan) esiyorsa yürümek kolaylaşır."
+            }
+          ]
+        },
+        "correct": "Rüzgârın itme kuvveti hareketimize zıt (ters) yönde etki ettiği için bizi yavaşlatır",
+        "wrong1": "Rüzgâr sadece arkadan estiği zaman itme kuvveti uygular.",
+        "wrong2": "Rüzgâr yüzümüze çarptığında dönme hareketi yaptırır.",
+        "explanation": "Rüzgâra doğru yürürken rüzgâr bize karşı iter ve bizi yavaşlatır. Arkadan esen rüzgâr ise ilerlemeyi kolaylaştırır. Rüzgâr sadece arkadan itmez, yüze çarptığında da itme yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_089",
+      "level": "orta",
+      "premise": "Bir masayı tek başına itmeye çalışan Ali, masayı hareket ettirememektedir.",
+      "text": "Buna göre ali'nin masayı hareket ettirebilmesi için arkadaşı Veli ona nasıl yardım etmelidir?",
+      "correct": "Aynı yönden iterek toplam kuvveti artırması",
+      "wrong1": "Masanın karşısına geçip Ali'ye doğru (zıt yöne) itmelidir.",
+      "wrong2": "Masanın üstüne oturup ağırlık yapmalıdır.",
+      "explanation": "Veli Ali ile aynı yönde masanın arkasından iterse toplam kuvvet artar. Masa hareket eder. Karşıdan itmek zıt kuvvet olur, üstüne oturmak yardım etmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali'nin masayı hareket ettirebilmesi için arkadaşı Veli ona nasıl yardım etmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir masayı tek başına itmeye çalışan Ali, masayı hareket ettirememektedir."
+            }
+          ]
+        },
+        "correct": "Aynı yönden iterek toplam kuvveti artırması",
+        "wrong1": "Masanın karşısına geçip Ali'ye doğru (zıt yöne) itmelidir.",
+        "wrong2": "Masanın üstüne oturup ağırlık yapmalıdır.",
+        "explanation": "Veli Ali ile aynı yönde masanın arkasından iterse toplam kuvvet artar. Masa hareket eder. Karşıdan itmek zıt kuvvet olur, üstüne oturmak yardım etmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_090",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki olaylardan hangisi rüzgârın itme kuvveti sayesinde gerçekleşir?",
+      "correct": "Kurutmak için astığımız çamaşırların havalanması",
+      "wrong1": "Duran bir arabanın motorunun çalışması",
+      "wrong2": "Mıknatısın çiviyi kendine yaklaştırması",
+      "explanation": "Rüzgâr çamaşırlara çarparak onları havalandırır. Bu rüzgârın itme kuvvetidir. Arabanın motoru ve mıknatısın çekmesi rüzgârla ilgili değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki olaylardan hangisi rüzgârın itme kuvveti sayesinde gerçekleşir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kurutmak için astığımız çamaşırların havalanması",
+        "wrong1": "Duran bir arabanın motorunun çalışması",
+        "wrong2": "Mıknatısın çiviyi kendine yaklaştırması",
+        "explanation": "Rüzgâr çamaşırlara çarparak onları havalandırır. Bu rüzgârın itme kuvvetidir. Arabanın motoru ve mıknatısın çekmesi rüzgârla ilgili değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_091",
+      "level": "orta",
+      "premise": "Mutfakta çok hızlı çalışan bir el mikserini durdurmak istiyoruz.",
+      "text": "Buna göre dönen pervaneleri elimizle tutmak yerine güvenli olan yöntem nedir?",
+      "correct": "Düğmesine basıp fişini çekmek",
+      "wrong1": "İçine tahta kaşık sokup dönüşünü engellemeliyiz.",
+      "wrong2": "Mikseri yere atıp kırmalıyız.",
+      "explanation": "Dönen mikser pervanesine elle dokunmak çok tehlikelidir. Güvenli yol düğmeye basmak veya fişi çekmektir. Kaşık sokmak veya yere atmak da tehlikelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dönen pervaneleri elimizle tutmak yerine güvenli olan yöntem nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mutfakta çok hızlı çalışan bir el mikserini durdurmak istiyoruz."
+            }
+          ]
+        },
+        "correct": "Düğmesine basıp fişini çekmek",
+        "wrong1": "İçine tahta kaşık sokup dönüşünü engellemeliyiz.",
+        "wrong2": "Mikseri yere atıp kırmalıyız.",
+        "explanation": "Dönen mikser pervanesine elle dokunmak çok tehlikelidir. Güvenli yol düğmeye basmak veya fişi çekmektir. Kaşık sokmak veya yere atmak da tehlikelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_092",
+      "level": "zor",
+      "premise": "Rüzgar görünmez bir kuvvet kaynağıdır ve yönü önemlidir.",
+      "text": "Buna göre denizde yelkenlerini açmış ilerleyen bir gemiye rüzgâr arkadan eserse ne olur, önden (karşıdan) eserse ne olur?",
+      "correct": "Arkadan eserse gemi hızlanır, karşıdan eserse gemi yavaşlar veya durur",
+      "wrong1": "Arkadan eserse gemi yavaşlar, karşıdan eserse hızlanır.",
+      "wrong2": "İki durumda da gemi aynı hızda gider.",
+      "explanation": "Rüzgâr arkadan eserse gemiye aynı yönde kuvvet uygular ve gemi hızlanır. Karşıdan eserse gemi yavaşlar veya durur. İki durumda sonuç farklıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre denizde yelkenlerini açmış ilerleyen bir gemiye rüzgâr arkadan eserse ne olur, önden (karşıdan) eserse ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Rüzgar görünmez bir kuvvet kaynağıdır ve yönü önemlidir."
+            }
+          ]
+        },
+        "correct": "Arkadan eserse gemi hızlanır, karşıdan eserse gemi yavaşlar veya durur",
+        "wrong1": "Arkadan eserse gemi yavaşlar, karşıdan eserse hızlanır.",
+        "wrong2": "İki durumda da gemi aynı hızda gider.",
+        "explanation": "Rüzgâr arkadan eserse gemiye aynı yönde kuvvet uygular ve gemi hızlanır. Karşıdan eserse gemi yavaşlar veya durur. İki durumda sonuç farklıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_093",
+      "level": "kolay",
+      "premise": "Ağır bir koliyi iki kişi karşılıklı geçip biri iterek diğeri çekerek taşıyorlar.",
+      "text": "Buna göre bu kişilerin uyguladığı kuvvetlerin yönü için ne söylenebilir?",
+      "correct": "İkisi de koliyi aynı yöne götürmeye çalışır",
+      "wrong1": "İkisi de koliyi farklı (zıt) yönlere çekmektedir.",
+      "wrong2": "İkisi de koliyi durdurmaya çalışmaktadır.",
+      "explanation": "Arkadaki koli iter, öndeki çeker; ikisi de koliyi aynı yöne götürür. Zıt yöne çekmiyorlar, durdurmaya da çalışmıyorlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu kişilerin uyguladığı kuvvetlerin yönü için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağır bir koliyi iki kişi karşılıklı geçip biri iterek diğeri çekerek taşıyorlar."
+            }
+          ]
+        },
+        "correct": "İkisi de koliyi aynı yöne götürmeye çalışır",
+        "wrong1": "İkisi de koliyi farklı (zıt) yönlere çekmektedir.",
+        "wrong2": "İkisi de koliyi durdurmaya çalışmaktadır.",
+        "explanation": "Arkadaki koli iter, öndeki çeker; ikisi de koliyi aynı yöne götürür. Zıt yöne çekmiyorlar, durdurmaya da çalışmıyorlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_094",
+      "level": "orta",
+      "premise": "Hareket halindeki tehlikelerden kaçınmalıyız.",
+      "text": "Buna göre aşağıdaki hareketlerden hangisi trafiğe açık bir yolda yapıldığında çok tehlikelidir?",
+      "correct": "Topun peşinden aniden yola fırlamak",
+      "wrong1": "Yaya geçidinde yeşil ışığın yanmasını beklemek",
+      "wrong2": "Kaldırımda sakince yürümek",
+      "explanation": "Yola aniden fırlamak çok tehlikelidir. Arabalar hızlı gider ve anında duramaz. Yeşil ışıkta beklemek ve kaldırımda yürümek güvenlidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdaki hareketlerden hangisi trafiğe açık bir yolda yapıldığında çok tehlikelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket halindeki tehlikelerden kaçınmalıyız."
+            }
+          ]
+        },
+        "correct": "Topun peşinden aniden yola fırlamak",
+        "wrong1": "Yaya geçidinde yeşil ışığın yanmasını beklemek",
+        "wrong2": "Kaldırımda sakince yürümek",
+        "explanation": "Yola aniden fırlamak çok tehlikelidir. Arabalar hızlı gider ve anında duramaz. Yeşil ışıkta beklemek ve kaldırımda yürümek güvenlidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_095",
+      "level": "zor",
+      "premise": "Bir okçu yayı gerebilmek için yayın ipini kendine doğru çeker, yayı serbest bıraktığında ise ip oku ileriye fırlatır.",
+      "text": "Buna göre okun hedefe doğru çok hızlı fırlamasını sağlayan asıl kuvvet hangisidir?",
+      "correct": "Gerilen yayın oka uyguladığı itme kuvveti",
+      "wrong1": "Okçunun oka uyguladığı çekme kuvveti",
+      "wrong2": "Okun rüzgâr tarafından çekilmesi",
+      "explanation": "Okçu yayı gererken ipi çeker. Ok fırlayınca yay eski haline dönerken oka güçlüce iter. Oku hızla gönderen asıl kuvvet yayın itmesidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre okun hedefe doğru çok hızlı fırlamasını sağlayan asıl kuvvet hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir okçu yayı gerebilmek için yayın ipini kendine doğru çeker, yayı serbest bıraktığında ise ip oku ileriye fırlatır."
+            }
+          ]
+        },
+        "correct": "Gerilen yayın oka uyguladığı itme kuvveti",
+        "wrong1": "Okçunun oka uyguladığı çekme kuvveti",
+        "wrong2": "Okun rüzgâr tarafından çekilmesi",
+        "explanation": "Okçu yayı gererken ipi çeker. Ok fırlayınca yay eski haline dönerken oka güçlüce iter. Oku hızla gönderen asıl kuvvet yayın itmesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_096",
+      "level": "orta",
+      "premise": "Okul servisine binen bir çocuk koltuğuna oturur.",
+      "text": "Buna göre servis şoförü kırmızı ışıkta aniden frene bastığında (yavaşladığında), oturan çocuğun bedeni ne tarafa doğru savrulur?",
+      "correct": "Öne doğru savrulur.",
+      "wrong1": "Geriye doğru savrulur.",
+      "wrong2": "Havaya doğru uçar.",
+      "explanation": "Araç aniden yavaşlayınca vücudumuz ileri gitmek ister. Bu yüzden öne doğru savruluruz. Geriye savrulma hızlanınca olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre servis şoförü kırmızı ışıkta aniden frene bastığında (yavaşladığında), oturan çocuğun bedeni ne tarafa doğru savrulur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okul servisine binen bir çocuk koltuğuna oturur."
+            }
+          ]
+        },
+        "correct": "Öne doğru savrulur.",
+        "wrong1": "Geriye doğru savrulur.",
+        "wrong2": "Havaya doğru uçar.",
+        "explanation": "Araç aniden yavaşlayınca vücudumuz ileri gitmek ister. Bu yüzden öne doğru savruluruz. Geriye savrulma hızlanınca olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_097",
+      "level": "orta",
+      "premise": "Servis tekrar hareket etmek için yeşil ışıkta aniden gaza basarsa (hızlanırsa)...",
+      "text": "Buna göre bu kez oturan çocuğun bedeni ne tarafa doğru savrulur?",
+      "correct": "Arkamıza (koltuğa) doğru savrulur/yapışır",
+      "wrong1": "Öne doğru savrulur.",
+      "wrong2": "Yana doğru düşer.",
+      "explanation": "Araç aniden hızlanınca vücudumuz bir an durmak ister. Bu yüzden arkaya, koltuğa doğru yapışır gibi hissederiz. Öne savrulma yavaşlayınca olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu kez oturan çocuğun bedeni ne tarafa doğru savrulur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Servis tekrar hareket etmek için yeşil ışıkta aniden gaza basarsa (hızlanırsa)..."
+            }
+          ]
+        },
+        "correct": "Arkamıza (koltuğa) doğru savrulur/yapışır",
+        "wrong1": "Öne doğru savrulur.",
+        "wrong2": "Yana doğru düşer.",
+        "explanation": "Araç aniden hızlanınca vücudumuz bir an durmak ister. Bu yüzden arkaya, koltuğa doğru yapışır gibi hissederiz. Öne savrulma yavaşlayınca olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_098",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okuldaki çöp kutusunun kapağını ayağımızla pedala basarak açtığımızda, pedala ayağımızla hangi kuvveti uygularız?",
+      "correct": "İtme kuvveti (Aşağı bastırma)",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Sallanma kuvveti",
+      "explanation": "Çöp kutusu pedalına ayağımızla aşağı bastırırız. Aşağı bastırmak itme kuvvetidir. Çekme ise kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okuldaki çöp kutusunun kapağını ayağımızla pedala basarak açtığımızda, pedala ayağımızla hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti (Aşağı bastırma)",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Sallanma kuvveti",
+        "explanation": "Çöp kutusu pedalına ayağımızla aşağı bastırırız. Aşağı bastırmak itme kuvvetidir. Çekme ise kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_099",
+      "level": "zor",
+      "premise": "Tekerlekli sandalyedeki bir birey yokuş aşağı inerken hızını kontrol edemezse büyük bir kaza yaşayabilir.",
+      "text": "Buna göre sandalyenin yokuş aşağı sürekli hızlanmasının sebebi nedir?",
+      "correct": "Yer çekiminin sandalyeyi aşağı çekmesi",
+      "wrong1": "Rüzgârın sandalyeyi döndürmesi",
+      "wrong2": "Tekerleklerin yokuşta itme kuvveti yayması",
+      "explanation": "Yokuş aşağı sandalye Dünya'nın çekme kuvvetiyle aşağı çekilir. Bu yüzden giderek hızlanır. Rüzgâr döndürmez, tekerlek itmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sandalyenin yokuş aşağı sürekli hızlanmasının sebebi nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tekerlekli sandalyedeki bir birey yokuş aşağı inerken hızını kontrol edemezse büyük bir kaza yaşayabilir."
+            }
+          ]
+        },
+        "correct": "Yer çekiminin sandalyeyi aşağı çekmesi",
+        "wrong1": "Rüzgârın sandalyeyi döndürmesi",
+        "wrong2": "Tekerleklerin yokuşta itme kuvveti yayması",
+        "explanation": "Yokuş aşağı sandalye Dünya'nın çekme kuvvetiyle aşağı çekilir. Bu yüzden giderek hızlanır. Rüzgâr döndürmez, tekerlek itmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_100",
+      "level": "orta",
+      "premise": "Oyun parkında hızla sallanan bir salıncağı durdurmak için ne yapmalıyız?",
+      "text": "Buna göre en güvenli davranış aşağıdakilerden hangisidir?",
+      "correct": "Salıncağın durmasını beklemek",
+      "wrong1": "Salıncağın tam önüne geçip ellerimizle durdurmalıyız.",
+      "wrong2": "Salıncağa yan taraftan atlamalıyız.",
+      "explanation": "Hızla sallanan salıncağa elle müdahale etmek tehlikelidir. Kendiliğinden yavaşlayıp durmasını beklemek en güvenlisidir. Önüne geçip durdurmak kemik kırılmasına yol açabilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre en güvenli davranış aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Oyun parkında hızla sallanan bir salıncağı durdurmak için ne yapmalıyız?"
+            }
+          ]
+        },
+        "correct": "Salıncağın durmasını beklemek",
+        "wrong1": "Salıncağın tam önüne geçip ellerimizle durdurmalıyız.",
+        "wrong2": "Salıncağa yan taraftan atlamalıyız.",
+        "explanation": "Hızla sallanan salıncağa elle müdahale etmek tehlikelidir. Kendiliğinden yavaşlayıp durmasını beklemek en güvenlisidir. Önüne geçip durdurmak kemik kırılmasına yol açabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_101",
+      "level": "orta",
+      "premise": "Bir kalemtıraş (açacak) ile kurşun kalemimizin ucunu açan bir öğrenci, kalemi yuvanın içinde sürekli sağa çeviriyor.",
+      "text": "Buna göre bu işlem sırasında kalemin hareket türü nedir?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Yön değiştirme hareketi",
+      "wrong2": "Sallanma hareketi",
+      "explanation": "Kalemi kalemtıraşta çevirmek kendi etrafında dönmektir. Bu dönme hareketidir. Yön değiştirme başka tarafa sapmak, sallanma ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu işlem sırasında kalemin hareket türü nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kalemtıraş (açacak) ile kurşun kalemimizin ucunu açan bir öğrenci, kalemi yuvanın içinde sürekli sağa çeviriyor."
+            }
+          ]
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Yön değiştirme hareketi",
+        "wrong2": "Sallanma hareketi",
+        "explanation": "Kalemi kalemtıraşta çevirmek kendi etrafında dönmektir. Bu dönme hareketidir. Yön değiştirme başka tarafa sapmak, sallanma ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_102",
+      "level": "zor",
+      "premise": "Bir bardağa su doldurmak istiyoruz.",
+      "text": "Buna göre mutfaktaki sürahiden bardağa su dökerken, suyun bardağa doğru (aşağı) akmasını sağlayan görünmez kuvvet nedir?",
+      "correct": "Yer çekimi (çekme) kuvveti",
+      "wrong1": "Suyun kendi itme kuvveti",
+      "wrong2": "Bardağın suyu itme kuvveti",
+      "explanation": "Suyu eğdiğimizde aşağı akmasını Dünya'nın çekme kuvveti sağlar. Yer çekimi her şeyi kendine doğru çeker. Bardağın itmesi veya suyun kendi itmesi asıl sebep değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre mutfaktaki sürahiden bardağa su dökerken, suyun bardağa doğru (aşağı) akmasını sağlayan görünmez kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir bardağa su doldurmak istiyoruz."
+            }
+          ]
+        },
+        "correct": "Yer çekimi (çekme) kuvveti",
+        "wrong1": "Suyun kendi itme kuvveti",
+        "wrong2": "Bardağın suyu itme kuvveti",
+        "explanation": "Suyu eğdiğimizde aşağı akmasını Dünya'nın çekme kuvveti sağlar. Yer çekimi her şeyi kendine doğru çeker. Bardağın itmesi veya suyun kendi itmesi asıl sebep değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_103",
+      "level": "zor",
+      "premise": "Fırtınalarda dev dalgalar oluşur.",
+      "text": "Buna göre deniz kenarındaki bir evin duvarlarını deviren dalgalar, suyun hangi kuvvetini göstermiştir?",
+      "correct": "Sert bir itme kuvvetini",
+      "wrong1": "Hafif bir çekme kuvvetini",
+      "wrong2": "Döndürme kuvvetini",
+      "explanation": "Dev dalgalar duvara çarpınca çok güçlü itme kuvveti uygular. Bu yüzden duvarlar yıkılabilir. Hafif çekme veya döndürme değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre deniz kenarındaki bir evin duvarlarını deviren dalgalar, suyun hangi kuvvetini göstermiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fırtınalarda dev dalgalar oluşur."
+            }
+          ]
+        },
+        "correct": "Sert bir itme kuvvetini",
+        "wrong1": "Hafif bir çekme kuvvetini",
+        "wrong2": "Döndürme kuvvetini",
+        "explanation": "Dev dalgalar duvara çarpınca çok güçlü itme kuvveti uygular. Bu yüzden duvarlar yıkılabilir. Hafif çekme veya döndürme değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_104",
+      "level": "kolay",
+      "premise": "Buzdolabından su içmek için buzdolabının kapağını önce açmalı, suyu aldıktan sonra kapağı kapamalıyız.",
+      "text": "Buna göre bu iki işlem sırasıyla hangi kuvvetleri barındırır?",
+      "correct": "Çekme (Açarken) - İtme (Kapatırken)",
+      "wrong1": "İtme (Açarken) - Çekme (Kapatırken)",
+      "wrong2": "Sadece dönme",
+      "explanation": "Buzdolabı kapağını açarken kendimize çekeriz; bu çekmedir. Kapatırken içeri iteriz; bu itmedir. Sadece dönme değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu iki işlem sırasıyla hangi kuvvetleri barındırır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Buzdolabından su içmek için buzdolabının kapağını önce açmalı, suyu aldıktan sonra kapağı kapamalıyız."
+            }
+          ]
+        },
+        "correct": "Çekme (Açarken) - İtme (Kapatırken)",
+        "wrong1": "İtme (Açarken) - Çekme (Kapatırken)",
+        "wrong2": "Sadece dönme",
+        "explanation": "Buzdolabı kapağını açarken kendimize çekeriz; bu çekmedir. Kapatırken içeri iteriz; bu itmedir. Sadece dönme değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_105",
+      "level": "orta",
+      "premise": "Kuvvet uygulamak her zaman cismin hareket edeceği anlamına gelmez.",
+      "text": "Buna göre duvardaki bir çiviyi penseyle sıkıca kavramış olmamıza rağmen yerinden çıkaramıyorsak bunun asıl nedeni nedir?",
+      "correct": "Duvarın çiviyi bizim gücümüzden sıkı tutması",
+      "wrong1": "Penseyle çiviye itme kuvveti uygulamamız",
+      "wrong2": "Çivinin çok hafif olması",
+      "explanation": "Çiviyi sökmek için yeterince güçlü çekme gerekir. Bizim çekmemiz duvara tutunmasından küçükse çivi çıkmaz. İtme veya hafif olması asıl sebep değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre duvardaki bir çiviyi penseyle sıkıca kavramış olmamıza rağmen yerinden çıkaramıyorsak bunun asıl nedeni nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kuvvet uygulamak her zaman cismin hareket edeceği anlamına gelmez."
+            }
+          ]
+        },
+        "correct": "Duvarın çiviyi bizim gücümüzden sıkı tutması",
+        "wrong1": "Penseyle çiviye itme kuvveti uygulamamız",
+        "wrong2": "Çivinin çok hafif olması",
+        "explanation": "Çiviyi sökmek için yeterince güçlü çekme gerekir. Bizim çekmemiz duvara tutunmasından küçükse çivi çıkmaz. İtme veya hafif olması asıl sebep değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_106",
+      "level": "orta",
+      "premise": "Bir asma köprüden geçen arabaları düşünün.",
+      "text": "Buna göre çok şiddetli bir fırtına köprüye çarptığında, köprü yıkılmasa bile nasıl bir hareket yapar?",
+      "correct": "Sallanma hareketi",
+      "wrong1": "Sürekli hızlanma hareketi",
+      "wrong2": "Dönme hareketi",
+      "explanation": "Şiddetli rüzgâr asma köprüyü iter ve köprü sağa sola sallanır. Bu sallanma hareketidir. Sürekli hızlanma veya dönme değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çok şiddetli bir fırtına köprüye çarptığında, köprü yıkılmasa bile nasıl bir hareket yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir asma köprüden geçen arabaları düşünün."
+            }
+          ]
+        },
+        "correct": "Sallanma hareketi",
+        "wrong1": "Sürekli hızlanma hareketi",
+        "wrong2": "Dönme hareketi",
+        "explanation": "Şiddetli rüzgâr asma köprüyü iter ve köprü sağa sola sallanır. Bu sallanma hareketidir. Sürekli hızlanma veya dönme değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_107",
+      "level": "zor",
+      "premise": "Bir kış günü Ahmet, yerdeki karları avuçlarına alıp sıkarak sert, yuvarlak bir kartopu yapıyor ve bunu hızla arkadaşına fırlatıyor.",
+      "text": "Buna göre ahmet'in kartopunu fırlatması hangi kuvvet ve etkiyi barındırır?",
+      "correct": "İtme kuvveti ve Hızlandırma",
+      "wrong1": "Çekme kuvveti ve Yavaşlatma",
+      "wrong2": "Dönme kuvveti ve Sallanma",
+      "explanation": "Kartopunu fırlatmak topa itme kuvveti uygulamaktır. Top duruyorken harekete geçer ve hızlanır. Çekme ve yavaşlatma değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ahmet'in kartopunu fırlatması hangi kuvvet ve etkiyi barındırır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kış günü Ahmet, yerdeki karları avuçlarına alıp sıkarak sert, yuvarlak bir kartopu yapıyor ve bunu hızla arkadaşına fırlatıyor."
+            }
+          ]
+        },
+        "correct": "İtme kuvveti ve Hızlandırma",
+        "wrong1": "Çekme kuvveti ve Yavaşlatma",
+        "wrong2": "Dönme kuvveti ve Sallanma",
+        "explanation": "Kartopunu fırlatmak topa itme kuvveti uygulamaktır. Top duruyorken harekete geçer ve hızlanır. Çekme ve yavaşlatma değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_108",
+      "level": "kolay",
+      "premise": null,
+      "text": "Diş fırçaladıktan sonra musluğu kapatmak için klasik çevirmeli musluğun topuzuna hangi hareketi yaptırırız?",
+      "correct": "Dönme (Döndürme) hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Hızlanma hareketi",
+      "explanation": "Musluğu kapatmak için başlığı kendi etrafında döndürürüz. Açarken de aynı dönme hareketi yapılır. Sallanma ileri geri git gelmek, hızlanma giderek hızlanmaktır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Diş fırçaladıktan sonra musluğu kapatmak için klasik çevirmeli musluğun topuzuna hangi hareketi yaptırırız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dönme (Döndürme) hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Hızlanma hareketi",
+        "explanation": "Musluğu kapatmak için başlığı kendi etrafında döndürürüz. Açarken de aynı dönme hareketi yapılır. Sallanma ileri geri git gelmek, hızlanma giderek hızlanmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_109",
+      "level": "orta",
+      "premise": null,
+      "text": "Yaz aylarında penceremize taktığımız sinekliği (sürgülü teli) açmak veya kapatmak için rayı üzerinde ne yaparız?",
+      "correct": "Çekeriz veya İteriz",
+      "wrong1": "Sallarız",
+      "wrong2": "Döndürürüz",
+      "explanation": "Sürgülü sinekliği ray üzerinde ileri iter veya geri çekeriz. Sallamak veya döndürmek değil, itme ve çekme kullanılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yaz aylarında penceremize taktığımız sinekliği (sürgülü teli) açmak veya kapatmak için rayı üzerinde ne yaparız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekeriz veya İteriz",
+        "wrong1": "Sallarız",
+        "wrong2": "Döndürürüz",
+        "explanation": "Sürgülü sinekliği ray üzerinde ileri iter veya geri çekeriz. Sallamak veya döndürmek değil, itme ve çekme kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_110",
+      "level": "zor",
+      "premise": "Elektrik üreten devasa rüzgâr türbinlerinin (rüzgâr güllerinin) çalışmasını sağlayan hareket ve kuvvet ilişkisi nedir?",
+      "text": "Buna göre rüzgâr türbinin pervanesine nasıl etki eder?",
+      "correct": "Rüzgârın itmesiyle pervanenin dönmesi",
+      "wrong1": "Rüzgârın çekme kuvveti pervaneyi sallanma hareketine zorlar.",
+      "wrong2": "Pervane rüzgârdan kaçmak için hızlanma hareketi yapar.",
+      "explanation": "Rüzgâr kanatlara çarparak pervaneyi iter. Pervane merkez etrafında döner. Rüzgâr çekmez, pervane de kaçmak için hızlanmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre rüzgâr türbinin pervanesine nasıl etki eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Elektrik üreten devasa rüzgâr türbinlerinin (rüzgâr güllerinin) çalışmasını sağlayan hareket ve kuvvet ilişkisi nedir?"
+            }
+          ]
+        },
+        "correct": "Rüzgârın itmesiyle pervanenin dönmesi",
+        "wrong1": "Rüzgârın çekme kuvveti pervaneyi sallanma hareketine zorlar.",
+        "wrong2": "Pervane rüzgârdan kaçmak için hızlanma hareketi yapar.",
+        "explanation": "Rüzgâr kanatlara çarparak pervaneyi iter. Pervane merkez etrafında döner. Rüzgâr çekmez, pervane de kaçmak için hızlanmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_111",
+      "level": "orta",
+      "premise": "Hareket eden cisimleri durdurmak için zıt yönde kuvvet uygulamak gerekir.",
+      "text": "Buna göre aşağıdakilerden hangisi hareket eden bir bisikleti durdurmak için yapılmış bir güvenlik önlemidir?",
+      "correct": "Tekerlekleri sıkıştıran fren sistemi",
+      "wrong1": "Direksiyon simidi",
+      "wrong2": "Ziller",
+      "explanation": "Bisiklet freni tekerleklere zıt yönde kuvvet uygular ve bisikleti yavaşlatır. Bu güvenli bir durdurma yoludur. Direksiyon yön değiştirir, zil ses çıkarır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdakilerden hangisi hareket eden bir bisikleti durdurmak için yapılmış bir güvenlik önlemidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket eden cisimleri durdurmak için zıt yönde kuvvet uygulamak gerekir."
+            }
+          ]
+        },
+        "correct": "Tekerlekleri sıkıştıran fren sistemi",
+        "wrong1": "Direksiyon simidi",
+        "wrong2": "Ziller",
+        "explanation": "Bisiklet freni tekerleklere zıt yönde kuvvet uygular ve bisikleti yavaşlatır. Bu güvenli bir durdurma yoludur. Direksiyon yön değiştirir, zil ses çıkarır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_112",
+      "level": "kolay",
+      "premise": "Gitar veya saz çalan bir müzisyen, enstrümandan ses çıkarmak için tellere parmağıyla vurur veya çeker.",
+      "text": "Buna göre müzisyenin tellere uyguladığı bu kuvvet tellerde hangi hareketi yaratır?",
+      "correct": "Sallanma (titreşim)",
+      "wrong1": "Dönme",
+      "wrong2": "Yavaşlama",
+      "explanation": "Gitar teli çekilip bırakılınca hızla ileri geri titrer. Bu çok hızlı sallanmadır ve ses çıkarır. Dönme veya yavaşlama değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre müzisyenin tellere uyguladığı bu kuvvet tellerde hangi hareketi yaratır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gitar veya saz çalan bir müzisyen, enstrümandan ses çıkarmak için tellere parmağıyla vurur veya çeker."
+            }
+          ]
+        },
+        "correct": "Sallanma (titreşim)",
+        "wrong1": "Dönme",
+        "wrong2": "Yavaşlama",
+        "explanation": "Gitar teli çekilip bırakılınca hızla ileri geri titrer. Bu çok hızlı sallanmadır ve ses çıkarır. Dönme veya yavaşlama değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_113",
+      "level": "zor",
+      "premise": "Aynı maddeden yapılmış iki farklı kağıt düşünün; biri dümdüz bir dosya kağıdı, diğeri ise avuçta iyice buruşturulup top haline getirilmiş bir kağıt.",
+      "text": "Buna göre i̇kisi de aynı yüksekten aynı anda bırakıldığında, buruşuk kağıt topu yere daha çabuk (hızlı) düşer. Neden?",
+      "correct": "Düz kağıdın havadan daha çok etkilenmesi",
+      "wrong1": "Buruşuk kağıdın şekli değiştiği için daha ağır olmuştur.",
+      "wrong2": "Düz kağıt daha esnektir.",
+      "explanation": "Düz kağıdın yüzeyi geniştir; hava daha çok direnir ve yavaş düşer. Buruşuk kağıt küçük olduğu için havayı kolay geçer ve daha hızlı düşer. Ağırlık değişmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre i̇kisi de aynı yüksekten aynı anda bırakıldığında, buruşuk kağıt topu yere daha çabuk (hızlı) düşer. Neden?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aynı maddeden yapılmış iki farklı kağıt düşünün; biri dümdüz bir dosya kağıdı, diğeri ise avuçta iyice buruşturulup top haline getirilmiş bir kağıt."
+            }
+          ]
+        },
+        "correct": "Düz kağıdın havadan daha çok etkilenmesi",
+        "wrong1": "Buruşuk kağıdın şekli değiştiği için daha ağır olmuştur.",
+        "wrong2": "Düz kağıt daha esnektir.",
+        "explanation": "Düz kağıdın yüzeyi geniştir; hava daha çok direnir ve yavaş düşer. Buruşuk kağıt küçük olduğu için havayı kolay geçer ve daha hızlı düşer. Ağırlık değişmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_114",
+      "level": "zor",
+      "premise": "Hareket eden cisimlerin hızları ve ağırlıkları ne kadar büyükse oluşturacakları etki o kadar büyüktür.",
+      "text": "Buna göre aynı hızla giden bir bisiklet ile bir kamyon yaya geçidine yaklaştığında hangisini durdurmak daha zor olur?",
+      "correct": "Kamyonu durdurmak çok daha zordur çünkü ağırlığı bisikletten çok daha fazladır.",
+      "wrong1": "Bisikleti durdurmak daha zordur çünkü tekerlekleri incedir.",
+      "wrong2": "İkisini de durdurmak aynı derecede kolaydır çünkü hızları aynıdır.",
+      "explanation": "Kamyon bisikletten çok daha ağırdır. Aynı hızda gelse bile kamyonu durdurmak çok daha zordur. Hız aynı olsa bile ağırlık farkı önemlidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aynı hızla giden bir bisiklet ile bir kamyon yaya geçidine yaklaştığında hangisini durdurmak daha zor olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket eden cisimlerin hızları ve ağırlıkları ne kadar büyükse oluşturacakları etki o kadar büyüktür."
+            }
+          ]
+        },
+        "correct": "Kamyonu durdurmak çok daha zordur çünkü ağırlığı bisikletten çok daha fazladır.",
+        "wrong1": "Bisikleti durdurmak daha zordur çünkü tekerlekleri incedir.",
+        "wrong2": "İkisini de durdurmak aynı derecede kolaydır çünkü hızları aynıdır.",
+        "explanation": "Kamyon bisikletten çok daha ağırdır. Aynı hızda gelse bile kamyonu durdurmak çok daha zordur. Hız aynı olsa bile ağırlık farkı önemlidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_115",
+      "level": "orta",
+      "premise": "Evimizde televizyon sehpası veya ağır bir koltuğu temizlik için yerinden oynatmamız gerekiyor.",
+      "text": "Buna göre tek başımıza gücümüzün yetmediği bir eşyayı hareket ettirmek için hangisini yapmak kolaylık sağlar?",
+      "correct": "Birlikte aynı yönde itip çekerek kuvveti artırmak",
+      "wrong1": "Eşyayı sadece yukarıdan aşağıya bastırmak",
+      "wrong2": "Eşyanın üzerine oturup beklemek",
+      "explanation": "Ağır eşyayı birlikte aynı yöne itersek veya çekersek toplam güç artar. Hareket etmek kolaylaşır. Üstüne oturmak veya bastırmak yardım etmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre tek başımıza gücümüzün yetmediği bir eşyayı hareket ettirmek için hangisini yapmak kolaylık sağlar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Evimizde televizyon sehpası veya ağır bir koltuğu temizlik için yerinden oynatmamız gerekiyor."
+            }
+          ]
+        },
+        "correct": "Birlikte aynı yönde itip çekerek kuvveti artırmak",
+        "wrong1": "Eşyayı sadece yukarıdan aşağıya bastırmak",
+        "wrong2": "Eşyanın üzerine oturup beklemek",
+        "explanation": "Ağır eşyayı birlikte aynı yöne itersek veya çekersek toplam güç artar. Hareket etmek kolaylaşır. Üstüne oturmak veya bastırmak yardım etmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_116",
+      "level": "orta",
+      "premise": "Sert cisimlerin yapısını bozmak için yeterli büyüklükte kuvvet gerekir.",
+      "text": "Buna göre sert cisimlerin yapısını bozmak için aşağıdakilerden hangisi şarttır?",
+      "correct": "Yeterince güçlü bir kuvvet uygulamak",
+      "wrong1": "Sadece üzerine üflemek",
+      "wrong2": "Cismin rengini değiştirmek",
+      "explanation": "Sert cisimlerin şeklini değiştirmek için güçlü kuvvet gerekir. Tereyağına hafif dokunmak yetmez. Sadece üflemek veya renk değiştirmek şekli bozmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sert cisimlerin yapısını bozmak için aşağıdakilerden hangisi şarttır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sert cisimlerin yapısını bozmak için yeterli büyüklükte kuvvet gerekir."
+            }
+          ]
+        },
+        "correct": "Yeterince güçlü bir kuvvet uygulamak",
+        "wrong1": "Sadece üzerine üflemek",
+        "wrong2": "Cismin rengini değiştirmek",
+        "explanation": "Sert cisimlerin şeklini değiştirmek için güçlü kuvvet gerekir. Tereyağına hafif dokunmak yetmez. Sadece üflemek veya renk değiştirmek şekli bozmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_117",
+      "level": "zor",
+      "premise": "Voleybolda oyuncu, takım arkadaşından gelen topu karşı tarafa smaç olarak (sertçe aşağı) vuruyor.",
+      "text": "Buna göre smaç vuran oyuncu topa hangi etkileri yapmıştır?",
+      "correct": "Topun yönünü aşağıya doğru değiştirmiş ve topu hızlandırmıştır",
+      "wrong1": "Topun sadece kendi etrafında dönmesini sağlamıştır.",
+      "wrong2": "Topu sallamıştır.",
+      "explanation": "Smaçta topun yönü aşağıya değişir ve sert vuruşla hızlanır. Sadece dönmez veya sallanmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre smaç vuran oyuncu topa hangi etkileri yapmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Voleybolda oyuncu, takım arkadaşından gelen topu karşı tarafa smaç olarak (sertçe aşağı) vuruyor."
+            }
+          ]
+        },
+        "correct": "Topun yönünü aşağıya doğru değiştirmiş ve topu hızlandırmıştır",
+        "wrong1": "Topun sadece kendi etrafında dönmesini sağlamıştır.",
+        "wrong2": "Topu sallamıştır.",
+        "explanation": "Smaçta topun yönü aşağıya değişir ve sert vuruşla hızlanır. Sadece dönmez veya sallanmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_118",
+      "level": "kolay",
+      "premise": "Kağıt havlu rulosundan bir parça koparmak istiyoruz.",
+      "text": "Buna göre kağıdı koparmak için rulodan hangi kuvveti uygulayarak asılırız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Sallanma kuvveti",
+      "explanation": "Kağıt havluyu koparmak için kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme uzağa göndermek, sallanma ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kağıdı koparmak için rulodan hangi kuvveti uygulayarak asılırız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kağıt havlu rulosundan bir parça koparmak istiyoruz."
+            }
+          ]
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Sallanma kuvveti",
+        "explanation": "Kağıt havluyu koparmak için kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme uzağa göndermek, sallanma ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_119",
+      "level": "zor",
+      "premise": "Gündelik eşyaları kullanırken farklı kuvvetler deneriz.",
+      "text": "Buna göre kutu içeceklerin metal açma halkasını (kapağını) açmak için parmağımızla hangi kuvveti uygularız?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Yavaşlatma kuvveti",
+      "explanation": "Kutu kapağının halkasını yukarı çekerek koparırız. Parmağımızı kendimize doğru asıldığımız için çekme kuvvetidir. İtme uzağa göndermektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kutu içeceklerin metal açma halkasını (kapağını) açmak için parmağımızla hangi kuvveti uygularız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gündelik eşyaları kullanırken farklı kuvvetler deneriz."
+            }
+          ]
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Yavaşlatma kuvveti",
+        "explanation": "Kutu kapağının halkasını yukarı çekerek koparırız. Parmağımızı kendimize doğru asıldığımız için çekme kuvvetidir. İtme uzağa göndermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_120",
+      "level": "orta",
+      "premise": "Sporcular antrenman yaparken çeşitli aletler kullanırlar.",
+      "text": "Buna göre halat (ip) atlayan bir çocuğun havada çevirdiği ipin yaptığı hareket türü nedir?",
+      "correct": "Dönme hareketi",
+      "wrong1": "Sallanma hareketi",
+      "wrong2": "Yavaşlama hareketi",
+      "explanation": "İp atlarken ip vücudun etrafında daire çizer. Bu dönme hareketidir. Sallanma ileri geri git gelmek, yavaşlama hızın azalmasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre halat (ip) atlayan bir çocuğun havada çevirdiği ipin yaptığı hareket türü nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sporcular antrenman yaparken çeşitli aletler kullanırlar."
+            }
+          ]
+        },
+        "correct": "Dönme hareketi",
+        "wrong1": "Sallanma hareketi",
+        "wrong2": "Yavaşlama hareketi",
+        "explanation": "İp atlarken ip vücudun etrafında daire çizer. Bu dönme hareketidir. Sallanma ileri geri git gelmek, yavaşlama hızın azalmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_121",
+      "level": "orta",
+      "premise": "Otomobiller direksiyon yardımıyla yön değiştirirler.",
+      "text": "Buna göre bir otomobil sağa doğru dönecekse, şoför direksiyona hangi hareketi uygular ve araç nasıl tepki verir?",
+      "correct": "Direksiyona döndürme hareketi uygular, otomobil ise yön değiştirme hareketi yapar",
+      "wrong1": "Direksiyona sallama hareketi uygular, otomobil hızlanır.",
+      "wrong2": "Direksiyona itme kuvveti uygular, otomobil havaya kalkar.",
+      "explanation": "Şoför direksiyonu çevirerek arabayı başka yöne sokar. Araba yön değiştirme hareketi yapar. Sallamak veya itmekle araba havaya kalkmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir otomobil sağa doğru dönecekse, şoför direksiyona hangi hareketi uygular ve araç nasıl tepki verir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Otomobiller direksiyon yardımıyla yön değiştirirler."
+            }
+          ]
+        },
+        "correct": "Direksiyona döndürme hareketi uygular, otomobil ise yön değiştirme hareketi yapar",
+        "wrong1": "Direksiyona sallama hareketi uygular, otomobil hızlanır.",
+        "wrong2": "Direksiyona itme kuvveti uygular, otomobil havaya kalkar.",
+        "explanation": "Şoför direksiyonu çevirerek arabayı başka yöne sokar. Araba yön değiştirme hareketi yapar. Sallamak veya itmekle araba havaya kalkmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_122",
+      "level": "kolay",
+      "premise": "Buzdolabının kapısı içine konulan güçlü mıknatıslar sayesinde gövdeye yapışır ve sıkıca kapanır.",
+      "text": "Buna göre buzdolabı kapağının çerçevesindeki mıknatısın kapağı gövdeye yapıştırması hangi kuvvetin eseridir?",
+      "correct": "Mıknatısın gövdeye çekme kuvveti",
+      "wrong1": "Mıknatısın itme kuvvetidir.",
+      "wrong2": "Mıknatısın sallanma özelliğidir.",
+      "explanation": "Buzdolabı kapağındaki mıknatıs metal gövdeyi kendine çeker. Bu çekme kuvveti sayesinde kapak sıkı kapanır. İtme uzağa göndermek, sallanma ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre buzdolabı kapağının çerçevesindeki mıknatısın kapağı gövdeye yapıştırması hangi kuvvetin eseridir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Buzdolabının kapısı içine konulan güçlü mıknatıslar sayesinde gövdeye yapışır ve sıkıca kapanır."
+            }
+          ]
+        },
+        "correct": "Mıknatısın gövdeye çekme kuvveti",
+        "wrong1": "Mıknatısın itme kuvvetidir.",
+        "wrong2": "Mıknatısın sallanma özelliğidir.",
+        "explanation": "Buzdolabı kapağındaki mıknatıs metal gövdeyi kendine çeker. Bu çekme kuvveti sayesinde kapak sıkı kapanır. İtme uzağa göndermek, sallanma ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_123",
+      "level": "kolay",
+      "premise": null,
+      "text": "Uçurtma uçururken, uçurtmanın ipini elimizle sardığımızda uçurtmaya uyguladığımız kuvvet nedir?",
+      "correct": "Çekme",
+      "wrong1": "İtme",
+      "wrong2": "Sallama",
+      "explanation": "Uçurtma ipini sarmak ipi kendimize doğru çekmektir. Bu çekme kuvvetidir. İtme uzağa göndermek, sallanma ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Uçurtma uçururken, uçurtmanın ipini elimizle sardığımızda uçurtmaya uyguladığımız kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme",
+        "wrong1": "İtme",
+        "wrong2": "Sallama",
+        "explanation": "Uçurtma ipini sarmak ipi kendimize doğru çekmektir. Bu çekme kuvvetidir. İtme uzağa göndermek, sallanma ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_124",
+      "level": "kolay",
+      "premise": null,
+      "text": "Uçurtma gökyüzünde süzülürken rüzgarın uçurtmaya uyguladığı kuvvet nedir?",
+      "correct": "İtme",
+      "wrong1": "Çekme",
+      "wrong2": "Durdurma",
+      "explanation": "Rüzgâr uçurtmanın yüzeyine çarparak onu ileri iter. Bu itme kuvvetidir. Çekme kendimize doğru çekmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Uçurtma gökyüzünde süzülürken rüzgarın uçurtmaya uyguladığı kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme",
+        "wrong1": "Çekme",
+        "wrong2": "Durdurma",
+        "explanation": "Rüzgâr uçurtmanın yüzeyine çarparak onu ileri iter. Bu itme kuvvetidir. Çekme kendimize doğru çekmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_125",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi hareketsiz bir cisimdir?",
+      "correct": "Sokak lambası",
+      "wrong1": "Giden araba",
+      "wrong2": "Uçan kuş",
+      "explanation": "Sokak lambası yerinde durur, yer değiştirmez. Bu yüzden hareketsizdir. Giden araba ve uçan kuş hareket halindedir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi hareketsiz bir cisimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sokak lambası",
+        "wrong1": "Giden araba",
+        "wrong2": "Uçan kuş",
+        "explanation": "Sokak lambası yerinde durur, yer değiştirmez. Bu yüzden hareketsizdir. Giden araba ve uçan kuş hareket halindedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_126",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi hareketli bir cisimdir?",
+      "correct": "Akan şelale suyu",
+      "wrong1": "Masadaki kitap",
+      "wrong2": "Duvardaki tablo",
+      "explanation": "Şelale suyu sürekli aşağı akar ve yer değiştirir. Bu yüzden hareketlidir. Masadaki kitap ve duvardaki tablo sabit durur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi hareketli bir cisimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Akan şelale suyu",
+        "wrong1": "Masadaki kitap",
+        "wrong2": "Duvardaki tablo",
+        "explanation": "Şelale suyu sürekli aşağı akar ve yer değiştirir. Bu yüzden hareketlidir. Masadaki kitap ve duvardaki tablo sabit durur.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_127",
+      "level": "orta",
+      "premise": null,
+      "text": "Yerden otları veya yabani bitkileri koparmak için uyguladığımız kuvvet hangisidir?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Dönme kuvveti",
+      "explanation": "Otu koparmak için yukarı ve kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme uzağa göndermek, dönme bir merkez etrafında dönmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yerden otları veya yabani bitkileri koparmak için uyguladığımız kuvvet hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Dönme kuvveti",
+        "explanation": "Otu koparmak için yukarı ve kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme uzağa göndermek, dönme bir merkez etrafında dönmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_128",
+      "level": "orta",
+      "premise": null,
+      "text": "Market arabasını yanımıza alıp alışveriş yaparken reyonlar arasında ilerlemek için arabayı NE yaparız?",
+      "correct": "İteriz",
+      "wrong1": "Çekeriz",
+      "wrong2": "Döndürürüz",
+      "explanation": "Market arabasını önümüzde ileri iteriz. Cismi uzağa gönderdiğimiz için itme kuvvetidir. Arkadan sürüklemek çekme olurdu.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Market arabasını yanımıza alıp alışveriş yaparken reyonlar arasında ilerlemek için arabayı NE yaparız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İteriz",
+        "wrong1": "Çekeriz",
+        "wrong2": "Döndürürüz",
+        "explanation": "Market arabasını önümüzde ileri iteriz. Cismi uzağa gönderdiğimiz için itme kuvvetidir. Arkadan sürüklemek çekme olurdu.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_129",
+      "level": "orta",
+      "premise": null,
+      "text": "Kazağımızı başımızdan çıkarırken kazağa uyguladığımız kuvvet nedir?",
+      "correct": "Çekme kuvveti",
+      "wrong1": "İtme kuvveti",
+      "wrong2": "Durdurma kuvveti",
+      "explanation": "Kazağı çıkarırken yukarı ve kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme uzağa göndermek, durdurma hareketi bitirmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kazağımızı başımızdan çıkarırken kazağa uyguladığımız kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme kuvveti",
+        "wrong1": "İtme kuvveti",
+        "wrong2": "Durdurma kuvveti",
+        "explanation": "Kazağı çıkarırken yukarı ve kendimize doğru çekeriz. Bu çekme kuvvetidir. İtme uzağa göndermek, durdurma hareketi bitirmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_130",
+      "level": "zor",
+      "premise": "Sarmal bir çelik yayı iki ucundan tuttuk ve dışarı doğru asıldık.",
+      "text": "Buna göre yayı asılırken uyguladığımız kuvvet ve yaydaki değişim nasıldır?",
+      "correct": "İki uca doğru 'çekme' kuvveti uygularız, yay uzar.",
+      "wrong1": "İki uca doğru 'itme' kuvveti uygularız, yay uzar.",
+      "wrong2": "Yaya dönme kuvveti uygularız.",
+      "explanation": "Yayın iki ucundan dışarı çekince yay uzar. Kendimize doğru asıldığımız için çekme kuvvetidir. İtme uzağa bastırmak, dönme bir merkez etrafında dönmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yayı asılırken uyguladığımız kuvvet ve yaydaki değişim nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sarmal bir çelik yayı iki ucundan tuttuk ve dışarı doğru asıldık."
+            }
+          ]
+        },
+        "correct": "İki uca doğru 'çekme' kuvveti uygularız, yay uzar.",
+        "wrong1": "İki uca doğru 'itme' kuvveti uygularız, yay uzar.",
+        "wrong2": "Yaya dönme kuvveti uygularız.",
+        "explanation": "Yayın iki ucundan dışarı çekince yay uzar. Kendimize doğru asıldığımız için çekme kuvvetidir. İtme uzağa bastırmak, dönme bir merkez etrafında dönmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_131",
+      "level": "zor",
+      "premise": "Hamur açan bir aşçı, oklavayı hamurun üzerinde yuvarlayarak hamuru inceltir.",
+      "text": "Buna göre aşçının yaptığı bu işlemde sırasıyla hangi hareket ve kuvvet etkileri görülür?",
+      "correct": "Oklava 'dönme' hareketi yapar, hamura ise 'itme/bastırma' uygular",
+      "wrong1": "Oklava 'sallanma' hareketi yapar, hamur 'hızlanır'.",
+      "wrong2": "Oklava 'yavaşlar', hamur 'yön değiştirir'.",
+      "explanation": "Oklava yuvarlanarak döner ve hamura bastırır. Oklava dönme hareketi yapar, hamur ise ezilerek yassılaşır. Sallanma veya hızlanma değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşçının yaptığı bu işlemde sırasıyla hangi hareket ve kuvvet etkileri görülür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hamur açan bir aşçı, oklavayı hamurun üzerinde yuvarlayarak hamuru inceltir."
+            }
+          ]
+        },
+        "correct": "Oklava 'dönme' hareketi yapar, hamura ise 'itme/bastırma' uygular",
+        "wrong1": "Oklava 'sallanma' hareketi yapar, hamur 'hızlanır'.",
+        "wrong2": "Oklava 'yavaşlar', hamur 'yön değiştirir'.",
+        "explanation": "Oklava yuvarlanarak döner ve hamura bastırır. Oklava dönme hareketi yapar, hamur ise ezilerek yassılaşır. Sallanma veya hızlanma değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_132",
+      "level": "zor",
+      "premise": "Lunaparktaki çarpışan arabalarda iki araba kafa kafaya çarpıştığında aniden geriye savrulurlar.",
+      "text": "Buna göre bu durum kuvvetin hangi özelliğine örnektir?",
+      "correct": "Cisimlerin hareket yönünü değiştirmesi",
+      "wrong1": "Cisimleri sadece hızlandırmasına",
+      "wrong2": "Cisimlerin ağırlığını artırmasına",
+      "explanation": "Çarpışan arabalar birbirine zıt kuvvet uygular ve geriye savrulur. Gittikleri yön değişir; bu yön değiştirmedir. Sadece hızlanma veya ağırlık artışı değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu durum kuvvetin hangi özelliğine örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Lunaparktaki çarpışan arabalarda iki araba kafa kafaya çarpıştığında aniden geriye savrulurlar."
+            }
+          ]
+        },
+        "correct": "Cisimlerin hareket yönünü değiştirmesi",
+        "wrong1": "Cisimleri sadece hızlandırmasına",
+        "wrong2": "Cisimlerin ağırlığını artırmasına",
+        "explanation": "Çarpışan arabalar birbirine zıt kuvvet uygular ve geriye savrulur. Gittikleri yön değişir; bu yön değiştirmedir. Sadece hızlanma veya ağırlık artışı değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_133",
+      "level": "zor",
+      "premise": "Tehlikeli durumlardan kaçınmalıyız.",
+      "text": "Buna göre evdeki tavan vantilatörü çalışırken pervanesi görünmez olacak kadar hızlanır. Bu pervaneye bir cisim uzatırsak ne olur?",
+      "correct": "Pervanenin cismi kırıp parçalayabilmesi",
+      "wrong1": "Pervane cismi yumuşakça tutar.",
+      "wrong2": "Cisim pervanenin yönünü değiştirir.",
+      "explanation": "Hızlı dönen pervaneye cisim uzatmak çok tehlikelidir. Pervane büyük bir kuvvetle çarpar ve cismi kırabilir. Pervane yumuşakça tutmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre evdeki tavan vantilatörü çalışırken pervanesi görünmez olacak kadar hızlanır. Bu pervaneye bir cisim uzatırsak ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tehlikeli durumlardan kaçınmalıyız."
+            }
+          ]
+        },
+        "correct": "Pervanenin cismi kırıp parçalayabilmesi",
+        "wrong1": "Pervane cismi yumuşakça tutar.",
+        "wrong2": "Cisim pervanenin yönünü değiştirir.",
+        "explanation": "Hızlı dönen pervaneye cisim uzatmak çok tehlikelidir. Pervane büyük bir kuvvetle çarpar ve cismi kırabilir. Pervane yumuşakça tutmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_134",
+      "level": "kolay",
+      "premise": "Hareket türleri çevremizde sürekli vardır.",
+      "text": "Buna göre çorba karıştırılırken kepçenin tencerenin içinde yaptığı hareket hangisine örnektir?",
+      "correct": "Dönme",
+      "wrong1": "Yavaşlama",
+      "wrong2": "Sallanma",
+      "explanation": "Çorba karıştırırken kepçe tencere içinde daire çizer. Bu dönme hareketidir. Yavaşlama hızın azalması, sallanma ileri geri git gelmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çorba karıştırılırken kepçenin tencerenin içinde yaptığı hareket hangisine örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hareket türleri çevremizde sürekli vardır."
+            }
+          ]
+        },
+        "correct": "Dönme",
+        "wrong1": "Yavaşlama",
+        "wrong2": "Sallanma",
+        "explanation": "Çorba karıştırırken kepçe tencere içinde daire çizer. Bu dönme hareketidir. Yavaşlama hızın azalması, sallanma ileri geri git gelmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_135",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir 'itme' hareketi sonucunda gerçekleşir?",
+      "correct": "Pencereyi dışarı doğru açmak",
+      "wrong1": "Yerdeki çorabı giymek",
+      "wrong2": "Çekmeceyi açmak",
+      "explanation": "Pencereyi dışarı açmak camı uzağa itmektir. Bu itme kuvvetidir. Çorabı giymek ve çekmeceyi açmak çekme ile yapılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir 'itme' hareketi sonucunda gerçekleşir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Pencereyi dışarı doğru açmak",
+        "wrong1": "Yerdeki çorabı giymek",
+        "wrong2": "Çekmeceyi açmak",
+        "explanation": "Pencereyi dışarı açmak camı uzağa itmektir. Bu itme kuvvetidir. Çorabı giymek ve çekmeceyi açmak çekme ile yapılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_136",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okula gitmek için sırt çantamızı sırtımıza alırken çantamıza uyguladığımız kuvvet nedir?",
+      "correct": "Çekme",
+      "wrong1": "İtme",
+      "wrong2": "Durdurma",
+      "explanation": "Sırt çantasını yerden kendimize doğru yukarı alırız. Bu çekme kuvvetidir. İtme uzağa göndermek, durdurma hareketi bitirmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okula gitmek için sırt çantamızı sırtımıza alırken çantamıza uyguladığımız kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çekme",
+        "wrong1": "İtme",
+        "wrong2": "Durdurma",
+        "explanation": "Sırt çantasını yerden kendimize doğru yukarı alırız. Bu çekme kuvvetidir. İtme uzağa göndermek, durdurma hareketi bitirmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_137",
+      "level": "orta",
+      "premise": "Asansörler hem inme hem çıkma hareketi yapar.",
+      "text": "Buna göre binanın 5. katından 1. katına inen bir asansör zemin kata yaklaştığında durmak için hangi hareketi yapar?",
+      "correct": "Yavaşlama",
+      "wrong1": "Hızlanma",
+      "wrong2": "Dönme",
+      "explanation": "Asansör kata yaklaşırken yavaşlar ki yumuşak dursun. Hızın azalmasına yavaşlama denir. Hızlanma giderek hızlanmak, dönme bir merkez etrafında dönmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre binanın 5. katından 1. katına inen bir asansör zemin kata yaklaştığında durmak için hangi hareketi yapar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Asansörler hem inme hem çıkma hareketi yapar."
+            }
+          ]
+        },
+        "correct": "Yavaşlama",
+        "wrong1": "Hızlanma",
+        "wrong2": "Dönme",
+        "explanation": "Asansör kata yaklaşırken yavaşlar ki yumuşak dursun. Hızın azalmasına yavaşlama denir. Hızlanma giderek hızlanmak, dönme bir merkez etrafında dönmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_138",
+      "level": "orta",
+      "premise": "Bowling oyununda atılan top lobutlara (hedef şişelere) çarptığında lobutlar devrilip etrafa saçılır.",
+      "text": "Buna göre bu olay kuvvetin hangi etkisiyle açıklanır?",
+      "correct": "Lobutları hareket ettirip dağıtmak",
+      "wrong1": "Sadece durdurma",
+      "wrong2": "Sadece dönme",
+      "explanation": "Bowling topu lobutlara çarpınca onları hareket ettirir ve sağa sola savurur. Hem harekete geçirme hem yön değiştirme olur. Sadece durdurma veya dönme değildir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu olay kuvvetin hangi etkisiyle açıklanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bowling oyununda atılan top lobutlara (hedef şişelere) çarptığında lobutlar devrilip etrafa saçılır."
+            }
+          ]
+        },
+        "correct": "Lobutları hareket ettirip dağıtmak",
+        "wrong1": "Sadece durdurma",
+        "wrong2": "Sadece dönme",
+        "explanation": "Bowling topu lobutlara çarpınca onları hareket ettirir ve sağa sola savurur. Hem harekete geçirme hem yön değiştirme olur. Sadece durdurma veya dönme değildir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_139",
+      "level": "orta",
+      "premise": null,
+      "text": "Havuzda şişme bir topu ellerimizle suyun içine (dibe doğru) bastırırken uyguladığımız kuvvet nedir?",
+      "correct": "İtme kuvveti",
+      "wrong1": "Çekme kuvveti",
+      "wrong2": "Durdurma kuvveti",
+      "explanation": "Topu suya aşağı bastırmak uzağa itmektir. Bu itme kuvvetidir. Çekme kendimize doğru çekmek, durdurma hareketi bitirmektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Havuzda şişme bir topu ellerimizle suyun içine (dibe doğru) bastırırken uyguladığımız kuvvet nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İtme kuvveti",
+        "wrong1": "Çekme kuvveti",
+        "wrong2": "Durdurma kuvveti",
+        "explanation": "Topu suya aşağı bastırmak uzağa itmektir. Bu itme kuvvetidir. Çekme kendimize doğru çekmek, durdurma hareketi bitirmektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "fen3_kuv_140",
+      "level": "zor",
+      "premise": "Trenler çok ağır taşıtlardır ve demir raylar üzerinde çok hızlı giderler.",
+      "text": "Buna göre hızlı giden bir trenin önüne çıkan engeli görüp aniden duramaması ne ile ilgilidir?",
+      "correct": "Ağır trenleri durdurmanın zaman alması",
+      "wrong1": "Trenin freninin sadece bir süs olmasıyla",
+      "wrong2": "Trenin havada uçabilmesiyle",
+      "explanation": "Hızlı ve ağır treni durdurmak çok zaman ve büyük zıt kuvvet ister. Fren yavaş yavaş etki eder, anında duramaz. Fren süs değildir, tren de uçmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre hızlı giden bir trenin önüne çıkan engeli görüp aniden duramaması ne ile ilgilidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Trenler çok ağır taşıtlardır ve demir raylar üzerinde çok hızlı giderler."
+            }
+          ]
+        },
+        "correct": "Ağır trenleri durdurmanın zaman alması",
+        "wrong1": "Trenin freninin sadece bir süs olmasıyla",
+        "wrong2": "Trenin havada uçabilmesiyle",
+        "explanation": "Hızlı ve ağır treni durdurmak çok zaman ve büyük zıt kuvvet ister. Fren yavaş yavaş etki eder, anında duramaz. Fren süs değildir, tren de uçmaz.",
+        "url": null
+      }
+    }
+  ]
+}

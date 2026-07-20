@@ -1,0 +1,744 @@
+/* ═══ Oyun tarzı form & özel seçici (tek kişilik, düello, giriş, kayıt) ═══ */
+
+/* —— Ortak: native select gizle (JS sarmalayıcı) —— */
+.nova-game-select__native{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.nova-game-select__sr-label{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+}
+
+/* —— Özel seçici —— */
+.nova-game-select{
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: clamp(12px, 2.4vw, 16px);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.nova-game-select__trigger{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(10px, 2vw, 14px);
+  padding: clamp(12px, 2.6vw, 15px) clamp(14px, 3vw, 18px);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.nova-game-select__icon{
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.nova-game-select__icon::before{ content: "▣"; }
+.nova-game-select__text{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nova-game-select__label{
+  font-size: clamp(.68rem, 2vw, .74rem);
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+.nova-game-select__value{
+  font-size: clamp(.98rem, 2.6vw, 1.12rem);
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nova-game-select__chev{
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform .22s ease;
+}
+.nova-game-select__chev::before,
+.nova-game-select__chev::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translate(-50%, -65%) rotate(45deg);
+}
+.nova-game-select--open .nova-game-select__chev{
+  transform: rotate(180deg);
+}
+
+/* Açılır menü */
+.nova-game-select__menu{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 200;
+  max-height: min(280px, 52vh);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: novaGameSelectMenuIn .22s cubic-bezier(.22, 1, .36, 1) both;
+  isolation: isolate;
+}
+.nova-game-select__menu--fixed{
+  position: fixed !important;
+  z-index: 101200 !important;
+  right: auto !important;
+  box-shadow:
+    0 28px 56px rgba(2, 6, 23, .75),
+    0 0 0 1px rgba(56, 189, 248, .4) !important;
+}
+/* body'ye taşınan menü — ebeveyn .nova-game-select--arena dışında kaldığında ton stilleri */
+.nova-game-select__menu--fixed.nova-game-select__menu--arena{
+  background: #0f172a !important;
+  border: 1px solid rgba(56, 189, 248, .45) !important;
+  box-shadow:
+    0 24px 48px rgba(2, 6, 23, .85),
+    0 0 0 1px rgba(255, 255, 255, .08) inset !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--arena .nova-game-select__option{
+  color: #e2e8f0 !important;
+  background: #1e293b !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--arena .nova-game-select__option:hover,
+.nova-game-select__menu--fixed.nova-game-select__menu--arena .nova-game-select__option:focus-visible{
+  background: #334155 !important;
+  color: #fff !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--arena .nova-game-select__option[aria-selected="true"]{
+  background: linear-gradient(90deg, #0e7490, #4338ca) !important;
+  color: #fff !important;
+  box-shadow: 0 0 12px rgba(34, 211, 238, .25) !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--login{
+  background: #0a1628 !important;
+  border: 1px solid rgba(0, 200, 255, 0.45) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 240, 255, 0.12) !important;
+  z-index: 102500 !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option{
+  color: #e2e8f0 !important;
+  background: #0f1d32 !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option:hover,
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option:focus-visible,
+.nova-game-select__menu--fixed.nova-game-select__menu--login .nova-game-select__option[aria-selected="true"]{
+  background: rgba(0, 200, 255, 0.18) !important;
+  color: #fff !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--register{
+  background: #1e293b !important;
+  border: 1px solid rgba(129, 140, 248, .4) !important;
+  z-index: 102500 !important;
+}
+.nova-game-select__menu--fixed.nova-game-select__menu--register .nova-game-select__option{
+  color: #e2e8f0 !important;
+  background: #1e293b !important;
+}
+.nova-game-select__menu[hidden]{ display: none !important; }
+@keyframes novaGameSelectMenuIn{
+  from{ opacity: 0; transform: translateY(-8px) scale(.98); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+.nova-game-select__option{
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: left;
+  font: inherit;
+  font-size: clamp(.92rem, 2.4vw, 1.05rem);
+  font-weight: 750;
+  cursor: pointer;
+  transition: background .12s ease, transform .12s ease, box-shadow .12s ease;
+}
+.nova-game-select__option:hover,
+.nova-game-select__option:focus-visible{
+  outline: none;
+  transform: translateX(2px);
+}
+.nova-game-select__option[aria-selected="true"]{
+  font-weight: 900;
+}
+
+/* Arena tonu (tek kişilik / düello) */
+.nova-game-select--arena .nova-game-select__trigger{
+  color: #e2e8f0;
+  background:
+    linear-gradient(135deg, rgba(30, 41, 59, .95), rgba(15, 23, 42, .98));
+  border: 1px solid rgba(148, 163, 184, .35);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .04) inset,
+    0 10px 28px rgba(2, 6, 23, .45);
+}
+.nova-game-select--arena .nova-game-select__icon{
+  background: linear-gradient(145deg, rgba(34, 211, 238, .25), rgba(99, 102, 241, .2));
+  border: 1px solid rgba(56, 189, 248, .35);
+  color: #67e8f9;
+  box-shadow: 0 0 16px rgba(34, 211, 238, .2);
+}
+.nova-game-select--arena .nova-game-select__label{ color: #94a3b8; }
+.nova-game-select--arena .nova-game-select__value{ color: #f8fafc; }
+.nova-game-select--arena .nova-game-select__chev{
+  background: rgba(15, 23, 42, .6);
+  border: 1px solid rgba(148, 163, 184, .25);
+  color: #cbd5e1;
+}
+.nova-game-select--arena.nova-game-select--open .nova-game-select__trigger,
+.nova-game-select--arena .nova-game-select__trigger:hover{
+  border-color: rgba(56, 189, 248, .55);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, .15) inset,
+    0 0 24px rgba(34, 211, 238, .18),
+    0 12px 32px rgba(2, 6, 23, .5);
+}
+.nova-game-select--arena .nova-game-select__menu{
+  background: #0f172a;
+  border: 1px solid rgba(56, 189, 248, .45);
+  box-shadow:
+    0 24px 48px rgba(2, 6, 23, .85),
+    0 0 0 1px rgba(255, 255, 255, .08) inset;
+}
+.nova-game-select--arena .nova-game-select__option{
+  color: #e2e8f0;
+  background: #1e293b;
+}
+.nova-game-select--arena .nova-game-select__option:hover,
+.nova-game-select--arena .nova-game-select__option:focus-visible{
+  background: #334155;
+  color: #fff;
+}
+.nova-game-select--arena .nova-game-select__option[aria-selected="true"]{
+  background: linear-gradient(90deg, #0e7490, #4338ca);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(34, 211, 238, .25);
+}
+.nova-game-select--arena .nova-game-select__option--placeholder{
+  opacity: .65;
+  font-style: italic;
+}
+
+/* Konu: başlık belirgin, parantez içi ikincil */
+.nova-game-select__option--curriculum{
+  font-weight: 400;
+  text-align: left;
+}
+.nova-game-select__opt-title{
+  display: block;
+  font-weight: 800;
+  font-size: 1.02em;
+  line-height: 1.25;
+  color: #f8fafc;
+  letter-spacing: 0.01em;
+}
+.nova-game-select__opt-detail{
+  display: block;
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 0.8em;
+  line-height: 1.35;
+  color: #94a3b8;
+}
+.nova-game-select--arena .nova-game-select__option--curriculum[aria-selected="true"] .nova-game-select__opt-title{
+  color: #fff;
+}
+.nova-game-select--arena .nova-game-select__option--curriculum[aria-selected="true"] .nova-game-select__opt-detail{
+  color: rgba(226, 232, 240, 0.88);
+}
+.nova-game-select--curriculum-value .nova-game-select__value{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  line-height: 1.2;
+  text-align: left;
+}
+.nova-game-select__val-title{
+  font-weight: 800;
+  font-size: 0.95em;
+  color: #f8fafc;
+}
+.nova-game-select__val-detail{
+  font-weight: 500;
+  font-size: 0.72em;
+  line-height: 1.25;
+  color: #94a3b8;
+  max-width: 100%;
+}
+
+/* Giriş tonu — arena koyu tema (giriş ekranı) */
+.nova-game-select--login{
+  margin-bottom: 0;
+  width: 100%;
+}
+#student-selection-screen .nova-game-select--login .nova-game-select__trigger{
+  padding: 12px 12px 12px 4px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #e9f4ff;
+}
+.nova-game-select--login .nova-game-select__trigger{
+  padding: 10px 12px 10px 4px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #e9f4ff;
+}
+.nova-game-select--login .nova-game-select__icon{ display: none; }
+.nova-game-select--login .nova-game-select__label{ display: none; }
+#student-selection-screen .nova-game-select--login .nova-game-select__value,
+.nova-game-select--login .nova-game-select__value{
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #e9f4ff;
+}
+#student-selection-screen .nova-game-select--login.nova-game-select--empty .nova-game-select__value{
+  color: #7dd3fc;
+  font-weight: 700;
+}
+.nova-game-select--login .nova-game-select__chev{
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(0, 240, 255, 0.14);
+  color: #00f0ff;
+}
+.nova-game-select--login .nova-game-select__menu,
+.nova-game-select__menu--login{
+  background: #0a1628 !important;
+  border: 1px solid rgba(0, 200, 255, 0.45) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 240, 255, 0.12) !important;
+}
+.nova-game-select--login .nova-game-select__option,
+.nova-game-select__menu--login .nova-game-select__option{
+  color: #e2e8f0 !important;
+  background: #0f1d32 !important;
+}
+.nova-game-select--login .nova-game-select__option[aria-selected="true"],
+.nova-game-select--login .nova-game-select__option:hover,
+.nova-game-select__menu--login .nova-game-select__option[aria-selected="true"],
+.nova-game-select__menu--login .nova-game-select__option:hover{
+  background: rgba(0, 200, 255, 0.18) !important;
+  color: #fff !important;
+}
+
+/* Kayıt tonu */
+.nova-game-select--register .nova-game-select__trigger{
+  color: #f1f5f9;
+  background: linear-gradient(135deg, rgba(30, 41, 59, .9), rgba(15, 23, 42, .95));
+  border: 1px solid rgba(148, 163, 184, .3);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, .25);
+}
+.nova-game-select--register .nova-game-select__icon{
+  background: rgba(129, 140, 248, .2);
+  color: #c7d2fe;
+}
+.nova-game-select--register .nova-game-select__menu{
+  background: #1e293b;
+  border: 1px solid rgba(129, 140, 248, .4);
+  box-shadow: 0 20px 44px rgba(2, 6, 23, .45);
+}
+.nova-game-select--register .nova-game-select__option{
+  color: #e2e8f0;
+  background: #1e293b;
+}
+.nova-game-select--register .nova-game-select__option:hover,
+.nova-game-select--register .nova-game-select__option[aria-selected="true"]{
+  background: rgba(99, 102, 241, .25);
+  color: #fff;
+}
+
+#student-selection-screen .field--class:has(.nova-game-select--login),
+#student-selection-screen .field:has(.nova-game-select--login){
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  position: relative;
+  z-index: 30;
+  padding: 14px 16px;
+  background: rgba(0, 200, 255, 0.07);
+  border: 2px solid rgba(0, 240, 255, 0.42);
+  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.08) inset, 0 8px 28px rgba(0, 200, 255, 0.12);
+}
+#student-selection-screen .field--class .field__control,
+#student-selection-screen .field:has(.nova-game-select--login) .field__control{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+#student-selection-screen .field--class:has(.nova-game-select--login) .ico,
+#student-selection-screen .field:has(.nova-game-select--login) .ico{
+  align-self: center;
+  font-size: 22px;
+}
+#student-selection-screen .field--class .nova-game-select--login,
+#student-selection-screen .field:has(.nova-game-select--login) .nova-game-select{
+  flex: 1;
+  min-width: 0;
+}
+#student-selection-screen .field--class:has(.nova-game-select--open),
+#student-selection-screen .field:has(.nova-game-select--open){
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14), 0 12px 32px rgba(0, 200, 255, 0.18);
+}
+#student-selection-screen .card form .row,
+#student-selection-screen .card form .actions,
+#student-selection-screen .card form .helper{
+  position: relative;
+  z-index: 5;
+}
+#student-selection-screen .card form .cta{
+  position: relative;
+  z-index: 5;
+}
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .cta,
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .row,
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .actions,
+#student-selection-screen.nova-game-form-dropdown-open .nova-login-arena__panel.card form .helper{
+  opacity: .3 !important;
+  pointer-events: none !important;
+  filter: blur(1px);
+}
+#registrationOverlay.nova-game-form-dropdown-open .registration-form button[type="submit"],
+#registrationOverlay.nova-game-form-dropdown-open .registration-form .registration-actions{
+  opacity: .35 !important;
+  pointer-events: none !important;
+}
+
+/* ═══ TEK KİŞİLİK OYUN — tam ekran katman ═══ */
+body.nova-sp-screen-open{
+  overflow: hidden !important;
+}
+body.nova-sp-screen-open #main-screen,
+body.nova-sp-game-open #main-screen {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+#single-player-screen.game-container,
+#single-player-screen{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 100800 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(18px, 4vw, 32px) clamp(14px, 3.5vw, 24px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+}
+#single-player-screen[style*="flex"],
+#single-player-screen.nova-sp-screen-visible{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(12px, 2.5vw, 18px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  background:
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(34, 211, 238, .18), transparent 58%),
+    radial-gradient(ellipse 70% 55% at 100% 100%, rgba(129, 140, 248, .14), transparent 52%),
+    linear-gradient(168deg, #0a1020 0%, #060b16 42%, #0f172a 100%) !important;
+  animation: novaGameScreenIn .45s cubic-bezier(.16, 1, .3, 1) both;
+}
+#single-player-screen > h2,
+#single-player-screen .nova-sp-screen-title{
+  width: min(520px, 100%) !important;
+  max-width: min(520px, 100%) !important;
+}
+#single-player-screen > .table-section,
+#single-player-screen > .start-game-button,
+#single-player-screen > .back-button{
+  width: min(520px, 100%) !important;
+  max-width: min(520px, 100%) !important;
+}
+@keyframes novaGameScreenIn{
+  from{ opacity: 0; transform: translateY(20px) scale(.96); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+#single-player-screen::before{
+  display: none !important;
+}
+#single-player-screen > h2,
+#single-player-screen .nova-sp-screen-title{
+  margin: 0 0 clamp(10px, 2.5vw, 16px) !important;
+  padding: 0 0 4px !important;
+  text-align: center;
+  font-family: "Comfortaa", "Baloo 2", system-ui, sans-serif !important;
+  font-size: clamp(1.42rem, 5.2vw, 2rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: .16em !important;
+  text-transform: none !important;
+  line-height: 1.2 !important;
+  color: #fde68a !important;
+  -webkit-text-fill-color: #fde68a !important;
+  background: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow:
+    0 0 36px rgba(251, 191, 36, .55),
+    0 2px 0 rgba(180, 83, 9, .45),
+    0 4px 20px rgba(0, 0, 0, .65) !important;
+}
+#single-player-screen > h2::after,
+#single-player-screen .nova-sp-screen-title::after{
+  content: "";
+  display: block;
+  width: min(200px, 52%);
+  height: 2px;
+  margin: clamp(10px, 2vw, 14px) auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #fbbf24, #22d3ee, transparent);
+  opacity: .9;
+}
+#single-player-screen > .table-section{
+  position: relative;
+  z-index: 20;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(18px, 4vw, 26px) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(56, 189, 248, .28) !important;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(34, 211, 238, .12), transparent 50%),
+    linear-gradient(165deg, #0f172a 0%, #080c18 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .05) inset,
+    0 28px 60px rgba(2, 6, 23, .55),
+    0 0 80px rgba(34, 211, 238, .08) !important;
+  overflow: visible !important;
+}
+#single-player-screen .nova-game-select--locked .nova-game-select__trigger{
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.88;
+}
+#single-player-screen .nova-game-select--locked .nova-game-select__chev{
+  opacity: 0.35;
+}
+#single-player-screen .nova-game-select--open{
+  position: relative;
+  z-index: 30;
+}
+#single-player-screen > .table-section::before{
+  content: "";
+  display: block;
+  height: 3px;
+  margin: -18px -18px 16px;
+  margin: -clamp(18px, 4vw, 26px) -clamp(18px, 4vw, 26px) clamp(14px, 3vw, 18px);
+  border-radius: 22px 22px 0 0;
+  background: linear-gradient(90deg, transparent, #22d3ee, #818cf8, #c084fc, transparent);
+  opacity: .85;
+}
+#single-player-screen .table-section h3{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 10px !important;
+  margin: 0 0 clamp(16px, 3.5vw, 22px) !important;
+  padding: 0 0 12px !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(148, 163, 184, .2) !important;
+  font-size: clamp(.82rem, 2.4vw, .95rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase !important;
+  color: #94a3b8 !important;
+}
+#single-player-screen .table-section h3::before{
+  content: "⚔";
+  font-size: 1.1em;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, .5));
+}
+#single-player-screen .table-section label:not(.nova-game-select__sr-label){
+  display: none !important;
+}
+#single-player-screen .table-section select:not(.nova-game-select__native){
+  display: none;
+}
+#single-player-screen .start-game-button,
+#single-player-screen .back-button{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: clamp(10px, 2vw, 14px) 0 0 !important;
+  padding: clamp(14px, 3.2vw, 16px) !important;
+  border-radius: 14px !important;
+  font-size: clamp(.95rem, 2.6vw, 1.08rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  border: 1px solid transparent !important;
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  opacity: 1 !important;
+  transition: opacity .2s ease, transform .16s ease, filter .2s ease;
+}
+#single-player-screen.nova-game-form-dropdown-open > .start-game-button,
+#single-player-screen.nova-game-form-dropdown-open > .back-button{
+  opacity: .28 !important;
+  pointer-events: none !important;
+  filter: blur(1px);
+  transform: scale(.98);
+}
+#single-player-screen .start-game-button::before,
+#single-player-screen .back-button::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.2) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .5s ease;
+}
+#single-player-screen .start-game-button:hover::before,
+#single-player-screen .back-button:hover::before{
+  transform: translateX(120%);
+}
+#single-player-screen .start-game-button{
+  background: linear-gradient(180deg, #34d399 0%, #059669 45%, #047857 100%) !important;
+  color: #ecfdf5 !important;
+  border-color: rgba(110, 231, 183, .45) !important;
+  box-shadow:
+    0 0 20px rgba(16, 185, 129, .35),
+    0 12px 28px rgba(4, 120, 87, .4) !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+#single-player-screen .start-game-button:disabled{
+  opacity: .55 !important;
+  filter: grayscale(.3);
+  box-shadow: none !important;
+}
+#single-player-screen .start-game-button.active:not(:disabled):hover{
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+#single-player-screen .back-button{
+  background: linear-gradient(180deg, #475569 0%, #334155 55%, #1e293b 100%) !important;
+  color: #cbd5e1 !important;
+  border-color: rgba(148, 163, 184, .3) !important;
+  box-shadow: 0 8px 20px rgba(2, 6, 23, .35) !important;
+}
+#single-player-screen .back-button:hover{
+  transform: translateY(-1px);
+  border-color: rgba(148, 163, 184, .45) !important;
+}
+
+/* Tek kişilik soru ekranı → styles/067-nova-single-player-game-layout.css */
+body.nova-sp-game-open {
+  overflow: hidden !important;
+}
+
+/* ═══ DÜELLO SEÇİM — aynı arena stili ═══ */
+#duel-selection-screen{
+  width: min(520px, 94vw) !important;
+  max-width: min(520px, 94vw) !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+#duel-selection-screen .table-section{
+  padding: clamp(18px, 4vw, 24px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(251, 191, 36, .25) !important;
+  background: linear-gradient(165deg, rgba(30, 20, 10, .96), rgba(15, 12, 8, .98)) !important;
+  box-shadow: 0 24px 50px rgba(2, 6, 23, .5) !important;
+}
+#duel-selection-screen .table-section h3{
+  color: #fcd34d !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+  border-bottom-color: rgba(251, 191, 36, .25) !important;
+}
+#duel-selection-screen .table-section label:not(.nova-game-select__sr-label){
+  display: none !important;
+}
+#duel-selection-screen .nova-game-select--arena .nova-game-select__trigger{
+  border-color: rgba(251, 191, 36, .3);
+}
+#duel-selection-screen .nova-game-select--arena.nova-game-select--open .nova-game-select__trigger{
+  border-color: rgba(251, 191, 36, .55);
+  box-shadow: 0 0 20px rgba(245, 158, 11, .15);
+}
+
+/* Kayıt formu — 065-nova-registration-premium.css */
+.registration-form select.registration-input{
+  display: none;
+}
+
+@media (max-width: 640px){
+  #single-player-screen,
+  #single-player-screen[style*="flex"]{
+    padding: max(14px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom)) !important;
+    justify-content: flex-start !important;
+  }
+  #single-player-screen > h2,
+  #single-player-screen .nova-sp-screen-title{
+    font-size: clamp(1.22rem, 5.8vw, 1.48rem) !important;
+    letter-spacing: .12em !important;
+  }
+  #duel-selection-screen{
+    width: min(100%, 100vw) !important;
+    margin: 0 auto !important;
+    padding: 12px 10px 16px !important;
+  }
+  .nova-game-select__menu{
+    max-height: min(240px, 45vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  #single-player-screen,
+  .nova-game-select__menu,
+  .nova-game-select__chev{
+    animation: none !important;
+    transition: none !important;
+  }
+}

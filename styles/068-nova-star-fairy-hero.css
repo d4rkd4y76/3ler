@@ -1,0 +1,59 @@
+/* ═══ Yıldız Perisi — mağaza, ana ekran, soru FX ═══ */
+
+/* Yıldız Perisi — gece gökyüzü sahnesi (mağaza) */
+.nova-hero-store-card--star .nova-hero-preview{
+  background:
+    radial-gradient(1.5px 1.5px at 14% 20%, rgba(255, 255, 255, .85), transparent),
+    radial-gradient(1px 1px at 72% 16%, rgba(255, 255, 255, .6), transparent),
+    radial-gradient(1.5px 1.5px at 48% 10%, rgba(253, 224, 71, .9), transparent),
+    radial-gradient(1px 1px at 86% 42%, rgba(255, 255, 255, .45), transparent),
+    radial-gradient(1px 1px at 24% 52%, rgba(196, 181, 253, .5), transparent),
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(139, 92, 246, .38), transparent 72%),
+    radial-gradient(ellipse 50% 35% at 50% 0%, rgba(99, 102, 241, .18), transparent),
+    linear-gradient(180deg, #07051a 0%, #1e1b4b 45%, #3730a3 100%);
+}
+.nova-hero-store-card--star .nova-hero-preview::after{
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(253, 224, 71, .12), transparent 70%);
+  pointer-events: none;
+}
+.nova-hero-store-card--star .nova-hero-store-name{
+  color: #fef9c3;
+  text-shadow: none;
+}
+.nova-hero-store-card--star .nova-hero-svg{
+  filter: drop-shadow(0 6px 14px rgba(109, 40, 217, .4));
+}
+/* Ana ekran + soru FX hareketleri → styles/069-nova-hero-premium-motion.css */
+
+#main-screen .nova-main-hero-zone--star.is-visible .nova-main-hero-zone__pad{
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    rgba(253, 224, 71, 0.22),
+    rgba(168, 85, 247, 0.12) 52%,
+    transparent 70%);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+}
+
+/* Arena burst — altın/mor */
+.nova-sp-hero-arena.nova-sp-theme-star.is-slamming .nova-sp-hero-arena__burst{
+  background: radial-gradient(ellipse, rgba(253, 224, 71, .92) 0%, rgba(168, 85, 247, .5) 42%, transparent 72%);
+}
+.nova-sp-hero-arena.nova-sp-theme-star.is-epic .nova-sp-hero-arena__burst{
+  background: radial-gradient(ellipse, rgba(254, 240, 138, .95) 0%, rgba(192, 132, 252, .55) 38%, transparent 72%);
+}
+.nova-sp-hero-arena.nova-sp-theme-star.is-slamming .nova-sp-hero-arena__ring,
+.nova-sp-hero-arena.nova-sp-theme-star.is-epic .nova-sp-hero-arena__ring{
+  border-color: rgba(253, 224, 71, .9);
+}
+.nova-sp-hero-arena.nova-sp-theme-star.is-caption-show .nova-sp-hero-arena__caption{
+  background: linear-gradient(135deg, rgba(168, 85, 247, .92), rgba(109, 40, 217, .88));
+  border-color: rgba(253, 224, 71, .7);
+  text-shadow: 0 2px 0 rgba(76, 29, 149, .85), 0 0 18px rgba(254, 240, 138, .45);
+}
+

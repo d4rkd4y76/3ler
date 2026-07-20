@@ -1,0 +1,21 @@
+/* --- Nova: Düello cezası kilit stili --- */
+.find-duel-button.locked,
+#findDuelButton:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  filter: grayscale(0.3);
+  position: relative;
+}
+.find-duel-button.locked::after,
+#findDuelButton:disabled::after {
+  content: "🔒";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+}
+/* Buton içindeki geri sayım metninin görünürlüğü için */
+#findDuelButton .button-content span.countdown-label {
+  font-weight: 700;
+}

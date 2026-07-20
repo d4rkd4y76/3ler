@@ -1,0 +1,15 @@
+/* Nova tweak: Available players name color (theme-friendly, readable) */
+.matchmaking-screen.nova-duel-arena .players-list .player-name{
+  color:#e9f4ff !important;
+  text-shadow: 0 0 8px rgba(0,160,255,.22), 0 0 2px rgba(0,0,0,.35);
+  font-weight: 800;
+}
+/* ensure the entire item uses light text on dark card */
+.matchmaking-screen.nova-duel-arena .players-list .player-item{
+  color:#e9f4ff !important;
+}
+/* also override any generic orange shadow on duel-name inside matchmaking */
+.matchmaking-screen.nova-duel-arena .duel-player-name{
+  color:#e9f4ff !important;
+  text-shadow: 0 0 6px rgba(0,160,255,.18);
+}

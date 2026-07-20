@@ -1,0 +1,3347 @@
+{
+  "meta": {
+    "topicId": "t03",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_matematik",
+    "title": "Tek ve Çift Doğal Sayılar",
+    "grade": 3,
+    "count": 130
+  },
+  "questions": [
+    {
+      "id": "mat3_tekcift_001",
+      "level": "kolay",
+      "premise": "Bir sayının tek mi yoksa çift mi olduğunu anlamak için her zaman birler basamağına bakarız.",
+      "text": "Buna göre bir sayının çift sayı olabilmesi için birler basamağında hangi rakamların olması gerekir?",
+      "correct": "0, 2, 4, 6, 8",
+      "wrong1": "1, 3, 5, 7, 9",
+      "wrong2": "1, 2, 3, 4, 5",
+      "explanation": "Çift sayılar ikişerli gruplandığında hiç artmayan sayılardır. Birler basamağında 0, 2, 4, 6, 8 olan sayılar çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir sayının çift sayı olabilmesi için birler basamağında hangi rakamların olması gerekir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sayının tek mi yoksa çift mi olduğunu anlamak için her zaman birler basamağına bakarız."
+            }
+          ]
+        },
+        "correct": "0, 2, 4, 6, 8",
+        "wrong1": "1, 3, 5, 7, 9",
+        "wrong2": "1, 2, 3, 4, 5",
+        "explanation": "Çift sayılar ikişerli gruplandığında hiç artmayan sayılardır. Birler basamağında 0, 2, 4, 6, 8 olan sayılar çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_002",
+      "level": "kolay",
+      "premise": "Bir sayının tek mi yoksa çift mi olduğunu anlamak için her zaman birler basamağına bakarız.",
+      "text": "Buna göre bir sayının tek sayı olabilmesi için birler basamağında hangi rakamların olması gerekir?",
+      "correct": "1, 3, 5, 7, 9",
+      "wrong1": "0, 2, 4, 6, 8",
+      "wrong2": "0, 1, 2, 3, 4",
+      "explanation": "Tek sayılar ikişerli gruplandığında 1 artan sayılardır. Birler basamağında 1, 3, 5, 7, 9 olan sayılar tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir sayının tek sayı olabilmesi için birler basamağında hangi rakamların olması gerekir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sayının tek mi yoksa çift mi olduğunu anlamak için her zaman birler basamağına bakarız."
+            }
+          ]
+        },
+        "correct": "1, 3, 5, 7, 9",
+        "wrong1": "0, 2, 4, 6, 8",
+        "wrong2": "0, 1, 2, 3, 4",
+        "explanation": "Tek sayılar ikişerli gruplandığında 1 artan sayılardır. Birler basamağında 1, 3, 5, 7, 9 olan sayılar tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi bir çift sayıdır?",
+      "correct": "14",
+      "wrong1": "17",
+      "wrong2": "21",
+      "explanation": "14 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 14 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi bir çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14",
+        "wrong1": "17",
+        "wrong2": "21",
+        "explanation": "14 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 14 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi bir tek sayıdır?",
+      "correct": "25",
+      "wrong1": "28",
+      "wrong2": "30",
+      "explanation": "25 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 25 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi bir tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "25",
+        "wrong1": "28",
+        "wrong2": "30",
+        "explanation": "25 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 25 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "136",
+      "wrong1": "135",
+      "wrong2": "137",
+      "explanation": "136 sayısının birler basamağındaki 6 rakamı çifttir, bu yüzden sayı da çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "136",
+        "wrong1": "135",
+        "wrong2": "137",
+        "explanation": "136 sayısının birler basamağındaki 6 rakamı çifttir, bu yüzden sayı da çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "249",
+      "wrong1": "248",
+      "wrong2": "250",
+      "explanation": "249 sayısının birler basamağındaki 9 rakamı tektir, bu yüzden sayı da tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "249",
+        "wrong1": "248",
+        "wrong2": "250",
+        "explanation": "249 sayısının birler basamağındaki 9 rakamı tektir, bu yüzden sayı da tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "300",
+      "wrong1": "301",
+      "wrong2": "303",
+      "explanation": "300 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 300 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "300",
+        "wrong1": "301",
+        "wrong2": "303",
+        "explanation": "300 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 300 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "411",
+      "wrong1": "412",
+      "wrong2": "410",
+      "explanation": "411 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 411 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "411",
+        "wrong1": "412",
+        "wrong2": "410",
+        "explanation": "411 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 411 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "582",
+      "wrong1": "583",
+      "wrong2": "581",
+      "explanation": "582 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 582 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "582",
+        "wrong1": "583",
+        "wrong2": "581",
+        "explanation": "582 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 582 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "673",
+      "wrong1": "674",
+      "wrong2": "672",
+      "explanation": "673 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 673 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "673",
+        "wrong1": "674",
+        "wrong2": "672",
+        "explanation": "673 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 673 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "794",
+      "wrong1": "795",
+      "wrong2": "797",
+      "explanation": "794 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 794 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "794",
+        "wrong1": "795",
+        "wrong2": "797",
+        "explanation": "794 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 794 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "855",
+      "wrong1": "856",
+      "wrong2": "858",
+      "explanation": "855 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 855 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "855",
+        "wrong1": "856",
+        "wrong2": "858",
+        "explanation": "855 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 855 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "918",
+      "wrong1": "919",
+      "wrong2": "917",
+      "explanation": "918 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 918 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "918",
+        "wrong1": "919",
+        "wrong2": "917",
+        "explanation": "918 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 918 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "107",
+      "wrong1": "108",
+      "wrong2": "106",
+      "explanation": "107 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 107 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "107",
+        "wrong1": "108",
+        "wrong2": "106",
+        "explanation": "107 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 107 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "220",
+      "wrong1": "221",
+      "wrong2": "223",
+      "explanation": "220 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 220 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "220",
+        "wrong1": "221",
+        "wrong2": "223",
+        "explanation": "220 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 220 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_016",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "339",
+      "wrong1": "338",
+      "wrong2": "330",
+      "explanation": "339 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 339 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "339",
+        "wrong1": "338",
+        "wrong2": "330",
+        "explanation": "339 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 339 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_017",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "462",
+      "wrong1": "461",
+      "wrong2": "463",
+      "explanation": "462 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 462 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "462",
+        "wrong1": "461",
+        "wrong2": "463",
+        "explanation": "462 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 462 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_018",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "581",
+      "wrong1": "582",
+      "wrong2": "584",
+      "explanation": "581 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 581 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "581",
+        "wrong1": "582",
+        "wrong2": "584",
+        "explanation": "581 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 581 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_019",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "694",
+      "wrong1": "695",
+      "wrong2": "697",
+      "explanation": "694 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 694 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "694",
+        "wrong1": "695",
+        "wrong2": "697",
+        "explanation": "694 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 694 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_020",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "743",
+      "wrong1": "744",
+      "wrong2": "746",
+      "explanation": "743 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 743 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "743",
+        "wrong1": "744",
+        "wrong2": "746",
+        "explanation": "743 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 743 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "876",
+      "wrong1": "877",
+      "wrong2": "879",
+      "explanation": "876 sayısının birler basamağında 6 vardır. 6 çift bir rakam olduğu için 876 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "876",
+        "wrong1": "877",
+        "wrong2": "879",
+        "explanation": "876 sayısının birler basamağında 6 vardır. 6 çift bir rakam olduğu için 876 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "925",
+      "wrong1": "926",
+      "wrong2": "928",
+      "explanation": "925 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 925 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "925",
+        "wrong1": "926",
+        "wrong2": "928",
+        "explanation": "925 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 925 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_023",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "158",
+      "wrong1": "159",
+      "wrong2": "157",
+      "explanation": "158 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 158 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "158",
+        "wrong1": "159",
+        "wrong2": "157",
+        "explanation": "158 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 158 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "287",
+      "wrong1": "288",
+      "wrong2": "286",
+      "explanation": "287 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 287 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "287",
+        "wrong1": "288",
+        "wrong2": "286",
+        "explanation": "287 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 287 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "390",
+      "wrong1": "391",
+      "wrong2": "393",
+      "explanation": "390 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 390 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "390",
+        "wrong1": "391",
+        "wrong2": "393",
+        "explanation": "390 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 390 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "409",
+      "wrong1": "408",
+      "wrong2": "406",
+      "explanation": "409 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 409 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "409",
+        "wrong1": "408",
+        "wrong2": "406",
+        "explanation": "409 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 409 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "512",
+      "wrong1": "513",
+      "wrong2": "511",
+      "explanation": "512 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 512 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "512",
+        "wrong1": "513",
+        "wrong2": "511",
+        "explanation": "512 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 512 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_028",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "621",
+      "wrong1": "622",
+      "wrong2": "620",
+      "explanation": "621 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 621 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "621",
+        "wrong1": "622",
+        "wrong2": "620",
+        "explanation": "621 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 621 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "734",
+      "wrong1": "735",
+      "wrong2": "737",
+      "explanation": "734 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 734 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "734",
+        "wrong1": "735",
+        "wrong2": "737",
+        "explanation": "734 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 734 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "843",
+      "wrong1": "844",
+      "wrong2": "842",
+      "explanation": "843 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 843 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "843",
+        "wrong1": "844",
+        "wrong2": "842",
+        "explanation": "843 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 843 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_031",
+      "level": "orta",
+      "premise": "İki basamaklı en küçük sayı 10'dur.",
+      "text": "Buna göre iki basamaklı en küçük tek sayı kaçtır?",
+      "correct": "11",
+      "wrong1": "13",
+      "wrong2": "10",
+      "explanation": "10 çift sayıdır. 10'dan sonra gelen ilk tek sayı 11'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre iki basamaklı en küçük tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İki basamaklı en küçük sayı 10'dur."
+            }
+          ]
+        },
+        "correct": "11",
+        "wrong1": "13",
+        "wrong2": "10",
+        "explanation": "10 çift sayıdır. 10'dan sonra gelen ilk tek sayı 11'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_032",
+      "level": "orta",
+      "premise": "Üç basamaklı en küçük sayı 100'dür.",
+      "text": "Buna göre üç basamaklı en küçük tek sayı kaçtır?",
+      "correct": "101",
+      "wrong1": "100",
+      "wrong2": "103",
+      "explanation": "100 sayısının birler basamağı 0 olduğu için çifttir. 100'den sonra gelen ilk sayı 101'dir ve tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç basamaklı en küçük tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Üç basamaklı en küçük sayı 100'dür."
+            }
+          ]
+        },
+        "correct": "101",
+        "wrong1": "100",
+        "wrong2": "103",
+        "explanation": "100 sayısının birler basamağı 0 olduğu için çifttir. 100'den sonra gelen ilk sayı 101'dir ve tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_033",
+      "level": "orta",
+      "premise": "Üç basamaklı en büyük sayı 999'dur.",
+      "text": "Buna göre üç basamaklı en büyük çift sayı kaçtır?",
+      "correct": "998",
+      "wrong1": "1000",
+      "wrong2": "996",
+      "explanation": "999 tek sayıdır. 999'dan bir küçük olan sayı 998'dir ve birler basamağı 8 olduğu için çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç basamaklı en büyük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Üç basamaklı en büyük sayı 999'dur."
+            }
+          ]
+        },
+        "correct": "998",
+        "wrong1": "1000",
+        "wrong2": "996",
+        "explanation": "999 tek sayıdır. 999'dan bir küçük olan sayı 998'dir ve birler basamağı 8 olduğu için çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_034",
+      "level": "orta",
+      "premise": null,
+      "text": "İki basamaklı en büyük tek sayı aşağıdakilerden hangisidir?",
+      "correct": "99",
+      "wrong1": "97",
+      "wrong2": "98",
+      "explanation": "İki basamaklı en büyük sayı 99'dur. 99 sayısının birler basamağı 9 olduğu için tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "İki basamaklı en büyük tek sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "99",
+        "wrong1": "97",
+        "wrong2": "98",
+        "explanation": "İki basamaklı en büyük sayı 99'dur. 99 sayısının birler basamağı 9 olduğu için tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_035",
+      "level": "orta",
+      "premise": null,
+      "text": "İki basamaklı en büyük çift sayı aşağıdakilerden hangisidir?",
+      "correct": "98",
+      "wrong1": "99",
+      "wrong2": "96",
+      "explanation": "En büyük iki basamaklı sayı 99'dur ama tektir. 99'dan bir küçük sayı olan 98 çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "İki basamaklı en büyük çift sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "98",
+        "wrong1": "99",
+        "wrong2": "96",
+        "explanation": "En büyük iki basamaklı sayı 99'dur ama tektir. 99'dan bir küçük sayı olan 98 çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_036",
+      "level": "orta",
+      "premise": null,
+      "text": "Üç basamaklı en büyük tek sayı aşağıdakilerden hangisidir?",
+      "correct": "999",
+      "wrong1": "997",
+      "wrong2": "989",
+      "explanation": "Üç basamaklı en büyük sayı 999'dur. Birler basamağında 9 olduğu için bu sayı tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Üç basamaklı en büyük tek sayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "999",
+        "wrong1": "997",
+        "wrong2": "989",
+        "explanation": "Üç basamaklı en büyük sayı 999'dur. Birler basamağında 9 olduğu için bu sayı tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_037",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı en küçük üç basamaklı tek sayı kaçtır?",
+      "correct": "103",
+      "wrong1": "101",
+      "wrong2": "123",
+      "explanation": "Rakamları farklı en küçük sayı 102'dir fakat çifttir. 102'den sonraki 103 sayısı tektir ve rakamları farklıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı en küçük üç basamaklı tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "103",
+        "wrong1": "101",
+        "wrong2": "123",
+        "explanation": "Rakamları farklı en küçük sayı 102'dir fakat çifttir. 102'den sonraki 103 sayısı tektir ve rakamları farklıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_038",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı en büyük üç basamaklı çift sayı kaçtır?",
+      "correct": "986",
+      "wrong1": "988",
+      "wrong2": "998",
+      "explanation": "En büyük rakamları seçersek 9 ve 8'i başa yazarız. Birler basamağına 7 yazarsak tek olur, o yüzden 6 yazmalıyız: 986.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı en büyük üç basamaklı çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "986",
+        "wrong1": "988",
+        "wrong2": "998",
+        "explanation": "En büyük rakamları seçersek 9 ve 8'i başa yazarız. Birler basamağına 7 yazarsak tek olur, o yüzden 6 yazmalıyız: 986.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_039",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı en büyük üç basamaklı tek sayı kaçtır?",
+      "correct": "987",
+      "wrong1": "999",
+      "wrong2": "985",
+      "explanation": "Yüzler basamağına 9, onlar basamağına 8 yazarız. Sayının tek olması için birler basamağına sıradaki en büyük tek rakam olan 7 yazılır: 987.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı en büyük üç basamaklı tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "987",
+        "wrong1": "999",
+        "wrong2": "985",
+        "explanation": "Yüzler basamağına 9, onlar basamağına 8 yazarız. Sayının tek olması için birler basamağına sıradaki en büyük tek rakam olan 7 yazılır: 987.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_040",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı en küçük üç basamaklı çift sayı kaçtır?",
+      "correct": "102",
+      "wrong1": "100",
+      "wrong2": "104",
+      "explanation": "Yüzler basamağına 1, onlar basamağına 0 yazarız. Birler basamağına 2 yazdığımızda hem rakamları farklı hem de çift bir sayı olur: 102.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı en küçük üç basamaklı çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "102",
+        "wrong1": "100",
+        "wrong2": "104",
+        "explanation": "Yüzler basamağına 1, onlar basamağına 0 yazarız. Birler basamağına 2 yazdığımızda hem rakamları farklı hem de çift bir sayı olur: 102.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_041",
+      "level": "orta",
+      "premise": "34_ sayısının tek sayı olması istenmektedir.",
+      "text": "Buna göre boş bırakılan birler basamağına aşağıdakilerden hangisi yazılamaz?",
+      "correct": "4",
+      "wrong1": "3",
+      "wrong2": "5",
+      "explanation": "Sayının tek olması için birler basamağına 1, 3, 5, 7 veya 9 yazılmalıdır. 4 yazılırsa sayı çift olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre boş bırakılan birler basamağına aşağıdakilerden hangisi yazılamaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "34_ sayısının tek sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "3",
+        "wrong2": "5",
+        "explanation": "Sayının tek olması için birler basamağına 1, 3, 5, 7 veya 9 yazılmalıdır. 4 yazılırsa sayı çift olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_042",
+      "level": "orta",
+      "premise": "5_2 sayısının çift sayı olması istenmektedir.",
+      "text": "Buna göre onlar basamağındaki boşluğa kaç farklı rakam yazılabilir?",
+      "correct": "10",
+      "wrong1": "5",
+      "wrong2": "0",
+      "explanation": "Sayının tek mi çift mi olduğunu sadece birler basamağı belirler. Birler basamağı 2 olduğu için bu sayı her durumda çifttir. Onlar basamağına 0'dan 9'a kadar tüm rakamlar (10 adet) yazılabilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre onlar basamağındaki boşluğa kaç farklı rakam yazılabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "5_2 sayısının çift sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "5",
+        "wrong2": "0",
+        "explanation": "Sayının tek mi çift mi olduğunu sadece birler basamağı belirler. Birler basamağı 2 olduğu için bu sayı her durumda çifttir. Onlar basamağına 0'dan 9'a kadar tüm rakamlar (10 adet) yazılabilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_043",
+      "level": "orta",
+      "premise": "71_ sayısının çift sayı olması istenmektedir.",
+      "text": "Buna göre boş bırakılan birler basamağına yazılabilecek rakamların toplamı kaçtır?",
+      "correct": "20",
+      "wrong1": "25",
+      "wrong2": "12",
+      "explanation": "Çift olması için birler basamağına 0, 2, 4, 6, 8 gelebilir. Bu rakamların toplamı 0+2+4+6+8 = 20 eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre boş bırakılan birler basamağına yazılabilecek rakamların toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "71_ sayısının çift sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "25",
+        "wrong2": "12",
+        "explanation": "Çift olması için birler basamağına 0, 2, 4, 6, 8 gelebilir. Bu rakamların toplamı 0+2+4+6+8 = 20 eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_044",
+      "level": "orta",
+      "premise": "89_ sayısının tek sayı olması istenmektedir.",
+      "text": "Buna göre boş bırakılan birler basamağına yazılabilecek en büyük rakam kaçtır?",
+      "correct": "9",
+      "wrong1": "7",
+      "wrong2": "8",
+      "explanation": "Tek rakamlar 1, 3, 5, 7, 9'dur. Bunların içinden en büyüğü 9'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre boş bırakılan birler basamağına yazılabilecek en büyük rakam kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "89_ sayısının tek sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "9",
+        "wrong1": "7",
+        "wrong2": "8",
+        "explanation": "Tek rakamlar 1, 3, 5, 7, 9'dur. Bunların içinden en büyüğü 9'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_045",
+      "level": "orta",
+      "premise": "4_6 sayısının çift sayı olması istenmektedir.",
+      "text": "Buna göre onlar basamağına gelebilecek rakamlarla ilgili hangisi Doğrudur?",
+      "correct": "Tüm rakamlar (0-9) gelebilir.",
+      "wrong1": "Sadece çift rakamlar gelebilir.",
+      "wrong2": "Sadece tek rakamlar gelebilir.",
+      "explanation": "Bir sayının çift olup olmadığına sadece birler basamağına bakarak karar veririz. Birler basamağı 6 olduğu için zaten çifttir, onlar basamağına her şey gelebilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre onlar basamağına gelebilecek rakamlarla ilgili hangisi Doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "4_6 sayısının çift sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "Tüm rakamlar (0-9) gelebilir.",
+        "wrong1": "Sadece çift rakamlar gelebilir.",
+        "wrong2": "Sadece tek rakamlar gelebilir.",
+        "explanation": "Bir sayının çift olup olmadığına sadece birler basamağına bakarak karar veririz. Birler basamağı 6 olduğu için zaten çifttir, onlar basamağına her şey gelebilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_046",
+      "level": "zor",
+      "premise": "Tek bir sayı ile Tek bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 3 + 5 = 8).",
+      "text": "Buna göre aşağıdaki işlemlerden hangisinin sonucu Kesi̇nli̇kle bir çift sayıdır?",
+      "correct": "21 + 33",
+      "wrong1": "14 + 17",
+      "wrong2": "20 + 30",
+      "explanation": "21 (Tek) + 33 (Tek) işleminin sonucu kural gereği mutlaka çift sayıdır. (21+33=54). 20+30 çift+çift'tir (Soru tek+tek istiyor).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aşağıdaki işlemlerden hangisinin sonucu Kesi̇nli̇kle bir çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tek bir sayı ile Tek bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 3 + 5 = 8)."
+            }
+          ]
+        },
+        "correct": "21 + 33",
+        "wrong1": "14 + 17",
+        "wrong2": "20 + 30",
+        "explanation": "21 (Tek) + 33 (Tek) işleminin sonucu kural gereği mutlaka çift sayıdır. (21+33=54). 20+30 çift+çift'tir (Soru tek+tek istiyor).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_047",
+      "level": "zor",
+      "premise": "Çi̇ft bir sayı ile Çi̇ft bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 4 + 6 = 10).",
+      "text": "Buna göre 42 + 28 işleminin sonucunun tek mi çift mi olacağı ile ilgili hangisi doğrudur?",
+      "correct": "İkisi de çift olduğu için sonuç çifttir.",
+      "wrong1": "İkisi de çift olduğu için sonuç tektir.",
+      "wrong2": "Biri tek biri çift olduğu için sonuç tektir.",
+      "explanation": "42 (Çift) ve 28 (Çift). İki çift sayının toplamı her zaman çift bir sayı verir. 42+28=70 (Çift).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 42 + 28 işleminin sonucunun tek mi çift mi olacağı ile ilgili hangisi doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çi̇ft bir sayı ile Çi̇ft bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 4 + 6 = 10)."
+            }
+          ]
+        },
+        "correct": "İkisi de çift olduğu için sonuç çifttir.",
+        "wrong1": "İkisi de çift olduğu için sonuç tektir.",
+        "wrong2": "Biri tek biri çift olduğu için sonuç tektir.",
+        "explanation": "42 (Çift) ve 28 (Çift). İki çift sayının toplamı her zaman çift bir sayı verir. 42+28=70 (Çift).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_048",
+      "level": "zor",
+      "premise": "Tek bir sayı ile Çi̇ft bir sayının toplamı her zaman Tek bir sayıdır (Örn: 3 + 4 = 7).",
+      "text": "Buna göre 15 + 22 işleminin sonucu için ne söylenebilir?",
+      "correct": "Biri tek diğeri çift olduğu için sonuç tektir.",
+      "wrong1": "İkisi de tek olduğu için sonuç çifttir.",
+      "wrong2": "İkisi de çift olduğu için sonuç çifttir.",
+      "explanation": "15 (Tek) ve 22 (Çift). Tek ve çift sayının toplamı daima tek olur. 15+22=37 (Tek).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 15 + 22 işleminin sonucu için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tek bir sayı ile Çi̇ft bir sayının toplamı her zaman Tek bir sayıdır (Örn: 3 + 4 = 7)."
+            }
+          ]
+        },
+        "correct": "Biri tek diğeri çift olduğu için sonuç tektir.",
+        "wrong1": "İkisi de tek olduğu için sonuç çifttir.",
+        "wrong2": "İkisi de çift olduğu için sonuç çifttir.",
+        "explanation": "15 (Tek) ve 22 (Çift). Tek ve çift sayının toplamı daima tek olur. 15+22=37 (Tek).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_049",
+      "level": "zor",
+      "premise": "Aşağıdaki sepetlerin üzerinde yazan sayılar toplanacaktır.\n1. Sepet: 147\n2. Sepet: 213",
+      "text": "Buna göre bu iki sepetteki sayıların toplamı tek sayı mıdır, çift sayı mıdır?",
+      "correct": "İkisi de tek olduğu için toplamları çift sayıdır.",
+      "wrong1": "İkisi de tek olduğu için toplamları tek sayıdır.",
+      "wrong2": "Biri tek biri çift olduğu için toplamları tek sayıdır.",
+      "explanation": "147 (Tek) + 213 (Tek). İki tek sayının toplamı her zaman çift sayı yapar (147+213=360).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu iki sepetteki sayıların toplamı tek sayı mıdır, çift sayı mıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aşağıdaki sepetlerin üzerinde yazan sayılar toplanacaktır.\n1. Sepet: 147\n2. Sepet: 213"
+            }
+          ]
+        },
+        "correct": "İkisi de tek olduğu için toplamları çift sayıdır.",
+        "wrong1": "İkisi de tek olduğu için toplamları tek sayıdır.",
+        "wrong2": "Biri tek biri çift olduğu için toplamları tek sayıdır.",
+        "explanation": "147 (Tek) + 213 (Tek). İki tek sayının toplamı her zaman çift sayı yapar (147+213=360).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_050",
+      "level": "zor",
+      "premise": "Toplama işleminde Tek + Tek = Çift, Çift + Çift = Çift, Tek + Çift = Tek kuralları geçerlidir.",
+      "text": "Buna göre sonucu tek sayı olan işlem aşağıdakilerden hangisidir?",
+      "correct": "246 + 135",
+      "wrong1": "111 + 223",
+      "wrong2": "300 + 400",
+      "explanation": "246(Çift) + 135(Tek) = Tek sayı yapar. (111+223 Çift yapar, 300+400 Çift yapar).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sonucu tek sayı olan işlem aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Toplama işleminde Tek + Tek = Çift, Çift + Çift = Çift, Tek + Çift = Tek kuralları geçerlidir."
+            }
+          ]
+        },
+        "correct": "246 + 135",
+        "wrong1": "111 + 223",
+        "wrong2": "300 + 400",
+        "explanation": "246(Çift) + 135(Tek) = Tek sayı yapar. (111+223 Çift yapar, 300+400 Çift yapar).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_051",
+      "level": "zor",
+      "premise": "Ali'nin 14 bilyesi, Veli'nin ise 19 bilyesi vardır.",
+      "text": "Buna göre ali ve Veli bilyelerini birleştirirse toplam bilye sayısı için ne söylenebilir?",
+      "correct": "Çift + Tek olduğu için toplam bilye sayısı tektir.",
+      "wrong1": "Çift + Çift olduğu için toplam bilye sayısı çifttir.",
+      "wrong2": "Tek + Tek olduğu için toplam bilye sayısı çifttir.",
+      "explanation": "Ali'nin 14 (Çift), Veli'nin 19 (Tek) bilyesi vardır. Çift ve tek sayının toplamı tek sayıdır (33).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali ve Veli bilyelerini birleştirirse toplam bilye sayısı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali'nin 14 bilyesi, Veli'nin ise 19 bilyesi vardır."
+            }
+          ]
+        },
+        "correct": "Çift + Tek olduğu için toplam bilye sayısı tektir.",
+        "wrong1": "Çift + Çift olduğu için toplam bilye sayısı çifttir.",
+        "wrong2": "Tek + Tek olduğu için toplam bilye sayısı çifttir.",
+        "explanation": "Ali'nin 14 (Çift), Veli'nin 19 (Tek) bilyesi vardır. Çift ve tek sayının toplamı tek sayıdır (33).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_052",
+      "level": "zor",
+      "premise": "Zeynep kitabının önce 25 sayfasını, sonra 35 sayfasını okumuştur.",
+      "text": "Buna göre zeynep'in toplam okuduğu sayfa sayısı tek sayı mıdır, çift sayı mıdır?",
+      "correct": "Tek + Tek olduğu için çift sayıdır.",
+      "wrong1": "Tek + Çift olduğu için tek sayıdır.",
+      "wrong2": "Tek + Tek olduğu için tek sayıdır.",
+      "explanation": "25 (Tek) ve 35 (Tek). İki tek sayının toplamı çifttir (25+35=60).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre zeynep'in toplam okuduğu sayfa sayısı tek sayı mıdır, çift sayı mıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep kitabının önce 25 sayfasını, sonra 35 sayfasını okumuştur."
+            }
+          ]
+        },
+        "correct": "Tek + Tek olduğu için çift sayıdır.",
+        "wrong1": "Tek + Çift olduğu için tek sayıdır.",
+        "wrong2": "Tek + Tek olduğu için tek sayıdır.",
+        "explanation": "25 (Tek) ve 35 (Tek). İki tek sayının toplamı çifttir (25+35=60).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_053",
+      "level": "zor",
+      "premise": "Ayşe 40 elma, Fatma 50 elma toplamıştır.",
+      "text": "Buna göre toplam elma sayısı için aşağıdakilerden hangisi doğrudur?",
+      "correct": "Çift + Çift olduğu için çifttir.",
+      "wrong1": "Tek + Tek olduğu için çifttir.",
+      "wrong2": "Çift + Çift olduğu için tektir.",
+      "explanation": "40 (Çift) ve 50 (Çift). İki çift sayının toplamı her zaman çift bir sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam elma sayısı için aşağıdakilerden hangisi doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ayşe 40 elma, Fatma 50 elma toplamıştır."
+            }
+          ]
+        },
+        "correct": "Çift + Çift olduğu için çifttir.",
+        "wrong1": "Tek + Tek olduğu için çifttir.",
+        "wrong2": "Çift + Çift olduğu için tektir.",
+        "explanation": "40 (Çift) ve 50 (Çift). İki çift sayının toplamı her zaman çift bir sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_054",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki işlemlerden hangisinin sonucu bir çift sayıdır?",
+      "correct": "17 + 23",
+      "wrong1": "14 + 15",
+      "wrong2": "20 + 11",
+      "explanation": "17 (Tek) + 23 (Tek) işleminin sonucu 40 (Çift) olur. Tek + Tek = Çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki işlemlerden hangisinin sonucu bir çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "17 + 23",
+        "wrong1": "14 + 15",
+        "wrong2": "20 + 11",
+        "explanation": "17 (Tek) + 23 (Tek) işleminin sonucu 40 (Çift) olur. Tek + Tek = Çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_055",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki işlemlerden hangisinin sonucu bir tek sayıdır?",
+      "correct": "100 + 101",
+      "wrong1": "100 + 200",
+      "wrong2": "103 + 105",
+      "explanation": "100 (Çift) + 101 (Tek) işleminin sonucu 201 (Tek) olur. Çift + Tek = Tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki işlemlerden hangisinin sonucu bir tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "100 + 101",
+        "wrong1": "100 + 200",
+        "wrong2": "103 + 105",
+        "explanation": "100 (Çift) + 101 (Tek) işleminin sonucu 201 (Tek) olur. Çift + Tek = Tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_056",
+      "level": "kolay",
+      "premise": null,
+      "text": "2A5 sayısında A yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+      "correct": "Her zaman tek sayıdır.",
+      "wrong1": "Her zaman çift sayıdır.",
+      "wrong2": "A'ya bağlı olarak değişir.",
+      "explanation": "Sayının tek veya çift olduğunu birler basamağı belirler. Birler basamağı 5 (Tek) olduğu için A'nın ne olduğu önemli değildir, sayı her zaman tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2A5 sayısında A yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her zaman tek sayıdır.",
+        "wrong1": "Her zaman çift sayıdır.",
+        "wrong2": "A'ya bağlı olarak değişir.",
+        "explanation": "Sayının tek veya çift olduğunu birler basamağı belirler. Birler basamağı 5 (Tek) olduğu için A'nın ne olduğu önemli değildir, sayı her zaman tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_057",
+      "level": "kolay",
+      "premise": null,
+      "text": "4B8 sayısında B yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+      "correct": "Her zaman çift sayıdır.",
+      "wrong1": "Her zaman tek sayıdır.",
+      "wrong2": "B'ye bağlı olarak değişir.",
+      "explanation": "Birler basamağındaki 8 rakamı çift olduğu için B yerine ne gelirse gelsin sayı çift olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "4B8 sayısında B yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her zaman çift sayıdır.",
+        "wrong1": "Her zaman tek sayıdır.",
+        "wrong2": "B'ye bağlı olarak değişir.",
+        "explanation": "Birler basamağındaki 8 rakamı çift olduğu için B yerine ne gelirse gelsin sayı çift olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_058",
+      "level": "orta",
+      "premise": "Ardışık sayılar sırayla birbirini takip eden sayılardır (Örn: 10, 11, 12...)",
+      "text": "Buna göre ardışık iki doğal sayının toplamı her zaman ne tür bir sayıdır?",
+      "correct": "Biri tek biri çift olacağı için daima tek sayıdır.",
+      "wrong1": "İkisi de çift olacağı için daima çift sayıdır.",
+      "wrong2": "İkisi de tek olacağı için daima çift sayıdır.",
+      "explanation": "Ardışık iki sayıdan biri mutlaka tek, diğeri mutlaka çifttir. Tek ile Çift sayının toplamı daima tektir. (Örn: 4+5=9).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ardışık iki doğal sayının toplamı her zaman ne tür bir sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ardışık sayılar sırayla birbirini takip eden sayılardır (Örn: 10, 11, 12...)"
+            }
+          ]
+        },
+        "correct": "Biri tek biri çift olacağı için daima tek sayıdır.",
+        "wrong1": "İkisi de çift olacağı için daima çift sayıdır.",
+        "wrong2": "İkisi de tek olacağı için daima çift sayıdır.",
+        "explanation": "Ardışık iki sayıdan biri mutlaka tek, diğeri mutlaka çifttir. Tek ile Çift sayının toplamı daima tektir. (Örn: 4+5=9).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_059",
+      "level": "orta",
+      "premise": null,
+      "text": "3, 6, 8 rakamları birer kez kullanılarak yazılabilecek en büyük tek sayı kaçtır?",
+      "correct": "863",
+      "wrong1": "836",
+      "wrong2": "683",
+      "explanation": "Rakamlarla yazılabilecek en büyük sayı 863'tür. Birler basamağı 3 olduğu için de aynı zamanda tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3, 6, 8 rakamları birer kez kullanılarak yazılabilecek en büyük tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "863",
+        "wrong1": "836",
+        "wrong2": "683",
+        "explanation": "Rakamlarla yazılabilecek en büyük sayı 863'tür. Birler basamağı 3 olduğu için de aynı zamanda tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_060",
+      "level": "orta",
+      "premise": null,
+      "text": "1, 4, 7 rakamları birer kez kullanılarak yazılabilecek en küçük çift sayı kaçtır?",
+      "correct": "174",
+      "wrong1": "147",
+      "wrong2": "417",
+      "explanation": "Çift olması için birler basamağına mecburen 4 yazılır. Kalan 1 ve 7 en küçük sayıyı oluşturmak için yüzler ve onlar basamağına 17 şeklinde yazılır: 174.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1, 4, 7 rakamları birer kez kullanılarak yazılabilecek en küçük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "174",
+        "wrong1": "147",
+        "wrong2": "417",
+        "explanation": "Çift olması için birler basamağına mecburen 4 yazılır. Kalan 1 ve 7 en küçük sayıyı oluşturmak için yüzler ve onlar basamağına 17 şeklinde yazılır: 174.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_061",
+      "level": "orta",
+      "premise": null,
+      "text": "0, 5, 9 rakamları birer kez kullanılarak yazılabilecek en büyük çift sayı kaçtır?",
+      "correct": "950",
+      "wrong1": "590",
+      "wrong2": "905",
+      "explanation": "Çift olması için birler basamağına 0 gelmelidir. Geriye kalan 9 ve 5 ile en büyük sayı 950 olarak yazılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "0, 5, 9 rakamları birer kez kullanılarak yazılabilecek en büyük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "950",
+        "wrong1": "590",
+        "wrong2": "905",
+        "explanation": "Çift olması için birler basamağına 0 gelmelidir. Geriye kalan 9 ve 5 ile en büyük sayı 950 olarak yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_062",
+      "level": "orta",
+      "premise": null,
+      "text": "2, 4, 6 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+      "correct": "Hepsi çift sayıdır.",
+      "wrong1": "Hepsi tek sayıdır.",
+      "wrong2": "Bazıları tek, bazıları çifttir.",
+      "explanation": "Verilen üç rakam da (2, 4, 6) çifttir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar çift olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2, 4, 6 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hepsi çift sayıdır.",
+        "wrong1": "Hepsi tek sayıdır.",
+        "wrong2": "Bazıları tek, bazıları çifttir.",
+        "explanation": "Verilen üç rakam da (2, 4, 6) çifttir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar çift olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_063",
+      "level": "orta",
+      "premise": null,
+      "text": "1, 3, 5 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+      "correct": "Hepsi tek sayıdır.",
+      "wrong1": "Hepsi çift sayıdır.",
+      "wrong2": "Bazıları tek, bazıları çifttir.",
+      "explanation": "Verilen üç rakam da (1, 3, 5) tektir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar tek olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1, 3, 5 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hepsi tek sayıdır.",
+        "wrong1": "Hepsi çift sayıdır.",
+        "wrong2": "Bazıları tek, bazıları çifttir.",
+        "explanation": "Verilen üç rakam da (1, 3, 5) tektir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar tek olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_064",
+      "level": "zor",
+      "premise": "A sayısı Çi̇ft, B sayısı Tek doğal sayıdır.",
+      "text": "Buna göre a + B + A işleminin sonucu tek midir çift midir?",
+      "correct": "Çift+Tek+Çift işlemi tek sayı verir.",
+      "wrong1": "Çift+Tek+Çift işlemi çift sayı verir.",
+      "wrong2": "Bilinemez.",
+      "explanation": "A+A (Çift+Çift) her zaman çifttir. Bulunan Çift sayı ile B'yi (Tek) toplarsak Çift+Tek=Tek olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a + B + A işleminin sonucu tek midir çift midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "A sayısı Çi̇ft, B sayısı Tek doğal sayıdır."
+            }
+          ]
+        },
+        "correct": "Çift+Tek+Çift işlemi tek sayı verir.",
+        "wrong1": "Çift+Tek+Çift işlemi çift sayı verir.",
+        "wrong2": "Bilinemez.",
+        "explanation": "A+A (Çift+Çift) her zaman çifttir. Bulunan Çift sayı ile B'yi (Tek) toplarsak Çift+Tek=Tek olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_065",
+      "level": "zor",
+      "premise": "A ve B birer Tek doğal sayıdır.",
+      "text": "Buna göre a + B + 1 işleminin sonucu için ne söylenebilir?",
+      "correct": "Tek+Tek+Tek işlemi tek sayı verir.",
+      "wrong1": "Tek+Tek+Tek işlemi çift sayı verir.",
+      "wrong2": "Bilinemez.",
+      "explanation": "A(Tek) + B(Tek) = Çift sayı yapar. Bulunan Çift sayıya 1(Tek) eklersek Çift+Tek=Tek olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a + B + 1 işleminin sonucu için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "A ve B birer Tek doğal sayıdır."
+            }
+          ]
+        },
+        "correct": "Tek+Tek+Tek işlemi tek sayı verir.",
+        "wrong1": "Tek+Tek+Tek işlemi çift sayı verir.",
+        "wrong2": "Bilinemez.",
+        "explanation": "A(Tek) + B(Tek) = Çift sayı yapar. Bulunan Çift sayıya 1(Tek) eklersek Çift+Tek=Tek olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_066",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları toplamı 5 olan en küçük üç basamaklı sayı tek midir, çift midir?",
+      "correct": "Çifttir (Sayı 104'tür)",
+      "wrong1": "Tektir (Sayı 104'tür)",
+      "wrong2": "Tektir (Sayı 140'tır)",
+      "explanation": "Rakamları toplamı 5 olan en küçük üç basamaklı sayı 104'tür (1+0+4=5). Birler basamağı 4 olduğu için çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları toplamı 5 olan en küçük üç basamaklı sayı tek midir, çift midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çifttir (Sayı 104'tür)",
+        "wrong1": "Tektir (Sayı 104'tür)",
+        "wrong2": "Tektir (Sayı 140'tır)",
+        "explanation": "Rakamları toplamı 5 olan en küçük üç basamaklı sayı 104'tür (1+0+4=5). Birler basamağı 4 olduğu için çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_067",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları toplamı 4 olan en büyük üç basamaklı sayı tek midir, çift midir?",
+      "correct": "Çifttir (Sayı 400'dür)",
+      "wrong1": "Tektir (Sayı 400'dür)",
+      "wrong2": "Tektir (Sayı 310'dur)",
+      "explanation": "Rakamları toplamı 4 olan en büyük üç basamaklı sayı 400'dür (4+0+0=4). Birler basamağı 0 olduğu için çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları toplamı 4 olan en büyük üç basamaklı sayı tek midir, çift midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çifttir (Sayı 400'dür)",
+        "wrong1": "Tektir (Sayı 400'dür)",
+        "wrong2": "Tektir (Sayı 310'dur)",
+        "explanation": "Rakamları toplamı 4 olan en büyük üç basamaklı sayı 400'dür (4+0+0=4). Birler basamağı 0 olduğu için çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_068",
+      "level": "zor",
+      "premise": "Bir bilet kuyruğunda Ali'nin sırası en büyük iki basamaklı çift sayıdır.",
+      "text": "Buna göre ali bilet kuyruğunda kaçıncı sıradadır?",
+      "correct": "98.",
+      "wrong1": "99.",
+      "wrong2": "100.",
+      "explanation": "En büyük iki basamaklı sayı 99'dur fakat tektir. En büyük iki basamaklı çift sayı ise 98'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali bilet kuyruğunda kaçıncı sıradadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir bilet kuyruğunda Ali'nin sırası en büyük iki basamaklı çift sayıdır."
+            }
+          ]
+        },
+        "correct": "98.",
+        "wrong1": "99.",
+        "wrong2": "100.",
+        "explanation": "En büyük iki basamaklı sayı 99'dur fakat tektir. En büyük iki basamaklı çift sayı ise 98'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_069",
+      "level": "zor",
+      "premise": "Zeynep'in aklından tuttuğu sayı en küçük üç basamaklı tek sayıdır.",
+      "text": "Buna göre zeynep'in tuttuğu sayının birler basamağındaki rakam kaçtır?",
+      "correct": "1",
+      "wrong1": "0",
+      "wrong2": "3",
+      "explanation": "En küçük üç basamaklı sayı 100'dür (Çift). En küçük üç basamaklı tek sayı ise 101'dir. Birler basamağında 1 vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre zeynep'in tuttuğu sayının birler basamağındaki rakam kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep'in aklından tuttuğu sayı en küçük üç basamaklı tek sayıdır."
+            }
+          ]
+        },
+        "correct": "1",
+        "wrong1": "0",
+        "wrong2": "3",
+        "explanation": "En küçük üç basamaklı sayı 100'dür (Çift). En küçük üç basamaklı tek sayı ise 101'dir. Birler basamağında 1 vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_070",
+      "level": "zor",
+      "premise": "Aralarında ikişer fark bulunan sayılara ardışık tek veya ardışık çift sayılar denir. (Örn: 2, 4, 6... veya 1, 3, 5...)",
+      "text": "Buna göre 14'ten başlayarak ileriye doğru sayılan 3. ardışık çift sayı kaçtır?",
+      "correct": "18",
+      "wrong1": "20",
+      "wrong2": "16",
+      "explanation": "1. çift sayı: 14, 2. çift sayı: 16, 3. çift sayı: 18'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 14'ten başlayarak ileriye doğru sayılan 3. ardışık çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aralarında ikişer fark bulunan sayılara ardışık tek veya ardışık çift sayılar denir. (Örn: 2, 4, 6... veya 1, 3, 5...)"
+            }
+          ]
+        },
+        "correct": "18",
+        "wrong1": "20",
+        "wrong2": "16",
+        "explanation": "1. çift sayı: 14, 2. çift sayı: 16, 3. çift sayı: 18'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_071",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi bir çift sayıdır?",
+      "correct": "18",
+      "wrong1": "19",
+      "wrong2": "27",
+      "explanation": "18 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 18 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi bir çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "18",
+        "wrong1": "19",
+        "wrong2": "27",
+        "explanation": "18 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 18 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_072",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi bir tek sayıdır?",
+      "correct": "31",
+      "wrong1": "34",
+      "wrong2": "40",
+      "explanation": "31 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 31 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi bir tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "31",
+        "wrong1": "34",
+        "wrong2": "40",
+        "explanation": "31 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 31 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_073",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "142",
+      "wrong1": "141",
+      "wrong2": "143",
+      "explanation": "142 sayısının birler basamağındaki 2 rakamı çifttir, bu yüzden sayı da çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "142",
+        "wrong1": "141",
+        "wrong2": "143",
+        "explanation": "142 sayısının birler basamağındaki 2 rakamı çifttir, bu yüzden sayı da çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_074",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "257",
+      "wrong1": "256",
+      "wrong2": "258",
+      "explanation": "257 sayısının birler basamağındaki 7 rakamı tektir, bu yüzden sayı da tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "257",
+        "wrong1": "256",
+        "wrong2": "258",
+        "explanation": "257 sayısının birler basamağındaki 7 rakamı tektir, bu yüzden sayı da tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_075",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "310",
+      "wrong1": "311",
+      "wrong2": "313",
+      "explanation": "310 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 310 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "310",
+        "wrong1": "311",
+        "wrong2": "313",
+        "explanation": "310 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 310 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_076",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "429",
+      "wrong1": "428",
+      "wrong2": "420",
+      "explanation": "429 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 429 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "429",
+        "wrong1": "428",
+        "wrong2": "420",
+        "explanation": "429 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 429 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_077",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "536",
+      "wrong1": "537",
+      "wrong2": "535",
+      "explanation": "536 sayısının birler basamağında 6 vardır. 6 çift bir rakam olduğu için 536 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "536",
+        "wrong1": "537",
+        "wrong2": "535",
+        "explanation": "536 sayısının birler basamağında 6 vardır. 6 çift bir rakam olduğu için 536 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_078",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "681",
+      "wrong1": "682",
+      "wrong2": "680",
+      "explanation": "681 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 681 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "681",
+        "wrong1": "682",
+        "wrong2": "680",
+        "explanation": "681 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 681 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_079",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "708",
+      "wrong1": "709",
+      "wrong2": "707",
+      "explanation": "708 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 708 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "708",
+        "wrong1": "709",
+        "wrong2": "707",
+        "explanation": "708 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 708 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_080",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "863",
+      "wrong1": "864",
+      "wrong2": "866",
+      "explanation": "863 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 863 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "863",
+        "wrong1": "864",
+        "wrong2": "866",
+        "explanation": "863 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 863 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_081",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "924",
+      "wrong1": "925",
+      "wrong2": "927",
+      "explanation": "924 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 924 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "924",
+        "wrong1": "925",
+        "wrong2": "927",
+        "explanation": "924 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 924 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_082",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "115",
+      "wrong1": "116",
+      "wrong2": "114",
+      "explanation": "115 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 115 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "115",
+        "wrong1": "116",
+        "wrong2": "114",
+        "explanation": "115 sayısının birler basamağında 5 vardır. 5 tek bir rakam olduğu için 115 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_083",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "242",
+      "wrong1": "243",
+      "wrong2": "241",
+      "explanation": "242 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 242 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "242",
+        "wrong1": "243",
+        "wrong2": "241",
+        "explanation": "242 sayısının birler basamağında 2 vardır. 2 çift bir rakam olduğu için 242 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_084",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "357",
+      "wrong1": "358",
+      "wrong2": "356",
+      "explanation": "357 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 357 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "357",
+        "wrong1": "358",
+        "wrong2": "356",
+        "explanation": "357 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 357 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_085",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "470",
+      "wrong1": "471",
+      "wrong2": "473",
+      "explanation": "470 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 470 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "470",
+        "wrong1": "471",
+        "wrong2": "473",
+        "explanation": "470 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 470 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_086",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "599",
+      "wrong1": "598",
+      "wrong2": "590",
+      "explanation": "599 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 599 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "599",
+        "wrong1": "598",
+        "wrong2": "590",
+        "explanation": "599 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 599 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_087",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "606",
+      "wrong1": "605",
+      "wrong2": "607",
+      "explanation": "606 sayısının birler basamağında 6 vardır. 6 çift bir rakam olduğu için 606 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "606",
+        "wrong1": "605",
+        "wrong2": "607",
+        "explanation": "606 sayısının birler basamağında 6 vardır. 6 çift bir rakam olduğu için 606 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_088",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "711",
+      "wrong1": "712",
+      "wrong2": "714",
+      "explanation": "711 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 711 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "711",
+        "wrong1": "712",
+        "wrong2": "714",
+        "explanation": "711 sayısının birler basamağında 1 vardır. 1 tek bir rakam olduğu için 711 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_089",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "828",
+      "wrong1": "829",
+      "wrong2": "827",
+      "explanation": "828 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 828 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "828",
+        "wrong1": "829",
+        "wrong2": "827",
+        "explanation": "828 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 828 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_090",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "933",
+      "wrong1": "934",
+      "wrong2": "936",
+      "explanation": "933 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 933 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "933",
+        "wrong1": "934",
+        "wrong2": "936",
+        "explanation": "933 sayısının birler basamağında 3 vardır. 3 tek bir rakam olduğu için 933 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_091",
+      "level": "orta",
+      "premise": "İki basamaklı en küçük sayı 10'dur.",
+      "text": "Buna göre iki basamaklı en küçük çift sayı kaçtır?",
+      "correct": "10",
+      "wrong1": "12",
+      "wrong2": "11",
+      "explanation": "İki basamaklı en küçük sayı olan 10, birler basamağı 0 olduğu için zaten çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre iki basamaklı en küçük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İki basamaklı en küçük sayı 10'dur."
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "12",
+        "wrong2": "11",
+        "explanation": "İki basamaklı en küçük sayı olan 10, birler basamağı 0 olduğu için zaten çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_092",
+      "level": "orta",
+      "premise": "Üç basamaklı en küçük sayı 100'dür.",
+      "text": "Buna göre üç basamaklı en küçük çift sayı kaçtır?",
+      "correct": "100",
+      "wrong1": "102",
+      "wrong2": "101",
+      "explanation": "Üç basamaklı en küçük sayı olan 100, birler basamağı 0 olduğu için zaten çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç basamaklı en küçük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Üç basamaklı en küçük sayı 100'dür."
+            }
+          ]
+        },
+        "correct": "100",
+        "wrong1": "102",
+        "wrong2": "101",
+        "explanation": "Üç basamaklı en küçük sayı olan 100, birler basamağı 0 olduğu için zaten çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_093",
+      "level": "orta",
+      "premise": "Üç basamaklı en büyük sayı 999'dur.",
+      "text": "Buna göre üç basamaklı en büyük tek sayı kaçtır?",
+      "correct": "999",
+      "wrong1": "997",
+      "wrong2": "998",
+      "explanation": "Üç basamaklı en büyük sayı olan 999, birler basamağı 9 olduğu için zaten tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç basamaklı en büyük tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Üç basamaklı en büyük sayı 999'dur."
+            }
+          ]
+        },
+        "correct": "999",
+        "wrong1": "997",
+        "wrong2": "998",
+        "explanation": "Üç basamaklı en büyük sayı olan 999, birler basamağı 9 olduğu için zaten tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_094",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı iki basamaklı en küçük çift sayı kaçtır?",
+      "correct": "10",
+      "wrong1": "12",
+      "wrong2": "20",
+      "explanation": "İki basamaklı en küçük çift sayı 10'dur. Rakamları 1 ve 0 olduğu için birbirinden farklıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı iki basamaklı en küçük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "10",
+        "wrong1": "12",
+        "wrong2": "20",
+        "explanation": "İki basamaklı en küçük çift sayı 10'dur. Rakamları 1 ve 0 olduğu için birbirinden farklıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_095",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları birbirinden farklı iki basamaklı en büyük tek sayı kaçtır?",
+      "correct": "97",
+      "wrong1": "99",
+      "wrong2": "89",
+      "explanation": "İki basamaklı en büyük tek sayı 99'dur fakat rakamları aynıdır. Rakamları farklı en büyük tek sayı 97'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları birbirinden farklı iki basamaklı en büyük tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "97",
+        "wrong1": "99",
+        "wrong2": "89",
+        "explanation": "İki basamaklı en büyük tek sayı 99'dur fakat rakamları aynıdır. Rakamları farklı en büyük tek sayı 97'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_096",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları toplamı 6 olan en küçük iki basamaklı çift sayı kaçtır?",
+      "correct": "24",
+      "wrong1": "15",
+      "wrong2": "42",
+      "explanation": "İki basamaklı çift sayılar 10'dan başlar. Rakamları toplamı 6 olan en küçük çift sayı 24'tür (2+4=6).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları toplamı 6 olan en küçük iki basamaklı çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "24",
+        "wrong1": "15",
+        "wrong2": "42",
+        "explanation": "İki basamaklı çift sayılar 10'dan başlar. Rakamları toplamı 6 olan en küçük çift sayı 24'tür (2+4=6).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_097",
+      "level": "orta",
+      "premise": "8_ sayısının tek sayı olması istenmektedir.",
+      "text": "Buna göre boş bırakılan birler basamağına yazılabilecek rakamların toplamı kaçtır?",
+      "correct": "25",
+      "wrong1": "20",
+      "wrong2": "15",
+      "explanation": "Tek olması için birler basamağına 1, 3, 5, 7, 9 gelebilir. Bu rakamların toplamı 1+3+5+7+9 = 25 eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre boş bırakılan birler basamağına yazılabilecek rakamların toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "8_ sayısının tek sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "25",
+        "wrong1": "20",
+        "wrong2": "15",
+        "explanation": "Tek olması için birler basamağına 1, 3, 5, 7, 9 gelebilir. Bu rakamların toplamı 1+3+5+7+9 = 25 eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_098",
+      "level": "orta",
+      "premise": "3_ sayısının çift sayı olması istenmektedir.",
+      "text": "Buna göre boş bırakılan birler basamağına yazılabilecek en büyük rakam kaçtır?",
+      "correct": "8",
+      "wrong1": "9",
+      "wrong2": "6",
+      "explanation": "Çift rakamlar 0, 2, 4, 6, 8'dir. Bunların içinden en büyüğü 8'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre boş bırakılan birler basamağına yazılabilecek en büyük rakam kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "3_ sayısının çift sayı olması istenmektedir."
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "9",
+        "wrong2": "6",
+        "explanation": "Çift rakamlar 0, 2, 4, 6, 8'dir. Bunların içinden en büyüğü 8'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_099",
+      "level": "zor",
+      "premise": "Tek bir sayı ile Tek bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 3 + 5 = 8).",
+      "text": "Buna göre 45 + 55 işleminin sonucu için ne söylenebilir?",
+      "correct": "İkisi de tek olduğu için sonuç çifttir.",
+      "wrong1": "İkisi de tek olduğu için sonuç tektir.",
+      "wrong2": "Biri tek biri çift olduğu için sonuç tektir.",
+      "explanation": "45 (Tek) ve 55 (Tek). İki tek sayının toplamı her zaman çift sayı yapar. 45+55=100 (Çift).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 45 + 55 işleminin sonucu için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tek bir sayı ile Tek bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 3 + 5 = 8)."
+            }
+          ]
+        },
+        "correct": "İkisi de tek olduğu için sonuç çifttir.",
+        "wrong1": "İkisi de tek olduğu için sonuç tektir.",
+        "wrong2": "Biri tek biri çift olduğu için sonuç tektir.",
+        "explanation": "45 (Tek) ve 55 (Tek). İki tek sayının toplamı her zaman çift sayı yapar. 45+55=100 (Çift).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_100",
+      "level": "zor",
+      "premise": "Çi̇ft bir sayı ile Çi̇ft bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 4 + 6 = 10).",
+      "text": "Buna göre 30 + 40 işleminin sonucu için ne söylenebilir?",
+      "correct": "İkisi de çift olduğu için sonuç çifttir.",
+      "wrong1": "İkisi de çift olduğu için sonuç tektir.",
+      "wrong2": "Biri tek biri çift olduğu için sonuç tektir.",
+      "explanation": "30 (Çift) ve 40 (Çift). İki çift sayının toplamı her zaman çift sayı yapar. 30+40=70 (Çift).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 30 + 40 işleminin sonucu için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çi̇ft bir sayı ile Çi̇ft bir sayının toplamı her zaman Çi̇ft bir sayıdır (Örn: 4 + 6 = 10)."
+            }
+          ]
+        },
+        "correct": "İkisi de çift olduğu için sonuç çifttir.",
+        "wrong1": "İkisi de çift olduğu için sonuç tektir.",
+        "wrong2": "Biri tek biri çift olduğu için sonuç tektir.",
+        "explanation": "30 (Çift) ve 40 (Çift). İki çift sayının toplamı her zaman çift sayı yapar. 30+40=70 (Çift).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_101",
+      "level": "zor",
+      "premise": "Tek bir sayı ile Çi̇ft bir sayının toplamı her zaman Tek bir sayıdır (Örn: 3 + 4 = 7).",
+      "text": "Buna göre 21 + 32 işleminin sonucu için ne söylenebilir?",
+      "correct": "Biri tek diğeri çift olduğu için sonuç tektir.",
+      "wrong1": "İkisi de tek olduğu için sonuç çifttir.",
+      "wrong2": "İkisi de çift olduğu için sonuç çifttir.",
+      "explanation": "21 (Tek) ve 32 (Çift). Tek ve çift sayının toplamı daima tek olur. 21+32=53 (Tek).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 21 + 32 işleminin sonucu için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tek bir sayı ile Çi̇ft bir sayının toplamı her zaman Tek bir sayıdır (Örn: 3 + 4 = 7)."
+            }
+          ]
+        },
+        "correct": "Biri tek diğeri çift olduğu için sonuç tektir.",
+        "wrong1": "İkisi de tek olduğu için sonuç çifttir.",
+        "wrong2": "İkisi de çift olduğu için sonuç çifttir.",
+        "explanation": "21 (Tek) ve 32 (Çift). Tek ve çift sayının toplamı daima tek olur. 21+32=53 (Tek).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_102",
+      "level": "zor",
+      "premise": "Aşağıdaki sepetlerin üzerinde yazan sayılar toplanacaktır.\n1. Sepet: 200\n2. Sepet: 150",
+      "text": "Buna göre bu iki sepetteki sayıların toplamı tek sayı mıdır, çift sayı mıdır?",
+      "correct": "İkisi de çift olduğu için toplamları çift sayıdır.",
+      "wrong1": "İkisi de çift olduğu için toplamları tek sayıdır.",
+      "wrong2": "Biri tek biri çift olduğu için toplamları tek sayıdır.",
+      "explanation": "200 (Çift) + 150 (Çift). İki çift sayının toplamı her zaman çift sayı yapar (200+150=350).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu iki sepetteki sayıların toplamı tek sayı mıdır, çift sayı mıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aşağıdaki sepetlerin üzerinde yazan sayılar toplanacaktır.\n1. Sepet: 200\n2. Sepet: 150"
+            }
+          ]
+        },
+        "correct": "İkisi de çift olduğu için toplamları çift sayıdır.",
+        "wrong1": "İkisi de çift olduğu için toplamları tek sayıdır.",
+        "wrong2": "Biri tek biri çift olduğu için toplamları tek sayıdır.",
+        "explanation": "200 (Çift) + 150 (Çift). İki çift sayının toplamı her zaman çift sayı yapar (200+150=350).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_103",
+      "level": "zor",
+      "premise": "Toplama işleminde Tek + Tek = Çift, Çift + Çift = Çift, Tek + Çift = Tek kuralları geçerlidir.",
+      "text": "Buna göre sonucu çift sayı olan işlem aşağıdakilerden hangisidir?",
+      "correct": "111 + 333",
+      "wrong1": "200 + 101",
+      "wrong2": "302 + 405",
+      "explanation": "111(Tek) + 333(Tek) = Çift sayı yapar. Diğerleri Tek+Çift olduğu için sonuç Tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sonucu çift sayı olan işlem aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Toplama işleminde Tek + Tek = Çift, Çift + Çift = Çift, Tek + Çift = Tek kuralları geçerlidir."
+            }
+          ]
+        },
+        "correct": "111 + 333",
+        "wrong1": "200 + 101",
+        "wrong2": "302 + 405",
+        "explanation": "111(Tek) + 333(Tek) = Çift sayı yapar. Diğerleri Tek+Çift olduğu için sonuç Tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_104",
+      "level": "zor",
+      "premise": "Ali'nin 20 bilyesi, Veli'nin ise 30 bilyesi vardır.",
+      "text": "Buna göre ali ve Veli bilyelerini birleştirirse toplam bilye sayısı için ne söylenebilir?",
+      "correct": "Çift + Çift olduğu için toplam bilye sayısı çifttir.",
+      "wrong1": "Çift + Tek olduğu için toplam bilye sayısı tektir.",
+      "wrong2": "Tek + Tek olduğu için toplam bilye sayısı çifttir.",
+      "explanation": "Ali'nin 20 (Çift), Veli'nin 30 (Çift) bilyesi vardır. Çift ve çift sayının toplamı çift sayıdır (50).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali ve Veli bilyelerini birleştirirse toplam bilye sayısı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali'nin 20 bilyesi, Veli'nin ise 30 bilyesi vardır."
+            }
+          ]
+        },
+        "correct": "Çift + Çift olduğu için toplam bilye sayısı çifttir.",
+        "wrong1": "Çift + Tek olduğu için toplam bilye sayısı tektir.",
+        "wrong2": "Tek + Tek olduğu için toplam bilye sayısı çifttir.",
+        "explanation": "Ali'nin 20 (Çift), Veli'nin 30 (Çift) bilyesi vardır. Çift ve çift sayının toplamı çift sayıdır (50).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_105",
+      "level": "zor",
+      "premise": "Zeynep kitabının önce 15 sayfasını, sonra 20 sayfasını okumuştur.",
+      "text": "Buna göre zeynep'in toplam okuduğu sayfa sayısı tek sayı mıdır, çift sayı mıdır?",
+      "correct": "Tek + Çift olduğu için tek sayıdır.",
+      "wrong1": "Tek + Tek olduğu için çift sayıdır.",
+      "wrong2": "Çift + Çift olduğu için çift sayıdır.",
+      "explanation": "15 (Tek) ve 20 (Çift). Tek ve çift sayının toplamı tektir (15+20=35).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre zeynep'in toplam okuduğu sayfa sayısı tek sayı mıdır, çift sayı mıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep kitabının önce 15 sayfasını, sonra 20 sayfasını okumuştur."
+            }
+          ]
+        },
+        "correct": "Tek + Çift olduğu için tek sayıdır.",
+        "wrong1": "Tek + Tek olduğu için çift sayıdır.",
+        "wrong2": "Çift + Çift olduğu için çift sayıdır.",
+        "explanation": "15 (Tek) ve 20 (Çift). Tek ve çift sayının toplamı tektir (15+20=35).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_106",
+      "level": "zor",
+      "premise": "Ayşe 11 elma, Fatma 13 elma toplamıştır.",
+      "text": "Buna göre toplam elma sayısı için aşağıdakilerden hangisi doğrudur?",
+      "correct": "Tek + Tek olduğu için çifttir.",
+      "wrong1": "Çift + Çift olduğu için çifttir.",
+      "wrong2": "Tek + Çift olduğu için tektir.",
+      "explanation": "11 (Tek) ve 13 (Tek). İki tek sayının toplamı her zaman çift bir sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam elma sayısı için aşağıdakilerden hangisi doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ayşe 11 elma, Fatma 13 elma toplamıştır."
+            }
+          ]
+        },
+        "correct": "Tek + Tek olduğu için çifttir.",
+        "wrong1": "Çift + Çift olduğu için çifttir.",
+        "wrong2": "Tek + Çift olduğu için tektir.",
+        "explanation": "11 (Tek) ve 13 (Tek). İki tek sayının toplamı her zaman çift bir sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_107",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki işlemlerden hangisinin sonucu bir çift sayıdır?",
+      "correct": "40 + 50",
+      "wrong1": "41 + 50",
+      "wrong2": "40 + 51",
+      "explanation": "40 (Çift) + 50 (Çift) işleminin sonucu 90 (Çift) olur. Çift + Çift = Çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki işlemlerden hangisinin sonucu bir çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "40 + 50",
+        "wrong1": "41 + 50",
+        "wrong2": "40 + 51",
+        "explanation": "40 (Çift) + 50 (Çift) işleminin sonucu 90 (Çift) olur. Çift + Çift = Çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_108",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki işlemlerden hangisinin sonucu bir tek sayıdır?",
+      "correct": "55 + 60",
+      "wrong1": "55 + 65",
+      "wrong2": "60 + 70",
+      "explanation": "55 (Tek) + 60 (Çift) işleminin sonucu 115 (Tek) olur. Tek + Çift = Tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki işlemlerden hangisinin sonucu bir tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "55 + 60",
+        "wrong1": "55 + 65",
+        "wrong2": "60 + 70",
+        "explanation": "55 (Tek) + 60 (Çift) işleminin sonucu 115 (Tek) olur. Tek + Çift = Tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_109",
+      "level": "kolay",
+      "premise": null,
+      "text": "7A0 sayısında A yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+      "correct": "Her zaman çift sayıdır.",
+      "wrong1": "Her zaman tek sayıdır.",
+      "wrong2": "A'ya bağlı olarak değişir.",
+      "explanation": "Sayının tek veya çift olduğunu birler basamağı belirler. Birler basamağı 0 (Çift) olduğu için A'nın ne olduğu önemli değildir, sayı her zaman çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "7A0 sayısında A yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her zaman çift sayıdır.",
+        "wrong1": "Her zaman tek sayıdır.",
+        "wrong2": "A'ya bağlı olarak değişir.",
+        "explanation": "Sayının tek veya çift olduğunu birler basamağı belirler. Birler basamağı 0 (Çift) olduğu için A'nın ne olduğu önemli değildir, sayı her zaman çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_110",
+      "level": "kolay",
+      "premise": null,
+      "text": "2B1 sayısında B yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+      "correct": "Her zaman tek sayıdır.",
+      "wrong1": "Her zaman çift sayıdır.",
+      "wrong2": "B'ye bağlı olarak değişir.",
+      "explanation": "Birler basamağındaki 1 rakamı tek olduğu için B yerine ne gelirse gelsin sayı tek olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2B1 sayısında B yerine hangi rakamlar gelirse gelsin bu sayı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her zaman tek sayıdır.",
+        "wrong1": "Her zaman çift sayıdır.",
+        "wrong2": "B'ye bağlı olarak değişir.",
+        "explanation": "Birler basamağındaki 1 rakamı tek olduğu için B yerine ne gelirse gelsin sayı tek olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_111",
+      "level": "orta",
+      "premise": "Ardışık üç çift sayı düşünüldüğünde (Örn: 10, 12, 14).",
+      "text": "Buna göre ardışık üç çift sayının toplamı her zaman ne tür bir sayıdır?",
+      "correct": "Daima çift sayıdır.",
+      "wrong1": "Daima tek sayıdır.",
+      "wrong2": "Bazen tek, bazen çift olur.",
+      "explanation": "Çift + Çift + Çift = Çift kuralı gereği üç çift sayının toplamı daima çifttir. (Örn: 10+12+14=36).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ardışık üç çift sayının toplamı her zaman ne tür bir sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ardışık üç çift sayı düşünüldüğünde (Örn: 10, 12, 14)."
+            }
+          ]
+        },
+        "correct": "Daima çift sayıdır.",
+        "wrong1": "Daima tek sayıdır.",
+        "wrong2": "Bazen tek, bazen çift olur.",
+        "explanation": "Çift + Çift + Çift = Çift kuralı gereği üç çift sayının toplamı daima çifttir. (Örn: 10+12+14=36).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_112",
+      "level": "orta",
+      "premise": null,
+      "text": "2, 5, 8 rakamları birer kez kullanılarak yazılabilecek en büyük tek sayı kaçtır?",
+      "correct": "825",
+      "wrong1": "852",
+      "wrong2": "582",
+      "explanation": "Rakamlarla yazılabilecek en büyük tek sayı için birler basamağına tek rakam olan 5 gelmelidir. Kalan 8 ve 2 büyükten küçüğe yazılır: 825.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2, 5, 8 rakamları birer kez kullanılarak yazılabilecek en büyük tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "825",
+        "wrong1": "852",
+        "wrong2": "582",
+        "explanation": "Rakamlarla yazılabilecek en büyük tek sayı için birler basamağına tek rakam olan 5 gelmelidir. Kalan 8 ve 2 büyükten küçüğe yazılır: 825.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_113",
+      "level": "orta",
+      "premise": null,
+      "text": "3, 6, 9 rakamları birer kez kullanılarak yazılabilecek en küçük çift sayı kaçtır?",
+      "correct": "396",
+      "wrong1": "369",
+      "wrong2": "639",
+      "explanation": "Çift olması için birler basamağına mecburen 6 yazılır. Kalan 3 ve 9 en küçük sayıyı oluşturmak için yüzler ve onlar basamağına 39 şeklinde yazılır: 396.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3, 6, 9 rakamları birer kez kullanılarak yazılabilecek en küçük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "396",
+        "wrong1": "369",
+        "wrong2": "639",
+        "explanation": "Çift olması için birler basamağına mecburen 6 yazılır. Kalan 3 ve 9 en küçük sayıyı oluşturmak için yüzler ve onlar basamağına 39 şeklinde yazılır: 396.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_114",
+      "level": "orta",
+      "premise": null,
+      "text": "1, 4, 8 rakamları birer kez kullanılarak yazılabilecek en büyük çift sayı kaçtır?",
+      "correct": "814",
+      "wrong1": "841",
+      "wrong2": "481",
+      "explanation": "En büyük olması için yüzler basamağına 8 yazarız. Birler basamağı çift olmalı, kalan çift rakam 4'tür. 814 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1, 4, 8 rakamları birer kez kullanılarak yazılabilecek en büyük çift sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "814",
+        "wrong1": "841",
+        "wrong2": "481",
+        "explanation": "En büyük olması için yüzler basamağına 8 yazarız. Birler basamağı çift olmalı, kalan çift rakam 4'tür. 814 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_115",
+      "level": "orta",
+      "premise": null,
+      "text": "0, 2, 4 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+      "correct": "Hepsi çift sayıdır.",
+      "wrong1": "Hepsi tek sayıdır.",
+      "wrong2": "Bazıları tek, bazıları çifttir.",
+      "explanation": "Verilen üç rakam da (0, 2, 4) çifttir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar çift olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "0, 2, 4 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hepsi çift sayıdır.",
+        "wrong1": "Hepsi tek sayıdır.",
+        "wrong2": "Bazıları tek, bazıları çifttir.",
+        "explanation": "Verilen üç rakam da (0, 2, 4) çifttir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar çift olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_116",
+      "level": "orta",
+      "premise": null,
+      "text": "5, 7, 9 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+      "correct": "Hepsi tek sayıdır.",
+      "wrong1": "Hepsi çift sayıdır.",
+      "wrong2": "Bazıları tek, bazıları çifttir.",
+      "explanation": "Verilen üç rakam da (5, 7, 9) tektir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar tek olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "5, 7, 9 rakamlarıyla oluşturulabilecek tüm üç basamaklı sayılar için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hepsi tek sayıdır.",
+        "wrong1": "Hepsi çift sayıdır.",
+        "wrong2": "Bazıları tek, bazıları çifttir.",
+        "explanation": "Verilen üç rakam da (5, 7, 9) tektir. Birler basamağına hangisi gelirse gelsin oluşan tüm sayılar tek olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_117",
+      "level": "zor",
+      "premise": "A sayısı Çi̇ft, B sayısı Çi̇ft doğal sayıdır.",
+      "text": "Buna göre a + B + A işleminin sonucu tek midir çift midir?",
+      "correct": "Çift+Çift+Çift işlemi çift sayı verir.",
+      "wrong1": "Çift+Çift+Çift işlemi tek sayı verir.",
+      "wrong2": "Bilinemez.",
+      "explanation": "A+B (Çift+Çift) her zaman çifttir. Bulunan Çift sayı ile A'yı (Çift) toplarsak Çift+Çift=Çift olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a + B + A işleminin sonucu tek midir çift midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "A sayısı Çi̇ft, B sayısı Çi̇ft doğal sayıdır."
+            }
+          ]
+        },
+        "correct": "Çift+Çift+Çift işlemi çift sayı verir.",
+        "wrong1": "Çift+Çift+Çift işlemi tek sayı verir.",
+        "wrong2": "Bilinemez.",
+        "explanation": "A+B (Çift+Çift) her zaman çifttir. Bulunan Çift sayı ile A'yı (Çift) toplarsak Çift+Çift=Çift olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_118",
+      "level": "zor",
+      "premise": "A ve B birer Çi̇ft doğal sayıdır.",
+      "text": "Buna göre a + B + 1 işleminin sonucu için ne söylenebilir?",
+      "correct": "Çift+Çift+Tek işlemi tek sayı verir.",
+      "wrong1": "Çift+Çift+Tek işlemi çift sayı verir.",
+      "wrong2": "Bilinemez.",
+      "explanation": "A(Çift) + B(Çift) = Çift sayı yapar. Bulunan Çift sayıya 1(Tek) eklersek Çift+Tek=Tek olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a + B + 1 işleminin sonucu için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "A ve B birer Çi̇ft doğal sayıdır."
+            }
+          ]
+        },
+        "correct": "Çift+Çift+Tek işlemi tek sayı verir.",
+        "wrong1": "Çift+Çift+Tek işlemi çift sayı verir.",
+        "wrong2": "Bilinemez.",
+        "explanation": "A(Çift) + B(Çift) = Çift sayı yapar. Bulunan Çift sayıya 1(Tek) eklersek Çift+Tek=Tek olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_119",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları toplamı 3 olan en küçük üç basamaklı sayı tek midir, çift midir?",
+      "correct": "Çifttir (Sayı 102'dir)",
+      "wrong1": "Tektir (Sayı 102'dir)",
+      "wrong2": "Tektir (Sayı 111'dir)",
+      "explanation": "Rakamları toplamı 3 olan en küçük üç basamaklı sayı 102'dir (1+0+2=3). Birler basamağı 2 olduğu için çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları toplamı 3 olan en küçük üç basamaklı sayı tek midir, çift midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çifttir (Sayı 102'dir)",
+        "wrong1": "Tektir (Sayı 102'dir)",
+        "wrong2": "Tektir (Sayı 111'dir)",
+        "explanation": "Rakamları toplamı 3 olan en küçük üç basamaklı sayı 102'dir (1+0+2=3). Birler basamağı 2 olduğu için çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_120",
+      "level": "orta",
+      "premise": null,
+      "text": "Rakamları toplamı 2 olan en büyük üç basamaklı sayı tek midir, çift midir?",
+      "correct": "Çifttir (Sayı 200'dür)",
+      "wrong1": "Tektir (Sayı 200'dür)",
+      "wrong2": "Tektir (Sayı 110'dur)",
+      "explanation": "Rakamları toplamı 2 olan en büyük üç basamaklı sayı 200'dür (2+0+0=2). Birler basamağı 0 olduğu için çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rakamları toplamı 2 olan en büyük üç basamaklı sayı tek midir, çift midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çifttir (Sayı 200'dür)",
+        "wrong1": "Tektir (Sayı 200'dür)",
+        "wrong2": "Tektir (Sayı 110'dur)",
+        "explanation": "Rakamları toplamı 2 olan en büyük üç basamaklı sayı 200'dür (2+0+0=2). Birler basamağı 0 olduğu için çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_121",
+      "level": "zor",
+      "premise": "Bir bilet kuyruğunda Ali'nin sırası en büyük iki basamaklı tek sayıdır.",
+      "text": "Buna göre ali bilet kuyruğunda kaçıncı sıradadır?",
+      "correct": "99.",
+      "wrong1": "98.",
+      "wrong2": "97.",
+      "explanation": "En büyük iki basamaklı sayı 99'dur ve aynı zamanda tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali bilet kuyruğunda kaçıncı sıradadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir bilet kuyruğunda Ali'nin sırası en büyük iki basamaklı tek sayıdır."
+            }
+          ]
+        },
+        "correct": "99.",
+        "wrong1": "98.",
+        "wrong2": "97.",
+        "explanation": "En büyük iki basamaklı sayı 99'dur ve aynı zamanda tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_122",
+      "level": "zor",
+      "premise": "Zeynep'in aklından tuttuğu sayı en küçük üç basamaklı çift sayıdır.",
+      "text": "Buna göre zeynep'in tuttuğu sayının birler basamağındaki rakam kaçtır?",
+      "correct": "0",
+      "wrong1": "2",
+      "wrong2": "1",
+      "explanation": "En küçük üç basamaklı sayı 100'dür ve çifttir. Birler basamağında 0 vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre zeynep'in tuttuğu sayının birler basamağındaki rakam kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep'in aklından tuttuğu sayı en küçük üç basamaklı çift sayıdır."
+            }
+          ]
+        },
+        "correct": "0",
+        "wrong1": "2",
+        "wrong2": "1",
+        "explanation": "En küçük üç basamaklı sayı 100'dür ve çifttir. Birler basamağında 0 vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_123",
+      "level": "zor",
+      "premise": "Aralarında ikişer fark bulunan sayılara ardışık tek veya ardışık çift sayılar denir. (Örn: 2, 4, 6... veya 1, 3, 5...)",
+      "text": "Buna göre 11'den başlayarak ileriye doğru sayılan 3. ardışık tek sayı kaçtır?",
+      "correct": "15",
+      "wrong1": "17",
+      "wrong2": "13",
+      "explanation": "1. tek sayı: 11, 2. tek sayı: 13, 3. tek sayı: 15'tir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 11'den başlayarak ileriye doğru sayılan 3. ardışık tek sayı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aralarında ikişer fark bulunan sayılara ardışık tek veya ardışık çift sayılar denir. (Örn: 2, 4, 6... veya 1, 3, 5...)"
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "17",
+        "wrong2": "13",
+        "explanation": "1. tek sayı: 11, 2. tek sayı: 13, 3. tek sayı: 15'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_124",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi bir çift sayıdır?",
+      "correct": "54",
+      "wrong1": "53",
+      "wrong2": "55",
+      "explanation": "54 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 54 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi bir çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "54",
+        "wrong1": "53",
+        "wrong2": "55",
+        "explanation": "54 sayısının birler basamağında 4 vardır. 4 çift bir rakam olduğu için 54 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_125",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi bir tek sayıdır?",
+      "correct": "67",
+      "wrong1": "68",
+      "wrong2": "66",
+      "explanation": "67 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 67 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi bir tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "67",
+        "wrong1": "68",
+        "wrong2": "66",
+        "explanation": "67 sayısının birler basamağında 7 vardır. 7 tek bir rakam olduğu için 67 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_126",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "322",
+      "wrong1": "321",
+      "wrong2": "323",
+      "explanation": "322 sayısının birler basamağındaki 2 rakamı çifttir, bu yüzden sayı da çifttir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "322",
+        "wrong1": "321",
+        "wrong2": "323",
+        "explanation": "322 sayısının birler basamağındaki 2 rakamı çifttir, bu yüzden sayı da çifttir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_127",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "435",
+      "wrong1": "434",
+      "wrong2": "436",
+      "explanation": "435 sayısının birler basamağındaki 5 rakamı tektir, bu yüzden sayı da tektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "435",
+        "wrong1": "434",
+        "wrong2": "436",
+        "explanation": "435 sayısının birler basamağındaki 5 rakamı tektir, bu yüzden sayı da tektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_128",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "560",
+      "wrong1": "561",
+      "wrong2": "563",
+      "explanation": "560 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 560 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "560",
+        "wrong1": "561",
+        "wrong2": "563",
+        "explanation": "560 sayısının birler basamağında 0 vardır. 0 çift bir rakam olduğu için 560 çift sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_129",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+      "correct": "879",
+      "wrong1": "878",
+      "wrong2": "870",
+      "explanation": "879 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 879 tek sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi tek sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "879",
+        "wrong1": "878",
+        "wrong2": "870",
+        "explanation": "879 sayısının birler basamağında 9 vardır. 9 tek bir rakam olduğu için 879 tek sayıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_tekcift_130",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+      "correct": "998",
+      "wrong1": "999",
+      "wrong2": "997",
+      "explanation": "998 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 998 çift sayıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki sayılardan hangisi çift sayıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "998",
+        "wrong1": "999",
+        "wrong2": "997",
+        "explanation": "998 sayısının birler basamağında 8 vardır. 8 çift bir rakam olduğu için 998 çift sayıdır.",
+        "url": null
+      }
+    }
+  ]
+}

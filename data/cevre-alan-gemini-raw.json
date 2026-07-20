@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "mat3_cevre_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir düzlem parçasının veya yüzeyin kapladığı yere matematikte ne ad verilir?",
+    "correct": "Alan",
+    "wrong1": "Çevre",
+    "wrong2": "Kenar",
+    "explanation": "Bir yüzeyin kapladığı iki boyutlu büyüklüğe alan denir."
+  },
+  {
+    "id": "mat3_cevre_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir geometrik şeklin etrafını saran dış çizgilerin toplam uzunluğuna ne ad verilir?",
+    "correct": "Çevre",
+    "wrong1": "Alan",
+    "wrong2": "Ayrıt",
+    "explanation": "Bir şeklin sınırlarının (kenarlarının) toplam uzunluğuna çevre denir."
+  },
+  {
+    "id": "mat3_cevre_003",
+    "level": "kolay",
+    "premise": "Evimizin odasına yeni bir halı alacağız.",
+    "text": "Halının zeminde kaplayacağı yeri bilmek için odanın hangi özelliğini hesaplamalıyız?",
+    "correct": "Alanını",
+    "wrong1": "Çevresini",
+    "wrong2": "Köşesini",
+    "explanation": "Halı zeminin içini (yüzeyini) tamamen kaplar, bu yüzden alan hesaplanmalıdır."
+  },
+  {
+    "id": "mat3_cevre_004",
+    "level": "kolay",
+    "premise": "Bahçenin etrafına tel çekmek isteyen biri malzeme alacaktır.",
+    "text": "Bu kişinin bahçenin hangi özelliğini hesaplaması gerekir?",
+    "correct": "Çevresini",
+    "wrong1": "Alanını",
+    "wrong2": "Hacmini",
+    "explanation": "Tel sadece bahçenin dış etrafından (sınırlarından) geçeceği için çevre uzunluğu hesaplanır."
+  },
+  {
+    "id": "mat3_cevre_005",
+    "level": "kolay",
+    "premise": "Bir tablonun etrafına ahşap çerçeve yapmak istiyoruz.",
+    "text": "Bunun için tablonun neresini ölçeriz?",
+    "correct": "Çevresini",
+    "wrong1": "Alanını",
+    "wrong2": "Ağırlığını",
+    "explanation": "Çerçeve, şeklin sadece kenarlarını (sınırlarını) sarar, bu nedenle çevre ölçülür."
+  },
+  {
+    "id": "mat3_cevre_006",
+    "level": "kolay",
+    "premise": "Bir duvarı tamamen boyamak istiyoruz.",
+    "text": "Boya kutusu miktarını hesaplamak için duvarın hangi özelliğini bulmalıyız?",
+    "correct": "Alanını",
+    "wrong1": "Çevresini",
+    "wrong2": "Yüksekliğini",
+    "explanation": "Boya, duvarın tüm yüzeyini (iç bölgesini) kapatacağı için alan hesaplaması yapılır."
+  },
+  {
+    "id": "mat3_cevre_007",
+    "level": "kolay",
+    "premise": "Kareli kağıtta çizilen şekillerin özellikleri farklı yollarla bulunur.",
+    "text": "Bir şeklin alanını bulmak için aşağıdakilerden hangisi sayılır?",
+    "correct": "İçindeki birim kareler",
+    "wrong1": "Dış kenar çizgileri",
+    "wrong2": "Köşeleri",
+    "explanation": "Kareli kağıtta alan, şeklin içini kaplayan birim karelerin sayılmasıyla bulunur."
+  },
+  {
+    "id": "mat3_cevre_008",
+    "level": "kolay",
+    "premise": "Kareli kağıtta çizilen şekillerin özellikleri farklı yollarla bulunur.",
+    "text": "Bir şeklin çevresini bulmak için hangisi sayılır?",
+    "correct": "Dış kenar çizgilerinin birim uzunlukları",
+    "wrong1": "İçindeki kareler",
+    "wrong2": "İçindeki üçgenler",
+    "explanation": "Çevre bulunurken şeklin dış sınırını oluşturan çizgi (kenar) uzunlukları sayılır."
+  },
+  {
+    "id": "mat3_cevre_009",
+    "level": "kolay",
+    "premise": "Karenin 4 eşit kenarı vardır.",
+    "text": "Bir karenin çevresini kısa yoldan bulmak için bir kenar uzunluğu kaç ile çarpılır?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "3",
+    "explanation": "Karenin 4 eşit kenarı vardır. Bu yüzden bir kenar uzunluğunu 4 ile çarpmak çevreyi verir."
+  },
+  {
+    "id": "mat3_cevre_010",
+    "level": "kolay",
+    "premise": "Eşkenar üçgenin 3 eşit kenarı vardır.",
+    "text": "Eşkenar üçgenin çevresini kısa yoldan bulmak için bir kenar uzunluğu kaç ile çarpılır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Eşkenar üçgenin 3 kenarı da birbirine eşittir. Bir kenar uzunluğunu 3 ile çarpmak çevreyi verir."
+  },
+  {
+    "id": "mat3_cevre_011",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 4 cm olan karenin çevre uzunluğu kaç cm'dir?",
+    "correct": "16",
+    "wrong1": "12",
+    "wrong2": "8",
+    "explanation": "Karenin 4 eşit kenarı vardır. 4 x 4 = 16 cm."
+  },
+  {
+    "id": "mat3_cevre_012",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 5 m olan kare bahçenin çevresi kaç metredir?",
+    "correct": "20",
+    "wrong1": "15",
+    "wrong2": "25",
+    "explanation": "Karenin 4 eşit kenarı vardır. 5 x 4 = 20 metredir."
+  },
+  {
+    "id": "mat3_cevre_013",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 6 cm olan karenin çevresi kaç cm'dir?",
+    "correct": "24",
+    "wrong1": "18",
+    "wrong2": "12",
+    "explanation": "Karenin 4 eşit kenarı vardır. 6 x 4 = 24 cm."
+  },
+  {
+    "id": "mat3_cevre_014",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 7 m olan karenin çevresi kaç metredir?",
+    "correct": "28",
+    "wrong1": "21",
+    "wrong2": "35",
+    "explanation": "Karenin 4 eşit kenarı vardır. 7 x 4 = 28 metredir."
+  },
+  {
+    "id": "mat3_cevre_015",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 8 cm olan karenin çevresi kaç cm'dir?",
+    "correct": "32",
+    "wrong1": "24",
+    "wrong2": "16",
+    "explanation": "Karenin 4 eşit kenarı vardır. 8 x 4 = 32 cm."
+  },
+  {
+    "id": "mat3_cevre_016",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 9 cm olan karenin çevresi kaç cm'dir?",
+    "correct": "36",
+    "wrong1": "27",
+    "wrong2": "18",
+    "explanation": "Karenin 4 eşit kenarı vardır. 9 x 4 = 36 cm."
+  },
+  {
+    "id": "mat3_cevre_017",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 10 m olan karenin çevresi kaç metredir?",
+    "correct": "40",
+    "wrong1": "30",
+    "wrong2": "20",
+    "explanation": "Karenin 4 eşit kenarı vardır. 10 x 4 = 40 metredir."
+  },
+  {
+    "id": "mat3_cevre_018",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 11 cm olan karenin çevresi kaç cm'dir?",
+    "correct": "44",
+    "wrong1": "33",
+    "wrong2": "22",
+    "explanation": "Karenin 4 eşit kenarı vardır. 11 x 4 = 44 cm."
+  },
+  {
+    "id": "mat3_cevre_019",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 12 cm olan karenin çevresi kaç cm'dir?",
+    "correct": "48",
+    "wrong1": "36",
+    "wrong2": "24",
+    "explanation": "Karenin 4 eşit kenarı vardır. 12 x 4 = 48 cm."
+  },
+  {
+    "id": "mat3_cevre_020",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir kenar uzunluğu 15 m olan karenin çevresi kaç metredir?",
+    "correct": "60",
+    "wrong1": "45",
+    "wrong2": "30",
+    "explanation": "Karenin 4 eşit kenarı vardır. 15 x 4 = 60 metredir."
+  },
+  {
+    "id": "mat3_cevre_021",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 16 cm olan bir karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "4",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 16 ÷ 4 = 4 cm."
+  },
+  {
+    "id": "mat3_cevre_022",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 20 m olan kare şeklindeki bahçenin bir kenarı kaç metredir?",
+    "correct": "5",
+    "wrong1": "10",
+    "wrong2": "4",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 20 ÷ 4 = 5 metredir."
+  },
+  {
+    "id": "mat3_cevre_023",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 24 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "12",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 24 ÷ 4 = 6 cm."
+  },
+  {
+    "id": "mat3_cevre_024",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 28 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "7",
+    "wrong1": "14",
+    "wrong2": "6",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 28 ÷ 4 = 7 cm."
+  },
+  {
+    "id": "mat3_cevre_025",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 32 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "16",
+    "wrong2": "6",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 32 ÷ 4 = 8 cm."
+  },
+  {
+    "id": "mat3_cevre_026",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 36 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "9",
+    "wrong1": "18",
+    "wrong2": "8",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 36 ÷ 4 = 9 cm."
+  },
+  {
+    "id": "mat3_cevre_027",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 40 m olan kare arsanın bir kenarı kaç metredir?",
+    "correct": "10",
+    "wrong1": "20",
+    "wrong2": "5",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 40 ÷ 4 = 10 metredir."
+  },
+  {
+    "id": "mat3_cevre_028",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 44 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "11",
+    "wrong1": "22",
+    "wrong2": "9",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 44 ÷ 4 = 11 cm."
+  },
+  {
+    "id": "mat3_cevre_029",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 48 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "12",
+    "wrong1": "24",
+    "wrong2": "14",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 48 ÷ 4 = 12 cm."
+  },
+  {
+    "id": "mat3_cevre_030",
+    "level": "orta",
+    "premise": "Karenin çevresi 4'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 60 cm olan karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "15",
+    "wrong1": "30",
+    "wrong2": "20",
+    "explanation": "Karenin 4 eşit kenarı olduğu için çevreyi 4'e böleriz. 60 ÷ 4 = 15 cm."
+  },
+  {
+    "id": "mat3_cevre_031",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 3 cm, uzun kenarı 5 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "16",
+    "wrong1": "8",
+    "wrong2": "15",
+    "explanation": "Kısa ve uzun kenarı toplarız: 3 + 5 = 8 cm. İkişer tane olduğu için 2 ile çarparız: 8 x 2 = 16 cm."
+  },
+  {
+    "id": "mat3_cevre_032",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 4 cm, uzun kenarı 6 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "20",
+    "wrong1": "10",
+    "wrong2": "24",
+    "explanation": "Kısa ve uzun kenarı toplarız: 4 + 6 = 10 cm. İkişer tane olduğu için 2 ile çarparız: 10 x 2 = 20 cm."
+  },
+  {
+    "id": "mat3_cevre_033",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 5 m, uzun kenarı 8 m olan dikdörtgen bahçenin çevresi kaç metredir?",
+    "correct": "26",
+    "wrong1": "13",
+    "wrong2": "40",
+    "explanation": "Kısa ve uzun kenarı toplarız: 5 + 8 = 13 m. İkişer tane olduğu için 2 ile çarparız: 13 x 2 = 26 m."
+  },
+  {
+    "id": "mat3_cevre_034",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 6 cm, uzun kenarı 10 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "32",
+    "wrong1": "16",
+    "wrong2": "60",
+    "explanation": "Kısa ve uzun kenarı toplarız: 6 + 10 = 16 cm. İkişer tane olduğu için 2 ile çarparız: 16 x 2 = 32 cm."
+  },
+  {
+    "id": "mat3_cevre_035",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 7 cm, uzun kenarı 9 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "32",
+    "wrong1": "16",
+    "wrong2": "63",
+    "explanation": "Kısa ve uzun kenarı toplarız: 7 + 9 = 16 cm. İkişer tane olduğu için 2 ile çarparız: 16 x 2 = 32 cm."
+  },
+  {
+    "id": "mat3_cevre_036",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 8 m, uzun kenarı 12 m olan dikdörtgen parkın çevresi kaç metredir?",
+    "correct": "40",
+    "wrong1": "20",
+    "wrong2": "96",
+    "explanation": "Kısa ve uzun kenarı toplarız: 8 + 12 = 20 m. İkişer tane olduğu için 2 ile çarparız: 20 x 2 = 40 m."
+  },
+  {
+    "id": "mat3_cevre_037",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 9 cm, uzun kenarı 11 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "40",
+    "wrong1": "20",
+    "wrong2": "99",
+    "explanation": "Kısa ve uzun kenarı toplarız: 9 + 11 = 20 cm. İkişer tane olduğu için 2 ile çarparız: 20 x 2 = 40 cm."
+  },
+  {
+    "id": "mat3_cevre_038",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 10 cm, uzun kenarı 15 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "50",
+    "wrong1": "25",
+    "wrong2": "150",
+    "explanation": "Kısa ve uzun kenarı toplarız: 10 + 15 = 25 cm. İkişer tane olduğu için 2 ile çarparız: 25 x 2 = 50 cm."
+  },
+  {
+    "id": "mat3_cevre_039",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 12 m, uzun kenarı 18 m olan dikdörtgen arsanın çevresi kaç metredir?",
+    "correct": "60",
+    "wrong1": "30",
+    "wrong2": "216",
+    "explanation": "Kısa ve uzun kenarı toplarız: 12 + 18 = 30 m. İkişer tane olduğu için 2 ile çarparız: 30 x 2 = 60 m."
+  },
+  {
+    "id": "mat3_cevre_040",
+    "level": "kolay",
+    "premise": "Dikdörtgenin çevresi 2 kısa ve 2 uzun kenarın toplamıdır.",
+    "text": "Kısa kenarı 15 cm, uzun kenarı 20 cm olan dikdörtgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "70",
+    "wrong1": "35",
+    "wrong2": "300",
+    "explanation": "Kısa ve uzun kenarı toplarız: 15 + 20 = 35 cm. İkişer tane olduğu için 2 ile çarparız: 35 x 2 = 70 cm."
+  },
+  {
+    "id": "mat3_cevre_041",
+    "level": "orta",
+    "premise": "Çevresi ve kısa kenarı verilen dikdörtgenin uzun kenarını bulalım.",
+    "text": "Çevresi 20 cm olan bir dikdörtgenin kısa kenarı 4 cm'dir. Uzun kenarı kaç cm'dir?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "İki kısa kenar 4+4=8 cm eder. Çevreden çıkarırsak 20-8=12 cm (iki uzun kenar). Bir uzun kenar 12÷2=6 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_042",
+    "level": "orta",
+    "premise": "Çevresi ve kısa kenarı verilen dikdörtgenin uzun kenarını bulalım.",
+    "text": "Çevresi 24 cm olan bir dikdörtgenin kısa kenarı 5 cm'dir. Uzun kenarı kaç cm'dir?",
+    "correct": "7",
+    "wrong1": "9",
+    "wrong2": "12",
+    "explanation": "İki kısa kenar 5+5=10 cm eder. Çevreden çıkarırsak 24-10=14 cm (iki uzun kenar). Bir uzun kenar 14÷2=7 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_043",
+    "level": "orta",
+    "premise": "Çevresi ve uzun kenarı verilen dikdörtgenin kısa kenarını bulalım.",
+    "text": "Çevresi 26 cm olan bir dikdörtgenin uzun kenarı 9 cm'dir. Kısa kenarı kaç cm'dir?",
+    "correct": "4",
+    "wrong1": "8",
+    "wrong2": "13",
+    "explanation": "Çevrenin yarısı bir uzun ve bir kısa kenarın toplamıdır. 26 ÷ 2 = 13 cm. Kısa kenarı bulmak için 13 - 9 = 4 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_044",
+    "level": "orta",
+    "premise": "Çevresi ve kısa kenarı verilen dikdörtgenin uzun kenarını bulalım.",
+    "text": "Çevresi 30 cm olan bir dikdörtgenin kısa kenarı 6 cm'dir. Uzun kenarı kaç cm'dir?",
+    "correct": "9",
+    "wrong1": "12",
+    "wrong2": "15",
+    "explanation": "İki kısa kenar 6+6=12 cm eder. Çevreden çıkarırsak 30-12=18 cm (iki uzun kenar). Bir uzun kenar 18÷2=9 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_045",
+    "level": "orta",
+    "premise": "Çevresi ve uzun kenarı verilen dikdörtgenin kısa kenarını bulalım.",
+    "text": "Çevresi 34 cm olan bir dikdörtgenin uzun kenarı 10 cm'dir. Kısa kenarı kaç cm'dir?",
+    "correct": "7",
+    "wrong1": "14",
+    "wrong2": "17",
+    "explanation": "Çevrenin yarısı bir uzun ve bir kısa kenarın toplamıdır. 34 ÷ 2 = 17 cm. Kısa kenarı bulmak için 17 - 10 = 7 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_046",
+    "level": "orta",
+    "premise": "Çevresi ve kısa kenarı verilen dikdörtgenin uzun kenarını bulalım.",
+    "text": "Çevresi 40 cm olan bir dikdörtgenin kısa kenarı 8 cm'dir. Uzun kenarı kaç cm'dir?",
+    "correct": "12",
+    "wrong1": "16",
+    "wrong2": "20",
+    "explanation": "İki kısa kenar 8+8=16 cm eder. Çevreden çıkarırsak 40-16=24 cm (iki uzun kenar). Bir uzun kenar 24÷2=12 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_047",
+    "level": "orta",
+    "premise": "Çevresi ve uzun kenarı verilen dikdörtgenin kısa kenarını bulalım.",
+    "text": "Çevresi 46 cm olan bir dikdörtgenin uzun kenarı 15 cm'dir. Kısa kenarı kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "16",
+    "wrong2": "23",
+    "explanation": "Çevrenin yarısı bir uzun ve bir kısa kenarın toplamıdır. 46 ÷ 2 = 23 cm. Kısa kenarı bulmak için 23 - 15 = 8 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_048",
+    "level": "orta",
+    "premise": "Çevresi ve kısa kenarı verilen dikdörtgenin uzun kenarını bulalım.",
+    "text": "Çevresi 50 cm olan bir dikdörtgenin kısa kenarı 10 cm'dir. Uzun kenarı kaç cm'dir?",
+    "correct": "15",
+    "wrong1": "20",
+    "wrong2": "25",
+    "explanation": "İki kısa kenar 10+10=20 cm eder. Çevreden çıkarırsak 50-20=30 cm (iki uzun kenar). Bir uzun kenar 30÷2=15 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_049",
+    "level": "orta",
+    "premise": "Çevresi ve uzun kenarı verilen dikdörtgenin kısa kenarını bulalım.",
+    "text": "Çevresi 60 m olan dikdörtgen bahçenin uzun kenarı 20 m'dir. Kısa kenarı kaç metredir?",
+    "correct": "10",
+    "wrong1": "20",
+    "wrong2": "30",
+    "explanation": "Çevrenin yarısı bir uzun ve bir kısa kenarın toplamıdır. 60 ÷ 2 = 30 m. Kısa kenarı bulmak için 30 - 20 = 10 metredir."
+  },
+  {
+    "id": "mat3_cevre_050",
+    "level": "orta",
+    "premise": "Çevresi ve kısa kenarı verilen dikdörtgenin uzun kenarını bulalım.",
+    "text": "Çevresi 70 cm olan bir dikdörtgenin kısa kenarı 15 cm'dir. Uzun kenarı kaç cm'dir?",
+    "correct": "20",
+    "wrong1": "40",
+    "wrong2": "35",
+    "explanation": "İki kısa kenar 15+15=30 cm eder. Çevreden çıkarırsak 70-30=40 cm (iki uzun kenar). Bir uzun kenar 40÷2=20 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_051",
+    "level": "kolay",
+    "premise": "Eşkenar üçgenin 3 kenarı birbirine eşittir.",
+    "text": "Bir kenar uzunluğu 5 cm olan eşkenar üçgenin çevre uzunluğu kaç cm'dir?",
+    "correct": "15",
+    "wrong1": "20",
+    "wrong2": "10",
+    "explanation": "Eşkenar üçgenin 3 kenarı eşittir. 5 x 3 = 15 cm."
+  },
+  {
+    "id": "mat3_cevre_052",
+    "level": "kolay",
+    "premise": "Eşkenar üçgenin 3 kenarı birbirine eşittir.",
+    "text": "Bir kenar uzunluğu 6 cm olan eşkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "18",
+    "wrong1": "24",
+    "wrong2": "12",
+    "explanation": "Eşkenar üçgenin 3 kenarı eşittir. 6 x 3 = 18 cm."
+  },
+  {
+    "id": "mat3_cevre_053",
+    "level": "kolay",
+    "premise": "Eşkenar üçgenin 3 kenarı birbirine eşittir.",
+    "text": "Bir kenar uzunluğu 7 m olan eşkenar üçgen bahçenin çevresi kaç metredir?",
+    "correct": "21",
+    "wrong1": "28",
+    "wrong2": "14",
+    "explanation": "Eşkenar üçgenin 3 kenarı eşittir. 7 x 3 = 21 metredir."
+  },
+  {
+    "id": "mat3_cevre_054",
+    "level": "kolay",
+    "premise": "Eşkenar üçgenin 3 kenarı birbirine eşittir.",
+    "text": "Bir kenar uzunluğu 8 cm olan eşkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "24",
+    "wrong1": "32",
+    "wrong2": "16",
+    "explanation": "Eşkenar üçgenin 3 kenarı eşittir. 8 x 3 = 24 cm."
+  },
+  {
+    "id": "mat3_cevre_055",
+    "level": "kolay",
+    "premise": "Eşkenar üçgenin 3 kenarı birbirine eşittir.",
+    "text": "Bir kenar uzunluğu 9 cm olan eşkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "27",
+    "wrong1": "36",
+    "wrong2": "18",
+    "explanation": "Eşkenar üçgenin 3 kenarı eşittir. 9 x 3 = 27 cm."
+  },
+  {
+    "id": "mat3_cevre_056",
+    "level": "orta",
+    "premise": "Eşkenar üçgenin çevresi 3'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 12 cm olan eşkenar üçgenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "4",
+    "wrong1": "3",
+    "wrong2": "6",
+    "explanation": "Çevreyi 3'e böleriz: 12 ÷ 3 = 4 cm."
+  },
+  {
+    "id": "mat3_cevre_057",
+    "level": "orta",
+    "premise": "Eşkenar üçgenin çevresi 3'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 18 m olan eşkenar üçgen parkın bir kenarı kaç metredir?",
+    "correct": "6",
+    "wrong1": "9",
+    "wrong2": "4",
+    "explanation": "Çevreyi 3'e böleriz: 18 ÷ 3 = 6 metredir."
+  },
+  {
+    "id": "mat3_cevre_058",
+    "level": "orta",
+    "premise": "Eşkenar üçgenin çevresi 3'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 24 cm olan eşkenar üçgenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "6",
+    "wrong2": "12",
+    "explanation": "Çevreyi 3'e böleriz: 24 ÷ 3 = 8 cm."
+  },
+  {
+    "id": "mat3_cevre_059",
+    "level": "orta",
+    "premise": "Eşkenar üçgenin çevresi 3'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 30 cm olan eşkenar üçgenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "10",
+    "wrong1": "15",
+    "wrong2": "5",
+    "explanation": "Çevreyi 3'e böleriz: 30 ÷ 3 = 10 cm."
+  },
+  {
+    "id": "mat3_cevre_060",
+    "level": "orta",
+    "premise": "Eşkenar üçgenin çevresi 3'e bölünerek bir kenarı bulunur.",
+    "text": "Çevre uzunluğu 36 cm olan eşkenar üçgenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "12",
+    "wrong1": "18",
+    "wrong2": "9",
+    "explanation": "Çevreyi 3'e böleriz: 36 ÷ 3 = 12 cm."
+  },
+  {
+    "id": "mat3_cevre_061",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Eş kenarlarından her biri 5 cm, diğer kenarı 4 cm olan ikizkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "14",
+    "wrong1": "13",
+    "wrong2": "15",
+    "explanation": "Üç kenarı toplarız: 5 + 5 + 4 = 14 cm."
+  },
+  {
+    "id": "mat3_cevre_062",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Eş kenarlarından her biri 6 cm, diğer kenarı 8 cm olan ikizkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "20",
+    "wrong1": "22",
+    "wrong2": "14",
+    "explanation": "Üç kenarı toplarız: 6 + 6 + 8 = 20 cm."
+  },
+  {
+    "id": "mat3_cevre_063",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Eş kenarlarından her biri 8 m, diğer kenarı 6 m olan ikizkenar üçgen şeklindeki arsanın çevresi kaç metredir?",
+    "correct": "22",
+    "wrong1": "20",
+    "wrong2": "24",
+    "explanation": "Üç kenarı toplarız: 8 + 8 + 6 = 22 metredir."
+  },
+  {
+    "id": "mat3_cevre_064",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Eş kenarlarından her biri 10 cm, diğer kenarı 12 cm olan ikizkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "32",
+    "wrong1": "34",
+    "wrong2": "22",
+    "explanation": "Üç kenarı toplarız: 10 + 10 + 12 = 32 cm."
+  },
+  {
+    "id": "mat3_cevre_065",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Eş kenarlarından her biri 12 cm, diğer kenarı 10 cm olan ikizkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "34",
+    "wrong1": "32",
+    "wrong2": "22",
+    "explanation": "Üç kenarı toplarız: 12 + 12 + 10 = 34 cm."
+  },
+  {
+    "id": "mat3_cevre_066",
+    "level": "kolay",
+    "premise": "Çeşitkenar üçgenin 3 kenarı da farklıdır.",
+    "text": "Kenar uzunlukları 3 cm, 4 cm ve 5 cm olan çeşitkenar üçgenin çevresi kaç cm'dir?",
+    "correct": "12",
+    "wrong1": "11",
+    "wrong2": "15",
+    "explanation": "Çevre için tüm kenarlar toplanır: 3 + 4 + 5 = 12 cm."
+  },
+  {
+    "id": "mat3_cevre_067",
+    "level": "kolay",
+    "premise": "Çeşitkenar üçgenin 3 kenarı da farklıdır.",
+    "text": "Kenar uzunlukları 5 cm, 6 cm ve 7 cm olan üçgenin çevresi kaç cm'dir?",
+    "correct": "18",
+    "wrong1": "17",
+    "wrong2": "20",
+    "explanation": "Çevre için tüm kenarlar toplanır: 5 + 6 + 7 = 18 cm."
+  },
+  {
+    "id": "mat3_cevre_068",
+    "level": "kolay",
+    "premise": "Çeşitkenar üçgenin 3 kenarı da farklıdır.",
+    "text": "Kenar uzunlukları 6 m, 8 m ve 10 m olan üçgen şeklindeki tarlanın çevresi kaç metredir?",
+    "correct": "24",
+    "wrong1": "22",
+    "wrong2": "26",
+    "explanation": "Çevre için tüm kenarlar toplanır: 6 + 8 + 10 = 24 metredir."
+  },
+  {
+    "id": "mat3_cevre_069",
+    "level": "kolay",
+    "premise": "Çeşitkenar üçgenin 3 kenarı da farklıdır.",
+    "text": "Kenar uzunlukları 7 cm, 9 cm ve 11 cm olan üçgenin çevresi kaç cm'dir?",
+    "correct": "27",
+    "wrong1": "26",
+    "wrong2": "28",
+    "explanation": "Çevre için tüm kenarlar toplanır: 7 + 9 + 11 = 27 cm."
+  },
+  {
+    "id": "mat3_cevre_070",
+    "level": "kolay",
+    "premise": "Çeşitkenar üçgenin 3 kenarı da farklıdır.",
+    "text": "Kenar uzunlukları 8 cm, 10 cm ve 12 cm olan üçgenin çevresi kaç cm'dir?",
+    "correct": "30",
+    "wrong1": "28",
+    "wrong2": "32",
+    "explanation": "Çevre için tüm kenarlar toplanır: 8 + 10 + 12 = 30 cm."
+  },
+  {
+    "id": "mat3_cevre_071",
+    "level": "orta",
+    "premise": "Üçgenin çevresi ve iki kenarı biliniyorsa üçüncü kenar bulunabilir.",
+    "text": "Çevresi 15 cm olan bir üçgenin iki kenarı 4 cm ve 5 cm'dir. Üçüncü kenarı kaç cm'dir?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "İki kenar toplamı 4 + 5 = 9 cm. Çevreden çıkarırsak 15 - 9 = 6 cm."
+  },
+  {
+    "id": "mat3_cevre_072",
+    "level": "orta",
+    "premise": "Üçgenin çevresi ve iki kenarı biliniyorsa üçüncü kenar bulunabilir.",
+    "text": "Çevresi 20 cm olan bir üçgenin iki kenarı 6 cm ve 7 cm'dir. Üçüncü kenarı kaç cm'dir?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "İki kenar toplamı 6 + 7 = 13 cm. Çevreden çıkarırsak 20 - 13 = 7 cm."
+  },
+  {
+    "id": "mat3_cevre_073",
+    "level": "orta",
+    "premise": "Üçgenin çevresi ve iki kenarı biliniyorsa üçüncü kenar bulunabilir.",
+    "text": "Çevresi 24 cm olan bir üçgenin iki kenarı 8 cm ve 9 cm'dir. Üçüncü kenarı kaç cm'dir?",
+    "correct": "7",
+    "wrong1": "9",
+    "wrong2": "8",
+    "explanation": "İki kenar toplamı 8 + 9 = 17 cm. Çevreden çıkarırsak 24 - 17 = 7 cm."
+  },
+  {
+    "id": "mat3_cevre_074",
+    "level": "orta",
+    "premise": "Üçgenin çevresi ve iki kenarı biliniyorsa üçüncü kenar bulunabilir.",
+    "text": "Çevresi 30 cm olan bir üçgenin iki kenarı 10 cm ve 12 cm'dir. Üçüncü kenarı kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "10",
+    "wrong2": "12",
+    "explanation": "İki kenar toplamı 10 + 12 = 22 cm. Çevreden çıkarırsak 30 - 22 = 8 cm."
+  },
+  {
+    "id": "mat3_cevre_075",
+    "level": "orta",
+    "premise": "Üçgenin çevresi ve iki kenarı biliniyorsa üçüncü kenar bulunabilir.",
+    "text": "Çevresi 36 m olan üçgen bahçenin iki kenarı 11 m ve 13 m'dir. Üçüncü kenarı kaç metredir?",
+    "correct": "12",
+    "wrong1": "14",
+    "wrong2": "10",
+    "explanation": "İki kenar toplamı 11 + 13 = 24 m. Çevreden çıkarırsak 36 - 24 = 12 m."
+  },
+  {
+    "id": "mat3_cevre_076",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Çevresi 16 cm olan ikizkenar üçgenin farklı (eş olmayan) kenarı 4 cm'dir. Eşit kenarlarından birinin uzunluğu kaç cm'dir?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "4",
+    "explanation": "Çevreden farklı kenarı çıkarırız: 16 - 4 = 12 cm. Bu 12 cm iki eşit kenarın toplamıdır. 12 ÷ 2 = 6 cm."
+  },
+  {
+    "id": "mat3_cevre_077",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Çevresi 20 cm olan ikizkenar üçgenin farklı kenarı 6 cm'dir. Eşit kenarlarından birinin uzunluğu kaç cm'dir?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "20 - 6 = 14 cm. İki eşit kenar 14 ise bir tanesi 14 ÷ 2 = 7 cm."
+  },
+  {
+    "id": "mat3_cevre_078",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Çevresi 24 cm olan ikizkenar üçgenin farklı kenarı 8 cm'dir. Eşit kenarlarından birinin uzunluğu kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "10",
+    "wrong2": "6",
+    "explanation": "24 - 8 = 16 cm. İki eşit kenar 16 ise bir tanesi 16 ÷ 2 = 8 cm."
+  },
+  {
+    "id": "mat3_cevre_079",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Çevresi 30 m olan ikizkenar üçgen bahçenin farklı kenarı 10 m'dir. Eşit kenarlarından biri kaç metredir?",
+    "correct": "10",
+    "wrong1": "15",
+    "wrong2": "12",
+    "explanation": "30 - 10 = 20 m. İki eşit kenar 20 ise bir tanesi 20 ÷ 2 = 10 metredir."
+  },
+  {
+    "id": "mat3_cevre_080",
+    "level": "orta",
+    "premise": "İkizkenar üçgende iki kenar eşittir.",
+    "text": "Çevresi 36 cm olan ikizkenar üçgenin farklı kenarı 12 cm'dir. Eşit kenarlarından birinin uzunluğu kaç cm'dir?",
+    "correct": "12",
+    "wrong1": "14",
+    "wrong2": "10",
+    "explanation": "36 - 12 = 24 cm. İki eşit kenar 24 ise bir tanesi 24 ÷ 2 = 12 cm."
+  },
+  {
+    "id": "mat3_cevre_081",
+    "level": "orta",
+    "premise": "Yüzeyi kaplayan birimler alanı oluşturur.",
+    "text": "Bir defter yaprağını kaplamak için her sırada 4 çıkartma olan 3 sıra çıkartma kullanılmıştır. Yaprağın alanı kaç çıkartmadır?",
+    "correct": "12",
+    "wrong1": "7",
+    "wrong2": "14",
+    "explanation": "Sıra sayısı ile çıkartma sayısını çarparız. 3 x 4 = 12 çıkartma."
+  },
+  {
+    "id": "mat3_cevre_082",
+    "level": "orta",
+    "premise": "Yüzeyi kaplayan birimler alanı oluşturur.",
+    "text": "Bir panoyu kaplamak için her sırada 5 el işi kâğıdı olan 4 sıra kâğıt kullanılmıştır. Panonun alanı kaç el işi kâğıdıdır?",
+    "correct": "20",
+    "wrong1": "9",
+    "wrong2": "25",
+    "explanation": "Sıra sayısı ile kağıt sayısını çarparız. 4 x 5 = 20 kağıt."
+  },
+  {
+    "id": "mat3_cevre_083",
+    "level": "orta",
+    "premise": "Yüzeyi kaplayan birimler alanı oluşturur.",
+    "text": "Bir masanın üzerini kaplamak için enine 6, boyuna 5 adet kare fayans dizilmiştir. Masanın alanı kaç fayanstır?",
+    "correct": "30",
+    "wrong1": "11",
+    "wrong2": "25",
+    "explanation": "En ve boy sayısını çarparız. 6 x 5 = 30 fayans."
+  },
+  {
+    "id": "mat3_cevre_084",
+    "level": "orta",
+    "premise": "Yüzeyi kaplayan birimler alanı oluşturur.",
+    "text": "Satranç tahtasında enine 8 kare, boyuna 8 kare vardır. Satranç tahtasının alanı toplam kaç karedir?",
+    "correct": "64",
+    "wrong1": "16",
+    "wrong2": "32",
+    "explanation": "En ve boy sayısını çarparız. 8 x 8 = 64 karedir."
+  },
+  {
+    "id": "mat3_cevre_085",
+    "level": "orta",
+    "premise": "Yüzeyi kaplayan birimler alanı oluşturur.",
+    "text": "Bir duvar 2 sıra yatay ve 8 sütun dikey fayans ile kaplanmıştır. Duvarın alanı kaç fayanstır?",
+    "correct": "16",
+    "wrong1": "10",
+    "wrong2": "20",
+    "explanation": "Satır ve sütun sayısını çarparız. 2 x 8 = 16 fayans."
+  },
+  {
+    "id": "mat3_cevre_086",
+    "level": "orta",
+    "premise": "Alan hesaplanırken yarım parçalar tam parçaya çevrilir.",
+    "text": "Bir şeklin içi 8 tam birim kare ve 4 yarım birim kare ile kaplanmıştır. Bu şeklin alanı kaç tam birim karedir?",
+    "correct": "10",
+    "wrong1": "12",
+    "wrong2": "8",
+    "explanation": "4 yarım kare = 2 tam kare eder. 8 tam + 2 tam = 10 tam kare."
+  },
+  {
+    "id": "mat3_cevre_087",
+    "level": "orta",
+    "premise": "Alan hesaplanırken yarım parçalar tam parçaya çevrilir.",
+    "text": "Bir şeklin alanı 10 tam birim kare ve 6 yarım birim kareden oluşmaktadır. Bu şeklin alanı kaç tam birim karedir?",
+    "correct": "13",
+    "wrong1": "16",
+    "wrong2": "11",
+    "explanation": "6 yarım kare = 3 tam kare eder. 10 tam + 3 tam = 13 tam kare."
+  },
+  {
+    "id": "mat3_cevre_088",
+    "level": "orta",
+    "premise": "Alan hesaplanırken yarım parçalar tam parçaya çevrilir.",
+    "text": "Bir zemini kaplamak için 12 tam fayans ve 2 yarım fayans kullanıldı. Zemin alanı kaç tam fayanstır?",
+    "correct": "13",
+    "wrong1": "14",
+    "wrong2": "12",
+    "explanation": "2 yarım fayans = 1 tam fayans eder. 12 tam + 1 tam = 13 tam fayans."
+  },
+  {
+    "id": "mat3_cevre_089",
+    "level": "orta",
+    "premise": "Alan hesaplanırken yarım parçalar tam parçaya çevrilir.",
+    "text": "Bir bölge 15 tam birim kare ve 4 yarım birim kare ile doludur. Bu bölgenin alanı kaç tam birim karedir?",
+    "correct": "17",
+    "wrong1": "19",
+    "wrong2": "15",
+    "explanation": "4 yarım kare = 2 tam kare eder. 15 tam + 2 tam = 17 tam kare."
+  },
+  {
+    "id": "mat3_cevre_090",
+    "level": "orta",
+    "premise": "Alan hesaplanırken yarım parçalar tam parçaya çevrilir.",
+    "text": "Bir pano 20 tam el işi kâğıdı ve 8 yarım el işi kâğıdı ile kaplanmıştır. Panonun alanı kaç tam kâğıttır?",
+    "correct": "24",
+    "wrong1": "28",
+    "wrong2": "22",
+    "explanation": "8 yarım kağıt = 4 tam kağıt eder. 20 tam + 4 tam = 24 tam kağıt."
+  },
+  {
+    "id": "mat3_cevre_091",
+    "level": "orta",
+    "premise": "Standart olmayan birimlerle alan hesabında dönüşüm yapılabilir.",
+    "text": "Bir masanın alanı 8 büyük kitap boyutundadır. 1 büyük kitap 2 küçük defter boyutunda ise masanın alanı kaç küçük defterdir?",
+    "correct": "16",
+    "wrong1": "10",
+    "wrong2": "4",
+    "explanation": "Her 1 kitap yerine 2 defter gelir. 8 x 2 = 16 küçük defter boyutundadır."
+  },
+  {
+    "id": "mat3_cevre_092",
+    "level": "orta",
+    "premise": "Alanı tamamen kaplamak için kullanılacak parça sayısı hesaplanabilir.",
+    "text": "Alanı 20 birimkare olan bir panoyu kaplamak için, 1 el işi kağıdı 4 birimkare yer kaplıyorsa toplam kaç el işi kağıdı gerekir?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Toplam alanı bir kağıdın kapladığı alana böleriz. 20 ÷ 4 = 5 kağıt gerekir."
+  },
+  {
+    "id": "mat3_cevre_093",
+    "level": "orta",
+    "premise": "Yarım kavramı alanın yarısını ifade eder.",
+    "text": "Alanı 30 fayans olan bir duvarın tam yarısı fayansla kaplanmıştır. Kaplanan alan kaç fayanstır?",
+    "correct": "15",
+    "wrong1": "30",
+    "wrong2": "10",
+    "explanation": "30 fayanslık alanın yarısı 30 ÷ 2 = 15 fayanstır."
+  },
+  {
+    "id": "mat3_cevre_094",
+    "level": "orta",
+    "premise": "Çeyrek kavramı alanın dörde bölünmüş halidir.",
+    "text": "Alanı 40 birim kare olan bir halının çeyreğine desen çizilmiştir. Desen çizilen alan kaç birim karedir?",
+    "correct": "10",
+    "wrong1": "20",
+    "wrong2": "5",
+    "explanation": "Çeyreğini bulmak için 4'e böleriz. 40 ÷ 4 = 10 birim karedir."
+  },
+  {
+    "id": "mat3_cevre_095",
+    "level": "orta",
+    "premise": "Alan çıkarılarak boşluk bulunur.",
+    "text": "Bir panonun alanı 24 birim karedir. 10 birim karesi doldurulduğuna göre boş kalan alan kaç birim karedir?",
+    "correct": "14",
+    "wrong1": "24",
+    "wrong2": "34",
+    "explanation": "Toplam alandan dolu alanı çıkarırız. 24 - 10 = 14 birim kare boş kalır."
+  },
+  {
+    "id": "mat3_cevre_096",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Bir kenarı 10 m olan kare şeklindeki çocuk parkının etrafında 2 tur koşan Efe kaç metre koşmuştur?",
+    "correct": "80",
+    "wrong1": "40",
+    "wrong2": "20",
+    "explanation": "Önce çevreyi buluruz: 10 x 4 = 40 m. Efe 2 tur koştuğu için 40 x 2 = 80 metre koşmuştur."
+  },
+  {
+    "id": "mat3_cevre_097",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Bir kenarı 15 m olan kare şeklindeki bahçenin etrafında 3 tur yürüyen Ayşe kaç metre yürümüştür?",
+    "correct": "180",
+    "wrong1": "60",
+    "wrong2": "120",
+    "explanation": "Çevre: 15 x 4 = 60 m. 3 tur yürüyüş: 60 x 3 = 180 metre."
+  },
+  {
+    "id": "mat3_cevre_098",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Kısa kenarı 5 m, uzun kenarı 10 m olan dikdörtgen havuzun etrafında 2 tur yüzen sporcu kaç metre yüzmüştür?",
+    "correct": "60",
+    "wrong1": "30",
+    "wrong2": "45",
+    "explanation": "Çevre: (5+10) x 2 = 30 m. 2 tur yüzüş: 30 x 2 = 60 metre."
+  },
+  {
+    "id": "mat3_cevre_099",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Kısa kenarı 10 m, uzun kenarı 20 m olan dikdörtgen sahanın etrafında 3 tur koşan atlet kaç metre koşmuştur?",
+    "correct": "180",
+    "wrong1": "60",
+    "wrong2": "120",
+    "explanation": "Çevre: (10+20) x 2 = 60 m. 3 tur koşu: 60 x 3 = 180 metre."
+  },
+  {
+    "id": "mat3_cevre_100",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Bir kenarı 20 m olan eşkenar üçgen şeklindeki ormanın etrafında 4 tur atan bir izci kaç metre yürümüştür?",
+    "correct": "240",
+    "wrong1": "60",
+    "wrong2": "120",
+    "explanation": "Çevre: 20 x 3 = 60 m. 4 tur yürüyüş: 60 x 4 = 240 metre."
+  },
+  {
+    "id": "mat3_cevre_101",
+    "level": "zor",
+    "premise": "Turları geriye çevirerek şeklin çevresini ve bir kenarını bulabiliriz.",
+    "text": "Kare şeklindeki bir bahçenin etrafında 3 tur koşan biri toplam 120 metre koşmuştur. Bahçenin bir kenarı kaç metredir?",
+    "correct": "10",
+    "wrong1": "40",
+    "wrong2": "30",
+    "explanation": "3 tur 120 metre ise, 1 tur (çevre) 120 ÷ 3 = 40 metredir. Kare olduğu için bir kenarı 40 ÷ 4 = 10 metredir."
+  },
+  {
+    "id": "mat3_cevre_102",
+    "level": "zor",
+    "premise": "Turları geriye çevirerek şeklin çevresini ve bir kenarını bulabiliriz.",
+    "text": "Eşkenar üçgen şeklindeki bir parkın etrafında 2 tur koşan biri toplam 60 metre koşmuştur. Parkın bir kenarı kaç metredir?",
+    "correct": "10",
+    "wrong1": "30",
+    "wrong2": "15",
+    "explanation": "2 tur 60 metre ise, 1 tur (çevre) 60 ÷ 2 = 30 metredir. Eşkenar üçgenin 3 kenarı olduğu için 30 ÷ 3 = 10 metredir."
+  },
+  {
+    "id": "mat3_cevre_103",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Kısa kenarı 8 m, uzun kenarı 12 m olan dikdörtgen sahanın etrafında 5 tur koşan çocuk kaç metre koşmuştur?",
+    "correct": "200",
+    "wrong1": "40",
+    "wrong2": "100",
+    "explanation": "Çevre: (8+12) x 2 = 40 m. 5 tur koşu: 40 x 5 = 200 metre."
+  },
+  {
+    "id": "mat3_cevre_104",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Bir kenarı 25 m olan kare şeklindeki tarlanın etrafında 4 tur dönen traktör toplam kaç metre yol almıştır?",
+    "correct": "400",
+    "wrong1": "100",
+    "wrong2": "200",
+    "explanation": "Çevre: 25 x 4 = 100 m. 4 tur dönüş: 100 x 4 = 400 metre."
+  },
+  {
+    "id": "mat3_cevre_105",
+    "level": "zor",
+    "premise": "Koşu problemleri şeklin çevresi ile ilgilidir.",
+    "text": "Bir kenarı 30 m olan eşkenar üçgen şeklindeki pistte 2 tur atan bisikletli kaç metre yol gitmiştir?",
+    "correct": "180",
+    "wrong1": "90",
+    "wrong2": "120",
+    "explanation": "Çevre: 30 x 3 = 90 m. 2 tur dönüş: 90 x 2 = 180 metre."
+  },
+  {
+    "id": "mat3_cevre_106",
+    "level": "zor",
+    "premise": "Tel çekme ve maliyet problemleri iki aşamalıdır.",
+    "text": "Bir kenarı 10 m olan kare bahçeye 1 sıra tel çekilecektir. Telin metresi 5 TL olduğuna göre tel maliyeti kaç TL'dir?",
+    "correct": "200",
+    "wrong1": "40",
+    "wrong2": "50",
+    "explanation": "Önce çevre bulunur: 10 x 4 = 40 metre. Maliyet: 40 x 5 = 200 TL'dir."
+  },
+  {
+    "id": "mat3_cevre_107",
+    "level": "zor",
+    "premise": "Birden fazla sıra tel çekildiğinde çevre tur sayısıyla çarpılır.",
+    "text": "Bir kenarı 8 m olan kare bahçenin etrafına 2 sıra tel çekilecektir. Kaç metre tel gerekir?",
+    "correct": "64",
+    "wrong1": "32",
+    "wrong2": "16",
+    "explanation": "Çevre: 8 x 4 = 32 metredir. 2 sıra tel: 32 x 2 = 64 metre tel gerekir."
+  },
+  {
+    "id": "mat3_cevre_108",
+    "level": "zor",
+    "premise": "Birden fazla sıra tel çekildiğinde çevre tur sayısıyla çarpılır.",
+    "text": "Kısa kenarı 10 m, uzun kenarı 15 m olan dikdörtgen tarlaya 2 sıra tel çekilecektir. Kaç metre tel gerekir?",
+    "correct": "100",
+    "wrong1": "50",
+    "wrong2": "75",
+    "explanation": "Çevre: (10+15) x 2 = 50 metredir. 2 sıra tel: 50 x 2 = 100 metre tel gerekir."
+  },
+  {
+    "id": "mat3_cevre_109",
+    "level": "zor",
+    "premise": "Birden fazla sıra tel çekildiğinde çevre tur sayısıyla çarpılır.",
+    "text": "Kısa kenarı 6 m, uzun kenarı 9 m olan dikdörtgen arsaya 3 sıra tel çekilecektir. Kaç metre tel lazımdır?",
+    "correct": "90",
+    "wrong1": "30",
+    "wrong2": "60",
+    "explanation": "Çevre: (6+9) x 2 = 30 metredir. 3 sıra tel: 30 x 3 = 90 metre tel lazımdır."
+  },
+  {
+    "id": "mat3_cevre_110",
+    "level": "zor",
+    "premise": "Birden fazla sıra tel çekildiğinde çevre tur sayısıyla çarpılır.",
+    "text": "Bir kenarı 12 m olan eşkenar üçgen bahçeye 2 sıra tel çekilecektir. Kaç metre tel gerekir?",
+    "correct": "72",
+    "wrong1": "36",
+    "wrong2": "48",
+    "explanation": "Çevre: 12 x 3 = 36 metredir. 2 sıra tel: 36 x 2 = 72 metre tel gerekir."
+  },
+  {
+    "id": "mat3_cevre_111",
+    "level": "zor",
+    "premise": "Kapı boşlukları tel uzunluğundan çıkarılır.",
+    "text": "Bir kenarı 10 m olan kare bahçenin etrafına 1 sıra tel çekilecektir. Bahçeye 2 m kapı boşluğu bırakılırsa kaç metre tel gerekir?",
+    "correct": "38",
+    "wrong1": "40",
+    "wrong2": "42",
+    "explanation": "Çevre: 10 x 4 = 40 metredir. Kapı boşluğu hesaptan çıkarılır: 40 - 2 = 38 metre."
+  },
+  {
+    "id": "mat3_cevre_112",
+    "level": "zor",
+    "premise": "Kapı boşlukları tel uzunluğundan çıkarılır.",
+    "text": "Kısa kenarı 8 m, uzun kenarı 12 m olan dikdörtgen parka 1 sıra tel çekilecektir. 3 metrelik kapı boşluğu varsa kaç metre tel harcanır?",
+    "correct": "37",
+    "wrong1": "40",
+    "wrong2": "43",
+    "explanation": "Çevre: (8+12) x 2 = 40 metredir. Kapı boşluğu çıkarılır: 40 - 3 = 37 metre."
+  },
+  {
+    "id": "mat3_cevre_113",
+    "level": "zor",
+    "premise": "Tel çekme ve maliyet problemleri iki aşamalıdır.",
+    "text": "Kısa kenarı 15 m, uzun kenarı 20 m olan dikdörtgen arazinin etrafına tel çekilecektir. Telin metresi 10 TL ise toplam kaç TL ödenir?",
+    "correct": "700",
+    "wrong1": "350",
+    "wrong2": "500",
+    "explanation": "Çevre: (15+20) x 2 = 70 metredir. Maliyet: 70 x 10 = 700 TL ödenir."
+  },
+  {
+    "id": "mat3_cevre_114",
+    "level": "zor",
+    "premise": "Sıra sayısı ve maliyet hesaplaması",
+    "text": "Bir kenarı 12 m olan kare arsanın etrafına 2 sıra tel çekilecektir. Telin metresi 4 TL'dir. Toplam kaç TL ödenir?",
+    "correct": "384",
+    "wrong1": "192",
+    "wrong2": "96",
+    "explanation": "Çevre: 12 x 4 = 48 m. 2 sıra tel: 48 x 2 = 96 m. Maliyet: 96 x 4 = 384 TL."
+  },
+  {
+    "id": "mat3_cevre_115",
+    "level": "zor",
+    "premise": "Birden fazla sıra tel çekildiğinde çevre tur sayısıyla çarpılır.",
+    "text": "Bir kenarı 20 m olan kare tarlaya 3 sıra tel çekilecektir. Kaç metre tel kullanılır?",
+    "correct": "240",
+    "wrong1": "80",
+    "wrong2": "160",
+    "explanation": "Çevre: 20 x 4 = 80 metredir. 3 sıra tel: 80 x 3 = 240 metre."
+  },
+  {
+    "id": "mat3_cevre_116",
+    "level": "zor",
+    "premise": "İki şekil yan yana birleştirildiğinde içeride kalan kenarlar çevreye dahil edilmez.",
+    "text": "Bir kenarı 4 cm olan iki eş kare yan yana yapıştırılarak dikdörtgen yapılıyor. Dikdörtgenin çevresi kaç cm'dir?",
+    "correct": "24",
+    "wrong1": "32",
+    "wrong2": "16",
+    "explanation": "İki kare yan yana gelince içerideki kenarlar silinir. Dışarıda 6 adet 4 cm'lik kenar kalır. 6 x 4 = 24 cm."
+  },
+  {
+    "id": "mat3_cevre_117",
+    "level": "zor",
+    "premise": "İki şekil yan yana birleştirildiğinde içeride kalan kenarlar çevreye dahil edilmez.",
+    "text": "Bir kenarı 5 cm olan iki eş kare yan yana yapıştırılarak dikdörtgen elde ediliyor. Dikdörtgenin çevresi kaç cm'dir?",
+    "correct": "30",
+    "wrong1": "40",
+    "wrong2": "20",
+    "explanation": "Oluşan dikdörtgenin uzun kenarı 10 cm, kısa kenarı 5 cm olur. Çevre = (10+5) x 2 = 30 cm."
+  },
+  {
+    "id": "mat3_cevre_118",
+    "level": "zor",
+    "premise": "İki şekil yan yana birleştirildiğinde içeride kalan kenarlar çevreye dahil edilmez.",
+    "text": "Bir kenarı 8 cm olan iki eş kare yan yana getirilerek dikdörtgen yapılıyor. Bu dikdörtgenin çevresi kaç cm'dir?",
+    "correct": "48",
+    "wrong1": "64",
+    "wrong2": "32",
+    "explanation": "Oluşan dikdörtgenin uzun kenarı 16 cm, kısa kenarı 8 cm olur. Çevre = (16+8) x 2 = 48 cm."
+  },
+  {
+    "id": "mat3_cevre_119",
+    "level": "zor",
+    "premise": "İki şekil yan yana birleştirildiğinde içeride kalan kenarlar çevreye dahil edilmez.",
+    "text": "Bir kenarı 3 cm olan üç eş kare yan yana dizilerek uzun bir dikdörtgen yapılıyor. Bu dikdörtgenin çevresi kaç cm'dir?",
+    "correct": "24",
+    "wrong1": "36",
+    "wrong2": "18",
+    "explanation": "Oluşan dikdörtgenin uzun kenarı 9 cm (3+3+3), kısa kenarı 3 cm olur. Çevre = (9+3) x 2 = 24 cm."
+  },
+  {
+    "id": "mat3_cevre_120",
+    "level": "zor",
+    "premise": "İki şekil yan yana birleştirildiğinde içeride kalan kenarlar çevreye dahil edilmez.",
+    "text": "Bir kenarı 5 cm olan üç eş kare yan yana dizilerek bir dikdörtgen elde ediliyor. Bu dikdörtgenin çevresi kaç cm'dir?",
+    "correct": "40",
+    "wrong1": "60",
+    "wrong2": "30",
+    "explanation": "Oluşan dikdörtgenin uzun kenarı 15 cm (5+5+5), kısa kenarı 5 cm olur. Çevre = (15+5) x 2 = 40 cm."
+  },
+  {
+    "id": "mat3_cevre_121",
+    "level": "zor",
+    "premise": "Teli büküp açtığımızda telin uzunluğu değişmez.",
+    "text": "48 cm uzunluğunda bir tel tamamen bükülerek bir kare, ardından aynı tel bozularak eşkenar üçgen yapılıyor. Eşkenar üçgenin bir kenarı, karenin bir kenarından kaç cm uzundur?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "6",
+    "explanation": "Karenin bir kenarı 48 ÷ 4 = 12 cm. Üçgenin bir kenarı 48 ÷ 3 = 16 cm. Fark: 16 - 12 = 4 cm uzundur."
+  },
+  {
+    "id": "mat3_cevre_122",
+    "level": "zor",
+    "premise": "Teli büküp açtığımızda telin uzunluğu değişmez.",
+    "text": "36 cm uzunluğundaki bir tel bükülerek eşkenar üçgen yapılıyor. Bu üçgenin bir kenarı kaç cm olur?",
+    "correct": "12",
+    "wrong1": "9",
+    "wrong2": "18",
+    "explanation": "Telin uzunluğu üçgenin çevresidir. Üç eşit kenarı bulmak için: 36 ÷ 3 = 12 cm."
+  },
+  {
+    "id": "mat3_cevre_123",
+    "level": "zor",
+    "premise": "Teli büküp açtığımızda telin uzunluğu değişmez.",
+    "text": "60 cm uzunluğundaki bir tel bükülerek kısa kenarı 10 cm olan dikdörtgen yapılıyor. Bu dikdörtgenin uzun kenarı kaç cm olur?",
+    "correct": "20",
+    "wrong1": "40",
+    "wrong2": "30",
+    "explanation": "İki kısa kenar 10+10=20 cm. Kalan tel 60-20=40 cm. Bir uzun kenar 40 ÷ 2 = 20 cm."
+  },
+  {
+    "id": "mat3_cevre_124",
+    "level": "zor",
+    "premise": "Telin bir kısmı kesildiğinde çevre (tel uzunluğu) azalır.",
+    "text": "25 cm uzunluğundaki telin ucundan 5 cm kesilip atılıyor. Kalan kısımla bir kare yapıldığında karenin bir kenarı kaç cm olur?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Kalan tel 25 - 5 = 20 cm'dir. Kare yapmak için 4'e böleriz: 20 ÷ 4 = 5 cm."
+  },
+  {
+    "id": "mat3_cevre_125",
+    "level": "zor",
+    "premise": "Telin bir kısmı kesildiğinde çevre (tel uzunluğu) azalır.",
+    "text": "40 cm uzunluğundaki telin ucundan 4 cm kesilip atılıyor. Kalan telin tamamıyla eşkenar üçgen yapılırsa bir kenarı kaç cm olur?",
+    "correct": "12",
+    "wrong1": "10",
+    "wrong2": "9",
+    "explanation": "Kalan tel 40 - 4 = 36 cm'dir. Eşkenar üçgen için 3'e böleriz: 36 ÷ 3 = 12 cm."
+  },
+  {
+    "id": "mat3_cevre_126",
+    "level": "zor",
+    "premise": "Farklı şekillerin çevre uzunlukları birbirine eşit olabilir.",
+    "text": "Bir karenin çevresi ile bir eşkenar üçgenin çevresi birbirine eşittir. Karenin bir kenarı 6 cm ise, üçgenin bir kenarı kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "10",
+    "wrong2": "6",
+    "explanation": "Karenin çevresi 6 x 4 = 24 cm. Üçgenin de çevresi 24 ise, bir kenarı 24 ÷ 3 = 8 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_127",
+    "level": "zor",
+    "premise": "Farklı şekillerin çevre uzunlukları birbirine eşit olabilir.",
+    "text": "Bir karenin çevresi ile bir eşkenar üçgenin çevresi birbirine eşittir. Üçgenin bir kenarı 12 cm ise, karenin bir kenarı kaç cm'dir?",
+    "correct": "9",
+    "wrong1": "8",
+    "wrong2": "10",
+    "explanation": "Üçgenin çevresi 12 x 3 = 36 cm. Karenin de çevresi 36 ise, bir kenarı 36 ÷ 4 = 9 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_128",
+    "level": "zor",
+    "premise": "Farklı şekillerin çevre uzunlukları birbirine eşit olabilir.",
+    "text": "Bir karenin çevresi, kısa kenarı 5 cm, uzun kenarı 7 cm olan dikdörtgenin çevresine eşittir. Karenin bir kenarı kaç cm'dir?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "7",
+    "explanation": "Dikdörtgenin çevresi (5+7) x 2 = 24 cm. Karenin çevresi 24 ise, bir kenarı 24 ÷ 4 = 6 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_129",
+    "level": "zor",
+    "premise": "Farklı şekillerin çevre uzunlukları birbirine eşit olabilir.",
+    "text": "Bir eşkenar üçgenin çevresi, kısa kenarı 4 cm, uzun kenarı 11 cm olan dikdörtgenin çevresine eşittir. Üçgenin bir kenarı kaç cm'dir?",
+    "correct": "10",
+    "wrong1": "8",
+    "wrong2": "12",
+    "explanation": "Dikdörtgenin çevresi (4+11) x 2 = 30 cm. Üçgenin çevresi 30 ise, bir kenarı 30 ÷ 3 = 10 cm'dir."
+  },
+  {
+    "id": "mat3_cevre_130",
+    "level": "zor",
+    "premise": "Farklı şekillerin çevre uzunlukları birbirine eşit olabilir.",
+    "text": "Uzun kenarı 12 cm, kısa kenarı 8 cm olan bir dikdörtgenin çevresi, bir karenin çevresine eşittir. Bu karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "10",
+    "wrong1": "8",
+    "wrong2": "12",
+    "explanation": "Dikdörtgenin çevresi (12+8) x 2 = 40 cm'dir. Karenin çevresi 40 ise, bir kenarı 40 ÷ 4 = 10 cm'dir."
+  }
+]

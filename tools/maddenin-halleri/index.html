@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Maddenin Halleri Atölyesi</title>
+  <link rel="stylesheet" href="../tool-sound.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar topbar--with-sound">
+      <button type="button" id="back-btn" class="chip-btn">← Ana sayfa</button>
+      <div class="title-wrap">
+        <h1>Maddenin Halleri</h1>
+        <p>Katı, sıvı ve gazı canlı animasyonla keşfet.</p>
+      </div>
+      <button type="button" class="chip-btn--sound" id="toggle-sound" aria-pressed="false" title="Seslendir">🔊</button>
+    </header>
+
+    <main class="stage">
+      <section class="control-card">
+        <div class="status-strip" aria-live="polite">
+          <span class="status-pill" id="phase-pill">Hal: Sıvı</span>
+          <span class="status-pill status-temp" id="energy-pill">Enerji: Orta</span>
+        </div>
+        <div class="phase-tabs" role="tablist" aria-label="Maddenin halleri">
+          <button type="button" class="phase-btn active" data-phase="solid">🧊 Katı</button>
+          <button type="button" class="phase-btn" data-phase="liquid">💧 Sıvı</button>
+          <button type="button" class="phase-btn" data-phase="gas">☁️ Gaz</button>
+        </div>
+        <div class="event-panel">
+          <button type="button" class="event-toggle-btn" id="event-toggle-btn" aria-expanded="false" aria-controls="event-drawer">🧪 Hal değişimi anlatımı</button>
+          <div class="event-drawer" id="event-drawer" aria-hidden="true">
+            <div class="event-tabs" role="group" aria-label="Hal değişimi olayları">
+              <button type="button" class="event-btn" data-event="melt">Erime (0°C)</button>
+              <button type="button" class="event-btn" data-event="freeze">Donma (0°C)</button>
+              <button type="button" class="event-btn" data-event="evaporate">Kaynama (100°C)</button>
+              <button type="button" class="event-btn" data-event="condense">Yoğunlaşma</button>
+            </div>
+          </div>
+        </div>
+        <div class="style-panel">
+          <button type="button" class="style-toggle-btn" id="style-toggle-btn" aria-expanded="false" aria-controls="style-drawer">🎨 Görsel stil</button>
+          <div class="style-drawer" id="style-drawer" aria-hidden="true">
+            <div class="style-tabs" role="group" aria-label="Animasyon stili">
+              <button type="button" class="style-btn active" data-style="pro">Pro</button>
+              <button type="button" class="style-btn" data-style="neon">Neon</button>
+              <button type="button" class="style-btn" data-style="comic">Çizgi</button>
+            </div>
+          </div>
+        </div>
+        <div class="temp-row">
+          <label for="temp-slider">Sıcaklık</label>
+          <input id="temp-slider" type="range" min="-20" max="120" value="25">
+          <strong id="temp-value">25°C</strong>
+        </div>
+        <p class="model-note">Su 0°C'de donar, 100°C'de kaynar.</p>
+        <p id="phase-desc" class="phase-desc"></p>
+        <p id="event-desc" class="event-desc">İpucu: Düğmelere basarak maddenin hal değişimini izle.</p>
+        <div class="auto-alert" id="auto-alert" aria-live="polite" aria-atomic="true"></div>
+      </section>
+
+      <section class="viz-card">
+        <canvas id="matter-canvas" aria-label="Maddenin halleri animasyonu"></canvas>
+        <div class="scene-overlay" id="scene-overlay" aria-hidden="true"></div>
+        <div id="point-info" class="point-info" aria-live="polite"></div>
+        <span class="signature" aria-hidden="true">NASK GAMES</span>
+      </section>
+
+      <section class="info-grid">
+        <article class="info-item">
+          <h3>Tanecik düzeni</h3>
+          <p id="order-text"></p>
+        </article>
+        <article class="info-item">
+          <h3>Hareket</h3>
+          <p id="motion-text"></p>
+        </article>
+        <article class="info-item">
+          <h3>Günlük örnek</h3>
+          <p id="sample-text"></p>
+        </article>
+        <article class="info-item">
+          <h3>Sınıfta sor</h3>
+          <p id="quiz-text">Sence sıcaklık arttıkça tanecikler neden daha hızlı hareket ediyor?</p>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../tool-sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-tas-muhafiz-sprites.py */
+window.NOVA_TAS_MUHAFIZ_SPRITE_BASE="hero/tas_muhafiz/sprite/";
+window.NOVA_TAS_MUHAFIZ_SPRITE_MANIFEST = {"version":1,"base":"hero/tas_muhafiz/sprite/","sheet":"tas-muhafiz-idle.webp","frameWidth":254,"frameHeight":290,"cols":9,"rows":11,"frameCount":96,"loopEnd":96,"fps":24,"blendFrames":0,"sheetWidth":2286,"sheetHeight":3190,"anchor":"center","main":{"sheet":"tas-muhafiz-main.webp","frameWidth":343,"frameHeight":300,"cols":7,"rows":8,"frameCount":56,"loopEnd":48,"fps":12,"blendFrames":8,"sheetWidth":2401,"sheetHeight":2400,"anchor":"bottom"},"scale":{"store":1.12,"detail":1.28,"main":1.42}};

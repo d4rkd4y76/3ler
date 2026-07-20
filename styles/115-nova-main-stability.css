@@ -1,0 +1,43 @@
+/* Ana ekran kararlılığı — kaydırma, safe-area, tarayıcı uyumu */
+
+html.nova-boot-pending,
+html.nova-boot-pending body {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+html.nova-has-session body.nova-sprite-boot-active,
+html.nova-has-session body.nova-main-screen-visible {
+  display: block !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  animation: none !important;
+  background: #020611 !important;
+}
+
+html.nova-main-screen-visible.nova-lock-main-scroll,
+body.nova-main-screen-visible.nova-lock-main-scroll {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  height: 100% !important;
+  max-height: 100dvh !important;
+  max-height: 100svh !important;
+  width: 100% !important;
+}
+
+html.nova-main-screen-visible,
+body.nova-main-screen-visible {
+  scroll-behavior: auto !important;
+}
+
+/* Safe-area yalnızca #main-screen padding'inde — üst dock çift boşluk yapmasın */
+@media (max-width: 768px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  #main-screen .main-screen-top-bar,
+  #main-screen .main-screen-top-bar.nova-main-top-dock {
+    padding-top: clamp(4px, 1.2vw, 8px) !important;
+  }
+}

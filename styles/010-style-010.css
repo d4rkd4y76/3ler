@@ -1,0 +1,41 @@
+/* === Nova: Ders Videosu Akışı (Single Player Result) === */
+.lesson-video-button{
+  display:inline-flex;align-items:center;gap:8px;
+  background: linear-gradient(135deg,#4338ca,#4f46e5);
+  color:#fff;border:none;border-radius:12px;padding:12px 18px;
+  font-weight:800;letter-spacing:.2px;cursor:pointer;
+  box-shadow:0 10px 24px rgba(79,70,229,.25);
+  transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.lesson-video-button:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(79,70,229,.35);filter:brightness(1.05)}
+.lesson-video-button:active{transform:translateY(0);box-shadow:none}
+
+.lesson-video-screen{
+  display:none;flex-direction:column;gap:16px;
+  width:100%;max-width:1200px;margin:0 auto;
+  background:#fff;border-radius:20px;padding:24px 28px;
+  box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+.lesson-video-header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.lesson-pill{
+  background:#eef2ff;color:#3730a3;border:2px solid #3730a3;
+  border-radius:999px;padding:6px 12px;font-weight:800;font-size:.95rem
+}
+.video-title{font-size:1.25rem;font-weight:900;color:#111;text-align:left}
+.video-frame{width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.video-frame iframe{width:100%;height:100%;border:0;display:block}
+.lesson-video-fallback-wrap{margin-top:10px;text-align:center;font-size:.9rem;line-height:1.35}
+.lesson-video-fallback-wrap[hidden]{display:none!important}
+.lesson-video-open-youtube{color:#2563eb;font-weight:700;text-decoration:underline}
+.lesson-video-open-youtube:hover{color:#1d4ed8}
+
+.lesson-video-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.lesson-video-back{background:#111827;color:#fff;border:none;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700}
+.lesson-video-back:hover{filter:brightness(1.1)}
+
+@media (max-width: 640px){
+  .video-title{font-size:1.05rem}
+  .lesson-video-button{width:100%;justify-content:center}
+  .lesson-video-screen{padding:18px}
+}
+/* === End Nova === */

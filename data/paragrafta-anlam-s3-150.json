@@ -1,0 +1,3365 @@
+{
+  "meta": {
+    "topicId": "t03",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Paragrafta Anlam (Metnin konusu, ana düşüncesi, şiirin ana duygusu)",
+    "grade": 3,
+    "count": 120
+  },
+  "questions": [
+    {
+      "id": "paragraf3_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir yazarın metni yazarken üzerinde durduğu, hakkında bilgi verdiği veya anlattığı duruma ne ad verilir?",
+      "correct": "Metnin Konusu",
+      "wrong1": "Ana Fikir",
+      "wrong2": "Başlık",
+      "explanation": "Metinde 'Yazar neyden bahsediyor?' sorusunun cevabı her zaman bize metnin konusunu verir.",
+      "app": {
+        "question": {
+          "text": "Bir yazarın metni yazarken üzerinde durduğu, hakkında bilgi verdiği veya anlattığı duruma ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Metnin Konusu",
+        "wrong1": "Ana Fikir",
+        "wrong2": "Başlık",
+        "explanation": "Metinde 'Yazar neyden bahsediyor?' sorusunun cevabı her zaman bize metnin konusunu verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir metni okuduktan sonra yazarın bize vermek istediği asıl derse veya mesaja ne denir?",
+      "correct": "Ana fikir veya ana düşünce",
+      "wrong1": "Metnin konusu veya başlığı",
+      "wrong2": "Paragrafın giriş cümlesi",
+      "explanation": "Yazarın okuyucuya iletmek istediği asıl mesaj veya öğüt 'ana fikir' olarak adlandırılır.",
+      "app": {
+        "question": {
+          "text": "Bir metni okuduktan sonra yazarın bize vermek istediği asıl derse veya mesaja ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana fikir veya ana düşünce",
+        "wrong1": "Metnin konusu veya başlığı",
+        "wrong2": "Paragrafın giriş cümlesi",
+        "explanation": "Yazarın okuyucuya iletmek istediği asıl mesaj veya öğüt 'ana fikir' olarak adlandırılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Şiir okuduğumuzda kalbimizde uyanan hisse, şairin bize yaşatmak istediği duyguya ne ad verilir?",
+      "correct": "Ana Duygu (Tema)",
+      "wrong1": "Ana Fikir",
+      "wrong2": "Metnin Konusu",
+      "explanation": "Şiirlerde okuyucuya aktarılmak istenen temel hisse (sevgi, özlem vb.) 'Ana Duygu' denir.",
+      "app": {
+        "question": {
+          "text": "Şiir okuduğumuzda kalbimizde uyanan hisse, şairin bize yaşatmak istediği duyguya ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana Duygu (Tema)",
+        "wrong1": "Ana Fikir",
+        "wrong2": "Metnin Konusu",
+        "explanation": "Şiirlerde okuyucuya aktarılmak istenen temel hisse (sevgi, özlem vb.) 'Ana Duygu' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir metnin veya kitabın en üstünde yer alan, metnin ne hakkında olduğunu birkaç kelimeyle özetleyen ifadeye ne denir?",
+      "correct": "Başlık",
+      "wrong1": "Paragraf",
+      "wrong2": "Ana Fikir",
+      "explanation": "Metnin adeta ismi olan ve konuyu kısaca özetleyen kısma başlık denir.",
+      "app": {
+        "question": {
+          "text": "Bir metnin veya kitabın en üstünde yer alan, metnin ne hakkında olduğunu birkaç kelimeyle özetleyen ifadeye ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Başlık",
+        "wrong1": "Paragraf",
+        "wrong2": "Ana Fikir",
+        "explanation": "Metnin adeta ismi olan ve konuyu kısaca özetleyen kısma başlık denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_005",
+      "level": "orta",
+      "premise": "I. Metnin konusu genellikle bir veya birkaç kelimeden oluşur.\nII. Ana fikir her zaman okura bir ders verir.\nIII. Şiirlerde ana fikir değil, ana duygu aranır.",
+      "text": "Yukarıdaki ifadelerden hangileri doğrudur?",
+      "correct": "I, II ve III",
+      "wrong1": "Yalnız I",
+      "wrong2": "I ve II",
+      "explanation": "Verilen üç ifade de paragrafta anlam konuları için tamamen doğrudur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifadelerden hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Metnin konusu genellikle bir veya birkaç kelimeden oluşur."
+                },
+                {
+                  "label": "II.",
+                  "text": "Ana fikir her zaman okura bir ders verir."
+                },
+                {
+                  "label": "III.",
+                  "text": "Şiirlerde ana fikir değil, ana duygu aranır."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "I, II ve III",
+        "wrong1": "Yalnız I",
+        "wrong2": "I ve II",
+        "explanation": "Verilen üç ifade de paragrafta anlam konuları için tamamen doğrudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_006",
+      "level": "orta",
+      "premise": "Paragrafların ilk cümlesi olan giriş cümlesi, kendinden önceki bir cümleye bağlı olduğunu gösteren kelimelerle başlamaz.",
+      "text": "Yukarıdaki bilgilere göre aşağıdakilerden hangisi bir paragrafın giriş cümlesi olabilir?",
+      "correct": "Sağlıklı bir hayat için su içmek çok önemlidir.",
+      "wrong1": "Bu yüzden hemen hastaneye gitmemiz gerekir.",
+      "wrong2": "Fakat onlar da aslında çok haklıydılar.",
+      "explanation": "Birinci seçenek bağımsız ve konuyu tanıtan bir cümledir. Diğer seçenekler öncesinde başka bir cümlenin söylendiğini gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre aşağıdakilerden hangisi bir paragrafın giriş cümlesi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Paragrafların ilk cümlesi olan giriş cümlesi, kendinden önceki bir cümleye bağlı olduğunu gösteren kelimelerle başlamaz."
+            }
+          ]
+        },
+        "correct": "Sağlıklı bir hayat için su içmek çok önemlidir.",
+        "wrong1": "Bu yüzden hemen hastaneye gitmemiz gerekir.",
+        "wrong2": "Fakat onlar da aslında çok haklıydılar.",
+        "explanation": "Birinci seçenek bağımsız ve konuyu tanıtan bir cümledir. Diğer seçenekler öncesinde başka bir cümlenin söylendiğini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_007",
+      "level": "orta",
+      "premise": "Sonuç cümlesi, paragrafta anlatılan konuyu toparlayıp bir yargıya (ana fikre) bağlayan bölümdür. Genellikle 'kısacası, özetle, sonuç olarak' gibi ifadeler bulunur.",
+      "text": "Yukarıdaki metne göre aşağıdakilerden hangisi bir paragrafın sonuç cümlesi olmaya en uygundur?",
+      "correct": "Kısacası, planlı çalışan kişi hedefine ulaşır.",
+      "wrong1": "İlk olarak masamızı düzenli tutmalıyız.",
+      "wrong2": "Bugün parka gidip oyun oynamak istiyordum.",
+      "explanation": "'Kısacası' ifadesi ile başlayan bu cümle, anlatılanları özetleyip ana fikri veren bir sonuç cümlesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre aşağıdakilerden hangisi bir paragrafın sonuç cümlesi olmaya en uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sonuç cümlesi, paragrafta anlatılan konuyu toparlayıp bir yargıya (ana fikre) bağlayan bölümdür. Genellikle 'kısacası, özetle, sonuç olarak' gibi ifadeler bulunur."
+            }
+          ]
+        },
+        "correct": "Kısacası, planlı çalışan kişi hedefine ulaşır.",
+        "wrong1": "İlk olarak masamızı düzenli tutmalıyız.",
+        "wrong2": "Bugün parka gidip oyun oynamak istiyordum.",
+        "explanation": "'Kısacası' ifadesi ile başlayan bu cümle, anlatılanları özetleyip ana fikri veren bir sonuç cümlesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_008",
+      "level": "zor",
+      "premise": "I. Arılar kovanlarda yaşarlar. (2) Kraliçe, işçi ve erkek arılar olmak üzere görevleri ayrılmıştır. (3) Dün televizyonda aslanlarla ilgili bir belgesel izledim. (4) İşçi arılar durmadan nektar toplarlar.",
+      "text": "Yukarıda numaralanmış cümlelerden hangisi metnin konusuyla uyuşmamakta ve akışı bozmaktadır?",
+      "correct": "3. Cümle",
+      "wrong1": "2. Cümle",
+      "wrong2": "4. Cümle",
+      "explanation": "Metin genel olarak arılardan bahsederken 3. cümle araya girip aslan belgeselinden bahsetmekte ve konunun akışını bozmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıda numaralanmış cümlelerden hangisi metnin konusuyla uyuşmamakta ve akışı bozmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Arılar kovanlarda yaşarlar. (2) Kraliçe, işçi ve erkek arılar olmak üzere görevleri ayrılmıştır. (3) Dün televizyonda aslanlarla ilgili bir belgesel izledim. (4) İşçi arılar durmadan nektar toplarlar."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "3. Cümle",
+        "wrong1": "2. Cümle",
+        "wrong2": "4. Cümle",
+        "explanation": "Metin genel olarak arılardan bahsederken 3. cümle araya girip aslan belgeselinden bahsetmekte ve konunun akışını bozmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_009",
+      "level": "zor",
+      "premise": "Meyveler vitamin kaynağıdır. Özellikle portakal ve mandalina C vitamini deposudur. Kış aylarında bizi hastalıklardan korurlar. ....................................",
+      "text": "Yukarıdaki metnin sonuna (boşluğa) anlam bütünlüğüne göre aşağıdaki cümlelerden hangisi getirilmelidir?",
+      "correct": "Bu yüzden kışın bol bol meyve tüketmeliyiz.",
+      "wrong1": "Oyuncak arabalar çok eğlencelidir.",
+      "wrong2": "Yaz mevsimi çok sıcak ve güneşli geçer.",
+      "explanation": "Meyvelerin bizi hastalıktan koruduğu anlatıldığı için cümleyi 'bu yüzden kışın meyve yemeliyiz' şeklinde bitirmek en mantıklısıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin sonuna (boşluğa) anlam bütünlüğüne göre aşağıdaki cümlelerden hangisi getirilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Meyveler vitamin kaynağıdır. Özellikle portakal ve mandalina C vitamini deposudur. Kış aylarında bizi hastalıklardan korurlar. ...................................."
+            }
+          ]
+        },
+        "correct": "Bu yüzden kışın bol bol meyve tüketmeliyiz.",
+        "wrong1": "Oyuncak arabalar çok eğlencelidir.",
+        "wrong2": "Yaz mevsimi çok sıcak ve güneşli geçer.",
+        "explanation": "Meyvelerin bizi hastalıktan koruduğu anlatıldığı için cümleyi 'bu yüzden kışın meyve yemeliyiz' şeklinde bitirmek en mantıklısıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir metne başlık seçilirken dikkat edilmesi gereken en önemli özelliktir?",
+      "correct": "Metnin konusunu çok iyi yansıtması ve ilgi çekici olması",
+      "wrong1": "Çok uzun ve anlaşılmaz kelimelerden oluşması",
+      "wrong2": "Metnin içinde hiç geçmeyen kelimelerden seçilmesi",
+      "explanation": "Başlığın görevi okuyucuya metnin içeriği hakkında fikir vermesidir, bu yüzden konuyu yansıtması şarttır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir metne başlık seçilirken dikkat edilmesi gereken en önemli özelliktir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Metnin konusunu çok iyi yansıtması ve ilgi çekici olması",
+        "wrong1": "Çok uzun ve anlaşılmaz kelimelerden oluşması",
+        "wrong2": "Metnin içinde hiç geçmeyen kelimelerden seçilmesi",
+        "explanation": "Başlığın görevi okuyucuya metnin içeriği hakkında fikir vermesidir, bu yüzden konuyu yansıtması şarttır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_011",
+      "level": "kolay",
+      "premise": "Sağlıklı büyümek için her sabah düzenli kahvaltı yapmalıyız. Kahvaltımızda süt, yumurta ve peynir gibi besinler mutlaka bulunmalıdır. Bu besinler kemiklerimizi güçlendirir ve bize enerji verir.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Kahvaltı yapmanın önemi ve faydalı besinler",
+      "wrong1": "Akşam yemeğinde yenmesi gerekenler",
+      "wrong2": "Kemiklerin yapısı",
+      "explanation": "Metinde sağlıklı olmak için kahvaltıda tüketilmesi gereken besinlerden ve bunların vücudumuza faydalarından söz edilmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sağlıklı büyümek için her sabah düzenli kahvaltı yapmalıyız. Kahvaltımızda süt, yumurta ve peynir gibi besinler mutlaka bulunmalıdır. Bu besinler kemiklerimizi güçlendirir ve bize enerji verir."
+            }
+          ]
+        },
+        "correct": "Kahvaltı yapmanın önemi ve faydalı besinler",
+        "wrong1": "Akşam yemeğinde yenmesi gerekenler",
+        "wrong2": "Kemiklerin yapısı",
+        "explanation": "Metinde sağlıklı olmak için kahvaltıda tüketilmesi gereken besinlerden ve bunların vücudumuza faydalarından söz edilmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_012",
+      "level": "kolay",
+      "premise": "Kitaplar bizim en iyi dostumuzdur. Bize bilmediğimiz ülkeleri gezdirir, yeni insanlarla tanıştırır. Bir kitap okurken kendimizi uzayda bir astronot ya da okyanusta bir dalgıç gibi hissedebiliriz.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Kitap okumanın hayal gücümüze etkisi ve faydaları",
+      "wrong1": "Uzaya yolculuk yapmanın kuralları",
+      "wrong2": "Kütüphanede nasıl davranmamız gerektiği",
+      "explanation": "Paragrafta kitapların bizi hayal dünyasında nasıl yolculuğa çıkardığı ve bize neler kazandırdığı anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitaplar bizim en iyi dostumuzdur. Bize bilmediğimiz ülkeleri gezdirir, yeni insanlarla tanıştırır. Bir kitap okurken kendimizi uzayda bir astronot ya da okyanusta bir dalgıç gibi hissedebiliriz."
+            }
+          ]
+        },
+        "correct": "Kitap okumanın hayal gücümüze etkisi ve faydaları",
+        "wrong1": "Uzaya yolculuk yapmanın kuralları",
+        "wrong2": "Kütüphanede nasıl davranmamız gerektiği",
+        "explanation": "Paragrafta kitapların bizi hayal dünyasında nasıl yolculuğa çıkardığı ve bize neler kazandırdığı anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_013",
+      "level": "kolay",
+      "premise": "Suyu boşa harcamamak doğamız için çok önemlidir. Dişlerimizi fırçalarken musluğu kapatmalı, damlayan çeşmeleri tamir ettirmeliyiz. Çünkü dünyamızdaki tatlı su kaynakları giderek azalıyor.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Su tasarrufu yapmanın yolları ve önemi",
+      "wrong1": "Diş fırçası seçimi",
+      "wrong2": "Dünyadaki okyanuslar",
+      "explanation": "Metinde suyun tükenmekte olduğu belirtilmiş ve suyu dikkatli (tasarruflu) kullanmamız gerektiği anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Suyu boşa harcamamak doğamız için çok önemlidir. Dişlerimizi fırçalarken musluğu kapatmalı, damlayan çeşmeleri tamir ettirmeliyiz. Çünkü dünyamızdaki tatlı su kaynakları giderek azalıyor."
+            }
+          ]
+        },
+        "correct": "Su tasarrufu yapmanın yolları ve önemi",
+        "wrong1": "Diş fırçası seçimi",
+        "wrong2": "Dünyadaki okyanuslar",
+        "explanation": "Metinde suyun tükenmekte olduğu belirtilmiş ve suyu dikkatli (tasarruflu) kullanmamız gerektiği anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_014",
+      "level": "kolay",
+      "premise": "Trafik kuralları hayatımızı kurtarır. Karşıdan karşıya geçerken mutlaka yaya geçitlerini kullanmalıyız. Trafik ışıklarına dikkat etmeli, kırmızı ışıkta kesinlikle yola çıkmamalıyız.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Yayaların uyması gereken trafik kuralları",
+      "wrong1": "Şoförlerin araba kullanma şekilleri",
+      "wrong2": "Arabaların ne kadar hızlı gidebileceği",
+      "explanation": "Metinde karşıdan karşıya geçmek, yaya geçidi kullanmak gibi doğrudan yayaları ilgilendiren trafik kuralları anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Trafik kuralları hayatımızı kurtarır. Karşıdan karşıya geçerken mutlaka yaya geçitlerini kullanmalıyız. Trafik ışıklarına dikkat etmeli, kırmızı ışıkta kesinlikle yola çıkmamalıyız."
+            }
+          ]
+        },
+        "correct": "Yayaların uyması gereken trafik kuralları",
+        "wrong1": "Şoförlerin araba kullanma şekilleri",
+        "wrong2": "Arabaların ne kadar hızlı gidebileceği",
+        "explanation": "Metinde karşıdan karşıya geçmek, yaya geçidi kullanmak gibi doğrudan yayaları ilgilendiren trafik kuralları anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_015",
+      "level": "kolay",
+      "premise": "Arılar bal yapmak için binlerce çiçeği dolaşırlar. Topladıkları çiçek özlerini kovanlarına taşırlar. Küçücük bir arı, bir damla bal üretebilmek için günlerce yorulmadan çalışır.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Arıların nasıl bal yaptığı ve çalışkanlıkları",
+      "wrong1": "Çiçeklerin nasıl büyüdüğü",
+      "wrong2": "Kovanların yapılış şekli",
+      "explanation": "Metinde arıların nektar toplaması ve büyük bir emekle bal üretme süreci anlatıldığı için konu arıların bal yapmasıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arılar bal yapmak için binlerce çiçeği dolaşırlar. Topladıkları çiçek özlerini kovanlarına taşırlar. Küçücük bir arı, bir damla bal üretebilmek için günlerce yorulmadan çalışır."
+            }
+          ]
+        },
+        "correct": "Arıların nasıl bal yaptığı ve çalışkanlıkları",
+        "wrong1": "Çiçeklerin nasıl büyüdüğü",
+        "wrong2": "Kovanların yapılış şekli",
+        "explanation": "Metinde arıların nektar toplaması ve büyük bir emekle bal üretme süreci anlatıldığı için konu arıların bal yapmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_016",
+      "level": "kolay",
+      "premise": "Spor yapmak kaslarımızı güçlendirir. Düzenli spor yapan insanlar hastalıklara karşı daha dirençli olurlar ve kendilerini her zaman çok daha enerjik hissederler.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Spor yapmanın sağlığımıza faydaları",
+      "wrong1": "Hangi spor dallarının zor olduğu",
+      "wrong2": "Beslenmenin hastalıklara etkisi",
+      "explanation": "Metin baştan sona spor yapmanın vücudumuza ve sağlığımıza olan yararlarından (kasları güçlendirmesi, enerji vermesi) bahsetmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Spor yapmak kaslarımızı güçlendirir. Düzenli spor yapan insanlar hastalıklara karşı daha dirençli olurlar ve kendilerini her zaman çok daha enerjik hissederler."
+            }
+          ]
+        },
+        "correct": "Spor yapmanın sağlığımıza faydaları",
+        "wrong1": "Hangi spor dallarının zor olduğu",
+        "wrong2": "Beslenmenin hastalıklara etkisi",
+        "explanation": "Metin baştan sona spor yapmanın vücudumuza ve sağlığımıza olan yararlarından (kasları güçlendirmesi, enerji vermesi) bahsetmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_017",
+      "level": "kolay",
+      "premise": "Sonbahar gelince doğada büyük bir değişim başlar. Havalar yavaş yavaş soğur, ağaçların yaprakları sararıp dökülmeye başlar. Göçmen kuşlar ise sıcak ülkelere doğru yola çıkar.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Sonbahar mevsiminde doğada yaşanan değişiklikler",
+      "wrong1": "Göçmen kuşların özellikleri",
+      "wrong2": "Kışlık kıyafetlerin seçimi",
+      "explanation": "Metinde havaların soğuması, yaprakların dökülmesi ve kuşların göçmesi gibi sonbaharın doğadaki etkileri anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sonbahar gelince doğada büyük bir değişim başlar. Havalar yavaş yavaş soğur, ağaçların yaprakları sararıp dökülmeye başlar. Göçmen kuşlar ise sıcak ülkelere doğru yola çıkar."
+            }
+          ]
+        },
+        "correct": "Sonbahar mevsiminde doğada yaşanan değişiklikler",
+        "wrong1": "Göçmen kuşların özellikleri",
+        "wrong2": "Kışlık kıyafetlerin seçimi",
+        "explanation": "Metinde havaların soğuması, yaprakların dökülmesi ve kuşların göçmesi gibi sonbaharın doğadaki etkileri anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_018",
+      "level": "kolay",
+      "premise": "İnternet, bilgiye hızlı ulaşmamızı sağlayan harika bir icattır. Ancak internette çok fazla vakit geçirmek gözlerimizi yorabilir ve bizi asosyal yapabilir. İnterneti dengeli kullanmalıyız.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "İnternet kullanımının faydaları ve zararları",
+      "wrong1": "Bilgisayarın nasıl icat edildiği",
+      "wrong2": "Kitap okumanın yararları",
+      "explanation": "Metinde hem internetin bilgiye ulaşmadaki kolaylığından hem de fazla kullanımının zararlarından bahsedilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İnternet, bilgiye hızlı ulaşmamızı sağlayan harika bir icattır. Ancak internette çok fazla vakit geçirmek gözlerimizi yorabilir ve bizi asosyal yapabilir. İnterneti dengeli kullanmalıyız."
+            }
+          ]
+        },
+        "correct": "İnternet kullanımının faydaları ve zararları",
+        "wrong1": "Bilgisayarın nasıl icat edildiği",
+        "wrong2": "Kitap okumanın yararları",
+        "explanation": "Metinde hem internetin bilgiye ulaşmadaki kolaylığından hem de fazla kullanımının zararlarından bahsedilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_019",
+      "level": "kolay",
+      "premise": "Gerçek arkadaşlık iyi günde de kötü günde de bir arada olmayı gerektirir. Sadece oyun oynarken değil, üzgün olduğumuzda da yanımızda olan kişiler bizim dostlarımızdır.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Gerçek arkadaşlığın ve dostluğun önemi",
+      "wrong1": "Oyun parkında oynanan oyunlar",
+      "wrong2": "Okuldaki derslerin zorluğu",
+      "explanation": "Metinde arkadaşlığın sadece iyi günlerde değil zor günlerde de sürmesi gerektiği, yani dostluğun gerçek anlamı anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gerçek arkadaşlık iyi günde de kötü günde de bir arada olmayı gerektirir. Sadece oyun oynarken değil, üzgün olduğumuzda da yanımızda olan kişiler bizim dostlarımızdır."
+            }
+          ]
+        },
+        "correct": "Gerçek arkadaşlığın ve dostluğun önemi",
+        "wrong1": "Oyun parkında oynanan oyunlar",
+        "wrong2": "Okuldaki derslerin zorluğu",
+        "explanation": "Metinde arkadaşlığın sadece iyi günlerde değil zor günlerde de sürmesi gerektiği, yani dostluğun gerçek anlamı anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_020",
+      "level": "kolay",
+      "premise": "Günde en az iki kez dişlerimizi fırçalamalıyız. Eğer fırçalamazsak dişlerimizde çürükler oluşur, canımız çok acır ve diş doktoruna gitmek zorunda kalırız.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Diş sağlığı ve diş fırçalamanın önemi",
+      "wrong1": "Hastane kuralları",
+      "wrong2": "Şekerli yiyeceklerin zararları",
+      "explanation": "Metinde dişlerimizi nasıl koruyacağımızdan ve fırçalamanın öneminden bahsedilmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Günde en az iki kez dişlerimizi fırçalamalıyız. Eğer fırçalamazsak dişlerimizde çürükler oluşur, canımız çok acır ve diş doktoruna gitmek zorunda kalırız."
+            }
+          ]
+        },
+        "correct": "Diş sağlığı ve diş fırçalamanın önemi",
+        "wrong1": "Hastane kuralları",
+        "wrong2": "Şekerli yiyeceklerin zararları",
+        "explanation": "Metinde dişlerimizi nasıl koruyacağımızdan ve fırçalamanın öneminden bahsedilmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_021",
+      "level": "orta",
+      "premise": "Ormanlar dünyanın akciğerleridir. Ağaçlar havayı temizler, oksijen üretir ve binlerce hayvana yuva olurlar. Orman yangınları ise bu güzellikleri saniyeler içinde yok eder.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Ormanların dünyamız için önemi",
+      "wrong1": "Ateşin nasıl bulunduğu",
+      "wrong2": "Kuş türlerinin isimleri",
+      "explanation": "Metinde ağaçların havayı temizlemesi, hayvanlara yuva olması gibi faydalar üzerinden ormanların önemi anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ormanlar dünyanın akciğerleridir. Ağaçlar havayı temizler, oksijen üretir ve binlerce hayvana yuva olurlar. Orman yangınları ise bu güzellikleri saniyeler içinde yok eder."
+            }
+          ]
+        },
+        "correct": "Ormanların dünyamız için önemi",
+        "wrong1": "Ateşin nasıl bulunduğu",
+        "wrong2": "Kuş türlerinin isimleri",
+        "explanation": "Metinde ağaçların havayı temizlemesi, hayvanlara yuva olması gibi faydalar üzerinden ormanların önemi anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_022",
+      "level": "orta",
+      "premise": "Uzay o kadar büyüktür ki, dünya uzayın içinde bir kum tanesi kadar küçük kalır. Milyarlarca yıldız ve gezegen bu devasa boşluğun içinde yer alır.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Uzayın büyüklüğü ve sonsuzluğu",
+      "wrong1": "Astronotların nasıl giyindiği",
+      "wrong2": "Dünyanın Güneş etrafında dönüşü",
+      "explanation": "Paragraf genel olarak uzayın ne kadar sonsuz, büyük ve devasa olduğu hakkında bilgi vermektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uzay o kadar büyüktür ki, dünya uzayın içinde bir kum tanesi kadar küçük kalır. Milyarlarca yıldız ve gezegen bu devasa boşluğun içinde yer alır."
+            }
+          ]
+        },
+        "correct": "Uzayın büyüklüğü ve sonsuzluğu",
+        "wrong1": "Astronotların nasıl giyindiği",
+        "wrong2": "Dünyanın Güneş etrafında dönüşü",
+        "explanation": "Paragraf genel olarak uzayın ne kadar sonsuz, büyük ve devasa olduğu hakkında bilgi vermektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_023",
+      "level": "orta",
+      "premise": "Karıncalar kendi ağırlıklarının elli katını taşıyabilen çok güçlü böceklerdir. Ayrıca koloniler halinde mükemmel bir iş bölümüyle yuvalarını inşa eder ve kışa hazırlanırlar.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Karıncaların gücü ve çalışkanlığı",
+      "wrong1": "Karıncaların neyle beslendiği",
+      "wrong2": "Böceklerin kış uykusu",
+      "explanation": "Metinde karıncaların ne kadar güçlü oldukları, yuva yaptıkları ve düzenli çalıştıkları anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karıncalar kendi ağırlıklarının elli katını taşıyabilen çok güçlü böceklerdir. Ayrıca koloniler halinde mükemmel bir iş bölümüyle yuvalarını inşa eder ve kışa hazırlanırlar."
+            }
+          ]
+        },
+        "correct": "Karıncaların gücü ve çalışkanlığı",
+        "wrong1": "Karıncaların neyle beslendiği",
+        "wrong2": "Böceklerin kış uykusu",
+        "explanation": "Metinde karıncaların ne kadar güçlü oldukları, yuva yaptıkları ve düzenli çalıştıkları anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_024",
+      "level": "orta",
+      "premise": "Kullanılmış kâğıt, cam ve plastikleri geri dönüşüm kutularına atmalıyız. Bu malzemeler fabrikalarda eritilip tekrar kullanılır. Böylece ağaçların kesilmesi önlenir ve doğa korunur.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Geri dönüşümün ne olduğu ve doğaya faydası",
+      "wrong1": "Fabrikaların nasıl çalıştığı",
+      "wrong2": "Çöplerin nasıl temizleneceği",
+      "explanation": "Metin, atıkların tekrar değerlendirilmesi olan geri dönüşümün tanımını yapmakta ve çevreye katkısından bahsetmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kullanılmış kâğıt, cam ve plastikleri geri dönüşüm kutularına atmalıyız. Bu malzemeler fabrikalarda eritilip tekrar kullanılır. Böylece ağaçların kesilmesi önlenir ve doğa korunur."
+            }
+          ]
+        },
+        "correct": "Geri dönüşümün ne olduğu ve doğaya faydası",
+        "wrong1": "Fabrikaların nasıl çalıştığı",
+        "wrong2": "Çöplerin nasıl temizleneceği",
+        "explanation": "Metin, atıkların tekrar değerlendirilmesi olan geri dönüşümün tanımını yapmakta ve çevreye katkısından bahsetmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_025",
+      "level": "orta",
+      "premise": "Vücudumuzun kendini yenileyebilmesi için düzenli bir uykuya ihtiyacı vardır. Geceleri erken yatan çocuklar hem daha hızlı büyür hem de okulda derslerini çok daha iyi dinlerler.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Uykunun çocuk gelişimi ve sağlığı için önemi",
+      "wrong1": "Geceleri rüya görmek",
+      "wrong2": "Okulda işlenen derslerin zorluğu",
+      "explanation": "Metinde uyumanın büyüme, vücudun yenilenmesi ve okul başarısı üzerindeki etkileri konu edinilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Vücudumuzun kendini yenileyebilmesi için düzenli bir uykuya ihtiyacı vardır. Geceleri erken yatan çocuklar hem daha hızlı büyür hem de okulda derslerini çok daha iyi dinlerler."
+            }
+          ]
+        },
+        "correct": "Uykunun çocuk gelişimi ve sağlığı için önemi",
+        "wrong1": "Geceleri rüya görmek",
+        "wrong2": "Okulda işlenen derslerin zorluğu",
+        "explanation": "Metinde uyumanın büyüme, vücudun yenilenmesi ve okul başarısı üzerindeki etkileri konu edinilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_026",
+      "level": "orta",
+      "premise": "Atatürk sadece bir asker değil, aynı zamanda eğitime ve bilime önem veren yenilikçi bir liderdi. Ülkemizi düşmanlardan kurtardıktan sonra birçok okul ve fabrika açılmasını sağladı.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Atatürk'ün liderlik özellikleri ve çok yönlülüğü",
+      "wrong1": "Kurtuluş Savaşı'nın tarihleri",
+      "wrong2": "Fabrikaların nasıl kurulduğu",
+      "explanation": "Metin Atatürk'ün hem vatanı kurtaran bir asker hem de eğitime/bilime önem veren bir lider olduğunu anlatıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Atatürk sadece bir asker değil, aynı zamanda eğitime ve bilime önem veren yenilikçi bir liderdi. Ülkemizi düşmanlardan kurtardıktan sonra birçok okul ve fabrika açılmasını sağladı."
+            }
+          ]
+        },
+        "correct": "Atatürk'ün liderlik özellikleri ve çok yönlülüğü",
+        "wrong1": "Kurtuluş Savaşı'nın tarihleri",
+        "wrong2": "Fabrikaların nasıl kurulduğu",
+        "explanation": "Metin Atatürk'ün hem vatanı kurtaran bir asker hem de eğitime/bilime önem veren bir lider olduğunu anlatıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_027",
+      "level": "orta",
+      "premise": "Kış yaklaşınca doğadaki birçok hayvan hazırlıklara başlar. Ayılar kış uykusu için çokça yemek yerken, sincaplar buldukları cevizleri toprağın altına gömerler.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Hayvanların kış mevsimine nasıl hazırlandıkları",
+      "wrong1": "Ayıların kış uykusunda gördüğü rüyalar",
+      "wrong2": "Sincapların nerede yaşadığı",
+      "explanation": "Metinde farklı hayvanların kış ayları gelmeden önce yaptıkları yiyecek biriktirme ve beslenme hazırlıkları anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kış yaklaşınca doğadaki birçok hayvan hazırlıklara başlar. Ayılar kış uykusu için çokça yemek yerken, sincaplar buldukları cevizleri toprağın altına gömerler."
+            }
+          ]
+        },
+        "correct": "Hayvanların kış mevsimine nasıl hazırlandıkları",
+        "wrong1": "Ayıların kış uykusunda gördüğü rüyalar",
+        "wrong2": "Sincapların nerede yaşadığı",
+        "explanation": "Metinde farklı hayvanların kış ayları gelmeden önce yaptıkları yiyecek biriktirme ve beslenme hazırlıkları anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_028",
+      "level": "orta",
+      "premise": "Bilgisayarlar ve tabletler bilgiye kolayca ulaşmamızı sağlar. Ancak bu cihazların başında çok uzun süre geçirmek hem gözlerimizi bozar hem de sırt ağrılarına neden olur.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Teknolojik cihazların faydaları ve sağlığa zararları",
+      "wrong1": "Tabletlerin nasıl icat edildiği",
+      "wrong2": "En güzel bilgisayar oyunları",
+      "explanation": "Metinde bilgisayarın bilgiye ulaşma yönü (faydası) ile çok kullanımın getirdiği sağlık sorunları (zararı) işlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bilgisayarlar ve tabletler bilgiye kolayca ulaşmamızı sağlar. Ancak bu cihazların başında çok uzun süre geçirmek hem gözlerimizi bozar hem de sırt ağrılarına neden olur."
+            }
+          ]
+        },
+        "correct": "Teknolojik cihazların faydaları ve sağlığa zararları",
+        "wrong1": "Tabletlerin nasıl icat edildiği",
+        "wrong2": "En güzel bilgisayar oyunları",
+        "explanation": "Metinde bilgisayarın bilgiye ulaşma yönü (faydası) ile çok kullanımın getirdiği sağlık sorunları (zararı) işlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_029",
+      "level": "orta",
+      "premise": "Göçmen kuşlar kış yaklaştığında, havalar soğumaya başlayınca sıcak ülkelere doğru uzun bir yolculuğa çıkarlar. İlkbaharda ise yeniden eski yuvalarına geri dönerler.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Göçmen kuşların mevsimlere göre yer değiştirmesi",
+      "wrong1": "Kuşların yuvalarını nasıl yaptığı",
+      "wrong2": "Hangi ülkelerin sıcak olduğu",
+      "explanation": "Metinde göçmen kuşların soğuk ve sıcak mevsimlere göre yaptıkları yolculuklar ele alınmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Göçmen kuşlar kış yaklaştığında, havalar soğumaya başlayınca sıcak ülkelere doğru uzun bir yolculuğa çıkarlar. İlkbaharda ise yeniden eski yuvalarına geri dönerler."
+            }
+          ]
+        },
+        "correct": "Göçmen kuşların mevsimlere göre yer değiştirmesi",
+        "wrong1": "Kuşların yuvalarını nasıl yaptığı",
+        "wrong2": "Hangi ülkelerin sıcak olduğu",
+        "explanation": "Metinde göçmen kuşların soğuk ve sıcak mevsimlere göre yaptıkları yolculuklar ele alınmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_030",
+      "level": "orta",
+      "premise": "Eskiden insanlar haberleşmek için dumanı, atlı habercileri veya posta güvercinlerini kullanırdı. Bu çok uzun sürerdi. Bugün ise cep telefonları ve internet sayesinde saniyeler içinde haberleşebiliyoruz.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Geçmişten günümüze haberleşmenin gelişimi",
+      "wrong1": "Güvercinlerin uçuş hızları",
+      "wrong2": "Cep telefonlarının fiyatları",
+      "explanation": "Metin, eskinin ilkel iletişim araçları ile günümüzün modern araçlarını karşılaştırarak iletişimin gelişimini anlatmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Eskiden insanlar haberleşmek için dumanı, atlı habercileri veya posta güvercinlerini kullanırdı. Bu çok uzun sürerdi. Bugün ise cep telefonları ve internet sayesinde saniyeler içinde haberleşebiliyoruz."
+            }
+          ]
+        },
+        "correct": "Geçmişten günümüze haberleşmenin gelişimi",
+        "wrong1": "Güvercinlerin uçuş hızları",
+        "wrong2": "Cep telefonlarının fiyatları",
+        "explanation": "Metin, eskinin ilkel iletişim araçları ile günümüzün modern araçlarını karşılaştırarak iletişimin gelişimini anlatmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_031",
+      "level": "zor",
+      "premise": "Zaman o kadar değerlidir ki onu parayla satın alamayız. Boşa geçen bir saati geri getirmek dünyanın en zengin insanı için bile imkansızdır. Bu yüzden vaktimizi iyi değerlendirmeliyiz.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Zamanın değeri ve kıymeti",
+      "wrong1": "Dünyanın en zengin insanları",
+      "wrong2": "Saatlerin çalışma mekanizması",
+      "explanation": "Metin, zamanın hiçbir şeyle değiştirilemeyecek kadar değerli olduğunu anlatmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zaman o kadar değerlidir ki onu parayla satın alamayız. Boşa geçen bir saati geri getirmek dünyanın en zengin insanı için bile imkansızdır. Bu yüzden vaktimizi iyi değerlendirmeliyiz."
+            }
+          ]
+        },
+        "correct": "Zamanın değeri ve kıymeti",
+        "wrong1": "Dünyanın en zengin insanları",
+        "wrong2": "Saatlerin çalışma mekanizması",
+        "explanation": "Metin, zamanın hiçbir şeyle değiştirilemeyecek kadar değerli olduğunu anlatmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_032",
+      "level": "zor",
+      "premise": "Empati, kendimizi karşımızdaki kişinin yerine koyarak onun duygularını anlamaya çalışmaktır. Yere düşen bir arkadaşımıza gülmek yerine, 'Ben düşsem ne hissederdim?' diye düşünmek gerçek bir empatidir.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Empati kurmanın anlamı ve önemi",
+      "wrong1": "Yere düşen çocukların ağlaması",
+      "wrong2": "Arkadaşlarla oyun oynamak",
+      "explanation": "Metin, empatinin ne demek olduğunu açıklamış ve arkadaşımızın yerine kendimizi koymamız örneğiyle konuyu pekiştirmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Empati, kendimizi karşımızdaki kişinin yerine koyarak onun duygularını anlamaya çalışmaktır. Yere düşen bir arkadaşımıza gülmek yerine, 'Ben düşsem ne hissederdim?' diye düşünmek gerçek bir empatidir."
+            }
+          ]
+        },
+        "correct": "Empati kurmanın anlamı ve önemi",
+        "wrong1": "Yere düşen çocukların ağlaması",
+        "wrong2": "Arkadaşlarla oyun oynamak",
+        "explanation": "Metin, empatinin ne demek olduğunu açıklamış ve arkadaşımızın yerine kendimizi koymamız örneğiyle konuyu pekiştirmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_033",
+      "level": "zor",
+      "premise": "Kutuplardaki buzullar eriyor, deniz seviyeleri yükseliyor. Bu durum sadece kutup ayıları için değil, dünyanın her yerindeki canlılar için büyük bir tehlike yaratıyor. Küresel ısınmayı durdurmak için harekete geçmeliyiz.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Küresel ısınmanın doğaya ve canlılara verdiği zararlar",
+      "wrong1": "Kutup ayılarının neyle beslendiği",
+      "wrong2": "Denizlerdeki balık türleri",
+      "explanation": "Metinde buzulların erimesine sebep olan küresel ısınma adlı çevre felaketinin zararları konu edilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kutuplardaki buzullar eriyor, deniz seviyeleri yükseliyor. Bu durum sadece kutup ayıları için değil, dünyanın her yerindeki canlılar için büyük bir tehlike yaratıyor. Küresel ısınmayı durdurmak için harekete geçmeliyiz."
+            }
+          ]
+        },
+        "correct": "Küresel ısınmanın doğaya ve canlılara verdiği zararlar",
+        "wrong1": "Kutup ayılarının neyle beslendiği",
+        "wrong2": "Denizlerdeki balık türleri",
+        "explanation": "Metinde buzulların erimesine sebep olan küresel ısınma adlı çevre felaketinin zararları konu edilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_034",
+      "level": "zor",
+      "premise": "Hobilerimiz sadece boş vakit geçirmek için değildir. Resim yapmak, enstrüman çalmak veya pul biriktirmek zihnimizi dinlendirir, yeteneklerimizi geliştirir ve bizi daha mutlu bireyler yapar.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Hobilerin (ilgi alanlarının) insan hayatına faydaları",
+      "wrong1": "Pul koleksiyonu nasıl yapılır",
+      "wrong2": "Resim yaparken kullanılan boyalar",
+      "explanation": "Metin, hobilerle ilgilenmenin insan psikolojisine ve yetenek gelişimine sağladığı yararları konu almaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hobilerimiz sadece boş vakit geçirmek için değildir. Resim yapmak, enstrüman çalmak veya pul biriktirmek zihnimizi dinlendirir, yeteneklerimizi geliştirir ve bizi daha mutlu bireyler yapar."
+            }
+          ]
+        },
+        "correct": "Hobilerin (ilgi alanlarının) insan hayatına faydaları",
+        "wrong1": "Pul koleksiyonu nasıl yapılır",
+        "wrong2": "Resim yaparken kullanılan boyalar",
+        "explanation": "Metin, hobilerle ilgilenmenin insan psikolojisine ve yetenek gelişimine sağladığı yararları konu almaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_035",
+      "level": "zor",
+      "premise": "İhtiyacımız olmayan bir eşyayı sadece reklamda gördük diye almak israftır. Paramızı tasarruflu kullanmalı, alışverişe çıkmadan önce ihtiyaçlarımızın bir listesini yapmalıyız. Böylece bütçemizi korumuş oluruz.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Bilinçli tüketici olmak ve israfı önlemek",
+      "wrong1": "Televizyondaki reklamların eğlencesi",
+      "wrong2": "Marketlerin çalışma saatleri",
+      "explanation": "Metinde ihtiyaç listesi yaparak gereksiz harcamalardan kaçınmanın yolları (bilinçli tüketim) anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İhtiyacımız olmayan bir eşyayı sadece reklamda gördük diye almak israftır. Paramızı tasarruflu kullanmalı, alışverişe çıkmadan önce ihtiyaçlarımızın bir listesini yapmalıyız. Böylece bütçemizi korumuş oluruz."
+            }
+          ]
+        },
+        "correct": "Bilinçli tüketici olmak ve israfı önlemek",
+        "wrong1": "Televizyondaki reklamların eğlencesi",
+        "wrong2": "Marketlerin çalışma saatleri",
+        "explanation": "Metinde ihtiyaç listesi yaparak gereksiz harcamalardan kaçınmanın yolları (bilinçli tüketim) anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_036",
+      "level": "zor",
+      "premise": "Mimar Sinan, Osmanlı Devleti'nin en büyük mimarlarından biridir. Yaptığı camiler, köprüler ve kervansaraylar yüzyıllar geçmesine rağmen hâlâ ayakta durmaktadır. Eserlerinde harika bir matematik ve sanat vardır.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Mimar Sinan'ın eserleri ve ustalığı",
+      "wrong1": "Osmanlı padişahlarının savaşları",
+      "wrong2": "Köprülerin nasıl boyandığı",
+      "explanation": "Metinde Mimar Sinan'ın kim olduğu ve eserlerindeki inanılmaz sağlamlık/matematik konu edilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mimar Sinan, Osmanlı Devleti'nin en büyük mimarlarından biridir. Yaptığı camiler, köprüler ve kervansaraylar yüzyıllar geçmesine rağmen hâlâ ayakta durmaktadır. Eserlerinde harika bir matematik ve sanat vardır."
+            }
+          ]
+        },
+        "correct": "Mimar Sinan'ın eserleri ve ustalığı",
+        "wrong1": "Osmanlı padişahlarının savaşları",
+        "wrong2": "Köprülerin nasıl boyandığı",
+        "explanation": "Metinde Mimar Sinan'ın kim olduğu ve eserlerindeki inanılmaz sağlamlık/matematik konu edilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_037",
+      "level": "zor",
+      "premise": "Sabah uyanınca yatağımızı toplamak, eşyalarımızı dağıtmamak annemize yapabileceğimiz en güzel yardımlardan biridir. Kendi işlerimizi yaparak küçük yaşta sorumluluk almayı öğrenmeliyiz.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Kendi eşyalarımızı toplamanın ve sorumluluk almanın önemi",
+      "wrong1": "Annelerin yaptığı yemekler",
+      "wrong2": "Uyku saatlerimizi nasıl düzenleriz",
+      "explanation": "Metin, kendi işini kendin yapmanın (sorumluluk almanın) değerli olduğunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sabah uyanınca yatağımızı toplamak, eşyalarımızı dağıtmamak annemize yapabileceğimiz en güzel yardımlardan biridir. Kendi işlerimizi yaparak küçük yaşta sorumluluk almayı öğrenmeliyiz."
+            }
+          ]
+        },
+        "correct": "Kendi eşyalarımızı toplamanın ve sorumluluk almanın önemi",
+        "wrong1": "Annelerin yaptığı yemekler",
+        "wrong2": "Uyku saatlerimizi nasıl düzenleriz",
+        "explanation": "Metin, kendi işini kendin yapmanın (sorumluluk almanın) değerli olduğunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_038",
+      "level": "zor",
+      "premise": "Süt, kemik gelişimimiz için çok faydalıdır. İneklerden, keçilerden ve koyunlardan elde edilen süt aynı zamanda yoğurt, peynir ve tereyağı yapımında da kullanılır. Kahvaltılarımızın vazgeçilmezidir.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Sütün faydaları ve sütle yapılan besinler",
+      "wrong1": "İneklerin çiftlikteki yaşamı",
+      "wrong2": "Kahvaltıda ne kadar su içilmeli",
+      "explanation": "Metinde sütün hem kemiklere faydası hem de hangi gıdalara dönüştüğü anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Süt, kemik gelişimimiz için çok faydalıdır. İneklerden, keçilerden ve koyunlardan elde edilen süt aynı zamanda yoğurt, peynir ve tereyağı yapımında da kullanılır. Kahvaltılarımızın vazgeçilmezidir."
+            }
+          ]
+        },
+        "correct": "Sütün faydaları ve sütle yapılan besinler",
+        "wrong1": "İneklerin çiftlikteki yaşamı",
+        "wrong2": "Kahvaltıda ne kadar su içilmeli",
+        "explanation": "Metinde sütün hem kemiklere faydası hem de hangi gıdalara dönüştüğü anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_039",
+      "level": "zor",
+      "premise": "Büyük mucitler gökten zembille inmemişlerdir. Hepsi bizim gibi çocuktu. Farkları, merak ettikleri şeylerin peşinden gitmeleri ve hata yapmaktan korkmamalarıydı. Sen de merak et ve araştır.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Merak etmenin ve araştırmanın başarıdaki rolü",
+      "wrong1": "Çocukların çok oyun oynaması",
+      "wrong2": "Hata yapmanın kötü sonuçları",
+      "explanation": "Metinde mucitlerin en önemli özelliğinin merak edip araştırmak olduğu konu edilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Büyük mucitler gökten zembille inmemişlerdir. Hepsi bizim gibi çocuktu. Farkları, merak ettikleri şeylerin peşinden gitmeleri ve hata yapmaktan korkmamalarıydı. Sen de merak et ve araştır."
+            }
+          ]
+        },
+        "correct": "Merak etmenin ve araştırmanın başarıdaki rolü",
+        "wrong1": "Çocukların çok oyun oynaması",
+        "wrong2": "Hata yapmanın kötü sonuçları",
+        "explanation": "Metinde mucitlerin en önemli özelliğinin merak edip araştırmak olduğu konu edilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_040",
+      "level": "zor",
+      "premise": "Tembel karga bütün gün uyuyormuş. Kış gelince yiyecek hiçbir şey bulamamış. Gidip çalışkan sincaptan yardım istemiş. Sincap 'Ben cevizleri toplarken sen uyuyordun, şimdi hatanı anla.' demiş.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Zamanında çalışmamanın ve tembelliğin sonuçları",
+      "wrong1": "Kargaların ne renk olduğu",
+      "wrong2": "Sincapların ceviz yemesi",
+      "explanation": "Metinde karganın çalışmamasının sonuçları üzerinden tembelliğin zararları anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tembel karga bütün gün uyuyormuş. Kış gelince yiyecek hiçbir şey bulamamış. Gidip çalışkan sincaptan yardım istemiş. Sincap 'Ben cevizleri toplarken sen uyuyordun, şimdi hatanı anla.' demiş."
+            }
+          ]
+        },
+        "correct": "Zamanında çalışmamanın ve tembelliğin sonuçları",
+        "wrong1": "Kargaların ne renk olduğu",
+        "wrong2": "Sincapların ceviz yemesi",
+        "explanation": "Metinde karganın çalışmamasının sonuçları üzerinden tembelliğin zararları anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_041",
+      "level": "zor",
+      "premise": "Sarı saçlı, mavi gözlü Mustafa Kemal, Selanik'te doğdu. Okul hayatı boyunca zekasıyla dikkat çekti. O, milletimizi karanlıktan aydınlığa çıkaran büyük bir lider oldu.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Mustafa Kemal Atatürk'ün hayatı ve liderliği",
+      "wrong1": "Selanik şehrinin coğrafi konumu",
+      "wrong2": "Mavi gözlü insanların özellikleri",
+      "explanation": "Metinde Atatürk'ün fiziksel özelliklerinden, doğumundan ve liderliğinden bahsedilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sarı saçlı, mavi gözlü Mustafa Kemal, Selanik'te doğdu. Okul hayatı boyunca zekasıyla dikkat çekti. O, milletimizi karanlıktan aydınlığa çıkaran büyük bir lider oldu."
+            }
+          ]
+        },
+        "correct": "Mustafa Kemal Atatürk'ün hayatı ve liderliği",
+        "wrong1": "Selanik şehrinin coğrafi konumu",
+        "wrong2": "Mavi gözlü insanların özellikleri",
+        "explanation": "Metinde Atatürk'ün fiziksel özelliklerinden, doğumundan ve liderliğinden bahsedilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_042",
+      "level": "zor",
+      "premise": "Güneş sistemi merkezinde Güneş olan, etrafında Dünya'nın da bulunduğu 8 gezegenden oluşur. Gezegenler Güneş'in etrafında farklı hızlarda dönerler.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Güneş sistemi ve gezegenlerin hareketleri",
+      "wrong1": "Dünya'nın içindeki madenler",
+      "wrong2": "Uzaylıların yaşayıp yaşamadığı",
+      "explanation": "Metinde gezegenlerin güneş etrafındaki dizilimi ve dönüşü, yani Güneş sistemi anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş sistemi merkezinde Güneş olan, etrafında Dünya'nın da bulunduğu 8 gezegenden oluşur. Gezegenler Güneş'in etrafında farklı hızlarda dönerler."
+            }
+          ]
+        },
+        "correct": "Güneş sistemi ve gezegenlerin hareketleri",
+        "wrong1": "Dünya'nın içindeki madenler",
+        "wrong2": "Uzaylıların yaşayıp yaşamadığı",
+        "explanation": "Metinde gezegenlerin güneş etrafındaki dizilimi ve dönüşü, yani Güneş sistemi anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_043",
+      "level": "zor",
+      "premise": "Her insanın yetenekleri farklıdır. Kimi çok güzel resim çizer, kimi harika koşar, kimi de matematikte çok iyidir. Önemli olan kendi yeteneğimizi keşfetmek ve arkadaşlarımızın farklılıklarına saygı duymaktır.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Bireysel farklılıklara saygı duymak ve yeteneklerimiz",
+      "wrong1": "Matematik dersinin ne kadar zor olduğu",
+      "wrong2": "Resim çizerken kullanılan boyalar",
+      "explanation": "Metin bireysel farklılıklar ve yeteneklerin çeşitliliği üzerinedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Her insanın yetenekleri farklıdır. Kimi çok güzel resim çizer, kimi harika koşar, kimi de matematikte çok iyidir. Önemli olan kendi yeteneğimizi keşfetmek ve arkadaşlarımızın farklılıklarına saygı duymaktır."
+            }
+          ]
+        },
+        "correct": "Bireysel farklılıklara saygı duymak ve yeteneklerimiz",
+        "wrong1": "Matematik dersinin ne kadar zor olduğu",
+        "wrong2": "Resim çizerken kullanılan boyalar",
+        "explanation": "Metin bireysel farklılıklar ve yeteneklerin çeşitliliği üzerinedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_044",
+      "level": "zor",
+      "premise": "Güneş yavaşça batıyor, kızarıyor bulutlar. Kuşlar yuvaya dönüyor, bitiyor bütün oyunlar.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Akşam vaktinin gelişi",
+      "wrong1": "Bulutların renginin mavi olması",
+      "wrong2": "Oyun parkının kapatılması",
+      "explanation": "Şiirsel dille yazılan bu metinde güneşin batışı ve günün bitişi yani akşamın gelişi anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş yavaşça batıyor, kızarıyor bulutlar. Kuşlar yuvaya dönüyor, bitiyor bütün oyunlar."
+            }
+          ]
+        },
+        "correct": "Akşam vaktinin gelişi",
+        "wrong1": "Bulutların renginin mavi olması",
+        "wrong2": "Oyun parkının kapatılması",
+        "explanation": "Şiirsel dille yazılan bu metinde güneşin batışı ve günün bitişi yani akşamın gelişi anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_045",
+      "level": "zor",
+      "premise": "Pusula, yönümüzü bulmamızı sağlayan bir alettir. İçindeki mıknatıslı iğne her zaman kuzeyi gösterir. Gemiciler, dağcılar ve ormanda kamp yapanlar yollarını kaybetmemek için pusula kullanırlar.",
+      "text": "Yukarıdaki paragrafın konusu nedir?",
+      "correct": "Pusulanın ne işe yaradığı ve kullanım alanları",
+      "wrong1": "Gemicilerin nasıl seyahat ettiği",
+      "wrong2": "Mıknatısların çekim gücü",
+      "explanation": "Metinde pusulanın ne olduğu ve kimlerin ne için kullandığı anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pusula, yönümüzü bulmamızı sağlayan bir alettir. İçindeki mıknatıslı iğne her zaman kuzeyi gösterir. Gemiciler, dağcılar ve ormanda kamp yapanlar yollarını kaybetmemek için pusula kullanırlar."
+            }
+          ]
+        },
+        "correct": "Pusulanın ne işe yaradığı ve kullanım alanları",
+        "wrong1": "Gemicilerin nasıl seyahat ettiği",
+        "wrong2": "Mıknatısların çekim gücü",
+        "explanation": "Metinde pusulanın ne olduğu ve kimlerin ne için kullandığı anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_046",
+      "level": "kolay",
+      "premise": "Ahmet, iki çikolatasından birini yanındaki hiç çikolatası olmayan arkadaşı Ali'ye verdi. Ali çok sevindi ve Ahmet'e teşekkür etti. O gün ikisi de çikolata yerken çok mutluydu.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Sahip olduklarımızı başkalarıyla paylaşmak herkesi mutlu eder.",
+      "wrong1": "Çikolata yemek dişleri çürütür",
+      "wrong2": "Ali'nin hiç parası yoktur",
+      "explanation": "Ahmet'in elindekini paylaşması ve bunun sonucunda her ikisinin de mutlu olması, 'paylaşmanın güzelliği' dersini verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ahmet, iki çikolatasından birini yanındaki hiç çikolatası olmayan arkadaşı Ali'ye verdi. Ali çok sevindi ve Ahmet'e teşekkür etti. O gün ikisi de çikolata yerken çok mutluydu."
+            }
+          ]
+        },
+        "correct": "Sahip olduklarımızı başkalarıyla paylaşmak herkesi mutlu eder.",
+        "wrong1": "Çikolata yemek dişleri çürütür",
+        "wrong2": "Ali'nin hiç parası yoktur",
+        "explanation": "Ahmet'in elindekini paylaşması ve bunun sonucunda her ikisinin de mutlu olması, 'paylaşmanın güzelliği' dersini verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_047",
+      "level": "kolay",
+      "premise": "Tavşan hızına güvenip bir ağacın altında uyumuş. Kaplumbağa ise hiç pes etmeden yavaş yavaş yürümeye devam etmiş. Tavşan uyandığında kaplumbağa çoktan yarışı kazanmış.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Yeteneklerimize güvenip tembellik etmemeli, sabır ve azimle çalışmalıyız.",
+      "wrong1": "Tavşanlar kaplumbağalardan her zaman daha hızlı koşar",
+      "wrong2": "Ağaç gölgeleri uyumak için çok rahattır",
+      "explanation": "Tavşanın kibri ve tembelliğine karşı kaplumbağanın azmi (pes etmemesi) başarıyı getirmiştir. Ana fikir azimle çalışmaktır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tavşan hızına güvenip bir ağacın altında uyumuş. Kaplumbağa ise hiç pes etmeden yavaş yavaş yürümeye devam etmiş. Tavşan uyandığında kaplumbağa çoktan yarışı kazanmış."
+            }
+          ]
+        },
+        "correct": "Yeteneklerimize güvenip tembellik etmemeli, sabır ve azimle çalışmalıyız.",
+        "wrong1": "Tavşanlar kaplumbağalardan her zaman daha hızlı koşar",
+        "wrong2": "Ağaç gölgeleri uyumak için çok rahattır",
+        "explanation": "Tavşanın kibri ve tembelliğine karşı kaplumbağanın azmi (pes etmemesi) başarıyı getirmiştir. Ana fikir azimle çalışmaktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_048",
+      "level": "kolay",
+      "premise": "Ağustos böceği bütün yaz tembel tembel yatıp şarkı söylemiş. Kış gelip havalar soğuyunca aç kalmış. Bütün yaz durmadan çalışıp yuvasına yiyecek taşıyan karınca ise sıcacık yuvasında tok yatmış.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Geleceği düşünerek zamanında çalışıp hazırlık yapanlar, zor zamanlarda rahat ederler.",
+      "wrong1": "Ağustos böceklerinin sesi çok güzeldir",
+      "wrong2": "Kış mevsiminde her yer karla kaplanır",
+      "explanation": "Karıncanın çalışkanlığı sayesinde kışı rahat geçirmesi, önceden tedbir alıp çalışmanın önemini vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağustos böceği bütün yaz tembel tembel yatıp şarkı söylemiş. Kış gelip havalar soğuyunca aç kalmış. Bütün yaz durmadan çalışıp yuvasına yiyecek taşıyan karınca ise sıcacık yuvasında tok yatmış."
+            }
+          ]
+        },
+        "correct": "Geleceği düşünerek zamanında çalışıp hazırlık yapanlar, zor zamanlarda rahat ederler.",
+        "wrong1": "Ağustos böceklerinin sesi çok güzeldir",
+        "wrong2": "Kış mevsiminde her yer karla kaplanır",
+        "explanation": "Karıncanın çalışkanlığı sayesinde kışı rahat geçirmesi, önceden tedbir alıp çalışmanın önemini vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_049",
+      "level": "kolay",
+      "premise": "Bir hata yaptığımızda korkup yalan söylemek yerine dürüstçe itiraf etmeliyiz. Yalan söylemek o an kurtarıcı gibi görünse de zamanla ortaya çıkar ve insanların bize olan güvenini tamamen yıkar.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Ne olursa olsun her zaman dürüst olmalı ve yalan söylememeliyiz.",
+      "wrong1": "Yalan söylemek bazen eğlenceli olabilir",
+      "wrong2": "Hata yapan insanlar her zaman cezalandırılır",
+      "explanation": "Metinde yalanın güven kaybına yol açacağı belirtilerek, dürüstlüğün önemi anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir hata yaptığımızda korkup yalan söylemek yerine dürüstçe itiraf etmeliyiz. Yalan söylemek o an kurtarıcı gibi görünse de zamanla ortaya çıkar ve insanların bize olan güvenini tamamen yıkar."
+            }
+          ]
+        },
+        "correct": "Ne olursa olsun her zaman dürüst olmalı ve yalan söylememeliyiz.",
+        "wrong1": "Yalan söylemek bazen eğlenceli olabilir",
+        "wrong2": "Hata yapan insanlar her zaman cezalandırılır",
+        "explanation": "Metinde yalanın güven kaybına yol açacağı belirtilerek, dürüstlüğün önemi anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_050",
+      "level": "kolay",
+      "premise": "Bir tek çubuğu kırmak çok kolaydır, hemen ikiye bölünür. Ancak on tane çubuğu bir araya getirip sıkıca bağlarsanız, dünyanın en güçlü insanı bile onları kıramaz.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Birlikten kuvvet doğar, beraber hareket edersek daha güçlü oluruz.",
+      "wrong1": "Ağaç dalları çok çabuk kuruyup kırılır",
+      "wrong2": "Çubukları bağlamak için kalın bir ip gerekir",
+      "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin sembolüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir tek çubuğu kırmak çok kolaydır, hemen ikiye bölünür. Ancak on tane çubuğu bir araya getirip sıkıca bağlarsanız, dünyanın en güçlü insanı bile onları kıramaz."
+            }
+          ]
+        },
+        "correct": "Birlikten kuvvet doğar, beraber hareket edersek daha güçlü oluruz.",
+        "wrong1": "Ağaç dalları çok çabuk kuruyup kırılır",
+        "wrong2": "Çubukları bağlamak için kalın bir ip gerekir",
+        "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin sembolüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_051",
+      "level": "kolay",
+      "premise": "Kitap okuyan bir insanın kelime hazinesi çok geniştir. Kendini çok daha iyi ifade eder, girdiği her ortamda bilgisiyle saygı görür ve sorunlara farklı çözümler üretebilir.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Kitap okumak insanı hem geliştirir hem de toplumda daha saygın bir hale getirir.",
+      "wrong1": "Kitapların sayfaları çok kalın olur",
+      "wrong2": "Çok konuşan insanlar her zaman haklıdır",
+      "explanation": "Paragraf, kitap okumanın bilgi birikimini artırması ve saygı görmeyi sağlaması gibi değerlerini vurgulamaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitap okuyan bir insanın kelime hazinesi çok geniştir. Kendini çok daha iyi ifade eder, girdiği her ortamda bilgisiyle saygı görür ve sorunlara farklı çözümler üretebilir."
+            }
+          ]
+        },
+        "correct": "Kitap okumak insanı hem geliştirir hem de toplumda daha saygın bir hale getirir.",
+        "wrong1": "Kitapların sayfaları çok kalın olur",
+        "wrong2": "Çok konuşan insanlar her zaman haklıdır",
+        "explanation": "Paragraf, kitap okumanın bilgi birikimini artırması ve saygı görmeyi sağlaması gibi değerlerini vurgulamaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_052",
+      "level": "kolay",
+      "premise": "Büyük bir buz dağını kırmak için koca bir balyozla bir kere vurmak yetmez. O balyozu pes etmeden, sabırla defalarca aynı yere vurmak gerekir. Ancak o zaman buz dağı çatlar.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Büyük engelleri aşmak için pes etmeden, sabır ve kararlılıkla mücadele etmek gerekir.",
+      "wrong1": "Buz dağları çok soğuk iklimlerde bulunur",
+      "wrong2": "Balyoz kullanmak tehlikeli bir iştir",
+      "explanation": "Metinde balyozun defalarca vurulması, zorluklar karşısında pes etmemeyi ve sürekliliği (azmi) temsil eder.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Büyük bir buz dağını kırmak için koca bir balyozla bir kere vurmak yetmez. O balyozu pes etmeden, sabırla defalarca aynı yere vurmak gerekir. Ancak o zaman buz dağı çatlar."
+            }
+          ]
+        },
+        "correct": "Büyük engelleri aşmak için pes etmeden, sabır ve kararlılıkla mücadele etmek gerekir.",
+        "wrong1": "Buz dağları çok soğuk iklimlerde bulunur",
+        "wrong2": "Balyoz kullanmak tehlikeli bir iştir",
+        "explanation": "Metinde balyozun defalarca vurulması, zorluklar karşısında pes etmemeyi ve sürekliliği (azmi) temsil eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_053",
+      "level": "kolay",
+      "premise": "Otobüste yaşlı bir teyzenin ayakta kaldığını gören Cem, hemen kalkıp ona yer verdi. Teyze ona gülümseyip dua etti. Cem o gün kendini çok iyi hissetti.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Büyüklerimize saygı göstermek ve onlara yardım etmek bizi de mutlu eden güzel bir erdemdir.",
+      "wrong1": "Otobüs yolculukları çok yorucudur",
+      "wrong2": "Yaşlı insanlar her zaman otobüse biner",
+      "explanation": "Cem'in yaşlılara gösterdiği saygı ve sonucunda hissettiği mutluluk metnin ana fikridir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Otobüste yaşlı bir teyzenin ayakta kaldığını gören Cem, hemen kalkıp ona yer verdi. Teyze ona gülümseyip dua etti. Cem o gün kendini çok iyi hissetti."
+            }
+          ]
+        },
+        "correct": "Büyüklerimize saygı göstermek ve onlara yardım etmek bizi de mutlu eden güzel bir erdemdir.",
+        "wrong1": "Otobüs yolculukları çok yorucudur",
+        "wrong2": "Yaşlı insanlar her zaman otobüse biner",
+        "explanation": "Cem'in yaşlılara gösterdiği saygı ve sonucunda hissettiği mutluluk metnin ana fikridir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_054",
+      "level": "kolay",
+      "premise": "Ormanların kralı aslan, burnunun üstünde gezinen minik fareye acıyıp onu yememiş. Gün gelmiş, aslan avcıların ağına yakalanmış. O minik fare keskin dişleriyle ağı kemirerek aslanı kurtarmış.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Hiç kimseyi boyuna veya gücüne bakarak küçümsememeliyiz, gün gelir onlara muhtaç olabiliriz.",
+      "wrong1": "Aslanlar ormanın en korkutucu hayvanlarıdır",
+      "wrong2": "Fareler peynir yemeyi çok severler",
+      "explanation": "Hikayede aslanın minik bir fareye muhtaç kalması anlatılarak kimseyi küçümsememek gerektiği dersi verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ormanların kralı aslan, burnunun üstünde gezinen minik fareye acıyıp onu yememiş. Gün gelmiş, aslan avcıların ağına yakalanmış. O minik fare keskin dişleriyle ağı kemirerek aslanı kurtarmış."
+            }
+          ]
+        },
+        "correct": "Hiç kimseyi boyuna veya gücüne bakarak küçümsememeliyiz, gün gelir onlara muhtaç olabiliriz.",
+        "wrong1": "Aslanlar ormanın en korkutucu hayvanlarıdır",
+        "wrong2": "Fareler peynir yemeyi çok severler",
+        "explanation": "Hikayede aslanın minik bir fareye muhtaç kalması anlatılarak kimseyi küçümsememek gerektiği dersi verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_055",
+      "level": "kolay",
+      "premise": "Öfkeyle kalkan zararla oturur. İnsan sinirliyken doğru düşünemez ve sonradan çok pişman olacağı, sevdiklerini kıracağı sözler söyleyebilir. Kızgınken susmak en iyisidir.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Öfkeli olduğumuz anlarda karar vermemeli, sakinleşmeden konuşmamalıyız.",
+      "wrong1": "Sürekli susmak insanı hastalandırır",
+      "wrong2": "İnsanlar birbirine hep kızgındır",
+      "explanation": "Yazar öfkenin zararlarından bahsederek sinirliyken sakinleşmeyi beklemek gerektiği öğüdünü (ana fikrini) vermektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öfkeyle kalkan zararla oturur. İnsan sinirliyken doğru düşünemez ve sonradan çok pişman olacağı, sevdiklerini kıracağı sözler söyleyebilir. Kızgınken susmak en iyisidir."
+            }
+          ]
+        },
+        "correct": "Öfkeli olduğumuz anlarda karar vermemeli, sakinleşmeden konuşmamalıyız.",
+        "wrong1": "Sürekli susmak insanı hastalandırır",
+        "wrong2": "İnsanlar birbirine hep kızgındır",
+        "explanation": "Yazar öfkenin zararlarından bahsederek sinirliyken sakinleşmeyi beklemek gerektiği öğüdünü (ana fikrini) vermektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_056",
+      "level": "orta",
+      "premise": "Gülümsemek bulaşıcı bir hastalık gibidir ama iyi yönde! Sabah asık suratlı birine içtenlikle gülümsediğinizde, onun da yüzünde bir ışık parlar ve o da başkasına gülümser.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Olumlu ve güler yüzlü davranışlar etrafımızdaki insanlara da geçer ve onları mutlu eder.",
+      "wrong1": "Hastalıklar genellikle sabahları daha hızlı bulaşır",
+      "wrong2": "Asık suratlı insanlarla asla konuşmamalıyız",
+      "explanation": "Metinde gülümsemenin yayılma gücü üzerinden, pozitif bir tavrın tüm insanları iyi yönde etkileyeceği anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gülümsemek bulaşıcı bir hastalık gibidir ama iyi yönde! Sabah asık suratlı birine içtenlikle gülümsediğinizde, onun da yüzünde bir ışık parlar ve o da başkasına gülümser."
+            }
+          ]
+        },
+        "correct": "Olumlu ve güler yüzlü davranışlar etrafımızdaki insanlara da geçer ve onları mutlu eder.",
+        "wrong1": "Hastalıklar genellikle sabahları daha hızlı bulaşır",
+        "wrong2": "Asık suratlı insanlarla asla konuşmamalıyız",
+        "explanation": "Metinde gülümsemenin yayılma gücü üzerinden, pozitif bir tavrın tüm insanları iyi yönde etkileyeceği anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_057",
+      "level": "orta",
+      "premise": "Tilki, ağzında koca bir peynir olan kargayı görünce ona 'Sesin ne güzel, bana bir şarkı söyle' diyerek iltifat etmiş. Karga şarkı söylemek için ağzını açınca peyniri düşürmüş ve tilki kapıp kaçmış.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Başkalarının sahte övgülerine ve tatlı sözlerine hemen aldanıp onlara inanmamalıyız.",
+      "wrong1": "Kargaların sesi gerçekten çok güzeldir",
+      "wrong2": "Peynir çok lezzetli ve sağlıklı bir yiyecektir",
+      "explanation": "Tilkinin sahte övgüsüne aldanan karganın hatası üzerinden 'sahte övgülere kanmamak gerektiği' dersi (ana fikir) verilmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tilki, ağzında koca bir peynir olan kargayı görünce ona 'Sesin ne güzel, bana bir şarkı söyle' diyerek iltifat etmiş. Karga şarkı söylemek için ağzını açınca peyniri düşürmüş ve tilki kapıp kaçmış."
+            }
+          ]
+        },
+        "correct": "Başkalarının sahte övgülerine ve tatlı sözlerine hemen aldanıp onlara inanmamalıyız.",
+        "wrong1": "Kargaların sesi gerçekten çok güzeldir",
+        "wrong2": "Peynir çok lezzetli ve sağlıklı bir yiyecektir",
+        "explanation": "Tilkinin sahte övgüsüne aldanan karganın hatası üzerinden 'sahte övgülere kanmamak gerektiği' dersi (ana fikir) verilmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_058",
+      "level": "orta",
+      "premise": "Sağlıklı bir bedene sahip olmak en büyük hazinedir. Dünyanın en zengin insanı bile olsanız, hastanede yattığınız sürece o paranın size hiçbir faydası yoktur.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Hayattaki en değerli varlığımız sağlığımızdır, sağlığımızı hiçbir parayla satın alamayız.",
+      "wrong1": "Hastaneler çok büyük binalardır",
+      "wrong2": "Zengin olmak için çok çalışmak gerekir",
+      "explanation": "Metinde sağlık olmadan zenginliğin anlamsız olduğu vurgulanarak sağlığın paha biçilemez olduğu dersi verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sağlıklı bir bedene sahip olmak en büyük hazinedir. Dünyanın en zengin insanı bile olsanız, hastanede yattığınız sürece o paranın size hiçbir faydası yoktur."
+            }
+          ]
+        },
+        "correct": "Hayattaki en değerli varlığımız sağlığımızdır, sağlığımızı hiçbir parayla satın alamayız.",
+        "wrong1": "Hastaneler çok büyük binalardır",
+        "wrong2": "Zengin olmak için çok çalışmak gerekir",
+        "explanation": "Metinde sağlık olmadan zenginliğin anlamsız olduğu vurgulanarak sağlığın paha biçilemez olduğu dersi verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_059",
+      "level": "orta",
+      "premise": "Papatya, diğer gösterişli güller kadar kırmızı ve büyük olmadığı için üzülüyormuş. Ancak bir gün küçük bir kız gelip 'Ne kadar saf ve zarif bir çiçek!' diyerek onu defterinin arasına koyunca kendi değerini anlamış.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Kendimizi başkalarıyla kıyaslamamalıyız, hepimizin kendine has bir güzelliği ve değeri vardır.",
+      "wrong1": "Güller papatyalardan daha güzel kokar",
+      "wrong2": "Çiçekleri koparmak doğaya zarar verir",
+      "explanation": "Papatyanın güllerle kendini kıyaslayıp üzülmesi ve sonra değerini fark etmesi, herkesin farklı ve özel olduğunu öğretir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Papatya, diğer gösterişli güller kadar kırmızı ve büyük olmadığı için üzülüyormuş. Ancak bir gün küçük bir kız gelip 'Ne kadar saf ve zarif bir çiçek!' diyerek onu defterinin arasına koyunca kendi değerini anlamış."
+            }
+          ]
+        },
+        "correct": "Kendimizi başkalarıyla kıyaslamamalıyız, hepimizin kendine has bir güzelliği ve değeri vardır.",
+        "wrong1": "Güller papatyalardan daha güzel kokar",
+        "wrong2": "Çiçekleri koparmak doğaya zarar verir",
+        "explanation": "Papatyanın güllerle kendini kıyaslayıp üzülmesi ve sonra değerini fark etmesi, herkesin farklı ve özel olduğunu öğretir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_060",
+      "level": "orta",
+      "premise": "Zaman çok değerli bir hazinedir. Kaybettiğimiz bir eşyayı veya parayı çalışarak yerine koyabiliriz ama boşa harcadığımız dünkü bir saati dünyaları versek de geri alamayız.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Zaman geri döndürülemez en kıymetli şeydir, bu yüzden vaktimizi asla boşa harcamamalıyız.",
+      "wrong1": "Para kazanmak için saatlerce çalışmak gerekir",
+      "wrong2": "Kaybolan eşyalarımızı dikkatli aramalıyız",
+      "explanation": "Metin, paranın yerine konabildiği ama zamanın geri gelmediği örneğiyle zamanın eşsiz değerini anlatıyor.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zaman çok değerli bir hazinedir. Kaybettiğimiz bir eşyayı veya parayı çalışarak yerine koyabiliriz ama boşa harcadığımız dünkü bir saati dünyaları versek de geri alamayız."
+            }
+          ]
+        },
+        "correct": "Zaman geri döndürülemez en kıymetli şeydir, bu yüzden vaktimizi asla boşa harcamamalıyız.",
+        "wrong1": "Para kazanmak için saatlerce çalışmak gerekir",
+        "wrong2": "Kaybolan eşyalarımızı dikkatli aramalıyız",
+        "explanation": "Metin, paranın yerine konabildiği ama zamanın geri gelmediği örneğiyle zamanın eşsiz değerini anlatıyor.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_061",
+      "level": "orta",
+      "premise": "Tavşan koşuda çok yetenekliydi ama tembellik edip uyudu. Kaplumbağa ise koşamasa da hiç durmadan yürüdü ve kazandı. Hayatta da böyledir; çok zeki olup çalışmayan biri, normal ama çok çalışan birine yenilir.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Sadece yetenek ve zeka yeterli değildir, asıl başarıyı getiren şey sürekli ve kararlı çalışmaktır.",
+      "wrong1": "Tavşanlar her zaman yarışları kaybederler",
+      "wrong2": "Ormanda yürüyüş yapmak sağlığa faydalıdır",
+      "explanation": "Yetenekli (tavşan) ile çalışkan (kaplumbağa) kıyaslaması yapılarak, emeksiz yeteneğin işe yaramayacağı vurgulanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tavşan koşuda çok yetenekliydi ama tembellik edip uyudu. Kaplumbağa ise koşamasa da hiç durmadan yürüdü ve kazandı. Hayatta da böyledir; çok zeki olup çalışmayan biri, normal ama çok çalışan birine yenilir."
+            }
+          ]
+        },
+        "correct": "Sadece yetenek ve zeka yeterli değildir, asıl başarıyı getiren şey sürekli ve kararlı çalışmaktır.",
+        "wrong1": "Tavşanlar her zaman yarışları kaybederler",
+        "wrong2": "Ormanda yürüyüş yapmak sağlığa faydalıdır",
+        "explanation": "Yetenekli (tavşan) ile çalışkan (kaplumbağa) kıyaslaması yapılarak, emeksiz yeteneğin işe yaramayacağı vurgulanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_062",
+      "level": "orta",
+      "premise": "Bilge bir adama 'Neden hiç hata yapmıyorsun?' diye sormuşlar. Adam gülmüş ve 'Çünkü çok hata yaptım ve her birinden bir ders çıkardım' demiş.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Hata yapmak başarısızlık değildir, asıl bilgelik o hatalardan ders çıkarıp onları tekrarlamamaktır.",
+      "wrong1": "Bilge insanlar asla hata yapmazlar",
+      "wrong2": "Hata yapmaktan her zaman korkmalıyız",
+      "explanation": "Metinde hataların kötü bir şey olmadığı, aksine onlardan ders alırsak bizi geliştirdiği (bilgeleştirdiği) vurgulanır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bilge bir adama 'Neden hiç hata yapmıyorsun?' diye sormuşlar. Adam gülmüş ve 'Çünkü çok hata yaptım ve her birinden bir ders çıkardım' demiş."
+            }
+          ]
+        },
+        "correct": "Hata yapmak başarısızlık değildir, asıl bilgelik o hatalardan ders çıkarıp onları tekrarlamamaktır.",
+        "wrong1": "Bilge insanlar asla hata yapmazlar",
+        "wrong2": "Hata yapmaktan her zaman korkmalıyız",
+        "explanation": "Metinde hataların kötü bir şey olmadığı, aksine onlardan ders alırsak bizi geliştirdiği (bilgeleştirdiği) vurgulanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_063",
+      "level": "orta",
+      "premise": "Kör bir adam, elinde fenerle gece yolda yürüyormuş. Görenler 'Sen körsün, fener senin neyine?' demişler. Adam, 'Fener benim için değil, sizin gibi gözü görenler çarpmasın diye' yanıtını vermiş.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "İnsanlar sadece kendilerini değil, çevrelerindeki diğer insanları da düşünerek hareket etmelidir.",
+      "wrong1": "Kör adamlar gece dışarı çıkmamalıdır",
+      "wrong2": "El feneri karanlık yolları aydınlatır",
+      "explanation": "Kör adamın kendi görememesine rağmen başkalarını düşünerek önlem alması, ince düşünceli olmayı (empatiyi) öğütler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kör bir adam, elinde fenerle gece yolda yürüyormuş. Görenler 'Sen körsün, fener senin neyine?' demişler. Adam, 'Fener benim için değil, sizin gibi gözü görenler çarpmasın diye' yanıtını vermiş."
+            }
+          ]
+        },
+        "correct": "İnsanlar sadece kendilerini değil, çevrelerindeki diğer insanları da düşünerek hareket etmelidir.",
+        "wrong1": "Kör adamlar gece dışarı çıkmamalıdır",
+        "wrong2": "El feneri karanlık yolları aydınlatır",
+        "explanation": "Kör adamın kendi görememesine rağmen başkalarını düşünerek önlem alması, ince düşünceli olmayı (empatiyi) öğütler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_064",
+      "level": "orta",
+      "premise": "Damlaya damlaya göl olur. Kumbaraya atılan küçük bir demir para ilk gün önemsiz gelir. Ancak aylar boyunca biriken o bozuk paralarla sonunda çok istediğin o büyük bisikleti alabilirsin.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Küçük ve önemsiz gibi görünen birikimler, sabırla devam edildiğinde büyük değerlere ulaşır.",
+      "wrong1": "Sadece bozuk paralarla bisiklet alınabilir",
+      "wrong2": "Sular damlayarak gölleri oluşturur",
+      "explanation": "Metin, 'Damlaya damlaya göl olur' sözünü açıklayarak küçük tasarrufların (birikimlerin) büyüyüp faydalı olacağını öğretir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Damlaya damlaya göl olur. Kumbaraya atılan küçük bir demir para ilk gün önemsiz gelir. Ancak aylar boyunca biriken o bozuk paralarla sonunda çok istediğin o büyük bisikleti alabilirsin."
+            }
+          ]
+        },
+        "correct": "Küçük ve önemsiz gibi görünen birikimler, sabırla devam edildiğinde büyük değerlere ulaşır.",
+        "wrong1": "Sadece bozuk paralarla bisiklet alınabilir",
+        "wrong2": "Sular damlayarak gölleri oluşturur",
+        "explanation": "Metin, 'Damlaya damlaya göl olur' sözünü açıklayarak küçük tasarrufların (birikimlerin) büyüyüp faydalı olacağını öğretir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_065",
+      "level": "orta",
+      "premise": "Meyve veren ağaç taşlanır. Toplum içinde başarılı olan, iyi işler yapan insanlar genellikle etrafındaki tembel veya kıskanç kişiler tarafından eleştirilir. Başarılı insan bu sözlere aldırmadan yoluna devam etmelidir.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Başarılı insanlar haksız eleştirilere takılmadan, kıskançlıklara aldırmadan hedeflerine yürümelidir.",
+      "wrong1": "Ağaçlara taş atmak çok tehlikeli bir davranıştır",
+      "wrong2": "Kimse başarılı insanları sevmez",
+      "explanation": "Atasözü ile başlayan metin, başarılı insanların çekemeyenler tarafından eleştirilmesine rağmen pes etmemesi gerektiğini öğütler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Meyve veren ağaç taşlanır. Toplum içinde başarılı olan, iyi işler yapan insanlar genellikle etrafındaki tembel veya kıskanç kişiler tarafından eleştirilir. Başarılı insan bu sözlere aldırmadan yoluna devam etmelidir."
+            }
+          ]
+        },
+        "correct": "Başarılı insanlar haksız eleştirilere takılmadan, kıskançlıklara aldırmadan hedeflerine yürümelidir.",
+        "wrong1": "Ağaçlara taş atmak çok tehlikeli bir davranıştır",
+        "wrong2": "Kimse başarılı insanları sevmez",
+        "explanation": "Atasözü ile başlayan metin, başarılı insanların çekemeyenler tarafından eleştirilmesine rağmen pes etmemesi gerektiğini öğütler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_066",
+      "level": "orta",
+      "premise": "Öfkelendiğinizde hemen tepki vermek yerine içinizden ona kadar sayın. Derin bir nefes alın. Göreceksiniz ki o ilk andaki yıkıcı siniriniz geçmiş olacak ve mantıklı düşünebileceksiniz.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Öfkeli anlarımızda ani tepkiler vermekten kaçınmalı ve sakinleşmeyi beklemeliyiz.",
+      "wrong1": "Ona kadar saymak matematik yeteneğimizi geliştirir",
+      "wrong2": "Nefes tutmak akciğerlere çok faydalıdır",
+      "explanation": "Yazar, öfke anında sakin kalmanın ve beklemenin hataları önleyeceğini (ana fikrini) vermektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öfkelendiğinizde hemen tepki vermek yerine içinizden ona kadar sayın. Derin bir nefes alın. Göreceksiniz ki o ilk andaki yıkıcı siniriniz geçmiş olacak ve mantıklı düşünebileceksiniz."
+            }
+          ]
+        },
+        "correct": "Öfkeli anlarımızda ani tepkiler vermekten kaçınmalı ve sakinleşmeyi beklemeliyiz.",
+        "wrong1": "Ona kadar saymak matematik yeteneğimizi geliştirir",
+        "wrong2": "Nefes tutmak akciğerlere çok faydalıdır",
+        "explanation": "Yazar, öfke anında sakin kalmanın ve beklemenin hataları önleyeceğini (ana fikrini) vermektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_067",
+      "level": "orta",
+      "premise": "Eğitim bir ağaç dikmek gibidir. Fidanı toprağa koyduğunuz gün gölgesinde oturamaz, meyvesini yiyemezsiniz. Yıllarca bıkmadan sularsınız ve sonunda binlerce kişiye fayda sağlayan ulu bir çınar olur.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Eğitim sabır ister; gelecekte büyük faydalar sağlar.",
+      "wrong1": "Ağaç dikmek doğayı korumak için en iyi yoldur.",
+      "wrong2": "Çınar ağaçları her zaman bol meyve verir.",
+      "explanation": "Eğitim ile fidan yetiştirmeyi benzeten bu metin, eğitimin hemen değil zamanla çok büyük sonuçlar vereceği mesajını taşır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Eğitim bir ağaç dikmek gibidir. Fidanı toprağa koyduğunuz gün gölgesinde oturamaz, meyvesini yiyemezsiniz. Yıllarca bıkmadan sularsınız ve sonunda binlerce kişiye fayda sağlayan ulu bir çınar olur."
+            }
+          ]
+        },
+        "correct": "Eğitim sabır ister; gelecekte büyük faydalar sağlar.",
+        "wrong1": "Ağaç dikmek doğayı korumak için en iyi yoldur.",
+        "wrong2": "Çınar ağaçları her zaman bol meyve verir.",
+        "explanation": "Eğitim ile fidan yetiştirmeyi benzeten bu metin, eğitimin hemen değil zamanla çok büyük sonuçlar vereceği mesajını taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_068",
+      "level": "zor",
+      "premise": "Gerçek arkadaşlık karanlıkta parlayan bir yıldıza benzer. İnsan mutlu günlerinde etrafında çok kişi bulur. Fakat zor bir duruma düştüğünde yanında sadece gerçek dostları kalır.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Gerçek dostlar, sadece iyi günlerimizde değil asıl kötü ve zor günlerimizde yanımızda olan kişilerdir.",
+      "wrong1": "Gökyüzündeki yıldızlar sadece karanlıkta parlar",
+      "wrong2": "Mutlu günlerde arkadaşlarımızla bol bol gülmeliyiz",
+      "explanation": "Metin, iyi gün dostluğu ile gerçek dostluğu kıyaslamış ve gerçek dostun kötü günde belli olacağı dersini vermiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gerçek arkadaşlık karanlıkta parlayan bir yıldıza benzer. İnsan mutlu günlerinde etrafında çok kişi bulur. Fakat zor bir duruma düştüğünde yanında sadece gerçek dostları kalır."
+            }
+          ]
+        },
+        "correct": "Gerçek dostlar, sadece iyi günlerimizde değil asıl kötü ve zor günlerimizde yanımızda olan kişilerdir.",
+        "wrong1": "Gökyüzündeki yıldızlar sadece karanlıkta parlar",
+        "wrong2": "Mutlu günlerde arkadaşlarımızla bol bol gülmeliyiz",
+        "explanation": "Metin, iyi gün dostluğu ile gerçek dostluğu kıyaslamış ve gerçek dostun kötü günde belli olacağı dersini vermiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_069",
+      "level": "zor",
+      "premise": "Bir demet çubuğu kırmak imkansızdır. Ama o demeti çözüp çubukları tek tek elinize aldığınızda hepsini kolayca kırarsınız. İnsanlar da böyledir; ayrılırsak zayıf, birleşirsek yenilmez oluruz.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "İnsanlar dayanışma ve birlik içinde olduklarında her türlü zorluğun üstesinden gelirler.",
+      "wrong1": "Çubukları kırmak çok güç gerektiren bir iştir",
+      "wrong2": "Demet halindeki çubuklardan güzel ateş yakılır",
+      "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin (birlikten kuvvet doğar) sembolüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir demet çubuğu kırmak imkansızdır. Ama o demeti çözüp çubukları tek tek elinize aldığınızda hepsini kolayca kırarsınız. İnsanlar da böyledir; ayrılırsak zayıf, birleşirsek yenilmez oluruz."
+            }
+          ]
+        },
+        "correct": "İnsanlar dayanışma ve birlik içinde olduklarında her türlü zorluğun üstesinden gelirler.",
+        "wrong1": "Çubukları kırmak çok güç gerektiren bir iştir",
+        "wrong2": "Demet halindeki çubuklardan güzel ateş yakılır",
+        "explanation": "Çubukların tekken kırılıp beraberken kırılamaması, dayanışmanın ve birlikteliğin (birlikten kuvvet doğar) sembolüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_070",
+      "level": "zor",
+      "premise": "Karıncalar, yuvalarını su basmasın diye yüksek yerlere yaparlar. Ağustos böceği ise nereyi bulursa orada yatar. Bir sel geldiğinde karıncalar güvendeyken ağustos böceği boğulma tehlikesi geçirir.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Her zaman geleceği düşünerek tedbirli davranmalı, tehlikelere karşı önlem almalıyız.",
+      "wrong1": "Karıncalar çok yükseğe tırmanabilirler",
+      "wrong2": "Ağustos böcekleri yüzmeyi çok iyi bilirler",
+      "explanation": "Karıncaların önlem alması, tedbirli olmanın hayati önemini vurgulamaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karıncalar, yuvalarını su basmasın diye yüksek yerlere yaparlar. Ağustos böceği ise nereyi bulursa orada yatar. Bir sel geldiğinde karıncalar güvendeyken ağustos böceği boğulma tehlikesi geçirir."
+            }
+          ]
+        },
+        "correct": "Her zaman geleceği düşünerek tedbirli davranmalı, tehlikelere karşı önlem almalıyız.",
+        "wrong1": "Karıncalar çok yükseğe tırmanabilirler",
+        "wrong2": "Ağustos böcekleri yüzmeyi çok iyi bilirler",
+        "explanation": "Karıncaların önlem alması, tedbirli olmanın hayati önemini vurgulamaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_071",
+      "level": "zor",
+      "premise": "Güzel sözler sihirli anahtarlar gibidir. Yanlışlıkla birine çarptığınızda kızarsanız kavga çıkar. Ama gülümseyerek 'Özür dilerim' derseniz o kişi size kızamaz. Nezaket tüm kapıları açar.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "İletişimde nazik ve kibar olmak, sorunları kolayca çözmemizi sağlar.",
+      "wrong1": "Anahtarlar kilitli kapıları açmak için kullanılır",
+      "wrong2": "İnsanlara çarpmak büyük bir hatadır",
+      "explanation": "Metinde nezaketin (özür dilemenin) kavgaları önleyen gücü (ana fikir) anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güzel sözler sihirli anahtarlar gibidir. Yanlışlıkla birine çarptığınızda kızarsanız kavga çıkar. Ama gülümseyerek 'Özür dilerim' derseniz o kişi size kızamaz. Nezaket tüm kapıları açar."
+            }
+          ]
+        },
+        "correct": "İletişimde nazik ve kibar olmak, sorunları kolayca çözmemizi sağlar.",
+        "wrong1": "Anahtarlar kilitli kapıları açmak için kullanılır",
+        "wrong2": "İnsanlara çarpmak büyük bir hatadır",
+        "explanation": "Metinde nezaketin (özür dilemenin) kavgaları önleyen gücü (ana fikir) anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_072",
+      "level": "zor",
+      "premise": "Ayşe sınavdan düşük not alınca çok ağladı. Babası ona: 'Ağlamak notunu yükseltmez. Nerede hata yaptığını bul ve bir sonraki sınava daha iyi çalış' dedi. Ayşe çalışıp başardı.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Hatalarımız karşısında pes edip üzülmek yerine, onlardan ders çıkararak başarıya ulaşabiliriz.",
+      "wrong1": "Sınavlarda düşük not almak çok kötü bir durumdur",
+      "wrong2": "Babalar çocuklarının ödevlerine her zaman yardım etmelidir",
+      "explanation": "Ayşe'nin ağlamak yerine çalışıp başarması, pes etmemek ve ders çıkarmak (ana fikir) ile ilgilidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ayşe sınavdan düşük not alınca çok ağladı. Babası ona: 'Ağlamak notunu yükseltmez. Nerede hata yaptığını bul ve bir sonraki sınava daha iyi çalış' dedi. Ayşe çalışıp başardı."
+            }
+          ]
+        },
+        "correct": "Hatalarımız karşısında pes edip üzülmek yerine, onlardan ders çıkararak başarıya ulaşabiliriz.",
+        "wrong1": "Sınavlarda düşük not almak çok kötü bir durumdur",
+        "wrong2": "Babalar çocuklarının ödevlerine her zaman yardım etmelidir",
+        "explanation": "Ayşe'nin ağlamak yerine çalışıp başarması, pes etmemek ve ders çıkarmak (ana fikir) ile ilgilidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_073",
+      "level": "zor",
+      "premise": "Kutuplarda yaşayan penguenler birbirlerine sıkıca sarılarak soğuktan korunurlar. Eğer aralarından biri gruptan ayrılırsa donarak ölebilir. Hayatta kalmaları birbirlerine destek olmalarına bağlıdır.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Zorlu koşullarda hayatta kalmak ve başarılı olmak için dayanışma ve yardımlaşma şarttır.",
+      "wrong1": "Penguenler kutuplarda yaşayan sevimli kuşlardır",
+      "wrong2": "Soğuk havalarda kalın giyinmek gerekir",
+      "explanation": "Penguenlerin birbirine sarılması üzerinden yardımlaşmanın (dayanışmanın) önemi vurgulanmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kutuplarda yaşayan penguenler birbirlerine sıkıca sarılarak soğuktan korunurlar. Eğer aralarından biri gruptan ayrılırsa donarak ölebilir. Hayatta kalmaları birbirlerine destek olmalarına bağlıdır."
+            }
+          ]
+        },
+        "correct": "Zorlu koşullarda hayatta kalmak ve başarılı olmak için dayanışma ve yardımlaşma şarttır.",
+        "wrong1": "Penguenler kutuplarda yaşayan sevimli kuşlardır",
+        "wrong2": "Soğuk havalarda kalın giyinmek gerekir",
+        "explanation": "Penguenlerin birbirine sarılması üzerinden yardımlaşmanın (dayanışmanın) önemi vurgulanmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_074",
+      "level": "zor",
+      "premise": "Görevlerimizden kaçtığımızda o iş bitmez, aksine birikir. Yatağımızı toplamamak, ödevimizi yapmamak ileride büyük bir probleme dönüşür. Bu yüzden her işi vaktinde yapmalıyız.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Sorumluluklarımızı ertelememeli, yapmamız gereken işleri zamanında bitirmeliyiz.",
+      "wrong1": "Yatağımızı toplamak annemizin görevidir",
+      "wrong2": "Çocukların çok fazla ödevi olmamalıdır",
+      "explanation": "Metinde küçük görevlerin birikmemesi için sorumlulukların vaktinde yerine getirilmesi öğütlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Görevlerimizden kaçtığımızda o iş bitmez, aksine birikir. Yatağımızı toplamamak, ödevimizi yapmamak ileride büyük bir probleme dönüşür. Bu yüzden her işi vaktinde yapmalıyız."
+            }
+          ]
+        },
+        "correct": "Sorumluluklarımızı ertelememeli, yapmamız gereken işleri zamanında bitirmeliyiz.",
+        "wrong1": "Yatağımızı toplamak annemizin görevidir",
+        "wrong2": "Çocukların çok fazla ödevi olmamalıdır",
+        "explanation": "Metinde küçük görevlerin birikmemesi için sorumlulukların vaktinde yerine getirilmesi öğütlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_075",
+      "level": "zor",
+      "premise": "Bazen en küçük canlılar bile ekosistem için çok önemlidir. Toprağı havalandıran solucanlar olmasaydı bitkiler büyüyemezdi. Dünyadaki her varlığın bir görevi vardır.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Doğadaki hiçbir canlı gereksiz değildir, her birinin hayatın devamı için önemli bir rolü vardır.",
+      "wrong1": "Solucanlar toprak altında yaşayan hayvanlardır",
+      "wrong2": "Bitkilerin büyümesi için çok su gerekir",
+      "explanation": "Solucan örneği ile doğadaki her canlının önemli olduğu ve saygı duyulması gerektiği mesajı verilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bazen en küçük canlılar bile ekosistem için çok önemlidir. Toprağı havalandıran solucanlar olmasaydı bitkiler büyüyemezdi. Dünyadaki her varlığın bir görevi vardır."
+            }
+          ]
+        },
+        "correct": "Doğadaki hiçbir canlı gereksiz değildir, her birinin hayatın devamı için önemli bir rolü vardır.",
+        "wrong1": "Solucanlar toprak altında yaşayan hayvanlardır",
+        "wrong2": "Bitkilerin büyümesi için çok su gerekir",
+        "explanation": "Solucan örneği ile doğadaki her canlının önemli olduğu ve saygı duyulması gerektiği mesajı verilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_076",
+      "level": "zor",
+      "premise": "Büyük icatların çoğu hayal kurmakla başlamıştır. Uçan arabalar, uzay gemileri önce bir çocuğun hayaliydi, sonra gerçeğe dönüştü. Hayal kurmaktan asla vazgeçmeyin.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Büyük başarıların ve icatların temelinde sınırsız bir hayal gücü yatar.",
+      "wrong1": "Uzay gemileri yapmak çok pahalıdır",
+      "wrong2": "Çocuklar her zaman oyun oynamak ister",
+      "explanation": "Metinde hayal gücünün icatlar ve başarılar için ne kadar önemli olduğu vurgulanmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Büyük icatların çoğu hayal kurmakla başlamıştır. Uçan arabalar, uzay gemileri önce bir çocuğun hayaliydi, sonra gerçeğe dönüştü. Hayal kurmaktan asla vazgeçmeyin."
+            }
+          ]
+        },
+        "correct": "Büyük başarıların ve icatların temelinde sınırsız bir hayal gücü yatar.",
+        "wrong1": "Uzay gemileri yapmak çok pahalıdır",
+        "wrong2": "Çocuklar her zaman oyun oynamak ister",
+        "explanation": "Metinde hayal gücünün icatlar ve başarılar için ne kadar önemli olduğu vurgulanmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_077",
+      "level": "zor",
+      "premise": "Ormana pikniğe gittiğinizde çöplerinizi bırakırsanız, o çöplerin doğada yok olması yüzlerce yıl sürer. Ayrıca hayvanlar o plastikleri yiyip hastalanabilir. Doğaya saygı göstermek zorundayız.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Doğayı ve çevremizi korumak hepimizin en önemli sorumluluğudur.",
+      "wrong1": "Piknikte mangal yakmak çok tehlikelidir",
+      "wrong2": "Plastik poşetler çok dayanıklıdır",
+      "explanation": "Metin, çöplerin doğaya zararları üzerinden çevre bilinci ve koruma dersi verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ormana pikniğe gittiğinizde çöplerinizi bırakırsanız, o çöplerin doğada yok olması yüzlerce yıl sürer. Ayrıca hayvanlar o plastikleri yiyip hastalanabilir. Doğaya saygı göstermek zorundayız."
+            }
+          ]
+        },
+        "correct": "Doğayı ve çevremizi korumak hepimizin en önemli sorumluluğudur.",
+        "wrong1": "Piknikte mangal yakmak çok tehlikelidir",
+        "wrong2": "Plastik poşetler çok dayanıklıdır",
+        "explanation": "Metin, çöplerin doğaya zararları üzerinden çevre bilinci ve koruma dersi verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_078",
+      "level": "zor",
+      "premise": "Kitaplıklar sadece tozlu raflar değildir; onlar uçan halılardır. Bir raf bizi dinozorlar çağına götürürken, diğer bir raf uzayın derinliklerine fırlatır. Kitap okuyan insanın canı asla sıkılmaz.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Kitaplar bize zengin hayal dünyaları sunar ve keyifli maceralar yaşatır.",
+      "wrong1": "Kitaplıkların tozunu her gün almalıyız",
+      "wrong2": "Dinozorlar eski çağlarda yaşamış büyük hayvanlardır",
+      "explanation": "Yazar mecaz (uçan halı vb.) kullanarak kitapların bizi nasıl farklı dünyalara (hayallere) götürdüğünü anlatmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitaplıklar sadece tozlu raflar değildir; onlar uçan halılardır. Bir raf bizi dinozorlar çağına götürürken, diğer bir raf uzayın derinliklerine fırlatır. Kitap okuyan insanın canı asla sıkılmaz."
+            }
+          ]
+        },
+        "correct": "Kitaplar bize zengin hayal dünyaları sunar ve keyifli maceralar yaşatır.",
+        "wrong1": "Kitaplıkların tozunu her gün almalıyız",
+        "wrong2": "Dinozorlar eski çağlarda yaşamış büyük hayvanlardır",
+        "explanation": "Yazar mecaz (uçan halı vb.) kullanarak kitapların bizi nasıl farklı dünyalara (hayallere) götürdüğünü anlatmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_079",
+      "level": "zor",
+      "premise": "Edison ampulü icat etmeden önce binlerce başarısız deneme yaptı. 'Neden vazgeçmiyorsun?' diyenlere 'Ben başarısız olmadım, sadece ampulü yakmayan binlerce yol buldum' cevabını verdi.",
+      "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+      "correct": "Karşılaştığı başarısızlıklara rağmen asla pes etmemek ve olumlu düşünmek başarıyı getirir.",
+      "wrong1": "Eskiden elektrik faturasının çok ucuz olması",
+      "wrong2": "Başkalarının ona sürekli yardım etmesi",
+      "explanation": "Metin, Edison'un başarısız denemelere rağmen olumlu düşünüp pes etmemesinin başarıyı getirdiğini anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana düşüncesi aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Edison ampulü icat etmeden önce binlerce başarısız deneme yaptı. 'Neden vazgeçmiyorsun?' diyenlere 'Ben başarısız olmadım, sadece ampulü yakmayan binlerce yol buldum' cevabını verdi."
+            }
+          ]
+        },
+        "correct": "Karşılaştığı başarısızlıklara rağmen asla pes etmemek ve olumlu düşünmek başarıyı getirir.",
+        "wrong1": "Eskiden elektrik faturasının çok ucuz olması",
+        "wrong2": "Başkalarının ona sürekli yardım etmesi",
+        "explanation": "Metin, Edison'un başarısız denemelere rağmen olumlu düşünüp pes etmemesinin başarıyı getirdiğini anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_080",
+      "level": "zor",
+      "premise": "Hiçbir insan tek başına bir ev inşa edemez. Biri tuğlaları örer, diğeri camları takar, bir başkası boyayı yapar. Ancak herkes el ele verirse o ev tamamlanır.",
+      "text": "Yukarıdaki paragrafın ana fikri nedir?",
+      "correct": "Büyük işler ancak insanların iş birliği ve dayanışmasıyla başarılabilir.",
+      "wrong1": "Ev yapmak için tuğla ve boya gereklidir",
+      "wrong2": "İnşaat işçileri çok yorulurlar",
+      "explanation": "Metindeki ev inşaatı örneği üzerinden, başarı için insanların yardımlaşması ve birlikte çalışması gerektiği vurgulanmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragrafın ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hiçbir insan tek başına bir ev inşa edemez. Biri tuğlaları örer, diğeri camları takar, bir başkası boyayı yapar. Ancak herkes el ele verirse o ev tamamlanır."
+            }
+          ]
+        },
+        "correct": "Büyük işler ancak insanların iş birliği ve dayanışmasıyla başarılabilir.",
+        "wrong1": "Ev yapmak için tuğla ve boya gereklidir",
+        "wrong2": "İnşaat işçileri çok yorulurlar",
+        "explanation": "Metindeki ev inşaatı örneği üzerinden, başarı için insanların yardımlaşması ve birlikte çalışması gerektiği vurgulanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_081",
+      "level": "kolay",
+      "premise": "Canım annem, güzel annem,\nSensin benim her şeyim.\nSen gülersen ben gülerim,\nSeni dünyalar kadar severim.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Anne sevgisi",
+      "wrong1": "Oyun oynama sevinci",
+      "wrong2": "Dünyayı gezme isteği",
+      "explanation": "Şiir boyunca anneye duyulan derin sevgi ve bağlılık dile getirilmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Canım annem, güzel annem,\nSensin benim her şeyim.\nSen gülersen ben gülerim,\nSeni dünyalar kadar severim."
+            }
+          ]
+        },
+        "correct": "Anne sevgisi",
+        "wrong1": "Oyun oynama sevinci",
+        "wrong2": "Dünyayı gezme isteği",
+        "explanation": "Şiir boyunca anneye duyulan derin sevgi ve bağlılık dile getirilmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_082",
+      "level": "kolay",
+      "premise": "Rengini kanımdan almış,\nGöklere şanla salınmış.\nAy ve yıldız ne yakışmış,\nBenim güzel bayrağım.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Bayrak ve vatan sevgisi",
+      "wrong1": "Yıldızları izleme isteği",
+      "wrong2": "Kırmızı rengin güzelliği",
+      "explanation": "Şair, ay yıldızlı bayrağa duyduğu hayranlığı ve vatan sevgisini coşkuyla dile getirmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Rengini kanımdan almış,\nGöklere şanla salınmış.\nAy ve yıldız ne yakışmış,\nBenim güzel bayrağım."
+            }
+          ]
+        },
+        "correct": "Bayrak ve vatan sevgisi",
+        "wrong1": "Yıldızları izleme isteği",
+        "wrong2": "Kırmızı rengin güzelliği",
+        "explanation": "Şair, ay yıldızlı bayrağa duyduğu hayranlığı ve vatan sevgisini coşkuyla dile getirmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_083",
+      "level": "kolay",
+      "premise": "Ağaçlar uykudan uyandı,\nÇiçekler pembe beyaza boyandı.\nKuşlar neşeyle uçuyor,\nHoş geldin güzel bahar!",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Baharın gelişiyle hissedilen yaşama sevinci",
+      "wrong1": "Ağaçlara tırmanma arzusu",
+      "wrong2": "Pembe rengin huzuru",
+      "explanation": "Şiirde doğanın uyanması ve kuşların neşesi üzerinden baharın getirdiği sevinç ve mutluluk anlatılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağaçlar uykudan uyandı,\nÇiçekler pembe beyaza boyandı.\nKuşlar neşeyle uçuyor,\nHoş geldin güzel bahar!"
+            }
+          ]
+        },
+        "correct": "Baharın gelişiyle hissedilen yaşama sevinci",
+        "wrong1": "Ağaçlara tırmanma arzusu",
+        "wrong2": "Pembe rengin huzuru",
+        "explanation": "Şiirde doğanın uyanması ve kuşların neşesi üzerinden baharın getirdiği sevinç ve mutluluk anlatılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_084",
+      "level": "kolay",
+      "premise": "Bilgi dolu sözlerin,\nAydınlatır yüzümü.\nSeninle açılır zihnim,\nCanım öğretmenim.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Öğretmen sevgisi ve saygısı",
+      "wrong1": "Okul bahçesi özlemi",
+      "wrong2": "Işıkların parlaklığı",
+      "explanation": "Şiirde öğretmenin bilgi vermesi ve aydınlatmasından yola çıkarak öğretmene duyulan sevgi işlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bilgi dolu sözlerin,\nAydınlatır yüzümü.\nSeninle açılır zihnim,\nCanım öğretmenim."
+            }
+          ]
+        },
+        "correct": "Öğretmen sevgisi ve saygısı",
+        "wrong1": "Okul bahçesi özlemi",
+        "wrong2": "Işıkların parlaklığı",
+        "explanation": "Şiirde öğretmenin bilgi vermesi ve aydınlatmasından yola çıkarak öğretmene duyulan sevgi işlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_085",
+      "level": "kolay",
+      "premise": "Pamuk gibi tüyleri var,\nMiyav miyav seslenir.\nSarıldığımda sıcacık,\nKedim benim her şeyim.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Hayvan (kedi) sevgisi ve şefkat",
+      "wrong1": "Pamuk toplama zorluğu",
+      "wrong2": "Sokakların tehlikesi",
+      "explanation": "Şiirde bir kediye duyulan sıcak hisler ve hayvan sevgisi anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pamuk gibi tüyleri var,\nMiyav miyav seslenir.\nSarıldığımda sıcacık,\nKedim benim her şeyim."
+            }
+          ]
+        },
+        "correct": "Hayvan (kedi) sevgisi ve şefkat",
+        "wrong1": "Pamuk toplama zorluğu",
+        "wrong2": "Sokakların tehlikesi",
+        "explanation": "Şiirde bir kediye duyulan sıcak hisler ve hayvan sevgisi anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_086",
+      "level": "kolay",
+      "premise": "Zil çalınca sınıfımda,\nHeyecanla yerimi alırım.\nDefterimi kitabımı açar,\nYeni şeyler öğrenmeye dalarım.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Okul sevgisi ve öğrenme heyecanı",
+      "wrong1": "Teneffüse çıkma isteği",
+      "wrong2": "Zil sesinin gürültüsü",
+      "explanation": "Şiirde okul zilinin çalmasıyla sınıfta yeni şeyler öğrenme hevesi (okul sevgisi) işlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zil çalınca sınıfımda,\nHeyecanla yerimi alırım.\nDefterimi kitabımı açar,\nYeni şeyler öğrenmeye dalarım."
+            }
+          ]
+        },
+        "correct": "Okul sevgisi ve öğrenme heyecanı",
+        "wrong1": "Teneffüse çıkma isteği",
+        "wrong2": "Zil sesinin gürültüsü",
+        "explanation": "Şiirde okul zilinin çalmasıyla sınıfta yeni şeyler öğrenme hevesi (okul sevgisi) işlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_087",
+      "level": "kolay",
+      "premise": "Penceremden dışarı bakarken,\nGözlerim dalar gider uzaklara.\nNeredesin canım arkadaşım,\nGel de oyun oynayalım sokaklarda.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Arkadaşa duyulan özlem (hasret)",
+      "wrong1": "Sokakta oynamanın zararları",
+      "wrong2": "Pencereden manzara izleme zevki",
+      "explanation": "Şairin uzaklara bakıp arkadaşının gelmesini beklemesi ve 'Neredesin' diye sorması özlem duygusunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Penceremden dışarı bakarken,\nGözlerim dalar gider uzaklara.\nNeredesin canım arkadaşım,\nGel de oyun oynayalım sokaklarda."
+            }
+          ]
+        },
+        "correct": "Arkadaşa duyulan özlem (hasret)",
+        "wrong1": "Sokakta oynamanın zararları",
+        "wrong2": "Pencereden manzara izleme zevki",
+        "explanation": "Şairin uzaklara bakıp arkadaşının gelmesini beklemesi ve 'Neredesin' diye sorması özlem duygusunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_088",
+      "level": "kolay",
+      "premise": "Uçurtmamı uçururum,\nGökyüzüne savururum.\nRüzgar eser ip gerilir,\nKalbim neşeyle sevinir.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Neşe ve mutluluk",
+      "wrong1": "Korku",
+      "wrong2": "Rüzgardan şikayet",
+      "explanation": "Şiirde uçurtma uçuran bir çocuğun hissettiği coşku, sevinç ve neşe anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uçurtmamı uçururum,\nGökyüzüne savururum.\nRüzgar eser ip gerilir,\nKalbim neşeyle sevinir."
+            }
+          ]
+        },
+        "correct": "Neşe ve mutluluk",
+        "wrong1": "Korku",
+        "wrong2": "Rüzgardan şikayet",
+        "explanation": "Şiirde uçurtma uçuran bir çocuğun hissettiği coşku, sevinç ve neşe anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_089",
+      "level": "kolay",
+      "premise": "Kar yağdı lapa lapa,\nBeyaza büründü doğa.\nKızağımı aldım hemen,\nKoştum beyaz sokağa.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Karın yağmasından duyulan sevinç ve heyecan",
+      "wrong1": "Havaların soğumasından duyulan korku",
+      "wrong2": "Üşüme ve hüzün",
+      "explanation": "Karın yağmasıyla çocuğun dışarı fırlayıp kızakla kaymak istemesi kış neşesini yansıtır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kar yağdı lapa lapa,\nBeyaza büründü doğa.\nKızağımı aldım hemen,\nKoştum beyaz sokağa."
+            }
+          ]
+        },
+        "correct": "Karın yağmasından duyulan sevinç ve heyecan",
+        "wrong1": "Havaların soğumasından duyulan korku",
+        "wrong2": "Üşüme ve hüzün",
+        "explanation": "Karın yağmasıyla çocuğun dışarı fırlayıp kızakla kaymak istemesi kış neşesini yansıtır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_090",
+      "level": "orta",
+      "premise": "Bir köşede unutulmuş bez bebeğim,\nNe arayanı var artık ne soranı.\nYıllar önce her gece koynumdaydı,\nŞimdi tozlu raflarda sessizce ağlar.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Unutulmuşluk ve hüzün (üzüntü)",
+      "wrong1": "Yeni oyuncak alma isteği",
+      "wrong2": "Karanlık korkusu",
+      "explanation": "Şiirde eski bir bebeğin köşede unutulması üzerinden terk edilmişlik ve üzüntü (hüzün) hissi verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir köşede unutulmuş bez bebeğim,\nNe arayanı var artık ne soranı.\nYıllar önce her gece koynumdaydı,\nŞimdi tozlu raflarda sessizce ağlar."
+            }
+          ]
+        },
+        "correct": "Unutulmuşluk ve hüzün (üzüntü)",
+        "wrong1": "Yeni oyuncak alma isteği",
+        "wrong2": "Karanlık korkusu",
+        "explanation": "Şiirde eski bir bebeğin köşede unutulması üzerinden terk edilmişlik ve üzüntü (hüzün) hissi verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_091",
+      "level": "orta",
+      "premise": "Mavi gözlü sarı saçlı kahraman,\nSamsun'dan güneş gibi doğdun.\nSenin sayende bu vatan,\nKaranlık günlerden kurtuldu.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Atatürk'e duyulan sevgi, saygı ve minnet",
+      "wrong1": "Samsun'un güzelliği",
+      "wrong2": "Güneşin doğuşunu izlemek",
+      "explanation": "Şiirde Atatürk'ün (sarı saçlı mavi gözlü kahraman) vatanı kurtarmasına duyulan şükran (minnet) duygusu anlatılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Mavi gözlü sarı saçlı kahraman,\nSamsun'dan güneş gibi doğdun.\nSenin sayende bu vatan,\nKaranlık günlerden kurtuldu."
+            }
+          ]
+        },
+        "correct": "Atatürk'e duyulan sevgi, saygı ve minnet",
+        "wrong1": "Samsun'un güzelliği",
+        "wrong2": "Güneşin doğuşunu izlemek",
+        "explanation": "Şiirde Atatürk'ün (sarı saçlı mavi gözlü kahraman) vatanı kurtarmasına duyulan şükran (minnet) duygusu anlatılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_092",
+      "level": "orta",
+      "premise": "Kitabım en iyi dostum,\nSayfalarında gezer uçarım.\nBilgiyle dolar her köşem,\nSanki bir kuş gibi özgürüm.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Kitap okuma sevgisi ve özgürlük hissi",
+      "wrong1": "Kuşların gökyüzündeki uçuşu",
+      "wrong2": "Yalnızlık korkusu",
+      "explanation": "Şair kitabın sayfalarında gezerken kendini kuş gibi özgür hissettiğini belirterek kitap sevgisini yansıtır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitabım en iyi dostum,\nSayfalarında gezer uçarım.\nBilgiyle dolar her köşem,\nSanki bir kuş gibi özgürüm."
+            }
+          ]
+        },
+        "correct": "Kitap okuma sevgisi ve özgürlük hissi",
+        "wrong1": "Kuşların gökyüzündeki uçuşu",
+        "wrong2": "Yalnızlık korkusu",
+        "explanation": "Şair kitabın sayfalarında gezerken kendini kuş gibi özgür hissettiğini belirterek kitap sevgisini yansıtır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_093",
+      "level": "orta",
+      "premise": "Güneş yavaş yavaş doğuyor,\nKuşların tatlı sesi odaya doluyor.\nYeni bir gün, yeni bir umut,\nİçimdeki tüm sıkıntılar yok oluyor.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Sabahın huzuru ve yeni bir güne duyulan umut",
+      "wrong1": "Güneşin çok yakıcı olması",
+      "wrong2": "Uykuya doyamama hissi",
+      "explanation": "Güneşin doğuşuyla sıkıntıların yok olduğu ve yeni umutların yeşerdiği (huzur ve iyimserlik) hissettirilir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş yavaş yavaş doğuyor,\nKuşların tatlı sesi odaya doluyor.\nYeni bir gün, yeni bir umut,\nİçimdeki tüm sıkıntılar yok oluyor."
+            }
+          ]
+        },
+        "correct": "Sabahın huzuru ve yeni bir güne duyulan umut",
+        "wrong1": "Güneşin çok yakıcı olması",
+        "wrong2": "Uykuya doyamama hissi",
+        "explanation": "Güneşin doğuşuyla sıkıntıların yok olduğu ve yeni umutların yeşerdiği (huzur ve iyimserlik) hissettirilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_094",
+      "level": "orta",
+      "premise": "Kumbara kumbara güzel kumbara,\nİçine attım beş on lira.\nDamla damla göl olurmuş,\nBirikince çok işe yararmış.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Tutumlu olma bilinci (tasarruf etme)",
+      "wrong1": "Kumbaranın renginin güzelliği",
+      "wrong2": "Çok para harcama isteği",
+      "explanation": "Şiir, küçük paraları kumbarada biriktirerek tutumlu olma ve tasarruf bilincini hissettirmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kumbara kumbara güzel kumbara,\nİçine attım beş on lira.\nDamla damla göl olurmuş,\nBirikince çok işe yararmış."
+            }
+          ]
+        },
+        "correct": "Tutumlu olma bilinci (tasarruf etme)",
+        "wrong1": "Kumbaranın renginin güzelliği",
+        "wrong2": "Çok para harcama isteği",
+        "explanation": "Şiir, küçük paraları kumbarada biriktirerek tutumlu olma ve tasarruf bilincini hissettirmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_095",
+      "level": "orta",
+      "premise": "Bir lokma ekmeği paylaşırız,\nDüşsek de beraber ağlarız.\nSenin derdin benim derdim,\nCanım arkadaşım, sırdaşım.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Dostluk, fedakarlık ve dayanışma",
+      "wrong1": "Ekmek yemenin önemi",
+      "wrong2": "Düşüp yaralanma acısı",
+      "explanation": "Ekmeği paylaşmak, beraber ağlamak gibi eylemler gerçek bir dostluk ve dayanışma duygusunu anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir lokma ekmeği paylaşırız,\nDüşsek de beraber ağlarız.\nSenin derdin benim derdim,\nCanım arkadaşım, sırdaşım."
+            }
+          ]
+        },
+        "correct": "Dostluk, fedakarlık ve dayanışma",
+        "wrong1": "Ekmek yemenin önemi",
+        "wrong2": "Düşüp yaralanma acısı",
+        "explanation": "Ekmeği paylaşmak, beraber ağlamak gibi eylemler gerçek bir dostluk ve dayanışma duygusunu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_096",
+      "level": "orta",
+      "premise": "Yapraklar sarardı düştü yerlere,\nHüzün çöktü yine bizim ellere.\nGüneş saklandı gri bulutlara,\nElveda diyoruz sıcak günlere.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Sonbaharın gelişiyle hissedilen hüzün (melankoli)",
+      "wrong1": "Yağmurda ıslanma korkusu",
+      "wrong2": "Kışın kardan adam yapma sevinci",
+      "explanation": "Yaprakların sararması ve güneşe veda edilmesiyle şairin içinde hissettiği melankoli ve üzüntü duygusu işlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yapraklar sarardı düştü yerlere,\nHüzün çöktü yine bizim ellere.\nGüneş saklandı gri bulutlara,\nElveda diyoruz sıcak günlere."
+            }
+          ]
+        },
+        "correct": "Sonbaharın gelişiyle hissedilen hüzün (melankoli)",
+        "wrong1": "Yağmurda ıslanma korkusu",
+        "wrong2": "Kışın kardan adam yapma sevinci",
+        "explanation": "Yaprakların sararması ve güneşe veda edilmesiyle şairin içinde hissettiği melankoli ve üzüntü duygusu işlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_097",
+      "level": "orta",
+      "premise": "Gökyüzünde yıldızlar kayboldu,\nOdamın içi kapkaranlık oldu.\nRüzgar dışarıda uğulduyor,\nBattaniyemin altına saklandım korkuyla.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Karanlık ve fırtına korkusu",
+      "wrong1": "Yıldızları izleme mutluluğu",
+      "wrong2": "Battaniye altında ısınma keyfi",
+      "explanation": "Şair rüzgarın uğultusu ve karanlık yüzünden battaniyenin altına saklandığını belirterek korku duygusunu net olarak verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gökyüzünde yıldızlar kayboldu,\nOdamın içi kapkaranlık oldu.\nRüzgar dışarıda uğulduyor,\nBattaniyemin altına saklandım korkuyla."
+            }
+          ]
+        },
+        "correct": "Karanlık ve fırtına korkusu",
+        "wrong1": "Yıldızları izleme mutluluğu",
+        "wrong2": "Battaniye altında ısınma keyfi",
+        "explanation": "Şair rüzgarın uğultusu ve karanlık yüzünden battaniyenin altına saklandığını belirterek korku duygusunu net olarak verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_098",
+      "level": "orta",
+      "premise": "Zaman su gibi akıp geçmiş,\nDaha dün küçücük bir bebektim.\nŞimdi boyum babama erişmiş,\nBüyüdüğüme inanamadım gittim.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Zamanın çok hızlı geçmesinden duyulan şaşkınlık",
+      "wrong1": "Bebeklik eşyalarına duyulan özlem",
+      "wrong2": "Babaların çocuklardan uzun olması",
+      "explanation": "Dün bebekken bugün babasının boyuna gelmesine inanamaması, zamanın akışına duyulan şaşkınlık hissini vurgular.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zaman su gibi akıp geçmiş,\nDaha dün küçücük bir bebektim.\nŞimdi boyum babama erişmiş,\nBüyüdüğüme inanamadım gittim."
+            }
+          ]
+        },
+        "correct": "Zamanın çok hızlı geçmesinden duyulan şaşkınlık",
+        "wrong1": "Bebeklik eşyalarına duyulan özlem",
+        "wrong2": "Babaların çocuklardan uzun olması",
+        "explanation": "Dün bebekken bugün babasının boyuna gelmesine inanamaması, zamanın akışına duyulan şaşkınlık hissini vurgular.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_099",
+      "level": "orta",
+      "premise": "Akşam olunca toplanırız masada,\nBabam, annem, kardeşim yanımda.\nSımsıcak bir çorba tüter ortada,\nDünyanın en zengin insanıyım o anda.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Aile sevgisi ve aileyle olmanın verdiği mutluluk",
+      "wrong1": "Çorbanın ne kadar lezzetli olduğu",
+      "wrong2": "Zengin olup çok para kazanma hayali",
+      "explanation": "Şair ailecek masada toplanmayı dünyanın en büyük zenginliği olarak görerek aile sevgisi ve huzurunu anlatmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Akşam olunca toplanırız masada,\nBabam, annem, kardeşim yanımda.\nSımsıcak bir çorba tüter ortada,\nDünyanın en zengin insanıyım o anda."
+            }
+          ]
+        },
+        "correct": "Aile sevgisi ve aileyle olmanın verdiği mutluluk",
+        "wrong1": "Çorbanın ne kadar lezzetli olduğu",
+        "wrong2": "Zengin olup çok para kazanma hayali",
+        "explanation": "Şair ailecek masada toplanmayı dünyanın en büyük zenginliği olarak görerek aile sevgisi ve huzurunu anlatmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_100",
+      "level": "zor",
+      "premise": "Ne güzeldi o eski bayramlar,\nKapı kapı dolaşırdı çocuklar.\nCebimizde şekerler, mendiller,\nŞimdi sadece anılarda kaldı o sevinçler.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Eski geleneklere ve çocukluk günlerine duyulan özlem",
+      "wrong1": "Şekerin dişleri çürütmesi endişesi",
+      "wrong2": "Kapıların kapalı olmasına duyulan öfke",
+      "explanation": "Eski bayramları güzellikle anması ve günümüzde bunların anılarda kalmasına üzülmesi, geçmişe özlemi belirtir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ne güzeldi o eski bayramlar,\nKapı kapı dolaşırdı çocuklar.\nCebimizde şekerler, mendiller,\nŞimdi sadece anılarda kaldı o sevinçler."
+            }
+          ]
+        },
+        "correct": "Eski geleneklere ve çocukluk günlerine duyulan özlem",
+        "wrong1": "Şekerin dişleri çürütmesi endişesi",
+        "wrong2": "Kapıların kapalı olmasına duyulan öfke",
+        "explanation": "Eski bayramları güzellikle anması ve günümüzde bunların anılarda kalmasına üzülmesi, geçmişe özlemi belirtir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_101",
+      "level": "zor",
+      "premise": "Bir kuş misali çırpınır durur,\nİçimde hiç sönmeyen o ışık.\nBiliyorum bir gün güneş doğacak,\nBütün karanlıklar geride kalacak.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Geleceğe duyulan umut ve iyimserlik",
+      "wrong1": "Kuşların kafeste kalma korkusu",
+      "wrong2": "Güneşin çok parlak olması",
+      "explanation": "Karanlıkların biteceğine ve güneşin doğacağına olan güçlü inanç, şairin içindeki tükenmez umudu ifade eder.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kuş misali çırpınır durur,\nİçimde hiç sönmeyen o ışık.\nBiliyorum bir gün güneş doğacak,\nBütün karanlıklar geride kalacak."
+            }
+          ]
+        },
+        "correct": "Geleceğe duyulan umut ve iyimserlik",
+        "wrong1": "Kuşların kafeste kalma korkusu",
+        "wrong2": "Güneşin çok parlak olması",
+        "explanation": "Karanlıkların biteceğine ve güneşin doğacağına olan güçlü inanç, şairin içindeki tükenmez umudu ifade eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_102",
+      "level": "zor",
+      "premise": "Söylediğim o kırıcı sözler,\nŞimdi kalbimi bıçak gibi ezer.\nKeşke zamanı geri alabilsem,\nSenden binlerce kez özür dilesem.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Hata yapmaktan dolayı duyulan pişmanlık ve vicdan azabı",
+      "wrong1": "Bıçakların keskinliği",
+      "wrong2": "Zaman makinelerine duyulan merak",
+      "explanation": "Söylenen sözlerden dolayı kalbinin acıması ve zamanı geri almak istemesi derin bir pişmanlık hissini gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Söylediğim o kırıcı sözler,\nŞimdi kalbimi bıçak gibi ezer.\nKeşke zamanı geri alabilsem,\nSenden binlerce kez özür dilesem."
+            }
+          ]
+        },
+        "correct": "Hata yapmaktan dolayı duyulan pişmanlık ve vicdan azabı",
+        "wrong1": "Bıçakların keskinliği",
+        "wrong2": "Zaman makinelerine duyulan merak",
+        "explanation": "Söylenen sözlerden dolayı kalbinin acıması ve zamanı geri almak istemesi derin bir pişmanlık hissini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_103",
+      "level": "zor",
+      "premise": "Akşam olur karanlık basar,\nHerkes evine hızlıca koşar.\nBenimse içimde derin bir boşluk,\nSokaklar sessiz, dilsiz, ıssızlık.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Yalnızlık ve hüzün (kimsesizlik)",
+      "wrong1": "Koşu sporu yapma isteği",
+      "wrong2": "Sokakların temiz olması",
+      "explanation": "Şair 'içimde derin bir boşluk' ve 'sokaklar ıssız' diyerek kimsesizlik, yalnızlık ve üzüntü duygusunu yansıtmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Akşam olur karanlık basar,\nHerkes evine hızlıca koşar.\nBenimse içimde derin bir boşluk,\nSokaklar sessiz, dilsiz, ıssızlık."
+            }
+          ]
+        },
+        "correct": "Yalnızlık ve hüzün (kimsesizlik)",
+        "wrong1": "Koşu sporu yapma isteği",
+        "wrong2": "Sokakların temiz olması",
+        "explanation": "Şair 'içimde derin bir boşluk' ve 'sokaklar ıssız' diyerek kimsesizlik, yalnızlık ve üzüntü duygusunu yansıtmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_104",
+      "level": "zor",
+      "premise": "Yaralı bir köpek gördüm yolda,\nTitriyordu çaresizce soğukta.\nKendi montumu sardım üstüne,\nİçim sızladı onun o acı haline.",
+      "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+      "correct": "Merhamet (acıma) ve şefkat",
+      "wrong1": "Soğuktan dolayı üşüme",
+      "wrong2": "Montunun kirlenmesinden duyduğu öfke",
+      "explanation": "Şairin yaralı köpeğe montunu örtmesi ve içinin sızlaması, onun yüreğindeki acıma (merhamet) duygusunu gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin bize hissettirdiği duygu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yaralı bir köpek gördüm yolda,\nTitriyordu çaresizce soğukta.\nKendi montumu sardım üstüne,\nİçim sızladı onun o acı haline."
+            }
+          ]
+        },
+        "correct": "Merhamet (acıma) ve şefkat",
+        "wrong1": "Soğuktan dolayı üşüme",
+        "wrong2": "Montunun kirlenmesinden duyduğu öfke",
+        "explanation": "Şairin yaralı köpeğe montunu örtmesi ve içinin sızlaması, onun yüreğindeki acıma (merhamet) duygusunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_105",
+      "level": "zor",
+      "premise": "Gökyüzü mavi, çimenler yeşil,\nGüneş ısıtıyor dört bir yanı.\nBenim adım çocuk, işim oyun oynamak,\nSevgiyle kucaklıyorum tüm dünyayı.",
+      "text": "Yukarıdaki şiirin ana duygusu nedir?",
+      "correct": "Mutluluk, huzur ve sevgi",
+      "wrong1": "Kızgınlık ve öfke",
+      "wrong2": "Yalnızlık ve can sıkıntısı",
+      "explanation": "Şiirdeki renkli doğa tasviri ve dünyayı kucaklamak ifadeleri çocuğun hissettiği mutluluk ve sevgiyi gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gökyüzü mavi, çimenler yeşil,\nGüneş ısıtıyor dört bir yanı.\nBenim adım çocuk, işim oyun oynamak,\nSevgiyle kucaklıyorum tüm dünyayı."
+            }
+          ]
+        },
+        "correct": "Mutluluk, huzur ve sevgi",
+        "wrong1": "Kızgınlık ve öfke",
+        "wrong2": "Yalnızlık ve can sıkıntısı",
+        "explanation": "Şiirdeki renkli doğa tasviri ve dünyayı kucaklamak ifadeleri çocuğun hissettiği mutluluk ve sevgiyi gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_106",
+      "level": "kolay",
+      "premise": "Süt, kalsiyum bakımından en zengin besinlerden biridir. Çocukların kemiklerinin ve dişlerinin sağlam olması için her sabah düzenli olarak süt içmeleri tavsiye edilir.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Sütün Faydaları",
+      "wrong1": "İneklerin Yaşamı",
+      "wrong2": "Kahvaltı Saatleri",
+      "explanation": "Metinde sütün sağlığa (kemik ve dişlere) olan yararları anlatıldığı için en uygun başlık 'Sütün Faydaları'dır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Süt, kalsiyum bakımından en zengin besinlerden biridir. Çocukların kemiklerinin ve dişlerinin sağlam olması için her sabah düzenli olarak süt içmeleri tavsiye edilir."
+            }
+          ]
+        },
+        "correct": "Sütün Faydaları",
+        "wrong1": "İneklerin Yaşamı",
+        "wrong2": "Kahvaltı Saatleri",
+        "explanation": "Metinde sütün sağlığa (kemik ve dişlere) olan yararları anlatıldığı için en uygun başlık 'Sütün Faydaları'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_107",
+      "level": "kolay",
+      "premise": "Köpekler, sahiplerine çok bağlı ve sadık canlılardır. Evimizi tehlikelere karşı korur, üzgün olduğumuzda yanımıza gelip bizi teselli etmeye çalışırlar.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Sadık Dostlarımız Köpekler",
+      "wrong1": "Köpek Kulübeleri",
+      "wrong2": "Kedi ve Köpek Kavgası",
+      "explanation": "Metin köpeklerin insanlarla olan yakın dostluğu ve sadakati üzerine kurulu olduğu için bu başlık konuyu tam özetler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köpekler, sahiplerine çok bağlı ve sadık canlılardır. Evimizi tehlikelere karşı korur, üzgün olduğumuzda yanımıza gelip bizi teselli etmeye çalışırlar."
+            }
+          ]
+        },
+        "correct": "Sadık Dostlarımız Köpekler",
+        "wrong1": "Köpek Kulübeleri",
+        "wrong2": "Kedi ve Köpek Kavgası",
+        "explanation": "Metin köpeklerin insanlarla olan yakın dostluğu ve sadakati üzerine kurulu olduğu için bu başlık konuyu tam özetler.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_108",
+      "level": "kolay",
+      "premise": "Paramızı hemen harcamamalıyız. Gereksiz şeyler almak yerine paramızı kumbarada biriktirmeliyiz. Böylece gerçekten ihtiyacımız olan bir şeyi almak için yeterli paramız olur.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Tutumlu Olmak",
+      "wrong1": "Oyuncak Alışverişi",
+      "wrong2": "Bozuk Paralar",
+      "explanation": "Metinde parayı boşa harcamamak ve biriktirmek (tasarruf / tutumluluk) anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Paramızı hemen harcamamalıyız. Gereksiz şeyler almak yerine paramızı kumbarada biriktirmeliyiz. Böylece gerçekten ihtiyacımız olan bir şeyi almak için yeterli paramız olur."
+            }
+          ]
+        },
+        "correct": "Tutumlu Olmak",
+        "wrong1": "Oyuncak Alışverişi",
+        "wrong2": "Bozuk Paralar",
+        "explanation": "Metinde parayı boşa harcamamak ve biriktirmek (tasarruf / tutumluluk) anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_109",
+      "level": "kolay",
+      "premise": "Kütüphanede yüksek sesle konuşulmaz. Alınan kitapların sayfaları yırtılmamalı ve kitaplar karalanmamalıdır. İşimiz bitince kitabı sessizce görevliye teslim etmeliyiz.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Kütüphane Kuralları",
+      "wrong1": "Kütüphanelerin Tarihi",
+      "wrong2": "Nasıl Hızlı Okunur",
+      "explanation": "Metin kütüphanede yapılması ve yapılmaması gerekenleri (kuralları) anlattığı için başlık bu olmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kütüphanede yüksek sesle konuşulmaz. Alınan kitapların sayfaları yırtılmamalı ve kitaplar karalanmamalıdır. İşimiz bitince kitabı sessizce görevliye teslim etmeliyiz."
+            }
+          ]
+        },
+        "correct": "Kütüphane Kuralları",
+        "wrong1": "Kütüphanelerin Tarihi",
+        "wrong2": "Nasıl Hızlı Okunur",
+        "explanation": "Metin kütüphanede yapılması ve yapılmaması gerekenleri (kuralları) anlattığı için başlık bu olmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_110",
+      "level": "orta",
+      "premise": "Akşamdan çantamı hazırlar, kalemlerimi kontrol ederim. Sabah erken kalkar, yüzümü yıkar ve üniformamı giyerim. Annemin hazırladığı kahvaltıyı yedikten sonra servisi beklerim.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Okula Hazırlık",
+      "wrong1": "Akşam Yemeği",
+      "wrong2": "Servis Şoförü",
+      "explanation": "Çantanın hazırlanması, üniformanın giyilmesi ve kahvaltı yapılması okula gitme sürecinin (hazırlığının) aşamalarıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Akşamdan çantamı hazırlar, kalemlerimi kontrol ederim. Sabah erken kalkar, yüzümü yıkar ve üniformamı giyerim. Annemin hazırladığı kahvaltıyı yedikten sonra servisi beklerim."
+            }
+          ]
+        },
+        "correct": "Okula Hazırlık",
+        "wrong1": "Akşam Yemeği",
+        "wrong2": "Servis Şoförü",
+        "explanation": "Çantanın hazırlanması, üniformanın giyilmesi ve kahvaltı yapılması okula gitme sürecinin (hazırlığının) aşamalarıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_111",
+      "level": "orta",
+      "premise": "İlkbaharda doğa canlanır, yazın havalar ısınır ve meyveler olgunlaşır. Sonbaharda yapraklar dökülür, kışın ise her yer bembeyaz karla kaplanır. Her birinin ayrı bir güzelliği vardır.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Mevsimler",
+      "wrong1": "Karlı Günler",
+      "wrong2": "Ağaçların Yaprakları",
+      "explanation": "Metinde ilkbahar, yaz, sonbahar ve kışın özelliklerinden bahsedildiği için en kapsayıcı başlık 'Mevsimler'dir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İlkbaharda doğa canlanır, yazın havalar ısınır ve meyveler olgunlaşır. Sonbaharda yapraklar dökülür, kışın ise her yer bembeyaz karla kaplanır. Her birinin ayrı bir güzelliği vardır."
+            }
+          ]
+        },
+        "correct": "Mevsimler",
+        "wrong1": "Karlı Günler",
+        "wrong2": "Ağaçların Yaprakları",
+        "explanation": "Metinde ilkbahar, yaz, sonbahar ve kışın özelliklerinden bahsedildiği için en kapsayıcı başlık 'Mevsimler'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_112",
+      "level": "orta",
+      "premise": "Arabaya bindiğimizde ilk işimiz omuzumuzdan geçen kemeri takmak olmalıdır. Ani bir fren yapıldığında veya kaza anında bu kemer bizi koltuğa sabitler ve yaralanmamızı önler.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Hayat Kurtaran Kemer",
+      "wrong1": "Arabaların Hızı",
+      "wrong2": "Şoförlerin Eğitimi",
+      "explanation": "Metinde emniyet kemerinin takılması ve kaza anında hayatımızı nasıl koruduğu anlatıldığı için bu başlık çok uygundur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arabaya bindiğimizde ilk işimiz omuzumuzdan geçen kemeri takmak olmalıdır. Ani bir fren yapıldığında veya kaza anında bu kemer bizi koltuğa sabitler ve yaralanmamızı önler."
+            }
+          ]
+        },
+        "correct": "Hayat Kurtaran Kemer",
+        "wrong1": "Arabaların Hızı",
+        "wrong2": "Şoförlerin Eğitimi",
+        "explanation": "Metinde emniyet kemerinin takılması ve kaza anında hayatımızı nasıl koruduğu anlatıldığı için bu başlık çok uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_113",
+      "level": "orta",
+      "premise": "Piknikten sonra çöplerimizi ormanda bırakmamalı, yaktığımız ateşi mutlaka suyla söndürmeliyiz. Eğer bunları yapmazsak orman yangınları çıkar ve binlerce hayvan evsiz kalır.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Çevremizi ve Ormanları Koruyalım",
+      "wrong1": "Piknikte Oynanan Oyunlar",
+      "wrong2": "Ateş Nasıl Yakılır",
+      "explanation": "Metin genel olarak ormanda piknik yaparken doğaya zarar vermemek için alınacak önlemleri anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Piknikten sonra çöplerimizi ormanda bırakmamalı, yaktığımız ateşi mutlaka suyla söndürmeliyiz. Eğer bunları yapmazsak orman yangınları çıkar ve binlerce hayvan evsiz kalır."
+            }
+          ]
+        },
+        "correct": "Çevremizi ve Ormanları Koruyalım",
+        "wrong1": "Piknikte Oynanan Oyunlar",
+        "wrong2": "Ateş Nasıl Yakılır",
+        "explanation": "Metin genel olarak ormanda piknik yaparken doğaya zarar vermemek için alınacak önlemleri anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_114",
+      "level": "orta",
+      "premise": "Dünyamızın da içinde bulunduğu evren o kadar büyüktür ki, milyarlarca galaksi ve yıldız barındırır. Bilim insanları hala kara deliklerin ve diğer gezegenlerin sırlarını çözmeye çalışmaktadır.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Uzayın Sonsuzluğu ve Gizemi",
+      "wrong1": "Dünyanın Güneş Etrafındaki Dönüşü",
+      "wrong2": "Bilim İnsanlarının İsimleri",
+      "explanation": "Metin uzayın devasa büyüklüğünü ve hala çözülemeyen sırlarını (gizemini) konu edindiği için en etkili başlık budur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dünyamızın da içinde bulunduğu evren o kadar büyüktür ki, milyarlarca galaksi ve yıldız barındırır. Bilim insanları hala kara deliklerin ve diğer gezegenlerin sırlarını çözmeye çalışmaktadır."
+            }
+          ]
+        },
+        "correct": "Uzayın Sonsuzluğu ve Gizemi",
+        "wrong1": "Dünyanın Güneş Etrafındaki Dönüşü",
+        "wrong2": "Bilim İnsanlarının İsimleri",
+        "explanation": "Metin uzayın devasa büyüklüğünü ve hala çözülemeyen sırlarını (gizemini) konu edindiği için en etkili başlık budur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_115",
+      "level": "zor",
+      "premise": "Gündüzleri gereksiz yere yanan lambaları söndürmeliyiz. Kullanmadığımız elektronik aletlerin fişini çekmeliyiz. Çünkü elektriği üretmek için doğal kaynaklar harcanmaktadır ve bu kaynaklar sonsuz değildir.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Enerji Tasarrufu",
+      "wrong1": "Lambaların Nasıl Çalıştığı",
+      "wrong2": "Elektrik Çarpması Tehlikesi",
+      "explanation": "Metinde elektrik kullanımında dikkatli olmak, boşa harcamamak (enerji tasarrufu) anlatılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Gündüzleri gereksiz yere yanan lambaları söndürmeliyiz. Kullanmadığımız elektronik aletlerin fişini çekmeliyiz. Çünkü elektriği üretmek için doğal kaynaklar harcanmaktadır ve bu kaynaklar sonsuz değildir."
+            }
+          ]
+        },
+        "correct": "Enerji Tasarrufu",
+        "wrong1": "Lambaların Nasıl Çalıştığı",
+        "wrong2": "Elektrik Çarpması Tehlikesi",
+        "explanation": "Metinde elektrik kullanımında dikkatli olmak, boşa harcamamak (enerji tasarrufu) anlatılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_116",
+      "level": "zor",
+      "premise": "Arılar bir kovanın içinde on binlerce kardeş olarak yaşarlar. Hiçbir arı kendi başına hareket etmez, hepsi kovanın ortak iyiliği için bal yapar, petek örer ve yavrulara bakar. Onların başarısı takım çalışmasında gizlidir.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Arıların İnanılmaz İş Birliği",
+      "wrong1": "Kovan Nasıl Boyanır",
+      "wrong2": "Arı Sokmasına Karşı Önlemler",
+      "explanation": "Metinde arıların bal yapmasından çok, kovan içinde nasıl ortaklaşa (iş birliği) çalıştıkları vurgulanmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arılar bir kovanın içinde on binlerce kardeş olarak yaşarlar. Hiçbir arı kendi başına hareket etmez, hepsi kovanın ortak iyiliği için bal yapar, petek örer ve yavrulara bakar. Onların başarısı takım çalışmasında gizlidir."
+            }
+          ]
+        },
+        "correct": "Arıların İnanılmaz İş Birliği",
+        "wrong1": "Kovan Nasıl Boyanır",
+        "wrong2": "Arı Sokmasına Karşı Önlemler",
+        "explanation": "Metinde arıların bal yapmasından çok, kovan içinde nasıl ortaklaşa (iş birliği) çalıştıkları vurgulanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_117",
+      "level": "zor",
+      "premise": "Fabrika bacalarından çıkan gazlar ve egzoz dumanları dünyamızın ısısını her geçen yıl artırıyor. Bu durum kutuplardaki buzulların erimesine ve iklimlerin değişmesine sebep oluyor.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Küresel Isınmanın Sebepleri ve Sonuçları",
+      "wrong1": "Kutup Ayılarının Yaşamı",
+      "wrong2": "Egzoz Muayenesi Nasıl Yapılır",
+      "explanation": "Metin dünyanın ısınmasına yol açan nedenleri (gazlar) ve sonuçlarını (buzulların erimesi) anlattığı için başlık Küresel Isınma'dır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fabrika bacalarından çıkan gazlar ve egzoz dumanları dünyamızın ısısını her geçen yıl artırıyor. Bu durum kutuplardaki buzulların erimesine ve iklimlerin değişmesine sebep oluyor."
+            }
+          ]
+        },
+        "correct": "Küresel Isınmanın Sebepleri ve Sonuçları",
+        "wrong1": "Kutup Ayılarının Yaşamı",
+        "wrong2": "Egzoz Muayenesi Nasıl Yapılır",
+        "explanation": "Metin dünyanın ısınmasına yol açan nedenleri (gazlar) ve sonuçlarını (buzulların erimesi) anlattığı için başlık Küresel Isınma'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_118",
+      "level": "zor",
+      "premise": "Raflarda duran kitaplar aslında sessiz birer öğretmendir. Kapağını açtığınız anda size bilmediğiniz kelimeleri öğretir, hiç görmediğiniz denizaltı şehirlerine veya uzay gemilerine bindirir. Orası sınırı olmayan bir dünyadır.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Kitapların Büyülü Dünyası",
+      "wrong1": "Uzay Gemileri",
+      "wrong2": "Sessiz Olmanın Faydaları",
+      "explanation": "Metin kitapların okuyucuyu alıp götürdüğü hayal dünyasını ve sınırlarının olmamasını 'büyülü bir dünya' olarak tanımlamaya en uygundur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Raflarda duran kitaplar aslında sessiz birer öğretmendir. Kapağını açtığınız anda size bilmediğiniz kelimeleri öğretir, hiç görmediğiniz denizaltı şehirlerine veya uzay gemilerine bindirir. Orası sınırı olmayan bir dünyadır."
+            }
+          ]
+        },
+        "correct": "Kitapların Büyülü Dünyası",
+        "wrong1": "Uzay Gemileri",
+        "wrong2": "Sessiz Olmanın Faydaları",
+        "explanation": "Metin kitapların okuyucuyu alıp götürdüğü hayal dünyasını ve sınırlarının olmamasını 'büyülü bir dünya' olarak tanımlamaya en uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_119",
+      "level": "zor",
+      "premise": "Arkadaşın düşüp dizini kanattığında ona gülmek yerine 'Ben düşsem canım ne kadar acırdı?' diye düşün. Onun hissettiği acıyı kalbinde hissetmeye çalıştığında, ona daha şefkatli yaklaşırsın.",
+      "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+      "correct": "Kendini Başkasının Yerine Koymak (Empati)",
+      "wrong1": "Okul Bahçesindeki Kazalar",
+      "wrong2": "Diz Kanamasına İlk Yardım",
+      "explanation": "Metinde başkasının duygularını anlamaya çalışmak olan empati kavramı işlendiği için başlık da bu yönde olmalıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki paragraf için en uygun başlık nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arkadaşın düşüp dizini kanattığında ona gülmek yerine 'Ben düşsem canım ne kadar acırdı?' diye düşün. Onun hissettiği acıyı kalbinde hissetmeye çalıştığında, ona daha şefkatli yaklaşırsın."
+            }
+          ]
+        },
+        "correct": "Kendini Başkasının Yerine Koymak (Empati)",
+        "wrong1": "Okul Bahçesindeki Kazalar",
+        "wrong2": "Diz Kanamasına İlk Yardım",
+        "explanation": "Metinde başkasının duygularını anlamaya çalışmak olan empati kavramı işlendiği için başlık da bu yönde olmalıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "paragraf3_120",
+      "level": "zor",
+      "premise": "Karanlıktan korktuğu için geceleri hep ağlayan çocuk, bir gün gökyüzüne bakıp yıldızların sadece karanlıkta parladığını fark etti. O günden sonra geceyi sevmeye başladı ve karanlık onun için bir oyun alanına dönüştü.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+      "correct": "Korkularımızı Yenmek",
+      "wrong1": "Yıldızların Uzaklığı",
+      "wrong2": "Gündüzlerin Sıkıcılığı",
+      "explanation": "Çocuğun karanlık korkusunu yıldızları fark ederek aşması (korkusunu yenmesi) metnin temel olayıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karanlıktan korktuğu için geceleri hep ağlayan çocuk, bir gün gökyüzüne bakıp yıldızların sadece karanlıkta parladığını fark etti. O günden sonra geceyi sevmeye başladı ve karanlık onun için bir oyun alanına dönüştü."
+            }
+          ]
+        },
+        "correct": "Korkularımızı Yenmek",
+        "wrong1": "Yıldızların Uzaklığı",
+        "wrong2": "Gündüzlerin Sıkıcılığı",
+        "explanation": "Çocuğun karanlık korkusunu yıldızları fark ederek aşması (korkusunu yenmesi) metnin temel olayıdır.",
+        "url": null
+      }
+    }
+  ]
+}

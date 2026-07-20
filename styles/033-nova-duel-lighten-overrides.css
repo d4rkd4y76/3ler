@@ -1,0 +1,35 @@
+/* Only affect the duel question screen container */
+  .duel-game-container {
+    position: relative;
+    isolation: isolate;
+    /* lighter, friendlier arena gradient */
+    background: radial-gradient(1200px 620px at 50% 120%, #112241 0%, #152a51 40%, #13264a 70%, #10213f 100%) !important;
+    overflow: hidden;
+  }
+  /* Keep subtle stars/sweep very soft if any applied */
+  .duel-game-container.nova-duel-arena::before { opacity: .28 !important; filter: drop-shadow(0 0 1px rgba(160,200,255,.2)) !important; }
+  .duel-game-container.nova-duel-arena::after  { opacity: .18 !important; }
+  /* Hide decorative orbs/planets on this screen completely */
+  .duel-game-container .nova-orbs,
+  .duel-game-container .nova-orb,
+  .duel-game-container .nova-force-behind,
+  .duel-game-container [class*="orb" i],
+  .duel-game-container [class*="planet" i],
+  .duel-game-container [class*="gezegen" i] { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+  /* Ensure question & options stay crisp on the lighter theme */
+  .duel-game-container .question-container {
+    background: #fffdf7 !important;
+    border-color: #ffd18a !important;
+    color: #1b2a3f !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  }
+  .duel-game-container .question-text { color: #0f213f !important; }
+  .duel-game-container .option-button {
+    background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(245,247,252,.95)) !important;
+    color: #0f213f !important;
+    border: 1px solid rgba(20,40,80,.15) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 0 0 2px rgba(0,0,0,0) inset !important;
+  }
+  .duel-game-container .option-button:hover {
+    background: linear-gradient(180deg, rgba(255,255,255,1), rgba(245,247,252,1)) !important;
+  }

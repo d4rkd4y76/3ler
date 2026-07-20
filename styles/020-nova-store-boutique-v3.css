@@ -1,0 +1,238 @@
+/* === Mağaza ekranı v3: “boutique” kabuk (işlev aynı; görünüm baştan) === */
+.profile-change-content.nova-store-shell{
+  position: relative;
+  width: min(96vw, 920px) !important;
+  max-width: min(96vw, 920px) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  background:
+    radial-gradient(110% 70% at 12% -8%, rgba(99,102,241,.38), transparent 52%),
+    radial-gradient(90% 55% at 100% 8%, rgba(236,72,153,.22), transparent 48%),
+    linear-gradient(168deg, #121a2e 0%, #0b0f18 42%, #0e1628 100%) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 36px 90px rgba(0,0,0,.68),
+    0 0 140px rgba(99,102,241,.18) !important;
+}
+.nova-store-ambient{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -15%, rgba(251,191,36,.14), transparent 58%),
+    radial-gradient(ellipse 55% 40% at 92% 88%, rgba(34,211,238,.1), transparent 55%);
+  opacity: .95;
+}
+.profile-change-content.nova-store-shell > .nova-store-ambient{ z-index: 0; }
+.profile-change-content.nova-store-shell > header,
+.profile-change-content.nova-store-shell > section,
+.profile-change-content.nova-store-shell > .nova-store-stage{
+  position: relative;
+  z-index: 1;
+}
+
+.profile-change-content .nova-store-header{
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: flex-start !important;
+  gap: clamp(12px, 3vw, 22px) !important;
+  padding: clamp(16px, 3.6vw, 24px) clamp(16px, 3.2vw, 26px) clamp(12px, 2.2vw, 16px) !important;
+  margin: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.1) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)) !important;
+}
+.nova-store-title-block .nova-store-kicker{
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,.95);
+}
+.nova-store-sub{
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: rgba(148,163,184,.92);
+  max-width: 46ch;
+}
+.profile-change-content .nova-store-header .store-title{
+  font-size: clamp(1.25rem, 4.2vw, 1.55rem) !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+}
+
+.profile-change-content .nova-store-actions{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.profile-change-content .nova-store-wallet{
+  border-radius: 999px !important;
+  padding: 9px 16px !important;
+  background: rgba(15,23,42,.72) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.1) !important;
+}
+
+.nova-store-cat-section{
+  padding: 8px clamp(14px, 3vw, 24px) 4px;
+}
+.nova-store-cat-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+.nova-store-cat-label{
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(226,232,240,.9);
+}
+.nova-store-cat-hint{
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(148,163,184,.72);
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(15,23,42,.45);
+}
+@media (min-width: 720px){
+  .nova-store-cat-hint{ display: none; }
+}
+
+.profile-change-content .nova-store-categories{
+  margin: 0 0 4px 0 !important;
+  padding: 12px 12px !important;
+  border-radius: 20px !important;
+  background: rgba(7,10,18,.62) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06) !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.nova-store-stage{
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px clamp(14px, 3vw, 24px) clamp(18px, 3.5vw, 26px);
+}
+
+.profile-change-content .duel-credits-store{
+  margin-bottom: 0 !important;
+  border-radius: 22px !important;
+  padding: 18px 16px 20px !important;
+}
+.profile-change-content .duel-credits-store::before{
+  margin-bottom: 12px !important;
+  letter-spacing: .12em !important;
+}
+.profile-change-content .credits-packages-container{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 12px !important;
+}
+.profile-change-content .credit-package{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  padding: 14px 14px 12px !important;
+  min-height: 100%;
+}
+
+.profile-change-content .nova-store-products{
+  flex: 1;
+  min-height: min(50vh, 520px);
+  max-height: min(58vh, 580px) !important;
+  padding: 14px 10px 18px !important;
+  gap: clamp(12px, 2.2vw, 18px) !important;
+  grid-template-columns: repeat(auto-fill, minmax(156px, 1fr)) !important;
+  background:
+    radial-gradient(80% 50% at 50% 0%, rgba(99,102,241,.12), transparent 55%),
+    rgba(6,9,16,.5) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+}
+@media (max-width: 719px){
+  .profile-change-content .nova-store-products{
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+}
+@media (min-width: 640px){
+  .profile-change-content .nova-store-products{
+    grid-template-columns: repeat(auto-fill, minmax(198px, 1fr)) !important;
+  }
+}
+
+.profile-change-content .profile-photo-item.nova-store-card{
+  border-radius: 20px !important;
+  padding: 14px 12px 16px !important;
+  background: linear-gradient(165deg, rgba(30,41,59,.82), rgba(12,18,32,.92)) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.38),
+    0 0 0 1px rgba(255,255,255,.04) inset !important;
+}
+.profile-change-content .profile-photo-item.nova-store-card:hover{
+  transform: translateY(-4px) !important;
+  border-color: rgba(253,230,138,.35) !important;
+  box-shadow:
+    0 22px 50px rgba(0,0,0,.45),
+    0 0 0 1px rgba(251,191,36,.15) inset,
+    0 0 40px rgba(99,102,241,.12) !important;
+}
+
+/* Avatar cercevesi detay kutusu: tum cihazlarda ortali ve dengeli */
+.profile-change-content .profile-photo-item.nova-store-card .series-lock-note{
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Mobilde metin sola kaymasin, kart ortasinda sabit dursun */
+@media (max-width: 640px){
+  .profile-change-content .profile-photo-item.nova-store-card .series-lock-note{
+    width: 100% !important;
+    max-width: 220px !important;
+    line-height: 1.38 !important;
+  }
+  .profile-change-content .profile-photo-item.nova-store-card .series-lock-note > div{
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 540px){
+  .profile-change-content .nova-store-header{
+    grid-template-columns: 1fr !important;
+  }
+  .profile-change-content .nova-store-actions{
+    justify-content: stretch !important;
+    width: 100%;
+  }
+  .profile-change-content .nova-store-wallet{ flex: 1 1 auto; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .profile-change-content.nova-store-shell,
+  .profile-change-content .profile-photo-item.nova-store-card{
+    animation: none !important;
+    transition: none !important;
+  }
+}

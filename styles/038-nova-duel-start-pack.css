@@ -1,0 +1,148 @@
+/* === NOVA Duel Start Pack (lightweight, responsive, non-breaking) === */
+:root{
+  --vs-cyan:#00f0ff; --vs-mint:#00ffcc; --vs-blue:#66a6ff;
+  --vs-gold:#ffd700; --vs-amber:#ffb000;
+}
+
+/* Scope all effects to the duel-selection-container only */
+.duel-selection-container{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(1200px 600px at 50% 120%, #0a1231 0%, #070e27 45%, #040a1a 75%, #020611 100%);
+}
+
+/* subtle starfield */
+.duel-selection-container::before{
+  content:''; position:absolute; inset:-12%;
+  background:
+    radial-gradient(2px 2px at 20% 30%, #d1e6ff 50%, transparent 51%) repeat,
+    radial-gradient(1px 1px at 60% 70%, #9bc2ff 50%, transparent 51%) repeat,
+    radial-gradient(1px 1px at 80% 20%, #ffffff 50%, transparent 51%) repeat;
+  background-size: 300px 300px, 240px 240px, 180px 180px;
+  animation: novaStarFloat 52s linear infinite;
+  opacity:.7; z-index:0; pointer-events:none;
+  filter: drop-shadow(0 0 2px rgba(160,200,255,.4));
+}
+
+/* slow rotating aurora sweep */
+.duel-selection-container::after{
+  content:''; position:absolute; inset:-10%;
+  background: conic-gradient(from 0deg at 50% -10%, rgba(0,255,255,.06), transparent 20%, rgba(255,0,255,.06) 40%, transparent 60%, rgba(0,255,255,.06) 80%, transparent);
+  filter: blur(10px);
+  animation: novaSweepSlow 18s linear infinite;
+  z-index:1; pointer-events:none;
+}
+
+/* Central VS badge (created via JS) */
+.nova-vs-badge{
+  position:absolute; left:50%; top:50%;
+  transform: translate(-50%, -50%);
+  width:clamp(72px, 10vw, 140px); height:clamp(72px, 10vw, 140px);
+  border-radius:50%;
+  display:grid; place-items:center;
+  background: radial-gradient(circle at 50% 40%, rgba(0,240,255,.15), rgba(0,0,0,.4) 60%);
+  box-shadow: 0 0 24px rgba(0,255,255,.35), inset 0 0 32px rgba(0,255,255,.2);
+  z-index:5; pointer-events:none;
+}
+.nova-vs-badge::before{
+  content:"VS"; font-weight:900; letter-spacing:.04em;
+  font-size:clamp(22px, 5vw, 40px);
+  background: linear-gradient(90deg, var(--vs-cyan), var(--vs-mint), var(--vs-blue));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  filter: drop-shadow(0 0 8px rgba(0,255,255,.65));
+}
+.nova-vs-badge::after{
+  content:''; position:absolute; inset:-6px;
+  border-radius:inherit;
+  background:
+    conic-gradient(from 0deg, rgba(0,255,200,.35), transparent 20%, rgba(0,255,255,.35) 40%, transparent 60%, rgba(0,255,200,.35) 80%, transparent);
+  filter: blur(4px);
+  animation: novaRingSpin 6s linear infinite;
+}
+
+/* Player cards glow-up (without changing structure/classes) */
+.duel-selection-container .duel-player-photo{
+  box-shadow: 0 0 0 3px rgba(0,230,255,.25), 0 8px 18px rgba(0,0,0,.35);
+  transition: transform .35s ease, box-shadow .35s ease, filter .35s ease;
+  will-change: transform, filter;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 60%);
+}
+.duel-selection-container .duel-player-photo:hover{
+  transform: translateY(-6px) scale(1.03) rotateZ(-1deg);
+  filter: brightness(1.08);
+  box-shadow: 0 0 0 3px rgba(0,230,255,.55), 0 14px 28px rgba(0,0,0,.45);
+}
+
+/* Player name readability + theme match */
+.duel-selection-container .duel-player-name{
+  font-weight:900;
+  font-size: clamp(.9rem, 2.3vw, 1.15rem);
+  background: linear-gradient(90deg, #eaf6ff, #cde8ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(0,180,255,.35);
+}
+
+/* Start button: epic but lightweight */
+.duel-selection-container .duel-start-button{
+  background: linear-gradient(135deg, #1e90ff, #00e5ff);
+  color:#001523;
+  font-weight:900;
+  letter-spacing:.6px;
+  border: none;
+  box-shadow: 0 8px 22px rgba(0, 200, 255, .35);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  position:relative; overflow:hidden;
+}
+.duel-selection-container .duel-start-button::after{
+  content:''; position:absolute; inset:-40%; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,.35), transparent 60%);
+  transform: scale(0.2); opacity:.0;
+  transition: transform .4s ease, opacity .4s ease;
+}
+.duel-selection-container .duel-start-button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 200, 255, .45);
+}
+.duel-selection-container .duel-start-button:hover::after{
+  transform: scale(1); opacity:.4;
+}
+
+/* Bottom info row spacing + subtle float */
+.duel-selection-container .duel-bottom-info{
+  gap:clamp(8px, 3vw, 24px);
+  animation: novaFloat 8s ease-in-out infinite;
+}
+
+/* Decorative corner orbs (created once by JS) behind UI */
+.nova-corner-orb{ position:absolute; width:clamp(28px,4.5vw,56px); height:clamp(28px,4.5vw,56px); border-radius:50%;
+  background:
+    radial-gradient(45% 45% at 30% 30%, rgba(255,255,255,.45), rgba(255,255,255,0) 60%),
+    radial-gradient(75% 75% at 50% 50%, rgba(110,170,255,.38), rgba(24,60,130,.12) 74%, rgba(0,0,0,0) 76%);
+  box-shadow: inset 0 0 18px rgba(120,180,255,.35), 0 6px 18px rgba(0,0,0,.35);
+  pointer-events:none; z-index:2; opacity:.8;
+  animation: novaOrbBreath 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+.nova-corner-orb.a{ left:10px; top:10px; }
+.nova-corner-orb.b{ right:10px; bottom:10px; }
+
+/* Keyframes */
+@keyframes novaStarFloat{ to{ transform: translateY(-220px);} }
+@keyframes novaSweepSlow{ to{ transform: rotate(1turn);} }
+@keyframes novaRingSpin{ to{ transform: rotate(1turn);} }
+@keyframes novaFloat{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+}
+@keyframes novaOrbBreath{ 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.08);} }
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .duel-selection-container::before,
+  .duel-selection-container::after,
+  .duel-selection-container .duel-bottom-info,
+  .nova-corner-orb,
+  .nova-vs-badge::after { animation: none !important; }
+}

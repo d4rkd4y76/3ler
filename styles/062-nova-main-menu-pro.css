@@ -1,0 +1,155 @@
+/* Ana ekran menü butonları — canlı ama temiz, metin merkezli */
+
+#main-screen > .buttons:not(.nova-main-lobby) {
+  gap: clamp(10px, 2vw, 14px) !important;
+}
+
+/* Global eski çizgili/parlayan pseudo elementleri temizle (lobby hariç) */
+#main-screen > .buttons:not(.nova-main-lobby) button::before,
+#main-screen > .buttons:not(.nova-main-lobby) button::after,
+#main-screen > .buttons:not(.nova-main-lobby) .single-player::before,
+#main-screen > .buttons:not(.nova-main-lobby) .single-player::after,
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button::before,
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button::after,
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button::before,
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button::after,
+#main-screen > .buttons:not(.nova-main-lobby) .logout-button::before,
+#main-screen > .buttons:not(.nova-main-lobby) .logout-button::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  animation: none !important;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) button {
+  width: 100%;
+  min-height: 52px !important;
+  padding: 12px 18px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(148, 163, 184, 0.28) !important;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.94)) !important;
+  color: #f8fafc !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: none !important;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.38) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  position: relative;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) button:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(226, 232, 240, 0.45) !important;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.44) !important;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) button:active {
+  transform: translateY(0) !important;
+}
+
+/* Metin butonun tam ortasında kalsın */
+#main-screen > .buttons:not(.nova-main-lobby) .main-menu-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* İkon sola sabit, metnin merkezini bozmuyor */
+#main-screen > .buttons:not(.nova-main-lobby) .main-menu-icon,
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button .duel-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) .main-menu-icon {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button .button-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-height: 24px;
+  position: static !important;
+}
+
+/* Tonlar — lobby hariç */
+#main-screen > .buttons:not(.nova-main-lobby) .single-player {
+  border-color: rgba(129, 140, 248, 0.42) !important;
+}
+#main-screen > .buttons:not(.nova-main-lobby) .single-player .main-menu-icon {
+  color: #c7d2fe;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button {
+  border-color: rgba(245, 158, 11, 0.45) !important;
+  background: linear-gradient(180deg, rgba(66, 47, 18, 0.92), rgba(39, 28, 12, 0.92)) !important;
+}
+#main-screen > .buttons:not(.nova-main-lobby) .find-duel-button .duel-icon {
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.26);
+  animation: none !important;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button {
+  border-color: rgba(94, 234, 212, 0.4) !important;
+}
+#main-screen > .buttons:not(.nova-main-lobby) .kupa-siralama-button .main-menu-icon {
+  color: #99f6e4;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) #nova_perf_open_btn.kupa-siralama-button {
+  border-color: rgba(196, 181, 253, 0.4) !important;
+}
+#main-screen > .buttons:not(.nova-main-lobby) #nova_perf_open_btn .main-menu-icon {
+  color: #ddd6fe;
+}
+
+#main-screen > .buttons:not(.nova-main-lobby) .logout-button {
+  min-height: 46px !important;
+  background: linear-gradient(180deg, rgba(55, 26, 30, 0.9), rgba(35, 16, 20, 0.9)) !important;
+  border-color: rgba(248, 113, 113, 0.4) !important;
+  color: #fecaca !important;
+}
+
+#main-screen > .buttons .duel-entry-gate-note {
+  margin-top: -4px !important;
+  margin-bottom: 2px !important;
+  font-size: 0.77rem !important;
+  font-weight: 600 !important;
+  color: #cbd5e1 !important;
+  background: rgba(15, 23, 42, 0.72) !important;
+  border: 1px solid rgba(148, 163, 184, 0.24) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen > .buttons:not(.nova-main-lobby) button:hover {
+    transform: none !important;
+  }
+}

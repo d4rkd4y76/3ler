@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
+  <title>Yönetici hesabı tanımla — Duellomatik</title>
+  <style>
+    :root{
+      --bg:#0c1224; --card:#121a36; --ink:#eef2ff; --muted:#94a3c8; --acc:#38bdf8; --ok:#22c55e; --err:#f87171;
+      --border:#273156;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; min-height:100vh; padding:16px;
+      background: radial-gradient(900px 600px at 10% 0%, #1e293b, var(--bg));
+      color:var(--ink); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+    h1{ font-size:1.35rem; margin:0 0 8px; }
+    p.lead{ color:var(--muted); margin:0 0 20px; font-size:.95rem; }
+    .card{
+      max-width:520px; margin:0 auto; padding:18px; border-radius:16px;
+      background:linear-gradient(180deg,#141c3d,#10162c); border:1px solid var(--border);
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+    }
+    label{ display:block; font-size:.8rem; color:var(--muted); margin:14px 0 6px; }
+    select, button{
+      width:100%; padding:14px 12px; border-radius:12px; border:1px solid var(--border);
+      font-size:1rem; background:#0a1028; color:var(--ink);
+    }
+    select{ min-height:48px; touch-action:manipulation; }
+    button{
+      margin-top:12px; font-weight:700; cursor:pointer;
+      background:linear-gradient(180deg,#0ea5e9,#0284c7); border-color:#0369a1;
+      min-height:48px; touch-action:manipulation;
+    }
+    button.secondary{ background:linear-gradient(180deg,#334155,#1e293b); border-color:#475569; }
+    button.danger{ background:linear-gradient(180deg,#ef4444,#b91c1c); border-color:#991b1b; }
+    .msg{ margin-top:14px; padding:12px; border-radius:10px; font-size:.9rem; background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.25); }
+    .msg.err{ background:rgba(248,113,113,.12); border-color:rgba(248,113,113,.35); color:#fecaca; }
+    .mono{ font-family:ui-monospace, monospace; font-size:.78rem; word-break:break-all; color:#a5b4fc; }
+    .foot{ max-width:520px; margin:20px auto 0; font-size:.78rem; color:var(--muted); line-height:1.5; }
+    code{ background:#0f172a; padding:2px 6px; border-radius:6px; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h1>Yönetici hesabı</h1>
+    <p class="lead">Aynı öğrenci girişiyle (sınıf + kullanıcı adı + şifre) uygulamaya giren kişilerde ana ekranda <strong>Yönetici</strong> butonu görünür. Veri yolu: <span class="mono">adminPanelUsers/{sınıfId}/{öğrenciId}</span></p>
+
+    <label for="classSel">Sınıf</label>
+    <select id="classSel"><option value="">— Sınıf yükleniyor —</option></select>
+
+    <label for="stuSel">Öğrenci</label>
+    <select id="stuSel" disabled><option value="">— Önce sınıf seçin —</option></select>
+
+    <button type="button" id="btnAdd">Yönetici yap</button>
+    <button type="button" class="danger" id="btnRemove">Yöneticiliği kaldır</button>
+
+    <div class="msg" id="out" hidden></div>
+  </div>
+
+  <div class="foot">
+    <strong>Firebase kuralları:</strong> Realtime Database’de <code>adminPanelUsers</code> altına yazabilmek için kural eklemeniz gerekir (örnek geliştirme):
+    <pre style="white-space:pre-wrap;background:#0f172a;padding:10px;border-radius:10px;border:1px solid var(--border);font-size:11px;margin-top:8px">"adminPanelUsers": {
+  "$classId": {
+    "$studentId": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}</pre>
+    Canlı ortamda <code>.write</code>’ı yalnızca güvendiğiniz kimlik doğrulamasıyla kısıtlayın.
+  </div>
+
+  <script>
+  (function(){
+    var firebaseConfig = {
+      apiKey: "AIzaSyAZ8u7pix02x5-MbjOqurra6PWILmLfKGI",
+      authDomain: "dllwrld-e5419.firebaseapp.com",
+      databaseURL: "https://dllwrld-e5419-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dllwrld-e5419",
+      storageBucket: "dllwrld-e5419.firebasestorage.app",
+      messagingSenderId: "244776245953",
+      appId: "1:244776245953:web:fbc041505911ae0b951240",
+      measurementId: "G-N2L6729PRY"
+    };
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    var db = firebase.database();
+
+    var classSel = document.getElementById('classSel');
+    var stuSel = document.getElementById('stuSel');
+    var btnAdd = document.getElementById('btnAdd');
+    var btnRemove = document.getElementById('btnRemove');
+    var out = document.getElementById('out');
+
+    function show(t, isErr){
+      out.hidden = false;
+      out.textContent = t;
+      out.className = 'msg' + (isErr ? ' err' : '');
+    }
+
+    function loadClasses(){
+      return db.ref('classes').once('value').then(function(snap){
+        classSel.innerHTML = '<option value="">Sınıf seçin</option>';
+        if (!snap.exists()) { show('Hiç sınıf bulunamadı.', true); return; }
+        snap.forEach(function(ch){
+          var id = ch.key;
+          var nm = (ch.child('name').val() || id);
+          var o = document.createElement('option');
+          o.value = id;
+          o.textContent = nm + ' (' + id + ')';
+          classSel.appendChild(o);
+        });
+      }).catch(function(e){ show('Sınıflar okunamadı: ' + (e && e.message), true); });
+    }
+
+    function loadStudents(cid){
+      stuSel.innerHTML = '<option value="">— Yükleniyor —</option>';
+      stuSel.disabled = true;
+      if (!cid) { stuSel.innerHTML = '<option value="">— Önce sınıf seçin —</option>'; return; }
+      return db.ref('classes/' + cid + '/students').once('value').then(function(snap){
+        stuSel.innerHTML = '<option value="">Öğrenci seçin</option>';
+        if (!snap.exists()) { stuSel.innerHTML = '<option value="">Bu sınıfta öğrenci yok</option>'; return; }
+        snap.forEach(function(ch){
+          var sid = ch.key;
+          var name = (ch.child('name').val() || sid);
+          var o = document.createElement('option');
+          o.value = sid;
+          o.textContent = name;
+          stuSel.appendChild(o);
+        });
+        stuSel.disabled = false;
+      }).catch(function(e){ show('Öğrenciler okunamadı: ' + (e && e.message), true); });
+    }
+
+    classSel.addEventListener('change', function(){ loadStudents(classSel.value); });
+    btnAdd.addEventListener('click', function(){
+      var cid = classSel.value;
+      var sid = stuSel.value;
+      if (!cid || !sid) { show('Sınıf ve öğrenci seçin.', true); return; }
+      db.ref('adminPanelUsers/' + cid + '/' + sid).set(true).then(function(){
+        show('Kaydedildi. Bu öğrenci hesabıyla giriş yapınca «Yönetici» butonu görünür.', false);
+      }).catch(function(e){ show('Yazma hatası (kuralları kontrol edin): ' + (e && e.message), true); });
+    });
+    btnRemove.addEventListener('click', function(){
+      var cid = classSel.value;
+      var sid = stuSel.value;
+      if (!cid || !sid) { show('Sınıf ve öğrenci seçin.', true); return; }
+      db.ref('adminPanelUsers/' + cid + '/' + sid).remove().then(function(){
+        show('Yöneticilik kaldırıldı.', false);
+      }).catch(function(e){ show('Silme hatası: ' + (e && e.message), true); });
+    });
+
+    loadClasses();
+  })();
+  </script>
+</body>
+</html>

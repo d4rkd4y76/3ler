@@ -1,0 +1,29 @@
+/* === Nova Duel Intro Overflow Fix (wrap & clamp) === */
+#duel-intro-overlay .player-card{ overflow: hidden; }
+#duel-intro-overlay .player-meta{
+  display:flex;
+  flex-wrap: wrap;           /* allow second row for rank/cups when stars are many */
+  justify-content: center;
+  align-items: center;
+  row-gap: 6px;
+  column-gap: 8px;
+  min-width: 0;              /* let flex children shrink inside */
+}
+#duel-intro-overlay .player-meta > .star-frame{
+  flex: 1 1 100%;
+  display:flex;
+  flex-wrap: wrap;           /* wrap stars to next line */
+  justify-content: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;          /* hard clamp any visual spill */
+}
+#duel-intro-overlay .player-meta > .rank-label,
+#duel-intro-overlay .player-meta > .cup-pill{
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+#duel-intro-overlay .star-badges .star{
+  font-size: 14px;           /* a touch smaller inside intro overlay */
+  line-height: 1;
+}

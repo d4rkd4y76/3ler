@@ -1,0 +1,438 @@
+/* Alev Ejderi — epik mağaza, ana ekran, seviye, arena */
+
+/* Sprite sheet — şeffaf PNG/WebP, kesintisiz döngü */
+.nova-hero-alev-sprite{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background: transparent !important;
+}
+.nova-hero-alev-sprite--main{
+  align-items: flex-end;
+  overflow: visible;
+}
+.nova-hero-alev-sprite__canvas{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 24px rgba(249, 115, 22, .42)) drop-shadow(0 0 20px rgba(251, 146, 60, .2));
+}
+.nova-hero-alev-sprite--main .nova-hero-alev-sprite__canvas{
+  filter: drop-shadow(0 4px 12px rgba(249, 115, 22, .38)) drop-shadow(0 0 10px rgba(251, 146, 60, .18));
+}
+/* Mağaza/vitrin: eski SVG asla üstte kalmasın */
+.nova-hero-store-card--alev .nova-hero-alev-stack,
+.nova-hero-store-card--alev .nova-hero-svg.nova-hero-svg--alev,
+.profile-change-content .nova-store-preview--alev .nova-hero-alev-stack,
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-alev-stack,
+.nova-hero-svg-host[data-alev-sprite="1"] .nova-hero-alev-stack,
+.nova-hero-svg-host[data-alev-sprite="1"] > svg{
+  display: none !important;
+}
+.nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-svg-host{
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+.nova-hero-svg-host.nova-hero-alev-vitrin-ready{
+  min-height: 150px;
+}
+.nova-hero-store-card--alev .nova-hero-preview,
+.nova-store-preview--hero.nova-store-preview--alev{
+  background:
+    radial-gradient(1.5px 1.5px at 18% 14%, rgba(255,255,255,.85), transparent),
+    radial-gradient(1px 1px at 82% 20%, rgba(236,254,255,.6), transparent),
+    radial-gradient(ellipse 92% 50% at 50% 100%, rgba(34,211,238,.32), transparent 72%),
+    radial-gradient(ellipse 60% 42% at 50% 0%, rgba(165,243,252,.18), transparent),
+    linear-gradient(180deg, #1a0500 0%, #431407 38%, #c2410c 72%, #164e63 100%) !important;
+}
+.nova-hero-store-card--alev .nova-hero-preview::after,
+.nova-store-preview--hero.nova-store-preview--alev::after{
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 5%;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(165,243,252,.2), transparent 72%);
+  pointer-events: none;
+  z-index: 1;
+}
+.nova-hero-store-card--alev .nova-hero-store-vitrine-name,
+.nova-hero-store-card--alev .nova-hero-store-name{
+  background: linear-gradient(135deg, #ecfeff, #fb923c, #a5b3fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev,
+.nova-store-detail-preview--hero .nova-store-preview--alev{
+  background:
+    radial-gradient(ellipse 92% 50% at 50% 100%, rgba(34,211,238,.3), transparent 72%),
+    linear-gradient(168deg, #1a0500 0%, #431407 52%, #c2410c 100%);
+}
+.nh-level-hero-preview--alev{
+  background: linear-gradient(180deg, #1a0500, #431407 55%, #c2410c);
+}
+.nh-level-hero-tab__thumb--alev{
+  background: linear-gradient(180deg, #431407, #c2410c);
+}
+
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-zone__pad,
+#main-screen .nova-main-hero-zone--alev.is-visible .nova-main-hero-zone__pad{
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden;
+  animation: none;
+}
+
+.nova-hero-svg-host:has(.nova-hero-alev-stack),
+.nova-hero-svg-host.nova-hero-mount--alev-ejder,
+.nh-level-hero-preview__host:has(.nova-hero-alev-stack),
+.nh-level-hero-preview__host.nova-hero-mount--alev-ejder,
+.nh-hero-sheet__hero-host .nova-hero-svg-host:has(.nova-hero-alev-stack),
+.nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--alev-ejder{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+.nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--alev-ejder{
+  min-height: 150px;
+}
+
+.nova-hero-alev-stack{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10% 8% 12%;
+  box-sizing: border-box;
+}
+.nova-hero-alev-stack .nova-hero-svg{
+  position: relative;
+  z-index: 2;
+  display: block;
+  max-width: 78%;
+  max-height: 78%;
+  width: auto;
+  height: auto;
+  min-width: 80px;
+  min-height: 110px;
+  transform-origin: center center;
+  filter: drop-shadow(0 12px 28px rgba(249, 115, 22, .45)) drop-shadow(0 0 18px rgba(251, 146, 60, .22));
+}
+.nova-hero-alev-frost{
+  position: absolute;
+  inset: 12% 14% 16%;
+  width: auto;
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  clip-path: ellipse(42% 48% at 50% 46%);
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-svg-host{
+  min-height: 100%;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-svg-host{
+  min-height: 0;
+  height: 100%;
+}
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-alev-stack,
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-alev-stack,
+.nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-alev-stack{
+  animation: nhStoreFloat 6s cubic-bezier(.45, 0, .55, 1) infinite;
+  transform-origin: center center;
+}
+
+#main-screen .nova-main-hero-zone--alev{
+  z-index: 2;
+  width: clamp(84px, 20vw, 102px);
+  height: clamp(94px, 21vw, 108px);
+}
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-float{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-slot{
+  position: relative !important;
+  inset: auto !important;
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+#main-screen .nova-main-hero-zone--alev .nova-hero-svg-host,
+#main-screen .nova-main-hero-zone--alev .nova-hero-alev-stack,
+#main-screen .nova-main-hero-zone--alev .nova-hero-alev-sprite{
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: visible;
+  padding: 0 3px;
+  box-sizing: border-box;
+}
+#main-screen .nova-main-hero-zone--alev .nova-hero-alev-stack .nova-hero-svg{
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  transform: scale(0.78);
+  transform-origin: center bottom;
+  filter: drop-shadow(0 4px 10px rgba(251, 146, 60, .4));
+}
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-slot .nova-hero-svg,
+#main-screen .nova-main-hero-zone--alev .nova-main-hero-slot .nova-hero-alev-sprite{
+  width: 92px;
+  height: 88px;
+  max-width: 92px;
+  max-height: 88px;
+  min-width: 92px;
+  min-height: 88px;
+}
+#main-screen .nova-main-hero-zone--alev .nova-hero-alev-sprite--main{
+  width: 92px;
+  height: 88px;
+}
+/* EPİK rozeti → styles/096-nova-epic-dragon-badge.css */
+
+.nova-sp-hero-arena__host.nova-hero-mount--alev-ejder .nova-hero-alev-stack{
+  min-height: 180px;
+}
+
+.nova-hero-mount--alev-ejder svg .nova-hero__frost-rings{
+  transform-style: preserve-3d;
+  perspective: 420px;
+}
+.nova-hero-mount--alev-ejder svg .nova-hero__chest-gem{
+  animation: novaBuzGemPulse 2.6s ease-in-out infinite;
+}
+.nova-hero-mount--alev-ejder svg .nova-hero__eye-l,
+.nova-hero-mount--alev-ejder svg .nova-hero__eye-r{
+  animation: novaBuzEyeGlow 2.8s ease-in-out infinite;
+}
+@keyframes novaBuzEyeGlow{
+  0%, 100%{ opacity: .92; }
+  50%{ opacity: 1; }
+}
+.nova-hero-mount--alev-ejder svg .nova-hero__wings-upper{
+  opacity: 1;
+}
+@keyframes novaBuzGemPulse{
+  0%, 100%{ opacity: .26; }
+  50%{ opacity: .58; }
+}
+.nova-hero-mount--alev-ejder svg .nova-hero__tail-ice-burst{
+  transform-origin: 228px 352px;
+}
+.nova-hero-store-card--alev .nova-hero-preview--store-live{
+  overflow: visible;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev{
+  overflow: visible;
+}
+.nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-svg-host,
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-svg-host{
+  min-height: 168px;
+  padding: 8px 18px 10px;
+  overflow: visible;
+  box-sizing: border-box;
+  animation: none;
+}
+.nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-alev-sprite,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-alev-sprite{
+  min-height: 148px;
+  max-height: 172px;
+  width: 100%;
+  max-width: 176px;
+  margin: 0 auto;
+  overflow: visible;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+.nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-svg-host,
+.profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-svg-host{
+  align-items: center;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-svg-host{
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px 6px;
+  min-height: 200px;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-alev-sprite{
+  min-height: 0;
+  max-height: none;
+  width: 100%;
+  max-width: 236px;
+  height: 92%;
+  max-height: 212px;
+  overflow: visible;
+  padding: 0 8px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-alev-sprite__canvas{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+#main-screen .nova-main-hero-zone--alev .nova-hero-alev-sprite{
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+#main-screen .nova-main-hero-zone--alev .nova-hero-alev-sprite__canvas{
+  max-width: 100%;
+  max-height: 100%;
+}
+.nova-hero-store-card--alev .nova-hero-preview{
+  min-height: 180px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.nova-store-detail-preview--hero .nova-store-preview--alev .nova-hero-svg-host{
+  min-height: 200px;
+}
+.nova-hero-mount--alev-ejder svg .nova-hero__tail-ice-glow{
+  animation: novaBuzTailIcePulse 2.4s ease-in-out infinite;
+}
+@keyframes novaBuzTailIcePulse{
+  0%, 100%{ opacity: .45; transform: scale(0.94); }
+  50%{ opacity: .78; transform: scale(1.1); }
+}
+
+.nh-hero-sheet__arena--alev-sprite{
+  min-height: 228px;
+  padding-bottom: 8px;
+}
+.nh-hero-sheet__arena--alev-sprite .nh-hero-sheet__hero-host{
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+/* Özellik paneli: host %100 genişlikte blok olduğu için sprite sola kayıyordu */
+.nh-hero-sheet__arena--alev-sprite .nh-hero-sheet__hero-host .nova-hero-svg-host.nova-hero-mount--alev-ejder{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 188px;
+}
+.nh-hero-sheet__arena--alev-sprite .nova-hero-alev-sprite--main{
+  width: clamp(168px, 54vw, 220px);
+  height: clamp(148px, 48vw, 196px);
+  min-width: 168px;
+  min-height: 148px;
+  max-width: 220px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  transform: scale(1.42);
+  transform-origin: 50% 100%;
+}
+.nh-hero-sheet__arena--alev-sprite .nova-hero-alev-sprite--main .nova-hero-alev-sprite__canvas{
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .profile-change-content .nova-store-preview--hero.nova-store-preview--alev .nova-hero-alev-stack,
+  .nova-hero-store-card--alev .nova-hero-preview--store-live .nova-hero-alev-stack,
+  .nova-hero-mount--alev-ejder svg .nova-hero__chest-gem{
+    animation: none;
+  }
+}
+
+.nova-hero-mount--alev-ejder svg .nova-hero__wings-upper{
+  animation: novaAlevWingIdle 2.8s ease-in-out infinite;
+  transform-origin: 120px 130px;
+}
+@keyframes novaAlevWingIdle{
+  0%, 100%{ transform: scaleY(1) rotate(0deg); }
+  50%{ transform: scaleY(1.06) rotate(-2deg); }
+}
+
+/* Tek kişilik — doğru cevap sprite klipleri (Buz Ejderi ile aynı sahne) */
+.nova-sp-hero-arena__host .nova-hero-alev-true-wrap{
+  width: 100%;
+  height: 100%;
+  min-height: min(944px, 96vh);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 11%;
+  box-sizing: border-box;
+  background: transparent;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .42s ease .08s, transform .48s cubic-bezier(.22, 1, .34, 1) .08s;
+}
+.nova-sp-hero-arena--sprite-only.is-centered .nova-hero-alev-true-ready .nova-hero-alev-true-wrap{
+  opacity: 1;
+  transform: translateY(-7%);
+}
+.nova-sp-hero-arena--sprite-only.is-exiting .nova-hero-alev-true-wrap{
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .32s ease, transform .36s ease;
+}
+.nova-sp-hero-arena__host .nova-hero-alev-true-sprite__canvas{
+  display: block;
+  max-width: 100%;
+  background: transparent;
+  filter: drop-shadow(0 10px 24px rgba(251, 146, 60, .42));
+}

@@ -1,0 +1,2486 @@
+/* Kesir + öncül maddeleri — soru ekranı & admin önizleme */
+
+.q-frac {
+  display: inline-grid;
+  grid-template-rows: auto 3px auto;
+  gap: 2px;
+  align-items: center;
+  justify-items: center;
+  vertical-align: middle;
+  margin: 0 0.2em;
+  min-width: 1.4em;
+  line-height: 1;
+}
+
+.q-frac__num,
+.q-frac__den {
+  font-weight: 800;
+  font-size: 1.05em;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+}
+
+.q-frac__bar {
+  width: 100%;
+  min-width: 1.1em;
+  height: 3px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+#single-player-game-screen .question-actual-text.q-markup,
+#duel-game-screen .question-actual-text.q-markup,
+#single-player-game-screen .question-text.q-markup,
+#duel-game-screen .question-text.q-markup {
+  display: block;
+  text-align: center;
+}
+
+/* Kesir cümlesi tek satırda: 40 sayısının 1/5'i kaçtır? */
+.q-frac-sentence,
+.q-frac-chain {
+  display: inline;
+  white-space: nowrap;
+}
+
+.q-frac-sentence .q-frac,
+.q-frac-chain .q-frac {
+  vertical-align: -0.22em;
+}
+
+#single-player-game-screen .question-actual-text.q-markup .q-frac,
+#duel-game-screen .question-actual-text.q-markup .q-frac,
+#single-player-game-screen .option-button .q-markup .q-frac,
+#duel-game-screen .option-button .q-markup .q-frac {
+  display: inline-grid;
+  vertical-align: middle;
+}
+
+/* Kesir modeli — bütünün eş parçaları (MEB tarzı şerit) */
+.q-fracbar {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.35em 0.25em;
+}
+
+.q-fracbar__grid {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--fracbar-cols, 4), minmax(0.95em, 1.15em));
+  gap: 3px;
+  align-items: stretch;
+}
+
+.q-fracbar__cell {
+  display: block;
+  min-height: 1.05em;
+  border: 2px solid rgba(248, 250, 252, 0.82);
+  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.18);
+  box-sizing: border-box;
+}
+
+.q-fracbar__cell--on {
+  background: linear-gradient(160deg, #fbbf24 0%, #f59e0b 100%);
+  border-color: rgba(251, 191, 36, 0.95);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+#single-player-game-screen .question-container .q-fracbar__cell,
+#duel-game-screen .question-container .q-fracbar__cell,
+.deneme-q-card .q-fracbar__cell {
+  border-color: rgba(15, 23, 42, 0.72);
+  background: rgba(148, 163, 184, 0.22);
+}
+
+#single-player-game-screen .question-container .q-fracbar__cell--on,
+#duel-game-screen .question-container .q-fracbar__cell--on,
+.deneme-q-card .q-fracbar__cell--on {
+  border-color: rgba(217, 119, 6, 0.95);
+}
+
+.q-markup strong {
+  font-weight: 800;
+}
+
+/* Öncül maddeleri */
+.question-preamble-wrap {
+  width: 100%;
+}
+
+.question-preamble-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.question-preamble-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 12px;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.question-preamble-label {
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #0ea5e9;
+  min-width: 2rem;
+  line-height: 1.45;
+}
+
+.question-preamble-body {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #0f172a;
+}
+
+#single-player-game-screen .question-info-text,
+#duel-game-screen .question-info-text {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  line-height: 1.55;
+}
+
+#single-player-game-screen .question-actual-text.q-markup,
+#duel-game-screen .question-actual-text.q-markup {
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.deneme-q-pre .question-preamble-list {
+  gap: 12px;
+}
+
+.deneme-q-pre .question-preamble-item {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.deneme-q-text.q-markup,
+.deneme-opt-btn .q-markup {
+  line-height: 1.45;
+}
+
+.deneme-opt-btn .q-frac {
+  margin: 0 0.15em;
+}
+
+/* Admin panel — soru editörü */
+.q-editor-root {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.q-editor-math-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #263056);
+  background: rgba(30, 39, 86, 0.45);
+}
+
+.q-editor-math-bar__title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--acc-2, #22d3ee);
+  letter-spacing: 0.03em;
+}
+
+.q-math-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.q-math-toolbar--global .btn {
+  font-size: 12px;
+  padding: 5px 10px;
+  min-width: 36px;
+}
+
+.q-editor-em-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 113, 133, 0.28);
+  background: rgba(40, 20, 36, 0.42);
+}
+
+.q-editor-em-bar__title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fda4af;
+  letter-spacing: 0.03em;
+}
+
+.q-em-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.q-wrap-em--bold {
+  font-weight: 800;
+}
+
+.q-wrap-em--red {
+  color: #ff4d4d;
+  border-color: rgba(255, 77, 77, 0.45) !important;
+}
+
+.q-wrap-em--blue {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.45) !important;
+}
+
+.q-wrap-em--green {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.45) !important;
+}
+
+.q-markup .q-em {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.q-markup .q-em--bold,
+.q-markup strong.q-em--bold {
+  font-weight: 900;
+  color: inherit;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.12);
+}
+
+.q-markup .q-em--red {
+  color: #ff3b3b;
+  text-shadow: 0 0 10px rgba(255, 59, 59, 0.42);
+}
+
+.q-markup .q-em--blue {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.42);
+}
+
+.q-markup .q-em--green {
+  color: #4ade80;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.42);
+}
+
+#single-player-game-screen .explanation-container .q-em--red,
+#single-player-game-screen .explanation-note__body .q-em--red {
+  color: #ff5555;
+}
+
+#single-player-game-screen .explanation-container .q-em--blue,
+#single-player-game-screen .explanation-note__body .q-em--blue {
+  color: #5ecbff;
+}
+
+#single-player-game-screen .explanation-container .q-em--green,
+#single-player-game-screen .explanation-note__body .q-em--green {
+  color: #5ef59a;
+}
+
+.q-editor-columns {
+  display: grid;
+  grid-template-columns: 1fr min(300px, 38%);
+  gap: 16px;
+  align-items: start;
+}
+
+.q-editor-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.q-editor-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.q-field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink, #e8ecff);
+  margin: 0;
+}
+
+.q-optional {
+  font-weight: 500;
+  color: var(--muted, #9aa3c7);
+}
+
+.q-field-textarea,
+.q-field-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #263056);
+  background: #0b1130;
+  color: var(--ink, #e8ecff);
+  font: inherit;
+  line-height: 1.45;
+}
+
+.q-field-textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.q-field-textarea--stem {
+  min-height: 88px;
+  font-weight: 600;
+}
+
+.q-field-input {
+  min-height: 42px;
+}
+
+.q-editor-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #263056);
+  background: rgba(11, 17, 48, 0.55);
+}
+
+.q-editor-section--preamble .q-toggle-multi {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.q-info-multi {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed rgba(110, 168, 255, 0.35);
+  background: rgba(11, 17, 48, 0.35);
+}
+
+.q-editor-hint {
+  font-size: 11px;
+  color: var(--muted, #9aa3c7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.q-editor-hint--inline {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.q-editor-hint code {
+  background: var(--chip, #1b2346);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.q-preview-empty {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.q-info-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.q-info-item-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 8px;
+  align-items: start;
+}
+
+.q-info-item-row input[type="text"] {
+  padding: 8px 10px;
+}
+
+.q-info-item-row textarea {
+  min-height: 64px;
+}
+
+.q-info-item-label {
+  font-weight: 800;
+  color: var(--acc-2, #22d3ee);
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+.q-editor-section--preview .q-live-preview {
+  margin-top: 0;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  min-height: 160px;
+}
+
+.q-live-preview__title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.q-live-preview .question-preamble-wrap {
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 48%, #ffedd5 100%);
+  border: 1px solid rgba(251, 191, 36, 0.42);
+  box-shadow:
+    0 8px 20px rgba(217, 119, 6, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.q-live-preview .question-preamble-item {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+}
+
+.q-live-preview .question-preamble-label {
+  color: #b45309;
+}
+
+.q-live-preview .question-divider {
+  position: relative;
+  width: min(480px, 92%);
+  height: 3px;
+  margin: 12px auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0) 0%,
+    rgba(251, 191, 36, 0.35) 15%,
+    rgba(245, 158, 11, 0.95) 50%,
+    rgba(251, 191, 36, 0.35) 85%,
+    rgba(251, 191, 36, 0) 100%
+  );
+}
+
+.q-live-preview .question-divider::after {
+  content: "Soru";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b45309;
+  background: #fffbeb;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+}
+
+.q-editor-hint {
+  font-size: 12px;
+  color: var(--muted, #9aa3c7);
+  margin: 8px 0 0;
+  line-height: 1.45;
+}
+
+.q-editor-hint code {
+  background: var(--chip, #1b2346);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+@media (max-width: 720px) {
+  .q-editor-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .q-editor-math-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 520px) {
+  .question-preamble-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .q-info-item-row {
+    grid-template-columns: 1fr;
+  }
+
+  .q-info-item-label {
+    padding-top: 0;
+  }
+}
+
+/* Dikey çarpma / bölme */
+.q-vmath {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25em 0.5em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.q-vmath__row {
+  display: block;
+  padding: 0 0.15em;
+  white-space: nowrap;
+}
+
+.q-vmath__col {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 2.5em;
+}
+
+.q-vmath--mul .q-vmath__sign {
+  margin-right: 0.25em;
+  opacity: 0.85;
+}
+
+.q-vmath--mul .q-vmath__bar,
+.q-vmath--add .q-vmath__bar {
+  display: block;
+  width: 100%;
+  min-width: 2.2em;
+  height: 3px;
+  margin-top: 3px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.q-vmath--add .q-vmath__sign {
+  margin-right: 0;
+  opacity: 0.85;
+}
+
+.q-vmath--add .q-vmath__grid,
+.q-vmath--sub .q-vmath__grid,
+.q-vmath--mul .q-vmath__grid {
+  display: inline-grid;
+  grid-template-columns: 1.05em repeat(var(--q-add-cols, 3), 1.2em);
+  column-gap: 0.08em;
+  row-gap: 0.06em;
+  align-items: end;
+  justify-items: center;
+}
+
+.q-vmath--add .q-vmath__grid-row,
+.q-vmath--sub .q-vmath__grid-row,
+.q-vmath--mul .q-vmath__grid-row {
+  display: contents;
+}
+
+.q-vmath--add .q-vmath__gcol,
+.q-vmath--sub .q-vmath__gcol,
+.q-vmath--mul .q-vmath__gcol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 1.2em;
+  text-align: center;
+}
+
+.q-vmath--add .q-vmath__gcol--sign,
+.q-vmath--sub .q-vmath__gcol--sign,
+.q-vmath--mul .q-vmath__gcol--sign {
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 0.08em;
+  min-width: 1.05em;
+}
+
+.q-vmath--add .q-vmath__grid-row--bar .q-vmath__gcol--sign,
+.q-vmath--sub .q-vmath__grid-row--bar .q-vmath__gcol--sign,
+.q-vmath--mul .q-vmath__grid-row--bar .q-vmath__gcol--sign {
+  display: none;
+}
+
+.q-vmath--add .q-vmath__gcol--bar,
+.q-vmath--sub .q-vmath__gcol--bar,
+.q-vmath--mul .q-vmath__gcol--bar {
+  display: none;
+}
+
+.q-vmath--add .q-vmath__bar-line,
+.q-vmath--sub .q-vmath__bar-line,
+.q-vmath--mul .q-vmath__bar-line {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 3px;
+  margin: 0.14em 0 0.1em;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+  align-self: center;
+}
+
+.q-vmath--add .q-vmath__digit,
+.q-vmath--sub .q-vmath__digit,
+.q-vmath--mul .q-vmath__digit {
+  display: block;
+  width: 1.1em;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.q-vmath--add .q-vmath__carry,
+.q-vmath--mul .q-vmath__carry {
+  display: block;
+  width: 1.1em;
+  text-align: center;
+  font-size: 0.58em;
+  line-height: 1;
+  min-height: 0.95em;
+  font-weight: 900;
+  color: #fbbf24;
+  text-shadow: 0 0 6px rgba(251, 191, 36, 0.45);
+}
+
+.q-vmath--add .q-vmath__carry--empty,
+.q-vmath--mul .q-vmath__carry--empty {
+  visibility: hidden;
+}
+
+.q-vmath--addsol .q-vmath__digit--result,
+.q-vmath--subsol .q-vmath__digit--result,
+.q-vmath--mulsol .q-vmath__digit--result {
+  margin-top: 0;
+  padding-top: 0.1em;
+  border-top: none;
+}
+
+.q-vmath--sub .q-vmath__sign {
+  margin-right: 0;
+  opacity: 0.85;
+}
+
+.q-vmath--sub .q-vmath__gcol--stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 1.2em;
+}
+
+.q-vmath--sub .q-vmath__adj {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.62em;
+  line-height: 1;
+  min-height: 0.95em;
+  font-weight: 900;
+  color: #f87171;
+  text-shadow: 0 0 6px rgba(248, 113, 113, 0.35);
+}
+
+.q-vmath--sub .q-vmath__adj--wide {
+  font-size: 0.5em;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.q-vmath--sub .q-vmath__digit--struck {
+  position: relative;
+  display: inline-block;
+}
+
+.q-vmath--sub .q-vmath__digit--struck .q-vmath__digit-inner {
+  color: rgba(248, 113, 113, 0.82);
+}
+
+.q-vmath--sub .q-vmath__strike {
+  position: absolute;
+  left: -0.08em;
+  right: -0.08em;
+  top: 52%;
+  height: 1.5px;
+  border-radius: 999px;
+  background: #ef4444;
+  box-shadow: 0 0 4px rgba(239, 68, 68, 0.45);
+  pointer-events: none;
+}
+
+.q-vmath--subsol .q-vmath__digit--struck .q-vmath__digit-inner {
+  opacity: 0.95;
+}
+
+.q-step-divider {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: 0.65em 0;
+  border: none;
+  border-top: 1px dashed rgba(148, 163, 184, 0.45);
+}
+
+.q-final-result {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 1.12em;
+  color: #22c55e;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.35);
+  padding: 0.06em 0.35em;
+  border-radius: 0.35em;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.explanation-text .q-final-result,
+.explanation-v .q-final-result,
+.explanation-note__body .q-final-result {
+  font-size: clamp(1.15rem, 4.2vw, 1.65rem);
+}
+
+/* Türk ilkokul bölme — bölünen sol üst, bölen sağ üst (┌ köşe), bölüm yatay çizgi altı */
+.q-vmath--div {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.45em 0.35em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.q-vmath--div {
+  --div-bracket-line: rgba(248, 250, 252, 0.92);
+  --div-bracket-gutter: 0.44em;
+  --div-bracket-vline-extra: 1.05em;
+}
+
+.q-vmath--div .q-vmath__div-grid {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  align-items: start;
+  column-gap: 0;
+  row-gap: 0;
+}
+
+.q-vmath--div .q-vmath__bracket-col {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 3px auto;
+  grid-template-rows: auto 3px auto;
+  align-items: center;
+  min-width: 2.6em;
+}
+
+/* Sol sütun: sabit basamak ızgarası — tüm satırlar aynı sütunlarda hizalanır */
+.q-vmath--div .q-vmath__left-col {
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: 0.28em;
+}
+
+.q-vmath__div-grid-left {
+  display: grid;
+  grid-template-columns: 0.62em repeat(var(--div-cols, 2), 0.82em);
+  column-gap: 0;
+  row-gap: 0.06em;
+  align-items: end;
+  justify-items: center;
+}
+
+.q-vmath__div-grid-left:has(.q-vmath__dcol--bring-src) {
+  padding-bottom: 0.55em;
+}
+
+.q-vmath__sign {
+  justify-self: center;
+  align-self: center;
+  width: 0.62em;
+  min-height: 1.05em;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1;
+  color: #94a3b8;
+}
+
+.q-vmath__dcol {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  justify-self: center;
+}
+
+.q-vmath__dcol--dividend {
+  color: #22c55e;
+  text-shadow: 0 0 12px rgba(34, 197, 94, 0.22);
+}
+
+.q-vmath__dcol--sub {
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.q-vmath__dcol--partial {
+  color: #a78bfa;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.25);
+}
+
+.q-vmath__dcol--work {
+  color: #e2e8f0;
+  font-weight: 800;
+}
+
+.q-vmath__bar-span {
+  align-self: center;
+  justify-self: stretch;
+  width: 100%;
+  line-height: 0;
+  padding: 0.08em 0;
+}
+
+.q-vmath__bar-span .q-vmath__divsol-bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: rgba(248, 250, 252, 0.88);
+  border-radius: 1px;
+}
+
+/* Eski flex satırları — geriye dönük */
+.q-vmath__digit-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.q-vmath__work-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 0.06em;
+}
+
+.q-vmath__minus,
+.q-vmath__minus-sp {
+  width: 0.55em;
+  min-width: 0.55em;
+  flex-shrink: 0;
+  text-align: center;
+  font-weight: 800;
+}
+
+.q-vmath__minus {
+  color: #94a3b8;
+  margin-right: 0.04em;
+}
+
+.q-vmath__dcols {
+  display: flex;
+  flex-direction: row;
+}
+
+.q-vmath__work-row--sub .q-vmath__dcol {
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.q-vmath__work-row--partial .q-vmath__dcol {
+  color: #a78bfa;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.25);
+}
+
+.q-vmath__work-row--bar .q-vmath__dcols {
+  width: 100%;
+}
+
+.q-vmath__work-row--bar .q-vmath__divsol-bar {
+  display: block;
+  width: 100%;
+  min-width: 1.3em;
+  height: 3px;
+  margin: 0.1em 0 0.06em;
+  background: rgba(248, 250, 252, 0.88);
+  border-radius: 1px;
+}
+
+.q-vmath__dcol--bring {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  line-height: 0.9;
+  vertical-align: bottom;
+}
+
+.q-vmath__bring-arrow {
+  display: block;
+  font-size: 0.68em;
+  font-weight: 800;
+  color: #fbbf24;
+  line-height: 1;
+  margin-bottom: 0.02em;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
+}
+
+.q-vmath__dcol--bring-src {
+  position: relative;
+}
+
+.q-vmath__bring-arrow--src {
+  position: absolute;
+  left: 50%;
+  bottom: -0.92em;
+  transform: translateX(-50%);
+  font-size: 0.68em;
+  font-weight: 800;
+  color: #fbbf24;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.q-vmath__work-row--bring-sp {
+  height: 0.35em;
+  margin: 0;
+  overflow: hidden;
+}
+
+.q-vmath__work-row--workline .q-vmath__dcol {
+  color: #e2e8f0;
+  font-weight: 800;
+}
+
+.q-sub-steps {
+  display: block;
+  margin: 0.35em 0;
+  padding: 0.55em 0.75em;
+  border-left: 3px solid rgba(251, 191, 36, 0.55);
+  font-size: 0.95em;
+  line-height: 1.75;
+}
+
+.q-sub-chain {
+  display: block;
+  font-size: 0.92em;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  word-spacing: 0.08em;
+}
+
+.q-vmath--divstep .q-vmath__div-grid--sol,
+.q-vmath--divsol .q-vmath__div-grid--sol,
+.q-vmath--div .q-vmath__div-grid:has(.q-vmath__bracket-col--long) {
+  grid-template-rows: auto;
+  align-items: stretch;
+}
+
+/* Dikey çizgi sol sütun boyunca — işlem satırları kadar uzar */
+.q-vmath--div .q-vmath__div-grid--sol .q-vmath__left-col,
+.q-vmath--div .q-vmath__div-grid:has(.q-vmath__bracket-col--long) .q-vmath__left-col {
+  border-right: 3px solid var(--div-bracket-line);
+  padding-bottom: var(--div-bracket-vline-extra);
+  box-sizing: border-box;
+}
+
+.q-vmath--div .q-vmath__div-grid--sol .q-vmath__bracket-vline--full,
+.q-vmath--div .q-vmath__div-grid:has(.q-vmath__bracket-col--long) .q-vmath__bracket-vline--full {
+  display: none;
+}
+
+/* Çözüm / adım — tek parça dikey çizgi, defter gibi ┐ köşesi */
+.q-vmath--div .q-vmath__bracket-col--sol,
+.q-vmath--div .q-vmath__bracket-col--long {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-width: 2.4em;
+  padding-left: var(--div-bracket-gutter);
+  box-sizing: border-box;
+}
+
+.q-vmath--div .q-vmath__bracket-vline--full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--div-bracket-line);
+  border-radius: 1px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.q-vmath--div .q-vmath__bracket-stack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.q-vmath--div .q-vmath__bracket-col--sol .q-vmath__bracket-hline,
+.q-vmath--div .q-vmath__bracket-col--long .q-vmath__bracket-hline {
+  grid-column: unset;
+  grid-row: unset;
+  width: calc(100% + var(--div-bracket-gutter));
+  margin-left: calc(-1 * var(--div-bracket-gutter));
+  height: 3px;
+  min-width: 1.6em;
+  background: var(--div-bracket-line);
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin-top: 0.1em;
+  margin-bottom: 0.06em;
+}
+
+.q-vmath--div .q-vmath__bracket-col--sol .q-vmath__divisor,
+.q-vmath--div .q-vmath__bracket-col--long .q-vmath__divisor {
+  grid-column: unset;
+}
+
+.q-vmath--div .q-vmath__bracket-col--sol .q-vmath__quotient,
+.q-vmath--div .q-vmath__bracket-col--long .q-vmath__quotient {
+  grid-column: unset;
+  grid-row: unset;
+  padding-left: 0;
+}
+
+.q-vmath--div .q-vmath__bracket-head {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 3px auto;
+  align-items: center;
+  column-gap: 0.38em;
+}
+
+.q-vmath--div .q-vmath__bracket-vline {
+  grid-column: 1;
+  width: 3px;
+  height: 1.35em;
+  background: var(--div-bracket-line);
+  border-radius: 1px;
+  align-self: stretch;
+}
+
+.q-vmath--div .q-vmath__divisor {
+  grid-column: 2;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: #fb923c;
+  text-shadow: 0 0 10px rgba(251, 146, 60, 0.25);
+  padding-right: 0.35em;
+}
+
+.q-vmath--div .q-vmath__bracket-hline {
+  grid-column: 2;
+  grid-row: 2;
+  height: 3px;
+  width: 100%;
+  min-width: 1.6em;
+  background: var(--div-bracket-line);
+  border-radius: 1px;
+  margin-left: 0;
+  justify-self: start;
+}
+
+.q-vmath--div .q-vmath__quotient {
+  grid-column: 2;
+  grid-row: 3;
+  padding: 0.16em 0 0 0.1em;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: #f472b6;
+  text-shadow: 0 0 10px rgba(244, 114, 182, 0.22);
+}
+
+.q-vmath--div .q-vmath__quotient--empty {
+  min-height: 0.55em;
+  padding: 0;
+}
+
+/* Açıklama panelinde bölme kutusu */
+.explanation-text .q-vmath--div,
+.explanation-v .q-vmath--div,
+.explanation-note__body .q-vmath--div {
+  display: block;
+  margin: 0.65em auto 0.75em;
+  text-align: center;
+}
+
+.explanation-text .q-vmath--div .q-vmath__div-grid,
+.explanation-v .q-vmath--div .q-vmath__div-grid,
+.explanation-note__body .q-vmath--div .q-vmath__div-grid {
+  margin: 0 auto;
+}
+
+/* Geometri SVG */
+.q-geo {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.35em 0.5em;
+}
+
+.q-geo-svg {
+  display: block;
+  width: min(240px, 92vw);
+  height: auto;
+  max-height: 200px;
+}
+
+/* Soru alanında büyük matematik / geometri */
+#single-player-game-screen .question-container .q-markup,
+#duel-game-screen .question-container .q-markup,
+.deneme-q-card .q-markup {
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  line-height: 1.55;
+}
+
+#single-player-game-screen .question-container .q-vmath--div,
+#duel-game-screen .question-container .q-vmath--div,
+.deneme-q-card .q-vmath--div {
+  --div-bracket-line: rgba(15, 23, 42, 0.92);
+}
+
+#single-player-game-screen .question-container .q-vmath--div .q-vmath__divsol-bar,
+#duel-game-screen .question-container .q-vmath--div .q-vmath__divsol-bar,
+.deneme-q-card .q-vmath--div .q-vmath__divsol-bar {
+  background: rgba(15, 23, 42, 0.92);
+}
+
+#single-player-game-screen .question-container .q-vmath,
+#duel-game-screen .question-container .q-vmath {
+  font-size: clamp(1.45rem, 5vw, 2.15rem);
+  margin: 0.35em 0.5em;
+}
+
+#single-player-game-screen .question-container .q-frac,
+#duel-game-screen .question-container .q-frac {
+  font-size: 1.15em;
+  min-width: 1.6em;
+}
+
+#single-player-game-screen .question-container .q-geo-svg,
+#duel-game-screen .question-container .q-geo-svg {
+  width: min(260px, 90vw);
+  max-height: 210px;
+}
+
+#single-player-game-screen .question-container .q-geo-label,
+#duel-game-screen .question-container .q-geo-label {
+  fill: #c2410c;
+  stroke: #fff;
+  stroke-width: 2.5px;
+  font-size: 15px;
+}
+
+.q-geo-fill {
+  fill: rgba(14, 165, 233, 0.18);
+  stroke: none;
+}
+
+.q-geo-edge {
+  stroke: #0ea5e9;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.q-geo-measure {
+  stroke: #64748b;
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.q-geo-label {
+  fill: #ea580c;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
+}
+
+/* Koyu arka plan: açıklama, sonuç kartı */
+.q-markup--readable .q-geo-label,
+#single-player-game-screen .explanation-container .q-geo-label,
+#explanation-container .q-geo-label,
+.option-button .q-geo-label {
+  fill: #fde047;
+  stroke: #0f172a;
+  stroke-width: 3px;
+  font-size: 15px;
+}
+
+.q-markup--readable .q-geo-fill,
+#single-player-game-screen .explanation-container .q-geo-fill,
+#explanation-container .q-geo-fill {
+  fill: rgba(56, 189, 248, 0.42);
+}
+
+.q-markup--readable .q-geo-edge,
+#single-player-game-screen .explanation-container .q-geo-edge,
+#explanation-container .q-geo-edge {
+  stroke: #7dd3fc;
+  stroke-width: 3.5;
+}
+
+.q-markup--readable .q-geo-measure,
+#single-player-game-screen .explanation-container .q-geo-measure,
+#explanation-container .q-geo-measure {
+  stroke: #fbbf24;
+  stroke-width: 2.5;
+}
+
+.q-markup--readable .q-geo-solid-top,
+.q-markup--readable .q-geo-solid-left,
+.q-markup--readable .q-geo-solid-right,
+.q-markup--readable .q-geo-solid-body,
+.q-markup--readable .q-geo-solid-base,
+.q-markup--readable .q-geo-solid-ring,
+.q-markup--readable .q-geo-solid-cone,
+#explanation-container .q-geo-solid-top,
+#explanation-container .q-geo-solid-left,
+#explanation-container .q-geo-solid-right {
+  fill: rgba(56, 189, 248, 0.38);
+  stroke: #7dd3fc;
+}
+
+.q-geo-solid-top {
+  fill: rgba(14, 165, 233, 0.35);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-left {
+  fill: rgba(14, 165, 233, 0.22);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-right {
+  fill: rgba(14, 165, 233, 0.28);
+  stroke: #0369a1;
+  stroke-width: 2;
+}
+
+.q-geo-solid-body {
+  fill: rgba(14, 165, 233, 0.2);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-base,
+.q-geo-solid-ring {
+  fill: rgba(14, 165, 233, 0.15);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+.q-geo-solid-cone {
+  fill: rgba(14, 165, 233, 0.25);
+  stroke: #0284c7;
+  stroke-width: 2;
+}
+
+/* Bunny video öncül */
+.q-bunny-video {
+  position: relative;
+  width: 100%;
+  max-width: min(480px, 100%);
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.q-bunny-video__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+}
+
+.q-bunny-video iframe,
+.q-bunny-video__mp4 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+}
+
+.q-bunny-replay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 12px;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.92);
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.q-bunny-replay:hover {
+  background: rgba(30, 41, 59, 0.98);
+}
+
+.q-bunny-replay:active {
+  transform: scale(0.99);
+}
+
+.q-bunny-video--missing {
+  display: block;
+  padding: 12px;
+  color: #94a3b8;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Öncül blokları (oyun + önizleme) */
+.question-preamble-wrap,
+.question-preamble-block--text,
+.question-preamble-body,
+.question-info-text,
+.question-preamble-item,
+.deneme-q-pre .question-preamble-block--text {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphenate-character: "-";
+  hyphenate-limit-chars: 5 3 2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.question-preamble-block {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* Örnek metin / şiir — sola hizalı, satır başları korunur */
+.question-preamble-block--text,
+.question-preamble-block--text.q-markup,
+.question-preamble-wrap .question-preamble-block--text {
+  text-align: left !important;
+  white-space: normal;
+}
+
+.question-preamble-block--text .q-markup,
+.question-preamble-block--text br {
+  text-align: left;
+}
+
+#single-player-game-screen .question-preamble-block--text,
+#single-player-game-screen .question-info-text,
+#duel-game-screen .question-preamble-block--text,
+#duel-game-screen .question-preamble-wrap .question-preamble-block--text {
+  text-align: left !important;
+}
+
+.deneme-q-pre .question-preamble-block--text {
+  text-align: left !important;
+}
+
+.question-preamble-block:last-child {
+  margin-bottom: 0;
+}
+
+.question-preamble-block--image {
+  text-align: center;
+}
+
+.question-preamble-block--video {
+  display: flex;
+  justify-content: center;
+}
+
+#single-player-game-screen .question-preamble-block--image .question-info-image,
+#duel-game-screen .question-preamble-block--image .question-info-image,
+.deneme-q-pre .question-preamble-block--image img {
+  max-width: min(100%, 360px);
+  max-height: 220px;
+  border-radius: 10px;
+}
+
+/* Admin — blok editörü */
+.q-preamble-head {
+  margin-bottom: 8px;
+}
+
+.q-blocks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 40px;
+}
+
+.q-blocks-empty {
+  margin: 0;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  color: var(--muted, #9aa3c7);
+  font-size: 12px;
+  text-align: center;
+}
+
+.q-block-card {
+  border-radius: 12px;
+  border: 1px solid var(--border, #263056);
+  background: rgba(11, 17, 48, 0.5);
+  overflow: hidden;
+}
+
+.q-block-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(30, 39, 86, 0.55);
+  border-bottom: 1px solid rgba(38, 48, 86, 0.8);
+}
+
+.q-block-card__badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--acc-2, #22d3ee);
+}
+
+.q-block-card__actions {
+  display: flex;
+  gap: 4px;
+}
+
+.q-block-card__body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.q-block-add-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(38, 48, 86, 0.6);
+}
+
+.q-block-add-bar__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted, #9aa3c7);
+}
+
+.q-block-video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.q-block-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.q-editor-tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.q-editor-tool-group__title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted, #9aa3c7);
+}
+
+.q-math-toolbar--wrap {
+  max-width: 280px;
+}
+
+.q-editor-math-bar {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.q-editor-math-bar > .q-editor-tool-group,
+.q-editor-math-bar > .q-math-toolbar {
+  flex: none;
+}
+
+@media (min-width: 900px) {
+  .q-editor-math-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+    align-items: start;
+  }
+
+  .q-editor-math-bar__title {
+    grid-column: 1 / -1;
+  }
+
+  .q-editor-hint--inline {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .q-block-video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Aktif alan göstergesi */
+.q-editor-active-field {
+  margin: 0;
+  font-size: 12px;
+  color: var(--acc-2, #22d3ee);
+  grid-column: 1 / -1;
+}
+
+.q-editor-active-field strong {
+  color: var(--ink, #e8ecff);
+}
+
+.q-insert-target.q-field-focus {
+  outline: 2px solid rgba(34, 211, 238, 0.55);
+  outline-offset: 1px;
+}
+
+/* Admin önizleme — şıklar & açıklama */
+.q-live-preview__opts,
+.q-live-preview__exp {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.q-preview-opts-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.q-preview-opt {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.q-preview-opt--ok {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.q-preview-opt__label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+  min-width: 52px;
+  padding-top: 2px;
+}
+
+.q-preview-opt__body {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.q-preview-exp-body {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px dashed #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Şık & açıklama içinde kompakt geometri/işlem */
+.option-button .q-markup,
+.explanation-v.q-markup,
+.explanation-text.q-markup,
+.q-preview-opt__body.q-markup,
+.q-preview-exp-body.q-markup {
+  display: inline;
+  line-height: 1.45;
+}
+
+.option-button .q-geo-svg,
+.q-preview-opt__body .q-geo-svg {
+  width: min(140px, 100%);
+  max-height: 100px;
+}
+
+.option-button .q-vmath {
+  font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+}
+
+/* Açıklama — okunaklı markup */
+.q-markup--readable .q-vmath {
+  font-size: clamp(1.15rem, 4vw, 1.55rem);
+}
+
+.q-markup--readable .q-geo-svg {
+  width: min(180px, 100%);
+  max-height: 130px;
+}
+
+.explanation-v .q-markup--readable,
+.explanation-note__body .q-markup--readable {
+  display: inline-block;
+  width: 100%;
+}
+
+#single-player-game-screen .option-button .q-markup,
+#single-player-game-screen .explanation-v.q-markup,
+#single-player-game-screen .explanation-text.q-markup {
+  word-break: break-word;
+}
+
+#single-player-game-screen .option-button {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#single-player-game-screen .option-button .q-geo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Analog + dijital saat — Zaman Ölçme */
+.q-clock {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.5em auto;
+  line-height: 0;
+}
+
+.q-clock--analog .q-clock__svg {
+  width: 168px;
+  height: 168px;
+  max-width: min(42vw, 200px);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.14));
+}
+
+.q-premise-block .q-clock--analog .q-clock__svg,
+.question-actual-text .q-clock--analog .q-clock__svg,
+.question-text .q-clock--analog .q-clock__svg {
+  width: 210px;
+  height: 210px;
+  max-width: min(58vw, 240px);
+}
+
+.q-clock__face {
+  fill: #fff;
+  stroke: rgba(0, 0, 0, 0.24);
+  stroke-width: 2.5;
+}
+
+.q-clock__tick {
+  stroke: rgba(0, 0, 0, 0.2);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.q-clock__num {
+  font-size: 11px;
+  font-weight: 800;
+  fill: rgba(0, 0, 0, 0.82);
+  font-family: system-ui, sans-serif;
+}
+
+.q-clock__hand {
+  stroke-linecap: round;
+}
+
+.q-clock__hand--hour {
+  stroke: #1a1a2e;
+  stroke-width: 4.5;
+}
+
+.q-clock__hand--min {
+  stroke: #2563eb;
+  stroke-width: 3;
+}
+
+.q-clock__center {
+  fill: #dc2626;
+}
+
+.q-clock__arc {
+  fill: rgba(34, 197, 94, 0.48);
+  stroke: rgba(22, 163, 74, 0.55);
+  stroke-width: 0.6;
+}
+
+.q-clock--arc .q-clock__face {
+  stroke: rgba(22, 163, 74, 0.35);
+}
+
+.q-clock--digital .q-clock__lcd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 7.4em;
+  padding: 0.42em 1em;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.16);
+  background: rgba(255, 255, 255, 0.96);
+  color: #111827;
+  font-family: "Courier New", Consolas, monospace;
+  font-size: clamp(1.65rem, 5.2vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.q-premise-block .q-clock--digital .q-clock__lcd {
+  min-width: 8em;
+  padding: 0.48em 1.1em;
+  font-size: clamp(1.85rem, 5.8vw, 2.35rem);
+}
+
+.q-clock__colon {
+  animation: q-clock-blink 1.2s step-start infinite;
+  padding: 0 0.04em;
+}
+
+@keyframes q-clock-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.question-actual-text .q-clock,
+.question-text .q-clock,
+.q-premise-block .q-clock {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.question-actual-text .q-clock + br,
+.q-premise-block .q-clock + br {
+  display: none;
+}
+
+#single-player-game-screen .option-button .q-clock--analog .q-clock__svg {
+  width: 88px;
+  height: 88px;
+}
+
+#single-player-game-screen .option-button .q-clock--digital .q-clock__lcd {
+  font-size: 1.15rem;
+  min-width: 5.6em;
+  padding: 0.2em 0.55em;
+}
+
+/* Para görselleri — Bunny v1/paralar */
+.q-para-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em 0.65em;
+  margin: 0.35em auto;
+  max-width: 100%;
+}
+
+.q-para-img {
+  display: inline-block;
+  max-height: 88px;
+  max-width: min(38vw, 150px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+}
+
+.question-preamble-block .q-para-row .q-para-img {
+  max-height: 110px;
+  max-width: min(42vw, 170px);
+}
+
+.question-explanation-text .q-para-img,
+.q-explanation .q-para-img {
+  max-height: 72px;
+  max-width: 130px;
+}
+
+#single-player-game-screen .option-button .q-para-img {
+  max-height: 52px;
+  max-width: 96px;
+}
+
+/* Terazi görseli — tartma */
+.q-terazi {
+  display: block;
+  margin: 0.4em auto;
+  text-align: center;
+}
+
+.q-terazi__svg {
+  width: 180px;
+  height: auto;
+  max-width: min(55vw, 220px);
+}
+
+.q-terazi__stand {
+  fill: #64748b;
+}
+
+.q-terazi__pole {
+  fill: #475569;
+}
+
+.q-terazi__beam {
+  fill: #334155;
+}
+
+.q-terazi__cord {
+  stroke: #64748b;
+  stroke-width: 1.5;
+}
+
+.q-terazi__pan {
+  fill: rgba(148, 163, 184, 0.35);
+  stroke: #64748b;
+  stroke-width: 1.2;
+}
+
+.q-terazi__label {
+  font-size: 7px;
+  font-weight: 700;
+  fill: #1e293b;
+  font-family: system-ui, sans-serif;
+}
+
+/* 3. sınıf temel geometri — nokta, doğru, ışın, açı */
+.q-geo--basic {
+  display: block;
+  margin: 0.45em auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.q-geo-svg--basic {
+  width: min(220px, 88vw);
+  max-height: 180px;
+  margin: 0 auto;
+}
+
+.question-preamble-block .q-geo--basic .q-geo-svg--basic {
+  width: min(240px, 92vw);
+  max-height: 200px;
+}
+
+.q-geo-svg--sekil {
+  width: min(220px, 88vw);
+  max-height: 180px;
+  margin: 0 auto;
+  display: block;
+}
+
+.question-preamble-block .q-geo--sekil .q-geo-svg--sekil,
+.question-preamble-block .q-geo--solid .q-geo-svg--sekil {
+  width: min(240px, 92vw);
+  max-height: 200px;
+}
+
+.question-explanation-text .q-geo--sekil .q-geo-svg--sekil,
+.q-explanation .q-geo--sekil .q-geo-svg--sekil,
+#explanation-container .q-geo--sekil .q-geo-svg--sekil,
+#explanation-container .q-geo--solid .q-geo-svg--sekil {
+  width: min(200px, 84vw);
+  max-height: 160px;
+}
+
+.question-explanation-text .q-geo--basic .q-geo-svg--basic,
+.q-explanation .q-geo--basic .q-geo-svg--basic {
+  width: min(200px, 84vw);
+  max-height: 160px;
+}
+
+.q-geo-point {
+  fill: #dc2626;
+  stroke: #fff;
+  stroke-width: 3;
+  paint-order: stroke fill;
+}
+
+.q-geo-point--top {
+  filter: drop-shadow(0 0 1px #fff);
+}
+
+.q-geo-label--top {
+  paint-order: stroke fill;
+}
+
+.q-geo-grid {
+  stroke: rgba(100, 116, 139, 0.35);
+  stroke-width: 1;
+}
+
+.q-geo-angle-arc {
+  fill: none;
+  stroke: #eab308;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.q-geo-angle-arc--dik {
+  stroke: #eab308;
+  stroke-width: 2.5;
+}
+
+.q-geo-angle-wedge {
+  fill: rgba(250, 204, 21, 0.32);
+  stroke: none;
+}
+
+.q-geo-door {
+  stroke: #0ea5e9;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.q-geo-arrow {
+  fill: #0ea5e9;
+  stroke: none;
+}
+
+.q-geo-wall {
+  stroke: #64748b;
+  stroke-width: 4;
+  stroke-linecap: square;
+}
+
+.q-markup--readable .q-geo-point,
+#single-player-game-screen .explanation-container .q-geo-point,
+#explanation-container .q-geo-point {
+  fill: #f87171;
+  stroke: #0f172a;
+  stroke-width: 2.5;
+}
+
+.q-markup--readable .q-geo-angle-arc,
+#single-player-game-screen .explanation-container .q-geo-angle-arc,
+#explanation-container .q-geo-angle-arc {
+  fill: none;
+  stroke: #fde047;
+  stroke-width: 2.5;
+}
+
+.q-markup--readable .q-geo-arrow,
+#single-player-game-screen .explanation-container .q-geo-arrow,
+#explanation-container .q-geo-arrow {
+  fill: #7dd3fc;
+}
+
+.q-markup--readable .q-geo-angle-wedge,
+#single-player-game-screen .explanation-container .q-geo-angle-wedge,
+#explanation-container .q-geo-angle-wedge {
+  fill: rgba(253, 224, 71, 0.38);
+}
+
+.q-markup--readable .q-geo-door,
+#single-player-game-screen .explanation-container .q-geo-door,
+#explanation-container .q-geo-door {
+  stroke: #7dd3fc;
+}
+
+.q-markup--readable .q-geo-wall,
+#single-player-game-screen .explanation-container .q-geo-wall,
+#explanation-container .q-geo-wall {
+  stroke: #94a3b8;
+}
+
+/* Açıklama görselleri — etiketli _expl */
+.q-geo--focus {
+  display: block;
+  margin: 0.65em auto;
+  overflow: visible;
+}
+
+.q-geo--focus .q-geo-svg {
+  overflow: visible;
+}
+
+.q-geo-svg--expl {
+  width: min(320px, 96vw);
+  max-height: 240px;
+}
+
+.q-geo-callout {
+  fill: #c2410c;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2.5px;
+}
+
+.q-geo-edge--dash {
+  stroke-dasharray: 7 5;
+  opacity: 0.85;
+}
+
+.q-geo-hl-yatay {
+  stroke: #eab308;
+  stroke-width: 4;
+}
+
+.q-geo-hl-dikey {
+  stroke: #22c55e;
+  stroke-width: 4;
+}
+
+.q-geo-hl-egik {
+  stroke: #a855f7;
+  stroke-width: 4;
+}
+
+.q-markup--readable .q-geo-callout,
+#explanation-container .q-geo-callout {
+  fill: #fde047;
+  stroke: #0f172a;
+  stroke-width: 3px;
+  font-size: 12px;
+}
+
+/* Araç tarzı numaralı köşe / kenar etiketleri */
+.q-geo-vtx-label {
+  fill: #7c3aed;
+  font-size: 13px;
+  font-weight: 900;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.q-geo-edge-num {
+  fill: #2563eb;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2.5px;
+}
+
+.q-geo-caption {
+  fill: #475569;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: "Baloo 2", "Comfortaa", system-ui, sans-serif;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.q-markup--readable .q-geo-vtx-label,
+#explanation-container .q-geo-vtx-label {
+  fill: #c4b5fd;
+  stroke: #0f172a;
+  font-size: 14px;
+}
+
+.q-markup--readable .q-geo-edge-num,
+#explanation-container .q-geo-edge-num {
+  fill: #93c5fd;
+  stroke: #0f172a;
+  font-size: 13px;
+}
+
+.q-markup--readable .q-geo-caption,
+#explanation-container .q-geo-caption {
+  fill: #e2e8f0;
+  stroke: #0f172a;
+  font-size: 11px;
+}
+
+/* 3B geometrik cisim — araçtaki interaktif model */
+.q-cisim-3d {
+  display: block;
+  width: min(340px, 100%);
+  margin: 0.65em auto;
+  text-align: center;
+}
+
+.q-cisim-3d-frame {
+  display: block;
+  width: 100%;
+  height: min(280px, 52vw);
+  min-height: 220px;
+  border: 0;
+  border-radius: 14px;
+  background: #0f172a;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.28);
+}
+
+.q-cisim-3d-hint {
+  margin: 0.35em 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.q-markup--readable .q-cisim-3d-hint,
+#explanation-container .q-cisim-3d-hint {
+  color: #cbd5e1;
+}
+
+/* Veri tabloları — sıklık, çetele, şekil grafiği */
+.q-veri {
+  display: block;
+  width: min(100%, 420px);
+  margin: 0.75em auto;
+  padding: 0.85em 1em;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 55%, #fdf4ff 100%);
+  border: 2px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  font-size: clamp(0.88rem, 2.4vw, 1rem);
+}
+
+.q-veri-title {
+  font-weight: 800;
+  font-size: 1.05em;
+  text-align: center;
+  margin-bottom: 0.65em;
+  color: #1e3a8a;
+  letter-spacing: 0.01em;
+}
+
+.q-veri-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+.q-veri-table th {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.45em 0.55em;
+  font-size: 0.82em;
+  text-align: center;
+}
+
+.q-veri-table td {
+  padding: 0.5em 0.55em;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+.q-veri-table tr:last-child td {
+  border-bottom: none;
+}
+
+.q-veri-table tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.q-veri-label {
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.q-veri-num {
+  text-align: center;
+  font-size: 1.15em;
+  color: #1d4ed8;
+}
+
+.q-veri-bar-cell {
+  width: 38%;
+  min-width: 70px;
+}
+
+.q-veri-bar {
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  min-width: 4px;
+  transition: width 0.3s ease;
+}
+
+.q-veri-tally-cell {
+  text-align: center;
+}
+
+.q-veri-tally {
+  display: inline-flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.q-veri-tally-group {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  padding: 2px 4px 2px 2px;
+  margin: 0 2px;
+}
+
+.q-veri-tally-line {
+  display: inline-block;
+  width: 3px;
+  height: 22px;
+  background: #334155;
+  border-radius: 1px;
+}
+
+.q-veri-tally-line--single {
+  height: 20px;
+  background: #64748b;
+}
+
+.q-veri-tally-slash {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 3px;
+  background: #dc2626;
+  transform: rotate(-32deg);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.q-veri-tally-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 800;
+  font-size: 0.85em;
+}
+
+.q-veri-tally-empty {
+  color: #94a3b8;
+}
+
+.q-veri-foot,
+.q-veri-hint {
+  margin-top: 0.55em;
+  padding: 0.45em 0.65em;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 0.88em;
+  color: #475569;
+  text-align: center;
+}
+
+.q-veri-not {
+  padding: 0.55em 0.75em;
+  border-radius: 10px;
+  background: #fffbeb;
+  border: 1px dashed #f59e0b;
+  color: #92400e;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+.q-veri-picto-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.q-veri-picto-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) 1fr auto;
+  gap: 0.45em;
+  align-items: center;
+  padding: 0.45em 0.55em;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.q-veri-picto-label {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.q-veri-picto-symbols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: flex-start;
+}
+
+.q-veri-picto-sym {
+  font-size: 1.35em;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.12));
+}
+
+.q-veri-picto-count {
+  font-size: 0.78em;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.q-veri-tally-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0.65em;
+  background: #fff;
+  border-radius: 10px;
+  min-height: 52px;
+}
+
+.q-veri-tally-demo--large .q-veri-tally-line {
+  height: 32px;
+  width: 4px;
+}
+
+.q-veri-tally-demo--large .q-veri-tally-slash {
+  height: 4px;
+}
+
+#single-player-game-screen .question-info-text .q-veri,
+#duel-game-screen .question-info-text .q-veri,
+.deneme-q-preamble .q-veri {
+  width: min(100%, 460px);
+}
+
+#single-player-game-screen .explanation-container .q-veri,
+#explanation-container .q-veri {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border-color: rgba(96, 165, 250, 0.45);
+}
+
+#single-player-game-screen .explanation-container .q-veri-title,
+#explanation-container .q-veri-title {
+  color: #93c5fd;
+}
+
+#single-player-game-screen .explanation-container .q-veri-table,
+#explanation-container .q-veri-table {
+  background: #1e293b;
+}
+
+#single-player-game-screen .explanation-container .q-veri-table td,
+#explanation-container .q-veri-table td {
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+#single-player-game-screen .explanation-container .q-veri-table tr:nth-child(even) td,
+#explanation-container .q-veri-table tr:nth-child(even) td {
+  background: #0f172a;
+}
+
+#single-player-game-screen .explanation-container .q-veri-label,
+#explanation-container .q-veri-label {
+  color: #f1f5f9;
+}
+
+#single-player-game-screen .explanation-container .q-veri-picto-row,
+#explanation-container .q-veri-picto-row {
+  background: #1e293b;
+  border-color: #334155;
+}

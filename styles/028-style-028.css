@@ -1,0 +1,3 @@
+/* Nova: Kullanıcı talebiyle yanlış soru listesi sonuç ekranında gösterilmesin */
+#nzWrongList { display: none !important; }
+/* İlgili kart başlığı silindi; butonlar (Yanlışları Tekrar Et / Ders Videosu) korunuyor. */

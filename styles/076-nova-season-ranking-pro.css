@@ -1,0 +1,137 @@
+/* ═══ Nova Season Ranking Pro (scoped to #rankingPanel) ═══
+   Amaç: tüm çözünürlüklerde stabil, “beyaz leke” yok, rozet/kahraman taşma yok.
+*/
+
+#rankingPanel .ranking-table-container{
+  background: rgba(255,255,255,0.96);
+}
+
+/* Satır kart görünümü: arka plan tr’de, td transparan */
+#rankingPanel .ranking-table{
+  border-spacing: 0 8px;
+}
+
+#rankingPanel .ranking-table tbody tr{
+  position: relative;
+}
+
+#rankingPanel .ranking-table tbody tr::before{
+  content: '';
+  position: absolute;
+  inset: 0 6px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 10px 22px rgba(15,23,42,.08);
+  z-index: 0;
+}
+
+#rankingPanel .ranking-table tbody tr.top-1::before{
+  background: linear-gradient(135deg, rgba(234,179,8,.92), rgba(234,88,12,.92));
+  box-shadow: 0 12px 28px rgba(234,179,8,.22);
+}
+#rankingPanel .ranking-table tbody tr.top-2::before{
+  background: linear-gradient(135deg, rgba(148,163,184,.92), rgba(100,116,139,.92));
+  box-shadow: 0 12px 28px rgba(100,116,139,.18);
+}
+#rankingPanel .ranking-table tbody tr.top-3::before{
+  background: linear-gradient(135deg, rgba(180,83,9,.92), rgba(146,64,14,.92));
+  box-shadow: 0 12px 28px rgba(180,83,9,.18);
+}
+
+#rankingPanel .ranking-table td,
+#rankingPanel .ranking-table th{
+  position: relative;
+  z-index: 1;
+}
+
+#rankingPanel .ranking-table td{
+  background: transparent !important; /* eski td gradientlerini iptal */
+  padding: 8px 4px;
+  color: #0f172a;
+}
+
+#rankingPanel .ranking-table tr.top-1 td,
+#rankingPanel .ranking-table tr.top-2 td,
+#rankingPanel .ranking-table tr.top-3 td{
+  color: #fff;
+}
+
+/* İsim: her durumda ortalı, beyaz blok yok */
+#rankingPanel .ranking-table .player-name-column{
+  overflow: visible !important;
+}
+
+#rankingPanel .ranking-table .player-name-column .name-line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 38px;
+}
+
+/* Name frame (çerçeveli isim) sıralamada “kart” gibi değil, pill gibi dursun */
+#rankingPanel .ranking-table .player-name-column .nova-name-frame{
+  background: rgba(15,23,42,.12) !important;
+  border: 1px solid rgba(15,23,42,.10) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+#rankingPanel .ranking-table tr.top-1 .player-name-column .nova-name-frame,
+#rankingPanel .ranking-table tr.top-2 .player-name-column .nova-name-frame,
+#rankingPanel .ranking-table tr.top-3 .player-name-column .nova-name-frame{
+  background: rgba(255,255,255,.16) !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+
+/* Lig sütunu: mini rozet (halo/shine kapalı) */
+#rankingPanel .ranking-table .class-name-column{
+  overflow: visible !important;
+}
+#rankingPanel .ranking-table .class-name-column .nova-lig{
+  transform: scale(.56);
+  transform-origin: center;
+  margin: 0 auto;
+}
+#rankingPanel .ranking-table .class-name-column .nova-lig__halo,
+#rankingPanel .ranking-table .class-name-column .nova-lig__shine{
+  display: none !important;
+}
+
+/* Kahraman: ikon + yıldız arası net, ikisi de küçük */
+#rankingPanel .nova-rank-hero{
+  min-width: 52px;
+}
+#rankingPanel .nova-rank-hero__icon{
+  width: 30px;
+  height: 30px;
+  border-radius: 11px;
+}
+#rankingPanel .nova-rank-hero__stars{
+  margin-top: 5px;
+  padding: 2px 6px 3px;
+}
+#rankingPanel .nova-rank-hero__star{ font-size: 9.5px; }
+
+/* Ultra geniş / yüksek DPI: ölçüler stabil kalsın */
+@media (min-width: 1100px){
+  #rankingPanel .ranking-table col.ranking-col-name{ width: 32%; }
+  #rankingPanel .ranking-table col.ranking-col-class{ width: 14%; }
+  #rankingPanel .ranking-table col.ranking-col-hero{ width: 16%; }
+}
+
+@media (max-width: 520px){
+  #rankingPanel .ranking-table{
+    border-spacing: 0 6px;
+  }
+  #rankingPanel .ranking-table tbody tr::before{
+    inset: 0 4px;
+    border-radius: 12px;
+  }
+  #rankingPanel .ranking-table td{
+    padding: 7px 2px;
+  }
+  #rankingPanel .ranking-table .class-name-column .nova-lig{
+    transform: scale(.52);
+  }
+}
+

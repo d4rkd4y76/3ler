@@ -1,0 +1,115 @@
+/* İlk boyama kalkanı — giriş + ana lobby; deferred CSS gelmeden sabit görünüm */
+
+/* —— Giriş CTA: ice görünümü ilk frameden —— */
+#student-selection-screen .cta,
+#student-selection-screen.nova-login-arena .cta,
+#student-selection-screen.nova-login-ice .cta,
+#login-button.cta {
+  width: 100% !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 11px 14px !important;
+  font-size: clamp(14px, 3.8vw, 16px) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  color: #06253a !important;
+  background: linear-gradient(180deg, #b8e8ff 0%, #5eb0e8 48%, #3a8fc8 100%) !important;
+  box-shadow: 0 4px 0 #2a6f9a !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transition: opacity 0.15s ease, filter 0.15s ease !important;
+}
+
+#student-selection-screen .cta:disabled,
+#student-selection-screen.nova-login-arena .cta:disabled,
+#student-selection-screen.nova-login-ice .cta:disabled,
+#login-button.cta:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  box-shadow: 0 3px 0 #3a6f8e !important;
+  transform: none !important;
+}
+
+#student-selection-screen .cta:not(:disabled),
+#student-selection-screen .cta:not(:disabled).active,
+#student-selection-screen.nova-login-arena .cta:not(:disabled),
+#student-selection-screen.nova-login-ice .cta:not(:disabled),
+#login-button.cta:not(:disabled) {
+  opacity: 1 !important;
+  cursor: pointer !important;
+}
+
+/* —— Oturum yenileme: lobby/deferred CSS oturana kadar gizle —— */
+html.nova-has-session.nova-boot-pending #nova-main-lobby,
+html.nova-has-session.nova-boot-pending #main-screen > .nova-main-lobby.buttons {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html.nova-has-session:not(.nova-boot-pending) #nova-main-lobby,
+html.nova-has-session:not(.nova-boot-pending) #main-screen > .nova-main-lobby.buttons {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Lobby satırı — 121 ile uyumlu; eski dikey pill flash yok */
+html.nova-has-session #main-screen > .nova-main-lobby.buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: min(680px, 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+/* Hidden SESLER / flyout asla yer kaplamasın */
+#nova_birlestir_lobby_btn[hidden],
+#main-screen #nova_birlestir_lobby_btn[hidden],
+#nova_macera_flyout[hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: none !important;
+}
+
+/* —— Yenileme FOUC: kapalı overlay / sheet asla flaş yapmasın —— */
+#nh-hero-sheet-overlay:not(.is-open),
+.nh-hero-sheet-overlay:not(.is-open),
+#playersOverlay:not(.is-open):not(.open),
+.players-overlay:not(.is-open):not(.open),
+#birlestirelim-overlay:not(.open),
+.birles-overlay:not(.open),
+#giris-panosu-overlay:not(.open) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Boot sırasında ana içerik + üst overlay’ler kapı altında kalsın */
+html.nova-has-session.nova-boot-pending #main-screen,
+html.nova-has-session.nova-main-gate-on #main-screen {
+  visibility: hidden !important;
+}
+
+html.nova-has-session:not(.nova-boot-pending):not(.nova-main-gate-on) #main-screen {
+  visibility: visible !important;
+}
+
+/* Kapı, her türlü sheet’ten üstte kalsın */
+html.nova-main-gate-on #nova-main-gate,
+#nova-main-gate.is-open {
+  z-index: 120000 !important;
+}

@@ -1,0 +1,675 @@
+/* Sol kolon — premium kahraman vitrini + bonus etkinlikler çekmecesi */
+
+:root {
+  --nova-left-showcase-w: clamp(124px, 31vw, 162px);
+  --nova-left-showcase-h: clamp(164px, 41vw, 200px);
+}
+
+/* Sol vitrin kolonu — sadece vitrin */
+#main-screen .main-screen-hero-left--showcase {
+  max-width: var(--nova-left-showcase-w) !important;
+  width: var(--nova-left-showcase-w) !important;
+  min-width: var(--nova-left-showcase-w) !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-top: clamp(2px, 1vw, 6px) !important;
+  overflow: visible !important;
+}
+
+/* Sol kolonda yanlışlıkla kalan FAB'ları gizle */
+#main-screen .main-screen-hero-left--showcase #fillblank_fab_wrap,
+#main-screen .main-screen-hero-left--showcase #puzzle_fab_wrap,
+#main-screen .main-screen-hero-left--showcase #match_fab_wrap,
+#main-screen .main-screen-hero-left--showcase #homework_fab,
+#main-screen .main-screen-hero-left--showcase .puzzle-fab,
+#main-screen .main-screen-hero-left--showcase #fillblank_fab,
+#main-screen .main-screen-hero-left--showcase #match_fab {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+#main-screen .nova-main-hero-showcase-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(5px, 1.4vw, 7px);
+}
+
+#main-screen .nova-dragon-egg-wrap {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* — Eski KAHRAMANIN başlığı gizli — */
+#main-screen .nova-main-hero-showcase__title {
+  display: none !important;
+}
+
+/* — Premium vitrin — */
+#main-screen .main-screen-hero-left--showcase .nova-main-hero-showcase {
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#main-screen .main-screen-hero-left--showcase .nova-main-hero-showcase.is-visible,
+#main-screen .main-screen-hero-left--showcase .nova-main-hero-showcase:has(.nova-main-hero-zone.is-visible) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#main-screen .nova-main-hero-showcase__frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: var(--nova-left-showcase-h);
+  border-radius: clamp(18px, 4.5vw, 22px);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(99, 102, 241, 0.22) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(251, 191, 36, 0.12) 0%, transparent 62%),
+    linear-gradient(168deg, rgba(30, 36, 58, 0.98) 0%, rgba(12, 15, 28, 0.99) 48%, rgba(4, 6, 14, 1) 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.38);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 18px 40px rgba(2, 6, 23, 0.58),
+    0 0 28px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -10px 24px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#main-screen .nova-main-hero-showcase__frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11) 0%, transparent 36%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 0;
+}
+
+#main-screen .nova-main-hero-showcase__frame::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: calc(clamp(18px, 4.5vw, 22px) - 4px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.08);
+}
+
+/* Köşe süsleri */
+#main-screen .nova-main-hero-showcase__frame .nova-main-hero-showcase__corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(251, 191, 36, 0.55);
+  border-style: solid;
+  z-index: 3;
+  pointer-events: none;
+}
+
+#main-screen .nova-main-hero-showcase__head {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: clamp(26px, 6.5vw, 32px);
+  padding: clamp(7px, 1.8vw, 9px) 8px 4px;
+}
+
+#main-screen .nova-main-hero-showcase__level {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: clamp(6px, 1.6vw, 8px);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f1f5f9;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+#main-screen .nova-main-hero-showcase__level.is-epic {
+  color: #fde68a;
+  border-color: rgba(251, 191, 36, 0.5);
+  background: linear-gradient(135deg, rgba(40, 28, 8, 0.95), rgba(20, 12, 4, 0.95));
+}
+
+#main-screen .nova-main-hero-showcase__body {
+  position: relative;
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(var(--nova-left-showcase-h) - 38px);
+}
+
+#main-screen .nova-main-hero-showcase__body::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 6px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.45), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-stars {
+  margin: 0;
+  padding: 0 4px 2px;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-star.is-on {
+  animation: none !important;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.65);
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  grid-column: unset !important;
+  grid-row: unset !important;
+  opacity: 0;
+  transform: none !important;
+  pointer-events: none;
+  overflow: hidden !important;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone__pad {
+  display: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-main-hero-float {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: none !important;
+  transform: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-slot {
+  position: absolute !important;
+  inset: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-main-hero-slot,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-hero__body,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-hero__head,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-hero__arm-l,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-hero__arm-r,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone.is-visible .nova-hero__legs,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--buz.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--alev.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--gece.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--star.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--tas.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--golge.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--firtina.is-visible .nova-main-hero-float,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--baykus.is-visible .nova-main-hero-float {
+  animation: none !important;
+  transform: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase .nova-hero-epic-badge {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+}
+
+/* Epik rozet — vitrin başlığında (üst), kahraman üzerinde değil */
+#main-screen .nova-main-hero-showcase__head .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase__head .nova-hero-epic-badge {
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 auto 2px !important;
+  z-index: 5 !important;
+  flex-shrink: 0;
+}
+
+#main-screen .nova-main-hero-showcase__head .nova-main-hero-epic-label--showcase .nova-epic-badge__body {
+  padding: 2px 10px 3px !important;
+  min-height: 16px !important;
+}
+
+#main-screen .nova-main-hero-showcase__head .nova-main-hero-epic-label--showcase .nova-epic-badge__text {
+  font-size: clamp(7px, 1.75vw, 9px) !important;
+}
+
+#main-screen .nova-main-hero-showcase--epic #nova-main-hero-showcase-level {
+  display: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-float .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase .nova-main-hero-float .nova-hero-epic-badge,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone .nova-main-hero-epic-label:not(.nova-main-hero-showcase__head *) {
+  display: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-slot .nova-main-hero-epic-label,
+#main-screen .nova-main-hero-showcase .nova-main-hero-body .nova-main-hero-epic-label {
+  display: none !important;
+}
+
+#main-screen .nova-main-hero-showcase .nova-main-hero-slot .nova-main-hero-host,
+#main-screen .nova-main-hero-showcase .nova-main-hero-slot canvas,
+#main-screen .nova-main-hero-showcase .nova-main-hero-slot .nova-hero-svg,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--buz .nova-main-hero-slot .nova-hero-buz-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--alev .nova-main-hero-slot .nova-hero-alev-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--gece .nova-main-hero-slot .nova-hero-gece-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--firtina .nova-main-hero-slot .nova-hero-firtina-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--star .nova-main-hero-slot .nova-hero-yildiz-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--tas .nova-main-hero-slot .nova-hero-tas-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--golge .nova-main-hero-slot .nova-hero-golge-sprite,
+#main-screen .nova-main-hero-showcase .nova-main-hero-zone--baykus .nova-main-hero-slot .nova-hero-baykus-sprite {
+  width: clamp(92px, 23vw, 118px) !important;
+  height: clamp(88px, 22vw, 114px) !important;
+  max-width: clamp(92px, 23vw, 118px) !important;
+  max-height: clamp(88px, 22vw, 114px) !important;
+  min-width: clamp(92px, 23vw, 118px) !important;
+  min-height: clamp(88px, 22vw, 114px) !important;
+  margin: 0 auto !important;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 14px rgba(99, 102, 241, 0.15)) !important;
+}
+
+#main-screen .nova-main-hero-showcase--epic .nova-main-hero-showcase__frame {
+  border-width: 2px;
+  border-style: solid;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 18px 40px rgba(2, 6, 23, 0.58),
+    0 0 32px rgba(251, 191, 36, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+#main-screen .nova-main-hero-showcase--buz.nova-main-hero-showcase--epic .nova-main-hero-showcase__frame {
+  border-color: rgba(103, 232, 249, 0.6);
+}
+
+#main-screen .nova-main-hero-showcase--alev.nova-main-hero-showcase--epic .nova-main-hero-showcase__frame {
+  border-color: rgba(251, 146, 60, 0.65);
+}
+
+#main-screen .nova-main-hero-showcase--gece.nova-main-hero-showcase--epic .nova-main-hero-showcase__frame {
+  border-color: rgba(167, 139, 250, 0.65);
+}
+
+/* — Bonus FAB'lar yalnızca açık çekmecede görünür — */
+#main-screen #puzzle_fab_wrap,
+#main-screen #fillblank_fab_wrap,
+#main-screen #match_fab_wrap {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#main-screen #main-screen-quest-slot > #puzzle_fab_wrap,
+#main-screen #main-screen-quest-slot > #fillblank_fab_wrap,
+#main-screen #main-screen-quest-slot > #match_fab_wrap {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #puzzle_fab_wrap,
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #fillblank_fab_wrap,
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel #match_fab_wrap {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* — Bonus etkinlikler — kapalıyken içerik gizli ve tıklanamaz — */
+#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel,
+#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel * {
+  visibility: hidden;
+  pointer-events: none !important;
+  touch-action: none !important;
+}
+
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel,
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel * {
+  visibility: visible;
+}
+
+#main-screen .nova-bonus-drawer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  position: relative;
+  z-index: 5;
+}
+
+#main-screen .nova-bonus-drawer__toggle {
+  width: 100%;
+  min-height: clamp(34px, 8.5vw, 42px);
+  padding: clamp(6px, 1.6vw, 9px) clamp(8px, 2vw, 10px);
+  border-radius: clamp(10px, 2.4vw, 14px);
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  background: linear-gradient(145deg, #ca8a04 0%, #a16207 52%, #854d0e 100%);
+  color: #fffbeb;
+  font-size: clamp(7px, 1.85vw, 9px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 10px 22px rgba(120, 53, 15, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+#main-screen .nova-bonus-drawer__chevron {
+  font-size: 8px;
+  transition: transform 0.28s ease;
+}
+
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__chevron {
+  transform: rotate(90deg);
+}
+
+#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel {
+  display: none !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  margin-top: 0 !important;
+  pointer-events: none !important;
+}
+
+#main-screen .nova-bonus-drawer__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(6px, 1.6vw, 8px);
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  margin-top: 0;
+  transition: max-height 0.32s ease, opacity 0.28s ease, margin-top 0.28s ease;
+}
+
+#main-screen .nova-bonus-drawer.is-open .nova-bonus-drawer__panel {
+  max-height: 280px;
+  opacity: 1;
+  pointer-events: auto;
+  margin-top: clamp(6px, 1.6vw, 8px);
+  overflow: visible;
+  padding-bottom: 2px;
+}
+
+#main-screen .nova-bonus-drawer:not(.is-open) .nova-bonus-drawer__panel[hidden] {
+  display: none !important;
+}
+
+#main-screen .nova-bonus-drawer__panel .puzzle-fab-wrap,
+#main-screen .nova-bonus-drawer__panel #fillblank_fab_wrap,
+#main-screen .nova-bonus-drawer__panel #match_fab_wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 3px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  visibility: visible !important;
+  overflow: visible !important;
+}
+
+#main-screen .nova-bonus-drawer__panel #puzzle_fab,
+#main-screen .nova-bonus-drawer__panel #fillblank_fab,
+#main-screen .nova-bonus-drawer__panel #match_fab {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: clamp(34px, 8.5vw, 40px) !important;
+  height: clamp(34px, 8.5vw, 40px) !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  font-size: clamp(7.5px, 1.95vw, 9px) !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+  border-radius: clamp(10px, 2.4vw, 13px) !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  color: #eef2ff !important;
+  background: linear-gradient(145deg, #6366f1 0%, #4f46e5 52%, #4338ca 100%) !important;
+  border: 1px solid rgba(196, 181, 253, 0.58) !important;
+  box-shadow: 0 8px 18px rgba(49, 46, 129, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+#main-screen .nova-bonus-drawer__panel #puzzle_fab:hover,
+#main-screen .nova-bonus-drawer__panel #fillblank_fab:hover,
+#main-screen .nova-bonus-drawer__panel #match_fab:hover {
+  filter: brightness(1.07) !important;
+  transform: none !important;
+}
+
+#main-screen .nova-bonus-drawer__panel #puzzle_fab::after,
+#main-screen .nova-bonus-drawer__panel #fillblank_fab::after,
+#main-screen .nova-bonus-drawer__panel #match_fab::after {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.02) 48%, rgba(30, 27, 75, 0.12) 100%) !important;
+}
+
+#main-screen .nova-bonus-drawer__panel .nova-fab-reward-tag--egg {
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.92), rgba(30, 58, 138, 0.88)) !important;
+  border: 1px solid rgba(251, 191, 36, 0.55) !important;
+  color: #fde68a !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.03em !important;
+  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.55) !important;
+  box-shadow: 0 2px 8px rgba(88, 28, 135, 0.35) !important;
+}
+
+#main-screen .nova-bonus-drawer__panel .nova-fab-reward-tag {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 2px 6px !important;
+  right: auto !important;
+  left: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  font-size: clamp(6px, 1.55vw, 8px) !important;
+  line-height: 1.1 !important;
+  border-radius: 6px !important;
+  animation: none !important;
+  flex-shrink: 0 !important;
+  align-self: center !important;
+}
+
+#main-screen #main-screen-quest-slot #learn-open-button { order: -1 !important; }
+#main-screen #main-screen-quest-slot #nova-bonus-drawer { order: 3 !important; }
+#main-screen #main-screen-quest-slot .surprise-box { order: 4 !important; }
+
+/* Araçlar — sağ ray en üst, FAB stiline yakın, biraz daha dikkat çekici */
+#main-screen #tools-open-button.profile-tools-button,
+#main-screen #tools-open-button.nova-tools-rail-btn {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: clamp(34px, 8.5vw, 42px) !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: clamp(6px, 1.6vw, 9px) clamp(8px, 2vw, 10px) !important;
+  border-radius: clamp(10px, 2.4vw, 14px) !important;
+  font-size: clamp(7px, 1.85vw, 9px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(4px, 1.2vw, 6px) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  color: #ecfeff !important;
+  background: linear-gradient(145deg, #06b6d4 0%, #0891b2 48%, #0e7490 100%) !important;
+  border: 1px solid rgba(165, 243, 252, 0.62) !important;
+  box-shadow:
+    0 10px 24px rgba(8, 145, 178, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 18px rgba(34, 211, 238, 0.22) !important;
+  animation: novaToolsRailGlow 2.8s ease-in-out infinite !important;
+  transform: none !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+}
+
+#main-screen #tools-open-button.profile-tools-button::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.02) 46%, rgba(8, 51, 68, 0.14) 100%) !important;
+  animation: none !important;
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  left: auto !important;
+}
+
+#main-screen #tools-open-button .profile-tools-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: clamp(16px, 4.2vw, 20px) !important;
+  height: clamp(16px, 4.2vw, 20px) !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  font-size: clamp(10px, 2.6vw, 12px) !important;
+  line-height: 1 !important;
+}
+
+#main-screen #tools-open-button .profile-tools-text {
+  font-size: inherit !important;
+  line-height: 1.1 !important;
+  font-weight: inherit !important;
+}
+
+#main-screen #tools-open-button.profile-tools-button:hover {
+  filter: brightness(1.08) !important;
+  transform: none !important;
+  box-shadow:
+    0 12px 26px rgba(8, 145, 178, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 0 22px rgba(34, 211, 238, 0.32) !important;
+}
+
+@keyframes novaToolsRailGlow {
+  0%, 100% {
+    box-shadow:
+      0 10px 24px rgba(8, 145, 178, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      0 0 16px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 12px 28px rgba(8, 145, 178, 0.52),
+      inset 0 1px 0 rgba(255, 255, 255, 0.34),
+      0 0 24px rgba(34, 211, 238, 0.34);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen #tools-open-button.profile-tools-button {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #main-screen .nova-bonus-drawer__panel .puzzle-fab-wrap,
+  #main-screen .nova-bonus-drawer__panel #fillblank_fab_wrap,
+  #main-screen .nova-bonus-drawer__panel #match_fab_wrap {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #main-screen .nova-bonus-drawer__panel .nova-fab-reward-tag {
+    position: static !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    align-self: center !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-screen .nova-bonus-drawer__panel,
+  #main-screen .nova-main-hero-showcase,
+  #main-screen .nova-main-hero-showcase .nova-main-hero-zone {
+    transition: none !important;
+  }
+}

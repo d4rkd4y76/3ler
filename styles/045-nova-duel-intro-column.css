@@ -1,0 +1,20 @@
+/* === Nova Duel Intro: vertical stack for meta (rank & cups under stars) === */
+#duel-intro-overlay .player-meta{
+  display:flex !important;
+  flex-direction: column !important;   /* force vertical stacking */
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;        /* no horizontal packing */
+  min-width: 0 !important;
+}
+#duel-intro-overlay .player-meta > .star-frame{
+  order: 1;
+  width: 100%;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+#duel-intro-overlay .player-meta > .rank-label{ order: 2; }
+#duel-intro-overlay .player-meta > .cup-pill{ order: 3; }

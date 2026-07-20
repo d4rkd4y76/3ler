@@ -1,0 +1,3960 @@
+{
+  "meta": {
+    "topicId": "t01",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Metin Türleri (Hikâye edici metinler, bilgilendirici metinler ve şiir)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "metin3_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Genellikle 'Bir varmış, bir yokmuş' gibi tekerlemelerle başlayan, olağanüstü olayların anlatıldığı hayal ürünü metin türüne ne ad verilir?",
+      "correct": "Masal",
+      "wrong1": "Şiir",
+      "wrong2": "Bilgilendirici Metin",
+      "explanation": "Masallar genellikle tekerleme ile başlar, hayal ürünüdür ve olağanüstü olaylar/kahramanlar barındırır.",
+      "app": {
+        "question": {
+          "text": "Genellikle 'Bir varmış, bir yokmuş' gibi tekerlemelerle başlayan, olağanüstü olayların anlatıldığı hayal ürünü metin türüne ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Masal",
+        "wrong1": "Şiir",
+        "wrong2": "Bilgilendirici Metin",
+        "explanation": "Masallar genellikle tekerleme ile başlar, hayal ürünüdür ve olağanüstü olaylar/kahramanlar barındırır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_002",
+      "level": "orta",
+      "premise": "Keloğlan ormanda yürürken karşısına uçan bir halı çıkmış. Halıya binip Kafdağı'na doğru yola koyulmuş.",
+      "text": "Yukarıdaki metin hangi metin türünden alınmış olabilir?",
+      "correct": "Masal",
+      "wrong1": "Fabl",
+      "wrong2": "Haber Metni",
+      "explanation": "Metinde Keloğlan, uçan halı ve Kafdağı gibi masallara özgü olağanüstü (hayal ürünü) ögeler bulunmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin hangi metin türünden alınmış olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Keloğlan ormanda yürürken karşısına uçan bir halı çıkmış. Halıya binip Kafdağı'na doğru yola koyulmuş."
+            }
+          ]
+        },
+        "correct": "Masal",
+        "wrong1": "Fabl",
+        "wrong2": "Haber Metni",
+        "explanation": "Metinde Keloğlan, uçan halı ve Kafdağı gibi masallara özgü olağanüstü (hayal ürünü) ögeler bulunmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi masalların özelliklerinden biri değildir?",
+      "correct": "Yaşanmış gerçek olayları anlatması",
+      "wrong1": "Tekerleme ile başlaması",
+      "wrong2": "Olağanüstü olaylar içermesi",
+      "explanation": "Masallar yaşanmış gerçek olayları değil, tamamen kurgulanmış hayal ürünü olayları anlatır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi masalların özelliklerinden biri değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yaşanmış gerçek olayları anlatması",
+        "wrong1": "Tekerleme ile başlaması",
+        "wrong2": "Olağanüstü olaylar içermesi",
+        "explanation": "Masallar yaşanmış gerçek olayları değil, tamamen kurgulanmış hayal ürünü olayları anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_004",
+      "level": "zor",
+      "premise": "I. Tekerlemeyle başlar.\nII. Sonunda her zaman iyiler kazanır, kötüler kaybeder.\nIII. Olaylar gerçek hayatta yaşanabilecek türdendir.",
+      "text": "Yukarıdaki masal türü ile ilgili numaralanmış bilgilerden hangileri doğrudur?",
+      "correct": "1 ve 2",
+      "wrong1": "Yalnız 3",
+      "wrong2": "2 ve 3",
+      "explanation": "Masallar tekerlemeyle başlar ve iyilerin kazanmasıyla biter ancak 3. maddedeki gibi gerçek hayatta yaşanabilecek olayları değil, olağanüstü olayları anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki masal türü ile ilgili numaralanmış bilgilerden hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Tekerlemeyle başlar."
+                },
+                {
+                  "label": "II.",
+                  "text": "Sonunda her zaman iyiler kazanır, kötüler kaybeder."
+                },
+                {
+                  "label": "III.",
+                  "text": "Olaylar gerçek hayatta yaşanabilecek türdendir."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "1 ve 2",
+        "wrong1": "Yalnız 3",
+        "wrong2": "2 ve 3",
+        "explanation": "Masallar tekerlemeyle başlar ve iyilerin kazanmasıyla biter ancak 3. maddedeki gibi gerçek hayatta yaşanabilecek olayları değil, olağanüstü olayları anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_005",
+      "level": "orta",
+      "premise": "Evvel zaman içinde, kalbur saman içinde; develer tellal iken, pireler berber iken...",
+      "text": "Yukarıdaki ifade genellikle hangi metin türünün giriş bölümünde yer alır?",
+      "correct": "Masal",
+      "wrong1": "Hikâye (Öykü)",
+      "wrong2": "Bilgilendirici Metin",
+      "explanation": "Bu ifade bir masal tekerlemesidir. Okuyucuyu hayal dünyasına hazırlamak için kullanılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ifade genellikle hangi metin türünün giriş bölümünde yer alır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Evvel zaman içinde, kalbur saman içinde; develer tellal iken, pireler berber iken..."
+            }
+          ]
+        },
+        "correct": "Masal",
+        "wrong1": "Hikâye (Öykü)",
+        "wrong2": "Bilgilendirici Metin",
+        "explanation": "Bu ifade bir masal tekerlemesidir. Okuyucuyu hayal dünyasına hazırlamak için kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "Masalların sonunda kahramanların durumu genellikle nasıl sonuçlanır?",
+      "correct": "İyiler ödüllendirilir, kötüler cezalandırılır",
+      "wrong1": "Kötüler kazanır",
+      "wrong2": "Olaylar yarım kalır",
+      "explanation": "Masalların en önemli özelliklerinden biri eğitici olmasıdır; bu yüzden çocuklara doğruyu öğretmek için her zaman iyiler kazanır.",
+      "app": {
+        "question": {
+          "text": "Masalların sonunda kahramanların durumu genellikle nasıl sonuçlanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İyiler ödüllendirilir, kötüler cezalandırılır",
+        "wrong1": "Kötüler kazanır",
+        "wrong2": "Olaylar yarım kalır",
+        "explanation": "Masalların en önemli özelliklerinden biri eğitici olmasıdır; bu yüzden çocuklara doğruyu öğretmek için her zaman iyiler kazanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_007",
+      "level": "orta",
+      "premise": null,
+      "correct": "Masal",
+      "wrong1": "Anı (Hatıra)",
+      "wrong2": "Fabl",
+      "explanation": "Sihirli nesneler ve efsanevi yaratıklar gibi gerçekte olmayan olağanüstü ögeler masallara özgüdür.",
+      "text": "Bir metinde 'Zümrüdüanka kuşu, sihirli değnek, konuşan ayna' gibi ifadeler sıkça geçiyorsa bu metnin türü aşağıdakilerden hangisidir?",
+      "app": {
+        "question": {
+          "text": "Bir metinde 'Zümrüdüanka kuşu, sihirli değnek, konuşan ayna' gibi ifadeler sıkça geçiyorsa bu metnin türü aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Masal",
+        "wrong1": "Anı (Hatıra)",
+        "wrong2": "Fabl",
+        "explanation": "Sihirli nesneler ve efsanevi yaratıklar gibi gerçekte olmayan olağanüstü ögeler masallara özgüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_008",
+      "level": "zor",
+      "premise": "Öğretmen, Ali'den okuduğu metnin türünü tahmin etmesini istemiştir. Ali metnin bir masal olduğunu söylemiştir.",
+      "text": "Yukarıdaki metne göre ali'nin bu tahmini yapmasını sağlayan ipucu aşağıdakilerden hangisi Olamaz?",
+      "correct": "Metnin gerçek bir haberi anlatması",
+      "wrong1": "Metinde olağanüstü olayların olması",
+      "wrong2": "Zamanın ve yerin belirsiz olması",
+      "explanation": "Masallar asla gerçek bir haberi anlatmazlar. Tamamen hayal ürünüdürler. Zaman ve mekan ise belirsizdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre ali'nin bu tahmini yapmasını sağlayan ipucu aşağıdakilerden hangisi Olamaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğretmen, Ali'den okuduğu metnin türünü tahmin etmesini istemiştir. Ali metnin bir masal olduğunu söylemiştir."
+            }
+          ]
+        },
+        "correct": "Metnin gerçek bir haberi anlatması",
+        "wrong1": "Metinde olağanüstü olayların olması",
+        "wrong2": "Zamanın ve yerin belirsiz olması",
+        "explanation": "Masallar asla gerçek bir haberi anlatmazlar. Tamamen hayal ürünüdürler. Zaman ve mekan ise belirsizdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Masallardaki olayların geçtiği zaman ve yer için aşağıdakilerden hangisi söylenebilir?",
+      "correct": "Belirsizdir",
+      "wrong1": "Kesin olarak bilinir",
+      "wrong2": "Sadece yaz aylarında geçer",
+      "explanation": "Masallarda olayların nerede ve ne zaman yaşandığı belli değildir (Örn: 'Bilinmeyen bir diyarda, evvel zaman içinde').",
+      "app": {
+        "question": {
+          "text": "Masallardaki olayların geçtiği zaman ve yer için aşağıdakilerden hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Belirsizdir",
+        "wrong1": "Kesin olarak bilinir",
+        "wrong2": "Sadece yaz aylarında geçer",
+        "explanation": "Masallarda olayların nerede ve ne zaman yaşandığı belli değildir (Örn: 'Bilinmeyen bir diyarda, evvel zaman içinde').",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_010",
+      "level": "orta",
+      "premise": "Az gitmiş uz gitmiş, dere tepe düz gitmiş. Altı ay bir güz gitmiş...",
+      "text": "Yukarıdaki tekerleme masalın okuyucuya hangi mesajı vermesi için kullanılır?",
+      "correct": "Kahramanın çok uzun bir yolculuk yaptığını",
+      "wrong1": "Havaların çok soğuk olduğunu",
+      "wrong2": "Kahramanın kaybolduğunu",
+      "explanation": "Bu klasik tekerleme, masal kahramanının durmaksızın uzun bir yoldan geçtiğini ve aradan uzun zaman geçtiğini ifade etmek için kullanılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki tekerleme masalın okuyucuya hangi mesajı vermesi için kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Az gitmiş uz gitmiş, dere tepe düz gitmiş. Altı ay bir güz gitmiş..."
+            }
+          ]
+        },
+        "correct": "Kahramanın çok uzun bir yolculuk yaptığını",
+        "wrong1": "Havaların çok soğuk olduğunu",
+        "wrong2": "Kahramanın kaybolduğunu",
+        "explanation": "Bu klasik tekerleme, masal kahramanının durmaksızın uzun bir yoldan geçtiğini ve aradan uzun zaman geçtiğini ifade etmek için kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "İnsan dışındaki canlı varlıklara (özellikle hayvanlara) insan özellikleri verilerek anlatılan, sonunda okuyucuya bir ders veren hikayelere ne ad verilir?",
+      "correct": "Fabl",
+      "wrong1": "Masal",
+      "wrong2": "Şiir",
+      "explanation": "Fabl; kahramanları hayvanlar veya bitkiler olan, insan gibi konuşturulan ve sonunda eğitici bir ders veren metin türüdür.",
+      "app": {
+        "question": {
+          "text": "İnsan dışındaki canlı varlıklara (özellikle hayvanlara) insan özellikleri verilerek anlatılan, sonunda okuyucuya bir ders veren hikayelere ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Fabl",
+        "wrong1": "Masal",
+        "wrong2": "Şiir",
+        "explanation": "Fabl; kahramanları hayvanlar veya bitkiler olan, insan gibi konuşturulan ve sonunda eğitici bir ders veren metin türüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_012",
+      "level": "orta",
+      "premise": "Karga, ağzında koca bir peynir parçasıyla dala konmuş. Oradan geçen kurnaz tilki peyniri görünce kargaya şöyle demiş: 'Sesin ne kadar güzel, bana bir şarkı söyler misin?'",
+      "text": "Yukarıdaki metnin türü nedir?",
+      "correct": "Fabl",
+      "wrong1": "Bilgilendirici Metin",
+      "wrong2": "Gezi Yazısı",
+      "explanation": "Hayvanların konuşturulduğu, insan gibi davrandığı ve insanlara ders vermeyi amaçlayan hikayelere fabl denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin türü nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karga, ağzında koca bir peynir parçasıyla dala konmuş. Oradan geçen kurnaz tilki peyniri görünce kargaya şöyle demiş: 'Sesin ne kadar güzel, bana bir şarkı söyler misin?'"
+            }
+          ]
+        },
+        "correct": "Fabl",
+        "wrong1": "Bilgilendirici Metin",
+        "wrong2": "Gezi Yazısı",
+        "explanation": "Hayvanların konuşturulduğu, insan gibi davrandığı ve insanlara ders vermeyi amaçlayan hikayelere fabl denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi fabl türünün temel özelliklerinden biridir?",
+      "correct": "Sonunda mutlaka bir ders (öğüt) vermesi",
+      "wrong1": "Gerçekte yaşanmış tarihi olayları anlatması",
+      "wrong2": "Sadece insanların hayatını anlatması",
+      "explanation": "Fablların yazılmasındaki en temel amaç, hayvanların başından geçenler üzerinden insanlara ahlaki bir ders (öğüt) vermektir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi fabl türünün temel özelliklerinden biridir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sonunda mutlaka bir ders (öğüt) vermesi",
+        "wrong1": "Gerçekte yaşanmış tarihi olayları anlatması",
+        "wrong2": "Sadece insanların hayatını anlatması",
+        "explanation": "Fablların yazılmasındaki en temel amaç, hayvanların başından geçenler üzerinden insanlara ahlaki bir ders (öğüt) vermektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_014",
+      "level": "orta",
+      "premise": null,
+      "text": "Fabllarda hayvanların insan gibi karşılıklı sohbet etmesine edebiyatta hangi sanat adı verilir?",
+      "correct": "Konuşturma",
+      "wrong1": "Abartma",
+      "wrong2": "Benzetme",
+      "explanation": "İnsan dışındaki varlıkların insan gibi konuşturulmasına konuşturma sanatı denir ve fabllarda çok sık kullanılır.",
+      "app": {
+        "question": {
+          "text": "Fabllarda hayvanların insan gibi karşılıklı sohbet etmesine edebiyatta hangi sanat adı verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Konuşturma",
+        "wrong1": "Abartma",
+        "wrong2": "Benzetme",
+        "explanation": "İnsan dışındaki varlıkların insan gibi konuşturulmasına konuşturma sanatı denir ve fabllarda çok sık kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_015",
+      "level": "zor",
+      "premise": "I. Olaylar gerçek veya gerçeğe yakındır.\nII. Kahramanları genellikle bitkiler ve hayvanlardır.\nIII. Eğitici ve öğretici bir amacı vardır.",
+      "text": "Yukarıdaki fabl metin türü ile ilgili numaralanmış bilgilerden hangileri doğrudur?",
+      "correct": "II ve III",
+      "wrong1": "I ve II",
+      "wrong2": "Yalnız I",
+      "explanation": "Fabl kahramanları hayvanlardır ve ders verirler (II ve III). Fakat olaylar gerçek değildir, tamamen hayal ürünüdür (I yanlış).",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki fabl metin türü ile ilgili numaralanmış bilgilerden hangileri doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Olaylar gerçek veya gerçeğe yakındır."
+                },
+                {
+                  "label": "II.",
+                  "text": "Kahramanları genellikle bitkiler ve hayvanlardır."
+                },
+                {
+                  "label": "III.",
+                  "text": "Eğitici ve öğretici bir amacı vardır."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "II ve III",
+        "wrong1": "I ve II",
+        "wrong2": "Yalnız I",
+        "explanation": "Fabl kahramanları hayvanlardır ve ders verirler (II ve III). Fakat olaylar gerçek değildir, tamamen hayal ürünüdür (I yanlış).",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_016",
+      "level": "kolay",
+      "premise": "Tavşan ile kaplumbağa yarış yapmaya karar vermişler. Tavşan hızına güvenip uyumuş, kaplumbağa ise yavaş ama azimli adımlarla yarışı kazanmış.",
+      "text": "Yukarıdaki metin hangi metin türüne bir örnektir?",
+      "correct": "Fabl",
+      "wrong1": "Masal",
+      "wrong2": "Bilgilendirici Metin",
+      "explanation": "Kahramanları hayvanlar olan, hayvanların insan gibi yarış yapıp sonunda 'azmin önemini' öğreten bu metin bir fabl örneğidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin hangi metin türüne bir örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Tavşan ile kaplumbağa yarış yapmaya karar vermişler. Tavşan hızına güvenip uyumuş, kaplumbağa ise yavaş ama azimli adımlarla yarışı kazanmış."
+            }
+          ]
+        },
+        "correct": "Fabl",
+        "wrong1": "Masal",
+        "wrong2": "Bilgilendirici Metin",
+        "explanation": "Kahramanları hayvanlar olan, hayvanların insan gibi yarış yapıp sonunda 'azmin önemini' öğreten bu metin bir fabl örneğidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_017",
+      "level": "orta",
+      "premise": "Ağustos böceği bütün yaz saz çalmış, karınca ise kış için yuvasına yiyecek taşımış. Kış gelince ağustos böceği aç kalmış ve pişman olmuş.",
+      "text": "Yukarıdaki fablın okuyucuya vermek istediği ana fikir (ders) aşağıdakilerden hangisidir?",
+      "correct": "Zamanında çalışmayan, ileride zorluk çeker",
+      "wrong1": "Müzik ruhun gıdasıdır",
+      "wrong2": "Kış mevsimi her zaman çok soğuk geçer",
+      "explanation": "Metin, zamanında çalışıp hazırlık yapmanın önemini ve tembelliğin kötü sonuçlarını anlatmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki fablın okuyucuya vermek istediği ana fikir (ders) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağustos böceği bütün yaz saz çalmış, karınca ise kış için yuvasına yiyecek taşımış. Kış gelince ağustos böceği aç kalmış ve pişman olmuş."
+            }
+          ]
+        },
+        "correct": "Zamanında çalışmayan, ileride zorluk çeker",
+        "wrong1": "Müzik ruhun gıdasıdır",
+        "wrong2": "Kış mevsimi her zaman çok soğuk geçer",
+        "explanation": "Metin, zamanında çalışıp hazırlık yapmanın önemini ve tembelliğin kötü sonuçlarını anlatmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_018",
+      "level": "zor",
+      "premise": "Aslan uyurken minik bir fare gelip yüzünde gezinmiş. Aslan sinirlenmiş ama fareyi affetmiş. Günler sonra aslan avcıların ağına takılmış. Fare minik dişleriyle ağı kemirip aslanı kurtarmış.",
+      "text": "Yukarıdaki fablın vermek istediği en uygun öğüt aşağıdakilerden hangisidir?",
+      "correct": "İyilik eden her zaman iyilik bulur ve kimseyi küçümsememek gerekir.",
+      "wrong1": "Ormanların kralı her zaman aslandır",
+      "wrong2": "Fareler ağları kemirmeyi çok seven hayvanlardır",
+      "explanation": "Fabl; küçümsenen zayıf bir farenin bile yeri geldiğinde güçlü bir aslana yardım edebileceğini öğütler.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki fablın vermek istediği en uygun öğüt aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aslan uyurken minik bir fare gelip yüzünde gezinmiş. Aslan sinirlenmiş ama fareyi affetmiş. Günler sonra aslan avcıların ağına takılmış. Fare minik dişleriyle ağı kemirip aslanı kurtarmış."
+            }
+          ]
+        },
+        "correct": "İyilik eden her zaman iyilik bulur ve kimseyi küçümsememek gerekir.",
+        "wrong1": "Ormanların kralı her zaman aslandır",
+        "wrong2": "Fareler ağları kemirmeyi çok seven hayvanlardır",
+        "explanation": "Fabl; küçümsenen zayıf bir farenin bile yeri geldiğinde güçlü bir aslana yardım edebileceğini öğütler.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_019",
+      "level": "kolay",
+      "premise": null,
+      "text": "Fabl ile masalların en belirgin ortak özelliği aşağıdakilerden hangisidir?",
+      "correct": "İkisinin de hayal ürünü olayları anlatması",
+      "wrong1": "İkisinin de tekerlemeyle başlaması",
+      "wrong2": "İkisinin de gerçek olaylara dayanması",
+      "explanation": "Fabl ve masallar gerçekte yaşanması mümkün olmayan, yazarın zihninde kurgulanan tamamen hayal ürünü olayları içerir.",
+      "app": {
+        "question": {
+          "text": "Fabl ile masalların en belirgin ortak özelliği aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İkisinin de hayal ürünü olayları anlatması",
+        "wrong1": "İkisinin de tekerlemeyle başlaması",
+        "wrong2": "İkisinin de gerçek olaylara dayanması",
+        "explanation": "Fabl ve masallar gerçekte yaşanması mümkün olmayan, yazarın zihninde kurgulanan tamamen hayal ürünü olayları içerir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_020",
+      "level": "orta",
+      "premise": "Karınca, dereye düşen çırpınan bir güvercini kurtarmak için suya yaprak atmış. Güvercin yaprağa tutunup kurtulmuş.",
+      "text": "Yukarıdaki metindeki olayda hayvanların davranışı üzerinden insanlara hangi kavram örnek gösterilmektedir?",
+      "correct": "Yardımlaşma",
+      "wrong1": "Düşmanlık",
+      "wrong2": "Tembellik",
+      "explanation": "Fabllarda hayvanların sergilediği davranışlar insanların tutumlarını temsil eder. Burada karıncanın hayat kurtarması yardımlaşmadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metindeki olayda hayvanların davranışı üzerinden insanlara hangi kavram örnek gösterilmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karınca, dereye düşen çırpınan bir güvercini kurtarmak için suya yaprak atmış. Güvercin yaprağa tutunup kurtulmuş."
+            }
+          ]
+        },
+        "correct": "Yardımlaşma",
+        "wrong1": "Düşmanlık",
+        "wrong2": "Tembellik",
+        "explanation": "Fabllarda hayvanların sergilediği davranışlar insanların tutumlarını temsil eder. Burada karıncanın hayat kurtarması yardımlaşmadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Gerçekte yaşanmış ya da yaşanması mümkün olan olayların kişi, yer ve zamana bağlı olarak anlatıldığı kısa yazılara ne denir?",
+      "correct": "Hikâye (Öykü)",
+      "wrong1": "Masal",
+      "wrong2": "Şiir",
+      "explanation": "Olay, zaman, mekan ve şahıs (kahraman) unsurlarını barındıran ve gerçek hayata uygun olan metinlere hikaye denir.",
+      "app": {
+        "question": {
+          "text": "Gerçekte yaşanmış ya da yaşanması mümkün olan olayların kişi, yer ve zamana bağlı olarak anlatıldığı kısa yazılara ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hikâye (Öykü)",
+        "wrong1": "Masal",
+        "wrong2": "Şiir",
+        "explanation": "Olay, zaman, mekan ve şahıs (kahraman) unsurlarını barındıran ve gerçek hayata uygun olan metinlere hikaye denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_022",
+      "level": "orta",
+      "premise": "Ayşe sabah erkenden uyandı. Çantasını hazırlayıp okula gitti. Sınıfta en yakın arkadaşı Ali ile karşılaşınca çok sevindi.",
+      "text": "Yukarıdaki metin hangi tür metinlere bir örnektir?",
+      "correct": "Hikâye edici metin",
+      "wrong1": "Bilgilendirici metin",
+      "wrong2": "Haber yazısı",
+      "explanation": "Metinde Ayşe isimli kahramanın başından geçen gerçek hayatta yaşanabilecek sıradan bir olay anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin hangi tür metinlere bir örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ayşe sabah erkenden uyandı. Çantasını hazırlayıp okula gitti. Sınıfta en yakın arkadaşı Ali ile karşılaşınca çok sevindi."
+            }
+          ]
+        },
+        "correct": "Hikâye edici metin",
+        "wrong1": "Bilgilendirici metin",
+        "wrong2": "Haber yazısı",
+        "explanation": "Metinde Ayşe isimli kahramanın başından geçen gerçek hayatta yaşanabilecek sıradan bir olay anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_023",
+      "level": "zor",
+      "premise": "Ali dedesiyle balığa çıkacaktı. Oltasını hazırladı, küçük kayığa bindiler. Deniz çok sakindi, martılar üzerlerinde uçuşuyordu.",
+      "text": "Yukarıdaki metni masaldan ayıran en önemli özellik aşağıdakilerden hangisidir?",
+      "correct": "Gerçek hayatta yaşanabilecek olayları anlatması",
+      "wrong1": "İçinde hayvan isimlerinin (martı) geçmesi",
+      "wrong2": "Olayın bir deniz kenarında geçmesi",
+      "explanation": "Masallarda olaylar hayal ürünü ve olağanüstüdür. Hikayelerde ise (bu metinde olduğu gibi) gerçek hayatta herkesin yaşayabileceği olaylar anlatılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metni masaldan ayıran en önemli özellik aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali dedesiyle balığa çıkacaktı. Oltasını hazırladı, küçük kayığa bindiler. Deniz çok sakindi, martılar üzerlerinde uçuşuyordu."
+            }
+          ]
+        },
+        "correct": "Gerçek hayatta yaşanabilecek olayları anlatması",
+        "wrong1": "İçinde hayvan isimlerinin (martı) geçmesi",
+        "wrong2": "Olayın bir deniz kenarında geçmesi",
+        "explanation": "Masallarda olaylar hayal ürünü ve olağanüstüdür. Hikayelerde ise (bu metinde olduğu gibi) gerçek hayatta herkesin yaşayabileceği olaylar anlatılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir hikâyenin unsurlarından biri değildir?",
+      "correct": "Tekerleme",
+      "wrong1": "Olayın geçtiği yer",
+      "wrong2": "Olayın kahramanları",
+      "explanation": "Hikaye unsurları olay, kişi, yer ve zamandır. Tekerlemeler ise masallara ait bir özelliktir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir hikâyenin unsurlarından biri değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tekerleme",
+        "wrong1": "Olayın geçtiği yer",
+        "wrong2": "Olayın kahramanları",
+        "explanation": "Hikaye unsurları olay, kişi, yer ve zamandır. Tekerlemeler ise masallara ait bir özelliktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_025",
+      "level": "orta",
+      "premise": "Zeynep parkta oynarken yağmur yağmaya başladı. Hemen bir ağacın altına sığındı. Yanına üşümüş küçük bir köpek yavrusu geldi.",
+      "text": "Yukarıdaki hikayede olayın geçtiği mekan (yer) neresidir?",
+      "correct": "Park",
+      "wrong1": "Zeynep'in odası",
+      "wrong2": "Orman",
+      "explanation": "Metinde Zeynep'in 'parkta' oynarken yağmura yakalandığı açıkça belirtilmiştir. Olay yeri parktır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki hikayede olayın geçtiği mekan (yer) neresidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zeynep parkta oynarken yağmur yağmaya başladı. Hemen bir ağacın altına sığındı. Yanına üşümüş küçük bir köpek yavrusu geldi."
+            }
+          ]
+        },
+        "correct": "Park",
+        "wrong1": "Zeynep'in odası",
+        "wrong2": "Orman",
+        "explanation": "Metinde Zeynep'in 'parkta' oynarken yağmura yakalandığı açıkça belirtilmiştir. Olay yeri parktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_026",
+      "level": "kolay",
+      "premise": "Ahmet'in kedisi Pamuk kaybolmuştu. Bütün mahalleyi aradılar ama bulamadılar. Akşam eve döndüklerinde Pamuk'un kapının önünde beklediğini gördüler.",
+      "text": "Yukarıdaki hikayenin ana kahramanı (kişisi/varlığı) kimlerdir?",
+      "correct": "Ahmet ve kedisi Pamuk",
+      "wrong1": "Bütün mahalle",
+      "wrong2": "Ali ve köpeği",
+      "explanation": "Olayı yaşayan ve metnin merkezinde olan ana varlıklar Ahmet ve kaybolan kedisi Pamuk'tur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki hikayenin ana kahramanı (kişisi/varlığı) kimlerdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ahmet'in kedisi Pamuk kaybolmuştu. Bütün mahalleyi aradılar ama bulamadılar. Akşam eve döndüklerinde Pamuk'un kapının önünde beklediğini gördüler."
+            }
+          ]
+        },
+        "correct": "Ahmet ve kedisi Pamuk",
+        "wrong1": "Bütün mahalle",
+        "wrong2": "Ali ve köpeği",
+        "explanation": "Olayı yaşayan ve metnin merkezinde olan ana varlıklar Ahmet ve kaybolan kedisi Pamuk'tur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_027",
+      "level": "zor",
+      "premise": "Ömer, o gün okula çok mutlu gitti çünkü en sevdiği resim dersi vardı. Sınıfa girdiğinde renkli boyalarını masaya dizdi.",
+      "text": "Yukarıdaki metnin dil ve anlatım özelliklerine göre hangi metin türüne aittir?",
+      "correct": "Hikâye Edici Metin (Öyküleyici)",
+      "wrong1": "Bilgilendirici Metin",
+      "wrong2": "Şiir",
+      "explanation": "Metinde bir olay akışı (hareket) vardır. Kişi, zaman ve mekan unsurları kullanılarak bir olay aktarıldığı için hikaye edici metindir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin dil ve anlatım özelliklerine göre hangi metin türüne aittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ömer, o gün okula çok mutlu gitti çünkü en sevdiği resim dersi vardı. Sınıfa girdiğinde renkli boyalarını masaya dizdi."
+            }
+          ]
+        },
+        "correct": "Hikâye Edici Metin (Öyküleyici)",
+        "wrong1": "Bilgilendirici Metin",
+        "wrong2": "Şiir",
+        "explanation": "Metinde bir olay akışı (hareket) vardır. Kişi, zaman ve mekan unsurları kullanılarak bir olay aktarıldığı için hikaye edici metindir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_028",
+      "level": "orta",
+      "premise": "Sabah güneşi penceremden içeri sızdığında gözlerimi açtım. Yataktan heyecanla fırladım, çünkü bugün teyzemler gelecekti.",
+      "text": "Yukarıdaki metindeki olay hangi zaman diliminde gerçekleşmektedir?",
+      "correct": "Sabah vakti",
+      "wrong1": "Öğlen",
+      "wrong2": "Akşam",
+      "explanation": "Metindeki 'Sabah güneşi penceremden içeri sızdığında' ifadesi olayın sabah gerçekleştiğini gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metindeki olay hangi zaman diliminde gerçekleşmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sabah güneşi penceremden içeri sızdığında gözlerimi açtım. Yataktan heyecanla fırladım, çünkü bugün teyzemler gelecekti."
+            }
+          ]
+        },
+        "correct": "Sabah vakti",
+        "wrong1": "Öğlen",
+        "wrong2": "Akşam",
+        "explanation": "Metindeki 'Sabah güneşi penceremden içeri sızdığında' ifadesi olayın sabah gerçekleştiğini gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "Birbiri ardına gelişen hareketlerin, durumların sırasıyla aktarıldığı metin yapılarına genel olarak ne ad verilir?",
+      "correct": "Olay örgüsü",
+      "wrong1": "Bilgi akışı",
+      "wrong2": "Tekerleme düzeni",
+      "explanation": "Hikayelerde olayların belirli bir mantık ve zaman sırasına göre anlatılmasına olay örgüsü denir.",
+      "app": {
+        "question": {
+          "text": "Birbiri ardına gelişen hareketlerin, durumların sırasıyla aktarıldığı metin yapılarına genel olarak ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olay örgüsü",
+        "wrong1": "Bilgi akışı",
+        "wrong2": "Tekerleme düzeni",
+        "explanation": "Hikayelerde olayların belirli bir mantık ve zaman sırasına göre anlatılmasına olay örgüsü denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_030",
+      "level": "zor",
+      "premise": "Yaşlı adam elindeki ağır torbalarla yokuşu çıkarken nefes nefese kalmıştı. Onu gören bir genç koşarak yardıma gitti.",
+      "text": "Yukarıdaki metnin karakterleri (kişileri) kimlerdir?",
+      "correct": "Yaşlı adam ve genç",
+      "wrong1": "Ağır torbalar ve yokuş",
+      "wrong2": "Sadece yaşlı adam",
+      "explanation": "Olayın içinde yer alan, eylemleri yapan canlı varlıklara karakter/kişi denir. Burada yaşlı adam ve ona yardım eden genç karakterlerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin karakterleri (kişileri) kimlerdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yaşlı adam elindeki ağır torbalarla yokuşu çıkarken nefes nefese kalmıştı. Onu gören bir genç koşarak yardıma gitti."
+            }
+          ]
+        },
+        "correct": "Yaşlı adam ve genç",
+        "wrong1": "Ağır torbalar ve yokuş",
+        "wrong2": "Sadece yaşlı adam",
+        "explanation": "Olayın içinde yer alan, eylemleri yapan canlı varlıklara karakter/kişi denir. Burada yaşlı adam ve ona yardım eden genç karakterlerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_031",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okuyucuya yeni bir şeyler öğretmek, bir konu hakkında aydınlatmak amacıyla yazılan bilgi verici metinlere ne denir?",
+      "correct": "Bilgilendirici Metin",
+      "wrong1": "Hikâye",
+      "wrong2": "Şiir",
+      "explanation": "Amacı bilgi vermek, bir konuyu öğretmek, açıklamak olan gerçekçi metinler bilgilendirici metinlerdir.",
+      "app": {
+        "question": {
+          "text": "Okuyucuya yeni bir şeyler öğretmek, bir konu hakkında aydınlatmak amacıyla yazılan bilgi verici metinlere ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bilgilendirici Metin",
+        "wrong1": "Hikâye",
+        "wrong2": "Şiir",
+        "explanation": "Amacı bilgi vermek, bir konuyu öğretmek, açıklamak olan gerçekçi metinler bilgilendirici metinlerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_032",
+      "level": "orta",
+      "premise": "Güneş, Dünya'mızı ısıtan ve aydınlatan büyük bir yıldızdır. Dünya'nın bu dönüşü bir yıl sürer.",
+      "text": "Yukarıdaki metnin yazılış amacı nedir?",
+      "correct": "Bilgi vermek",
+      "wrong1": "Eğlendirmek",
+      "wrong2": "Duyguları coşkuyla dile getirmek",
+      "explanation": "Metinde bilimsel ve gerçek bilgiler kullanılarak Güneş ve Dünya hakkında okuyucuya bilgi aktarılmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin yazılış amacı nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş, Dünya'mızı ısıtan ve aydınlatan büyük bir yıldızdır. Dünya'nın bu dönüşü bir yıl sürer."
+            }
+          ]
+        },
+        "correct": "Bilgi vermek",
+        "wrong1": "Eğlendirmek",
+        "wrong2": "Duyguları coşkuyla dile getirmek",
+        "explanation": "Metinde bilimsel ve gerçek bilgiler kullanılarak Güneş ve Dünya hakkında okuyucuya bilgi aktarılmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_033",
+      "level": "zor",
+      "premise": null,
+      "text": "Bilgilendirici metinler ile ilgili aşağıda verilenlerden hangisi kesinlikle yanlıştır?",
+      "correct": "Olaylar kurgusal ve tamamen hayal ürünüdür.",
+      "wrong1": "Gerçeklere ve nesnel verilere dayanır.",
+      "wrong2": "Amacı okuyucuyu bir konu hakkında eğitmektir.",
+      "explanation": "Bilgilendirici metinlerde hayal ürünü, kurgu veya olağanüstü ögelere yer verilmez; metindeki her şey gerçeklere dayanır.",
+      "app": {
+        "question": {
+          "text": "Bilgilendirici metinler ile ilgili aşağıda verilenlerden hangisi kesinlikle yanlıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olaylar kurgusal ve tamamen hayal ürünüdür.",
+        "wrong1": "Gerçeklere ve nesnel verilere dayanır.",
+        "wrong2": "Amacı okuyucuyu bir konu hakkında eğitmektir.",
+        "explanation": "Bilgilendirici metinlerde hayal ürünü, kurgu veya olağanüstü ögelere yer verilmez; metindeki her şey gerçeklere dayanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_034",
+      "level": "kolay",
+      "premise": "Arılar bal yapmak için çiçeklerin nektarını toplarlar. Bir kavanoz bal için binlerce çiçeğe konmaları ve büyük bir çaba göstermeleri gerekir.",
+      "text": "Yukarıdaki metin türü hangisidir?",
+      "correct": "Bilgilendirici Metin",
+      "wrong1": "Masal",
+      "wrong2": "Şiir",
+      "explanation": "Bu metin, arıların balı nasıl yaptığını anlatan gerçek ve bilimsel bilgiler içerdiği için bilgilendirici bir metindir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin türü hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Arılar bal yapmak için çiçeklerin nektarını toplarlar. Bir kavanoz bal için binlerce çiçeğe konmaları ve büyük bir çaba göstermeleri gerekir."
+            }
+          ]
+        },
+        "correct": "Bilgilendirici Metin",
+        "wrong1": "Masal",
+        "wrong2": "Şiir",
+        "explanation": "Bu metin, arıların balı nasıl yaptığını anlatan gerçek ve bilimsel bilgiler içerdiği için bilgilendirici bir metindir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_035",
+      "level": "orta",
+      "premise": null,
+      "text": "Gazetelerde okuduğumuz haber yazıları hangi metin türü grubuna girer?",
+      "correct": "Bilgilendirici Metin",
+      "wrong1": "Hikâye Edici Metin",
+      "wrong2": "Şiir",
+      "explanation": "Haber yazılarının amacı okuyucuya dünyada ve ülkede olup bitenler hakkında gerçek bilgi vermektir, bu yüzden bilgilendiricidir.",
+      "app": {
+        "question": {
+          "text": "Gazetelerde okuduğumuz haber yazıları hangi metin türü grubuna girer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bilgilendirici Metin",
+        "wrong1": "Hikâye Edici Metin",
+        "wrong2": "Şiir",
+        "explanation": "Haber yazılarının amacı okuyucuya dünyada ve ülkede olup bitenler hakkında gerçek bilgi vermektir, bu yüzden bilgilendiricidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_036",
+      "level": "zor",
+      "premise": "Atatürk, 1881 yılında Selanik'te doğdu. Başarılı bir asker ve ileri görüşlü bir devlet adamıydı. Türkiye Cumhuriyeti'ni kurarak yenilikler yaptı.",
+      "text": "Yukarıdaki metni okuyan bir öğrenci metnin türüyle ilgili hangi doğru çıkarımı yapmalıdır?",
+      "correct": "Metin bilgilendirici metindir, çünkü tarihi bir gerçeklik anlatılmıştır.",
+      "wrong1": "Metin hikâyedir, çünkü kahramanı vardır",
+      "wrong2": "Metin masaldır, çünkü geçmişte yaşanmıştır",
+      "explanation": "Tarihi şahsiyetlerin hayatını (biyografi) anlatan bu tür metinler, gerçek bilgileri aktardığı için bilgilendirici metinlerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metni okuyan bir öğrenci metnin türüyle ilgili hangi doğru çıkarımı yapmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Atatürk, 1881 yılında Selanik'te doğdu. Başarılı bir asker ve ileri görüşlü bir devlet adamıydı. Türkiye Cumhuriyeti'ni kurarak yenilikler yaptı."
+            }
+          ]
+        },
+        "correct": "Metin bilgilendirici metindir, çünkü tarihi bir gerçeklik anlatılmıştır.",
+        "wrong1": "Metin hikâyedir, çünkü kahramanı vardır",
+        "wrong2": "Metin masaldır, çünkü geçmişte yaşanmıştır",
+        "explanation": "Tarihi şahsiyetlerin hayatını (biyografi) anlatan bu tür metinler, gerçek bilgileri aktardığı için bilgilendirici metinlerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_037",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bilgilendirici metinlere uygun bir başlık olabilir?",
+      "correct": "Suyun Doğadaki Döngüsü",
+      "wrong1": "Konuşan Kurbağa",
+      "wrong2": "Uçan Süpürge",
+      "explanation": "Konuşan kurbağa veya uçan süpürge masal/fabl başlığıdır. Suyun döngüsü ise bilimsel, öğretici ve gerçektir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bilgilendirici metinlere uygun bir başlık olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Suyun Doğadaki Döngüsü",
+        "wrong1": "Konuşan Kurbağa",
+        "wrong2": "Uçan Süpürge",
+        "explanation": "Konuşan kurbağa veya uçan süpürge masal/fabl başlığıdır. Suyun döngüsü ise bilimsel, öğretici ve gerçektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_038",
+      "level": "orta",
+      "premise": "Sağlıklı büyümek için süt içmeliyiz. Süt, kemiklerimizin güçlenmesini sağlayan kalsiyum minerali bakımından çok zengindir.",
+      "text": "Yukarıdaki kısa metin, okuyucuda nasıl bir etki bırakmayı hedefler?",
+      "correct": "Sütün faydaları hakkında öğrenme sağlamayı",
+      "wrong1": "Korku dolu bir olay yaşamayı",
+      "wrong2": "Hayal gücünü geliştirmeyi",
+      "explanation": "Metin, sütün faydalarını anlatan eğitici ve gerçek bilgiler vererek okuyucuda öğrenme sağlar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kısa metin, okuyucuda nasıl bir etki bırakmayı hedefler?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sağlıklı büyümek için süt içmeliyiz. Süt, kemiklerimizin güçlenmesini sağlayan kalsiyum minerali bakımından çok zengindir."
+            }
+          ]
+        },
+        "correct": "Sütün faydaları hakkında öğrenme sağlamayı",
+        "wrong1": "Korku dolu bir olay yaşamayı",
+        "wrong2": "Hayal gücünü geliştirmeyi",
+        "explanation": "Metin, sütün faydalarını anlatan eğitici ve gerçek bilgiler vererek okuyucuda öğrenme sağlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_039",
+      "level": "zor",
+      "premise": "Zürafalar karadaki en uzun hayvanlardır. Boyları 5-6 metreye kadar ulaşabilir. Uzun boyunları sayesinde ağaçların en üstündeki yaprakları yiyebilirler.",
+      "text": "Yukarıdaki metinde aşağıdakilerden hangisi yoktur?",
+      "correct": "Hayal ürünü unsurlar",
+      "wrong1": "Hayvanlarla ilgili bilgiler",
+      "wrong2": "Gerçek ifadeler",
+      "explanation": "Bu tamamen gerçeğe ve bilgiye dayanan bilgilendirici bir metin olduğu için içinde olağanüstü/hayal ürünü ifadeler yoktur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde aşağıdakilerden hangisi yoktur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zürafalar karadaki en uzun hayvanlardır. Boyları 5-6 metreye kadar ulaşabilir. Uzun boyunları sayesinde ağaçların en üstündeki yaprakları yiyebilirler."
+            }
+          ]
+        },
+        "correct": "Hayal ürünü unsurlar",
+        "wrong1": "Hayvanlarla ilgili bilgiler",
+        "wrong2": "Gerçek ifadeler",
+        "explanation": "Bu tamamen gerçeğe ve bilgiye dayanan bilgilendirici bir metin olduğu için içinde olağanüstü/hayal ürünü ifadeler yoktur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_040",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir ders kitabında (örneğin Hayat Bilgisi kitabında) yer alan okuma parçaları genellikle hangi türdendir?",
+      "correct": "Bilgilendirici Metin",
+      "wrong1": "Fabl",
+      "wrong2": "Şiir",
+      "explanation": "Ders kitapları konuları öğretmeyi amaçladığı için içlerindeki metinler genellikle bilgi verici özellik taşır.",
+      "app": {
+        "question": {
+          "text": "Bir ders kitabında (örneğin Hayat Bilgisi kitabında) yer alan okuma parçaları genellikle hangi türdendir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bilgilendirici Metin",
+        "wrong1": "Fabl",
+        "wrong2": "Şiir",
+        "explanation": "Ders kitapları konuları öğretmeyi amaçladığı için içlerindeki metinler genellikle bilgi verici özellik taşır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_041",
+      "level": "kolay",
+      "premise": null,
+      "text": "Duyguların, hayallerin ve coşkunun alt alta dizeler (mısralar) halinde ahenkli kelimelerle anlatıldığı yazı türüne ne denir?",
+      "correct": "Şiir",
+      "wrong1": "Masal",
+      "wrong2": "Bilgilendirici Metin",
+      "explanation": "Satırların (dizelerin) alt alta dizildiği ve genellikle bir duygunun, sevginin anlatıldığı edebi metin türüne şiir denir.",
+      "app": {
+        "question": {
+          "text": "Duyguların, hayallerin ve coşkunun alt alta dizeler (mısralar) halinde ahenkli kelimelerle anlatıldığı yazı türüne ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Şiir",
+        "wrong1": "Masal",
+        "wrong2": "Bilgilendirici Metin",
+        "explanation": "Satırların (dizelerin) alt alta dizildiği ve genellikle bir duygunun, sevginin anlatıldığı edebi metin türüne şiir denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_042",
+      "level": "orta",
+      "premise": "Bayrağım dalgalanır,\nGökyüzü aydınlanır.\nRengini kandan almış,\nHerkes ona hayran kalır.",
+      "text": "Yukarıdaki metin kaç dizeden (mısradan) oluşmaktadır?",
+      "correct": "4",
+      "wrong1": "1",
+      "wrong2": "2",
+      "explanation": "Şiirde her bir satıra dize (mısra) denir. Bu metin 4 satırdan oluştuğu için 4 dizesi vardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin kaç dizeden (mısradan) oluşmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bayrağım dalgalanır,\nGökyüzü aydınlanır.\nRengini kandan almış,\nHerkes ona hayran kalır."
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "1",
+        "wrong2": "2",
+        "explanation": "Şiirde her bir satıra dize (mısra) denir. Bu metin 4 satırdan oluştuğu için 4 dizesi vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_043",
+      "level": "zor",
+      "premise": null,
+      "text": "Düz yazıyı yazan kişilere 'yazar' denirken, şiir yazan sanatçılara ne ad verilir?",
+      "correct": "Şair (Ozan)",
+      "wrong1": "Ressam",
+      "wrong2": "Oyuncu",
+      "explanation": "Şiir yazan ve bu alanda eserler veren edebiyat sanatçılarına şair veya ozan denir.",
+      "app": {
+        "question": {
+          "text": "Düz yazıyı yazan kişilere 'yazar' denirken, şiir yazan sanatçılara ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Şair (Ozan)",
+        "wrong1": "Ressam",
+        "wrong2": "Oyuncu",
+        "explanation": "Şiir yazan ve bu alanda eserler veren edebiyat sanatçılarına şair veya ozan denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_044",
+      "level": "kolay",
+      "premise": "Anneciğim canım benim,\nSeni çok severim.\nSenin o güzel yüzün,\nBenim bütün neşem.",
+      "text": "Yukarıdaki şiirin ana duygusu (teması) aşağıdakilerden hangisidir?",
+      "correct": "Anne sevgisi",
+      "wrong1": "Doğa sevgisi",
+      "wrong2": "Okul özlemi",
+      "explanation": "Şiirde annesine olan sevgisini ve onun yüzünün verdiği neşeyi anlatan bir çocuğun anne sevgisi işlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu (teması) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Anneciğim canım benim,\nSeni çok severim.\nSenin o güzel yüzün,\nBenim bütün neşem."
+            }
+          ]
+        },
+        "correct": "Anne sevgisi",
+        "wrong1": "Doğa sevgisi",
+        "wrong2": "Okul özlemi",
+        "explanation": "Şiirde annesine olan sevgisini ve onun yüzünün verdiği neşeyi anlatan bir çocuğun anne sevgisi işlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_045",
+      "level": "orta",
+      "premise": "İlkbahar geldi yine,\nÇiçekler açtı bahçede.\nKuşlar neşeyle ötüyor,\nGüneş gülüyor gökyüzünde.",
+      "text": "Yukarıdaki şiirde dört dizeden oluşan kümeye ne ad verilir?",
+      "correct": "Kıta (Dörtlük)",
+      "wrong1": "Paragraf",
+      "wrong2": "Başlık",
+      "explanation": "Şiirlerde dört dizeden oluşan ve genellikle kendi içinde bir anlam bütünlüğü olan bölümlere kıta (dörtlük) denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirde dört dizeden oluşan kümeye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İlkbahar geldi yine,\nÇiçekler açtı bahçede.\nKuşlar neşeyle ötüyor,\nGüneş gülüyor gökyüzünde."
+            }
+          ]
+        },
+        "correct": "Kıta (Dörtlük)",
+        "wrong1": "Paragraf",
+        "wrong2": "Başlık",
+        "explanation": "Şiirlerde dört dizeden oluşan ve genellikle kendi içinde bir anlam bütünlüğü olan bölümlere kıta (dörtlük) denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_046",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir şiir okunduğunda okuyucunun kalbinde hissettiği, şairin vermek istediği asıl hisse/duyguya ne denir?",
+      "correct": "Ana Duygu",
+      "wrong1": "Ana Fikir",
+      "wrong2": "Konu",
+      "explanation": "Bilgilendirici ve hikaye edici metinlerde 'ana fikir' varken, şiirlerde hissettirilen sevgi, özlem, üzüntü gibi temalara 'ana duygu' denir.",
+      "app": {
+        "question": {
+          "text": "Bir şiir okunduğunda okuyucunun kalbinde hissettiği, şairin vermek istediği asıl hisse/duyguya ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana Duygu",
+        "wrong1": "Ana Fikir",
+        "wrong2": "Konu",
+        "explanation": "Bilgilendirici ve hikaye edici metinlerde 'ana fikir' varken, şiirlerde hissettirilen sevgi, özlem, üzüntü gibi temalara 'ana duygu' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_047",
+      "level": "kolay",
+      "premise": "Kitabım en iyi dostum,\nHer gün okur dururum.\nYeni bilgiler öğrenir,\nSanki dünyayı gezerim.",
+      "text": "Yukarıdaki dörtlük hangi konuyu anlatmaktadır?",
+      "correct": "Kitap okumanın yararları ve kitap sevgisi",
+      "wrong1": "Seyahat etmenin zorluğu",
+      "wrong2": "Arkadaşlarla oyun oynamak",
+      "explanation": "Şiirde kitabın bir dost olduğu ve yeni bilgiler öğrettiği vurgulanarak kitap sevgisi işlenmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki dörtlük hangi konuyu anlatmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitabım en iyi dostum,\nHer gün okur dururum.\nYeni bilgiler öğrenir,\nSanki dünyayı gezerim."
+            }
+          ]
+        },
+        "correct": "Kitap okumanın yararları ve kitap sevgisi",
+        "wrong1": "Seyahat etmenin zorluğu",
+        "wrong2": "Arkadaşlarla oyun oynamak",
+        "explanation": "Şiirde kitabın bir dost olduğu ve yeni bilgiler öğrettiği vurgulanarak kitap sevgisi işlenmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_048",
+      "level": "orta",
+      "premise": null,
+      "text": "Şiir ile düz yazıyı (hikâye, masal vb.) karşılaştırdığımızda aşağıdakilerden hangisi şiirin belirgin özelliğidir?",
+      "correct": "Satırbaşı yapılmadan, dizeler halinde yazılması",
+      "wrong1": "Paragraflardan oluşması",
+      "wrong2": "Sadece hayvanların konuşturulması",
+      "explanation": "Düz yazılar cümleler yana yana dizilerek paragraflar oluştururken; şiirler kısa satırlar (dizeler) halinde alt alta yazılır.",
+      "app": {
+        "question": {
+          "text": "Şiir ile düz yazıyı (hikâye, masal vb.) karşılaştırdığımızda aşağıdakilerden hangisi şiirin belirgin özelliğidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Satırbaşı yapılmadan, dizeler halinde yazılması",
+        "wrong1": "Paragraflardan oluşması",
+        "wrong2": "Sadece hayvanların konuşturulması",
+        "explanation": "Düz yazılar cümleler yana yana dizilerek paragraflar oluştururken; şiirler kısa satırlar (dizeler) halinde alt alta yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_049",
+      "level": "zor",
+      "premise": "İnci gibi dişlerim,\nHer gün fırçalarım.\nSağlıklı olsun diye,\nMacunla parlatırım.",
+      "text": "Yukarıdaki şiirde dişler neye benzetilmiştir?",
+      "correct": "İnciye",
+      "wrong1": "Macuna",
+      "wrong2": "Fırçaya",
+      "explanation": "'İnci gibi dişlerim' ifadesinde benzetme sanatı kullanılarak dişlerin parlaklığı ve beyazlığı inciye benzetilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirde dişler neye benzetilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İnci gibi dişlerim,\nHer gün fırçalarım.\nSağlıklı olsun diye,\nMacunla parlatırım."
+            }
+          ]
+        },
+        "correct": "İnciye",
+        "wrong1": "Macuna",
+        "wrong2": "Fırçaya",
+        "explanation": "'İnci gibi dişlerim' ifadesinde benzetme sanatı kullanılarak dişlerin parlaklığı ve beyazlığı inciye benzetilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_050",
+      "level": "kolay",
+      "premise": null,
+      "text": "İstiklal Marşı'mız metin türü olarak aşağıdakilerden hangisidir?",
+      "correct": "Şiir",
+      "wrong1": "Hikâye",
+      "wrong2": "Bilgilendirici Metin",
+      "explanation": "Mehmet Akif Ersoy tarafından yazılan İstiklal Marşı, kıtalardan ve dizelerden oluşan kahramanlık konulu bir şiirdir.",
+      "app": {
+        "question": {
+          "text": "İstiklal Marşı'mız metin türü olarak aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Şiir",
+        "wrong1": "Hikâye",
+        "wrong2": "Bilgilendirici Metin",
+        "explanation": "Mehmet Akif Ersoy tarafından yazılan İstiklal Marşı, kıtalardan ve dizelerden oluşan kahramanlık konulu bir şiirdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_051",
+      "level": "kolay",
+      "premise": "Sevgili Arkadaşım Ayşe,\nSeni çok özledim. Yaz tatilinde köyünüze gelecek misin?",
+      "text": "Yukarıdaki metin hangi türün bir örneğidir?",
+      "correct": "Mektup",
+      "wrong1": "Günlük",
+      "wrong2": "Şiir",
+      "explanation": "Birine hitapla ('Sevgili...') başlayan ve haberleşmek, durum sormak amacıyla uzaktaki kişilere yazılan yazılara mektup denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin hangi türün bir örneğidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sevgili Arkadaşım Ayşe,\nSeni çok özledim. Yaz tatilinde köyünüze gelecek misin?"
+            }
+          ]
+        },
+        "correct": "Mektup",
+        "wrong1": "Günlük",
+        "wrong2": "Şiir",
+        "explanation": "Birine hitapla ('Sevgili...') başlayan ve haberleşmek, durum sormak amacıyla uzaktaki kişilere yazılan yazılara mektup denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_052",
+      "level": "orta",
+      "premise": "12 Mayıs Salı\nBugün okulda çok eğlendim. Öğretmenimiz bize yeni bir oyun öğretti...",
+      "text": "Yukarıdaki metnin türü için aşağıdakilerden hangisi söylenebilir?",
+      "correct": "Günlük",
+      "wrong1": "Masal",
+      "wrong2": "Fabl",
+      "explanation": "Tarih atılarak, o gün yaşanan olayların ve duyguların günü gününe yazıldığı metin türü günlüktür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin türü için aşağıdakilerden hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "12 Mayıs Salı\nBugün okulda çok eğlendim. Öğretmenimiz bize yeni bir oyun öğretti..."
+            }
+          ]
+        },
+        "correct": "Günlük",
+        "wrong1": "Masal",
+        "wrong2": "Fabl",
+        "explanation": "Tarih atılarak, o gün yaşanan olayların ve duyguların günü gününe yazıldığı metin türü günlüktür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_053",
+      "level": "zor",
+      "premise": "Günlük ve anı (hatıra) birbirine çok benzer. İkisi de yazarın başından geçen olayları anlatır.",
+      "text": "Yukarıdaki metne göre peki günlüğü anıdan ayıran en önemli fark aşağıdakilerden hangisidir?",
+      "correct": "Günlüklerin günü gününe, tarih atılarak yazılması",
+      "wrong1": "Günlüklerin sadece ünlü kişiler tarafından yazılması",
+      "wrong2": "Günlüklerde hayal ürünü olayların anlatılması",
+      "explanation": "Anılar olayların üzerinden uzun zaman geçtikten (yıllar sonra) yazılırken, günlükler yaşandığı gün sıcağı sıcağına yazılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre peki günlüğü anıdan ayıran en önemli fark aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Günlük ve anı (hatıra) birbirine çok benzer. İkisi de yazarın başından geçen olayları anlatır."
+            }
+          ]
+        },
+        "correct": "Günlüklerin günü gününe, tarih atılarak yazılması",
+        "wrong1": "Günlüklerin sadece ünlü kişiler tarafından yazılması",
+        "wrong2": "Günlüklerde hayal ürünü olayların anlatılması",
+        "explanation": "Anılar olayların üzerinden uzun zaman geçtikten (yıllar sonra) yazılırken, günlükler yaşandığı gün sıcağı sıcağına yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_054",
+      "level": "kolay",
+      "premise": null,
+      "text": "Geçmişte yaşanmış, kişi için önemli olan olayların üzerinden zaman geçtikten sonra yazıldığı metin türü nedir?",
+      "correct": "Anı (Hatıra)",
+      "wrong1": "Masal",
+      "wrong2": "Mektup",
+      "explanation": "Yaşanmış ilginç, önemli veya duygusal olayların sonradan hatırlanarak yazılmasına anı (hatıra) denir.",
+      "app": {
+        "question": {
+          "text": "Geçmişte yaşanmış, kişi için önemli olan olayların üzerinden zaman geçtikten sonra yazıldığı metin türü nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Anı (Hatıra)",
+        "wrong1": "Masal",
+        "wrong2": "Mektup",
+        "explanation": "Yaşanmış ilginç, önemli veya duygusal olayların sonradan hatırlanarak yazılmasına anı (hatıra) denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_055",
+      "level": "orta",
+      "premise": "Ben yedi yaşındayken dedemin bisiklet sürmeyi öğretmesini hiç unutmam. O gün o kadar çok düşmüştüm ki dizlerim yara olmuştu.",
+      "text": "Yukarıdaki metnin türü büyük ihtimalle nedir?",
+      "correct": "Anı",
+      "wrong1": "Haber metni",
+      "wrong2": "Bilgilendirici metin",
+      "explanation": "Yazar, yedi yaşındayken geçmişte yaşadığı ve kendisinde iz bırakan bir olayı hatırlayarak anlattığı için bu metin bir anıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin türü büyük ihtimalle nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ben yedi yaşındayken dedemin bisiklet sürmeyi öğretmesini hiç unutmam. O gün o kadar çok düşmüştüm ki dizlerim yara olmuştu."
+            }
+          ]
+        },
+        "correct": "Anı",
+        "wrong1": "Haber metni",
+        "wrong2": "Bilgilendirici metin",
+        "explanation": "Yazar, yedi yaşındayken geçmişte yaşadığı ve kendisinde iz bırakan bir olayı hatırlayarak anlattığı için bu metin bir anıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_056",
+      "level": "zor",
+      "premise": "İnsanların kendi kendileriyle dertleşmek için yazdıkları, genellikle sır saklayan kilitli defterlere yazılan metin türüdür.",
+      "text": "Yukarıdaki metne göre burada anlatılan metin türü hangisidir?",
+      "correct": "Günlük (Günce)",
+      "wrong1": "Biyografi",
+      "wrong2": "Anı",
+      "explanation": "Kişinin kimseyle paylaşmak istemediği özel duygularını her gün düzenli olarak yazdığı metinlere günlük denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre burada anlatılan metin türü hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "İnsanların kendi kendileriyle dertleşmek için yazdıkları, genellikle sır saklayan kilitli defterlere yazılan metin türüdür."
+            }
+          ]
+        },
+        "correct": "Günlük (Günce)",
+        "wrong1": "Biyografi",
+        "wrong2": "Anı",
+        "explanation": "Kişinin kimseyle paylaşmak istemediği özel duygularını her gün düzenli olarak yazdığı metinlere günlük denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_057",
+      "level": "kolay",
+      "premise": null,
+      "text": "Mektup yazarken metnin sağ üst köşesine genellikle ne yazılır?",
+      "correct": "Tarih",
+      "wrong1": "Yazarın doğum tarihi",
+      "wrong2": "Şiirin başlığı",
+      "explanation": "Mektuplarda ve dilekçelerde sağ üst köşeye yazının yazıldığı tarih atılır.",
+      "app": {
+        "question": {
+          "text": "Mektup yazarken metnin sağ üst köşesine genellikle ne yazılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tarih",
+        "wrong1": "Yazarın doğum tarihi",
+        "wrong2": "Şiirin başlığı",
+        "explanation": "Mektuplarda ve dilekçelerde sağ üst köşeye yazının yazıldığı tarih atılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_058",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir mektup giriş hitabı (seslenişi) olamaz?",
+      "correct": "Bir varmış bir yokmuş,",
+      "wrong1": "Değerli Öğretmenim,",
+      "wrong2": "Canım Kardeşim,",
+      "explanation": "Mektuplar sevgi veya saygı belirten hitap sözcükleriyle başlar. 'Bir varmış bir yokmuş' masal başlangıcıdır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir mektup giriş hitabı (seslenişi) olamaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir varmış bir yokmuş,",
+        "wrong1": "Değerli Öğretmenim,",
+        "wrong2": "Canım Kardeşim,",
+        "explanation": "Mektuplar sevgi veya saygı belirten hitap sözcükleriyle başlar. 'Bir varmış bir yokmuş' masal başlangıcıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_059",
+      "level": "zor",
+      "premise": "Sevgili Günlüğüm,\nBugün içimde tuhaf bir hüzün var. En sevdiğim silgimi kaybettim.",
+      "text": "Yukarıdaki metinle ilgili olarak hangisi kesinlikle doğrudur?",
+      "correct": "Olay yaşandığı gün yazılmıştır.",
+      "wrong1": "Uzaktaki bir arkadaşa gönderilecektir.",
+      "wrong2": "Topluma bilgi vermek amacıyla yazılmıştır.",
+      "explanation": "'Sevgili Günlüğüm' hitabı ve 'Bugün' ifadesi, metnin olayla aynı gün yazıldığını ve gizli duyguları barındırdığını gösterir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinle ilgili olarak hangisi kesinlikle doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sevgili Günlüğüm,\nBugün içimde tuhaf bir hüzün var. En sevdiğim silgimi kaybettim."
+            }
+          ]
+        },
+        "correct": "Olay yaşandığı gün yazılmıştır.",
+        "wrong1": "Uzaktaki bir arkadaşa gönderilecektir.",
+        "wrong2": "Topluma bilgi vermek amacıyla yazılmıştır.",
+        "explanation": "'Sevgili Günlüğüm' hitabı ve 'Bugün' ifadesi, metnin olayla aynı gün yazıldığını ve gizli duyguları barındırdığını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_060",
+      "level": "kolay",
+      "premise": null,
+      "correct": "Anı (Hatıra)",
+      "wrong1": "Şiir",
+      "wrong2": "Fabl",
+      "explanation": "Nutuk, Atatürk'ün geçmişte Kurtuluş Savaşı sırasında yaşadıklarını daha sonra kaleme alması nedeniyle anı türüne girer.",
+      "text": "Mustafa Kemal Atatürk'ün Samsun'a çıkış yolculuğunu anlattığı Nutuk adlı eseri, onun başından geçen olayları anlattığı için hangi metin türüne yakındır?",
+      "app": {
+        "question": {
+          "text": "Mustafa Kemal Atatürk'ün Samsun'a çıkış yolculuğunu anlattığı Nutuk adlı eseri, onun başından geçen olayları anlattığı için hangi metin türüne yakındır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Anı (Hatıra)",
+        "wrong1": "Şiir",
+        "wrong2": "Fabl",
+        "explanation": "Nutuk, Atatürk'ün geçmişte Kurtuluş Savaşı sırasında yaşadıklarını daha sonra kaleme alması nedeniyle anı türüne girer.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_061",
+      "level": "orta",
+      "premise": null,
+      "text": "Günlükler genellikle kimin ağzından (kimin diliyle) yazılır?",
+      "correct": "Birinci tekil kişi (Ben)",
+      "wrong1": "Üçüncü tekil kişi (O)",
+      "wrong2": "İkinci çoğul kişi (Siz)",
+      "explanation": "Günlükler kişinin kendi yaşadıklarını yazdığı metinler olduğu için her zaman 'ben' diliyle yazılır.",
+      "app": {
+        "question": {
+          "text": "Günlükler genellikle kimin ağzından (kimin diliyle) yazılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Birinci tekil kişi (Ben)",
+        "wrong1": "Üçüncü tekil kişi (O)",
+        "wrong2": "İkinci çoğul kişi (Siz)",
+        "explanation": "Günlükler kişinin kendi yaşadıklarını yazdığı metinler olduğu için her zaman 'ben' diliyle yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_062",
+      "level": "zor",
+      "premise": "O gün yağan karı hayatım boyunca unutmayacağım. Arkadaşlarımızla kardan adam yaparken çok eğlenmiştik.",
+      "text": "Yukarıdaki anı metninde hangi zaman kipi kullanılmıştır?",
+      "correct": "Geçmiş zaman",
+      "wrong1": "Gelecek zaman",
+      "wrong2": "Şimdiki zaman",
+      "explanation": "Anılar geçmişte yaşanmış olayları anlattığı için ifadeler hep geçmiş zaman (yaşadık, eğlendik, düştüm vb.) içerir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki anı metninde hangi zaman kipi kullanılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "O gün yağan karı hayatım boyunca unutmayacağım. Arkadaşlarımızla kardan adam yaparken çok eğlenmiştik."
+            }
+          ]
+        },
+        "correct": "Geçmiş zaman",
+        "wrong1": "Gelecek zaman",
+        "wrong2": "Şimdiki zaman",
+        "explanation": "Anılar geçmişte yaşanmış olayları anlattığı için ifadeler hep geçmiş zaman (yaşadık, eğlendik, düştüm vb.) içerir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_063",
+      "level": "kolay",
+      "premise": null,
+      "text": "İnsanların uzaktaki sevdikleriyle haberleşmek, onlara bir şeyler anlatmak için kağıda yazdıkları yazıya ne denir?",
+      "correct": "Mektup",
+      "wrong1": "Masal",
+      "wrong2": "Hikaye",
+      "explanation": "Eskiden beri kullanılan en yaygın yazılı haberleşme türü mektuptur.",
+      "app": {
+        "question": {
+          "text": "İnsanların uzaktaki sevdikleriyle haberleşmek, onlara bir şeyler anlatmak için kağıda yazdıkları yazıya ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mektup",
+        "wrong1": "Masal",
+        "wrong2": "Hikaye",
+        "explanation": "Eskiden beri kullanılan en yaygın yazılı haberleşme türü mektuptur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_064",
+      "level": "orta",
+      "premise": null,
+      "correct": "Günlük",
+      "wrong1": "Şiir",
+      "wrong2": "Haber metni",
+      "explanation": "Her günün sonunda o gün yaşananların yazıldığı defterler günlüktür.",
+      "text": "Düzenli olarak her akşam uyumadan önce defterine birkaç sayfa yazı yazan Ayşe'nin bu yazıları hangi türdür?",
+      "app": {
+        "question": {
+          "text": "Düzenli olarak her akşam uyumadan önce defterine birkaç sayfa yazı yazan Ayşe'nin bu yazıları hangi türdür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Günlük",
+        "wrong1": "Şiir",
+        "wrong2": "Haber metni",
+        "explanation": "Her günün sonunda o gün yaşananların yazıldığı defterler günlüktür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_065",
+      "level": "zor",
+      "premise": null,
+      "text": "Anı türündeki metinlerde yazar ile kahraman ilişkisi nasıldır?",
+      "correct": "Yazar olayın bizzat içindedir veya olaya şahittir.",
+      "wrong1": "Yazar tamamen hayali bir kahraman yaratır",
+      "wrong2": "Yazar hayvanları konuşturur",
+      "explanation": "Anı yazarı başından geçen veya gözlemlediği gerçek olayları anlattığı için olayın bir parçasıdır.",
+      "app": {
+        "question": {
+          "text": "Anı türündeki metinlerde yazar ile kahraman ilişkisi nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yazar olayın bizzat içindedir veya olaya şahittir.",
+        "wrong1": "Yazar tamamen hayali bir kahraman yaratır",
+        "wrong2": "Yazar hayvanları konuşturur",
+        "explanation": "Anı yazarı başından geçen veya gözlemlediği gerçek olayları anlattığı için olayın bir parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_066",
+      "level": "kolay",
+      "premise": "Pazar sabahı evin bahçesinde oynayan Ahmet, birden bisikletten düştü ve dizi kanadı.",
+      "text": "Yukarıdaki metindeki olayın kahramanı (kişisi) kimdir?",
+      "correct": "Ahmet",
+      "wrong1": "Pazar sabahı",
+      "wrong2": "Evin bahçesi",
+      "explanation": "Metinde anlatılan eylemi yapan ve yaşayan kişi Ahmet'tir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metindeki olayın kahramanı (kişisi) kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Pazar sabahı evin bahçesinde oynayan Ahmet, birden bisikletten düştü ve dizi kanadı."
+            }
+          ]
+        },
+        "correct": "Ahmet",
+        "wrong1": "Pazar sabahı",
+        "wrong2": "Evin bahçesi",
+        "explanation": "Metinde anlatılan eylemi yapan ve yaşayan kişi Ahmet'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_067",
+      "level": "orta",
+      "premise": "Dün akşam parkta oynarken Elif'in köpeği kayboldu. Elif onu saatlerce aradı ve ağacın arkasında buldu.",
+      "text": "Yukarıdaki metinde hikaye unsurlarından hangisi belli değildir?",
+      "correct": "Hepsi bellidir (Olay, Yer, Zaman, Kişi)",
+      "wrong1": "Zaman",
+      "wrong2": "Yer",
+      "explanation": "Olay: Köpeğin kaybolması ve bulunması, Zaman: Dün akşam, Yer: Park, Kahraman: Elif. Bütün unsurlar metinde verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinde hikaye unsurlarından hangisi belli değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dün akşam parkta oynarken Elif'in köpeği kayboldu. Elif onu saatlerce aradı ve ağacın arkasında buldu."
+            }
+          ]
+        },
+        "correct": "Hepsi bellidir (Olay, Yer, Zaman, Kişi)",
+        "wrong1": "Zaman",
+        "wrong2": "Yer",
+        "explanation": "Olay: Köpeğin kaybolması ve bulunması, Zaman: Dün akşam, Yer: Park, Kahraman: Elif. Bütün unsurlar metinde verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_068",
+      "level": "zor",
+      "premise": "Olay: Sınıfça pikniğe gidilmesi\nZaman: Bahar mevsimi\nYer: Orman\nKahramanlar: Öğrenciler ve öğretmen",
+      "text": "Yukarıdaki hikaye unsurları kullanılarak bir metin yazılırsa, bu metin büyük ihtimalle hangi türde olur?",
+      "correct": "Hikâye (Öykü)",
+      "wrong1": "Fabl",
+      "wrong2": "Masal",
+      "explanation": "Verilen olay, zaman, yer ve kahraman (insan) gerçek hayata tamamen uygun olduğu için bu unsurlarla bir hikâye yazılır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki hikaye unsurları kullanılarak bir metin yazılırsa, bu metin büyük ihtimalle hangi türde olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Olay: Sınıfça pikniğe gidilmesi\nZaman: Bahar mevsimi\nYer: Orman\nKahramanlar: Öğrenciler ve öğretmen"
+            }
+          ]
+        },
+        "correct": "Hikâye (Öykü)",
+        "wrong1": "Fabl",
+        "wrong2": "Masal",
+        "explanation": "Verilen olay, zaman, yer ve kahraman (insan) gerçek hayata tamamen uygun olduğu için bu unsurlarla bir hikâye yazılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_069",
+      "level": "kolay",
+      "premise": "Keloğlan, uzun bir yolculuktan sonra köy meydanına ulaştı.",
+      "text": "Yukarıdaki cümlede olayın geçtiği 'yer' neresidir?",
+      "correct": "Köy meydanı",
+      "wrong1": "Keloğlan",
+      "wrong2": "Uzun yolculuk",
+      "explanation": "Olayın nerede yaşandığını belirten unsur mekan (yer) unsurudur ve bu cümlede köy meydanıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede olayın geçtiği 'yer' neresidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Keloğlan, uzun bir yolculuktan sonra köy meydanına ulaştı."
+            }
+          ]
+        },
+        "correct": "Köy meydanı",
+        "wrong1": "Keloğlan",
+        "wrong2": "Uzun yolculuk",
+        "explanation": "Olayın nerede yaşandığını belirten unsur mekan (yer) unsurudur ve bu cümlede köy meydanıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_070",
+      "level": "orta",
+      "premise": "Soğuk bir kış gecesiydi. Rüzgar camlara vuruyor, soba içeride çıtır çıtır yanıyordu. Dedem bize eski günlerini anlatmaya başladı.",
+      "text": "Yukarıdaki metindeki olay hangi 'zaman' diliminde gerçekleşmektedir?",
+      "correct": "Kış gecesi",
+      "wrong1": "Sabah vakti",
+      "wrong2": "Yaz mevsimi",
+      "explanation": "Metnin hemen başında olayın yaşandığı vakit 'Soğuk bir kış gecesiydi' diyerek açıkça verilmiştir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metindeki olay hangi 'zaman' diliminde gerçekleşmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Soğuk bir kış gecesiydi. Rüzgar camlara vuruyor, soba içeride çıtır çıtır yanıyordu. Dedem bize eski günlerini anlatmaya başladı."
+            }
+          ]
+        },
+        "correct": "Kış gecesi",
+        "wrong1": "Sabah vakti",
+        "wrong2": "Yaz mevsimi",
+        "explanation": "Metnin hemen başında olayın yaşandığı vakit 'Soğuk bir kış gecesiydi' diyerek açıkça verilmiştir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_071",
+      "level": "zor",
+      "premise": "Ahmet, sınıf arkadaşlarıyla birlikte kütüphaneye gitti. Orada çok güzel kitaplar okudular. Fakat eve dönerken çantasını kütüphanede unuttuğunu fark etti.",
+      "text": "Yukarıdaki metnin 'olay' unsuru aşağıdakilerden hangisidir?",
+      "correct": "Ahmet'in kütüphaneye gitmesi ve dönerken çantasını unutması",
+      "wrong1": "Ahmet'in çok kitap okumayı sevmesi",
+      "wrong2": "Sınıf arkadaşlarının kütüphaneye girmek istememesi",
+      "explanation": "Metinde anlatılan hareket, yaşanan durum 'olay'dır. Burada temel olay kütüphaneye gidilmesi ve çantanın unutulmasıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin 'olay' unsuru aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ahmet, sınıf arkadaşlarıyla birlikte kütüphaneye gitti. Orada çok güzel kitaplar okudular. Fakat eve dönerken çantasını kütüphanede unuttuğunu fark etti."
+            }
+          ]
+        },
+        "correct": "Ahmet'in kütüphaneye gitmesi ve dönerken çantasını unutması",
+        "wrong1": "Ahmet'in çok kitap okumayı sevmesi",
+        "wrong2": "Sınıf arkadaşlarının kütüphaneye girmek istememesi",
+        "explanation": "Metinde anlatılan hareket, yaşanan durum 'olay'dır. Burada temel olay kütüphaneye gidilmesi ve çantanın unutulmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_072",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir hikayede olayları yaşayan, başından geçenlerin anlatıldığı insana, hayvana veya varlığa ne denir?",
+      "correct": "Kahraman (Şahıs / Kişi Kadrosu)",
+      "wrong1": "Mekan",
+      "wrong2": "Konu",
+      "explanation": "Olayın merkezinde olan ve eylemleri gerçekleştiren varlıklara metnin kahramanları denir.",
+      "app": {
+        "question": {
+          "text": "Bir hikayede olayları yaşayan, başından geçenlerin anlatıldığı insana, hayvana veya varlığa ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kahraman (Şahıs / Kişi Kadrosu)",
+        "wrong1": "Mekan",
+        "wrong2": "Konu",
+        "explanation": "Olayın merkezinde olan ve eylemleri gerçekleştiren varlıklara metnin kahramanları denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_073",
+      "level": "orta",
+      "premise": "Sabah güneşi odama doğduğunda gözlerimi açtım. Yataktan fırlayıp yüzümü yıkadım. Bugün teyzemler geleceği için çok heyecanlıydım.",
+      "text": "Yukarıdaki hikayede olayın kahramanı kimdir?",
+      "correct": "Yazarın kendisi (Ben)",
+      "wrong1": "Teyzesi",
+      "wrong2": "Güneş",
+      "explanation": "Olayı birinci ağızdan anlatan, yataktan kalkan ve yüzünü yıkayan 'ben', yani olayı anlatan kişinin bizzat kendisidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki hikayede olayın kahramanı kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sabah güneşi odama doğduğunda gözlerimi açtım. Yataktan fırlayıp yüzümü yıkadım. Bugün teyzemler geleceği için çok heyecanlıydım."
+            }
+          ]
+        },
+        "correct": "Yazarın kendisi (Ben)",
+        "wrong1": "Teyzesi",
+        "wrong2": "Güneş",
+        "explanation": "Olayı birinci ağızdan anlatan, yataktan kalkan ve yüzünü yıkayan 'ben', yani olayı anlatan kişinin bizzat kendisidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_074",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki metin türlerinden hangisinde olay, yer, zaman ve kahraman unsurlarından biri veya birkaçı genellikle 'belirsizdir'?",
+      "correct": "Masal",
+      "wrong1": "Hikâye",
+      "wrong2": "Anı",
+      "explanation": "Masallarda zaman (evvel zaman) ve mekan (uzak diyarlar, Kafdağı) hayal ürünü olduğu için belirsizdir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki metin türlerinden hangisinde olay, yer, zaman ve kahraman unsurlarından biri veya birkaçı genellikle 'belirsizdir'?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Masal",
+        "wrong1": "Hikâye",
+        "wrong2": "Anı",
+        "explanation": "Masallarda zaman (evvel zaman) ve mekan (uzak diyarlar, Kafdağı) hayal ürünü olduğu için belirsizdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_075",
+      "level": "kolay",
+      "premise": "Kemal, okul çıkışında kırtasiyeye uğrayıp kırmızı bir kalem aldı.",
+      "text": "Yukarıdaki cümlede hikayenin hangi unsuru verilmemiştir?",
+      "correct": "Hiçbiri, hepsi verilmiştir.",
+      "wrong1": "Yer",
+      "wrong2": "Zaman",
+      "explanation": "Kahraman (Kemal), Olay (Kalem alması), Yer (Kırtasiye), Zaman (Okul çıkışı). Tüm unsurlar mevcuttur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede hikayenin hangi unsuru verilmemiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kemal, okul çıkışında kırtasiyeye uğrayıp kırmızı bir kalem aldı."
+            }
+          ]
+        },
+        "correct": "Hiçbiri, hepsi verilmiştir.",
+        "wrong1": "Yer",
+        "wrong2": "Zaman",
+        "explanation": "Kahraman (Kemal), Olay (Kalem alması), Yer (Kırtasiye), Zaman (Okul çıkışı). Tüm unsurlar mevcuttur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_076",
+      "level": "orta",
+      "premise": null,
+      "text": "Hikaye unsurlarından olan 'Mekan (Yer)', okuyucunun zihninde neyi canlandırmasını sağlar?",
+      "correct": "Olayın nerede gerçekleştiğini ve çevre şartlarını",
+      "wrong1": "Kahramanın fiziksel özelliklerini",
+      "wrong2": "Olayın hangi yılda olduğunu",
+      "explanation": "Mekan, olayların dekorunu oluşturur ve okuyucunun çevreyi (orman, deniz, okul vb.) hayal etmesini sağlar.",
+      "app": {
+        "question": {
+          "text": "Hikaye unsurlarından olan 'Mekan (Yer)', okuyucunun zihninde neyi canlandırmasını sağlar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayın nerede gerçekleştiğini ve çevre şartlarını",
+        "wrong1": "Kahramanın fiziksel özelliklerini",
+        "wrong2": "Olayın hangi yılda olduğunu",
+        "explanation": "Mekan, olayların dekorunu oluşturur ve okuyucunun çevreyi (orman, deniz, okul vb.) hayal etmesini sağlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_077",
+      "level": "zor",
+      "premise": "Zaman unsuru bir hikayede sadece saat veya gün olarak verilmeyebilir. Mevsimler veya özel günler de zaman unsurudur.",
+      "text": "Yukarıdaki metne göre buna göre aşağıdakilerden hangisi bir zaman unsurunu ifade etmez?",
+      "correct": "Karanlık ve ıssız sokaklar",
+      "wrong1": "Güneşin doğduğu an",
+      "wrong2": "Yaz mevsiminin son günleri",
+      "explanation": "Karanlık sokaklar mekanı (yeri) belirtir, zamanı değil. Güneşin doğuşu veya yaz mevsimi ise zamandır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre buna göre aşağıdakilerden hangisi bir zaman unsurunu ifade etmez?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zaman unsuru bir hikayede sadece saat veya gün olarak verilmeyebilir. Mevsimler veya özel günler de zaman unsurudur."
+            }
+          ]
+        },
+        "correct": "Karanlık ve ıssız sokaklar",
+        "wrong1": "Güneşin doğduğu an",
+        "wrong2": "Yaz mevsiminin son günleri",
+        "explanation": "Karanlık sokaklar mekanı (yeri) belirtir, zamanı değil. Güneşin doğuşu veya yaz mevsimi ise zamandır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_078",
+      "level": "kolay",
+      "premise": "Küçük karınca, sıcak bir temmuz sabahı yuvasından çıkıp yiyecek aramaya başladı.",
+      "text": "Yukarıdaki cümlede kahraman kimdir?",
+      "correct": "Karınca",
+      "wrong1": "Temmuz sabahı",
+      "wrong2": "Yiyecek",
+      "explanation": "Olayı yaşayan ve eylemi yapan varlık küçük karıncadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kahraman kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Küçük karınca, sıcak bir temmuz sabahı yuvasından çıkıp yiyecek aramaya başladı."
+            }
+          ]
+        },
+        "correct": "Karınca",
+        "wrong1": "Temmuz sabahı",
+        "wrong2": "Yiyecek",
+        "explanation": "Olayı yaşayan ve eylemi yapan varlık küçük karıncadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_079",
+      "level": "orta",
+      "premise": "Okul bahçesinde top oynayan çocuklar, yanlışlıkla topu okulun çatısına kaçırdılar ve üzüldüler.",
+      "text": "Yukarıdaki cümlenin 'olay' unsuru nedir?",
+      "correct": "Topun okulun çatısına kaçması",
+      "wrong1": "Çocukların üzülmesi",
+      "wrong2": "Okul bahçesi",
+      "explanation": "Metinde yaşanan asıl eylem (aksiyon) çocukların topu çatıya kaçırmasıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlenin 'olay' unsuru nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Okul bahçesinde top oynayan çocuklar, yanlışlıkla topu okulun çatısına kaçırdılar ve üzüldüler."
+            }
+          ]
+        },
+        "correct": "Topun okulun çatısına kaçması",
+        "wrong1": "Çocukların üzülmesi",
+        "wrong2": "Okul bahçesi",
+        "explanation": "Metinde yaşanan asıl eylem (aksiyon) çocukların topu çatıya kaçırmasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_080",
+      "level": "zor",
+      "premise": "Eskiden çok eskiden, insanların develerle yolculuk yaptığı devirlerde, çöldeki bir kervan susuz kalmış.",
+      "text": "Yukarıdaki metindeki zaman unsuru için hangisi söylenebilir?",
+      "correct": "Zaman belirsiz bir geçmişi anlatır, tam tarih vermez.",
+      "wrong1": "Zaman ifadesi tamamen şimdiki zamandır.",
+      "wrong2": "Metinde zaman ifadesi hiç kullanılmamıştır.",
+      "explanation": "'Eskiden çok eskiden' ifadesi zamanı gösterir ancak tam bir tarih (örneğin 1990 yılı) vermediği için belirsiz geçmiş zamandır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metindeki zaman unsuru için hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Eskiden çok eskiden, insanların develerle yolculuk yaptığı devirlerde, çöldeki bir kervan susuz kalmış."
+            }
+          ]
+        },
+        "correct": "Zaman belirsiz bir geçmişi anlatır, tam tarih vermez.",
+        "wrong1": "Zaman ifadesi tamamen şimdiki zamandır.",
+        "wrong2": "Metinde zaman ifadesi hiç kullanılmamıştır.",
+        "explanation": "'Eskiden çok eskiden' ifadesi zamanı gösterir ancak tam bir tarih (örneğin 1990 yılı) vermediği için belirsiz geçmiş zamandır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_081",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okunan bir metindeki olay, yer, zaman ve karakterleri kutucuklar içine yazarak özetlemeye ne ad verilir?",
+      "correct": "Hikâye Haritası",
+      "wrong1": "Sözlük Çalışması",
+      "wrong2": "Metin Bölümü",
+      "explanation": "Metnin unsurlarını görselleştirerek daha iyi anlamamızı sağlayan yönteme hikaye haritası çıkarma denir.",
+      "app": {
+        "question": {
+          "text": "Okunan bir metindeki olay, yer, zaman ve karakterleri kutucuklar içine yazarak özetlemeye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hikâye Haritası",
+        "wrong1": "Sözlük Çalışması",
+        "wrong2": "Metin Bölümü",
+        "explanation": "Metnin unsurlarını görselleştirerek daha iyi anlamamızı sağlayan yönteme hikaye haritası çıkarma denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_082",
+      "level": "orta",
+      "premise": "Buz gibi dondurucu bir havada sokağa çıkan kedi, ısınmak için bir apartman boşluğuna sığındı.",
+      "text": "Yukarıdaki cümlede kahraman kimdir?",
+      "correct": "Kedi",
+      "wrong1": "Apartman",
+      "wrong2": "Soğuk hava",
+      "explanation": "Hikayedeki hareketi yapan varlık, yani kahraman kedidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kahraman kimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Buz gibi dondurucu bir havada sokağa çıkan kedi, ısınmak için bir apartman boşluğuna sığındı."
+            }
+          ]
+        },
+        "correct": "Kedi",
+        "wrong1": "Apartman",
+        "wrong2": "Soğuk hava",
+        "explanation": "Hikayedeki hareketi yapan varlık, yani kahraman kedidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_083",
+      "level": "zor",
+      "premise": "Trene binmek için acele eden yolcular, peronda büyük bir kalabalık oluşturmuştu. Düdük sesi duyulunca herkes hareketlendi.",
+      "text": "Yukarıdaki metnin 'yer' unsuru neresidir?",
+      "correct": "Tren peronu (istasyon)",
+      "wrong1": "Düdük sesi",
+      "wrong2": "Yolcular",
+      "explanation": "Olayın yaşandığı mekan, insanların trene binmek için beklediği perondur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin 'yer' unsuru neresidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Trene binmek için acele eden yolcular, peronda büyük bir kalabalık oluşturmuştu. Düdük sesi duyulunca herkes hareketlendi."
+            }
+          ]
+        },
+        "correct": "Tren peronu (istasyon)",
+        "wrong1": "Düdük sesi",
+        "wrong2": "Yolcular",
+        "explanation": "Olayın yaşandığı mekan, insanların trene binmek için beklediği perondur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_084",
+      "level": "kolay",
+      "premise": null,
+      "text": "Hikaye haritası oluşturulurken aşağıdakilerden hangisi eşleştirmelerde yanlış olur?",
+      "correct": "Kahraman - Pazartesi günü",
+      "wrong1": "Yer - Orman",
+      "wrong2": "Zaman - Akşam",
+      "explanation": "Kahraman bir kişi veya canlı olmalıdır; pazartesi günü ise zaman unsurudur.",
+      "app": {
+        "question": {
+          "text": "Hikaye haritası oluşturulurken aşağıdakilerden hangisi eşleştirmelerde yanlış olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kahraman - Pazartesi günü",
+        "wrong1": "Yer - Orman",
+        "wrong2": "Zaman - Akşam",
+        "explanation": "Kahraman bir kişi veya canlı olmalıdır; pazartesi günü ise zaman unsurudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_085",
+      "level": "orta",
+      "premise": null,
+      "text": "Bir hikayede diğer unsurların (yer ve zaman) etrafında şekillendiği en temel öge aşağıdakilerden hangisidir?",
+      "correct": "Olay",
+      "wrong1": "Başlık",
+      "wrong2": "Yazar",
+      "explanation": "Tüm hikayeler bir 'olay' anlatmak için yazılır, yer ve zaman o olayın nerede/ne zaman gerçekleştiğini tamamlar.",
+      "app": {
+        "question": {
+          "text": "Bir hikayede diğer unsurların (yer ve zaman) etrafında şekillendiği en temel öge aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olay",
+        "wrong1": "Başlık",
+        "wrong2": "Yazar",
+        "explanation": "Tüm hikayeler bir 'olay' anlatmak için yazılır, yer ve zaman o olayın nerede/ne zaman gerçekleştiğini tamamlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_086",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir metnin olaya veya konuya hazırlık yapılan, kahramanların veya konunun tanıtıldığı kısa başlangıç bölümüne ne ad verilir?",
+      "correct": "Giriş",
+      "wrong1": "Gelişme",
+      "wrong2": "Sonuç",
+      "explanation": "Okuyucuya konunun tanıtıldığı ilk bölüme 'Giriş' adı verilir.",
+      "app": {
+        "question": {
+          "text": "Bir metnin olaya veya konuya hazırlık yapılan, kahramanların veya konunun tanıtıldığı kısa başlangıç bölümüne ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Giriş",
+        "wrong1": "Gelişme",
+        "wrong2": "Sonuç",
+        "explanation": "Okuyucuya konunun tanıtıldığı ilk bölüme 'Giriş' adı verilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_087",
+      "level": "orta",
+      "premise": "Sonunda herkes hatasını anladı. Küs olan arkadaşlar barıştı ve birbirlerinden özür dileyerek bir daha hiç kavga etmeyeceklerine söz verdiler.",
+      "text": "Yukarıdaki metin bir hikâyenin hangi bölümünden alınmış olabilir?",
+      "correct": "Sonuç",
+      "wrong1": "Giriş",
+      "wrong2": "Gelişme",
+      "explanation": "'Sonunda' kelimesi ile bağlanan ve olayların çözüme kavuşup bittiği bu bölüm sonuç bölümüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin bir hikâyenin hangi bölümünden alınmış olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sonunda herkes hatasını anladı. Küs olan arkadaşlar barıştı ve birbirlerinden özür dileyerek bir daha hiç kavga etmeyeceklerine söz verdiler."
+            }
+          ]
+        },
+        "correct": "Sonuç",
+        "wrong1": "Giriş",
+        "wrong2": "Gelişme",
+        "explanation": "'Sonunda' kelimesi ile bağlanan ve olayların çözüme kavuşup bittiği bu bölüm sonuç bölümüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_088",
+      "level": "zor",
+      "premise": null,
+      "text": "Hikâyede olayların düğümlendiği, merakın en fazla arttığı, en uzun ve ayrıntılı bölüm aşağıdakilerden hangisidir?",
+      "correct": "Gelişme",
+      "wrong1": "Giriş",
+      "wrong2": "Sonuç",
+      "explanation": "Gelişme bölümü olayların detaylandırıldığı, karmaşıklaştığı ve okuyucunun 'acaba şimdi ne olacak?' dediği ana bölümdür.",
+      "app": {
+        "question": {
+          "text": "Hikâyede olayların düğümlendiği, merakın en fazla arttığı, en uzun ve ayrıntılı bölüm aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gelişme",
+        "wrong1": "Giriş",
+        "wrong2": "Sonuç",
+        "explanation": "Gelişme bölümü olayların detaylandırıldığı, karmaşıklaştığı ve okuyucunun 'acaba şimdi ne olacak?' dediği ana bölümdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_089",
+      "level": "kolay",
+      "premise": "Cemil, küçük bir sahil kasabasında yaşayan, denizi çok seven tatlı bir çocuktu.",
+      "text": "Yukarıdaki cümle metnin hangi bölümü için en uygundur?",
+      "correct": "Giriş",
+      "wrong1": "Gelişme",
+      "wrong2": "Sonuç",
+      "explanation": "Kahramanın ve yaşadığı yerin okuyucuya tanıtıldığı bu cümle tam bir giriş cümlesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümle metnin hangi bölümü için en uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cemil, küçük bir sahil kasabasında yaşayan, denizi çok seven tatlı bir çocuktu."
+            }
+          ]
+        },
+        "correct": "Giriş",
+        "wrong1": "Gelişme",
+        "wrong2": "Sonuç",
+        "explanation": "Kahramanın ve yaşadığı yerin okuyucuya tanıtıldığı bu cümle tam bir giriş cümlesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_090",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki ifadelerden hangisi genellikle sonuç bölümünde kullanılır?",
+      "correct": "Kısacası / Sonuç olarak",
+      "wrong1": "İlk olarak",
+      "wrong2": "Fakat sonra",
+      "explanation": "Böylece, sonuç olarak, kısacası gibi ifadeler konuyu veya olayı toparlayıp bitirmek için sonuç bölümünde kullanılır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki ifadelerden hangisi genellikle sonuç bölümünde kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kısacası / Sonuç olarak",
+        "wrong1": "İlk olarak",
+        "wrong2": "Fakat sonra",
+        "explanation": "Böylece, sonuç olarak, kısacası gibi ifadeler konuyu veya olayı toparlayıp bitirmek için sonuç bölümünde kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_091",
+      "level": "zor",
+      "premise": "Bilgilendirici bir metin yazan Ayşe, suyun kaynama noktasını ve buharlaşma sürecini çok detaylı örneklerle açıklamaktadır.",
+      "text": "Yukarıdaki metne göre ayşe şu an metninin hangi bölümünü yazmaktadır?",
+      "correct": "Gelişme",
+      "wrong1": "Giriş",
+      "wrong2": "Sonuç",
+      "explanation": "Konunun bütün ayrıntılarıyla anlatıldığı, örneklerin verildiği ve açıklamaların yapıldığı yer gelişme bölümüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre ayşe şu an metninin hangi bölümünü yazmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bilgilendirici bir metin yazan Ayşe, suyun kaynama noktasını ve buharlaşma sürecini çok detaylı örneklerle açıklamaktadır."
+            }
+          ]
+        },
+        "correct": "Gelişme",
+        "wrong1": "Giriş",
+        "wrong2": "Sonuç",
+        "explanation": "Konunun bütün ayrıntılarıyla anlatıldığı, örneklerin verildiği ve açıklamaların yapıldığı yer gelişme bölümüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_092",
+      "level": "kolay",
+      "premise": null,
+      "text": "Giriş, gelişme ve sonuç bölümlerinden oluşan bir metne genel olarak ne isim verilir?",
+      "correct": "Düz Yazı (Paragraf / Metin)",
+      "wrong1": "Şiir",
+      "wrong2": "Kıta",
+      "explanation": "Düz yazılar (hikaye, bilgilendirici metin vb.) giriş, gelişme ve sonuç bölümlerinden oluşur. Şiirler dizelerden oluşur.",
+      "app": {
+        "question": {
+          "text": "Giriş, gelişme ve sonuç bölümlerinden oluşan bir metne genel olarak ne isim verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Düz Yazı (Paragraf / Metin)",
+        "wrong1": "Şiir",
+        "wrong2": "Kıta",
+        "explanation": "Düz yazılar (hikaye, bilgilendirici metin vb.) giriş, gelişme ve sonuç bölümlerinden oluşur. Şiirler dizelerden oluşur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_093",
+      "level": "orta",
+      "premise": "Fakat aniden kapı çaldı. Kapıyı açtıklarında karşılarında yıllardır görmedikleri dayılarını buldular. Herkes çok şaşırmıştı, hemen ona sorular sormaya başladılar.",
+      "text": "Yukarıdaki anlatım metnin hangi bölümüne ait olabilir?",
+      "correct": "Gelişme",
+      "wrong1": "Giriş",
+      "wrong2": "Sonuç",
+      "explanation": "Olayın aniden heyecanlı bir hal alması, bir sorunun (veya yeni bir olayın) başlaması gelişme bölümüne ait bir özelliktir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki anlatım metnin hangi bölümüne ait olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Fakat aniden kapı çaldı. Kapıyı açtıklarında karşılarında yıllardır görmedikleri dayılarını buldular. Herkes çok şaşırmıştı, hemen ona sorular sormaya başladılar."
+            }
+          ]
+        },
+        "correct": "Gelişme",
+        "wrong1": "Giriş",
+        "wrong2": "Sonuç",
+        "explanation": "Olayın aniden heyecanlı bir hal alması, bir sorunun (veya yeni bir olayın) başlaması gelişme bölümüne ait bir özelliktir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_094",
+      "level": "zor",
+      "premise": null,
+      "correct": "Sonuç bölümünde",
+      "wrong1": "Giriş bölümünde",
+      "wrong2": "Baştaki başlıkta",
+      "explanation": "Problemin veya anlatılan konunun bir yargıya bağlandığı, ana fikrin netleştiği ve çözümün sunulduğu yer metnin sonuç bölümüdür.",
+      "text": "Bir metin oluşturulurken giriş bölümünde sorulan bir sorunun veya ortaya atılan bir problemin cevabı okuyucuya en net olarak nerede verilir?",
+      "app": {
+        "question": {
+          "text": "Bir metin oluşturulurken giriş bölümünde sorulan bir sorunun veya ortaya atılan bir problemin cevabı okuyucuya en net olarak nerede verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sonuç bölümünde",
+        "wrong1": "Giriş bölümünde",
+        "wrong2": "Baştaki başlıkta",
+        "explanation": "Problemin veya anlatılan konunun bir yargıya bağlandığı, ana fikrin netleştiği ve çözümün sunulduğu yer metnin sonuç bölümüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_095",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir metnin ana unsurlarını birbirine bağlayan, yazının iskeletine verilen isimdir?",
+      "correct": "Metnin Planı",
+      "wrong1": "Metnin Başlığı",
+      "wrong2": "Metnin Şairi",
+      "explanation": "Giriş, gelişme ve sonuçtan oluşan bu mantıklı sıralamaya metnin planı (iskeleti) denir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir metnin ana unsurlarını birbirine bağlayan, yazının iskeletine verilen isimdir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Metnin Planı",
+        "wrong1": "Metnin Başlığı",
+        "wrong2": "Metnin Şairi",
+        "explanation": "Giriş, gelişme ve sonuçtan oluşan bu mantıklı sıralamaya metnin planı (iskeleti) denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_096",
+      "level": "orta",
+      "premise": null,
+      "text": "Bilgilendirici bir metnin 'giriş' bölümünün temel amacı nedir?",
+      "correct": "Hangi konu hakkında bilgi verileceğini okuyucuya tanıtmak",
+      "wrong1": "Konuyla ilgili bütün örnekleri ve detayları sıralamak",
+      "wrong2": "Metinden çıkarılacak en son dersi (ana fikri) özetlemek",
+      "explanation": "Giriş bölümü konunun detaylarına inmez, sadece konuyu tanıtır ve okuyucuyu metne hazırlar.",
+      "app": {
+        "question": {
+          "text": "Bilgilendirici bir metnin 'giriş' bölümünün temel amacı nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hangi konu hakkında bilgi verileceğini okuyucuya tanıtmak",
+        "wrong1": "Konuyla ilgili bütün örnekleri ve detayları sıralamak",
+        "wrong2": "Metinden çıkarılacak en son dersi (ana fikri) özetlemek",
+        "explanation": "Giriş bölümü konunun detaylarına inmez, sadece konuyu tanıtır ve okuyucuyu metne hazırlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_097",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir hikayede gelişme bölümünün genellikle diğer bölümlerden (giriş ve sonuç) daha uzun olmasının nedeni nedir?",
+      "correct": "Olayların, maceraların ve diyalogların detaylıca bu bölümde anlatılması",
+      "wrong1": "Yazarın sadece kelime sayısını artırmak istemesi",
+      "wrong2": "Kahramanların bu bölümde tanıtılması",
+      "explanation": "Gelişme; olayın serüveni, çatışmalar ve kahramanların mücadelesini içerdiği için en detaylı ve uzun bölümdür.",
+      "app": {
+        "question": {
+          "text": "Bir hikayede gelişme bölümünün genellikle diğer bölümlerden (giriş ve sonuç) daha uzun olmasının nedeni nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayların, maceraların ve diyalogların detaylıca bu bölümde anlatılması",
+        "wrong1": "Yazarın sadece kelime sayısını artırmak istemesi",
+        "wrong2": "Kahramanların bu bölümde tanıtılması",
+        "explanation": "Gelişme; olayın serüveni, çatışmalar ve kahramanların mücadelesini içerdiği için en detaylı ve uzun bölümdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_098",
+      "level": "kolay",
+      "premise": "Böylece kaplumbağa, azimle çalışmanın hızdan daha önemli olduğunu herkese kanıtlamış oldu.",
+      "text": "Yukarıdaki cümle metnin hangi bölümü olmaya uygundur?",
+      "correct": "Sonuç",
+      "wrong1": "Giriş",
+      "wrong2": "Gelişme",
+      "explanation": "'Böylece' ifadesiyle biten ve hikayeden alınan dersi özetleyen bu cümle sonuç cümlesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümle metnin hangi bölümü olmaya uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Böylece kaplumbağa, azimle çalışmanın hızdan daha önemli olduğunu herkese kanıtlamış oldu."
+            }
+          ]
+        },
+        "correct": "Sonuç",
+        "wrong1": "Giriş",
+        "wrong2": "Gelişme",
+        "explanation": "'Böylece' ifadesiyle biten ve hikayeden alınan dersi özetleyen bu cümle sonuç cümlesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_099",
+      "level": "orta",
+      "premise": null,
+      "text": "Giriş, gelişme ve sonuç bölümlerini doğru sıralamak bir metnin hangi özelliğini güçlendirir?",
+      "correct": "Olayların mantıklı ve anlaşılır olmasını",
+      "wrong1": "Şiirsel bir ahenge sahip olmasını",
+      "wrong2": "Hayal ürünü olmasını",
+      "explanation": "Planlı yazılmış bir metin okuyucunun olayı neden-sonuç ilişkisi içinde mantıklı bir şekilde anlamasını sağlar.",
+      "app": {
+        "question": {
+          "text": "Giriş, gelişme ve sonuç bölümlerini doğru sıralamak bir metnin hangi özelliğini güçlendirir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Olayların mantıklı ve anlaşılır olmasını",
+        "wrong1": "Şiirsel bir ahenge sahip olmasını",
+        "wrong2": "Hayal ürünü olmasını",
+        "explanation": "Planlı yazılmış bir metin okuyucunun olayı neden-sonuç ilişkisi içinde mantıklı bir şekilde anlamasını sağlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_100",
+      "level": "zor",
+      "premise": "Yazar: 'Karakterlerimi tanıttım. Şimdi onların başından geçecek heyecanlı macerayı yazacağım.'",
+      "text": "Yukarıdaki metne göre buna göre yazar metnin hangi bölümüne geçiş yapmaktadır?",
+      "correct": "Gelişme",
+      "wrong1": "Sonuç",
+      "wrong2": "Giriş",
+      "explanation": "Karakter tanıtımı giriş bölümüdür. Heyecanlı maceranın başlayacağı kısım ise gelişme bölümüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre buna göre yazar metnin hangi bölümüne geçiş yapmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazar: 'Karakterlerimi tanıttım. Şimdi onların başından geçecek heyecanlı macerayı yazacağım.'"
+            }
+          ]
+        },
+        "correct": "Gelişme",
+        "wrong1": "Sonuç",
+        "wrong2": "Giriş",
+        "explanation": "Karakter tanıtımı giriş bölümüdür. Heyecanlı maceranın başlayacağı kısım ise gelişme bölümüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_101",
+      "level": "kolay",
+      "premise": "Ağaçların yaprakları sonbaharda sararır ve dökülür.",
+      "text": "Yukarıdaki cümle için aşağıdakilerden hangisi söylenebilir?",
+      "correct": "Gerçek bir durumu anlatır",
+      "wrong1": "Hayal ürünüdür",
+      "wrong2": "Bir masaldan alınmıştır",
+      "explanation": "Yaprakların sonbaharda dökülmesi günlük hayatta karşılaştığımız tamamen gerçek, doğaya uygun bir durumdur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümle için aşağıdakilerden hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ağaçların yaprakları sonbaharda sararır ve dökülür."
+            }
+          ]
+        },
+        "correct": "Gerçek bir durumu anlatır",
+        "wrong1": "Hayal ürünüdür",
+        "wrong2": "Bir masaldan alınmıştır",
+        "explanation": "Yaprakların sonbaharda dökülmesi günlük hayatta karşılaştığımız tamamen gerçek, doğaya uygun bir durumdur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_102",
+      "level": "orta",
+      "premise": "Küçük bulut gökyüzünde sıkılmış, 'Keşke biraz yağmur yağdırsam da çocuklar sevinse' demiş.",
+      "text": "Yukarıdaki cümlede hayal ürünü olan unsur nedir?",
+      "correct": "Bulutun düşünüp konuşması",
+      "wrong1": "Gökyüzünün mavi olması",
+      "wrong2": "Çocukların yağmuru sevmesi",
+      "explanation": "Bulutların canlılar gibi düşünüp konuşması gerçekte mümkün olmayan, tamamen yazarın kurguladığı hayal ürünü bir olaydır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede hayal ürünü olan unsur nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Küçük bulut gökyüzünde sıkılmış, 'Keşke biraz yağmur yağdırsam da çocuklar sevinse' demiş."
+            }
+          ]
+        },
+        "correct": "Bulutun düşünüp konuşması",
+        "wrong1": "Gökyüzünün mavi olması",
+        "wrong2": "Çocukların yağmuru sevmesi",
+        "explanation": "Bulutların canlılar gibi düşünüp konuşması gerçekte mümkün olmayan, tamamen yazarın kurguladığı hayal ürünü bir olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_103",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerden hangisi bilgilendirici bir metinden alınmış OLAMAZ?",
+      "correct": "Karıncalar, kış gelmeden yuvalarını sihirli bir tozla kapladılar.",
+      "wrong1": "Dünya, Güneş'in etrafında döner",
+      "wrong2": "Sular ısınarak buharlaşır ve gökyüzünde bulutları oluşturur",
+      "explanation": "Bilgilendirici metinler gerçek olayları anlatır. 'Sihirli toz' ifadesi gerçeküstüdür ve masallara özgü bir hayal ürünüdür.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerden hangisi bilgilendirici bir metinden alınmış OLAMAZ?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Karıncalar, kış gelmeden yuvalarını sihirli bir tozla kapladılar.",
+        "wrong1": "Dünya, Güneş'in etrafında döner",
+        "wrong2": "Sular ısınarak buharlaşır ve gökyüzünde bulutları oluşturur",
+        "explanation": "Bilgilendirici metinler gerçek olayları anlatır. 'Sihirli toz' ifadesi gerçeküstüdür ve masallara özgü bir hayal ürünüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_104",
+      "level": "kolay",
+      "premise": "Köpekler, koku alma duyuları çok gelişmiş sadık hayvanlardır.",
+      "text": "Yukarıdaki cümledeki ifade nasıldır?",
+      "correct": "Gerçektir",
+      "wrong1": "Hayal ürünüdür",
+      "wrong2": "Abartılıdır",
+      "explanation": "Köpeklerin iyi koku alması ve sadık olmaları bilimsel ve gerçek hayatta ispatlanmış bir bilgidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeki ifade nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Köpekler, koku alma duyuları çok gelişmiş sadık hayvanlardır."
+            }
+          ]
+        },
+        "correct": "Gerçektir",
+        "wrong1": "Hayal ürünüdür",
+        "wrong2": "Abartılıdır",
+        "explanation": "Köpeklerin iyi koku alması ve sadık olmaları bilimsel ve gerçek hayatta ispatlanmış bir bilgidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_105",
+      "level": "orta",
+      "premise": "Güneş akşam olunca pijamalarını giyip dağların arkasında uykuya daldı.",
+      "text": "Yukarıdaki cümledeki hangi kelime grubundan dolayı cümle hayal ürünü olmuştur?",
+      "correct": "Pijamalarını giyip uykuya daldı",
+      "wrong1": "Akşam olunca",
+      "wrong2": "Dağların arkasında",
+      "explanation": "Güneşin insan gibi pijama giymesi ve uyuması imkansızdır, bu hayal ürünü (kurgusal) bir ifadedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeki hangi kelime grubundan dolayı cümle hayal ürünü olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Güneş akşam olunca pijamalarını giyip dağların arkasında uykuya daldı."
+            }
+          ]
+        },
+        "correct": "Pijamalarını giyip uykuya daldı",
+        "wrong1": "Akşam olunca",
+        "wrong2": "Dağların arkasında",
+        "explanation": "Güneşin insan gibi pijama giymesi ve uyuması imkansızdır, bu hayal ürünü (kurgusal) bir ifadedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_106",
+      "level": "zor",
+      "premise": "Yazar kitabında balıkların su altında solungaçlarıyla nasıl nefes aldıklarını anlatmaktadır.",
+      "text": "Yukarıdaki kitap büyük ihtimalle hangi metin türündedir ve anlatımı nasıldır?",
+      "correct": "Bilgilendirici Metin / Gerçek",
+      "wrong1": "Fabl / Hayal Ürünü",
+      "wrong2": "Masal / Olağanüstü",
+      "explanation": "Balıkların solunum şeklini anlatmak bilimsel bir gerçektir, dolayısıyla bilgilendirici metindir ve gerçeği yansıtır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kitap büyük ihtimalle hangi metin türündedir ve anlatımı nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazar kitabında balıkların su altında solungaçlarıyla nasıl nefes aldıklarını anlatmaktadır."
+            }
+          ]
+        },
+        "correct": "Bilgilendirici Metin / Gerçek",
+        "wrong1": "Fabl / Hayal Ürünü",
+        "wrong2": "Masal / Olağanüstü",
+        "explanation": "Balıkların solunum şeklini anlatmak bilimsel bir gerçektir, dolayısıyla bilgilendirici metindir ve gerçeği yansıtır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_107",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki cümlelerin hangisinde hayal ürünü bir öge yoktur?",
+      "correct": "Kediler süt içmeyi sever.",
+      "wrong1": "Kedi, fareye 'Günaydın' dedi.",
+      "wrong2": "Uçan kedi gökyüzünde süzüldü.",
+      "explanation": "Kedilerin süt içmesi gerçektir. Ancak kedinin konuşması ve uçması tamamen hayal ürünüdür.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cümlelerin hangisinde hayal ürünü bir öge yoktur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kediler süt içmeyi sever.",
+        "wrong1": "Kedi, fareye 'Günaydın' dedi.",
+        "wrong2": "Uçan kedi gökyüzünde süzüldü.",
+        "explanation": "Kedilerin süt içmesi gerçektir. Ancak kedinin konuşması ve uçması tamamen hayal ürünüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_108",
+      "level": "orta",
+      "premise": "O kadar hızlı koşuyordu ki ayakları yere değmiyordu, rüzgarla yarışıyordu.",
+      "text": "Yukarıdaki cümlede kullanılan sanat (anlatım biçimi) aşağıdakilerden hangisidir?",
+      "correct": "Abartma (Mübalağa)",
+      "wrong1": "Konuşturma",
+      "wrong2": "Bilgilendirme",
+      "explanation": "İnsanın ayaklarının yere değmemesi ve rüzgarla yarışacak kadar hızlı koşması olayı olduğundan çok daha büyük gösteren bir 'abartma' sanatıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede kullanılan sanat (anlatım biçimi) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "O kadar hızlı koşuyordu ki ayakları yere değmiyordu, rüzgarla yarışıyordu."
+            }
+          ]
+        },
+        "correct": "Abartma (Mübalağa)",
+        "wrong1": "Konuşturma",
+        "wrong2": "Bilgilendirme",
+        "explanation": "İnsanın ayaklarının yere değmemesi ve rüzgarla yarışacak kadar hızlı koşması olayı olduğundan çok daha büyük gösteren bir 'abartma' sanatıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_109",
+      "level": "zor",
+      "premise": "Ormandaki tüm ağaçlar, kesilen arkadaşlarının arkasından günlerce gözyaşı döktü.",
+      "text": "Yukarıdaki cümlenin hikaye edici bir metinde kullanılması metne nasıl bir özellik katar?",
+      "correct": "Hayal gücü yüksek bir özellik (Kurgusal)",
+      "wrong1": "Gerçeklik ve bilimsellik",
+      "wrong2": "Tarihi bir özellik",
+      "explanation": "Ağaçların insan gibi gözyaşı döküp ağlaması hayal ürünüdür, bu da metne kurgusal ve zengin bir hayal gücü katar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlenin hikaye edici bir metinde kullanılması metne nasıl bir özellik katar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ormandaki tüm ağaçlar, kesilen arkadaşlarının arkasından günlerce gözyaşı döktü."
+            }
+          ]
+        },
+        "correct": "Hayal gücü yüksek bir özellik (Kurgusal)",
+        "wrong1": "Gerçeklik ve bilimsellik",
+        "wrong2": "Tarihi bir özellik",
+        "explanation": "Ağaçların insan gibi gözyaşı döküp ağlaması hayal ürünüdür, bu da metne kurgusal ve zengin bir hayal gücü katar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_110",
+      "level": "kolay",
+      "premise": null,
+      "text": "Fabllar, kahramanları hayvanlar olmasına rağmen neden hayal ürünü olarak kabul edilir?",
+      "correct": "Çünkü hayvanlar insan gibi konuşup düşünür.",
+      "wrong1": "Çünkü hayvanlar gerçekte yoktur",
+      "wrong2": "Çünkü sadece ormanda geçer",
+      "explanation": "Hayvanlar gerçek hayatta vardır, ancak fabllarda hayvanların konuşması ve insan gibi düşünmesi tamamen hayal ürünü bir olaydır.",
+      "app": {
+        "question": {
+          "text": "Fabllar, kahramanları hayvanlar olmasına rağmen neden hayal ürünü olarak kabul edilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çünkü hayvanlar insan gibi konuşup düşünür.",
+        "wrong1": "Çünkü hayvanlar gerçekte yoktur",
+        "wrong2": "Çünkü sadece ormanda geçer",
+        "explanation": "Hayvanlar gerçek hayatta vardır, ancak fabllarda hayvanların konuşması ve insan gibi düşünmesi tamamen hayal ürünü bir olaydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_111",
+      "level": "orta",
+      "premise": "Masadaki kalem, silgiye dönüp 'Bütün gün yazmaktan ucum köreldi' dedi.",
+      "text": "Yukarıdaki cümledeki hayal ürünü özellik hangi sanatla yapılmıştır?",
+      "correct": "Konuşturma",
+      "wrong1": "Abartma",
+      "wrong2": "Benzetme",
+      "explanation": "Cansız bir varlık olan kalemin insan gibi konuşması 'konuşturma' sanatı sayesinde olmuştur.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümledeki hayal ürünü özellik hangi sanatla yapılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Masadaki kalem, silgiye dönüp 'Bütün gün yazmaktan ucum köreldi' dedi."
+            }
+          ]
+        },
+        "correct": "Konuşturma",
+        "wrong1": "Abartma",
+        "wrong2": "Benzetme",
+        "explanation": "Cansız bir varlık olan kalemin insan gibi konuşması 'konuşturma' sanatı sayesinde olmuştur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_112",
+      "level": "zor",
+      "premise": "Ay'a ayak basan ilk insan olan Neil Armstrong, uzay aracından inerken çok dikkatli davrandı.",
+      "text": "Yukarıdaki metin hayal ürünü müdür, gerçek midir? Neden?",
+      "correct": "Gerçektir. Çünkü tarihte yaşanmış ve ispatlanmış bir olaydır.",
+      "wrong1": "Hayal ürünüdür. Uzaya gitmek imkansızdır",
+      "wrong2": "Gerçektir. Çünkü masal kitaplarında yazar",
+      "explanation": "Ay'a gidilmesi ve Neil Armstrong'un aya ayak basması tarihi ve bilimsel bir gerçektir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin hayal ürünü müdür, gerçek midir? Neden?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ay'a ayak basan ilk insan olan Neil Armstrong, uzay aracından inerken çok dikkatli davrandı."
+            }
+          ]
+        },
+        "correct": "Gerçektir. Çünkü tarihte yaşanmış ve ispatlanmış bir olaydır.",
+        "wrong1": "Hayal ürünüdür. Uzaya gitmek imkansızdır",
+        "wrong2": "Gerçektir. Çünkü masal kitaplarında yazar",
+        "explanation": "Ay'a gidilmesi ve Neil Armstrong'un aya ayak basması tarihi ve bilimsel bir gerçektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_113",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki varlıklardan hangisi genellikle hayal ürünü metinlerde (masallarda) bulunur?",
+      "correct": "Ateş püskürten ejderha",
+      "wrong1": "Miyavlayan kedi",
+      "wrong2": "Havlayan köpek",
+      "explanation": "Kedi ve köpek gerçektir. Ejderha ise sadece hayal gücüyle üretilmiş efsanevi bir varlıktır.",
+      "app": {
+        "question": {
+          "text": "Aşağıdaki varlıklardan hangisi genellikle hayal ürünü metinlerde (masallarda) bulunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ateş püskürten ejderha",
+        "wrong1": "Miyavlayan kedi",
+        "wrong2": "Havlayan köpek",
+        "explanation": "Kedi ve köpek gerçektir. Ejderha ise sadece hayal gücüyle üretilmiş efsanevi bir varlıktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_114",
+      "level": "orta",
+      "premise": "O çantasını o kadar çok kitapla doldurmuştu ki çantası bir dağ kadar ağırdı.",
+      "text": "Yukarıdaki cümlede anlatımı kuvvetlendirmek için neye başvurulmuştur?",
+      "correct": "Abartmaya",
+      "wrong1": "Konuşturmaya",
+      "wrong2": "Bilgi vermeye",
+      "explanation": "Çantanın ağırlığının bir dağa benzetilmesi ve 'dağ kadar ağır' denmesi açıkça bir abartmadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümlede anlatımı kuvvetlendirmek için neye başvurulmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "O çantasını o kadar çok kitapla doldurmuştu ki çantası bir dağ kadar ağırdı."
+            }
+          ]
+        },
+        "correct": "Abartmaya",
+        "wrong1": "Konuşturmaya",
+        "wrong2": "Bilgi vermeye",
+        "explanation": "Çantanın ağırlığının bir dağa benzetilmesi ve 'dağ kadar ağır' denmesi açıkça bir abartmadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_115",
+      "level": "zor",
+      "premise": "Yağmurun ardından gökyüzünde rengarenk bir gökkuşağı belirdi. Çocuklar bu manzarayı hayranlıkla izledi.",
+      "text": "Yukarıdaki parçadaki anlatımla ilgili hangisi doğrudur?",
+      "correct": "Tamamen gerçek ifadelere dayanır.",
+      "wrong1": "İçinde olağanüstü ögeler vardır.",
+      "wrong2": "Sadece masallarda görülebilecek bir olaydır.",
+      "explanation": "Gökkuşağının çıkması ve çocukların onu izlemesi doğada her zaman olabilen tamamen gerçek olaylardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki parçadaki anlatımla ilgili hangisi doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yağmurun ardından gökyüzünde rengarenk bir gökkuşağı belirdi. Çocuklar bu manzarayı hayranlıkla izledi."
+            }
+          ]
+        },
+        "correct": "Tamamen gerçek ifadelere dayanır.",
+        "wrong1": "İçinde olağanüstü ögeler vardır.",
+        "wrong2": "Sadece masallarda görülebilecek bir olaydır.",
+        "explanation": "Gökkuşağının çıkması ve çocukların onu izlemesi doğada her zaman olabilen tamamen gerçek olaylardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_116",
+      "level": "kolay",
+      "premise": null,
+      "text": "Metnin yazarının, okuyucuya asıl söylemek (anlatmak) istediği mesaja ne denir?",
+      "correct": "Ana fikir (Ana düşünce)",
+      "wrong1": "Konu",
+      "wrong2": "Özet",
+      "explanation": "Metinden çıkarılması gereken temel derse, asıl mesaja ana fikir denir.",
+      "app": {
+        "question": {
+          "text": "Metnin yazarının, okuyucuya asıl söylemek (anlatmak) istediği mesaja ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana fikir (Ana düşünce)",
+        "wrong1": "Konu",
+        "wrong2": "Özet",
+        "explanation": "Metinden çıkarılması gereken temel derse, asıl mesaja ana fikir denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_117",
+      "level": "orta",
+      "premise": "Spor yapmak kaslarımızı güçlendirir, bizi hastalıklardan korur ve daha mutlu hissetmemizi sağlar.",
+      "text": "Yukarıdaki metnin konusu nedir?",
+      "correct": "Spor yapmanın faydaları",
+      "wrong1": "Hastalıklardan korunmanın yolları",
+      "wrong2": "Beslenmenin önemi",
+      "explanation": "Metin genel olarak sporun bize sağladığı yararlar üzerinde durduğu için konusu spor yapmanın faydalarıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Spor yapmak kaslarımızı güçlendirir, bizi hastalıklardan korur ve daha mutlu hissetmemizi sağlar."
+            }
+          ]
+        },
+        "correct": "Spor yapmanın faydaları",
+        "wrong1": "Hastalıklardan korunmanın yolları",
+        "wrong2": "Beslenmenin önemi",
+        "explanation": "Metin genel olarak sporun bize sağladığı yararlar üzerinde durduğu için konusu spor yapmanın faydalarıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_118",
+      "level": "zor",
+      "premise": "Eğitim görmemiş bir insan, meyvesi olmayan bir ağaca benzer; dışarıdan bakıldığında ağaçtır ama kimseye faydası dokunmaz.",
+      "text": "Yukarıdaki metnin ana fikri aşağıdakilerden hangisidir?",
+      "correct": "Eğitimli olmak insanın hem kendisine hem de çevresine faydalı olmasını sağlar.",
+      "wrong1": "Ağaçların meyve vermesi çok önemlidir",
+      "wrong2": "Okula giden herkes başarılı olur",
+      "explanation": "Metinde ağaç benzetmesi yapılarak eğitimin insanın topluma faydalı olması için şart olduğu vurgulanmıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana fikri aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Eğitim görmemiş bir insan, meyvesi olmayan bir ağaca benzer; dışarıdan bakıldığında ağaçtır ama kimseye faydası dokunmaz."
+            }
+          ]
+        },
+        "correct": "Eğitimli olmak insanın hem kendisine hem de çevresine faydalı olmasını sağlar.",
+        "wrong1": "Ağaçların meyve vermesi çok önemlidir",
+        "wrong2": "Okula giden herkes başarılı olur",
+        "explanation": "Metinde ağaç benzetmesi yapılarak eğitimin insanın topluma faydalı olması için şart olduğu vurgulanmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_119",
+      "level": "kolay",
+      "premise": "Çiftçi, tarlasında bulduğu altın küpünü devlet görevlilerine teslim etti ve dürüstlüğünün karşılığında ödüllendirildi.",
+      "text": "Yukarıdaki hikayenin ana fikri aşağıdakilerden hangisidir?",
+      "correct": "Dürüstlük her zaman kazandıran güzel bir erdemdir.",
+      "wrong1": "Tarlalarda altın bulmak çok kolaydır.",
+      "wrong2": "Çiftçiler genellikle zengin olmak ister.",
+      "explanation": "Metinde altın bulan çiftçinin onu teslim etmesi dürüst bir davranıştır ve asıl mesaj dürüstlüğün önemidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki hikayenin ana fikri aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çiftçi, tarlasında bulduğu altın küpünü devlet görevlilerine teslim etti ve dürüstlüğünün karşılığında ödüllendirildi."
+            }
+          ]
+        },
+        "correct": "Dürüstlük her zaman kazandıran güzel bir erdemdir.",
+        "wrong1": "Tarlalarda altın bulmak çok kolaydır.",
+        "wrong2": "Çiftçiler genellikle zengin olmak ister.",
+        "explanation": "Metinde altın bulan çiftçinin onu teslim etmesi dürüst bir davranıştır ve asıl mesaj dürüstlüğün önemidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_120",
+      "level": "orta",
+      "premise": "Kitaplar yeni dünyaların kapısını açan birer anahtardır. Bir kitap okuduğunuzda hiç gitmediğiniz ülkelere seyahat edebilirsiniz.",
+      "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+      "correct": "Kitap okumanın yarattığı hayal gücü ve etkisi",
+      "wrong1": "Farklı ülkelere uçakla seyahat etmek",
+      "wrong2": "Kütüphane kuralları",
+      "explanation": "Metnin tamamında kitapların insanı nasıl farklı yerlere götürdüğü (etkisi) anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kitaplar yeni dünyaların kapısını açan birer anahtardır. Bir kitap okuduğunuzda hiç gitmediğiniz ülkelere seyahat edebilirsiniz."
+            }
+          ]
+        },
+        "correct": "Kitap okumanın yarattığı hayal gücü ve etkisi",
+        "wrong1": "Farklı ülkelere uçakla seyahat etmek",
+        "wrong2": "Kütüphane kuralları",
+        "explanation": "Metnin tamamında kitapların insanı nasıl farklı yerlere götürdüğü (etkisi) anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_121",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir metnin içeriğini (konusunu) en kısa ve çarpıcı şekilde özetleyen bir veya iki kelimelik ifadeye ne ad verilir?",
+      "correct": "Başlık",
+      "wrong1": "Ana fikir",
+      "wrong2": "Paragraf",
+      "explanation": "Metnin en üstünde yer alan ve konuyu en kısa haliyle özetleyen, dikkat çekici ifadeye başlık denir.",
+      "app": {
+        "question": {
+          "text": "Bir metnin içeriğini (konusunu) en kısa ve çarpıcı şekilde özetleyen bir veya iki kelimelik ifadeye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Başlık",
+        "wrong1": "Ana fikir",
+        "wrong2": "Paragraf",
+        "explanation": "Metnin en üstünde yer alan ve konuyu en kısa haliyle özetleyen, dikkat çekici ifadeye başlık denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_122",
+      "level": "kolay",
+      "premise": "Dişlerimizi korumak için asitli içeceklerden uzak durmalı ve düzenli olarak diş hekimine gitmeliyiz.",
+      "text": "Yukarıdaki metne en uygun başlık aşağıdakilerden hangisi olabilir?",
+      "correct": "Diş Sağlığımız",
+      "wrong1": "Doktorlar",
+      "wrong2": "Yiyecekler",
+      "explanation": "Metinde dişlerimizi nasıl koruyacağımız anlatıldığı için 'Diş Sağlığımız' en uygun başlıktır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne en uygun başlık aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dişlerimizi korumak için asitli içeceklerden uzak durmalı ve düzenli olarak diş hekimine gitmeliyiz."
+            }
+          ]
+        },
+        "correct": "Diş Sağlığımız",
+        "wrong1": "Doktorlar",
+        "wrong2": "Yiyecekler",
+        "explanation": "Metinde dişlerimizi nasıl koruyacağımız anlatıldığı için 'Diş Sağlığımız' en uygun başlıktır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_123",
+      "level": "orta",
+      "premise": "Trafik kuralları hem yayaların hem de sürücülerin güvenliği içindir. Yaya geçidini kullanmak hayat kurtarır.",
+      "text": "Yukarıdaki metne verilebilecek en iyi başlık hangisidir?",
+      "correct": "Trafik Kurallarının Önemi",
+      "wrong1": "Yayalar ve Arabalar",
+      "wrong2": "Kırmızı Işık",
+      "explanation": "Metin genel olarak trafik kurallarının güvenlik için önemini anlattığından bu başlık konuyu tam kapsar.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne verilebilecek en iyi başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Trafik kuralları hem yayaların hem de sürücülerin güvenliği içindir. Yaya geçidini kullanmak hayat kurtarır."
+            }
+          ]
+        },
+        "correct": "Trafik Kurallarının Önemi",
+        "wrong1": "Yayalar ve Arabalar",
+        "wrong2": "Kırmızı Işık",
+        "explanation": "Metin genel olarak trafik kurallarının güvenlik için önemini anlattığından bu başlık konuyu tam kapsar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_124",
+      "level": "zor",
+      "premise": null,
+      "text": "Düz yazılarda 'ana fikir' olarak adlandırılan kavram, şiirlerde daha çok hangi isimle anılır?",
+      "correct": "Ana duygu (Tema)",
+      "wrong1": "Ana kahraman",
+      "wrong2": "Şiirsel fikir",
+      "explanation": "Şiirlerde okuyucuya bir fikirden ziyade bir his/duygu aşılandığı için 'ana duygu' kavramı kullanılır.",
+      "app": {
+        "question": {
+          "text": "Düz yazılarda 'ana fikir' olarak adlandırılan kavram, şiirlerde daha çok hangi isimle anılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana duygu (Tema)",
+        "wrong1": "Ana kahraman",
+        "wrong2": "Şiirsel fikir",
+        "explanation": "Şiirlerde okuyucuya bir fikirden ziyade bir his/duygu aşılandığı için 'ana duygu' kavramı kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_125",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Bu metinde yazar neyden bahsediyor?' sorusunu sorduğumuzda aldığımız cevap metnin neyini verir?",
+      "correct": "Konusunu",
+      "wrong1": "Ana fikrini",
+      "wrong2": "Sonucunu",
+      "explanation": "Metinde üzerinde durulan kavram veya anlatılan olay, metnin 'konusu'dur.",
+      "app": {
+        "question": {
+          "text": "'Bu metinde yazar neyden bahsediyor?' sorusunu sorduğumuzda aldığımız cevap metnin neyini verir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Konusunu",
+        "wrong1": "Ana fikrini",
+        "wrong2": "Sonucunu",
+        "explanation": "Metinde üzerinde durulan kavram veya anlatılan olay, metnin 'konusu'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_126",
+      "level": "orta",
+      "premise": null,
+      "text": "'Yazarın bu metni yazarak bize vermek istediği asıl ders nedir?' sorusunun cevabı aşağıdakilerden hangisidir?",
+      "correct": "Ana fikir",
+      "wrong1": "Konu",
+      "wrong2": "Başlık",
+      "explanation": "Yazarın okuyucuya ulaştırmak istediği asıl mesaj, öğüt veya ders 'ana fikir' olarak adlandırılır.",
+      "app": {
+        "question": {
+          "text": "'Yazarın bu metni yazarak bize vermek istediği asıl ders nedir?' sorusunun cevabı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana fikir",
+        "wrong1": "Konu",
+        "wrong2": "Başlık",
+        "explanation": "Yazarın okuyucuya ulaştırmak istediği asıl mesaj, öğüt veya ders 'ana fikir' olarak adlandırılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_127",
+      "level": "zor",
+      "premise": "Hava kirliliği, canlıların sağlığını olumsuz etkileyen en büyük sorunlardan biridir. Fabrika bacalarından çıkan dumanlar havamızı her geçen gün daha da kirletmektedir.",
+      "text": "Yukarıdaki metnin konusu nedir?",
+      "correct": "Hava kirliliğinin sebepleri ve etkileri",
+      "wrong1": "Fabrikaların çalışma şekli",
+      "wrong2": "İnsan sağlığını koruma yolları",
+      "explanation": "Metinde temel olarak ele alınan durum 'hava kirliliği' ve onun yarattığı olumsuz etkilerdir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Hava kirliliği, canlıların sağlığını olumsuz etkileyen en büyük sorunlardan biridir. Fabrika bacalarından çıkan dumanlar havamızı her geçen gün daha da kirletmektedir."
+            }
+          ]
+        },
+        "correct": "Hava kirliliğinin sebepleri ve etkileri",
+        "wrong1": "Fabrikaların çalışma şekli",
+        "wrong2": "İnsan sağlığını koruma yolları",
+        "explanation": "Metinde temel olarak ele alınan durum 'hava kirliliği' ve onun yarattığı olumsuz etkilerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_128",
+      "level": "kolay",
+      "premise": "Zaman çok değerlidir. Giden zamanı hiçbir parayla geri satın alamayız. Bu yüzden vaktimizi boşa harcamamalıyız.",
+      "text": "Yukarıdaki metnin ana fikri nedir?",
+      "correct": "Zamanımızı iyi değerlendirmeli, boşa harcamamalıyız.",
+      "wrong1": "Zamanı satın almak çok pahalıdır",
+      "wrong2": "Günün en değerli vakti sabahtır",
+      "explanation": "Metinden çıkarılacak en temel ders, zamanın kıymetli olduğu ve israf edilmemesi gerektiğidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zaman çok değerlidir. Giden zamanı hiçbir parayla geri satın alamayız. Bu yüzden vaktimizi boşa harcamamalıyız."
+            }
+          ]
+        },
+        "correct": "Zamanımızı iyi değerlendirmeli, boşa harcamamalıyız.",
+        "wrong1": "Zamanı satın almak çok pahalıdır",
+        "wrong2": "Günün en değerli vakti sabahtır",
+        "explanation": "Metinden çıkarılacak en temel ders, zamanın kıymetli olduğu ve israf edilmemesi gerektiğidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_129",
+      "level": "orta",
+      "premise": "Karıncalar çok çalışkandır. Yuvalarını inşa ederler, kış gelmeden önce yiyeceklerini biriktirirler ve her zaman iş bölümü yaparlar.",
+      "text": "Yukarıdaki metne konulabilecek en uygun başlık hangisidir?",
+      "correct": "Çalışkan Karıncalar",
+      "wrong1": "Ormandaki Hayvanlar",
+      "wrong2": "Kış Mevsimi",
+      "explanation": "Metin bütünüyle karıncaların çalışkanlıklarına odaklandığı için en iyi özetleyen başlık 'Çalışkan Karıncalar'dır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne konulabilecek en uygun başlık hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karıncalar çok çalışkandır. Yuvalarını inşa ederler, kış gelmeden önce yiyeceklerini biriktirirler ve her zaman iş bölümü yaparlar."
+            }
+          ]
+        },
+        "correct": "Çalışkan Karıncalar",
+        "wrong1": "Ormandaki Hayvanlar",
+        "wrong2": "Kış Mevsimi",
+        "explanation": "Metin bütünüyle karıncaların çalışkanlıklarına odaklandığı için en iyi özetleyen başlık 'Çalışkan Karıncalar'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_130",
+      "level": "zor",
+      "premise": "Geri dönüşüm, atıkların tekrar kullanılması demektir. Kağıtları geri dönüştürerek ağaçların kesilmesini önleyebilir, doğamızı koruyabiliriz.",
+      "text": "Yukarıdaki metnin ana fikri ile konusu hangi seçenekte doğru verilmiştir?",
+      "correct": "Konu: Geri dönüşüm / Ana Fikir: Geri dönüşüm doğayı korumak için çok önemlidir.",
+      "wrong1": "Konu: Ağaçlar / Ana Fikir: Atıkları çöpe atmalıyız",
+      "wrong2": "Konu: Doğa / Ana Fikir: Sadece kağıtlar geri dönüştürülür",
+      "explanation": "Metin geri dönüşümü (konu) anlatmakta ve bunun doğayı koruduğu mesajını (ana fikir) vermektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metnin ana fikri ile konusu hangi seçenekte doğru verilmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geri dönüşüm, atıkların tekrar kullanılması demektir. Kağıtları geri dönüştürerek ağaçların kesilmesini önleyebilir, doğamızı koruyabiliriz."
+            }
+          ]
+        },
+        "correct": "Konu: Geri dönüşüm / Ana Fikir: Geri dönüşüm doğayı korumak için çok önemlidir.",
+        "wrong1": "Konu: Ağaçlar / Ana Fikir: Atıkları çöpe atmalıyız",
+        "wrong2": "Konu: Doğa / Ana Fikir: Sadece kağıtlar geri dönüştürülür",
+        "explanation": "Metin geri dönüşümü (konu) anlatmakta ve bunun doğayı koruduğu mesajını (ana fikir) vermektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_131",
+      "level": "kolay",
+      "premise": "Öğretmenim canım benim,\nSeni ben pek çok severim.\nSen bir ana, sen bir baba,\nHer şey oldun artık bana.",
+      "text": "Yukarıdaki şiirin ana duygusu (konusu) nedir?",
+      "correct": "Öğretmen sevgisi",
+      "wrong1": "Okul korkusu",
+      "wrong2": "Anne özlemi",
+      "explanation": "Şiirde açıkça bir öğrencinin öğretmenine duyduğu büyük sevgi anlatılmaktadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki şiirin ana duygusu (konusu) nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğretmenim canım benim,\nSeni ben pek çok severim.\nSen bir ana, sen bir baba,\nHer şey oldun artık bana."
+            }
+          ]
+        },
+        "correct": "Öğretmen sevgisi",
+        "wrong1": "Okul korkusu",
+        "wrong2": "Anne özlemi",
+        "explanation": "Şiirde açıkça bir öğrencinin öğretmenine duyduğu büyük sevgi anlatılmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_132",
+      "level": "orta",
+      "premise": "Aslan, fareye acımış ve onu yememiş. Gün gelmiş, fare aslanı avcıların ağından kurtarmış.",
+      "text": "Yukarıdaki fablın okura verdiği öğüt nedir?",
+      "correct": "Küçük gördüğümüz kişiler bile büyük yardımlar edebilir.",
+      "wrong1": "Fareler aslanlardan her zaman daha güçlüdür.",
+      "wrong2": "Ormanda aslanlar her gün avlanmaya çıkar.",
+      "explanation": "Hikaye, kimseyi küçümsememek gerektiğini ve yapılan iyiliğin karşılığını bulacağını anlatır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki fablın okura verdiği öğüt nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aslan, fareye acımış ve onu yememiş. Gün gelmiş, fare aslanı avcıların ağından kurtarmış."
+            }
+          ]
+        },
+        "correct": "Küçük gördüğümüz kişiler bile büyük yardımlar edebilir.",
+        "wrong1": "Fareler aslanlardan her zaman daha güçlüdür.",
+        "wrong2": "Ormanda aslanlar her gün avlanmaya çıkar.",
+        "explanation": "Hikaye, kimseyi küçümsememek gerektiğini ve yapılan iyiliğin karşılığını bulacağını anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_133",
+      "level": "zor",
+      "premise": null,
+      "text": "Fabl metinlerinde en sonda yer alan ve genellikle bir iki cümleyle ifade edilen ders çıkarma bölümü, metnin hangi unsurunu oluşturur?",
+      "correct": "Ana fikrini",
+      "wrong1": "Başlığını",
+      "wrong2": "Giriş bölümünü",
+      "explanation": "Fablların sonunda yazarın okuyucuya doğrudan verdiği o öğüt, metnin asıl yazılış amacı olan 'ana fikri'dir.",
+      "app": {
+        "question": {
+          "text": "Fabl metinlerinde en sonda yer alan ve genellikle bir iki cümleyle ifade edilen ders çıkarma bölümü, metnin hangi unsurunu oluşturur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ana fikrini",
+        "wrong1": "Başlığını",
+        "wrong2": "Giriş bölümünü",
+        "explanation": "Fablların sonunda yazarın okuyucuya doğrudan verdiği o öğüt, metnin asıl yazılış amacı olan 'ana fikri'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_134",
+      "level": "kolay",
+      "premise": "Denizlerimizde binlerce farklı balık türü yaşar. Onları korumak için sularımızı temiz tutmalıyız.",
+      "text": "Yukarıdaki metne göre metnin konusu nedir?",
+      "correct": "Deniz canlıları ve temizliği",
+      "wrong1": "Balık tutma teknikleri",
+      "wrong2": "Göllerimiz",
+      "explanation": "Metin genel olarak denizlerdeki balık türlerinden ve onları korumak için denizi temiz tutmaktan bahsetmektedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin konusu nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Denizlerimizde binlerce farklı balık türü yaşar. Onları korumak için sularımızı temiz tutmalıyız."
+            }
+          ]
+        },
+        "correct": "Deniz canlıları ve temizliği",
+        "wrong1": "Balık tutma teknikleri",
+        "wrong2": "Göllerimiz",
+        "explanation": "Metin genel olarak denizlerdeki balık türlerinden ve onları korumak için denizi temiz tutmaktan bahsetmektedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_135",
+      "level": "orta",
+      "premise": "Bencil adam sadece kendini düşünürdü. Bir gün hastalandığında kapısını çalacak, ona yardım edecek kimseyi bulamadı.",
+      "text": "Yukarıdaki metne göre metnin ana fikri nedir?",
+      "correct": "Sadece kendini düşünen bencil insanlar zor günlerinde yalnız kalırlar.",
+      "wrong1": "Hastalanınca doktora gitmek gerekir",
+      "wrong2": "Komşular birbirlerine yemek vermelidir",
+      "explanation": "Bencilliğin insanı yalnızlığa ittiği gerçeği metnin vermek istediği asıl derstir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre metnin ana fikri nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bencil adam sadece kendini düşünürdü. Bir gün hastalandığında kapısını çalacak, ona yardım edecek kimseyi bulamadı."
+            }
+          ]
+        },
+        "correct": "Sadece kendini düşünen bencil insanlar zor günlerinde yalnız kalırlar.",
+        "wrong1": "Hastalanınca doktora gitmek gerekir",
+        "wrong2": "Komşular birbirlerine yemek vermelidir",
+        "explanation": "Bencilliğin insanı yalnızlığa ittiği gerçeği metnin vermek istediği asıl derstir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_136",
+      "level": "kolay",
+      "premise": "I. Metin: Tavşan hızına çok güveniyormuş...\nII. Metin: Güneş sistemindeki en büyük gezegen Jüpiter'dir...",
+      "text": "Yukarıdaki metinlerin türleri sırasıyla aşağıdakilerden hangisidir?",
+      "correct": "Fabl - Bilgilendirici Metin",
+      "wrong1": "Masal - Hikâye",
+      "wrong2": "Şiir - Masal",
+      "explanation": "1. metin hayvanları anlatan, ders verici fabldır. 2. metin ise okura bilimsel bilgi veren bilgilendirici metindir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metinlerin türleri sırasıyla aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Metin: Tavşan hızına çok güveniyormuş..."
+                },
+                {
+                  "label": "II.",
+                  "text": "Metin: Güneş sistemindeki en büyük gezegen Jüpiter'dir..."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "Fabl - Bilgilendirici Metin",
+        "wrong1": "Masal - Hikâye",
+        "wrong2": "Şiir - Masal",
+        "explanation": "1. metin hayvanları anlatan, ders verici fabldır. 2. metin ise okura bilimsel bilgi veren bilgilendirici metindir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_137",
+      "level": "orta",
+      "premise": null,
+      "text": "Hem hikâyelerin hem de fablların ortak özelliği aşağıdakilerden hangisidir?",
+      "correct": "İkisinde de bir olayın anlatılması",
+      "wrong1": "İkisinin de tekerleme ile başlaması",
+      "wrong2": "İkisinin de gerçek olayları anlatması",
+      "explanation": "İkisi de 'hikaye edici metinler' grubundadır, yani ikisinde de belirli kahramanların başından geçen hareketli bir olay vardır.",
+      "app": {
+        "question": {
+          "text": "Hem hikâyelerin hem de fablların ortak özelliği aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İkisinde de bir olayın anlatılması",
+        "wrong1": "İkisinin de tekerleme ile başlaması",
+        "wrong2": "İkisinin de gerçek olayları anlatması",
+        "explanation": "İkisi de 'hikaye edici metinler' grubundadır, yani ikisinde de belirli kahramanların başından geçen hareketli bir olay vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_138",
+      "level": "zor",
+      "premise": "Murat Öğretmen, tahtaya 'Dünya'nın uydusu Ay'dır.' ve 'Ay Dedem gece bize gülümsedi.' cümlelerini yazmıştır.",
+      "text": "Yukarıdaki iki cümle ile ilgili aşağıdakilerden hangisi doğrudur?",
+      "correct": "Birinci cümle gerçek, ikinci cümle hayal ürünüdür.",
+      "wrong1": "İkisi de bilgilendirici metinden alınmıştır",
+      "wrong2": "İkisi de hayal ürünüdür",
+      "explanation": "İlk cümle Ay'ın bilimsel durumunu anlatan gerçek bir ifade, ikinci cümle ise Ay'ın insan gibi gülümsemesini anlatan hayal ürünüdür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki iki cümle ile ilgili aşağıdakilerden hangisi doğrudur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Murat Öğretmen, tahtaya 'Dünya'nın uydusu Ay'dır.' ve 'Ay Dedem gece bize gülümsedi.' cümlelerini yazmıştır."
+            }
+          ]
+        },
+        "correct": "Birinci cümle gerçek, ikinci cümle hayal ürünüdür.",
+        "wrong1": "İkisi de bilgilendirici metinden alınmıştır",
+        "wrong2": "İkisi de hayal ürünüdür",
+        "explanation": "İlk cümle Ay'ın bilimsel durumunu anlatan gerçek bir ifade, ikinci cümle ise Ay'ın insan gibi gülümsemesini anlatan hayal ürünüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_139",
+      "level": "kolay",
+      "premise": "Metinler genellikle amaçlarına göre ayrılır: 1. Hikaye edici, 2. Bilgilendirici, 3. Şiir.",
+      "text": "Yukarıdaki metne göre buna göre bir ansiklopediden alınan yazı hangi gruba girer?",
+      "correct": "Bilgilendirici",
+      "wrong1": "Hikaye edici",
+      "wrong2": "Şiir",
+      "explanation": "Ansiklopedilerin yazılma amacı bilimsel ve gerçek bilgileri öğretmektir, bu yüzden bilgilendirici metindir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre buna göre bir ansiklopediden alınan yazı hangi gruba girer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Metinler genellikle amaçlarına göre ayrılır: 1. Hikaye edici, 2. Bilgilendirici, 3. Şiir."
+            }
+          ]
+        },
+        "correct": "Bilgilendirici",
+        "wrong1": "Hikaye edici",
+        "wrong2": "Şiir",
+        "explanation": "Ansiklopedilerin yazılma amacı bilimsel ve gerçek bilgileri öğretmektir, bu yüzden bilgilendirici metindir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_140",
+      "level": "orta",
+      "premise": "Sincap telaşla cevizlerini saklamaya çalışıyordu çünkü kış geliyordu.",
+      "text": "Yukarıdaki cümle eğer tamamen gerçekçi bir belgesel metninden alındıysa aşağıdakilerden hangisi söylenebilir?",
+      "correct": "Bilgilendirici metindir, hayvanların kış hazırlığını anlatır.",
+      "wrong1": "Fabl metnidir, sincap konuşmaktadır",
+      "wrong2": "Masaldır, cevizler sihirliyse",
+      "explanation": "Eğer cümle belgeselden alındıysa doğadaki gerçek bir içgüdüsel davranışı anlattığı için bilgilendiricidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki cümle eğer tamamen gerçekçi bir belgesel metninden alındıysa aşağıdakilerden hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sincap telaşla cevizlerini saklamaya çalışıyordu çünkü kış geliyordu."
+            }
+          ]
+        },
+        "correct": "Bilgilendirici metindir, hayvanların kış hazırlığını anlatır.",
+        "wrong1": "Fabl metnidir, sincap konuşmaktadır",
+        "wrong2": "Masaldır, cevizler sihirliyse",
+        "explanation": "Eğer cümle belgeselden alındıysa doğadaki gerçek bir içgüdüsel davranışı anlattığı için bilgilendiricidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_141",
+      "level": "zor",
+      "premise": "Masal, Fabl, Hikâye ve Anı gibi metinlerin tamamı tek bir ana başlık altında toplanır.",
+      "text": "Yukarıdaki ana başlık aşağıdakilerden hangisidir?",
+      "correct": "Olay Yazıları (Hikaye Edici Metinler)",
+      "wrong1": "Düşünce Yazıları",
+      "wrong2": "Bilimsel Yazılar",
+      "explanation": "Tüm bu türlerin ortak özelliği, içinde karakterlerin yer aldığı belirli bir zaman akışı içinde gerçekleşen olayları (kurgu veya gerçek) anlatmalarıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki ana başlık aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Masal, Fabl, Hikâye ve Anı gibi metinlerin tamamı tek bir ana başlık altında toplanır."
+            }
+          ]
+        },
+        "correct": "Olay Yazıları (Hikaye Edici Metinler)",
+        "wrong1": "Düşünce Yazıları",
+        "wrong2": "Bilimsel Yazılar",
+        "explanation": "Tüm bu türlerin ortak özelliği, içinde karakterlerin yer aldığı belirli bir zaman akışı içinde gerçekleşen olayları (kurgu veya gerçek) anlatmalarıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_142",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okuduğunuz bir metinde dizeler ve kıtalar varsa o metin kesinlikle nedir?",
+      "correct": "Şiir",
+      "wrong1": "Masal",
+      "wrong2": "Fabl",
+      "explanation": "Dizeler (mısralar) ve kıtalar (dörtlükler) sadece şiire ait yapısal özelliklerdir.",
+      "app": {
+        "question": {
+          "text": "Okuduğunuz bir metinde dizeler ve kıtalar varsa o metin kesinlikle nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Şiir",
+        "wrong1": "Masal",
+        "wrong2": "Fabl",
+        "explanation": "Dizeler (mısralar) ve kıtalar (dörtlükler) sadece şiire ait yapısal özelliklerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_143",
+      "level": "orta",
+      "premise": "Can sıkıntısından ne yapacağını bilemeyen Dev, devasa ayaklarıyla bir adımda dağları aşmış.",
+      "text": "Yukarıdaki metin hikaye mi yoksa masal özellikleri mi taşır?",
+      "correct": "Masal özellikleri taşır çünkü olağanüstü bir varlık vardır.",
+      "wrong1": "Hikaye özellikleri taşır çünkü gerçek bir olaydır.",
+      "wrong2": "Bilgilendirici metin özellikleri taşır çünkü devler hakkında bilgi verir.",
+      "explanation": "Devler gerçekte var olmayan mitolojik/masalsı varlıklardır, bu yüzden metin hayal gücüne dayalı bir masal örneğidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metin hikaye mi yoksa masal özellikleri mi taşır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Can sıkıntısından ne yapacağını bilemeyen Dev, devasa ayaklarıyla bir adımda dağları aşmış."
+            }
+          ]
+        },
+        "correct": "Masal özellikleri taşır çünkü olağanüstü bir varlık vardır.",
+        "wrong1": "Hikaye özellikleri taşır çünkü gerçek bir olaydır.",
+        "wrong2": "Bilgilendirici metin özellikleri taşır çünkü devler hakkında bilgi verir.",
+        "explanation": "Devler gerçekte var olmayan mitolojik/masalsı varlıklardır, bu yüzden metin hayal gücüne dayalı bir masal örneğidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_144",
+      "level": "zor",
+      "premise": "I. Başlık olmalıdır.\nII. Giriş, gelişme ve sonuç bölümleri vardır.\nIII. Hayal ürünü unsurlar kesinlikle kullanılamaz.",
+      "text": "Yukarıdakilerden hangisi bir 'hikâye' için zorunlu (kesin) kural değildir?",
+      "correct": "III. kural",
+      "wrong1": "II. kural",
+      "wrong2": "I. kural",
+      "explanation": "Hikayelerde genellikle yaşanabilecek olaylar anlatılsa da yazar abartı ve kısmi hayal gücü kullanabilir. Hikayelerde asla hayal ürünü olamaz demek yanlıştır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdakilerden hangisi bir 'hikâye' için zorunlu (kesin) kural değildir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "items",
+              "items": [
+                {
+                  "label": "I.",
+                  "text": "Başlık olmalıdır."
+                },
+                {
+                  "label": "II.",
+                  "text": "Giriş, gelişme ve sonuç bölümleri vardır."
+                },
+                {
+                  "label": "III.",
+                  "text": "Hayal ürünü unsurlar kesinlikle kullanılamaz."
+                }
+              ]
+            }
+          ]
+        },
+        "correct": "III. kural",
+        "wrong1": "II. kural",
+        "wrong2": "I. kural",
+        "explanation": "Hikayelerde genellikle yaşanabilecek olaylar anlatılsa da yazar abartı ve kısmi hayal gücü kullanabilir. Hikayelerde asla hayal ürünü olamaz demek yanlıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_145",
+      "level": "kolay",
+      "premise": "Görsel (resimli) bir kitapta sadece farklı dinozor türlerinin boyları, yaşadıkları çağlar ve ne yedikleri yazmaktadır.",
+      "text": "Yukarıdaki kitabın metin türü nedir?",
+      "correct": "Bilgilendirici Metin",
+      "wrong1": "Masal",
+      "wrong2": "Mektup",
+      "explanation": "Nesnel bilgilerin aktarıldığı, bilimsel verilerin sunulduğu kitaplar bilgilendirici metin içerir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kitabın metin türü nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Görsel (resimli) bir kitapta sadece farklı dinozor türlerinin boyları, yaşadıkları çağlar ve ne yedikleri yazmaktadır."
+            }
+          ]
+        },
+        "correct": "Bilgilendirici Metin",
+        "wrong1": "Masal",
+        "wrong2": "Mektup",
+        "explanation": "Nesnel bilgilerin aktarıldığı, bilimsel verilerin sunulduğu kitaplar bilgilendirici metin içerir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_146",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir masalın giriş cümlesi olmaya en uygundur?",
+      "correct": "Kafdağı'nın ardında iyi kalpli bir padişah yaşarmış.",
+      "wrong1": "Bugün okula giderken arkadaşım Ali'yi gördüm.",
+      "wrong2": "Arılar bal yapmak için nektar toplarlar.",
+      "explanation": "Kafdağı ve '-mış'lı geçmiş zaman kipi masallara özgü klasik başlangıç özellikleridir.",
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir masalın giriş cümlesi olmaya en uygundur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kafdağı'nın ardında iyi kalpli bir padişah yaşarmış.",
+        "wrong1": "Bugün okula giderken arkadaşım Ali'yi gördüm.",
+        "wrong2": "Arılar bal yapmak için nektar toplarlar.",
+        "explanation": "Kafdağı ve '-mış'lı geçmiş zaman kipi masallara özgü klasik başlangıç özellikleridir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_147",
+      "level": "zor",
+      "premise": "Leylek, tilkinin oyununa kızmış ve ondan intikam almak için onu yemeğe çağırmış. Yemeği uzun dar bir vazoda sunmuş ve tilki yiyememiş.",
+      "text": "Yukarıdaki fabldan çıkarılabilecek ana düşünce nedir?",
+      "correct": "Başkalarına kötü oyun oynayanlar, aynı davranışla karşılaşabilirler.",
+      "wrong1": "Leyleklerin gagası çok uzundur",
+      "wrong2": "Tilkiler çok kurnaz ve zeki hayvanlardır",
+      "explanation": "Fabl, tilkinin leyleğe yaptığı haksızlığın karşılığını aynı şekilde bulmasını anlatarak 'Eden bulur' dersini verir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki fabldan çıkarılabilecek ana düşünce nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Leylek, tilkinin oyununa kızmış ve ondan intikam almak için onu yemeğe çağırmış. Yemeği uzun dar bir vazoda sunmuş ve tilki yiyememiş."
+            }
+          ]
+        },
+        "correct": "Başkalarına kötü oyun oynayanlar, aynı davranışla karşılaşabilirler.",
+        "wrong1": "Leyleklerin gagası çok uzundur",
+        "wrong2": "Tilkiler çok kurnaz ve zeki hayvanlardır",
+        "explanation": "Fabl, tilkinin leyleğe yaptığı haksızlığın karşılığını aynı şekilde bulmasını anlatarak 'Eden bulur' dersini verir.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_148",
+      "level": "kolay",
+      "premise": null,
+      "text": "Satır başı yapılarak, cümlelerin arka arkaya dizildiği paragraflardan oluşan yazı türüne genel olarak ne denir?",
+      "correct": "Düz yazı",
+      "wrong1": "Şiir",
+      "wrong2": "Dize",
+      "explanation": "Cümlelerin yan yana dizilerek oluşturduğu normal yazım şekline düz yazı denir (Şiir haricindeki türler).",
+      "app": {
+        "question": {
+          "text": "Satır başı yapılarak, cümlelerin arka arkaya dizildiği paragraflardan oluşan yazı türüne genel olarak ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Düz yazı",
+        "wrong1": "Şiir",
+        "wrong2": "Dize",
+        "explanation": "Cümlelerin yan yana dizilerek oluşturduğu normal yazım şekline düz yazı denir (Şiir haricindeki türler).",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_149",
+      "level": "orta",
+      "premise": null,
+      "text": "Şairlerin şiirlerinde genellikle her satırın ilk harfini nasıl yazmaları gerekir?",
+      "correct": "Büyük harfle",
+      "wrong1": "Küçük harfle",
+      "wrong2": "Renkli kalemle",
+      "explanation": "Türkçe yazım kurallarına göre, şiirlerdeki dizelerin (mısraların) ilk harfi daima büyük harfle başlar.",
+      "app": {
+        "question": {
+          "text": "Şairlerin şiirlerinde genellikle her satırın ilk harfini nasıl yazmaları gerekir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Büyük harfle",
+        "wrong1": "Küçük harfle",
+        "wrong2": "Renkli kalemle",
+        "explanation": "Türkçe yazım kurallarına göre, şiirlerdeki dizelerin (mısraların) ilk harfi daima büyük harfle başlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "metin3_150",
+      "level": "zor",
+      "premise": "Öğretmen: 'Masallarda yer ve zaman belirsizdir. Fabllarda ise kahramanlar hayvanlardır.'",
+      "text": "Yukarıdaki metne göre buna göre olayların nerede ve ne zaman yaşandığı gerçeğe uygun olarak bilinen metin türü aşağıdakilerden hangisi olabilir?",
+      "correct": "Hikâye (Öykü)",
+      "wrong1": "Masal",
+      "wrong2": "Fabl",
+      "explanation": "Masal ve fabllarda mekan ve zaman belirsizdir. Ancak hikayelerde olayların yaşandığı çevre ve zaman dilimi (örneğin pazar sabahı, okul bahçesi) gerçeğe uygundur ve bellidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre buna göre olayların nerede ve ne zaman yaşandığı gerçeğe uygun olarak bilinen metin türü aşağıdakilerden hangisi olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Öğretmen: 'Masallarda yer ve zaman belirsizdir. Fabllarda ise kahramanlar hayvanlardır.'"
+            }
+          ]
+        },
+        "correct": "Hikâye (Öykü)",
+        "wrong1": "Masal",
+        "wrong2": "Fabl",
+        "explanation": "Masal ve fabllarda mekan ve zaman belirsizdir. Ancak hikayelerde olayların yaşandığı çevre ve zaman dilimi (örneğin pazar sabahı, okul bahçesi) gerçeğe uygundur ve bellidir.",
+        "url": null
+      }
+    }
+  ]
+}

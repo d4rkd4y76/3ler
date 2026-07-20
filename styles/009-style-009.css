@@ -1,0 +1,6 @@
+.explanation-container{margin-top:12px;display:none;}
+.explanation-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+.explanation-title{font-weight:700;margin-bottom:8px;}
+.next-question-button{margin-top:12px;padding:10px 14px;border:none;border-radius:10px;background:#2563eb;color:#fff;font-weight:600;cursor:pointer;}
+.next-question-button:hover{opacity:.92;transform:translateY(-1px);}
+.explanation-correct{margin-bottom:8px;}

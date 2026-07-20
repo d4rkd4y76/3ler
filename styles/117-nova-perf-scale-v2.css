@@ -1,0 +1,34 @@
+/* Akıcı mod — tek sabit body ölçeği; ekran geçişlerinde counter-zoom yok */
+
+body.nova-perf-ultra:not(.nova-duel-game-open):not(.roborox-reader-open) {
+  /* JS + nova-perf-early-boot.js: body zoom = 0.74 (oturum açıkken) */
+}
+
+html.nova-has-session body.nova-perf-ultra.nova-perf-tier-main #main-screen,
+body.nova-perf-ultra .nova-perf-hq-scope,
+body.nova-perf-ultra .nova-perf-sp-scope,
+body.nova-perf-ultra #duel-selection-screen,
+body.nova-perf-ultra #matchmakingScreen,
+body.nova-perf-ultra #daily-puzzle-screen,
+body.nova-perf-ultra #fillblank-screen,
+body.nova-perf-ultra #match-screen,
+body.nova-perf-ultra #single-player-screen,
+body.nova-perf-ultra #single-player-game-screen {
+  zoom: 1 !important;
+  transform: none !important;
+}
+
+body.nova-duel-game-open #duel-game-screen.nova-duel-game-visible {
+  zoom: 1 !important;
+  transform: none !important;
+}
+
+#main-screen.container,
+#single-player-screen.container,
+#single-player-game-screen.single-player-game-container,
+#duel-selection-screen.duel-selection-container,
+#duel-game-screen.duel-game-container,
+#matchmakingScreen.container,
+#student-selection-screen.container {
+  animation: none !important;
+}

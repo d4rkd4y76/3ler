@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-golge-parsi-sprites.py */
+window.NOVA_GOLGE_PARSI_SPRITE_BASE="hero/golge_parsi/sprite/";
+window.NOVA_GOLGE_PARSI_SPRITE_MANIFEST = {"version":1,"base":"hero/golge_parsi/sprite/","sheet":"golge-parsi-idle.webp","frameWidth":254,"frameHeight":290,"cols":9,"rows":11,"frameCount":96,"loopEnd":96,"fps":24,"blendFrames":0,"sheetWidth":2286,"sheetHeight":3190,"anchor":"center","main":{"sheet":"golge-parsi-main.webp","frameWidth":406,"frameHeight":300,"cols":7,"rows":8,"frameCount":55,"loopEnd":47,"fps":12,"blendFrames":8,"sheetWidth":2842,"sheetHeight":2400,"anchor":"bottom"},"scale":{"store":1.12,"detail":1.28,"main":1.42}};

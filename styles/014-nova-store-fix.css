@@ -1,0 +1,9 @@
+/* Mağaza — yalnızca gerçek avatar img (kapsayıcı div'e uygulanmaz) */
+.profile-change-content .profile-photos-container img.profile-photo,
+.profile-change-content .profile-photos-container img.nova-store-avatar-img {
+  width: 120px !important;
+  height: 150px !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+  display: block !important;
+}

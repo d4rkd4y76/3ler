@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "mat3_bol_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bölme işleminde paylaştırılan, eşit parçalara ayrılan bütüne ne denir?",
+    "correct": "Bölünen",
+    "wrong1": "Bölen",
+    "wrong2": "Bölüm",
+    "explanation": "Bölme işleminde paylaştırılacak asıl sayıya bölünen denir."
+  },
+  {
+    "id": "mat3_bol_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bölme işleminin sonucuna ne ad verilir?",
+    "correct": "Bölüm",
+    "wrong1": "Kalan",
+    "wrong2": "Bölen",
+    "explanation": "İşlem sonucunda her bir gruba düşen miktar bölümdür, yani sonuçtur."
+  },
+  {
+    "id": "mat3_bol_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir bölme işleminde paylaştırılamayan, geriye artan sayıya ne denir?",
+    "correct": "Kalan",
+    "wrong1": "Bölüm",
+    "wrong2": "Fark",
+    "explanation": "Eşit olarak dağıtıldıktan sonra geriye artan sayıya kalan denir."
+  },
+  {
+    "id": "mat3_bol_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "Ardışık çıkarma işleminin kısa yolu olan işlem hangisidir?",
+    "correct": "Bölme",
+    "wrong1": "Çarpma",
+    "wrong2": "Toplama",
+    "explanation": "Bölme işlemi, aynı sayıyı sürekli çıkarmanın kısa yoldan yapılışıdır."
+  },
+  {
+    "id": "mat3_bol_005",
+    "level": "kolay",
+    "premise": null,
+    "text": "Sıfır hariç bir sayının kendisine bölümünün sonucu kaçtır?",
+    "correct": "1",
+    "wrong1": "0",
+    "wrong2": "Sayının kendisi",
+    "explanation": "Bir sayıyı kendisine bölersek her gruba 1 düşer (Örn: 5 ÷ 5 = 1)."
+  },
+  {
+    "id": "mat3_bol_006",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir sayının 1'e bölümünün sonucu nedir?",
+    "correct": "Sayının kendisi",
+    "wrong1": "1",
+    "wrong2": "0",
+    "explanation": "Bir sayıyı 1'e bölmek, onu tek bir gruba vermek demektir, sonuç değişmez."
+  },
+  {
+    "id": "mat3_bol_007",
+    "level": "kolay",
+    "premise": null,
+    "text": "Sıfırın, sıfırdan farklı bir doğal sayıya bölümü kaçtır?",
+    "correct": "0",
+    "wrong1": "1",
+    "wrong2": "Sayının kendisi",
+    "explanation": "Sıfır tane nesne paylaştırılamayacağı için sonuç her zaman sıfırdır."
+  },
+  {
+    "id": "mat3_bol_008",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki sembollerden hangisi bölme işlemi için kullanılmaz?",
+    "correct": "+",
+    "wrong1": "÷",
+    "wrong2": "/",
+    "explanation": "Toplama işlemi + ile gösterilirken, bölme için ÷ veya / kullanılır."
+  },
+  {
+    "id": "mat3_bol_009",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir bölme işleminde kalan sayı ile bölen sayı arasındaki altın kural nedir?",
+    "correct": "Kalan, bölenden küçük olmalıdır",
+    "wrong1": "Kalan, bölenden büyük olmalıdır",
+    "wrong2": "Kalan, bölene eşit olmalıdır",
+    "explanation": "Bölme işleminin bitmesi için kalanın bölenden her zaman küçük olması gerekir."
+  },
+  {
+    "id": "mat3_bol_010",
+    "level": "kolay",
+    "premise": null,
+    "text": "Kalansız bir bölme işleminde bölünen sayıyı bulmak için hangi işlem yapılır?",
+    "correct": "Bölen ile bölüm çarpılır",
+    "wrong1": "Bölen ile kalan toplanır",
+    "wrong2": "Bölüm ile bölen toplanır",
+    "explanation": "Bölünen = Bölen x Bölüm formülüyle bulunur."
+  },
+  {
+    "id": "mat3_bol_011",
+    "level": "kolay",
+    "premise": null,
+    "text": "30 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 30 ÷ 10 = 3."
+  },
+  {
+    "id": "mat3_bol_012",
+    "level": "kolay",
+    "premise": null,
+    "text": "20 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "1",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 20 ÷ 10 = 2."
+  },
+  {
+    "id": "mat3_bol_013",
+    "level": "kolay",
+    "premise": null,
+    "text": "60 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 60 ÷ 10 = 6."
+  },
+  {
+    "id": "mat3_bol_014",
+    "level": "kolay",
+    "premise": null,
+    "text": "70 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 70 ÷ 10 = 7."
+  },
+  {
+    "id": "mat3_bol_015",
+    "level": "kolay",
+    "premise": null,
+    "text": "50 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 50 ÷ 10 = 5."
+  },
+  {
+    "id": "mat3_bol_016",
+    "level": "kolay",
+    "premise": null,
+    "text": "80 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 80 ÷ 10 = 8."
+  },
+  {
+    "id": "mat3_bol_017",
+    "level": "kolay",
+    "premise": null,
+    "text": "90 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 90 ÷ 10 = 9."
+  },
+  {
+    "id": "mat3_bol_018",
+    "level": "kolay",
+    "premise": null,
+    "text": "40 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 40 ÷ 10 = 4."
+  },
+  {
+    "id": "mat3_bol_019",
+    "level": "kolay",
+    "premise": null,
+    "text": "30 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 30 ÷ 10 = 3."
+  },
+  {
+    "id": "mat3_bol_020",
+    "level": "kolay",
+    "premise": null,
+    "text": "80 sayısını zihinden kısa yoldan 10'a bölersek sonuç kaç olur?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Bir sayıyı zihinden 10'a bölerken sayının sonundaki bir tane sıfırı sileriz. 80 ÷ 10 = 8."
+  },
+  {
+    "id": "mat3_bol_021",
+    "level": "kolay",
+    "premise": "Ardışık çıkarma işlemi bölmenin temelidir.",
+    "text": "Yukarıda verilen ardışık çıkarma işleminin bölme olarak gösterimi hangisidir?\n15 - 5 = 10\n10 - 5 = 5\n5 - 5 = 0",
+    "correct": "15 ÷ 5 = 3",
+    "wrong1": "15 ÷ 3 = 5",
+    "wrong2": "10 ÷ 5 = 2",
+    "explanation": "15'in içinden 5 sayısı 3 defa ardışık olarak çıkarılmıştır."
+  },
+  {
+    "id": "mat3_bol_022",
+    "level": "kolay",
+    "premise": "Ardışık çıkarma işlemi bölmenin temelidir.",
+    "text": "Yukarıda verilen ardışık çıkarma işleminin bölme olarak gösterimi hangisidir?\n24 - 8 = 16\n16 - 8 = 8\n8 - 8 = 0",
+    "correct": "24 ÷ 8 = 3",
+    "wrong1": "24 ÷ 3 = 8",
+    "wrong2": "16 ÷ 8 = 2",
+    "explanation": "24'ün içinden 8 sayısı 3 defa ardışık olarak çıkarılmıştır."
+  },
+  {
+    "id": "mat3_bol_023",
+    "level": "kolay",
+    "premise": "Ardışık çıkarma işlemi bölmenin temelidir.",
+    "text": "Yukarıda verilen ardışık çıkarma işleminin bölme olarak gösterimi hangisidir?\n12 - 4 = 8\n8 - 4 = 4\n4 - 4 = 0",
+    "correct": "12 ÷ 4 = 3",
+    "wrong1": "12 ÷ 3 = 4",
+    "wrong2": "8 ÷ 4 = 2",
+    "explanation": "12'nin içinden 4 sayısı 3 defa ardışık olarak çıkarılmıştır."
+  },
+  {
+    "id": "mat3_bol_024",
+    "level": "kolay",
+    "premise": "Ardışık çıkarma işlemi bölmenin temelidir.",
+    "text": "Yukarıda verilen ardışık çıkarma işleminin bölme olarak gösterimi hangisidir?\n20 - 5 = 15\n15 - 5 = 10\n10 - 5 = 5\n5 - 5 = 0",
+    "correct": "20 ÷ 5 = 4",
+    "wrong1": "20 ÷ 4 = 5",
+    "wrong2": "15 ÷ 5 = 3",
+    "explanation": "20'nin içinden 5 sayısı 4 defa ardışık olarak çıkarılmıştır."
+  },
+  {
+    "id": "mat3_bol_025",
+    "level": "kolay",
+    "premise": "Ardışık çıkarma işlemi bölmenin temelidir.",
+    "text": "Yukarıda verilen ardışık çıkarma işleminin bölme olarak gösterimi hangisidir?\n18 - 6 = 12\n12 - 6 = 6\n6 - 6 = 0",
+    "correct": "18 ÷ 6 = 3",
+    "wrong1": "18 ÷ 3 = 6",
+    "wrong2": "12 ÷ 6 = 2",
+    "explanation": "18'in içinden 6 sayısı 3 defa ardışık olarak çıkarılmıştır."
+  },
+  {
+    "id": "mat3_bol_026",
+    "level": "kolay",
+    "premise": null,
+    "text": "14 ÷ 2 işleminin sonucu kaçtır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Çarpım tablosundan 2 x 7 = 14 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_027",
+    "level": "kolay",
+    "premise": null,
+    "text": "54 ÷ 9 işleminin sonucu kaçtır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Çarpım tablosundan 9 x 6 = 54 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_028",
+    "level": "kolay",
+    "premise": null,
+    "text": "24 ÷ 3 işleminin sonucu kaçtır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Çarpım tablosundan 3 x 8 = 24 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_029",
+    "level": "kolay",
+    "premise": null,
+    "text": "45 ÷ 5 işleminin sonucu kaçtır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Çarpım tablosundan 5 x 9 = 45 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_030",
+    "level": "kolay",
+    "premise": null,
+    "text": "32 ÷ 8 işleminin sonucu kaçtır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Çarpım tablosundan 8 x 4 = 32 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_031",
+    "level": "kolay",
+    "premise": null,
+    "text": "49 ÷ 7 işleminin sonucu kaçtır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Çarpım tablosundan 7 x 7 = 49 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_032",
+    "level": "kolay",
+    "premise": null,
+    "text": "18 ÷ 3 işleminin sonucu kaçtır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Çarpım tablosundan 3 x 6 = 18 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_033",
+    "level": "kolay",
+    "premise": null,
+    "text": "20 ÷ 4 işleminin sonucu kaçtır?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Çarpım tablosundan 4 x 5 = 20 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_034",
+    "level": "kolay",
+    "premise": null,
+    "text": "12 ÷ 6 işleminin sonucu kaçtır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "4",
+    "explanation": "Çarpım tablosundan 6 x 2 = 12 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_035",
+    "level": "kolay",
+    "premise": null,
+    "text": "16 ÷ 8 işleminin sonucu kaçtır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "4",
+    "explanation": "Çarpım tablosundan 8 x 2 = 16 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_036",
+    "level": "kolay",
+    "premise": null,
+    "text": "81 ÷ 9 işleminin sonucu kaçtır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Çarpım tablosundan 9 x 9 = 81 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_037",
+    "level": "kolay",
+    "premise": null,
+    "text": "21 ÷ 7 işleminin sonucu kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Çarpım tablosundan 7 x 3 = 21 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_038",
+    "level": "kolay",
+    "premise": null,
+    "text": "36 ÷ 6 işleminin sonucu kaçtır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Çarpım tablosundan 6 x 6 = 36 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_039",
+    "level": "kolay",
+    "premise": null,
+    "text": "15 ÷ 5 işleminin sonucu kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Çarpım tablosundan 5 x 3 = 15 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_040",
+    "level": "kolay",
+    "premise": null,
+    "text": "12 ÷ 3 işleminin sonucu kaçtır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Çarpım tablosundan 3 x 4 = 12 olduğunu hatırlarız."
+  },
+  {
+    "id": "mat3_bol_041",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "46 sayısının yarısı kaçtır?",
+    "correct": "23",
+    "wrong1": "25",
+    "wrong2": "22",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 46 ÷ 2 = 23."
+  },
+  {
+    "id": "mat3_bol_042",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "56 sayısının yarısı kaçtır?",
+    "correct": "28",
+    "wrong1": "30",
+    "wrong2": "27",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 56 ÷ 2 = 28."
+  },
+  {
+    "id": "mat3_bol_043",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "24 sayısının yarısı kaçtır?",
+    "correct": "12",
+    "wrong1": "14",
+    "wrong2": "11",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 24 ÷ 2 = 12."
+  },
+  {
+    "id": "mat3_bol_044",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "32 sayısının yarısı kaçtır?",
+    "correct": "16",
+    "wrong1": "18",
+    "wrong2": "15",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 32 ÷ 2 = 16."
+  },
+  {
+    "id": "mat3_bol_045",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "60 sayısının yarısı kaçtır?",
+    "correct": "30",
+    "wrong1": "32",
+    "wrong2": "29",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 60 ÷ 2 = 30."
+  },
+  {
+    "id": "mat3_bol_046",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "28 sayısının yarısı kaçtır?",
+    "correct": "14",
+    "wrong1": "16",
+    "wrong2": "13",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 28 ÷ 2 = 14."
+  },
+  {
+    "id": "mat3_bol_047",
+    "level": "kolay",
+    "premise": "Bir bütünün yarısını bulmak için sayıyı 2'ye böleriz.",
+    "text": "36 sayısının yarısı kaçtır?",
+    "correct": "18",
+    "wrong1": "20",
+    "wrong2": "17",
+    "explanation": "Yarım kavramı bütünü iki eşit parçaya ayırmaktır. 36 ÷ 2 = 18."
+  },
+  {
+    "id": "mat3_bol_048",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "28 sayısının çeyreği kaçtır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "5",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 28 ÷ 4 = 7."
+  },
+  {
+    "id": "mat3_bol_049",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "56 sayısının çeyreği kaçtır?",
+    "correct": "14",
+    "wrong1": "15",
+    "wrong2": "12",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 56 ÷ 4 = 14."
+  },
+  {
+    "id": "mat3_bol_050",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "72 sayısının çeyreği kaçtır?",
+    "correct": "18",
+    "wrong1": "19",
+    "wrong2": "16",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 72 ÷ 4 = 18."
+  },
+  {
+    "id": "mat3_bol_051",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "36 sayısının çeyreği kaçtır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "7",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 36 ÷ 4 = 9."
+  },
+  {
+    "id": "mat3_bol_052",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "24 sayısının çeyreği kaçtır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "4",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 24 ÷ 4 = 6."
+  },
+  {
+    "id": "mat3_bol_053",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "76 sayısının çeyreği kaçtır?",
+    "correct": "19",
+    "wrong1": "20",
+    "wrong2": "17",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 76 ÷ 4 = 19."
+  },
+  {
+    "id": "mat3_bol_054",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "80 sayısının çeyreği kaçtır?",
+    "correct": "20",
+    "wrong1": "21",
+    "wrong2": "18",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 80 ÷ 4 = 20."
+  },
+  {
+    "id": "mat3_bol_055",
+    "level": "orta",
+    "premise": "Bir bütünün çeyreğini bulmak için sayıyı 4'e böleriz.",
+    "text": "40 sayısının çeyreği kaçtır?",
+    "correct": "10",
+    "wrong1": "11",
+    "wrong2": "8",
+    "explanation": "Çeyrek kavramı bütünü dört eşit parçaya ayırmaktır. 40 ÷ 4 = 10."
+  },
+  {
+    "id": "mat3_bol_056",
+    "level": "kolay",
+    "premise": "Kerem, elindeki 21 elmayi 3 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç elma düşer?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 21 ÷ 3 = 7."
+  },
+  {
+    "id": "mat3_bol_057",
+    "level": "kolay",
+    "premise": "Mert, elindeki 30 bilyeyi 5 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç bilye düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 30 ÷ 5 = 6."
+  },
+  {
+    "id": "mat3_bol_058",
+    "level": "kolay",
+    "premise": "Kerem, elindeki 56 cevizyi 7 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç ceviz düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 56 ÷ 7 = 8."
+  },
+  {
+    "id": "mat3_bol_059",
+    "level": "kolay",
+    "premise": "Ali, elindeki 48 elmayi 6 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç elma düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 48 ÷ 6 = 8."
+  },
+  {
+    "id": "mat3_bol_060",
+    "level": "kolay",
+    "premise": "Ali, elindeki 36 şekeryi 6 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç şeker düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 36 ÷ 6 = 6."
+  },
+  {
+    "id": "mat3_bol_061",
+    "level": "kolay",
+    "premise": "Ali, elindeki 40 kalemyi 5 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç kalem düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 40 ÷ 5 = 8."
+  },
+  {
+    "id": "mat3_bol_062",
+    "level": "kolay",
+    "premise": "Selin, elindeki 64 çikolatayi 8 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç çikolata düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 64 ÷ 8 = 8."
+  },
+  {
+    "id": "mat3_bol_063",
+    "level": "kolay",
+    "premise": "Zeynep, elindeki 42 bilyeyi 7 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç bilye düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 42 ÷ 7 = 6."
+  },
+  {
+    "id": "mat3_bol_064",
+    "level": "kolay",
+    "premise": "Burak, elindeki 21 cevizyi 3 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç ceviz düşer?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 21 ÷ 3 = 7."
+  },
+  {
+    "id": "mat3_bol_065",
+    "level": "kolay",
+    "premise": "Mert, elindeki 32 silgiyi 8 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç silgi düşer?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 32 ÷ 8 = 4."
+  },
+  {
+    "id": "mat3_bol_066",
+    "level": "kolay",
+    "premise": "Kerem, elindeki 15 elmayi 3 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç elma düşer?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 15 ÷ 3 = 5."
+  },
+  {
+    "id": "mat3_bol_067",
+    "level": "kolay",
+    "premise": "Zeynep, elindeki 35 silgiyi 7 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç silgi düşer?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 35 ÷ 7 = 5."
+  },
+  {
+    "id": "mat3_bol_068",
+    "level": "kolay",
+    "premise": "Defne, elindeki 12 cevizyi 3 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç ceviz düşer?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 12 ÷ 3 = 4."
+  },
+  {
+    "id": "mat3_bol_069",
+    "level": "kolay",
+    "premise": "Mert, elindeki 28 çikolatayi 7 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç çikolata düşer?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 28 ÷ 7 = 4."
+  },
+  {
+    "id": "mat3_bol_070",
+    "level": "kolay",
+    "premise": "Kerem, elindeki 35 şekeryi 7 arkadaşına eşit olarak paylaştırmak istiyor.",
+    "text": "Her bir arkadaşına kaç şeker düşer?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Eşit paylaştırma problemlerinde bölme işlemi yaparız. 35 ÷ 7 = 5."
+  },
+  {
+    "id": "mat3_bol_071",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 12'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "11",
+    "wrong1": "12",
+    "wrong2": "10",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 12 olduğu için kalan en fazla 11 olabilir."
+  },
+  {
+    "id": "mat3_bol_072",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 11'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "10",
+    "wrong1": "11",
+    "wrong2": "9",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 11 olduğu için kalan en fazla 10 olabilir."
+  },
+  {
+    "id": "mat3_bol_073",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 8'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 8 olduğu için kalan en fazla 7 olabilir."
+  },
+  {
+    "id": "mat3_bol_074",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 7'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 7 olduğu için kalan en fazla 6 olabilir."
+  },
+  {
+    "id": "mat3_bol_075",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 12'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "11",
+    "wrong1": "12",
+    "wrong2": "10",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 12 olduğu için kalan en fazla 11 olabilir."
+  },
+  {
+    "id": "mat3_bol_076",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 11'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "10",
+    "wrong1": "11",
+    "wrong2": "9",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 11 olduğu için kalan en fazla 10 olabilir."
+  },
+  {
+    "id": "mat3_bol_077",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen sayı 12'dir.",
+    "text": "Bu işlemde kalanın alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "11",
+    "wrong1": "12",
+    "wrong2": "10",
+    "explanation": "Kalan sayı, bölen sayıdan her zaman küçük olmak zorundadır. Bölen 12 olduğu için kalan en fazla 11 olabilir."
+  },
+  {
+    "id": "mat3_bol_078",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 60, bölen 8'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "0",
+    "explanation": "60 içinde 8, 7 kere vardır (8 x 7 = 56). Geriye 60 - 56 = 4 kalır."
+  },
+  {
+    "id": "mat3_bol_079",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 66, bölen 7'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "0",
+    "explanation": "66 içinde 7, 9 kere vardır (7 x 9 = 63). Geriye 66 - 63 = 3 kalır."
+  },
+  {
+    "id": "mat3_bol_080",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 41, bölen 6'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "0",
+    "explanation": "41 içinde 6, 6 kere vardır (6 x 6 = 36). Geriye 41 - 36 = 5 kalır."
+  },
+  {
+    "id": "mat3_bol_081",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 30, bölen 4'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "0",
+    "explanation": "30 içinde 4, 7 kere vardır (4 x 7 = 28). Geriye 30 - 28 = 2 kalır."
+  },
+  {
+    "id": "mat3_bol_082",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 96, bölen 9'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "0",
+    "explanation": "96 içinde 9, 10 kere vardır (9 x 10 = 90). Geriye 96 - 90 = 6 kalır."
+  },
+  {
+    "id": "mat3_bol_083",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 26, bölen 6'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "0",
+    "explanation": "26 içinde 6, 4 kere vardır (6 x 4 = 24). Geriye 26 - 24 = 2 kalır."
+  },
+  {
+    "id": "mat3_bol_084",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 59, bölen 7'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "0",
+    "explanation": "59 içinde 7, 8 kere vardır (7 x 8 = 56). Geriye 59 - 56 = 3 kalır."
+  },
+  {
+    "id": "mat3_bol_085",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölünen 39, bölen 4'tür.",
+    "text": "Bu bölme işleminde kalan sayı kaçtır?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "0",
+    "explanation": "39 içinde 4, 9 kere vardır (4 x 9 = 36). Geriye 39 - 36 = 3 kalır."
+  },
+  {
+    "id": "mat3_bol_086",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 7, bölüm 8 ve kalan 1'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "57",
+    "wrong1": "56",
+    "wrong2": "64",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (7 x 8) + 1 = 56 + 1 = 57."
+  },
+  {
+    "id": "mat3_bol_087",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 5, bölüm 7 ve kalan 1'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "36",
+    "wrong1": "35",
+    "wrong2": "41",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (5 x 7) + 1 = 35 + 1 = 36."
+  },
+  {
+    "id": "mat3_bol_088",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 4, bölüm 9 ve kalan 1'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "37",
+    "wrong1": "36",
+    "wrong2": "41",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (4 x 9) + 1 = 36 + 1 = 37."
+  },
+  {
+    "id": "mat3_bol_089",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 8, bölüm 10 ve kalan 3'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "83",
+    "wrong1": "80",
+    "wrong2": "91",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (8 x 10) + 3 = 80 + 3 = 83."
+  },
+  {
+    "id": "mat3_bol_090",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 7, bölüm 8 ve kalan 6'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "62",
+    "wrong1": "56",
+    "wrong2": "69",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (7 x 8) + 6 = 56 + 6 = 62."
+  },
+  {
+    "id": "mat3_bol_091",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 7, bölüm 11 ve kalan 1'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "78",
+    "wrong1": "77",
+    "wrong2": "85",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (7 x 11) + 1 = 77 + 1 = 78."
+  },
+  {
+    "id": "mat3_bol_092",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 6, bölüm 8 ve kalan 3'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "51",
+    "wrong1": "48",
+    "wrong2": "57",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (6 x 8) + 3 = 48 + 3 = 51."
+  },
+  {
+    "id": "mat3_bol_093",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 6, bölüm 8 ve kalan 3'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "51",
+    "wrong1": "48",
+    "wrong2": "57",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (6 x 8) + 3 = 48 + 3 = 51."
+  },
+  {
+    "id": "mat3_bol_094",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 5, bölüm 10 ve kalan 2'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "52",
+    "wrong1": "50",
+    "wrong2": "57",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (5 x 10) + 2 = 50 + 2 = 52."
+  },
+  {
+    "id": "mat3_bol_095",
+    "level": "orta",
+    "premise": "Bir bölme işleminde bölen 6, bölüm 8 ve kalan 5'dir.",
+    "text": "Buna göre bölünen sayı kaçtır?",
+    "correct": "53",
+    "wrong1": "48",
+    "wrong2": "59",
+    "explanation": "Bölüneni bulmak için (Bölen x Bölüm) + Kalan formülü kullanılır. (6 x 8) + 5 = 48 + 5 = 53."
+  },
+  {
+    "id": "mat3_bol_096",
+    "level": "zor",
+    "premise": "Bir bölme işleminde bölen 7 ve bölüm 10'dir.",
+    "text": "Buna göre bölünen sayının alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "76",
+    "wrong1": "70",
+    "wrong2": "77",
+    "explanation": "Bölünenin en büyük olması için kalanın alabileceği en büyük değeri alması gerekir. Bölen 7 olduğundan kalan en fazla 6 olur. (7 x 10) + 6 = 76."
+  },
+  {
+    "id": "mat3_bol_097",
+    "level": "zor",
+    "premise": "Bir bölme işleminde bölen 9 ve bölüm 8'dir.",
+    "text": "Buna göre bölünen sayının alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "80",
+    "wrong1": "72",
+    "wrong2": "81",
+    "explanation": "Bölünenin en büyük olması için kalanın alabileceği en büyük değeri alması gerekir. Bölen 9 olduğundan kalan en fazla 8 olur. (9 x 8) + 8 = 80."
+  },
+  {
+    "id": "mat3_bol_098",
+    "level": "zor",
+    "premise": "Bir bölme işleminde bölen 8 ve bölüm 8'dir.",
+    "text": "Buna göre bölünen sayının alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "71",
+    "wrong1": "64",
+    "wrong2": "72",
+    "explanation": "Bölünenin en büyük olması için kalanın alabileceği en büyük değeri alması gerekir. Bölen 8 olduğundan kalan en fazla 7 olur. (8 x 8) + 7 = 71."
+  },
+  {
+    "id": "mat3_bol_099",
+    "level": "zor",
+    "premise": "Bir bölme işleminde bölen 9 ve bölüm 8'dir.",
+    "text": "Buna göre bölünen sayının alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "80",
+    "wrong1": "72",
+    "wrong2": "81",
+    "explanation": "Bölünenin en büyük olması için kalanın alabileceği en büyük değeri alması gerekir. Bölen 9 olduğundan kalan en fazla 8 olur. (9 x 8) + 8 = 80."
+  },
+  {
+    "id": "mat3_bol_100",
+    "level": "zor",
+    "premise": "Bir bölme işleminde bölen 5 ve bölüm 10'dir.",
+    "text": "Buna göre bölünen sayının alabileceği EN BÜYÜK değer kaçtır?",
+    "correct": "54",
+    "wrong1": "50",
+    "wrong2": "55",
+    "explanation": "Bölünenin en büyük olması için kalanın alabileceği en büyük değeri alması gerekir. Bölen 5 olduğundan kalan en fazla 4 olur. (5 x 10) + 4 = 54."
+  },
+  {
+    "id": "mat3_bol_101",
+    "level": "orta",
+    "premise": "Hangi sayının 9 katı 72 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 8",
+    "wrong1": "Çarpma, 648",
+    "wrong2": "Toplama, 81",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 72 ÷ 9 = 8."
+  },
+  {
+    "id": "mat3_bol_102",
+    "level": "orta",
+    "premise": "Hangi sayının 6 katı 48 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 8",
+    "wrong1": "Çarpma, 288",
+    "wrong2": "Toplama, 54",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 48 ÷ 6 = 8."
+  },
+  {
+    "id": "mat3_bol_103",
+    "level": "orta",
+    "premise": "Hangi sayının 6 katı 66 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 11",
+    "wrong1": "Çarpma, 396",
+    "wrong2": "Toplama, 72",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 66 ÷ 6 = 11."
+  },
+  {
+    "id": "mat3_bol_104",
+    "level": "orta",
+    "premise": "Hangi sayının 8 katı 72 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 9",
+    "wrong1": "Çarpma, 576",
+    "wrong2": "Toplama, 80",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 72 ÷ 8 = 9."
+  },
+  {
+    "id": "mat3_bol_105",
+    "level": "orta",
+    "premise": "Hangi sayının 6 katı 48 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 8",
+    "wrong1": "Çarpma, 288",
+    "wrong2": "Toplama, 54",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 48 ÷ 6 = 8."
+  },
+  {
+    "id": "mat3_bol_106",
+    "level": "orta",
+    "premise": "Hangi sayının 9 katı 81 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 9",
+    "wrong1": "Çarpma, 729",
+    "wrong2": "Toplama, 90",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 81 ÷ 9 = 9."
+  },
+  {
+    "id": "mat3_bol_107",
+    "level": "orta",
+    "premise": "Hangi sayının 6 katı 36 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 6",
+    "wrong1": "Çarpma, 216",
+    "wrong2": "Toplama, 42",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 36 ÷ 6 = 6."
+  },
+  {
+    "id": "mat3_bol_108",
+    "level": "orta",
+    "premise": "Hangi sayının 5 katı 55 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 11",
+    "wrong1": "Çarpma, 275",
+    "wrong2": "Toplama, 60",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 55 ÷ 5 = 11."
+  },
+  {
+    "id": "mat3_bol_109",
+    "level": "orta",
+    "premise": "Hangi sayının 5 katı 25 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 5",
+    "wrong1": "Çarpma, 125",
+    "wrong2": "Toplama, 30",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 25 ÷ 5 = 5."
+  },
+  {
+    "id": "mat3_bol_110",
+    "level": "orta",
+    "premise": "Hangi sayının 9 katı 63 eder?",
+    "text": "Bu problemi çözmek için hangi işlemi yapmalıyız ve cevap kaçtır?",
+    "correct": "Bölme, 7",
+    "wrong1": "Çarpma, 567",
+    "wrong2": "Toplama, 72",
+    "explanation": "Çarpma işleminde verilmeyen çarpanı bulmak için çarpımı, verilen çarpana böleriz. 63 ÷ 9 = 7."
+  },
+  {
+    "id": "mat3_bol_111",
+    "level": "zor",
+    "premise": "Selin'nin 44 lirası vardı. 12 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "Önce kalan parayı buluruz: 44 - 12 = 32 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 32 ÷ 8 = 4 TL."
+  },
+  {
+    "id": "mat3_bol_112",
+    "level": "zor",
+    "premise": "Ali'nin 59 lirası vardı. 19 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Önce kalan parayı buluruz: 59 - 19 = 40 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 40 ÷ 8 = 5 TL."
+  },
+  {
+    "id": "mat3_bol_113",
+    "level": "zor",
+    "premise": "Selin'nin 57 lirası vardı. 15 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 6 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Önce kalan parayı buluruz: 57 - 15 = 42 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 42 ÷ 6 = 7 TL."
+  },
+  {
+    "id": "mat3_bol_114",
+    "level": "zor",
+    "premise": "Mert'nin 53 lirası vardı. 17 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 6 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 53 - 17 = 36 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 36 ÷ 6 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_115",
+    "level": "zor",
+    "premise": "Zeynep'nin 55 lirası vardı. 15 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 5 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce kalan parayı buluruz: 55 - 15 = 40 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 40 ÷ 5 = 8 TL."
+  },
+  {
+    "id": "mat3_bol_116",
+    "level": "zor",
+    "premise": "Ayşe'nin 71 lirası vardı. 15 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 7 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce kalan parayı buluruz: 71 - 15 = 56 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 56 ÷ 7 = 8 TL."
+  },
+  {
+    "id": "mat3_bol_117",
+    "level": "zor",
+    "premise": "Mert'nin 62 lirası vardı. 14 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 62 - 14 = 48 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 48 ÷ 8 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_118",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 20 masal kitabı, 25 şiir kitabı vardır. Bu kitapları 5 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "9",
+    "wrong1": "11",
+    "wrong2": "8",
+    "explanation": "Önce toplam kitap sayısını buluruz: 20 + 25 = 45. Sonra raf sayısına böleriz: 45 ÷ 5 = 9 kitap."
+  },
+  {
+    "id": "mat3_bol_119",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 27 masal kitabı, 27 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "9",
+    "wrong1": "11",
+    "wrong2": "8",
+    "explanation": "Önce toplam kitap sayısını buluruz: 27 + 27 = 54. Sonra raf sayısına böleriz: 54 ÷ 6 = 9 kitap."
+  },
+  {
+    "id": "mat3_bol_120",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 18 masal kitabı, 24 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "7",
+    "wrong1": "9",
+    "wrong2": "6",
+    "explanation": "Önce toplam kitap sayısını buluruz: 18 + 24 = 42. Sonra raf sayısına böleriz: 42 ÷ 6 = 7 kitap."
+  },
+  {
+    "id": "mat3_bol_121",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 29 masal kitabı, 27 şiir kitabı vardır. Bu kitapları 8 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "7",
+    "wrong1": "9",
+    "wrong2": "6",
+    "explanation": "Önce toplam kitap sayısını buluruz: 29 + 27 = 56. Sonra raf sayısına böleriz: 56 ÷ 8 = 7 kitap."
+  },
+  {
+    "id": "mat3_bol_122",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 26 masal kitabı, 16 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "7",
+    "wrong1": "9",
+    "wrong2": "6",
+    "explanation": "Önce toplam kitap sayısını buluruz: 26 + 16 = 42. Sonra raf sayısına böleriz: 42 ÷ 6 = 7 kitap."
+  },
+  {
+    "id": "mat3_bol_123",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 19 masal kitabı, 17 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 19 + 17 = 36. Sonra raf sayısına böleriz: 36 ÷ 6 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_124",
+    "level": "zor",
+    "premise": "Sınıfımızdaki kitaplıkta 21 masal kitabı, 28 şiir kitabı vardır. Bu kitapları 7 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "7",
+    "wrong1": "9",
+    "wrong2": "6",
+    "explanation": "Önce toplam kitap sayısını buluruz: 21 + 28 = 49. Sonra raf sayısına böleriz: 49 ÷ 7 = 7 kitap."
+  },
+  {
+    "id": "mat3_bol_125",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 28'dir. Çiftlikte 5 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "2",
+    "explanation": "İneklerin ayak sayısı 5 x 4 = 20. Tavuklara kalan ayak sayısı: 28 - 20 = 8. Bir tavuğun 2 ayağı olduğu için: 8 ÷ 2 = 4 tavuk."
+  },
+  {
+    "id": "mat3_bol_126",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 20'dir. Çiftlikte 4 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "5",
+    "explanation": "İneklerin ayak sayısı 4 x 4 = 16. Tavuklara kalan ayak sayısı: 20 - 16 = 4. Bir tavuğun 2 ayağı olduğu için: 4 ÷ 2 = 2 tavuk."
+  },
+  {
+    "id": "mat3_bol_127",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 34'dir. Çiftlikte 3 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "11",
+    "wrong1": "12",
+    "wrong2": "9",
+    "explanation": "İneklerin ayak sayısı 3 x 4 = 12. Tavuklara kalan ayak sayısı: 34 - 12 = 22. Bir tavuğun 2 ayağı olduğu için: 22 ÷ 2 = 11 tavuk."
+  },
+  {
+    "id": "mat3_bol_128",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 20'dir. Çiftlikte 3 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "2",
+    "explanation": "İneklerin ayak sayısı 3 x 4 = 12. Tavuklara kalan ayak sayısı: 20 - 12 = 8. Bir tavuğun 2 ayağı olduğu için: 8 ÷ 2 = 4 tavuk."
+  },
+  {
+    "id": "mat3_bol_129",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 36'dir. Çiftlikte 4 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "10",
+    "wrong1": "11",
+    "wrong2": "8",
+    "explanation": "İneklerin ayak sayısı 4 x 4 = 16. Tavuklara kalan ayak sayısı: 36 - 16 = 20. Bir tavuğun 2 ayağı olduğu için: 20 ÷ 2 = 10 tavuk."
+  },
+  {
+    "id": "mat3_bol_130",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 36'dir. Çiftlikte 2 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "14",
+    "wrong1": "15",
+    "wrong2": "12",
+    "explanation": "İneklerin ayak sayısı 2 x 4 = 8. Tavuklara kalan ayak sayısı: 36 - 8 = 28. Bir tavuğun 2 ayağı olduğu için: 28 ÷ 2 = 14 tavuk."
+  },
+  {
+    "id": "mat3_bol_131",
+    "level": "zor",
+    "premise": "Elif'nin 48 lirası vardı. 12 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 6 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 48 - 12 = 36 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 36 ÷ 6 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_132",
+    "level": "zor",
+    "premise": "Can'nin 50 lirası vardı. 14 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 4 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Önce kalan parayı buluruz: 50 - 14 = 36 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 36 ÷ 4 = 9 TL."
+  },
+  {
+    "id": "mat3_bol_133",
+    "level": "zor",
+    "premise": "Deniz'nin 60 lirası vardı. 18 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 6 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Önce kalan parayı buluruz: 60 - 18 = 42 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 42 ÷ 6 = 7 TL."
+  },
+  {
+    "id": "mat3_bol_134",
+    "level": "zor",
+    "premise": "Ece'nin 45 lirası vardı. 15 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 5 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 45 - 15 = 30 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 30 ÷ 5 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_135",
+    "level": "zor",
+    "premise": "Burak'nin 72 lirası vardı. 24 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 72 - 24 = 48 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 48 ÷ 8 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_136",
+    "level": "zor",
+    "premise": "Selin'nin 56 lirası vardı. 16 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Önce kalan parayı buluruz: 56 - 16 = 40 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 40 ÷ 8 = 5 TL."
+  },
+  {
+    "id": "mat3_bol_137",
+    "level": "zor",
+    "premise": "Mert'nin 63 lirası vardı. 15 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 6 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce kalan parayı buluruz: 63 - 15 = 48 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 48 ÷ 6 = 8 TL."
+  },
+  {
+    "id": "mat3_bol_138",
+    "level": "zor",
+    "premise": "Zeynep'nin 40 lirası vardı. 16 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 3 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce kalan parayı buluruz: 40 - 16 = 24 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 24 ÷ 3 = 8 TL."
+  },
+  {
+    "id": "mat3_bol_139",
+    "level": "zor",
+    "premise": "Ayşe'nin 55 lirası vardı. 19 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 4 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Önce kalan parayı buluruz: 55 - 19 = 36 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 36 ÷ 4 = 9 TL."
+  },
+  {
+    "id": "mat3_bol_140",
+    "level": "zor",
+    "premise": "Kerem'nin 68 lirası vardı. 20 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 68 - 20 = 48 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 48 ÷ 8 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_141",
+    "level": "zor",
+    "premise": "Defne'nin 52 lirası vardı. 12 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 5 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce kalan parayı buluruz: 52 - 12 = 40 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 40 ÷ 5 = 8 TL."
+  },
+  {
+    "id": "mat3_bol_142",
+    "level": "zor",
+    "premise": "Ali'nin 46 lirası vardı. 10 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 6 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 46 - 10 = 36 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 36 ÷ 6 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_143",
+    "level": "zor",
+    "premise": "Sude'nin 64 lirası vardı. 22 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 7 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 64 - 22 = 42 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 42 ÷ 7 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_144",
+    "level": "zor",
+    "premise": "Emre'nin 58 lirası vardı. 18 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 5 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce kalan parayı buluruz: 58 - 18 = 40 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 40 ÷ 5 = 8 TL."
+  },
+  {
+    "id": "mat3_bol_145",
+    "level": "zor",
+    "premise": "Cem'nin 75 lirası vardı. 27 lirasına bir oyuncak aldı. Kalan parasıyla tanesi eşit fiyatta olan 8 adet defter aldı.",
+    "text": "Buna göre bir defterin fiyatı kaç liradır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce kalan parayı buluruz: 75 - 27 = 48 TL. Kalan parayı eşit şekilde paylaştırdığı için böleriz: 48 ÷ 8 = 6 TL."
+  },
+  {
+    "id": "mat3_bol_146",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 22 masal kitabı ve 26 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce toplam kitap sayısını buluruz: 22 + 26 = 48. Sonra raf sayısına böleriz: 48 ÷ 6 = 8 kitap."
+  },
+  {
+    "id": "mat3_bol_147",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 24 hikâye kitabı ve 18 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Önce toplam kitap sayısını buluruz: 24 + 18 = 42. Sonra raf sayısına böleriz: 42 ÷ 6 = 7 kitap."
+  },
+  {
+    "id": "mat3_bol_148",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 15 masal kitabı ve 25 fıkra kitabı vardır. Bu kitapları 5 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce toplam kitap sayısını buluruz: 15 + 25 = 40. Sonra raf sayısına böleriz: 40 ÷ 5 = 8 kitap."
+  },
+  {
+    "id": "mat3_bol_149",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 19 dergi kitabı ve 23 hikâye kitabı vardır. Bu kitapları 7 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 19 + 23 = 42. Sonra raf sayısına böleriz: 42 ÷ 7 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_150",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 28 masal kitabı ve 14 şiir kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Önce toplam kitap sayısını buluruz: 28 + 14 = 42. Sonra raf sayısına böleriz: 42 ÷ 6 = 7 kitap."
+  },
+  {
+    "id": "mat3_bol_151",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 16 bilim kitabı ve 32 masal kitabı vardır. Bu kitapları 8 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 16 + 32 = 48. Sonra raf sayısına böleriz: 48 ÷ 8 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_152",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 25 şiir kitabı ve 20 masal kitabı vardır. Bu kitapları 5 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Önce toplam kitap sayısını buluruz: 25 + 20 = 45. Sonra raf sayısına böleriz: 45 ÷ 5 = 9 kitap."
+  },
+  {
+    "id": "mat3_bol_153",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 17 hikâye kitabı ve 19 masal kitabı vardır. Bu kitapları 4 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Önce toplam kitap sayısını buluruz: 17 + 19 = 36. Sonra raf sayısına böleriz: 36 ÷ 4 = 9 kitap."
+  },
+  {
+    "id": "mat3_bol_154",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 23 masal kitabı ve 25 şiir kitabı vardır. Bu kitapları 8 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 23 + 25 = 48. Sonra raf sayısına böleriz: 48 ÷ 8 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_155",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 14 fıkra kitabı ve 28 masal kitabı vardır. Bu kitapları 7 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 14 + 28 = 42. Sonra raf sayısına böleriz: 42 ÷ 7 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_156",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 21 şiir kitabı ve 27 hikâye kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce toplam kitap sayısını buluruz: 21 + 27 = 48. Sonra raf sayısına böleriz: 48 ÷ 6 = 8 kitap."
+  },
+  {
+    "id": "mat3_bol_157",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 18 masal kitabı ve 30 dergi kitabı vardır. Bu kitapları 8 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 18 + 30 = 48. Sonra raf sayısına böleriz: 48 ÷ 8 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_158",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 26 hikâye kitabı ve 22 fıkra kitabı vardır. Bu kitapları 6 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "Önce toplam kitap sayısını buluruz: 26 + 22 = 48. Sonra raf sayısına böleriz: 48 ÷ 6 = 8 kitap."
+  },
+  {
+    "id": "mat3_bol_159",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 20 masal kitabı ve 16 şiir kitabı vardır. Bu kitapları 4 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "Önce toplam kitap sayısını buluruz: 20 + 16 = 36. Sonra raf sayısına böleriz: 36 ÷ 4 = 9 kitap."
+  },
+  {
+    "id": "mat3_bol_160",
+    "level": "zor",
+    "premise": "Okul kütüphanesinde 24 bilim kitabı ve 24 masal kitabı vardır. Bu kitapları 8 rafa eşit sayıda dizmek istiyoruz.",
+    "text": "Her bir rafa kaç kitap düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "Önce toplam kitap sayısını buluruz: 24 + 24 = 48. Sonra raf sayısına böleriz: 48 ÷ 8 = 6 kitap."
+  },
+  {
+    "id": "mat3_bol_161",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 32'tir. Çiftlikte 4 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "İneklerin ayak sayısı 4 × 4 = 16. Tavuklara kalan ayak sayısı: 32 - 16 = 16. Bir tavuğun 2 ayağı olduğu için: 16 ÷ 2 = 8 tavuk."
+  },
+  {
+    "id": "mat3_bol_162",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 40'tir. Çiftlikte 5 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "10",
+    "wrong1": "11",
+    "wrong2": "9",
+    "explanation": "İneklerin ayak sayısı 5 × 4 = 20. Tavuklara kalan ayak sayısı: 40 - 20 = 20. Bir tavuğun 2 ayağı olduğu için: 20 ÷ 2 = 10 tavuk."
+  },
+  {
+    "id": "mat3_bol_163",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 24'tir. Çiftlikte 3 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "İneklerin ayak sayısı 3 × 4 = 12. Tavuklara kalan ayak sayısı: 24 - 12 = 12. Bir tavuğun 2 ayağı olduğu için: 12 ÷ 2 = 6 tavuk."
+  },
+  {
+    "id": "mat3_bol_164",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 44'tir. Çiftlikte 6 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "10",
+    "wrong1": "11",
+    "wrong2": "9",
+    "explanation": "İneklerin ayak sayısı 6 × 4 = 24. Tavuklara kalan ayak sayısı: 44 - 24 = 20. Bir tavuğun 2 ayağı olduğu için: 20 ÷ 2 = 10 tavuk."
+  },
+  {
+    "id": "mat3_bol_165",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 36'tir. Çiftlikte 5 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "İneklerin ayak sayısı 5 × 4 = 20. Tavuklara kalan ayak sayısı: 36 - 20 = 16. Bir tavuğun 2 ayağı olduğu için: 16 ÷ 2 = 8 tavuk."
+  },
+  {
+    "id": "mat3_bol_166",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 52'tir. Çiftlikte 7 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "12",
+    "wrong1": "13",
+    "wrong2": "11",
+    "explanation": "İneklerin ayak sayısı 7 × 4 = 28. Tavuklara kalan ayak sayısı: 52 - 28 = 24. Bir tavuğun 2 ayağı olduğu için: 24 ÷ 2 = 12 tavuk."
+  },
+  {
+    "id": "mat3_bol_167",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 30'tir. Çiftlikte 4 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "İneklerin ayak sayısı 4 × 4 = 16. Tavuklara kalan ayak sayısı: 30 - 16 = 14. Bir tavuğun 2 ayağı olduğu için: 14 ÷ 2 = 7 tavuk."
+  },
+  {
+    "id": "mat3_bol_168",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 48'tir. Çiftlikte 8 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "İneklerin ayak sayısı 8 × 4 = 32. Tavuklara kalan ayak sayısı: 48 - 32 = 16. Bir tavuğun 2 ayağı olduğu için: 16 ÷ 2 = 8 tavuk."
+  },
+  {
+    "id": "mat3_bol_169",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 26'tir. Çiftlikte 3 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "7",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "İneklerin ayak sayısı 3 × 4 = 12. Tavuklara kalan ayak sayısı: 26 - 12 = 14. Bir tavuğun 2 ayağı olduğu için: 14 ÷ 2 = 7 tavuk."
+  },
+  {
+    "id": "mat3_bol_170",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 38'tir. Çiftlikte 5 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "İneklerin ayak sayısı 5 × 4 = 20. Tavuklara kalan ayak sayısı: 38 - 20 = 18. Bir tavuğun 2 ayağı olduğu için: 18 ÷ 2 = 9 tavuk."
+  },
+  {
+    "id": "mat3_bol_171",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 28'tir. Çiftlikte 4 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "İneklerin ayak sayısı 4 × 4 = 16. Tavuklara kalan ayak sayısı: 28 - 16 = 12. Bir tavuğun 2 ayağı olduğu için: 12 ÷ 2 = 6 tavuk."
+  },
+  {
+    "id": "mat3_bol_172",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 34'tir. Çiftlikte 4 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "9",
+    "wrong1": "10",
+    "wrong2": "8",
+    "explanation": "İneklerin ayak sayısı 4 × 4 = 16. Tavuklara kalan ayak sayısı: 34 - 16 = 18. Bir tavuğun 2 ayağı olduğu için: 18 ÷ 2 = 9 tavuk."
+  },
+  {
+    "id": "mat3_bol_173",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 42'tir. Çiftlikte 5 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "11",
+    "wrong1": "12",
+    "wrong2": "10",
+    "explanation": "İneklerin ayak sayısı 5 × 4 = 20. Tavuklara kalan ayak sayısı: 42 - 20 = 22. Bir tavuğun 2 ayağı olduğu için: 22 ÷ 2 = 11 tavuk."
+  },
+  {
+    "id": "mat3_bol_174",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 50'tir. Çiftlikte 6 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "13",
+    "wrong1": "14",
+    "wrong2": "12",
+    "explanation": "İneklerin ayak sayısı 6 × 4 = 24. Tavuklara kalan ayak sayısı: 50 - 24 = 26. Bir tavuğun 2 ayağı olduğu için: 26 ÷ 2 = 13 tavuk."
+  },
+  {
+    "id": "mat3_bol_175",
+    "level": "zor",
+    "premise": "Bir çiftlikte inekler ve tavuklar vardır. Toplam ayak sayısı 36'tir. Çiftlikte 7 inek olduğuna göre;",
+    "text": "Çiftlikte kaç tane tavuk vardır?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "İneklerin ayak sayısı 7 × 4 = 28. Tavuklara kalan ayak sayısı: 36 - 28 = 8. Bir tavuğun 2 ayağı olduğu için: 8 ÷ 2 = 4 tavuk."
+  },
+  {
+    "id": "mat3_bol_176",
+    "level": "zor",
+    "premise": "Bir pakette 50 adet şeker vardı. Ayşe 20 tanesini yedi. Kalan şekerleri 5 arkadaşına eşit paylaştırdı.",
+    "text": "Her bir arkadaşına kaç şeker düşer?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "50 - 20 = 30. 6 ÷ 5."
+  },
+  {
+    "id": "mat3_bol_177",
+    "level": "zor",
+    "premise": "Mert'in 48 bilyesi vardı. 18 tanesini kaybetti. Kalan bilyeleri 6 kutuya eşit sayıda koydu.",
+    "text": "Her bir kutuda kaç bilye olur?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "48 - 18 = 30. 5 ÷ 6."
+  },
+  {
+    "id": "mat3_bol_178",
+    "level": "zor",
+    "premise": "Bahçeden 24 elma ve 18 armut toplandı. Bu meyveler 7 sepete eşit sayıda kondu.",
+    "text": "Her bir sepette kaç meyve olur?",
+    "correct": "6",
+    "wrong1": "7",
+    "wrong2": "5",
+    "explanation": "24 + 18 = 42. 6 ÷ 7."
+  },
+  {
+    "id": "mat3_bol_179",
+    "level": "zor",
+    "premise": "Sınıfta 56 kalem vardı. 20 tanesi kullanıldı. Kalan kalemler 9 öğrenciye eşit paylaştırıldı.",
+    "text": "Her bir öğrenciye kaç kalem düşer?",
+    "correct": "4",
+    "wrong1": "5",
+    "wrong2": "3",
+    "explanation": "56 - 20 = 36. 4 ÷ 9."
+  },
+  {
+    "id": "mat3_bol_180",
+    "level": "zor",
+    "premise": "Küçük bir ahırda toplam 28 ayak vardır. Ahırda 3 inek bulunduğuna göre;",
+    "text": "Ahırda kaç tane tavuk vardır?",
+    "correct": "8",
+    "wrong1": "9",
+    "wrong2": "7",
+    "explanation": "3 × 4 = 12. 28 - 12 = 16. 8 ÷ 2."
+  }
+]

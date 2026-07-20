@@ -1,0 +1,28 @@
+/* Global box model for symmetry */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Nova container sizing */
+#nova-summary{display:none;flex-direction:column;gap:18px;width:100%;max-width:1100px;margin:0 auto;padding:0 12px}
+#nova-summary.nz-show{display:flex;}
+
+/* KPI row uses grid for perfect symmetry */
+.nz-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:768px){
+  .nz-row{grid-template-columns:1fr}
+}
+
+/* Wrong list: responsive auto-fit */
+.nz-wrong-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+@media (max-width:768px){
+  .nz-wrong-list{grid-template-columns:1fr}
+}
+
+/* Cards tightened to avoid overflow */
+.nz-card{min-width:0}
+
+/* Gauge centers nicely */
+.nz-gauge{margin:0 auto;width:100%;max-width:560px}
+.nz-gauge canvas{width:100%;height:auto;aspect-ratio:1/1;}
+
+/* Buttons wrap well */
+.nz-actions{flex-wrap:wrap;justify-content:flex-end}

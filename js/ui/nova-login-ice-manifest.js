@@ -1,0 +1,2 @@
+/* AUTO: scripts/build-login-ice-sprites.py */
+window.NOVA_LOGIN_ICE_MANIFEST = {"version":1,"base":"assets/login-ice/","sheet":"login-ice-loop.webp","frameWidth":360,"frameHeight":608,"cols":10,"rows":6,"frameCount":55,"contentFrames":45,"loopEnd":55,"fps":12,"blendFrames":10,"sheetWidth":3600,"sheetHeight":3648,"hole":{"left":0.2536,"top":0.4383,"right":0.7506,"bottom":0.8754},"seamless":true};

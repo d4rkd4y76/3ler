@@ -1,0 +1,86 @@
+/* === Nova: Sonuç Ekranı iyileştirmeleri === */
+
+/* Global modern button look (keeps existing class names working) */
+.nz-btn, .btn, .btn-outline, .btn-primary {
+  --nz-bg: #0f172a;
+  --nz-fg: #fff;
+  --nz-ring: rgba(2,132,199,.35);
+  --nz-shadow: rgba(0,0,0,.18);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: var(--nz-bg);
+  color: var(--nz-fg);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  box-shadow: 0 8px 22px var(--nz-shadow);
+  user-select: none;
+}
+.nz-btn:hover, .btn:hover, .btn-outline:hover, .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px var(--nz-shadow);
+}
+.nz-btn:active, .btn:active, .btn-outline:active, .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px var(--nz-shadow);
+}
+/* Secondary look (for "Ders Videosu" gibi) */
+.nz-secondary, .btn-outline {
+  --nz-bg: #0b1220;
+  --nz-fg: #f8fafc;
+  border-color: rgba(255,255,255,.06);
+}
+
+/* Success / primary accent (ör: "Yanlışları Tekrar Et" butonu) */
+.nz-primary, .btn-primary {
+  --nz-bg: linear-gradient(135deg,#16a34a,#0ea5e9);
+  --nz-fg: #fff;
+  border: 0;
+}
+
+/* Icon pill */
+.nz-btn .nz-ico, .btn .nz-ico { 
+  width: 22px; height: 22px; display:inline-grid; place-items:center; 
+  border-radius: 999px; background: rgba(255,255,255,.12);
+}
+
+/* Küçük ekran yerleşimi: butonları alt alta ve eşit genişlikte göster */
+@media (max-width: 640px){
+  .result-actions, .actions-row, .buttons-row, .nz-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .result-actions .nz-btn, .actions-row .nz-btn, .buttons-row .btn, .nz-actions .btn{
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* Sabit Geri Dön butonu */
+#result-back-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(15,23,42,.9);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  display: none; /* sadece sonuç ekranında görünecek */
+}
+#result-back-btn .nz-ico {
+  width: 18px; height: 18px; margin-right: 8px; display:inline-grid; place-items:center;
+  border-radius: 999px; background: rgba(255,255,255,.12);
+}
+#result-back-btn:hover { transform: translateY(-1px); }
+#result-back-btn:active { transform: translateY(0); }

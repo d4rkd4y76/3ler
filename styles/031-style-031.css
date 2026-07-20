@@ -1,0 +1,30 @@
+/* === Nova v5b: Teacher Advice Card (robust) === */
+.advice-card{
+  margin-top:16px;
+  background:#fff7ed;
+  border:2px solid #fb923c;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(251,146,60,.22);
+  padding:12px 14px;
+  text-align:center;
+  gap:8px;
+}
+.advice-title{
+  display:inline-block;
+  font-weight:900;
+  font-size:1.05rem;
+  color:#9a3412;
+  background:#ffedd5;
+  border:2px dashed #fb923c;
+  border-radius:999px;
+  padding:4px 10px;
+  letter-spacing:.2px;
+  margin-bottom:8px;
+}
+.advice-text{
+  margin-top:6px;
+  font-size:1rem;
+  line-height:1.45;
+  color:#7c2d12;
+  min-height:60px;
+}

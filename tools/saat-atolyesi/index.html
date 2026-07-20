@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Saat Atölyesi</title>
+  <link rel="stylesheet" href="../tool-sound.css" />
+  <link rel="stylesheet" href="style.css?v=2026-05-07-1636" />
+</head>
+<body>
+  <div class="app" role="application" aria-label="Saat Atölyesi">
+    <header class="topbar topbar--with-sound">
+      <button type="button" class="back" id="back-btn" aria-label="Ana sayfaya dön">← Ana sayfa</button>
+      <div class="topbar__title">Saat Atölyesi</div>
+      <button type="button" class="chip-btn--sound" id="toggle-sound" aria-pressed="false" title="Seslendir">🔊</button>
+    </header>
+
+    <main class="main">
+      <section class="card card--controls" aria-label="Kontroller">
+        <div class="row row--chips" aria-label="Bilgi notları">
+          <button type="button" class="chip info-btn" data-note="am">ÖÖ nedir?</button>
+          <button type="button" class="chip info-btn" data-note="pm">ÖS nedir?</button>
+          <button type="button" class="chip info-btn" data-note="hour">Akrep</button>
+          <button type="button" class="chip info-btn" data-note="minute">Yelkovan</button>
+        </div>
+
+        <div class="row row--digital" aria-label="Dijital saat ve ÖÖ/ÖS">
+          <div class="digital" id="digital" aria-label="Dijital saat">
+            <span class="hh" id="hh">03</span><span class="colon" aria-hidden="true">:</span><span class="mm" id="mm">00</span>
+          </div>
+          <div class="period" id="period">Öğleden önce</div>
+          <div class="toggle" role="group" aria-label="ÖÖ/ÖS seçimi">
+            <button type="button" class="toggle__btn active" id="am-btn" aria-pressed="true">ÖÖ</button>
+            <button type="button" class="toggle__btn" id="pm-btn" aria-pressed="false">ÖS</button>
+          </div>
+        </div>
+
+        <div class="row row--reading" aria-label="Okunuş">
+          <div class="reading">
+            <div class="reading__label">Okunuş</div>
+            <div class="reading__line" id="read-line">
+              <span class="read-hour">üç</span>
+              <span class="read-minute">tam</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card card--clock" aria-label="Analog saat">
+        <div class="clock-wrap">
+          <svg id="clock" class="clock" viewBox="-120 -120 240 240" role="img" aria-label="Analog saat">
+            <defs>
+              <radialGradient id="faceGrad2" cx="35%" cy="25%" r="80%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="70%" stop-color="#eff6ff"/>
+                <stop offset="100%" stop-color="#dbeafe"/>
+              </radialGradient>
+              <filter id="softShadow2" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="rgba(15,23,42,.20)"/>
+              </filter>
+            </defs>
+            <circle r="104" fill="rgba(37,99,235,0.10)"></circle>
+            <circle r="100" fill="url(#faceGrad2)" filter="url(#softShadow2)"></circle>
+            <circle r="100" fill="none" stroke="rgba(15,23,42,0.08)" stroke-width="2"></circle>
+            <g id="ticks"></g>
+            <g id="nums"></g>
+            <g id="hand-minute" class="hand hand-minute" aria-label="Yelkovan" tabindex="0">
+              <path class="hand-hit" d="M 0 10 L 0 -86" />
+              <path d="M -4 12 L 0 -76 L 4 12 Q 0 18 -4 12 Z"></path>
+            </g>
+            <g id="hand-hour" class="hand hand-hour" aria-label="Akrep" tabindex="0">
+              <path class="hand-hit" d="M 0 10 L 0 -62" />
+              <path d="M -5 12 L 0 -52 L 5 12 Q 0 19 -5 12 Z"></path>
+            </g>
+            <circle r="9" fill="rgba(15,23,42,0.16)"></circle>
+            <circle r="6" fill="#ffffff"></circle>
+          </svg>
+          <div class="hint">Akrep / yelkovanı tutup çevir.</div>
+          <div class="brand" aria-hidden="true">NASK GAMES</div>
+        </div>
+      </section>
+
+      <section class="card card--info" aria-label="Bilgi notu">
+        <div class="info">
+          <div class="info__label">Bilgi</div>
+          <div class="info__text" id="info-text">Bir bilgi notuna dokun.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../tool-sound.js"></script>
+  <script src="app.js?v=2026-05-07-1636"></script>
+</body>
+</html>

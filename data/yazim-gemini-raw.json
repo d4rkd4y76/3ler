@@ -1,0 +1,1301 @@
+[
+  {
+    "id": "yazim3_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "Cümleye soru anlamı katan 'mi, mı, mu, mü' eki nasıl yazılır?",
+    "correct": "Kendinden önceki kelimeden her zaman ayrı yazılır.",
+    "wrong1": "Kendinden önceki kelimeye bitişik yazılır.",
+    "wrong2": "Sadece cümlenin sonunda ise ayrı yazılır.",
+    "explanation": "Türkçede soru eki olan 'mi, mı, mu, mü' kendinden önceki sözcükten her zaman ayrı yazılır."
+  },
+  {
+    "id": "yazim3_002",
+    "level": "kolay",
+    "premise": "Soru eki olan 'mi' her zaman ayrı yazılır.",
+    "text": "Buna göre aşağıdakilerden hangisinin yazımı doğrudur?",
+    "correct": "Bize gelecek misin?",
+    "wrong1": "Bize gelecek misin?",
+    "wrong2": "Bize gelecekmi sin?",
+    "explanation": "Soru eki olan 'mi' ayrı yazılır. Ancak 'mi' ekine gelen kişi ekleri (-sin) 'mi'ye bitişik yazılır. Doğrusu 'misin' şeklindedir."
+  },
+  {
+    "id": "yazim3_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'mı/mi' ekinin yazımı YANLIŞTIR?",
+    "correct": "Sen de bizimle geliyormusun?",
+    "wrong1": "Sen de bizimle geliyor musun?",
+    "wrong2": "Bu kitabı okudun mu?",
+    "explanation": "Soru eki olan 'mu' ayrı yazılmalıdır. 'geliyormusun' yazımı yanlıştır, doğrusu 'geliyor musun' olmalıdır."
+  },
+  {
+    "id": "yazim3_004",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'mi'nin yazımı ile ilgili bir hata yapılmıştır?",
+    "correct": "Bugün hava çokmu sıcak?",
+    "wrong1": "Yarın okula gidecek misin?",
+    "wrong2": "Benimle oyun oynar mısın?",
+    "explanation": "'çokmu' kelimesindeki soru eki ayrı yazılmalıdır. Doğrusu 'çok mu' olmalıdır."
+  },
+  {
+    "id": "yazim3_005",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı YOKTUR?",
+    "correct": "Kedi sütünü içti mi?",
+    "wrong1": "Kedi sütünü içtimi?",
+    "wrong2": "Kedi sütünü iç ti mi?",
+    "explanation": "Soru eki 'mi' kelimeden ayrı yazılır. 'içti mi' şeklindeki yazım tamamen doğrudur."
+  },
+  {
+    "id": "yazim3_006",
+    "level": "orta",
+    "premise": "'mi' eki bazen cümleye soru anlamı değil, pekiştirme (abartma) anlamı katar. Bu durumda da ayrı yazılır.",
+    "text": "Buna göre aşağıdakilerden hangisinde yazım yanlışı vardır?",
+    "correct": "Şirinmi şirin bir bebek gördüm.",
+    "wrong1": "Şirin mi şirin bir bebek gördüm.",
+    "wrong2": "Tatlı mı tatlı bir elma yedim.",
+    "explanation": "Pekiştirme anlamı katan 'mi' de her zaman ayrı yazılır. 'Şirinmi' bitişik yazılamaz."
+  },
+  {
+    "id": "yazim3_007",
+    "level": "kolay",
+    "premise": "Ali yarın bizimle ( )",
+    "text": "Bu cümleyi soru cümlesi yapmak için boşluğa hangisi getirilmelidir?",
+    "correct": "gelecek mi?",
+    "wrong1": "gelecekmi?",
+    "wrong2": "gelecek mi ?",
+    "explanation": "Soru eki ayrı yazılır ve sonuna bitişik olmadan soru işareti konur. Doğrusu 'gelecek mi?' şeklindedir."
+  },
+  {
+    "id": "yazim3_008",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede soru ekinin yazımı DOĞRUDUR?",
+    "correct": "Bu kalemi sen mi aldın?",
+    "wrong1": "Bu kalemi senmi aldın?",
+    "wrong2": "Bu kalemi sen mi? aldın.",
+    "explanation": "Soru eki 'mi' ayrı yazılır. Soru işareti ise cümlenin en sonuna konur."
+  },
+  {
+    "id": "yazim3_009",
+    "level": "zor",
+    "premise": "'Annem_ akşam_ pazara_ gidecek_'",
+    "text": "Bu cümleyi soru cümlesi yapmak için boşluklara sırasıyla hangi kelime ve noktalama işareti gelmelidir?",
+    "correct": "gidecek - mi?",
+    "wrong1": "gidecekmi - ?",
+    "wrong2": "gidecek - mi.",
+    "explanation": "'gidecek' kelimesinden sonra ayrı olarak 'mi' yazılır ve cümle soru cümlesi olduğu için sonuna soru işareti (?) konur."
+  },
+  {
+    "id": "yazim3_010",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki öğrencilerden hangisi 'mi' ekinin yazımıyla ilgili yanlış bir cümle kurmuştur?",
+    "correct": "Ayşe: Ödevlerini bitirdinmi?",
+    "wrong1": "Ali: Çantanı evde mi unuttun?",
+    "wrong2": "Can: Parka gidecek miyiz?",
+    "explanation": "Ayşe'nin cümlesindeki 'bitirdinmi' kelimesi yanlıştır. Soru eki her zaman ayrı yazılarak 'bitirdin mi' olmalıdır."
+  },
+  {
+    "id": "yazim3_011",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi yazım kurallarına uygundur?",
+    "correct": "Anladın mı?",
+    "wrong1": "Anladınmı?",
+    "wrong2": "Anla dın mı?",
+    "explanation": "Sadece soru eki 'mı' ayrı yazılır. Kelimenin kökü olan 'Anladın' bitişik yazılır."
+  },
+  {
+    "id": "yazim3_012",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Akşam erken uyuyacakmısın?",
+    "wrong1": "Akşam erken uyuyacak mısın?",
+    "wrong2": "Sütünü bitirecek misin?",
+    "explanation": "'uyuyacakmısın' bitişik yazıldığı için yanlıştır. Doğrusu 'uyuyacak mısın' olmalıdır."
+  },
+  {
+    "id": "yazim3_013",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede 'mu' soru ekinin yazımı yanlıştır?",
+    "correct": "Ellerini sabunla yıkadınmu?",
+    "wrong1": "Ellerini sabunla yıkadın mı?",
+    "wrong2": "Bu soruyu anladın mı?",
+    "explanation": "'yıkadınmu' bitişik yazıldığı için ve ses uyumuna uymadığı için yanlıştır. Doğrusu 'yıkadın mı' olmalıdır."
+  },
+  {
+    "id": "yazim3_014",
+    "level": "zor",
+    "premise": null,
+    "text": "'Bahar gelince ağaçlar çiçek açar ( )' cümlesinin sonuna soru anlamı katmak için ne eklenmelidir?",
+    "correct": "mı?",
+    "wrong1": "mi?",
+    "wrong2": "mu?",
+    "explanation": "'açar' kelimesindeki kalın ünlüden (a) dolayı büyük ünlü uyumu kuralına göre soru eki 'mı' olmalıdır."
+  },
+  {
+    "id": "yazim3_015",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'mi'nin yazımı doğrudur?",
+    "correct": "Beni duyuyor musun?",
+    "wrong1": "Beni duyuyormusun?",
+    "wrong2": "Beni duyuyor mu sun?",
+    "explanation": "Soru eki 'mu' kelimeden ayrı, kendinden sonra gelen kişi eki '-sun' ise ona bitişik yazılır: 'musun'."
+  },
+  {
+    "id": "yazim3_016",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı yoktur?",
+    "correct": "Güzel mi güzel bir resim çizdim.",
+    "wrong1": "Güzelmi güzel bir resim çizdim.",
+    "wrong2": "Güzel mi? güzel bir resim çizdim.",
+    "explanation": "Pekiştirme yapan 'mi' ayrı yazılır. Soru anlamı taşımadığı için cümlenin ortasına veya sonuna soru işareti konmaz."
+  },
+  {
+    "id": "yazim3_017",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede soru eki olan 'mı/mi/mu/mü' YANLIŞ yazılmıştır?",
+    "correct": "Kuşlar sıcak ülkelere göç ettimi?",
+    "wrong1": "Kuşlar sıcak ülkelere göç etti mi?",
+    "wrong2": "Bu kitabı sen mi yazdın?",
+    "explanation": "'ettimi' kelimesi bitişik yazılmıştır. Soru eki daima kelimeden ayrı yazılır."
+  },
+  {
+    "id": "yazim3_018",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisinde 'mi' ekinin yazımında bir hata yapılmıştır?",
+    "correct": "Bu tatlıyı kendinmi yaptın?",
+    "wrong1": "Bugün parka çıkalım mı?",
+    "wrong2": "Sen de bizimle gelecek misin?",
+    "explanation": "'kendinmi' kelimesi bitişik yazıldığı için yanlıştır. 'kendin mi' şeklinde ayrı yazılmalıdır."
+  },
+  {
+    "id": "yazim3_019",
+    "level": "kolay",
+    "premise": null,
+    "text": "'Okula gidecek____' cümlesini soru yapmak için boşluğa hangisi gelmelidir?",
+    "correct": "misin?",
+    "wrong1": "misin.",
+    "wrong2": "misin!",
+    "explanation": "Soru ekinden sonra gelen '-sin' kişi eki 'mi'ye bitişik yazılır. Soru cümlesi olduğu için sonuna soru işareti konur."
+  },
+  {
+    "id": "yazim3_020",
+    "level": "orta",
+    "premise": "Soru ekleri büyük ünlü uyumuna göre 'mı, mi, mu, mü' şeklini alabilir.",
+    "text": "Buna göre 'Gülmek' kelimesi soru yapıldığında hangi eki alır?",
+    "correct": "Güler misin?",
+    "wrong1": "Güler musun?",
+    "wrong2": "Güler mısın?",
+    "explanation": "'Güler' kelimesindeki ince ünlü (e) nedeniyle soru eki ince ünlü olan 'mi' şeklini alır."
+  },
+  {
+    "id": "yazim3_021",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde soru anlamı olmamasına rağmen 'mi' doğru yazılmıştır?",
+    "correct": "Ders çalıştın mı başarılı olursun.",
+    "wrong1": "Ders çalıştınmı başarılı olursun.",
+    "wrong2": "Ders çalıştın mı? başarılı olursun.",
+    "explanation": "Zaman/şart anlamı katan 'mı' da ayrı yazılır. Soru sormadığı için sonuna soru işareti konmaz."
+  },
+  {
+    "id": "yazim3_022",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı vardır?",
+    "correct": "Dondurma yiyelimmi?",
+    "wrong1": "Dondurma yiyelim mi?",
+    "wrong2": "Süt içelim mi?",
+    "explanation": "Soru eki olan 'mi' kendinden önceki kelimeye bitişik yazılamaz. 'yiyelimmi' yanlıştır."
+  },
+  {
+    "id": "yazim3_023",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı yoktur?",
+    "correct": "Beni anlıyor musun?",
+    "wrong1": "Beni anlıyormusun?",
+    "wrong2": "Beni anlıyor mu sun?",
+    "explanation": "'musun' ifadesinde soru eki ayrı yazılmış, kişi eki (-sun) ise soru ekine doğru bir şekilde bitişik yazılmıştır."
+  },
+  {
+    "id": "yazim3_024",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı yapılmıştır?",
+    "correct": "Dışarı çıkabilirmiyiz?",
+    "wrong1": "Dışarı çıkabilir miyiz?",
+    "wrong2": "İçeri girebilir miyim?",
+    "explanation": "Soru eki ayrı yazılır. 'çıkabilirmiyiz' yanlıştır, 'çıkabilir miyiz' olmalıdır."
+  },
+  {
+    "id": "yazim3_025",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerin hangisinde 'mü' soru ekinin yazımı doğrudur?",
+    "correct": "Gördün mü?",
+    "wrong1": "Gördünmü?",
+    "wrong2": "Gör dün mü?",
+    "explanation": "Soru eki 'mü' kelimeden ayrı yazılır. 'Gördün mü?' tamamen doğru bir kullanımdır."
+  },
+  {
+    "id": "yazim3_026",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı YOKTUR?",
+    "correct": "Tatlı mı tatlı bir kedi gördüm.",
+    "wrong1": "Tatlımı tatlı bir kedi gördüm.",
+    "wrong2": "Tatlı mı? tatlı bir kedi gördüm.",
+    "explanation": "Pekiştirme yapan 'mı' ayrı yazılır ve cümle sonuna soru işareti konmaz."
+  },
+  {
+    "id": "yazim3_027",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerden hangisi yazım kurallarına Tümüyle uygundur?",
+    "correct": "Yarın sabah bizimle gelecek misin?",
+    "wrong1": "Yarın sabah bizimle gelicekmisin?",
+    "wrong2": "Yarın sabah bizimle gelecekmi sin?",
+    "explanation": "Soru eki 'mi' ayrı, kişi eki 'sin' ise mi'ye bitişik yazılmalıdır."
+  },
+  {
+    "id": "yazim3_028",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Bunu bana senmi aldın?",
+    "wrong1": "Bunu bana sen mi aldın?",
+    "wrong2": "Bunu o mu aldı?",
+    "explanation": "'senmi' kelimesi bitişik yazılmıştır. Soru eki her zaman ayrı yazılır."
+  },
+  {
+    "id": "yazim3_029",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi kelime grubunun yazımı DOĞRUDUR?",
+    "correct": "Okuyor mu?",
+    "wrong1": "Okuyormu?",
+    "wrong2": "Oku yor mu?",
+    "explanation": "Kelime 'Okuyor', soru eki 'mu' şeklindedir ve birbirinden ayrı yazılmalıdır."
+  },
+  {
+    "id": "yazim3_030",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'mi' hem pekiştirme görevinde kullanılmış hem de doğru yazılmıştır?",
+    "correct": "Sıcak mı sıcak bir çorba içtik.",
+    "wrong1": "Sıcakmı sıcak bir çorba içtik.",
+    "wrong2": "Çorba sıcak mı?",
+    "explanation": "'Sıcak mı sıcak' ifadesi abartma/pekiştirme yapar ve 'mı' ayrı yazılarak kurala uyulmuştur."
+  },
+  {
+    "id": "yazim3_031",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde soru eki doğru yazılmıştır?",
+    "correct": "Ödevini yaptın mı?",
+    "wrong1": "Ödevini yaptınmı?",
+    "wrong2": "Ödevini yap tın mı?",
+    "explanation": "Soru eki 'mı' kelimeden ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "yazim3_032",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı yoktur?",
+    "correct": "Benimle gelir misin?",
+    "wrong1": "Benimle gelirmisin?",
+    "wrong2": "Benimle gelirmi sin?",
+    "explanation": "Soru eki ayrı, ardından gelen kişi eki ise soru ekine bitişik yazılır: 'misin'"
+  },
+  {
+    "id": "yazim3_033",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlenin sonuna farklı bir noktalama işareti gelmelidir?",
+    "correct": "O da bizimle gelecek mi",
+    "wrong1": "Bahar geldiğinde çiçekler açar",
+    "wrong2": "Bugün hava çok güzel",
+    "explanation": "İçinde soru eki 'mi' bulunan birinci cümle bir soru cümlesidir ve sonuna soru işareti (?) gelmelidir."
+  },
+  {
+    "id": "yazim3_034",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisinde soru eki yanlış yazılmıştır?",
+    "correct": "Akşam yağmur yağarmı?",
+    "wrong1": "Akşam yağmur yağar mı?",
+    "wrong2": "Sabah güneş doğar mı?",
+    "explanation": "'yağarmı' bitişik yazıldığı için yanlıştır. 'yağar mı' olmalıdır."
+  },
+  {
+    "id": "yazim3_035",
+    "level": "zor",
+    "premise": "Soru eki olan 'mi' kendinden sonra gelen kişi ekleriyle birleşir.",
+    "text": "Aşağıdakilerden hangisinde bu kurala UYULMAMIŞTIR?",
+    "correct": "Sen de bizimle ağlar mı sın?",
+    "wrong1": "Sen de bizimle ağlar mısın?",
+    "wrong2": "Onlar bizimle gelirler mi?",
+    "explanation": "Kişi eki olan '-sın', soru eki olan 'mı'ya bitişik yazılmalıdır. 'mı sın' şeklinde ayrı yazılması yanlıştır."
+  },
+  {
+    "id": "yazim3_036",
+    "level": "orta",
+    "premise": "Bulunma durum eki olan '-de/-da' kelimeye bitişik yazılır ve 'nerede, kimde, nede' sorularına cevap verir.",
+    "text": "Buna göre aşağıdaki cümlelerin hangisinde '-de/-da' eki DOĞRU yazılmıştır?",
+    "correct": "Çantamı okulda unuttum.",
+    "wrong1": "Çantamı okul da unuttum.",
+    "wrong2": "Sende bizimle gel.",
+    "explanation": "'Nerede unuttum?' sorusunun cevabı 'okulda'dır. Bulunma bildirdiği için bitişik yazılmalıdır."
+  },
+  {
+    "id": "yazim3_037",
+    "level": "orta",
+    "premise": "Bağlaç olan 'de/da' kelimeden ayrı yazılır ve 'dahi, bile, başkaları gibi' anlamı katar.",
+    "text": "Buna göre aşağıdaki cümlelerin hangisinde bağlaç olan 'de/da' YANLIŞ yazılmıştır?",
+    "correct": "Bugün bende seninle sinemaya geleceğim.",
+    "wrong1": "Bugün ben de seninle sinemaya geleceğim.",
+    "wrong2": "Ali de bizimle parka gelecekmiş.",
+    "explanation": "'Ben de' (ben dahi, ben bile) bağlaçtır ve ayrı yazılmalıdır."
+  },
+  {
+    "id": "yazim3_038",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de' kelimeden AYRI yazılmalıdır?",
+    "correct": "Kardeşim (de) dondurma istiyor.",
+    "wrong1": "Ev(de) kimse yok.",
+    "wrong2": "Çantam(da) iki kitap var.",
+    "explanation": "Kardeşim de (kardeşim dahi/bile) bağlaçtır, ayrı yazılır. Evde ve çantamda bulunma ekidir, bitişik yazılır."
+  },
+  {
+    "id": "yazim3_039",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'da' kelimeye BİTİŞİK yazılmalıdır?",
+    "correct": "Kalemim masa(da) kalmış.",
+    "wrong1": "Ayşe (da) bizimle gelecek mi?",
+    "wrong2": "O (da) yemeğini bitirdi.",
+    "explanation": "'Masada' nerede sorusuna cevap verir (bulunma ekidir) ve bitişik yazılır. Diğerleri bağlaçtır."
+  },
+  {
+    "id": "yazim3_040",
+    "level": "zor",
+    "premise": "Bağlaç olan 'de/da' cümleden çıkarıldığında cümlenin anlamı daralsa da cümlede bir bozulma olmaz.",
+    "text": "Buna göre aşağıdaki altı çizili 'de/da'lardan hangisi cümleden çıkarılırsa cümlenin anlamı BOZULUR?",
+    "correct": "Kitabım _okulda_ kaldı.",
+    "wrong1": "O _da_ bizimle oynasın.",
+    "wrong2": "Meyve _de_ yemelisin.",
+    "explanation": "'Kitabım okul kaldı' denilemez, cümle bozulur. Demek ki 'okulda' kelimesindeki '-da' ektir ve çıkarılamaz."
+  },
+  {
+    "id": "yazim3_041",
+    "level": "orta",
+    "premise": "Ek olan '-de/-da' kelimenin son sesine göre sertleşerek '-te/-ta' şekline dönüşebilir. Ancak bağlaç olan 'de/da' asla 'te/ta' şeklinde yazılamaz.",
+    "text": "Buna göre aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Ahmet te bizimle gelecekmiş.",
+    "wrong1": "Ahmet de bizimle gelecekmiş.",
+    "wrong2": "Ağaçta çok güzel kuşlar var.",
+    "explanation": "Bağlaç olan 'de/da' ayrı yazılır ve asla 'te/ta' olmaz. 'Ahmet de' şeklinde yazılmalıdır."
+  },
+  {
+    "id": "yazim3_042",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede 'de/da' nın yazımı DOĞRUDUR?",
+    "correct": "Cebimde hiç param kalmadı.",
+    "wrong1": "Cebim de hiç param kalmadı.",
+    "wrong2": "Ben de ev de oturuyorum.",
+    "explanation": "'Cebimde' bulunma ekidir, bitişik yazılır. 'Ben de' (bağlaç-ayrı), 'evde' (ek-bitişik) olmalıdır."
+  },
+  {
+    "id": "yazim3_043",
+    "level": "orta",
+    "premise": "Özel isimlere getirilen bulunma eki (-de/-da) kesme işaretiyle (') ayrılarak yazılır. Ancak bağlaç olan 'de/da' kelime olmadığından kesme işaretine gerek kalmadan doğrudan boşluk bırakılarak ayrı yazılır.",
+    "text": "Buna göre hangi cümlede YANLIŞLIK yapılmıştır?",
+    "correct": "Ali'de bizimle sinemaya geliyor.",
+    "wrong1": "Ali de bizimle sinemaya geliyor.",
+    "wrong2": "Kalemim Ali'de kalmış.",
+    "explanation": "Birinci cümlede 'Ali de' bağlaçtır (Ali dahi), bu yüzden kesme işareti olmadan tamamen ayrı yazılmalıdır."
+  },
+  {
+    "id": "yazim3_044",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde hem bağlaç olan 'de' hem de bulunma eki olan 'de' bir arada ve DOĞRU kullanılmıştır?",
+    "correct": "Evde de hiç meyve kalmamış.",
+    "wrong1": "Ev de de hiç meyve kalmamış.",
+    "wrong2": "Evdede hiç meyve kalmamış.",
+    "explanation": "'Evde' (nerede? - bulunma eki, bitişik), 'de' (dahi/bile anlamında bağlaç, ayrı). Doğrusu: Evde de."
+  },
+  {
+    "id": "yazim3_045",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi seçenekte yazım yanlışı yapılmıştır?",
+    "correct": "Sen de mi ev de kaldın?",
+    "wrong1": "Sen de mi evde kaldın?",
+    "wrong2": "Sende mi kalem var?",
+    "explanation": "'Evde' bulunma ekidir ve bitişik yazılmalıdır. 'Sen de mi ev de kaldın' yazımı bu yüzden yanlıştır."
+  },
+  {
+    "id": "yazim3_046",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerden hangisinde 'de' ekinin / bağlacının yazımı yanlıştır?",
+    "correct": "Dolap ta yiyecek kalmamış.",
+    "wrong1": "Dolapta yiyecek kalmamış.",
+    "wrong2": "Meyve de alalım.",
+    "explanation": "Bulunma eki olan '-da/-de' sertleşerek '-ta/-te' olabilir ve kelimeye bitişik yazılır. 'Dolapta' doğru yazımdır."
+  },
+  {
+    "id": "yazim3_047",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'da / de' cümleden çıkarıldığında cümlenin anlamı bozulmaz?",
+    "correct": "O da dondurma seviyor.",
+    "wrong1": "Masada kitaplar duruyor.",
+    "wrong2": "Okulda çok eğlendik.",
+    "explanation": "Bağlaç cümleden çıkarıldığında anlam tamamen bozulmaz ('O dondurma seviyor'). Ek çıkarıldığında ise bozulur."
+  },
+  {
+    "id": "yazim3_048",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede 'de/da' BİTİŞİK yazılmalıdır?",
+    "correct": "Sokak(ta) çocuklar oynuyor.",
+    "wrong1": "Ali (de) bizimle geldi.",
+    "wrong2": "Kitap (da) okumalısın.",
+    "explanation": "Nerede sorusuna cevap veren 'sokakta' kelimesindeki ek bitişik yazılır."
+  },
+  {
+    "id": "yazim3_049",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede '-de / -da' ekinin yazımı yanlıştır?",
+    "correct": "Kitabımı Ayşe de unuttum.",
+    "wrong1": "Kitabımı Ayşe'de unuttum.",
+    "wrong2": "Ben de seninle geleceğim.",
+    "explanation": "Özel isme gelen bulunma eki (kimde unuttum?) kesme işaretiyle ayrılır: Ayşe'de."
+  },
+  {
+    "id": "yazim3_050",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de' ekinin yazımı DOĞRUDUR?",
+    "correct": "Duvarda güzel bir tablo var.",
+    "wrong1": "Duvar da güzel bir tablo var.",
+    "wrong2": "Duvarta güzel bir tablo var.",
+    "explanation": "Nerede sorusuna cevap veren '-da' eki bitişik yazılır."
+  },
+  {
+    "id": "yazim3_051",
+    "level": "zor",
+    "premise": null,
+    "text": "'Sınıf( )ta( )ki masalar( )da yenilenmiş.' cümlesinde parantez içlerine sırasıyla ne gelmelidir? (Boşluk ayrı yazmayı, - bitişik yazmayı gösterir)",
+    "correct": "(-) / (-) / ( )",
+    "wrong1": "( ) / (-) / ( )",
+    "wrong2": "(-) / (-) / (-)",
+    "explanation": "Sınıftaki (bitişik), masalar da (bağlaç, ayrı). Yani 'Sınıftaki masalar da' şeklinde olmalıdır."
+  },
+  {
+    "id": "yazim3_052",
+    "level": "orta",
+    "premise": null,
+    "text": "Bulunma durumu eki olan '-de / -da' eklendiği kelimeye nasıl yazılır?",
+    "correct": "Bitişik yazılır.",
+    "wrong1": "Ayrı yazılır.",
+    "wrong2": "Kısa çizgi ile yazılır.",
+    "explanation": "Bulunma durumu bildiren (nerede, kimde sorularına cevap veren) -de/-da eki kelimeye her zaman bitişik yazılır."
+  },
+  {
+    "id": "yazim3_053",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bağlaç olan ve cümleye 'dahi, bile' anlamı katan 'de / da' nasıl yazılır?",
+    "correct": "Ayrı yazılır.",
+    "wrong1": "Bitişik yazılır.",
+    "wrong2": "Kesme işaretiyle ayrılır.",
+    "explanation": "Bağlaç olan 'de/da' başlı başına bir kelime olduğu için her zaman ayrı yazılır."
+  },
+  {
+    "id": "yazim3_054",
+    "level": "orta",
+    "premise": "Kitabım okulda kaldı.",
+    "text": "Bu cümledeki '-da' ekinin bitişik yazılmasının sebebi nedir?",
+    "correct": "Bulunma durumu (yer) bildiren bir ek olması",
+    "wrong1": "Bağlaç olması",
+    "wrong2": "Soru anlamı taşıması",
+    "explanation": "'Okulda' kelimesindeki -da eki 'Nerede kaldı?' sorusuna cevap verir ve bulunma bildirir."
+  },
+  {
+    "id": "yazim3_055",
+    "level": "orta",
+    "premise": "Ali de bizimle sinemaya gelecek.",
+    "text": "Bu cümledeki 'de' kelimesinin ayrı yazılmasının sebebi nedir?",
+    "correct": "Bağlaç olması ve cümleden çıkınca anlamın bozulmaması",
+    "wrong1": "Özel isimden sonra gelmesi",
+    "wrong2": "Bulunma durumu bildirmesi",
+    "explanation": "'Ali bizimle sinemaya gelecek' dediğimizde anlam bozulmaz. Demek ki 'de' bağlaçtır ve ayrı yazılır."
+  },
+  {
+    "id": "yazim3_056",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de/da' nın yazımı YANLIŞTIR?",
+    "correct": "Kalemim Ali de kalmış.",
+    "wrong1": "Oyuncağım evde kaldı.",
+    "wrong2": "Çantada kitabım var.",
+    "explanation": "'Ali'de' olmalıydı. Nerede kaldı? Ali'de. Bulunma durumu ekidir, bitişik yazılır ve özel isme geldiği için kesme işaretiyle ayrılır."
+  },
+  {
+    "id": "yazim3_057",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de/da' nın yazımı DOĞRUDUR?",
+    "correct": "Ahmet de bizimle oynayacak.",
+    "wrong1": "Kalemim okul da kaldı.",
+    "wrong2": "Bugün ev de çok sıkıldım.",
+    "explanation": "Ahmet de (bağlaç, ayrı yazılır). 'Okul da' ve 'ev de' yanlış yazılmıştır, 'okulda' ve 'evde' şeklinde bitişik olmalıydı."
+  },
+  {
+    "id": "yazim3_058",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde '-de/-da' nın yazımı ile ilgili bir YANLIŞLIK yapılmıştır?",
+    "correct": "Ayşe de kırmızı kalem var.",
+    "wrong1": "Ayşe de bizimle gelecek.",
+    "wrong2": "Ayşe'de kırmızı kalem var.",
+    "explanation": "'Kırmızı kalem kimde var?' sorusunun cevabı 'Ayşe'de' olur. Bulunma ekidir, bitişik olmalı ve kesme işaretiyle ayrılmalıdır."
+  },
+  {
+    "id": "yazim3_059",
+    "level": "zor",
+    "premise": "Bağlaç olan 'de/da' her zaman ayrı yazılır ve kendinden önceki kelimeye göre 'te/ta' şekline DÖNÜŞMEZ.",
+    "text": "Buna göre aşağıdakilerden hangisi YANLIŞ yazılmıştır?",
+    "correct": "Mehmet te maça gelecek.",
+    "wrong1": "Mehmet de maça gelecek.",
+    "wrong2": "Kitabım Mehmet'te kaldı.",
+    "explanation": "Bağlaç olan 'de' ayrı yazılır ve hiçbir zaman 'te' olmaz. Doğrusu 'Mehmet de' olmalıdır."
+  },
+  {
+    "id": "yazim3_060",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı YOKTUR?",
+    "correct": "Sen de mi bizimle geliyorsun?",
+    "wrong1": "Bende seninle gelmek istiyorum.",
+    "wrong2": "Kalemim sen de mi kalmış?",
+    "explanation": "'Sen de' bağlaçtır ve ayrı yazılır. 'Bende' bağlaçtır ayrı olmalı (Ben de). 'Sen de' ise ek olduğu için bitişik olmalı (Sende)."
+  },
+  {
+    "id": "yazim3_061",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisinde 'de/da'nın yazımı YANLIŞTIR?",
+    "correct": "Park da oyun oynadık.",
+    "wrong1": "Evde televizyon izledik.",
+    "wrong2": "Sokakta çok kar var.",
+    "explanation": "Nerede oynadık? 'Parkta'. Bulunma ekidir ve bitişik yazılır. Ayrı yazılması yanlıştır."
+  },
+  {
+    "id": "yazim3_062",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de/da' doğru yazılmıştır?",
+    "correct": "Kardeşim de okula başladı.",
+    "wrong1": "Silgim çantam da kalmış.",
+    "wrong2": "Ağaç da kuşlar ötüyor.",
+    "explanation": "'Kardeşim okula başladı' diyebiliyoruz, anlam bozulmuyor. O halde 'de' bağlaçtır ve ayrı yazılması doğrudur."
+  },
+  {
+    "id": "yazim3_063",
+    "level": "zor",
+    "premise": "Ek olan -de/-da cümleden çıkarıldığında anlam tamamen bozulur.",
+    "text": "Hangi cümleden 'de/da' çıkarıldığında anlam BOZULMAZ?",
+    "correct": "Babam da kitap okuyor.",
+    "wrong1": "Kitabım arabada kaldı.",
+    "wrong2": "Suda balıklar yüzüyor.",
+    "explanation": "'Babam kitap okuyor' cümlesi anlamlıdır. Buradaki 'da' bağlaçtır, çıkınca anlam bozulmaz."
+  },
+  {
+    "id": "yazim3_064",
+    "level": "orta",
+    "premise": null,
+    "text": "'Bahçe( ) dolaşırken bir kedi gördüm. Kedi( ) benimle oynamak istedi.' cümlesindeki boşluklara sırasıyla ne gelmelidir?",
+    "correct": "-de (bitişik) / de (ayrı)",
+    "wrong1": "de (ayrı) / -de (bitişik)",
+    "wrong2": "-de (bitişik) / -de (bitişik)",
+    "explanation": "Nerede dolaşırken? Bahçede (ek, bitişik). 'Kedi de benimle oynamak istedi' (dahi anlamında bağlaç, ayrı)."
+  },
+  {
+    "id": "yazim3_065",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisinde kesme işareti (') YANLIŞ kullanılmıştır?",
+    "correct": "Ali'de bizimle sinemaya geldi.",
+    "wrong1": "Ali'de kitabım kalmış.",
+    "wrong2": "Kalemini Zeynep'te unutmuş.",
+    "explanation": "'Ali de bizimle sinemaya geldi' cümlesindeki 'de' bağlaçtır. Bağlaçlar kelimeden ayrı yazılır, kesme işareti kullanılmaz."
+  },
+  {
+    "id": "yazim3_066",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'da' ayrı yazılmalıdır?",
+    "correct": "O elmayı ben(da) yiyeceğim.",
+    "wrong1": "Masay(da) kitaplar var.",
+    "wrong2": "Okul(da) çok eğlendik.",
+    "explanation": "'O elmayı ben yiyeceğim' anlamlıdır, bağlaçtır ve 'ben de' şeklinde ayrı yazılmalıdır."
+  },
+  {
+    "id": "yazim3_067",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım kuralı hatası vardır?",
+    "correct": "Bakkal dan ekmek de aldım.",
+    "wrong1": "Bakkaldan ekmek de aldım.",
+    "wrong2": "Bakkalda ekmek kalmamış.",
+    "explanation": "'Bakkal dan' yanlıştır, ayrılma eki bitişik yazılır (Bakkaldan). 'ekmek de' doğru yazılmıştır."
+  },
+  {
+    "id": "yazim3_068",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede '-de / -da' ekinin yazımıyla ilgili bir yanlışlık yapılmıştır?",
+    "correct": "Bugün sınıf ta hiç kimse yok.",
+    "wrong1": "Bugün sınıfta hiç kimse yok.",
+    "wrong2": "Okan da bugün okula gelmedi.",
+    "explanation": "'Sınıf' kelimesine gelen bulunma eki bitişik yazılır ve 'ta' şeklini alır (sınıfta). Ayrı yazılması yanlıştır."
+  },
+  {
+    "id": "yazim3_069",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi seçenekteki 'de/da' cümleden çıkarıldığında cümlenin anlamı bozulur?",
+    "correct": "Ağaçta kuşlar şarkı söylüyor.",
+    "wrong1": "Kuşlar da şarkı söylüyor.",
+    "wrong2": "Sen de bizimle şarkı söyle.",
+    "explanation": "'Ağaç kuşlar şarkı söylüyor' anlamsız olur. Ek olduğu için çıkarılınca anlam bozulur."
+  },
+  {
+    "id": "yazim3_070",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de' bağlacı kullanılmıştır?",
+    "correct": "Ödevimi bitirdim, resim de çizdim.",
+    "wrong1": "Ödevim evde kaldı.",
+    "wrong2": "Resim defterim okulda.",
+    "explanation": "'Resim çizdim' dendiğinde anlam bozulmadığı için buradaki 'de' bağlaçtır."
+  },
+  {
+    "id": "yazim3_071",
+    "level": "orta",
+    "premise": null,
+    "text": "'Bu akşam televizyon( ) güzel bir film var, sen( ) izle.' cümlesindeki boşluklara sırasıyla ne gelmelidir?",
+    "correct": "-da (bitişik) / de (ayrı)",
+    "wrong1": "da (ayrı) / de (ayrı)",
+    "wrong2": "-da (bitişik) / -de (bitişik)",
+    "explanation": "Televizyonda (bulunma ekidir, bitişik). Sen de izle (bağlaçtır, ayrı)."
+  },
+  {
+    "id": "yazim3_072",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisinde bağlaç olan 'de'nin yazımında hata yapılmıştır?",
+    "correct": "Gitsen te seni bekleyeceğim.",
+    "wrong1": "Gitsen de seni bekleyeceğim.",
+    "wrong2": "Sen de benimle gel.",
+    "explanation": "Bağlaç olan 'de' ayrı yazılır ve asla 'te/ta' şekline dönüşmez. 'Gitsen de' olmalıdır."
+  },
+  {
+    "id": "yazim3_073",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi DOĞRU yazılmıştır?",
+    "correct": "Ormanda",
+    "wrong1": "Orman da",
+    "wrong2": "Orman'da",
+    "explanation": "Cins isimlere (orman, ev, okul) gelen ekler bitişik yazılır, kesme işareti kullanılmaz."
+  },
+  {
+    "id": "yazim3_074",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi YANLIŞ yazılmıştır?",
+    "correct": "Elif'de",
+    "wrong1": "Elif'te",
+    "wrong2": "Elif de",
+    "explanation": "Bulunma eki 'f, s, t, k, ç, ş, h, p' harfleriyle biten kelimelerde 'te/ta' olur. Doğrusu 'Elif'te'dir."
+  },
+  {
+    "id": "yazim3_075",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı vardır?",
+    "correct": "Murat'ta bizimle oynasın.",
+    "wrong1": "Murat da bizimle oynasın.",
+    "wrong2": "Murat'ta topum kaldı.",
+    "explanation": "'Oynasın' fiiline 'dahi/bile' anlamı katan bağlaçtır. Ayrı yazılır ve 'ta' olmaz. 'Murat da' olmalıdır."
+  },
+  {
+    "id": "yazim3_076",
+    "level": "kolay",
+    "premise": "Türkçede '-ki' eki de tıpkı '-de' gibi iki farklı görevde kullanılır.",
+    "text": "Yer veya zaman bildiren, bir isme aitlik katan '-ki' eki nasıl yazılır?",
+    "correct": "Kelimelere her zaman bitişik yazılır.",
+    "wrong1": "Kelimelerden her zaman ayrı yazılır.",
+    "wrong2": "Sadece özel isimlerden ayrı yazılır.",
+    "explanation": "Sıfat veya zamir yapan, yer/zaman bildiren '-ki' eki (bahçedeki, akşamki, benimki) her zaman bitişik yazılır."
+  },
+  {
+    "id": "yazim3_077",
+    "level": "kolay",
+    "premise": "Cümleleri birbirine bağlayan, dilde ayrı bir kelime olarak görev yapan bağlaç olan 'ki' nasıl yazılır?",
+    "correct": "Kelimelerden her zaman ayrı yazılır.",
+    "wrong1": "Kelimeye her zaman bitişik yazılır.",
+    "wrong2": "Cümlenin sonunda bitişik yazılır.",
+    "explanation": "Bağlaç olan 'ki' (Duydum ki, öyle ki, anladım ki) kendi başına bir kelimedir ve daima ayrı yazılır."
+  },
+  {
+    "id": "yazim3_078",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde '-ki' ekinin yazımı DOĞRUDUR?",
+    "correct": "Masadaki kitapları çantama yerleştirdim.",
+    "wrong1": "Masa da ki kitapları çantama yerleştirdim.",
+    "wrong2": "Masada ki kitapları çantama yerleştirdim.",
+    "explanation": "Yer bildiren '-ki' eki kelimeye bitişik yazılır: 'Masadaki'."
+  },
+  {
+    "id": "yazim3_079",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede bağlaç olan 'ki' DOĞRU yazılmıştır?",
+    "correct": "O kadar yoruldum ki hemen uyumak istiyorum.",
+    "wrong1": "O kadar yoruldumki hemen uyumak istiyorum.",
+    "wrong2": "Okadar yoruldum ki hemen uyumak istiyorum.",
+    "explanation": "Cümleleri birbirine bağlayan 'ki' ayrı yazılır. 'yoruldum ki' doğru kullanımdır."
+  },
+  {
+    "id": "yazim3_080",
+    "level": "zor",
+    "premise": "İpucu: '-ki' ekinin sonuna '-ler' eki (kiler) getirdiğimizde anlamlı bir kelime oluyorsa o 'ki' bitişik yazılır, anlamsız oluyorsa ayrı yazılır.",
+    "text": "Buna göre aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Çantanda ki defteri bana verir misin?",
+    "wrong1": "Çantandaki defteri bana verir misin?",
+    "wrong2": "Duydum ki bugün okula gelmemişsin.",
+    "explanation": "'Çantanda kiler' diyebiliyoruz, demek ki aitlik ekidir ve bitişik yazılmalıdır. 'Çantanda ki' yazımı yanlıştır."
+  },
+  {
+    "id": "yazim3_081",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Bahçe deki çiçekler çok güzel açmış.",
+    "wrong1": "Bahçedeki çiçekler çok güzel açmış.",
+    "wrong2": "Gördüm ki bahçedeki çiçekler çok güzel açmış.",
+    "explanation": "Yer bildiren '-deki' eki bitişik yazılır. 'Bahçe deki' yanlıştır."
+  },
+  {
+    "id": "yazim3_082",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' ekinin yazımında hata yapılmıştır?",
+    "correct": "Anladımki benimle gelmek istemiyorsun.",
+    "wrong1": "Anladım ki benimle gelmek istemiyorsun.",
+    "wrong2": "Seninki de çok güzel olmuş.",
+    "explanation": "Bağlaç olan 'ki' kelimelerden ayrı yazılır. 'Anladımki' yanlıştır, 'Anladım ki' olmalıdır."
+  },
+  {
+    "id": "yazim3_083",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisinin yazımı DOĞRUDUR?",
+    "correct": "Evdeki",
+    "wrong1": "Evde ki",
+    "wrong2": "Ev deki",
+    "explanation": "Bir şeyin yerini belirten '-deki' eki kelimeye tamamen bitişik yazılır."
+  },
+  {
+    "id": "yazim3_084",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' bağlacı yanlış yazılmıştır?",
+    "correct": "Baktımki dışarıda kar yağıyor.",
+    "wrong1": "Baktım ki dışarıda kar yağıyor.",
+    "wrong2": "Sokaktaki çocuklar kar topu oynuyor.",
+    "explanation": "Cümleleri bağlayan 'ki' ayrı yazılır. 'Baktımki' yanlıştır."
+  },
+  {
+    "id": "yazim3_085",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde hem bitişik hem de ayrı yazılması gereken 'ki' örnekleri DOĞRU yazılmıştır?",
+    "correct": "Öyle çok güldüm ki, gözlerimdeki yaşları silemedim.",
+    "wrong1": "Öyle çok güldümki, gözlerim deki yaşları silemedim.",
+    "wrong2": "Öyle çok güldüm ki, gözlerim de ki yaşları silemedim.",
+    "explanation": "Bağlaç olan 'güldüm ki' (ayrı) ve yer bildiren 'gözlerimdeki' (bitişik) kullanımları doğru verilmiştir."
+  },
+  {
+    "id": "yazim3_086",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı vardır?",
+    "correct": "Yarın ki maça mutlaka gelmelisin.",
+    "wrong1": "Yarınki maça mutlaka gelmelisin.",
+    "wrong2": "Biliyorum ki yarın maça geleceksin.",
+    "explanation": "Zaman bildiren kelimelere gelen '-ki' eki bitişik yazılır: 'yarınki', 'akşamki' gibi."
+  },
+  {
+    "id": "yazim3_087",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı YOKTUR?",
+    "correct": "Benim kalemim kırmızı, seninki ise mavi.",
+    "wrong1": "Benim kalemim kırmızı, senin ki ise mavi.",
+    "wrong2": "Benim kalemim kırmızı, senin kide mavi.",
+    "explanation": "Aitlik (sahiplik) bildiren '-ki' zamiri bitişik yazılır. 'seninki', 'benimki' her zaman bitişiktir."
+  },
+  {
+    "id": "yazim3_088",
+    "level": "zor",
+    "premise": "Bazı kelimelerde 'ki' bağlacı kalıplaştığı için istisna olarak BİTİŞİK yazılır. (Örneğin: Sanki, çünkü, belki).",
+    "text": "Buna göre aşağıdakilerden hangisinin yazımı DOĞRUDUR?",
+    "correct": "Belki yarın birlikte parka gideriz.",
+    "wrong1": "Bel ki yarın birlikte parka gideriz.",
+    "wrong2": "Çün kü dışarıda yağmur yağıyordu.",
+    "explanation": "'Belki', 'çünkü', 'sanki' gibi kelimelerdeki 'ki' kalıplaşmıştır ve bitişik yazılır."
+  },
+  {
+    "id": "yazim3_089",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Dolapta ki elmaları yiyebilirsin.",
+    "wrong1": "Dolaptaki elmaları yiyebilirsin.",
+    "wrong2": "Duydum ki elma yemeyi çok seviyormuşsun.",
+    "explanation": "Yer bildiren '-ki' eki kelimeye bitişik yazılır. 'Dolaptaki' olmalıdır."
+  },
+  {
+    "id": "yazim3_090",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' ekinin yazımı yanlıştır?",
+    "correct": "Söz verki bir daha yalan söylemeyeceksin.",
+    "wrong1": "Söz ver ki bir daha yalan söylemeyeceksin.",
+    "wrong2": "Kalbimdeki sevgi hiç bitmeyecek.",
+    "explanation": "Fiillerden sonra gelen 'ki' bağlaçtır ve her zaman ayrı yazılır. 'Söz ver ki' olmalıdır."
+  },
+  {
+    "id": "yazim3_091",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı YOKTUR?",
+    "correct": "Ağaçtaki kuşlar neşeyle ötüyor.",
+    "wrong1": "Ağaçta ki kuşlar neşeyle ötüyor.",
+    "wrong2": "Ağaç taki kuşlar neşeyle ötüyor.",
+    "explanation": "Yer bildiren bulunma hal eki ve '-ki' eki kelimeye bitişik yazılır: 'Ağaçtaki'."
+  },
+  {
+    "id": "yazim3_092",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Benim ki evde kalmış, seninkini kullanabilir miyim?",
+    "wrong1": "Benimki evde kalmış, seninkini kullanabilir miyim?",
+    "wrong2": "Evdeki hesabımız çarşıya uymadı.",
+    "explanation": "Bir ismin yerine geçen (benim kalemim -> benimki) ilgi zamiri olan '-ki' bitişik yazılır. 'Benim ki' yanlıştır."
+  },
+  {
+    "id": "yazim3_093",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' ve 'de' ekinin yazımı tamamen DOĞRUDUR?",
+    "correct": "Gözündeki yaşı sil de öyle konuş.",
+    "wrong1": "Gözünde ki yaşı sil de öyle konuş.",
+    "wrong2": "Gözündeki yaşı silde öyle konuş.",
+    "explanation": "'Gözündeki' bitişik yazılır (yer bildirir). 'sil de' ayrı yazılır (bağlaçtır). İlk seçenek doğrudur."
+  },
+  {
+    "id": "yazim3_094",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı yapılmıştır?",
+    "correct": "Akşam ki yemeğimiz çok lezzetliydi.",
+    "wrong1": "Akşamki yemeğimiz çok lezzetliydi.",
+    "wrong2": "Bu yemek o kadar lezzetliydi ki inanamazsın.",
+    "explanation": "Zaman bildiren kelimelere gelen '-ki' eki (akşamki, dünkü vb.) bitişik yazılır."
+  },
+  {
+    "id": "yazim3_095",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' bağlacının yazımı yanlıştır?",
+    "correct": "Farzetki bugün okul tatil oldu.",
+    "wrong1": "Farz et ki bugün okul tatil oldu.",
+    "wrong2": "Tut ki bütün hayallerin gerçek oldu.",
+    "explanation": "Fiillerin sonuna gelen bağlaç 'ki' ayrı yazılır. 'Farzetki' veya 'Tutki' yazımı yanlıştır."
+  },
+  {
+    "id": "yazim3_096",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisinin sonundaki 'ki' eki her zaman BİTİŞİK yazılır?",
+    "correct": "Sanki",
+    "wrong1": "İnan ki",
+    "wrong2": "Yeter ki",
+    "explanation": "'Sanki, çünkü, belki' gibi kelimelerde 'ki' kalıplaştığı için istisna olarak daima bitişik yazılır."
+  },
+  {
+    "id": "yazim3_097",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı YOKTUR?",
+    "correct": "Çok yoruldum, öyle ki adım atacak halim kalmadı.",
+    "wrong1": "Çok yoruldum, öyleki adım atacak halim kalmadı.",
+    "wrong2": "Dizimdeki ağrı hiç geçmiyor ki.",
+    "explanation": "'öyle ki' ayrı yazılır. 'öyleki' şeklindeki yazım yanlıştır."
+  },
+  {
+    "id": "yazim3_098",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Baktım ki herkes gitmiş, bende eve döndüm.",
+    "wrong1": "Baktım ki herkes gitmiş, ben de eve döndüm.",
+    "wrong2": "Bahçedeki köpek çok uslu.",
+    "explanation": "Cümlede iki hata şıkkı var: 'Baktım ki' doğru ama 'bende' (bağlaç olan de) yanlıştır, 'ben de' olmalıdır."
+  },
+  {
+    "id": "yazim3_099",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede birden fazla yazım yanlışı yapılmıştır?",
+    "correct": "Sokakta ki kedi lere mama verdimi?",
+    "wrong1": "Sokaktaki kedilere mama verdi mi?",
+    "wrong2": "Sokakta ki kedilere mama verdi mi?",
+    "explanation": "1. 'Sokakta ki' (bitişik olmalı). 2. 'kedi lere' (çoğul eki bitişik olmalı). 3. 'verdimi' (soru eki ayrı olmalı). Toplam 3 hata var."
+  },
+  {
+    "id": "yazim3_100",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Şu an ki durumumuz çok iyi.",
+    "wrong1": "Şu anki durumumuz çok iyi.",
+    "wrong2": "Evdeki durumlar nasıl?",
+    "explanation": "Zaman bildiren eklere gelen '-ki' bitişik yazılır: 'Şu anki', 'yarınki' vb."
+  },
+  {
+    "id": "yazim3_101",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı yapılmıştır?",
+    "correct": "Çalışki sınavı kazanasın.",
+    "wrong1": "Çalış ki sınavı kazanasın.",
+    "wrong2": "Çok çalıştı ki sınavı kazandı.",
+    "explanation": "Hatalı şık 'Çalışki' olandır. Emir ve fiillerden sonra gelen 'ki' ayrı yazılır."
+  },
+  {
+    "id": "yazim3_102",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'ki' ekinin yazımı yanlıştır?",
+    "correct": "Dolapta ki ni bana getirir misin?",
+    "wrong1": "Dolaptakini bana getirir misin?",
+    "wrong2": "Dolaptaki meyveyi bana getirir misin?",
+    "explanation": "İsmin yerini tutan (dolaptaki şey) 'ki' eki bitişik yazılır. 'Dolapta ki ni' tamamen hatalı bir yazımdır."
+  },
+  {
+    "id": "yazim3_103",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı YOKTUR?",
+    "correct": "Seninki yine ağlıyor.",
+    "wrong1": "Senin ki yine ağlıyor.",
+    "wrong2": "Senin ki de yine ağlıyor.",
+    "explanation": "Aitlik (sahiplik) bildiren 'ki' eki her zaman bitişik yazılır: 'seninki', 'onunki'."
+  },
+  {
+    "id": "yazim3_104",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' ve 'de' ekinin yazımında hata yapılmıştır?",
+    "correct": "Elimde ki kalemi de kaybettim.",
+    "wrong1": "Elimdeki kalemi de kaybettim.",
+    "wrong2": "Masadaki kalemi de kullanabilirsin.",
+    "explanation": "Yer bildiren '-deki' bitişik olmalıdır ('Elimdeki'). Ayrı yazılması hatalıdır."
+  },
+  {
+    "id": "yazim3_105",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde tüm bağlaç ve ekler DOĞRU yazılmıştır?",
+    "correct": "Gördüm ki sen de bizimle sinemadaki filme gelmek istiyorsun.",
+    "wrong1": "Gördümki sen de bizimle sinema da ki filme gelmek istiyorsun.",
+    "wrong2": "Gördüm ki sende bizimle sinemadaki filme gelmek istiyorsun.",
+    "explanation": "'Gördüm ki' (ayrı), 'sen de' (ayrı), 'sinemadaki' (bitişik) kurallarına uyan ilk seçenek doğrudur."
+  },
+  {
+    "id": "yazim3_106",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede '-de, -ki, -mi' kurallarının tamamına UYULMUŞTUR?",
+    "correct": "Evdeki kedi de sütünü içti mi?",
+    "wrong1": "Evde ki kedi de sütünü içtimi?",
+    "wrong2": "Evdeki kedide sütünü içti mi?",
+    "explanation": "Evdeki (yer eki, bitişik), kedi de (bağlaç, ayrı), içti mi (soru eki, ayrı). İlk seçenek tamamen hatasızdır."
+  },
+  {
+    "id": "yazim3_107",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde BİRDEN FAZLA yazım yanlışı vardır?",
+    "correct": "Yarın ki sınav da başarılı olacakmısın?",
+    "wrong1": "Yarınki sınavda başarılı olacak mısın?",
+    "wrong2": "Yarınki sınav da başarılı olacak mısın?",
+    "explanation": "Hatalar: 'Yarın ki' (bitişik olmalı), 'sınav da' (bitişik olmalı), 'olacakmısın' (ayrı olmalı). Tam 3 hata var."
+  },
+  {
+    "id": "yazim3_108",
+    "level": "zor",
+    "premise": "'Ali____ okul____ kalemini kaybetmiş____?'",
+    "text": "Cümlesinin doğru ve anlamlı olması için boşluklara sırasıyla ne gelmelidir?",
+    "correct": "de (ayrı) / da (bitişik) / mi (ayrı)",
+    "wrong1": "de (bitişik) / da (ayrı) / mi (bitişik)",
+    "wrong2": "de (ayrı) / da (ayrı) / mi (ayrı)",
+    "explanation": "'Ali de' (bağlaç, ayrı), 'okulda' (bulunma, bitişik), 'kaybetmiş mi?' (soru, ayrı)."
+  },
+  {
+    "id": "yazim3_109",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı YOKTUR?",
+    "correct": "Kitabını okudu da mı geldi?",
+    "wrong1": "Kitabını okudu damı geldi?",
+    "wrong2": "Kitabını okududa mı geldi?",
+    "explanation": "Bağlaç olan 'da' ayrı, soru eki olan 'mı' ayrı yazılır. İkisi yan yana gelse bile ayrı yazılırlar."
+  },
+  {
+    "id": "yazim3_110",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Sanki sende bizimle parka gelecekdin?",
+    "wrong1": "Sanki sen de bizimle parka gelecek miydin?",
+    "wrong2": "Sen de mi bizimle parka geleceksin?",
+    "explanation": "'Sanki' doğru yazılmıştır ancak 'sende' yanlıştır, bağlaçtır ve 'sen de' olmalıdır. Ayrıca 'gelecekdin' yanlıştır."
+  },
+  {
+    "id": "yazim3_111",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede hem bulunma eki hem bağlaç hem de soru eki DOĞRU yazılmıştır?",
+    "correct": "Ahmet de okulda top oynadı mı?",
+    "wrong1": "Ahmet'te okulda top oynadı mı?",
+    "wrong2": "Ahmet de okul da top oynadımı?",
+    "explanation": "Ahmet de (bağlaç, ayrı), okulda (ek, bitişik), oynadı mı (soru, ayrı)."
+  },
+  {
+    "id": "yazim3_112",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım kurallarına TAMAMEN uyulmuştur?",
+    "correct": "Sepetteki elmaları da yıkar mısın?",
+    "wrong1": "Sepet teki elmaları da yıkarmısın?",
+    "wrong2": "Sepette ki elmalarıda yıkar mısın?",
+    "explanation": "Sepetteki (sertleşme ve ki eki bitişik), elmaları da (bağlaç ayrı), yıkar mısın (soru ayrı)."
+  },
+  {
+    "id": "yazim3_113",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi seçenekteki cümlenin yazımı YANLIŞTIR?",
+    "correct": "Bugün bende sinemadaki filme gidecekmiyim?",
+    "wrong1": "Bugün ben de sinemadaki filme gidecek miyim?",
+    "wrong2": "Bugün o da sinemadaki filme gidecek mi?",
+    "explanation": "'bende' (ayrı olmalı), 'gidecekmiyim' (ayrı olmalı). İlk cümlede çok sayıda hata vardır."
+  },
+  {
+    "id": "yazim3_114",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'ki, de ve mi' eklerinin/bağlaçlarının yazımı DOĞRUDUR?",
+    "correct": "Biliyorum ki sen de o kitabı evde unuttun, değil mi?",
+    "wrong1": "Biliyorumki sen de o kitabı ev de unuttun, değilmi?",
+    "wrong2": "Biliyorum ki sende o kitabı evde unuttun, değil mi?",
+    "explanation": "Biliyorum ki (ayrı), sen de (ayrı), evde (bitişik), değil mi (ayrı)."
+  },
+  {
+    "id": "yazim3_115",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede yazım yanlışı YAPILMAMIŞTIR?",
+    "correct": "Masadaki kalem de benimki mi?",
+    "wrong1": "Masada ki kalem de benim ki mi?",
+    "wrong2": "Masadaki kalemde benimkimi?",
+    "explanation": "Masadaki (bitişik), kalem de (ayrı), benimki (bitişik), mi (ayrı)."
+  },
+  {
+    "id": "yazim3_116",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' ve 'de' nin yazımında hata yapılmıştır?",
+    "correct": "Elimde ki kalemi de kaybettim.",
+    "wrong1": "Elimdeki kalemi de kaybettim.",
+    "wrong2": "Masadaki kalemi de kullanabilirsin.",
+    "explanation": "Yer bildiren '-deki' bitişik olmalıdır ('Elimdeki'). Ayrı yazılması hatalıdır."
+  },
+  {
+    "id": "yazim3_117",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde hem bitişik hem de ayrı yazılması gereken 'ki' örnekleri DOĞRU yazılmıştır?",
+    "correct": "Öyle çok güldüm ki, gözlerimdeki yaşları silemedim.",
+    "wrong1": "Öyle çok güldümki, gözlerim deki yaşları silemedim.",
+    "wrong2": "Öyle çok güldüm ki, gözlerim de ki yaşları silemedim.",
+    "explanation": "Bağlaç olan 'güldüm ki' (ayrı) ve yer bildiren 'gözlerimdeki' (bitişik) kullanımları doğru verilmiştir."
+  },
+  {
+    "id": "yazim3_118",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde 'de' bağlacı yanlış kullanılmıştır?",
+    "correct": "Ağaçta ki kuşlar uçtu.",
+    "wrong1": "Ağaçtaki kuşlar da uçtu.",
+    "wrong2": "Kuşlar ağaçta ötüyor.",
+    "explanation": "'Ağaçta ki' yazımı yanlıştır. Ek olan 'de' ve 'ki' bitişik yazılmalıdır (Ağaçtaki)."
+  },
+  {
+    "id": "yazim3_119",
+    "level": "zor",
+    "premise": "Özel isimlere getirilen bağlaç olan 'de' kesme işaretiyle ayrılmaz, kelimeden ayrı yazılır.",
+    "text": "Bu kurala göre hangisi DOĞRUDUR?",
+    "correct": "Ayşe de bizimle güldü.",
+    "wrong1": "Ayşe'de bizimle güldü.",
+    "wrong2": "Ayşede bizimle güldü.",
+    "explanation": "Bağlaç olan 'de' başlı başına bir kelime olduğu için özel isme bitişmez ve kesme işareti kullanılmaz."
+  },
+  {
+    "id": "yazim3_120",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+    "correct": "Sokak da kediler miyavlıyor.",
+    "wrong1": "Sokakta kediler miyavlıyor.",
+    "wrong2": "Kediler de miyavlıyor.",
+    "explanation": "Sokakta (bulunma eki) bitişik yazılmalıdır."
+  },
+  {
+    "id": "yazim3_121",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'mı / mi' soru anlamı taşımadığı hâlde doğru yazılmıştır?",
+    "correct": "Güzel mi güzel bir gün.",
+    "wrong1": "Güzelmi güzel bir gün.",
+    "wrong2": "Güzel mi güzelbir gün.",
+    "explanation": "Pekiştirme anlamı katan 'mi' de ayrı yazılır."
+  },
+  {
+    "id": "yazim3_122",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelime gruplarının hangisinde yazım yanlışı vardır?",
+    "correct": "Gelirmi",
+    "wrong1": "Gelir mi",
+    "wrong2": "Gelmez mi",
+    "explanation": "Soru eki her zaman ayrı yazılır."
+  },
+  {
+    "id": "yazim3_123",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede bağlaç olan 'de' doğru yazılmıştır?",
+    "correct": "Sen de bizimle gel.",
+    "wrong1": "Sende bizimle gel.",
+    "wrong2": "Sen'de bizimle gel.",
+    "explanation": "Bağlaç olan 'de' ayrı yazılır ve kesme kullanılmaz."
+  },
+  {
+    "id": "yazim3_124",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi cümlede ek olan '-de' ve bağlaç olan 'de' kuralına UYULMAMIŞTIR?",
+    "correct": "Ev de ben de sıkıldım.",
+    "wrong1": "Evde ben de sıkıldım.",
+    "wrong2": "Evde ben sıkıldım.",
+    "explanation": "Evde (yer eki, bitişik olmalı). 'Ev de' yazımı yanlıştır."
+  },
+  {
+    "id": "yazim3_125",
+    "level": "kolay",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' doğru yazılmıştır?",
+    "correct": "Akşamki film çok güzeldi.",
+    "wrong1": "Akşam ki film çok güzeldi.",
+    "wrong2": "Akşam'ki film çok güzeldi.",
+    "explanation": "Zaman bildiren kelimeye gelen '-ki' ektir, bitişik yazılır."
+  },
+  {
+    "id": "yazim3_126",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'ki' bağlacı doğru kullanılmıştır?",
+    "correct": "Anladım ki bu iş olmayacak.",
+    "wrong1": "Anladımki bu iş olmayacak.",
+    "wrong2": "Anladım'ki bu iş olmayacak.",
+    "explanation": "Fiilden sonra gelen bağlaç ayrı yazılır."
+  },
+  {
+    "id": "yazim3_127",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi kalıplaşmış olduğu için 'ki' bitişik yazılır?",
+    "correct": "Sanki",
+    "wrong1": "Diyorum ki",
+    "wrong2": "Öyle ki",
+    "explanation": "Sanki kelimesi kalıplaşmış bir bağlaçtır ve daima bitişik yazılır."
+  },
+  {
+    "id": "yazim3_128",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde yazım yanlışı yoktur?",
+    "correct": "Çünkü sen çok başarılısın.",
+    "wrong1": "Çün kü sen çok başarılısın.",
+    "wrong2": "Çünki sen çok başarılısın.",
+    "explanation": "Çünkü kelimesi kalıplaşmıştır, bitişik ve 'ü' ile yazılır."
+  },
+  {
+    "id": "yazim3_129",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede 'mi' nin yazımı yanlıştır?",
+    "correct": "Okullar açılacakmı?",
+    "wrong1": "Okullar açılacak mı?",
+    "wrong2": "Okula gidecek misin?",
+    "explanation": "Soru eki 'mı' ayrı yazılmalıdır."
+  },
+  {
+    "id": "yazim3_130",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi cümlede '-de' ekinin yazımı yanlıştır?",
+    "correct": "Kalemim çantam da kalmış.",
+    "wrong1": "Kalemim çantamda kalmış.",
+    "wrong2": "Kalemim masada kalmış.",
+    "explanation": "Yer bildiren ek bitişik yazılır."
+  }
+]

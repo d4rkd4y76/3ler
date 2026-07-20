@@ -1,0 +1,901 @@
+{
+  "rules": {
+    "admin": {
+      ".read": true,
+      ".write": true
+    },
+    "adminPanelUsers": {
+      "$classId": {
+        "$studentId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "classes": {
+      ".read": true,
+      ".write": true,
+      "$classId": {
+        "students": {
+          ".indexOn": [
+            "inDuel",
+            "online",
+            "name",
+            "nameLower"
+          ],
+          "$studentId": {
+            "inDuel": {
+              ".read": true,
+              ".write": true
+            },
+            "diamond": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 25000"
+            },
+            "lastDiamondUpdate": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isNumber()"
+            },
+            "gameCup": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            },
+            "duelCredits": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            },
+            "unlimitedCreditsUntil": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isNumber() || newData.val() == null"
+            },
+            "frameX": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isBoolean()"
+            },
+            "championPhoto": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.hasChildren()"
+            },
+            "photo": {
+              ".read": true,
+              ".write": true
+            },
+            "purchasedPhotos": {
+              ".read": true,
+              ".write": true
+            },
+            "battleHero": {
+              ".read": true,
+              ".write": true,
+              ".validate": "newData.isString()"
+            },
+            "purchasedBattleHeroes": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.val() === true || (newData.hasChildren() && newData.child('level').isNumber() && newData.child('level').val() >= 1 && newData.child('level').val() <= 4)"
+              }
+            },
+            "dragonEggs": {
+              ".read": true,
+              ".write": true,
+              "fire": {
+                ".read": true,
+                ".write": true,
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              },
+              "ice": {
+                ".read": true,
+                ".write": true,
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              },
+              "night": {
+                ".read": true,
+                ".write": true,
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              }
+            },
+            "dragonEggMeta": {
+              ".read": true,
+              ".write": true,
+              "cracksSinceDragonTrial": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 999"
+              }
+            },
+            "birlestirelimProgress": {
+              ".read": true,
+              ".write": true
+            },
+            "heroTrials": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0"
+              }
+            },
+            "dragonTrials": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0"
+              }
+            },
+            "heroTrialPending": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 30"
+              }
+            },
+            "dragonTrialPending": {
+              ".read": true,
+              ".write": true,
+              "$heroId": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 30"
+              }
+            }
+          }
+        }
+      }
+    },
+    "championData": {
+      ".read": true,
+      ".write": true,
+      "headings": {
+        "$headingId": {
+          "lessons": {
+            "$lessonId": {
+              "topics": {
+                "$topicId": {
+                  "videoUrl": {
+                    ".validate": "(!newData.exists()) || (newData.isString() && (newData.val() == '' || newData.val().matches(/^https:\\/\\/(www\\.)?youtube\\.com\\/embed\\/.+/) || newData.val().matches(/^https:\\/\\/youtube\\.com\\/embed\\/.+/)))"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "lessonVideoLookup": {
+      ".read": true,
+      ".write": true,
+      "$lessonName": {
+        "$topicName": {
+          ".validate": "(!newData.exists()) || (newData.isString() && (newData.val() == '' || newData.val().matches(/^https:\\/\\/(www\\.)?youtube\\.com\\/embed\\/.+/) || newData.val().matches(/^https:\\/\\/youtube\\.com\\/embed\\/.+/)))"
+        }
+      }
+    },
+    "invitations": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": [
+        "timestamp",
+        "invitedId",
+        "invitedByStudentId"
+      ],
+      "$invitedId": {
+        ".validate": "newData.hasChildren(['invitedByStudentId', 'timestamp']) || !newData.exists()"
+      }
+    },
+    "rejectedInvites": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": [
+        "inviterId",
+        "invitedId",
+        "timestamp"
+      ],
+      "$inviteId": {
+        ".validate": "(!newData.exists()) || (newData.hasChildren(['inviterId','invitedId','timestamp']))",
+        "timestamp": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    },
+    "duels": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": [
+        "inviter/studentId",
+        "invited/studentId",
+        "inviterId",
+        "invitedId",
+        "timestamp"
+      ],
+      "$duelId": {
+        "inviter": {
+          ".read": true,
+          ".write": true
+        },
+        "invited": {
+          ".read": true,
+          ".write": true
+        },
+        "responses": {
+          ".indexOn": [
+            "timestamp"
+          ],
+          "$responseId": {
+            "timestamp": {
+              ".validate": "(!newData.exists()) || newData.isNumber()"
+            }
+          }
+        }
+      }
+    },
+    "seasonRanking": {
+      ".read": true,
+      ".write": false,
+      "topPlayers": {
+        ".read": true,
+        ".write": false
+      },
+      "meta": {
+        ".read": true,
+        ".write": false
+      }
+    },
+    "loggedinPlayers": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": [
+        "studentId",
+        "classId",
+        "online",
+        "inDuel"
+      ]
+    },
+    "friendships": {
+      ".read": true,
+      ".write": true,
+      "$userId": {
+        ".indexOn": [
+          "createdAt"
+        ],
+        "$friendshipId": {
+          "createdAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          }
+        }
+      }
+    },
+    "matchmaking": {
+      ".read": true,
+      ".write": true,
+      "$classId": {
+        ".indexOn": [
+          "timestamp",
+          "status"
+        ]
+      }
+    },
+    "autoMatchCoordinator": {
+      ".read": true,
+      ".write": true,
+      "$classId": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "duelQueue": {
+      ".read": true,
+      ".write": true,
+      "twoPlayer": {
+        ".indexOn": [
+          "timestamp",
+          "status",
+          "classStatus"
+        ],
+        "$entryId": {
+          ".validate": "newData.hasChildren(['studentId','classId','status','timestamp','classStatus'])",
+          "status": {
+            ".validate": "newData.val() == 'waiting' || newData.val() == 'claimed' || newData.val() == 'started' || newData.val() == 'cancelled'"
+          },
+          "classStatus": {
+            ".validate": "newData.val() == (newData.parent().child('classId').val() + '_' + newData.parent().child('status').val())"
+          },
+          "timestamp": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      },
+      "fourPlayer": {
+        ".indexOn": [
+          "timestamp",
+          "status"
+        ],
+        "$entryId": {
+          ".validate": "newData.hasChildren(['studentIds','classId','status','timestamp'])",
+          "status": {
+            ".validate": "newData.val() == 'waiting' || newData.val() == 'claimed' || newData.val() == 'started' || newData.val() == 'cancelled'"
+          },
+          "timestamp": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    },
+    "store": {
+      ".read": true,
+      ".write": true,
+      "categoryMeta": {
+        "$categoryKey": {
+          ".validate": "newData.hasChildren(['label']) && newData.child('label').isString()",
+          "label": {
+            ".validate": "newData.isString()"
+          },
+          "order": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "createdAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          }
+        }
+      },
+      "profilePhotos": {
+        ".read": true,
+        ".write": true,
+        "$category": {
+          "_meta": {
+            "keep": {
+              ".validate": "newData.isBoolean()"
+            }
+          },
+          "$photoId": {
+            ".validate": "newData.hasChildren(['url','price']) && newData.child('url').isString() && newData.child('price').isNumber() && (!newData.child('name').exists() || newData.child('name').isString()) && (!newData.child('allowedStudents').exists() || newData.child('allowedStudents').hasChildren())"
+          }
+        }
+      },
+      "nameFrames": {
+        ".read": true,
+        ".write": true,
+        "$frameId": {
+          ".validate": "newData.hasChildren(['name','price']) && newData.child('name').isString() && newData.child('price').isNumber()"
+        }
+      },
+      "battleHeroLevelConfig": {
+        ".read": true,
+        ".write": true
+      },
+      "battleHeroes": {
+        ".read": true,
+        ".write": true,
+        "$heroId": {
+          ".validate": "newData.hasChildren(['name','price']) && newData.child('name').isString() && newData.child('price').isNumber()"
+        }
+      },
+      "profilePhotosIndex": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "analytics": {
+      ".read": true,
+      ".write": true,
+      "sessions": {
+        "$studentId": {
+          ".indexOn": [
+            "startedAt"
+          ],
+          "$sessionId": {
+            ".validate": "newData.hasChildren(['startedAt'])",
+            "startedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "endedAt": {
+              ".validate": "(!newData.exists()) || newData.isNumber()"
+            },
+            "durationMs": {
+              ".validate": "(!newData.exists()) || newData.isNumber()"
+            },
+            "userAgent": {
+              ".validate": "(!newData.exists()) || newData.isString()"
+            }
+          }
+        }
+      },
+      "duels": {
+        "$studentId": {
+          ".validate": "newData.hasChildren()",
+          "played": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "wins": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "losses": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "last": {
+            ".validate": "(!newData.exists()) || newData.hasChildren(['at'])",
+            "at": {
+              ".validate": "newData.isNumber()"
+            },
+            "winner": {
+              ".validate": "(!newData.exists()) || newData.isString()"
+            },
+            "loser": {
+              ".validate": "(!newData.exists()) || newData.isString()"
+            }
+          }
+        }
+      },
+      "topicPerf": {
+        "$studentId": {
+          ".indexOn": [
+            "at"
+          ],
+          "$entryId": {
+            ".validate": "newData.hasChildren(['at','topic','total','wrong'])",
+            "at": {
+              ".validate": "newData.isNumber()"
+            },
+            "topic": {
+              ".validate": "newData.isString()"
+            },
+            "total": {
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            },
+            "wrong": {
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            }
+          }
+        }
+      }
+    },
+    "errors": {
+      "$studentId": {
+        "$topicKey": {
+          "wrong": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    },
+    "topicPerf": {
+      "$studentId": {
+        ".indexOn": [
+          "at"
+        ],
+        "$entryId": {
+          ".validate": "newData.hasChildren(['at','topic','total','wrong'])",
+          "at": {
+            ".validate": "newData.isNumber()"
+          },
+          "topic": {
+            ".validate": "newData.isString()"
+          },
+          "total": {
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          },
+          "wrong": {
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          }
+        }
+      }
+    },
+    
+    
+    
+    "classesIndex": {
+      ".read": true,
+      ".write": true,
+      "$classId": {
+        ".validate": "(!newData.exists()) || newData.isString() || (newData.hasChildren(['name']) && newData.child('name').isString())"
+      }
+    },
+    "topicVideoUrls": {
+      ".read": true,
+      ".write": true,
+      "$topicId": {
+        ".read": true,
+        ".write": true,
+        ".validate": "(!newData.exists()) || newData.isString()"
+      }
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    "fillBlanks": {
+      ".read": true,
+      ".write": true,
+      "questions": {
+        "$qid": {
+          ".validate": "(!newData.exists()) || (newData.hasChildren(['text','answer']) && newData.child('text').isString() && newData.child('answer').isString())"
+        }
+      },
+      "questionIds": {
+        "$qid": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        }
+      },
+      "attempts": {
+        "$studentId": {
+          "$dayKey": {
+            ".validate": "(!newData.exists()) || (newData.hasChildren(['questionId','answer','correct','at']) && newData.child('questionId').isString() && newData.child('answer').isString() && newData.child('correct').isBoolean() && newData.child('at').isNumber())"
+          }
+        }
+      }
+    },
+    "dailyPuzzles": {
+      ".read": true,
+      ".write": true,
+      "questions": {
+        "$qid": {
+          ".validate": "(!newData.exists()) || (newData.hasChildren(['word']) && newData.child('word').isString() && newData.child('word').val().length >= 2 && newData.child('word').val().length <= 40)"
+        }
+      },
+      "questionIds": {
+        "$qid": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        }
+      }
+    },
+    "dailyPuzzle": {
+      ".read": true,
+      ".write": true,
+      "attempts": {
+        "$studentId": {
+          "$dayKey": {
+            ".validate": "(!newData.exists()) || (newData.hasChildren(['guess','correct','at']) && newData.child('guess').isString() && newData.child('correct').isBoolean() && newData.child('at').isNumber())"
+          }
+        }
+      }
+    },
+    "matchingGame": {
+      ".read": true,
+      ".write": true,
+      "questions": {
+        "$qid": {
+          ".validate": "(!newData.exists()) || (newData.hasChildren(['left','right','pairs']) && newData.child('left').hasChildren() && newData.child('right').hasChildren() && newData.child('pairs').hasChildren())"
+        }
+      },
+      "questionIds": {
+        "$qid": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        }
+      },
+      "attempts": {
+        "$studentId": {
+          "$dayKey": {
+            ".validate": "(!newData.exists()) || (newData.hasChildren(['questionId','picks','at']) && newData.child('questionId').isString() && newData.child('picks').hasChildren() && newData.child('at').isNumber())"
+          }
+        }
+      }
+    },
+    "appDuyuru": {
+      ".read": true,
+      ".write": true,
+      "text": {
+        ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 2500)"
+      },
+      "enabled": {
+        ".validate": "(!newData.exists()) || newData.isBoolean()"
+      },
+      "updatedAt": {
+        ".validate": "(!newData.exists()) || newData.isNumber()"
+      }
+    },
+    "girisPanosu": {
+      ".read": true,
+      ".write": true,
+      "url": {
+        ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 2000)"
+      },
+      "show": {
+        ".validate": "(!newData.exists()) || newData.isBoolean()"
+      },
+      "kind": {
+        ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 16)"
+      },
+      "updatedAt": {
+        ".validate": "(!newData.exists()) || newData.isNumber()"
+      }
+    },
+    "birlestirelim": {
+      ".read": true,
+      ".write": true,
+      "media": {
+        "$key": {
+          "imageUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "audioUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "narrationAudioUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "updatedAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          }
+        }
+      },
+      "letters": {
+        "$letter": {
+          "audioUrl": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 800)"
+          },
+          "updatedAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          }
+        }
+      },
+      "updatedAt": {
+        ".validate": "(!newData.exists()) || newData.isNumber()"
+      }
+    },
+    "roboroxLearn": {
+      ".read": true,
+      ".write": true,
+      "lessons": {
+        ".read": true,
+        ".write": true,
+        "$lessonId": {
+          "name": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 120)"
+          },
+          "order": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "active": {
+            ".validate": "(!newData.exists()) || newData.isBoolean()"
+          },
+          "icon": {
+            ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 8)"
+          },
+          "updatedAt": {
+            ".validate": "(!newData.exists()) || newData.isNumber()"
+          },
+          "topics": {
+            "$topicId": {
+              "title": {
+                ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 200)"
+              },
+              "order": {
+                ".validate": "(!newData.exists()) || newData.isNumber()"
+              },
+              "active": {
+                ".validate": "(!newData.exists()) || newData.isBoolean()"
+              },
+              "images": {
+                ".validate": "(!newData.exists()) || newData.hasChildren()"
+              },
+              "updatedAt": {
+                ".validate": "(!newData.exists()) || newData.isNumber()"
+              }
+            }
+          }
+        }
+      },
+      "$topicId": {
+        "title": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 200)"
+        },
+        "order": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        },
+        "active": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        },
+        "images": {
+          ".validate": "(!newData.exists()) || newData.hasChildren()"
+        },
+        "updatedAt": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        }
+      }
+    },
+    "hikayeVideo": {
+      ".read": true,
+      ".write": true,
+      "show": {
+        ".validate": "(!newData.exists()) || newData.isBoolean()"
+      },
+      "libraryName": {
+        ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 128)"
+      },
+      "libraryId": {
+        ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 32)"
+      },
+      "videoId": {
+        ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 80)"
+      },
+      "updatedAt": {
+        ".validate": "(!newData.exists()) || newData.isNumber()"
+      }
+    },
+    "classScoped": {
+      "$classId": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "tournamentMeta": {
+      ".read": true,
+      ".write": true
+    },
+    "tournamentRegs": {
+      "$seasonId": {
+        ".read": true,
+        ".write": true,
+        "$studentId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "tournamentMatches": {
+      "$seasonId": {
+        ".read": true,
+        ".write": true,
+        "$matchId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "tournamentPlayerIndex": {
+      "$seasonId": {
+        ".read": true,
+        ".write": true,
+        "$studentId": {
+          ".read": true,
+          ".write": true
+        }
+      }
+    },
+    "classContent": {
+      "$scope": {
+        ".read": true,
+        ".write": true,
+        "fillBlanks": {
+          ".read": true,
+          ".write": true,
+          "questions": {
+            "$qid": {
+              ".validate": "(!newData.exists()) || (newData.hasChildren(['text','answer']) && newData.child('text').isString() && newData.child('answer').isString())"
+            }
+          },
+          "questionIds": {
+            "$qid": {
+              ".validate": "(!newData.exists()) || newData.isBoolean()"
+            }
+          },
+          "attempts": {
+            "$studentId": {
+              "$dayKey": {
+                ".validate": "(!newData.exists()) || (newData.hasChildren(['questionId','answer','correct','at']) && newData.child('questionId').isString() && newData.child('answer').isString() && newData.child('correct').isBoolean() && newData.child('at').isNumber())"
+              }
+            }
+          }
+        },
+        "dailyPuzzles": {
+          ".read": true,
+          ".write": true,
+          "questions": {
+            "$qid": {
+              ".validate": "(!newData.exists()) || (newData.hasChildren(['word']) && newData.child('word').isString() && newData.child('word').val().length >= 2 && newData.child('word').val().length <= 40)"
+            }
+          },
+          "questionIds": {
+            "$qid": {
+              ".validate": "(!newData.exists()) || newData.isBoolean()"
+            }
+          },
+          "attempts": {
+            "$studentId": {
+              "$dayKey": {
+                ".validate": "(!newData.exists()) || (newData.hasChildren(['guess','correct','at']) && newData.child('guess').isString() && newData.child('correct').isBoolean() && newData.child('at').isNumber())"
+              }
+            }
+          }
+        },
+        "dailyPuzzle": {
+          ".read": true,
+          ".write": true,
+          "attempts": {
+            "$studentId": {
+              "$dayKey": {
+                ".validate": "(!newData.exists()) || (newData.hasChildren(['guess','correct','at']) && newData.child('guess').isString() && newData.child('correct').isBoolean() && newData.child('at').isNumber())"
+              }
+            }
+          }
+        },
+        "matchingGame": {
+          ".read": true,
+          ".write": true,
+          "questions": {
+            "$qid": {
+              ".validate": "(!newData.exists()) || (newData.hasChildren(['left','right','pairs']) && newData.child('left').hasChildren() && newData.child('right').hasChildren() && newData.child('pairs').hasChildren())"
+            }
+          },
+          "questionIds": {
+            "$qid": {
+              ".validate": "(!newData.exists()) || newData.isBoolean()"
+            }
+          },
+          "attempts": {
+            "$studentId": {
+              "$dayKey": {
+                ".validate": "(!newData.exists()) || (newData.hasChildren(['questionId','picks','at']) && newData.child('questionId').isString() && newData.child('picks').hasChildren() && newData.child('at').isNumber())"
+              }
+            }
+          }
+        }
+      }
+    },
+    "platformMeta": {
+      ".read": true,
+      ".write": true,
+      "gradeBootstrapV2": {
+        ".validate": "(!newData.exists()) || (newData.hasChildren(['done','version','ts']) && newData.child('done').isBoolean() && newData.child('version').isNumber() && newData.child('ts').isNumber())"
+      },
+      "hikayeVideo": {
+        "show": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        },
+        "libraryName": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 128)"
+        },
+        "libraryId": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 32)"
+        },
+        "videoId": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 80)"
+        },
+        "updatedAt": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        }
+      },
+      "mainScreenBgVideo": {
+        "show": {
+          ".validate": "(!newData.exists()) || newData.isBoolean()"
+        },
+        "mediaType": {
+          ".validate": "(!newData.exists()) || (newData.isString() && (newData.val() === 'video' || newData.val() === 'image'))"
+        },
+        "libraryName": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 128)"
+        },
+        "libraryId": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 32)"
+        },
+        "videoId": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 80)"
+        },
+        "imageUrl": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 512)"
+        },
+        "imageAssetPath": {
+          ".validate": "(!newData.exists()) || (newData.isString() && newData.val().length <= 160)"
+        },
+        "updatedAt": {
+          ".validate": "(!newData.exists()) || newData.isNumber()"
+        }
+      },
+      "cdn": {
+        ".read": true,
+        ".write": true
+      },
+      "tymmCurriculum": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

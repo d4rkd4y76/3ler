@@ -1,0 +1,198 @@
+/* Parlak Pati — sevimli maskot (belirgin patiler + parlak ayaklar) */
+window.NOVA_SIMSEK_SINCAP_SVG_TEMPLATE =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" fill="none" aria-hidden="true">'
+  + '<defs>'
+  + '<linearGradient id="ssFur__UID__" x1="0%" y1="0%" x2="0%" y2="100%">'
+  + '<stop offset="0%" stop-color="#fff7ed"/><stop offset="30%" stop-color="#fdba74"/><stop offset="68%" stop-color="#fb923c"/><stop offset="100%" stop-color="#c2410c"/>'
+  + '</linearGradient>'
+  + '<linearGradient id="ssFurDeep__UID__" x1="0%" y1="0%" x2="100%" y2="100%">'
+  + '<stop offset="0%" stop-color="#fb923c"/><stop offset="55%" stop-color="#ea580c"/><stop offset="100%" stop-color="#7c2d12"/>'
+  + '</linearGradient>'
+  + '<radialGradient id="ssFurSoft__UID__" cx="42%" cy="22%" r="72%">'
+  + '<stop offset="0%" stop-color="#ffedd5" stop-opacity=".95"/><stop offset="55%" stop-color="#fb923c" stop-opacity=".34"/><stop offset="100%" stop-color="#7c2d12" stop-opacity="0"/>'
+  + '</radialGradient>'
+  + '<linearGradient id="ssBelly__UID__" x1="50%" y1="0%" x2="50%" y2="100%">'
+  + '<stop offset="0%" stop-color="#fffbeb"/><stop offset="52%" stop-color="#fde68a"/><stop offset="100%" stop-color="#f59e0b"/>'
+  + '</linearGradient>'
+  + '<linearGradient id="ssBolt__UID__" x1="0%" y1="0%" x2="100%" y2="0%">'
+  + '<stop offset="0%" stop-color="#e0f2fe"/><stop offset="35%" stop-color="#38bdf8"/><stop offset="75%" stop-color="#0ea5e9"/><stop offset="100%" stop-color="#0369a1"/>'
+  + '</linearGradient>'
+  + '<radialGradient id="ssAura__UID__" cx="50%" cy="55%" r="62%">'
+  + '<stop offset="0%" stop-color="#38bdf8" stop-opacity=".18"/><stop offset="48%" stop-color="#fde047" stop-opacity=".12"/><stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>'
+  + '</radialGradient>'
+  + '<filter id="ssShadow__UID__" x="-55%" y="-25%" width="210%" height="210%">'
+  + '<feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#020617" flood-opacity=".50"/>'
+  + '</filter>'
+  + '<filter id="ssGlow__UID__" x="-70%" y="-70%" width="240%" height="240%">'
+  + '<feGaussianBlur stdDeviation="4.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>'
+  + '</filter>'
+  + '<filter id="ssPawGlow__UID__" x="-120%" y="-120%" width="340%" height="340%">'
+  + '<feDropShadow dx="0" dy="0" stdDeviation="3.2" flood-color="#fde047" flood-opacity=".85"/>'
+  + '<feDropShadow dx="0" dy="0" stdDeviation="7.0" flood-color="#38bdf8" flood-opacity=".35"/>'
+  + '</filter>'
+  + '</defs>'
+
+  + '<ellipse cx="120" cy="346" rx="86" ry="10" fill="#020617" opacity=".18"/>'
+
+  /* Aura */
+  + '<g class="nova-hero__aura">'
+  + '<circle class="nova-hero__core-glow" cx="120" cy="222" r="76" fill="url(#ssAura__UID__)" opacity=".15"/>'
+  + '</g>'
+
+  /* Energy ring (rotate) */
+  + '<g class="nova-hero__orbits" filter="url(#ssGlow__UID__)" style="transform-origin:120px 210px" opacity=".90">'
+  + '<circle class="nova-hero__orbit nova-hero__orbit--1" cx="120" cy="210" r="64" stroke="url(#ssBolt__UID__)" stroke-width="2.2" opacity=".18" stroke-dasharray="7 10"/>'
+  + '<circle class="nova-hero__orbit nova-hero__orbit--2" cx="120" cy="210" r="50" stroke="#e0f2fe" stroke-width="1.6" opacity=".10" stroke-dasharray="2 8"/>'
+  + '</g>'
+
+  /* Tail (long fluffy) */
+  + '<g class="nova-hero__tail" filter="url(#ssShadow__UID__)" style="transform-origin:176px 198px">'
+  + '<path d="M170 122 C216 132 234 178 218 220 C206 250 174 270 144 260 C130 254 126 242 130 232 C136 214 164 214 182 208 C202 200 206 180 196 166 C186 152 168 150 154 160 C144 168 136 184 122 200 C114 190 114 172 128 154 C144 132 158 118 170 122 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M170 134 C206 144 220 178 210 206 C202 230 182 246 158 246 C146 246 140 238 144 230 C150 214 172 214 186 210 C200 206 204 190 196 178 C188 168 174 168 164 176 C154 184 146 198 130 212 C124 202 124 188 134 176 C148 156 160 134 170 134 Z" fill="url(#ssFur__UID__)" opacity=".92"/>'
+  + '<path d="M178 150 C196 160 204 176 202 194" stroke="#ffedd5" stroke-width="4.6" opacity=".16" stroke-linecap="round"/>'
+  + '<g opacity=".14" stroke="#ffedd5" stroke-linecap="round" stroke-width="2.2">'
+  + '<path d="M156 156 C170 160 178 170 178 182"/>'
+  + '<path d="M148 170 C164 174 172 184 170 198"/>'
+  + '<path d="M144 186 C158 190 166 202 162 216"/>'
+  + '</g>'
+  + '</g>'
+
+  /* Tail lightning overlay (FX) */
+  + '<g class="nova-hero__flames" opacity="0">'
+  + '<path class="nova-hero__flame nova-hero__flame-c" d="M148 228 L176 240 L156 244 L182 270 L154 264 L168 300 L140 282 L124 310 L126 272 L98 282 L116 256 L94 256 L118 240 Z" fill="url(#ssBolt__UID__)" opacity=".92"/>'
+  + '<path class="nova-hero__flame nova-hero__flame-l" d="M132 236 L148 246 L138 250 L152 264 L140 262 L146 284 L128 276 L116 292 L118 272 L104 276 L114 262 L102 262 L114 250 Z" fill="url(#ssBolt__UID__)" opacity=".55"/>'
+  + '<path class="nova-hero__flame nova-hero__flame-r" d="M182 236 L198 246 L188 250 L202 264 L190 262 L196 284 L178 276 L166 292 L168 272 L154 276 L164 262 L152 262 L164 250 Z" fill="url(#ssBolt__UID__)" opacity=".55"/>'
+  + '</g>'
+
+  /* Legs + feet paws */
+  + '<g class="nova-hero__leg-l" filter="url(#ssShadow__UID__)" style="transform-origin:102px 292px">'
+  + '<path d="M108 248 C96 262 90 280 92 300 C98 300 106 298 114 292 C110 278 108 262 108 248 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<g class="nova-hero__paw-crystal-foot-l" opacity="0">'
+  + '<path class="nova-hero__crystal" d="M100 306 L104 310 L100 314 L96 310 Z" fill="#fffbeb" opacity=".95"/>'
+  + '<path class="nova-hero__crystal" d="M92 312 L95 316 L92 320 L89 316 Z" fill="#e0f2fe" opacity=".88"/>'
+  + '<path class="nova-hero__crystal" d="M108 312 L111 316 L108 320 L105 316 Z" fill="#38bdf8" opacity=".82"/>'
+  + '</g>'
+  + '<g class="nova-hero__paw-foot-l">'
+  + '<ellipse cx="100" cy="316" rx="20" ry="11" fill="url(#ssFurDeep__UID__)"/>'
+  + '<ellipse cx="100" cy="318" rx="17" ry="8" fill="#ffedd5" opacity=".55"/>'
+  + '<circle cx="90" cy="314" r="4.2" fill="#0f172a" opacity=".22"/><circle cx="100" cy="312" r="4.6" fill="#0f172a" opacity=".24"/>'
+  + '<circle cx="110" cy="314" r="4.2" fill="#0f172a" opacity=".22"/><circle cx="100" cy="322" r="3.8" fill="#0f172a" opacity=".20"/>'
+  + '</g>'
+  + '</g>'
+  + '<g class="nova-hero__leg-r" filter="url(#ssShadow__UID__)" style="transform-origin:138px 292px">'
+  + '<path d="M132 248 C144 262 150 280 148 300 C142 300 134 298 126 292 C130 278 132 262 132 248 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<g class="nova-hero__paw-crystal-foot-r" opacity="0">'
+  + '<path class="nova-hero__crystal" d="M140 306 L144 310 L140 314 L136 310 Z" fill="#fffbeb" opacity=".95"/>'
+  + '<path class="nova-hero__crystal" d="M132 312 L135 316 L132 320 L129 316 Z" fill="#e0f2fe" opacity=".88"/>'
+  + '<path class="nova-hero__crystal" d="M148 312 L151 316 L148 320 L145 316 Z" fill="#38bdf8" opacity=".82"/>'
+  + '</g>'
+  + '<g class="nova-hero__paw-foot-r">'
+  + '<ellipse cx="140" cy="316" rx="20" ry="11" fill="url(#ssFurDeep__UID__)"/>'
+  + '<ellipse cx="140" cy="318" rx="17" ry="8" fill="#ffedd5" opacity=".55"/>'
+  + '<circle cx="130" cy="314" r="4.2" fill="#0f172a" opacity=".22"/><circle cx="140" cy="312" r="4.6" fill="#0f172a" opacity=".24"/>'
+  + '<circle cx="150" cy="314" r="4.2" fill="#0f172a" opacity=".22"/><circle cx="140" cy="322" r="3.8" fill="#0f172a" opacity=".20"/>'
+  + '</g>'
+  + '</g>'
+
+  /* Body */
+  + '<g class="nova-hero__body" filter="url(#ssShadow__UID__)" style="transform-origin:120px 238px">'
+  + '<path d="M120 130 C92 136 74 164 76 204 C78 250 98 280 120 308 C142 280 162 250 164 204 C166 164 148 136 120 130 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M120 146 C104 150 94 170 96 196 C100 238 108 262 120 282 C132 262 140 238 144 196 C146 170 136 150 120 146 Z" fill="url(#ssFur__UID__)" opacity=".92"/>'
+  + '<path d="M120 184 C108 188 102 204 104 220 C108 252 112 270 120 284 C128 270 132 252 136 220 C138 204 132 188 120 184 Z" fill="url(#ssBelly__UID__)" opacity=".92"/>'
+  + '<path d="M120 150 C104 154 94 170 96 196 C98 218 102 238 108 252 C96 236 90 214 90 192 C90 170 102 152 120 150 Z" fill="url(#ssFurSoft__UID__)" opacity=".55"/>'
+  + '</g>'
+
+  /* Arms + hand paws */
+  + '<g class="nova-hero__arm-l" style="transform-origin:78px 236px" filter="url(#ssShadow__UID__)" opacity=".98">'
+  + '<path d="M94 216 C66 220 44 244 50 272 C66 262 84 250 104 230 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M102 226 C90 238 78 248 64 258" stroke="#ffedd5" stroke-width="3.0" opacity=".14" stroke-linecap="round"/>'
+  + '<g class="nova-hero__paw-crystal-hand-l" opacity="0">'
+  + '<path class="nova-hero__crystal" d="M58 258 L61 262 L58 266 L55 262 Z" fill="#fffbeb" opacity=".95"/>'
+  + '<path class="nova-hero__crystal" d="M52 264 L54 267 L52 270 L50 267 Z" fill="#e0f2fe" opacity=".88"/>'
+  + '<path class="nova-hero__crystal" d="M64 264 L66 267 L64 270 L62 267 Z" fill="#38bdf8" opacity=".82"/>'
+  + '</g>'
+  + '<g class="nova-hero__paw-hand-l">'
+  + '<ellipse cx="58" cy="266" rx="15" ry="10" fill="url(#ssFurDeep__UID__)"/>'
+  + '<ellipse cx="58" cy="268" rx="12" ry="7" fill="#ffedd5" opacity=".58"/>'
+  + '<circle cx="50" cy="264" r="3.4" fill="#0f172a" opacity=".20"/><circle cx="58" cy="262" r="3.6" fill="#0f172a" opacity=".22"/>'
+  + '<circle cx="66" cy="264" r="3.4" fill="#0f172a" opacity=".20"/><circle cx="58" cy="272" r="3.2" fill="#0f172a" opacity=".18"/>'
+  + '</g>'
+  + '</g>'
+  + '<g class="nova-hero__arm-r" style="transform-origin:162px 236px" filter="url(#ssShadow__UID__)" opacity=".98">'
+  + '<path d="M146 216 C174 220 196 244 190 272 C174 262 156 250 136 230 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M138 226 C150 238 162 248 176 258" stroke="#ffedd5" stroke-width="3.0" opacity=".14" stroke-linecap="round"/>'
+  + '<g class="nova-hero__paw-crystal-hand-r" opacity="0">'
+  + '<path class="nova-hero__crystal" d="M182 258 L185 262 L182 266 L179 262 Z" fill="#fffbeb" opacity=".95"/>'
+  + '<path class="nova-hero__crystal" d="M176 264 L178 267 L176 270 L174 267 Z" fill="#e0f2fe" opacity=".88"/>'
+  + '<path class="nova-hero__crystal" d="M188 264 L190 267 L188 270 L186 267 Z" fill="#38bdf8" opacity=".82"/>'
+  + '</g>'
+  + '<g class="nova-hero__paw-hand-r">'
+  + '<ellipse cx="182" cy="266" rx="15" ry="10" fill="url(#ssFurDeep__UID__)"/>'
+  + '<ellipse cx="182" cy="268" rx="12" ry="7" fill="#ffedd5" opacity=".58"/>'
+  + '<circle cx="174" cy="264" r="3.4" fill="#0f172a" opacity=".20"/><circle cx="182" cy="262" r="3.6" fill="#0f172a" opacity=".22"/>'
+  + '<circle cx="190" cy="264" r="3.4" fill="#0f172a" opacity=".20"/><circle cx="182" cy="272" r="3.2" fill="#0f172a" opacity=".18"/>'
+  + '</g>'
+  + '</g>'
+
+  /* Head (realistic proportions: cheeks + snout) */
+  + '<g class="nova-hero__head" filter="url(#ssShadow__UID__)" style="transform-origin:120px 116px">'
+  + '<path d="M120 56 C94 58 74 80 78 110 C82 140 106 154 120 160 C134 154 158 140 162 110 C166 80 146 58 120 56 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M120 64 C104 66 92 78 92 96 C92 120 108 136 120 140 C132 136 148 120 148 96 C148 78 136 66 120 64 Z" fill="url(#ssFur__UID__)" opacity=".70"/>'
+
+  + '<g class="nova-hero__ear-l" style="transform-origin:84px 78px">'
+  + '<path d="M94 82 L70 58 L76 92 L92 100 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M90 82 L78 66 L82 88 L90 92 Z" fill="#ffedd5" opacity=".46"/>'
+  + '</g>'
+  + '<g class="nova-hero__ear-r" style="transform-origin:156px 78px">'
+  + '<path d="M146 82 L170 58 L164 92 L148 100 Z" fill="url(#ssFurDeep__UID__)"/>'
+  + '<path d="M150 82 L162 66 L158 88 L150 92 Z" fill="#ffedd5" opacity=".46"/>'
+  + '</g>'
+
+  /* Cheeks */
+  + '<path d="M92 110 C92 132 108 146 120 148 C132 146 148 132 148 110 C144 124 134 132 120 132 C106 132 96 124 92 110 Z" fill="#fff7ed" opacity=".18"/>'
+  + '<path d="M92 104 C86 116 90 130 102 140" stroke="#ffedd5" stroke-width="4.8" opacity=".08" stroke-linecap="round"/>'
+  + '<path d="M148 104 C154 116 150 130 138 140" stroke="#ffedd5" stroke-width="4.8" opacity=".08" stroke-linecap="round"/>'
+
+  /* Snout (protrusion) */
+  + '<path d="M120 112 C108 120 100 132 100 144 C100 156 110 164 120 166 C130 164 140 156 140 144 C140 132 132 120 120 112 Z" fill="url(#ssBelly__UID__)" opacity=".94"/>'
+  + '<path d="M120 122 C114 128 112 134 112 140 C112 148 118 152 120 152 C122 152 128 148 128 140 C128 134 126 128 120 122 Z" fill="#0f172a" opacity=".16"/>'
+
+  /* Cool brows */
+  + '<path d="M100 94 C108 88 114 88 118 92" stroke="#7c2d12" stroke-width="3.2" opacity=".35" stroke-linecap="round"/>'
+  + '<path d="M140 94 C132 88 126 88 122 92" stroke="#7c2d12" stroke-width="3.2" opacity=".35" stroke-linecap="round"/>'
+
+  /* Happy eyes */
+  + '<path class="nova-hero__eye-l" d="M104 106 C106 100 112 98 116 102 C114 110 108 112 104 106 Z" fill="#0f172a" opacity=".92"/>'
+  + '<path class="nova-hero__eye-r" d="M136 106 C134 100 128 98 124 102 C126 110 132 112 136 106 Z" fill="#0f172a" opacity=".92"/>'
+  + '<circle cx="110" cy="102" r="2.8" fill="#fffbeb" opacity=".95"/>'
+  + '<circle cx="130" cy="102" r="2.8" fill="#fffbeb" opacity=".95"/>'
+
+  /* Big smile */
+  + '<path d="M120 144 C114 146 112 150 112 154 C112 158 116 162 120 162 C124 162 128 158 128 154 C128 150 126 146 120 144 Z" fill="#0f172a" opacity=".20"/>'
+  + '<path d="M108 158 C112 170 116 174 120 174 C124 174 128 170 132 158" stroke="#7c2d12" stroke-width="3.4" opacity=".42" stroke-linecap="round" fill="none"/>'
+  + '<path d="M112 166 C116 168 120 168 124 166" stroke="#fffbeb" stroke-width="2.2" opacity=".35" stroke-linecap="round"/>'
+  + '<path d="M92 150 C102 146 108 146 114 148" stroke="#ffedd5" stroke-width="2.0" opacity=".22" stroke-linecap="round"/>'
+  + '<path d="M92 158 C102 154 108 154 114 156" stroke="#ffedd5" stroke-width="2.0" opacity=".16" stroke-linecap="round"/>'
+  + '<path d="M148 150 C138 146 132 146 126 148" stroke="#ffedd5" stroke-width="2.0" opacity=".22" stroke-linecap="round"/>'
+  + '<path d="M148 158 C138 154 132 154 126 156" stroke="#ffedd5" stroke-width="2.0" opacity=".16" stroke-linecap="round"/>'
+
+  + '<path class="nova-hero__visor-shine" d="M100 88 Q120 78 140 88" stroke="#fffbeb" stroke-width="2.2" opacity=".08" stroke-linecap="round"/>'
+  + '</g>'
+
+  /* Fur micro texture (subtle) */
+  + '<g class="nova-hero__fur" opacity=".12" stroke="#ffedd5" stroke-width="2.0" stroke-linecap="round">'
+  + '<path d="M94 206 C98 196 106 190 116 186"/>'
+  + '<path d="M146 206 C142 196 134 190 124 186"/>'
+  + '<path d="M102 236 C110 228 116 224 120 222"/>'
+  + '<path d="M138 236 C130 228 124 224 120 222"/>'
+  + '</g>'
+
+  /* Sparks */
+  + '<g class="nova-hero__sparks" opacity="0">'
+  + '<circle cx="52" cy="260" r="3.6" fill="#fde047"/><circle cx="190" cy="262" r="3.1" fill="#38bdf8"/>'
+  + '<circle cx="120" cy="130" r="2.7" fill="#fffbeb"/><circle cx="210" cy="202" r="3.2" fill="#e0f2fe"/>'
+  + '<circle cx="34" cy="208" r="2.8" fill="#93c5fd"/><circle cx="166" cy="142" r="2.2" fill="#fffbeb"/>'
+  + '</g>'
+
+  + '</svg>';
+

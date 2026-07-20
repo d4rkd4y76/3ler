@@ -1,0 +1,63 @@
+/* Gök Ejderi — mağaza, ana ekran, seviye ekranı, arena */
+
+.nova-hero-store-card--mythic .nova-hero-preview{
+  background:
+    radial-gradient(1.5px 1.5px at 16% 18%, rgba(255, 255, 255, .75), transparent),
+    radial-gradient(1px 1px at 78% 16%, rgba(255, 255, 255, .5), transparent),
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(96, 165, 250, .28), transparent 72%),
+    radial-gradient(ellipse 52% 40% at 50% 0%, rgba(124, 58, 237, .18), transparent),
+    linear-gradient(180deg, #07051a 0%, #1e1b4b 45%, #1d4ed8 100%);
+}
+.nova-hero-store-card--mythic .nova-hero-preview::after{
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(224, 231, 255, .12), transparent 70%);
+  pointer-events: none;
+}
+.nova-hero-store-card--mythic .nova-hero-store-name{
+  color: #e0e7ff;
+}
+.nova-hero-store-card--mythic .nova-hero-svg{
+  filter: drop-shadow(0 8px 18px rgba(30, 27, 75, .45));
+}
+
+.profile-change-content .nova-store-preview--hero.nova-store-preview--mythic{
+  background:
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(96, 165, 250, .32), transparent 72%),
+    linear-gradient(168deg, #07051a 0%, #1e1b4b 55%, #1d4ed8 100%);
+}
+.nova-store-detail-preview--hero .nova-store-preview--mythic{
+  background:
+    radial-gradient(ellipse 88% 44% at 50% 100%, rgba(96, 165, 250, .32), transparent 72%),
+    linear-gradient(168deg, #07051a 0%, #1e1b4b 55%, #1d4ed8 100%);
+}
+.nh-level-hero-preview--mythic{
+  background: linear-gradient(180deg, #07051a, #1e1b4b 55%, #1d4ed8);
+}
+.nh-level-hero-tab__thumb--mythic{
+  background: linear-gradient(180deg, #07051a, #312e81);
+}
+
+#main-screen .nova-main-hero-zone--mythic.is-visible .nova-main-hero-zone__pad{
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    rgba(224, 231, 255, 0.18),
+    rgba(96, 165, 250, 0.12) 52%,
+    transparent 70%);
+  box-shadow: 0 0 22px rgba(124, 58, 237, 0.22);
+}
+
+.nova-hero-mount--mythic-wyvern svg .nova-hero__orbits{
+  filter: drop-shadow(0 0 10px rgba(124, 58, 237, .22));
+}
+.nova-hero-mount--mythic-wyvern svg .nova-hero__core-glow{
+  filter: blur(.2px) drop-shadow(0 0 16px rgba(96, 165, 250, .26));
+}
+.nova-hero-mount--mythic-wyvern svg .nova-hero__wings{
+  filter: drop-shadow(0 10px 18px rgba(2, 6, 23, .55));
+}
+

@@ -1,0 +1,127 @@
+{
+  "classes": {
+    "SINIF1": {
+      "name": "1.SINIF",
+      "pin": "1111",
+      "students": {}
+    },
+    "SINIF2": {
+      "name": "2.SINIF",
+      "pin": "2222",
+      "students": {}
+    },
+    "SINIF4": {
+      "name": "4.SINIF",
+      "pin": "4444",
+      "students": {}
+    }
+  },
+  "classesIndex": {
+    "SINIF1": {
+      "name": "1.SINIF"
+    },
+    "SINIF2": {
+      "name": "2.SINIF"
+    },
+    "SINIF4": {
+      "name": "4.SINIF"
+    }
+  },
+  "championData": {
+    "headings": {
+      "SINIF1": {
+        "name": "1.SINIF",
+        "lessons": {}
+      },
+      "SINIF2": {
+        "name": "2.SINIF",
+        "lessons": {}
+      },
+      "SINIF4": {
+        "name": "4.SINIF",
+        "lessons": {}
+      }
+    }
+  },
+  "classContent": {
+    "sinif1": {
+      "fillBlanks": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "dailyPuzzles": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "dailyPuzzle": {
+        "attempts": {}
+      },
+      "matchingGame": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "roboroxLearn": {
+        "lessons": {}
+      }
+    },
+    "sinif2": {
+      "fillBlanks": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "dailyPuzzles": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "dailyPuzzle": {
+        "attempts": {}
+      },
+      "matchingGame": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "roboroxLearn": {
+        "lessons": {}
+      }
+    },
+    "sinif4": {
+      "fillBlanks": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "dailyPuzzles": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "dailyPuzzle": {
+        "attempts": {}
+      },
+      "matchingGame": {
+        "questions": {},
+        "questionIds": {},
+        "attempts": {}
+      },
+      "roboroxLearn": {
+        "lessons": {}
+      }
+    }
+  },
+  "roboroxLearn": {
+    "lessons": {}
+  },
+  "platformMeta": {
+    "gradeBootstrapV2": {
+      "done": true,
+      "version": 2,
+      "ts": 0
+    }
+  }
+}

@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "dilbilgisi3_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "Dünyada eşi ve benzeri bulunmayan, tek bir varlığı anlatan isimlere ne ad verilir?",
+    "correct": "Özel isim",
+    "wrong1": "Cins (Tür) isim",
+    "wrong2": "Çoğul isim",
+    "explanation": "Sadece tek bir varlığa ait olan, onu diğerlerinden ayıran isimlere özel isim denir. Örneğin: Ali, Türkiye."
+  },
+  {
+    "id": "dilbilgisi3_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aynı türden olan varlıkların tümünü ya da bir kısmını anlatan ortak isimlere ne denir?",
+    "correct": "Cins (Tür) isim",
+    "wrong1": "Özel isim",
+    "wrong2": "Tekil isim",
+    "explanation": "Aynı türden olan canlı veya cansız varlıkların ortak adına cins (tür) isim denir. Örneğin: kedi, masa, çiçek."
+  },
+  {
+    "id": "dilbilgisi3_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "Sayıca sadece bir tek varlığı bildiren, çoğul eki almamış isimlere ne denir?",
+    "correct": "Tekil isim",
+    "wrong1": "Çoğul isim",
+    "wrong2": "Özel isim",
+    "explanation": "Birden fazla varlığı değil, sadece tek bir varlığı anlatan (kalem, silgi, kuş) isimler tekil isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "Sayıca birden fazla varlığı bildiren ve sonuna '-lar, -ler' eki alan isimlere ne denir?",
+    "correct": "Çoğul isim",
+    "wrong1": "Tekil isim",
+    "wrong2": "Cins isim",
+    "explanation": "Tekil bir ismin sonuna '-lar' veya '-ler' eki getirilerek birden fazla varlık ifade edildiğinde bu isimlere çoğul isim denir."
+  },
+  {
+    "id": "dilbilgisi3_005",
+    "level": "orta",
+    "premise": "Canlı, cansız bütün varlıkları ve kavramları tanıtmaya yarayan kelimelere isim (ad) denir.",
+    "text": "Buna göre aşağıdakilerden hangisi bir isim (ad) değildir?",
+    "correct": "Koşmak",
+    "wrong1": "Masa",
+    "wrong2": "Ağaç",
+    "explanation": "'Masa' ve 'ağaç' birer varlığın adıdır. 'Koşmak' ise bir iş, oluş ve hareket (eylem) bildirdiği için isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_006",
+    "level": "orta",
+    "premise": null,
+    "text": "Özel isimlerin yazılışıyla ilgili aşağıdaki kurallardan hangisi doğrudur?",
+    "correct": "Cümlenin neresinde olursa olsun ilk harfi daima büyük yazılır.",
+    "wrong1": "Sadece cümlenin başında büyük harfle yazılır.",
+    "wrong2": "Her zaman bütün harfleri büyük yazılmalıdır.",
+    "explanation": "Özel isimler cümlenin başında, ortasında veya sonunda her zaman büyük harfle başlar."
+  },
+  {
+    "id": "dilbilgisi3_007",
+    "level": "orta",
+    "premise": null,
+    "text": "Özel isimlere getirilen bazı ekler (çekim ekleri) kelimeden ayrılır. Bu ekleri ayırmak için hangi noktalama işareti kullanılır?",
+    "correct": "Kesme işareti (')",
+    "wrong1": "Virgül (,)",
+    "wrong2": "Kısa çizgi (-)",
+    "explanation": "Özel isimlere gelen çekim eklerini (yönelme, bulunma vb.) ayırmak için kesme işareti kullanılır. Örnek: Ali'ye, Ankara'da."
+  },
+  {
+    "id": "dilbilgisi3_008",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi özel isimlerin özelliklerinden biri değildir?",
+    "correct": "Aynı türden birçok varlığı ifade etmeleri",
+    "wrong1": "Dünyada eşi ve benzeri olmayan varlıklara verilmeleri",
+    "wrong2": "İlk harflerinin daima büyük yazılması",
+    "explanation": "Aynı türden birçok varlığı ifade eden isimler özel isim değil, cins (tür) isimdir. Özel isimler tek ve eşsiz varlıkları ifade eder."
+  },
+  {
+    "id": "dilbilgisi3_009",
+    "level": "kolay",
+    "premise": "Türkçede isimler tekil ve çoğul olmak üzere ikiye ayrılır.",
+    "text": "Bir ismin çoğul olduğunu anlamamızı sağlayan ekler hangileridir?",
+    "correct": "-lar, -ler",
+    "wrong1": "-cı, -ci",
+    "wrong2": "-lı, -li",
+    "explanation": "Türkçede kelimeleri çoğul yapmak (birden fazla varlığı belirtmek) için kelimenin sonuna '-lar' veya '-ler' eki getirilir."
+  },
+  {
+    "id": "dilbilgisi3_010",
+    "level": "zor",
+    "premise": "Biçimce tekil (sonunda -lar/-ler eki olmayan) ancak anlamca birden fazla varlıktan oluşan grupları anlatan isimlere topluluk ismi denir.",
+    "text": "Buna göre aşağıdakilerden hangisi bir topluluk ismidir?",
+    "correct": "Orman",
+    "wrong1": "Ağaçlar",
+    "wrong2": "Fidan",
+    "explanation": "'Orman' kelimesi '-lar/-ler' eki almamıştır (biçimce tekildir) ancak içinde çok sayıda ağaç barındırdığı için bir topluluğu ifade eder."
+  },
+  {
+    "id": "dilbilgisi3_011",
+    "level": "orta",
+    "premise": "Kişi adlarına getirilen saygı ve unvan sözleri özel isme dahildir ve büyük harfle başlar.",
+    "text": "Buna göre aşağıdakilerden hangisi yanlış yazılmıştır?",
+    "correct": "ali Bey",
+    "wrong1": "Ali Bey",
+    "wrong2": "Ayşe Hanım",
+    "explanation": "Ali özel isim, Bey ise unvandır. İkisi de büyük harfle başlamalıdır (Ali Bey)."
+  },
+  {
+    "id": "dilbilgisi3_012",
+    "level": "kolay",
+    "premise": "Mahalle, meydan, bulvar, cadde, sokak adlarında geçen her kelime büyük harfle başlar.",
+    "text": "Buna göre aşağıdakilerden hangisi doğru yazılmıştır?",
+    "correct": "Cumhuriyet Mahallesi",
+    "wrong1": "Cumhuriyet mahallesi",
+    "wrong2": "cumhuriyet Mahallesi",
+    "explanation": "Mahalle adı özel isimdir. İki kelimenin de ilk harfi büyük yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_013",
+    "level": "orta",
+    "premise": "Dil isimleri özel isimdir ve her zaman büyük harfle başlar.",
+    "text": "Buna göre aşağıdakilerden hangisi doğru yazılmıştır?",
+    "correct": "Türkçe",
+    "wrong1": "türkçe",
+    "wrong2": "türkÇE",
+    "explanation": "Türkçe bir dil adıdır. Özel isim olduğu için sadece ilk harfi büyük harfle başlar."
+  },
+  {
+    "id": "dilbilgisi3_014",
+    "level": "zor",
+    "premise": "Kurum, kuruluş, okul ve hastane adları özel isimdir. Ancak onlara getirilen ekler kesme işaretiyle ayrılmaz.",
+    "text": "Buna göre aşağıdakilerden hangisi doğru yazılmıştır?",
+    "correct": "Atatürk İlkokuluna",
+    "wrong1": "Atatürk İlkokulu'na",
+    "wrong2": "Atatürk ilkokuluna",
+    "explanation": "Kurum adları büyük harfle başlar. Kurum adlarına getirilen ekler kesme işareti ile ayrılmaz."
+  },
+  {
+    "id": "dilbilgisi3_015",
+    "level": "zor",
+    "premise": "Özel adlara getirilen yapım ekleri (-ci, -li, -lik, -siz vb.) ve çoğul eki (-ler, -lar) kesme işaretiyle ayrılmaz.",
+    "text": "Buna göre aşağıdakilerden hangisi doğru yazılmıştır?",
+    "correct": "İzmirli",
+    "wrong1": "İzmir'li",
+    "wrong2": "İzmir li",
+    "explanation": "Özel isimlere getirilen yapım ekleri kesme işaretiyle ayrılmaz ve bitişik yazılır (İzmirli)."
+  },
+  {
+    "id": "dilbilgisi3_016",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Ankara",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Şehir adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_017",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Ayşe",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Kişi adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_018",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Karabaş",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Hayvanlara verilen özel adlar özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_019",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Türkiye",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Ülke adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_020",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Ağrı Dağı",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Dağ, deniz, nehir adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_021",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Türkçe",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Dil adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_022",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Atatürk İlkokulu",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Kurum ve okul adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_023",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Mars",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Gezegen adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_024",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Kızılırmak",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Nehir adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_025",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Cumhuriyet Bayramı",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Bayram adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_026",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Avrupa",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Kıta adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_027",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Türk",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Millet adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_028",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Akdeniz",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Deniz adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_029",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Tuz Gölü",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Göl adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_030",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir özel isimdir?",
+    "correct": "Güneş",
+    "wrong1": "Kalem",
+    "wrong2": "Kedi",
+    "explanation": "Terim anlamındaki yıldız adları özel isimdir. Cins isimler olan kalem ve kedi ise özel isim değildir."
+  },
+  {
+    "id": "dilbilgisi3_031",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Şoför",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Meslek adları cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_032",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Çiçek",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Bitki adları genel olarak cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_033",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Kitap",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Eşya adları cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_034",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Kedi",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Hayvan türü adları cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_035",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Sevgi",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Duygu adları cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_036",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Şehir",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Genel yer bildiren 'şehir' kelimesi cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_037",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Okul",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Bina/Kurum türü olan okul kelimesi cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_038",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Deniz",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Genel bir su birikintisi türü olan deniz cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_039",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Gezegen",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Gök cismi türü olan gezegen kelimesi cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_040",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Bayram",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Genel bir kutlama türü olan bayram kelimesi cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_041",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Meyve",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Yiyecek ve meyve adları cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_042",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Araba",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Taşıt adları cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_043",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Bulut",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Doğa olayları ve nesneleri cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_044",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Çocuk",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "İnsanları yaşlarına göre niteleyen genel adlar cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_045",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi bir cins (tür) isimdir?",
+    "correct": "Renk",
+    "wrong1": "Mustafa",
+    "wrong2": "İstanbul",
+    "explanation": "Renk isimleri ve genel renk kelimesi cins isimdir. Mustafa ve İstanbul dünyada eşsiz olan özel isimlerdir."
+  },
+  {
+    "id": "dilbilgisi3_046",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Elma",
+    "wrong1": "Kuşlar",
+    "wrong2": "Evler",
+    "explanation": "'Elma' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_047",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Kuş",
+    "wrong1": "Evler",
+    "wrong2": "Defterler",
+    "explanation": "'Kuş' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_048",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Ev",
+    "wrong1": "Defterler",
+    "wrong2": "Gözlükler",
+    "explanation": "'Ev' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_049",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Defter",
+    "wrong1": "Gözlükler",
+    "wrong2": "Bilgisayarlar",
+    "explanation": "'Defter' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_050",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Gözlük",
+    "wrong1": "Bilgisayarlar",
+    "wrong2": "Öğrenciler",
+    "explanation": "'Gözlük' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_051",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Bilgisayar",
+    "wrong1": "Öğrenciler",
+    "wrong2": "Öğretmenler",
+    "explanation": "'Bilgisayar' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_052",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Öğrenci",
+    "wrong1": "Öğretmenler",
+    "wrong2": "Arabalar",
+    "explanation": "'Öğrenci' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_053",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Öğretmen",
+    "wrong1": "Arabalar",
+    "wrong2": "Oyuncaklar",
+    "explanation": "'Öğretmen' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_054",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Araba",
+    "wrong1": "Oyuncaklar",
+    "wrong2": "Tabaklar",
+    "explanation": "'Araba' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_055",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Oyuncak",
+    "wrong1": "Tabaklar",
+    "wrong2": "Kaşıklar",
+    "explanation": "'Oyuncak' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_056",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Tabak",
+    "wrong1": "Kaşıklar",
+    "wrong2": "Bardaklar",
+    "explanation": "'Tabak' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_057",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Kaşık",
+    "wrong1": "Bardaklar",
+    "wrong2": "Koltuklar",
+    "explanation": "'Kaşık' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_058",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Bardak",
+    "wrong1": "Koltuklar",
+    "wrong2": "Yıldızlar",
+    "explanation": "'Bardak' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_059",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Koltuk",
+    "wrong1": "Yıldızlar",
+    "wrong2": "Elmalar",
+    "explanation": "'Koltuk' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_060",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi tekil bir isimdir?",
+    "correct": "Yıldız",
+    "wrong1": "Elmalar",
+    "wrong2": "Kuşlar",
+    "explanation": "'Yıldız' kelimesi -lar/-ler eki almamıştır ve tek bir varlığı gösterir. Diğerleri ise çoğul eki almıştır."
+  },
+  {
+    "id": "dilbilgisi3_061",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Elmalar",
+    "wrong1": "Kuş",
+    "wrong2": "Ev",
+    "explanation": "'Elmalar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_062",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Kuşlar",
+    "wrong1": "Ev",
+    "wrong2": "Defter",
+    "explanation": "'Kuşlar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_063",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Evler",
+    "wrong1": "Defter",
+    "wrong2": "Gözlük",
+    "explanation": "'Evler' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_064",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Defterler",
+    "wrong1": "Gözlük",
+    "wrong2": "Bilgisayar",
+    "explanation": "'Defterler' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_065",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Gözlükler",
+    "wrong1": "Bilgisayar",
+    "wrong2": "Öğrenci",
+    "explanation": "'Gözlükler' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_066",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Bilgisayarlar",
+    "wrong1": "Öğrenci",
+    "wrong2": "Öğretmen",
+    "explanation": "'Bilgisayarlar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_067",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Öğrenciler",
+    "wrong1": "Öğretmen",
+    "wrong2": "Araba",
+    "explanation": "'Öğrenciler' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_068",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Öğretmenler",
+    "wrong1": "Araba",
+    "wrong2": "Oyuncak",
+    "explanation": "'Öğretmenler' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_069",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Arabalar",
+    "wrong1": "Oyuncak",
+    "wrong2": "Tabak",
+    "explanation": "'Arabalar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_070",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Oyuncaklar",
+    "wrong1": "Tabak",
+    "wrong2": "Kaşık",
+    "explanation": "'Oyuncaklar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_071",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Tabaklar",
+    "wrong1": "Kaşık",
+    "wrong2": "Bardak",
+    "explanation": "'Tabaklar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_072",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Kaşıklar",
+    "wrong1": "Bardak",
+    "wrong2": "Koltuk",
+    "explanation": "'Kaşıklar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_073",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Bardaklar",
+    "wrong1": "Koltuk",
+    "wrong2": "Yıldız",
+    "explanation": "'Bardaklar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_074",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Koltuklar",
+    "wrong1": "Yıldız",
+    "wrong2": "Elma",
+    "explanation": "'Koltuklar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_075",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki kelimelerden hangisi çoğul bir isimdir?",
+    "correct": "Yıldızlar",
+    "wrong1": "Elma",
+    "wrong2": "Kuş",
+    "explanation": "'Yıldızlar' kelimesi çoğul eki olan -lar/-ler ekini alarak birden fazla varlığı belirtmektedir."
+  },
+  {
+    "id": "dilbilgisi3_076",
+    "level": "orta",
+    "premise": "\"Ali sabah erken kalktı.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Ali",
+    "wrong1": "sabah",
+    "wrong2": "erken",
+    "explanation": "Cümledeki 'Ali' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_077",
+    "level": "orta",
+    "premise": "\"Köpeğim Karabaş çok havladı.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Karabaş",
+    "wrong1": "köpeğim",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Karabaş' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_078",
+    "level": "orta",
+    "premise": "\"Yarın Ankara'ya gideceğiz.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Ankara'ya",
+    "wrong1": "yarın",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Ankara'ya' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_079",
+    "level": "orta",
+    "premise": "\"En yakın arkadaşım Zeynep'tir.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Zeynep'tir",
+    "wrong1": "arkadaşım",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Zeynep'tir' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dil3_080",
+    "level": "orta",
+    "premise": "\"Türkiye en güzel ülkedir.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Türkiye",
+    "wrong1": "ülke",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Türkiye' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_081",
+    "level": "orta",
+    "premise": "\"Kedim Pamuk süt içiyor.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Pamuk",
+    "wrong1": "süt",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Pamuk' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_082",
+    "level": "orta",
+    "premise": "\"Ağrı Dağı çok yüksektir.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Ağrı Dağı",
+    "wrong1": "çok",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Ağrı Dağı' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_083",
+    "level": "orta",
+    "premise": "\"Babam İstanbul'da çalışıyor.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "İstanbul'da",
+    "wrong1": "babam",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'İstanbul'da' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_084",
+    "level": "orta",
+    "premise": "\"Atatürk, Selanik'te doğmuştur.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Atatürk",
+    "wrong1": "doğmuştur",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Atatürk' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_085",
+    "level": "orta",
+    "premise": "\"Türkçe dersini çok seviyorum.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Türkçe",
+    "wrong1": "dersini",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Türkçe' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_086",
+    "level": "orta",
+    "premise": "\"Teyzem Almanya'dan döndü.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Almanya'dan",
+    "wrong1": "teyzem",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Almanya'dan' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_087",
+    "level": "orta",
+    "premise": "\"Van Kedisi'nin gözleri çok güzeldir.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Van Kedisi'nin",
+    "wrong1": "gözleri",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Van Kedisi'nin' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_088",
+    "level": "orta",
+    "premise": "\"Dün Murat ile oyun oynadık.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Murat",
+    "wrong1": "oyun",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Murat' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_089",
+    "level": "orta",
+    "premise": "\"Dünya, Güneş'in etrafında döner.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Güneş'in",
+    "wrong1": "etrafında",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Güneş'in' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_090",
+    "level": "orta",
+    "premise": "\"Kuşum Maviş omzuma kondu.\"",
+    "text": "Yukarıdaki cümlede geçen özel isim aşağıdakilerden hangisidir?",
+    "correct": "Maviş",
+    "wrong1": "kuşum",
+    "wrong2": "çok",
+    "explanation": "Cümledeki 'Maviş' dünyada tek olan belirli bir özel ad/yer/hayvan adıdır, bu yüzden özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_091",
+    "level": "orta",
+    "premise": "\"Ali'nin kırmızı bir kalemi var.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "kalemi",
+    "wrong1": "Ali",
+    "wrong2": "var.",
+    "explanation": "'kalemi' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_092",
+    "level": "orta",
+    "premise": "\"Karabaş lezzetli bir kemik yiyor.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "kemik",
+    "wrong1": "Karabaş",
+    "wrong2": "yiyor.",
+    "explanation": "'kemik' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_093",
+    "level": "orta",
+    "premise": "\"Ankara'nın parkları çok yeşildir.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "parkları",
+    "wrong1": "Ankara",
+    "wrong2": "yeşildir.",
+    "explanation": "'parkları' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_094",
+    "level": "orta",
+    "premise": "\"Zeynep heyecanla kitap okuyor.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "kitap",
+    "wrong1": "Zeynep",
+    "wrong2": "okuyor.",
+    "explanation": "'kitap' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_095",
+    "level": "orta",
+    "premise": "\"Türkiye'nin ormanları çok büyüktür.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "ormanları",
+    "wrong1": "Türkiye",
+    "wrong2": "büyüktür.",
+    "explanation": "'ormanları' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_096",
+    "level": "orta",
+    "premise": "\"Pamuk renkli yumağıyla oynuyor.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "yumağıyla",
+    "wrong1": "Pamuk",
+    "wrong2": "oynuyor.",
+    "explanation": "'yumağıyla' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_097",
+    "level": "orta",
+    "premise": "\"Ağrı Dağı'nın tepesinde kar var.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "kar",
+    "wrong1": "Ağrı",
+    "wrong2": "var.",
+    "explanation": "'kar' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_098",
+    "level": "orta",
+    "premise": "\"İstanbul'un köprüleri çok uzundur.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "köprüleri",
+    "wrong1": "İstanbul",
+    "wrong2": "uzundur.",
+    "explanation": "'köprüleri' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_099",
+    "level": "orta",
+    "premise": "\"Atatürk bütün çocukları çok severdi.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "çocukları",
+    "wrong1": "Atatürk",
+    "wrong2": "severdi.",
+    "explanation": "'çocukları' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_100",
+    "level": "orta",
+    "premise": "\"Türkçe defterimi evde unuttum.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "defterimi",
+    "wrong1": "Türkçe",
+    "wrong2": "unuttum.",
+    "explanation": "'defterimi' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_101",
+    "level": "orta",
+    "premise": "\"Teyzem bana güzel bir oyuncak almış.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "oyuncak",
+    "wrong1": "Teyzem",
+    "wrong2": "almış.",
+    "explanation": "'oyuncak' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_102",
+    "level": "orta",
+    "premise": "\"Kuşum Maviş yemini bitirmiş.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "yemini",
+    "wrong1": "Kuşum",
+    "wrong2": "bitirmiş.",
+    "explanation": "'yemini' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_103",
+    "level": "orta",
+    "premise": "\"Sokaktaki kedi çok miyavlıyor.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "kedi",
+    "wrong1": "Sokaktaki",
+    "wrong2": "miyavlıyor.",
+    "explanation": "'kedi' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_104",
+    "level": "orta",
+    "premise": "\"Dün pazardan taze meyve aldık.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "meyve",
+    "wrong1": "Dün",
+    "wrong2": "aldık.",
+    "explanation": "'meyve' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_105",
+    "level": "orta",
+    "premise": "\"Bahçedeki ağaç çiçek açtı.\"",
+    "text": "Yukarıdaki cümlede geçen cins (tür) isim aşağıdakilerden hangisidir?",
+    "correct": "ağaç",
+    "wrong1": "Bahçedeki",
+    "wrong2": "açtı.",
+    "explanation": "'ağaç' kelimesi aynı türden varlıkların ortak adı olduğu için cins isimdir."
+  },
+  {
+    "id": "dilbilgisi3_106",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Kardeşim ali çok uslu bir çocuktur.",
+    "wrong1": "Kardeşim Ali çok uslu bir çocuktur.",
+    "wrong2": "Kardeşim Ayşe çok uslu bir çocuktur.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'ali' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_107",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Dün kedimiz tekir sütünü içmedi.",
+    "wrong1": "Dün kedimiz Tekir sütünü içmedi.",
+    "wrong2": "Dün kedimiz Pamuk sütünü içmedi.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'tekir' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_108",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Tatilde izmir şehrini gezeceğiz.",
+    "wrong1": "Tatilde İzmir şehrini gezeceğiz.",
+    "wrong2": "Tatilde Bursa şehrini gezeceğiz.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'izmir' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_109",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Benim adım mehmet'tir.",
+    "wrong1": "Benim adım Mehmet'tir.",
+    "wrong2": "Benim adım Hasan'dır.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'mehmet' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_110",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Amcam almanya'dan dün döndü.",
+    "wrong1": "Amcam Almanya'dan dün döndü.",
+    "wrong2": "Amcam Fransa'dan dün döndü.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'almanya' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_111",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Bu yaz karadeniz çok dalgalıydı.",
+    "wrong1": "Bu yaz Karadeniz çok dalgalıydı.",
+    "wrong2": "Bu yaz Akdeniz çok dalgalıydı.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'karadeniz' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_112",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Evimiz atatürk caddesi üzerinde.",
+    "wrong1": "Evimiz Atatürk Caddesi üzerinde.",
+    "wrong2": "Evimiz Cumhuriyet Caddesi üzerinde.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'atatürk caddesi' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_113",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Güneş, dünya'dan daha büyüktür.",
+    "wrong1": "Güneş, Dünya'dan daha büyüktür.",
+    "wrong2": "Ay, Dünya'nın uydusudur.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'dünya' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_114",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "Sınıfımıza yeni gelen çocuğun adı can'dır.",
+    "wrong1": "Sınıfımıza yeni gelen çocuğun adı Can'dır.",
+    "wrong2": "Sınıfımıza yeni gelen çocuğun adı Efe'dir.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'can' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_115",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde özel ismin yazılışında bir HATA yapılmıştır?",
+    "correct": "En sevdiğim arkadaşım zeynep yarın geliyor.",
+    "wrong1": "En sevdiğim arkadaşım Zeynep yarın geliyor.",
+    "wrong2": "En sevdiğim arkadaşım Elif yarın geliyor.",
+    "explanation": "Özel isimlerin (kişi, şehir, hayvan adları vb.) ilk harfi cümlenin neresinde olursa olsun mutlaka büyük yazılmalıdır. 'zeynep' küçük yazılamaz."
+  },
+  {
+    "id": "dilbilgisi3_116",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Ankaraya uçakla gideceğiz.",
+    "wrong1": "Ankara'ya uçakla gideceğiz.",
+    "wrong2": "İzmir'e uçakla gideceğiz.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_117",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Aliyi parkta oyun oynarken gördüm.",
+    "wrong1": "Ali'yi parkta oyun oynarken gördüm.",
+    "wrong2": "Hasan'ı parkta oyun oynarken gördüm.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_118",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Türkiyede birçok tarihi eser vardır.",
+    "wrong1": "Türkiye'de birçok tarihi eser vardır.",
+    "wrong2": "Bursa'da birçok tarihi eser vardır.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_119",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Pamuka yeni bir mama kabı aldım.",
+    "wrong1": "Pamuk'a yeni bir mama kabı aldım.",
+    "wrong2": "Tekir'e yeni bir mama kabı aldım.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_120",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Atatürkü saygı ve özlemle anıyoruz.",
+    "wrong1": "Atatürk'ü saygı ve özlemle anıyoruz.",
+    "wrong2": "Töreni büyük bir coşkuyla kutladık.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_121",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "İstanbula ilk defa gideceğim.",
+    "wrong1": "İstanbul'a ilk defa gideceğim.",
+    "wrong2": "Bursa'ya ilk defa gideceğim.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_122",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Mehmetin çantası okulda kalmış.",
+    "wrong1": "Mehmet'in çantası okulda kalmış.",
+    "wrong2": "Ali'nin çantası okulda kalmış.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_123",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Avrupaya doğru yola çıktılar.",
+    "wrong1": "Avrupa'ya doğru yola çıktılar.",
+    "wrong2": "Asya'ya doğru yola çıktılar.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_124",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Gülün elbisesi çok güzelmiş.",
+    "wrong1": "Gül'un elbisesi çok güzelmiş.",
+    "wrong2": "Ayşe'nin elbisesi çok güzelmiş.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_125",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cümlelerin hangisinde kesme işareti (') kullanılmadığı için bir yazım yanlışı yapılmıştır?",
+    "correct": "Sivasta havalar çok soğukmuş.",
+    "wrong1": "Sivas'ta havalar çok soğukmuş.",
+    "wrong2": "Kars'ta havalar çok soğukmuş.",
+    "explanation": "Özel isimlere getirilen çekim ekleri (yönelme, bulunma, ayrılma vb.) her zaman kesme işareti ile ayrılarak yazılmalıdır."
+  },
+  {
+    "id": "dilbilgisi3_126",
+    "level": "zor",
+    "premise": "1. Bahçedeki gül çok güzel kokuyor.\n2. Sınıfımıza Gül adında yeni bir kız geldi.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'gül' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_127",
+    "level": "zor",
+    "premise": "1. Yazın deniz suyunda yüzmek harikadır.\n2. Deniz, ödevlerini her zaman zamanında yapar.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'deniz' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_128",
+    "level": "zor",
+    "premise": "1. Dağdan büyük bir kaya parçası koptu.\n2. Kaya Amca bize şeker dağıttı.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'kaya' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_129",
+    "level": "zor",
+    "premise": "1. Soğuk bir pınar suyundan kana kana içtik.\n2. Pınar Hanım toplantıya geç kaldı.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'pınar' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_130",
+    "level": "zor",
+    "premise": "1. Çiçeğin toprağını değiştirdim.\n2. Toprak bugün okula gelmedi.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'toprak' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_131",
+    "level": "zor",
+    "premise": "1. Dışarıda çok şiddetli yağmur yağıyor.\n2. Yağmur, en sevdiği kitabını bana ödünç verdi.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'yağmur' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_132",
+    "level": "zor",
+    "premise": "1. Bahar mevsiminde ağaçlar çiçek açar.\n2. Bahar Teyze bize kek yapmış.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'bahar' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_133",
+    "level": "zor",
+    "premise": "1. Bugün güneş çok parlak ve ısıtıcı.\n2. Güneş, fen bilimleri dersini çok sever.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'güneş' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_134",
+    "level": "zor",
+    "premise": "1. Köyümüzün içinden küçük bir ırmak geçer.\n2. Irmak, saçlarını uzun bir örgü yapmıştı.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'ırmak' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_135",
+    "level": "zor",
+    "premise": "1. Ülkeler arası savaş çok kötü bir durumdur.\n2. Savaş Öğretmen bize yeni bir oyun öğretti.",
+    "text": "Yukarıdaki numaralanmış cümlelerde 'savaş' kelimesinin türü sırasıyla nedir?",
+    "correct": "Cins isim - Özel isim",
+    "wrong1": "Özel isim - Cins isim",
+    "wrong2": "İkisi de özel isim",
+    "explanation": "1. cümlede doğadaki genel bir varlığı (cins isim), 2. cümlede ise bir insanın adı olarak kullanıldığı için özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_136",
+    "level": "zor",
+    "premise": "\"Ali, İstanbul'dan Ayşe'ye mektup yazdı.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "3",
+    "wrong1": "2",
+    "wrong2": "1",
+    "explanation": "Ali, İstanbul, Ayşe kelimeleri özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_137",
+    "level": "zor",
+    "premise": "\"Kedim Pamuk ve köpeğim Karabaş bahçede oynuyor.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "1",
+    "explanation": "Sadece hayvanlara özel verilen Pamuk ve Karabaş kelimeleri özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_138",
+    "level": "zor",
+    "premise": "\"Türkiye'nin başkenti Ankara'dır.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Ülke ve şehir adı olan Türkiye ve Ankara özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_139",
+    "level": "zor",
+    "premise": "\"Ahmet, Atatürk İlkokulu'nda okuyor.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Kişi adı Ahmet ve kurum adı olan Atatürk İlkokulu özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_140",
+    "level": "zor",
+    "premise": "\"Kardeşim Mehmet ile İzmir'e gideceğiz.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Kişi adı Mehmet ve şehir adı İzmir özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_141",
+    "level": "zor",
+    "premise": "\"Kuşlar ağaçların dallarında şarkılar söylüyor.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "3",
+    "wrong1": "2",
+    "wrong2": "1",
+    "explanation": "Kuşlar, ağaçların, şarkılar kelimeleri -lar/-ler eki alarak çoğul isim olmuştur."
+  },
+  {
+    "id": "dilbilgisi3_142",
+    "level": "zor",
+    "premise": "\"Öğrenciler defterlerindeki hataları düzelttiler.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "3",
+    "wrong1": "2",
+    "wrong2": "1",
+    "explanation": "Öğrenciler, defterlerindeki, hataları kelimeleri -lar/-ler eki alarak çoğul isim olmuştur."
+  },
+  {
+    "id": "dilbilgisi3_143",
+    "level": "zor",
+    "premise": "\"Masadaki kalemler ve silgiler yere düştü.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Kalemler ve silgiler kelimeleri -lar/-ler eki alarak çoğul isim olmuştur."
+  },
+  {
+    "id": "dilbilgisi3_144",
+    "level": "zor",
+    "premise": "\"Elmalar, armutlar ve muzlar çok tatlıydı.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "3",
+    "wrong1": "2",
+    "wrong2": "1",
+    "explanation": "Elmalar, armutlar ve muzlar kelimeleri -lar/-ler eki alarak çoğul isim olmuştur."
+  },
+  {
+    "id": "dilbilgisi3_145",
+    "level": "zor",
+    "premise": "\"Sokaktaki kediler ve köpekler oyun oynuyor.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Kediler ve köpekler kelimeleri -lar/-ler eki alarak çoğul isim olmuştur."
+  },
+  {
+    "id": "dilbilgisi3_146",
+    "level": "zor",
+    "premise": "\"Bugün Türkçe dersinde Zeynep şiir okudu.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Dil adı Türkçe ve kişi adı Zeynep özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_147",
+    "level": "zor",
+    "premise": "\"Kızılırmak nehri Sivas'tan geçer.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Nehir adı Kızılırmak ve şehir adı Sivas özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_148",
+    "level": "zor",
+    "premise": "\"Çocuklar parktaki oyuncaklarla oynuyor.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "1",
+    "explanation": "Çocuklar ve oyuncaklarla kelimeleri çoğul isimdir."
+  },
+  {
+    "id": "dilbilgisi3_149",
+    "level": "zor",
+    "premise": "\"Ömer, Cumhuriyet Bayramı'nda şiir okuyacak.\"",
+    "text": "Bu cümlede toplam kaç tane ÖZEL İSİM kullanılmıştır?",
+    "correct": "2",
+    "wrong1": "1",
+    "wrong2": "3",
+    "explanation": "Kişi adı Ömer ve bayram adı Cumhuriyet Bayramı özel isimdir."
+  },
+  {
+    "id": "dilbilgisi3_150",
+    "level": "zor",
+    "premise": "\"Teyzem, Ankara'dan bana kitaplar getirmiş.\"",
+    "text": "Bu cümlede toplam kaç tane ÇOĞUL İSİM kullanılmıştır?",
+    "correct": "1",
+    "wrong1": "2",
+    "wrong2": "3",
+    "explanation": "Sadece 'kitaplar' kelimesi çoğul ekini almıştır. Ankara özel isimdir, çoğul değildir."
+  }
+]

@@ -1,0 +1,3742 @@
+{
+  "meta": {
+    "topicId": "t15",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_matematik",
+    "title": "Veri Toplama (Çetele tablosu, sıklık tablosu, şekil grafiği)",
+    "grade": 3,
+    "count": 130
+  },
+  "questions": [
+    {
+      "id": "mat3_veri_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Araştırma ve gözlem sonucunda elde edilen, henüz işlemden geçmemiş bilgi ve sayılara matematikte ne ad verilir?",
+      "correct": "Veri",
+      "wrong1": "Çetele",
+      "wrong2": "Grafik",
+      "explanation": "Toplanan her türlü sayısal ve mantıksal bilgiye veri adı verilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Araştırma ve gözlem sonucunda elde edilen, henüz işlemden geçmemiş bilgi ve sayılara matematikte ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Veri",
+        "wrong1": "Çetele",
+        "wrong2": "Grafik",
+        "explanation": "Toplanan her türlü sayısal ve mantıksal bilgiye veri adı verilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Verilerin her biri için bir çizgi çizilerek ve bu çizgilerin gruplanarak gösterildiği tablo türüne ne ad verilir?",
+      "correct": "Çetele tablosu",
+      "wrong1": "Sıklık tablosu",
+      "wrong2": "Şekil grafiği",
+      "explanation": "[[veri:cetele_grup]]\n\nÇetele tablosunda sayılar yerine, her biri 1'i temsil eden dikey ve eğik çizgiler kullanılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Verilerin her biri için bir çizgi çizilerek ve bu çizgilerin gruplanarak gösterildiği tablo türüne ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Çetele tablosu",
+        "wrong1": "Sıklık tablosu",
+        "wrong2": "Şekil grafiği",
+        "explanation": "[[veri:cetele_grup]]\n\nÇetele tablosunda sayılar yerine, her biri 1'i temsil eden dikey ve eğik çizgiler kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Verilerin çizgiler yerine doğrudan sayılarla (rakamlarla) ifade edildiği tablo türüne ne ad verilir?",
+      "correct": "Sıklık tablosu",
+      "wrong1": "Çetele tablosu",
+      "wrong2": "Nesne grafiği",
+      "explanation": "[[veri:siklik|Örnek|🍎 Elma:12|🍌 Muz:18|🍒 Kiraz:9]]\n\nBir olayın veya nesnenin kaç kez tekrarlandığını doğrudan sayılarla gösteren tablo sıklık tablosudur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Verilerin çizgiler yerine doğrudan sayılarla (rakamlarla) ifade edildiği tablo türüne ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sıklık tablosu",
+        "wrong1": "Çetele tablosu",
+        "wrong2": "Nesne grafiği",
+        "explanation": "[[veri:siklik|Örnek|🍎 Elma:12|🍌 Muz:18|🍒 Kiraz:9]]\n\nBir olayın veya nesnenin kaç kez tekrarlandığını doğrudan sayılarla gösteren tablo sıklık tablosudur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_004",
+      "level": "kolay",
+      "premise": "Çetele tablosunda verileri saymayı kolaylaştırmak için çizgiler gruplar halinde bağlanır.",
+      "text": "Buna göre çetele tablosunda veriler kaçarlı gruplar halinde çizilir?",
+      "correct": "Beşerli (5)",
+      "wrong1": "Onarlı (10)",
+      "wrong2": "Üçerli (3)",
+      "explanation": "[[veri:cetele_grup]]\n\nÇetele tablosunda 4 dikey ve 1 eğik çizgi olmak üzere veriler beşerli (5) gruplar halinde gösterilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çetele tablosunda veriler kaçarlı gruplar halinde çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Çetele tablosunda verileri saymayı kolaylaştırmak için çizgiler gruplar halinde bağlanır."
+            }
+          ]
+        },
+        "correct": "Beşerli (5)",
+        "wrong1": "Onarlı (10)",
+        "wrong2": "Üçerli (3)",
+        "explanation": "[[veri:cetele_grup]]\n\nÇetele tablosunda 4 dikey ve 1 eğik çizgi olmak üzere veriler beşerli (5) gruplar halinde gösterilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_005",
+      "level": "kolay",
+      "premise": "[[veri:not|Her şekil 3 nesneyi gösterir.]]",
+      "text": "Buna göre grafik okurken bu cümleye ne ad verilir?",
+      "correct": "Not (Açıklama)",
+      "wrong1": "Başlık",
+      "wrong2": "Veri",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nGrafiğin en altında yer alan ve her şeklin kaç varlığı gösterdiğini belirten kısma 'Not' denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre grafik okurken bu cümleye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 3 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "Not (Açıklama)",
+        "wrong1": "Başlık",
+        "wrong2": "Veri",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nGrafiğin en altında yer alan ve her şeklin kaç varlığı gösterdiğini belirten kısma 'Not' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çetele tablosunda bir 'tam grup' oluşturmak için kaç çizgi çizilir?",
+      "correct": "5",
+      "wrong1": "4",
+      "wrong2": "10",
+      "explanation": "[[veri:cetele_grup]]\n\n4 tane dikey, 1 tane eğik çizgi olmak üzere toplam 5 çizgiyle tam bir grup oluşturulur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çetele tablosunda bir 'tam grup' oluşturmak için kaç çizgi çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "5",
+        "wrong1": "4",
+        "wrong2": "10",
+        "explanation": "[[veri:cetele_grup]]\n\n4 tane dikey, 1 tane eğik çizgi olmak üzere toplam 5 çizgiyle tam bir grup oluşturulur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çetele tablosunda 3 sayısını göstermek için kaç tane dikey çizgi çizilir?",
+      "correct": "3",
+      "wrong1": "4",
+      "wrong2": "5",
+      "explanation": "[[veri:cetele_sayi|3]]\n\n5'ten küçük sayılar için herhangi bir eğik çizgi (grup) oluşturulmaz, doğrudan 3 adet dikey çizgi çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çetele tablosunda 3 sayısını göstermek için kaç tane dikey çizgi çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "3",
+        "wrong1": "4",
+        "wrong2": "5",
+        "explanation": "[[veri:cetele_sayi|3]]\n\n5'ten küçük sayılar için herhangi bir eğik çizgi (grup) oluşturulmaz, doğrudan 3 adet dikey çizgi çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çetele tablosunda 7 sayısını göstermek için nasıl bir çizim yapılır?",
+      "correct": "1 tam grup ve 2 tekli çizgi",
+      "wrong1": "2 tam grup",
+      "wrong2": "7 tam grup",
+      "explanation": "[[veri:cetele_sayi|7]]\n\n7'nin içinde 1 tane 5 vardır, geriye 2 çizgi kalır. Yani 1 tam grup ve 2 çizgi çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çetele tablosunda 7 sayısını göstermek için nasıl bir çizim yapılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1 tam grup ve 2 tekli çizgi",
+        "wrong1": "2 tam grup",
+        "wrong2": "7 tam grup",
+        "explanation": "[[veri:cetele_sayi|7]]\n\n7'nin içinde 1 tane 5 vardır, geriye 2 çizgi kalır. Yani 1 tam grup ve 2 çizgi çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çetele tablosunda 10 sayısını göstermek için kaç tane tam grup çizilir?",
+      "correct": "2",
+      "wrong1": "1",
+      "wrong2": "3",
+      "explanation": "[[veri:cetele_sayi|10]]\n\n10'un içinde 2 tane 5 vardır, bu yüzden tam 2 grup çizilir ve hiç tekli çizgi kalmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çetele tablosunda 10 sayısını göstermek için kaç tane tam grup çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2",
+        "wrong1": "1",
+        "wrong2": "3",
+        "explanation": "[[veri:cetele_sayi|10]]\n\n10'un içinde 2 tane 5 vardır, bu yüzden tam 2 grup çizilir ve hiç tekli çizgi kalmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Çetele tablosunda 15 sayısını göstermek için kaç tane tam grup çizilir?",
+      "correct": "3",
+      "wrong1": "2",
+      "wrong2": "4",
+      "explanation": "[[veri:cetele_sayi|15]]\n\n15'in içinde 3 tane 5 vardır, bu yüzden tam 3 grup çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çetele tablosunda 15 sayısını göstermek için kaç tane tam grup çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "3",
+        "wrong1": "2",
+        "wrong2": "4",
+        "explanation": "[[veri:cetele_sayi|15]]\n\n15'in içinde 3 tane 5 vardır, bu yüzden tam 3 grup çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_011",
+      "level": "kolay",
+      "premise": "[[veri:cetele|Çetele Tablosu|🍎 elma sevenler:4g]]",
+      "text": "Buna göre elma seven kaç kişi vardır?",
+      "correct": "20",
+      "wrong1": "15",
+      "wrong2": "25",
+      "explanation": "Her tam grup 5 kişiyi gösterir. 4 tane 5'li grup: [[mul:4×5]] = 20 eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre elma seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|🍎 elma sevenler:4g]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "15",
+        "wrong2": "25",
+        "explanation": "Her tam grup 5 kişiyi gösterir. 4 tane 5'li grup: [[mul:4×5]] = 20 eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_012",
+      "level": "kolay",
+      "premise": "[[veri:cetele|Çetele Tablosu|🍐 armut sevenler:5g]]",
+      "text": "Buna göre armut seven kaç kişi vardır?",
+      "correct": "25",
+      "wrong1": "20",
+      "wrong2": "30",
+      "explanation": "Her tam grup 5 kişiyi gösterir. 5 tane 5'li grup: [[mul:5×5]] = 25 eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre armut seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|🍐 armut sevenler:5g]]"
+            }
+          ]
+        },
+        "correct": "25",
+        "wrong1": "20",
+        "wrong2": "30",
+        "explanation": "Her tam grup 5 kişiyi gösterir. 5 tane 5'li grup: [[mul:5×5]] = 25 eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_013",
+      "level": "kolay",
+      "premise": "[[veri:cetele|Çetele Tablosu|🍌 çetele tablosunda muz sevenler için:2g+3]]",
+      "text": "Buna göre muz seven kaç kişi vardır?",
+      "correct": "13",
+      "wrong1": "10",
+      "wrong2": "15",
+      "explanation": "2 tam grup 10 eder. Üzerine 3 tekli çizgi eklersek 10 + 3 = 13 kişi olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre muz seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|🍌 çetele tablosunda muz sevenler için:2g+3]]"
+            }
+          ]
+        },
+        "correct": "13",
+        "wrong1": "10",
+        "wrong2": "15",
+        "explanation": "2 tam grup 10 eder. Üzerine 3 tekli çizgi eklersek 10 + 3 = 13 kişi olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_014",
+      "level": "kolay",
+      "premise": "[[veri:cetele|Çetele Tablosu|🍓 çetele tablosunda çilek sevenler için:3g+4]]",
+      "text": "Buna göre çilek seven kaç kişi vardır?",
+      "correct": "19",
+      "wrong1": "15",
+      "wrong2": "18",
+      "explanation": "3 tam grup 15 eder. Üzerine 4 tekli çizgi eklersek 15 + 4 = 19 kişi olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çilek seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|🍓 çetele tablosunda çilek sevenler için:3g+4]]"
+            }
+          ]
+        },
+        "correct": "19",
+        "wrong1": "15",
+        "wrong2": "18",
+        "explanation": "3 tam grup 15 eder. Üzerine 4 tekli çizgi eklersek 15 + 4 = 19 kişi olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_015",
+      "level": "kolay",
+      "premise": "[[veri:cetele|Çetele Tablosu|🍒 çetele tablosunda kiraz sevenler için:6g+1]]",
+      "text": "Buna göre kiraz seven kaç kişi vardır?",
+      "correct": "31",
+      "wrong1": "30",
+      "wrong2": "35",
+      "explanation": "6 tam grup 30 eder. Üzerine 1 tekli çizgi eklersek 30 + 1 = 31 kişi olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kiraz seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|🍒 çetele tablosunda kiraz sevenler için:6g+1]]"
+            }
+          ]
+        },
+        "correct": "31",
+        "wrong1": "30",
+        "wrong2": "35",
+        "explanation": "6 tam grup 30 eder. Üzerine 1 tekli çizgi eklersek 30 + 1 = 31 kişi olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_016",
+      "level": "kolay",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🍎 Elma:15|🍌 Muz:22|🍒 Kiraz:10]]",
+      "text": "Buna göre en çok sevilen meyve hangisidir?",
+      "correct": "Muz",
+      "wrong1": "Elma",
+      "wrong2": "Kiraz",
+      "explanation": "Sıklık tablosunda en büyük sayı 22'dir ve Muz'a aittir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre en çok sevilen meyve hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🍎 Elma:15|🍌 Muz:22|🍒 Kiraz:10]]"
+            }
+          ]
+        },
+        "correct": "Muz",
+        "wrong1": "Elma",
+        "wrong2": "Kiraz",
+        "explanation": "Sıklık tablosunda en büyük sayı 22'dir ve Muz'a aittir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_017",
+      "level": "kolay",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🔴 Kırmızı:18|🔵 Mavi:12|🟡 Sarı:24]]",
+      "text": "Buna göre en az sevilen renk hangisidir?",
+      "correct": "Mavi",
+      "wrong1": "Kırmızı",
+      "wrong2": "Sarı",
+      "explanation": "Sıklık tablosunda en küçük sayı 12'dir ve Mavi'ye aittir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre en az sevilen renk hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🔴 Kırmızı:18|🔵 Mavi:12|🟡 Sarı:24]]"
+            }
+          ]
+        },
+        "correct": "Mavi",
+        "wrong1": "Kırmızı",
+        "wrong2": "Sarı",
+        "explanation": "Sıklık tablosunda en küçük sayı 12'dir ve Mavi'ye aittir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_018",
+      "level": "kolay",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|⚽ Futbol:30|🏀 Basketbol:25|🎾 Tenis:10]]",
+      "text": "Buna göre basketbol seven kaç kişi vardır?",
+      "correct": "25",
+      "wrong1": "30",
+      "wrong2": "10",
+      "explanation": "Basketbol sporunun karşısında yazan sayı doğrudan 25'tir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre basketbol seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|⚽ Futbol:30|🏀 Basketbol:25|🎾 Tenis:10]]"
+            }
+          ]
+        },
+        "correct": "25",
+        "wrong1": "30",
+        "wrong2": "10",
+        "explanation": "Basketbol sporunun karşısında yazan sayı doğrudan 25'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_019",
+      "level": "kolay",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🐱 Kedi:14|🐶 Köpek:21|🐦 Kuş:9]]",
+      "text": "Buna göre kedi seven kaç kişi vardır?",
+      "correct": "14",
+      "wrong1": "21",
+      "wrong2": "9",
+      "explanation": "Kedi hayvanının karşısında yazan sayı doğrudan 14'tür.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kedi seven kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🐱 Kedi:14|🐶 Köpek:21|🐦 Kuş:9]]"
+            }
+          ]
+        },
+        "correct": "14",
+        "wrong1": "21",
+        "wrong2": "9",
+        "explanation": "Kedi hayvanının karşısında yazan sayı doğrudan 14'tür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_020",
+      "level": "kolay",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📕 Roman:45|📚 Masal:35|📝 Şiir:15]]",
+      "text": "Buna göre şiir kitabı okuyan kaç kişi vardır?",
+      "correct": "15",
+      "wrong1": "45",
+      "wrong2": "35",
+      "explanation": "Şiir kitabının karşısında yazan sayı doğrudan 15'tir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre şiir kitabı okuyan kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📕 Roman:45|📚 Masal:35|📝 Şiir:15]]"
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "45",
+        "wrong2": "35",
+        "explanation": "Şiir kitabının karşısında yazan sayı doğrudan 15'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_021",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 meyveyi gösterir|🍌 Muz:4]]",
+      "text": "Buna göre toplam kaç muz vardır?",
+      "correct": "8",
+      "wrong1": "4",
+      "wrong2": "6",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 meyve demektir. 4 şekil çizildiğine göre [[mul:4×2]] = 8 muz vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç muz vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 meyveyi gösterir|🍌 Muz:4]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "4",
+        "wrong2": "6",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 meyve demektir. 4 şekil çizildiğine göre [[mul:4×2]] = 8 muz vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_022",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 hayvanı gösterir|🐱 Kedi:5]]",
+      "text": "Buna göre toplam kaç kedi vardır?",
+      "correct": "10",
+      "wrong1": "5",
+      "wrong2": "12",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 hayvan demektir. 5 şekil çizildiğine göre [[mul:5×2]] = 10 kedi vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç kedi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 hayvanı gösterir|🐱 Kedi:5]]"
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "5",
+        "wrong2": "12",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 hayvan demektir. 5 şekil çizildiğine göre [[mul:5×2]] = 10 kedi vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_023",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 aracı gösterir|🚗 Araba:7]]",
+      "text": "Buna göre toplam kaç araba vardır?",
+      "correct": "14",
+      "wrong1": "7",
+      "wrong2": "16",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 araç demektir. 7 şekil çizildiğine göre [[mul:7×2]] = 14 araba vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç araba vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 aracı gösterir|🚗 Araba:7]]"
+            }
+          ]
+        },
+        "correct": "14",
+        "wrong1": "7",
+        "wrong2": "16",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 araç demektir. 7 şekil çizildiğine göre [[mul:7×2]] = 14 araba vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_024",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 çocuğu gösterir|👧 Parktaki Çocuklar:3]]",
+      "text": "Buna göre toplam kaç çocuk vardır?",
+      "correct": "9",
+      "wrong1": "3",
+      "wrong2": "6",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 çocuk demektir. 3 şekil çizildiğine göre [[mul:3×3]] = 9 çocuk vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç çocuk vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 çocuğu gösterir|👧 Parktaki Çocuklar:3]]"
+            }
+          ]
+        },
+        "correct": "9",
+        "wrong1": "3",
+        "wrong2": "6",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 çocuk demektir. 3 şekil çizildiğine göre [[mul:3×3]] = 9 çocuk vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_025",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 kitabı gösterir|📕 Roman:5]]",
+      "text": "Buna göre toplam kaç roman vardır?",
+      "correct": "15",
+      "wrong1": "5",
+      "wrong2": "12",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 kitap demektir. 5 şekil çizildiğine göre [[mul:5×3]] = 15 roman vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç roman vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 kitabı gösterir|📕 Roman:5]]"
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "5",
+        "wrong2": "12",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 kitap demektir. 5 şekil çizildiğine göre [[mul:5×3]] = 15 roman vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_026",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 kalemi gösterir|🔴 Kırmızı Kalem:6]]",
+      "text": "Buna göre toplam kaç kırmızı kalem vardır?",
+      "correct": "18",
+      "wrong1": "6",
+      "wrong2": "15",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 kalem demektir. 6 şekil çizildiğine göre [[mul:6×3]] = 18 kırmızı kalem vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç kırmızı kalem vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 kalemi gösterir|🔴 Kırmızı Kalem:6]]"
+            }
+          ]
+        },
+        "correct": "18",
+        "wrong1": "6",
+        "wrong2": "15",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 kalem demektir. 6 şekil çizildiğine göre [[mul:6×3]] = 18 kırmızı kalem vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_027",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 çiçeği gösterir|🌼 Papatya:3]]",
+      "text": "Buna göre toplam kaç papatya vardır?",
+      "correct": "12",
+      "wrong1": "3",
+      "wrong2": "16",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nHer şekil 4 çiçek demektir. 3 şekil çizildiğine göre [[mul:3×4]] = 12 papatya vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç papatya vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 çiçeği gösterir|🌼 Papatya:3]]"
+            }
+          ]
+        },
+        "correct": "12",
+        "wrong1": "3",
+        "wrong2": "16",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nHer şekil 4 çiçek demektir. 3 şekil çizildiğine göre [[mul:3×4]] = 12 papatya vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_028",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 ağacı gösterir|🌲 Çam Ağacı:5]]",
+      "text": "Buna göre toplam kaç çam ağacı vardır?",
+      "correct": "20",
+      "wrong1": "5",
+      "wrong2": "24",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nHer şekil 4 ağaç demektir. 5 şekil çizildiğine göre [[mul:5×4]] = 20 çam ağacı vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç çam ağacı vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 ağacı gösterir|🌲 Çam Ağacı:5]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "5",
+        "wrong2": "24",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nHer şekil 4 ağaç demektir. 5 şekil çizildiğine göre [[mul:5×4]] = 20 çam ağacı vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_029",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 lirayı gösterir|🐷 Kumbaradaki Para:4]]",
+      "text": "Buna göre kumbaradaki Para için 4 şekil çizilmiştir. Kumbarada toplam kaç lira vardır?",
+      "correct": "20",
+      "wrong1": "4",
+      "wrong2": "25",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nHer şekil 5 lira demektir. 4 şekil çizildiğine göre [[mul:4×5]] = 20 lira vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kumbaradaki Para için 4 şekil çizilmiştir. Kumbarada toplam kaç lira vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 lirayı gösterir|🐷 Kumbaradaki Para:4]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "4",
+        "wrong2": "25",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nHer şekil 5 lira demektir. 4 şekil çizildiğine göre [[mul:4×5]] = 20 lira vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_030",
+      "level": "kolay",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 puanı gösterir|👦 Ali'nin puanı:3]]",
+      "text": "Buna göre ali'nin puanı için 3 şekil çizilmiştir. Ali toplam kaç puan almıştır?",
+      "correct": "30",
+      "wrong1": "3",
+      "wrong2": "40",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nHer şekil 10 puan demektir. 3 şekil çizildiğine göre [[mul:3×10]] = 30 puan almıştır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali'nin puanı için 3 şekil çizilmiştir. Ali toplam kaç puan almıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 puanı gösterir|👦 Ali'nin puanı:3]]"
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "3",
+        "wrong2": "40",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nHer şekil 10 puan demektir. 3 şekil çizildiğine göre [[mul:3×10]] = 30 puan almıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_031",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 2 nesneyi gösterir.]]",
+      "text": "Buna göre 10 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "5",
+      "wrong1": "10",
+      "wrong2": "20",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 nesne demekse, 10'u 2'ye bölerek kaç şekil çizeceğimizi buluruz. [[div:10÷2]] = 5 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 10 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 2 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "10",
+        "wrong2": "20",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nHer şekil 2 nesne demekse, 10'u 2'ye bölerek kaç şekil çizeceğimizi buluruz. [[div:10÷2]] = 5 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_032",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 3 nesneyi gösterir.]]",
+      "text": "Buna göre 12 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "4",
+      "wrong1": "12",
+      "wrong2": "36",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 nesne demekse, 12'yi 3'e böleriz. [[div:12÷3]] = 4 şekil çizeriz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 12 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 3 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "12",
+        "wrong2": "36",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nHer şekil 3 nesne demekse, 12'yi 3'e böleriz. [[div:12÷3]] = 4 şekil çizeriz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_033",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 5 nesneyi gösterir.]]",
+      "text": "Buna göre 15 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "3",
+      "wrong1": "15",
+      "wrong2": "75",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\n15'i 5'e böleriz. [[div:15÷5]] = 3 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 15 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 5 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "15",
+        "wrong2": "75",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\n15'i 5'e böleriz. [[div:15÷5]] = 3 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_034",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 4 nesneyi gösterir.]]",
+      "text": "Buna göre 20 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "5",
+      "wrong1": "20",
+      "wrong2": "80",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\n20'nin içinde kaç tane 4 olduğuna bakarız. [[div:20÷4]] = 5 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 20 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 4 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "20",
+        "wrong2": "80",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\n20'nin içinde kaç tane 4 olduğuna bakarız. [[div:20÷4]] = 5 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_035",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 10 nesneyi gösterir.]]",
+      "text": "Buna göre 30 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "3",
+      "wrong1": "30",
+      "wrong2": "300",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\n30'u 10'a böleriz. [[div:30÷10]] = 3 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 30 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 10 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "30",
+        "wrong2": "300",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\n30'u 10'a böleriz. [[div:30÷10]] = 3 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_036",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 3 nesneyi gösterir.]]",
+      "text": "Buna göre 18 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "6",
+      "wrong1": "18",
+      "wrong2": "54",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\n18'in içinde kaç tane 3 olduğuna bakarız. [[div:18÷3]] = 6 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 18 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 3 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "18",
+        "wrong2": "54",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\n18'in içinde kaç tane 3 olduğuna bakarız. [[div:18÷3]] = 6 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_037",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 4 nesneyi gösterir.]]",
+      "text": "Buna göre 24 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "6",
+      "wrong1": "24",
+      "wrong2": "96",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\n24'ü 4'e böleriz. [[div:24÷4]] = 6 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 24 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 4 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "24",
+        "wrong2": "96",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\n24'ü 4'e böleriz. [[div:24÷4]] = 6 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_038",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 5 nesneyi gösterir.]]",
+      "text": "Buna göre 35 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "7",
+      "wrong1": "35",
+      "wrong2": "175",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\n35'i 5'e böleriz. [[div:35÷5]] = 7 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 35 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 5 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "7",
+        "wrong1": "35",
+        "wrong2": "175",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\n35'i 5'e böleriz. [[div:35÷5]] = 7 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_039",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 10 nesneyi gösterir.]]",
+      "text": "Buna göre 50 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "5",
+      "wrong1": "50",
+      "wrong2": "500",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\n50'yi 10'a böleriz. [[div:50÷10]] = 5 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 50 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 10 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "50",
+        "wrong2": "500",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\n50'yi 10'a böleriz. [[div:50÷10]] = 5 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_040",
+      "level": "orta",
+      "premise": "[[veri:not|Her şekil 2 nesneyi gösterir.]]",
+      "text": "Buna göre 16 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+      "correct": "8",
+      "wrong1": "16",
+      "wrong2": "32",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\n16'yı 2'ye böleriz. [[div:16÷2]] = 8 şekil çizilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 16 nesneyi grafikte göstermek için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:not|Her şekil 2 nesneyi gösterir.]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "16",
+        "wrong2": "32",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\n16'yı 2'ye böleriz. [[div:16÷2]] = 8 şekil çizilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_041",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A meyvesi:3g|📊 B meyvesi:2g]]",
+      "text": "Buna göre toplam kaç meyve vardır?",
+      "correct": "25",
+      "wrong1": "20",
+      "wrong2": "5",
+      "explanation": "A meyvesi 15, B meyvesi 10'dur. Toplam: 15 + 10 = 25'tir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç meyve vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A meyvesi:3g|📊 B meyvesi:2g]]"
+            }
+          ]
+        },
+        "correct": "25",
+        "wrong1": "20",
+        "wrong2": "5",
+        "explanation": "A meyvesi 15, B meyvesi 10'dur. Toplam: 15 + 10 = 25'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_042",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A rengi:4g|📊 B rengi:1g+3]]",
+      "text": "Buna göre toplam kaç renk vardır?",
+      "correct": "28",
+      "wrong1": "25",
+      "wrong2": "30",
+      "explanation": "A rengi 20, B rengi 8'dir. Toplam: 20 + 8 = 28'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç renk vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A rengi:4g|📊 B rengi:1g+3]]"
+            }
+          ]
+        },
+        "correct": "28",
+        "wrong1": "25",
+        "wrong2": "30",
+        "explanation": "A rengi 20, B rengi 8'dir. Toplam: 20 + 8 = 28'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_043",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A sporu:2g+2|📊 B sporu:3g+1]]",
+      "text": "Buna göre toplam kaç kişi vardır?",
+      "correct": "28",
+      "wrong1": "25",
+      "wrong2": "30",
+      "explanation": "A sporu 12, B sporu 16'dır. Toplam: 12 + 16 = 28'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç kişi vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A sporu:2g+2|📊 B sporu:3g+1]]"
+            }
+          ]
+        },
+        "correct": "28",
+        "wrong1": "25",
+        "wrong2": "30",
+        "explanation": "A sporu 12, B sporu 16'dır. Toplam: 12 + 16 = 28'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_044",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A oyuncağı:5g|📊 B oyuncağı:3g]]",
+      "text": "Buna göre a oyuncağı, B oyuncağından kaç fazladır?",
+      "correct": "10",
+      "wrong1": "5",
+      "wrong2": "15",
+      "explanation": "A oyuncağı 25, B oyuncağı 15'tir. Fark: 25 - 15 = 10'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a oyuncağı, B oyuncağından kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A oyuncağı:5g|📊 B oyuncağı:3g]]"
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "5",
+        "wrong2": "15",
+        "explanation": "A oyuncağı 25, B oyuncağı 15'tir. Fark: 25 - 15 = 10'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_045",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A kitabı:4g+3|📊 B kitabı:2g+1]]",
+      "text": "Buna göre a kitabı, B kitabından kaç fazladır?",
+      "correct": "12",
+      "wrong1": "10",
+      "wrong2": "14",
+      "explanation": "A kitabı 23, B kitabı 11'dir. Fark: 23 - 11 = 12'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a kitabı, B kitabından kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A kitabı:4g+3|📊 B kitabı:2g+1]]"
+            }
+          ]
+        },
+        "correct": "12",
+        "wrong1": "10",
+        "wrong2": "14",
+        "explanation": "A kitabı 23, B kitabı 11'dir. Fark: 23 - 11 = 12'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_046",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A yemeği:6g|📊 B yemeği:4g+4]]",
+      "text": "Buna göre a yemeği sevenler, B yemeği sevenlerden kaç fazladır?",
+      "correct": "6",
+      "wrong1": "5",
+      "wrong2": "8",
+      "explanation": "A yemeği 30, B yemeği 24'tür. Fark: 30 - 24 = 6'dır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a yemeği sevenler, B yemeği sevenlerden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A yemeği:6g|📊 B yemeği:4g+4]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "5",
+        "wrong2": "8",
+        "explanation": "A yemeği 30, B yemeği 24'tür. Fark: 30 - 24 = 6'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_047",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A hayvanı:1g+4|📊 B hayvanı:2g+2]]",
+      "text": "Buna göre toplam kaç hayvan vardır?",
+      "correct": "21",
+      "wrong1": "20",
+      "wrong2": "22",
+      "explanation": "A hayvanı 9, B hayvanı 12'dir. Toplam: 9 + 12 = 21'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kaç hayvan vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A hayvanı:1g+4|📊 B hayvanı:2g+2]]"
+            }
+          ]
+        },
+        "correct": "21",
+        "wrong1": "20",
+        "wrong2": "22",
+        "explanation": "A hayvanı 9, B hayvanı 12'dir. Toplam: 9 + 12 = 21'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_048",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A dersi:3g|📊 B dersi:3g+4]]",
+      "text": "Buna göre b dersini sevenler, A dersini sevenlerden kaç fazladır?",
+      "correct": "4",
+      "wrong1": "3",
+      "wrong2": "5",
+      "explanation": "B dersi 19, A dersi 15'tir. Fark: 19 - 15 = 4'tür.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre b dersini sevenler, A dersini sevenlerden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A dersi:3g|📊 B dersi:3g+4]]"
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "3",
+        "wrong2": "5",
+        "explanation": "B dersi 19, A dersi 15'tir. Fark: 19 - 15 = 4'tür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_049",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|⚽ B ve C nesneleri için toplam:8g]]",
+      "text": "Buna göre a, B ve C nesnelerinin genel toplamı kaçtır?",
+      "correct": "40",
+      "wrong1": "8",
+      "wrong2": "35",
+      "explanation": "Her tam grup 5'tir. 8 grup x 5 = 40'tır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a, B ve C nesnelerinin genel toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|⚽ B ve C nesneleri için toplam:8g]]"
+            }
+          ]
+        },
+        "correct": "40",
+        "wrong1": "8",
+        "wrong2": "35",
+        "explanation": "Her tam grup 5'tir. 8 grup x 5 = 40'tır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_050",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|⚽ B ve C meyveleri için toplam:5g]]",
+      "text": "Buna göre meyvelerin genel toplamı kaçtır?",
+      "correct": "28",
+      "wrong1": "25",
+      "wrong2": "30",
+      "explanation": "5 tam grup 25 eder. 3 çizgi daha 28'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre meyvelerin genel toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|⚽ B ve C meyveleri için toplam:5g]]"
+            }
+          ]
+        },
+        "correct": "28",
+        "wrong1": "25",
+        "wrong2": "30",
+        "explanation": "5 tam grup 25 eder. 3 çizgi daha 28'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_051",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🔴 Kırmızı Kalem:12|🔵 Mavi Kalem:15]]",
+      "text": "Buna göre toplam kalem sayısı kaçtır?",
+      "correct": "27",
+      "wrong1": "25",
+      "wrong2": "30",
+      "explanation": "12 + 15 = 27.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam kalem sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🔴 Kırmızı Kalem:12|🔵 Mavi Kalem:15]]"
+            }
+          ]
+        },
+        "correct": "27",
+        "wrong1": "25",
+        "wrong2": "30",
+        "explanation": "12 + 15 = 27.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_052",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|👦 Kız Öğrenci:24|👦 Erkek Öğrenci:16]]",
+      "text": "Buna göre sınıftaki toplam öğrenci sayısı kaçtır?",
+      "correct": "40",
+      "wrong1": "38",
+      "wrong2": "42",
+      "explanation": "24 + 16 = 40.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sınıftaki toplam öğrenci sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|👦 Kız Öğrenci:24|👦 Erkek Öğrenci:16]]"
+            }
+          ]
+        },
+        "correct": "40",
+        "wrong1": "38",
+        "wrong2": "42",
+        "explanation": "24 + 16 = 40.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_053",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🍎 Elma:35|🍐 Armut:12]]",
+      "text": "Buna göre elmalar, armutlardan kaç kg fazladır?",
+      "correct": "23",
+      "wrong1": "20",
+      "wrong2": "25",
+      "explanation": "35 - 12 = 23.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre elmalar, armutlardan kaç kg fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🍎 Elma:35|🍐 Armut:12]]"
+            }
+          ]
+        },
+        "correct": "23",
+        "wrong1": "20",
+        "wrong2": "25",
+        "explanation": "35 - 12 = 23.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_054",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📖 Hikaye Kitabı:42|📚 Masal Kitabı:28]]",
+      "text": "Buna göre hikaye kitapları, masal kitaplarından kaç fazladır?",
+      "correct": "14",
+      "wrong1": "12",
+      "wrong2": "16",
+      "explanation": "42 - 28 = 14.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre hikaye kitapları, masal kitaplarından kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📖 Hikaye Kitabı:42|📚 Masal Kitabı:28]]"
+            }
+          ]
+        },
+        "correct": "14",
+        "wrong1": "12",
+        "wrong2": "16",
+        "explanation": "42 - 28 = 14.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_055",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|⚽ Futbol:15|🏀 Basketbol:10|🏐 Voleybol:8]]",
+      "text": "Buna göre üç sporu sevenlerin toplam sayısı kaçtır?",
+      "correct": "33",
+      "wrong1": "30",
+      "wrong2": "35",
+      "explanation": "15 + 10 + 8 = 33.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç sporu sevenlerin toplam sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|⚽ Futbol:15|🏀 Basketbol:10|🏐 Voleybol:8]]"
+            }
+          ]
+        },
+        "correct": "33",
+        "wrong1": "30",
+        "wrong2": "35",
+        "explanation": "15 + 10 + 8 = 33.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_056",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🐱 Kedi:20|🐶 Köpek:25|🐦 Kuş:15]]",
+      "text": "Buna göre üç hayvan türünün toplam sayısı kaçtır?",
+      "correct": "60",
+      "wrong1": "55",
+      "wrong2": "65",
+      "explanation": "20 + 25 + 15 = 60.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç hayvan türünün toplam sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🐱 Kedi:20|🐶 Köpek:25|🐦 Kuş:15]]"
+            }
+          ]
+        },
+        "correct": "60",
+        "wrong1": "55",
+        "wrong2": "65",
+        "explanation": "20 + 25 + 15 = 60.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_057",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🚗 Araba:30|🚚 Kamyon:12|🚌 Otobüs:18]]",
+      "text": "Buna göre araba sayısı ile kamyon sayısının farkı kaçtır?",
+      "correct": "18",
+      "wrong1": "15",
+      "wrong2": "20",
+      "explanation": "30 - 12 = 18.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre araba sayısı ile kamyon sayısının farkı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🚗 Araba:30|🚚 Kamyon:12|🚌 Otobüs:18]]"
+            }
+          ]
+        },
+        "correct": "18",
+        "wrong1": "15",
+        "wrong2": "20",
+        "explanation": "30 - 12 = 18.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_058",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🌹 Gül:45|🌷 Lale:20|🌼 Papatya:15]]",
+      "text": "Buna göre gül sayısı, lale ve papatya sayılarının Toplamindan kaç fazladır?",
+      "correct": "10",
+      "wrong1": "5",
+      "wrong2": "15",
+      "explanation": "Lale+Papatya = 20+15=35. Gül 45'tir. 45 - 35 = 10.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre gül sayısı, lale ve papatya sayılarının Toplamindan kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🌹 Gül:45|🌷 Lale:20|🌼 Papatya:15]]"
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "5",
+        "wrong2": "15",
+        "explanation": "Lale+Papatya = 20+15=35. Gül 45'tir. 45 - 35 = 10.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_059",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|👦 Ali:14|📊 Can:22]]",
+      "text": "Buna göre ali 5 puan daha alırsa, ikisinin toplam puanı kaç olur?",
+      "correct": "41",
+      "wrong1": "36",
+      "wrong2": "40",
+      "explanation": "Yeni Ali 19 olur. Toplam 19 + 22 = 41 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ali 5 puan daha alırsa, ikisinin toplam puanı kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|👦 Ali:14|📊 Can:22]]"
+            }
+          ]
+        },
+        "correct": "41",
+        "wrong1": "36",
+        "wrong2": "40",
+        "explanation": "Yeni Ali 19 olur. Toplam 19 + 22 = 41 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_060",
+      "level": "orta",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📊 A takımı:30|📊 B takımı:10]]",
+      "text": "Buna göre b takımı 8 puan kaybederse, A takımı B takımından kaç puan fazla olur?",
+      "correct": "28",
+      "wrong1": "20",
+      "wrong2": "10",
+      "explanation": "Yeni B 2 olur. Fark: 30 - 2 = 28.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre b takımı 8 puan kaybederse, A takımı B takımından kaç puan fazla olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📊 A takımı:30|📊 B takımı:10]]"
+            }
+          ]
+        },
+        "correct": "28",
+        "wrong1": "20",
+        "wrong2": "10",
+        "explanation": "Yeni B 2 olur. Fark: 30 - 2 = 28.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_061",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 nesneyi gösterir|📊 A nesnesi:4|📊 B nesnesi:3]]",
+      "text": "Buna göre toplam nesne sayısı kaçtır?",
+      "correct": "14",
+      "wrong1": "7",
+      "wrong2": "12",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nA=8, B=6. Toplam 8+6=14.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam nesne sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 nesneyi gösterir|📊 A nesnesi:4|📊 B nesnesi:3]]"
+            }
+          ]
+        },
+        "correct": "14",
+        "wrong1": "7",
+        "wrong2": "12",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nA=8, B=6. Toplam 8+6=14.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_062",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 nesneyi gösterir|📊 A nesnesi:5|📊 B nesnesi:2]]",
+      "text": "Buna göre toplam nesne sayısı kaçtır?",
+      "correct": "21",
+      "wrong1": "7",
+      "wrong2": "18",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA=15, B=6. Toplam 15+6=21.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam nesne sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 nesneyi gösterir|📊 A nesnesi:5|📊 B nesnesi:2]]"
+            }
+          ]
+        },
+        "correct": "21",
+        "wrong1": "7",
+        "wrong2": "18",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA=15, B=6. Toplam 15+6=21.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_063",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 nesneyi gösterir|📊 A nesnesi:3|📊 B nesnesi:4]]",
+      "text": "Buna göre toplam nesne sayısı kaçtır?",
+      "correct": "28",
+      "wrong1": "7",
+      "wrong2": "24",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nA=12, B=16. Toplam 12+16=28.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam nesne sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 nesneyi gösterir|📊 A nesnesi:3|📊 B nesnesi:4]]"
+            }
+          ]
+        },
+        "correct": "28",
+        "wrong1": "7",
+        "wrong2": "24",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nA=12, B=16. Toplam 12+16=28.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_064",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir|📊 A nesnesi:6|📊 B nesnesi:3]]",
+      "text": "Buna göre toplam nesne sayısı kaçtır?",
+      "correct": "45",
+      "wrong1": "9",
+      "wrong2": "40",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nA=30, B=15. Toplam 30+15=45.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam nesne sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir|📊 A nesnesi:6|📊 B nesnesi:3]]"
+            }
+          ]
+        },
+        "correct": "45",
+        "wrong1": "9",
+        "wrong2": "40",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nA=30, B=15. Toplam 30+15=45.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_065",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 nesneyi gösterir|📊 A nesnesi:4|📊 B nesnesi:2]]",
+      "text": "Buna göre toplam nesne sayısı kaçtır?",
+      "correct": "60",
+      "wrong1": "6",
+      "wrong2": "50",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nA=40, B=20. Toplam 40+20=60.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam nesne sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 nesneyi gösterir|📊 A nesnesi:4|📊 B nesnesi:2]]"
+            }
+          ]
+        },
+        "correct": "60",
+        "wrong1": "6",
+        "wrong2": "50",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nA=40, B=20. Toplam 40+20=60.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_066",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 nesneyi gösterir|📊 A nesnesi:7|📊 B nesnesi:4]]",
+      "text": "Buna göre a nesnesi için 7 şekil, B nesnesi için 4 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+      "correct": "6",
+      "wrong1": "3",
+      "wrong2": "8",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nA=14, B=8. Fark 14-8=6.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a nesnesi için 7 şekil, B nesnesi için 4 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 nesneyi gösterir|📊 A nesnesi:7|📊 B nesnesi:4]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "3",
+        "wrong2": "8",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nA=14, B=8. Fark 14-8=6.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_067",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 nesneyi gösterir|📊 A nesnesi:6|📊 B nesnesi:2]]",
+      "text": "Buna göre a nesnesi için 6 şekil, B nesnesi için 2 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+      "correct": "12",
+      "wrong1": "4",
+      "wrong2": "15",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA=18, B=6. Fark 18-6=12.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a nesnesi için 6 şekil, B nesnesi için 2 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 nesneyi gösterir|📊 A nesnesi:6|📊 B nesnesi:2]]"
+            }
+          ]
+        },
+        "correct": "12",
+        "wrong1": "4",
+        "wrong2": "15",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA=18, B=6. Fark 18-6=12.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_068",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 nesneyi gösterir|📊 A nesnesi:5|📊 B nesnesi:3]]",
+      "text": "Buna göre a nesnesi için 5 şekil, B nesnesi için 3 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+      "correct": "8",
+      "wrong1": "2",
+      "wrong2": "12",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nA=20, B=12. Fark 20-12=8.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a nesnesi için 5 şekil, B nesnesi için 3 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 nesneyi gösterir|📊 A nesnesi:5|📊 B nesnesi:3]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "2",
+        "wrong2": "12",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nA=20, B=12. Fark 20-12=8.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_069",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir|📊 A nesnesi:8|📊 B nesnesi:5]]",
+      "text": "Buna göre a nesnesi için 8 şekil, B nesnesi için 5 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+      "correct": "15",
+      "wrong1": "3",
+      "wrong2": "20",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nA=40, B=25. Fark 40-25=15.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a nesnesi için 8 şekil, B nesnesi için 5 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir|📊 A nesnesi:8|📊 B nesnesi:5]]"
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "3",
+        "wrong2": "20",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nA=40, B=25. Fark 40-25=15.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_070",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 nesneyi gösterir|📊 A nesnesi:5|📊 B nesnesi:2]]",
+      "text": "Buna göre a nesnesi için 5 şekil, B nesnesi için 2 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+      "correct": "30",
+      "wrong1": "3",
+      "wrong2": "40",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nA=50, B=20. Fark 50-20=30.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a nesnesi için 5 şekil, B nesnesi için 2 şekil çizilmiştir. A nesnesi, B nesnesinden kaç fazladır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 nesneyi gösterir|📊 A nesnesi:5|📊 B nesnesi:2]]"
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "3",
+        "wrong2": "40",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nA=50, B=20. Fark 50-20=30.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_071",
+      "level": "orta",
+      "premise": "Bir sınıftaki 40 öğrencinin 15'i Futbol, 12'si Basketbol, geriye kalanlar ise Voleybol seçmiştir.",
+      "text": "Buna göre voleybol seçen öğrenci sayısı kaçtır?",
+      "correct": "13",
+      "wrong1": "15",
+      "wrong2": "10",
+      "explanation": "15+12=27. 40-27=13.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre voleybol seçen öğrenci sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sınıftaki 40 öğrencinin 15'i Futbol, 12'si Basketbol, geriye kalanlar ise Voleybol seçmiştir."
+            }
+          ]
+        },
+        "correct": "13",
+        "wrong1": "15",
+        "wrong2": "10",
+        "explanation": "15+12=27. 40-27=13.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_072",
+      "level": "orta",
+      "premise": "Bir otoparkta toplam 50 araç vardır. Bunların 20'si beyaz, 15'i siyahtır. Geriye kalanlar kırmızıdır.",
+      "text": "Buna göre otoparkta kaç kırmızı araç vardır?",
+      "correct": "15",
+      "wrong1": "20",
+      "wrong2": "10",
+      "explanation": "20+15=35. 50-35=15.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre otoparkta kaç kırmızı araç vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir otoparkta toplam 50 araç vardır. Bunların 20'si beyaz, 15'i siyahtır. Geriye kalanlar kırmızıdır."
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "20",
+        "wrong2": "10",
+        "explanation": "20+15=35. 50-35=15.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_073",
+      "level": "orta",
+      "premise": "Bir kitaplıkta toplam 60 kitap vardır. Masallar 25, Şiirler 10 tanedir. Kalan kitaplar Romandır.",
+      "text": "Buna göre kitaplıkta kaç tane Roman vardır?",
+      "correct": "25",
+      "wrong1": "20",
+      "wrong2": "30",
+      "explanation": "25+10=35. 60-35=25.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kitaplıkta kaç tane Roman vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kitaplıkta toplam 60 kitap vardır. Masallar 25, Şiirler 10 tanedir. Kalan kitaplar Romandır."
+            }
+          ]
+        },
+        "correct": "25",
+        "wrong1": "20",
+        "wrong2": "30",
+        "explanation": "25+10=35. 60-35=25.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_074",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 İnekler:3g|🐑 Koyunlar:2g]]",
+      "text": "Buna göre çiftlikte kaç tane tavuk vardır?",
+      "correct": "5",
+      "wrong1": "10",
+      "wrong2": "15",
+      "explanation": "İnek 15, Koyun 10. Toplam 25. Tavuk: 30-25=5.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çiftlikte kaç tane tavuk vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 İnekler:3g|🐑 Koyunlar:2g]]"
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "10",
+        "wrong2": "15",
+        "explanation": "İnek 15, Koyun 10. Toplam 25. Tavuk: 30-25=5.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_075",
+      "level": "orta",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda A sınıfı:4g|📊 B sınıfı:3g+2]]",
+      "text": "Buna göre c sınıfında kaç öğrenci vardır?",
+      "correct": "8",
+      "wrong1": "10",
+      "wrong2": "6",
+      "explanation": "A=20, B=17. Toplam 37. C=45-37=8.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre c sınıfında kaç öğrenci vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda A sınıfı:4g|📊 B sınıfı:3g+2]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "10",
+        "wrong2": "6",
+        "explanation": "A=20, B=17. Toplam 37. C=45-37=8.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_076",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 öğrenciyi gösterir|📊 A sınıfı:4|📊 B sınıfı:5]]",
+      "text": "Buna göre c sınıfı öğrencilerini göstermek için grafiğe kaç şekil çizilmelidir?",
+      "correct": "3",
+      "wrong1": "4",
+      "wrong2": "5",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA ve B toplam 9 şekil. [[mul:9×3]]=27 öğrenci. Kalan: 36-27=9 öğrenci. [[div:9÷3]]=3 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre c sınıfı öğrencilerini göstermek için grafiğe kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 öğrenciyi gösterir|📊 A sınıfı:4|📊 B sınıfı:5]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "4",
+        "wrong2": "5",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA ve B toplam 9 şekil. [[mul:9×3]]=27 öğrenci. Kalan: 36-27=9 öğrenci. [[div:9÷3]]=3 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_077",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 çiçeği gösterir|🌹 Gül:3|🌷 Lale:5]]",
+      "text": "Buna göre papatyaları göstermek için grafiğe kaç şekil çizilmelidir?",
+      "correct": "2",
+      "wrong1": "3",
+      "wrong2": "4",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nGül ve Lale toplam 8 şekil. [[mul:8×4]]=32 çiçek. Kalan: 40-32=8 çiçek. [[div:8÷4]]=2 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre papatyaları göstermek için grafiğe kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 çiçeği gösterir|🌹 Gül:3|🌷 Lale:5]]"
+            }
+          ]
+        },
+        "correct": "2",
+        "wrong1": "3",
+        "wrong2": "4",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nGül ve Lale toplam 8 şekil. [[mul:8×4]]=32 çiçek. Kalan: 40-32=8 çiçek. [[div:8÷4]]=2 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_078",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 ağacı gösterir|🌲 Çam:4|🌳 Meşe:3]]",
+      "text": "Buna göre kavak ağaçlarını göstermek için grafiğe kaç şekil çizilmelidir?",
+      "correct": "3",
+      "wrong1": "4",
+      "wrong2": "5",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nÇam ve Meşe toplam 7 şekil. [[mul:7×5]]=35 ağaç. Kalan: 50-35=15 ağaç. [[div:15÷5]]=3 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kavak ağaçlarını göstermek için grafiğe kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 ağacı gösterir|🌲 Çam:4|🌳 Meşe:3]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "4",
+        "wrong2": "5",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nÇam ve Meşe toplam 7 şekil. [[mul:7×5]]=35 ağaç. Kalan: 50-35=15 ağaç. [[div:15÷5]]=3 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_079",
+      "level": "orta",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 aracı gösterir|🚗 Araba:5|🚌 Otobüs:2]]",
+      "text": "Buna göre kamyonları göstermek için grafiğe kaç şekil çizilmelidir?",
+      "correct": "3",
+      "wrong1": "4",
+      "wrong2": "2",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nAraba ve Otobüs toplam 7 şekil. [[mul:7×10]]=70 araç. Kalan: 100-70=30 araç. [[div:30÷10]]=3 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kamyonları göstermek için grafiğe kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 aracı gösterir|🚗 Araba:5|🚌 Otobüs:2]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "4",
+        "wrong2": "2",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nAraba ve Otobüs toplam 7 şekil. [[mul:7×10]]=70 araç. Kalan: 100-70=30 araç. [[div:30÷10]]=3 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_080",
+      "level": "orta",
+      "premise": "Bir şekil grafiğinde A meyvesi için 4 şekil çizilmiştir. Grafiğin not kısmı yırtılmıştır. A meyvesinin gerçek sayısı 20'dir.",
+      "text": "Buna göre grafikteki her şekil kaç meyveyi göstermektedir?",
+      "correct": "5",
+      "wrong1": "4",
+      "wrong2": "10",
+      "explanation": "20'yi 4'e bölersek her şeklin değerini buluruz: [[div:20÷4]]=5.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre grafikteki her şekil kaç meyveyi göstermektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir şekil grafiğinde A meyvesi için 4 şekil çizilmiştir. Grafiğin not kısmı yırtılmıştır. A meyvesinin gerçek sayısı 20'dir."
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "4",
+        "wrong2": "10",
+        "explanation": "20'yi 4'e bölersek her şeklin değerini buluruz: [[div:20÷4]]=5.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_081",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A ürünü:4g|📊 B ürünü:2g]]",
+      "text": "Buna göre bu ürünlerin tamamı 5 adet kutuya eşit olarak paylaştırılırsa her kutuya kaç ürün düşer?",
+      "correct": "6",
+      "wrong1": "5",
+      "wrong2": "7",
+      "explanation": "A=20, B=10. Toplam=30. [[div:30÷5]]=6.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu ürünlerin tamamı 5 adet kutuya eşit olarak paylaştırılırsa her kutuya kaç ürün düşer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A ürünü:4g|📊 B ürünü:2g]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "5",
+        "wrong2": "7",
+        "explanation": "A=20, B=10. Toplam=30. [[div:30÷5]]=6.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_082",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Hayvanat bahçesinde:6g]]",
+      "text": "Buna göre aslanlardan 8 tanesi başka bahçeye gönderilirse geriye kaç aslan kalır?",
+      "correct": "22",
+      "wrong1": "20",
+      "wrong2": "24",
+      "explanation": "[[mul:6×5]]=30 aslan var. 30-8=22 kalır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aslanlardan 8 tanesi başka bahçeye gönderilirse geriye kaç aslan kalır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Hayvanat bahçesinde:6g]]"
+            }
+          ]
+        },
+        "correct": "22",
+        "wrong1": "20",
+        "wrong2": "24",
+        "explanation": "[[mul:6×5]]=30 aslan var. 30-8=22 kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_083",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A kitabı:3g+3|📊 B kitabı:2g+4]]",
+      "text": "Buna göre bu kitapların tamamı toplanıp iki eşit parçaya ayrılırsa, her bir parça kaç kitap olur?",
+      "correct": "16",
+      "wrong1": "15",
+      "wrong2": "17",
+      "explanation": "A=18, B=14. Toplam=32. Yarısı: [[div:32÷2]]=16.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu kitapların tamamı toplanıp iki eşit parçaya ayrılırsa, her bir parça kaç kitap olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A kitabı:3g+3|📊 B kitabı:2g+4]]"
+            }
+          ]
+        },
+        "correct": "16",
+        "wrong1": "15",
+        "wrong2": "17",
+        "explanation": "A=18, B=14. Toplam=32. Yarısı: [[div:32÷2]]=16.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_084",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|✏️ Kalem sayısı:5g]]",
+      "text": "Buna göre kalem sayısının 3 katı kaçtır?",
+      "correct": "75",
+      "wrong1": "60",
+      "wrong2": "50",
+      "explanation": "[[mul:5×5]]=25 kalem. [[mul:25×3]]=75.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kalem sayısının 3 katı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|✏️ Kalem sayısı:5g]]"
+            }
+          ]
+        },
+        "correct": "75",
+        "wrong1": "60",
+        "wrong2": "50",
+        "explanation": "[[mul:5×5]]=25 kalem. [[mul:25×3]]=75.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_085",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|🥨 Simit sayısı:8g]]",
+      "text": "Buna göre simitlerin tanesi 2 TL olduğuna göre tüm simitlerin satışı kaç TL tutar?",
+      "correct": "80",
+      "wrong1": "40",
+      "wrong2": "100",
+      "explanation": "[[mul:8×5]]=40 simit. [[mul:40×2]]=80 TL.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre simitlerin tanesi 2 TL olduğuna göre tüm simitlerin satışı kaç TL tutar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|🥨 Simit sayısı:8g]]"
+            }
+          ]
+        },
+        "correct": "80",
+        "wrong1": "40",
+        "wrong2": "100",
+        "explanation": "[[mul:8×5]]=40 simit. [[mul:40×2]]=80 TL.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_086",
+      "level": "zor",
+      "premise": "Bir dondurmanın tanesi 5 TL'dir. Toplam kazanılan para 35 TL'dir.",
+      "text": "Buna göre satılan dondurma sayısını çetele tablosunda göstermek istersek nasıl çizeriz?",
+      "correct": "1 tam grup ve 2 tekli çizgi",
+      "wrong1": "2 tam grup",
+      "wrong2": "1 tam grup ve 1 tekli çizgi",
+      "explanation": "[[veri:cetele_sayi|7]]\n\n[[div:35÷5]]=7 dondurma. 7'nin çetelesi 1 tam grup ve 2 çizgidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre satılan dondurma sayısını çetele tablosunda göstermek istersek nasıl çizeriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir dondurmanın tanesi 5 TL'dir. Toplam kazanılan para 35 TL'dir."
+            }
+          ]
+        },
+        "correct": "1 tam grup ve 2 tekli çizgi",
+        "wrong1": "2 tam grup",
+        "wrong2": "1 tam grup ve 1 tekli çizgi",
+        "explanation": "[[veri:cetele_sayi|7]]\n\n[[div:35÷5]]=7 dondurma. 7'nin çetelesi 1 tam grup ve 2 çizgidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_087",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A verisi:4g]]",
+      "text": "Buna göre b verisi kaçtır?",
+      "correct": "10",
+      "wrong1": "5",
+      "wrong2": "15",
+      "explanation": "A=20'dir. B, A'nın yarısı yani [[div:20÷2]]=10'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre b verisi kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A verisi:4g]]"
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "5",
+        "wrong2": "15",
+        "explanation": "A=20'dir. B, A'nın yarısı yani [[div:20÷2]]=10'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_088",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A verisi:2g]]",
+      "text": "Buna göre b verisi kaçtır?",
+      "correct": "30",
+      "wrong1": "20",
+      "wrong2": "40",
+      "explanation": "A=10'dur. B, A'nın 3 katı yani [[mul:10×3]]=30'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre b verisi kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A verisi:2g]]"
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "20",
+        "wrong2": "40",
+        "explanation": "A=10'dur. B, A'nın 3 katı yani [[mul:10×3]]=30'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_089",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda A oyuncağı:3g+1|📊 B oyuncağı:2g]]",
+      "text": "Buna göre geriye kalan C oyuncağının sayısı kaçtır?",
+      "correct": "6",
+      "wrong1": "5",
+      "wrong2": "7",
+      "explanation": "A=16, B=10. Toplam 26. C=32-26=6.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre geriye kalan C oyuncağının sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda A oyuncağı:3g+1|📊 B oyuncağı:2g]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "5",
+        "wrong2": "7",
+        "explanation": "A=16, B=10. Toplam 26. C=32-26=6.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_090",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Misket sayısı:5g+2]]",
+      "text": "Buna göre bu misketlere 13 tane daha eklenirse yeni misket sayısı çetele tablosunda kaç tane Tam Grup ile gösterilir?",
+      "correct": "8",
+      "wrong1": "7",
+      "wrong2": "9",
+      "explanation": "Başlangıç: 27 misket. Yeni: 27+13=40 misket. [[div:40÷5]]=8 tam grup.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu misketlere 13 tane daha eklenirse yeni misket sayısı çetele tablosunda kaç tane Tam Grup ile gösterilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Misket sayısı:5g+2]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "7",
+        "wrong2": "9",
+        "explanation": "Başlangıç: 27 misket. Yeni: 27+13=40 misket. [[div:40÷5]]=8 tam grup.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_091",
+      "level": "zor",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📊 A sınıfı:13|📊 B sınıfı:17]]",
+      "text": "Buna göre üç sınıftaki toplam öğrenci sayısının yarısı kaçtır?",
+      "correct": "20",
+      "wrong1": "40",
+      "wrong2": "15",
+      "explanation": "Toplam: 13+17+10=40. Yarısı: [[div:40÷2]]=20.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre üç sınıftaki toplam öğrenci sayısının yarısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📊 A sınıfı:13|📊 B sınıfı:17]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "40",
+        "wrong2": "15",
+        "explanation": "Toplam: 13+17+10=40. Yarısı: [[div:40÷2]]=20.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_092",
+      "level": "zor",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📖 Hikaye kitabı:24]]",
+      "text": "Buna göre tüm kitaplar 6 rafa eşit olarak dizilirse her rafa kaç kitap düşer?",
+      "correct": "10",
+      "wrong1": "12",
+      "wrong2": "8",
+      "explanation": "Toplam: 24+36=60. Rafa düşen: [[div:60÷6]]=10.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre tüm kitaplar 6 rafa eşit olarak dizilirse her rafa kaç kitap düşer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📖 Hikaye kitabı:24]]"
+            }
+          ]
+        },
+        "correct": "10",
+        "wrong1": "12",
+        "wrong2": "8",
+        "explanation": "Toplam: 24+36=60. Rafa düşen: [[div:60÷6]]=10.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_093",
+      "level": "zor",
+      "premise": "Sıklık Tablosu: Kırmızı bilye 45 adettir. Mavi bilye sayısı kırmızı bilye sayısından 15 eksiktir.",
+      "text": "Buna göre kırmızı ve mavi bilyelerin toplam sayısı kaçtır?",
+      "correct": "75",
+      "wrong1": "60",
+      "wrong2": "90",
+      "explanation": "Mavi: 45-15=30. Toplam: 45+30=75.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kırmızı ve mavi bilyelerin toplam sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık Tablosu: Kırmızı bilye 45 adettir. Mavi bilye sayısı kırmızı bilye sayısından 15 eksiktir."
+            }
+          ]
+        },
+        "correct": "75",
+        "wrong1": "60",
+        "wrong2": "90",
+        "explanation": "Mavi: 45-15=30. Toplam: 45+30=75.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_094",
+      "level": "zor",
+      "premise": "Sıklık Tablosu: Sarı top 20 adettir. Yeşil top sayısı, sarı top sayısının 2 katıdır.",
+      "text": "Buna göre sarı ve yeşil topların toplam sayısı kaçtır?",
+      "correct": "60",
+      "wrong1": "40",
+      "wrong2": "80",
+      "explanation": "Yeşil: [[mul:20×2]]=40. Toplam: 20+40=60.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sarı ve yeşil topların toplam sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık Tablosu: Sarı top 20 adettir. Yeşil top sayısı, sarı top sayısının 2 katıdır."
+            }
+          ]
+        },
+        "correct": "60",
+        "wrong1": "40",
+        "wrong2": "80",
+        "explanation": "Yeşil: [[mul:20×2]]=40. Toplam: 20+40=60.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_095",
+      "level": "zor",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📊 A ürünü:14]]",
+      "text": "Buna göre c ürününün sayısı kaçtır?",
+      "correct": "30",
+      "wrong1": "15",
+      "wrong2": "20",
+      "explanation": "A+B=14+16=30. C=30'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre c ürününün sayısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📊 A ürünü:14]]"
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "15",
+        "wrong2": "20",
+        "explanation": "A+B=14+16=30. C=30'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_096",
+      "level": "zor",
+      "premise": "Toplam 80 bilet satılmıştır. Sıklık Tablosunda 1. Seans 25, 2. Seans 25 bilet olarak gösterilmiştir.",
+      "text": "Buna göre 3. Seans için kaç bilet satılmıştır?",
+      "correct": "30",
+      "wrong1": "25",
+      "wrong2": "35",
+      "explanation": "1. ve 2. Seans toplamı 50. 3. Seans = 80-50=30.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre 3. Seans için kaç bilet satılmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Toplam 80 bilet satılmıştır. Sıklık Tablosunda 1. Seans 25, 2. Seans 25 bilet olarak gösterilmiştir."
+            }
+          ]
+        },
+        "correct": "30",
+        "wrong1": "25",
+        "wrong2": "35",
+        "explanation": "1. ve 2. Seans toplamı 50. 3. Seans = 80-50=30.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_097",
+      "level": "zor",
+      "premise": "Sıklık Tablosu: 50 adet yumurta vardır.",
+      "text": "Buna göre yumurtaların 18 tanesi kırılırsa geriye kaç adet sağlam yumurta kalır?",
+      "correct": "32",
+      "wrong1": "28",
+      "wrong2": "22",
+      "explanation": "50-18=32.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yumurtaların 18 tanesi kırılırsa geriye kaç adet sağlam yumurta kalır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık Tablosu: 50 adet yumurta vardır."
+            }
+          ]
+        },
+        "correct": "32",
+        "wrong1": "28",
+        "wrong2": "22",
+        "explanation": "50-18=32.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_098",
+      "level": "zor",
+      "premise": "Sıklık Tablosu: 24 adet gofret vardır.",
+      "text": "Buna göre gofretlerin tanesi 3 TL olduğuna göre tüm gofretlerin satışı kaç TL tutar?",
+      "correct": "72",
+      "wrong1": "60",
+      "wrong2": "80",
+      "explanation": "[[mul:24×3]]=72 TL.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre gofretlerin tanesi 3 TL olduğuna göre tüm gofretlerin satışı kaç TL tutar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık Tablosu: 24 adet gofret vardır."
+            }
+          ]
+        },
+        "correct": "72",
+        "wrong1": "60",
+        "wrong2": "80",
+        "explanation": "[[mul:24×3]]=72 TL.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_099",
+      "level": "zor",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📊 A sınıfı:15]]",
+      "text": "Buna göre i̇ki sınıf arasındaki öğrenci farkının 4 katı kaçtır?",
+      "correct": "20",
+      "wrong1": "15",
+      "wrong2": "25",
+      "explanation": "Fark: 15-10=5. 4 katı: [[mul:5×4]]=20.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre i̇ki sınıf arasındaki öğrenci farkının 4 katı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📊 A sınıfı:15]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "15",
+        "wrong2": "25",
+        "explanation": "Fark: 15-10=5. 4 katı: [[mul:5×4]]=20.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_100",
+      "level": "zor",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|🍎 Elma:30]]",
+      "text": "Buna göre elma ve armut sayılarının toplamından 10 çıkarılırsa sonuç kaç olur?",
+      "correct": "32",
+      "wrong1": "42",
+      "wrong2": "22",
+      "explanation": "Toplam: 30+12=42. 10 çıkarırsak 42-10=32.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre elma ve armut sayılarının toplamından 10 çıkarılırsa sonuç kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|🍎 Elma:30]]"
+            }
+          ]
+        },
+        "correct": "32",
+        "wrong1": "42",
+        "wrong2": "22",
+        "explanation": "Toplam: 30+12=42. 10 çıkarırsak 42-10=32.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_101",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 ürünü gösterir|📊 A ürünü:5]]",
+      "text": "Buna göre a ürününden 8 adet satılırsa geriye kaç adet A ürünü kalır?",
+      "correct": "12",
+      "wrong1": "10",
+      "wrong2": "16",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam A: [[mul:5×4]]=20. 8 satılırsa: 20-8=12.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a ürününden 8 adet satılırsa geriye kaç adet A ürünü kalır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 ürünü gösterir|📊 A ürünü:5]]"
+            }
+          ]
+        },
+        "correct": "12",
+        "wrong1": "10",
+        "wrong2": "16",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam A: [[mul:5×4]]=20. 8 satılırsa: 20-8=12.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_102",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 kalemi gösterir|🔴 Kırmızı:6|🔵 Mavi:2]]",
+      "text": "Buna göre kalemlerin tanesi 5 TL olduğuna göre tüm kalemlerin satışı kaç TL tutar?",
+      "correct": "120",
+      "wrong1": "100",
+      "wrong2": "80",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nToplam şekil 8. Toplam kalem [[mul:8×3]]=24. Kazanç [[mul:24×5]]=120 TL.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kalemlerin tanesi 5 TL olduğuna göre tüm kalemlerin satışı kaç TL tutar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 kalemi gösterir|🔴 Kırmızı:6|🔵 Mavi:2]]"
+            }
+          ]
+        },
+        "correct": "120",
+        "wrong1": "100",
+        "wrong2": "80",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nToplam şekil 8. Toplam kalem [[mul:8×3]]=24. Kazanç [[mul:24×5]]=120 TL.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_103",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 kişiyi gösterir|📊 A kulübü:4|📊 B kulübü:3]]",
+      "text": "Buna göre toplam öğrenci sayısından 15 kişi ayrılırsa geriye kaç kişi kalır?",
+      "correct": "20",
+      "wrong1": "25",
+      "wrong2": "15",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nToplam şekil 7. Toplam kişi [[mul:7×5]]=35. 15 kişi ayrılırsa 35-15=20 kalır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre toplam öğrenci sayısından 15 kişi ayrılırsa geriye kaç kişi kalır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 kişiyi gösterir|📊 A kulübü:4|📊 B kulübü:3]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "25",
+        "wrong2": "15",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nToplam şekil 7. Toplam kişi [[mul:7×5]]=35. 15 kişi ayrılırsa 35-15=20 kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_104",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 puanı gösterir|👦 Ali:3]]",
+      "text": "Buna göre veli için grafiğe kaç şekil çizilmelidir?",
+      "correct": "5",
+      "wrong1": "4",
+      "wrong2": "6",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nAli: [[mul:3×10]]=30 puan. Veli: 30+20=50 puan. Veli'nin şekli: [[div:50÷10]]=5 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre veli için grafiğe kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 puanı gösterir|👦 Ali:3]]"
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "4",
+        "wrong2": "6",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nAli: [[mul:3×10]]=30 puan. Veli: 30+20=50 puan. Veli'nin şekli: [[div:50÷10]]=5 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_105",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 elmayı gösterir|🍎 Sepetteki elmalar:7]]",
+      "text": "Buna göre sepetteki elma sayısının yarısı kaçtır?",
+      "correct": "7",
+      "wrong1": "14",
+      "wrong2": "8",
+      "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nToplam elma [[mul:7×2]]=14. Yarısı [[div:14÷2]]=7.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sepetteki elma sayısının yarısı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 2 elmayı gösterir|🍎 Sepetteki elmalar:7]]"
+            }
+          ]
+        },
+        "correct": "7",
+        "wrong1": "14",
+        "wrong2": "8",
+        "explanation": "[[veri:not|Her şekil 2 nesneyi gösterir.]]\n\nToplam elma [[mul:7×2]]=14. Yarısı [[div:14÷2]]=7.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_106",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 armudu gösterir|🍐 Sepetteki armutlar:8]]",
+      "text": "Buna göre sepetteki armut sayısının çeyreği (dörtte biri) kaçtır?",
+      "correct": "8",
+      "wrong1": "12",
+      "wrong2": "4",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam armut [[mul:8×4]]=32. Çeyreği [[div:32÷4]]=8.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sepetteki armut sayısının çeyreği (dörtte biri) kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 armudu gösterir|🍐 Sepetteki armutlar:8]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "12",
+        "wrong2": "4",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam armut [[mul:8×4]]=32. Çeyreği [[div:32÷4]]=8.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_107",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir|📊 A nesnesi:4]]",
+      "text": "Buna göre geriye kalan tüm nesneler B nesnesi olduğuna göre, B nesnesi için kaç şekil çizilmelidir?",
+      "correct": "5",
+      "wrong1": "4",
+      "wrong2": "6",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nToplam 45/5=9 şekil olmalı. A 4 şekilse B 9-4=5 şekil olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre geriye kalan tüm nesneler B nesnesi olduğuna göre, B nesnesi için kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir|📊 A nesnesi:4]]"
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "4",
+        "wrong2": "6",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nToplam 45/5=9 şekil olmalı. A 4 şekilse B 9-4=5 şekil olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_108",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 hayvanı gösterir|🐱 Kedi:5|🐶 Köpek:7|🐦 Kuş:4]]",
+      "text": "Buna göre hayvanların genel toplamı kaçtır?",
+      "correct": "48",
+      "wrong1": "45",
+      "wrong2": "50",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nToplam şekil: 5+7+4=16. Toplam hayvan: [[mul:16×3]]=48.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre hayvanların genel toplamı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 hayvanı gösterir|🐱 Kedi:5|🐶 Köpek:7|🐦 Kuş:4]]"
+            }
+          ]
+        },
+        "correct": "48",
+        "wrong1": "45",
+        "wrong2": "50",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nToplam şekil: 5+7+4=16. Toplam hayvan: [[mul:16×3]]=48.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_109",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 lirayı gösterir|🐷 Kumbaradaki para:6]]",
+      "text": "Buna göre eğer notta 'Her şekil 3 lirayı gösterir' yazsaydı, kumbaradaki aynı miktar parayı göstermek için kaç şekil çizilirdi?",
+      "correct": "8",
+      "wrong1": "6",
+      "wrong2": "10",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam para [[mul:6×4]]=24 TL. 3'erli gösterilirse [[div:24÷3]]=8 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre eğer notta 'Her şekil 3 lirayı gösterir' yazsaydı, kumbaradaki aynı miktar parayı göstermek için kaç şekil çizilirdi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 lirayı gösterir|🐷 Kumbaradaki para:6]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "6",
+        "wrong2": "10",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam para [[mul:6×4]]=24 TL. 3'erli gösterilirse [[div:24÷3]]=8 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_110",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 aracı gösterir|⚽ Otoparktaki araçlar:4]]",
+      "text": "Buna göre eğer notta 'Her şekil 5 aracı gösterir' yazsaydı, otoparktaki aynı miktar aracı göstermek için kaç şekil çizilirdi?",
+      "correct": "8",
+      "wrong1": "6",
+      "wrong2": "10",
+      "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nToplam araç [[mul:4×10]]=40. 5'erli gösterilirse [[div:40÷5]]=8 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre eğer notta 'Her şekil 5 aracı gösterir' yazsaydı, otoparktaki aynı miktar aracı göstermek için kaç şekil çizilirdi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 10 aracı gösterir|⚽ Otoparktaki araçlar:4]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "6",
+        "wrong2": "10",
+        "explanation": "[[veri:not|Her şekil 10 nesneyi gösterir.]]\n\nToplam araç [[mul:4×10]]=40. 5'erli gösterilirse [[div:40÷5]]=8 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_111",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda bir veri:4g]]",
+      "text": "Buna göre bu veri sıklık tablosuna rakamla yazıldığında kaç olur?",
+      "correct": "20",
+      "wrong1": "15",
+      "wrong2": "25",
+      "explanation": "[[mul:4×5]]=20.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veri sıklık tablosuna rakamla yazıldığında kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda bir veri:4g]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "15",
+        "wrong2": "25",
+        "explanation": "[[mul:4×5]]=20.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_112",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda bir veri:6g+2]]",
+      "text": "Buna göre bu veri sıklık tablosuna rakamla yazıldığında kaç olur?",
+      "correct": "32",
+      "wrong1": "30",
+      "wrong2": "34",
+      "explanation": "[[mul:6×5]]+2=32.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veri sıklık tablosuna rakamla yazıldığında kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda bir veri:6g+2]]"
+            }
+          ]
+        },
+        "correct": "32",
+        "wrong1": "30",
+        "wrong2": "34",
+        "explanation": "[[mul:6×5]]+2=32.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_113",
+      "level": "zor",
+      "premise": "Sıklık tablosunda bir veri 25 olarak yazılmıştır.",
+      "text": "Buna göre bu veriyi çetele tablosunda göstermek için kaç tane tam grup çizilir?",
+      "correct": "5",
+      "wrong1": "4",
+      "wrong2": "6",
+      "explanation": "[[div:25÷5]]=5 tam grup.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veriyi çetele tablosunda göstermek için kaç tane tam grup çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık tablosunda bir veri 25 olarak yazılmıştır."
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "4",
+        "wrong2": "6",
+        "explanation": "[[div:25÷5]]=5 tam grup.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_114",
+      "level": "zor",
+      "premise": "Sıklık tablosunda bir veri 18 olarak yazılmıştır.",
+      "text": "Buna göre bu veriyi çetele tablosunda göstermek için nasıl bir çizim yapılır?",
+      "correct": "3 tam grup ve 3 tekli çizgi",
+      "wrong1": "4 tam grup",
+      "wrong2": "3 tam grup ve 2 tekli çizgi",
+      "explanation": "18 = [[mul:3×5]] + 3.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veriyi çetele tablosunda göstermek için nasıl bir çizim yapılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık tablosunda bir veri 18 olarak yazılmıştır."
+            }
+          ]
+        },
+        "correct": "3 tam grup ve 3 tekli çizgi",
+        "wrong1": "4 tam grup",
+        "wrong2": "3 tam grup ve 2 tekli çizgi",
+        "explanation": "18 = [[mul:3×5]] + 3.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_115",
+      "level": "zor",
+      "premise": "Sıklık tablosunda bir veri 24 olarak yazılmıştır.",
+      "text": "Buna göre bu veriyi, 'Her şekil 4 nesneyi gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizilir?",
+      "correct": "6",
+      "wrong1": "5",
+      "wrong2": "8",
+      "explanation": "[[div:24÷4]]=6 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veriyi, 'Her şekil 4 nesneyi gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık tablosunda bir veri 24 olarak yazılmıştır."
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "5",
+        "wrong2": "8",
+        "explanation": "[[div:24÷4]]=6 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_116",
+      "level": "zor",
+      "premise": "Sıklık tablosunda bir veri 35 olarak yazılmıştır.",
+      "text": "Buna göre bu veriyi, 'Her şekil 5 nesneyi gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizilir?",
+      "correct": "7",
+      "wrong1": "6",
+      "wrong2": "8",
+      "explanation": "[[div:35÷5]]=7 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veriyi, 'Her şekil 5 nesneyi gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sıklık tablosunda bir veri 35 olarak yazılmıştır."
+            }
+          ]
+        },
+        "correct": "7",
+        "wrong1": "6",
+        "wrong2": "8",
+        "explanation": "[[div:35÷5]]=7 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_117",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 nesneyi gösterir' notuyla 5 şekil çizilerek gösterilmiştir|📊 nesneyi gösterir' notuyla:5]]",
+      "text": "Buna göre aynı veri çetele tablosunda kaç tane tam grupla gösterilir?",
+      "correct": "3",
+      "wrong1": "2",
+      "wrong2": "4",
+      "explanation": "[[veri:cetele_sayi|15]]\n\nGerçek sayı [[mul:5×3]]=15'tir. 15 sayısı çetelede 3 tam grupla gösterilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aynı veri çetele tablosunda kaç tane tam grupla gösterilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 nesneyi gösterir' notuyla 5 şekil çizilerek gösterilmiştir|📊 nesneyi gösterir' notuyla:5]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "2",
+        "wrong2": "4",
+        "explanation": "[[veri:cetele_sayi|15]]\n\nGerçek sayı [[mul:5×3]]=15'tir. 15 sayısı çetelede 3 tam grupla gösterilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_118",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 nesneyi gösterir' notuyla 4 şekil çizilerek gösterilmiştir|📊 nesneyi gösterir' notuyla:4]]",
+      "text": "Buna göre aynı veri sıklık tablosuna rakamla yazıldığında kaç olur?",
+      "correct": "16",
+      "wrong1": "12",
+      "wrong2": "20",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\n[[mul:4×4]]=16.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aynı veri sıklık tablosuna rakamla yazıldığında kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 nesneyi gösterir' notuyla 4 şekil çizilerek gösterilmiştir|📊 nesneyi gösterir' notuyla:4]]"
+            }
+          ]
+        },
+        "correct": "16",
+        "wrong1": "12",
+        "wrong2": "20",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\n[[mul:4×4]]=16.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_119",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda bir veri:8g]]",
+      "text": "Buna göre bu veri, 'Her şekil 10 nesneyi gösterir' notu olan bir şekil grafiğinde kaç şekil çizilerek gösterilir?",
+      "correct": "4",
+      "wrong1": "8",
+      "wrong2": "5",
+      "explanation": "Gerçek sayı [[mul:8×5]]=40'tır. [[div:40÷10]]=4 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu veri, 'Her şekil 10 nesneyi gösterir' notu olan bir şekil grafiğinde kaç şekil çizilerek gösterilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 Çetele tablosunda bir veri:8g]]"
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "8",
+        "wrong2": "5",
+        "explanation": "Gerçek sayı [[mul:8×5]]=40'tır. [[div:40÷10]]=4 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_120",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir' notuyla 6 şekil çizilerek gösterilmiştir|📊 nesneyi gösterir' notuyla:6]]",
+      "text": "Buna göre aynı veriyi çetele tablosunda göstermek istersek kaç tane tam grup çizeriz?",
+      "correct": "6",
+      "wrong1": "5",
+      "wrong2": "7",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nGerçek sayı 30'dur. [[div:30÷5]]=6 tam gruptur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre aynı veriyi çetele tablosunda göstermek istersek kaç tane tam grup çizeriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 nesneyi gösterir' notuyla 6 şekil çizilerek gösterilmiştir|📊 nesneyi gösterir' notuyla:6]]"
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "5",
+        "wrong2": "7",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nGerçek sayı 30'dur. [[div:30÷5]]=6 tam gruptur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_121",
+      "level": "zor",
+      "premise": "Bir sınıfta 40 öğrenci vardır. Sınıfın yarısı matematik dersini sevmektedir.",
+      "text": "Buna göre matematik sevenleri, 'Her şekil 4 öğrenciyi gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizeriz?",
+      "correct": "5",
+      "wrong1": "10",
+      "wrong2": "4",
+      "explanation": "40'ın yarısı 20'dir. [[div:20÷4]]=5 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre matematik sevenleri, 'Her şekil 4 öğrenciyi gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizeriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sınıfta 40 öğrenci vardır. Sınıfın yarısı matematik dersini sevmektedir."
+            }
+          ]
+        },
+        "correct": "5",
+        "wrong1": "10",
+        "wrong2": "4",
+        "explanation": "40'ın yarısı 20'dir. [[div:20÷4]]=5 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_122",
+      "level": "zor",
+      "premise": "Manavdaki 60 elmanın çeyreği çürümüştür.",
+      "text": "Buna göre sağlam elmaları, 'Her şekil 5 elmayı gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizeriz?",
+      "correct": "9",
+      "wrong1": "12",
+      "wrong2": "3",
+      "explanation": "Çürük elma [[div:60÷4]]=15. Sağlam elma 60-15=45. [[div:45÷5]]=9 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sağlam elmaları, 'Her şekil 5 elmayı gösterir' notu olan bir şekil grafiğinde göstermek için kaç şekil çizeriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Manavdaki 60 elmanın çeyreği çürümüştür."
+            }
+          ]
+        },
+        "correct": "9",
+        "wrong1": "12",
+        "wrong2": "3",
+        "explanation": "Çürük elma [[div:60÷4]]=15. Sağlam elma 60-15=45. [[div:45÷5]]=9 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_123",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 kutuyu gösterir|📊 A verisi:3|📊 B verisi:5]]",
+      "text": "Buna göre tüm kutular, 8 kutu alabilen daha büyük çuvallara doldurulursa kaç çuval dolar?",
+      "correct": "4",
+      "wrong1": "8",
+      "wrong2": "5",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam şekil 8. Toplam kutu [[mul:8×4]]=32. Çuval sayısı [[div:32÷8]]=4.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre tüm kutular, 8 kutu alabilen daha büyük çuvallara doldurulursa kaç çuval dolar?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 kutuyu gösterir|📊 A verisi:3|📊 B verisi:5]]"
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "8",
+        "wrong2": "5",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nToplam şekil 8. Toplam kutu [[mul:8×4]]=32. Çuval sayısı [[div:32÷8]]=4.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_124",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|✏️ A kalemi:4g|✏️ B kalemi:5g]]",
+      "text": "Buna göre i̇ki kalemin sayıları arasındaki fark 1 silginin fiyatına eşittir. 3 silgi kaç liradır?",
+      "correct": "15",
+      "wrong1": "5",
+      "wrong2": "20",
+      "explanation": "Fark 1 gruptur (5 kalem). Yani silgi 5 liradır. 3 silgi [[mul:3×5]]=15 TL'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre i̇ki kalemin sayıları arasındaki fark 1 silginin fiyatına eşittir. 3 silgi kaç liradır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|✏️ A kalemi:4g|✏️ B kalemi:5g]]"
+            }
+          ]
+        },
+        "correct": "15",
+        "wrong1": "5",
+        "wrong2": "20",
+        "explanation": "Fark 1 gruptur (5 kalem). Yani silgi 5 liradır. 3 silgi [[mul:3×5]]=15 TL'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_125",
+      "level": "zor",
+      "premise": "[[veri:siklik|📊 Sıklık Tablosu|📊 A kitabı:24]]",
+      "text": "Buna göre i̇ki kitabın toplam sayfa sayısı 5 günde eşit olarak okunursa günde kaç sayfa okunmuş olur?",
+      "correct": "8",
+      "wrong1": "10",
+      "wrong2": "6",
+      "explanation": "Toplam 40 sayfa. [[div:40÷5]]=8.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre i̇ki kitabın toplam sayfa sayısı 5 günde eşit olarak okunursa günde kaç sayfa okunmuş olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:siklik|📊 Sıklık Tablosu|📊 A kitabı:24]]"
+            }
+          ]
+        },
+        "correct": "8",
+        "wrong1": "10",
+        "wrong2": "6",
+        "explanation": "Toplam 40 sayfa. [[div:40÷5]]=8.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_126",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 bilyeyi gösterir|🔵 A bilyesi:6]]",
+      "text": "Buna göre b bilyesini göstermek için grafiğe kaç şekil çizilmelidir?",
+      "correct": "3",
+      "wrong1": "6",
+      "wrong2": "9",
+      "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA'nın yarısı kadar olduğu için şekil sayısı da yarısıdır. [[div:6÷2]]=3 şekil.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre b bilyesini göstermek için grafiğe kaç şekil çizilmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 3 bilyeyi gösterir|🔵 A bilyesi:6]]"
+            }
+          ]
+        },
+        "correct": "3",
+        "wrong1": "6",
+        "wrong2": "9",
+        "explanation": "[[veri:not|Her şekil 3 nesneyi gösterir.]]\n\nA'nın yarısı kadar olduğu için şekil sayısı da yarısıdır. [[div:6÷2]]=3 şekil.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_127",
+      "level": "zor",
+      "premise": "[[veri:cetele|Çetele Tablosu|📊 A nesnesi:3g+1]]",
+      "text": "Buna göre b nesnesinin sayısı sıklık tablosunda kaç olarak yazılır?",
+      "correct": "20",
+      "wrong1": "16",
+      "wrong2": "24",
+      "explanation": "A=16'dır. B=16+4=20'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre b nesnesinin sayısı sıklık tablosunda kaç olarak yazılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:cetele|Çetele Tablosu|📊 A nesnesi:3g+1]]"
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "16",
+        "wrong2": "24",
+        "explanation": "A=16'dır. B=16+4=20'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_128",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 puanı gösterir|📊 A takımı:4|📊 B takımı:2]]",
+      "text": "Buna göre i̇ki takımın puanları toplamının 2 katı kaçtır?",
+      "correct": "60",
+      "wrong1": "30",
+      "wrong2": "40",
+      "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nToplam şekil 6. Toplam puan [[mul:6×5]]=30. 2 katı 60'tır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre i̇ki takımın puanları toplamının 2 katı kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 5 puanı gösterir|📊 A takımı:4|📊 B takımı:2]]"
+            }
+          ]
+        },
+        "correct": "60",
+        "wrong1": "30",
+        "wrong2": "40",
+        "explanation": "[[veri:not|Her şekil 5 nesneyi gösterir.]]\n\nToplam şekil 6. Toplam puan [[mul:6×5]]=30. 2 katı 60'tır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_129",
+      "level": "zor",
+      "premise": "Bir otoparkta toplam 50 araç vardır. A aracı 15 tane, B aracı 15 tanedir. Geriye kalanlar C aracıdır.",
+      "text": "Buna göre c aracının sayısı sıklık tablosunda kaç olarak yazılır?",
+      "correct": "20",
+      "wrong1": "15",
+      "wrong2": "30",
+      "explanation": "A+B=30. C=50-30=20.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre c aracının sayısı sıklık tablosunda kaç olarak yazılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir otoparkta toplam 50 araç vardır. A aracı 15 tane, B aracı 15 tanedir. Geriye kalanlar C aracıdır."
+            }
+          ]
+        },
+        "correct": "20",
+        "wrong1": "15",
+        "wrong2": "30",
+        "explanation": "A+B=30. C=50-30=20.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_veri_130",
+      "level": "zor",
+      "premise": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 çocuğu gösterir|⚽ toplam 12 şekil çizilmiştir. Sadece A çocuğu:5|⚽ toplam:12|📊 Sadece A çocuğu:5]]",
+      "text": "Buna göre geriye kalan çocukların toplam sayısı (B çocukları) kaçtır?",
+      "correct": "28",
+      "wrong1": "20",
+      "wrong2": "32",
+      "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nKalan şekil 12-5=7 şekildir. Çocuk sayısı [[mul:7×4]]=28'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre geriye kalan çocukların toplam sayısı (B çocukları) kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[veri:grafik|📊 Şekil Grafiği|not:Her şekil 4 çocuğu gösterir|⚽ toplam 12 şekil çizilmiştir. Sadece A çocuğu:5|⚽ toplam:12|📊 Sadece A çocuğu:5]]"
+            }
+          ]
+        },
+        "correct": "28",
+        "wrong1": "20",
+        "wrong2": "32",
+        "explanation": "[[veri:not|Her şekil 4 nesneyi gösterir.]]\n\nKalan şekil 12-5=7 şekildir. Çocuk sayısı [[mul:7×4]]=28'dir.",
+        "url": null
+      }
+    }
+  ]
+}

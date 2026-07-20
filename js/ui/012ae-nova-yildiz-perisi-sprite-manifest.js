@@ -1,0 +1,3 @@
+/* AUTO: scripts/build-yildiz-perisi-sprites.py */
+window.NOVA_YILDIZ_PERISI_SPRITE_BASE="hero/yildiz_perisi/sprite/";
+window.NOVA_YILDIZ_PERISI_SPRITE_MANIFEST = {"version":1,"base":"hero/yildiz_perisi/sprite/","sheet":"yildiz-perisi-idle.webp","frameWidth":247,"frameHeight":290,"cols":9,"rows":11,"frameCount":96,"loopEnd":96,"fps":24,"blendFrames":0,"sheetWidth":2223,"sheetHeight":3190,"anchor":"center","main":{"sheet":"yildiz-perisi-main.webp","frameWidth":343,"frameHeight":300,"cols":7,"rows":8,"frameCount":56,"loopEnd":48,"fps":12,"blendFrames":8,"sheetWidth":2401,"sheetHeight":2400,"anchor":"bottom"},"scale":{"store":1.12,"detail":1.28,"main":1.42}};

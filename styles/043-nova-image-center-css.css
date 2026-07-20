@@ -1,0 +1,13 @@
+/* === NOVA: Center question images (single & duel) === */
+#question-image, .question-image,
+#duel-question-image, .duel-question-image,
+.question-info-image {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain !important;
+  height: auto !important;
+  width: auto !important;
+}
+/* Container text align center as a light hint (non-destructive) */
+.question-container { text-align: center; }

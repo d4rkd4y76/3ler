@@ -1,0 +1,3977 @@
+{
+  "meta": {
+    "topicId": "t09",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_matematik",
+    "title": "Zaman Ölçme (Saat ve dakika ilişkisi, problem çözme)",
+    "grade": 3,
+    "count": 160
+  },
+  "questions": [
+    {
+      "id": "mat3_zaman_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Analog saat üzerinde saati gösteren kısa ve kalın ibreye ne ad verilir?",
+      "correct": "Akrep",
+      "wrong1": "Yelkovan",
+      "wrong2": "Saniye",
+      "explanation": "Analog saatlerde saati gösteren yavaş ve kısa ibreye akrep denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Analog saat üzerinde saati gösteren kısa ve kalın ibreye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Akrep",
+        "wrong1": "Yelkovan",
+        "wrong2": "Saniye",
+        "explanation": "Analog saatlerde saati gösteren yavaş ve kısa ibreye akrep denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Analog saat üzerinde dakikayı gösteren uzun ve ince ibreye ne ad verilir?",
+      "correct": "Yelkovan",
+      "wrong1": "Akrep",
+      "wrong2": "Kadran",
+      "explanation": "Saat üzerinde dakikayı gösteren daha hızlı ve uzun ibreye yelkovan denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Analog saat üzerinde dakikayı gösteren uzun ve ince ibreye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yelkovan",
+        "wrong1": "Akrep",
+        "wrong2": "Kadran",
+        "explanation": "Saat üzerinde dakikayı gösteren daha hızlı ve uzun ibreye yelkovan denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Zaman ölçü birimlerinden 1 saat toplam kaç dakikaya eşittir?",
+      "correct": "60",
+      "wrong1": "30",
+      "wrong2": "100",
+      "explanation": "Yelkovan saat üzerinde bir tam tur attığında tam 60 dakika geçer, bu da 1 saate eşittir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Zaman ölçü birimlerinden 1 saat toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "60",
+        "wrong1": "30",
+        "wrong2": "100",
+        "explanation": "Yelkovan saat üzerinde bir tam tur attığında tam 60 dakika geçer, bu da 1 saate eşittir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Zaman ölçü birimlerinden 1 dakika toplam kaç saniyeye eşittir?",
+      "correct": "60",
+      "wrong1": "30",
+      "wrong2": "100",
+      "explanation": "Tıpkı 1 saatin 60 dakika olması gibi, 1 dakika da 60 saniyeden oluşur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Zaman ölçü birimlerinden 1 dakika toplam kaç saniyeye eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "60",
+        "wrong1": "30",
+        "wrong2": "100",
+        "explanation": "Tıpkı 1 saatin 60 dakika olması gibi, 1 dakika da 60 saniyeden oluşur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "Saat üzerinde 'yarım saat' denildiğinde kaç dakikadan bahsedilmektedir?",
+      "correct": "30",
+      "wrong1": "15",
+      "wrong2": "45",
+      "explanation": "1 saat 60 dakikadır. 60 sayısının yarısı 30 olduğu için yarım saat 30 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat üzerinde 'yarım saat' denildiğinde kaç dakikadan bahsedilmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "30",
+        "wrong1": "15",
+        "wrong2": "45",
+        "explanation": "1 saat 60 dakikadır. 60 sayısının yarısı 30 olduğu için yarım saat 30 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "Saat üzerinde 'çeyrek saat' denildiğinde kaç dakikadan bahsedilmektedir?",
+      "correct": "15",
+      "wrong1": "30",
+      "wrong2": "45",
+      "explanation": "1 saat 60 dakikadır. 60'ı 4 eşit parçaya (çeyreğe) bölersek her bir parça 15 dakika olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat üzerinde 'çeyrek saat' denildiğinde kaç dakikadan bahsedilmektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "15",
+        "wrong1": "30",
+        "wrong2": "45",
+        "explanation": "1 saat 60 dakikadır. 60'ı 4 eşit parçaya (çeyreğe) bölersek her bir parça 15 dakika olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Dünyanın kendi ekseni etrafında bir tam tur dönmesiyle oluşan 1 gün toplam kaç saattir?",
+      "correct": "24",
+      "wrong1": "12",
+      "wrong2": "30",
+      "explanation": "Dünyanın kendi etrafında dönüşü bir gün sürer ve bu süre 24 saattir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Dünyanın kendi ekseni etrafında bir tam tur dönmesiyle oluşan 1 gün toplam kaç saattir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "24",
+        "wrong1": "12",
+        "wrong2": "30",
+        "explanation": "Dünyanın kendi etrafında dönüşü bir gün sürer ve bu süre 24 saattir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "Pazartesi günü başlayıp Pazar günü biten 1 hafta toplam kaç gündür?",
+      "correct": "7",
+      "wrong1": "5",
+      "wrong2": "30",
+      "explanation": "Hafta içi 5 gün ve hafta sonu 2 gün olmak üzere bir hafta toplam 7 gündür.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Pazartesi günü başlayıp Pazar günü biten 1 hafta toplam kaç gündür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "7",
+        "wrong1": "5",
+        "wrong2": "30",
+        "explanation": "Hafta içi 5 gün ve hafta sonu 2 gün olmak üzere bir hafta toplam 7 gündür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Matematik problemlerinde 1 ay genellikle kaç gün olarak kabul edilir?",
+      "correct": "30",
+      "wrong1": "31",
+      "wrong2": "28",
+      "explanation": "Aylar 28 ile 31 gün arasında değişse de standart olarak problemlerde 1 ay 30 gün olarak hesaplanır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Matematik problemlerinde 1 ay genellikle kaç gün olarak kabul edilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "30",
+        "wrong1": "31",
+        "wrong2": "28",
+        "explanation": "Aylar 28 ile 31 gün arasında değişse de standart olarak problemlerde 1 ay 30 gün olarak hesaplanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir takvim yılında Ocak ayıyla başlayıp Aralık ayıyla biten toplam kaç ay vardır?",
+      "correct": "12",
+      "wrong1": "10",
+      "wrong2": "4",
+      "explanation": "Bir yılda tam 12 ay bulunur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir takvim yılında Ocak ayıyla başlayıp Aralık ayıyla biten toplam kaç ay vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "12",
+        "wrong1": "10",
+        "wrong2": "4",
+        "explanation": "Bir yılda tam 12 ay bulunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_011",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir yıl içerisinde toplam kaç hafta bulunmaktadır?",
+      "correct": "52",
+      "wrong1": "48",
+      "wrong2": "60",
+      "explanation": "1 yıl 365 gündür. 365 günün içinde 52 adet tam hafta bulunur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir yıl içerisinde toplam kaç hafta bulunmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "52",
+        "wrong1": "48",
+        "wrong2": "60",
+        "explanation": "1 yıl 365 gündür. 365 günün içinde 52 adet tam hafta bulunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "Dünyanın Güneş etrafında tam bir tur atmasıyla oluşan 1 yıl toplam kaç gün sürer?",
+      "correct": "365",
+      "wrong1": "360",
+      "wrong2": "366",
+      "explanation": "Artık yıllar hariç, standart bir yıl takvimlerde 365 gün olarak kabul edilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Dünyanın Güneş etrafında tam bir tur atmasıyla oluşan 1 yıl toplam kaç gün sürer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "365",
+        "wrong1": "360",
+        "wrong2": "366",
+        "explanation": "Artık yıllar hariç, standart bir yıl takvimlerde 365 gün olarak kabul edilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_013",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir yılda İlkbahar, Yaz, Sonbahar ve Kış olmak üzere toplam kaç mevsim vardır?",
+      "correct": "4",
+      "wrong1": "3",
+      "wrong2": "12",
+      "explanation": "Bir yılda toplam 4 mevsim yaşanmaktadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir yılda İlkbahar, Yaz, Sonbahar ve Kış olmak üzere toplam kaç mevsim vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "4",
+        "wrong1": "3",
+        "wrong2": "12",
+        "explanation": "Bir yılda toplam 4 mevsim yaşanmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_014",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir yılda bulunan her bir mevsim ortalama kaç ay sürer?",
+      "correct": "3",
+      "wrong1": "4",
+      "wrong2": "2",
+      "explanation": "1 yılda 12 ay vardır. 12 ayı 4 mevsime eşit paylaştırırsak her mevsim 3 ay sürer.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir yılda bulunan her bir mevsim ortalama kaç ay sürer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "3",
+        "wrong1": "4",
+        "wrong2": "2",
+        "explanation": "1 yılda 12 ay vardır. 12 ayı 4 mevsime eşit paylaştırırsak her mevsim 3 ay sürer.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_015",
+      "level": "kolay",
+      "premise": "[[clock:a:3:00]]",
+      "text": "Buna göre analog saatte yelkovan tam 12 rakamının üzerindeyse saat nasıl okunur?",
+      "correct": "Tam saati",
+      "wrong1": "Buçuğu",
+      "wrong2": "Çeyreği",
+      "explanation": "Yelkovan tam 12'nin üzerindeyse, saat başıdır ve akrep hangi sayıdaysa saat tam olarak odur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre analog saatte yelkovan tam 12 rakamının üzerindeyse saat nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:3:00]]"
+            }
+          ]
+        },
+        "correct": "Tam saati",
+        "wrong1": "Buçuğu",
+        "wrong2": "Çeyreği",
+        "explanation": "Yelkovan tam 12'nin üzerindeyse, saat başıdır ve akrep hangi sayıdaysa saat tam olarak odur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_016",
+      "level": "kolay",
+      "premise": "[[clock:a:3:30]]",
+      "text": "Buna göre analog saatte yelkovan 6 rakamının üzerindeyse saat nasıl okunur?",
+      "correct": "Buçuk",
+      "wrong1": "Çeyrek geçiyor",
+      "wrong2": "Çeyrek var",
+      "explanation": "Yelkovan 6'nın üzerindeyken saatin tam yarısı olan 30 dakika geçmiştir, buna buçuk denir.\n\n[[clockarc:3:30:12:6]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre analog saatte yelkovan 6 rakamının üzerindeyse saat nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:3:30]]"
+            }
+          ]
+        },
+        "correct": "Buçuk",
+        "wrong1": "Çeyrek geçiyor",
+        "wrong2": "Çeyrek var",
+        "explanation": "Yelkovan 6'nın üzerindeyken saatin tam yarısı olan 30 dakika geçmiştir, buna buçuk denir.\n\n[[clockarc:3:30:12:6]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_017",
+      "level": "kolay",
+      "premise": "[[clock:a:3:15]]",
+      "text": "Buna göre analog saatte yelkovan 3 rakamının üzerindeyse saat nasıl okunur?",
+      "correct": "Çeyrek geçiyor",
+      "wrong1": "Çeyrek var",
+      "wrong2": "Buçuk",
+      "explanation": "Yelkovan 3'ün üzerindeyken 15 dakika geçmiştir. 15 dakika çeyrek saat olduğu için 'çeyrek geçiyor' denir.\n\n[[clockarc:3:15:12:3]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre analog saatte yelkovan 3 rakamının üzerindeyse saat nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:3:15]]"
+            }
+          ]
+        },
+        "correct": "Çeyrek geçiyor",
+        "wrong1": "Çeyrek var",
+        "wrong2": "Buçuk",
+        "explanation": "Yelkovan 3'ün üzerindeyken 15 dakika geçmiştir. 15 dakika çeyrek saat olduğu için 'çeyrek geçiyor' denir.\n\n[[clockarc:3:15:12:3]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_018",
+      "level": "kolay",
+      "premise": "[[clock:a:11:45]]",
+      "text": "Buna göre analog saatte yelkovan 9 rakamının üzerindeyse saat nasıl okunur?",
+      "correct": "Çeyrek var",
+      "wrong1": "Çeyrek geçiyor",
+      "wrong2": "Buçuk",
+      "explanation": "Yelkovan 9'da iken saatin dolmasına 15 dakika kalmıştır, bu nedenle 'çeyrek var' şeklinde okunur.\n\n[[clockarc:11:45:9:12]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre analog saatte yelkovan 9 rakamının üzerindeyse saat nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:11:45]]"
+            }
+          ]
+        },
+        "correct": "Çeyrek var",
+        "wrong1": "Çeyrek geçiyor",
+        "wrong2": "Buçuk",
+        "explanation": "Yelkovan 9'da iken saatin dolmasına 15 dakika kalmıştır, bu nedenle 'çeyrek var' şeklinde okunur.\n\n[[clockarc:11:45:9:12]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_019",
+      "level": "kolay",
+      "premise": "[[clock:a:8:00]]",
+      "text": "Buna göre akrep 8'in üzerinde ve yelkovan 12'nin üzerindeyse saat kaçtır?",
+      "correct": "08:00",
+      "wrong1": "12:40",
+      "wrong2": "08:30",
+      "explanation": "Yelkovan 12'de olduğu için saat tamdır. Akrep 8'i gösterdiği için saat 08:00'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre akrep 8'in üzerinde ve yelkovan 12'nin üzerindeyse saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:8:00]]"
+            }
+          ]
+        },
+        "correct": "08:00",
+        "wrong1": "12:40",
+        "wrong2": "08:30",
+        "explanation": "Yelkovan 12'de olduğu için saat tamdır. Akrep 8'i gösterdiği için saat 08:00'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_020",
+      "level": "kolay",
+      "premise": "[[clock:a:4:30]]",
+      "text": "Buna göre akrep 4 ile 5 arasında ve yelkovan 6'nın üzerindeyse saat kaçtır?",
+      "correct": "04:30",
+      "wrong1": "05:30",
+      "wrong2": "04:15",
+      "explanation": "Yelkovan 6'da iken saat buçuktur. Akrep 4'ü geçmiş ama 5 olmamıştır. Saat 04:30'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre akrep 4 ile 5 arasında ve yelkovan 6'nın üzerindeyse saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:4:30]]"
+            }
+          ]
+        },
+        "correct": "04:30",
+        "wrong1": "05:30",
+        "wrong2": "04:15",
+        "explanation": "Yelkovan 6'da iken saat buçuktur. Akrep 4'ü geçmiş ama 5 olmamıştır. Saat 04:30'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "2 saat toplam kaç dakikaya eşittir?",
+      "correct": "120",
+      "wrong1": "100",
+      "wrong2": "140",
+      "explanation": "1 saat 60 dakikadır. 60 dakikayı 2 kez toplarsak veya 60 ile 2'yi çarparsak 120 dakika ederiz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 saat toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "120",
+        "wrong1": "100",
+        "wrong2": "140",
+        "explanation": "1 saat 60 dakikadır. 60 dakikayı 2 kez toplarsak veya 60 ile 2'yi çarparsak 120 dakika ederiz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "3 saat toplam kaç dakikaya eşittir?",
+      "correct": "180",
+      "wrong1": "150",
+      "wrong2": "200",
+      "explanation": "60 ile 3'ü çarparsak 180 dakika elde ederiz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3 saat toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "180",
+        "wrong1": "150",
+        "wrong2": "200",
+        "explanation": "60 ile 3'ü çarparsak 180 dakika elde ederiz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_023",
+      "level": "kolay",
+      "premise": null,
+      "text": "2 gün toplam kaç saate eşittir?",
+      "correct": "48",
+      "wrong1": "36",
+      "wrong2": "72",
+      "explanation": "24 ile 2'yi topladığımızda 48 saat olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 gün toplam kaç saate eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "48",
+        "wrong1": "36",
+        "wrong2": "72",
+        "explanation": "24 ile 2'yi topladığımızda 48 saat olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "3 gün toplam kaç saate eşittir?",
+      "correct": "72",
+      "wrong1": "48",
+      "wrong2": "96",
+      "explanation": "24'ü 3 kez toplarsak 72 saat olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3 gün toplam kaç saate eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "72",
+        "wrong1": "48",
+        "wrong2": "96",
+        "explanation": "24'ü 3 kez toplarsak 72 saat olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "2 hafta toplam kaç güne eşittir?",
+      "correct": "14",
+      "wrong1": "10",
+      "wrong2": "20",
+      "explanation": "7 ile 2'yi çarptığımızda 14 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 hafta toplam kaç güne eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14",
+        "wrong1": "10",
+        "wrong2": "20",
+        "explanation": "7 ile 2'yi çarptığımızda 14 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "3 hafta toplam kaç güne eşittir?",
+      "correct": "21",
+      "wrong1": "20",
+      "wrong2": "28",
+      "explanation": "7 ile 3'ü çarptığımızda 21 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3 hafta toplam kaç güne eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "21",
+        "wrong1": "20",
+        "wrong2": "28",
+        "explanation": "7 ile 3'ü çarptığımızda 21 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "2 ay toplam kaç gündür?",
+      "correct": "60",
+      "wrong1": "50",
+      "wrong2": "70",
+      "explanation": "30 ile 2'yi çarptığımızda 60 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 ay toplam kaç gündür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "60",
+        "wrong1": "50",
+        "wrong2": "70",
+        "explanation": "30 ile 2'yi çarptığımızda 60 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_028",
+      "level": "kolay",
+      "premise": null,
+      "text": "3 ay toplam kaç gündür?",
+      "correct": "90",
+      "wrong1": "100",
+      "wrong2": "80",
+      "explanation": "30 ile 3'ü çarptığımızda 90 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3 ay toplam kaç gündür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "90",
+        "wrong1": "100",
+        "wrong2": "80",
+        "explanation": "30 ile 3'ü çarptığımızda 90 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_029",
+      "level": "kolay",
+      "premise": null,
+      "text": "2 yıl toplam kaç aya eşittir?",
+      "correct": "24",
+      "wrong1": "20",
+      "wrong2": "36",
+      "explanation": "12 ile 2'yi çarptığımızda 24 ay eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 yıl toplam kaç aya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "24",
+        "wrong1": "20",
+        "wrong2": "36",
+        "explanation": "12 ile 2'yi çarptığımızda 24 ay eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "3 yıl toplam kaç aya eşittir?",
+      "correct": "36",
+      "wrong1": "24",
+      "wrong2": "48",
+      "explanation": "12 ile 3'ü çarptığımızda 36 ay eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3 yıl toplam kaç aya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "36",
+        "wrong1": "24",
+        "wrong2": "48",
+        "explanation": "12 ile 3'ü çarptığımızda 36 ay eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_031",
+      "level": "kolay",
+      "premise": null,
+      "text": "2 tane yarım saat bir araya geldiğinde toplam ne kadar süre eder?",
+      "correct": "1 tam saat",
+      "wrong1": "2 tam saat",
+      "wrong2": "Çeyrek saat",
+      "explanation": "Her yarım saat 30 dakikadır. 30 + 30 = 60 dakika eder, bu da 1 tam saattir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 tane yarım saat bir araya geldiğinde toplam ne kadar süre eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1 tam saat",
+        "wrong1": "2 tam saat",
+        "wrong2": "Çeyrek saat",
+        "explanation": "Her yarım saat 30 dakikadır. 30 + 30 = 60 dakika eder, bu da 1 tam saattir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_032",
+      "level": "kolay",
+      "premise": null,
+      "text": "4 tane çeyrek saat bir araya geldiğinde toplam ne kadar süre eder?",
+      "correct": "1 tam saat",
+      "wrong1": "2 tam saat",
+      "wrong2": "Yarım saat",
+      "explanation": "Her çeyrek saat 15 dakikadır. 15 x 4 = 60 dakika eder, bu da 1 tam saattir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "4 tane çeyrek saat bir araya geldiğinde toplam ne kadar süre eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1 tam saat",
+        "wrong1": "2 tam saat",
+        "wrong2": "Yarım saat",
+        "explanation": "Her çeyrek saat 15 dakikadır. 15 x 4 = 60 dakika eder, bu da 1 tam saattir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_033",
+      "level": "kolay",
+      "premise": null,
+      "text": "1 tam saat ile yarım saatin toplamı kaç dakikadır?",
+      "correct": "90",
+      "wrong1": "75",
+      "wrong2": "100",
+      "explanation": "1 saat 60 dakika, yarım saat 30 dakikadır. 60 + 30 = 90 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 tam saat ile yarım saatin toplamı kaç dakikadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "90",
+        "wrong1": "75",
+        "wrong2": "100",
+        "explanation": "1 saat 60 dakika, yarım saat 30 dakikadır. 60 + 30 = 90 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_034",
+      "level": "kolay",
+      "premise": null,
+      "text": "3 tane çeyrek saat toplam kaç dakikadır?",
+      "correct": "45",
+      "wrong1": "30",
+      "wrong2": "60",
+      "explanation": "1 çeyrek saat 15 dakikadır. 15 x 3 = 45 dakika eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "3 tane çeyrek saat toplam kaç dakikadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "45",
+        "wrong1": "30",
+        "wrong2": "60",
+        "explanation": "1 çeyrek saat 15 dakikadır. 15 x 3 = 45 dakika eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_035",
+      "level": "kolay",
+      "premise": null,
+      "text": "Analog saatte peş peşe gelen iki sayı arası, 1 ile 2 arası gibi, kaç dakikadır?",
+      "correct": "5",
+      "wrong1": "1",
+      "wrong2": "10",
+      "explanation": "Saat üzerindeki sayılar 5'er dakikalık aralıklara sahiptir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Analog saatte peş peşe gelen iki sayı arası, 1 ile 2 arası gibi, kaç dakikadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "5",
+        "wrong1": "1",
+        "wrong2": "10",
+        "explanation": "Saat üzerindeki sayılar 5'er dakikalık aralıklara sahiptir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_036",
+      "level": "kolay",
+      "premise": "[[clock:a:3:05]]",
+      "text": "Buna göre yelkovan tam 1 rakamının üzerindeyken saat kaç geçiyordur?",
+      "correct": "5 geçiyor",
+      "wrong1": "1 geçiyor",
+      "wrong2": "10 geçiyor",
+      "explanation": "Yelkovan 12'den 1'e geldiğinde 5 dakikalık bir dilim ilerlemiş olur.\n\n[[clockarc:3:05:12:1]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yelkovan tam 1 rakamının üzerindeyken saat kaç geçiyordur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:3:05]]"
+            }
+          ]
+        },
+        "correct": "5 geçiyor",
+        "wrong1": "1 geçiyor",
+        "wrong2": "10 geçiyor",
+        "explanation": "Yelkovan 12'den 1'e geldiğinde 5 dakikalık bir dilim ilerlemiş olur.\n\n[[clockarc:3:05:12:1]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_037",
+      "level": "kolay",
+      "premise": "[[clock:a:3:10]]",
+      "text": "Buna göre yelkovan tam 2 rakamının üzerindeyken saat kaç geçiyordur?",
+      "correct": "10 geçiyor",
+      "wrong1": "2 geçiyor",
+      "wrong2": "15 geçiyor",
+      "explanation": "Yelkovan 12'den 2'ye geldiğinde iki adet 5 dakikalık dilim geçer, yani 10 geçiyor olur.\n\n[[clockarc:3:10:12:2]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yelkovan tam 2 rakamının üzerindeyken saat kaç geçiyordur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:3:10]]"
+            }
+          ]
+        },
+        "correct": "10 geçiyor",
+        "wrong1": "2 geçiyor",
+        "wrong2": "15 geçiyor",
+        "explanation": "Yelkovan 12'den 2'ye geldiğinde iki adet 5 dakikalık dilim geçer, yani 10 geçiyor olur.\n\n[[clockarc:3:10:12:2]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_038",
+      "level": "kolay",
+      "premise": "[[clock:a:4:20]]",
+      "text": "Buna göre yelkovan tam 4 rakamının üzerindeyken saat kaç geçiyordur?",
+      "correct": "20 geçiyor",
+      "wrong1": "15 geçiyor",
+      "wrong2": "25 geçiyor",
+      "explanation": "4 adet 5 dakikalık dilim ilerlemiş olur, 4 x 5 = 20 geçiyor demektir.\n\n[[clockarc:4:20:12:4]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yelkovan tam 4 rakamının üzerindeyken saat kaç geçiyordur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:4:20]]"
+            }
+          ]
+        },
+        "correct": "20 geçiyor",
+        "wrong1": "15 geçiyor",
+        "wrong2": "25 geçiyor",
+        "explanation": "4 adet 5 dakikalık dilim ilerlemiş olur, 4 x 5 = 20 geçiyor demektir.\n\n[[clockarc:4:20:12:4]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_039",
+      "level": "kolay",
+      "premise": "[[clock:a:6:25]]",
+      "text": "Buna göre yelkovan tam 5 rakamının üzerindeyken saat kaç geçiyordur?",
+      "correct": "25 geçiyor",
+      "wrong1": "20 geçiyor",
+      "wrong2": "30 geçiyor",
+      "explanation": "5 adet 5 dakikalık dilim ilerlemiş olur, 5 x 5 = 25 geçiyor demektir.\n\n[[clockarc:6:25:12:5]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yelkovan tam 5 rakamının üzerindeyken saat kaç geçiyordur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:6:25]]"
+            }
+          ]
+        },
+        "correct": "25 geçiyor",
+        "wrong1": "20 geçiyor",
+        "wrong2": "30 geçiyor",
+        "explanation": "5 adet 5 dakikalık dilim ilerlemiş olur, 5 x 5 = 25 geçiyor demektir.\n\n[[clockarc:6:25:12:5]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_040",
+      "level": "kolay",
+      "premise": "[[clock:a:11:50]]",
+      "text": "Buna göre yelkovan tam 10 rakamının üzerindeyken saate kaç var denir?",
+      "correct": "10 var",
+      "wrong1": "15 var",
+      "wrong2": "5 var",
+      "explanation": "10 rakamından 12 rakamına kadar iki tane 5 dakikalık dilim kalmıştır, yani 10 dakika (10 var) demektir.\n\n[[clockarc:11:50:10:12]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yelkovan tam 10 rakamının üzerindeyken saate kaç var denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:11:50]]"
+            }
+          ]
+        },
+        "correct": "10 var",
+        "wrong1": "15 var",
+        "wrong2": "5 var",
+        "explanation": "10 rakamından 12 rakamına kadar iki tane 5 dakikalık dilim kalmıştır, yani 10 dakika (10 var) demektir.\n\n[[clockarc:11:50:10:12]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_041",
+      "level": "orta",
+      "premise": "[[clock:a:1:00]]",
+      "text": "Buna göre öğleden sonra saat 1'in dijital saatteki gösterimi nasıldır?",
+      "correct": "13:00",
+      "wrong1": "01:00",
+      "wrong2": "11:00",
+      "explanation": "1'in üzerine 12 saat eklendiğinde dijital saat 13:00'ı gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre öğleden sonra saat 1'in dijital saatteki gösterimi nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:1:00]]"
+            }
+          ]
+        },
+        "correct": "13:00",
+        "wrong1": "01:00",
+        "wrong2": "11:00",
+        "explanation": "1'in üzerine 12 saat eklendiğinde dijital saat 13:00'ı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_042",
+      "level": "orta",
+      "premise": "[[clock:a:4:00]]",
+      "text": "Buna göre öğleden sonra saat 4'ün dijital saatteki gösterimi nasıldır?",
+      "correct": "16:00",
+      "wrong1": "14:00",
+      "wrong2": "04:00",
+      "explanation": "4'ün üzerine 12 saat eklendiğinde dijital saat 16:00'ı gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre öğleden sonra saat 4'ün dijital saatteki gösterimi nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:4:00]]"
+            }
+          ]
+        },
+        "correct": "16:00",
+        "wrong1": "14:00",
+        "wrong2": "04:00",
+        "explanation": "4'ün üzerine 12 saat eklendiğinde dijital saat 16:00'ı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_043",
+      "level": "orta",
+      "premise": "[[clock:a:7:00]]",
+      "text": "Buna göre akşam saat 7'nin dijital saatteki gösterimi nasıldır?",
+      "correct": "19:00",
+      "wrong1": "07:00",
+      "wrong2": "17:00",
+      "explanation": "7'nin üzerine 12 saat eklendiğinde dijital saat 19:00'ı gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre akşam saat 7'nin dijital saatteki gösterimi nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:7:00]]"
+            }
+          ]
+        },
+        "correct": "19:00",
+        "wrong1": "07:00",
+        "wrong2": "17:00",
+        "explanation": "7'nin üzerine 12 saat eklendiğinde dijital saat 19:00'ı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_044",
+      "level": "orta",
+      "premise": "[[clock:a:9:00]]",
+      "text": "Buna göre akşam saat 9'un dijital saatteki gösterimi nasıldır?",
+      "correct": "21:00",
+      "wrong1": "19:00",
+      "wrong2": "22:00",
+      "explanation": "9'un üzerine 12 saat eklendiğinde dijital saat 21:00'ı gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre akşam saat 9'un dijital saatteki gösterimi nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:9:00]]"
+            }
+          ]
+        },
+        "correct": "21:00",
+        "wrong1": "19:00",
+        "wrong2": "22:00",
+        "explanation": "9'un üzerine 12 saat eklendiğinde dijital saat 21:00'ı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_045",
+      "level": "orta",
+      "premise": "[[clock:a:11:00]]",
+      "text": "Buna göre gece saat 11'in dijital saatteki gösterimi nasıldır?",
+      "correct": "23:00",
+      "wrong1": "11:00",
+      "wrong2": "21:00",
+      "explanation": "11'in üzerine 12 saat eklendiğinde dijital saat 23:00'ı gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre gece saat 11'in dijital saatteki gösterimi nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:11:00]]"
+            }
+          ]
+        },
+        "correct": "23:00",
+        "wrong1": "11:00",
+        "wrong2": "21:00",
+        "explanation": "11'in üzerine 12 saat eklendiğinde dijital saat 23:00'ı gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_046",
+      "level": "orta",
+      "premise": "[[clock:d:14:00]]",
+      "text": "Buna göre dijital saatte 14:00 günlük konuşmada nasıl okunur?",
+      "correct": "Öğleden sonra 2",
+      "wrong1": "Öğleden önce 2",
+      "wrong2": "Öğleden sonra 4",
+      "explanation": "14'ten 12'yi çıkardığımızda 2 kalır. Bu yüzden öğleden sonra saat 2'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dijital saatte 14:00 günlük konuşmada nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:14:00]]"
+            }
+          ]
+        },
+        "correct": "Öğleden sonra 2",
+        "wrong1": "Öğleden önce 2",
+        "wrong2": "Öğleden sonra 4",
+        "explanation": "14'ten 12'yi çıkardığımızda 2 kalır. Bu yüzden öğleden sonra saat 2'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_047",
+      "level": "orta",
+      "premise": "[[clock:d:17:30]]",
+      "text": "Buna göre dijital saatte 17:30 günlük konuşmada nasıl okunur?",
+      "correct": "Öğleden sonra 5 buçuk",
+      "wrong1": "Öğleden sonra 7 buçuk",
+      "wrong2": "Akşam 6 buçuk",
+      "explanation": "17'den 12 çıkarsa 5 kalır. 30 dakika ise buçuk demektir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dijital saatte 17:30 günlük konuşmada nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:17:30]]"
+            }
+          ]
+        },
+        "correct": "Öğleden sonra 5 buçuk",
+        "wrong1": "Öğleden sonra 7 buçuk",
+        "wrong2": "Akşam 6 buçuk",
+        "explanation": "17'den 12 çıkarsa 5 kalır. 30 dakika ise buçuk demektir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_048",
+      "level": "orta",
+      "premise": "[[clock:d:20:15]]",
+      "text": "Buna göre dijital saatte 20:15 günlük konuşmada nasıl okunur?",
+      "correct": "Akşam 8'i çeyrek geçiyor",
+      "wrong1": "Akşam 10'u çeyrek geçiyor",
+      "wrong2": "Akşam 8'e çeyrek var",
+      "explanation": "20'den 12 çıkarsa 8 kalır. 15 dakika çeyrek geçiyor olarak okunur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dijital saatte 20:15 günlük konuşmada nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:20:15]]"
+            }
+          ]
+        },
+        "correct": "Akşam 8'i çeyrek geçiyor",
+        "wrong1": "Akşam 10'u çeyrek geçiyor",
+        "wrong2": "Akşam 8'e çeyrek var",
+        "explanation": "20'den 12 çıkarsa 8 kalır. 15 dakika çeyrek geçiyor olarak okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_049",
+      "level": "orta",
+      "premise": "[[clock:d:19:45]]",
+      "text": "Buna göre dijital saatte 19:45 günlük konuşmada nasıl okunur?",
+      "correct": "Akşam 8'e çeyrek var",
+      "wrong1": "Akşam 7'ye çeyrek var",
+      "wrong2": "Akşam 7'yi çeyrek geçiyor",
+      "explanation": "19 saat 7'dir. 45 geçmesi, bir sonraki saate (8'e) 15 dakika (çeyrek) kaldığını gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dijital saatte 19:45 günlük konuşmada nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:19:45]]"
+            }
+          ]
+        },
+        "correct": "Akşam 8'e çeyrek var",
+        "wrong1": "Akşam 7'ye çeyrek var",
+        "wrong2": "Akşam 7'yi çeyrek geçiyor",
+        "explanation": "19 saat 7'dir. 45 geçmesi, bir sonraki saate (8'e) 15 dakika (çeyrek) kaldığını gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_050",
+      "level": "orta",
+      "premise": "[[clock:d:0:00]]",
+      "text": "Buna göre gece yarısını ve yeni günün tam başlangıcını ifade eden dijital saat gösterimi hangisidir?",
+      "correct": "00:00",
+      "wrong1": "12:00",
+      "wrong2": "Gece yarısından hemen önce",
+      "explanation": "Gece yarısı gün biter ve yeni gün 00:00 ile başlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre gece yarısını ve yeni günün tam başlangıcını ifade eden dijital saat gösterimi hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:0:00]]"
+            }
+          ]
+        },
+        "correct": "00:00",
+        "wrong1": "12:00",
+        "wrong2": "Gece yarısından hemen önce",
+        "explanation": "Gece yarısı gün biter ve yeni gün 00:00 ile başlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_051",
+      "level": "orta",
+      "premise": null,
+      "text": "1 saat 10 dakika toplam kaç dakikaya eşittir?",
+      "correct": "70",
+      "wrong1": "60",
+      "wrong2": "80",
+      "explanation": "1 saat 60 dakikadır. 60 dakikaya 10 dakika eklersek 70 dakika olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 saat 10 dakika toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "70",
+        "wrong1": "60",
+        "wrong2": "80",
+        "explanation": "1 saat 60 dakikadır. 60 dakikaya 10 dakika eklersek 70 dakika olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_052",
+      "level": "orta",
+      "premise": null,
+      "text": "1 saat 25 dakika toplam kaç dakikaya eşittir?",
+      "correct": "85",
+      "wrong1": "75",
+      "wrong2": "95",
+      "explanation": "1 saat 60 dakikadır. 60 dakikaya 25 dakika eklersek 85 dakika olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 saat 25 dakika toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "85",
+        "wrong1": "75",
+        "wrong2": "95",
+        "explanation": "1 saat 60 dakikadır. 60 dakikaya 25 dakika eklersek 85 dakika olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_053",
+      "level": "orta",
+      "premise": null,
+      "text": "1 saat 40 dakika toplam kaç dakikaya eşittir?",
+      "correct": "100",
+      "wrong1": "90",
+      "wrong2": "110",
+      "explanation": "1 saat 60 dakikadır. 60 dakikaya 40 dakika eklersek 100 dakika olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 saat 40 dakika toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "100",
+        "wrong1": "90",
+        "wrong2": "110",
+        "explanation": "1 saat 60 dakikadır. 60 dakikaya 40 dakika eklersek 100 dakika olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_054",
+      "level": "orta",
+      "premise": null,
+      "text": "2 saat 15 dakika toplam kaç dakikaya eşittir?",
+      "correct": "135",
+      "wrong1": "125",
+      "wrong2": "145",
+      "explanation": "2 saat 120 dakikadır. 120 dakikaya 15 dakika eklersek 135 dakika olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 saat 15 dakika toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "135",
+        "wrong1": "125",
+        "wrong2": "145",
+        "explanation": "2 saat 120 dakikadır. 120 dakikaya 15 dakika eklersek 135 dakika olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_055",
+      "level": "orta",
+      "premise": null,
+      "text": "2 saat 30 dakika toplam kaç dakikaya eşittir?",
+      "correct": "150",
+      "wrong1": "140",
+      "wrong2": "160",
+      "explanation": "2 saat 120 dakikadır. 120 dakikaya 30 dakika eklersek 150 dakika olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 saat 30 dakika toplam kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "150",
+        "wrong1": "140",
+        "wrong2": "160",
+        "explanation": "2 saat 120 dakikadır. 120 dakikaya 30 dakika eklersek 150 dakika olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_056",
+      "level": "orta",
+      "premise": null,
+      "text": "1 saat 15 dakika toplam kaç dakikadır?",
+      "correct": "75",
+      "wrong1": "65",
+      "wrong2": "85",
+      "explanation": "1 saat 60 dakikadır. 60 + 15 = 75 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 saat 15 dakika toplam kaç dakikadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "75",
+        "wrong1": "65",
+        "wrong2": "85",
+        "explanation": "1 saat 60 dakikadır. 60 + 15 = 75 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_057",
+      "level": "orta",
+      "premise": null,
+      "text": "1 saat 30 dakika toplam kaç dakikadır?",
+      "correct": "90",
+      "wrong1": "80",
+      "wrong2": "100",
+      "explanation": "1 saat 60 dakikadır. 60 + 30 = 90 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 saat 30 dakika toplam kaç dakikadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "90",
+        "wrong1": "80",
+        "wrong2": "100",
+        "explanation": "1 saat 60 dakikadır. 60 + 30 = 90 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_058",
+      "level": "orta",
+      "premise": null,
+      "text": "1 saat 45 dakika toplam kaç dakikadır?",
+      "correct": "105",
+      "wrong1": "115",
+      "wrong2": "95",
+      "explanation": "1 saat 60 dakikadır. 60 + 45 = 105 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 saat 45 dakika toplam kaç dakikadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "105",
+        "wrong1": "115",
+        "wrong2": "95",
+        "explanation": "1 saat 60 dakikadır. 60 + 45 = 105 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_059",
+      "level": "orta",
+      "premise": null,
+      "text": "130 dakika kaç saat ve kaç dakikaya eşittir?",
+      "correct": "2 saat 10 dakika",
+      "wrong1": "2 saat 20 dakika",
+      "wrong2": "1 saat 30 dakika",
+      "explanation": "130'un içinden 120'yi (2 saat) çıkarırsak geriye 10 dakika kalır. Yani 2 saat 10 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "130 dakika kaç saat ve kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2 saat 10 dakika",
+        "wrong1": "2 saat 20 dakika",
+        "wrong2": "1 saat 30 dakika",
+        "explanation": "130'un içinden 120'yi (2 saat) çıkarırsak geriye 10 dakika kalır. Yani 2 saat 10 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_060",
+      "level": "orta",
+      "premise": null,
+      "text": "150 dakika kaç saat ve kaç dakikaya eşittir?",
+      "correct": "2 saat 30 dakika",
+      "wrong1": "2 saat 40 dakika",
+      "wrong2": "3 saat",
+      "explanation": "150'nin içinden 120'yi (2 saat) çıkarırsak geriye 30 dakika kalır. Yani 2 saat 30 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "150 dakika kaç saat ve kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2 saat 30 dakika",
+        "wrong1": "2 saat 40 dakika",
+        "wrong2": "3 saat",
+        "explanation": "150'nin içinden 120'yi (2 saat) çıkarırsak geriye 30 dakika kalır. Yani 2 saat 30 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_061",
+      "level": "orta",
+      "premise": null,
+      "text": "1 ay 1 hafta toplam kaç güne eşittir?",
+      "correct": "37",
+      "wrong1": "35",
+      "wrong2": "40",
+      "explanation": "1 ay 30 gün, 1 hafta 7 gündür. 30 + 7 = 37 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 ay 1 hafta toplam kaç güne eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "37",
+        "wrong1": "35",
+        "wrong2": "40",
+        "explanation": "1 ay 30 gün, 1 hafta 7 gündür. 30 + 7 = 37 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_062",
+      "level": "orta",
+      "premise": null,
+      "text": "1 ay 2 hafta toplam kaç güne eşittir?",
+      "correct": "44",
+      "wrong1": "40",
+      "wrong2": "37",
+      "explanation": "1 ay 30 gün, 2 hafta 14 gündür. 30 + 14 = 44 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 ay 2 hafta toplam kaç güne eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "44",
+        "wrong1": "40",
+        "wrong2": "37",
+        "explanation": "1 ay 30 gün, 2 hafta 14 gündür. 30 + 14 = 44 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_063",
+      "level": "orta",
+      "premise": null,
+      "text": "2 ay 5 gün toplam kaç güne eşittir?",
+      "correct": "65",
+      "wrong1": "55",
+      "wrong2": "75",
+      "explanation": "2 ay 60 gündür. 60 + 5 = 65 gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 ay 5 gün toplam kaç güne eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "65",
+        "wrong1": "55",
+        "wrong2": "75",
+        "explanation": "2 ay 60 gündür. 60 + 5 = 65 gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_064",
+      "level": "orta",
+      "premise": null,
+      "text": "1 yıl 2 ay toplam kaç aya eşittir?",
+      "correct": "14",
+      "wrong1": "12",
+      "wrong2": "16",
+      "explanation": "1 yıl 12 aydır. 12 + 2 = 14 ay eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 yıl 2 ay toplam kaç aya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14",
+        "wrong1": "12",
+        "wrong2": "16",
+        "explanation": "1 yıl 12 aydır. 12 + 2 = 14 ay eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_065",
+      "level": "orta",
+      "premise": null,
+      "text": "1 yıl 5 ay toplam kaç aya eşittir?",
+      "correct": "17",
+      "wrong1": "15",
+      "wrong2": "20",
+      "explanation": "1 yıl 12 aydır. 12 + 5 = 17 ay eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 yıl 5 ay toplam kaç aya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "17",
+        "wrong1": "15",
+        "wrong2": "20",
+        "explanation": "1 yıl 12 aydır. 12 + 5 = 17 ay eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_066",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 10:00'da başlayan bir etkinlik 11:30'da bitmiştir. Etkinlik ne kadar sürmüştür?",
+      "correct": "1 saat 30 dakika",
+      "wrong1": "1 saat",
+      "wrong2": "2 saat",
+      "explanation": "11:30'dan 10:00'ı çıkarırsak saatler arası 1, dakikalar arası 30 fark vardır. Sonuç 1 saat 30 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 10:00'da başlayan bir etkinlik 11:30'da bitmiştir. Etkinlik ne kadar sürmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1 saat 30 dakika",
+        "wrong1": "1 saat",
+        "wrong2": "2 saat",
+        "explanation": "11:30'dan 10:00'ı çıkarırsak saatler arası 1, dakikalar arası 30 fark vardır. Sonuç 1 saat 30 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_067",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 14:15'te başlayan bir mola 15:00'da bitmiştir. Mola kaç dakika sürmüştür?",
+      "correct": "45 dakika",
+      "wrong1": "30 dakika",
+      "wrong2": "1 saat",
+      "explanation": "14:15'ten 15:00'a geçiş için 60'tan 15'i çıkarırız, sonuç 45 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 14:15'te başlayan bir mola 15:00'da bitmiştir. Mola kaç dakika sürmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "45 dakika",
+        "wrong1": "30 dakika",
+        "wrong2": "1 saat",
+        "explanation": "14:15'ten 15:00'a geçiş için 60'tan 15'i çıkarırız, sonuç 45 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_068",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 09:20'de başlayan bir ders 10:00'da bitmiştir. Ders kaç dakika sürmüştür?",
+      "correct": "40 dakika",
+      "wrong1": "50 dakika",
+      "wrong2": "30 dakika",
+      "explanation": "09:20'den 10:00'a geçiş için 60'tan 20'yi çıkarırız, sonuç 40 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 09:20'de başlayan bir ders 10:00'da bitmiştir. Ders kaç dakika sürmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "40 dakika",
+        "wrong1": "50 dakika",
+        "wrong2": "30 dakika",
+        "explanation": "09:20'den 10:00'a geçiş için 60'tan 20'yi çıkarırız, sonuç 40 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_069",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 13:40'ta başlayan bir belgesel 14:10'da bitmiştir. Belgesel kaç dakika sürmüştür?",
+      "correct": "30 dakika",
+      "wrong1": "40 dakika",
+      "wrong2": "20 dakika",
+      "explanation": "13:40'tan 14:00'a 20 dakika, 14:00'dan 14:10'a 10 dakika vardır. Toplam 20+10=30 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 13:40'ta başlayan bir belgesel 14:10'da bitmiştir. Belgesel kaç dakika sürmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "30 dakika",
+        "wrong1": "40 dakika",
+        "wrong2": "20 dakika",
+        "explanation": "13:40'tan 14:00'a 20 dakika, 14:00'dan 14:10'a 10 dakika vardır. Toplam 20+10=30 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_070",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 20:30'da başlayan bir dizi 21:15'te bitmiştir. Dizi kaç dakika sürmüştür?",
+      "correct": "45 dakika",
+      "wrong1": "30 dakika",
+      "wrong2": "50 dakika",
+      "explanation": "20:30'dan 21:00'a 30 dakika, 21:00'dan 21:15'e 15 dakika vardır. Toplam 30+15=45 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 20:30'da başlayan bir dizi 21:15'te bitmiştir. Dizi kaç dakika sürmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "45 dakika",
+        "wrong1": "30 dakika",
+        "wrong2": "50 dakika",
+        "explanation": "20:30'dan 21:00'a 30 dakika, 21:00'dan 21:15'e 15 dakika vardır. Toplam 30+15=45 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_071",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 15:20 iken 30 dakika sonra saat kaç olur?",
+      "correct": "15:50",
+      "wrong1": "16:10",
+      "wrong2": "15:40",
+      "explanation": "20 dakika ile 30 dakikayı toplarız. Saat değişmez, sonuç 15:50 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 15:20 iken 30 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "15:50",
+        "wrong1": "16:10",
+        "wrong2": "15:40",
+        "explanation": "20 dakika ile 30 dakikayı toplarız. Saat değişmez, sonuç 15:50 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_072",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 10:15 iken 40 dakika sonra saat kaç olur?",
+      "correct": "10:55",
+      "wrong1": "11:05",
+      "wrong2": "10:45",
+      "explanation": "15 dakika ile 40 dakikayı toplarız. Saat değişmez, sonuç 10:55 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 10:15 iken 40 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "10:55",
+        "wrong1": "11:05",
+        "wrong2": "10:45",
+        "explanation": "15 dakika ile 40 dakikayı toplarız. Saat değişmez, sonuç 10:55 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_073",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 08:30 iken 20 dakika sonra saat kaç olur?",
+      "correct": "08:50",
+      "wrong1": "09:00",
+      "wrong2": "08:40",
+      "explanation": "30 dakika ile 20 dakikayı toplarız. Saat değişmez, sonuç 08:50 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 08:30 iken 20 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "08:50",
+        "wrong1": "09:00",
+        "wrong2": "08:40",
+        "explanation": "30 dakika ile 20 dakikayı toplarız. Saat değişmez, sonuç 08:50 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_074",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 18:40 iken 15 dakika sonra saat kaç olur?",
+      "correct": "18:55",
+      "wrong1": "19:05",
+      "wrong2": "18:45",
+      "explanation": "40 dakika ile 15 dakikayı toplarız. Saat değişmez, sonuç 18:55 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 18:40 iken 15 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "18:55",
+        "wrong1": "19:05",
+        "wrong2": "18:45",
+        "explanation": "40 dakika ile 15 dakikayı toplarız. Saat değişmez, sonuç 18:55 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_075",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 14:50 iken 20 dakika önce saat kaçtı?",
+      "correct": "14:30",
+      "wrong1": "14:20",
+      "wrong2": "14:40",
+      "explanation": "50 dakikadan 20 dakika çıkarırsak 30 kalır. Saat 14:30 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 14:50 iken 20 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14:30",
+        "wrong1": "14:20",
+        "wrong2": "14:40",
+        "explanation": "50 dakikadan 20 dakika çıkarırsak 30 kalır. Saat 14:30 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_076",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 09:40 iken 30 dakika önce saat kaçtı?",
+      "correct": "09:10",
+      "wrong1": "09:20",
+      "wrong2": "08:50",
+      "explanation": "40 dakikadan 30 dakika çıkarırsak 10 kalır. Saat 09:10 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 09:40 iken 30 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "09:10",
+        "wrong1": "09:20",
+        "wrong2": "08:50",
+        "explanation": "40 dakikadan 30 dakika çıkarırsak 10 kalır. Saat 09:10 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_077",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 16:15 iken 10 dakika önce saat kaçtı?",
+      "correct": "16:05",
+      "wrong1": "15:55",
+      "wrong2": "16:10",
+      "explanation": "15 dakikadan 10 dakika çıkarırsak 5 kalır. Saat 16:05 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 16:15 iken 10 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "16:05",
+        "wrong1": "15:55",
+        "wrong2": "16:10",
+        "explanation": "15 dakikadan 10 dakika çıkarırsak 5 kalır. Saat 16:05 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_078",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 20:45 iken 25 dakika önce saat kaçtı?",
+      "correct": "20:20",
+      "wrong1": "20:15",
+      "wrong2": "20:30",
+      "explanation": "45 dakikadan 25 dakika çıkarırsak 20 kalır. Saat 20:20 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 20:45 iken 25 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "20:20",
+        "wrong1": "20:15",
+        "wrong2": "20:30",
+        "explanation": "45 dakikadan 25 dakika çıkarırsak 20 kalır. Saat 20:20 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_079",
+      "level": "orta",
+      "premise": null,
+      "text": "Bugün günlerden Salı ise, 4 gün sonra günlerden ne olur?",
+      "correct": "Cumartesi",
+      "wrong1": "Cuma",
+      "wrong2": "Pazar",
+      "explanation": "Salı'nın üzerine 4 gün sayalım: Çarşamba, Perşembe, Cuma, Cumartesi.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bugün günlerden Salı ise, 4 gün sonra günlerden ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cumartesi",
+        "wrong1": "Cuma",
+        "wrong2": "Pazar",
+        "explanation": "Salı'nın üzerine 4 gün sayalım: Çarşamba, Perşembe, Cuma, Cumartesi.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_080",
+      "level": "orta",
+      "premise": null,
+      "text": "Dün günlerden Çarşamba ise, yarın günlerden ne olur?",
+      "correct": "Cuma",
+      "wrong1": "Perşembe",
+      "wrong2": "Cumartesi",
+      "explanation": "Dün Çarşamba ise bugün Perşembe'dir. Bugün Perşembe ise yarın Cuma olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Dün günlerden Çarşamba ise, yarın günlerden ne olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cuma",
+        "wrong1": "Perşembe",
+        "wrong2": "Cumartesi",
+        "explanation": "Dün Çarşamba ise bugün Perşembe'dir. Bugün Perşembe ise yarın Cuma olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_081",
+      "level": "orta",
+      "premise": null,
+      "text": "Yarın günlerden Pazar ise, dün günlerden neydi?",
+      "correct": "Cuma",
+      "wrong1": "Cumartesi",
+      "wrong2": "Perşembe",
+      "explanation": "Yarın Pazar ise bugün Cumartesi'dir. Bugün Cumartesi ise dün Cuma'dır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yarın günlerden Pazar ise, dün günlerden neydi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cuma",
+        "wrong1": "Cumartesi",
+        "wrong2": "Perşembe",
+        "explanation": "Yarın Pazar ise bugün Cumartesi'dir. Bugün Cumartesi ise dün Cuma'dır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_082",
+      "level": "orta",
+      "premise": null,
+      "text": "1 tam saatten çeyrek saati çıkarırsak geriye kaç dakika kalır?",
+      "correct": "45",
+      "wrong1": "30",
+      "wrong2": "15",
+      "explanation": "1 saat 60 dakikadır. Çeyrek saat 15 dakikadır. 60'tan 15 çıkarsa geriye 45 dakika kalır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 tam saatten çeyrek saati çıkarırsak geriye kaç dakika kalır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "45",
+        "wrong1": "30",
+        "wrong2": "15",
+        "explanation": "1 saat 60 dakikadır. Çeyrek saat 15 dakikadır. 60'tan 15 çıkarsa geriye 45 dakika kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_083",
+      "level": "orta",
+      "premise": null,
+      "text": "2 tane yarım gün toplam kaç saate eşittir?",
+      "correct": "24",
+      "wrong1": "12",
+      "wrong2": "48",
+      "explanation": "İki yarım bir bütünü oluşturur. 1 tam gün 24 saattir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 tane yarım gün toplam kaç saate eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "24",
+        "wrong1": "12",
+        "wrong2": "48",
+        "explanation": "İki yarım bir bütünü oluşturur. 1 tam gün 24 saattir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_084",
+      "level": "orta",
+      "premise": null,
+      "text": "Yarım gün toplam kaç saate eşittir?",
+      "correct": "12",
+      "wrong1": "24",
+      "wrong2": "6",
+      "explanation": "1 tam gün 24 saattir. 24'ün yarısı 12'dir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yarım gün toplam kaç saate eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "12",
+        "wrong1": "24",
+        "wrong2": "6",
+        "explanation": "1 tam gün 24 saattir. 24'ün yarısı 12'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_085",
+      "level": "orta",
+      "premise": null,
+      "text": "Çeyrek gün toplam kaç saate eşittir?",
+      "correct": "6",
+      "wrong1": "12",
+      "wrong2": "8",
+      "explanation": "1 gün 24 saattir. 24'ü 4'e böldüğümüzde 6 saat çıkar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çeyrek gün toplam kaç saate eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "6",
+        "wrong1": "12",
+        "wrong2": "8",
+        "explanation": "1 gün 24 saattir. 24'ü 4'e böldüğümüzde 6 saat çıkar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_086",
+      "level": "orta",
+      "premise": null,
+      "text": "Yılın 1. ve ilk ayı aşağıdakilerden hangisidir?",
+      "correct": "Ocak",
+      "wrong1": "Aralık",
+      "wrong2": "Şubat",
+      "explanation": "Yeni bir yıl Ocak ayı ile başlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yılın 1. ve ilk ayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ocak",
+        "wrong1": "Aralık",
+        "wrong2": "Şubat",
+        "explanation": "Yeni bir yıl Ocak ayı ile başlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_087",
+      "level": "orta",
+      "premise": null,
+      "text": "Yılın 12. ve en son ayı aşağıdakilerden hangisidir?",
+      "correct": "Aralık",
+      "wrong1": "Ocak",
+      "wrong2": "Kasım",
+      "explanation": "Yılın son ayı Aralık'tır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yılın 12. ve en son ayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aralık",
+        "wrong1": "Ocak",
+        "wrong2": "Kasım",
+        "explanation": "Yılın son ayı Aralık'tır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_088",
+      "level": "orta",
+      "premise": null,
+      "text": "Haftanın 1. ve ilk günü aşağıdakilerden hangisidir?",
+      "correct": "Pazartesi",
+      "wrong1": "Pazar",
+      "wrong2": "Salı",
+      "explanation": "Takvimlerimizde hafta Pazartesi günü ile başlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Haftanın 1. ve ilk günü aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Pazartesi",
+        "wrong1": "Pazar",
+        "wrong2": "Salı",
+        "explanation": "Takvimlerimizde hafta Pazartesi günü ile başlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_089",
+      "level": "orta",
+      "premise": null,
+      "text": "Haftanın 5. ve okulun son günü aşağıdakilerden hangisidir?",
+      "correct": "Cuma",
+      "wrong1": "Perşembe",
+      "wrong2": "Cumartesi",
+      "explanation": "Hafta içi günlerin beşincisi Cuma günüdür.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Haftanın 5. ve okulun son günü aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cuma",
+        "wrong1": "Perşembe",
+        "wrong2": "Cumartesi",
+        "explanation": "Hafta içi günlerin beşincisi Cuma günüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_090",
+      "level": "orta",
+      "premise": null,
+      "text": "Yılın 3. ayı aşağıdakilerden hangisidir?",
+      "correct": "Mart",
+      "wrong1": "Nisan",
+      "wrong2": "Şubat",
+      "explanation": "Aylar sırasıyla Ocak, Şubat ve Mart şeklinde ilerler. 3. ay Mart'tır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yılın 3. ayı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mart",
+        "wrong1": "Nisan",
+        "wrong2": "Şubat",
+        "explanation": "Aylar sırasıyla Ocak, Şubat ve Mart şeklinde ilerler. 3. ay Mart'tır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_091",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 10:45 iken 30 dakika sonra saat kaç olur?",
+      "correct": "11:15",
+      "wrong1": "10:75",
+      "wrong2": "11:05",
+      "explanation": "45 + 30 = 75 dakika. 75 dakika = 1 saat 15 dakikadır. 10'a 1 saat eklersek 11 olur. Sonuç 11:15.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 10:45 iken 30 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "11:15",
+        "wrong1": "10:75",
+        "wrong2": "11:05",
+        "explanation": "45 + 30 = 75 dakika. 75 dakika = 1 saat 15 dakikadır. 10'a 1 saat eklersek 11 olur. Sonuç 11:15.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_092",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 14:50 iken 25 dakika sonra saat kaç olur?",
+      "correct": "15:15",
+      "wrong1": "14:75",
+      "wrong2": "15:05",
+      "explanation": "50 + 25 = 75 dakika. 75 dakika = 1 saat 15 dakikadır. 14'e 1 saat eklersek 15 olur. Sonuç 15:15.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 14:50 iken 25 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "15:15",
+        "wrong1": "14:75",
+        "wrong2": "15:05",
+        "explanation": "50 + 25 = 75 dakika. 75 dakika = 1 saat 15 dakikadır. 14'e 1 saat eklersek 15 olur. Sonuç 15:15.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_093",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 08:35 iken 40 dakika sonra saat kaç olur?",
+      "correct": "09:15",
+      "wrong1": "08:75",
+      "wrong2": "09:05",
+      "explanation": "35 + 40 = 75 dakika. 75 dakika = 1 saat 15 dakikadır. 8'e 1 saat eklersek 9 olur. Sonuç 09:15.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 08:35 iken 40 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "09:15",
+        "wrong1": "08:75",
+        "wrong2": "09:05",
+        "explanation": "35 + 40 = 75 dakika. 75 dakika = 1 saat 15 dakikadır. 8'e 1 saat eklersek 9 olur. Sonuç 09:15.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_094",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 19:45 iken 35 dakika sonra saat kaç olur?",
+      "correct": "20:20",
+      "wrong1": "19:80",
+      "wrong2": "20:10",
+      "explanation": "45 + 35 = 80 dakika. 80 dakika = 1 saat 20 dakikadır. 19'a 1 saat eklersek 20 olur. Sonuç 20:20.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 19:45 iken 35 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "20:20",
+        "wrong1": "19:80",
+        "wrong2": "20:10",
+        "explanation": "45 + 35 = 80 dakika. 80 dakika = 1 saat 20 dakikadır. 19'a 1 saat eklersek 20 olur. Sonuç 20:20.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_095",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 11:10 iken 20 dakika önce saat kaçtı?",
+      "correct": "10:50",
+      "wrong1": "10:40",
+      "wrong2": "11:30",
+      "explanation": "10'dan 20 çıkmaz. 11'den 1 saat aldık, dakika 70 oldu. 70 - 20 = 50 dk. Saat 10'a düştü. Sonuç 10:50.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 11:10 iken 20 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "10:50",
+        "wrong1": "10:40",
+        "wrong2": "11:30",
+        "explanation": "10'dan 20 çıkmaz. 11'den 1 saat aldık, dakika 70 oldu. 70 - 20 = 50 dk. Saat 10'a düştü. Sonuç 10:50.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_096",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 15:15 iken 30 dakika önce saat kaçtı?",
+      "correct": "14:45",
+      "wrong1": "14:30",
+      "wrong2": "15:45",
+      "explanation": "15'ten 30 çıkmaz. 1 saat aldık, 75 dk oldu. 75 - 30 = 45 dk. Saat 14'e düştü. Sonuç 14:45.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 15:15 iken 30 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14:45",
+        "wrong1": "14:30",
+        "wrong2": "15:45",
+        "explanation": "15'ten 30 çıkmaz. 1 saat aldık, 75 dk oldu. 75 - 30 = 45 dk. Saat 14'e düştü. Sonuç 14:45.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_097",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 09:20 iken 45 dakika önce saat kaçtı?",
+      "correct": "08:35",
+      "wrong1": "08:45",
+      "wrong2": "08:25",
+      "explanation": "20'den 45 çıkmaz. 1 saat aldık, 80 dk oldu. 80 - 45 = 35 dk. Saat 8'e düştü. Sonuç 08:35.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 09:20 iken 45 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "08:35",
+        "wrong1": "08:45",
+        "wrong2": "08:25",
+        "explanation": "20'den 45 çıkmaz. 1 saat aldık, 80 dk oldu. 80 - 45 = 35 dk. Saat 8'e düştü. Sonuç 08:35.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_098",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 18:05 iken 15 dakika önce saat kaçtı?",
+      "correct": "17:50",
+      "wrong1": "17:40",
+      "wrong2": "18:50",
+      "explanation": "5'ten 15 çıkmaz. 1 saat aldık, 65 dk oldu. 65 - 15 = 50 dk. Saat 17'ye düştü. Sonuç 17:50.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 18:05 iken 15 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "17:50",
+        "wrong1": "17:40",
+        "wrong2": "18:50",
+        "explanation": "5'ten 15 çıkmaz. 1 saat aldık, 65 dk oldu. 65 - 15 = 50 dk. Saat 17'ye düştü. Sonuç 17:50.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_099",
+      "level": "zor",
+      "premise": null,
+      "text": "Ali 14:40'ta ödev yapmaya başlamış ve 1 saat 30 dakika sürmüştür. Ali ödevini saat kaçta bitirmiştir?",
+      "correct": "16:10",
+      "wrong1": "15:70",
+      "wrong2": "16:00",
+      "explanation": "14:40 + 1 saat = 15:40. Üzerine 30 dakika eklersek (20 dk ile 16:00, kalan 10 dk ile) 16:10 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Ali 14:40'ta ödev yapmaya başlamış ve 1 saat 30 dakika sürmüştür. Ali ödevini saat kaçta bitirmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "16:10",
+        "wrong1": "15:70",
+        "wrong2": "16:00",
+        "explanation": "14:40 + 1 saat = 15:40. Üzerine 30 dakika eklersek (20 dk ile 16:00, kalan 10 dk ile) 16:10 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_100",
+      "level": "zor",
+      "premise": null,
+      "text": "Sınav 13:30'da başlamış ve tam 80 dakika sürmüştür. Sınav saat kaçta bitmiştir?",
+      "correct": "14:50",
+      "wrong1": "14:30",
+      "wrong2": "15:00",
+      "explanation": "80 dakika = 1 saat 20 dakikadır. 13:30 + 1 saat 20 dk = 14:50 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sınav 13:30'da başlamış ve tam 80 dakika sürmüştür. Sınav saat kaçta bitmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14:50",
+        "wrong1": "14:30",
+        "wrong2": "15:00",
+        "explanation": "80 dakika = 1 saat 20 dakikadır. 13:30 + 1 saat 20 dk = 14:50 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_101",
+      "level": "zor",
+      "premise": null,
+      "text": "Uçak 16:15'te havalanmış ve uçuş 100 dakika sürmüştür. Uçak saat kaçta inmiştir?",
+      "correct": "17:55",
+      "wrong1": "17:15",
+      "wrong2": "18:00",
+      "explanation": "100 dakika = 1 saat 40 dakikadır. 16:15 + 1 saat 40 dk = 17:55 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Uçak 16:15'te havalanmış ve uçuş 100 dakika sürmüştür. Uçak saat kaçta inmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "17:55",
+        "wrong1": "17:15",
+        "wrong2": "18:00",
+        "explanation": "100 dakika = 1 saat 40 dakikadır. 16:15 + 1 saat 40 dk = 17:55 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_102",
+      "level": "zor",
+      "premise": null,
+      "text": "Kardeşim 21:30'da uyudu ve sabah 07:00'de uyandı. Kardeşim toplam kaç saat uyudu?",
+      "correct": "9 saat 30 dakika",
+      "wrong1": "8 saat 30 dakika",
+      "wrong2": "10 saat",
+      "explanation": "21:30'dan gece 00:00'a 2 saat 30 dakika vardır. Sabah da 7 saat uyumuştur. Toplam 9 saat 30 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kardeşim 21:30'da uyudu ve sabah 07:00'de uyandı. Kardeşim toplam kaç saat uyudu?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "9 saat 30 dakika",
+        "wrong1": "8 saat 30 dakika",
+        "wrong2": "10 saat",
+        "explanation": "21:30'dan gece 00:00'a 2 saat 30 dakika vardır. Sabah da 7 saat uyumuştur. Toplam 9 saat 30 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_103",
+      "level": "zor",
+      "premise": null,
+      "text": "Gece 22:45'te uyuyan biri sabah 06:45'te uyanırsa kaç saat uyumuş olur?",
+      "correct": "8 saat",
+      "wrong1": "7 saat",
+      "wrong2": "9 saat",
+      "explanation": "Dakikalar aynı (45) olduğu için sadece saat farkını sayarız. 22'den 6'ya toplam 8 saat geçer.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Gece 22:45'te uyuyan biri sabah 06:45'te uyanırsa kaç saat uyumuş olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "8 saat",
+        "wrong1": "7 saat",
+        "wrong2": "9 saat",
+        "explanation": "Dakikalar aynı (45) olduğu için sadece saat farkını sayarız. 22'den 6'ya toplam 8 saat geçer.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_104",
+      "level": "zor",
+      "premise": null,
+      "text": "10:45'te başlayan 40 dakikalık bir dersten sonra 15 dakikalık teneffüs yapılıyor. Teneffüs bittiğinde saat kaç olur?",
+      "correct": "11:40",
+      "wrong1": "11:25",
+      "wrong2": "11:30",
+      "explanation": "10:45 + 40 dk = 11:25. 11:25 + 15 dk teneffüs = 11:40 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "10:45'te başlayan 40 dakikalık bir dersten sonra 15 dakikalık teneffüs yapılıyor. Teneffüs bittiğinde saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "11:40",
+        "wrong1": "11:25",
+        "wrong2": "11:30",
+        "explanation": "10:45 + 40 dk = 11:25. 11:25 + 15 dk teneffüs = 11:40 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_105",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir sinema filmi 20:00'de başlamış, ortasında 15 dakika mola verilmiş ve 22:05'te bitmiştir. Mola hariç film kaç dakika sürmüştür?",
+      "correct": "110 dakika",
+      "wrong1": "125 dakika",
+      "wrong2": "120 dakika",
+      "explanation": "Toplam geçen zaman 2 saat 5 dk = 125 dk. Mola (15 dk) çıkarılırsa 125 - 15 = 110 dakika film sürmüştür.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir sinema filmi 20:00'de başlamış, ortasında 15 dakika mola verilmiş ve 22:05'te bitmiştir. Mola hariç film kaç dakika sürmüştür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "110 dakika",
+        "wrong1": "125 dakika",
+        "wrong2": "120 dakika",
+        "explanation": "Toplam geçen zaman 2 saat 5 dk = 125 dk. Mola (15 dk) çıkarılırsa 125 - 15 = 110 dakika film sürmüştür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_106",
+      "level": "zor",
+      "premise": null,
+      "text": "Emre'nin kol saati gerçek saatten 10 dakika ileri. Saati 14:20 gösterirken gerçek saat kaçtır?",
+      "correct": "14:10",
+      "wrong1": "14:30",
+      "wrong2": "14:00",
+      "explanation": "Saat ileriyi gösteriyorsa gerçeğini bulmak için o kadar dakika geriye gitmeliyiz. 14:20 - 10 dk = 14:10.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Emre'nin kol saati gerçek saatten 10 dakika ileri. Saati 14:20 gösterirken gerçek saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "14:10",
+        "wrong1": "14:30",
+        "wrong2": "14:00",
+        "explanation": "Saat ileriyi gösteriyorsa gerçeğini bulmak için o kadar dakika geriye gitmeliyiz. 14:20 - 10 dk = 14:10.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_107",
+      "level": "zor",
+      "premise": null,
+      "text": "Selin'in kol saati gerçek saatten 15 dakika geri. Saati 09:45 gösterirken gerçek saat kaçtır?",
+      "correct": "10:00",
+      "wrong1": "09:30",
+      "wrong2": "09:50",
+      "explanation": "Saat geriyi gösteriyorsa gerçeğini bulmak için o kadar dakika ileri eklemeliyiz. 09:45 + 15 dk = 10:00.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Selin'in kol saati gerçek saatten 15 dakika geri. Saati 09:45 gösterirken gerçek saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "10:00",
+        "wrong1": "09:30",
+        "wrong2": "09:50",
+        "explanation": "Saat geriyi gösteriyorsa gerçeğini bulmak için o kadar dakika ileri eklemeliyiz. 09:45 + 15 dk = 10:00.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_108",
+      "level": "zor",
+      "premise": null,
+      "text": "14 Mayıs Salı günüyse, 25 Mayıs tarihi hangi güne denk gelir?",
+      "correct": "Cumartesi",
+      "wrong1": "Cuma",
+      "wrong2": "Pazar",
+      "explanation": "25-14 = 11 gün sonrası soruluyor. 11 gün = 1 hafta (7 gün) ve 4 gün. Salı'nın üzerine 4 gün sayarsak Cumartesi olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "14 Mayıs Salı günüyse, 25 Mayıs tarihi hangi güne denk gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cumartesi",
+        "wrong1": "Cuma",
+        "wrong2": "Pazar",
+        "explanation": "25-14 = 11 gün sonrası soruluyor. 11 gün = 1 hafta (7 gün) ve 4 gün. Salı'nın üzerine 4 gün sayarsak Cumartesi olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_109",
+      "level": "zor",
+      "premise": null,
+      "text": "Teyzem 18:25'te yemek yapmaya başladı. Yemek 1 saat 15 dakika sürdü. Sonra 30 dakika dinlendi. Teyzem dinlenmeyi saat kaçta bitirdi?",
+      "correct": "20:10",
+      "wrong1": "20:00",
+      "wrong2": "19:40",
+      "explanation": "Geçen toplam süre: 1 saat 15 dk + 30 dk = 1 saat 45 dk. 18:25 + 1 saat 45 dk = 20:10.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Teyzem 18:25'te yemek yapmaya başladı. Yemek 1 saat 15 dakika sürdü. Sonra 30 dakika dinlendi. Teyzem dinlenmeyi saat kaçta bitirdi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "20:10",
+        "wrong1": "20:00",
+        "wrong2": "19:40",
+        "explanation": "Geçen toplam süre: 1 saat 15 dk + 30 dk = 1 saat 45 dk. 18:25 + 1 saat 45 dk = 20:10.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_110",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir araba 12:30'da yola çıkmış, 2 saat gidip yarım saat mola vermiş, sonra 1 saat 45 dakika daha gidip hedefine varmıştır. Hedefe saat kaçta varmıştır?",
+      "correct": "16:45",
+      "wrong1": "16:15",
+      "wrong2": "17:00",
+      "explanation": "Toplam süre: 2 saat + 30 dk + 1 saat 45 dk = 4 saat 15 dk. 12:30 + 4 saat 15 dk = 16:45.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir araba 12:30'da yola çıkmış, 2 saat gidip yarım saat mola vermiş, sonra 1 saat 45 dakika daha gidip hedefine varmıştır. Hedefe saat kaçta varmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "16:45",
+        "wrong1": "16:15",
+        "wrong2": "17:00",
+        "explanation": "Toplam süre: 2 saat + 30 dk + 1 saat 45 dk = 4 saat 15 dk. 12:30 + 4 saat 15 dk = 16:45.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_111",
+      "level": "zor",
+      "premise": null,
+      "text": "Günde 2 saat 10 dakika ders çalışan bir öğrenci, 3 günde toplam kaç saat kaç dakika çalışmış olur?",
+      "correct": "6 saat 30 dakika",
+      "wrong1": "6 saat 10 dakika",
+      "wrong2": "7 saat",
+      "explanation": "3 gün x 2 saat = 6 saat. 3 gün x 10 dk = 30 dk. Sonuç 6 saat 30 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Günde 2 saat 10 dakika ders çalışan bir öğrenci, 3 günde toplam kaç saat kaç dakika çalışmış olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "6 saat 30 dakika",
+        "wrong1": "6 saat 10 dakika",
+        "wrong2": "7 saat",
+        "explanation": "3 gün x 2 saat = 6 saat. 3 gün x 10 dk = 30 dk. Sonuç 6 saat 30 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_112",
+      "level": "zor",
+      "premise": null,
+      "text": "Saatte 12 dakika ileri giden bozuk bir saat, 10:00'da doğru ayarlanmıştır. Saat gerçekte 13:00 olduğunda bu bozuk saat kaçı gösterir?",
+      "correct": "13:36",
+      "wrong1": "13:24",
+      "wrong2": "13:48",
+      "explanation": "10'dan 13'e 3 saat geçmiştir. Her saat 12 dk ileri giderse 3 x 12 = 36 dakika ileri gider. Gösterge 13:36 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saatte 12 dakika ileri giden bozuk bir saat, 10:00'da doğru ayarlanmıştır. Saat gerçekte 13:00 olduğunda bu bozuk saat kaçı gösterir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "13:36",
+        "wrong1": "13:24",
+        "wrong2": "13:48",
+        "explanation": "10'dan 13'e 3 saat geçmiştir. Her saat 12 dk ileri giderse 3 x 12 = 36 dakika ileri gider. Gösterge 13:36 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_113",
+      "level": "zor",
+      "premise": null,
+      "text": "Her gün 25 dakika yürüyüş yapan biri, 1 haftada toplam kaç saat kaç dakika yürüyüş yapmış olur?",
+      "correct": "2 saat 55 dakika",
+      "wrong1": "3 saat",
+      "wrong2": "2 saat 45 dakika",
+      "explanation": "7 gün x 25 dk = 175 dakika. 175'in içinde 2 tane 60 (120) vardır. 175 - 120 = 55. Yani 2 saat 55 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Her gün 25 dakika yürüyüş yapan biri, 1 haftada toplam kaç saat kaç dakika yürüyüş yapmış olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2 saat 55 dakika",
+        "wrong1": "3 saat",
+        "wrong2": "2 saat 45 dakika",
+        "explanation": "7 gün x 25 dk = 175 dakika. 175'in içinde 2 tane 60 (120) vardır. 175 - 120 = 55. Yani 2 saat 55 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_114",
+      "level": "zor",
+      "premise": null,
+      "text": "2 saat 45 dakikalık bir filmin 85. dakikasında elektrik kesilmiştir. Filmin bitmesine kaç dakika kalmıştır?",
+      "correct": "80",
+      "wrong1": "90",
+      "wrong2": "75",
+      "explanation": "2 saat 45 dk = 165 dakikadır. 165'ten geçen 85 dakikayı çıkarırsak geriye 80 dakika kalır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "2 saat 45 dakikalık bir filmin 85. dakikasında elektrik kesilmiştir. Filmin bitmesine kaç dakika kalmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "80",
+        "wrong1": "90",
+        "wrong2": "75",
+        "explanation": "2 saat 45 dk = 165 dakikadır. 165'ten geçen 85 dakikayı çıkarırsak geriye 80 dakika kalır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_115",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir yarışmada A yarışmacısı parkuru 95 dakikada, B yarışmacısı ise 1 saat 45 dakikada bitirmiştir. Hangisi daha hızlıdır ve ne kadar fark vardır?",
+      "correct": "A yarışmacısı 10 dakika daha hızlıdır",
+      "wrong1": "B yarışmacısı 10 dakika daha hızlıdır",
+      "wrong2": "A yarışmacısı 15 dakika daha hızlıdır",
+      "explanation": "B yarışmacısı: 1 saat 45 dk = 105 dakika. A yarışmacısı 95 dakika. A daha kısada bitirdiği için daha hızlıdır (105-95=10).",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir yarışmada A yarışmacısı parkuru 95 dakikada, B yarışmacısı ise 1 saat 45 dakikada bitirmiştir. Hangisi daha hızlıdır ve ne kadar fark vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "A yarışmacısı 10 dakika daha hızlıdır",
+        "wrong1": "B yarışmacısı 10 dakika daha hızlıdır",
+        "wrong2": "A yarışmacısı 15 dakika daha hızlıdır",
+        "explanation": "B yarışmacısı: 1 saat 45 dk = 105 dakika. A yarışmacısı 95 dakika. A daha kısada bitirdiği için daha hızlıdır (105-95=10).",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_116",
+      "level": "zor",
+      "premise": null,
+      "text": "09:30'da başlayan bir toplantıda her konuşmacı 15 dakika konuştu. Toplam 6 konuşmacı vardı. Toplantı saat kaçta bitti?",
+      "correct": "11:00",
+      "wrong1": "10:45",
+      "wrong2": "11:15",
+      "explanation": "6 konuşmacı x 15 dk = 90 dakika (1 saat 30 dk). 09:30 + 1 saat 30 dk = 11:00.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "09:30'da başlayan bir toplantıda her konuşmacı 15 dakika konuştu. Toplam 6 konuşmacı vardı. Toplantı saat kaçta bitti?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "11:00",
+        "wrong1": "10:45",
+        "wrong2": "11:15",
+        "explanation": "6 konuşmacı x 15 dk = 90 dakika (1 saat 30 dk). 09:30 + 1 saat 30 dk = 11:00.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_117",
+      "level": "zor",
+      "premise": null,
+      "text": "130 dakika süren bir sınav saat 15:10'da bitmiştir. Sınav saat kaçta başlamıştır?",
+      "correct": "13:00",
+      "wrong1": "12:50",
+      "wrong2": "13:10",
+      "explanation": "130 dakika = 2 saat 10 dakikadır. 15:10'dan 2 saat 10 dakika geriye gidersek 13:00'ü buluruz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "130 dakika süren bir sınav saat 15:10'da bitmiştir. Sınav saat kaçta başlamıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "13:00",
+        "wrong1": "12:50",
+        "wrong2": "13:10",
+        "explanation": "130 dakika = 2 saat 10 dakikadır. 15:10'dan 2 saat 10 dakika geriye gidersek 13:00'ü buluruz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_118",
+      "level": "zor",
+      "premise": null,
+      "text": "Gündüz saatlerinin 13 saat sürdüğü bir günde, gece saatleri toplam kaç saat sürer?",
+      "correct": "11",
+      "wrong1": "12",
+      "wrong2": "10",
+      "explanation": "24 saatten 13 saati çıkarırsak gece süresi olan 11 saati buluruz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Gündüz saatlerinin 13 saat sürdüğü bir günde, gece saatleri toplam kaç saat sürer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "11",
+        "wrong1": "12",
+        "wrong2": "10",
+        "explanation": "24 saatten 13 saati çıkarırsak gece süresi olan 11 saati buluruz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_119",
+      "level": "zor",
+      "premise": null,
+      "text": "17:15'te başlayan maçta ilk yarı 45 dakika sürmüş, 15 dakika devre arası verilmiş ve ikinci yarı 50 dakika sürmüştür. Maç saat kaçta bitmiştir?",
+      "correct": "19:05",
+      "wrong1": "18:55",
+      "wrong2": "19:15",
+      "explanation": "Toplam süre: 45 + 15 + 50 = 110 dakika (1 saat 50 dk). 17:15 + 1 saat 50 dk = 19:05.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "17:15'te başlayan maçta ilk yarı 45 dakika sürmüş, 15 dakika devre arası verilmiş ve ikinci yarı 50 dakika sürmüştür. Maç saat kaçta bitmiştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "19:05",
+        "wrong1": "18:55",
+        "wrong2": "19:15",
+        "explanation": "Toplam süre: 45 + 15 + 50 = 110 dakika (1 saat 50 dk). 17:15 + 1 saat 50 dk = 19:05.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_120",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir saat kulesindeki çan her yarım saatte bir çalar. Sabah 08:00 ile öğlen 12:00 arasında çan toplam kaç kez çalar? 08:00 ve 12:00 saatleri de sayılır.",
+      "correct": "9",
+      "wrong1": "8",
+      "wrong2": "10",
+      "explanation": "08:00 ile 12:00 arası 4 saat (8 yarım saat) vardır. Başlangıç (08:00) de eklendiği için 8 + 1 = 9 kez çalar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir saat kulesindeki çan her yarım saatte bir çalar. Sabah 08:00 ile öğlen 12:00 arasında çan toplam kaç kez çalar? 08:00 ve 12:00 saatleri de sayılır.",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "9",
+        "wrong1": "8",
+        "wrong2": "10",
+        "explanation": "08:00 ile 12:00 arası 4 saat (8 yarım saat) vardır. Başlangıç (08:00) de eklendiği için 8 + 1 = 9 kez çalar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_121",
+      "level": "zor",
+      "premise": null,
+      "text": "155 dakika toplam kaç saat kaç dakikaya eşittir?",
+      "correct": "2 saat 35 dakika",
+      "wrong1": "2 saat 25 dakika",
+      "wrong2": "1 saat 55 dakika",
+      "explanation": "155'in içinde iki tane 60 (120) vardır. 155 - 120 = 35 dakika artar. Yani 2 saat 35 dakika.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "155 dakika toplam kaç saat kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2 saat 35 dakika",
+        "wrong1": "2 saat 25 dakika",
+        "wrong2": "1 saat 55 dakika",
+        "explanation": "155'in içinde iki tane 60 (120) vardır. 155 - 120 = 35 dakika artar. Yani 2 saat 35 dakika.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_122",
+      "level": "zor",
+      "premise": null,
+      "text": "Zaman ölçülerine göre 3 yarım gün ve 12 saat toplam kaç güne eşittir?",
+      "correct": "2 gün",
+      "wrong1": "3 gün",
+      "wrong2": "1 gün",
+      "explanation": "1 yarım gün 12 saattir. 12 saat de yarım gündür. 3 yarım + 1 yarım = 4 yarım gün. Bu da 2 tam gün eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Zaman ölçülerine göre 3 yarım gün ve 12 saat toplam kaç güne eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "2 gün",
+        "wrong1": "3 gün",
+        "wrong2": "1 gün",
+        "explanation": "1 yarım gün 12 saattir. 12 saat de yarım gündür. 3 yarım + 1 yarım = 4 yarım gün. Bu da 2 tam gün eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_123",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir ilacın 8 saatte bir içilmesi gerekmektedir. İlk ilacını sabah 09:00'da içen hasta, üçüncü ilacını saat kaçta içer?",
+      "correct": "Gece 01:00",
+      "wrong1": "Akşam 17:00",
+      "wrong2": "Gece 00:00",
+      "explanation": "1. ilaç 09:00'da. 2. ilaç 17:00'de. 3. ilaç 8 saat sonra gece 01:00'de içilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir ilacın 8 saatte bir içilmesi gerekmektedir. İlk ilacını sabah 09:00'da içen hasta, üçüncü ilacını saat kaçta içer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gece 01:00",
+        "wrong1": "Akşam 17:00",
+        "wrong2": "Gece 00:00",
+        "explanation": "1. ilaç 09:00'da. 2. ilaç 17:00'de. 3. ilaç 8 saat sonra gece 01:00'de içilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_124",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir boya işlemi her gün tam 3 saat sürmektedir. Toplam 27 saat sürecek bu işlem kaç günde tamamen biter?",
+      "correct": "9",
+      "wrong1": "8",
+      "wrong2": "10",
+      "explanation": "Toplam iş süresini günlük çalışma süresine böleriz. 27 ÷ 3 = 9 günde biter.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir boya işlemi her gün tam 3 saat sürmektedir. Toplam 27 saat sürecek bu işlem kaç günde tamamen biter?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "9",
+        "wrong1": "8",
+        "wrong2": "10",
+        "explanation": "Toplam iş süresini günlük çalışma süresine böleriz. 27 ÷ 3 = 9 günde biter.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_125",
+      "level": "zor",
+      "premise": null,
+      "text": "Mehmet 20:50'de kitap okumaya başlamış ve aralıksız 1 saat 25 dakika okumuştur. Okumayı bıraktığında saat kaç olmuştur?",
+      "correct": "22:15",
+      "wrong1": "22:05",
+      "wrong2": "21:15",
+      "explanation": "20:50 + 1 saat = 21:50. Üzerine 25 dakika eklersek 22:15 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Mehmet 20:50'de kitap okumaya başlamış ve aralıksız 1 saat 25 dakika okumuştur. Okumayı bıraktığında saat kaç olmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "22:15",
+        "wrong1": "22:05",
+        "wrong2": "21:15",
+        "explanation": "20:50 + 1 saat = 21:50. Üzerine 25 dakika eklersek 22:15 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_126",
+      "level": "zor",
+      "premise": null,
+      "text": "1 yıl, 2 ay ve 3 hafta toplam kaç gün eder?",
+      "correct": "446",
+      "wrong1": "440",
+      "wrong2": "450",
+      "explanation": "1 yıl (365 gün) + 2 ay (60 gün) + 3 hafta (21 gün) = 365 + 60 + 21 = 446 gün.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "1 yıl, 2 ay ve 3 hafta toplam kaç gün eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "446",
+        "wrong1": "440",
+        "wrong2": "450",
+        "explanation": "1 yıl (365 gün) + 2 ay (60 gün) + 3 hafta (21 gün) = 365 + 60 + 21 = 446 gün.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_127",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir vapur yolculuğu 45 dakika sürmektedir. 10:15'te kalkan vapur, diğer iskelede 15 dakika bekledikten sonra dönüş için yola çıkmıştır. Vapur başladığı noktaya geri döndüğünde saat kaç olur?",
+      "correct": "12:00",
+      "wrong1": "11:45",
+      "wrong2": "12:15",
+      "explanation": "Gidiş 45 dk, bekleme 15 dk, dönüş 45 dk = Toplam 105 dakika. 105 dk = 1 saat 45 dk'dır. 10:15 + 1 saat 45 dk = 12:00.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir vapur yolculuğu 45 dakika sürmektedir. 10:15'te kalkan vapur, diğer iskelede 15 dakika bekledikten sonra dönüş için yola çıkmıştır. Vapur başladığı noktaya geri döndüğünde saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "12:00",
+        "wrong1": "11:45",
+        "wrong2": "12:15",
+        "explanation": "Gidiş 45 dk, bekleme 15 dk, dönüş 45 dk = Toplam 105 dakika. 105 dk = 1 saat 45 dk'dır. 10:15 + 1 saat 45 dk = 12:00.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_128",
+      "level": "zor",
+      "premise": null,
+      "text": "Matematikte '2 saat 10 dakika = X dakika' eşitliğinde X yerine hangi sayı gelmelidir?",
+      "correct": "130",
+      "wrong1": "120",
+      "wrong2": "140",
+      "explanation": "2 saat = 120 dakikadır. 10 dakika da yanında olduğu için 120 + 10 = 130 dakikadır. X=130'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Matematikte '2 saat 10 dakika = X dakika' eşitliğinde X yerine hangi sayı gelmelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "130",
+        "wrong1": "120",
+        "wrong2": "140",
+        "explanation": "2 saat = 120 dakikadır. 10 dakika da yanında olduğu için 120 + 10 = 130 dakikadır. X=130'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_129",
+      "level": "zor",
+      "premise": null,
+      "text": "Saatte 60 km hızla giden bir araç aynı hızla devam ettiğinde 30 km yolu kaç dakikada gider?",
+      "correct": "30 dakika",
+      "wrong1": "45 dakika",
+      "wrong2": "15 dakika",
+      "explanation": "60 km'yi 60 dakikada (1 saatte) gidiyorsa, yolun yarısı olan 30 km'yi de sürenin yarısı olan 30 dakikada gider.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saatte 60 km hızla giden bir araç aynı hızla devam ettiğinde 30 km yolu kaç dakikada gider?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "30 dakika",
+        "wrong1": "45 dakika",
+        "wrong2": "15 dakika",
+        "explanation": "60 km'yi 60 dakikada (1 saatte) gidiyorsa, yolun yarısı olan 30 km'yi de sürenin yarısı olan 30 dakikada gider.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_130",
+      "level": "zor",
+      "premise": null,
+      "text": "Okulların tatil olmasına tam 1 ay 2 hafta kalmıştır. 1 ayı 30 gün olarak hesapladığımızda tatile kaç gün kalmıştır?",
+      "correct": "44 gün",
+      "wrong1": "37 gün",
+      "wrong2": "50 gün",
+      "explanation": "1 ay 30 gün. 2 hafta ise 14 gündür. 30 + 14 = 44 gün kalmıştır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okulların tatil olmasına tam 1 ay 2 hafta kalmıştır. 1 ayı 30 gün olarak hesapladığımızda tatile kaç gün kalmıştır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "44 gün",
+        "wrong1": "37 gün",
+        "wrong2": "50 gün",
+        "explanation": "1 ay 30 gün. 2 hafta ise 14 gündür. 30 + 14 = 44 gün kalmıştır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_131",
+      "level": "kolay",
+      "premise": null,
+      "text": "Ayşe okula saat 08:15'te girdi. Derste 35 dakika oturdu. Dersten çıktığında saat kaçtır?",
+      "correct": "08:50",
+      "wrong1": "08:45",
+      "wrong2": "09:00",
+      "explanation": "08:15'e 35 dakika eklersek 08:50 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Ayşe okula saat 08:15'te girdi. Derste 35 dakika oturdu. Dersten çıktığında saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "08:50",
+        "wrong1": "08:45",
+        "wrong2": "09:00",
+        "explanation": "08:15'e 35 dakika eklersek 08:50 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_132",
+      "level": "kolay",
+      "premise": null,
+      "text": "Okul zili 12:30'da çaldı. Öğle arası 40 dakika sürdü. Dersler saat kaçta yeniden başladı?",
+      "correct": "13:10",
+      "wrong1": "13:00",
+      "wrong2": "12:70",
+      "explanation": "12:30'a 40 dakika eklersek 13:10 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okul zili 12:30'da çaldı. Öğle arası 40 dakika sürdü. Dersler saat kaçta yeniden başladı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "13:10",
+        "wrong1": "13:00",
+        "wrong2": "12:70",
+        "explanation": "12:30'a 40 dakika eklersek 13:10 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_133",
+      "level": "kolay",
+      "premise": null,
+      "text": "Dedem bize saat 19:00'da geldi. 1 saat kaldı. Dedem saat kaçta ayrıldı?",
+      "correct": "20:00",
+      "wrong1": "19:30",
+      "wrong2": "21:00",
+      "explanation": "19:00'a 1 saat eklersek 20:00 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Dedem bize saat 19:00'da geldi. 1 saat kaldı. Dedem saat kaçta ayrıldı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "20:00",
+        "wrong1": "19:30",
+        "wrong2": "21:00",
+        "explanation": "19:00'a 1 saat eklersek 20:00 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_134",
+      "level": "kolay",
+      "premise": null,
+      "text": "Zeynep kitap okuma yarışmasında her gün 20 dakika okudu. 5 günde toplam kaç dakika okumuştur?",
+      "correct": "100 dakika",
+      "wrong1": "80 dakika",
+      "wrong2": "120 dakika",
+      "explanation": "20 x 5 = 100 dakika eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Zeynep kitap okuma yarışmasında her gün 20 dakika okudu. 5 günde toplam kaç dakika okumuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "100 dakika",
+        "wrong1": "80 dakika",
+        "wrong2": "120 dakika",
+        "explanation": "20 x 5 = 100 dakika eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_135",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sinema filmi saat 15:00'te başladı. Film 1 saat sürdü. Film saat kaçta bitti?",
+      "correct": "16:00",
+      "wrong1": "15:30",
+      "wrong2": "17:00",
+      "explanation": "15:00'a 1 saat eklersek 16:00 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sinema filmi saat 15:00'te başladı. Film 1 saat sürdü. Film saat kaçta bitti?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "16:00",
+        "wrong1": "15:30",
+        "wrong2": "17:00",
+        "explanation": "15:00'a 1 saat eklersek 16:00 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_136",
+      "level": "orta",
+      "premise": null,
+      "text": "Murat 07:40'ta evden çıktı. Okula gitmek 25 dakika sürdü. Murat okula saat kaçta vardı?",
+      "correct": "08:05",
+      "wrong1": "08:15",
+      "wrong2": "07:65",
+      "explanation": "07:40'a 25 dakika eklersek 08:05 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Murat 07:40'ta evden çıktı. Okula gitmek 25 dakika sürdü. Murat okula saat kaçta vardı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "08:05",
+        "wrong1": "08:15",
+        "wrong2": "07:65",
+        "explanation": "07:40'a 25 dakika eklersek 08:05 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_137",
+      "level": "orta",
+      "premise": null,
+      "text": "Anne keki 16:20'de fırından çıkardı. Kekin soğuması 30 dakika sürdü. Kek saat kaçta soğumuş oldu?",
+      "correct": "16:50",
+      "wrong1": "16:40",
+      "wrong2": "17:00",
+      "explanation": "16:20'ye 30 dakika eklersek 16:50 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Anne keki 16:20'de fırından çıkardı. Kekin soğuması 30 dakika sürdü. Kek saat kaçta soğumuş oldu?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "16:50",
+        "wrong1": "16:40",
+        "wrong2": "17:00",
+        "explanation": "16:20'ye 30 dakika eklersek 16:50 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_138",
+      "level": "orta",
+      "premise": null,
+      "text": "Futbol antrenmanı 17:00'de başladı. Antrenman 45 dakika sürdü. Antrenman saat kaçta bitti?",
+      "correct": "17:45",
+      "wrong1": "17:30",
+      "wrong2": "18:00",
+      "explanation": "17:00'e 45 dakika eklersek 17:45 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Futbol antrenmanı 17:00'de başladı. Antrenman 45 dakika sürdü. Antrenman saat kaçta bitti?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "17:45",
+        "wrong1": "17:30",
+        "wrong2": "18:00",
+        "explanation": "17:00'e 45 dakika eklersek 17:45 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_139",
+      "level": "orta",
+      "premise": null,
+      "text": "Elif her gün 15 dakika piyano çalıyor. 4 günde toplam kaç dakika çalmış olur?",
+      "correct": "60 dakika",
+      "wrong1": "45 dakika",
+      "wrong2": "75 dakika",
+      "explanation": "15 x 4 = 60 dakika eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Elif her gün 15 dakika piyano çalıyor. 4 günde toplam kaç dakika çalmış olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "60 dakika",
+        "wrong1": "45 dakika",
+        "wrong2": "75 dakika",
+        "explanation": "15 x 4 = 60 dakika eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_140",
+      "level": "orta",
+      "premise": null,
+      "text": "Okul servisi 08:05'te hareket etti. Yolculuk 35 dakika sürdü. Servis durakta saat kaçta durdu?",
+      "correct": "08:40",
+      "wrong1": "08:35",
+      "wrong2": "08:45",
+      "explanation": "08:05'e 35 dakika eklersek 08:40 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okul servisi 08:05'te hareket etti. Yolculuk 35 dakika sürdü. Servis durakta saat kaçta durdu?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "08:40",
+        "wrong1": "08:35",
+        "wrong2": "08:45",
+        "explanation": "08:05'e 35 dakika eklersek 08:40 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_141",
+      "level": "orta",
+      "premise": null,
+      "text": "90 dakika kaç saat kaç dakikaya eşittir?",
+      "correct": "1 saat 30 dakika",
+      "wrong1": "1 saat 20 dakika",
+      "wrong2": "2 saat",
+      "explanation": "90 dakikanın içinde 60 dakika vardır. Geriye 30 dakika kalır. Sonuç 1 saat 30 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "90 dakika kaç saat kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1 saat 30 dakika",
+        "wrong1": "1 saat 20 dakika",
+        "wrong2": "2 saat",
+        "explanation": "90 dakikanın içinde 60 dakika vardır. Geriye 30 dakika kalır. Sonuç 1 saat 30 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_142",
+      "level": "orta",
+      "premise": null,
+      "text": "95 dakika kaç saat kaç dakikaya eşittir?",
+      "correct": "1 saat 35 dakika",
+      "wrong1": "1 saat 25 dakika",
+      "wrong2": "2 saat 5 dakika",
+      "explanation": "95 - 60 = 35 dakika kalır. Sonuç 1 saat 35 dakikadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "95 dakika kaç saat kaç dakikaya eşittir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "1 saat 35 dakika",
+        "wrong1": "1 saat 25 dakika",
+        "wrong2": "2 saat 5 dakika",
+        "explanation": "95 - 60 = 35 dakika kalır. Sonuç 1 saat 35 dakikadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_143",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 11:50 iken 15 dakika sonra saat kaç olur?",
+      "correct": "12:05",
+      "wrong1": "12:15",
+      "wrong2": "11:65",
+      "explanation": "50 + 15 = 65 dakika. Bu 1 saat 5 dakikadır. 11:50 + 15 dk = 12:05 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 11:50 iken 15 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "12:05",
+        "wrong1": "12:15",
+        "wrong2": "11:65",
+        "explanation": "50 + 15 = 65 dakika. Bu 1 saat 5 dakikadır. 11:50 + 15 dk = 12:05 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_144",
+      "level": "orta",
+      "premise": null,
+      "text": "Saat 09:55 iken 10 dakika sonra saat kaç olur?",
+      "correct": "10:05",
+      "wrong1": "10:15",
+      "wrong2": "09:65",
+      "explanation": "55 + 10 = 65 dakika. Saat bir ilerler, 10:05 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 09:55 iken 10 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "10:05",
+        "wrong1": "10:15",
+        "wrong2": "09:65",
+        "explanation": "55 + 10 = 65 dakika. Saat bir ilerler, 10:05 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_145",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 16:35 iken 40 dakika sonra saat kaç olur?",
+      "correct": "17:15",
+      "wrong1": "17:05",
+      "wrong2": "16:75",
+      "explanation": "35 + 40 = 75 dakika. 75 dakika 1 saat 15 dakikadır. 16:35 + 40 dk = 17:15 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 16:35 iken 40 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "17:15",
+        "wrong1": "17:05",
+        "wrong2": "16:75",
+        "explanation": "35 + 40 = 75 dakika. 75 dakika 1 saat 15 dakikadır. 16:35 + 40 dk = 17:15 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_146",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 07:25 iken 50 dakika sonra saat kaç olur?",
+      "correct": "08:15",
+      "wrong1": "08:05",
+      "wrong2": "07:75",
+      "explanation": "25 + 50 = 75 dakika. 75 dakika 1 saat 15 dakikadır. 07:25 + 50 dk = 08:15 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 07:25 iken 50 dakika sonra saat kaç olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "08:15",
+        "wrong1": "08:05",
+        "wrong2": "07:75",
+        "explanation": "25 + 50 = 75 dakika. 75 dakika 1 saat 15 dakikadır. 07:25 + 50 dk = 08:15 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_147",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 13:10 iken 55 dakika önce saat kaçtı?",
+      "correct": "12:15",
+      "wrong1": "12:25",
+      "wrong2": "13:55",
+      "explanation": "10 dakikadan 55 dakika çıkmaz. 1 saat alırız. 70 - 55 = 15 dakika kalır. Saat 12:15 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 13:10 iken 55 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "12:15",
+        "wrong1": "12:25",
+        "wrong2": "13:55",
+        "explanation": "10 dakikadan 55 dakika çıkmaz. 1 saat alırız. 70 - 55 = 15 dakika kalır. Saat 12:15 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_148",
+      "level": "zor",
+      "premise": null,
+      "text": "Saat 10:05 iken 35 dakika önce saat kaçtı?",
+      "correct": "09:30",
+      "wrong1": "09:40",
+      "wrong2": "09:25",
+      "explanation": "5 dakikadan 35 dakika çıkmaz. 1 saat alırız. 65 - 35 = 30 dakika kalır. Saat 09:30 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saat 10:05 iken 35 dakika önce saat kaçtı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "09:30",
+        "wrong1": "09:40",
+        "wrong2": "09:25",
+        "explanation": "5 dakikadan 35 dakika çıkmaz. 1 saat alırız. 65 - 35 = 30 dakika kalır. Saat 09:30 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_149",
+      "level": "zor",
+      "premise": null,
+      "text": "Can 18:00'de ders çalışmaya başladı. 45 dakika çalıştı, 10 dakika mola verdi, sonra 35 dakika daha çalıştı. Can en son saat kaçta çalışmayı bitirdi?",
+      "correct": "19:30",
+      "wrong1": "19:20",
+      "wrong2": "19:00",
+      "explanation": "Toplam süre 45 + 10 + 35 = 90 dakikadır. 90 dakika 1 saat 30 dakikadır. 18:00 + 1 saat 30 dk = 19:30 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Can 18:00'de ders çalışmaya başladı. 45 dakika çalıştı, 10 dakika mola verdi, sonra 35 dakika daha çalıştı. Can en son saat kaçta çalışmayı bitirdi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "19:30",
+        "wrong1": "19:20",
+        "wrong2": "19:00",
+        "explanation": "Toplam süre 45 + 10 + 35 = 90 dakikadır. 90 dakika 1 saat 30 dakikadır. 18:00 + 1 saat 30 dk = 19:30 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_150",
+      "level": "zor",
+      "premise": null,
+      "text": "Okul gezisi 09:00'da başladı. 1 saat müze gezildi, 20 dakika yemek molası verildi, 50 dakika park gezildi. Gezi saat kaçta bitti?",
+      "correct": "11:10",
+      "wrong1": "11:00",
+      "wrong2": "10:50",
+      "explanation": "Toplam süre 1 saat + 20 dk + 50 dk = 2 saat 10 dakikadır. 09:00 + 2 saat 10 dk = 11:10 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okul gezisi 09:00'da başladı. 1 saat müze gezildi, 20 dakika yemek molası verildi, 50 dakika park gezildi. Gezi saat kaçta bitti?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "11:10",
+        "wrong1": "11:00",
+        "wrong2": "10:50",
+        "explanation": "Toplam süre 1 saat + 20 dk + 50 dk = 2 saat 10 dakikadır. 09:00 + 2 saat 10 dk = 11:10 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_151",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yelkovan 8 rakamının üzerindeyken saat kaç geçiyor demektir?",
+      "correct": "40 geçiyor",
+      "wrong1": "8 geçiyor",
+      "wrong2": "35 geçiyor",
+      "explanation": "8 rakamı 8 x 5 = 40 dakikayı gösterir.\n\n[[clockarc:4:40:12:8]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yelkovan 8 rakamının üzerindeyken saat kaç geçiyor demektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "40 geçiyor",
+        "wrong1": "8 geçiyor",
+        "wrong2": "35 geçiyor",
+        "explanation": "8 rakamı 8 x 5 = 40 dakikayı gösterir.\n\n[[clockarc:4:40:12:8]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_152",
+      "level": "kolay",
+      "premise": null,
+      "text": "Yelkovan 7 rakamının üzerindeyken saate kaç var denir?",
+      "correct": "25 var",
+      "wrong1": "35 var",
+      "wrong2": "20 var",
+      "explanation": "7'den 12'ye 5 tane 5 dakikalık dilim kalır. 5 x 5 = 25 var denir.\n\n[[clockarc:6:35:7:12]]",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Yelkovan 7 rakamının üzerindeyken saate kaç var denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "25 var",
+        "wrong1": "35 var",
+        "wrong2": "20 var",
+        "explanation": "7'den 12'ye 5 tane 5 dakikalık dilim kalır. 5 x 5 = 25 var denir.\n\n[[clockarc:6:35:7:12]]",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_153",
+      "level": "orta",
+      "premise": "[[clock:a:5:30]]",
+      "text": "Buna göre akrep tam 5'i, yelkovan 6'yı gösteriyorsa saat kaçtır?",
+      "correct": "05:30",
+      "wrong1": "06:30",
+      "wrong2": "05:06",
+      "explanation": "Akrep 5'te, yelkovan 6'da ise saat buçuktur. Sonuç 05:30'dur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre akrep tam 5'i, yelkovan 6'yı gösteriyorsa saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:5:30]]"
+            }
+          ]
+        },
+        "correct": "05:30",
+        "wrong1": "06:30",
+        "wrong2": "05:06",
+        "explanation": "Akrep 5'te, yelkovan 6'da ise saat buçuktur. Sonuç 05:30'dur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_154",
+      "level": "orta",
+      "premise": "[[clock:a:9:15]]",
+      "text": "Buna göre akrep 9 ile 10 arasında, yelkovan 3'ü gösteriyorsa saat kaçtır?",
+      "correct": "09:15",
+      "wrong1": "10:15",
+      "wrong2": "09:03",
+      "explanation": "Yelkovan 3'te ise 15 dakika geçmiştir. Akrep 9'u geçmiş ama 10 olmamıştır. Saat 09:15'tir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre akrep 9 ile 10 arasında, yelkovan 3'ü gösteriyorsa saat kaçtır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:9:15]]"
+            }
+          ]
+        },
+        "correct": "09:15",
+        "wrong1": "10:15",
+        "wrong2": "09:03",
+        "explanation": "Yelkovan 3'te ise 15 dakika geçmiştir. Akrep 9'u geçmiş ama 10 olmamıştır. Saat 09:15'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_155",
+      "level": "orta",
+      "premise": "[[clock:d:9:05]]",
+      "text": "Buna göre dijital saat 09:05'i gösteriyor. Bu saat günlük konuşmada nasıl okunur?",
+      "correct": "Sabah 9'u 5 geçiyor",
+      "wrong1": "Sabah 9'a 5 var",
+      "wrong2": "Akşam 9'u 5 geçiyor",
+      "explanation": "09:05 sabah saatidir. 5 dakika geçtiği için '9'u 5 geçiyor' denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dijital saat 09:05'i gösteriyor. Bu saat günlük konuşmada nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:9:05]]"
+            }
+          ]
+        },
+        "correct": "Sabah 9'u 5 geçiyor",
+        "wrong1": "Sabah 9'a 5 var",
+        "wrong2": "Akşam 9'u 5 geçiyor",
+        "explanation": "09:05 sabah saatidir. 5 dakika geçtiği için '9'u 5 geçiyor' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_156",
+      "level": "orta",
+      "premise": "[[clock:d:18:45]]",
+      "text": "Buna göre dijital saat 18:45'i gösteriyor. Bu saat günlük konuşmada nasıl okunur?",
+      "correct": "Akşam 7'ye çeyrek var",
+      "wrong1": "Akşam 6'yı çeyrek geçiyor",
+      "wrong2": "Akşam 8'e çeyrek var",
+      "explanation": "18:45 akşam saat 6'yı 45 geçiyor demektir. Bir sonraki saate 15 dakika kaldığı için '7'ye çeyrek var' denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dijital saat 18:45'i gösteriyor. Bu saat günlük konuşmada nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:d:18:45]]"
+            }
+          ]
+        },
+        "correct": "Akşam 7'ye çeyrek var",
+        "wrong1": "Akşam 6'yı çeyrek geçiyor",
+        "wrong2": "Akşam 8'e çeyrek var",
+        "explanation": "18:45 akşam saat 6'yı 45 geçiyor demektir. Bir sonraki saate 15 dakika kaldığı için '7'ye çeyrek var' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_157",
+      "level": "zor",
+      "premise": null,
+      "text": "Berfin 14:25'te yürüyüşe çıktı. 1 saat 5 dakika yürüdü. Yürüyüş saat kaçta bitti?",
+      "correct": "15:30",
+      "wrong1": "15:25",
+      "wrong2": "15:20",
+      "explanation": "14:25 + 1 saat = 15:25. Üzerine 5 dakika eklersek 15:30 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Berfin 14:25'te yürüyüşe çıktı. 1 saat 5 dakika yürüdü. Yürüyüş saat kaçta bitti?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "15:30",
+        "wrong1": "15:25",
+        "wrong2": "15:20",
+        "explanation": "14:25 + 1 saat = 15:25. Üzerine 5 dakika eklersek 15:30 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_158",
+      "level": "zor",
+      "premise": null,
+      "text": "Otobüs 11:40'ta hareket etti. Yolculuk 2 saat 15 dakika sürdü. Otobüs varış yerine saat kaçta ulaştı?",
+      "correct": "13:55",
+      "wrong1": "13:45",
+      "wrong2": "14:05",
+      "explanation": "11:40 + 2 saat = 13:40. Üzerine 15 dakika eklersek 13:55 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Otobüs 11:40'ta hareket etti. Yolculuk 2 saat 15 dakika sürdü. Otobüs varış yerine saat kaçta ulaştı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "13:55",
+        "wrong1": "13:45",
+        "wrong2": "14:05",
+        "explanation": "11:40 + 2 saat = 13:40. Üzerine 15 dakika eklersek 13:55 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_159",
+      "level": "zor",
+      "premise": null,
+      "text": "Ödev 20:10'da bitti. Ödev 55 dakika sürmüştü. Ödev saat kaçta başlamıştı?",
+      "correct": "19:15",
+      "wrong1": "19:25",
+      "wrong2": "19:05",
+      "explanation": "20:10'dan 55 dakika geriye gidersek 19:15 olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Ödev 20:10'da bitti. Ödev 55 dakika sürmüştü. Ödev saat kaçta başlamıştı?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "19:15",
+        "wrong1": "19:25",
+        "wrong2": "19:05",
+        "explanation": "20:10'dan 55 dakika geriye gidersek 19:15 olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_zaman_160",
+      "level": "zor",
+      "premise": null,
+      "text": "Hastane randevusu 08:45'te. Randevuya 30 dakika kala yola çıkıldı. Yolculuk 25 dakika sürdü. Kişi randevuya zamanında yetişmiş midir?",
+      "correct": "Evet, 5 dakika erken varmıştır",
+      "wrong1": "Hayır, 5 dakika geç kalmıştır",
+      "wrong2": "Tam randevu saatinde varmıştır",
+      "explanation": "30 dakika kala yola çıkılırsa 08:15'te yola çıkılır. 25 dakika yolculuk sonrası 08:40'ta varılır. Randevuya 5 dakika erken yetişilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Hastane randevusu 08:45'te. Randevuya 30 dakika kala yola çıkıldı. Yolculuk 25 dakika sürdü. Kişi randevuya zamanında yetişmiş midir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Evet, 5 dakika erken varmıştır",
+        "wrong1": "Hayır, 5 dakika geç kalmıştır",
+        "wrong2": "Tam randevu saatinde varmıştır",
+        "explanation": "30 dakika kala yola çıkılırsa 08:15'te yola çıkılır. 25 dakika yolculuk sonrası 08:40'ta varılır. Randevuya 5 dakika erken yetişilir.",
+        "url": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+/* Sıralama tablosu: tablo genişliğine sığan kare foto (üstteki 60×75 !important üzerine) */
+.ranking-table .ranking-player-photo {
+  width: min(100%, 40px) !important;
+  height: min(100%, 40px) !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  aspect-ratio: 1 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.ranking-table td{ overflow: visible !important; position: relative; }
+.ranking-table .avatar-frame-wrap{
+  display: inline-block !important;
+  position: relative !important;
+  z-index: 3 !important;
+  overflow: visible !important;
+}
+.ranking-table .ranking-player-photo.avatar-framed{
+  position: relative !important;
+  z-index: 4 !important;
+}
+.ranking-table .player-name-column .rank-label {
+  min-width: 0 !important;
+}
+.ranking-table .player-name-column .nova-lig {
+  overflow: visible;
+}
+
+/* İsim hücresi: lig rozeti yüksekliğine rağmen ortalı kalsın (beyaz boşluk hissi olmasın) */
+.ranking-table .player-name-column{
+  /* td üzerinde flex kullanma: table-cell davranışını bozup “beyaz leke” yaratıyordu */
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.ranking-table .player-name-column .name-line{
+  margin: 0 !important;
+  width: 100%;
+  display: block;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Sezon sıralaması: Kahraman sütunu (ikon + yıldız) */
+.ranking-table .hero-column{
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+.ranking-table .class-name-column{
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  overflow: visible !important;
+}
+.ranking-table .class-name-column .nova-lig{
+  transform: scale(.58);
+  transform-origin: center;
+  margin-top: 0;
+}
+.ranking-table .class-name-column .nova-lig__halo{ display:none !important; }
+.ranking-table .class-name-column .nova-lig__shine{ display:none !important; }
+.ranking-table .class-name-column .nova-lig__ribbon{
+  margin-top: -10px;
+  min-width: 56px;
+}
+.ranking-table .class-name-column .nova-lig__name{
+  font-size: 7.5px;
+  letter-spacing: .10em;
+}
+.nova-rank-hero{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 58px;
+  position: relative;
+}
+.nova-rank-hero__icon{
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  background: linear-gradient(165deg, rgba(30,41,59,.75), rgba(15,23,42,.92));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 8px 18px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow: visible;
+  position: relative;
+}
+.nova-rank-hero__icon svg{
+  width: 100%;
+  height: 100%;
+  display:block;
+}
+.nova-rank-hero__fallback{
+  font-weight: 900;
+  color: rgba(226,232,240,.85);
+}
+.nova-rank-hero__stars{
+  position: static;
+  transform: none;
+  display: inline-flex;
+  gap: 2px;
+  margin-top: 4px;
+  padding: 2px 6px 3px;
+  border-radius: 999px;
+  background: rgba(15,23,42,.92);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 6px 14px rgba(0,0,0,.28);
+  line-height: 1;
+  pointer-events: none;
+}
+.nova-rank-hero__star{
+  font-size: 10px;
+  opacity: .22;
+  color: rgba(226,232,240,.72);
+  text-shadow: 0 1px 0 rgba(0,0,0,.75);
+}
+.nova-rank-hero__star.is-on{
+  opacity: 1;
+  color: #fde68a;
+  text-shadow: 0 0 12px rgba(251,191,36,.55), 0 1px 0 rgba(0,0,0,.75);
+}

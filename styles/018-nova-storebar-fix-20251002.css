@@ -1,0 +1,51 @@
+/* === Nova Single-Row Store Header Fix (2025-10-02) === */
+.profile-change-header{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:clamp(6px,1.5vw,14px) !important;
+  flex-wrap:nowrap !important;
+}
+.store-title{
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+  font-size:clamp(16px,4vw,22px) !important;
+  line-height:1.1 !important;
+  margin:0 !important;
+}
+.store-controls{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  gap:clamp(6px,1.2vw,12px) !important;
+  flex-wrap:nowrap !important;
+  overflow:hidden !important;
+}
+.store-controls > *{
+  flex:0 1 auto !important;
+  min-width:0 !important;
+}
+.current-diamonds{
+  margin:0 !important;
+  padding:clamp(6px,1.2vw,10px) clamp(10px,2vw,14px) !important;
+  gap:clamp(6px,1.2vw,10px) !important;
+}
+.current-diamonds .diamond-icon,
+.store-title .cart-icon{
+  font-size:clamp(14px,4vw,18px) !important;
+  line-height:1 !important;
+}
+#profileCloseButton{
+  white-space:nowrap !important;
+  font-size:clamp(14px,4vw,18px) !important;
+  padding:clamp(6px,1.2vw,8px) clamp(8px,2vw,10px) !important;
+  line-height:1 !important;
+}
+/* Ensure icons/buttons never overlap */
+#profileCloseButton, .current-diamonds{ max-width:100%; }
+@media (max-width: 400px){
+  .current-diamonds{ padding:4px 10px !important; }
+}

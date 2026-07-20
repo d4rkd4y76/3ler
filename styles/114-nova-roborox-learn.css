@@ -1,0 +1,919 @@
+/* Kaptan Kabuk — konu listesi + öğrenme kartı okuyucu */
+
+/* ÖĞREN butonu — ana ekran */
+#main-screen #learn-open-button.nova-learn-rail-btn:not(.nova-game-btn) {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: clamp(36px, 9vw, 44px) !important;
+  margin: 0 !important;
+  padding: clamp(7px, 1.8vw, 10px) clamp(10px, 2.4vw, 12px) !important;
+  border-radius: clamp(11px, 2.6vw, 15px) !important;
+  font-size: clamp(8px, 2vw, 10px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(5px, 1.4vw, 7px) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  color: #fffbeb !important;
+  background: linear-gradient(145deg, #a855f7 0%, #7c3aed 42%, #5b21b6 100%) !important;
+  border: 1px solid rgba(233, 213, 255, 0.55) !important;
+  box-shadow:
+    0 12px 28px rgba(124, 58, 237, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 22px rgba(168, 85, 247, 0.28) !important;
+  animation: novaLearnRailGlow 2.6s ease-in-out infinite !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+}
+
+#main-screen #learn-open-button .profile-tools-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: clamp(18px, 4.6vw, 22px) !important;
+  height: clamp(18px, 4.6vw, 22px) !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  font-size: clamp(11px, 2.8vw, 13px) !important;
+}
+
+#main-screen #main-screen-quest-slot #learn-open-button { order: -1 !important; }
+
+@keyframes novaLearnRailGlow {
+  0%, 100% { box-shadow: 0 12px 28px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255,255,255,.3), 0 0 22px rgba(168,85,247,.28); }
+  50% { box-shadow: 0 16px 32px rgba(168, 85, 247, 0.55), inset 0 1px 0 rgba(255,255,255,.36), 0 0 28px rgba(216,180,254,.38); }
+}
+
+/* Öğren hub modal */
+.learn-hub-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 12040;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(8, 14, 32, 0.74);
+  backdrop-filter: blur(10px);
+}
+
+.learn-hub-modal.open { display: flex; }
+
+.learn-hub-card {
+  width: min(100%, 440px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(165deg, #faf5ff 0%, #f3e8ff 100%);
+  box-shadow: 0 28px 64px rgba(15, 23, 42, 0.38);
+}
+
+.learn-hub-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 14px;
+  background: linear-gradient(135deg, #9333ea, #7c3aed);
+  color: #fff;
+}
+
+.learn-hub-top h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.learn-hub-top p {
+  margin: 6px 0 0;
+  font-size: 0.86rem;
+  opacity: 0.92;
+}
+
+.learn-hub-close {
+  border: none;
+  background: rgba(255,255,255,.22);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.learn-hub-choices {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.learn-hub-choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.learn-hub-choice:hover {
+  transform: translateY(-2px);
+}
+
+.learn-hub-choice--roborox {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(52, 211, 153, 0.32);
+}
+
+.learn-hub-choice--tools {
+  background: linear-gradient(135deg, #ecfeff, #cffafe);
+  box-shadow: 0 8px 22px rgba(8, 145, 178, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+}
+
+.learn-hub-choice__ico {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.72);
+}
+
+.learn-hub-choice__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.learn-hub-choice__title {
+  display: block;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.25;
+}
+
+.learn-hub-choice__desc {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.76rem;
+  color: #6b7280;
+  line-height: 1.35;
+}
+
+.learn-hub-choice__go {
+  font-size: 1.4rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* Konu listesi modal */
+.roborox-topics-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 12050;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(8, 14, 32, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.roborox-topics-modal.open { display: flex; }
+
+.roborox-topics-card {
+  width: min(100%, 480px);
+  max-height: min(88vh, 720px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  background: linear-gradient(165deg, #f0fdf4 0%, #ecfdf5 100%);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+}
+
+.roborox-topics-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 18px 18px 12px;
+  background: linear-gradient(135deg, #059669, #047857 52%, #065f46 100%);
+  color: #fff;
+}
+
+.roborox-topics-head {
+  min-width: 0;
+}
+
+.roborox-topics-back {
+  border: none;
+  background: rgba(255,255,255,.22);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.roborox-lesson-item .roborox-topic-item__ico {
+  background: linear-gradient(145deg, #bfdbfe, #93c5fd);
+}
+
+.roborox-topics-top h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.35;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.roborox-topics-brand-ico {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.roborox-topics-top p {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  opacity: 0.92;
+}
+
+.roborox-topics-close {
+  border: none;
+  background: rgba(255,255,255,.22);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.roborox-topics-scroll {
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.roborox-topic-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.roborox-topic-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.38);
+}
+
+.roborox-topic-item__ico {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #bbf7d0, #6ee7b7);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.roborox-topic-item__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.roborox-topic-item__title {
+  display: block;
+  width: 100%;
+  font-weight: 800;
+  color: #1f2937;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.roborox-topic-item__meta {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #047857;
+  margin-top: 0;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  line-height: 1.2;
+}
+
+.roborox-topics-empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 28px 12px;
+  font-size: 0.9rem;
+}
+
+/* Konu içi alt başlık (bölüm) listesi */
+.roborox-sections-header {
+  margin: 0 0 14px;
+  padding: 16px 16px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(52, 211, 153, 0.08));
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+
+.roborox-sections-header__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #047857;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.roborox-sections-header__title {
+  margin: 10px 0 0;
+  font-size: 1.12rem;
+  font-weight: 900;
+  color: #14532d;
+  line-height: 1.3;
+}
+
+.roborox-sections-header__hint {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  color: #4b5563;
+  line-height: 1.35;
+}
+
+.roborox-section-item {
+  align-items: center;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+.roborox-section-item:hover {
+  border-color: rgba(5, 150, 105, 0.45);
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.18);
+}
+
+.roborox-section-item__num {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #065f46;
+  background: linear-gradient(145deg, #6ee7b7, #34d399);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.roborox-section-item__play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: #fff;
+  background: linear-gradient(145deg, #10b981, #059669);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+.roborox-section-item .roborox-topic-item__body {
+  gap: 6px;
+}
+
+/* Konu açılış animasyonu */
+.roborox-topic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 12060;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(110, 231, 183, 0.28), transparent 60%),
+    linear-gradient(160deg, #064e3b 0%, #047857 42%, #059669 100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  contain: strict;
+  will-change: opacity;
+}
+
+.roborox-topic-intro.open {
+  display: flex;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.roborox-topic-intro.is-enter {
+  animation: roboroxIntroFadeIn 0.5s ease forwards;
+}
+
+.roborox-topic-intro.is-exit {
+  animation: roboroxIntroFadeOut 0.42s ease forwards;
+}
+
+.roborox-topic-intro__inner {
+  width: min(100%, 400px);
+  text-align: center;
+  color: #fff;
+  transform: translate3d(0, 24px, 0) scale(0.92);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.roborox-topic-intro.is-enter .roborox-topic-intro__inner {
+  animation: roboroxIntroCardIn 0.78s cubic-bezier(0.22, 1, 0.36, 1) 0.06s forwards;
+}
+
+.roborox-topic-intro.is-exit .roborox-topic-intro__inner {
+  animation: roboroxIntroCardOut 0.38s ease forwards;
+}
+
+.roborox-topic-intro__mascot {
+  font-size: clamp(3.2rem, 14vw, 4.5rem);
+  line-height: 1;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22));
+  animation: roboroxIntroMascotFloat 2.4s ease-in-out infinite;
+}
+
+.roborox-topic-intro.is-enter .roborox-topic-intro__mascot {
+  animation:
+    roboroxIntroMascotPop 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both,
+    roboroxIntroMascotFloat 2.4s ease-in-out 0.84s infinite;
+}
+
+.roborox-topic-intro__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ecfdf5;
+}
+
+.roborox-topic-intro__title {
+  margin: 20px 0 0;
+  font-size: clamp(1.45rem, 6.5vw, 2rem);
+  font-weight: 900;
+  line-height: 1.22;
+  text-wrap: balance;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.24);
+  color: #fff;
+}
+
+.roborox-topic-intro__cards {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a7f3d0;
+}
+
+.roborox-topic-intro__hint {
+  margin: 10px 0 0;
+  font-size: 0.86rem;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.roborox-topic-intro__progress {
+  width: min(100%, 220px);
+  height: 5px;
+  margin: 22px auto 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.roborox-topic-intro__progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ecfdf5, #6ee7b7);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar {
+  animation: roboroxIntroProgress 1.15s ease-out 0.28s forwards;
+}
+
+body.nova-perf-ultra .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar,
+body.nova-perf-performance .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar {
+  animation-duration: 0.55s;
+}
+
+.roborox-reader-overlay.is-opening {
+  opacity: 0;
+}
+
+.roborox-reader-overlay.is-opening.is-open-ready {
+  animation: roboroxReaderFadeIn 0.36s ease forwards;
+}
+
+@keyframes roboroxIntroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes roboroxIntroFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes roboroxIntroMascotPop {
+  from {
+    opacity: 0;
+    transform: scale(0.55) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes roboroxIntroMascotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes roboroxIntroCardIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes roboroxIntroCardOut {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0) scale(1.03);
+  }
+}
+
+@keyframes roboroxIntroProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes roboroxReaderFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roborox-topic-intro.is-enter,
+  .roborox-topic-intro.is-exit,
+  .roborox-topic-intro.is-enter .roborox-topic-intro__inner,
+  .roborox-topic-intro.is-exit .roborox-topic-intro__inner,
+  .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar,
+  .roborox-topic-intro.is-enter .roborox-topic-intro__mascot,
+  .roborox-reader-overlay.is-opening.is-open-ready {
+    animation: none !important;
+  }
+  .roborox-topic-intro.is-enter { opacity: 1; }
+  .roborox-topic-intro.is-enter .roborox-topic-intro__inner,
+  .roborox-topic-intro.is-enter .roborox-topic-intro__mascot {
+    opacity: 1;
+    transform: none;
+  }
+  .roborox-topic-intro.is-enter .roborox-topic-intro__progress-bar {
+    transform: scaleX(1);
+  }
+}
+
+/* Tam ekran Bunny dikey video okuyucu — hikaye videosu mantığına yakın */
+html.roborox-reader-open,
+html:has(body.roborox-reader-open) {
+  overflow: hidden !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  background: #000 !important;
+}
+
+body.roborox-reader-open {
+  overflow: hidden !important;
+  touch-action: none;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100dvh !important;
+  height: 100svh !important;
+  max-height: 100dvh !important;
+  max-height: 100svh !important;
+  overscroll-behavior: none !important;
+  zoom: 1 !important;
+  transform: none !important;
+  background: #000 !important;
+}
+
+body.roborox-reader-open #main-screen,
+body.roborox-reader-open .buttons,
+body.roborox-reader-open .nova-admin-portal-slot {
+  visibility: hidden !important;
+}
+
+.roborox-reader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200000;
+  display: none;
+  width: 100%;
+  height: 100dvh;
+  height: 100svh;
+  max-height: 100dvh;
+  max-height: 100svh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: #000;
+  touch-action: none;
+  isolation: isolate;
+  box-sizing: border-box;
+}
+
+.roborox-reader-overlay.open {
+  display: block;
+}
+
+body.roborox-reader-open #roborox-reader-overlay,
+body.roborox-reader-open #roborox-reader-overlay.nova-perf-fullscreen-scope {
+  inset: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100dvh !important;
+  height: 100svh !important;
+  max-height: 100dvh !important;
+  max-height: 100svh !important;
+  display: block !important;
+}
+
+.roborox-reader-exit {
+  display: none;
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  margin: 0;
+  padding: clamp(11px, 3vw, 14px) clamp(22px, 6vw, 30px);
+  border-radius: 999px;
+  border: 2px solid rgba(250, 204, 21, 0.72);
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(30, 41, 59, 0.62) 100%
+  );
+  color: #fef9c3;
+  font-family: 'Comfortaa', cursive;
+  font-size: clamp(11px, 3vw, 13px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 0 24px rgba(250, 204, 21, 0.18);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.16s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.roborox-reader-overlay.open.is-ready .roborox-reader-exit {
+  display: block;
+}
+
+.roborox-reader-exit:hover {
+  border-color: rgba(253, 224, 71, 0.95);
+  background: linear-gradient(
+    145deg,
+    rgba(30, 41, 59, 0.88) 0%,
+    rgba(51, 65, 85, 0.72) 100%
+  );
+}
+
+.roborox-reader-exit:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+.roborox-reader-nav[hidden],
+.roborox-reader-nav.is-solo {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.roborox-reader-nav {
+  position: absolute;
+  left: 50%;
+  bottom: max(72px, calc(58px + env(safe-area-inset-bottom, 0px)));
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(92vw, 420px);
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .roborox-reader-nav {
+    bottom: max(78px, calc(64px + env(safe-area-inset-bottom, 0px)));
+  }
+}
+
+.roborox-reader-nav-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.roborox-reader-nav-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.roborox-reader-nav-btn--next {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35);
+}
+
+.roborox-reader-nav-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.roborox-reader-nav-btn:disabled,
+.roborox-reader-nav-btn.is-passive {
+  opacity: 0.52;
+  cursor: not-allowed;
+  box-shadow: none;
+  filter: grayscale(0.45) saturate(0.55);
+  background: linear-gradient(135deg, #64748b, #475569) !important;
+  color: #cbd5e1;
+  transform: none;
+}
+
+.roborox-reader-nav-btn--next:disabled,
+.roborox-reader-nav-btn--next.is-passive {
+  background: linear-gradient(135deg, #64748b, #475569) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.roborox-reader-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.roborox-reader-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background: #000;
+  z-index: 0;
+}
+
+.roborox-reader-iframe-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+}
+
+.roborox-reader-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+.roborox-reader-loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-family: 'Comfortaa', cursive;
+  font-size: clamp(12px, 3.2vw, 14px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roborox-reader-exit {
+    transition: none;
+  }
+}

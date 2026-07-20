@@ -1,0 +1,9 @@
+/* === NOVA FINAL: Single-Source End Screen (Responsive) === */
+#score-container.nova-final-wrap{width:100%;max-width:1200px;margin:0 auto;padding:clamp(12px,2vw,24px);}
+#score-container .nz-row{display:flex;flex-wrap:wrap;gap:14px}
+#score-container .nz-card{flex:1 1 320px}
+#score-container .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:10px}
+#score-container .btn{border-radius:12px;padding:12px 16px;font-weight:800;border:1px solid #e5e7eb}
+#score-container #act-restart{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:none;box-shadow:0 8px 22px rgba(99,102,241,.32)}
+/* Remove any remaining duplicated progress/gauges outside our mount */
+body > #nova-summary{display:none !important;}

@@ -1,0 +1,2751 @@
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --grid-line: rgba(59, 130, 246, 0.22);
+  --grid-bg: #e8f4fc;
+  --accent: #2563eb;
+  --r: 16px;
+  --shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.geo-basics-app {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(165deg, #eff6ff 0%, #f8fafc 50%, #fff7ed 100%);
+  padding: 12px clamp(12px, 3vw, 24px) calc(28px + env(safe-area-inset-bottom, 0px));
+}
+
+.shell {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+}
+
+.btn-back {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #e0f2fe;
+  color: var(--ink);
+}
+
+.topbar-main {
+  flex: 1;
+  min-width: 200px;
+}
+
+.topbar-main h1 {
+  margin: 0;
+  font-size: clamp(1.05rem, 3.2vw, 1.42rem);
+  line-height: 1.2;
+  color: #15803d;
+}
+
+.topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-life {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #fff;
+  background: linear-gradient(135deg, #ea580c, #f97316, #fbbf24);
+  box-shadow: 0 10px 26px rgba(234, 88, 12, 0.35);
+  font-family: inherit;
+}
+
+.btn-life:active {
+  transform: scale(0.98);
+}
+
+.btn-life-ico {
+  font-size: 1.1rem;
+}
+
+.btn-sound {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btn-sound[aria-pressed="true"] {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.topic-chip {
+  border: 2px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  font-size: 0.86rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.topic-chip.active {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, #eff6ff, #fff);
+  color: var(--ink);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 760px) {
+  .content {
+    grid-template-columns: 1.12fr 1fr;
+    align-items: start;
+  }
+}
+
+.board-wrap {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+#sceneCanvas {
+  width: 100%;
+  height: min(56dvh, 400px);
+  min-height: 220px;
+  display: block;
+  touch-action: none;
+  background: var(--grid-bg);
+}
+
+.read-panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+
+.read-panel h2 {
+  margin: 0 0 6px;
+  font-size: 1.22rem;
+  color: #15803d;
+}
+
+.symbol-strip {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px dashed rgba(234, 88, 12, 0.45);
+  background: #fffbeb;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #9a3412;
+}
+
+.explain {
+  margin: 0 0 12px;
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+.bullets {
+  margin: 0 0 12px;
+  padding-left: 1.15rem;
+  color: #475569;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+/* —— Günlük hayat modal —— */
+.life-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+.life-modal[hidden] {
+  display: none;
+}
+
+.life-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.life-modal__card {
+  position: relative;
+  width: min(100%, 520px);
+  max-height: min(90dvh, 680px);
+  background: linear-gradient(180deg, #fff, #f8fafc);
+  border-radius: 20px 20px 12px 12px;
+  box-shadow: 0 -8px 40px rgba(15, 23, 42, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 520px) {
+  .life-modal {
+    align-items: center;
+  }
+  .life-modal__card {
+    border-radius: 20px;
+    max-height: min(88dvh, 620px);
+  }
+}
+
+.life-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.life-modal__head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #c2410c;
+}
+
+.life-modal__sub {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.life-modal__close {
+  border: none;
+  background: #f1f5f9;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.life-modal__body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.life-card {
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 14px 14px 12px;
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.life-card h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.life-card__text {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: #334155;
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.life-card__note {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.45;
+  font-weight: 600;
+  font-style: italic;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border-left: 3px solid #93c5fd;
+}
+
+.life-stage {
+  height: clamp(148px, 32vw, 192px);
+  min-height: 148px;
+  border-radius: 14px;
+  background: linear-gradient(165deg, #f0f9ff 0%, #e0f2fe 55%, #f8fafc 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 10px 24px rgba(15, 23, 42, 0.07);
+}
+
+.life-art {
+  flex: 1;
+  position: relative;
+  min-height: 108px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Günlük hayat — açı örnekleri (profesyonel SVG) */
+.life-stage--angle-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.life-art-svg {
+  flex: 1;
+  width: 100%;
+  min-height: clamp(140px, 34vw, 188px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  box-sizing: border-box;
+}
+
+.life-art-svg .life-svg {
+  width: min(100%, 320px);
+  height: auto;
+  max-height: clamp(140px, 36vw, 200px);
+  display: block;
+  shape-rendering: geometricPrecision;
+}
+
+.life-art-svg .la-wedge {
+  animation: la-wedge-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes la-wedge-glow {
+  0%,
+  100% {
+    opacity: 0.88;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.life-stage--angle-scissor,
+.life-stage--angle-door,
+.life-stage--angle-clock,
+.life-stage--angle-book {
+  background: #f8fafc;
+}
+
+.life-geo-hint {
+  margin: 0;
+  padding: 9px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+  color: #9a3412;
+  background: linear-gradient(90deg, #fff7ed, #ffedd5);
+  border-top: 1px solid rgba(234, 88, 12, 0.22);
+  letter-spacing: 0.01em;
+}
+
+/* Günlük hayat — hizalı mini sahneler (açı kartları) */
+.life-illus {
+  position: relative;
+  display: block;
+  width: min(100%, 220px);
+  height: 108px;
+  margin: 0 auto;
+}
+
+.life-illus__arc {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 36%;
+  height: 28%;
+  margin-left: -18%;
+  border-radius: 50% 50% 0 0;
+  border: 3px solid rgba(234, 88, 12, 0.5);
+  border-bottom: none;
+  pointer-events: none;
+  z-index: 5;
+  animation: life-arc-pulse 2.8s ease-in-out infinite;
+}
+.life-illus__arc--sm {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  margin: 0;
+  width: 44px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.life-illus__arc--book {
+  left: 50%;
+  bottom: 18%;
+  width: 28%;
+  height: 22%;
+  margin-left: -14%;
+}
+
+.life-illus--scissor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+}
+.life-illus--scissor .life-illus__emoji {
+  font-size: clamp(2.4rem, 8vw, 3rem);
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.15));
+}
+
+.life-stage--ang-door {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+}
+.life-illus--door {
+  height: 112px;
+}
+.life-illus__wall {
+  position: absolute;
+  left: 18%;
+  bottom: 12%;
+  width: 14%;
+  height: 72%;
+  background: linear-gradient(90deg, #94a3b8, #cbd5e1);
+  border-radius: 2px 0 0 2px;
+  box-shadow: inset -2px 0 0 rgba(15, 23, 42, 0.08);
+}
+.life-illus__door {
+  position: absolute;
+  left: 31%;
+  bottom: 12%;
+  width: 22%;
+  height: 68%;
+  background: linear-gradient(145deg, #fde68a, #fbbf24);
+  border: 2px solid rgba(180, 83, 9, 0.35);
+  border-radius: 3px;
+  transform-origin: left bottom;
+  transform: rotate(-28deg);
+  box-shadow: 2px 4px 12px rgba(120, 53, 15, 0.2);
+  animation: life-door-swing 3s ease-in-out infinite;
+}
+.life-illus--door .life-illus__arc {
+  left: 32%;
+  bottom: 12%;
+  margin-left: 0;
+  width: 30%;
+  height: 24%;
+  transform-origin: left bottom;
+}
+@keyframes life-door-swing {
+  0%,
+  100% {
+    transform: rotate(-24deg);
+  }
+  50% {
+    transform: rotate(-34deg);
+  }
+}
+
+.life-stage--ang-clock {
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+}
+.life-illus--clock {
+  width: 118px;
+  height: 118px;
+}
+.life-illus__clock-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #0f172a;
+  box-shadow: inset 0 0 0 2px rgba(15, 23, 42, 0.06);
+}
+.life-illus__clock-face::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px dashed rgba(15, 23, 42, 0.12);
+}
+.life-illus__clock-face::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #0f172a;
+  z-index: 4;
+}
+.life-illus__clock-fan {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  margin: -50% 0 0 -50%;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  background: conic-gradient(
+    from 240deg at 50% 50%,
+    rgba(251, 191, 36, 0.5) 0deg,
+    rgba(251, 191, 36, 0.5) 88deg,
+    transparent 88deg
+  );
+  mask: radial-gradient(circle, transparent 26%, #000 27%);
+  -webkit-mask: radial-gradient(circle, transparent 26%, #000 27%);
+  animation: life-illus-clock-fan 3s ease-in-out infinite;
+}
+.life-illus__clock-hour,
+.life-illus__clock-minute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.life-illus__clock-hour {
+  width: 4px;
+  height: 34px;
+  margin: -34px 0 0 -2px;
+  background: #0f172a;
+  animation: life-illus-clock-hour 3s ease-in-out infinite;
+}
+.life-illus__clock-minute {
+  width: 3px;
+  height: 26px;
+  margin: -26px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(38deg);
+}
+@keyframes life-illus-clock-hour {
+  0%,
+  100% {
+    transform: rotate(-50deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+}
+@keyframes life-illus-clock-fan {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: rotate(6deg);
+    opacity: 1;
+  }
+}
+
+.life-stage--ang-book {
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+}
+.life-illus--book {
+  height: 112px;
+}
+.life-illus__spine {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 5px;
+  height: 62%;
+  margin-left: -2.5px;
+  background: linear-gradient(90deg, #78716c, #a8a29e);
+  border-radius: 2px;
+  z-index: 2;
+}
+.life-illus__page {
+  position: absolute;
+  top: 22%;
+  width: 26%;
+  height: 50%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.12);
+  z-index: 1;
+}
+.life-illus__page--l {
+  left: 50%;
+  margin-left: -27%;
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  transform-origin: right bottom;
+  animation: life-illus-book-l 2.8s ease-in-out infinite;
+}
+.life-illus__page--r {
+  left: 50%;
+  margin-left: 1%;
+  background: linear-gradient(145deg, #fef9c3, #fef08a);
+  transform-origin: left bottom;
+  animation: life-illus-book-r 2.8s ease-in-out infinite;
+}
+@keyframes life-illus-book-l {
+  0%,
+  100% {
+    transform: rotate(-14deg);
+  }
+  50% {
+    transform: rotate(-22deg);
+  }
+}
+@keyframes life-illus-book-r {
+  0%,
+  100% {
+    transform: rotate(14deg);
+  }
+  50% {
+    transform: rotate(22deg);
+  }
+}
+
+.life-stage--ang-scissor {
+  background: linear-gradient(180deg, #f0fdf4, #dcfce7);
+}
+
+.life-emoji {
+  position: absolute;
+  font-size: 1.45rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.12));
+  pointer-events: none;
+}
+.life-emoji--corner {
+  left: 10px;
+  bottom: 8px;
+}
+.life-emoji--corner-tr {
+  right: 10px;
+  top: 8px;
+}
+.life-emoji--corner-br {
+  right: 10px;
+  bottom: 8px;
+}
+
+.life-stage--desk {
+  background: linear-gradient(180deg, #fefce8 0%, #fef9c3 45%, #e7e5e4 100%);
+}
+.life-desk-shade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 55% at 50% 100%, rgba(120, 113, 108, 0.18), transparent 60%);
+  pointer-events: none;
+}
+
+.life-stage--night {
+  background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.2), transparent 45%),
+    linear-gradient(180deg, #0c4a6e 0%, #0f172a 100%);
+}
+.life-night-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(250, 250, 250, 0.08), transparent 55%);
+}
+
+.anim-dot--small {
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+}
+
+.life-stage--map {
+  background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
+}
+.life-map-grid {
+  position: absolute;
+  inset: 10% 8%;
+  border-radius: 8px;
+  opacity: 0.35;
+  background-image: linear-gradient(rgba(30, 64, 175, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 64, 175, 0.2) 1px, transparent 1px);
+  background-size: 14px 14px;
+  border: 1px solid rgba(30, 64, 175, 0.15);
+}
+
+.life-stage--wood {
+  background: linear-gradient(90deg, #d6d3d1, #e7e5e4 40%, #d6d3d1);
+}
+.life-wood-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 3px,
+    rgba(68, 64, 60, 0.08) 3px,
+    rgba(68, 64, 60, 0.08) 4px
+  );
+}
+
+.life-stage--paper-seg {
+  background: linear-gradient(180deg, #fafaf9 0%, #e7e5e4 100%);
+}
+.life-book-3d {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 62%;
+  height: 58%;
+  max-width: 200px;
+  transform: translate(-50%, -50%) perspective(340px) rotateY(-18deg) rotateX(6deg);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.life-book-spine-seg {
+  position: absolute;
+  left: 0;
+  top: 8%;
+  width: 10%;
+  height: 84%;
+  border-radius: 3px 0 0 3px;
+  background: linear-gradient(90deg, #44403c, #78716c);
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.18);
+}
+.life-book-pages {
+  position: absolute;
+  left: 9%;
+  top: 6%;
+  right: 4%;
+  bottom: 6%;
+  border-radius: 4px 8px 8px 4px;
+  background: linear-gradient(145deg, #fffbeb 0%, #fef3c7 45%, #fde68a 100%);
+  border: 2px solid rgba(146, 64, 14, 0.35);
+  box-shadow: 6px 10px 22px rgba(120, 53, 15, 0.2);
+}
+.life-book-seg-line {
+  position: absolute;
+  left: 14%;
+  right: 8%;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1d4ed8, #2563eb, #1d4ed8);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.65);
+  transform-origin: center;
+  animation: life-draw-line 2.4s ease-in-out infinite;
+}
+
+.life-stage--outdoor {
+  background: linear-gradient(180deg, #bae6fd 0%, #86efac 55%, #4ade80 100%);
+}
+.life-pole {
+  position: absolute;
+  bottom: 18%;
+  width: 8px;
+  height: 42%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #78716c, #a8a29e);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.life-pole--l {
+  left: 22%;
+}
+.life-pole--r {
+  right: 22%;
+}
+
+.anim-seg-bar--rope {
+  height: 5px;
+  margin-top: -2.5px;
+  background: repeating-linear-gradient(
+    90deg,
+    #b45309,
+    #b45309 4px,
+    #d97706 4px,
+    #d97706 8px
+  );
+  border-radius: 999px;
+}
+
+.life-stage--flashlight {
+  background: radial-gradient(circle at 20% 50%, rgba(148, 163, 184, 0.35), transparent 50%),
+    linear-gradient(180deg, #1e293b, #0f172a);
+}
+.anim-ray-device {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  width: 34px;
+  height: 26px;
+  margin: -13px 0 0 0;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #64748b, #334155);
+  border: 2px solid #94a3b8;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+.anim-ray-device--small {
+  width: 26px;
+  height: 20px;
+  margin: -10px 0 0 -13px;
+  border-radius: 6px;
+}
+.anim-ray-device--tiny {
+  width: 22px;
+  height: 16px;
+  margin: -8px 0 0 -11px;
+  border-radius: 5px;
+}
+
+.life-stage--window {
+  background: linear-gradient(180deg, #e0f2fe 0%, #fef9c3 100%);
+}
+.life-window-frame {
+  position: absolute;
+  left: 38%;
+  top: 18%;
+  width: 28%;
+  height: 62%;
+  border: 5px solid #78716c;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(186, 230, 253, 0.5), rgba(125, 211, 252, 0.25));
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.life-stage--laser {
+  background: radial-gradient(ellipse at 30% 50%, rgba(248, 113, 113, 0.15), transparent 55%), #020617;
+}
+.life-laser-haze {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(248, 113, 113, 0.08), transparent 70%);
+}
+.life-laser-line {
+  position: absolute;
+  left: 22%;
+  top: 50%;
+  width: 62%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fecaca, #f87171, #ef4444);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.85), 0 0 32px rgba(239, 68, 68, 0.35);
+}
+
+.life-stage--horizon {
+  overflow: hidden;
+}
+.life-sun {
+  position: absolute;
+  right: 12%;
+  top: 12%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fef9c3, #fbbf24 55%, #f59e0b);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.65);
+}
+.life-sky-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 52%;
+  background: linear-gradient(180deg, #38bdf8, #7dd3fc 70%, #bae6fd);
+}
+.life-sea-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48%;
+  background: linear-gradient(180deg, #0ea5e9, #0369a1 80%, #0c4a6e);
+  overflow: hidden;
+}
+.life-wave {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  height: 18px;
+  bottom: 38%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 12px,
+    rgba(255, 255, 255, 0.14) 12px,
+    rgba(255, 255, 255, 0.14) 22px
+  );
+  animation: life-wave-shift 5s linear infinite;
+  opacity: 0.9;
+}
+.life-wave--2 {
+  bottom: 22%;
+  opacity: 0.55;
+  animation-duration: 6.5s;
+  animation-direction: reverse;
+}
+.life-horizon-line {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 52%;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.95), transparent);
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.55);
+  transform-origin: center;
+  animation: life-line-grow 2.4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.life-line-arrow {
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -7px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #7c3aed;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.2));
+  animation: life-arrow-pulse-r 2.4s ease-in-out infinite;
+  z-index: 3;
+}
+.life-line-arrow--l {
+  left: 5%;
+  animation-name: life-arrow-pulse-l;
+}
+.life-line-arrow--r {
+  right: 5%;
+}
+.life-line-arrow--dark {
+  border-left-color: #1c1917;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.35));
+}
+.life-line-arrow--green {
+  border-left-color: #15803d;
+}
+
+@keyframes life-wave-shift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes life-arrow-pulse-r {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes life-arrow-pulse-l {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scaleX(-1) scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(-1) scale(1);
+  }
+}
+
+.life-stage--rail {
+  background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 40%, #d6d3d1 100%);
+}
+.life-rail-sky {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 42%;
+  background: linear-gradient(180deg, #93c5fd, #bfdbfe);
+}
+.life-rail-bed {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44%;
+  background: repeating-linear-gradient(
+      90deg,
+      #44403c,
+      #44403c 3px,
+      #57534e 3px,
+      #57534e 9px
+    ),
+    linear-gradient(180deg, #78716c, #44403c);
+  box-shadow: inset 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+.life-rail-tie {
+  position: absolute;
+  bottom: 22%;
+  height: 10px;
+  width: 14%;
+  border-radius: 2px;
+  background: #78350f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+.life-rail-tie--1 {
+  left: 22%;
+}
+.life-rail-tie--2 {
+  left: 50%;
+  margin-left: -7%;
+}
+.life-rail-tie--3 {
+  right: 22%;
+}
+.life-rail-steel-pair {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 22px;
+  margin-top: -11px;
+  z-index: 3;
+  background:
+    linear-gradient(#1c1917, #1c1917) left 0 top 4px / 100% 4px no-repeat,
+    linear-gradient(#1c1917, #1c1917) left 0 bottom 4px / 100% 4px no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+  animation: life-line-grow 2.6s ease-in-out infinite;
+}
+.life-rail-train {
+  position: absolute;
+  right: 10%;
+  bottom: 26%;
+  width: 22px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #fecdd3, #fb7185);
+  border: 2px solid #9f1239;
+  box-shadow: 2px 2px 0 #881337;
+  z-index: 4;
+  animation: life-train-nudge 3s ease-in-out infinite;
+}
+
+@keyframes life-train-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-6px);
+  }
+}
+
+.life-stage--forest-path {
+  background: linear-gradient(180deg, #86efac 0%, #4ade80 45%, #166534 100%);
+  overflow: hidden;
+}
+.life-forest-trees {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.life-forest-trees--back {
+  bottom: 38%;
+  height: 42%;
+  background:
+    radial-gradient(ellipse 14px 36px at 12% 100%, #14532d 99%, transparent 100%),
+    radial-gradient(ellipse 12px 30px at 22% 100%, #166534 99%, transparent 100%),
+    radial-gradient(ellipse 16px 40px at 78% 100%, #14532d 99%, transparent 100%),
+    radial-gradient(ellipse 12px 32px at 88% 100%, #166534 99%, transparent 100%);
+  opacity: 0.65;
+}
+.life-forest-trees--front {
+  bottom: 30%;
+  height: 48%;
+  background:
+    radial-gradient(ellipse 18px 52px at 8% 100%, #166534 99%, transparent 100%),
+    radial-gradient(ellipse 16px 44px at 18% 100%, #15803d 99%, transparent 100%),
+    radial-gradient(ellipse 22px 56px at 50% 100%, #14532d 99%, transparent 100%),
+    radial-gradient(ellipse 17px 48px at 82% 100%, #166534 99%, transparent 100%),
+    radial-gradient(ellipse 14px 40px at 94% 100%, #15803d 99%, transparent 100%);
+  filter: drop-shadow(0 -2px 2px rgba(0, 0, 0, 0.12));
+}
+.life-path-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  background: linear-gradient(180deg, #422006, #713f12 35%, #78350f);
+}
+.life-path-center-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 52%;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #facc15,
+    #facc15 10px,
+    #000 10px,
+    #000 18px
+  );
+  transform: rotate(-4deg);
+  transform-origin: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+  animation: life-line-grow 2.8s ease-in-out infinite;
+}
+
+.life-stage--table {
+  background: radial-gradient(ellipse 100% 80% at 50% 100%, rgba(120, 113, 108, 0.2), transparent 55%),
+    linear-gradient(180deg, #f1f5f9, #e2e8f0);
+}
+.life-table-top {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 12%;
+  height: 22%;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #cbd5e1, #94a3b8);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.life-scissor {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 56px;
+  height: 54px;
+  margin: -27px 0 0 -28px;
+  z-index: 2;
+  pointer-events: none;
+}
+.life-scissor-blade {
+  position: absolute;
+  top: 2px;
+  width: 9px;
+  height: 36px;
+  border-radius: 3px 3px 2px 2px;
+  background: linear-gradient(90deg, #94a3b8, #e2e8f0 55%, #cbd5e1);
+  box-shadow: 1px 3px 6px rgba(15, 23, 42, 0.18);
+}
+.life-scissor-blade--l {
+  left: 50%;
+  margin-left: -13px;
+  transform-origin: 50% 95%;
+  animation: life-scissor-blade-l 1.9s ease-in-out infinite;
+}
+.life-scissor-blade--r {
+  left: 50%;
+  margin-left: 4px;
+  transform-origin: 50% 95%;
+  animation: life-scissor-blade-r 1.9s ease-in-out infinite;
+}
+.life-scissor-pivot {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  width: 11px;
+  height: 11px;
+  margin: -5px 0 0 -5.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #64748b, #0f172a 70%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+}
+
+@keyframes life-scissor-blade-l {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(-26deg);
+  }
+}
+
+@keyframes life-scissor-blade-r {
+  0%,
+  100% {
+    transform: rotate(12deg);
+  }
+  50% {
+    transform: rotate(26deg);
+  }
+}
+
+.life-stage--room {
+  background: linear-gradient(180deg, #e2e8f0 0%, #f1f5f9 45%, #cbd5e1 100%);
+}
+.life-wall {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(148, 163, 184, 0.35) 0%, rgba(241, 245, 249, 0.2) 55%, transparent 100%);
+}
+.life-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 24%;
+  background: linear-gradient(180deg, #94a3b8, #64748b);
+  box-shadow: inset 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+.life-door-jamb {
+  position: absolute;
+  left: 26%;
+  top: 18%;
+  width: 10%;
+  height: 64%;
+  background: linear-gradient(90deg, #78350f, #92400e);
+  border-radius: 3px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.12);
+}
+.life-door-swing {
+  position: absolute;
+  left: 34%;
+  top: 24%;
+  width: 24%;
+  height: 52%;
+  background: linear-gradient(90deg, #fdba74, #fb923c);
+  border-radius: 3px;
+  transform-origin: left center;
+  border: 2px solid rgba(120, 53, 15, 0.35);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+  animation: life-door-open 2.6s ease-in-out infinite;
+  z-index: 2;
+}
+.life-door-angle-arc {
+  position: absolute;
+  left: 34%;
+  bottom: 22%;
+  width: 48px;
+  height: 48px;
+  margin-left: -6px;
+  border-radius: 0 0 50% 0;
+  background: conic-gradient(
+    from 200deg at 0% 100%,
+    rgba(59, 130, 246, 0.3) 0deg,
+    rgba(59, 130, 246, 0.3) 22deg,
+    transparent 22deg
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: life-door-arc 2.6s ease-in-out infinite;
+}
+
+@keyframes life-door-arc {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) rotate(0deg);
+  }
+}
+
+@keyframes life-door-open {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+
+.life-stage--clock {
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.9), #e2e8f0 40%, #cbd5e1 100%);
+}
+.life-clock-face {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(46%, 102px);
+  height: min(46%, 102px);
+  margin: calc(min(46%, 102px) / -2) 0 0 calc(min(46%, 102px) / -2);
+  border-radius: 50%;
+  border: 3px solid #334155;
+  background: #f8fafc;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9), 0 6px 16px rgba(15, 23, 42, 0.12);
+  z-index: 1;
+}
+.life-clock-tick {
+  position: absolute;
+  background: #334155;
+  border-radius: 1px;
+}
+.life-clock-tick--12 {
+  left: 50%;
+  top: 6%;
+  width: 2px;
+  height: 10px;
+  margin-left: -1px;
+}
+.life-clock-tick--3 {
+  right: 6%;
+  top: 50%;
+  width: 10px;
+  height: 2px;
+  margin-top: -1px;
+}
+.life-clock-tick--6 {
+  left: 50%;
+  bottom: 6%;
+  width: 2px;
+  height: 10px;
+  margin-left: -1px;
+}
+.life-clock-tick--9 {
+  left: 6%;
+  top: 50%;
+  width: 10px;
+  height: 2px;
+  margin-top: -1px;
+}
+.life-clock-face::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #0f172a;
+}
+.life-clock-angle-wedge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(40%, 88px);
+  height: min(40%, 88px);
+  margin: calc(min(40%, 88px) / -2) 0 0 calc(min(40%, 88px) / -2);
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  background: conic-gradient(
+    from 210deg at 50% 50%,
+    rgba(251, 191, 36, 0.42) 0deg,
+    rgba(251, 191, 36, 0.42) 58deg,
+    transparent 58deg
+  );
+  animation: life-clock-wedge 3s ease-in-out infinite;
+  mask: radial-gradient(circle, transparent 12px, #000 13px);
+  -webkit-mask: radial-gradient(circle, transparent 12px, #000 13px);
+}
+@keyframes life-clock-wedge {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: rotate(-6deg) scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(6deg) scale(1);
+  }
+}
+.life-clock-hour,
+.life-clock-minute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.life-clock-hour {
+  width: 4px;
+  height: 34px;
+  margin: -34px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.life-clock-minute {
+  width: 3px;
+  height: 26px;
+  margin: -26px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(38deg);
+}
+
+@keyframes life-clock-hour {
+  0%,
+  100% {
+    transform: rotate(-50deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+}
+
+.life-stage--open-book {
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+  overflow: visible;
+}
+.life-book-spine {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  width: 4px;
+  height: 58%;
+  margin-left: -2px;
+  background: linear-gradient(90deg, #78716c, #a8a29e);
+  border-radius: 2px;
+  z-index: 1;
+}
+.life-book-lines {
+  position: absolute;
+  inset: 12% 8% 14%;
+  border-radius: 2px;
+  opacity: 0.45;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(120, 53, 15, 0.35) 0,
+    rgba(120, 53, 15, 0.35) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  pointer-events: none;
+}
+.life-book-page {
+  position: absolute;
+  top: 26%;
+  width: 24%;
+  height: 46%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.45);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.12);
+  z-index: 2;
+  overflow: hidden;
+}
+.life-book-page--l {
+  left: 50%;
+  margin-left: -26%;
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.life-book-page--r {
+  left: 50%;
+  margin-left: 2%;
+  background: linear-gradient(145deg, #fef9c3, #fef08a);
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+.life-angle-arc {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: 32%;
+  height: 26%;
+  margin-left: -16%;
+  border-radius: 50% 50% 0 0;
+  border: 3px solid rgba(234, 88, 12, 0.45);
+  border-bottom: none;
+  pointer-events: none;
+  z-index: 4;
+  animation: life-arc-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes life-arc-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scaleX(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes life-book-page {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+}
+
+/* —— Animasyonlar —— */
+@keyframes life-pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.85;
+  }
+}
+
+@keyframes life-draw-line {
+  0% {
+    transform: scaleX(0.2);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0.2);
+    opacity: 0.6;
+  }
+}
+
+@keyframes life-ray-sweep {
+  0% {
+    opacity: 0.35;
+    transform: scaleX(0.4) translateX(-10%);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1) translateX(0);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scaleX(0.4) translateX(10%);
+  }
+}
+
+@keyframes life-line-grow {
+  0%,
+  100% {
+    transform: scaleX(0.65);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}
+
+.anim-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25);
+  animation: life-pulse-dot 1.6s ease-in-out infinite;
+}
+
+.anim-seg-bar {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 50%;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transform-origin: center;
+  animation: life-draw-line 2.2s ease-in-out infinite;
+}
+
+.anim-seg-cap {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: -5.5px;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+  border: 2px solid #1e293b;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+.anim-seg-cap--l {
+  left: 12%;
+}
+.anim-seg-cap--r {
+  right: 12%;
+}
+
+.anim-ray-beam {
+  position: absolute;
+  left: 18%;
+  top: 50%;
+  width: 70%;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(90deg, rgba(5, 150, 105, 0.95), rgba(5, 150, 105, 0.15));
+  transform-origin: left center;
+  animation: life-ray-sweep 2.4s ease-in-out infinite;
+}
+
+.anim-ray-start {
+  position: absolute;
+  left: 18%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: #0f172a;
+  z-index: 1;
+}
+
+.anim-line-track {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  background: #7c3aed;
+  border-radius: 999px;
+  transform-origin: center;
+  animation: life-line-grow 2s ease-in-out infinite;
+}
+
+.anim-arrow-fake {
+  position: absolute;
+  top: 50%;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #7c3aed;
+  margin-top: -9px;
+  letter-spacing: -0.06em;
+}
+.anim-arrow-fake--l {
+  left: 4%;
+}
+.anim-arrow-fake--r {
+  right: 4%;
+}
+
+.anim-ray-beam.anim-ray-beam--from-device {
+  left: 22%;
+  width: 68%;
+}
+
+.anim-ray-beam.anim-ray-beam--sun {
+  top: 40%;
+  left: 44%;
+  width: 52%;
+  height: 12px;
+  margin-top: -6px;
+  transform: rotate(-62deg);
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(250, 250, 250, 0.95), rgba(253, 224, 71, 0.35), rgba(250, 250, 250, 0));
+}
+
+/* —— Günlük hayat: lv sahne öğeleri —— */
+.lv-icon {
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  line-height: 1;
+  filter: drop-shadow(0 3px 6px rgba(15, 23, 42, 0.15));
+  z-index: 2;
+}
+.lv-icon--pulse {
+  animation: lv-icon-pulse 2s ease-in-out infinite;
+}
+.lv-icon--corner {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 1.35rem;
+}
+.lv-icon--corner-tr {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+@keyframes lv-icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+.lv-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.7);
+  animation: lv-dot-pulse 1.8s ease-in-out infinite;
+}
+.lv-dot--sm {
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+}
+.lv-dot--red {
+  background: #ef4444;
+  left: 52%;
+  top: 48%;
+}
+.lv-dot--gold {
+  background: #fbbf24;
+}
+.lv-dot--blue {
+  background: #2563eb;
+}
+@keyframes lv-dot-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.88;
+  }
+}
+.lv-sky {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 25%, rgba(251, 191, 36, 0.35), transparent 40%),
+    linear-gradient(180deg, #0c4a6e, #1e3a5f);
+}
+.lv-map {
+  position: absolute;
+  width: 78%;
+  height: 72%;
+  border-radius: 10px;
+  border: 2px solid rgba(30, 64, 175, 0.25);
+  background: linear-gradient(145deg, #dbeafe, #bfdbfe);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.lv-map::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  opacity: 0.35;
+  background-image: linear-gradient(rgba(30, 64, 175, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 64, 175, 0.25) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+.lv-pin {
+  position: absolute;
+  left: 54%;
+  top: 46%;
+  font-size: 1.5rem;
+  animation: lv-pin-bounce 2.2s ease-in-out infinite;
+}
+@keyframes lv-pin-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.lv-ruler {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 28%;
+  margin-top: -14%;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #fef08a, #eab308);
+  border: 2px solid #a16207;
+  box-shadow: 0 4px 12px rgba(120, 53, 15, 0.2);
+}
+.lv-cap {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 2px solid #fff;
+  z-index: 2;
+}
+.lv-cap--l {
+  left: 10%;
+}
+.lv-cap--r {
+  right: 10%;
+}
+.lv-seg-line {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  top: 50%;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+  animation: life-draw-line 2.2s ease-in-out infinite;
+  z-index: 1;
+}
+.lv-book {
+  width: 56%;
+  height: 58%;
+  border-radius: 6px 10px 10px 6px;
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  border: 2px solid #b45309;
+  box-shadow: 6px 8px 18px rgba(120, 53, 15, 0.2);
+  position: relative;
+}
+.lv-seg-highlight {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 62%;
+  height: 4px;
+  margin: -2px 0 0 -31%;
+  border-radius: 999px;
+  background: #2563eb;
+  box-shadow: 0 0 0 2px #fff;
+  animation: life-draw-line 2.4s ease-in-out infinite;
+}
+.lv-pole {
+  position: absolute;
+  bottom: 22%;
+  width: 10px;
+  height: 48%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #78716c, #a8a29e);
+}
+.lv-pole--l {
+  left: 20%;
+}
+.lv-pole--r {
+  right: 20%;
+}
+.lv-rope {
+  position: absolute;
+  left: 24%;
+  right: 24%;
+  top: 50%;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(90deg, #b45309, #b45309 5px, #d97706 5px, #d97706 10px);
+  animation: life-draw-line 2.5s ease-in-out infinite;
+}
+.lv-flashlight {
+  position: absolute;
+  left: 12%;
+  top: 50%;
+  width: 36px;
+  height: 28px;
+  margin-top: -14px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #64748b, #334155);
+  border: 2px solid #94a3b8;
+  z-index: 2;
+}
+.lv-ray-beam {
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  width: 68%;
+  height: 16px;
+  margin-top: -8px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(90deg, rgba(250, 250, 250, 0.95), rgba(34, 197, 94, 0.2));
+  transform-origin: left center;
+  animation: life-ray-sweep 2.4s ease-in-out infinite;
+}
+.life-stage--point-pen {
+  background: linear-gradient(180deg, #fefce8, #fef9c3);
+}
+.life-stage--point-star {
+  background: #0f172a;
+}
+.life-stage--point-map {
+  background: linear-gradient(180deg, #dbeafe, #bfdbfe);
+}
+.life-stage--seg-ruler {
+  background: linear-gradient(90deg, #e7e5e4, #f5f5f4);
+}
+.life-stage--seg-book {
+  background: linear-gradient(180deg, #fafaf9, #f5f5f4);
+}
+.life-stage--seg-rope {
+  background: linear-gradient(180deg, #bae6fd, #86efac);
+}
+.life-stage--ang-scissor,
+.life-stage--ang-door {
+  background: linear-gradient(180deg, #f1f5f9, #e2e8f0);
+}
+.life-stage--ang-clock {
+  background: radial-gradient(circle at 50% 40%, #fff, #e2e8f0);
+}
+.life-stage--ang-book {
+  background: linear-gradient(180deg, #fffbeb, #fef3c7);
+}
+.life-stage--line-sea {
+  background: #e0f2fe;
+}
+.life-stage--line-rail {
+  background: #e0f2fe;
+}
+.life-stage--line-forest {
+  background: linear-gradient(180deg, #bbf7d0, #4ade80);
+}
+.life-stage--ray-flash {
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+}
+.lv-window {
+  position: absolute;
+  left: 50%;
+  top: 28%;
+  width: 32%;
+  height: 52%;
+  margin-left: -16%;
+  border: 4px solid #78716c;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(186, 230, 253, 0.6), rgba(125, 211, 252, 0.3));
+  z-index: 1;
+}
+.lv-sunbeam {
+  position: absolute;
+  left: 48%;
+  top: 42%;
+  width: 46%;
+  height: 14px;
+  transform: rotate(-55deg);
+  transform-origin: left center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fef9c3, rgba(253, 224, 71, 0.35));
+  animation: life-ray-sweep 2.8s ease-in-out infinite;
+}
+.life-stage--ray-sun {
+  background: linear-gradient(180deg, #e0f2fe, #fef9c3);
+}
+.lv-laser-room {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(248, 113, 113, 0.12), #020617);
+}
+.lv-laser-line {
+  position: absolute;
+  left: 16%;
+  top: 50%;
+  width: 70%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 999px;
+  background: #ef4444;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+  animation: life-line-grow 2s ease-in-out infinite;
+}
+.life-stage--ray-laser {
+  background: #020617;
+}
+.lv-horizon {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.lv-horizon__sky {
+  position: absolute;
+  inset: 0 0 48% 0;
+  background: linear-gradient(180deg, #38bdf8, #bae6fd);
+}
+.lv-horizon__sea {
+  position: absolute;
+  inset: 52% 0 0 0;
+  background: linear-gradient(180deg, #0ea5e9, #0369a1);
+}
+.lv-horizon__line {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 52%;
+  height: 3px;
+  margin-top: -1.5px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: life-line-grow 2.4s ease-in-out infinite;
+  z-index: 3;
+}
+.lv-horizon__sun {
+  position: absolute;
+  right: 14%;
+  top: 14%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fef9c3, #fbbf24);
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.7);
+}
+.lv-arrows {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-top: -10px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #7c3aed;
+  letter-spacing: 0.35em;
+  z-index: 4;
+  animation: lv-arrows-pulse 2.4s ease-in-out infinite;
+}
+.lv-arrows--dark {
+  color: #1c1917;
+}
+.lv-arrows--green {
+  color: #15803d;
+}
+@keyframes lv-arrows-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.lv-rail {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.lv-rail__sky {
+  position: absolute;
+  inset: 0 0 55% 0;
+  background: linear-gradient(180deg, #93c5fd, #e0f2fe);
+}
+.lv-rail__track {
+  position: absolute;
+  inset: 45% 0 0 0;
+  background: linear-gradient(180deg, #78716c, #44403c);
+}
+.lv-rail__track::before,
+.lv-rail__track::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 4px;
+  background: #1c1917;
+  border-radius: 2px;
+}
+.lv-rail__track::before {
+  top: 38%;
+}
+.lv-rail__track::after {
+  top: 58%;
+}
+.lv-rail__train {
+  position: absolute;
+  right: 12%;
+  bottom: 38%;
+  font-size: 1.6rem;
+  animation: life-train-nudge 3s ease-in-out infinite;
+  z-index: 2;
+}
+.lv-forest {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.lv-forest__trees {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8%;
+  text-align: center;
+  font-size: 1.35rem;
+  letter-spacing: 0.15em;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.15));
+  z-index: 2;
+}
+.lv-forest__path {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 18%;
+  height: 42%;
+  background: linear-gradient(180deg, #a16207, #713f12);
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.lv-forest__path::after {
+  content: "";
+  position: absolute;
+  left: 42%;
+  top: 8%;
+  bottom: 8%;
+  width: 6px;
+  background: repeating-linear-gradient(180deg, #facc15, #facc15 8px, #000 8px, #000 14px);
+  opacity: 0.85;
+}
+.lv-scissor-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.lv-scissor-emoji {
+  font-size: 3rem;
+  transform-origin: center 70%;
+  animation: lv-scissor-open 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.2));
+  z-index: 2;
+}
+@keyframes lv-scissor-open {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+.lv-angle-arc {
+  position: absolute;
+  left: 50%;
+  bottom: 28%;
+  width: 44px;
+  height: 36px;
+  margin-left: -22px;
+  border-radius: 50% 50% 0 0;
+  border: 3px solid rgba(234, 88, 12, 0.55);
+  border-bottom: none;
+  pointer-events: none;
+  animation: life-arc-pulse 2.4s ease-in-out infinite;
+}
+.lv-angle-arc--small {
+  width: 36px;
+  height: 28px;
+  margin-left: -18px;
+  bottom: 32%;
+}
+.lv-angle-arc--book {
+  bottom: 18%;
+  width: 52px;
+  margin-left: -26px;
+}
+.lv-door-scene {
+  position: absolute;
+  inset: 8% 10%;
+}
+.lv-door-frame {
+  position: absolute;
+  left: 28%;
+  top: 12%;
+  width: 12%;
+  height: 76%;
+  background: linear-gradient(90deg, #78350f, #92400e);
+  border-radius: 3px;
+  z-index: 1;
+}
+.lv-door-panel {
+  position: absolute;
+  left: 36%;
+  top: 16%;
+  width: 28%;
+  height: 68%;
+  background: linear-gradient(90deg, #fdba74, #fb923c);
+  border-radius: 3px;
+  transform-origin: left center;
+  border: 2px solid rgba(120, 53, 15, 0.35);
+  animation: life-door-open 2.6s ease-in-out infinite;
+  z-index: 2;
+}
+.lv-clock {
+  position: relative;
+  width: min(88px, 42vw);
+  height: min(88px, 42vw);
+}
+.lv-clock__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 3px solid #334155;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+.lv-clock__face::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #0f172a;
+  z-index: 4;
+}
+.lv-clock__hour,
+.lv-clock__minute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+igin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+igin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+2px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}
+igin: 50% 100%;
+  border-radius: 999px;
+  z-index: 3;
+}
+.lv-clock__hour {
+  width: 4px;
+  height: 28px;
+  margin: -28px 0 0 -2px;
+  background: #0f172a;
+  animation: life-clock-hour 3s ease-in-out infinite;
+}
+.lv-clock__minute {
+  width: 3px;
+  height: 22px;
+  margin: -22px 0 0 -1.5px;
+  background: #dc2626;
+  transform: rotate(42deg);
+}
+.lv-clock__wedge {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, rgba(251, 191, 36, 0.45) 0deg, rgba(251, 191, 36, 0.45) 55deg, transparent 55deg);
+  z-index: 1;
+  animation: life-clock-wedge 3s ease-in-out infinite;
+}
+.lv-open-book {
+  position: relative;
+  width: 72%;
+  height: 62%;
+}
+.lv-open-book__spine {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  margin-left: -2.5px;
+  background: #78716c;
+  border-radius: 2px;
+  z-index: 1;
+}
+.lv-open-book__page {
+  position: absolute;
+  top: 14%;
+  width: 42%;
+  height: 72%;
+  border-radius: 4px;
+  border: 2px solid rgba(180, 83, 9, 0.4);
+  background: linear-gradient(145deg, #fffbeb, #fde68a);
+  box-shadow: 0 4px 10px rgba(120, 53, 15, 0.15);
+}
+.lv-open-book__page--l {
+  left: 8%;
+  transform-origin: right bottom;
+  animation: life-book-page 2.8s ease-in-out infinite;
+}
+.lv-open-book__page--r {
+  right: 8%;
+  transform-origin: left bottom;
+  animation: life-book-page 2.8s ease-in-out infinite reverse;
+}
+
+.signature {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+  bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: #334155;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .btn-life-txt {
+    max-width: 160px;
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  #sceneCanvas {
+    height: min(52dvh, 360px);
+    min-height: 200px;
+  }
+
+  .life-modal__card {
+    width: 100%;
+    max-height: min(92dvh, 720px);
+    border-radius: 16px 16px 10px 10px;
+  }
+
+  .life-stage {
+    height: clamp(140px, 38vw, 172px);
+  }
+
+  .life-art {
+    min-height: 96px;
+  }
+
+  .life-modal__body {
+    padding: 10px 12px 16px;
+  }
+}

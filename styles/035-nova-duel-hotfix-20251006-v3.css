@@ -1,0 +1,85 @@
+/* Scope strictly to the real duel screen id */
+#duel-game-screen{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Lighten the OUTER background only when duel screen is visible */
+#duel-game-screen::before{
+  content:"";
+  position:absolute; inset:-12%;
+  background:
+    radial-gradient(1200px 600px at 50% 110%, rgba(0, 240, 255, .12), transparent 70%),
+    radial-gradient(1100px 680px at 50% -10%, rgba(0, 180, 255, .10), transparent 75%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Keep actual UI above the ambient layer */
+#duel-game-screen > *{ position:relative; z-index:2; }
+
+/* NEON halo that spills out of the question container and "lights" the arena */
+#duel-game-screen .question-container{
+  position: relative;
+  background: rgba(12, 26, 56, .88) !important;
+  border: 2px solid rgba(0, 240, 255, .55) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 0 22px rgba(0, 240, 255, .25),
+    0 0 22px rgba(0, 180, 255, .25);
+  color: #eaf6ff !important;
+  backdrop-filter: blur(6px);
+}
+#duel-game-screen .question-container::before{
+  content:"";
+  position:absolute; inset:-26px;
+  border-radius: 16px;
+  background:
+    radial-gradient(520px 200px at 50% 0%, rgba(0, 240, 255, .24), transparent 60%),
+    radial-gradient(360px 260px at 0% 100%, rgba(0, 210, 255, .14), transparent 70%),
+    radial-gradient(360px 260px at 100% 100%, rgba(0, 210, 255, .14), transparent 70%);
+  filter: blur(14px);
+  mix-blend-mode: screen;
+  z-index:-1;
+  pointer-events:none;
+}
+#duel-game-screen .question-container::after{
+  content:"";
+  position:absolute; left:6%; right:6%; top:-6px; height:8px;
+  background: linear-gradient(90deg,
+     rgba(0,255,200,0),
+     rgba(0,255,200,.55),
+     rgba(0,160,255,.65),
+     rgba(0,255,200,.55),
+     rgba(0,255,200,0));
+  filter: blur(8px);
+  border-radius: 10px;
+  pointer-events:none;
+  animation: novaAuroraEdge 6s ease-in-out infinite;
+}
+@keyframes novaAuroraEdge{
+  0%,100%{ transform: translateX(-3%); opacity:.9; }
+  50%{ transform: translateX(3%); opacity:1; }
+}
+
+/* Readability upgrades */
+#duel-game-screen .question-text{ color:#eaf6ff !important; text-shadow: 0 1px 1px rgba(0,0,0,.35); }
+#duel-game-screen .options-container .option-button,
+#duel-game-screen .option-button{
+  background: linear-gradient(180deg, rgba(26,38,70,.94), rgba(10,16,30,.96)) !important;
+  border:1px solid rgba(0, 210, 255, .38) !important;
+  color:#eaf6ff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35), 0 0 12px rgba(0,200,255,.25) inset !important;
+}
+
+/* Progress bar alignment to lighter theme */
+#duel-game-screen .progress-bar{ background: rgba(255,255,255,.10) !important; }
+#duel-game-screen #duel-progress-bar-inner{ background: linear-gradient(90deg,#00f0ff,#00ffcc) !important; }
+
+/* >>> REMOVE the planet balls on duel screen <<< */
+.nova-planet,
+#nova-planet-1,
+#nova-planet-2{ display:none !important; opacity:0 !important; visibility:hidden !important; }

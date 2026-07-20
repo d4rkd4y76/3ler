@@ -1,0 +1,105 @@
+/* İsim çerçeveleri — 5 sade stil, bonus yok, düşük GPU yükü */
+.nova-name-frame{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  max-width:100%;
+  padding:2px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.34);
+  font-weight:800;
+  letter-spacing:.02em;
+  box-shadow:0 2px 8px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.28);
+  overflow:hidden;
+  vertical-align:middle;
+}
+.nova-name-frame .nf-inner{
+  position:relative;
+  z-index:1;
+  display:block;
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.nova-name-basic{
+  display:inline;
+  max-width:100%;
+  font-weight:800;
+  letter-spacing:.015em;
+  color:#ffffff;
+  background:none !important;
+  border:none !important;
+  box-shadow:none !important;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.82),
+    0 0 14px rgba(0,0,0,.72),
+    0 0 3px rgba(0,0,0,.95);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#main-screen #student-name .nova-name-basic{
+  color:#ffffff !important;
+  font-size:clamp(1.05rem, 3.8vw, 1.35rem);
+  font-weight:900;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.92),
+    0 0 16px rgba(0,0,0,.78),
+    0 0 4px rgba(0,0,0,.98);
+}
+
+.nf-okyanus{
+  background:linear-gradient(135deg,#eff6ff,#93c5fd,#3b82f6);
+  color:#0c2d5c;
+  border-color:rgba(147,197,253,.58);
+}
+.nf-orman{
+  background:linear-gradient(135deg,#ecfdf5,#6ee7b7,#22c55e);
+  color:#14532d;
+  border-color:rgba(134,239,172,.55);
+}
+.nf-gul{
+  background:linear-gradient(135deg,#fdf2f8,#f9a8d4,#ec4899);
+  color:#831843;
+  border-color:rgba(251,207,232,.58);
+}
+.nf-kehribar{
+  background:linear-gradient(135deg,#fffbeb,#fcd34d,#f59e0b);
+  color:#78350f;
+  border-color:rgba(253,230,138,.58);
+}
+.nf-gumus{
+  background:linear-gradient(135deg,#f8fafc,#cbd5e1,#94a3b8);
+  color:#1e293b;
+  border-color:rgba(226,232,240,.65);
+}
+
+/* Deneme şampiyonu rozeti (mağaza dışı) */
+.nf-denemechamp{
+  background:linear-gradient(135deg,#fde68a,#f59e0b,#d97706);
+  color:#fffbeb;
+  border-color:rgba(254,240,138,.75);
+  box-shadow:0 0 10px rgba(245,158,11,.35), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.nf-denemechamp .nf-inner{
+  text-shadow:0 1px 2px rgba(120,53,15,.45);
+}
+
+.player-name .nova-name-frame,
+.duel-player-name .nova-name-frame,
+.name-line .nova-name-frame,
+#rankingPanel.nova-season-rank .nsr-name .nova-name-frame,
+#student-name .nova-name-frame,
+#novaLeftName .nova-name-frame,
+#novaRightName .nova-name-frame{
+  padding:2px 8px;
+  font-size:.96em;
+  vertical-align:middle;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .profile-change-overlay::before{ animation:none !important; }
+  .profile-change-content{ animation:none !important; }
+  .profile-change-content .profile-photo-item.nova-store-card{ animation:none !important; }
+}

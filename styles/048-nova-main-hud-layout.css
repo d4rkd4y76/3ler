@@ -1,0 +1,1162 @@
+/* Ana ekran: taşan köşe butonları / rozetler kesilmesin */
+#main-screen.container,
+#main-screen{
+  /* display'de !important yok: inline display:none ve JS ile gizleme çalışsın */
+  display: flex;
+  flex-direction: column !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: clamp(12px, 2.4vw, 28px) clamp(14px, 3vw, 36px) !important;
+  gap: clamp(12px, 2vw, 22px) !important;
+  box-sizing: border-box !important;
+}
+/* Admin panelinden gelen ana ekran duyurusu — GPU dostu transform animasyonu */
+#main-screen .app-duyuru-strip{
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  z-index: 9;
+  border-radius: 12px;
+  border: 1px solid rgba(110, 168, 255, 0.38);
+  background: linear-gradient(90deg, rgba(12, 18, 42, 0.96), rgba(28, 36, 78, 0.94), rgba(12, 18, 42, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  min-height: 38px;
+  contain: layout style;
+}
+#main-screen .app-duyuru-strip__viewport{
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent);
+}
+#main-screen .app-duyuru-strip__track{
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translateZ(0);
+  animation: appDuyuruMarquee var(--duyuru-sec, 40s) linear infinite;
+}
+#main-screen .app-duyuru-strip__chunk{
+  display: inline-block;
+  padding: 9px 56px 9px 0;
+  font-size: clamp(13px, 2.8vw, 15px);
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  color: #eef2ff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+@keyframes appDuyuruMarquee{
+  0%{ transform: translate3d(0, 0, 0); }
+  100%{ transform: translate3d(-50%, 0, 0); }
+}
+#main-screen .app-duyuru-strip--static .app-duyuru-strip__track{
+  animation: none !important;
+  justify-content: center;
+  white-space: normal;
+  transform: none !important;
+  width: 100%;
+  text-align: center;
+}
+#main-screen .app-duyuru-strip--static .app-duyuru-strip__chunk:nth-child(2){
+  display: none;
+}
+#main-screen .app-duyuru-strip--static .app-duyuru-strip__chunk{
+  padding: 10px 12px;
+  white-space: normal;
+}
+@media (prefers-reduced-motion: reduce){
+  #main-screen .app-duyuru-strip__track{
+    animation: none !important;
+    justify-content: center;
+    white-space: normal;
+    transform: none !important;
+    width: 100%;
+    text-align: center;
+  }
+  #main-screen .app-duyuru-strip__chunk:nth-child(2){
+    display: none;
+  }
+  #main-screen .app-duyuru-strip__chunk{
+    padding: 10px 12px;
+    white-space: normal;
+  }
+}
+
+/* Final polish: premium side buttons + left-top reward badge */
+#main-screen .main-screen-hero-left .puzzle-fab-wrap,
+#main-screen #fillblank_fab_wrap,
+#main-screen #match_fab_wrap{
+  position: relative !important;
+  overflow: visible !important;
+}
+#main-screen #puzzle_fab,
+#main-screen #fillblank_fab,
+#main-screen #match_fab,
+#main-screen #homework_fab.homework-fab,
+#main-screen #quest_fab.quest-fab{
+  position: relative !important;
+  overflow: hidden !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+  font-size: clamp(11px, 1.35vw, 14px) !important;
+  line-height: 1 !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  box-shadow:
+    0 10px 24px rgba(2, 6, 23, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 -7px 14px rgba(15, 23, 42, 0.16) !important;
+}
+#main-screen #fillblank_fab .fb-fab-label,
+#main-screen #match_fab span{
+  font-size: inherit !important;
+  line-height: 1 !important;
+  text-transform: inherit !important;
+}
+#main-screen #homework_fab.homework-fab,
+#main-screen #quest_fab.quest-fab{
+  overflow: visible !important; /* keep red badges outside button edge */
+}
+#main-screen #homework_fab.homework-fab .hw-badge,
+#main-screen #quest_fab.quest-fab .q-badge{
+  top: 0 !important;
+  right: 0 !important;
+  transform: translate(32%, -36%) !important;
+  z-index: 22 !important;
+}
+#main-screen #puzzle_fab::after,
+#main-screen #fillblank_fab::after,
+#main-screen #match_fab::after,
+#main-screen #homework_fab.homework-fab::after,
+#main-screen #quest_fab.quest-fab::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.02) 46%, rgba(2, 6, 23, 0.14) 100%);
+}
+#main-screen #puzzle_fab{
+  background: linear-gradient(148deg, #8b5cf6 0%, #7c3aed 48%, #5b21b6 100%) !important;
+  border-color: rgba(221, 214, 254, 0.62) !important;
+}
+#main-screen #fillblank_fab{
+  background: linear-gradient(148deg, #fb923c 0%, #ef4444 52%, #be123c 100%) !important;
+  border-color: rgba(254, 215, 170, 0.72) !important;
+}
+#main-screen #match_fab{
+  background: linear-gradient(148deg, #22d3ee 0%, #0ea5e9 52%, #2563eb 100%) !important;
+  border-color: rgba(186, 230, 253, 0.72) !important;
+}
+#main-screen #homework_fab.homework-fab{
+  background: linear-gradient(148deg, #38bdf8 0%, #2563eb 54%, #1d4ed8 100%) !important;
+  border-color: rgba(147, 197, 253, 0.72) !important;
+}
+#main-screen #quest_fab.quest-fab{
+  background: linear-gradient(148deg, #34d399 0%, #16a34a 52%, #15803d 100%) !important;
+  border-color: rgba(187, 247, 208, 0.68) !important;
+}
+#main-screen #puzzle_fab:hover,
+#main-screen #fillblank_fab:hover,
+#main-screen #match_fab:hover,
+#main-screen #homework_fab.homework-fab:hover,
+#main-screen #quest_fab.quest-fab:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+#main-screen #puzzle_fab.nova-daily-locked,
+#main-screen #fillblank_fab.nova-daily-locked,
+#main-screen #match_fab.nova-daily-locked{
+  cursor: not-allowed !important;
+  opacity: .58 !important;
+  filter: grayscale(.6) saturate(.45) brightness(.95) !important;
+  transform: none !important;
+  box-shadow: 0 6px 14px rgba(2, 6, 23, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+#main-screen #puzzle_fab.nova-daily-locked:hover,
+#main-screen #fillblank_fab.nova-daily-locked:hover,
+#main-screen #match_fab.nova-daily-locked:hover{
+  transform: none !important;
+  filter: grayscale(.6) saturate(.45) brightness(.95) !important;
+}
+#main-screen .nova-daily-locked-wrap .nova-fab-reward-tag{
+  opacity: .45 !important;
+  filter: grayscale(.55) !important;
+}
+#main-screen .main-screen-hero-left .nova-fab-reward-tag{
+  position: absolute !important;
+  top: -7px !important;
+  left: -10px !important;
+  right: auto !important;
+  transform: rotate(-11deg) !important;
+  transform-origin: center !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: max-content !important;
+  max-width: max-content !important;
+  height: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  font-size: 8px !important;
+  line-height: 1 !important;
+  padding: 3px 6px !important;
+  border-radius: 999px !important;
+  animation: none !important;
+  z-index: 14 !important;
+  pointer-events: none;
+}
+#main-screen .main-screen-top-bar,
+#main-screen .main-profile-hero,
+#main-screen > .buttons:not(.nova-main-lobby){
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+/* Üst şerit: ÖDEV | DENEME | Mağaza — köşe + dikey hiza */
+#main-screen .main-screen-top-bar{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  min-height: clamp(48px, 11vw, 58px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-top: max(0px, env(safe-area-inset-top, 0px));
+  padding-bottom: clamp(4px, 1.2vw, 10px);
+  padding-left: max(0px, env(safe-area-inset-left, 0px));
+  padding-right: max(0px, env(safe-area-inset-right, 0px));
+  gap: clamp(4px, 1.5vw, 12px);
+  flex-shrink: 0;
+}
+#main-screen .main-screen-top-bar .main-screen-char-anchor,
+#main-screen .main-screen-top-bar .main-screen-store-anchor{
+  min-width: 0;
+}
+#main-screen .main-screen-top-bar .main-screen-char-anchor,
+#main-screen .main-screen-top-bar .main-screen-store-anchor{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(6px, 1.5vw, 10px);
+  flex-wrap: wrap;
+}
+#main-screen .main-screen-top-bar .main-screen-store-anchor{
+  justify-content: flex-end;
+}
+#main-screen .main-screen-top-bar .main-screen-char-anchor{
+  position: relative;
+  justify-self: start;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  top: auto;
+  left: auto;
+  z-index: 5;
+  pointer-events: auto;
+}
+#main-screen .main-screen-top-bar .main-screen-store-anchor{
+  position: relative;
+  justify-self: end;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  top: auto;
+  right: auto;
+  z-index: 5;
+  pointer-events: auto;
+}
+#main-screen .main-screen-store-anchor .nova-store-chip{
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0;
+  max-width: min(130px, 32vw);
+}
+#main-screen .main-screen-top-bar .nova-character-chip,
+#main-screen .main-screen-top-bar .nova-store-chip{
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  margin: 0;
+  max-width: min(130px, 32vw);
+}
+/*
+  Profil alanı: üç sütunlu grid (sol ray | profil | sağ ray).
+  Dar ekran: hediye+GÖREV üst şerit; profil altta.
+*/
+#main-screen .main-profile-hero{
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: visible;
+  flex: 0 1 auto;
+  padding-top: clamp(4px, 1.2vw, 12px);
+  padding-left: max(12px, env(safe-area-inset-left, 0px));
+  padding-right: max(12px, env(safe-area-inset-right, 0px));
+  padding-bottom: 0;
+  display: grid;
+  /* Orta kolon viewport ile sınırlı; yanlar eşit 1fr — merkez optik olarak tam ortada */
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(88vw, 420px)) minmax(0, 1fr);
+  grid-template-areas: "heroLeft heroMid heroRight";
+  align-items: start;
+  justify-items: stretch;
+  column-gap: clamp(6px, 2vw, 16px);
+  row-gap: 0;
+}
+#main-screen .main-screen-hero-left{
+  position: relative;
+  grid-area: heroLeft;
+  justify-self: end;
+  align-self: start;
+  left: auto;
+  top: auto;
+  z-index: 2;
+  width: 100%;
+  max-width: min(132px, 32vw);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(2px, 1vw, 6px);
+  gap: clamp(4px, 1.2vw, 8px);
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+#main-screen .main-screen-hero-right{
+  position: relative;
+  grid-area: heroRight;
+  justify-self: start;
+  align-self: start;
+  z-index: 4;
+  width: 100%;
+  max-width: min(260px, 46vw);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(2px, 1vw, 6px);
+  box-sizing: border-box;
+  overflow: visible;
+}
+#main-screen .main-screen-hero-center{
+  grid-area: heroMid;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  margin-right: 0;
+  justify-self: center;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+#main-screen .main-screen-hero-right .surprise-box,
+#main-screen .surprise-box{
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0;
+  z-index: 2;
+}
+#main-screen .main-screen-hero-right .surprise-box img{
+  width: clamp(26px, 7.2vw, 48px) !important;
+  height: clamp(26px, 7.2vw, 48px) !important;
+  max-width: 100%;
+  object-fit: contain;
+}
+#main-screen .main-screen-hero-right .surprise-box-counter{
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#main-screen .main-screen-hero-right .quest-fab-wrap{
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  margin: 0;
+  z-index: 4 !important;
+  width: auto;
+  max-width: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+#main-screen .quest-fab{
+  box-sizing: border-box;
+  position: relative;
+  z-index: 4 !important;
+  width: auto;
+  min-width: 0;
+  max-width: none !important;
+  padding: clamp(8px, 1.9vw, 12px) clamp(11px, 2.6vw, 16px) !important;
+  font-size: clamp(10px, 2.5vw, 13px) !important;
+  border-radius: clamp(10px, 2.4vw, 16px) !important;
+  white-space: nowrap !important;
+  text-align: center;
+  line-height: 1.15;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  gap: clamp(4px, 1vw, 6px) !important;
+  word-break: normal;
+  overflow-wrap: normal;
+  overflow: visible;
+}
+#main-screen .quest-fab-wrap{
+  z-index: 4 !important;
+  position: relative;
+}
+/* Rozet: köşede asılı + içerik tam ortalı (flex yerine grid — rakam optik kaymasın) */
+/* Sayaç: butonun sağ üst köşe noktasında (metni kaplamaz) */
+#main-screen .quest-fab .q-badge{
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  transform: translate(30%, -38%) !important;
+  transform-origin: center center;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  height: 22px !important;
+  padding: 0 6px !important;
+  font-size: 11px !important;
+  line-height: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  font-variant-numeric: tabular-nums;
+  box-sizing: border-box !important;
+  z-index: 3 !important;
+  pointer-events: none;
+}
+#main-screen .homework-above-photo #homework_fab.homework-fab,
+#main-screen #homework_fab.homework-fab{
+  position: relative !important;
+  overflow: visible !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: auto;
+  padding: clamp(6px, 1.8vw, 12px) clamp(10px, 2.6vw, 17px) !important;
+  font-size: clamp(11px, 2.8vw, 15px) !important;
+  border-radius: clamp(11px, 2.6vw, 16px) !important;
+}
+#main-screen #homework_fab.homework-fab .hw-badge{
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  transform: translate(30%, -38%) !important;
+  transform-origin: center center;
+  display: grid !important;
+  place-items: center !important;
+  line-height: 0 !important;
+  padding: 0 6px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  height: 22px !important;
+  font-size: clamp(10px, 2.6vw, 12px) !important;
+  font-variant-numeric: tabular-nums;
+  box-sizing: border-box !important;
+  z-index: 3 !important;
+  pointer-events: none;
+}
+#main-screen .homework-above-photo{
+  margin: 0 !important;
+  width: auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: inherit;
+}
+#main-screen .deneme-fab-wrap{
+  width: clamp(56px, 14vw, 76px) !important;
+  height: clamp(62px, 15.5vw, 84px) !important;
+  flex: 0 0 auto;
+}
+#main-screen .deneme-fab{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: clamp(50px, 13vw, 70px) !important;
+  max-height: clamp(56px, 14.5vw, 78px) !important;
+  margin: 0 auto !important;
+  font-size: inherit !important;
+}
+/* Alt ana butonlar: profil ile aynı görsel eksende, taşma yok (eski dikey menü) */
+#main-screen > .buttons:not(.nova-main-lobby){
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  max-width: min(560px, 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: clamp(4px, 1.2vw, 12px) !important;
+  padding: clamp(4px, 1vw, 10px) 0 clamp(10px, 2vw, 20px) 0 !important;
+  gap: clamp(12px, 2.4vw, 18px) !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+#main-screen > .buttons:not(.nova-main-lobby) button:not(.nova-lobby-tile){
+  min-height: 48px;
+  box-sizing: border-box;
+}
+/* Profil kartı: grid orta hücrede; genişlik vw ile değil üstten miras */
+#main-screen .main-screen-hero-center .student-info{
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 clamp(4px, 2vw, 12px);
+  box-sizing: border-box;
+  align-self: center;
+  text-align: center;
+}
+#main-screen .main-screen-hero-center .student-photo{
+  width: min(160px, 38vw) !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  max-height: min(52vh, 300px);
+  margin-left: auto;
+  margin-right: auto;
+}
+#main-screen .kupa-siralama-button{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  letter-spacing: 0.02em;
+  font-variant-ligatures: none;
+}
+@media (min-width: 900px){
+  #main-screen .main-screen-hero-center .student-photo{
+    width: min(200px, 22vw) !important;
+    max-height: 340px;
+  }
+  #main-screen .main-screen-hero-left{
+    width: min(120px, 12vw);
+    max-width: 120px;
+  }
+  #main-screen .main-screen-hero-right .surprise-box img{
+    width: clamp(40px, 3vw, 54px) !important;
+    height: clamp(40px, 3vw, 54px) !important;
+  }
+  #main-screen > .buttons:not(.nova-main-lobby){
+    max-width: min(600px, 92vw) !important;
+  }
+}
+/* Telefon + küçük tablet: sol BULMACA/Boşluk | orta profil | sağ ÖDEV/GÖREV/sürpriz */
+@media (max-width: 768px){
+  #main-screen.container,
+  #main-screen{
+    padding: max(10px, env(safe-area-inset-top, 0px)) clamp(10px, 4vw, 16px) clamp(12px, 4vw, 20px) !important;
+    gap: clamp(10px, 3vw, 16px) !important;
+  }
+  #main-screen .main-screen-top-bar{
+    min-height: clamp(44px, 12vw, 54px);
+    gap: clamp(2px, 1vw, 8px);
+  }
+  #main-screen .main-profile-hero{
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(92vw, 360px)) minmax(0, 1fr);
+    grid-template-areas: "heroLeft heroMid heroRight";
+    column-gap: clamp(4px, 1.5vw, 10px);
+    row-gap: clamp(6px, 2vw, 12px);
+    padding-left: max(4px, env(safe-area-inset-left, 0px));
+    padding-right: max(4px, env(safe-area-inset-right, 0px));
+  }
+  #main-screen .main-screen-hero-left{
+    justify-self: end;
+    align-self: start;
+    width: 100%;
+    max-width: min(120px, 30vw);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 4px 0 0;
+    padding-top: clamp(2px, 1vw, 6px);
+    box-sizing: border-box;
+  }
+  #main-screen .main-screen-hero-right{
+    justify-self: start;
+    align-self: start;
+    width: 100%;
+    max-width: min(260px, 50vw);
+    padding-top: clamp(2px, 1vw, 6px);
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  #main-screen .main-screen-hero-center{
+    max-width: 100%;
+    min-width: 0;
+    justify-self: center;
+  }
+  #main-screen .main-screen-hero-right .quest-fab-wrap{
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+  #main-screen .quest-fab{
+    padding: 7px 11px !important;
+    font-size: clamp(9px, 2.6vw, 12px) !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    white-space: nowrap !important;
+    overflow-wrap: normal;
+    overflow: visible;
+  }
+  #main-screen > .buttons:not(.nova-main-lobby){
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+/* Dar ekran: surprise-box fixed iptal; güvenli alan */
+@media (max-width: 520px){
+  #main-screen .surprise-box,
+  #main-screen .main-screen-hero-right .surprise-box{
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  #main-screen{
+    padding-left: max(12px, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(12px, env(safe-area-inset-right, 0px)) !important;
+  }
+}
+/* Sonuç ekranındaki sol üst geri butonu güvenli alanda görünür kalsın */
+#result-back-btn{
+  top: calc(max(12px, env(safe-area-inset-top, 0px))) !important;
+  left: calc(max(12px, env(safe-area-inset-left, 0px))) !important;
+  z-index: 10001 !important;
+}
+/* Sürpriz (sağ sütun) / GÖREV: profile doğru hafif kaydır */
+#main-screen .main-screen-hero-right .surprise-box{
+  margin-right: 0 !important;
+  order: 3;
+  transform: translateX(clamp(-12px, -3.2vw, -22px)) !important;
+}
+#main-screen .main-screen-hero-right .quest-fab-wrap{
+  margin-right: 0 !important;
+  transform: translateX(clamp(-16px, -4.2vw, -28px)) !important;
+}
+/* Günün bulmacası — profil fotoğrafının solunda, üstten sağ ÖDEV/Boşluk/GÖREV ile aynı bantta */
+#main-screen .main-screen-hero-left .puzzle-fab-wrap,
+#main-screen .main-screen-hud-left #fillblank_fab_wrap{
+  overflow: visible !important;
+}
+#main-screen .nova-fab-reward-tag{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(calc(100% - 1px), -50%);
+  z-index: 6;
+  pointer-events: none;
+  font-size: clamp(6px, 1.65vw, 9px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  white-space: nowrap;
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: #713f12;
+  background: linear-gradient(145deg, #fef9c3 0%, #fde047 45%, #eab308 100%);
+  border: 1.5px solid rgba(180, 83, 9, 0.35);
+  box-shadow: 0 4px 14px rgba(234, 179, 8, 0.45), inset 0 1px 0 rgba(255,255,255,0.65);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  animation: novaFabRewardPulse 2.4s ease-in-out infinite;
+}
+@keyframes novaFabRewardPulse{
+  0%, 100%{ filter: brightness(1); box-shadow: 0 4px 14px rgba(234, 179, 8, 0.42), inset 0 1px 0 rgba(255,255,255,0.65); }
+  50%{ filter: brightness(1.08); box-shadow: 0 5px 18px rgba(250, 204, 21, 0.55), inset 0 1px 0 rgba(255,255,255,0.75); }
+}
+#main-screen .main-screen-hero-left .puzzle-fab-wrap{
+  position: relative !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+  z-index: 3 !important;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+  transform: translateX(clamp(10px, 2.6vw, 18px)) !important;
+}
+#main-screen .puzzle-fab{
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3 !important;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  min-width: 0;
+  max-width: 100% !important;
+  padding: clamp(8px, 1.9vw, 12px) clamp(6px, 1.6vw, 12px) !important;
+  font-size: clamp(8px, 2.2vw, 12px) !important;
+  font-weight: 900;
+  border-radius: clamp(10px, 2.4vw, 16px) !important;
+  white-space: nowrap !important;
+  line-height: 1.15;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(2px, 0.8vw, 5px) !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  background: linear-gradient(145deg, #a855f7 0%, #7c3aed 45%, #5b21b6 100%);
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255,255,255,0.22);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+#main-screen .puzzle-fab:hover{
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+#main-screen .puzzle-fab:active{ transform: translateY(0); }
+@media (max-width: 768px){
+  #main-screen .main-screen-hero-right .surprise-box{
+    transform: translateX(clamp(-10px, -3.5vw, -18px)) !important;
+  }
+  #main-screen .main-screen-hero-right .quest-fab-wrap{
+    transform: translateX(clamp(-14px, -4.5vw, -24px)) !important;
+  }
+  #main-screen .main-screen-hero-left .puzzle-fab-wrap{
+    transform: translateX(clamp(8px, 3vw, 14px)) !important;
+  }
+}
+/* === Günün bulmacası tam ekran === */
+#daily-puzzle-screen{
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100050;
+  align-items: center;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background:
+    radial-gradient(900px 500px at 10% -20%, rgba(251, 207, 232, 0.55), transparent 55%),
+    radial-gradient(700px 400px at 95% 10%, rgba(196, 181, 253, 0.5), transparent 50%),
+    radial-gradient(600px 400px at 50% 100%, rgba(125, 211, 252, 0.35), transparent 45%),
+    linear-gradient(165deg, #fdf4ff 0%, #e0f2fe 40%, #fef3c7 100%);
+  overflow: auto;
+}
+#daily-puzzle-screen.open{ display: flex; }
+.dp-card{
+  width: min(440px, 100%);
+  border-radius: 28px;
+  padding: 22px 20px 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,250,252,0.92));
+  border: 3px solid rgba(167, 139, 250, 0.45);
+  box-shadow: 0 24px 48px rgba(91, 33, 182, 0.18), 0 0 0 1px rgba(255,255,255,0.8) inset;
+  position: relative;
+  overflow: visible;
+  animation: dpPop 0.35s ease;
+}
+@keyframes dpPop{
+  from{ opacity: 0; transform: scale(0.92) translateY(12px); }
+  to{ opacity: 1; transform: scale(1) translateY(0); }
+}
+.dp-card::before{
+  content: "✨";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.4rem;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.dp-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.dp-title{
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #6d28d9;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.dp-sub{ font-size: 0.88rem; font-weight: 700; color: #7c3aed; margin-top: 4px; }
+.dp-close{
+  border: none;
+  background: linear-gradient(180deg, #f472b6, #ec4899);
+  color: #fff;
+  font-weight: 800;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
+}
+.dp-hint{
+  background: linear-gradient(90deg, #fef9c3, #fde68a);
+  border: 2px dashed #f59e0b;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #78350f;
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+.dp-slots{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  min-height: 48px;
+  margin-bottom: 14px;
+}
+.dp-slot{
+  width: 40px;
+  height: 46px;
+  border-radius: 12px;
+  border: 3px solid #c4b5fd;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #4c1d95;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.9);
+}
+.dp-slot.dp-slot-space{
+  width: 16px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.dp-pool{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.dp-chip{
+  min-width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(160deg, #38bdf8, #2563eb);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+  transition: transform 0.12s ease;
+}
+.dp-chip:hover{ transform: scale(1.08); }
+.dp-chip:disabled{ opacity: 0.35; cursor: not-allowed; transform: none; }
+.dp-actions{ display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.dp-btn{
+  border: none;
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-weight: 900;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.dp-btn-del{ background: #fecaca; color: #991b1b; }
+.dp-btn-check{ background: linear-gradient(180deg, #34d399, #10b981); color: #fff; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35); }
+.dp-msg{ text-align: center; font-weight: 800; margin-top: 10px; min-height: 24px; color: #7c3aed; }
+.dp-done{ text-align: center; font-size: 1.1rem; font-weight: 800; color: #059669; padding: 12px; }
+.dp-done.dp-fail{ color: #b45309; }
+.dp-win-fx{
+  position: absolute; inset: 0; pointer-events: none; display: grid; place-items: center; z-index: 6;
+}
+.dp-win-core{
+  position: relative; min-width: 260px; padding: 14px 18px; border-radius: 18px;
+  border: 2px solid rgba(250, 204, 21, 0.75);
+  background: linear-gradient(160deg, rgba(91, 33, 182, 0.92), rgba(30, 27, 75, 0.96));
+  box-shadow: 0 18px 44px rgba(91, 33, 182, 0.35), 0 0 40px rgba(250, 204, 21, 0.2);
+  text-align: center; animation: dpWinLift 1.5s ease forwards;
+}
+.dp-win-title{ font-size: 11px; font-weight: 900; letter-spacing: 1px; color: #fde68a; text-transform: uppercase; }
+.dp-win-amount{ font-size: 36px; font-weight: 900; color: #fef08a; text-shadow: 0 0 16px rgba(250, 204, 21, 0.45); }
+.dp-win-sub{ font-size: 13px; color: #e9d5ff; margin-top: 4px; }
+.dp-confetti{
+  position: absolute; left: 50%; top: 50%; width: 10px; height: 16px; border-radius: 5px; opacity: 0;
+  transform: translate(-50%, -50%); animation: dpConfetti 1.2s ease-out forwards;
+}
+.dp-card.dp-win-glow{
+  box-shadow: 0 28px 56px rgba(124, 58, 237, 0.28), 0 0 0 2px rgba(250, 204, 21, 0.35), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+.dp-card.dp-wrong-flash,
+#daily-puzzle-screen.dp-wrong-flash .dp-card{
+  animation: dpWrongFlash .55s ease;
+  box-shadow: 0 28px 56px rgba(124, 58, 237, 0.28), 0 0 0 2px rgba(239, 68, 68, 0.45), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+@keyframes dpWrongFlash{
+  0%, 100%{ transform: translateX(0); }
+  20%{ transform: translateX(-6px); }
+  40%{ transform: translateX(6px); }
+  60%{ transform: translateX(-4px); }
+  80%{ transform: translateX(4px); }
+}
+@keyframes dpWinLift{
+  0%{ opacity: 0; transform: translateY(12px) scale(0.92); }
+  22%{ opacity: 1; transform: translateY(0) scale(1); }
+  100%{ opacity: 1; transform: translateY(-2px) scale(1); }
+}
+@keyframes dpConfetti{
+  0%{ opacity: 0; transform: translate(-50%, -50%) scale(0.7) rotate(0deg); }
+  10%{ opacity: 1; }
+  100%{ opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--r)); }
+}
+
+/* --- Main HUD professional side actions (nova-main-hub hariç) --- */
+#main-screen .main-profile-hero:not(.nova-main-hub){
+  grid-template-columns: minmax(120px, 1fr) minmax(0, min(88vw, 420px)) minmax(120px, 1fr);
+  column-gap: clamp(22px, 4.2vw, 54px);
+}
+#main-screen .main-screen-hero-left:not(.nova-main-left-hub){
+  max-width: clamp(136px, 18vw, 190px);
+  align-items: flex-end;
+  padding-right: clamp(6px, 1.2vw, 14px);
+}
+#main-screen .main-screen-hero-right:not(.nova-main-right-rail){
+  max-width: clamp(136px, 18vw, 190px);
+  align-items: flex-start;
+  padding-left: clamp(6px, 1.2vw, 14px);
+}
+#main-screen #main-screen-hud-left,
+#main-screen #main-screen-quest-slot{
+  gap: clamp(10px, 1.8vw, 14px) !important;
+}
+#main-screen .main-screen-hero-left .puzzle-fab-wrap,
+#main-screen #fillblank_fab_wrap,
+#main-screen #match_fab_wrap,
+#main-screen #homework_fab.homework-fab,
+#main-screen .main-screen-hero-right .quest-fab-wrap{
+  width: clamp(134px, 18vw, 184px);
+  max-width: 100%;
+  transform: none !important;
+}
+#main-screen .main-screen-hero-right .surprise-box{
+  transform: none !important;
+}
+#main-screen #puzzle_fab:not(.nova-bonus-mini-btn),
+#main-screen #fillblank_fab:not(.nova-bonus-mini-btn),
+#main-screen #match_fab:not(.nova-bonus-mini-btn),
+#main-screen #homework_fab.homework-fab,
+#main-screen #quest_fab.quest-fab{
+  width: 100% !important;
+  min-height: clamp(46px, 5.4vw, 58px) !important;
+  height: auto !important;
+  padding: clamp(9px, 1.5vw, 12px) clamp(12px, 2vw, 16px) !important;
+  border-radius: clamp(14px, 2.3vw, 18px) !important;
+  font-size: clamp(11px, 1.55vw, 13px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.1 !important;
+  box-shadow: 0 12px 28px rgba(8, 15, 35, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.24) !important;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase !important;
+  text-align: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#main-screen #puzzle_fab:not(.nova-bonus-mini-btn){
+  background: linear-gradient(145deg, #7c3aed 0%, #6d28d9 55%, #4c1d95 100%) !important;
+  border: 1px solid rgba(196, 181, 253, 0.62) !important;
+}
+#main-screen #fillblank_fab:not(.nova-bonus-mini-btn){
+  background: linear-gradient(145deg, #f97316 0%, #ef4444 56%, #be123c 100%) !important;
+  border: 1px solid rgba(254, 215, 170, 0.7) !important;
+}
+#main-screen #match_fab:not(.nova-bonus-mini-btn){
+  background: linear-gradient(145deg, #06b6d4 0%, #0ea5e9 56%, #2563eb 100%) !important;
+  border: 1px solid rgba(186, 230, 253, 0.7) !important;
+}
+#main-screen #homework_fab.homework-fab{
+  background: linear-gradient(145deg, #0ea5e9 0%, #2563eb 52%, #1d4ed8 100%) !important;
+  border: 1px solid rgba(147, 197, 253, 0.72) !important;
+}
+#main-screen #quest_fab.quest-fab{
+  background: linear-gradient(145deg, #22c55e 0%, #16a34a 48%, #15803d 100%) !important;
+  border: 1px solid rgba(187, 247, 208, 0.66) !important;
+  animation: none !important;
+}
+#main-screen #puzzle_fab:not(.nova-bonus-mini-btn):hover,
+#main-screen #fillblank_fab:not(.nova-bonus-mini-btn):hover,
+#main-screen #match_fab:not(.nova-bonus-mini-btn):hover,
+#main-screen #homework_fab.homework-fab:hover,
+#main-screen #quest_fab.quest-fab:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+@media (max-width: 768px){
+  #main-screen .main-profile-hero{
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(54vw, 300px)) minmax(0, 1fr);
+    grid-template-areas: "heroLeft heroMid heroRight";
+    column-gap: clamp(8px, 2.2vw, 14px);
+    row-gap: 0;
+  }
+  #main-screen .main-screen-hero-left,
+  #main-screen .main-screen-hero-right{
+    max-width: clamp(96px, 24vw, 132px);
+    width: 100%;
+    align-items: stretch;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #main-screen #main-screen-hud-left,
+  #main-screen #main-screen-quest-slot{
+    gap: clamp(7px, 1.8vw, 10px) !important;
+  }
+  #main-screen .main-screen-hero-left .puzzle-fab-wrap,
+  #main-screen #fillblank_fab_wrap,
+  #main-screen #match_fab_wrap,
+  #main-screen #homework_fab.homework-fab,
+  #main-screen .main-screen-hero-right .quest-fab-wrap{
+    width: clamp(96px, 24vw, 132px);
+  }
+  #main-screen #puzzle_fab,
+  #main-screen #fillblank_fab,
+  #main-screen #match_fab,
+  #main-screen #homework_fab.homework-fab,
+  #main-screen #quest_fab.quest-fab{
+    min-height: clamp(34px, 8.2vw, 42px) !important;
+    padding: clamp(6px, 1.6vw, 9px) clamp(8px, 2.2vw, 12px) !important;
+    font-size: clamp(9px, 2.25vw, 11px) !important;
+    border-radius: clamp(10px, 2.2vw, 14px) !important;
+  }
+}
+
+/* Mobile HUD consistency hotfix */
+@media (max-width: 768px){
+  #main-screen .main-profile-hero{
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(42vw, 210px)) minmax(0, 1fr) !important;
+    column-gap: clamp(6px, 1.8vw, 10px) !important;
+  }
+  #main-screen .main-screen-hero-left,
+  #main-screen .main-screen-hero-right{
+    max-width: clamp(92px, 23vw, 124px) !important;
+  }
+  #main-screen .main-screen-hero-left .puzzle-fab-wrap,
+  #main-screen #fillblank_fab_wrap,
+  #main-screen #match_fab_wrap,
+  #main-screen #homework_fab.homework-fab,
+  #main-screen .main-screen-hero-right .quest-fab-wrap{
+    width: clamp(92px, 23vw, 124px) !important;
+    min-width: 0 !important;
+  }
+  #main-screen #puzzle_fab,
+  #main-screen #fillblank_fab,
+  #main-screen #match_fab,
+  #main-screen #homework_fab.homework-fab,
+  #main-screen #quest_fab.quest-fab{
+    min-height: clamp(34px, 8vw, 40px) !important;
+    height: clamp(34px, 8vw, 40px) !important;
+    padding: 0 clamp(6px, 1.6vw, 9px) !important;
+    font-size: clamp(8px, 2.05vw, 10px) !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1 !important;
+  }
+  #main-screen #puzzle_fab_wrap,
+  #main-screen #match_fab_wrap{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  #main-screen .nova-fab-reward-tag{
+    position: static !important;
+    transform: none !important;
+    margin-top: 2px !important;
+    margin-left: auto !important;
+    font-size: clamp(7px, 1.7vw, 8px) !important;
+    padding: 2px 4px !important;
+    border-radius: 6px !important;
+    line-height: 1 !important;
+  }
+}
+
+/* Left rail reward tags: diagonal top-right badge */
+@media (max-width: 768px){
+  #main-screen .main-screen-hero-left{
+    max-width: clamp(104px, 26vw, 138px) !important;
+  }
+  #main-screen .main-screen-hero-left .puzzle-fab-wrap,
+  #main-screen #fillblank_fab_wrap,
+  #main-screen #match_fab_wrap{
+    position: relative !important;
+    width: clamp(104px, 26vw, 138px) !important;
+    min-width: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    overflow: visible !important;
+  }
+  #main-screen #puzzle_fab,
+  #main-screen #fillblank_fab,
+  #main-screen #match_fab{
+    min-height: clamp(35px, 8.4vw, 41px) !important;
+    height: clamp(35px, 8.4vw, 41px) !important;
+    font-size: clamp(8px, 1.95vw, 9.8px) !important;
+    letter-spacing: 0 !important;
+    padding: 0 8px !important;
+    position: relative !important;
+    z-index: 6 !important;
+  }
+  #main-screen .main-screen-hero-left .nova-fab-reward-tag{
+    position: absolute !important;
+    top: -6px !important;
+    right: -12px !important;
+    transform: rotate(-11deg) !important;
+    margin: 0 !important;
+    font-size: 7px !important;
+    line-height: 1 !important;
+    padding: 3px 6px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(145deg, #fef08a 0%, #facc15 52%, #eab308 100%) !important;
+    border: 1px solid rgba(180, 83, 9, 0.32) !important;
+    box-shadow: 0 4px 12px rgba(234, 179, 8, 0.38) !important;
+    z-index: 12 !important;
+    pointer-events: none;
+  }
+}
+
+/* Ana ekran: gereksiz alt boşluk ve çift scrollbar (devasa ::before + html/body overflow) */
+#main-screen::before,
+#main-screen::after{
+  display: none !important;
+  content: none !important;
+}
+html.nova-lock-main-scroll,
+body.nova-lock-main-scroll{
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}

@@ -1,0 +1,16 @@
+/* --- NOVA: Store header responsive layout --- */
+.profile-change-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:10px;
+}
+.store-title{ margin:0; font-size:1.15rem; font-weight:800; letter-spacing:.2px; display:flex; align-items:center; gap:6px; }
+.store-controls{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.current-diamonds{ display:flex; align-items:center; gap:6px; padding:6px 10px; border-radius:12px;
+  background:rgba(255,255,255,.6); backdrop-filter: blur(4px); font-weight:700; }
+#profileCloseButton{ padding:8px 10px; border-radius:10px; border:0; cursor:pointer;
+  background:#f6465d; color:#fff; font-weight:800; }
+@media(max-width:600px){
+  .profile-change-header{ flex-direction:column; align-items:stretch; gap:8px; }
+  .store-controls{ justify-content:space-between; }
+  .store-title{ font-size:1.05rem; justify-content:center; }
+}

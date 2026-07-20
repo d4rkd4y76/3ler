@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "mat3_sekil_001",
+    "level": "kolay",
+    "premise": null,
+    "text": "Üç kenarı ve üç köşesi olan kapalı geometrik şekle ne ad verilir?",
+    "correct": "Üçgen",
+    "wrong1": "Kare",
+    "wrong2": "Dikdörtgen",
+    "explanation": "Üç köşesi ve üç kenarı olan temel geometrik şekil üçgendir."
+  },
+  {
+    "id": "mat3_sekil_002",
+    "level": "kolay",
+    "premise": null,
+    "text": "Dört kenarı birbirine eşit uzunlukta olan ve dört köşesi bulunan geometrik şekil hangisidir?",
+    "correct": "Kare",
+    "wrong1": "Dikdörtgen",
+    "wrong2": "Üçgen",
+    "explanation": "Tüm kenar uzunlukları birbirine tam olarak eşit olan 4 köşeli şekil karedir."
+  },
+  {
+    "id": "mat3_sekil_003",
+    "level": "kolay",
+    "premise": null,
+    "text": "Karşılıklı kenarları birbirine eşit, toplam dört kenarı ve dört köşesi olan geometrik şekil hangisidir?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Kare",
+    "wrong2": "Çember",
+    "explanation": "İki kısa ve iki uzun kenarı olan, karşılıklı kenarları birbirine eşit olan şekil dikdörtgendir."
+  },
+  {
+    "id": "mat3_sekil_004",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki geometrik şekillerden hangisinin hiçbir köşesi ve düz kenarı YOKTUR?",
+    "correct": "Çember",
+    "wrong1": "Üçgen",
+    "wrong2": "Kare",
+    "explanation": "Çember yuvarlak bir eğriden oluşur; düz kenarı ve sivri köşesi yoktur."
+  },
+  {
+    "id": "mat3_sekil_005",
+    "level": "kolay",
+    "premise": "Çemberin içi boştur, dairenin içi ise doludur.",
+    "text": "Buna göre aşağıdakilerden hangisi bir 'daire' modelidir?",
+    "correct": "Madeni para",
+    "wrong1": "Yüzük",
+    "wrong2": "Simit",
+    "explanation": "Madeni paranın içi metal ile doludur, bu yüzden dairedir. Yüzük ve simidin ortası boştur."
+  },
+  {
+    "id": "mat3_sekil_006",
+    "level": "kolay",
+    "premise": null,
+    "text": "İçi tamamen boş olan yuvarlak bir hulahop veya yüzük hangi geometrik şekle benzer?",
+    "correct": "Çember",
+    "wrong1": "Daire",
+    "wrong2": "Küre",
+    "explanation": "Yuvarlak ve içi boş olan iki boyutlu düzlemsel şekiller çemberdir."
+  },
+  {
+    "id": "mat3_sekil_007",
+    "level": "kolay",
+    "premise": null,
+    "text": "Sınıfımızdaki yazı tahtasının yüzeyi, hangi geometrik şekle benzemektedir?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Kare",
+    "wrong2": "Üçgen",
+    "explanation": "Yazı tahtasının iki uzun, iki kısa kenarı olduğu için dikdörtgen modelidir."
+  },
+  {
+    "id": "mat3_sekil_008",
+    "level": "kolay",
+    "premise": null,
+    "text": "Eşit kenarlara sahip bir satranç tahtası veya dama tahtası hangi geometrik şekle örnektir?",
+    "correct": "Kare",
+    "wrong1": "Dikdörtgen",
+    "wrong2": "Çember",
+    "explanation": "Satranç tahtasının dört kenarı da birbirine eşit uzunluktadır, bu yüzden karedir."
+  },
+  {
+    "id": "mat3_sekil_009",
+    "level": "kolay",
+    "premise": "Geometrik şekiller köşe sayılarına göre de isimlendirilebilir.",
+    "text": "Kare ve dikdörtgenin toplam köşe sayıları birbirine eşit midir?",
+    "correct": "Evet, ikisinin de 4 köşesi vardır.",
+    "wrong1": "Hayır, karenin köşesi daha fazladır.",
+    "wrong2": "Hayır, dikdörtgenin köşesi daha fazladır.",
+    "explanation": "Kare ve dikdörtgen dörtgenler ailesindendir ve her ikisinin de 4 köşesi, 4 kenarı vardır."
+  },
+  {
+    "id": "mat3_sekil_010",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki şekillerden hangisinin kenar sayısı DİĞERLERİNDEN AZDIR?",
+    "correct": "Üçgen",
+    "wrong1": "Kare",
+    "wrong2": "Dikdörtgen",
+    "explanation": "Kare ve dikdörtgenin 4 kenarı varken, üçgenin 3 kenarı vardır."
+  },
+  {
+    "id": "mat3_sekil_011",
+    "level": "orta",
+    "premise": "Geometrik şekillerde, komşu olmayan (birbirine zıt) iki köşeyi birleştiren düz çizgiye 'köşegen' denir.",
+    "text": "Karede toplam kaç tane köşegen çizilebilir?",
+    "correct": "2",
+    "wrong1": "4",
+    "wrong2": "Hiç çizilemez",
+    "explanation": "Karede çapraz olarak karşılıklı ikişer köşeyi birleştiren toplam 2 köşegen vardır."
+  },
+  {
+    "id": "mat3_sekil_012",
+    "level": "orta",
+    "premise": "Köşegen, komşu olmayan iki köşeyi birleştiren doğru parçasıdır.",
+    "text": "Buna göre aşağıdaki şekillerden hangisinin KÖŞEGENİ YOKTUR?",
+    "correct": "Üçgen",
+    "wrong1": "Kare",
+    "wrong2": "Dikdörtgen",
+    "explanation": "Üçgenin tüm köşeleri birbirine komşu olduğu için çapraz birleşecek köşe yoktur, köşegeni çizilemez."
+  },
+  {
+    "id": "mat3_sekil_013",
+    "level": "orta",
+    "premise": null,
+    "text": "Dikdörtgende toplam kaç tane köşegen bulunmaktadır?",
+    "correct": "2",
+    "wrong1": "4",
+    "wrong2": "1",
+    "explanation": "Tıpkı kare gibi dikdörtgenin de çapraz köşelerini birleştiren tam 2 adet köşegeni vardır."
+  },
+  {
+    "id": "mat3_sekil_014",
+    "level": "orta",
+    "premise": "Çember ve dairenin kenarı ile köşesi yoktur.",
+    "text": "Buna göre çemberin kaç tane köşegeni vardır?",
+    "correct": "Hiç yoktur",
+    "wrong1": "1 tane vardır",
+    "wrong2": "Sonsuz tane vardır",
+    "explanation": "Köşegen çizebilmek için önce köşelerin olması gerekir. Köşesi olmayan şeklin köşegeni de olmaz."
+  },
+  {
+    "id": "mat3_sekil_015",
+    "level": "orta",
+    "premise": null,
+    "text": "Mert defterine sadece 3 kenarı olan bir şekil çizmiştir. Mert'in çizdiği şeklin köşegeni var mıdır?",
+    "correct": "Hayır, üçgen olduğu için yoktur.",
+    "wrong1": "Evet, 2 tane vardır.",
+    "wrong2": "Evet, 3 tane vardır.",
+    "explanation": "3 kenarı olan şekil üçgendir ve üçgenlerin köşegeni bulunmaz."
+  },
+  {
+    "id": "mat3_sekil_016",
+    "level": "orta",
+    "premise": null,
+    "text": "Hem 4 kenarı olan hem de bütün kenar uzunlukları birbirine tıpatıp aynı olan şekil hangisidir?",
+    "correct": "Kare",
+    "wrong1": "Dikdörtgen",
+    "wrong2": "Çember",
+    "explanation": "Tüm kenar uzunluklarının birbirine eşit olması, kareyi dikdörtgenden ayıran en önemli özelliktir."
+  },
+  {
+    "id": "mat3_sekil_017",
+    "level": "orta",
+    "premise": "Bir oyun parkındaki havuzun 2 uzun, 2 kısa kenarı vardır.",
+    "text": "Bu havuzun şekli aşağıdakilerden hangisidir?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Kare",
+    "wrong2": "Üçgen",
+    "explanation": "Uzun ve kısa kenarların karşılıklı bulunduğu 4 köşeli şekiller dikdörtgendir."
+  },
+  {
+    "id": "mat3_sekil_018",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdakilerden hangisi hem köşesi hem kenarı hem de köşegeni olan bir şekildir?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Üçgen",
+    "wrong2": "Çember",
+    "explanation": "Üçgenin köşegeni yoktur. Çemberin kenarı/köşesi yoktur. Dikdörtgenin ise hepsi vardır."
+  },
+  {
+    "id": "mat3_sekil_019",
+    "level": "orta",
+    "premise": null,
+    "text": "Hangi iki geometrik şeklin köşe sayıları, kenar sayıları ve köşegen sayıları birebir aynıdır?",
+    "correct": "Kare ve Dikdörtgen",
+    "wrong1": "Üçgen ve Kare",
+    "wrong2": "Dikdörtgen ve Çember",
+    "explanation": "Kare ve dikdörtgenin her ikisinin de 4 kenarı, 4 köşesi ve 2 köşegeni vardır."
+  },
+  {
+    "id": "mat3_sekil_020",
+    "level": "zor",
+    "premise": "Elif elindeki telin tamamını bükerek bir kare yapmıştır.",
+    "text": "Elif aynı teli bozup üçgen yapmak isteseydi, telin üzerinde kaç tane köşe (kıvrım) oluşturması gerekirdi?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "0",
+    "explanation": "Üçgenin 3 köşesi olduğu için teli tam 3 farklı noktadan bükerek köşe yapması gerekir."
+  },
+  {
+    "id": "mat3_sekil_021",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir defter sayfasına 1 kare, 1 dikdörtgen ve 1 üçgen çizen Ayşe, toplam kaç tane köşe çizmiş olur?",
+    "correct": "11",
+    "wrong1": "10",
+    "wrong2": "12",
+    "explanation": "Kare (4) + Dikdörtgen (4) + Üçgen (3) = Toplam 11 köşe eder."
+  },
+  {
+    "id": "mat3_sekil_022",
+    "level": "zor",
+    "premise": null,
+    "text": "Birbirinin aynısı olan iki küçük kareyi yan yana getirip birleştirdiğimizde (yapıştırdığımızda) ortaya çıkan yeni büyük şekil ne olur?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Büyük bir kare",
+    "wrong2": "Üçgen",
+    "explanation": "İki kare yan yana birleştiğinde eni ve boyu farklılaşır, uzun ve kısa kenarları olan bir dikdörtgen oluşur."
+  },
+  {
+    "id": "mat3_sekil_023",
+    "level": "zor",
+    "premise": "Dikdörtgen şeklindeki bir kağıdı tam köşegeninden makasla kestik.",
+    "text": "Ortaya çıkan iki yeni şekil aşağıdakilerden hangisidir?",
+    "correct": "İki tane üçgen",
+    "wrong1": "İki tane küçük dikdörtgen",
+    "wrong2": "İki tane kare",
+    "explanation": "Dikdörtgeni çaprazlama (köşegen) kestiğimizde iki adet dik üçgen elde ederiz."
+  },
+  {
+    "id": "mat3_sekil_024",
+    "level": "zor",
+    "premise": null,
+    "text": "Sınıfta öğretmen 'Bütün kenarlarım birbirine eşittir ama köşegenim yoktur.' dedi. Öğretmenin tarif ettiği şekil hangisidir?",
+    "correct": "Üçgen (Eşkenar Üçgen)",
+    "wrong1": "Kare",
+    "wrong2": "Daire",
+    "explanation": "Köşegeni olmayan tek çokgen üçgendir. Bütün kenarları eşit dediği için bu bir üçgendir (kare olamaz çünkü karenin köşegeni vardır)."
+  },
+  {
+    "id": "mat3_sekil_025",
+    "level": "zor",
+    "premise": null,
+    "text": "Kare şeklindeki bir mendili tam ortasından dikey olarak ikiye katlarsak, katlanmış hali hangi şekle benzer?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Üçgen",
+    "wrong2": "Küçük kare",
+    "explanation": "Kareyi ortadan katladığımızda boyu aynı kalır ama eni yarıya düşer, yani dikdörtgen olur. (Köşegenden katlasaydık üçgen olurdu)."
+  },
+  {
+    "id": "mat3_sekil_026",
+    "level": "kolay",
+    "premise": "Üç boyutlu nesnelere geometrik cisim denir.",
+    "text": "Üç boyutlu geometrik cisimlerin köşe ve yüzlerini birleştiren çizgilere ne ad verilir?",
+    "correct": "Ayrıt",
+    "wrong1": "Köşegen",
+    "wrong2": "Çember",
+    "explanation": "Düzlemsel şekillerde 'kenar' denirken, üç boyutlu cisimlerde bu çizgilere 'ayrıt' denir."
+  },
+  {
+    "id": "mat3_sekil_027",
+    "level": "kolay",
+    "premise": "Üç boyutlu nesnelere geometrik cisim denir.",
+    "text": "Geometrik cisimlerin dışarıdan dokunabildiğimiz düz veya eğri bölümlerine ne ad verilir?",
+    "correct": "Yüz",
+    "wrong1": "Ayrıt",
+    "wrong2": "Köşe",
+    "explanation": "Cisimlerin dışını kaplayan ve elimizle dokunduğumuz yüzeylere 'yüz' denir."
+  },
+  {
+    "id": "mat3_sekil_028",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki cisimlerden hangisinin tüm yüzleri kareden oluşur?",
+    "correct": "Küp",
+    "wrong1": "Kare prizma",
+    "wrong2": "Silindir",
+    "explanation": "Küp, 6 yüzünün hepsi birbirine eşit karelerden oluşan özel bir geometrik cisimdir."
+  },
+  {
+    "id": "mat3_sekil_029",
+    "level": "kolay",
+    "premise": null,
+    "text": "Oyun oynadığımız zeka küpü veya zarlar hangi geometrik cisme örnektir?",
+    "correct": "Küp",
+    "wrong1": "Küre",
+    "wrong2": "Üçgen Prizma",
+    "explanation": "Zeka küpü ve zarların tüm yüzeyleri kare şeklindedir ve bu cisimlere küp denir."
+  },
+  {
+    "id": "mat3_sekil_030",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir küpün toplam kaç tane yüzü vardır?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "12",
+    "explanation": "Küpün alt, üst ve 4 yan olmak üzere toplam 6 tane yüzü vardır."
+  },
+  {
+    "id": "mat3_sekil_031",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir küpün toplam kaç tane köşesi vardır?",
+    "correct": "8",
+    "wrong1": "6",
+    "wrong2": "12",
+    "explanation": "Küpün üstte 4, altta 4 olmak üzere toplam 8 sivri köşesi vardır."
+  },
+  {
+    "id": "mat3_sekil_032",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir küpün toplam kaç tane ayrıtı (çizgisi) vardır?",
+    "correct": "12",
+    "wrong1": "6",
+    "wrong2": "8",
+    "explanation": "Küpün üstte 4, altta 4 ve yanlarda 4 olmak üzere toplam 12 ayrıtı vardır."
+  },
+  {
+    "id": "mat3_sekil_033",
+    "level": "kolay",
+    "premise": "Buzdolabı veya çamaşır makinesi gibi eşyalar genellikle bu şekildedir.",
+    "text": "Bütün yüzleri dikdörtgen olan geometrik cisim aşağıdakilerden hangisidir?",
+    "correct": "Dikdörtgenler Prizması",
+    "wrong1": "Kare Prizma",
+    "wrong2": "Küp",
+    "explanation": "Tüm yüzleri (alt, üst ve yanlar) dikdörtgen olan cisme dikdörtgenler prizması denir."
+  },
+  {
+    "id": "mat3_sekil_034",
+    "level": "kolay",
+    "premise": null,
+    "text": "Alt ve üst yüzeyi kare, yan yüzeyleri (4 tane) dikdörtgen olan geometrik cisme ne denir?",
+    "correct": "Kare Prizma",
+    "wrong1": "Dikdörtgenler Prizması",
+    "wrong2": "Üçgen Prizma",
+    "explanation": "İsmini tabanındaki kareden alan, yanları dikdörtgen olan cisim kare prizmadır."
+  },
+  {
+    "id": "mat3_sekil_035",
+    "level": "kolay",
+    "premise": null,
+    "text": "Uzun ilaç kutuları veya uzun süt kutuları genellikle hangi geometrik cisim modelidir?",
+    "correct": "Kare Prizma veya Dikdörtgenler Prizması",
+    "wrong1": "Küp",
+    "wrong2": "Küre",
+    "explanation": "İlaç ve süt kutuları prizma yapısındadır. (Küp olamaz çünkü bütün yüzleri aynı değildir)."
+  },
+  {
+    "id": "mat3_sekil_036",
+    "level": "kolay",
+    "premise": null,
+    "text": "Alt ve üst yüzeyi üçgen, yan yüzeyleri dikdörtgen olan, kamp çadırına benzeyen cisim hangisidir?",
+    "correct": "Üçgen Prizma",
+    "wrong1": "Koni",
+    "wrong2": "Kare Prizma",
+    "explanation": "İsmini tabanındaki üçgenden alan cisim üçgen prizmadır."
+  },
+  {
+    "id": "mat3_sekil_037",
+    "level": "kolay",
+    "premise": null,
+    "text": "Kamp çadırları veya çatıların şekli genellikle hangi geometrik cisme örnektir?",
+    "correct": "Üçgen Prizma",
+    "wrong1": "Silindir",
+    "wrong2": "Küp",
+    "explanation": "Kamp çadırlarının girişi üçgendir ve geriye doğru uzanır, bu tam bir üçgen prizma modelidir."
+  },
+  {
+    "id": "mat3_sekil_038",
+    "level": "kolay",
+    "premise": null,
+    "text": "Altı ve üstü daire şeklinde tamamen düz, yan yüzeyi ise eğri olan pil şeklindeki geometrik cisme ne denir?",
+    "correct": "Silindir",
+    "wrong1": "Koni",
+    "wrong2": "Küre",
+    "explanation": "Soba borusu veya piller silindir geometrik cismine birer örnektir."
+  },
+  {
+    "id": "mat3_sekil_039",
+    "level": "kolay",
+    "premise": null,
+    "text": "Konserve kutuları, soba boruları ve piller hangi geometrik cisim modelidir?",
+    "correct": "Silindir",
+    "wrong1": "Kare Prizma",
+    "wrong2": "Koni",
+    "explanation": "Yuvarlak hatlı ve dik duran bu cisimler silindirdir."
+  },
+  {
+    "id": "mat3_sekil_040",
+    "level": "kolay",
+    "premise": null,
+    "text": "Altı düz bir daire olan, tepesi ise sivri görünen dondurma külahı şeklindeki cisme ne denir?",
+    "correct": "Koni",
+    "wrong1": "Üçgen Prizma",
+    "wrong2": "Silindir",
+    "explanation": "Dondurma külahı veya parti şapkaları koni modelidir."
+  },
+  {
+    "id": "mat3_sekil_041",
+    "level": "orta",
+    "premise": null,
+    "text": "Parti şapkaları ve trafik dubaları hangi geometrik cisme örnektir?",
+    "correct": "Koni",
+    "wrong1": "Küre",
+    "wrong2": "Küp",
+    "explanation": "Altı yuvarlak ve üste doğru sivrilen yapılar konidir."
+  },
+  {
+    "id": "mat3_sekil_042",
+    "level": "orta",
+    "premise": null,
+    "text": "Hiçbir köşesi ve ayrıtı olmayan, tamamen yuvarlak ve eğri bir yüzeye sahip olan top şeklindeki cisim hangisidir?",
+    "correct": "Küre",
+    "wrong1": "Silindir",
+    "wrong2": "Koni",
+    "explanation": "Futbol topu, portakal ve Dünya'mız tamamen eğri yüzeye sahip olan küreye örnektir."
+  },
+  {
+    "id": "mat3_sekil_043",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki geometrik cisimlerden hangisinin AYRITI (kenar çizgisi) YOKTUR?",
+    "correct": "Küre",
+    "wrong1": "Küp",
+    "wrong2": "Kare Prizma",
+    "explanation": "Küp ve prizmaların ayrıtları vardır ancak kürenin, silindirin ve koninin ayrıtı yoktur."
+  },
+  {
+    "id": "mat3_sekil_044",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki geometrik cisimlerden hangisinin KÖŞESİ YOKTUR?",
+    "correct": "Silindir",
+    "wrong1": "Üçgen Prizma",
+    "wrong2": "Dikdörtgenler Prizması",
+    "explanation": "Silindirin altı ve üstü yuvarlaktır, sivri bir köşesi kesinlikle yoktur."
+  },
+  {
+    "id": "mat3_sekil_045",
+    "level": "orta",
+    "premise": "Prizmalar isimlerini alt ve üst tabanlarındaki şekillerden alırlar.",
+    "text": "Buna göre Kare Prizmanın alt ve üst yüzeyleri hangi şekildedir?",
+    "correct": "Kare",
+    "wrong1": "Dikdörtgen",
+    "wrong2": "Üçgen",
+    "explanation": "İsminden de anlaşıldığı gibi kare prizmanın alt ve üst tabanları karedir."
+  },
+  {
+    "id": "mat3_sekil_046",
+    "level": "orta",
+    "premise": "Dikdörtgenler prizmasının 6 yüzü de dikdörtgendir.",
+    "text": "Dikdörtgenler prizmasında toplam kaç tane ayrıt vardır?",
+    "correct": "12",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Küp ve tüm dörtgen prizmaların 12 ayrıtı (çizgisi) vardır."
+  },
+  {
+    "id": "mat3_sekil_047",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki geometrik cisimlerden hangisinin köşe, ayrıt ve yüz sayıları Küp ile TAMAMEN AYNIDIR?",
+    "correct": "Kare Prizma ve Dikdörtgenler Prizması",
+    "wrong1": "Sadece Üçgen Prizma",
+    "wrong2": "Silindir ve Koni",
+    "explanation": "Küp, kare prizma ve dikdörtgenler prizmasının üçünde de 8 köşe, 12 ayrıt ve 6 yüz vardır."
+  },
+  {
+    "id": "mat3_sekil_048",
+    "level": "orta",
+    "premise": "Küp, Kare Prizma ve Dikdörtgenler Prizması aile gibidir.",
+    "text": "Bu üç cismi birbirinden ayıran EN ÖNEMLİ fark nedir?",
+    "correct": "Yüzeylerini oluşturan geometrik şekillerin farklı olması.",
+    "wrong1": "Köşe sayılarının farklı olması.",
+    "wrong2": "Ayrıt sayılarının farklı olması.",
+    "explanation": "Üçünün de köşe ve ayrıt sayıları aynıdır (8 köşe, 12 ayrıt). Farkları yüzlerindeki kare ve dikdörtgen şekilleridir."
+  },
+  {
+    "id": "mat3_sekil_049",
+    "level": "orta",
+    "premise": null,
+    "text": "Kare prizmada kaç tane dikdörtgen yüzey bulunur?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "6",
+    "explanation": "Kare prizmanın alt ve üstü kare (2 tane), etrafını saran yan yüzleri ise dikdörtgendir (4 tane)."
+  },
+  {
+    "id": "mat3_sekil_050",
+    "level": "orta",
+    "premise": null,
+    "text": "Üçgen prizmanın toplam kaç yüzü vardır?",
+    "correct": "5",
+    "wrong1": "6",
+    "wrong2": "4",
+    "explanation": "Üçgen prizmada 2 tane üçgen (alt ve üst), 3 tane de dikdörtgen (yanlarda) olmak üzere 5 yüz vardır."
+  },
+  {
+    "id": "mat3_sekil_051",
+    "level": "orta",
+    "premise": null,
+    "text": "Üçgen prizmanın toplam kaç köşesi vardır?",
+    "correct": "6",
+    "wrong1": "8",
+    "wrong2": "5",
+    "explanation": "Üst üçgende 3, alt üçgende 3 köşe olmak üzere toplam 6 köşesi vardır."
+  },
+  {
+    "id": "mat3_sekil_052",
+    "level": "orta",
+    "premise": null,
+    "text": "Üçgen prizmanın toplam kaç ayrıtı (çizgisi) vardır?",
+    "correct": "9",
+    "wrong1": "12",
+    "wrong2": "6",
+    "explanation": "Üstte 3, altta 3 ve yanları birleştiren 3 olmak üzere toplam 9 ayrıtı vardır."
+  },
+  {
+    "id": "mat3_sekil_053",
+    "level": "orta",
+    "premise": "Silindirin köşesi ve ayrıtı yoktur.",
+    "text": "Silindirin toplam kaç tane düz yüzü (daire şeklindeki tabanları) vardır?",
+    "correct": "2",
+    "wrong1": "3",
+    "wrong2": "1",
+    "explanation": "Silindirin altı ve üstü olmak üzere 2 tane düz yüzü (daire) vardır. Yan tarafı ise eğri yüzeydir."
+  },
+  {
+    "id": "mat3_sekil_054",
+    "level": "orta",
+    "premise": null,
+    "text": "Silindir ve Koninin en önemli ORTAK özelliği nedir?",
+    "correct": "İkisinin de köşesinin ve ayrıtının olmaması.",
+    "wrong1": "İkisinin de aynı sayıda yüze sahip olması.",
+    "wrong2": "İkisinin de tüm yüzeylerinin düz olması.",
+    "explanation": "Hem silindir hem de koninin yuvarlak hatları vardır, sivri köşeleri veya keskin ayrıt çizgileri yoktur."
+  },
+  {
+    "id": "mat3_sekil_055",
+    "level": "orta",
+    "premise": null,
+    "text": "Koninin alt tarafındaki düz yüzey hangi geometrik şekildedir?",
+    "correct": "Daire",
+    "wrong1": "Üçgen",
+    "wrong2": "Kare",
+    "explanation": "Koninin tabanı tamamen yuvarlak ve düz bir dairedir."
+  },
+  {
+    "id": "mat3_sekil_056",
+    "level": "orta",
+    "premise": null,
+    "text": "Kürenin toplam kaç tane yüzü vardır?",
+    "correct": "Sadece 1 tane eğri yüzeyi vardır.",
+    "wrong1": "2 tane düz yüzü vardır.",
+    "wrong2": "Yüzü hiç yoktur.",
+    "explanation": "Kürenin dışını kaplayan, kesintisiz, tek bir yuvarlak eğri yüzeyi vardır."
+  },
+  {
+    "id": "mat3_sekil_057",
+    "level": "zor",
+    "premise": "Geometrik cisimlerin açınımı, o cismi oluşturan kartonun tamamen açılıp düzleştirilmiş halidir.",
+    "text": "Bir zarın (küpün) tamamen açılmış halinde kâğıt üzerinde kaç tane kare görürüz?",
+    "correct": "6",
+    "wrong1": "4",
+    "wrong2": "8",
+    "explanation": "Küp 6 eş kareden oluştuğu için açıldığında da 6 tane kare şekli ortaya çıkar."
+  },
+  {
+    "id": "mat3_sekil_058",
+    "level": "zor",
+    "premise": "Açınımlar, cismin yapısındaki 2 boyutlu şekilleri gösterir.",
+    "text": "Açıldığında 2 tane kare ve 4 tane dikdörtgen ortaya çıkan geometrik cisim hangisidir?",
+    "correct": "Kare Prizma",
+    "wrong1": "Dikdörtgenler Prizması",
+    "wrong2": "Küp",
+    "explanation": "İki kare kapak ve 4 dikdörtgen gövde, kare prizmanın özellikleridir."
+  },
+  {
+    "id": "mat3_sekil_059",
+    "level": "zor",
+    "premise": "Açınımlar, cismin yapısındaki 2 boyutlu şekilleri gösterir.",
+    "text": "Açıldığında 2 tane üçgen ve 3 tane dikdörtgen ortaya çıkan geometrik cisim hangisidir?",
+    "correct": "Üçgen Prizma",
+    "wrong1": "Koni",
+    "wrong2": "Dikdörtgenler Prizması",
+    "explanation": "Üst ve altı üçgen (2 tane), yan yüzleri dikdörtgen (3 tane) olan cisim üçgen prizmadır."
+  },
+  {
+    "id": "mat3_sekil_060",
+    "level": "zor",
+    "premise": "Açınımlar, cismin yapısındaki 2 boyutlu şekilleri gösterir.",
+    "text": "Bir silindiri açtığımızda ortaya hangi geometrik şekiller çıkar?",
+    "correct": "2 tane daire ve 1 tane dikdörtgen",
+    "wrong1": "2 tane üçgen ve 1 kare",
+    "wrong2": "3 tane daire",
+    "explanation": "Silindirin altı ve üstü dairedir. Eğri olan yan yüzeyi kâğıt gibi açtığımızda ise bir dikdörtgen oluşur."
+  },
+  {
+    "id": "mat3_sekil_061",
+    "level": "zor",
+    "premise": "Geometrik cisimler masanın üzerinde dururken yüzeyleriyle iz bırakırlar.",
+    "text": "Bir kare prizmayı SADECE yan yüzeyi (dikdörtgen kısmı) üzerine mürekkebe batırıp kâğıda bastırırsak hangi şeklin izi çıkar?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Kare",
+    "wrong2": "Daire",
+    "explanation": "Kare prizmanın yan yüzeyleri dikdörtgen olduğu için kağıtta dikdörtgen izi bırakır."
+  },
+  {
+    "id": "mat3_sekil_062",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir koninin düz olan tabanını mürekkebe batırıp kâğıda bastırırsak hangi geometrik şeklin izini görürüz?",
+    "correct": "Daire",
+    "wrong1": "Üçgen",
+    "wrong2": "Nokta",
+    "explanation": "Koninin (örneğin dondurma külahının ağzı) tabanı daire şeklindedir."
+  },
+  {
+    "id": "mat3_sekil_063",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir silindirin yan (eğri) yüzeyini boyayıp kâğıt üzerinde bir tam tur yuvarlarsak kâğıtta hangi şekil oluşur?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Daire",
+    "wrong2": "Kare",
+    "explanation": "Silindirin eğri yüzeyi açıldığında bir dikdörtgene dönüştüğü için bıraktığı iz de dikdörtgen olur."
+  },
+  {
+    "id": "mat3_sekil_064",
+    "level": "zor",
+    "premise": "Ben bir geometrik cisimim. Ne köşem var ne ayrıtım. Üstelik hiç düz yüzüm de yok. Her yerim eğri.",
+    "text": "Bu tekerlemeye göre ben hangi cisimim?",
+    "correct": "Küre",
+    "wrong1": "Silindir",
+    "wrong2": "Koni",
+    "explanation": "Silindir ve koninin düz yüzleri vardır. Sadece eğri yüzü olan, köşesiz ve ayrıtsız cisim küredir."
+  },
+  {
+    "id": "mat3_sekil_065",
+    "level": "zor",
+    "premise": "Benim 6 yüzüm, 12 ayrıtım ve 8 köşem var. Bütün yüzlerim birbirinin tıpatıp aynısıdır.",
+    "text": "Ben hangi geometrik cisimim?",
+    "correct": "Küp",
+    "wrong1": "Kare Prizma",
+    "wrong2": "Dikdörtgenler Prizması",
+    "explanation": "6 yüzü de birbirinin aynısı (hepsi kare) olan tek prizma küptür."
+  },
+  {
+    "id": "mat3_sekil_066",
+    "level": "zor",
+    "premise": "Benim 5 yüzüm var. Bunlardan ikisi üçgen, üçü ise dikdörtgen şeklindedir.",
+    "text": "Ben hangi geometrik cisimim?",
+    "correct": "Üçgen Prizma",
+    "wrong1": "Kare Prizma",
+    "wrong2": "Koni",
+    "explanation": "5 yüzü olan ve içlerinde üçgen barındıran cisim üçgen prizmadır."
+  },
+  {
+    "id": "mat3_sekil_067",
+    "level": "zor",
+    "premise": null,
+    "text": "Mert'in elinde 2 tane küp, 1 tane üçgen prizma vardır. Mert'in elindeki cisimlerin TOPLAM köşe sayısı kaçtır?",
+    "correct": "22",
+    "wrong1": "20",
+    "wrong2": "24",
+    "explanation": "1 küp = 8 köşe. 2 küp = 16 köşe. 1 üçgen prizma = 6 köşe. Toplam: 16 + 6 = 22 köşe."
+  },
+  {
+    "id": "mat3_sekil_068",
+    "level": "zor",
+    "premise": null,
+    "text": "Zeynep 3 tane kare prizmayı üst üste koyarak dev bir kule yapmıştır. Bu dev kulenin (tek bir büyük cisim olarak düşünüldüğünde) köşe sayısı kaç olur?",
+    "correct": "8",
+    "wrong1": "24",
+    "wrong2": "12",
+    "explanation": "Kare prizmalar üst üste konulduğunda yine daha uzun bir kare prizma oluşur. Bir kare prizmanın her zaman 8 köşesi vardır."
+  },
+  {
+    "id": "mat3_sekil_069",
+    "level": "zor",
+    "premise": null,
+    "text": "Aşağıdaki cisim ikililerinden hangisinin toplam yüz sayısı 12'dir?",
+    "correct": "1 Küp ve 1 Dikdörtgenler Prizması",
+    "wrong1": "2 tane Üçgen Prizma",
+    "wrong2": "1 Silindir ve 1 Koni",
+    "explanation": "Küpün 6, dikdörtgenler prizmasının 6 yüzü vardır. 6 + 6 = 12 eder. (Üçgen prizmanın 5 yüzü vardır)."
+  },
+  {
+    "id": "mat3_sekil_070",
+    "level": "zor",
+    "premise": null,
+    "text": "Ahmet, kibrit çöplerini kullanarak bir küp iskeleti (sadece ayrıtlarını) yapmak istiyor. Ahmet'in tam olarak kaç tane kibrit çöpüne ihtiyacı vardır?",
+    "correct": "12",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "İskelet yaparken ayrıtları oluştururuz. Küpün 12 ayrıtı olduğu için 12 çöp gerekir."
+  },
+  {
+    "id": "mat3_sekil_071",
+    "level": "kolay",
+    "premise": null,
+    "text": "Çevremizde gördüğümüz çokgenleri isimlerine göre ayırırız. Altı kenarı ve altı köşesi olan şekle ne denir?",
+    "correct": "Altıgen",
+    "wrong1": "Sekizgen",
+    "wrong2": "Beşgen",
+    "explanation": "Çokgenler kenar sayılarına göre isimlendirilir. 6 kenarı olan çokgen altıgendir."
+  },
+  {
+    "id": "mat3_sekil_072",
+    "level": "kolay",
+    "premise": null,
+    "text": "Sekiz kenarı ve sekiz köşesi olan kırmızı renkli 'DUR' tabelası hangi çokgen modelidir?",
+    "correct": "Sekizgen",
+    "wrong1": "Altıgen",
+    "wrong2": "Ongen",
+    "explanation": "Kenar sayısı 8 olduğu için sekizgendir."
+  },
+  {
+    "id": "mat3_sekil_073",
+    "level": "kolay",
+    "premise": null,
+    "text": "Arı peteklerinin bal dolu gözenekleri hangi çokgen şeklindedir?",
+    "correct": "Altıgen",
+    "wrong1": "Kare",
+    "wrong2": "Beşgen",
+    "explanation": "Doğada arılar peteklerini boşluksuz ve en dayanıklı şekil olan altıgen biçiminde yaparlar."
+  },
+  {
+    "id": "mat3_sekil_074",
+    "level": "kolay",
+    "premise": null,
+    "text": "Bir beşgenin köşe sayısı, karenin köşe sayısından kaç fazladır?",
+    "correct": "1",
+    "wrong1": "2",
+    "wrong2": "0",
+    "explanation": "Beşgenin 5, karenin 4 köşesi vardır. 5 - 4 = 1."
+  },
+  {
+    "id": "mat3_sekil_075",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki çokgenlerden hangisinin kenar sayısı EN FAZLADIR?",
+    "correct": "Sekizgen",
+    "wrong1": "Altıgen",
+    "wrong2": "Beşgen",
+    "explanation": "Sekizgen (8), altıgen (6) ve beşgenden (5) daha fazla kenara sahiptir."
+  },
+  {
+    "id": "mat3_sekil_076",
+    "level": "orta",
+    "premise": "Örüntüler, nesnelerin veya şekillerin belirli bir kurala göre ardışık dizilmesidir.",
+    "text": "Üçgen - Kare - Daire - Üçgen - Kare - ? örüntüsünde soru işareti yerine hangi şekil gelmelidir?",
+    "correct": "Daire",
+    "wrong1": "Kare",
+    "wrong2": "Üçgen",
+    "explanation": "Kural 'Üçgen, Kare, Daire' şeklinde tekrar etmektedir. Kareden sonra Daire gelir."
+  },
+  {
+    "id": "mat3_sekil_077",
+    "level": "orta",
+    "premise": "Örüntüler, nesnelerin veya şekillerin belirli bir kurala göre ardışık dizilmesidir.",
+    "text": "Küp - Silindir - Silindir - Küp - Silindir - ? örüntüsünde soru işareti yerine ne gelmelidir?",
+    "correct": "Silindir",
+    "wrong1": "Küp",
+    "wrong2": "Küre",
+    "explanation": "Kural 1 Küp ve ardından 2 Silindir şeklindedir. Soru işareti olan yer 2. Silindir'e denk gelir."
+  },
+  {
+    "id": "mat3_sekil_078",
+    "level": "orta",
+    "premise": "Örüntülerde kuralı bulmak gerekir.",
+    "text": "Kare Prizma - Koni - Küre - Küre - Kare Prizma - Koni - ? örüntüsü nasıl devam etmelidir?",
+    "correct": "Küre",
+    "wrong1": "Koni",
+    "wrong2": "Kare Prizma",
+    "explanation": "Örüntü (Kare Prizma - Koni - Küre - Küre) şeklindedir. Koniden sonra birinci Küre gelir."
+  },
+  {
+    "id": "mat3_sekil_079",
+    "level": "orta",
+    "premise": null,
+    "text": "İki tane dikdörtgenler prizmasının toplam köşe sayısı kaçtır?",
+    "correct": "16",
+    "wrong1": "12",
+    "wrong2": "24",
+    "explanation": "Bir dikdörtgenler prizmasında 8 köşe vardır. İki tanesinde 8 + 8 = 16 köşe olur."
+  },
+  {
+    "id": "mat3_sekil_080",
+    "level": "orta",
+    "premise": null,
+    "text": "Dört tane üçgen prizmanın toplam köşe sayısı kaçtır?",
+    "correct": "24",
+    "wrong1": "16",
+    "wrong2": "32",
+    "explanation": "Bir üçgen prizmanın 6 köşesi vardır. 4 x 6 = 24 eder."
+  },
+  {
+    "id": "mat3_sekil_081",
+    "level": "orta",
+    "premise": "Şekilleri birleştirdiğimizde yeni şekiller elde edebiliriz.",
+    "text": "İki eş dik üçgeni en uzun kenarlarından (hipotenüs) birbirine yapıştırırsak hangi şekil ortaya çıkabilir?",
+    "correct": "Kare veya Dikdörtgen",
+    "wrong1": "Beşgen",
+    "wrong2": "Çember",
+    "explanation": "İki dik üçgen çapraz kenarlarından birleştiğinde 4 köşeli bir dörtgen oluşturur."
+  },
+  {
+    "id": "mat3_sekil_082",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cisimlerden hangisi yokuş aşağı bırakıldığında YUVARLANAMAZ?",
+    "correct": "Küp",
+    "wrong1": "Silindir",
+    "wrong2": "Küre",
+    "explanation": "Küpte köşeler ve ayrıtlar olduğu için yuvarlanamaz, sadece düz yüzeyi üstünde kayar."
+  },
+  {
+    "id": "mat3_sekil_083",
+    "level": "orta",
+    "premise": null,
+    "text": "Aşağıdaki cisimlerden hangisi üst üste konularak bir kule yapmaya UYGUN DEĞİLDİR?",
+    "correct": "Küre",
+    "wrong1": "Kare Prizma",
+    "wrong2": "Küp",
+    "explanation": "Kürenin düz bir tabanı olmadığı için dengede duramaz ve üst üste konulamaz."
+  },
+  {
+    "id": "mat3_sekil_084",
+    "level": "orta",
+    "premise": null,
+    "text": "Koni ve Silindiri masaya koyduğumuzda kaymadan dengede dik durabilmelerini sağlayan özellikleri nedir?",
+    "correct": "Düz dairesel yüzeylerinin (tabanlarının) olması.",
+    "wrong1": "Ayrıtlarının olması.",
+    "wrong2": "Yuvarlak olmaları.",
+    "explanation": "Koni ve silindirin alt kısımlarındaki düz daire yüzeyi, onların masada dik durmasını sağlar."
+  },
+  {
+    "id": "mat3_sekil_085",
+    "level": "zor",
+    "premise": "Ayşe kartondan bir geometrik cisim yapmış ve bunu yaparken 2 tane kare, 4 tane dikdörtgen parça kullanmıştır.",
+    "text": "Ayşe'nin yaptığı geometrik cisim hangisidir?",
+    "correct": "Kare Prizma",
+    "wrong1": "Küp",
+    "wrong2": "Dikdörtgenler Prizması",
+    "explanation": "Kare prizmanın alt ve üstü kare (2 adet), yanları dikdörtgendir (4 adet)."
+  },
+  {
+    "id": "mat3_sekil_086",
+    "level": "zor",
+    "premise": "Canan elindeki oyun hamuruyla toplar (köşeler) ve kürdanlarla çizgiler (ayrıtlar) yapıyor.",
+    "text": "Canan üçgen prizma yapmak için kaç oyun hamuru topuna ve kaç kürdana ihtiyaç duyar?",
+    "correct": "6 top, 9 kürdan",
+    "wrong1": "8 top, 12 kürdan",
+    "wrong2": "5 top, 6 kürdan",
+    "explanation": "Üçgen prizmanın 6 köşesi (top) ve 9 ayrıtı (kürdan) vardır."
+  },
+  {
+    "id": "mat3_sekil_087",
+    "level": "zor",
+    "premise": "Elif bir cismin özelliklerini yazıyor: 'Köşem yok, ayrıtım yok ama masa üstünde devrilmeden durabilen düz bir yüzeyime sahibim. Tıpkı bir şapka gibiyim!'",
+    "text": "Elif'in bahsettiği cisim hangisidir?",
+    "correct": "Koni",
+    "wrong1": "Küre",
+    "wrong2": "Silindir",
+    "explanation": "Şapka şekli ve tek düz yüzeyi olan, köşesi olmayan cisim konidir. (Silindirin 2 düz yüzü vardır)."
+  },
+  {
+    "id": "mat3_sekil_088",
+    "level": "zor",
+    "premise": "Özellikleri matematiksel olarak karşılaştıralım.",
+    "text": "Küpün köşe sayısı ile silindirin köşe sayısı arasındaki fark kaçtır?",
+    "correct": "8",
+    "wrong1": "6",
+    "wrong2": "12",
+    "explanation": "Küpün 8 köşesi vardır. Silindirin 0 köşesi vardır. 8 - 0 = 8."
+  },
+  {
+    "id": "mat3_sekil_089",
+    "level": "zor",
+    "premise": "Küpün özellikleri formüllerle incelenebilir.",
+    "text": "Bir küpün köşe sayısı ile yüz sayısının toplamından, ayrıt sayısını çıkarırsak sonuç kaç olur?",
+    "correct": "2",
+    "wrong1": "0",
+    "wrong2": "4",
+    "explanation": "Küpün 8 köşesi ve 6 yüzü vardır (8+6=14). 12 ayrıtı vardır. 14 - 12 = 2. (Buna matematikte Euler Formülü denir)."
+  },
+  {
+    "id": "mat3_sekil_090",
+    "level": "zor",
+    "premise": "Bir karınca, kare prizma şeklindeki bir kutunun sadece ADI 'dikdörtgen' olan yüzeylerini gezecektir.",
+    "text": "Karınca kutunun kaç yüzeyini gezmiş olur?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "6",
+    "explanation": "Kare prizmanın alt ve üstü kare, yanlardaki 4 yüzeyi ise dikdörtgendir."
+  },
+  {
+    "id": "mat3_sekil_091",
+    "level": "zor",
+    "premise": "Bir hediye kutusu dikdörtgenler prizması şeklindedir ve bu kutuya bir kurdele bağlanacaktır.",
+    "text": "Kurdele, kutunun tüm yüzeylerinin etrafından tam bir tur dönerse kaç farklı yüzeyden geçmiş olur?",
+    "correct": "4",
+    "wrong1": "6",
+    "wrong2": "2",
+    "explanation": "Kurdele bir tam tur attığında alt, üst ve karşılıklı iki yan (veya 4 yan) olmak üzere döngü boyunca 4 yüzeyden geçer."
+  },
+  {
+    "id": "mat3_sekil_092",
+    "level": "zor",
+    "premise": null,
+    "text": "Geometrik şekiller kullanılarak resimler yapılabilir. Bir evin çatısını çizen çocuk genellikle hangi iki boyutlu şekli kullanır?",
+    "correct": "Üçgen",
+    "wrong1": "Kare",
+    "wrong2": "Daire",
+    "explanation": "Ev çatıları sivri olduğu için resimlerde çoğunlukla üçgen şekliyle çizilir."
+  },
+  {
+    "id": "mat3_sekil_093",
+    "level": "zor",
+    "premise": null,
+    "text": "Geometrik şekiller kullanılarak resimler yapılabilir. Evin pencerelerini çizen çocuk hangi şekilleri kullanabilir?",
+    "correct": "Kare veya Dikdörtgen",
+    "wrong1": "Sadece Üçgen",
+    "wrong2": "Sadece Daire",
+    "explanation": "Pencereler dörtgen şeklinde olduğu için kare veya dikdörtgen çizilir."
+  },
+  {
+    "id": "mat3_sekil_094",
+    "level": "zor",
+    "premise": "Farklı geometrik cisimler bir araya gelerek yeni nesneler oluşturabilir.",
+    "text": "Oyun parkındaki klasik bir kaydırak merdiveniyle birlikte yandan bakıldığında hangi geometrik şekle benzer?",
+    "correct": "Üçgen (Dik üçgen)",
+    "wrong1": "Kare",
+    "wrong2": "Çember",
+    "explanation": "Merdiven dikey, yer yatay ve kaydırak eğimli kısım olduğu için tam bir üçgen oluşturur."
+  },
+  {
+    "id": "mat3_sekil_095",
+    "level": "kolay",
+    "premise": null,
+    "text": "Dikdörtgen şeklindeki bir masanın uzun kenarı 10 metre, kısa kenarı 5 metredir. Bu masanın kaç tane köşesi vardır?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "8",
+    "explanation": "Kenar uzunlukları ne olursa olsun, bir dikdörtgenin her zaman 4 köşesi vardır."
+  },
+  {
+    "id": "mat3_sekil_096",
+    "level": "kolay",
+    "premise": null,
+    "text": "Basketbol topu ile buzdolabını karşılaştırırsak, basketbol topunun hangi özelliği buzdolabından KESİNLİKLE farklıdır?",
+    "correct": "Köşesinin olmaması",
+    "wrong1": "Ağır olması",
+    "wrong2": "Büyük olması",
+    "explanation": "Buzdolabının (prizma) köşeleri vardır, basketbol topunun (küre) köşesi yoktur."
+  },
+  {
+    "id": "mat3_sekil_097",
+    "level": "kolay",
+    "premise": null,
+    "text": "Soba borusu ile zeka küpünü karşılaştırırsak, soba borusunun hangi özelliği küpten farklıdır?",
+    "correct": "Ayrıtının (kenar çizgisinin) olmaması",
+    "wrong1": "Yüzünün olması",
+    "wrong2": "İçinin boş olması",
+    "explanation": "Soba borusu silindirdir ve ayrıtı yoktur. Küpün 12 ayrıtı vardır."
+  },
+  {
+    "id": "mat3_sekil_098",
+    "level": "orta",
+    "premise": "Bir bisküvi paketi silindir şeklindedir.",
+    "text": "Bu paketin içinden çıkan bisküviler (tam yuvarlak ve düz iseler) hangi geometrik şekildedir?",
+    "correct": "Daire",
+    "wrong1": "Çember",
+    "wrong2": "Küre",
+    "explanation": "Bisküvilerin içi dolu olduğu ve yassı yuvarlak oldukları için daire modelidirler."
+  },
+  {
+    "id": "mat3_sekil_099",
+    "level": "orta",
+    "premise": "Bir peynir dilimi üçgen prizma şeklindedir.",
+    "text": "Bu peynir diliminin alt ve üst düzlükleri (tabanları) hangi şekildedir?",
+    "correct": "Üçgen",
+    "wrong1": "Dikdörtgen",
+    "wrong2": "Kare",
+    "explanation": "Üçgen prizmanın alt ve üst tabanları adından anlaşıldığı gibi üçgen şeklindedir."
+  },
+  {
+    "id": "mat3_sekil_100",
+    "level": "orta",
+    "premise": null,
+    "text": "Evimizdeki bir odanın (tavan, zemin ve 4 duvar) şekli genellikle hangi cisme benzer?",
+    "correct": "Dikdörtgenler Prizması",
+    "wrong1": "Üçgen Prizma",
+    "wrong2": "Silindir",
+    "explanation": "Odaların 6 yüzeyi de dikdörtgen olduğu için dikdörtgenler prizması modelidir."
+  },
+  {
+    "id": "mat3_sekil_101",
+    "level": "orta",
+    "premise": null,
+    "text": "İçi boş olan bir boru parçasının sadece kenarındaki yuvarlak demir çerçeve geometride neyi modeller?",
+    "correct": "Çember",
+    "wrong1": "Daire",
+    "wrong2": "Küre",
+    "explanation": "İçi tamamen boş olan ve sadece dış çerçevesi bulunan yuvarlak çizgi çemberdir."
+  },
+  {
+    "id": "mat3_sekil_102",
+    "level": "orta",
+    "premise": null,
+    "text": "Tabağın içerisindeki pizzanın bütünü geometrik olarak hangi şekildedir?",
+    "correct": "Daire",
+    "wrong1": "Çember",
+    "wrong2": "Küre",
+    "explanation": "Pizzanın içi hamur ve malzemeyle dolu olduğu için daire modelidir."
+  },
+  {
+    "id": "mat3_sekil_103",
+    "level": "orta",
+    "premise": null,
+    "text": "Bütün geometrik şekillerin (üçgen, kare, dikdörtgen) iç bölgelerini renklendirdiğimizde (içleri dolduğunda) ne oluşturmuş oluruz?",
+    "correct": "Düzlemsel bölge (Karesel bölge, üçgensel bölge vb.)",
+    "wrong1": "Üç boyutlu cisim",
+    "wrong2": "Sadece çizgi",
+    "explanation": "İçi boyanmış/doldurulmuş kapalı şekiller matematikte düzlemsel bölge olarak adlandırılır."
+  },
+  {
+    "id": "mat3_sekil_104",
+    "level": "zor",
+    "premise": "Bir eşkenar üçgenin tüm kenarları birbirine eşittir.",
+    "text": "Bir eşkenar üçgenin çevresi (tüm kenarlarının toplamı) 15 cm ise, sadece bir kenarı kaç cm'dir?",
+    "correct": "5",
+    "wrong1": "3",
+    "wrong2": "10",
+    "explanation": "Üçgenin 3 eşit kenarı vardır. 15'i 3'e bölersek bir kenarı 5 cm olur."
+  },
+  {
+    "id": "mat3_sekil_105",
+    "level": "zor",
+    "premise": "Dikdörtgenin karşılıklı kenarları eşittir.",
+    "text": "Kısa kenarı 3 cm, uzun kenarı 7 cm olan bir dikdörtgenin tüm kenarlarının toplam uzunluğu (çevresi) kaç cm'dir?",
+    "correct": "20",
+    "wrong1": "10",
+    "wrong2": "21",
+    "explanation": "İki kısa (3+3=6) ve iki uzun (7+7=14) kenar vardır. 6 + 14 = 20 cm."
+  },
+  {
+    "id": "mat3_sekil_106",
+    "level": "zor",
+    "premise": "Karenin tüm kenarları eşittir.",
+    "text": "Tüm kenarlarının uzunlukları toplamı (çevresi) 32 metre olan bir karenin bir kenarı kaç metredir?",
+    "correct": "8",
+    "wrong1": "16",
+    "wrong2": "4",
+    "explanation": "Karenin 4 eşit kenarı vardır. 32 metreyi 4'e bölersek bir kenarı 8 metre olur."
+  },
+  {
+    "id": "mat3_sekil_107",
+    "level": "zor",
+    "premise": "Elimizde 12 cm uzunluğunda bir tel var.",
+    "text": "Bu telin tamamını bükerek bir kare yaparsak karenin bir kenarı kaç cm olur?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "6",
+    "explanation": "Kare 4 kenarlı olduğu için 12'yi 4'e böleriz. Bir kenarı 3 cm olur."
+  },
+  {
+    "id": "mat3_sekil_108",
+    "level": "zor",
+    "premise": "Uzunluğu 20 cm olan bir telin tamamı kullanılarak bir kare yapılmıştır.",
+    "text": "Bu karenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "5",
+    "wrong1": "4",
+    "wrong2": "10",
+    "explanation": "Karenin 4 kenarı olduğu için 20'yi 4'e böleriz. 20 ÷ 4 = 5 cm."
+  },
+  {
+    "id": "mat3_sekil_109",
+    "level": "zor",
+    "premise": "Uzunluğu 24 cm olan bir telin tamamı kullanılarak kenarları eşit olan bir üçgen yapılmıştır.",
+    "text": "Bu üçgenin bir kenar uzunluğu kaç cm'dir?",
+    "correct": "8",
+    "wrong1": "6",
+    "wrong2": "12",
+    "explanation": "Üçgenin 3 eşit kenarı var. 24'ü 3'e böleriz. 24 ÷ 3 = 8 cm."
+  },
+  {
+    "id": "mat3_sekil_110",
+    "level": "zor",
+    "premise": null,
+    "text": "Hangi iki geometrik cisim yan yana veya üst üste gelerek harika bir 'mantar ev' veya 'şato kulesi' modeli oluşturur?",
+    "correct": "Silindir ve Koni",
+    "wrong1": "Küp ve Kare Prizma",
+    "wrong2": "Küre ve Dikdörtgenler Prizması",
+    "explanation": "Silindir gövdeyi, sivri tepeli koni ise şatonun veya mantarın çatısını çok iyi modeller."
+  },
+  {
+    "id": "mat3_sekil_111",
+    "level": "zor",
+    "premise": "Cisimleri keserek iç kısımlarına bakabiliriz.",
+    "text": "Bir silindiri tam ortasından bıçakla yatay (yere paralel) olarak kesersek, ortaya çıkan yeni iki yüzey hangi geometrik şekildedir?",
+    "correct": "Daire",
+    "wrong1": "Dikdörtgen",
+    "wrong2": "Çember",
+    "explanation": "Silindirin tabanları dairedir. Paralel kesildiğinde içi dolu yeni yuvarlaklar yani daireler elde edilir."
+  },
+  {
+    "id": "mat3_sekil_112",
+    "level": "zor",
+    "premise": "Cisimleri keserek iç kısımlarına bakabiliriz.",
+    "text": "Kare prizma şeklindeki bir tahta bloğu tam ortasından dikey (yukarıdan aşağı) kesersek, kesilen yüzeyler hangi şekilde olur?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Kare",
+    "wrong2": "Üçgen",
+    "explanation": "Kare prizmanın diklemesine uzun kesiti her zaman bir dikdörtgen oluşturur."
+  },
+  {
+    "id": "mat3_sekil_113",
+    "level": "zor",
+    "premise": "Küpün 6 yüzü vardır.",
+    "text": "Bir küpü tamamen kırmızıya boyadık ve ardından kurumadan bir kağıdın üzerine koyduk. Kağıtta kalan kırmızı iz hangi şekildedir?",
+    "correct": "Kare (Karesel bölge)",
+    "wrong1": "Küp",
+    "wrong2": "Dikdörtgen",
+    "explanation": "Küpün kağıda değen sadece alt yüzeyidir ve o da karedir. Bıraktığı iz içi dolu kare (karesel bölge) olur."
+  },
+  {
+    "id": "mat3_sekil_114",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir oyun zarına (küpe) tam tepeden dümdüz baktığımızda sadece üst yüzünü görürüz. Gördüğümüz bu şekil nedir?",
+    "correct": "Kare",
+    "wrong1": "Küp",
+    "wrong2": "Dikdörtgen",
+    "explanation": "Üç boyutlu bir küpe tam dik açıdan bakıldığında 2 boyutlu yüzeyi olan kare görülür."
+  },
+  {
+    "id": "mat3_sekil_115",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir soba borusuna (silindir) tam üstünden (kapağından) dümdüz baktığımızda gördüğümüz şekil nedir?",
+    "correct": "Daire",
+    "wrong1": "Silindir",
+    "wrong2": "Dikdörtgen",
+    "explanation": "Silindirin üst tabanı daire olduğu için tepeden bakışta sadece daire görünür."
+  },
+  {
+    "id": "mat3_sekil_116",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir soba borusuna (silindir) tam karşısından (yanından) dümdüz baktığımızda gördüğümüz şekil nedir?",
+    "correct": "Dikdörtgen",
+    "wrong1": "Daire",
+    "wrong2": "Üçgen",
+    "explanation": "Silindirin eğri yüzeyi karşından bakıldığında sınırları düz olan bir dikdörtgen gibi algılanır."
+  },
+  {
+    "id": "mat3_sekil_117",
+    "level": "zor",
+    "premise": "Piramitler üç boyutlu geometrik cisimlerdir.",
+    "text": "Mısır Piramitleri'nin alt tabanı kare, yan yüzeyleri ise üçgendir. Bu piramidin toplam kaç köşesi vardır?",
+    "correct": "5",
+    "wrong1": "8",
+    "wrong2": "6",
+    "explanation": "Tabandaki karede 4 köşe vardır, bir de hepsi tepede sivri bir noktada birleşir. 4 + 1 = 5 köşe."
+  },
+  {
+    "id": "mat3_sekil_118",
+    "level": "kolay",
+    "premise": null,
+    "text": "Aşağıdaki şekillerden hangisi katlanarak bir KÜP oluşturulabilir?",
+    "correct": "Yan yana ve alt alta haç işareti gibi dizilmiş 6 eş kare",
+    "wrong1": "Yan yana dizilmiş 5 dikdörtgen",
+    "wrong2": "4 tane üçgen",
+    "explanation": "Küp açınımı her zaman 6 kareden oluşur ve katlanabilmesi için uygun (haç gibi vb.) dizilmelidir."
+  },
+  {
+    "id": "mat3_sekil_119",
+    "level": "kolay",
+    "premise": null,
+    "text": "Kar tanesinin büyütülmüş resmi hangi kavramları içinde barındırır?",
+    "correct": "Geometrik desenler ve örüntü",
+    "wrong1": "Sadece küpler",
+    "wrong2": "Hiçbir şekil barındırmaz",
+    "explanation": "Kar taneleri muazzam bir altıgen ve üçgen tabanlı geometrik örüntü (desen) oluşturur."
+  },
+  {
+    "id": "mat3_sekil_120",
+    "level": "kolay",
+    "premise": "Dairenin köşesi yoktur.",
+    "text": "Köşesi ve kenarı olmayan kapalı iki boyutlu geometrik şekil hangisidir?",
+    "correct": "Çember ve Daire",
+    "wrong1": "Üçgen",
+    "wrong2": "Silindir",
+    "explanation": "Yuvarlak olan iki boyutlu şekiller (çember/daire) köşe ve kenar barındırmazlar."
+  },
+  {
+    "id": "mat3_sekil_121",
+    "level": "orta",
+    "premise": "Köşegenler karşıdan karşıya geçer.",
+    "text": "Beşgen adı verilen (5 kenarlı) bir şekilde köşegen çizilebilir mi?",
+    "correct": "Evet, çizilebilir.",
+    "wrong1": "Hayır, sadece üçgende çizilebilir.",
+    "wrong2": "Hayır, sadece karede çizilebilir.",
+    "explanation": "Üçgen hariç (köşeleri hep komşu olduğu için), 4, 5, 6 vb. kenarlı tüm çokgenlerde köşegen çizilebilir."
+  },
+  {
+    "id": "mat3_sekil_122",
+    "level": "orta",
+    "premise": "Köşegen bir şekli ikiye bölebilir.",
+    "text": "Bir karenin sadece tek bir köşegenini çizersek, karenin içinde hangi yeni iki şekil ortaya çıkar?",
+    "correct": "İki adet üçgen",
+    "wrong1": "İki adet dikdörtgen",
+    "wrong2": "İki adet küçük kare",
+    "explanation": "Kareyi bir köşeden karşı köşeye çizgiyle böldüğümüzde tam 2 eşit üçgen elde ederiz."
+  },
+  {
+    "id": "mat3_sekil_123",
+    "level": "orta",
+    "premise": "Köşegen bir şekli ikiye bölebilir.",
+    "text": "Bir karenin HER İKİ köşegenini de çizersek, karenin içinde toplam kaç adet KÜÇÜK üçgen ortaya çıkar?",
+    "correct": "4",
+    "wrong1": "2",
+    "wrong2": "8",
+    "explanation": "Çarpı (X) şeklinde iki köşegen çizildiğinde kare içi 4 küçük üçgene bölünür."
+  },
+  {
+    "id": "mat3_sekil_124",
+    "level": "zor",
+    "premise": null,
+    "text": "Hem yüzleri hem köşeleri hem de ayrıtları olan ancak BÜTÜN yüzleri kare OLMAYAN geometrik cisim hangisidir?",
+    "correct": "Kare Prizma veya Dikdörtgenler Prizması",
+    "wrong1": "Küp",
+    "wrong2": "Küre",
+    "explanation": "Küpün tüm yüzleri karedir. Prizmalarda dikdörtgenler işin içine girer. Küre zaten ayrıtsızdır."
+  },
+  {
+    "id": "mat3_sekil_125",
+    "level": "zor",
+    "premise": "Farklı cisimler farklı yüzey türlerine sahiptir.",
+    "text": "Aşağıdaki cisimlerin hangisinde HEM eğri (yuvarlak) yüzey HEM DE düz yüzey bir arada bulunur?",
+    "correct": "Silindir ve Koni",
+    "wrong1": "Küre",
+    "wrong2": "Küp",
+    "explanation": "Kürenin sadece eğri yüzeyi vardır. Küpün sadece düz yüzeyi vardır. Silindir ve koninin ise her ikisi de vardır."
+  },
+  {
+    "id": "mat3_sekil_126",
+    "level": "zor",
+    "premise": null,
+    "text": "Öğretmen: 'Masamın üzerinde 2 tane cisim var. Bunların toplam 11 tane yüzü, 21 tane ayrıtı ve 14 tane köşesi var.' Bu iki cisim hangileridir?",
+    "correct": "1 Küp ve 1 Üçgen Prizma",
+    "wrong1": "2 tane Küp",
+    "wrong2": "1 Silindir ve 1 Koni",
+    "explanation": "Küp (6 yüz, 12 ay, 8 k) + Üçgen Prizma (5 yüz, 9 ay, 6 k) = Toplam 11 yüz, 21 ayrıt, 14 köşe eder."
+  },
+  {
+    "id": "mat3_sekil_127",
+    "level": "zor",
+    "premise": "Uzay ve geometri çok eğlencelidir.",
+    "text": "Bir gezegen (Küre), uzay roketi gövdesi (Silindir) ve roketin ucu (Koni) düşünüldüğünde bu üç nesnenin ortak ÖZELLİĞİ nedir?",
+    "correct": "Üçünün de ayrıtının (kenar çizgisinin) olmaması.",
+    "wrong1": "Üçünün de düz yüzeyinin olması.",
+    "wrong2": "Üçünün de üçgenlerden oluşması.",
+    "explanation": "Küre, silindir ve koni yuvarlak hatlıdır, geometrik olarak sivri köşeleri veya düz çizgi halinde ayrıtları yoktur."
+  },
+  {
+    "id": "mat3_sekil_128",
+    "level": "zor",
+    "premise": null,
+    "text": "Bir zarı (küpü) köşesinden yere atarsak en fazla kaç yüzünü AYNI ANDA görebiliriz?",
+    "correct": "3",
+    "wrong1": "4",
+    "wrong2": "2",
+    "explanation": "Küpün bir köşesine tam karşıdan baktığımızda bize bakan 3 yüzeyini görebiliriz, diğer 3 yüzey arkada kalır."
+  },
+  {
+    "id": "mat3_sekil_129",
+    "level": "zor",
+    "premise": null,
+    "text": "Altıgen şeklindeki bir ayna kırıldığında tam ortadan köşeden köşeye (iki eşit parçaya) bölündü. Ortaya çıkan iki yeni ayna parçası genellikle hangi şekildedir?",
+    "correct": "İki adet Dörtgen (Yamuk)",
+    "wrong1": "İki adet Üçgen",
+    "wrong2": "İki adet Beşgen",
+    "explanation": "Düzgün bir altıgeni karşılıklı iki köşesinden ortadan böldüğünüzde, her bir parça 4 kenarlı (yamuk/dörtgen) olur."
+  },
+  {
+    "id": "mat3_sekil_130",
+    "level": "zor",
+    "premise": "Evlerimizin çatıları çoğunlukla üçgen prizma şeklindedir.",
+    "text": "Üçgen prizma şeklindeki bir çatının kaç tane YAN yüzü vardır (Tabanlar hariç)?",
+    "correct": "3",
+    "wrong1": "2",
+    "wrong2": "4",
+    "explanation": "Üçgen prizmada 2 üçgen taban, onları birleştiren 3 adet dikdörtgen yan yüz bulunur."
+  }
+]

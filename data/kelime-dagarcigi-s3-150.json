@@ -1,0 +1,3982 @@
+{
+  "meta": {
+    "topicId": "t02",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_turkce",
+    "title": "Kelime Dağarcığı (Eş ve zıt anlamlı kelimeler, Eş Sesli/Sesteş kelimeler)",
+    "grade": 3,
+    "count": 150
+  },
+  "questions": [
+    {
+      "id": "kelime3_001",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Siyah' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Kara",
+      "wrong1": "Beyaz",
+      "wrong2": "Kırmızı",
+      "explanation": "Aynı rengi ifade eden 'siyah' ve 'kara' kelimeleri eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Siyah' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Kara",
+        "wrong1": "Beyaz",
+        "wrong2": "Kırmızı",
+        "explanation": "Aynı rengi ifade eden 'siyah' ve 'kara' kelimeleri eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_002",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'beyaz' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Ak",
+      "wrong1": "Sarı",
+      "wrong2": "Koyu",
+      "explanation": "Aynı rengi ifade eden 'beyaz' ve 'ak' kelimeleri eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'beyaz' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Ak",
+        "wrong1": "Sarı",
+        "wrong2": "Koyu",
+        "explanation": "Aynı rengi ifade eden 'beyaz' ve 'ak' kelimeleri eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Kırmızı' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Al",
+      "wrong1": "Mavi",
+      "wrong2": "Mor",
+      "explanation": "Aynı rengi ifade eden 'kırmızı' ve 'al' kelimeleri eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "'Kırmızı' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Al",
+        "wrong1": "Mavi",
+        "wrong2": "Mor",
+        "explanation": "Aynı rengi ifade eden 'kırmızı' ve 'al' kelimeleri eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_004",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Öğretmen' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Muallim",
+      "wrong1": "Talebe",
+      "wrong2": "Müdür",
+      "explanation": "Eğitim veren kişiye 'öğretmen' veya 'muallim' denir, bu kelimeler eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Öğretmen' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Muallim",
+        "wrong1": "Talebe",
+        "wrong2": "Müdür",
+        "explanation": "Eğitim veren kişiye 'öğretmen' veya 'muallim' denir, bu kelimeler eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_005",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'öğrenci' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Talebe",
+      "wrong1": "Okul",
+      "wrong2": "Sınıf",
+      "explanation": "Eğitim gören kişiye 'öğrenci' veya 'talebe' denir, ikisi eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'öğrenci' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Talebe",
+        "wrong1": "Okul",
+        "wrong2": "Sınıf",
+        "explanation": "Eğitim gören kişiye 'öğrenci' veya 'talebe' denir, ikisi eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_006",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Okul' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Mektep",
+      "wrong1": "Ders",
+      "wrong2": "Eğitim",
+      "explanation": "Eğitim görülen yere 'okul' veya 'mektep' denir, bu kelimeler eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "'Okul' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Mektep",
+        "wrong1": "Ders",
+        "wrong2": "Eğitim",
+        "explanation": "Eğitim görülen yere 'okul' veya 'mektep' denir, bu kelimeler eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_007",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Doktor' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Hekim",
+      "wrong1": "Hemşire",
+      "wrong2": "Hasta",
+      "explanation": "Hastaları tedavi eden kişiye 'doktor' veya 'hekim' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Doktor' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Hekim",
+        "wrong1": "Hemşire",
+        "wrong2": "Hasta",
+        "explanation": "Hastaları tedavi eden kişiye 'doktor' veya 'hekim' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_008",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'misafir' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Konuk",
+      "wrong1": "Komşu",
+      "wrong2": "Arkadaş",
+      "explanation": "Evimize gelen kişiye 'misafir' veya 'konuk' deriz, bunlar eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'misafir' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Konuk",
+        "wrong1": "Komşu",
+        "wrong2": "Arkadaş",
+        "explanation": "Evimize gelen kişiye 'misafir' veya 'konuk' deriz, bunlar eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Hediye' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Armağan",
+      "wrong1": "Oyuncak",
+      "wrong2": "Paket",
+      "explanation": "Birini sevindirmek için verilen şeye 'hediye' veya 'armağan' denir.",
+      "app": {
+        "question": {
+          "text": "'Hediye' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Armağan",
+        "wrong1": "Oyuncak",
+        "wrong2": "Paket",
+        "explanation": "Birini sevindirmek için verilen şeye 'hediye' veya 'armağan' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_010",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Kelime' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Sözcük",
+      "wrong1": "Cümle",
+      "wrong2": "Harf",
+      "explanation": "Anlamlı ses birliği olan 'kelime' ile 'sözcük' aynı anlama gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Kelime' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Sözcük",
+        "wrong1": "Cümle",
+        "wrong2": "Harf",
+        "explanation": "Anlamlı ses birliği olan 'kelime' ile 'sözcük' aynı anlama gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_011",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'cümle' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Tümce",
+      "wrong1": "Paragraf",
+      "wrong2": "Nokta",
+      "explanation": "Duygu ve düşünceleri anlatan 'cümle' kelimesinin eş anlamlısı 'tümce'dir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'cümle' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Tümce",
+        "wrong1": "Paragraf",
+        "wrong2": "Nokta",
+        "explanation": "Duygu ve düşünceleri anlatan 'cümle' kelimesinin eş anlamlısı 'tümce'dir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_012",
+      "level": "kolay",
+      "premise": null,
+      "text": "'İsim' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Ad",
+      "wrong1": "Soyadı",
+      "wrong2": "Sıfat",
+      "explanation": "Varlıkları tanıtan kelimelere 'isim' veya 'ad' denir, bunlar eş anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "'İsim' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Ad",
+        "wrong1": "Soyadı",
+        "wrong2": "Sıfat",
+        "explanation": "Varlıkları tanıtan kelimelere 'isim' veya 'ad' denir, bunlar eş anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_013",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Rüya' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Düş",
+      "wrong1": "Hayal",
+      "wrong2": "Gerçek",
+      "explanation": "Uyurken gördüğümüz şeylere 'rüya' veya 'düş' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Rüya' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Düş",
+        "wrong1": "Hayal",
+        "wrong2": "Gerçek",
+        "explanation": "Uyurken gördüğümüz şeylere 'rüya' veya 'düş' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_014",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'hikâye' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Öykü",
+      "wrong1": "Masal",
+      "wrong2": "Şiir",
+      "explanation": "Yaşanmış veya kurgu olayları anlatan 'hikâye' kelimesinin eş anlamlısı 'öykü'dür.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'hikâye' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Öykü",
+        "wrong1": "Masal",
+        "wrong2": "Şiir",
+        "explanation": "Yaşanmış veya kurgu olayları anlatan 'hikâye' kelimesinin eş anlamlısı 'öykü'dür.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_015",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Zaman' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Vakit",
+      "wrong1": "Saat",
+      "wrong2": "Gün",
+      "explanation": "Bir işin geçtiği süreye 'zaman' veya 'vakit' denir.",
+      "app": {
+        "question": {
+          "text": "'Zaman' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Vakit",
+        "wrong1": "Saat",
+        "wrong2": "Gün",
+        "explanation": "Bir işin geçtiği süreye 'zaman' veya 'vakit' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_016",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Yıl' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Sene",
+      "wrong1": "Ay",
+      "wrong2": "Hafta",
+      "explanation": "Dünyanın güneş etrafında bir tam tur atmasına 'yıl' veya 'sene' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Yıl' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Sene",
+        "wrong1": "Ay",
+        "wrong2": "Hafta",
+        "explanation": "Dünyanın güneş etrafında bir tam tur atmasına 'yıl' veya 'sene' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_017",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'sonbahar' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Güz",
+      "wrong1": "Yaz",
+      "wrong2": "Kış",
+      "explanation": "Yazdan sonra gelen mevsime 'sonbahar' veya 'güz' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'sonbahar' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Güz",
+        "wrong1": "Yaz",
+        "wrong2": "Kış",
+        "explanation": "Yazdan sonra gelen mevsime 'sonbahar' veya 'güz' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_018",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Anı' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Hatıra",
+      "wrong1": "Geçmiş",
+      "wrong2": "Zaman",
+      "explanation": "Geçmişte yaşanan unutulmayan olaylara 'anı' veya 'hatıra' denir.",
+      "app": {
+        "question": {
+          "text": "'Anı' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Hatıra",
+        "wrong1": "Geçmiş",
+        "wrong2": "Zaman",
+        "explanation": "Geçmişte yaşanan unutulmayan olaylara 'anı' veya 'hatıra' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_019",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Cevap' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Yanıt",
+      "wrong1": "Soru",
+      "wrong2": "Sual",
+      "explanation": "Bir soruya verilen karşılığa 'cevap' veya 'yanıt' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Cevap' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Yanıt",
+        "wrong1": "Soru",
+        "wrong2": "Sual",
+        "explanation": "Bir soruya verilen karşılığa 'cevap' veya 'yanıt' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_020",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'soru' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Sual",
+      "wrong1": "Cevap",
+      "wrong2": "Yanıt",
+      "explanation": "Bir bilgiyi öğrenmek için sorulan şeye 'soru' veya 'sual' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'soru' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Sual",
+        "wrong1": "Cevap",
+        "wrong2": "Yanıt",
+        "explanation": "Bir bilgiyi öğrenmek için sorulan şeye 'soru' veya 'sual' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Vatan' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Yurt",
+      "wrong1": "Millet",
+      "wrong2": "Devlet",
+      "explanation": "Üzerinde yaşadığımız topraklara 'vatan' veya 'yurt' denir.",
+      "app": {
+        "question": {
+          "text": "'Vatan' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yurt",
+        "wrong1": "Millet",
+        "wrong2": "Devlet",
+        "explanation": "Üzerinde yaşadığımız topraklara 'vatan' veya 'yurt' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_022",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Millet' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Ulus",
+      "wrong1": "Toplum",
+      "wrong2": "Halk",
+      "explanation": "Aynı topraklar üzerinde yaşayan topluluğa 'millet' veya 'ulus' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Millet' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Ulus",
+        "wrong1": "Toplum",
+        "wrong2": "Halk",
+        "explanation": "Aynı topraklar üzerinde yaşayan topluluğa 'millet' veya 'ulus' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_023",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'doğa' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Tabiat",
+      "wrong1": "Orman",
+      "wrong2": "Deniz",
+      "explanation": "Çevremizdeki canlı ve cansız varlıkların bütününe 'doğa' veya 'tabiat' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'doğa' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Tabiat",
+        "wrong1": "Orman",
+        "wrong2": "Deniz",
+        "explanation": "Çevremizdeki canlı ve cansız varlıkların bütününe 'doğa' veya 'tabiat' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_024",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Görev' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Vazife",
+      "wrong1": "Oyun",
+      "wrong2": "Sorumluluk",
+      "explanation": "Bir kişinin yapması gereken işe 'görev' veya 'vazife' denir.",
+      "app": {
+        "question": {
+          "text": "'Görev' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Vazife",
+        "wrong1": "Oyun",
+        "wrong2": "Sorumluluk",
+        "explanation": "Bir kişinin yapması gereken işe 'görev' veya 'vazife' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_025",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Fayda' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Yarar",
+      "wrong1": "Zarar",
+      "wrong2": "İyilik",
+      "explanation": "İyi ve olumlu bir sonuç getiren şeye 'fayda' veya 'yarar' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Fayda' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Yarar",
+        "wrong1": "Zarar",
+        "wrong2": "İyilik",
+        "explanation": "İyi ve olumlu bir sonuç getiren şeye 'fayda' veya 'yarar' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_026",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'zarar' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Ziyan",
+      "wrong1": "Kâr",
+      "wrong2": "Fayda",
+      "explanation": "Bir şeyin eksilmesi veya bozulmasına 'zarar' veya 'ziyan' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'zarar' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Ziyan",
+        "wrong1": "Kâr",
+        "wrong2": "Fayda",
+        "explanation": "Bir şeyin eksilmesi veya bozulmasına 'zarar' veya 'ziyan' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_027",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Sebep' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Neden",
+      "wrong1": "Sonuç",
+      "wrong2": "Amaç",
+      "explanation": "Bir olayı ortaya çıkaran şeye 'sebep' veya 'neden' denir.",
+      "app": {
+        "question": {
+          "text": "'Sebep' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Neden",
+        "wrong1": "Sonuç",
+        "wrong2": "Amaç",
+        "explanation": "Bir olayı ortaya çıkaran şeye 'sebep' veya 'neden' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_028",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Sonuç' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Netice",
+      "wrong1": "Sebep",
+      "wrong2": "Başlangıç",
+      "explanation": "Bir olayın bitiminde varılan duruma 'sonuç' veya 'netice' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Sonuç' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Netice",
+        "wrong1": "Sebep",
+        "wrong2": "Başlangıç",
+        "explanation": "Bir olayın bitiminde varılan duruma 'sonuç' veya 'netice' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_029",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'barış' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Sulh",
+      "wrong1": "Savaş",
+      "wrong2": "Kavga",
+      "explanation": "Savaşın olmadığı huzur ortamına 'barış' veya 'sulh' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'barış' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Sulh",
+        "wrong1": "Savaş",
+        "wrong2": "Kavga",
+        "explanation": "Savaşın olmadığı huzur ortamına 'barış' veya 'sulh' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_030",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Savaş' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Harp",
+      "wrong1": "Barış",
+      "wrong2": "Silah",
+      "explanation": "Ülkeler arasındaki silahlı çatışmaya 'savaş' veya 'harp' denir.",
+      "app": {
+        "question": {
+          "text": "'Savaş' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Harp",
+        "wrong1": "Barış",
+        "wrong2": "Silah",
+        "explanation": "Ülkeler arasındaki silahlı çatışmaya 'savaş' veya 'harp' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_031",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Yetenek' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Kabiliyet",
+      "wrong1": "İstek",
+      "wrong2": "Başarı",
+      "explanation": "Bir şeyi yapabilme gücüne 'yetenek' veya 'kabiliyet' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Yetenek' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Kabiliyet",
+        "wrong1": "İstek",
+        "wrong2": "Başarı",
+        "explanation": "Bir şeyi yapabilme gücüne 'yetenek' veya 'kabiliyet' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_032",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'rüzgâr' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Yel",
+      "wrong1": "Fırtına",
+      "wrong2": "Yağmur",
+      "explanation": "Havanın yer değiştirmesiyle oluşan akıma 'rüzgâr' veya 'yel' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'rüzgâr' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Yel",
+        "wrong1": "Fırtına",
+        "wrong2": "Yağmur",
+        "explanation": "Havanın yer değiştirmesiyle oluşan akıma 'rüzgâr' veya 'yel' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_033",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Şehir' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Kent",
+      "wrong1": "Köy",
+      "wrong2": "Kasaba",
+      "explanation": "Nüfusu kalabalık olan büyük yerleşim yerlerine 'şehir' veya 'kent' denir.",
+      "app": {
+        "question": {
+          "text": "'Şehir' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kent",
+        "wrong1": "Köy",
+        "wrong2": "Kasaba",
+        "explanation": "Nüfusu kalabalık olan büyük yerleşim yerlerine 'şehir' veya 'kent' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_034",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Nehir' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Irmak",
+      "wrong1": "Göl",
+      "wrong2": "Deniz",
+      "explanation": "Büyük akarsulara 'nehir' veya 'ırmak' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Nehir' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Irmak",
+        "wrong1": "Göl",
+        "wrong2": "Deniz",
+        "explanation": "Büyük akarsulara 'nehir' veya 'ırmak' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_035",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'deprem' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Zelzele",
+      "wrong1": "Sel",
+      "wrong2": "Heyelan",
+      "explanation": "Yer kabuğundaki sarsıntılara 'deprem' veya 'zelzele' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'deprem' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Zelzele",
+        "wrong1": "Sel",
+        "wrong2": "Heyelan",
+        "explanation": "Yer kabuğundaki sarsıntılara 'deprem' veya 'zelzele' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_036",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Lider' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Önder",
+      "wrong1": "Asker",
+      "wrong2": "Yönetici",
+      "explanation": "Bir gruba yol gösteren kişiye 'lider' veya 'önder' denir.",
+      "app": {
+        "question": {
+          "text": "'Lider' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Önder",
+        "wrong1": "Asker",
+        "wrong2": "Yönetici",
+        "explanation": "Bir gruba yol gösteren kişiye 'lider' veya 'önder' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_037",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Esir' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Tutsak",
+      "wrong1": "Özgür",
+      "wrong2": "Kaçak",
+      "explanation": "Savaşta ele geçirilen kişiye 'esir' veya 'tutsak' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Esir' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Tutsak",
+        "wrong1": "Özgür",
+        "wrong2": "Kaçak",
+        "explanation": "Savaşta ele geçirilen kişiye 'esir' veya 'tutsak' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_038",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'kalp' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Yürek",
+      "wrong1": "Mide",
+      "wrong2": "Beyin",
+      "explanation": "Vücudumuzdaki kanı pompalayan organa 'kalp' veya 'yürek' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'kalp' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Yürek",
+        "wrong1": "Mide",
+        "wrong2": "Beyin",
+        "explanation": "Vücudumuzdaki kanı pompalayan organa 'kalp' veya 'yürek' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_039",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Yaşlı' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "İhtiyar",
+      "wrong1": "Genç",
+      "wrong2": "Çocuk",
+      "explanation": "Yaşı ilerlemiş kişilere 'yaşlı' veya 'ihtiyar' denir.",
+      "app": {
+        "question": {
+          "text": "'Yaşlı' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İhtiyar",
+        "wrong1": "Genç",
+        "wrong2": "Çocuk",
+        "explanation": "Yaşı ilerlemiş kişilere 'yaşlı' veya 'ihtiyar' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_040",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Uyarı' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "İkaz",
+      "wrong1": "Ceza",
+      "wrong2": "Haber",
+      "explanation": "Bir kişiyi dikkatli olması için bilgilendirmeye 'uyarı' veya 'ikaz' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Uyarı' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "İkaz",
+        "wrong1": "Ceza",
+        "wrong2": "Haber",
+        "explanation": "Bir kişiyi dikkatli olması için bilgilendirmeye 'uyarı' veya 'ikaz' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_041",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'lisan' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Dil",
+      "wrong1": "Ağız",
+      "wrong2": "Söz",
+      "explanation": "İnsanların iletişim kurduğu sisteme 'lisan' veya 'dil' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'lisan' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Dil",
+        "wrong1": "Ağız",
+        "wrong2": "Söz",
+        "explanation": "İnsanların iletişim kurduğu sisteme 'lisan' veya 'dil' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_042",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Sağlık' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Sıhhat",
+      "wrong1": "Hastalık",
+      "wrong2": "İlaç",
+      "explanation": "Vücudun hasta olmama durumuna 'sağlık' veya 'sıhhat' denir.",
+      "app": {
+        "question": {
+          "text": "'Sağlık' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Sıhhat",
+        "wrong1": "Hastalık",
+        "wrong2": "İlaç",
+        "explanation": "Vücudun hasta olmama durumuna 'sağlık' veya 'sıhhat' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_043",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Ufak' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Küçük",
+      "wrong1": "Kısa",
+      "wrong2": "İnce",
+      "explanation": "Boyut olarak az yer kaplayan şeylere 'ufak' veya 'küçük' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Ufak' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Küçük",
+        "wrong1": "Kısa",
+        "wrong2": "İnce",
+        "explanation": "Boyut olarak az yer kaplayan şeylere 'ufak' veya 'küçük' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_044",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'cesur' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Yürekli",
+      "wrong1": "Korkak",
+      "wrong2": "Güçlü",
+      "explanation": "Korkusu olmayan kişilere 'cesur' veya 'yürekli' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'cesur' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Yürekli",
+        "wrong1": "Korkak",
+        "wrong2": "Güçlü",
+        "explanation": "Korkusu olmayan kişilere 'cesur' veya 'yürekli' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_045",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Elbise' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Giysi",
+      "wrong1": "Kumaş",
+      "wrong2": "Ayakkabı",
+      "explanation": "Giyilen eşyalara 'elbise' veya 'giysi' denir.",
+      "app": {
+        "question": {
+          "text": "'Elbise' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Giysi",
+        "wrong1": "Kumaş",
+        "wrong2": "Ayakkabı",
+        "explanation": "Giyilen eşyalara 'elbise' veya 'giysi' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_046",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Şair' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Ozan",
+      "wrong1": "Yazar",
+      "wrong2": "Ressam",
+      "explanation": "Şiir yazan kişilere 'şair' veya 'ozan' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Şair' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Ozan",
+        "wrong1": "Yazar",
+        "wrong2": "Ressam",
+        "explanation": "Şiir yazan kişilere 'şair' veya 'ozan' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_047",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'hasret' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Özlem",
+      "wrong1": "Sevgi",
+      "wrong2": "Üzüntü",
+      "explanation": "Bir şeye kavuşma isteğine 'hasret' veya 'özlem' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'hasret' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Özlem",
+        "wrong1": "Sevgi",
+        "wrong2": "Üzüntü",
+        "explanation": "Bir şeye kavuşma isteğine 'hasret' veya 'özlem' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_048",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Pis' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+      "correct": "Kirli",
+      "wrong1": "Temiz",
+      "wrong2": "Eski",
+      "explanation": "Lekeli ve temiz olmayan şeylere 'pis' veya 'kirli' denir.",
+      "app": {
+        "question": {
+          "text": "'Pis' kelimesinin eş anlamlısı (anlamdaşı) aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kirli",
+        "wrong1": "Temiz",
+        "wrong2": "Eski",
+        "explanation": "Lekeli ve temiz olmayan şeylere 'pis' veya 'kirli' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_049",
+      "level": "orta",
+      "premise": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz.",
+      "text": "Yukarıdaki bilgilere göre 'Zengin' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+      "correct": "Varlıklı",
+      "wrong1": "Fakir",
+      "wrong2": "Cömert",
+      "explanation": "Parası ve malı çok olan kişilere 'zengin' veya 'varlıklı' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Zengin' kelimesinin yerine aşağıdakilerden hangisi getirilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Cümle içinde herhangi bir kelimenin yerine onun eş anlamlısı getirilirse cümlenin anlamı bozulmaz."
+            }
+          ]
+        },
+        "correct": "Varlıklı",
+        "wrong1": "Fakir",
+        "wrong2": "Cömert",
+        "explanation": "Parası ve malı çok olan kişilere 'zengin' veya 'varlıklı' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_050",
+      "level": "zor",
+      "premise": "Ali kitap okurken 'yoksul' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi.",
+      "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+      "correct": "Fakir",
+      "wrong1": "Zengin",
+      "wrong2": "Cimri",
+      "explanation": "Maddi durumu iyi olmayan kişilere 'yoksul' veya 'fakir' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki metne göre Ali'nin bulması gereken kelime aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ali kitap okurken 'yoksul' kelimesiyle karşılaştı. Öğretmeni ona, bu kelimenin eş anlamlısını da bilmesi gerektiğini söyledi."
+            }
+          ]
+        },
+        "correct": "Fakir",
+        "wrong1": "Zengin",
+        "wrong2": "Cimri",
+        "explanation": "Maddi durumu iyi olmayan kişilere 'yoksul' veya 'fakir' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_051",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Siyah' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Beyaz",
+      "wrong1": "Kara",
+      "wrong2": "Koyu",
+      "explanation": "'Siyah' ve 'beyaz' renkleri birbirinin tam tersidir, yani zıt anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "'Siyah' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Beyaz",
+        "wrong1": "Kara",
+        "wrong2": "Koyu",
+        "explanation": "'Siyah' ve 'beyaz' renkleri birbirinin tam tersidir, yani zıt anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_052",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Sıcak' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Soğuk",
+      "wrong1": "Ilık",
+      "wrong2": "Serin",
+      "explanation": "'Sıcak' ve 'soğuk' durumları birbirinin karşıtıdır (zıddıdır).",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Sıcak' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Soğuk",
+        "wrong1": "Ilık",
+        "wrong2": "Serin",
+        "explanation": "'Sıcak' ve 'soğuk' durumları birbirinin karşıtıdır (zıddıdır).",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_053",
+      "level": "kolay",
+      "premise": null,
+      "text": "'İyi' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Kötü",
+      "wrong1": "Güzel",
+      "wrong2": "Doğru",
+      "explanation": "'İyi' kavramının tam tersi 'kötü' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "'İyi' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kötü",
+        "wrong1": "Güzel",
+        "wrong2": "Doğru",
+        "explanation": "'İyi' kavramının tam tersi 'kötü' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_054",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Büyük' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Küçük",
+      "wrong1": "İri",
+      "wrong2": "Uzun",
+      "explanation": "Boyut olarak 'büyük' olanın tam tersi 'küçük' olandır.",
+      "app": {
+        "question": {
+          "text": "'Büyük' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Küçük",
+        "wrong1": "İri",
+        "wrong2": "Uzun",
+        "explanation": "Boyut olarak 'büyük' olanın tam tersi 'küçük' olandır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_055",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Uzun' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Kısa",
+      "wrong1": "Dar",
+      "wrong2": "Geniş",
+      "explanation": "Boy olarak 'uzun' kelimesinin tam zıddı 'kısa' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Uzun' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Kısa",
+        "wrong1": "Dar",
+        "wrong2": "Geniş",
+        "explanation": "Boy olarak 'uzun' kelimesinin tam zıddı 'kısa' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_056",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Geniş' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Dar",
+      "wrong1": "Büyük",
+      "wrong2": "Kısa",
+      "explanation": "Eni fazla olana 'geniş', az olana 'dar' denir. Bunlar zıt anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "'Geniş' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dar",
+        "wrong1": "Büyük",
+        "wrong2": "Kısa",
+        "explanation": "Eni fazla olana 'geniş', az olana 'dar' denir. Bunlar zıt anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_057",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Şişman' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Zayıf",
+      "wrong1": "İri",
+      "wrong2": "Kalın",
+      "explanation": "Kilosu fazla olana 'şişman', az olana 'zayıf' denir, bu iki kelime zıt anlamlıdır.",
+      "app": {
+        "question": {
+          "text": "'Şişman' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zayıf",
+        "wrong1": "İri",
+        "wrong2": "Kalın",
+        "explanation": "Kilosu fazla olana 'şişman', az olana 'zayıf' denir, bu iki kelime zıt anlamlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_058",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Ağır' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Hafif",
+      "wrong1": "Zor",
+      "wrong2": "Yavaş",
+      "explanation": "Tartıda fazla gelene 'ağır', az gelene 'hafif' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Ağır' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Hafif",
+        "wrong1": "Zor",
+        "wrong2": "Yavaş",
+        "explanation": "Tartıda fazla gelene 'ağır', az gelene 'hafif' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_059",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Taze' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Bayat",
+      "wrong1": "Yeni",
+      "wrong2": "Kuru",
+      "explanation": "Yeni üretilmiş olana 'taze', zamanla eskiyen yiyeceklere 'bayat' denir.",
+      "app": {
+        "question": {
+          "text": "'Taze' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bayat",
+        "wrong1": "Yeni",
+        "wrong2": "Kuru",
+        "explanation": "Yeni üretilmiş olana 'taze', zamanla eskiyen yiyeceklere 'bayat' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_060",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Boş' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Dolu",
+      "wrong1": "Yarım",
+      "wrong2": "Açık",
+      "explanation": "İçinde bir şey bulunmayana 'boş', içi tamamen kaplanana 'dolu' denir.",
+      "app": {
+        "question": {
+          "text": "'Boş' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dolu",
+        "wrong1": "Yarım",
+        "wrong2": "Açık",
+        "explanation": "İçinde bir şey bulunmayana 'boş', içi tamamen kaplanana 'dolu' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_061",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Açık' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Kapalı",
+      "wrong1": "Aralık",
+      "wrong2": "Kilitli",
+      "explanation": "Geçişe izin verene 'açık', vermeyene 'kapalı' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Açık' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Kapalı",
+        "wrong1": "Aralık",
+        "wrong2": "Kilitli",
+        "explanation": "Geçişe izin verene 'açık', vermeyene 'kapalı' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_062",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Kirli' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Temiz",
+      "wrong1": "Pis",
+      "wrong2": "Eski",
+      "explanation": "Lekeli olana 'kirli', lekesiz olana 'temiz' denir.",
+      "app": {
+        "question": {
+          "text": "'Kirli' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Temiz",
+        "wrong1": "Pis",
+        "wrong2": "Eski",
+        "explanation": "Lekeli olana 'kirli', lekesiz olana 'temiz' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_063",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Genç' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yaşlı",
+      "wrong1": "Çocuk",
+      "wrong2": "Bebek",
+      "explanation": "Yaşı az olana 'genç', yaşı ilerlemiş olana 'yaşlı' denir.",
+      "app": {
+        "question": {
+          "text": "'Genç' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yaşlı",
+        "wrong1": "Çocuk",
+        "wrong2": "Bebek",
+        "explanation": "Yaşı az olana 'genç', yaşı ilerlemiş olana 'yaşlı' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_064",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Güzel' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Çirkin",
+      "wrong1": "Şirin",
+      "wrong2": "Kötü",
+      "explanation": "Göze hoş gelene 'güzel', gelmeyene 'çirkin' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Güzel' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Çirkin",
+        "wrong1": "Şirin",
+        "wrong2": "Kötü",
+        "explanation": "Göze hoş gelene 'güzel', gelmeyene 'çirkin' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_065",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Doğru' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yanlış",
+      "wrong1": "Gerçek",
+      "wrong2": "Yalan",
+      "explanation": "Hatasız olana 'doğru', hatalı olana 'yanlış' denir.",
+      "app": {
+        "question": {
+          "text": "'Doğru' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yanlış",
+        "wrong1": "Gerçek",
+        "wrong2": "Yalan",
+        "explanation": "Hatasız olana 'doğru', hatalı olana 'yanlış' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_066",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Çalışkan' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Tembel",
+      "wrong1": "Başarılı",
+      "wrong2": "Yaramaz",
+      "explanation": "Çok çalışana 'çalışkan', işten kaçana 'tembel' denir.",
+      "app": {
+        "question": {
+          "text": "'Çalışkan' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tembel",
+        "wrong1": "Başarılı",
+        "wrong2": "Yaramaz",
+        "explanation": "Çok çalışana 'çalışkan', işten kaçana 'tembel' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_067",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Zengin' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Fakir",
+      "wrong1": "Varlıklı",
+      "wrong2": "Cimri",
+      "explanation": "Parası çok olana 'zengin', parası olmayana 'fakir' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Zengin' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Fakir",
+        "wrong1": "Varlıklı",
+        "wrong2": "Cimri",
+        "explanation": "Parası çok olana 'zengin', parası olmayana 'fakir' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_068",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Cimri' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Cömert",
+      "wrong1": "Pinti",
+      "wrong2": "Zengin",
+      "explanation": "Parasını hiç harcamayana 'cimri', bolca paylaşana 'cömert' denir.",
+      "app": {
+        "question": {
+          "text": "'Cimri' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Cömert",
+        "wrong1": "Pinti",
+        "wrong2": "Zengin",
+        "explanation": "Parasını hiç harcamayana 'cimri', bolca paylaşana 'cömert' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_069",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Acı' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Tatlı",
+      "wrong1": "Ekşi",
+      "wrong2": "Tuzlu",
+      "explanation": "Lezzet olarak 'acı' kelimesinin tam zıddı 'tatlı' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "'Acı' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tatlı",
+        "wrong1": "Ekşi",
+        "wrong2": "Tuzlu",
+        "explanation": "Lezzet olarak 'acı' kelimesinin tam zıddı 'tatlı' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_070",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Gece' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Gündüz",
+      "wrong1": "Akşam",
+      "wrong2": "Sabah",
+      "explanation": "Güneşin olmadığı zamana 'gece', olduğu zamana 'gündüz' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Gece' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Gündüz",
+        "wrong1": "Akşam",
+        "wrong2": "Sabah",
+        "explanation": "Güneşin olmadığı zamana 'gece', olduğu zamana 'gündüz' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_071",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Sabah' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Akşam",
+      "wrong1": "Öğle",
+      "wrong2": "Gece",
+      "explanation": "Günün başlangıcına 'sabah', günün bitişine doğru olan vakte 'akşam' denir.",
+      "app": {
+        "question": {
+          "text": "'Sabah' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Akşam",
+        "wrong1": "Öğle",
+        "wrong2": "Gece",
+        "explanation": "Günün başlangıcına 'sabah', günün bitişine doğru olan vakte 'akşam' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_072",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Erken' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Geç",
+      "wrong1": "Hemen",
+      "wrong2": "Çabuk",
+      "explanation": "Vaktinden öncesine 'erken', sonrasına 'geç' denir.",
+      "app": {
+        "question": {
+          "text": "'Erken' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Geç",
+        "wrong1": "Hemen",
+        "wrong2": "Çabuk",
+        "explanation": "Vaktinden öncesine 'erken', sonrasına 'geç' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_073",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'İleri' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Geri",
+      "wrong1": "Ön",
+      "wrong2": "Yukarı",
+      "explanation": "Ön tarafa doğru gitmeye 'ileri', arka tarafa doğru gitmeye 'geri' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'İleri' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Geri",
+        "wrong1": "Ön",
+        "wrong2": "Yukarı",
+        "explanation": "Ön tarafa doğru gitmeye 'ileri', arka tarafa doğru gitmeye 'geri' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_074",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Yukarı' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Aşağı",
+      "wrong1": "Alt",
+      "wrong2": "İçeri",
+      "explanation": "'Yukarı' yönünün tam karşıtı (zıddı) 'aşağı' yönüdür.",
+      "app": {
+        "question": {
+          "text": "'Yukarı' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Aşağı",
+        "wrong1": "Alt",
+        "wrong2": "İçeri",
+        "explanation": "'Yukarı' yönünün tam karşıtı (zıddı) 'aşağı' yönüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_075",
+      "level": "kolay",
+      "premise": null,
+      "text": "'İç' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Dış",
+      "wrong1": "Alt",
+      "wrong2": "Kenar",
+      "explanation": "Bir şeyin merkezine 'iç', yüzeyine 'dış' denir.",
+      "app": {
+        "question": {
+          "text": "'İç' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dış",
+        "wrong1": "Alt",
+        "wrong2": "Kenar",
+        "explanation": "Bir şeyin merkezine 'iç', yüzeyine 'dış' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_076",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Uzak' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yakın",
+      "wrong1": "Irak",
+      "wrong2": "Kısa",
+      "explanation": "Mesafesi fazla olana 'uzak', az olana 'yakın' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Uzak' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Yakın",
+        "wrong1": "Irak",
+        "wrong2": "Kısa",
+        "explanation": "Mesafesi fazla olana 'uzak', az olana 'yakın' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_077",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Alt' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Üst",
+      "wrong1": "Yan",
+      "wrong2": "Arka",
+      "explanation": "'Alt' konumunun tam tersi durumu 'üst' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "'Alt' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Üst",
+        "wrong1": "Yan",
+        "wrong2": "Arka",
+        "explanation": "'Alt' konumunun tam tersi durumu 'üst' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_078",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Ön' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Arka",
+      "wrong1": "İleri",
+      "wrong2": "Sağ",
+      "explanation": "Bir şeyin ileride olan kısmına 'ön', geride kalan kısmına 'arka' denir.",
+      "app": {
+        "question": {
+          "text": "'Ön' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Arka",
+        "wrong1": "İleri",
+        "wrong2": "Sağ",
+        "explanation": "Bir şeyin ileride olan kısmına 'ön', geride kalan kısmına 'arka' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_079",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Doğu' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Batı",
+      "wrong1": "Kuzey",
+      "wrong2": "Güney",
+      "explanation": "Güneşin doğduğu yöne 'doğu', battığı zıt yöne 'batı' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Doğu' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Batı",
+        "wrong1": "Kuzey",
+        "wrong2": "Güney",
+        "explanation": "Güneşin doğduğu yöne 'doğu', battığı zıt yöne 'batı' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_080",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Kuzey' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Güney",
+      "wrong1": "Doğu",
+      "wrong2": "Batı",
+      "explanation": "Haritada 'kuzey' yönünün tam karşıtı 'güney' yönüdür.",
+      "app": {
+        "question": {
+          "text": "'Kuzey' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Güney",
+        "wrong1": "Doğu",
+        "wrong2": "Batı",
+        "explanation": "Haritada 'kuzey' yönünün tam karşıtı 'güney' yönüdür.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_081",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Kolay' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Zor",
+      "wrong1": "Basit",
+      "wrong2": "Güç",
+      "explanation": "Yapılması rahat olana 'kolay', zahmetli olana 'zor' denir.",
+      "app": {
+        "question": {
+          "text": "'Kolay' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Zor",
+        "wrong1": "Basit",
+        "wrong2": "Güç",
+        "explanation": "Yapılması rahat olana 'kolay', zahmetli olana 'zor' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_082",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Ucuz' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Pahalı",
+      "wrong1": "Bedava",
+      "wrong2": "Az",
+      "explanation": "Fiyatı düşük olana 'ucuz', yüksek olana 'pahalı' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Ucuz' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Pahalı",
+        "wrong1": "Bedava",
+        "wrong2": "Az",
+        "explanation": "Fiyatı düşük olana 'ucuz', yüksek olana 'pahalı' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_083",
+      "level": "zor",
+      "premise": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir.",
+      "text": "Yukarıdaki kurala göre'Ağlamak' kelimesinin doğru zıt anlamlısı hangisidir?",
+      "correct": "Gülmek",
+      "wrong1": "Ağlamamak",
+      "wrong2": "Üzülmek",
+      "explanation": "Bir kelimenin olumsuzu (ağlamamak) zıt anlamı değildir. Ağlamanın zıttı 'gülmek'tir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kurala göre'Ağlamak' kelimesinin doğru zıt anlamlısı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir."
+            }
+          ]
+        },
+        "correct": "Gülmek",
+        "wrong1": "Ağlamamak",
+        "wrong2": "Üzülmek",
+        "explanation": "Bir kelimenin olumsuzu (ağlamamak) zıt anlamı değildir. Ağlamanın zıttı 'gülmek'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_084",
+      "level": "zor",
+      "premise": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir.",
+      "text": "Yukarıdaki kurala göre'Gelmek' kelimesinin doğru zıt anlamlısı hangisidir?",
+      "correct": "Gitmek",
+      "wrong1": "Gelmemek",
+      "wrong2": "Koşmak",
+      "explanation": "Gelmemek olumsuz ifadedir, 'gelmek' eyleminin zıt anlamlısı 'gitmek'tir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kurala göre'Gelmek' kelimesinin doğru zıt anlamlısı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir."
+            }
+          ]
+        },
+        "correct": "Gitmek",
+        "wrong1": "Gelmemek",
+        "wrong2": "Koşmak",
+        "explanation": "Gelmemek olumsuz ifadedir, 'gelmek' eyleminin zıt anlamlısı 'gitmek'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_085",
+      "level": "zor",
+      "premise": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir.",
+      "text": "Yukarıdaki kurala göre'Almak' kelimesinin doğru zıt anlamlısı hangisidir?",
+      "correct": "Vermek",
+      "wrong1": "Almamak",
+      "wrong2": "Tutmak",
+      "explanation": "Almamak olumsuz ifadedir, 'almak' eyleminin zıt anlamlısı 'vermek'tir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kurala göre'Almak' kelimesinin doğru zıt anlamlısı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir."
+            }
+          ]
+        },
+        "correct": "Vermek",
+        "wrong1": "Almamak",
+        "wrong2": "Tutmak",
+        "explanation": "Almamak olumsuz ifadedir, 'almak' eyleminin zıt anlamlısı 'vermek'tir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_086",
+      "level": "zor",
+      "premise": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir.",
+      "text": "Yukarıdaki kurala göre'İnmek' kelimesinin doğru zıt anlamlısı hangisidir?",
+      "correct": "Çıkmak",
+      "wrong1": "İnmemek",
+      "wrong2": "Düşmek",
+      "explanation": "Aşağı yöndeki harekete 'inmek', yukarı yöndeki harekete 'çıkmak' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki kurala göre'İnmek' kelimesinin doğru zıt anlamlısı hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kelimenin olumsuzu (örneğin -me, -ma eki alan hâli) o kelimenin zıt anlamlısı değildir."
+            }
+          ]
+        },
+        "correct": "Çıkmak",
+        "wrong1": "İnmemek",
+        "wrong2": "Düşmek",
+        "explanation": "Aşağı yöndeki harekete 'inmek', yukarı yöndeki harekete 'çıkmak' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_087",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Başlamak' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Bitirmek",
+      "wrong1": "Başlamamak",
+      "wrong2": "Sürmek",
+      "explanation": "Bir işin ilk aşamasına 'başlamak', sonlanmasına 'bitirmek' denir.",
+      "app": {
+        "question": {
+          "text": "'Başlamak' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bitirmek",
+        "wrong1": "Başlamamak",
+        "wrong2": "Sürmek",
+        "explanation": "Bir işin ilk aşamasına 'başlamak', sonlanmasına 'bitirmek' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_088",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Sevinmek' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Üzülmek",
+      "wrong1": "Gülmek",
+      "wrong2": "Ağlamak",
+      "explanation": "Mutluluk hissi olan 'sevinmek' eyleminin zıddı 'üzülmek' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Sevinmek' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Üzülmek",
+        "wrong1": "Gülmek",
+        "wrong2": "Ağlamak",
+        "explanation": "Mutluluk hissi olan 'sevinmek' eyleminin zıddı 'üzülmek' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_089",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Dost' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Düşman",
+      "wrong1": "Arkadaş",
+      "wrong2": "Rakip",
+      "explanation": "Sevilen ve güvenilen kişiye 'dost', zarar vermek isteyene 'düşman' denir.",
+      "app": {
+        "question": {
+          "text": "'Dost' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Düşman",
+        "wrong1": "Arkadaş",
+        "wrong2": "Rakip",
+        "explanation": "Sevilen ve güvenilen kişiye 'dost', zarar vermek isteyene 'düşman' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_090",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Barış' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Savaş",
+      "wrong1": "Sulh",
+      "wrong2": "Kavga",
+      "explanation": "Huzur ortamına 'barış', silahlı çatışma ortamına 'savaş' denir.",
+      "app": {
+        "question": {
+          "text": "'Barış' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Savaş",
+        "wrong1": "Sulh",
+        "wrong2": "Kavga",
+        "explanation": "Huzur ortamına 'barış', silahlı çatışma ortamına 'savaş' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_091",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Az' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Çok",
+      "wrong1": "Hiç",
+      "wrong2": "Fazla",
+      "explanation": "Miktar olarak 'az' kelimesinin tam tersi 'çok' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Az' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Çok",
+        "wrong1": "Hiç",
+        "wrong2": "Fazla",
+        "explanation": "Miktar olarak 'az' kelimesinin tam tersi 'çok' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_092",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Kalın' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "İnce",
+      "wrong1": "Dar",
+      "wrong2": "Geniş",
+      "explanation": "Fiziksel boyutta 'kalın' kelimesinin zıddı 'ince' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "'Kalın' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İnce",
+        "wrong1": "Dar",
+        "wrong2": "Geniş",
+        "explanation": "Fiziksel boyutta 'kalın' kelimesinin zıddı 'ince' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_093",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Sert' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yumuşak",
+      "wrong1": "Katı",
+      "wrong2": "Kaba",
+      "explanation": "Kolayca şekil almayana 'sert', alana 'yumuşak' denir.",
+      "app": {
+        "question": {
+          "text": "'Sert' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yumuşak",
+        "wrong1": "Katı",
+        "wrong2": "Kaba",
+        "explanation": "Kolayca şekil almayana 'sert', alana 'yumuşak' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_094",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Uslu' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yaramaz",
+      "wrong1": "Akıllı",
+      "wrong2": "Sessiz",
+      "explanation": "Sakin ve söz dinleyene 'uslu', söz dinlemeyene 'yaramaz' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Uslu' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Yaramaz",
+        "wrong1": "Akıllı",
+        "wrong2": "Sessiz",
+        "explanation": "Sakin ve söz dinleyene 'uslu', söz dinlemeyene 'yaramaz' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_095",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Var' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yok",
+      "wrong1": "Çok",
+      "wrong2": "Hiç",
+      "explanation": "Bulunma durumu olan 'var' kelimesinin zıddı 'yok' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "'Var' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yok",
+        "wrong1": "Çok",
+        "wrong2": "Hiç",
+        "explanation": "Bulunma durumu olan 'var' kelimesinin zıddı 'yok' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_096",
+      "level": "kolay",
+      "premise": null,
+      "text": "'İlk' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Son",
+      "wrong1": "Baş",
+      "wrong2": "Orta",
+      "explanation": "Sıralamada başlangıcı belirten 'ilk' kelimesinin zıddı 'son' kelimesidir.",
+      "app": {
+        "question": {
+          "text": "'İlk' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Son",
+        "wrong1": "Baş",
+        "wrong2": "Orta",
+        "explanation": "Sıralamada başlangıcı belirten 'ilk' kelimesinin zıddı 'son' kelimesidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_097",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Katı' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Sıvı",
+      "wrong1": "Sert",
+      "wrong2": "Buz",
+      "explanation": "Maddenin sert haline 'katı', akışkan haline 'sıvı' denir. Bunlar zıt kavramlardır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Katı' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Sıvı",
+        "wrong1": "Sert",
+        "wrong2": "Buz",
+        "explanation": "Maddenin sert haline 'katı', akışkan haline 'sıvı' denir. Bunlar zıt kavramlardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_098",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Aç' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Tok",
+      "wrong1": "Susuz",
+      "wrong2": "Yemek",
+      "explanation": "Karnı doymamış olana 'aç', karnı tam doymuş olana 'tok' denir.",
+      "app": {
+        "question": {
+          "text": "'Aç' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Tok",
+        "wrong1": "Susuz",
+        "wrong2": "Yemek",
+        "explanation": "Karnı doymamış olana 'aç', karnı tam doymuş olana 'tok' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_099",
+      "level": "kolay",
+      "premise": null,
+      "text": "'Aydınlık' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Karanlık",
+      "wrong1": "Işık",
+      "wrong2": "Gündüz",
+      "explanation": "Işığın olduğu yere 'aydınlık', olmadığı yere 'karanlık' denir.",
+      "app": {
+        "question": {
+          "text": "'Aydınlık' kelimesinin zıt (karşıt) anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Karanlık",
+        "wrong1": "Işık",
+        "wrong2": "Gündüz",
+        "explanation": "Işığın olduğu yere 'aydınlık', olmadığı yere 'karanlık' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_100",
+      "level": "orta",
+      "premise": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder.",
+      "text": "Yukarıdaki bilgilere göre 'Hızlı' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+      "correct": "Yavaş",
+      "wrong1": "Süratli",
+      "wrong2": "Çabuk",
+      "explanation": "Kısa sürede çok yol alana 'hızlı', az yol alana 'yavaş' denir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre 'Hızlı' kelimesinin zıt anlamlısı aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Zıt anlamlı kelimeler birbirinin tam tersi (karşıtı) durumları ifade eder."
+            }
+          ]
+        },
+        "correct": "Yavaş",
+        "wrong1": "Süratli",
+        "wrong2": "Çabuk",
+        "explanation": "Kısa sürede çok yol alana 'hızlı', az yol alana 'yavaş' denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_101",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yüz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Suda ilerlemek (yüzmek)",
+      "wrong1": "Kitap okumak (okumak)",
+      "wrong2": "Para birimi (lira)",
+      "explanation": "Yüz kelimesi hem sayı, hem surat hem de suda yüzmek anlamlarına gelen eş sesli bir kelimedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yüz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Suda ilerlemek (yüzmek)",
+        "wrong1": "Kitap okumak (okumak)",
+        "wrong2": "Para birimi (lira)",
+        "explanation": "Yüz kelimesi hem sayı, hem surat hem de suda yüzmek anlamlarına gelen eş sesli bir kelimedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_102",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yaz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Mevsim olan yaz",
+      "wrong1": "Soğuk hava",
+      "wrong2": "Okumak",
+      "explanation": "Yaz kelimesi hem yazı yazmak eylemi hem de en sıcak mevsim olan yaz anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yaz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Mevsim olan yaz",
+        "wrong1": "Soğuk hava",
+        "wrong2": "Okumak",
+        "explanation": "Yaz kelimesi hem yazı yazmak eylemi hem de en sıcak mevsim olan yaz anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_103",
+      "level": "zor",
+      "premise": "'Gül' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Gül' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Bir çiçek türü",
+      "wrong1": "Ağlamak",
+      "wrong2": "Ağaç",
+      "explanation": "Gül kelimesi hem gülümsemek eylemi hem de güzel kokulu bir çiçek türü anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Gül' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Gül' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Bir çiçek türü",
+        "wrong1": "Ağlamak",
+        "wrong2": "Ağaç",
+        "explanation": "Gül kelimesi hem gülümsemek eylemi hem de güzel kokulu bir çiçek türü anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_104",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'At' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Binek hayvanı olan at",
+      "wrong1": "Araba kullanmak eylemi",
+      "wrong2": "Kaçmak fiili (kaçmak)",
+      "explanation": "At kelimesi hem hayvan olan at hem de bir nesneyi fırlatmak (atmak) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'At' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Binek hayvanı olan at",
+        "wrong1": "Araba kullanmak eylemi",
+        "wrong2": "Kaçmak fiili (kaçmak)",
+        "explanation": "At kelimesi hem hayvan olan at hem de bir nesneyi fırlatmak (atmak) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_105",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Çay' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "İçilen sıcak içecek (çay)",
+      "wrong1": "Büyük su kütlesi (deniz)",
+      "wrong2": "Kahve içeceği (kahve)",
+      "explanation": "Çay kelimesi hem sıcak bir içecek hem de dereden büyük akarsu anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Çay' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "İçilen sıcak içecek (çay)",
+        "wrong1": "Büyük su kütlesi (deniz)",
+        "wrong2": "Kahve içeceği (kahve)",
+        "explanation": "Çay kelimesi hem sıcak bir içecek hem de dereden büyük akarsu anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_106",
+      "level": "zor",
+      "premise": "'Kır' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kır' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Şehir dışı yeşillik alan",
+      "wrong1": "Orman sözcüğünün diğer anlamı",
+      "wrong2": "Tamir etmek anlamında fiil",
+      "explanation": "Kır kelimesi hem bir şeyi parçalamak (kırmak) hem de yeşillik doğa alanı anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kır' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Kır' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Şehir dışı yeşillik alan",
+        "wrong1": "Orman sözcüğünün diğer anlamı",
+        "wrong2": "Tamir etmek anlamında fiil",
+        "explanation": "Kır kelimesi hem bir şeyi parçalamak (kırmak) hem de yeşillik doğa alanı anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_107",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bin' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "1000 sayısı",
+      "wrong1": "Yüz sayısı",
+      "wrong2": "İnmek",
+      "explanation": "Bin kelimesi hem araca çıkmak (binmek) eylemi hem de bir sayı (1000) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bin' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "1000 sayısı",
+        "wrong1": "Yüz sayısı",
+        "wrong2": "İnmek",
+        "explanation": "Bin kelimesi hem araca çıkmak (binmek) eylemi hem de bir sayı (1000) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_108",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yaş' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Islak, kurumamış olan anlamı",
+      "wrong1": "Kuru sözcüğünün diğer anlamı",
+      "wrong2": "Güneşli sözcüğünün diğer anlamı",
+      "explanation": "Yaş kelimesi hem ıslaklık durumu hem de insanın doğduğundan beri geçen zamanı (ömür) ifade eder.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yaş' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Islak, kurumamış olan anlamı",
+        "wrong1": "Kuru sözcüğünün diğer anlamı",
+        "wrong2": "Güneşli sözcüğünün diğer anlamı",
+        "explanation": "Yaş kelimesi hem ıslaklık durumu hem de insanın doğduğundan beri geçen zamanı (ömür) ifade eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_109",
+      "level": "zor",
+      "premise": "'Ben' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ben' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Ciltte çıkan koyu renkli leke",
+      "wrong1": "Sen sözcüğünün diğer anlamı",
+      "wrong2": "Sivilce sözcüğünün diğer anlamı",
+      "explanation": "Ben kelimesi hem kendimizi ifade ettiğimiz zamir hem de ciltteki leke anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ben' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Ben' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Ciltte çıkan koyu renkli leke",
+        "wrong1": "Sen sözcüğünün diğer anlamı",
+        "wrong2": "Sivilce sözcüğünün diğer anlamı",
+        "explanation": "Ben kelimesi hem kendimizi ifade ettiğimiz zamir hem de ciltteki leke anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_110",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kaz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Toprağı eşelemek (kazmak)",
+      "wrong1": "Hızlı koşmak anlamında fiil",
+      "wrong2": "Kürek sözcüğünün diğer anlamı",
+      "explanation": "Kaz kelimesi hem bir kuş türü hem de toprağı oymak (kazmak) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kaz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Toprağı eşelemek (kazmak)",
+        "wrong1": "Hızlı koşmak anlamında fiil",
+        "wrong2": "Kürek sözcüğünün diğer anlamı",
+        "explanation": "Kaz kelimesi hem bir kuş türü hem de toprağı oymak (kazmak) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_111",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dolu' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Hava olayı (buz yağışı)",
+      "wrong1": "Boş kutu",
+      "wrong2": "Yağmur sözcüğünün diğer anlamı",
+      "explanation": "Dolu kelimesi hem boşun zıttı hem de gökten yağan buz parçaları anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dolu' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Hava olayı (buz yağışı)",
+        "wrong1": "Boş kutu",
+        "wrong2": "Yağmur sözcüğünün diğer anlamı",
+        "explanation": "Dolu kelimesi hem boşun zıttı hem de gökten yağan buz parçaları anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_112",
+      "level": "zor",
+      "premise": "'Saç' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Saç' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Etrafa dağıtmak (saçmak)",
+      "wrong1": "Tarak sözcüğünün diğer anlamı",
+      "wrong2": "Toplamak anlamında fiil",
+      "explanation": "Saç kelimesi hem başımızdaki kıllar hem de etrafa serpmek/dağıtmak anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Saç' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Saç' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Etrafa dağıtmak (saçmak)",
+        "wrong1": "Tarak sözcüğünün diğer anlamı",
+        "wrong2": "Toplamak anlamında fiil",
+        "explanation": "Saç kelimesi hem başımızdaki kıllar hem de etrafa serpmek/dağıtmak anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_113",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bağ' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Üzüm yetiştirilen yer anlamı",
+      "wrong1": "Ayakkabı boyası",
+      "wrong2": "Çözmek anlamında fiil",
+      "explanation": "Bağ kelimesi hem ip/düğüm anlamına hem de üzüm tarlası anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bağ' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Üzüm yetiştirilen yer anlamı",
+        "wrong1": "Ayakkabı boyası",
+        "wrong2": "Çözmek anlamında fiil",
+        "explanation": "Bağ kelimesi hem ip/düğüm anlamına hem de üzüm tarlası anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_114",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yol' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Yabani otları koparmak (yolmak)",
+      "wrong1": "Sokak sözcüğünün diğer anlamı",
+      "wrong2": "Ekmek anlamında fiil",
+      "explanation": "Yol kelimesi hem üzerinde yürünen yer hem de çekip koparmak (yolmak) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yol' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Yabani otları koparmak (yolmak)",
+        "wrong1": "Sokak sözcüğünün diğer anlamı",
+        "wrong2": "Ekmek anlamında fiil",
+        "explanation": "Yol kelimesi hem üzerinde yürünen yer hem de çekip koparmak (yolmak) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_115",
+      "level": "zor",
+      "premise": "'Dal' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dal' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Suya veya denize girmek (dalmak)",
+      "wrong1": "Yaprak sözcüğünün diğer anlamı",
+      "wrong2": "Yüzmek anlamında fiil",
+      "explanation": "Dal kelimesi hem ağacın kolları hem de suya hızla girmek (dalmak) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dal' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Dal' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Suya veya denize girmek (dalmak)",
+        "wrong1": "Yaprak sözcüğünün diğer anlamı",
+        "wrong2": "Yüzmek anlamında fiil",
+        "explanation": "Dal kelimesi hem ağacın kolları hem de suya hızla girmek (dalmak) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_116",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'İç' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Sıvı tüketmek eylemi (içmek)",
+      "wrong1": "Dış sözcüğünün diğer anlamı",
+      "wrong2": "Yemek anlamında fiil",
+      "explanation": "İç kelimesi hem bir şeyin dâhilî kısmı (dışın zıttı) hem de içmek eylemi anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'İç' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Sıvı tüketmek eylemi (içmek)",
+        "wrong1": "Dış sözcüğünün diğer anlamı",
+        "wrong2": "Yemek anlamında fiil",
+        "explanation": "İç kelimesi hem bir şeyin dâhilî kısmı (dışın zıttı) hem de içmek eylemi anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_117",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Pazar' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Haftanın son günü",
+      "wrong1": "Pazartesi günü",
+      "wrong2": "Market",
+      "explanation": "Pazar kelimesi hem alışveriş yapılan yer hem de haftanın son günü anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Pazar' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Haftanın son günü",
+        "wrong1": "Pazartesi günü",
+        "wrong2": "Market",
+        "explanation": "Pazar kelimesi hem alışveriş yapılan yer hem de haftanın son günü anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_118",
+      "level": "zor",
+      "premise": "'Ocak' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ocak' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Yılın ilk ayı",
+      "wrong1": "Soba borusu",
+      "wrong2": "Tencere",
+      "explanation": "Ocak kelimesi hem yemek pişirilen/ateş yakılan yer hem de yılın ilk ayı anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ocak' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Ocak' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Yılın ilk ayı",
+        "wrong1": "Soba borusu",
+        "wrong2": "Tencere",
+        "explanation": "Ocak kelimesi hem yemek pişirilen/ateş yakılan yer hem de yılın ilk ayı anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_119",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sağ' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Yaşayan, hayatta olan anlamı",
+      "wrong1": "Ölü olmak anlamında fiil",
+      "wrong2": "Sol sözcüğünün diğer anlamı",
+      "explanation": "Sağ kelimesi hem solun zıttı olan yön hem de hayatta olan/yaşayan anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sağ' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Yaşayan, hayatta olan anlamı",
+        "wrong1": "Ölü olmak anlamında fiil",
+        "wrong2": "Sol sözcüğünün diğer anlamı",
+        "explanation": "Sağ kelimesi hem solun zıttı olan yön hem de hayatta olan/yaşayan anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_120",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Atlet' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Atletizm sporuyla uğraşan sporcu",
+      "wrong1": "Gömlek giyen",
+      "wrong2": "Hakem sözcüğünün diğer anlamı",
+      "explanation": "Atlet kelimesi hem giyilen iç çamaşırı hem de koşu vb. sporlar yapan kişi anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Atlet' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Atletizm sporuyla uğraşan sporcu",
+        "wrong1": "Gömlek giyen",
+        "wrong2": "Hakem sözcüğünün diğer anlamı",
+        "explanation": "Atlet kelimesi hem giyilen iç çamaşırı hem de koşu vb. sporlar yapan kişi anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_121",
+      "level": "zor",
+      "premise": "'Kara' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kara' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Üzerinde yaşadığımız toprak parçası",
+      "wrong1": "Siyahın karşıtı olan beyaz renk",
+      "wrong2": "Karadan büyük su kütlesi (deniz)",
+      "explanation": "Kara kelimesi hem siyah renk hem de toprak parçası (kıta) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kara' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Kara' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Üzerinde yaşadığımız toprak parçası",
+        "wrong1": "Siyahın karşıtı olan beyaz renk",
+        "wrong2": "Karadan büyük su kütlesi (deniz)",
+        "explanation": "Kara kelimesi hem siyah renk hem de toprak parçası (kıta) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_122",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yat' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Deniz taşıtı, gemi anlamı",
+      "wrong1": "Uçak sözcüğünün diğer anlamı",
+      "wrong2": "Kalkmak anlamında fiil",
+      "explanation": "Yat kelimesi hem uzanıp uyumak eylemi (yatmak) hem de lüks bir gemi türü anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Yat' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Deniz taşıtı, gemi anlamı",
+        "wrong1": "Uçak sözcüğünün diğer anlamı",
+        "wrong2": "Kalkmak anlamında fiil",
+        "explanation": "Yat kelimesi hem uzanıp uyumak eylemi (yatmak) hem de lüks bir gemi türü anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_123",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Al' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Bir şeyi elde etmek (almak)",
+      "wrong1": "Beyaz sözcüğünün diğer anlamı",
+      "wrong2": "Vermek anlamında fiil",
+      "explanation": "Al kelimesi hem kırmızı rengin eş anlamlısı hem de bir şeyi almak eylemidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Al' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Bir şeyi elde etmek (almak)",
+        "wrong1": "Beyaz sözcüğünün diğer anlamı",
+        "wrong2": "Vermek anlamında fiil",
+        "explanation": "Al kelimesi hem kırmızı rengin eş anlamlısı hem de bir şeyi almak eylemidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_124",
+      "level": "zor",
+      "premise": "'Düş' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Düş' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Uykuda görülen rüya",
+      "wrong1": "Hayal kırıklığı",
+      "wrong2": "Kalkmak",
+      "explanation": "Düş kelimesi hem yere kapaklanmak (düşmek) hem de uyurken görülen rüya anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Düş' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Düş' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Uykuda görülen rüya",
+        "wrong1": "Hayal kırıklığı",
+        "wrong2": "Kalkmak",
+        "explanation": "Düş kelimesi hem yere kapaklanmak (düşmek) hem de uyurken görülen rüya anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_125",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Diz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Eşyaları sıraya koymak (dizmek)",
+      "wrong1": "İnsan vücudundaki kol uzvu",
+      "wrong2": "Eşyaları etrafa dağıtmak eylemi",
+      "explanation": "Diz kelimesi hem bacağın ortasındaki eklem hem de sıralamak eylemidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Diz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Eşyaları sıraya koymak (dizmek)",
+        "wrong1": "İnsan vücudundaki kol uzvu",
+        "wrong2": "Eşyaları etrafa dağıtmak eylemi",
+        "explanation": "Diz kelimesi hem bacağın ortasındaki eklem hem de sıralamak eylemidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_126",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'İn' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Vahşi hayvan yuvası (mağara)",
+      "wrong1": "Dışarı çıkmak anlamında fiil",
+      "wrong2": "Dağ sözcüğünün diğer anlamı",
+      "explanation": "İn kelimesi hem aşağı inmek eylemi hem de hayvanların barındığı mağara anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'İn' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Vahşi hayvan yuvası (mağara)",
+        "wrong1": "Dışarı çıkmak anlamında fiil",
+        "wrong2": "Dağ sözcüğünün diğer anlamı",
+        "explanation": "İn kelimesi hem aşağı inmek eylemi hem de hayvanların barındığı mağara anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_127",
+      "level": "zor",
+      "premise": "'El' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'El' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Yabancı kimse, tanıdık olmayan",
+      "wrong1": "Ayak sözcüğünün diğer anlamı",
+      "wrong2": "Kol sözcüğünün diğer anlamı",
+      "explanation": "El kelimesi hem organımız hem de yabancı, başkası anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'El' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'El' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Yabancı kimse, tanıdık olmayan",
+        "wrong1": "Ayak sözcüğünün diğer anlamı",
+        "wrong2": "Kol sözcüğünün diğer anlamı",
+        "explanation": "El kelimesi hem organımız hem de yabancı, başkası anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_128",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ekmek' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Tohumu toprağa gömmek (ekmek)",
+      "wrong1": "Çıkarmak anlamında fiil",
+      "wrong2": "Biçmek anlamında fiil",
+      "explanation": "Ekmek kelimesi hem yediğimiz ekmek hem de toprağa tohum ekmek fiili olarak eş seslidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ekmek' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Tohumu toprağa gömmek (ekmek)",
+        "wrong1": "Çıkarmak anlamında fiil",
+        "wrong2": "Biçmek anlamında fiil",
+        "explanation": "Ekmek kelimesi hem yediğimiz ekmek hem de toprağa tohum ekmek fiili olarak eş seslidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_129",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dik' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Toprağa bitki yerleştirmek",
+      "wrong1": "Eğik durmak anlamında fiil",
+      "wrong2": "Sökmek anlamında fiil",
+      "explanation": "Dik kelimesi hem eğik olmayan (dik yokuş) hem de toprağa fidan yerleştirmek (dikmek) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dik' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Toprağa bitki yerleştirmek",
+        "wrong1": "Eğik durmak anlamında fiil",
+        "wrong2": "Sökmek anlamında fiil",
+        "explanation": "Dik kelimesi hem eğik olmayan (dik yokuş) hem de toprağa fidan yerleştirmek (dikmek) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_130",
+      "level": "zor",
+      "premise": "'Sal' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sal' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Bir şeyi serbest bırakmak (salmak)",
+      "wrong1": "Bir şeyi sıkıca bağlamak eylemi",
+      "wrong2": "Elimizle bir şeyi tutmak eylemi",
+      "explanation": "Sal kelimesi hem suda yüzen tahta araç hem de serbest bırakmak eylemi anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sal' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Sal' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Bir şeyi serbest bırakmak (salmak)",
+        "wrong1": "Bir şeyi sıkıca bağlamak eylemi",
+        "wrong2": "Elimizle bir şeyi tutmak eylemi",
+        "explanation": "Sal kelimesi hem suda yüzen tahta araç hem de serbest bırakmak eylemi anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_131",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bel' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Toprağı kazmaya yarayan alet",
+      "wrong1": "Sırt sözcüğünün diğer anlamı",
+      "wrong2": "Çapa sözcüğünün diğer anlamı",
+      "explanation": "Bel kelimesi hem vücudumuzun orta kısmı hem de toprağı kazmaya yarayan alet anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bel' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Toprağı kazmaya yarayan alet",
+        "wrong1": "Sırt sözcüğünün diğer anlamı",
+        "wrong2": "Çapa sözcüğünün diğer anlamı",
+        "explanation": "Bel kelimesi hem vücudumuzun orta kısmı hem de toprağı kazmaya yarayan alet anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_132",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kız' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Birine öfkelenmek (kızmak)",
+      "wrong1": "Erkek sözcüğünün diğer anlamı",
+      "wrong2": "Sevinmek anlamında fiil",
+      "explanation": "Kız kelimesi hem bir cinsiyet hem de öfkelenmek, sinirlenmek anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kız' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Birine öfkelenmek (kızmak)",
+        "wrong1": "Erkek sözcüğünün diğer anlamı",
+        "wrong2": "Sevinmek anlamında fiil",
+        "explanation": "Kız kelimesi hem bir cinsiyet hem de öfkelenmek, sinirlenmek anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_133",
+      "level": "zor",
+      "premise": "'Satır' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Satır' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Kesici, bıçak benzeri büyük alet",
+      "wrong1": "Sayfa sözcüğünün diğer anlamı",
+      "wrong2": "Bıçak sözcüğünün diğer anlamı",
+      "explanation": "Satır kelimesi hem defterdeki yazı çizgileri hem de eti kesmeye yarayan alettir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Satır' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Satır' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Kesici, bıçak benzeri büyük alet",
+        "wrong1": "Sayfa sözcüğünün diğer anlamı",
+        "wrong2": "Bıçak sözcüğünün diğer anlamı",
+        "explanation": "Satır kelimesi hem defterdeki yazı çizgileri hem de eti kesmeye yarayan alettir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_134",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Asma' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Bir şeyi havaya tutturmak (asmak)",
+      "wrong1": "Bahçede yetişen ağaç bitkisi",
+      "wrong2": "Bir şeyi aşağı indirmek eylemi",
+      "explanation": "Asma kelimesi hem üzüm bitkisi hem de bir şeyi asmak fiili olarak eş seslidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Asma' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Bir şeyi havaya tutturmak (asmak)",
+        "wrong1": "Bahçede yetişen ağaç bitkisi",
+        "wrong2": "Bir şeyi aşağı indirmek eylemi",
+        "explanation": "Asma kelimesi hem üzüm bitkisi hem de bir şeyi asmak fiili olarak eş seslidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_135",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kazan' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Çok büyük tencere",
+      "wrong1": "Kayıp",
+      "wrong2": "Yarış",
+      "explanation": "Kazan kelimesi hem ödül kazanmak eylemi hem de yemek pişirilen çok büyük kap (tencere) anlamındadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kazan' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Çok büyük tencere",
+        "wrong1": "Kayıp",
+        "wrong2": "Yarış",
+        "explanation": "Kazan kelimesi hem ödül kazanmak eylemi hem de yemek pişirilen çok büyük kap (tencere) anlamındadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_136",
+      "level": "zor",
+      "premise": "'Saz' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Saz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Göl kenarında yetişen uzun otlar",
+      "wrong1": "Müzik aleti olarak keman çalgısı",
+      "wrong2": "Bahçede yetişen ağaç bitkisi",
+      "explanation": "Saz kelimesi hem telli bir müzik aleti hem de su kenarında yetişen bitki (sazlık) anlamındadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Saz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Saz' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Göl kenarında yetişen uzun otlar",
+        "wrong1": "Müzik aleti olarak keman çalgısı",
+        "wrong2": "Bahçede yetişen ağaç bitkisi",
+        "explanation": "Saz kelimesi hem telli bir müzik aleti hem de su kenarında yetişen bitki (sazlık) anlamındadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_137",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dil' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Ağzımızdaki tat alma organı",
+      "wrong1": "Dişler sözcüğünün diğer anlamı",
+      "wrong2": "Söz sözcüğünün diğer anlamı",
+      "explanation": "Dil kelimesi hem organımız hem de konuştuğumuz lisan (Türkçe vb.) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Dil' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Ağzımızdaki tat alma organı",
+        "wrong1": "Dişler sözcüğünün diğer anlamı",
+        "wrong2": "Söz sözcüğünün diğer anlamı",
+        "explanation": "Dil kelimesi hem organımız hem de konuştuğumuz lisan (Türkçe vb.) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_138",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Pas' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Futbolda topu arkadaşına atmak",
+      "wrong1": "Temiz sözcüğünün diğer anlamı",
+      "wrong2": "Şut sözcüğünün diğer anlamı",
+      "explanation": "Pas kelimesi hem demirin çürümesi (paslanması) hem de sporda topu başkasına vermek anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Pas' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Futbolda topu arkadaşına atmak",
+        "wrong1": "Temiz sözcüğünün diğer anlamı",
+        "wrong2": "Şut sözcüğünün diğer anlamı",
+        "explanation": "Pas kelimesi hem demirin çürümesi (paslanması) hem de sporda topu başkasına vermek anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_139",
+      "level": "zor",
+      "premise": "'Küp' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Küp' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Eskiden su konulan topraktan kap",
+      "wrong1": "Yuvarlak silindir şeklinde cisim",
+      "wrong2": "İçine sıvı konulan cam şişe",
+      "explanation": "Küp kelimesi hem matematiksel geometrik şekil hem de testi benzeri su kabıdır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Küp' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Küp' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Eskiden su konulan topraktan kap",
+        "wrong1": "Yuvarlak silindir şeklinde cisim",
+        "wrong2": "İçine sıvı konulan cam şişe",
+        "explanation": "Küp kelimesi hem matematiksel geometrik şekil hem de testi benzeri su kabıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_140",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Boz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Griye çalan kahverengi renk",
+      "wrong1": "Çalıştırmak anlamında fiil",
+      "wrong2": "Tamir etmek anlamında fiil",
+      "explanation": "Boz kelimesi hem bozmak (çalışmaz hâle getirmek) eylemi hem de bir renk anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Boz' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Griye çalan kahverengi renk",
+        "wrong1": "Çalıştırmak anlamında fiil",
+        "wrong2": "Tamir etmek anlamında fiil",
+        "explanation": "Boz kelimesi hem bozmak (çalışmaz hâle getirmek) eylemi hem de bir renk anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_141",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bere' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Deride oluşan küçük yara, iz",
+      "wrong1": "Atkı sözcüğünün diğer anlamı",
+      "wrong2": "Eldiven sözcüğünün diğer anlamı",
+      "explanation": "Bere kelimesi hem başa takılan şapka türü hem de darbe sonucu oluşan morluk/yara izidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Bere' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Deride oluşan küçük yara, iz",
+        "wrong1": "Atkı sözcüğünün diğer anlamı",
+        "wrong2": "Eldiven sözcüğünün diğer anlamı",
+        "explanation": "Bere kelimesi hem başa takılan şapka türü hem de darbe sonucu oluşan morluk/yara izidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_142",
+      "level": "zor",
+      "premise": "'Cilt' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Cilt' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Vücudumuzu kaplayan deri",
+      "wrong1": "Kapak sözcüğünün diğer anlamı",
+      "wrong2": "Sayfa sözcüğünün diğer anlamı",
+      "explanation": "Cilt kelimesi hem insan derisi hem de kitabın kalın dış kapağı anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Cilt' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Cilt' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Vücudumuzu kaplayan deri",
+        "wrong1": "Kapak sözcüğünün diğer anlamı",
+        "wrong2": "Sayfa sözcüğünün diğer anlamı",
+        "explanation": "Cilt kelimesi hem insan derisi hem de kitabın kalın dış kapağı anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_143",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kan' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Sözlere inanmak (kanmak)",
+      "wrong1": "Su içmek anlamında fiil",
+      "wrong2": "Şüphelenmek anlamında fiil",
+      "explanation": "Kan kelimesi hem vücudumuzdaki kırmızı sıvı hem de inanmak, aldanmak (kanmak) anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kan' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Sözlere inanmak (kanmak)",
+        "wrong1": "Su içmek anlamında fiil",
+        "wrong2": "Şüphelenmek anlamında fiil",
+        "explanation": "Kan kelimesi hem vücudumuzdaki kırmızı sıvı hem de inanmak, aldanmak (kanmak) anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_144",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ek' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Toprağa tohum gömmek eylemi",
+      "wrong1": "Eksik sözcüğünün diğer anlamı",
+      "wrong2": "Biçmek anlamında fiil",
+      "explanation": "Ek kelimesi hem kelimenin sonuna gelen parça (ilave) hem de toprağa tohum ekmek anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Ek' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Toprağa tohum gömmek eylemi",
+        "wrong1": "Eksik sözcüğünün diğer anlamı",
+        "wrong2": "Biçmek anlamında fiil",
+        "explanation": "Ek kelimesi hem kelimenin sonuna gelen parça (ilave) hem de toprağa tohum ekmek anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_145",
+      "level": "zor",
+      "premise": "'Kupa' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kupa' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Yarışma sonucunda alınan ödül",
+      "wrong1": "Sürahi sözcüğünün diğer anlamı",
+      "wrong2": "Oyun sözcüğünün diğer anlamı",
+      "explanation": "Kupa kelimesi hem şampiyonluk ödülü hem de çay/kahve içilen büyük bardak anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kupa' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Kupa' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Yarışma sonucunda alınan ödül",
+        "wrong1": "Sürahi sözcüğünün diğer anlamı",
+        "wrong2": "Oyun sözcüğünün diğer anlamı",
+        "explanation": "Kupa kelimesi hem şampiyonluk ödülü hem de çay/kahve içilen büyük bardak anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_146",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Basma' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Üzerine desen basılmış pamuklu kumaş",
+      "wrong1": "Yürürken yere basılan tek adım",
+      "wrong2": "Üzerimize giydiğimiz kıyafet",
+      "explanation": "Basma kelimesi hem ayakla yere basmak eylemi hem de bir kumaş türü olarak eş seslidir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Basma' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Üzerine desen basılmış pamuklu kumaş",
+        "wrong1": "Yürürken yere basılan tek adım",
+        "wrong2": "Üzerimize giydiğimiz kıyafet",
+        "explanation": "Basma kelimesi hem ayakla yere basmak eylemi hem de bir kumaş türü olarak eş seslidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_147",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Şiş' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Şişmiş, kabarmış olma durumu",
+      "wrong1": "Tabak sözcüğünün diğer anlamı",
+      "wrong2": "Keskin sözcüğünün diğer anlamı",
+      "explanation": "Şiş kelimesi hem et dizilen uzun demir çubuk hem de yara sonucu oluşan kabarıklık anlamındadır.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Şiş' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Şişmiş, kabarmış olma durumu",
+        "wrong1": "Tabak sözcüğünün diğer anlamı",
+        "wrong2": "Keskin sözcüğünün diğer anlamı",
+        "explanation": "Şiş kelimesi hem et dizilen uzun demir çubuk hem de yara sonucu oluşan kabarıklık anlamındadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_148",
+      "level": "zor",
+      "premise": "'Sır' kelimesi eş sesli (sesteş) bir kelimedir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sır' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Aynaların arkasına sürülen madde",
+      "wrong1": "Duvarları boyamak için kullanılan boya",
+      "wrong2": "Herkesin duyabileceği açık sır",
+      "explanation": "Sır kelimesi hem gizli tutulan şey (sır saklamak) hem de aynaları parlatan maddedir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Sır' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "'Sır' kelimesi eş sesli (sesteş) bir kelimedir."
+            }
+          ]
+        },
+        "correct": "Aynaların arkasına sürülen madde",
+        "wrong1": "Duvarları boyamak için kullanılan boya",
+        "wrong2": "Herkesin duyabileceği açık sır",
+        "explanation": "Sır kelimesi hem gizli tutulan şey (sır saklamak) hem de aynaları parlatan maddedir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_149",
+      "level": "orta",
+      "premise": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Koy' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Denizin karaya girdiği küçük körfez",
+      "wrong1": "Kitap okumak anlamında fiil",
+      "wrong2": "Oyun sözcüğünün diğer anlamı",
+      "explanation": "Koy kelimesi hem bir şeyi bir yere bırakmak (koymak) hem de denizdeki küçük girinti anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Koy' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Türkçede bazı kelimeler birden fazla tamamen farklı anlama sahip olabilir."
+            }
+          ]
+        },
+        "correct": "Denizin karaya girdiği küçük körfez",
+        "wrong1": "Kitap okumak anlamında fiil",
+        "wrong2": "Oyun sözcüğünün diğer anlamı",
+        "explanation": "Koy kelimesi hem bir şeyi bir yere bırakmak (koymak) hem de denizdeki küçük girinti anlamına gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "kelime3_150",
+      "level": "kolay",
+      "premise": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir.",
+      "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kırk' kelimesinin eş sesli anlamlarından birini ifade eder?",
+      "correct": "Hayvanların yününü kesmek (kırkmak)",
+      "wrong1": "Elli sözcüğünün diğer anlamı",
+      "wrong2": "Uzamasına izin vermek anlamında fiil",
+      "explanation": "Kırk kelimesi hem bir sayı (40) hem de hayvanların tüylerini makasla kesmek anlamına gelir.",
+      "app": {
+        "question": {
+          "text": "Yukarıdaki bilgilere göre Aşağıdakilerden hangisi 'Kırk' kelimesinin eş sesli anlamlarından birini ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Yazılışları ve okunuşları aynı olduğu hâlde anlamları birbirinden tamamen farklı olan kelimelere eş sesli (sesteş) denir."
+            }
+          ]
+        },
+        "correct": "Hayvanların yününü kesmek (kırkmak)",
+        "wrong1": "Elli sözcüğünün diğer anlamı",
+        "wrong2": "Uzamasına izin vermek anlamında fiil",
+        "explanation": "Kırk kelimesi hem bir sayı (40) hem de hayvanların tüylerini makasla kesmek anlamına gelir.",
+        "url": null
+      }
+    }
+  ]
+}

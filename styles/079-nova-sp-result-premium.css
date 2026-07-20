@@ -1,0 +1,437 @@
+/* === Tek kişilik bitiş ekranı — premium (referans 2. ekran) === */
+
+#single-player-game-screen.nova-sp-result-open{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding: clamp(12px, 2.5vw, 22px) !important;
+  padding-top: clamp(12px, 2.5vw, 20px) !important;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(167, 139, 250, .35), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 100%, rgba(56, 189, 248, .22), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 0% 90%, rgba(244, 114, 182, .18), transparent 48%),
+    linear-gradient(165deg, #ede9fe 0%, #f0f9ff 42%, #f8fafc 100%) !important;
+}
+
+#single-player-game-screen.nova-sp-result-open::before{
+  opacity: .22 !important;
+}
+
+/* Geri Dön — üst satır, yüzde halkasının DIŞINDA */
+#single-player-game-screen.nova-sp-result-open #final-back-button{
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  align-self: flex-start !important;
+  flex-shrink: 0 !important;
+  z-index: 20 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 clamp(14px, 3vw, 20px) clamp(2px, 1vw, 6px) !important;
+  padding: 11px 18px 11px 14px !important;
+  border: 1px solid rgba(255, 255, 255, .12) !important;
+  border-radius: 999px !important;
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%) !important;
+  color: #f8fafc !important;
+  font-size: .95rem !important;
+  font-weight: 800 !important;
+  letter-spacing: .02em;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, .35), inset 0 1px 0 rgba(255, 255, 255, .1) !important;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+#single-player-game-screen.nova-sp-result-open #final-back-button::before{
+  content: "←";
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: .9;
+}
+#single-player-game-screen.nova-sp-result-open #final-back-button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, .42) !important;
+}
+
+/* Eski / istenmeyen öğeler */
+#single-player-game-screen.nova-sp-result-open #btnTekrar,
+#single-player-game-screen.nova-sp-result-open #lesson-video-button,
+#single-player-game-screen.nova-sp-result-open #nzPlayBtn,
+#single-player-game-screen.nova-sp-result-open #premium-summary,
+#single-player-game-screen.nova-sp-result-open #novaCircular,
+#single-player-game-screen.nova-sp-result-open .nova-end-wrapper,
+#single-player-game-screen.nova-sp-result-open #score,
+#single-player-game-screen.nova-sp-result-open #score-message,
+#single-player-game-screen.nova-sp-result-open #score-image,
+#single-player-game-screen.nova-sp-result-open .nz-compact-card,
+#single-player-game-screen.nova-sp-result-open .nz-left-actions{
+  display: none !important;
+}
+
+#single-player-game-screen.nova-sp-result-open .score-container{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: min(440px, calc(100% - 16px)) !important;
+  max-width: 440px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  animation: novaResultCardIn .55s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes novaResultCardIn{
+  from{ opacity: 0; transform: translateY(18px) scale(.98); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Ana panel */
+#single-player-game-screen.nova-sp-result-open #nova-summary.nz-show{
+  display: flex !important;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: clamp(18px, 4vw, 26px);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(255, 255, 255, .85);
+  box-shadow:
+    0 4px 6px rgba(15, 23, 42, .04),
+    0 24px 48px rgba(99, 102, 241, .12),
+    0 0 0 1px rgba(148, 163, 184, .12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* === Premium yüzde animasyonu === */
+.nova-pct-show-wrap{
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  padding: 4px 0 10px;
+  margin-top: 0;
+  min-height: 248px !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.nova-pct-show{
+  --pct-angle: 0deg;
+  position: relative;
+  width: min(260px, 76vw);
+  aspect-ratio: 1;
+  animation: novaPctWrapIn .6s cubic-bezier(.22, 1, .36, 1) both;
+}
+@keyframes novaPctWrapIn{
+  from{ opacity: 0; transform: scale(.86) translateY(12px); }
+  to{ opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.nova-pct-show__glow{
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-color, rgba(129, 140, 248, .45)) 0%, transparent 68%);
+  filter: blur(10px);
+  opacity: .75;
+  animation: novaPctGlowPulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+.nova-pct-show.is-filling .nova-pct-show__glow{
+  animation: novaPctGlowPulse .9s ease-in-out infinite;
+}
+.nova-pct-show.is-done .nova-pct-show__glow{
+  opacity: 1;
+  animation: novaPctGlowFinish .8s ease-out forwards;
+}
+@keyframes novaPctGlowPulse{
+  0%, 100%{ transform: scale(1); opacity: .65; }
+  50%{ transform: scale(1.06); opacity: 1; }
+}
+@keyframes novaPctGlowFinish{
+  0%{ transform: scale(1); }
+  50%{ transform: scale(1.12); opacity: 1; }
+  100%{ transform: scale(1.04); opacity: .9; }
+}
+
+.nova-pct-show__orbit{
+  position: absolute;
+  inset: -4%;
+  border-radius: 50%;
+  border: 2px dashed rgba(148, 163, 184, .28);
+  animation: novaPctOrbit 14s linear infinite;
+  pointer-events: none;
+}
+.nova-pct-show.is-done .nova-pct-show__orbit{
+  border-color: rgba(56, 189, 248, .4);
+  animation-duration: 6s;
+}
+@keyframes novaPctOrbit{
+  to{ transform: rotate(360deg); }
+}
+
+.nova-pct-show__track{
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #eef2f7;
+  box-shadow:
+    inset 0 2px 8px rgba(15, 23, 42, .08),
+    0 10px 28px rgba(99, 102, 241, .14);
+  pointer-events: none;
+}
+
+.nova-pct-show__ring{
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    var(--ring-a, #38bdf8) 0deg,
+    var(--ring-b, #8b5cf6) calc(var(--pct-angle) * 0.55),
+    var(--ring-c, #ec4899) var(--pct-angle),
+    #eef2f7 var(--pct-angle),
+    #eef2f7 360deg
+  );
+  filter: drop-shadow(0 0 10px var(--glow-color, rgba(99, 102, 241, .35)));
+  pointer-events: none;
+}
+.nova-pct-show__ring::after{
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #ffffff 0%, #f1f5f9 72%, #e8edf4 100%);
+  box-shadow: inset 0 3px 14px rgba(148, 163, 184, .14);
+}
+.nova-pct-show.is-done .nova-pct-show__ring{
+  animation: novaPctRingCelebrate .7s cubic-bezier(.34, 1.25, .64, 1);
+}
+@keyframes novaPctRingCelebrate{
+  0%{ filter: drop-shadow(0 0 8px var(--glow-color, rgba(99,102,241,.3))); }
+  45%{ filter: drop-shadow(0 0 22px var(--glow-color, rgba(99,102,241,.55))); transform: scale(1.03); }
+  100%{ filter: drop-shadow(0 0 12px var(--glow-color, rgba(99,102,241,.4))); transform: scale(1); }
+}
+
+.nova-pct-show[data-tier="low"]{
+  --ring-a: #fbbf24;
+  --ring-b: #f97316;
+  --ring-c: #ef4444;
+  --glow-color: rgba(249, 115, 22, .45);
+}
+.nova-pct-show[data-tier="mid"]{
+  --ring-a: #38bdf8;
+  --ring-b: #818cf8;
+  --ring-c: #c084fc;
+  --glow-color: rgba(99, 102, 241, .42);
+}
+.nova-pct-show[data-tier="high"]{
+  --ring-a: #34d399;
+  --ring-b: #2dd4bf;
+  --ring-c: #22d3ee;
+  --glow-color: rgba(34, 211, 238, .45);
+}
+
+.nova-pct-show__core{
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  text-align: center;
+}
+
+/* Sayı + % — koyu, okunaklı (gradient metin yok) */
+.nova-pct-show__label{
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  line-height: 1;
+  font-size: clamp(3rem, 13.5vw, 4rem);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.045em;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  color: #0f172a;
+  text-shadow: 0 1px 0 #ffffff, 0 2px 8px rgba(15, 23, 42, .12);
+  transform-origin: center center;
+}
+.nova-pct-show__label #novaResultPctNum{
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+.nova-pct-show__label .nova-pct-show__sign{
+  font-size: 0.56em;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin-left: 0.05em;
+  color: #334155 !important;
+  -webkit-text-fill-color: #334155 !important;
+  background: none !important;
+  line-height: 1;
+}
+.nova-pct-show__label.is-bump{
+  animation: novaPctLabelBump .28s cubic-bezier(.34, 1.45, .64, 1);
+}
+@keyframes novaPctLabelBump{
+  0%{ transform: scale(1); }
+  45%{ transform: scale(1.1); }
+  100%{ transform: scale(1); }
+}
+
+.nova-pct-show__caption{
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #64748b;
+  opacity: .85;
+}
+
+.nova-pct-show__burst{
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  overflow: visible;
+}
+.nova-pct-show__spark{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 1.15rem;
+  opacity: 0;
+  transform: rotate(var(--a)) translateY(-120px) scale(.35);
+  animation: novaPctSpark 1s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+@keyframes novaPctSpark{
+  0%{ opacity: 0; transform: rotate(var(--a)) translateY(-72px) scale(.25); }
+  30%{ opacity: 1; }
+  100%{ opacity: 0; transform: rotate(var(--a)) translateY(-138px) scale(1.15); }
+}
+
+.nova-result-arena__cheer,
+.nova-result-arena__hero-slot,
+#novaResultCheer,
+#novaResultHeroHost{
+  display: none !important;
+}
+
+#nzGauge{ display: none !important; }
+
+/* İstatistik satırları */
+.nova-result-stats{
+  display: flex !important;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.nova-result-stat{
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  flex: none !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  padding: 14px 16px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(226, 232, 240, .95) !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .05) !important;
+}
+.nova-result-stat .label{
+  font-size: .95rem;
+  font-weight: 700;
+  color: #64748b;
+}
+.nova-result-stat .value{
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+.nova-result-stat .value.ok{ color: #059669; }
+.nova-result-stat .value.warn{ color: #d97706; }
+.nova-result-stat .value.bad{ color: #dc2626; }
+
+/* Aksiyon kartı + butonlar */
+.nova-result-actions-section{
+  width: 100%;
+}
+.nova-result-actions-card{
+  padding: 14px !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #f8fafc !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8) !important;
+}
+#single-player-game-screen.nova-sp-result-open .nz-actions{
+  display: flex !important;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+#single-player-game-screen.nova-sp-result-open .nz-actions .nz-btn{
+  width: 100%;
+  justify-content: center;
+  padding: 15px 18px;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .2s ease;
+}
+#single-player-game-screen.nova-sp-result-open .nz-btn.nz-primary{
+  background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 55%, #6366f1 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(14, 165, 233, .35);
+}
+#single-player-game-screen.nova-sp-result-open .nz-btn.nz-video{
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+  color: #f8fafc !important;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, .28);
+}
+#single-player-game-screen.nova-sp-result-open .nz-btn:hover{
+  transform: translateY(-2px);
+}
+#single-player-game-screen.nova-sp-result-open .nz-cta-icon{
+  margin-right: 8px;
+  font-size: .85rem;
+}
+
+/* Öğretmen notu */
+#single-player-game-screen.nova-sp-result-open #teacher-advice-card.advice-card{
+  width: min(440px, 100%);
+  margin: 14px auto 0;
+  order: unset;
+  animation: novaResultCardIn .55s .12s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+#single-player-game-screen.nova-sp-result-open .nz-wrong-list{
+  display: none !important;
+}
+
+@media (max-width: 480px){
+  #single-player-game-screen.nova-sp-result-open .score-container,
+  #single-player-game-screen.nova-sp-result-open #teacher-advice-card.advice-card{
+    width: 100%;
+    max-width: 100%;
+  }
+}

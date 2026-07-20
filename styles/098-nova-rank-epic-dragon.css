@@ -1,0 +1,139 @@
+/* Sezon sıralaması — epik ejder vitrin + temalı çerçeve (32px, diğer kahramanlarla aynı) */
+
+#rankingPanel.nova-season-rank .nsr-hero-wrap--epic{
+  gap: 3px;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-frame{
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  padding: 1px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, .32),
+    inset 0 1px 0 rgba(255, 255, 255, .14);
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-frame--buz{
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 100%, rgba(34, 211, 238, .38), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(165, 243, 252, .2), transparent),
+    linear-gradient(168deg, #020617 0%, #042f2e 42%, #0e7490 100%);
+  border: 1.5px solid rgba(103, 232, 249, .52);
+  box-shadow:
+    0 0 10px rgba(34, 211, 238, .22),
+    0 4px 12px rgba(0, 0, 0, .32),
+    inset 0 1px 0 rgba(186, 230, 253, .2);
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-frame--alev{
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 100%, rgba(249, 115, 22, .4), transparent 70%),
+    radial-gradient(ellipse 45% 38% at 50% 8%, rgba(253, 186, 116, .22), transparent),
+    linear-gradient(168deg, #1a0804 0%, #7c2d12 48%, #c2410c 100%);
+  border: 1.5px solid rgba(251, 146, 60, .55);
+  box-shadow:
+    0 0 10px rgba(249, 115, 22, .24),
+    0 4px 12px rgba(0, 0, 0, .32),
+    inset 0 1px 0 rgba(254, 215, 170, .18);
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-frame--gece{
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 100%, rgba(124, 58, 237, .38), transparent 70%),
+    radial-gradient(ellipse 45% 38% at 50% 0%, rgba(167, 139, 250, .18), transparent),
+    linear-gradient(168deg, #0a0414 0%, #1e1b4b 46%, #5b21b6 100%);
+  border: 1.5px solid rgba(167, 139, 250, .5);
+  box-shadow:
+    0 0 10px rgba(124, 58, 237, .22),
+    0 4px 12px rgba(0, 0, 0, .32),
+    inset 0 1px 0 rgba(221, 214, 254, .16);
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic{
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  border: none !important;
+  border-radius: 8px;
+  background: transparent !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-buz-stack,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-alev-stack,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-gece-stack,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic > svg{
+  display: none !important;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-buz-sprite,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-alev-sprite,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-gece-sprite{
+  width: 100%;
+  height: 100%;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0;
+  padding: 0;
+  transform: none;
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-buz-sprite__canvas,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-alev-sprite__canvas,
+#rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-gece-sprite__canvas{
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35));
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-frame--buz .nova-hero-buz-sprite__canvas{
+  filter: drop-shadow(0 2px 5px rgba(14, 165, 233, .45));
+}
+#rankingPanel.nova-season-rank .nsr-hero-frame--alev .nova-hero-alev-sprite__canvas{
+  filter: drop-shadow(0 2px 5px rgba(249, 115, 22, .42));
+}
+#rankingPanel.nova-season-rank .nsr-hero-frame--gece .nova-hero-gece-sprite__canvas{
+  filter: drop-shadow(0 2px 5px rgba(124, 58, 237, .4));
+}
+
+#rankingPanel.nova-season-rank .nsr-hero-stars--epic{
+  background: transparent;
+  border: none;
+  padding: 0;
+  min-height: 0;
+}
+
+@media (max-width: 480px){
+  #rankingPanel.nova-season-rank .nsr-hero-frame{
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+  }
+  #rankingPanel.nova-season-rank .nsr-hero-pic--epic{
+    border-radius: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  #rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-buz-sprite__canvas,
+  #rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-alev-sprite__canvas,
+  #rankingPanel.nova-season-rank .nsr-hero-pic--epic .nova-hero-gece-sprite__canvas{
+    animation: none !important;
+  }
+}

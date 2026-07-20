@@ -1,0 +1,289 @@
+/* === Soru tipi rozeti (küçük, şık) === */
+.resimli-soru-banner {
+  display: none !important;
+}
+
+.nova-q-type-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  flex-shrink: 0;
+  min-height: 22px;
+  animation: novaBadgeIn 0.18s ease-out both;
+}
+
+@keyframes novaBadgeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nova-q-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  line-height: 1.2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.nova-q-type-badge--image {
+  color: #c2410c;
+  background: linear-gradient(135deg, rgba(255, 237, 213, 0.95), rgba(254, 215, 170, 0.88));
+  border-color: rgba(251, 146, 60, 0.35);
+}
+
+.nova-q-type-badge--video {
+  color: #6d28d9;
+  background: linear-gradient(135deg, rgba(237, 233, 254, 0.95), rgba(221, 214, 254, 0.88));
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+.nova-q-type-badge--video::before {
+  content: "▶";
+  font-size: 8px;
+  opacity: 0.85;
+}
+
+.nova-q-type-badge--image::before {
+  content: "◆";
+  font-size: 7px;
+  opacity: 0.75;
+}
+
+/* === Nova: Rank Labels === */
+.rank-label{
+  margin-top: 4px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  display:inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  line-height: 1.1;
+  animation: rankPop .4s ease-out both;
+  user-select: none;
+}
+@keyframes rankPop {
+  0% { transform: translateY(6px) scale(.9); opacity: .0; filter: blur(2px); }
+  100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+/* Per-rank styles */
+/* --- Nova update: clearer visual separation for Acemi/binbaşı, upgraded albay --- */
+.rank-0{
+  color:#666;
+  background: linear-gradient(180deg,#f7f7f9,#ececf1);
+  box-shadow: inset 0 0 0 1px #d0d3da;
+  filter: saturate(.85);
+}
+
+
+
+
+
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+  50% { opacity:1; transform: translateY(-1px) rotate(7deg) scale(1.05); }
+}}
+
+
+.rank-3{ color:#555; background:linear-gradient(90deg,#f0f3f5,#dfe6ea); box-shadow:0 0 12px rgba(180,180,200,.35); }
+.rank-4{ color:#7a4; background:linear-gradient(90deg,#fff2a8,#ffe27a); box-shadow:0 0 14px rgba(255,200,50,.45); animation: shine 2.2s linear infinite; }
+
+/* --- Nova update v3: richer 'uzman', side stars for 'general' --- */
+.rank-1{
+  color:#075e3a;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.55), rgba(255,255,255,0) 35%),
+    linear-gradient(90deg,#eafff1,#d7ffe9,#c9f7df);
+  box-shadow:
+    inset 0 0 0 1px rgba(10,140,90,.25),
+    0 0 10px rgba(0,160,110,.20);
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
+  position: relative;
+  animation: rankPop .4s ease-out both;
+}
+
+.rank-2{
+  color:#5a2d00;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.4), rgba(255,255,255,0) 40%),
+    linear-gradient(90deg,#ffe9c8,#ffd79a,#ffc477);
+  box-shadow:
+    inset 0 0 0 1px rgba(120,70,20,.3),
+    0 0 14px rgba(200,140,60,.35);
+  text-shadow: 0 1px 1px rgba(255,255,255,.75);
+  border-radius: 8px;
+  animation: rankPop .5s ease-out both;
+}
+
+
+.rank-1::after{
+  content:"";
+  position:absolute; right:6px; top:50%;
+  width:28px; height:14px;
+  background: radial-gradient(circle at 0 50%, rgba(0,180,120,.18), rgba(0,0,0,0) 70%);
+  transform: translateY(-50%);
+  filter: blur(0.2px);
+  opacity:.7;
+}
+
+.rank-5{
+  color:#fff;
+  background:linear-gradient(120deg,#ffbb33,#ffaa00,#ff6600);
+  box-shadow:0 0 18px rgba(255,136,0,.6);
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+  animation: crown 1.6s ease-in-out infinite alternate;
+  position: relative;
+}
+.rank-5::before,
+.rank-5::after{
+  content:"★";
+  font-size:.9em;
+  position:absolute;
+  top:50%; transform: translateY(-55%) rotate(-8deg);
+  opacity:.95;
+  filter: drop-shadow(0 0 6px rgba(255,180,70,.8));
+  animation: twinkle 1.8s ease-in-out infinite;
+}
+.rank-5::before{
+  left:-14px;
+}
+.rank-5::after{
+  right:-14px; transform: translateY(-55%) rotate(8deg);
+}
+
+
+
+
+/* --- Nova update: clearer visual separation for Acemi/binbaşı, upgraded albay --- */
+.rank-0{
+  color:#666;
+  background: linear-gradient(180deg,#f7f7f9,#ececf1);
+  box-shadow: inset 0 0 0 1px #d0d3da;
+  filter: saturate(.85);
+}
+.rank-3{
+  color:#1f2937;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.25) 0 6px, rgba(255,255,255,0) 6px 12px),
+    linear-gradient(90deg,#cfd8e3,#b7c0cc,#9aa5b1);
+  box-shadow:
+    inset 0 0 0 1px rgba(60,72,88,.25),
+    0 0 14px rgba(120,140,170,.35);
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+  position: relative;
+}
+.rank-3::before{
+  content: "⟫";
+  font-weight: 900;
+  opacity:.25;
+  position:absolute;
+  left:6px; top:50%; transform:translateY(-48%);
+}
+.rank-4{
+  color:#6b4e00;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.6), rgba(255,255,255,0) 30%),
+    linear-gradient(120deg,#fff4b3,#ffe27a,#ffc94d,#ffb347);
+  background-size: 200% 200%;
+  animation: goldGleam 3.2s linear infinite;
+  box-shadow:
+    inset 0 0 0 1px rgba(210,170,0,.55),
+    0 0 18px rgba(255,200,70,.55);
+  text-shadow: 0 1px 1px rgba(255,255,255,.6);
+  position: relative;
+}
+.rank-4::after{
+  content:"★";
+  font-size:.9em;
+  margin-left:6px;
+  filter: drop-shadow(0 0 4px rgba(255,200,60,.7));
+  animation: twinkle 1.8s ease-in-out infinite;
+}
+@keyframes goldGleam {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes twinkle {
+  0%,100% { opacity:.8; transform: translateY(0) rotate(0deg) scale(1); }
+  50% { opacity:1; transform: translateY(-1px) rotate(7deg) scale(1.05); }
+}
+
+
+@keyframes shine {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+  100% { filter: brightness(1); }
+}
+@keyframes crown {
+  from { transform: translateY(0) }
+  to   { transform: translateY(-1px) }
+}
+/* Compact rank inside tables/cards */
+.player-name-column .rank-label{ display:block; margin:2px auto 0; font-size:.8em; }
+.star-frame + .rank-label{ display:block; }
+
+/* === League override (5 lig, yıldız yok) === */
+.rank-label{ text-transform: none !important; }
+.rank-1::after,
+.rank-2::after,
+.rank-3::before,
+.rank-4::after,
+.rank-5::before,
+.rank-5::after{
+  content: none !important;
+  animation: none !important;
+}
+.rank-4,
+.rank-5{
+  animation: none !important;
+}
+
+.rank-1{
+  color:#065f46;
+  background: linear-gradient(135deg, rgba(167,243,208,.45), rgba(16,185,129,.18));
+  border: 1px solid rgba(16,185,129,.35);
+  box-shadow: 0 10px 26px rgba(16,185,129,.12);
+}
+.rank-2{
+  color:#0c4a6e;
+  background: linear-gradient(135deg, rgba(147,197,253,.5), rgba(59,130,246,.18));
+  border: 1px solid rgba(59,130,246,.32);
+  box-shadow: 0 10px 26px rgba(59,130,246,.12);
+}
+.rank-3{
+  color:#7c2d12;
+  background: linear-gradient(135deg, rgba(253,186,116,.55), rgba(245,158,11,.18));
+  border: 1px solid rgba(245,158,11,.35);
+  box-shadow: 0 10px 26px rgba(245,158,11,.12);
+}
+.rank-4{
+  color:#3730a3;
+  background: linear-gradient(135deg, rgba(199,210,254,.55), rgba(99,102,241,.18));
+  border: 1px solid rgba(99,102,241,.32);
+  box-shadow: 0 10px 26px rgba(99,102,241,.12);
+}
+.rank-5{
+  color:#fff7ed;
+  background: linear-gradient(135deg, rgba(253,230,138,.65), rgba(244,63,94,.22));
+  border: 1px solid rgba(245,158,11,.45);
+  box-shadow: 0 14px 34px rgba(245,158,11,.14);
+}

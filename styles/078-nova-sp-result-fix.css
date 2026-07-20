@@ -1,0 +1,101 @@
+/* Tek kişilik sonuç — asıl UI: #nova-summary (2. ekran görüntüsü) */
+
+#single-player-game-screen.nova-sp-result-open{
+  overflow: hidden !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: linear-gradient(165deg, #e8ecff 0%, #f1f5f9 45%, #eef2ff 100%) !important;
+}
+
+#single-player-game-screen.nova-sp-result-open::before{
+  opacity: .1 !important;
+}
+
+#single-player-game-screen.nova-sp-result-open .score-container{
+  animation: none !important;
+  min-height: auto !important;
+  max-height: min(92vh, 920px);
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  padding: clamp(16px, 3vw, 28px) !important;
+  background: #ffffff !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(148, 163, 184, .35) !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, .18) !important;
+}
+
+/* Eski / yanlış katmanlar */
+#single-player-game-screen.nova-sp-result-open #premium-summary,
+#single-player-game-screen.nova-sp-result-open #novaCircular,
+#single-player-game-screen.nova-sp-result-open .nova-end-wrapper,
+#single-player-game-screen.nova-sp-result-open #score,
+#single-player-game-screen.nova-sp-result-open #score-message,
+#single-player-game-screen.nova-sp-result-open #score-image{
+  display: none !important;
+}
+
+/* Nova özet — görünür */
+#single-player-game-screen.nova-sp-result-open #nova-summary.nz-show{
+  display: flex !important;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: min(520px, 100%);
+  margin: 0 auto;
+}
+
+/* Sıra: üstte gauge, altta KPI + butonlar (2. ekran) */
+#single-player-game-screen.nova-sp-result-open #nova-summary.nz-show .nz-gauge{
+  order: 1;
+  display: flex !important;
+  width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+}
+#single-player-game-screen.nova-sp-result-open #nova-summary.nz-show > .nz-row:first-of-type{
+  order: 2;
+}
+#single-player-game-screen.nova-sp-result-open #nova-summary.nz-show > .nz-row:last-of-type{
+  order: 3;
+}
+
+#single-player-game-screen.nova-sp-result-open #nzGauge{
+  display: block !important;
+  width: min(280px, 78vw) !important;
+  height: auto !important;
+}
+
+#single-player-game-screen.nova-sp-result-open .nz-compact-card{
+  display: none !important;
+}
+
+#single-player-game-screen.nova-sp-result-open .nz-actions{
+  display: flex !important;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+#single-player-game-screen.nova-sp-result-open .nz-actions .nz-btn{
+  width: 100%;
+  justify-content: center;
+  padding: 14px 16px;
+  font-size: 1rem;
+}
+
+#single-player-game-screen.nova-sp-result-open #btnTekrar,
+#single-player-game-screen.nova-sp-result-open #lesson-video-button{
+  display: none !important;
+}
+
+#single-player-game-screen.nova-sp-result-open #final-back-button{
+  display: inline-flex !important;
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+#teacher-advice-card.advice-card{
+  margin-top: 14px;
+  order: 99;
+}

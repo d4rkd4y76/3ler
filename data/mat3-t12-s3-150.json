@@ -1,0 +1,3402 @@
+{
+  "meta": {
+    "topicId": "t12",
+    "headingId": "SINIF3",
+    "lessonId": "lesson_matematik",
+    "title": "Geometri (Nokta, doğru, ışın, doğru parçası ve açı kavramları)",
+    "grade": 3,
+    "count": 130
+  },
+  "questions": [
+    {
+      "id": "mat3_t12_001",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kalemimizin ucunu kâğıda dokundurduğumuzda bıraktığı ize matematikte ne ad verilir?",
+      "correct": "Nokta",
+      "wrong1": "Doğru",
+      "wrong2": "Açı",
+      "explanation": "[[geo:nokta_expl]]\n\nGeometrinin en temel kavramı olan nokta, kalemin kağıtta bıraktığı küçük iz ile modellenir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kalemimizin ucunu kâğıda dokundurduğumuzda bıraktığı ize matematikte ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Doğru",
+        "wrong2": "Açı",
+        "explanation": "[[geo:nokta_expl]]\n\nGeometrinin en temel kavramı olan nokta, kalemin kağıtta bıraktığı küçük iz ile modellenir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_002",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi geometrik anlamda bir 'nokta' modelidir?",
+      "correct": "Gökyüzündeki yıldızlar",
+      "wrong1": "Gergin bir ip",
+      "wrong2": "Açık bir makas",
+      "explanation": "[[geo:nokta_expl]]\n\nGökyüzündeki yıldızlar uzaktan bakıldığında ufacık birer iz gibi görünür ve nokta modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi geometrik anlamda bir 'nokta' modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Gökyüzündeki yıldızlar",
+        "wrong1": "Gergin bir ip",
+        "wrong2": "Açık bir makas",
+        "explanation": "[[geo:nokta_expl]]\n\nGökyüzündeki yıldızlar uzaktan bakıldığında ufacık birer iz gibi görünür ve nokta modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_003",
+      "level": "kolay",
+      "premise": null,
+      "text": "Noktalar isimlendirilirken aşağıdakilerden hangisi kullanılmalıdır?",
+      "correct": "Büyük harf",
+      "wrong1": "Küçük harf",
+      "wrong2": "Rakam",
+      "explanation": "[[geo:nokta_expl]]\n\nGeometride noktalar her zaman A, B, C gibi alfabemizin büyük harfleriyle isimlendirilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Noktalar isimlendirilirken aşağıdakilerden hangisi kullanılmalıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Büyük harf",
+        "wrong1": "Küçük harf",
+        "wrong2": "Rakam",
+        "explanation": "[[geo:nokta_expl]]\n\nGeometride noktalar her zaman A, B, C gibi alfabemizin büyük harfleriyle isimlendirilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_004",
+      "level": "kolay",
+      "premise": null,
+      "text": "Cümlelerin sonuna konulan noktalama işareti, geometrideki hangi kavramı modeller?",
+      "correct": "Nokta",
+      "wrong1": "Işın",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:nokta_expl]]\n\nCümle sonlarına konulan işaret (.), geometrideki nokta kavramı ile aynı mantıktadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Cümlelerin sonuna konulan noktalama işareti, geometrideki hangi kavramı modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Işın",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:nokta_expl]]\n\nCümle sonlarına konulan işaret (.), geometrideki nokta kavramı ile aynı mantıktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_005",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdaki alfabe harflerinden hangisinin yazımında 'nokta' modeli kullanılmaktadır?",
+      "correct": "i",
+      "wrong1": "a",
+      "wrong2": "e",
+      "explanation": "[[geo:harf_i_expl]]\n\nKüçük 'i' harfinin tam tepesinde bir nokta bulunmaktadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki alfabe harflerinden hangisinin yazımında 'nokta' modeli kullanılmaktadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "i",
+        "wrong1": "a",
+        "wrong2": "e",
+        "explanation": "[[geo:harf_i_expl]]\n\nKüçük 'i' harfinin tam tepesinde bir nokta bulunmaktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_006",
+      "level": "kolay",
+      "premise": "Noktanın eni, boyu veya yüksekliği yoktur.",
+      "text": "Buna göre bu bilgiye göre nokta ile ilgili aşağıdakilerden hangisi söylenebilir?",
+      "correct": "Boyutu yoktur ve ölçülemez.",
+      "wrong1": "Cetvelle kolayca ölçülebilir.",
+      "wrong2": "Sonsuza kadar uzar.",
+      "explanation": "[[geo:nokta_expl]]\n\nNoktanın bir boyutu olmadığı için hiçbir ölçüm aracıyla ölçülemez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu bilgiye göre nokta ile ilgili aşağıdakilerden hangisi söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Noktanın eni, boyu veya yüksekliği yoktur."
+            }
+          ]
+        },
+        "correct": "Boyutu yoktur ve ölçülemez.",
+        "wrong1": "Cetvelle kolayca ölçülebilir.",
+        "wrong2": "Sonsuza kadar uzar.",
+        "explanation": "[[geo:nokta_expl]]\n\nNoktanın bir boyutu olmadığı için hiçbir ölçüm aracıyla ölçülemez.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_007",
+      "level": "kolay",
+      "premise": null,
+      "text": "Harita üzerinde şehirlerin konumlarını göstermek için genellikle hangi geometrik kavram kullanılır?",
+      "correct": "Nokta",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:nokta_expl]]\n\nHaritalarda belirli bir yeri (konumu) göstermek için nokta sembolü kullanılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Harita üzerinde şehirlerin konumlarını göstermek için genellikle hangi geometrik kavram kullanılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:nokta_expl]]\n\nHaritalarda belirli bir yeri (konumu) göstermek için nokta sembolü kullanılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_008",
+      "level": "kolay",
+      "premise": null,
+      "text": "Tebeşiri yazı tahtasına dokundurup çektiğimizde oluşan iz aşağıdakilerden hangisidir?",
+      "correct": "Nokta",
+      "wrong1": "Açı",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:nokta_expl]]\n\nSivri veya küt bir ucun yüzeye dokunup çekilmesiyle oluşan iz daima noktadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Tebeşiri yazı tahtasına dokundurup çektiğimizde oluşan iz aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Açı",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:nokta_expl]]\n\nSivri veya küt bir ucun yüzeye dokunup çekilmesiyle oluşan iz daima noktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_009",
+      "level": "kolay",
+      "premise": null,
+      "text": "Raptiyenin mantar panoda açtığı küçük delik ne modelidir?",
+      "correct": "Nokta",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Işın",
+      "explanation": "[[geo:nokta_expl]]\n\nRaptiye ucunun bıraktığı küçük delik veya iz bir nokta modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Raptiyenin mantar panoda açtığı küçük delik ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Işın",
+        "explanation": "[[geo:nokta_expl]]\n\nRaptiye ucunun bıraktığı küçük delik veya iz bir nokta modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_010",
+      "level": "kolay",
+      "premise": null,
+      "text": "Geometrik şekiller isimlendirilirken köşelerine yazılan 'A, B, C' gibi büyük harfler neyi temsil eder?",
+      "correct": "Köşelerdeki noktaları",
+      "wrong1": "Kenar uzunluklarını",
+      "wrong2": "Şeklin açısını",
+      "explanation": "[[geo:nokta_expl]]\n\nŞekillerin köşeleri birer noktadır ve büyük harflerle isimlendirilirler.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Geometrik şekiller isimlendirilirken köşelerine yazılan 'A, B, C' gibi büyük harfler neyi temsil eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Köşelerdeki noktaları",
+        "wrong1": "Kenar uzunluklarını",
+        "wrong2": "Şeklin açısını",
+        "explanation": "[[geo:nokta_expl]]\n\nŞekillerin köşeleri birer noktadır ve büyük harflerle isimlendirilirler.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_011",
+      "level": "orta",
+      "premise": "Matematikte bazı ifadeler şekillerin özelliklerini açıklar.",
+      "text": "Buna göre bir 'A' harfinin yanına nokta konduğunda (A.) bu geometride nasıl okunur?",
+      "correct": "A noktası",
+      "wrong1": "A doğrusu",
+      "wrong2": "A açısı",
+      "explanation": "[[geo:nokta_expl]]\n\nBüyük harfle belirtilen tek bir iz, o harfin adıyla 'A noktası' şeklinde okunur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir 'A' harfinin yanına nokta konduğunda (A.) bu geometride nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Matematikte bazı ifadeler şekillerin özelliklerini açıklar."
+            }
+          ]
+        },
+        "correct": "A noktası",
+        "wrong1": "A doğrusu",
+        "wrong2": "A açısı",
+        "explanation": "[[geo:nokta_expl]]\n\nBüyük harfle belirtilen tek bir iz, o harfin adıyla 'A noktası' şeklinde okunur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_012",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir 'nokta' modeline örnek olamaz?",
+      "correct": "İki ağaç arasına gerilmiş ip",
+      "wrong1": "Cama vuran yağmur damlası",
+      "wrong2": "Zarlardaki benekler",
+      "explanation": "[[geo:nokta_expl]]\n\nGergin ip uzunluğu olan bir çizgidir (doğru parçası). Damla ve benekler ise nokta modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir 'nokta' modeline örnek olamaz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İki ağaç arasına gerilmiş ip",
+        "wrong1": "Cama vuran yağmur damlası",
+        "wrong2": "Zarlardaki benekler",
+        "explanation": "[[geo:nokta_expl]]\n\nGergin ip uzunluğu olan bir çizgidir (doğru parçası). Damla ve benekler ise nokta modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_013",
+      "level": "orta",
+      "premise": null,
+      "text": "Gökyüzünden yağan kar tanelerinin yere ilk düştüğü andaki izi neye benzer?",
+      "correct": "Nokta",
+      "wrong1": "Doğru",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:nokta_expl]]\n\nKüçük kar tanelerinin zeminde bıraktığı ilk iz boyutsuz olduğu için nokta modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Gökyüzünden yağan kar tanelerinin yere ilk düştüğü andaki izi neye benzer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Doğru",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:nokta_expl]]\n\nKüçük kar tanelerinin zeminde bıraktığı ilk iz boyutsuz olduğu için nokta modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_014",
+      "level": "orta",
+      "premise": "Noktalar çizgileri oluşturmak için kullanılır.",
+      "text": "Buna göre dümdüz bir çizgi (doğru) içinde kaç tane nokta barındırır?",
+      "correct": "Sonsuz sayıda",
+      "wrong1": "Sadece 2 tane",
+      "wrong2": "Hiç barındırmaz",
+      "explanation": "[[geo:nokta_expl]]\n\nTüm çizgiler, sonsuz sayıda noktanın yan yana dizilmesinden meydana gelir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dümdüz bir çizgi (doğru) içinde kaç tane nokta barındırır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Noktalar çizgileri oluşturmak için kullanılır."
+            }
+          ]
+        },
+        "correct": "Sonsuz sayıda",
+        "wrong1": "Sadece 2 tane",
+        "wrong2": "Hiç barındırmaz",
+        "explanation": "[[geo:nokta_expl]]\n\nTüm çizgiler, sonsuz sayıda noktanın yan yana dizilmesinden meydana gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_015",
+      "level": "orta",
+      "premise": null,
+      "text": "Kareli matematik defterimizdeki dikey ve yatay çizgilerin birbirini kestiği (çarpıştığı) yerler hangi kavrama modeldir?",
+      "correct": "Nokta",
+      "wrong1": "Açı",
+      "wrong2": "Işın",
+      "explanation": "[[geo:kareli_expl]]\n\nÇizgilerin birbiriyle kesiştiği o tam ortak yerler (köşeler) birer noktadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kareli matematik defterimizdeki dikey ve yatay çizgilerin birbirini kestiği (çarpıştığı) yerler hangi kavrama modeldir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Açı",
+        "wrong2": "Işın",
+        "explanation": "[[geo:kareli_expl]]\n\nÇizgilerin birbiriyle kesiştiği o tam ortak yerler (köşeler) birer noktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_016",
+      "level": "orta",
+      "premise": null,
+      "text": "Toplu iğnenin renkli top olan baş kısmı neyi modeller?",
+      "correct": "Nokta",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:nokta_expl]]\n\nToplu iğnenin yuvarlak ve küçük baş kısmı bir noktayı andırır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Toplu iğnenin renkli top olan baş kısmı neyi modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:nokta_expl]]\n\nToplu iğnenin yuvarlak ve küçük baş kısmı bir noktayı andırır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_017",
+      "level": "orta",
+      "premise": "Bir kâğıda rastgele farklı yerlere 3 tane nokta koyan Mert, bu noktaları cetvelle birleştirmiştir.",
+      "text": "Buna göre mert'in oluşturduğu kapalı geometrik şekil aşağıdakilerden hangisidir?",
+      "correct": "Üçgen",
+      "wrong1": "Kare",
+      "wrong2": "Dikdörtgen",
+      "explanation": "[[geo:ucgen_abc_expl]]\n\nAynı düzlemde doğrusal olmayan 3 nokta birleştirildiğinde 3 köşeli ve 3 kenarlı bir üçgen oluşur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre mert'in oluşturduğu kapalı geometrik şekil aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir kâğıda rastgele farklı yerlere 3 tane nokta koyan Mert, bu noktaları cetvelle birleştirmiştir."
+            }
+          ]
+        },
+        "correct": "Üçgen",
+        "wrong1": "Kare",
+        "wrong2": "Dikdörtgen",
+        "explanation": "[[geo:ucgen_abc_expl]]\n\nAynı düzlemde doğrusal olmayan 3 nokta birleştirildiğinde 3 köşeli ve 3 kenarlı bir üçgen oluşur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_018",
+      "level": "zor",
+      "premise": "Televizyon veya telefon ekranlarındaki görüntüler 'piksel' adı verilen minik ışık karelerinden oluşur.",
+      "text": "Buna göre ekrana çok yakından baktığımızda gördüğümüz bu pikseller geometriye göre ne modeli sayılabilir?",
+      "correct": "Nokta",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:nokta_expl]]\n\nEkranda iz bırakan ve görüntüyü oluşturan en küçük yapı taşı olan pikseller birer nokta modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ekrana çok yakından baktığımızda gördüğümüz bu pikseller geometriye göre ne modeli sayılabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Televizyon veya telefon ekranlarındaki görüntüler 'piksel' adı verilen minik ışık karelerinden oluşur."
+            }
+          ]
+        },
+        "correct": "Nokta",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:nokta_expl]]\n\nEkranda iz bırakan ve görüntüyü oluşturan en küçük yapı taşı olan pikseller birer nokta modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_019",
+      "level": "zor",
+      "premise": null,
+      "text": "Terzinin iğneyi kumaşa batırdığı an kumaşta oluşan küçücük delik geometrik olarak neyi ifade eder?",
+      "correct": "Nokta",
+      "wrong1": "Açı",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:nokta_expl]]\n\nİğnenin açtığı minik delik konum belirten boyutsuz bir izdir, yani noktadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Terzinin iğneyi kumaşa batırdığı an kumaşta oluşan küçücük delik geometrik olarak neyi ifade eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Nokta",
+        "wrong1": "Açı",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:nokta_expl]]\n\nİğnenin açtığı minik delik konum belirten boyutsuz bir izdir, yani noktadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_020",
+      "level": "zor",
+      "premise": "Uçsuz bucaksız denizlere açılan gemiciler, gece yönlerini bulmak için Kutup Yıldızı'na bakarlar.",
+      "text": "Buna göre kutup Yıldızı'nın gökyüzündeki görünümü ne modelidir?",
+      "correct": "Nokta",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:nokta_expl]]\n\nYıldızlar ne kadar büyük olursa olsun dünyadan bakıldığında boyutsuz küçük bir iz (nokta) gibi görünürler.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kutup Yıldızı'nın gökyüzündeki görünümü ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uçsuz bucaksız denizlere açılan gemiciler, gece yönlerini bulmak için Kutup Yıldızı'na bakarlar."
+            }
+          ]
+        },
+        "correct": "Nokta",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:nokta_expl]]\n\nYıldızlar ne kadar büyük olursa olsun dünyadan bakıldığında boyutsuz küçük bir iz (nokta) gibi görünürler.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_021",
+      "level": "kolay",
+      "premise": null,
+      "text": "Her iki yönden istenildiği kadar uzatılabilen, başlangıç ve bitiş noktası olmayan düz çizgiye ne ad verilir?",
+      "correct": "Doğru",
+      "wrong1": "Nokta",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:dogru_expl]]\n\nİki ucundan da sonsuza kadar uzayan ve sınırı olmayan düz çizgilere doğru denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Her iki yönden istenildiği kadar uzatılabilen, başlangıç ve bitiş noktası olmayan düz çizgiye ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru",
+        "wrong1": "Nokta",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:dogru_expl]]\n\nİki ucundan da sonsuza kadar uzayan ve sınırı olmayan düz çizgilere doğru denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_022",
+      "level": "kolay",
+      "premise": null,
+      "text": "Bir doğrunun iki ucunda da ok işareti (<--->) bulunmasının anlamı nedir?",
+      "correct": "Her iki yöne de sonsuza kadar uzadığını gösterir.",
+      "wrong1": "Sadece oklara doğru gittiğini gösterir.",
+      "wrong2": "Uzunluğunun ölçülebildiğini gösterir.",
+      "explanation": "[[geo:dogru_expl]]\n\nOk işaretleri, çizginin o yönlerde bitmediğini ve sonsuzluğa uzandığını temsil eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir doğrunun iki ucunda da ok işareti (<--->) bulunmasının anlamı nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her iki yöne de sonsuza kadar uzadığını gösterir.",
+        "wrong1": "Sadece oklara doğru gittiğini gösterir.",
+        "wrong2": "Uzunluğunun ölçülebildiğini gösterir.",
+        "explanation": "[[geo:dogru_expl]]\n\nOk işaretleri, çizginin o yönlerde bitmediğini ve sonsuzluğa uzandığını temsil eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_023",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir 'doğru' modeline örnek olabilir?",
+      "correct": "Her iki yöne uzayan otoyol çizgisi",
+      "wrong1": "Bir ucu açık kalem",
+      "wrong2": "Silginin kenarı",
+      "explanation": "[[geo:dogru_expl]]\n\nOtoyol çizgileri çok uzun olduğu için her iki yöne sonsuza uzayan doğru modeline benzetilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir 'doğru' modeline örnek olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Her iki yöne uzayan otoyol çizgisi",
+        "wrong1": "Bir ucu açık kalem",
+        "wrong2": "Silginin kenarı",
+        "explanation": "[[geo:dogru_expl]]\n\nOtoyol çizgileri çok uzun olduğu için her iki yöne sonsuza uzayan doğru modeline benzetilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_024",
+      "level": "kolay",
+      "premise": "Doğruların başlangıç ve bitiş noktaları yoktur.",
+      "text": "Buna göre bir doğrunun uzunluğu cetvelle ölçülebilir mi?",
+      "correct": "Hayır, sonsuz olduğu için ölçülemez.",
+      "wrong1": "Evet, kolayca ölçülebilir.",
+      "wrong2": "Sadece uzun cetvelle ölçülebilir.",
+      "explanation": "[[geo:dogru_expl]]\n\nDoğrular her iki tarafa sonsuza kadar uzadıkları için boyları hiçbir şekilde ölçülemez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir doğrunun uzunluğu cetvelle ölçülebilir mi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğruların başlangıç ve bitiş noktaları yoktur."
+            }
+          ]
+        },
+        "correct": "Hayır, sonsuz olduğu için ölçülemez.",
+        "wrong1": "Evet, kolayca ölçülebilir.",
+        "wrong2": "Sadece uzun cetvelle ölçülebilir.",
+        "explanation": "[[geo:dogru_expl]]\n\nDoğrular her iki tarafa sonsuza kadar uzadıkları için boyları hiçbir şekilde ölçülemez.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_025",
+      "level": "kolay",
+      "premise": null,
+      "text": "Defterimize cetvel yardımıyla çizdiğimiz, iki ucu da oklu olan düz çizgi modeli aşağıdakilerden hangisidir?",
+      "correct": "Doğru",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Işın",
+      "explanation": "[[geo:dogru_expl]]\n\nİki ucunda da ok işareti bulunan düz çizgiler geometride doğruyu temsil eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Defterimize cetvel yardımıyla çizdiğimiz, iki ucu da oklu olan düz çizgi modeli aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Işın",
+        "explanation": "[[geo:dogru_expl]]\n\nİki ucunda da ok işareti bulunan düz çizgiler geometride doğruyu temsil eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_026",
+      "level": "kolay",
+      "premise": null,
+      "text": "İki ucu da sipsivri olacak şekilde açılmış (iki taraftan da yazabilen) bir kurşun kalem ne modelidir?",
+      "correct": "Doğru",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:dogru_expl]]\n\nİki sivri uç, iki ok işaretine benzetildiği için bu kalem doğru modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "İki ucu da sipsivri olacak şekilde açılmış (iki taraftan da yazabilen) bir kurşun kalem ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:dogru_expl]]\n\nİki sivri uç, iki ok işaretine benzetildiği için bu kalem doğru modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_027",
+      "level": "orta",
+      "premise": null,
+      "text": "Elektrik direkleri arasına gerilmiş ve çok uzaklara doğru giden elektrik telleri neye modeldir?",
+      "correct": "Doğru",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Açı",
+      "explanation": "[[geo:dogru_expl]]\n\nTellerin her iki yöne de çok uzun mesafeler boyunca uzanması onu doğru modeli yapar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Elektrik direkleri arasına gerilmiş ve çok uzaklara doğru giden elektrik telleri neye modeldir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Açı",
+        "explanation": "[[geo:dogru_expl]]\n\nTellerin her iki yöne de çok uzun mesafeler boyunca uzanması onu doğru modeli yapar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_028",
+      "level": "orta",
+      "premise": null,
+      "text": "Tren yolunda birbirine paralel şekilde uzayıp giden demir raylar matematikte hangi kavrama örnektir?",
+      "correct": "Doğru",
+      "wrong1": "Nokta",
+      "wrong2": "Açı",
+      "explanation": "[[geo:dogru_expl]]\n\nTren rayları hiç bitmeyecekmiş gibi her iki yöne uzandığı için doğru modeline uygundur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Tren yolunda birbirine paralel şekilde uzayıp giden demir raylar matematikte hangi kavrama örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru",
+        "wrong1": "Nokta",
+        "wrong2": "Açı",
+        "explanation": "[[geo:dogru_expl]]\n\nTren rayları hiç bitmeyecekmiş gibi her iki yöne uzandığı için doğru modeline uygundur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_029",
+      "level": "orta",
+      "premise": "Doğrular isimlendirilirken farklı kurallar kullanılabilir.",
+      "text": "Buna göre yanına küçük bir 'd' harfi yazılmış, iki ucu oklu çizgi nasıl okunur?",
+      "correct": "d doğrusu",
+      "wrong1": "d ışını",
+      "wrong2": "d noktası",
+      "explanation": "[[geo:dogru_expl]]\n\nGeometride doğrular yanına yazılan tek bir küçük harfle (örneğin d) isimlendirilebilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yanına küçük bir 'd' harfi yazılmış, iki ucu oklu çizgi nasıl okunur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğrular isimlendirilirken farklı kurallar kullanılabilir."
+            }
+          ]
+        },
+        "correct": "d doğrusu",
+        "wrong1": "d ışını",
+        "wrong2": "d noktası",
+        "explanation": "[[geo:dogru_expl]]\n\nGeometride doğrular yanına yazılan tek bir küçük harfle (örneğin d) isimlendirilebilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_030",
+      "level": "orta",
+      "premise": null,
+      "text": "Aşağıdaki ifadelerden hangisi 'doğru' kavramı için Yanliştir?",
+      "correct": "Başlangıç ve bitiş noktası bellidir.",
+      "wrong1": "İki yönden de sonsuza uzar.",
+      "wrong2": "Her iki ucunda ok işareti bulunur.",
+      "explanation": "[[geo:dogru_expl]]\n\nDoğrunun başlangıç ve bitiş noktası yoktur, tamamen sınırsızdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki ifadelerden hangisi 'doğru' kavramı için Yanliştir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Başlangıç ve bitiş noktası bellidir.",
+        "wrong1": "İki yönden de sonsuza uzar.",
+        "wrong2": "Her iki ucunda ok işareti bulunur.",
+        "explanation": "[[geo:dogru_expl]]\n\nDoğrunun başlangıç ve bitiş noktası yoktur, tamamen sınırsızdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_031",
+      "level": "orta",
+      "premise": "Doğrular düz çizgiler olmak zorundadır.",
+      "text": "Buna göre eğri büğrü, dalgalı çizilmiş sonsuz bir çizgi 'doğru' olabilir mi?",
+      "correct": "Hayır, doğru her zaman dümdüz olmalıdır.",
+      "wrong1": "Evet, sonsuz ise doğrudur.",
+      "wrong2": "Evet, ok işareti varsa doğrudur.",
+      "explanation": "[[geo:dogru_expl]]\n\nBir çizginin doğru olabilmesi için doğrusal, yani cetvelle çizilmiş gibi dümdüz olması şarttır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre eğri büğrü, dalgalı çizilmiş sonsuz bir çizgi 'doğru' olabilir mi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğrular düz çizgiler olmak zorundadır."
+            }
+          ]
+        },
+        "correct": "Hayır, doğru her zaman dümdüz olmalıdır.",
+        "wrong1": "Evet, sonsuz ise doğrudur.",
+        "wrong2": "Evet, ok işareti varsa doğrudur.",
+        "explanation": "[[geo:dogru_expl]]\n\nBir çizginin doğru olabilmesi için doğrusal, yani cetvelle çizilmiş gibi dümdüz olması şarttır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_032",
+      "level": "zor",
+      "premise": "Deniz kenarında ufuk çizgisine baktığımızda sağa ve sola uzayıp gider.",
+      "text": "Buna göre sağa ve sola doğru hiç bitmeyecekmiş gibi uzanan bu ufuk çizgisi hangi kavramdır?",
+      "correct": "Doğru",
+      "wrong1": "Işın",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:dogru_expl]]\n\nUfuk çizgisi her iki yöne sonsuza kadar uzandığı hissi verdiği için harika bir doğru modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sağa ve sola doğru hiç bitmeyecekmiş gibi uzanan bu ufuk çizgisi hangi kavramdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Deniz kenarında ufuk çizgisine baktığımızda sağa ve sola uzayıp gider."
+            }
+          ]
+        },
+        "correct": "Doğru",
+        "wrong1": "Işın",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:dogru_expl]]\n\nUfuk çizgisi her iki yöne sonsuza kadar uzandığı hissi verdiği için harika bir doğru modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_033",
+      "level": "zor",
+      "premise": null,
+      "text": "Müzik defterindeki birbirine paralel uzanan ve notaların yazıldığı 5 çizgi (dizek/porte) ne modelidir?",
+      "correct": "Doğru",
+      "wrong1": "Işın",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:dogru_expl]]\n\nBu çizgilerin sağdan ve soldan defterin dışına sonsuza uzadığını hayal ettiğimizde doğru modelini elde ederiz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Müzik defterindeki birbirine paralel uzanan ve notaların yazıldığı 5 çizgi (dizek/porte) ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru",
+        "wrong1": "Işın",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:dogru_expl]]\n\nBu çizgilerin sağdan ve soldan defterin dışına sonsuza uzadığını hayal ettiğimizde doğru modelini elde ederiz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_034",
+      "level": "zor",
+      "premise": "Bir oyun hamurunu ip gibi uzatmaya başladınız.",
+      "text": "Buna göre bu hamuru her iki yöne doğru hiç kopmadan sonsuza kadar uzatabildiğinizi hayal ederseniz ne modeli olur?",
+      "correct": "Doğru",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Açı",
+      "explanation": "[[geo:dogru_expl]]\n\nİki yöne sınırsızca uzayabilme özelliği doğru kavramına aittir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu hamuru her iki yöne doğru hiç kopmadan sonsuza kadar uzatabildiğinizi hayal ederseniz ne modeli olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir oyun hamurunu ip gibi uzatmaya başladınız."
+            }
+          ]
+        },
+        "correct": "Doğru",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Açı",
+        "explanation": "[[geo:dogru_expl]]\n\nİki yöne sınırsızca uzayabilme özelliği doğru kavramına aittir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_035",
+      "level": "zor",
+      "premise": "Geometri tahtasında iki çivi arasına gerilen lastik bir doğru parçasıdır.",
+      "text": "Buna göre bu lastiği doğruya çevirmek isteseydik hayali olarak ne yapmamız gerekirdi?",
+      "correct": "İki ucundan tutup çivilerden çıkarıp sonsuza uzatmamız gerekirdi.",
+      "wrong1": "Tam ortasından kesmemiz gerekirdi.",
+      "wrong2": "Sadece bir ucunu uzatmamız gerekirdi.",
+      "explanation": "[[geo:dogru_expl]]\n\nSınırları (çivileri) ortadan kaldırıp iki uca sonsuz uzatmak onu doğruya çevirir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu lastiği doğruya çevirmek isteseydik hayali olarak ne yapmamız gerekirdi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geometri tahtasında iki çivi arasına gerilen lastik bir doğru parçasıdır."
+            }
+          ]
+        },
+        "correct": "İki ucundan tutup çivilerden çıkarıp sonsuza uzatmamız gerekirdi.",
+        "wrong1": "Tam ortasından kesmemiz gerekirdi.",
+        "wrong2": "Sadece bir ucunu uzatmamız gerekirdi.",
+        "explanation": "[[geo:dogru_expl]]\n\nSınırları (çivileri) ortadan kaldırıp iki uca sonsuz uzatmak onu doğruya çevirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_036",
+      "level": "zor",
+      "premise": null,
+      "text": "İki ucu ok olan bir doğrunun sadece sol ucundaki okunu silip oraya bir nokta koyduk. Bu yeni şekil geometrik olarak neye dönüşmüş olur?",
+      "correct": "Işın",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Yine doğru kalır",
+      "explanation": "[[geo:dogru_to_isin_expl]]\n\nBir ucu sınırlı (nokta), diğer ucu sonsuz (ok) olan şekil ışındır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "İki ucu ok olan bir doğrunun sadece sol ucundaki okunu silip oraya bir nokta koyduk. Bu yeni şekil geometrik olarak neye dönüşmüş olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Yine doğru kalır",
+        "explanation": "[[geo:dogru_to_isin_expl]]\n\nBir ucu sınırlı (nokta), diğer ucu sonsuz (ok) olan şekil ışındır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_037",
+      "level": "zor",
+      "premise": null,
+      "text": "İki ucunda ok olan bir doğrunun her iki okunu da silip yerlerine nokta koyduk. Bu yeni şekil geometrik olarak neye dönüşmüş olur?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Açı",
+      "explanation": "[[geo:parca_expl]]\n\nİki ucu da sınırlandırılmış, kapalı hale gelmiş çizgiler doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "İki ucunda ok olan bir doğrunun her iki okunu da silip yerlerine nokta koyduk. Bu yeni şekil geometrik olarak neye dönüşmüş olur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Açı",
+        "explanation": "[[geo:parca_expl]]\n\nİki ucu da sınırlandırılmış, kapalı hale gelmiş çizgiler doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_038",
+      "level": "zor",
+      "premise": null,
+      "text": "Bu doğruyu okurken nasıl telaffuz ederiz?",
+      "correct": "AB doğrusu",
+      "wrong1": "A ve B noktaları",
+      "wrong2": "A ışını",
+      "explanation": "[[geo:dogru_expl]]\n\nDoğrular üzerlerindeki iki nokta ile birlikte (AB doğrusu veya BA doğrusu) adlandırılırlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bu doğruyu okurken nasıl telaffuz ederiz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "AB doğrusu",
+        "wrong1": "A ve B noktaları",
+        "wrong2": "A ışını",
+        "explanation": "[[geo:dogru_expl]]\n\nDoğrular üzerlerindeki iki nokta ile birlikte (AB doğrusu veya BA doğrusu) adlandırılırlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_039",
+      "level": "zor",
+      "premise": "Dünya'nın ortasından geçtiği varsayılan Ekvator çizgisi, dünyayı çepeçevre sararak başladığı yerde biter.",
+      "text": "Buna göre bu yuvarlak Ekvator çizgisi geometriye göre bir 'doğru' olabilir mi?",
+      "correct": "Olamaz, çünkü doğrular yuvarlak veya eğri çizemez, dümdüz uzarlar.",
+      "wrong1": "Olabilir, çünkü çok uzundur.",
+      "wrong2": "Olabilir, çünkü uzayda yer alır.",
+      "explanation": "[[geo:dogru_expl]]\n\nGeometride doğru, ışın ve doğru parçası mutlaka düz (doğrusal) olmak zorundadır. Yuvarlaklık olamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu yuvarlak Ekvator çizgisi geometriye göre bir 'doğru' olabilir mi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dünya'nın ortasından geçtiği varsayılan Ekvator çizgisi, dünyayı çepeçevre sararak başladığı yerde biter."
+            }
+          ]
+        },
+        "correct": "Olamaz, çünkü doğrular yuvarlak veya eğri çizemez, dümdüz uzarlar.",
+        "wrong1": "Olabilir, çünkü çok uzundur.",
+        "wrong2": "Olabilir, çünkü uzayda yer alır.",
+        "explanation": "[[geo:dogru_expl]]\n\nGeometride doğru, ışın ve doğru parçası mutlaka düz (doğrusal) olmak zorundadır. Yuvarlaklık olamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_040",
+      "level": "zor",
+      "premise": "Otoyolda giderken ortadaki düz beyaz çizgilerin her iki yönde de ufka kadar uzayıp kaybolduğunu görürüz.",
+      "text": "Buna göre bu durum hangi geometrik kavramla açıklanır?",
+      "correct": "Doğru",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Işın",
+      "explanation": "[[geo:dogru_expl]]\n\nİki yöne sınırsızca uzanıp gitme hissi doğruyu temsil eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu durum hangi geometrik kavramla açıklanır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Otoyolda giderken ortadaki düz beyaz çizgilerin her iki yönde de ufka kadar uzayıp kaybolduğunu görürüz."
+            }
+          ]
+        },
+        "correct": "Doğru",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Işın",
+        "explanation": "[[geo:dogru_expl]]\n\nİki yöne sınırsızca uzanıp gitme hissi doğruyu temsil eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_041",
+      "level": "kolay",
+      "premise": null,
+      "text": "Başlangıç noktası belli olan ancak tek bir yöne doğru sonsuza kadar uzayan düz çizgiye ne denir?",
+      "correct": "Işın",
+      "wrong1": "Doğru",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nBir taraftan sınırlı (kapalı), diğer taraftan sınırsız (açık) olan çizgilere ışın denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Başlangıç noktası belli olan ancak tek bir yöne doğru sonsuza kadar uzayan düz çizgiye ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nBir taraftan sınırlı (kapalı), diğer taraftan sınırsız (açık) olan çizgilere ışın denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_042",
+      "level": "kolay",
+      "premise": null,
+      "text": "Işını kâğıt üzerinde çizerken nasıl gösteririz?",
+      "correct": "Bir ucunda nokta, diğer ucunda ok vardır.",
+      "wrong1": "İki ucunda da ok vardır.",
+      "wrong2": "İki ucunda da nokta vardır.",
+      "explanation": "[[geo:isin_expl]]\n\nNokta kısmı başlangıcı, ok kısmı ise sonsuza uzadığı yönü gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Işını kâğıt üzerinde çizerken nasıl gösteririz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir ucunda nokta, diğer ucunda ok vardır.",
+        "wrong1": "İki ucunda da ok vardır.",
+        "wrong2": "İki ucunda da nokta vardır.",
+        "explanation": "[[geo:isin_expl]]\n\nNokta kısmı başlangıcı, ok kısmı ise sonsuza uzadığı yönü gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_043",
+      "level": "kolay",
+      "premise": null,
+      "text": "Açıldığında karanlığı aydınlatan el fenerinin yaydığı ışık ne modelidir?",
+      "correct": "Işın",
+      "wrong1": "Doğru",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nEl fenerinin lambası başlangıç noktasıdır, çıkan ışık ise ileriye doğru sonsuza gider.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Açıldığında karanlığı aydınlatan el fenerinin yaydığı ışık ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nEl fenerinin lambası başlangıç noktasıdır, çıkan ışık ise ileriye doğru sonsuza gider.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_044",
+      "level": "kolay",
+      "premise": null,
+      "text": "Güneş'ten çıkıp Dünya'mıza yayılan ışıklar hangi geometrik kavrama örnektir?",
+      "correct": "Işın",
+      "wrong1": "Açı",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:isin_expl]]\n\nGüneş sabit bir başlangıçtır, oradan çıkan ışık uzayda tek bir yöne doğru ilerler.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Güneş'ten çıkıp Dünya'mıza yayılan ışıklar hangi geometrik kavrama örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Açı",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:isin_expl]]\n\nGüneş sabit bir başlangıçtır, oradan çıkan ışık uzayda tek bir yöne doğru ilerler.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_045",
+      "level": "kolay",
+      "premise": "Işınların sadece bir başlangıç noktası vardır, bitiş noktası yoktur.",
+      "text": "Buna göre bu bilgiye göre bir ışının uzunluğu cetvelle ölçülebilir mi?",
+      "correct": "Hayır, bir ucu sonsuza gittiği için ölçülemez.",
+      "wrong1": "Evet, ölçülebilir.",
+      "wrong2": "Evet, ama sadece yarısı ölçülür.",
+      "explanation": "[[geo:isin_expl]]\n\nSonsuza giden bir çizgiyi tamamen ölçmek imkansızdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu bilgiye göre bir ışının uzunluğu cetvelle ölçülebilir mi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Işınların sadece bir başlangıç noktası vardır, bitiş noktası yoktur."
+            }
+          ]
+        },
+        "correct": "Hayır, bir ucu sonsuza gittiği için ölçülemez.",
+        "wrong1": "Evet, ölçülebilir.",
+        "wrong2": "Evet, ama sadece yarısı ölçülür.",
+        "explanation": "[[geo:isin_expl]]\n\nSonsuza giden bir çizgiyi tamamen ölçmek imkansızdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_046",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sadece ucu sivrilmiş, arkası açılmamış silgili bir kurşun kalem ne modelidir?",
+      "correct": "Işın",
+      "wrong1": "Doğru",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nSilgili kısım sabit ucu, sivri kısım ise ilerleyen yönü (oku) temsil ettiği için ışındır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sadece ucu sivrilmiş, arkası açılmamış silgili bir kurşun kalem ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nSilgili kısım sabit ucu, sivri kısım ise ilerleyen yönü (oku) temsil ettiği için ışındır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_047",
+      "level": "kolay",
+      "premise": null,
+      "text": "Annelerimizin kazak örerken kullandığı arkası topuzlu, ucu sivri uzun örgü şişi geometride neye örnektir?",
+      "correct": "Işın",
+      "wrong1": "Nokta",
+      "wrong2": "Açı",
+      "explanation": "[[geo:isin_expl]]\n\nÖrgü şişinin arka tarafı küt (kapalı), ön tarafı sivri olduğu için bir ışın modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Annelerimizin kazak örerken kullandığı arkası topuzlu, ucu sivri uzun örgü şişi geometride neye örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Nokta",
+        "wrong2": "Açı",
+        "explanation": "[[geo:isin_expl]]\n\nÖrgü şişinin arka tarafı küt (kapalı), ön tarafı sivri olduğu için bir ışın modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_048",
+      "level": "kolay",
+      "premise": null,
+      "text": "Duvara çakılıp eşya asmaya yarayan bir çivi, şekil itibariyle neye benzer?",
+      "correct": "Işın",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Açı",
+      "explanation": "[[geo:isin_expl]]\n\nÇivinin geniş başı başlangıç, sivri ucu ise ilerleyen yön olduğu için ışın modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Duvara çakılıp eşya asmaya yarayan bir çivi, şekil itibariyle neye benzer?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Açı",
+        "explanation": "[[geo:isin_expl]]\n\nÇivinin geniş başı başlangıç, sivri ucu ise ilerleyen yön olduğu için ışın modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_049",
+      "level": "orta",
+      "premise": null,
+      "text": "Sadece tek yönlü ilerlemeye izin veren trafik levhasındaki düz 'Ok İşareti' ne modelidir?",
+      "correct": "Işın",
+      "wrong1": "Nokta",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nOklu levhalar bir yerden başlayıp tek yöne gidişi gösterdiği için ışın modelidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sadece tek yönlü ilerlemeye izin veren trafik levhasındaki düz 'Ok İşareti' ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Nokta",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nOklu levhalar bir yerden başlayıp tek yöne gidişi gösterdiği için ışın modelidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_050",
+      "level": "orta",
+      "premise": "Bir makaraya sarılı olan yün, annemiz kazak ördükçe makaradan çekilip uzamaktadır.",
+      "text": "Buna göre çekilip uzayan bu ip hangi geometrik kavramı hatırlatır?",
+      "correct": "Işın",
+      "wrong1": "Doğru",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nMakara başlangıç noktasıdır, çekilen ip ise bir yöne doğru sınırsızca uzar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre çekilip uzayan bu ip hangi geometrik kavramı hatırlatır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir makaraya sarılı olan yün, annemiz kazak ördükçe makaradan çekilip uzamaktadır."
+            }
+          ]
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nMakara başlangıç noktasıdır, çekilen ip ise bir yöne doğru sınırsızca uzar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_051",
+      "level": "orta",
+      "premise": null,
+      "text": "Doğru ile ışın arasındaki en önemli fark aşağıdakilerden hangisidir?",
+      "correct": "Doğru iki yöne uzar, ışın sadece tek yöne uzar.",
+      "wrong1": "Işın iki yöne uzar, doğru tek yöne uzar.",
+      "wrong2": "Doğrunun boyu ölçülür, ışının ölçülemez.",
+      "explanation": "[[geo:isin_expl]]\n\nHer ikisinin de boyu ölçülemez fakat doğru iki taraftan, ışın tek taraftan sonsuza gider.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Doğru ile ışın arasındaki en önemli fark aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru iki yöne uzar, ışın sadece tek yöne uzar.",
+        "wrong1": "Işın iki yöne uzar, doğru tek yöne uzar.",
+        "wrong2": "Doğrunun boyu ölçülür, ışının ölçülemez.",
+        "explanation": "[[geo:isin_expl]]\n\nHer ikisinin de boyu ölçülemez fakat doğru iki taraftan, ışın tek taraftan sonsuza gider.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_052",
+      "level": "orta",
+      "premise": null,
+      "text": "Okçunun gerdiği yaydan ileriye doğru fırlattığı ok, hedefe gidene kadar ne modeli oluşturur?",
+      "correct": "Işın",
+      "wrong1": "Açı",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:isin_expl]]\n\nYayı terk ettiği yer başlangıç noktasıdır, ileriye gidişi ise tek yönlü ilerlemeyi temsil eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Okçunun gerdiği yaydan ileriye doğru fırlattığı ok, hedefe gidene kadar ne modeli oluşturur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Açı",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:isin_expl]]\n\nYayı terk ettiği yer başlangıç noktasıdır, ileriye gidişi ise tek yönlü ilerlemeyi temsil eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_053",
+      "level": "orta",
+      "premise": null,
+      "text": "Sınıfta tahtayı gösterirken kullanılan kırmızı lazer ışığı neye örnektir?",
+      "correct": "Işın",
+      "wrong1": "Nokta",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nLazer aleti sabit bir başlangıçtır, oradan çıkan kırmızı ışık ise uzamaya devam eden ışındır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sınıfta tahtayı gösterirken kullanılan kırmızı lazer ışığı neye örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Nokta",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nLazer aleti sabit bir başlangıçtır, oradan çıkan kırmızı ışık ise uzamaya devam eden ışındır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_054",
+      "level": "orta",
+      "premise": "Şerit metre, kendi kutusu içinden çekilerek uzatılır.",
+      "text": "Buna göre usta, metreyi kutusundan çekip uzattıkça metre hangi şekle benzemektedir?",
+      "correct": "Işın",
+      "wrong1": "Doğru",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:isin_expl]]\n\nKutu sabit bir noktadır, sarı şerit ise uzadıkça tek yönlü bir ışını andırır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre usta, metreyi kutusundan çekip uzattıkça metre hangi şekle benzemektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Şerit metre, kendi kutusu içinden çekilerek uzatılır."
+            }
+          ]
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:isin_expl]]\n\nKutu sabit bir noktadır, sarı şerit ise uzadıkça tek yönlü bir ışını andırır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_055",
+      "level": "zor",
+      "premise": null,
+      "text": "Pusulanın hep kuzeyi gösteren oklu ibresi (çubuğu) ne modelidir?",
+      "correct": "Işın",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Açı",
+      "explanation": "[[geo:isin_expl]]\n\nPusulanın tam ortası ibrenin başlangıç noktasıdır, ok şeklindeki ucu ise yönü gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Pusulanın hep kuzeyi gösteren oklu ibresi (çubuğu) ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Açı",
+        "explanation": "[[geo:isin_expl]]\n\nPusulanın tam ortası ibrenin başlangıç noktasıdır, ok şeklindeki ucu ise yönü gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_056",
+      "level": "zor",
+      "premise": "Uzay araçları dünyadan kalkıp uzayın derinliklerine doğru ilerler.",
+      "text": "Buna göre bir uzay mekiğinin dünyadan ayrılıp düz bir çizgide karanlık uzaya doğru gitmesi ne modelidir?",
+      "correct": "Işın",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:isin_expl]]\n\nDünya başlangıç noktasıdır, uzaya gidiş yönü ise sonsuzluğu ifade eden bir ışındır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir uzay mekiğinin dünyadan ayrılıp düz bir çizgide karanlık uzaya doğru gitmesi ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uzay araçları dünyadan kalkıp uzayın derinliklerine doğru ilerler."
+            }
+          ]
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:isin_expl]]\n\nDünya başlangıç noktasıdır, uzaya gidiş yönü ise sonsuzluğu ifade eden bir ışındır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_057",
+      "level": "zor",
+      "premise": "Doğrunun içinden bir parça kesilip alınırsa yeni şekiller oluşur.",
+      "text": "Buna göre sonsuz bir doğruyu tam ortasından makasla kesersek (ikiye ayırırsak) elimizde ne oluşur?",
+      "correct": "İki tane ışın oluşur.",
+      "wrong1": "İki tane doğru parçası oluşur.",
+      "wrong2": "Hiçbir şey oluşmaz.",
+      "explanation": "[[geo:isin_expl]]\n\nKesilen yer yeni başlangıç noktası olur. İplerin diğer uçları sonsuza gitmeye devam ettiği için 2 tane ışın elde ederiz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sonsuz bir doğruyu tam ortasından makasla kesersek (ikiye ayırırsak) elimizde ne oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğrunun içinden bir parça kesilip alınırsa yeni şekiller oluşur."
+            }
+          ]
+        },
+        "correct": "İki tane ışın oluşur.",
+        "wrong1": "İki tane doğru parçası oluşur.",
+        "wrong2": "Hiçbir şey oluşmaz.",
+        "explanation": "[[geo:isin_expl]]\n\nKesilen yer yeni başlangıç noktası olur. İplerin diğer uçları sonsuza gitmeye devam ettiği için 2 tane ışın elde ederiz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_058",
+      "level": "zor",
+      "premise": "Deniz feneri, denizde seyreden gemilere yol göstermek için ışık yayar.",
+      "text": "Buna göre deniz fenerinden denize doğru yansıyan uzun ışık hüzmesi ne modelidir?",
+      "correct": "Işın",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:isin_expl]]\n\nFenerin ampulü başlangıç noktasıdır, ışık ise denizin üstünde sonsuza gider gibi uzanır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre deniz fenerinden denize doğru yansıyan uzun ışık hüzmesi ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Deniz feneri, denizde seyreden gemilere yol göstermek için ışık yayar."
+            }
+          ]
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:isin_expl]]\n\nFenerin ampulü başlangıç noktasıdır, ışık ise denizin üstünde sonsuza gider gibi uzanır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_059",
+      "level": "zor",
+      "premise": "Uçurtma gökyüzünde uçarken ipi elimizdedir.",
+      "text": "Buna göre uçurtma ipi elimizde gergin durumdayken, bu ip hangi geometri kavramını modeller?",
+      "correct": "Işın",
+      "wrong1": "Nokta",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:isin_expl]]\n\nElimiz sabit noktadır, uçurtmanın gittiği yön ise uzamayı temsil eden ucu anlatır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre uçurtma ipi elimizde gergin durumdayken, bu ip hangi geometri kavramını modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uçurtma gökyüzünde uçarken ipi elimizdedir."
+            }
+          ]
+        },
+        "correct": "Işın",
+        "wrong1": "Nokta",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:isin_expl]]\n\nElimiz sabit noktadır, uçurtmanın gittiği yön ise uzamayı temsil eden ucu anlatır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_060",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki cisimlerden hangisi bir 'ışın' modeli olarak kabul edilebilir?",
+      "correct": "Bir tarafı düğümlü, diğer tarafı sonsuza giden ip",
+      "wrong1": "Her iki ucu açılmış boya kalemi",
+      "wrong2": "Silgi",
+      "explanation": "[[geo:isin_expl]]\n\nDüğüm olan taraf sabit (nokta), uzayan taraf ise ok olarak düşünüldüğünde ışın olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki cisimlerden hangisi bir 'ışın' modeli olarak kabul edilebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Bir tarafı düğümlü, diğer tarafı sonsuza giden ip",
+        "wrong1": "Her iki ucu açılmış boya kalemi",
+        "wrong2": "Silgi",
+        "explanation": "[[geo:isin_expl]]\n\nDüğüm olan taraf sabit (nokta), uzayan taraf ise ok olarak düşünüldüğünde ışın olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_061",
+      "level": "kolay",
+      "premise": null,
+      "text": "Başlangıç ve bitiş noktası belli olan, her iki ucu da sınırlı olan düz çizgiye ne denir?",
+      "correct": "Doğru Parçası",
+      "wrong1": "Işın",
+      "wrong2": "Açı",
+      "explanation": "[[geo:parca_expl]]\n\nİki yönden de kesilmiş ve uzamayan, sınırları belli olan çizgiye doğru parçası denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Başlangıç ve bitiş noktası belli olan, her iki ucu da sınırlı olan düz çizgiye ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru Parçası",
+        "wrong1": "Işın",
+        "wrong2": "Açı",
+        "explanation": "[[geo:parca_expl]]\n\nİki yönden de kesilmiş ve uzamayan, sınırları belli olan çizgiye doğru parçası denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_062",
+      "level": "kolay",
+      "premise": "Doğru parçasının uzunluğu sabittir.",
+      "text": "Buna göre doğru parçasını kâğıt üzerinde çizerken iki ucuna ne koyarız?",
+      "correct": "İki ucuna da nokta (veya kesik çizgi)",
+      "wrong1": "İki ucuna da ok",
+      "wrong2": "Bir ucuna ok",
+      "explanation": "[[geo:parca_expl]]\n\nSınırlandırılmış (kesilmiş) olduğunu göstermek için uçlarına ok konulmaz, kapatma işareti (nokta) konur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre doğru parçasını kâğıt üzerinde çizerken iki ucuna ne koyarız?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğru parçasının uzunluğu sabittir."
+            }
+          ]
+        },
+        "correct": "İki ucuna da nokta (veya kesik çizgi)",
+        "wrong1": "İki ucuna da ok",
+        "wrong2": "Bir ucuna ok",
+        "explanation": "[[geo:parca_expl]]\n\nSınırlandırılmış (kesilmiş) olduğunu göstermek için uçlarına ok konulmaz, kapatma işareti (nokta) konur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_063",
+      "level": "kolay",
+      "premise": null,
+      "text": "Uzunluğunu cetvel, metre veya karışımızla Ölçülebi̇len geometrik kavram aşağıdakilerden hangisidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:parca_expl]]\n\nSadece doğru parçasının iki ucu sabittir, bu yüzden sadece onun boyu ölçülebilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Uzunluğunu cetvel, metre veya karışımızla Ölçülebi̇len geometrik kavram aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:parca_expl]]\n\nSadece doğru parçasının iki ucu sabittir, bu yüzden sadece onun boyu ölçülebilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_064",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kutudan yeni çıkmış, hiç açılmamış bir kurşun kalem ne modelidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:parca_expl]]\n\nKalemin başlangıcı ve bitişi bellidir, boyu ölçülebilir. Bu yüzden doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kutudan yeni çıkmış, hiç açılmamış bir kurşun kalem ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:parca_expl]]\n\nKalemin başlangıcı ve bitişi bellidir, boyu ölçülebilir. Bu yüzden doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_065",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi bir 'doğru parçası' modelidir?",
+      "correct": "Öğrenci sırasının kenarı",
+      "wrong1": "Güneş ışınları",
+      "wrong2": "Ufuk çizgisi",
+      "explanation": "[[geo:parca_expl]]\n\nSıranın kenarının bir başı ve sonu vardır, cetvelle ölçülebilir, yani doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi bir 'doğru parçası' modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Öğrenci sırasının kenarı",
+        "wrong1": "Güneş ışınları",
+        "wrong2": "Ufuk çizgisi",
+        "explanation": "[[geo:parca_expl]]\n\nSıranın kenarının bir başı ve sonu vardır, cetvelle ölçülebilir, yani doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_066",
+      "level": "kolay",
+      "premise": null,
+      "text": "Paketten hiç kırılmadan çıkartılan düz çubuk makarna (spagetti) ne modelidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Açı",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:parca_expl]]\n\nSpagetti çubuğunun iki ucu da sınırlıdır ve uzunluğu bellidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Paketten hiç kırılmadan çıkartılan düz çubuk makarna (spagetti) ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Açı",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:parca_expl]]\n\nSpagetti çubuğunun iki ucu da sınırlıdır ve uzunluğu bellidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_067",
+      "level": "kolay",
+      "premise": null,
+      "text": "Kibrit kutusundan aldığımız bir kibrit çöpü hangi geometrik modele örnektir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:parca_expl]]\n\nKibrit çöpünün başı ve sonu bellidir, uzayamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kibrit kutusundan aldığımız bir kibrit çöpü hangi geometrik modele örnektir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:parca_expl]]\n\nKibrit çöpünün başı ve sonu bellidir, uzayamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_068",
+      "level": "orta",
+      "premise": null,
+      "text": "Bir ağaç dalını elimizle ortasından ikiye kırdığımızda, elde ettiğimiz iki yeni küçük dal ne modelidir?",
+      "correct": "İkisi de doğru parçasıdır",
+      "wrong1": "İkisi de ışındır",
+      "wrong2": "İkisi de doğrudur",
+      "explanation": "[[geo:parca_expl]]\n\nSınırları belli bir doğru parçasını kırdığımızda yine sınırları belli daha küçük doğru parçaları elde ederiz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir ağaç dalını elimizle ortasından ikiye kırdığımızda, elde ettiğimiz iki yeni küçük dal ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "İkisi de doğru parçasıdır",
+        "wrong1": "İkisi de ışındır",
+        "wrong2": "İkisi de doğrudur",
+        "explanation": "[[geo:parca_expl]]\n\nSınırları belli bir doğru parçasını kırdığımızda yine sınırları belli daha küçük doğru parçaları elde ederiz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_069",
+      "level": "orta",
+      "premise": null,
+      "text": "Bir terzinin kıyafet ölçmek için kullandığı 1 metrelik tahta cetvel ne modelidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:parca_expl]]\n\n1 metrelik tahtanın başı ve sonu bellidir, uzatılamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir terzinin kıyafet ölçmek için kullandığı 1 metrelik tahta cetvel ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:parca_expl]]\n\n1 metrelik tahtanın başı ve sonu bellidir, uzatılamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_070",
+      "level": "orta",
+      "premise": null,
+      "text": "İki ağacın veya iki direğin arasına çamaşır asmak için gerilen ip ne modeli oluşturur?",
+      "correct": "Doğru parçası",
+      "wrong1": "Doğru",
+      "wrong2": "Açı",
+      "explanation": "[[geo:parca_expl]]\n\nİpin iki ucu direklere bağlıdır yani sınırlandırılmıştır. Bu bir doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "İki ağacın veya iki direğin arasına çamaşır asmak için gerilen ip ne modeli oluşturur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Doğru",
+        "wrong2": "Açı",
+        "explanation": "[[geo:parca_expl]]\n\nİpin iki ucu direklere bağlıdır yani sınırlandırılmıştır. Bu bir doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_071",
+      "level": "orta",
+      "premise": "Geometrik şekiller birbirine eklenen doğru parçalarından oluşur.",
+      "text": "Buna göre bir karenin dış çerçevesi toplam kaç tane doğru parçasından meydana gelir?",
+      "correct": "4",
+      "wrong1": "3",
+      "wrong2": "5",
+      "explanation": "[[geo:kare_expl]]\n\nKarenin 4 eşit kenarı vardır. Bu kenarların her biri birer doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir karenin dış çerçevesi toplam kaç tane doğru parçasından meydana gelir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geometrik şekiller birbirine eklenen doğru parçalarından oluşur."
+            }
+          ]
+        },
+        "correct": "4",
+        "wrong1": "3",
+        "wrong2": "5",
+        "explanation": "[[geo:kare_expl]]\n\nKarenin 4 eşit kenarı vardır. Bu kenarların her biri birer doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_072",
+      "level": "orta",
+      "premise": null,
+      "text": "Üçgen çizmek için defterimize kaç tane doğru parçası çizmemiz gerekir?",
+      "correct": "3",
+      "wrong1": "4",
+      "wrong2": "2",
+      "explanation": "[[geo:ucgen_abc_expl]]\n\nÜçgen 3 kenardan oluştuğu için 3 adet doğru parçasına ihtiyaç vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Üçgen çizmek için defterimize kaç tane doğru parçası çizmemiz gerekir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "3",
+        "wrong1": "4",
+        "wrong2": "2",
+        "explanation": "[[geo:ucgen_abc_expl]]\n\nÜçgen 3 kenardan oluştuğu için 3 adet doğru parçasına ihtiyaç vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_073",
+      "level": "orta",
+      "premise": null,
+      "text": "Kareli defterde 5 kare uzunluğunda çizilmiş ve her iki ucuna kalın birer nokta konmuş çizgi nedir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:parca_expl]]\n\nUçlarına konan noktalar, çizginin orada sonlandığını gösterir ve doğru parçası olduğunu kanıtlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kareli defterde 5 kare uzunluğunda çizilmiş ve her iki ucuna kalın birer nokta konmuş çizgi nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:parca_expl]]\n\nUçlarına konan noktalar, çizginin orada sonlandığını gösterir ve doğru parçası olduğunu kanıtlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_074",
+      "level": "orta",
+      "premise": null,
+      "text": "Sınıfımızdaki yazı tahtasının alt tarafındaki alüminyum düz kenar, geometriye göre nedir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:parca_expl]]\n\nTahtanın kenarının uzunluğu bellidir ve ölçülebilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sınıfımızdaki yazı tahtasının alt tarafındaki alüminyum düz kenar, geometriye göre nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:parca_expl]]\n\nTahtanın kenarının uzunluğu bellidir ve ölçülebilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_075",
+      "level": "zor",
+      "premise": "Küp veya kare prizma gibi geometrik cisimlerin kenarlarına 'ayrıt' denir.",
+      "text": "Buna göre kutuların veya zarların kenar çizgilerini oluşturan ayrıtlar geometride hangi kavramdır?",
+      "correct": "Doğru parçası",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:parca_expl]]\n\nAyrıtlar iki köşe arasında yer alır, uzunlukları bellidir ve sınırları vardır. Bu yüzden doğru parçasıdırlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kutuların veya zarların kenar çizgilerini oluşturan ayrıtlar geometride hangi kavramdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Küp veya kare prizma gibi geometrik cisimlerin kenarlarına 'ayrıt' denir."
+            }
+          ]
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:parca_expl]]\n\nAyrıtlar iki köşe arasında yer alır, uzunlukları bellidir ve sınırları vardır. Bu yüzden doğru parçasıdırlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_076",
+      "level": "zor",
+      "premise": "Sonsuz bir doğrunun içinden bir parça kesip alıyoruz.",
+      "text": "Buna göre a ve B noktaları arasından kestiğimiz bu parça ne olarak adlandırılır?",
+      "correct": "AB doğru parçası",
+      "wrong1": "AB doğrusu",
+      "wrong2": "AB ışını",
+      "explanation": "[[geo:parca_expl]]\n\nDoğrudan koparılıp alınan ve sınırları belli olan parçaya doğru parçası denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre a ve B noktaları arasından kestiğimiz bu parça ne olarak adlandırılır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Sonsuz bir doğrunun içinden bir parça kesip alıyoruz."
+            }
+          ]
+        },
+        "correct": "AB doğru parçası",
+        "wrong1": "AB doğrusu",
+        "wrong2": "AB ışını",
+        "explanation": "[[geo:parca_expl]]\n\nDoğrudan koparılıp alınan ve sınırları belli olan parçaya doğru parçası denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_077",
+      "level": "zor",
+      "premise": "Matematik dersinde Ece, 10 cm'lik bir çizgi çizmiştir.",
+      "text": "Buna göre ece'nin çizdiği bu çizgi kesinlikle bir doğru veya ışın olabilir mi?",
+      "correct": "Olamaz, boyu 10 cm ölçülebildiği için kesinlikle doğru parçasıdır.",
+      "wrong1": "Olabilir, doğru da 10 cm olabilir.",
+      "wrong2": "Olabilir, ışın da ölçülebilir.",
+      "explanation": "[[geo:parca_expl]]\n\nUzunluğu santimetre veya metre ile kesin olarak belirtilen tek çizgi doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre ece'nin çizdiği bu çizgi kesinlikle bir doğru veya ışın olabilir mi?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Matematik dersinde Ece, 10 cm'lik bir çizgi çizmiştir."
+            }
+          ]
+        },
+        "correct": "Olamaz, boyu 10 cm ölçülebildiği için kesinlikle doğru parçasıdır.",
+        "wrong1": "Olabilir, doğru da 10 cm olabilir.",
+        "wrong2": "Olabilir, ışın da ölçülebilir.",
+        "explanation": "[[geo:parca_expl]]\n\nUzunluğu santimetre veya metre ile kesin olarak belirtilen tek çizgi doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_078",
+      "level": "zor",
+      "premise": "Karayolunda sürücüleri uyaran kesik kesik beyaz yol çizgileri vardır.",
+      "text": "Buna göre asfalttaki bu kısa kesik çizgilerin her biri ne modelidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Nokta",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:parca_expl]]\n\nÇizgilerin her birinin başlangıcı ve bitişi bellidir, bu yüzden her biri ayrı bir doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre asfalttaki bu kısa kesik çizgilerin her biri ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Karayolunda sürücüleri uyaran kesik kesik beyaz yol çizgileri vardır."
+            }
+          ]
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Nokta",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:parca_expl]]\n\nÇizgilerin her birinin başlangıcı ve bitişi bellidir, bu yüzden her biri ayrı bir doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_079",
+      "level": "zor",
+      "premise": "Bir halat çekme yarışmasında çocuklar halatın iki ucundan tutmuşlardır.",
+      "text": "Buna göre eğer halat kopmaz ve esnemezse, çocukların elleri arasında kalan halat bölümü ne modelidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Doğru",
+      "wrong2": "Işın",
+      "explanation": "[[geo:parca_expl]]\n\nEllerle tutulan yerler başlangıç ve bitiş noktaları olduğu için aradaki halat doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre eğer halat kopmaz ve esnemezse, çocukların elleri arasında kalan halat bölümü ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir halat çekme yarışmasında çocuklar halatın iki ucundan tutmuşlardır."
+            }
+          ]
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Doğru",
+        "wrong2": "Işın",
+        "explanation": "[[geo:parca_expl]]\n\nEllerle tutulan yerler başlangıç ve bitiş noktaları olduğu için aradaki halat doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_080",
+      "level": "zor",
+      "premise": null,
+      "text": "Oyun oynarken tebeşirle yere çizdiğimiz seksek karelerinin kenarları neyi modeller?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:parca_expl]]\n\nKarelerin kenarları çizili, ölçülebilir ve belirli sınırlara sahip olduğu için doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Oyun oynarken tebeşirle yere çizdiğimiz seksek karelerinin kenarları neyi modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:parca_expl]]\n\nKarelerin kenarları çizili, ölçülebilir ve belirli sınırlara sahip olduğu için doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_081",
+      "level": "kolay",
+      "premise": null,
+      "text": "Başlangıç noktaları aynı olan iki ışının birleşerek oluşturduğu açıklığa geometride ne ad verilir?",
+      "correct": "Açı",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:aci_dik_expl]]\n\nAynı noktadan (köşeden) çıkan iki ışının (kolun) aralarında oluşturduğu açıklık açıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Başlangıç noktaları aynı olan iki ışının birleşerek oluşturduğu açıklığa geometride ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Açı",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:aci_dik_expl]]\n\nAynı noktadan (köşeden) çıkan iki ışının (kolun) aralarında oluşturduğu açıklık açıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_082",
+      "level": "kolay",
+      "premise": null,
+      "text": "Açıyı oluşturan iki ışının birleştiği o sivri yere (başlangıç noktasına) ne ad verilir?",
+      "correct": "Köşe",
+      "wrong1": "Kenar",
+      "wrong2": "Çizgi",
+      "explanation": "[[geo:aci_dik_expl]]\n\nAçıların oluştuğu uç noktalara köşe adı verilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Açıyı oluşturan iki ışının birleştiği o sivri yere (başlangıç noktasına) ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Köşe",
+        "wrong1": "Kenar",
+        "wrong2": "Çizgi",
+        "explanation": "[[geo:aci_dik_expl]]\n\nAçıların oluştuğu uç noktalara köşe adı verilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_083",
+      "level": "kolay",
+      "premise": null,
+      "text": "Açıyı oluşturan düz çizgilere (ışınlara) aynı zamanda ne ad verilir?",
+      "correct": "Açının kolları (kenarları)",
+      "wrong1": "Açının noktaları",
+      "wrong2": "Açının doğrusu",
+      "explanation": "[[geo:aci_dik_expl]]\n\nAçıyı oluşturan ışınların her biri, o açının kolu veya kenarı olarak adlandırılır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Açıyı oluşturan düz çizgilere (ışınlara) aynı zamanda ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Açının kolları (kenarları)",
+        "wrong1": "Açının noktaları",
+        "wrong2": "Açının doğrusu",
+        "explanation": "[[geo:aci_dik_expl]]\n\nAçıyı oluşturan ışınların her biri, o açının kolu veya kenarı olarak adlandırılır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_084",
+      "level": "kolay",
+      "premise": null,
+      "text": "Aşağıdakilerden hangisi günlük hayattan bir 'açı' modeli olabilir?",
+      "correct": "Kağıt kestiğimiz açık makas",
+      "wrong1": "Kapatılmış dümdüz bir kitap",
+      "wrong2": "Yuvarlak bir tabak",
+      "explanation": "[[geo:makas_acik_expl]]\n\nAçık makasın bıçakları (kolları) arasında bir boşluk vardır ve bu açı oluşturur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdakilerden hangisi günlük hayattan bir 'açı' modeli olabilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Kağıt kestiğimiz açık makas",
+        "wrong1": "Kapatılmış dümdüz bir kitap",
+        "wrong2": "Yuvarlak bir tabak",
+        "explanation": "[[geo:makas_acik_expl]]\n\nAçık makasın bıçakları (kolları) arasında bir boşluk vardır ve bu açı oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_085",
+      "level": "kolay",
+      "premise": null,
+      "text": "Saatteki akrep (kısa çubuk) ile yelkovan (uzun çubuk) arasında kalan boşluk ne modelidir?",
+      "correct": "Açı",
+      "wrong1": "Doğru",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:aci_dik_expl]]\n\nSaatin merkezi köşe, kollar ise ışındır. Aralarındaki açıklık da açıyı meydana getirir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Saatteki akrep (kısa çubuk) ile yelkovan (uzun çubuk) arasında kalan boşluk ne modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Açı",
+        "wrong1": "Doğru",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:aci_dik_expl]]\n\nSaatin merkezi köşe, kollar ise ışındır. Aralarındaki açıklık da açıyı meydana getirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_086",
+      "level": "kolay",
+      "premise": null,
+      "text": "Sınıfımızın kapısını biraz açtığımızda kapı ile kapı kasası (duvar) arasında ne oluşur?",
+      "correct": "Açı",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:kapi_acik_expl]]\n\nMenteşe noktası etrafında aralanan kapı ile duvar arasındaki mesafe bir açıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Sınıfımızın kapısını biraz açtığımızda kapı ile kapı kasası (duvar) arasında ne oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Açı",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:kapi_acik_expl]]\n\nMenteşe noktası etrafında aralanan kapı ile duvar arasındaki mesafe bir açıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_087",
+      "level": "kolay",
+      "premise": null,
+      "text": "Zafer işareti yapmak için işaret ve orta parmağımızı 'V' şeklinde açtığımızda parmaklarımız arasında ne oluşur?",
+      "correct": "Açı",
+      "wrong1": "Kare",
+      "wrong2": "Doğru parçası",
+      "explanation": "[[geo:aci_dik_expl]]\n\nEl ayasında birleşip açılan parmaklar V şekliyle bir açıyı modeller.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Zafer işareti yapmak için işaret ve orta parmağımızı 'V' şeklinde açtığımızda parmaklarımız arasında ne oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Açı",
+        "wrong1": "Kare",
+        "wrong2": "Doğru parçası",
+        "explanation": "[[geo:aci_dik_expl]]\n\nEl ayasında birleşip açılan parmaklar V şekliyle bir açıyı modeller.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_088",
+      "level": "kolay",
+      "premise": "Açılar açıklıklarına göre isimlendirilirler.",
+      "text": "Buna göre karenin ve dikdörtgenin tüm köşelerinde bulunan o dik açıya (L harfi gibi) ne ad verilir?",
+      "correct": "Dik açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Geniş açı",
+      "explanation": "[[geo:aci_dik_expl]]\n\nKare ve dikdörtgenin düzgün kenarları köşelerde mükemmel bir 'L' şekli oluşturur ve buna dik açı denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre karenin ve dikdörtgenin tüm köşelerinde bulunan o dik açıya (L harfi gibi) ne ad verilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Açılar açıklıklarına göre isimlendirilirler."
+            }
+          ]
+        },
+        "correct": "Dik açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Geniş açı",
+        "explanation": "[[geo:aci_dik_expl]]\n\nKare ve dikdörtgenin düzgün kenarları köşelerde mükemmel bir 'L' şekli oluşturur ve buna dik açı denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_089",
+      "level": "orta",
+      "premise": null,
+      "text": "Kitabın sayfalarını okumak için kapağı açtıkça kapak ile sayfalar arasında oluşan şekil nedir?",
+      "correct": "Açı",
+      "wrong1": "Nokta",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:aci_dik_expl]]\n\nKitabın sırtı (cildi) köşe olur ve kapaklar açıldıkça aralarında açı belirir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kitabın sayfalarını okumak için kapağı açtıkça kapak ile sayfalar arasında oluşan şekil nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Açı",
+        "wrong1": "Nokta",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:aci_dik_expl]]\n\nKitabın sırtı (cildi) köşe olur ve kapaklar açıldıkça aralarında açı belirir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_090",
+      "level": "orta",
+      "premise": null,
+      "text": "Gönyenin en belirgin ve en büyük köşesi hangi açıyı bulmamıza ve çizmemize yardım eder?",
+      "correct": "Dik açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Geniş açı",
+      "explanation": "[[geo:aci_dik_expl]]\n\nGönyeler 90 derecelik dik açıları kolayca çizebilmek için üretilmiş geometri aletleridir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Gönyenin en belirgin ve en büyük köşesi hangi açıyı bulmamıza ve çizmemize yardım eder?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dik açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Geniş açı",
+        "explanation": "[[geo:aci_dik_expl]]\n\nGönyeler 90 derecelik dik açıları kolayca çizebilmek için üretilmiş geometri aletleridir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_091",
+      "level": "orta",
+      "premise": "Dik açı L harfine benzer.",
+      "text": "Buna göre dik açıdan daha kapalı, kolları birbirine daha yakın (sivri) olan açılara ne denir?",
+      "correct": "Dar açı",
+      "wrong1": "Geniş açı",
+      "wrong2": "Dik açı",
+      "explanation": "[[geo:aci_dar_expl]]\n\nKolları L şeklinden daha birbirine yakın olan küçük açıklıklara dar açı denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dik açıdan daha kapalı, kolları birbirine daha yakın (sivri) olan açılara ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dik açı L harfine benzer."
+            }
+          ]
+        },
+        "correct": "Dar açı",
+        "wrong1": "Geniş açı",
+        "wrong2": "Dik açı",
+        "explanation": "[[geo:aci_dar_expl]]\n\nKolları L şeklinden daha birbirine yakın olan küçük açıklıklara dar açı denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_092",
+      "level": "orta",
+      "premise": "Dik açı L harfine benzer.",
+      "text": "Buna göre dik açıdan daha fazla açılmış, kolları birbirinden uzaklaşmış olan açılara ne denir?",
+      "correct": "Geniş açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Doğru açı",
+      "explanation": "[[geo:aci_genis_expl]]\n\nKolları L şeklinden daha dışa açık olan büyük açıklıklara geniş açı denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre dik açıdan daha fazla açılmış, kolları birbirinden uzaklaşmış olan açılara ne denir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Dik açı L harfine benzer."
+            }
+          ]
+        },
+        "correct": "Geniş açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Doğru açı",
+        "explanation": "[[geo:aci_genis_expl]]\n\nKolları L şeklinden daha dışa açık olan büyük açıklıklara geniş açı denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_093",
+      "level": "orta",
+      "premise": null,
+      "text": "Timsah avlanırken ağzını kocaman açtığında oluşan devasa açıklık hangi açıya benzemektedir?",
+      "correct": "Geniş açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Dik açı",
+      "explanation": "[[geo:aci_genis_expl]]\n\nÇok fazla açılmış olan çeneler dik açıyı geçer ve geniş açı oluşturur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Timsah avlanırken ağzını kocaman açtığında oluşan devasa açıklık hangi açıya benzemektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Geniş açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Dik açı",
+        "explanation": "[[geo:aci_genis_expl]]\n\nÇok fazla açılmış olan çeneler dik açıyı geçer ve geniş açı oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_094",
+      "level": "orta",
+      "premise": null,
+      "text": "Bıçak veya iğne ucu gibi nesnelerin batıcı olan en sivri kısımları genellikle hangi açı modelidir?",
+      "correct": "Dar açı",
+      "wrong1": "Geniş açı",
+      "wrong2": "Dik açı",
+      "explanation": "[[geo:aci_dar_expl]]\n\nSivri olabilmesi için kolların birbirine çok yakın (dar) olması gerekir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bıçak veya iğne ucu gibi nesnelerin batıcı olan en sivri kısımları genellikle hangi açı modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dar açı",
+        "wrong1": "Geniş açı",
+        "wrong2": "Dik açı",
+        "explanation": "[[geo:aci_dar_expl]]\n\nSivri olabilmesi için kolların birbirine çok yakın (dar) olması gerekir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_095",
+      "level": "orta",
+      "premise": null,
+      "text": "Odamızın içindeki iki duvarın birbiriyle birleştiği o düzgün köşeler genellikle hangi açıdır?",
+      "correct": "Dik açı",
+      "wrong1": "Geniş açı",
+      "wrong2": "Dar açı",
+      "explanation": "[[geo:aci_dik_expl]]\n\nEvler sağlam ve düzgün olsun diye duvarlar yere ve birbirine dik olarak, dik açıyla inşa edilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Odamızın içindeki iki duvarın birbiriyle birleştiği o düzgün köşeler genellikle hangi açıdır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dik açı",
+        "wrong1": "Geniş açı",
+        "wrong2": "Dar açı",
+        "explanation": "[[geo:aci_dik_expl]]\n\nEvler sağlam ve düzgün olsun diye duvarlar yere ve birbirine dik olarak, dik açıyla inşa edilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_096",
+      "level": "zor",
+      "premise": "[[clock:a:3:00]]\n\nAkrep ile yelkovanın konumu farklı açılar oluşturur.",
+      "text": "Buna göre saat tam 03:00'ü gösterirken (Akrep 3'te, Yelkovan 12'de) kollar arasında hangi açı oluşur?",
+      "correct": "Dik açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Geniş açı",
+      "explanation": "[[clock:a:3:00]]\n\n[[geo:aci_dik_expl]]\n\nSaat tam 3'te kollar 'L' harfi şeklini alır ve bu bir dik açıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre saat tam 03:00'ü gösterirken (Akrep 3'te, Yelkovan 12'de) kollar arasında hangi açı oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:3:00]]\n\nAkrep ile yelkovanın konumu farklı açılar oluşturur."
+            }
+          ]
+        },
+        "correct": "Dik açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Geniş açı",
+        "explanation": "[[clock:a:3:00]]\n\n[[geo:aci_dik_expl]]\n\nSaat tam 3'te kollar 'L' harfi şeklini alır ve bu bir dik açıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_097",
+      "level": "zor",
+      "premise": "[[clock:a:9:00]]\n\nAkrep ile yelkovanın konumu farklı açılar oluşturur.",
+      "text": "Buna göre saat tam 09:00'u gösterirken kollar arasında hangi açı oluşur?",
+      "correct": "Dik açı",
+      "wrong1": "Geniş açı",
+      "wrong2": "Dar açı",
+      "explanation": "[[clock:a:9:00]]\n\n[[geo:aci_dik_expl]]\n\nSaat 9'da kollar ters bir 'L' harfi şeklini alır ve bu da yine dik açıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre saat tam 09:00'u gösterirken kollar arasında hangi açı oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:9:00]]\n\nAkrep ile yelkovanın konumu farklı açılar oluşturur."
+            }
+          ]
+        },
+        "correct": "Dik açı",
+        "wrong1": "Geniş açı",
+        "wrong2": "Dar açı",
+        "explanation": "[[clock:a:9:00]]\n\n[[geo:aci_dik_expl]]\n\nSaat 9'da kollar ters bir 'L' harfi şeklini alır ve bu da yine dik açıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_098",
+      "level": "zor",
+      "premise": "[[clock:a:2:00]]\n\nSaat 03:00'te dik açı oluşur.",
+      "text": "Buna göre saat 02:00'yi gösterdiğinde kollar birbirine daha yakınlaştığı için hangi açı oluşur?",
+      "correct": "Dar açı",
+      "wrong1": "Geniş açı",
+      "wrong2": "Dik açı",
+      "explanation": "[[clock:a:2:00]]\n\n[[geo:aci_dar_expl]]\n\nKollar L şeklinden (dik açıdan) daha yakınsa arada dar açı oluşur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre saat 02:00'yi gösterdiğinde kollar birbirine daha yakınlaştığı için hangi açı oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:2:00]]\n\nSaat 03:00'te dik açı oluşur."
+            }
+          ]
+        },
+        "correct": "Dar açı",
+        "wrong1": "Geniş açı",
+        "wrong2": "Dik açı",
+        "explanation": "[[clock:a:2:00]]\n\n[[geo:aci_dar_expl]]\n\nKollar L şeklinden (dik açıdan) daha yakınsa arada dar açı oluşur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_099",
+      "level": "zor",
+      "premise": "[[clock:a:5:00]]\n\nSaat 03:00'te dik açı oluşur.",
+      "text": "Buna göre saat 05:00'i gösterdiğinde kollar L şeklinden daha fazla açıldığı için hangi açı oluşur?",
+      "correct": "Geniş açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Dik açı",
+      "explanation": "[[clock:a:5:00]]\n\n[[geo:aci_genis_expl]]\n\nKollar L şeklinden (dik açıdan) daha uzağa açılmışsa arada geniş açı oluşur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre saat 05:00'i gösterdiğinde kollar L şeklinden daha fazla açıldığı için hangi açı oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:5:00]]\n\nSaat 03:00'te dik açı oluşur."
+            }
+          ]
+        },
+        "correct": "Geniş açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Dik açı",
+        "explanation": "[[clock:a:5:00]]\n\n[[geo:aci_genis_expl]]\n\nKollar L şeklinden (dik açıdan) daha uzağa açılmışsa arada geniş açı oluşur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_100",
+      "level": "zor",
+      "premise": "[[clock:a:6:00]]\n\nAkrep ve yelkovanın birbirine göre durumu önemlidir.",
+      "text": "Buna göre saat tam 06:00'yı gösterdiğinde akrep ile yelkovan tamamen zıt yönlere bakarlar. Bu durumda ne oluşur?",
+      "correct": "Dümdüz bir çizgi (Doğru açı) oluşur.",
+      "wrong1": "Açı oluşmaz.",
+      "wrong2": "Dik açı oluşur.",
+      "explanation": "[[clock:a:6:00]]\n\n[[geo:aci_dogru_expl]]\n\nKollar tamamen açılıp zıt yönlere baktığında 180 derecelik düz bir çizgi yani 'doğru açı' meydana gelir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre saat tam 06:00'yı gösterdiğinde akrep ile yelkovan tamamen zıt yönlere bakarlar. Bu durumda ne oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "[[clock:a:6:00]]\n\nAkrep ve yelkovanın birbirine göre durumu önemlidir."
+            }
+          ]
+        },
+        "correct": "Dümdüz bir çizgi (Doğru açı) oluşur.",
+        "wrong1": "Açı oluşmaz.",
+        "wrong2": "Dik açı oluşur.",
+        "explanation": "[[clock:a:6:00]]\n\n[[geo:aci_dogru_expl]]\n\nKollar tamamen açılıp zıt yönlere baktığında 180 derecelik düz bir çizgi yani 'doğru açı' meydana gelir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_101",
+      "level": "kolay",
+      "premise": "Doğruların duruş şekilleri yatay, dikey ve eğik olabilir.",
+      "text": "Buna göre durgun bir göl yüzeyi veya dümdüz olan masa yüzeyi hangi çizgi konumundadır?",
+      "correct": "Yatay çizgi",
+      "wrong1": "Dikey çizgi",
+      "wrong2": "Eğik çizgi",
+      "explanation": "[[geo:yatay_expl]]\n\nYere tam olarak paralel (sağdan sola) düz duran çizgilere yatay denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre durgun bir göl yüzeyi veya dümdüz olan masa yüzeyi hangi çizgi konumundadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğruların duruş şekilleri yatay, dikey ve eğik olabilir."
+            }
+          ]
+        },
+        "correct": "Yatay çizgi",
+        "wrong1": "Dikey çizgi",
+        "wrong2": "Eğik çizgi",
+        "explanation": "[[geo:yatay_expl]]\n\nYere tam olarak paralel (sağdan sola) düz duran çizgilere yatay denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_102",
+      "level": "kolay",
+      "premise": "Doğruların duruş şekilleri yatay, dikey ve eğik olabilir.",
+      "text": "Buna göre bahçemizdeki bayrak direği yere göre nasıl bir konumdadır?",
+      "correct": "Dikey çizgi",
+      "wrong1": "Yatay çizgi",
+      "wrong2": "Eğik çizgi",
+      "explanation": "[[geo:dikey_expl]]\n\nYukarıdan aşağıya (veya aşağıdan yukarıya) dümdüz dik duran çizgilere dikey denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bahçemizdeki bayrak direği yere göre nasıl bir konumdadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğruların duruş şekilleri yatay, dikey ve eğik olabilir."
+            }
+          ]
+        },
+        "correct": "Dikey çizgi",
+        "wrong1": "Yatay çizgi",
+        "wrong2": "Eğik çizgi",
+        "explanation": "[[geo:dikey_expl]]\n\nYukarıdan aşağıya (veya aşağıdan yukarıya) dümdüz dik duran çizgilere dikey denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_103",
+      "level": "orta",
+      "premise": "Doğruların duruş şekilleri yatay, dikey ve eğik olabilir.",
+      "text": "Buna göre boya yapmak için duvara yasladığımız bir merdiven hangi çizgiyi modeller?",
+      "correct": "Eğik çizgi",
+      "wrong1": "Yatay çizgi",
+      "wrong2": "Dikey çizgi",
+      "explanation": "[[geo:egik_expl]]\n\nNe tam yatay ne de tam dikey olan, yana yatmış çapraz çizgilere eğik denir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre boya yapmak için duvara yasladığımız bir merdiven hangi çizgiyi modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğruların duruş şekilleri yatay, dikey ve eğik olabilir."
+            }
+          ]
+        },
+        "correct": "Eğik çizgi",
+        "wrong1": "Yatay çizgi",
+        "wrong2": "Dikey çizgi",
+        "explanation": "[[geo:egik_expl]]\n\nNe tam yatay ne de tam dikey olan, yana yatmış çapraz çizgilere eğik denir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_104",
+      "level": "orta",
+      "premise": null,
+      "text": "Kışın karda kaymak için gittiğimiz yokuş ve rampalar geometriye göre hangi çizgidir?",
+      "correct": "Eğik",
+      "wrong1": "Dikey",
+      "wrong2": "Yatay",
+      "explanation": "[[geo:egik_expl]]\n\nYokuşlar yere göre belirli bir eğime sahip oldukları için eğik çizgidir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kışın karda kaymak için gittiğimiz yokuş ve rampalar geometriye göre hangi çizgidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Eğik",
+        "wrong1": "Dikey",
+        "wrong2": "Yatay",
+        "explanation": "[[geo:egik_expl]]\n\nYokuşlar yere göre belirli bir eğime sahip oldukları için eğik çizgidir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_105",
+      "level": "orta",
+      "premise": null,
+      "text": "Futbol sahasındaki kalenin üst direği (üstte sağdan sola uzanan direk) yere göre hangi konumdadır?",
+      "correct": "Yatay",
+      "wrong1": "Dikey",
+      "wrong2": "Eğik",
+      "explanation": "[[geo:yatay_expl]]\n\nÜst direk zemine paralel uzandığı için yatay konumdadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Futbol sahasındaki kalenin üst direği (üstte sağdan sola uzanan direk) yere göre hangi konumdadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yatay",
+        "wrong1": "Dikey",
+        "wrong2": "Eğik",
+        "explanation": "[[geo:yatay_expl]]\n\nÜst direk zemine paralel uzandığı için yatay konumdadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_106",
+      "level": "orta",
+      "premise": null,
+      "text": "Futbol sahasındaki kalenin yan direkleri (yerden yukarı uzanan direkler) yere göre hangi konumdadır?",
+      "correct": "Dikey",
+      "wrong1": "Yatay",
+      "wrong2": "Eğik",
+      "explanation": "[[geo:dikey_expl]]\n\nYan direkler zemine dik olarak yerleştirildiği için dikey konumdadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Futbol sahasındaki kalenin yan direkleri (yerden yukarı uzanan direkler) yere göre hangi konumdadır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dikey",
+        "wrong1": "Yatay",
+        "wrong2": "Eğik",
+        "explanation": "[[geo:dikey_expl]]\n\nYan direkler zemine dik olarak yerleştirildiği için dikey konumdadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_107",
+      "level": "orta",
+      "premise": null,
+      "text": "Rüzgârsız havada yağmur damlalarının buluttan yere dümdüz düşüşü hangi modeli oluşturur?",
+      "correct": "Dikey",
+      "wrong1": "Yatay",
+      "wrong2": "Eğik",
+      "explanation": "[[geo:dikey_expl]]\n\nYukarıdan aşağıya dümdüz bir iniş dikey çizgiyi ifade eder.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rüzgârsız havada yağmur damlalarının buluttan yere dümdüz düşüşü hangi modeli oluşturur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Dikey",
+        "wrong1": "Yatay",
+        "wrong2": "Eğik",
+        "explanation": "[[geo:dikey_expl]]\n\nYukarıdan aşağıya dümdüz bir iniş dikey çizgiyi ifade eder.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_108",
+      "level": "orta",
+      "premise": null,
+      "text": "Rüzgârlı havada yağmur damlalarının savrularak, yana yatmış şekilde yere düşüşü hangi modeldir?",
+      "correct": "Eğik",
+      "wrong1": "Dikey",
+      "wrong2": "Yatay",
+      "explanation": "[[geo:egik_expl]]\n\nRüzgâr damlaları yatırdığı için düşüş çizgisi çapraz (eğik) olur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Rüzgârlı havada yağmur damlalarının savrularak, yana yatmış şekilde yere düşüşü hangi modeldir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Eğik",
+        "wrong1": "Dikey",
+        "wrong2": "Yatay",
+        "explanation": "[[geo:egik_expl]]\n\nRüzgâr damlaları yatırdığı için düşüş çizgisi çapraz (eğik) olur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_109",
+      "level": "orta",
+      "premise": null,
+      "text": "Kitabımızı okumak için masanın üzerine tamamen yassı şekilde koyduğumuzda kitabın duruşu nasıldır?",
+      "correct": "Yatay",
+      "wrong1": "Dikey",
+      "wrong2": "Eğik",
+      "explanation": "[[geo:yatay_expl]]\n\nMasa üzerinde dümdüz yatan nesneler zeminle paralel yani yataydır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Kitabımızı okumak için masanın üzerine tamamen yassı şekilde koyduğumuzda kitabın duruşu nasıldır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Yatay",
+        "wrong1": "Dikey",
+        "wrong2": "Eğik",
+        "explanation": "[[geo:yatay_expl]]\n\nMasa üzerinde dümdüz yatan nesneler zeminle paralel yani yataydır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_110",
+      "level": "orta",
+      "premise": null,
+      "text": "Çocuk parkındaki kaydırağın merdivenden çıktıktan sonra kayılan yüzeyi hangi doğru parçası modelidir?",
+      "correct": "Eğik doğru parçası",
+      "wrong1": "Yatay doğru parçası",
+      "wrong2": "Dikey doğru parçası",
+      "explanation": "[[geo:egik_expl]]\n\nKaydırak aşağı doğru meyilli olduğu için eğik çizgi konumundadır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Çocuk parkındaki kaydırağın merdivenden çıktıktan sonra kayılan yüzeyi hangi doğru parçası modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Eğik doğru parçası",
+        "wrong1": "Yatay doğru parçası",
+        "wrong2": "Dikey doğru parçası",
+        "explanation": "[[geo:egik_expl]]\n\nKaydırak aşağı doğru meyilli olduğu için eğik çizgi konumundadır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_111",
+      "level": "zor",
+      "premise": "Uzunluk, nesnenin kendi boyuna bağlıdır, duruş yönüne değil.",
+      "text": "Buna göre sadece yönleri (yatay ve dikey) farklı ama tamamen aynı iki kalemi yan yana koysak boyları için ne diyebiliriz?",
+      "correct": "Boyları birbirine eşittir.",
+      "wrong1": "Dikey olan daha uzundur.",
+      "wrong2": "Yatay olan daha uzundur.",
+      "explanation": "[[geo:kalem_esit_expl]]\n\nNesnenin veya çizginin konumunun değişmesi (yatay veya dikey olması) doğru parçasının uzunluğunu değiştirmez.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sadece yönleri (yatay ve dikey) farklı ama tamamen aynı iki kalemi yan yana koysak boyları için ne diyebiliriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Uzunluk, nesnenin kendi boyuna bağlıdır, duruş yönüne değil."
+            }
+          ]
+        },
+        "correct": "Boyları birbirine eşittir.",
+        "wrong1": "Dikey olan daha uzundur.",
+        "wrong2": "Yatay olan daha uzundur.",
+        "explanation": "[[geo:kalem_esit_expl]]\n\nNesnenin veya çizginin konumunun değişmesi (yatay veya dikey olması) doğru parçasının uzunluğunu değiştirmez.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_112",
+      "level": "zor",
+      "premise": "Açının kolları uzatıldığında açı açıklığı değişmez.",
+      "text": "Buna göre bir açının iki kolunu (ışınlarını) cetvelle daha uzun çizersek açının büyüklüğü nasıl etkilenir?",
+      "correct": "Değişmez, açı aynı kalır.",
+      "wrong1": "Kollar uzadığı için açı büyür.",
+      "wrong2": "Kollar uzadığı için açı küçülür.",
+      "explanation": "[[geo:aci_uzat_expl]]\n\nAçının büyüklüğü kolların boyuna değil, sadece kolların birbirine ne kadar yakın/uzak olduğuna (açıklığa) bağlıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir açının iki kolunu (ışınlarını) cetvelle daha uzun çizersek açının büyüklüğü nasıl etkilenir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Açının kolları uzatıldığında açı açıklığı değişmez."
+            }
+          ]
+        },
+        "correct": "Değişmez, açı aynı kalır.",
+        "wrong1": "Kollar uzadığı için açı büyür.",
+        "wrong2": "Kollar uzadığı için açı küçülür.",
+        "explanation": "[[geo:aci_uzat_expl]]\n\nAçının büyüklüğü kolların boyuna değil, sadece kolların birbirine ne kadar yakın/uzak olduğuna (açıklığa) bağlıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_113",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki büyük harflerden hangisi hem Yatay hem de Di̇key doğru parçalarından oluşmuştur?",
+      "correct": "H",
+      "wrong1": "I",
+      "wrong2": "Z",
+      "explanation": "[[geo:harf_h_expl]]\n\nH harfinde iki tane dikey (yanlarda), bir tane yatay (ortada) çizgi vardır. Z harfinde ise eğik çizgi vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki büyük harflerden hangisi hem Yatay hem de Di̇key doğru parçalarından oluşmuştur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "H",
+        "wrong1": "I",
+        "wrong2": "Z",
+        "explanation": "[[geo:harf_h_expl]]\n\nH harfinde iki tane dikey (yanlarda), bir tane yatay (ortada) çizgi vardır. Z harfinde ise eğik çizgi vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_114",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki büyük harflerden hangisi Eği̇k doğru parçaları içermektedir?",
+      "correct": "V",
+      "wrong1": "T",
+      "wrong2": "E",
+      "explanation": "[[geo:harf_v_expl]]\n\nV harfinin iki kolu da ne tam dik ne de tam yataydır, eğik olarak birleşirler.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki büyük harflerden hangisi Eği̇k doğru parçaları içermektedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "V",
+        "wrong1": "T",
+        "wrong2": "E",
+        "explanation": "[[geo:harf_v_expl]]\n\nV harfinin iki kolu da ne tam dik ne de tam yataydır, eğik olarak birleşirler.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_115",
+      "level": "zor",
+      "premise": null,
+      "text": "Aşağıdaki büyük harflerden hangisinde hiçbir doğru parçası veya açı yoktur?",
+      "correct": "O",
+      "wrong1": "N",
+      "wrong2": "M",
+      "explanation": "[[geo:harf_o_expl]]\n\nO harfi yuvarlak bir eğriden oluşur; düz çizgisi (doğru parçası) veya köşesi (açısı) yoktur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Aşağıdaki büyük harflerden hangisinde hiçbir doğru parçası veya açı yoktur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "O",
+        "wrong1": "N",
+        "wrong2": "M",
+        "explanation": "[[geo:harf_o_expl]]\n\nO harfi yuvarlak bir eğriden oluşur; düz çizgisi (doğru parçası) veya köşesi (açısı) yoktur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_116",
+      "level": "zor",
+      "premise": "Büyük T harfini inceleyelim.",
+      "text": "Buna göre t harfinde yatay çizgi ile dikey çizginin kesiştiği yerde nasıl bir açı oluşur?",
+      "correct": "Dik açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Geniş açı",
+      "explanation": "[[geo:harf_t_expl]]\n\nYatay ve dikey iki çizgi birbirini tam 90 derece açıyla (L şekli gibi) yani dik açıyla keser.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre t harfinde yatay çizgi ile dikey çizginin kesiştiği yerde nasıl bir açı oluşur?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Büyük T harfini inceleyelim."
+            }
+          ]
+        },
+        "correct": "Dik açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Geniş açı",
+        "explanation": "[[geo:harf_t_expl]]\n\nYatay ve dikey iki çizgi birbirini tam 90 derece açıyla (L şekli gibi) yani dik açıyla keser.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_117",
+      "level": "zor",
+      "premise": "Bir şeklin açısı olması için çizgilerin bir köşede kesişmesi şarttır.",
+      "text": "Buna göre yuvarlak (çember) şeklindeki bir can simidinin üzerinde kaç tane açı bulabiliriz?",
+      "correct": "Sıfır (Açısı yoktur)",
+      "wrong1": "Sonsuz sayıda açı vardır",
+      "wrong2": "1 tane geniş açı vardır",
+      "explanation": "[[geo:harf_o_expl]]\n\nÇember gibi dairesel şekillerin kenarı (düz çizgisi) ve köşesi olmadığı için açısı da olamaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre yuvarlak (çember) şeklindeki bir can simidinin üzerinde kaç tane açı bulabiliriz?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir şeklin açısı olması için çizgilerin bir köşede kesişmesi şarttır."
+            }
+          ]
+        },
+        "correct": "Sıfır (Açısı yoktur)",
+        "wrong1": "Sonsuz sayıda açı vardır",
+        "wrong2": "1 tane geniş açı vardır",
+        "explanation": "[[geo:harf_o_expl]]\n\nÇember gibi dairesel şekillerin kenarı (düz çizgisi) ve köşesi olmadığı için açısı da olamaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_118",
+      "level": "zor",
+      "premise": null,
+      "text": "Televizyon, akıllı tahta ve kapı gibi nesnelerin her birinin toplam kaç köşesi (açısı) vardır?",
+      "correct": "4",
+      "wrong1": "2",
+      "wrong2": "3",
+      "explanation": "[[geo:dikdortgen_expl|kose]]\n\nBu nesnelerin hepsi dikdörtgen şeklindedir ve dikdörtgenlerin tam 4 tane köşesi vardır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Televizyon, akıllı tahta ve kapı gibi nesnelerin her birinin toplam kaç köşesi (açısı) vardır?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "4",
+        "wrong1": "2",
+        "wrong2": "3",
+        "explanation": "[[geo:dikdortgen_expl|kose]]\n\nBu nesnelerin hepsi dikdörtgen şeklindedir ve dikdörtgenlerin tam 4 tane köşesi vardır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_119",
+      "level": "zor",
+      "premise": "Geometrik şekiller içlerindeki açı sayılarına göre isim alırlar.",
+      "text": "Buna göre bir levhanın içinde 3 tane dar açı saydıysak bu levha büyük ihtimalle hangi şekildedir?",
+      "correct": "Üçgen",
+      "wrong1": "Kare",
+      "wrong2": "Dikdörtgen",
+      "explanation": "[[geo:ucgen_abc_expl]]\n\nİçinde tam 3 tane köşe/açı bulunduran kapalı geometrik şekiller üçgenlerdir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir levhanın içinde 3 tane dar açı saydıysak bu levha büyük ihtimalle hangi şekildedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Geometrik şekiller içlerindeki açı sayılarına göre isim alırlar."
+            }
+          ]
+        },
+        "correct": "Üçgen",
+        "wrong1": "Kare",
+        "wrong2": "Dikdörtgen",
+        "explanation": "[[geo:ucgen_abc_expl]]\n\nİçinde tam 3 tane köşe/açı bulunduran kapalı geometrik şekiller üçgenlerdir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_120",
+      "level": "zor",
+      "premise": "Aynı A noktasından çıkan ve birbirine tamamen zıt yönlere (biri sağa biri sola) giden iki ışın çizelim.",
+      "text": "Buna göre bu iki zıt ışın birleştiğinde ortaya çıkan yepyeni uzun şeklin adı nedir?",
+      "correct": "Doğru",
+      "wrong1": "Doğru parçası",
+      "wrong2": "Sadece büyük bir nokta",
+      "explanation": "[[geo:dogru_expl]]\n\nMerkezden sağa ve sola giden iki ışın uç uca eklendiğinde iki yöne sonsuza giden düz bir doğru oluşturur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu iki zıt ışın birleştiğinde ortaya çıkan yepyeni uzun şeklin adı nedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Aynı A noktasından çıkan ve birbirine tamamen zıt yönlere (biri sağa biri sola) giden iki ışın çizelim."
+            }
+          ]
+        },
+        "correct": "Doğru",
+        "wrong1": "Doğru parçası",
+        "wrong2": "Sadece büyük bir nokta",
+        "explanation": "[[geo:dogru_expl]]\n\nMerkezden sağa ve sola giden iki ışın uç uca eklendiğinde iki yöne sonsuza giden düz bir doğru oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_121",
+      "level": "zor",
+      "premise": "Doğru parçasının iki ucu da kapalıdır, sınırlıdır.",
+      "text": "Buna göre peki bir doğru parçasının sadece Bi̇r ucuna ok işareti koyarsak (uzatırsak), bu şekil neye dönüşür?",
+      "correct": "Işın",
+      "wrong1": "Doğru",
+      "wrong2": "Yine doğru parçası kalır",
+      "explanation": "[[geo:dogru_to_isin_expl]]\n\nBir ucu sınırlı (noktalı) bırakıp diğer ucu uzatmak (ok yapmak) şekli ışına dönüştürür.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre peki bir doğru parçasının sadece Bi̇r ucuna ok işareti koyarsak (uzatırsak), bu şekil neye dönüşür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğru parçasının iki ucu da kapalıdır, sınırlıdır."
+            }
+          ]
+        },
+        "correct": "Işın",
+        "wrong1": "Doğru",
+        "wrong2": "Yine doğru parçası kalır",
+        "explanation": "[[geo:dogru_to_isin_expl]]\n\nBir ucu sınırlı (noktalı) bırakıp diğer ucu uzatmak (ok yapmak) şekli ışına dönüştürür.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_122",
+      "level": "zor",
+      "premise": "Doğru parçasının iki ucu da kapalıdır, sınırlıdır.",
+      "text": "Buna göre bir doğru parçasının her iki ucuna da ok işareti koyarsak (uzatırsak), bu şekil neye dönüşür?",
+      "correct": "Doğru",
+      "wrong1": "Işın",
+      "wrong2": "Nokta",
+      "explanation": "[[geo:parca_to_dogru_expl]]\n\nHer iki ucun da ok işaretiyle sonsuza uzatılması şeklin bir doğru olduğunu gösterir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bir doğru parçasının her iki ucuna da ok işareti koyarsak (uzatırsak), bu şekil neye dönüşür?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğru parçasının iki ucu da kapalıdır, sınırlıdır."
+            }
+          ]
+        },
+        "correct": "Doğru",
+        "wrong1": "Işın",
+        "wrong2": "Nokta",
+        "explanation": "[[geo:parca_to_dogru_expl]]\n\nHer iki ucun da ok işaretiyle sonsuza uzatılması şeklin bir doğru olduğunu gösterir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_123",
+      "level": "zor",
+      "premise": "Bir sınıftaki öğrenciler bedenleriyle açı modelleri oluşturuyor.",
+      "text": "Buna göre kollarını iki yana doğru T harfi gibi dümdüz açan bir öğrenci hangi açıyı modeller?",
+      "correct": "Doğru (düz) açı",
+      "wrong1": "Dik açı",
+      "wrong2": "Dar açı",
+      "explanation": "[[geo:ogrenci_dogru_aci_expl]]\n\nİki kol tamamen zıt yönlere uzandığında dümdüz bir çizgi (180 derecelik doğru açı) oluşur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kollarını iki yana doğru T harfi gibi dümdüz açan bir öğrenci hangi açıyı modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sınıftaki öğrenciler bedenleriyle açı modelleri oluşturuyor."
+            }
+          ]
+        },
+        "correct": "Doğru (düz) açı",
+        "wrong1": "Dik açı",
+        "wrong2": "Dar açı",
+        "explanation": "[[geo:ogrenci_dogru_aci_expl]]\n\nİki kol tamamen zıt yönlere uzandığında dümdüz bir çizgi (180 derecelik doğru açı) oluşur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_124",
+      "level": "zor",
+      "premise": "Bir sınıftaki öğrenciler bedenleriyle açı modelleri oluşturuyor.",
+      "text": "Buna göre sağ kolunu havaya, sol kolunu yana uzatan bir öğrenci kollarının arasında nasıl bir açı modeller?",
+      "correct": "Dik açı",
+      "wrong1": "Dar açı",
+      "wrong2": "Geniş açı",
+      "explanation": "[[geo:ogrenci_dik_expl]]\n\nBiri dikey diğeri yatay iki kolun omuzda birleşmesi bir 'L' harfi (dik açı) oluşturur.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sağ kolunu havaya, sol kolunu yana uzatan bir öğrenci kollarının arasında nasıl bir açı modeller?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir sınıftaki öğrenciler bedenleriyle açı modelleri oluşturuyor."
+            }
+          ]
+        },
+        "correct": "Dik açı",
+        "wrong1": "Dar açı",
+        "wrong2": "Geniş açı",
+        "explanation": "[[geo:ogrenci_dik_expl]]\n\nBiri dikey diğeri yatay iki kolun omuzda birleşmesi bir 'L' harfi (dik açı) oluşturur.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_125",
+      "level": "zor",
+      "premise": "Kareli kağıda çizdiğimiz noktaları birleştirerek şekiller çizeriz.",
+      "text": "Buna göre kağıttaki 4 noktayı cetvelle çizgiler çizerek birleştirdiğimizde, bu çizgiler neyin modelidir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:kareli_expl]]\n\nNoktalar arası mesafe sınırlı olduğu ve ölçülebildiği için çizdiğimiz o çizgiler doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre kağıttaki 4 noktayı cetvelle çizgiler çizerek birleştirdiğimizde, bu çizgiler neyin modelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Kareli kağıda çizdiğimiz noktaları birleştirerek şekiller çizeriz."
+            }
+          ]
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:kareli_expl]]\n\nNoktalar arası mesafe sınırlı olduğu ve ölçülebildiği için çizdiğimiz o çizgiler doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_126",
+      "level": "zor",
+      "premise": "Makasın açık hali bir açıdır.",
+      "text": "Buna göre peki makası masaya kapalı olarak koyduğumuzda, bıçakları arasında oluşan açı için ne söylenebilir?",
+      "correct": "Aralarında açıklık kalmadığı için açı oluşmaz (sıfır açıdır).",
+      "wrong1": "Çok büyük bir geniş açı oluşur.",
+      "wrong2": "Dik açı oluşur.",
+      "explanation": "[[geo:makas_kapali_expl]]\n\nMakasın kolları üst üste bindiğinde aralarında açıklık kalmaz, bu nedenle gözle görülür bir açı oluşmaz.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre peki makası masaya kapalı olarak koyduğumuzda, bıçakları arasında oluşan açı için ne söylenebilir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Makasın açık hali bir açıdır."
+            }
+          ]
+        },
+        "correct": "Aralarında açıklık kalmadığı için açı oluşmaz (sıfır açıdır).",
+        "wrong1": "Çok büyük bir geniş açı oluşur.",
+        "wrong2": "Dik açı oluşur.",
+        "explanation": "[[geo:makas_kapali_expl]]\n\nMakasın kolları üst üste bindiğinde aralarında açıklık kalmaz, bu nedenle gözle görülür bir açı oluşmaz.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_127",
+      "level": "zor",
+      "premise": null,
+      "text": "Bir bilardo topuna vurulduğunda masanın diğer kenarına çarpana kadar izlediği yol hangi geometrik modeldir?",
+      "correct": "Doğru parçası",
+      "wrong1": "Işın",
+      "wrong2": "Doğru",
+      "explanation": "[[geo:bilardo_expl]]\n\nTopun vurulduğu yer (başlangıç) ve duvara çarptığı yer (bitiş) bellidir, yani bir doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Bir bilardo topuna vurulduğunda masanın diğer kenarına çarpana kadar izlediği yol hangi geometrik modeldir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": null
+        },
+        "correct": "Doğru parçası",
+        "wrong1": "Işın",
+        "wrong2": "Doğru",
+        "explanation": "[[geo:bilardo_expl]]\n\nTopun vurulduğu yer (başlangıç) ve duvara çarptığı yer (bitiş) bellidir, yani bir doğru parçasıdır.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_128",
+      "level": "zor",
+      "premise": "Doğru, ışın ve doğru parçasının ortak yönleri vardır.",
+      "text": "Buna göre bu üç kavramın en önemli ortak özelliği aşağıdakilerden hangisidir?",
+      "correct": "Hepsinde eğri olmayan, dümdüz çizgiler kullanılması.",
+      "wrong1": "Hepsinde ok işareti olması.",
+      "wrong2": "Üçünün de uzunluğunun cetvelle ölçülebilmesi.",
+      "explanation": "[[geo:ortak_duz_expl]]\n\nBu üç geometrik model de doğrusal, yani cetvelle çizilmiş gibi tamamen düz olmak zorundadır. Eğri olamazlar.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu üç kavramın en önemli ortak özelliği aşağıdakilerden hangisidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Doğru, ışın ve doğru parçasının ortak yönleri vardır."
+            }
+          ]
+        },
+        "correct": "Hepsinde eğri olmayan, dümdüz çizgiler kullanılması.",
+        "wrong1": "Hepsinde ok işareti olması.",
+        "wrong2": "Üçünün de uzunluğunun cetvelle ölçülebilmesi.",
+        "explanation": "[[geo:ortak_duz_expl]]\n\nBu üç geometrik model de doğrusal, yani cetvelle çizilmiş gibi tamamen düz olmak zorundadır. Eğri olamazlar.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_129",
+      "level": "zor",
+      "premise": "Bir üçgenin içindeki 3 açıyı da kesip makasla dışarı çıkarırsak elimizde sadece kollar kalır.",
+      "text": "Buna göre bu kollar (ışınlar) toplam kaç tanedir?",
+      "correct": "6",
+      "wrong1": "3",
+      "wrong2": "4",
+      "explanation": "[[geo:ucgen_kollar_expl]]\n\nHer bir açının 2 tane kolu (ışını) vardır. Üçgende 3 açı olduğu için toplam 3 x 2 = 6 kol (ışın) elde edilir.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre bu kollar (ışınlar) toplam kaç tanedir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Bir üçgenin içindeki 3 açıyı da kesip makasla dışarı çıkarırsak elimizde sadece kollar kalır."
+            }
+          ]
+        },
+        "correct": "6",
+        "wrong1": "3",
+        "wrong2": "4",
+        "explanation": "[[geo:ucgen_kollar_expl]]\n\nHer bir açının 2 tane kolu (ışını) vardır. Üçgende 3 açı olduğu için toplam 3 x 2 = 6 kol (ışın) elde edilir.",
+        "url": null
+      }
+    },
+    {
+      "id": "mat3_t12_130",
+      "level": "zor",
+      "premise": "Ölçüm yapılabilen tek düz çizgi modeli Doğru Parçasıdır.",
+      "text": "Buna göre sınavda öğretmen Ali'den cetveliyle 10 cm uzunluğunda bir 'Doğru' çizmesini istemiştir. Ali öğretmene ne cevap vermelidir?",
+      "correct": "Öğretmenim, doğru ölçülemez. Ancak 10 cm'lik bir doğru parçası çizebilirim.",
+      "wrong1": "Hemen çizerim öğretmenim.",
+      "wrong2": "Cetvelim kısaysa çizemem.",
+      "explanation": "[[geo:parca_expl]]\n\nDoğruların boyu sonsuzdur ve cetvelle çizilip ölçülemez. Uzunluğu belirli olan şey doğru parçasıdır.",
+      "_stem_locked": true,
+      "app": {
+        "question": {
+          "text": "Buna göre sınavda öğretmen Ali'den cetveliyle 10 cm uzunluğunda bir 'Doğru' çizmesini istemiştir. Ali öğretmene ne cevap vermelidir?",
+          "info": null,
+          "infoItems": null,
+          "infoBlocks": [
+            {
+              "type": "text",
+              "content": "Ölçüm yapılabilen tek düz çizgi modeli Doğru Parçasıdır."
+            }
+          ]
+        },
+        "correct": "Öğretmenim, doğru ölçülemez. Ancak 10 cm'lik bir doğru parçası çizebilirim.",
+        "wrong1": "Hemen çizerim öğretmenim.",
+        "wrong2": "Cetvelim kısaysa çizemem.",
+        "explanation": "[[geo:parca_expl]]\n\nDoğruların boyu sonsuzdur ve cetvelle çizilip ölçülemez. Uzunluğu belirli olan şey doğru parçasıdır.",
+        "url": null
+      }
+    }
+  ]
+}

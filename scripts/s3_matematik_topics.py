@@ -1,0 +1,140 @@
+# -*- coding: utf-8 -*-
+"""3. sınıf Matematik konuları — ortak yapılandırma.
+
+ÖNEMLİ: Firebase/dllwrld konu anahtarları TYMM ile uyumlu t01, t02, … olmalıdır.
+Uzun slug (topic_01_…) kullanılmaz; aksi halde arayüzde teknik id görünür.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+WORD_DIR = Path.home() / "Desktop" / "SORULAR WORD"
+HEADING_ID = "SINIF3"
+LESSON_ID = "lesson_matematik"
+
+_CURRICULUM = json.loads((ROOT / "data" / "tymm-curriculum.json").read_text(encoding="utf-8"))
+_MAT_TOPICS: list[str] = next(
+    les["topics"]
+    for g in _CURRICULUM["grades"]
+    if g["grade"] == 3
+    for les in g["lessons"]
+    if les["id"] == LESSON_ID
+)
+
+TOPICS: list[dict] = [
+    {
+        "id": f"t{i:02d}",
+        "order": i,
+        "name": name,
+        "title": name,
+        "key_prefix": (
+            "mat3_sayilar_"
+            if i == 1
+            else "mat3_yuvarlama_"
+            if i == 2
+            else "mat3_tekcift_"
+            if i == 3
+            else "mat3_toplama_"
+            if i == 4
+            else "mat3_cikarma_"
+            if i == 5
+            else "mat3_carp_"
+            if i == 6
+            else "mat3_bol_"
+            if i == 7
+            else "mat3_kesir_"
+            if i == 8
+            else "mat3_zaman_"
+            if i == 9
+            else "mat3_para_tartma_"
+            if i in (10, 11)
+            else "mat3_sekil_"
+            if i == 13
+            else "mat3_cevre_"
+            if i == 14
+            else "mat3_veri_"
+            if i == 15
+            else f"mat3_t{i:02d}_"
+        ),
+        "raw_file": (
+            "sayilar-gemini-raw.json"
+            if i == 1
+            else "yuvarlama-gemini-raw.json"
+            if i == 2
+            else "tekcift-gemini-raw.json"
+            if i == 3
+            else "toplama-gemini-raw.json"
+            if i == 4
+            else "cikarma-gemini-raw.json"
+            if i == 5
+            else "carpma-gemini-raw.json"
+            if i == 6
+            else "bolme-gemini-raw.json"
+            if i == 7
+            else "kesir-gemini-raw.json"
+            if i == 8
+            else "zaman-gemini-raw.json"
+            if i == 9
+            else "para-tartma-gemini-raw.json"
+            if i in (10, 11)
+            else "geometri-gemini-raw.json"
+            if i == 12
+            else "geometrik-sekil-cisim-gemini-raw.json"
+            if i == 13
+            else "cevre-alan-gemini-raw.json"
+            if i == 14
+            else "veri-gemini-raw.json"
+            if i == 15
+            else f"mat3-t{i:02d}-gemini-raw.json"
+        ),
+        "data_file": (
+            "uc-basamakli-sayilar-s3-150.json"
+            if i == 1
+            else "yuvarlama-siralama-romen-s3-150.json"
+            if i == 2
+            else "tek-cift-sayilar-s3-150.json"
+            if i == 3
+            else "uclu-basamakli-toplama-s3-150.json"
+            if i == 4
+            else "uclu-basamakli-cikarma-s3-150.json"
+            if i == 5
+            else "uclu-basamakli-carpma-s3-150.json"
+            if i == 6
+            else "bolme-islemi-s3-180.json"
+            if i == 7
+            else "kesirler-s3-130.json"
+            if i == 8
+            else "zaman-olcme-s3-160.json"
+            if i == 9
+            else "paralarimiz-s3-90.json"
+            if i == 10
+            else "tartma-s3-90.json"
+            if i == 11
+            else "mat3-t12-s3-150.json"
+            if i == 12
+            else "mat3-t13-s3-150.json"
+            if i == 13
+            else "mat3-t14-s3-150.json"
+            if i == 14
+            else "mat3-t15-s3-150.json"
+            if i == 15
+            else f"mat3-t{i:02d}-s3-150.json"
+        ),
+        "word_file": "Üç Basamaklı Doğal Sayılar (3. Sınıf) - 150 Soru - GÜNCEL v4.docx"
+        if i == 1
+        else f"{name.split('(')[0].strip()} (3. Sınıf) - 180 Soru - GÜNCEL v4.docx"
+        if i == 7
+        else f"{name.split('(')[0].strip()} (3. Sınıf) - 150 Soru - GÜNCEL v4.docx",
+        "word_subtitle": f"Konu: {name}",
+    }
+    for i, name in enumerate(_MAT_TOPICS, start=1)
+]
+
+
+def get_topic(topic_id: str) -> dict:
+    for t in TOPICS:
+        if t["id"] == topic_id:
+            return t
+    raise KeyError(topic_id)

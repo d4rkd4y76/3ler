@@ -1,0 +1,70 @@
+/* ComfortaaOkul — tüm Düellox tek font (okul a/ç/ş/ğ). Girişten önce preload + block. */
+@font-face {
+  font-family: "ComfortaaOkul";
+  src: url("../fonts/ComfortaaOkul-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "ComfortaaOkul";
+  src: url("../fonts/ComfortaaOkul-Regular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "ComfortaaOkul";
+  src: url("../fonts/ComfortaaOkul-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "ComfortaaOkul";
+  src: url("../fonts/ComfortaaOkul-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "ComfortaaOkul";
+  src: url("../fonts/ComfortaaOkul-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --nova-font: "ComfortaaOkul", sans-serif;
+  --nova-font-kids: "ComfortaaOkul", sans-serif;
+}
+
+html,
+body {
+  font-family: var(--nova-font) !important;
+}
+
+/* Uygulama genelinde tek yüz — eski Comfortaa / Baloo / Inter / system yığınlarını ezer */
+*:not(code):not(pre):not(kbd):not(.mono):not(.kbd),
+*:not(code):not(pre):not(kbd):not(.mono):not(.kbd)::before,
+*:not(code):not(pre):not(kbd):not(.mono):not(.kbd)::after {
+  font-family: var(--nova-font) !important;
+}
+
+code,
+pre,
+kbd,
+.mono,
+.kbd,
+.mono *,
+.kbd * {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+/* Font gelmeden giriş metni flaş yapmasın */
+html:not(.nova-has-session):not(.nova-font-ready) #student-selection-screen {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

@@ -1,0 +1,46 @@
+/* Performance guardrails */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+.find-duel-button, .single-player, .friends-button, .surprise-box { will-change: transform; }
+
+/* Akıcı mod — mağaza açıkken tüm kartlar canlı (hover’da yükleme yok) */
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-store-card .nova-hero-preview--store-live .nova-hero-svg,
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__body,
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__core-glow,
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wing-l,
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-store-card .nova-hero-preview--store-live .nova-hero__wing-r {
+  animation-play-state: running !important;
+}
+
+body.nova-perf-ultra #main-screen:not([style*="display: none"]) .nova-main-hero-host .nova-hero-svg * {
+  animation-play-state: running !important;
+}
+
+body.nova-perf-ultra #profileChangeOverlay[style*="display: none"] .nova-hero-svg-host *,
+body.nova-perf-ultra #profileChangeOverlay:not(.open) .nova-hero-svg-host * {
+  animation-play-state: paused !important;
+}
+
+body.nova-perf-ultra .nova-main-hero-slot {
+  contain: layout style paint;
+}
+
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-preview--store-live {
+  contain: layout style;
+}
+
+body.nova-perf-ultra #profileChangeOverlay .nova-hero-preview--store-live canvas {
+  will-change: auto;
+}
+
+body.nova-perf-ultra .nova-main-hero-slot .nova-hero-yildiz-sprite__canvas,
+body.nova-perf-ultra .nova-main-hero-slot .nova-hero-tas-sprite__canvas,
+body.nova-perf-ultra .nova-main-hero-slot .nova-hero-firtina-sprite__canvas {
+  image-rendering: auto;
+}
+
+body.nova-perf-ultra .app-duyuru-strip__track {
+  animation-duration: calc(var(--duyuru-sec, 40s) * 1.15) !important;
+}

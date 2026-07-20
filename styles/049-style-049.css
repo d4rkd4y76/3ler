@@ -1,0 +1,48 @@
+/* === Nova Patch: Category Button Visuals === */
+.profile-categories {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 6px 2px;
+}
+.profile-categories::-webkit-scrollbar { height: 8px; }
+.profile-categories::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 8px; }
+
+.category-button {
+  background: #f3f4f6;
+  color: #111827;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .25s ease, background .2s ease, color .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  white-space: nowrap;
+}
+.category-button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+.category-button.active { outline: none; border-color: rgba(0,0,0,.15); transform: translateY(-1px) scale(1.02); }
+
+/* Kızlarköşesi -> pembe */
+.category-button[data-category="Kızlarköşesi"] {
+  background: #ff69b4;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
+}
+
+/* Süperlig & varyasyonları ile DünyaDevleri -> futbol yeşili */
+.category-button[data-category="Süperlig"],
+.category-button[data-category="SüperLig"],
+.category-button[data-category="DünyaDevleri"] {
+  background: #228B22; /* forest green */
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+/* EFSANE özel: hafif vurgu ama kullanıcı istemediği için animasyon eklemedik */
+.category-button[data-category="EFSANE"] {
+  background: linear-gradient(135deg, #111827, #374151);
+  color: #fff;
+}

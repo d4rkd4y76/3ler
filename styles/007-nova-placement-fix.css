@@ -1,0 +1,42 @@
+/* Nova placement: keep surprise box away from profile image */
+.student-photo { position: relative; z-index: 10 !important; }
+@media (max-width: 480px) {
+  #main-screen { position: relative !important; }
+  /* Ana ekranda sürpriz kutusu hero grid içinde — fixed ile profile binmesin */
+  #main-screen .surprise-box,
+  #main-screen .main-screen-hero-right .surprise-box{
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 2 !important;
+  }
+  .surprise-box { position: fixed !important; top: 10px !important; left: 10px !important; z-index: 50 !important; }
+  .surprise-box img { width: 44px !important; height: 44px !important; }
+  .surprise-box-counter{
+  margin-top:3px;
+  padding:2px 6px;
+  background: rgba(0,0,0,.55);
+  border: 2px solid rgba(255,255,255,.75);
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 800;
+  font-size: .78rem;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  max-width: 48px;        /* kutu görseli ile orantılı olsun */
+  width: max-content;     /* metne göre ölçülensin */
+  white-space: normal;    /* taşarsa alt satıra geçsin */
+  word-break: break-word;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space: nowrap;
+  min-width: 48px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+}
