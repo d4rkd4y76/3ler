@@ -152,6 +152,27 @@
     cursor:pointer; display:inline-flex; align-items:center; justify-content:center; padding:0;
   }
   .birles-admin-x:hover{background:rgba(185,28,28,.55); filter:brightness(1.08)}
+  .birles-admin-sectabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+  .birles-admin-sectab{
+    padding:10px 14px;border-radius:12px;border:1px solid var(--border);
+    background:linear-gradient(180deg,#151c3f,#101633);color:var(--ink);cursor:pointer;
+    font-weight:800;font-size:13px;line-height:1.2;text-align:center;
+  }
+  .birles-admin-sectab small{display:block;margin-top:4px;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.03em}
+  .birles-admin-sectab.is-active{
+    border-color:#f59e0b;background:linear-gradient(180deg,#b45309,#92400e);color:#fff;
+    box-shadow:0 8px 20px rgba(180,83,9,.35);
+  }
+  .birles-admin-sectab.is-active small{color:rgba(255,255,255,.88)}
+  .birles-admin-sectab.is-ready{border-color:rgba(34,197,94,.45)}
+  .birles-admin-secpanel{margin-top:12px}
+  .birles-admin-secpanel[hidden]{display:none!important}
+  .birles-admin-kristal-nav{
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px;
+    padding:10px 12px;border-radius:12px;border:1px solid rgba(245,158,11,.35);
+    background:rgba(120,60,10,.22);
+  }
+  .birles-admin-kristal-nav__meta{flex:1;min-width:120px;font-weight:800;font-size:14px}
   @media (max-width:900px){.birles-admin-row{grid-template-columns:1fr}}
   .mt24{margin-top:24px}
   .center{display:flex; align-items:center; justify-content:center}
@@ -808,8 +829,8 @@ window.NovaAdminExport = (function(){
     </div>
 
     <div id="birlestirelimView" class="view">
-      <h2>BİRLEŞTİRELİM — 1. Grup Sesler</h2>
-      <div class="sub">Önce bir ses seç. Sadece o sesin harf/hece/kelime Bunny URL’lerini görürsün. Veritabanı: <span class="mono">/birlestirelim</span></div>
+      <h2>BİRLEŞTİRELİM — Ses medyası</h2>
+      <div class="sub">Grup → ses → bölüm (Harf / Yazılış / Kristal / Hece / Kelime…). Kristal’de birden fazla etkinlik ekleyebilirsin. Veritabanı: <span class="mono">/birlestirelim</span></div>
       <div class="toolbar mt8" style="gap:8px;flex-wrap:wrap">
         <button type="button" class="btn" id="birles_admin_reload">Yenile</button>
         <button type="button" class="btn acc" id="birles_admin_save_all">Bu sesi / tümünü kaydet</button>
@@ -840,12 +861,6 @@ window.NovaAdminExport = (function(){
       </div>
 
       <div class="card mt12">
-        <h3 style="margin:0 0 10px">Grup seç</h3>
-        <p class="soft small" style="margin:0 0 12px">Maarif Modeli: 1–5. grup sesler.</p>
-        <div id="birles_admin_group_tabs" class="birles-admin-tabs" role="tablist"></div>
-      </div>
-
-      <div class="card mt12">
         <h3 style="margin:0 0 10px">Ses seç</h3>
         <p class="soft small" style="margin:0 0 12px">Her kutuya tıkla → yalnızca o sesin URL alanları açılır. <b>İzle videosu</b> = 9:16 Bunny Stream (player/embed veya mp4).</p>
         <div id="birles_admin_sound_tabs" class="birles-admin-tabs" role="tablist"></div>
@@ -857,14 +872,28 @@ window.NovaAdminExport = (function(){
           <p id="birles_admin_panel_hint" class="soft small" style="margin:6px 0 0"></p>
         </div>
 
-        <div class="mt16">
-          <h4 class="birles-admin-sec">Harf sesi</h4>
+        <div id="birles_admin_section_tabs" class="birles-admin-sectabs" role="tablist" aria-label="Bölümler"></div>
+
+        <div id="birles_admin_sec_harf" class="birles-admin-secpanel" data-birles-sec="harf">
+          <h4 class="birles-admin-sec">Harf sesi · izle videosu</h4>
           <div id="birles_admin_letter_list"></div>
         </div>
 
-        <div class="mt16">
-          <h4 class="birles-admin-sec">Bu seste birleştirmeler (ses + görsel)</h4>
-          <p class="soft small">Her birleştirme için Bunny ses URL’si; kelimelerde ayrıca görsel URL.</p>
+        <div id="birles_admin_sec_yazilis" class="birles-admin-secpanel" data-birles-sec="yazilis" hidden>
+          <h4 class="birles-admin-sec">Yazılış hamle sesleri</h4>
+          <p class="soft small">Her hamle için anlatım MP3 — animasyon süresi sese göre ayarlanır.</p>
+          <div id="birles_admin_yazilis_list" class="mt8"></div>
+        </div>
+
+        <div id="birles_admin_sec_kristal" class="birles-admin-secpanel" data-birles-sec="kristal" hidden>
+          <h4 class="birles-admin-sec">Kristal Mağarası</h4>
+          <p class="soft small">Birden fazla etkinlik ekleyebilirsin. Öğrencide bitince <b>İleri</b> ile sıradaki gelir.</p>
+          <div id="birles_admin_kristal_list" class="mt8"></div>
+        </div>
+
+        <div id="birles_admin_sec_fusion" class="birles-admin-secpanel" data-birles-sec="fusion" hidden>
+          <h4 class="birles-admin-sec" id="birles_admin_fusion_sec_title">Birleştirmeler</h4>
+          <p class="soft small" id="birles_admin_fusion_sec_hint">Her birleştirme için Bunny ses URL’si; kelimelerde ayrıca görsel URL.</p>
           <div id="birles_admin_fusion_list" class="mt8"></div>
         </div>
       </div>
@@ -2405,6 +2434,17 @@ window.NovaAdminExport = (function(){
     let cache = { media: {}, letters: {}, settings: {}, removed: {} };
     let activeSoundId = '';
     let activeGroupId = 'grup1';
+    let activeSection = 'harf';
+    let activeKristalActIdx = 0;
+
+    const FUSION_SECTIONS = [
+      { id: 'ses', title: 'Ses birleştirme', hint: 'Harf / giriş birleştirmeleri', kinds: ['ses'] },
+      { id: 'hece', title: 'Hece', hint: 'Hece avı birleştirmeleri', kinds: ['hece'] },
+      { id: 'kelime', title: 'Kelime', hint: 'Kelime bahçesi · ses + görsel', kinds: ['kelime'] },
+      { id: 'cumle', title: 'Cümle', hint: 'Cümle treni', kinds: ['cumle'] },
+      { id: 'piramit', title: 'Piramit', hint: 'Akıcı okuma', kinds: ['piramit'] },
+      { id: 'metin', title: 'Metin / Hikâye', hint: 'Hikâye yolu · 16:9 kapak', kinds: ['metin'] }
+    ];
 
     function syncRemovedToData(){
       try{
@@ -2481,14 +2521,104 @@ window.NovaAdminExport = (function(){
         emptyPick: document.getElementById('birles_admin_empty_pick'),
         panelTitle: document.getElementById('birles_admin_panel_title'),
         panelHint: document.getElementById('birles_admin_panel_hint'),
+        sectionTabs: document.getElementById('birles_admin_section_tabs'),
         letterList: document.getElementById('birles_admin_letter_list'),
+        yazilisList: document.getElementById('birles_admin_yazilis_list'),
+        kristalList: document.getElementById('birles_admin_kristal_list'),
         fusionList: document.getElementById('birles_admin_fusion_list'),
+        fusionSecTitle: document.getElementById('birles_admin_fusion_sec_title'),
+        fusionSecHint: document.getElementById('birles_admin_fusion_sec_hint'),
         reloadBtn: document.getElementById('birles_admin_reload'),
         saveBtn: document.getElementById('birles_admin_save_all'),
         libraryName: document.getElementById('birles_admin_library_name'),
         saveHostBtn: document.getElementById('birles_admin_save_host'),
         hostHint: document.getElementById('birles_admin_host_hint')
       };
+    }
+
+    function laneKeyForFusion(f){
+      var kind = String((f && (f.kind || f.type)) || 'hece').toLowerCase();
+      if(kind === 'ses' || (f && f.type === 'intro')) return 'ses';
+      if(kind === 'metin' || (f && f.mode === 'text')) return 'metin';
+      if(kind === 'piramit' || (f && f.mode === 'pyramid')) return 'piramit';
+      if(kind === 'cumle' || (f && f.mode === 'sentence')) return 'cumle';
+      if(kind === 'kelime' || (f && f.mediaKey)) return 'kelime';
+      return 'hece';
+    }
+
+    function emptyKristalImages(){
+      var imgs = [];
+      for(var i = 0; i < 6; i++){
+        imgs.push({ imageUrl: '', correct: false, label: '', glow: '', audioUrl: '' });
+      }
+      return imgs;
+    }
+
+    function newKristalActivity(n){
+      return {
+        id: 'k' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+        title: 'Etkinlik ' + (n || 1),
+        question: '',
+        images: emptyKristalImages()
+      };
+    }
+
+    function normalizeOneKristalActivity(raw, idx){
+      var row = raw && typeof raw === 'object' ? raw : {};
+      var images = Array.isArray(row.images) ? row.images : [];
+      var imgs = [];
+      for(var i = 0; i < 6; i++){
+        var ir = images[i] || {};
+        imgs.push({
+          imageUrl: String(ir.imageUrl || ir.url || '').trim(),
+          correct: !!(ir.correct === true || ir.correct === 1 || ir.correct === '1'),
+          label: String(ir.label || ir.name || '').trim(),
+          glow: String(ir.glow || ir.highlight || '').trim(),
+          audioUrl: String(ir.audioUrl || ir.mp3 || ir.soundUrl || '').trim()
+        });
+      }
+      return {
+        id: String(row.id || ('k' + (idx + 1))).trim() || ('k' + (idx + 1)),
+        title: String(row.title || ('Etkinlik ' + (idx + 1))).trim() || ('Etkinlik ' + (idx + 1)),
+        question: String(row.question || '').trim(),
+        images: imgs
+      };
+    }
+
+    function listKristalActivities(kristal){
+      if(!kristal || typeof kristal !== 'object') return [newKristalActivity(1)];
+      if(Array.isArray(kristal.activities) && kristal.activities.length){
+        return kristal.activities.map(function(a, i){ return normalizeOneKristalActivity(a, i); });
+      }
+      if(Array.isArray(kristal.images) || String(kristal.question || '').trim()){
+        return [normalizeOneKristalActivity({
+          id: 'k1',
+          title: 'Etkinlik 1',
+          question: kristal.question,
+          images: kristal.images
+        }, 0)];
+      }
+      return [newKristalActivity(1)];
+    }
+
+    function activityHasContent(act){
+      if(!act) return false;
+      if(String(act.question || '').trim()) return true;
+      var imgs = act.images || [];
+      for(var i = 0; i < imgs.length; i++){
+        if(imgs[i] && String(imgs[i].imageUrl || '').trim()) return true;
+      }
+      return false;
+    }
+
+    function packKristalForSave(activities){
+      var out = [];
+      (activities || []).forEach(function(act, idx){
+        var n = normalizeOneKristalActivity(act, idx);
+        if(activityHasContent(n)) out.push(n);
+      });
+      if(!out.length) return null;
+      return { activities: out };
     }
 
     function groups(){
@@ -2584,47 +2714,55 @@ window.NovaAdminExport = (function(){
     }
 
     function renderKristalBlock(sound, letterCur){
-      var kristal = (letterCur && letterCur.kristal && typeof letterCur.kristal === 'object') ? letterCur.kristal : {};
-      var images = Array.isArray(kristal.images) ? kristal.images : [];
-      var question = String(kristal.question || '').trim();
+      var acts = listKristalActivities(letterCur && letterCur.kristal);
+      if(activeKristalActIdx < 0) activeKristalActIdx = 0;
+      if(activeKristalActIdx >= acts.length) activeKristalActIdx = acts.length - 1;
+      var act = acts[activeKristalActIdx] || newKristalActivity(1);
       var letter = sound.displayUpper || sound.letter || '?';
       var rows = '';
       for(var i = 0; i < 6; i++){
-        var row = images[i] || {};
-        var url = String(row.imageUrl || row.url || '').trim();
-        var correct = !!(row.correct === true || row.correct === 1 || row.correct === '1');
-        var label = String(row.label || row.name || '').trim();
-        var glow = String(row.glow || row.highlight || '').trim();
-        var audioUrl = String(row.audioUrl || row.mp3 || row.soundUrl || '').trim();
+        var row = act.images[i] || {};
+        var url = String(row.imageUrl || '').trim();
+        var correct = !!row.correct;
+        var label = String(row.label || '').trim();
+        var glow = String(row.glow || '').trim();
+        var audioUrl = String(row.audioUrl || '').trim();
         var prev = url
           ? '<img class="birles-admin-preview" src="'+escHtml(url)+'" alt="" style="aspect-ratio:3/4;width:72px;height:auto;object-fit:cover">'
           : '<div class="birles-admin-preview" style="aspect-ratio:3/4;width:72px;height:96px"></div>';
         rows +=
-          '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-kristal-idx="'+i+'" style="grid-template-columns:80px 1fr 110px;align-items:start">'+
+          '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-kristal-act="'+activeKristalActIdx+'" data-kristal-idx="'+i+'" style="grid-template-columns:80px 1fr 110px;align-items:start">'+
           prev+
           '<div style="display:grid;gap:8px">'+
           '<div><label>Çerçeve '+(i+1)+' · görsel URL (3:4)</label>'+
-          '<input type="url" data-field="kristalImageUrl" value="'+escHtml(url)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-'+(i+1)+'.jpg"></div>'+
+          '<input type="url" data-field="kristalImageUrl" value="'+escHtml(url)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-e'+(activeKristalActIdx+1)+'-'+(i+1)+'.jpg"></div>'+
           '<div><label>Cisim adı (işaretler bitince çerçeve altında)</label>'+
           '<input type="text" data-field="kristalLabel" value="'+escHtml(label)+'" placeholder="ör. araba"></div>'+
           '<div><label>Vurgula · kelime içinde parlayacak ses(ler)</label>'+
           '<input type="text" data-field="kristalGlow" value="'+escHtml(glow)+'" placeholder="ör. '+escHtml(String(letter).toLocaleLowerCase('tr-TR'))+'  veya  a,el"></div>'+
           '<div><label>Kelime MP3 URL (isimler gelince sırayla çalar)</label>'+
-          '<input type="url" data-field="kristalAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-'+(i+1)+'.mp3"></div>'+
+          '<input type="url" data-field="kristalAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-e'+(activeKristalActIdx+1)+'-'+(i+1)+'.mp3"></div>'+
           '</div>'+
           '<div style="padding-top:18px">'+
           '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:800">'+
           '<input type="checkbox" data-field="kristalCorrect"'+(correct?' checked':'')+'> Doğru'+
           '</label></div></div>';
       }
-      return '<div class="birles-admin-fusion" style="margin-top:12px">'+
-        '<div class="birles-admin-fusion__head"><div>'+
-        '<p class="birles-admin-fusion__title">Kristal Mağarası</p>'+
-        '<p class="birles-admin-fusion__label">6 çerçeve · isim + vurgu + kelime MP3 · doğru olanları işaretle</p>'+
-        '</div></div>'+
-        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-kristal-question="1" style="grid-template-columns:1fr">'+
+      var canDel = acts.length > 1;
+      return '<div class="birles-admin-fusion" style="margin-top:4px" data-kristal-editor="1" data-letter-key="'+escHtml(sound.id)+'">'+
+        '<div class="birles-admin-kristal-nav">'+
+        '<button type="button" class="btn" data-kristal-nav="prev"'+(activeKristalActIdx<=0?' disabled':'')+'>◀ Önceki</button>'+
+        '<div class="birles-admin-kristal-nav__meta">Etkinlik '+(activeKristalActIdx+1)+' / '+acts.length+'</div>'+
+        '<button type="button" class="btn" data-kristal-nav="next"'+(activeKristalActIdx>=acts.length-1?' disabled':'')+'>Sonraki ▶</button>'+
+        '<button type="button" class="btn acc" data-kristal-nav="add">+ Yeni etkinlik</button>'+
+        (canDel ? '<button type="button" class="btn" data-kristal-nav="del" style="border-color:rgba(248,113,113,.5)">Bu etkinliği sil</button>' : '')+
+        '</div>'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-kristal-act="'+activeKristalActIdx+'" data-kristal-meta="1" style="grid-template-columns:1fr 1fr">'+
+        '<div><label>Etkinlik başlığı (isteğe bağlı)</label>'+
+        '<input type="text" data-field="kristalTitle" value="'+escHtml(act.title||'')+'" placeholder="Etkinlik '+(activeKristalActIdx+1)+'"></div>'+
         '<div><label>Soru metni (boş = Hangilerinde “'+escHtml(letter)+'” sesi var?)</label>'+
-        '<input type="text" data-field="kristalQuestion" value="'+escHtml(question)+'" placeholder="Hangilerinde “'+escHtml(letter)+'” sesi var?"></div></div>'+
+        '<input type="text" data-field="kristalQuestion" value="'+escHtml(act.question||'')+'" placeholder="Hangilerinde “'+escHtml(letter)+'” sesi var?"></div></div>'+
+        '<p class="soft small" style="margin:0 0 8px">6 çerçeve · isim + vurgu + kelime MP3 · doğru olanları işaretle</p>'+
         rows+
         '</div>';
     }
@@ -2657,49 +2795,90 @@ window.NovaAdminExport = (function(){
 
     function harvestVisible(){
       const ui = els();
-      if(!ui.letterList || !ui.fusionList) return;
+      if(!ui.letterList) return;
       const letterBest = {};
       const yazilisBest = {};
-      const kristalBest = {};
-      ui.letterList.querySelectorAll('[data-letter-key]').forEach(function(row){
-        const key = row.getAttribute('data-letter-key');
-        if(!key) return;
-        letterBest[key] = letterBest[key] || { audioUrl: '', videoUrl: '' };
-        const audioUrl = String((row.querySelector('[data-field="audioUrl"]')||{}).value||'').trim();
-        const videoUrl = String((row.querySelector('[data-field="videoUrl"]')||{}).value||'').trim();
-        if(audioUrl) letterBest[key].audioUrl = audioUrl;
-        if(videoUrl) letterBest[key].videoUrl = videoUrl;
+      const kristalActsBest = {};
+      function scanLetterRows(root){
+        if(!root) return;
+        root.querySelectorAll('[data-letter-key]').forEach(function(row){
+          const key = row.getAttribute('data-letter-key');
+          if(!key) return;
+          letterBest[key] = letterBest[key] || { audioUrl: '', videoUrl: '' };
+          const audioUrl = String((row.querySelector('[data-field="audioUrl"]')||{}).value||'').trim();
+          const videoUrl = String((row.querySelector('[data-field="videoUrl"]')||{}).value||'').trim();
+          if(audioUrl) letterBest[key].audioUrl = audioUrl;
+          if(videoUrl) letterBest[key].videoUrl = videoUrl;
 
-        const yLetter = row.getAttribute('data-yazilis-letter');
-        const yIdx = row.getAttribute('data-yazilis-idx');
-        if(yLetter != null && yIdx != null){
-          const yUrl = String((row.querySelector('[data-field="yazilisAudioUrl"]')||{}).value||'').trim();
-          yazilisBest[key] = yazilisBest[key] || {};
-          yazilisBest[key][yLetter] = yazilisBest[key][yLetter] || [];
-          yazilisBest[key][yLetter][Number(yIdx)] = yUrl;
+          const yLetter = row.getAttribute('data-yazilis-letter');
+          const yIdx = row.getAttribute('data-yazilis-idx');
+          if(yLetter != null && yIdx != null){
+            const yUrl = String((row.querySelector('[data-field="yazilisAudioUrl"]')||{}).value||'').trim();
+            yazilisBest[key] = yazilisBest[key] || {};
+            yazilisBest[key][yLetter] = yazilisBest[key][yLetter] || [];
+            yazilisBest[key][yLetter][Number(yIdx)] = yUrl;
+          }
+
+          const kAct = row.getAttribute('data-kristal-act');
+          if(kAct != null){
+            const ai = Number(kAct);
+            kristalActsBest[key] = kristalActsBest[key] || {};
+            kristalActsBest[key][ai] = kristalActsBest[key][ai] || {
+              id: '', title: '', question: '', images: []
+            };
+            if(row.getAttribute('data-kristal-meta') === '1'){
+              kristalActsBest[key][ai].title = String((row.querySelector('[data-field="kristalTitle"]')||{}).value||'').trim();
+              kristalActsBest[key][ai].question = String((row.querySelector('[data-field="kristalQuestion"]')||{}).value||'').trim();
+            }
+            const kIdx = row.getAttribute('data-kristal-idx');
+            if(kIdx != null){
+              const imgUrl = String((row.querySelector('[data-field="kristalImageUrl"]')||{}).value||'').trim();
+              const label = String((row.querySelector('[data-field="kristalLabel"]')||{}).value||'').trim();
+              const glow = String((row.querySelector('[data-field="kristalGlow"]')||{}).value||'').trim();
+              const aUrl = String((row.querySelector('[data-field="kristalAudioUrl"]')||{}).value||'').trim();
+              const correctEl = row.querySelector('[data-field="kristalCorrect"]');
+              const correct = !!(correctEl && correctEl.checked);
+              kristalActsBest[key][ai].images[Number(kIdx)] = {
+                imageUrl: imgUrl, correct: correct, label: label, glow: glow, audioUrl: aUrl
+              };
+            }
+          }
+        });
+      }
+      scanLetterRows(ui.letterList);
+      scanLetterRows(ui.yazilisList);
+      scanLetterRows(ui.kristalList);
+
+      const keys = {};
+      Object.keys(letterBest).forEach(function(k){ keys[k] = true; });
+      Object.keys(yazilisBest).forEach(function(k){ keys[k] = true; });
+      Object.keys(kristalActsBest).forEach(function(k){ keys[k] = true; });
+      /* Mevcut cache harflerini de koru (başka bölümde görünmeyen alanlar) */
+      Object.keys(cache.letters || {}).forEach(function(k){ keys[k] = true; });
+
+      Object.keys(keys).forEach(function(key){
+        const prev = cache.letters[key] || {};
+        const audioUrl = (letterBest[key] && letterBest[key].audioUrl) || (ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"] [data-field="audioUrl"]') ? String((letterBest[key]||{}).audioUrl||'') : String(prev.audioUrl||''));
+        const videoUrl = (letterBest[key] && letterBest[key].videoUrl) || String(prev.videoUrl||'');
+        /* Prefer harvested audio/video when letter panel was scanned for this key */
+        var aUrl = String(prev.audioUrl || '').trim();
+        var vUrl = String(prev.videoUrl || '').trim();
+        if(letterBest[key]){
+          if(letterBest[key].audioUrl) aUrl = letterBest[key].audioUrl;
+          else if(ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"] [data-field="audioUrl"]')) aUrl = '';
+          if(letterBest[key].videoUrl) vUrl = letterBest[key].videoUrl;
+          else if(ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"] [data-field="videoUrl"]')) vUrl = '';
+          /* If letter rows exist in DOM for this key, use harvested (may be empty) */
+          if(ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"]')){
+            aUrl = String(letterBest[key].audioUrl || '').trim();
+            vUrl = String(letterBest[key].videoUrl || '').trim();
+          }
         }
 
-        if(row.getAttribute('data-kristal-question') === '1'){
-          kristalBest[key] = kristalBest[key] || { question: '', images: [] };
-          kristalBest[key].question = String((row.querySelector('[data-field="kristalQuestion"]')||{}).value||'').trim();
+        var yaz = yazilisBest[key];
+        if(!yaz && !(ui.yazilisList && ui.yazilisList.querySelector('[data-letter-key="'+key+'"]'))){
+          yaz = prev.yazilis && typeof prev.yazilis === 'object' ? prev.yazilis : null;
         }
-        const kIdx = row.getAttribute('data-kristal-idx');
-        if(kIdx != null){
-          kristalBest[key] = kristalBest[key] || { question: '', images: [] };
-          const imgUrl = String((row.querySelector('[data-field="kristalImageUrl"]')||{}).value||'').trim();
-          const label = String((row.querySelector('[data-field="kristalLabel"]')||{}).value||'').trim();
-          const glow = String((row.querySelector('[data-field="kristalGlow"]')||{}).value||'').trim();
-          const audioUrl = String((row.querySelector('[data-field="kristalAudioUrl"]')||{}).value||'').trim();
-          const correctEl = row.querySelector('[data-field="kristalCorrect"]');
-          const correct = !!(correctEl && correctEl.checked);
-          kristalBest[key].images[Number(kIdx)] = { imageUrl: imgUrl, correct: correct, label: label, glow: glow, audioUrl: audioUrl };
-        }
-      });
-      Object.keys(letterBest).forEach(function(key){
-        const audioUrl = letterBest[key].audioUrl;
-        const videoUrl = letterBest[key].videoUrl;
-        const yaz = yazilisBest[key];
-        const kristal = kristalBest[key];
         var hasYaz = false;
         if(yaz){
           Object.keys(yaz).forEach(function(lk){
@@ -2707,34 +2886,58 @@ window.NovaAdminExport = (function(){
             for(var i=0;i<arr.length;i++){ if(arr[i]) hasYaz = true; }
           });
         }
-        var hasKristal = false;
+
         var kristalOut = null;
-        if(kristal){
-          var imgs = [];
-          for(var i=0;i<6;i++){
-            var row = (kristal.images && kristal.images[i]) || {};
-            var u = String(row.imageUrl || '').trim();
-            var lab = String(row.label || '').trim();
-            var gl = String(row.glow || '').trim();
-            var au = String(row.audioUrl || '').trim();
-            imgs.push({ imageUrl: u, correct: !!row.correct, label: lab, glow: gl, audioUrl: au });
-            if(u) hasKristal = true;
+        if(kristalActsBest[key]){
+          var prevActs = listKristalActivities(prev.kristal);
+          var maxIdx = Math.max.apply(null, Object.keys(kristalActsBest[key]).map(Number).concat([prevActs.length - 1]));
+          var merged = [];
+          for(var ai = 0; ai <= maxIdx; ai++){
+            var harvested = kristalActsBest[key][ai];
+            var base = prevActs[ai] || newKristalActivity(ai + 1);
+            if(harvested){
+              var imgs = [];
+              for(var i=0;i<6;i++){
+                var row = (harvested.images && harvested.images[i]) || {};
+                imgs.push({
+                  imageUrl: String(row.imageUrl || '').trim(),
+                  correct: !!row.correct,
+                  label: String(row.label || '').trim(),
+                  glow: String(row.glow || '').trim(),
+                  audioUrl: String(row.audioUrl || '').trim()
+                });
+              }
+              merged.push({
+                id: base.id || ('k' + (ai + 1)),
+                title: String(harvested.title || base.title || ('Etkinlik ' + (ai + 1))).trim(),
+                question: String(harvested.question || '').trim(),
+                images: imgs
+              });
+            } else {
+              merged.push(base);
+            }
           }
-          if(hasKristal || kristal.question){
-            kristalOut = { question: String(kristal.question || '').trim(), images: imgs };
-          }
+          kristalOut = { activities: merged.map(function(a, i){ return normalizeOneKristalActivity(a, i); }) };
+        } else if(!(ui.kristalList && ui.kristalList.querySelector('[data-letter-key="'+key+'"]'))){
+          var kept = listKristalActivities(prev.kristal);
+          kristalOut = kept.length ? { activities: kept } : null;
         }
-        if(audioUrl || videoUrl || hasYaz || hasKristal){
+
+        if(aUrl || vUrl || hasYaz || kristalOut){
           cache.letters[key] = { updatedAt: Date.now() };
-          if(audioUrl) cache.letters[key].audioUrl = audioUrl;
-          if(videoUrl) cache.letters[key].videoUrl = videoUrl;
+          if(aUrl) cache.letters[key].audioUrl = aUrl;
+          if(vUrl) cache.letters[key].videoUrl = vUrl;
           if(hasYaz){
             cache.letters[key].yazilis = {};
             Object.keys(yaz).forEach(function(lk){
               cache.letters[key].yazilis[lk] = (yaz[lk] || []).map(function(u){ return String(u||''); });
             });
+          } else if(yaz && prev.yazilis && !(ui.yazilisList && ui.yazilisList.querySelector('[data-letter-key="'+key+'"]'))){
+            cache.letters[key].yazilis = prev.yazilis;
           }
           if(kristalOut) cache.letters[key].kristal = kristalOut;
+        } else if(cache.letters[key] && !letterBest[key] && !yazilisBest[key] && !kristalActsBest[key]){
+          /* keep as-is */
         } else {
           delete cache.letters[key];
         }
@@ -2744,7 +2947,7 @@ window.NovaAdminExport = (function(){
          Boş satır dolu satırı silmesin — dolu URL'yi tercih et. */
       const audioBest = {};
       const audioSeen = {};
-      ui.fusionList.querySelectorAll('[data-audio-key]').forEach(function(row){
+      if(ui.fusionList) ui.fusionList.querySelectorAll('[data-audio-key]').forEach(function(row){
         const key = row.getAttribute('data-audio-key');
         if(!key) return;
         audioSeen[key] = true;
@@ -2764,7 +2967,7 @@ window.NovaAdminExport = (function(){
 
       const imageBest = {};
       const imageSeen = {};
-      ui.fusionList.querySelectorAll('[data-media-key]').forEach(function(row){
+      if(ui.fusionList) ui.fusionList.querySelectorAll('[data-media-key]').forEach(function(row){
         const key = row.getAttribute('data-media-key');
         if(!key) return;
         imageSeen[key] = true;
@@ -2833,7 +3036,7 @@ window.NovaAdminExport = (function(){
       ui.panel.hidden = false;
       if(ui.emptyPick) ui.emptyPick.hidden = true;
       if(ui.panelTitle) ui.panelTitle.textContent = (sound.displayUpper || sound.letter) + ' · ' + (sound.title || sound.id);
-      if(ui.panelHint) ui.panelHint.textContent = (sound.hint || '') + ' — yalnızca bu sesin birleştirmeleri';
+      if(ui.panelHint) ui.panelHint.textContent = (sound.hint || '') + ' — bölüm seçerek düzenle';
 
       const letterCur = cache.letters[sound.id] || {};
       const letterSt = urlStatus(letterCur.audioUrl);
@@ -2847,14 +3050,123 @@ window.NovaAdminExport = (function(){
         '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" style="grid-template-columns:72px 1fr 44px">'+
         '<div class="soft small" style="padding-top:22px">▶ İzle</div>'+
         '<div><label>Nasıl yapılır videosu (9:16 Bunny)</label><input type="url" data-field="videoUrl" value="'+escHtml(letterCur.videoUrl||'')+'" placeholder="https://player.mediadelivery.net/play/…/GUID veya …mp4"></div>'+
-        '<div class="soft small" style="padding-top:22px">'+statusIcon(videoSt)+'</div></div>'+
-        renderYazilisAudioBlock(sound, letterCur) +
-        renderKristalBlock(sound, letterCur);
+        '<div class="soft small" style="padding-top:22px">'+statusIcon(videoSt)+'</div></div>';
 
-      const fusions = fusionListFor(sound);
+      if(ui.yazilisList){
+        ui.yazilisList.innerHTML = renderYazilisAudioBlock(sound, letterCur) ||
+          '<p class="soft small">Bu ses için yazılış animasyonu tanımlı değil.</p>';
+      }
+      if(ui.kristalList){
+        ui.kristalList.innerHTML = renderKristalBlock(sound, letterCur);
+        bindKristalNav(sound);
+      }
+
+      renderSectionTabs(sound);
+      renderFusionSection(sound);
+      showActiveSection();
+
+      bindUrlWatchers(ui.letterList);
+      if(ui.yazilisList) bindUrlWatchers(ui.yazilisList);
+      if(ui.kristalList) bindUrlWatchers(ui.kristalList);
+      bindUrlWatchers(ui.fusionList);
+      bindRemoveButtons(ui.fusionList, sound);
+    }
+
+    function hasYazilisForSound(sound){
+      var YD = window.NovaBirlestirelimYazilisData;
+      return !!(YD && YD.hasWriting && YD.hasWriting(sound.id));
+    }
+
+    function hasKristalContent(letterCur){
+      var acts = listKristalActivities(letterCur && letterCur.kristal);
+      for(var i = 0; i < acts.length; i++){
+        if(activityHasContent(acts[i])) return true;
+      }
+      return false;
+    }
+
+    function fusionsByLane(sound, laneId){
+      return fusionListFor(sound).filter(function(f){ return laneKeyForFusion(f) === laneId; });
+    }
+
+    function renderSectionTabs(sound){
+      const ui = els();
+      if(!ui.sectionTabs || !sound) return;
+      const letterCur = cache.letters[sound.id] || {};
+      const tabs = [
+        { id: 'harf', title: 'Harf sesi', hint: 'MP3 + izle videosu', ready: !!(letterCur.audioUrl || letterCur.videoUrl) }
+      ];
+      if(hasYazilisForSound(sound)){
+        tabs.push({ id: 'yazilis', title: 'Yazılış', hint: 'Hamle sesleri', ready: !!(letterCur.yazilis) });
+      }
+      tabs.push({ id: 'kristal', title: 'Kristal', hint: 'Mağara etkinlikleri', ready: hasKristalContent(letterCur) });
+      FUSION_SECTIONS.forEach(function(sec){
+        var list = fusionsByLane(sound, sec.id);
+        if(!list.length) return;
+        var filled = 0;
+        list.forEach(function(f){
+          tokensForFusion(f).forEach(function(tok){
+            if(cache.media[tok.key] && cache.media[tok.key].audioUrl) filled++;
+          });
+          if(f.mediaKey && cache.media[f.mediaKey] && cache.media[f.mediaKey].imageUrl) filled++;
+        });
+        tabs.push({
+          id: sec.id,
+          title: sec.title,
+          hint: list.length + ' birleştirme',
+          ready: filled > 0
+        });
+      });
+      var ids = {};
+      tabs.forEach(function(t){ ids[t.id] = true; });
+      if(!ids[activeSection]) activeSection = 'harf';
+
+      ui.sectionTabs.innerHTML = tabs.map(function(t){
+        return '<button type="button" class="birles-admin-sectab'+(t.id===activeSection?' is-active':'')+(t.ready?' is-ready':'')+'" data-birles-sec-tab="'+escHtml(t.id)+'">'+
+          escHtml(t.title)+'<small>'+escHtml(t.hint||'')+'</small></button>';
+      }).join('');
+
+      ui.sectionTabs.querySelectorAll('[data-birles-sec-tab]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          harvestVisible();
+          activeSection = btn.getAttribute('data-birles-sec-tab') || 'harf';
+          renderSoundPanel(getSound(activeSoundId));
+        });
+      });
+    }
+
+    function showActiveSection(){
+      var panel = document.getElementById('birles_admin_sound_panel');
+      if(!panel) return;
+      var isFusion = FUSION_SECTIONS.some(function(s){ return s.id === activeSection; });
+      var harf = document.getElementById('birles_admin_sec_harf');
+      var yaz = document.getElementById('birles_admin_sec_yazilis');
+      var kri = document.getElementById('birles_admin_sec_kristal');
+      var fus = document.getElementById('birles_admin_sec_fusion');
+      if(harf) harf.hidden = activeSection !== 'harf';
+      if(yaz) yaz.hidden = activeSection !== 'yazilis';
+      if(kri) kri.hidden = activeSection !== 'kristal';
+      if(fus) fus.hidden = !isFusion;
+    }
+
+    function renderFusionSection(sound){
+      const ui = els();
+      if(!ui.fusionList) return;
+      var isFusion = FUSION_SECTIONS.some(function(s){ return s.id === activeSection; });
+      if(!isFusion){
+        ui.fusionList.innerHTML = '';
+        return;
+      }
+      var secMeta = null;
+      for(var i = 0; i < FUSION_SECTIONS.length; i++){
+        if(FUSION_SECTIONS[i].id === activeSection){ secMeta = FUSION_SECTIONS[i]; break; }
+      }
+      if(ui.fusionSecTitle) ui.fusionSecTitle.textContent = secMeta ? secMeta.title : 'Birleştirmeler';
+      if(ui.fusionSecHint) ui.fusionSecHint.textContent = secMeta ? secMeta.hint : '';
+
+      const fusions = fusionsByLane(sound, activeSection);
       if(!fusions.length){
-        ui.fusionList.innerHTML = '<p class="soft small">Bu ses için birleştirme kalmadı (veya hepsi kaldırıldı). Kaydetmeyi unutma.</p>';
-        bindUrlWatchers(ui.letterList);
+        ui.fusionList.innerHTML = '<p class="soft small">Bu bölümde birleştirme yok.</p>';
         return;
       }
 
@@ -2902,10 +3214,39 @@ window.NovaAdminExport = (function(){
           audioRows + imageBlock +
           '</div>';
       }).join('');
+    }
 
-      bindUrlWatchers(ui.letterList);
-      bindUrlWatchers(ui.fusionList);
-      bindRemoveButtons(ui.fusionList, sound);
+    function bindKristalNav(sound){
+      const ui = els();
+      if(!ui.kristalList || !sound) return;
+      ui.kristalList.querySelectorAll('[data-kristal-nav]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          const action = btn.getAttribute('data-kristal-nav');
+          harvestVisible();
+          var letterCur = cache.letters[sound.id] || {};
+          var acts = listKristalActivities(letterCur.kristal);
+          if(action === 'prev'){
+            activeKristalActIdx = Math.max(0, activeKristalActIdx - 1);
+          } else if(action === 'next'){
+            activeKristalActIdx = Math.min(acts.length - 1, activeKristalActIdx + 1);
+          } else if(action === 'add'){
+            acts.push(newKristalActivity(acts.length + 1));
+            cache.letters[sound.id] = cache.letters[sound.id] || { updatedAt: Date.now() };
+            cache.letters[sound.id].kristal = { activities: acts };
+            activeKristalActIdx = acts.length - 1;
+          } else if(action === 'del'){
+            if(acts.length <= 1) return;
+            if(!window.confirm('Bu Kristal etkinliğini silmek istiyor musun?')) return;
+            acts.splice(activeKristalActIdx, 1);
+            cache.letters[sound.id] = cache.letters[sound.id] || { updatedAt: Date.now() };
+            var packed = packKristalForSave(acts);
+            if(packed) cache.letters[sound.id].kristal = packed;
+            else delete cache.letters[sound.id].kristal;
+            activeKristalActIdx = Math.min(activeKristalActIdx, Math.max(0, acts.length - 1));
+          }
+          renderSoundPanel(getSound(activeSoundId));
+        });
+      });
     }
 
     function bindRemoveButtons(root, sound){
@@ -3134,6 +3475,8 @@ window.NovaAdminExport = (function(){
     function selectSound(id){
       harvestVisible();
       activeSoundId = String(id||'');
+      activeSection = 'harf';
+      activeKristalActIdx = 0;
       renderTabs();
       renderSoundPanel(getSound(activeSoundId));
     }
@@ -3196,28 +3539,8 @@ window.NovaAdminExport = (function(){
           });
         }
         const kristal = row.kristal && typeof row.kristal === 'object' ? row.kristal : null;
-        var hasKristal = false;
-        var kristalOut = null;
-        if(kristal){
-          var imgs = Array.isArray(kristal.images) ? kristal.images : [];
-          var outImgs = [];
-          for(var i=0;i<6;i++){
-            var ir = imgs[i] || {};
-            var iu = String(ir.imageUrl || ir.url || '').trim();
-            outImgs.push({
-              imageUrl: iu,
-              correct: !!(ir.correct === true || ir.correct === 1 || ir.correct === '1'),
-              label: String(ir.label || ir.name || '').trim(),
-              glow: String(ir.glow || ir.highlight || '').trim(),
-              audioUrl: String(ir.audioUrl || ir.mp3 || ir.soundUrl || '').trim()
-            });
-            if(iu) hasKristal = true;
-          }
-          var q = String(kristal.question || '').trim();
-          if(hasKristal || q){
-            kristalOut = { question: q, images: outImgs };
-          }
-        }
+        var kristalOut = kristal ? packKristalForSave(listKristalActivities(kristal)) : null;
+        var hasKristal = !!kristalOut;
         if(audioUrl || videoUrl || hasYaz || hasKristal){
           letters[k] = { updatedAt: Date.now() };
           if(audioUrl) letters[k].audioUrl = audioUrl;

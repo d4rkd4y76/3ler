@@ -1,7 +1,8 @@
 /**
  * Kristal Mağarası — 9:16 video + 6 çerçeveli çoklu seçim
  * Admin: birlestirelim/letters/{soundId}/kristal =
- *   { question?, images:[{imageUrl,correct,label,glow,audioUrl}] }
+ *   { activities:[{id,title?,question?,images:[{imageUrl,correct,label,glow,audioUrl}]}] }
+ * Eski tek etkinlik: { question?, images:[...] } hâlâ okunur.
  */
 (function (global) {
   "use strict";
@@ -21,6 +22,8 @@
   var nameTourAudio = null;
   var nameTourToken = 0;
   var sfxCtx = null;
+  var activitiesRef = [];
+  var activityIdx = 0;
 
   function ensureSfxCtx() {
     var AC = window.AudioContext || window.webkitAudioContext;
@@ -248,32 +251,75 @@
     return html;
   }
 
-  function normalizeKristal(pack) {
-    var k = pack && pack.kristal;
-    if (!k || typeof k !== "object") return { question: "", images: [] };
-    var images = Array.isArray(k.images) ? k.images : [];
+  function normalizeActivity(raw, idx) {
+    var row = raw && typeof raw === "object" ? raw : {};
+    var images = Array.isArray(row.images) ? row.images : [];
     var out = [];
     for (var i = 0; i < SLOT_COUNT; i++) {
-      var row = images[i] || {};
+      var img = images[i] || {};
       out.push({
-        imageUrl: String(row.imageUrl || row.url || "").trim(),
-        correct: !!(row.correct === true || row.correct === 1 || row.correct === "1"),
-        label: String(row.label || row.name || "").trim(),
-        glow: String(row.glow || row.highlight || "").trim(),
-        audioUrl: String(row.audioUrl || row.mp3 || row.soundUrl || "").trim()
+        imageUrl: String(img.imageUrl || img.url || "").trim(),
+        correct: !!(img.correct === true || img.correct === 1 || img.correct === "1"),
+        label: String(img.label || img.name || "").trim(),
+        glow: String(img.glow || img.highlight || "").trim(),
+        audioUrl: String(img.audioUrl || img.mp3 || img.soundUrl || "").trim()
       });
     }
     return {
-      question: String(k.question || "").trim(),
+      id: String(row.id || "k" + (idx + 1)).trim() || "k" + (idx + 1),
+      title: String(row.title || "").trim(),
+      question: String(row.question || "").trim(),
       images: out
     };
   }
 
+  function listActivities(pack) {
+    var k = pack && pack.kristal;
+    if (!k || typeof k !== "object") return [];
+    if (Array.isArray(k.activities) && k.activities.length) {
+      return k.activities
+        .map(function (a, i) {
+          return normalizeActivity(a, i);
+        })
+        .filter(function (a) {
+          return a.images.some(function (img) {
+            return !!img.imageUrl;
+          });
+        });
+    }
+    var legacy = normalizeActivity(
+      { id: "k1", title: "", question: k.question, images: k.images },
+      0
+    );
+    if (
+      legacy.images.some(function (img) {
+        return !!img.imageUrl;
+      })
+    ) {
+      return [legacy];
+    }
+    return [];
+  }
+
+  function normalizeKristal(pack) {
+    var acts = listActivities(pack);
+    if (!acts.length) return { question: "", images: [], activities: [] };
+    var cur = acts[0];
+    return {
+      question: cur.question,
+      images: cur.images,
+      activities: acts
+    };
+  }
+
   function hasKristal(pack) {
-    var data = normalizeKristal(pack);
-    return data.images.some(function (img) {
-      return !!img.imageUrl;
-    });
+    return listActivities(pack).length > 0;
+  }
+
+  function currentActivity() {
+    if (!activitiesRef.length) return { question: "", images: [], title: "" };
+    var i = Math.max(0, Math.min(activityIdx, activitiesRef.length - 1));
+    return activitiesRef[i];
   }
 
   function defaultQuestion(sound) {
@@ -395,9 +441,12 @@
 
   /** Ses hub’ında kart görünür görünmez video+foto önbelleğe alınır */
   function warm(pack) {
-    var data = normalizeKristal(pack);
-    var photoTasks = data.images.map(function (img) {
-      return loadImage(img.imageUrl);
+    var acts = listActivities(pack);
+    var photoTasks = [];
+    acts.forEach(function (act) {
+      (act.images || []).forEach(function (img) {
+        photoTasks.push(loadImage(img.imageUrl));
+      });
     });
 
     if (!warmVideoEl) {
@@ -554,6 +603,8 @@
     packRef = null;
     picked = {};
     onDoneCb = null;
+    activitiesRef = [];
+    activityIdx = 0;
   }
 
   function allCorrectFound(data) {
@@ -580,16 +631,15 @@
     hostEl.classList.add("is-names-on", "is-done");
 
     var ask = hostEl.querySelector(".birles-kristal__ask");
-    if (ask) ask.textContent = "Kristal kelimeler!";
+    if (ask) {
+      var more = activityIdx < activitiesRef.length - 1;
+      ask.textContent = more ? "Kristal kelimeler! · İleri’ye bas" : "Kristal kelimeler!";
+    }
 
     var hint = hostEl.querySelector(".birles-kristal__hint");
     if (hint) hint.hidden = true;
 
-    var exitBtn = hostEl.querySelector(".birles-kristal__exit");
-    if (exitBtn) {
-      exitBtn.hidden = false;
-      exitBtn.setAttribute("aria-hidden", "false");
-    }
+    updateDoneButtons();
 
     hostEl.querySelectorAll("[data-kristal-slot]").forEach(function (btn) {
       btn.classList.add("is-locked");
@@ -598,6 +648,79 @@
     try {
       playNameAudioTour(data);
     } catch (_) {}
+  }
+
+  function updateDoneButtons() {
+    if (!hostEl) return;
+    var hasNext = activityIdx < activitiesRef.length - 1;
+    var nextBtn = hostEl.querySelector("[data-kristal-next]");
+    var exitBtn = hostEl.querySelector("[data-kristal-done]");
+    if (nextBtn) {
+      nextBtn.hidden = !hasNext;
+      nextBtn.setAttribute("aria-hidden", hasNext ? "false" : "true");
+      if (hasNext) {
+        nextBtn.textContent =
+          "İleri · " + (activityIdx + 2) + "/" + activitiesRef.length;
+      }
+    }
+    if (exitBtn) {
+      exitBtn.hidden = hasNext;
+      exitBtn.setAttribute("aria-hidden", hasNext ? "true" : "false");
+      if (!hasNext) exitBtn.textContent = "✓";
+    }
+  }
+
+  function goNextActivity() {
+    if (!hostEl || activityIdx >= activitiesRef.length - 1) {
+      finishSuccess();
+      return;
+    }
+    stopNameTour();
+    activityIdx += 1;
+    picked = {};
+    finishing = false;
+    hostEl.classList.remove("is-names-on", "is-done");
+
+    var data = currentActivity();
+    var q = data.question || defaultQuestion(soundRef);
+
+    var ask = hostEl.querySelector(".birles-kristal__ask");
+    if (ask) ask.textContent = q;
+
+    var hint = hostEl.querySelector(".birles-kristal__hint");
+    if (hint) {
+      hint.hidden = false;
+      hint.textContent =
+        activitiesRef.length > 1
+          ? "Doğru olanların hepsine dokun · " +
+            (activityIdx + 1) +
+            "/" +
+            activitiesRef.length
+          : "Doğru olanların hepsine dokun";
+    }
+
+    var nextBtn = hostEl.querySelector("[data-kristal-next]");
+    var exitBtn = hostEl.querySelector("[data-kristal-done]");
+    if (nextBtn) {
+      nextBtn.hidden = true;
+      nextBtn.setAttribute("aria-hidden", "true");
+    }
+    if (exitBtn) {
+      exitBtn.hidden = true;
+      exitBtn.setAttribute("aria-hidden", "true");
+    }
+
+    var slots = hostEl.querySelector(".birles-kristal__slots");
+    if (slots) {
+      slots.innerHTML = slotsHtml(data);
+      slots.querySelectorAll("[data-kristal-slot]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var idx = Number(btn.getAttribute("data-kristal-slot"));
+          onSlotClick(btn, idx, data);
+        });
+      });
+    }
+    layoutStage();
   }
 
   function finishSuccess() {
@@ -713,9 +836,12 @@
     onDoneCb = typeof opts.onDone === "function" ? opts.onDone : null;
     picked = {};
     finishing = false;
+    activitiesRef = listActivities(packRef);
+    activityIdx = 0;
 
-    var data = normalizeKristal(packRef);
+    var data = currentActivity();
     var q = data.question || defaultQuestion(soundRef);
+    var totalActs = activitiesRef.length;
 
     try {
       warm(packRef);
@@ -751,8 +877,13 @@
       esc(q) +
       "</p>" +
       '<button type="button" class="birles-kristal__close" data-kristal-close="1" aria-label="Kapat">✕</button>' +
-      '<p class="birles-kristal__hint">Doğru olanların hepsine dokun</p>' +
-      '<button type="button" class="birles-kristal__exit" data-kristal-done="1" hidden aria-hidden="true" aria-label="Kapat">✕</button>';
+      '<p class="birles-kristal__hint">' +
+      (totalActs > 1
+        ? "Doğru olanların hepsine dokun · 1/" + totalActs
+        : "Doğru olanların hepsine dokun") +
+      "</p>" +
+      '<button type="button" class="birles-kristal__next" data-kristal-next="1" hidden aria-hidden="true">İleri ›</button>' +
+      '<button type="button" class="birles-kristal__exit" data-kristal-done="1" hidden aria-hidden="true" aria-label="Bitir">✓</button>';
 
     /* Önce Kristal DOM’da olsun — yeşil maske/Ses Evreni’nden önce */
     var mount = document.documentElement || document.body;
@@ -793,7 +924,8 @@
 
     box.querySelectorAll("[data-kristal-close]").forEach(function (el) {
       el.addEventListener("click", function () {
-        if (finishing) {
+        /* Ortada çıkış: yıldız yok. Son etkinlik bitince X = tamam. */
+        if (finishing && activityIdx >= activitiesRef.length - 1) {
           finishSuccess();
           return;
         }
@@ -806,6 +938,12 @@
     box.querySelectorAll("[data-kristal-done]").forEach(function (el) {
       el.addEventListener("click", function () {
         finishSuccess();
+      });
+    });
+
+    box.querySelectorAll("[data-kristal-next]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        goNextActivity();
       });
     });
 
@@ -848,6 +986,7 @@
     warm: warm,
     hasKristal: hasKristal,
     normalize: normalizeKristal,
+    listActivities: listActivities,
     SLOT_COUNT: SLOT_COUNT
   };
 })(typeof window !== "undefined" ? window : this);
