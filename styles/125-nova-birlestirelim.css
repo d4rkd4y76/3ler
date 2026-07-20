@@ -172,7 +172,8 @@ body.birles-kristal-fs {
   display: none;
   align-items: stretch;
   justify-content: center;
-  padding: max(10px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  padding: 0;
+  margin: 0;
   background:
     radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.55), transparent 42%),
     radial-gradient(circle at 88% 12%, rgba(76, 201, 240, 0.4), transparent 40%),
@@ -182,33 +183,39 @@ body.birles-kristal-fs {
 }
 
 /*
- * Akıcı zoom(0.74) body’de kalır; overlay görsel olarak ekranı kaplasın.
- * İçerik boyutu aynı (zoom reset yok). Padding yok — dış tıklama / ana ekran sızıntısı olmasın.
+ * html kökünde (body zoom dışında) — telefonda Akıcı zoom fixed overlay’i yutmasın.
+ * Açıkken her zaman gerçek tam ekran.
  */
-html.nova-perf-ultra-early.nova-has-session
-  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
-  #birlestirelim-overlay.open {
+html > #birlestirelim-overlay.birles-overlay,
+#birlestirelim-overlay.birles-overlay {
   position: fixed !important;
+  z-index: 12050 !important;
+}
+
+#birlestirelim-overlay.open {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  inset: 0 !important;
   top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
   left: 0 !important;
-  right: auto !important;
-  bottom: auto !important;
-  inset: auto !important;
-  width: calc(100vw / var(--nova-perf-body-zoom, 0.74)) !important;
-  height: calc(100vh / var(--nova-perf-body-zoom, 0.74)) !important;
-  height: calc(100dvh / var(--nova-perf-body-zoom, 0.74)) !important;
-  transform-origin: top left !important;
+  width: 100% !important;
+  width: 100vw !important;
+  height: 100% !important;
+  height: 100dvh !important;
   max-width: none !important;
   max-height: none !important;
   padding: 0 !important;
   margin: 0 !important;
+  transform: none !important;
+  zoom: 1 !important;
   box-sizing: border-box !important;
 }
 
-html.nova-perf-ultra-early.nova-has-session
-  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
-  #birlestirelim-overlay.open
-  .birles-shell {
+#birlestirelim-overlay.open .birles-shell {
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;

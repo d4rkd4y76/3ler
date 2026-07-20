@@ -856,7 +856,14 @@
 
   function ensureOverlay() {
     overlay = document.getElementById("birlestirelim-overlay");
-    if (overlay) return overlay;
+    var mount = document.documentElement || document.body;
+    if (overlay) {
+      /* Body zoom(0.74) fixed overlay’i telefonda kaybettiriyor — html köküne taşı */
+      try {
+        if (mount && overlay.parentElement !== mount) mount.appendChild(overlay);
+      } catch (_) {}
+      return overlay;
+    }
 
     overlay = document.createElement("div");
     overlay.id = "birlestirelim-overlay";
@@ -876,12 +883,11 @@
       "  </header>" +
       '  <div class="birles-body" id="birles-body"></div>' +
       "</div>";
-    document.body.appendChild(overlay);
+    mount.appendChild(overlay);
 
     overlay.querySelector("#birles-close").addEventListener("click", close);
     overlay.querySelector("#birles-back").addEventListener("click", goBack);
-    /* Dışarı tıklayınca kapatma yok — SESLER açılışında aynı dokunuş overlay’e denk gelip
-       anında kapatıyordu. Kapatma: ✕ / Geri. */
+    /* Dışarı tıklayınca kapatma yok — açılış dokunuşu yanlışlıkla kapatmasın */
     return overlay;
   }
 
@@ -896,7 +902,7 @@
       try {
         overlay.style.pointerEvents = "";
       } catch (_) {}
-    }, 700);
+    }, 500);
   }
 
   function setBack(on) {
@@ -1135,84 +1141,35 @@
     activeGroupId = "";
     closeHowToVideo();
 
-    var alreadyOpen = overlay.classList.contains("open") && !overlay.hidden;
-    if (alreadyOpen) {
-      setBack(false);
-      setAccentTheme(GROUP_THEMES[0]);
-      setGroupsHeader();
-      var bootTok = showBirlesViewBoot("Ses Evreni", "Açılıyor…");
-      Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(220)])
-        .then(function () {
-          if (!isBirlesViewBootCurrent(bootTok) || view !== "groups") return;
-          clearBirlesViewBootFlag();
-          renderGroups();
-        })
-        .catch(function () {
-          if (!isBirlesViewBootCurrent(bootTok) || view !== "groups") return;
-          clearBirlesViewBootFlag();
-          renderGroups();
-        });
-      return;
-    }
-
-    var loaderShown = false;
-    try {
-      if (typeof window.novaShowScreenLoader === "function") {
-        window.novaShowScreenLoader("sounds");
-        loaderShown = true;
-      }
-    } catch (_) {}
-
-    /* Overlay hazırlanana kadar gizle */
+    /* Telefonda visibility:hidden + body zoom = overlay kaybolur, sadece loader flaş eder.
+       Overlay’i hemen göster; içerik boot ile gelsin. */
     overlay.hidden = false;
-    overlay.style.visibility = "hidden";
+    overlay.style.visibility = "";
+    overlay.style.opacity = "";
     overlay.classList.add("open");
-    overlay.setAttribute("aria-hidden", "true");
+    overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("birles-lock");
     armOverlayAfterOpen();
     setBack(false);
     setAccentTheme(GROUP_THEMES[0]);
     setGroupsHeader();
-    ensureBirlesProgress()
-      .then(function () {
-        if (!overlay || !overlay.classList.contains("open") || view !== "groups") return;
-        renderGroups();
-      })
-      .catch(function () {
-        if (!overlay || !overlay.classList.contains("open") || view !== "groups") return;
-        renderGroups();
-      });
+
+    var bootTok = showBirlesViewBoot("Ses Evreni", "Açılıyor…");
     var vv = voice();
     if (vv) vv.unlock();
-    mediaReady = ensureMedia();
 
-    Promise.resolve(mediaReady)
-      .catch(function () {})
+    Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(180)])
       .then(function () {
+        if (!isBirlesViewBootCurrent(bootTok) || view !== "groups") return;
         if (!overlay || !overlay.classList.contains("open")) return;
-        overlay.style.visibility = "";
-        overlay.setAttribute("aria-hidden", "false");
-        if (loaderShown && typeof window.novaHideScreenLoaderWhenReady === "function") {
-          return window.novaHideScreenLoaderWhenReady(function () {
-            var body = document.getElementById("birles-body");
-            return !!(
-              overlay.classList.contains("open") &&
-              body &&
-              body.querySelector(".birles-group-grid, .birles-wcard, .birles-group-card, [data-group]")
-            );
-          }, { maxMs: 8000, minVisibleMs: 280 });
-        }
-        if (loaderShown && typeof window.novaHideScreenLoader === "function") {
-          window.novaHideScreenLoader();
-        }
+        clearBirlesViewBootFlag();
+        renderGroups();
       })
       .catch(function () {
+        if (!isBirlesViewBootCurrent(bootTok) || view !== "groups") return;
         if (!overlay || !overlay.classList.contains("open")) return;
-        overlay.style.visibility = "";
-        overlay.setAttribute("aria-hidden", "false");
-        if (loaderShown && typeof window.novaHideScreenLoader === "function") {
-          window.novaHideScreenLoader();
-        }
+        clearBirlesViewBootFlag();
+        renderGroups();
       });
   }
 
