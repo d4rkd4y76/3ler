@@ -2640,6 +2640,7 @@ window.NovaAdminExport = (function(){
         id: 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
         title: 'Etkinlik ' + (n || 1),
         result: '',
+        resultAudioUrl: '',
         heceStep: 5,
         correctOrder: '',
         instructionAudioUrl: '',
@@ -2664,6 +2665,7 @@ window.NovaAdminExport = (function(){
         id: String(row.id || ('s' + (idx + 1))).trim() || ('s' + (idx + 1)),
         title: String(row.title || ('Etkinlik ' + (idx + 1))).trim() || ('Etkinlik ' + (idx + 1)),
         result: String(row.result || '').trim(),
+        resultAudioUrl: String(row.resultAudioUrl || row.resultUrl || row.heceAudioUrl || '').trim(),
         heceStep: heceStep,
         correctOrder: String(row.correctOrder || row.order || '').trim(),
         instructionAudioUrl: String(row.instructionAudioUrl || row.instructionUrl || '').trim(),
@@ -2685,7 +2687,9 @@ window.NovaAdminExport = (function(){
     function siralaActivityHasContent(act){
       if(!act) return false;
       if(String(act.instructionAudioUrl || '').trim()) return true;
+      if(String(act.resultAudioUrl || '').trim()) return true;
       if(String(act.correctOrder || '').trim()) return true;
+      if(String(act.result || '').trim()) return true;
       var sounds = act.sounds || [];
       var filled = 0;
       for(var i = 0; i < sounds.length; i++){
@@ -2925,7 +2929,18 @@ window.NovaAdminExport = (function(){
         inp.addEventListener('blur', run);
         if(trNormKey(inp.value) && urlInp && !String(urlInp.value || '').trim()) run();
       });
-      root.querySelectorAll('input[data-field="siralaAudioUrl"], input[data-field="kristalAudioUrl"]').forEach(function(urlInp){
+      root.querySelectorAll('input[data-field="siralaResult"]').forEach(function(inp){
+        if(inp._siralaResultAutofillBound) return;
+        inp._siralaResultAutofillBound = true;
+        var row = inp.closest('.birles-admin-row');
+        var urlInp = row && row.querySelector('input[data-field="siralaResultAudioUrl"]');
+        function run(){ applyAutofillAudio(inp, urlInp); }
+        inp.addEventListener('input', run);
+        inp.addEventListener('change', run);
+        inp.addEventListener('blur', run);
+        if(trNormKey(inp.value) && urlInp && !String(urlInp.value || '').trim()) run();
+      });
+      root.querySelectorAll('input[data-field="siralaAudioUrl"], input[data-field="kristalAudioUrl"], input[data-field="siralaResultAudioUrl"]').forEach(function(urlInp){
         if(urlInp._manualUrlBound) return;
         urlInp._manualUrlBound = true;
         urlInp.addEventListener('input', function(){
@@ -3010,6 +3025,9 @@ window.NovaAdminExport = (function(){
           '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>';
       }
       var canDel = acts.length > 1;
+      var result = String(act.result || act.title || '').trim();
+      var resultAudioUrl = String(act.resultAudioUrl || '').trim();
+      if(!resultAudioUrl && result) resultAudioUrl = lookupExistingAudioUrl(result);
       return '<div class="birles-admin-fusion" style="margin-top:4px" data-sirala-editor="1" data-letter-key="'+escHtml(sound.id)+'">'+
         '<div class="birles-admin-kristal-nav">'+
         '<button type="button" class="btn" data-sirala-nav="prev"'+(activeSiralaActIdx<=0?' disabled':'')+'>◀ Önceki</button>'+
@@ -3018,18 +3036,22 @@ window.NovaAdminExport = (function(){
         '<button type="button" class="btn acc" data-sirala-nav="add">+ Yeni etkinlik</button>'+
         (canDel ? '<button type="button" class="btn" data-sirala-nav="del" style="border-color:rgba(248,113,113,.5)">Bu etkinliği sil</button>' : '')+
         '</div>'+
-        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 1fr 120px">'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 1.4fr 120px 88px">'+
         '<div><label>Hedef hece / yazı (patlamada)</label>'+
-        '<input type="text" data-field="siralaResult" value="'+escHtml(act.result||act.title||'')+'" placeholder="er"></div>'+
-        '<div><label>Doğru sıra (virgülle) → yuva sayısı</label>'+
-        '<input type="text" data-field="siralaCorrectOrder" value="'+escHtml(act.correctOrder||'')+'" placeholder="e,r"></div>'+
+        '<input type="text" data-field="siralaResult" value="'+escHtml(result)+'" placeholder="er"></div>'+
+        '<div><label>Patlama okunuşu MP3</label>'+
+        '<input type="url" data-field="siralaResultAudioUrl" value="'+escHtml(resultAudioUrl)+'" placeholder="https://….b-cdn.net/er.mp3"'+(resultAudioUrl && !act.resultAudioUrl ? ' data-autofilled="1"' : '')+'></div>'+
         '<div><label>Hece Avı aşaması</label>'+
-        '<input type="number" min="1" data-field="siralaHeceStep" value="'+(act.heceStep||'')+'" placeholder="5"></div></div>'+
+        '<input type="number" min="1" data-field="siralaHeceStep" value="'+(act.heceStep||'')+'" placeholder="5"></div>'+
+        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-test-result-audio="1">Test</button></div></div>'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr">'+
+        '<div><label>Doğru sıra (virgülle) → yuva sayısı</label>'+
+        '<input type="text" data-field="siralaCorrectOrder" value="'+escHtml(act.correctOrder||'')+'" placeholder="e,r"></div></div>'+
         '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 88px">'+
         '<div><label>Yönerge MP3 (“duyduğun bu sesleri sırasıyla yuvasına sürükle…”)</label>'+
         '<input type="url" data-field="siralaInstructionUrl" value="'+escHtml(act.instructionAudioUrl||'')+'" placeholder="https://….b-cdn.net/yonerge.mp3"></div>'+
         '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>'+
-        '<p class="soft small" style="margin:0 0 8px"><b>Hece Avı aşaması</b> = kaçıncı sırada çıksın (ör. 5). <b>Doğru sıra</b> = yuvalar (ör. e,r → 2 yuva). Alttaki 5 kutu = raftaki tüm sesler (çeldirici dahil). Ses yazınca harf/hece URL’si zaten yüklüyse MP3 alanı otomatik dolar. Bu etkinlik ayrı kart değil; Hece Avı içinde oynanır.</p>'+
+        '<p class="soft small" style="margin:0 0 8px"><b>Hece Avı aşaması</b> = kaçıncı sırada çıksın (ör. 5). <b>Doğru sıra</b> = yuvalar (ör. e,r → 2 yuva). <b>Patlama okunuşu</b> = hece chip’i gelince çalan ses (hece URL’si varsa otomatik dolar). Alttaki 5 kutu = raftaki tüm sesler (çeldirici dahil).</p>'+
         rows+
         '</div>';
     }
@@ -3117,11 +3139,12 @@ window.NovaAdminExport = (function(){
             const si = Number(sAct);
             siralaActsBest[key] = siralaActsBest[key] || {};
             siralaActsBest[key][si] = siralaActsBest[key][si] || {
-              id: '', title: '', result: '', instructionAudioUrl: '', sounds: []
+              id: '', title: '', result: '', resultAudioUrl: '', instructionAudioUrl: '', sounds: []
             };
             if(row.getAttribute('data-sirala-meta') === '1'){
               var tEl = row.querySelector('[data-field="siralaTitle"]');
               var rEl = row.querySelector('[data-field="siralaResult"]');
+              var raEl = row.querySelector('[data-field="siralaResultAudioUrl"]');
               var oEl = row.querySelector('[data-field="siralaCorrectOrder"]');
               var hEl = row.querySelector('[data-field="siralaHeceStep"]');
               var iEl = row.querySelector('[data-field="siralaInstructionUrl"]');
@@ -3130,6 +3153,7 @@ window.NovaAdminExport = (function(){
                 siralaActsBest[key][si].result = String(rEl.value||'').trim();
                 if(!siralaActsBest[key][si].title) siralaActsBest[key][si].title = siralaActsBest[key][si].result;
               }
+              if(raEl) siralaActsBest[key][si].resultAudioUrl = String(raEl.value||'').trim();
               if(oEl) siralaActsBest[key][si].correctOrder = String(oEl.value||'').trim();
               if(hEl) siralaActsBest[key][si].heceStep = parseInt(hEl.value, 10) || 0;
               if(iEl) siralaActsBest[key][si].instructionAudioUrl = String(iEl.value||'').trim();
@@ -3238,6 +3262,7 @@ window.NovaAdminExport = (function(){
                 id: bs.id || ('s' + (sj + 1)),
                 title: String(hs.title || bs.title || ('Etkinlik ' + (sj + 1))).trim(),
                 result: String(hs.result != null ? hs.result : (bs.result || '')).trim(),
+                resultAudioUrl: String(hs.resultAudioUrl != null ? hs.resultAudioUrl : (bs.resultAudioUrl || '')).trim(),
                 heceStep: hs.heceStep != null ? hs.heceStep : (bs.heceStep || 0),
                 correctOrder: String(hs.correctOrder != null ? hs.correctOrder : (bs.correctOrder || '')).trim(),
                 instructionAudioUrl: String(hs.instructionAudioUrl != null ? hs.instructionAudioUrl : (bs.instructionAudioUrl || '')).trim(),
@@ -3683,9 +3708,14 @@ window.NovaAdminExport = (function(){
         btn.addEventListener('click', async function(){
           const row = btn.closest('.birles-admin-row');
           const inp = row && (
+            row.querySelector('[data-test-result-audio]')
+              ? row.querySelector('input[data-field="siralaResultAudioUrl"]')
+              : null
+          ) || (
             row.querySelector('input[data-field="audioUrl"]') ||
             row.querySelector('input[data-field="yazilisAudioUrl"]') ||
             row.querySelector('input[data-field="siralaAudioUrl"]') ||
+            row.querySelector('input[data-field="siralaResultAudioUrl"]') ||
             row.querySelector('input[data-field="siralaInstructionUrl"]')
           );
           const url = inp && String(inp.value || '').trim();

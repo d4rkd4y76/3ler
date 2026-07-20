@@ -84,6 +84,9 @@
       id: String(row.id || "s" + (idx + 1)).trim() || "s" + (idx + 1),
       title: String(row.title || "").trim(),
       result: String(row.result || row.title || "").trim(),
+      resultAudioUrl: String(
+        row.resultAudioUrl || row.resultUrl || row.heceAudioUrl || ""
+      ).trim(),
       heceStep: heceStep,
       correctOrder: correctOrder,
       instructionAudioUrl: String(
@@ -467,6 +470,13 @@
         '<span class="birles-sirala__burst-chip">' + esc(word) + "</span>";
       burst.hidden = false;
       burst.classList.add("is-boom-in");
+    }
+
+    var resultAudio = String(activityRef.resultAudioUrl || "").trim();
+    if (resultAudio) {
+      try {
+        playUrl(resultAudio);
+      } catch (_) {}
     }
 
     await waitBoomEnded(boom);
