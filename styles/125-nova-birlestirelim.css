@@ -5027,78 +5027,47 @@ html.nova-perf-ultra-early.nova-has-session
   vertical-align: baseline;
   transform-origin: center center;
   animation: birlesKristalHeartbeat 1.85s ease-in-out infinite;
-  color: #5a3200;
-  -webkit-text-fill-color: #5a3200;
-  background: linear-gradient(165deg, #fff4c2 0%, #ffd76a 42%, #e8a820 100%);
-  border: 1.5px solid rgba(255, 236, 170, 0.98);
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: rgba(255, 200, 70, 0.22);
+  border: 2px solid #ffd56a;
   box-shadow:
-    0 0 0 1px rgba(180, 110, 20, 0.45),
-    0 0 10px rgba(255, 210, 90, 0.75),
-    0 0 16px rgba(255, 190, 60, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    0 0 0 1px rgba(120, 70, 10, 0.35),
+    0 0 10px rgba(255, 200, 80, 0.45);
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.55),
-    0 0 6px rgba(255, 220, 120, 0.65);
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 1px rgba(0, 0, 0, 0.75);
 }
 
 .birles-kristal__name.is-speaking .birles-kristal__gem::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
-  opacity: 0.85;
+  display: none;
 }
 
-/* Vurgulanan harf — altın, okunaklı, komşu harfleri kapatmaz */
+/* Vurgu: kelime büyümeden sadece sarı çerçeve — özel efekt yok */
 .birles-kristal__gem {
   display: inline-block;
   position: relative;
   z-index: 1;
-  margin: 0 0.12em;
-  padding: 0.04em 0.1em 0.05em;
-  border-radius: 0.32em;
+  margin: 0 0.08em;
+  padding: 0.02em 0.06em 0.03em;
+  border-radius: 0.28em;
   font-weight: 900;
   line-height: 1.05;
   vertical-align: baseline;
   white-space: nowrap;
-  color: #5c3408;
-  -webkit-text-fill-color: #5c3408;
-  background: linear-gradient(165deg, #fff6d0 0%, #ffd76a 45%, #efb028 100%);
-  border: 1.5px solid rgba(255, 228, 150, 0.95);
-  box-shadow:
-    0 0 0 1px rgba(160, 95, 10, 0.4),
-    0 0 8px rgba(255, 200, 80, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.5),
-    0 0 5px rgba(255, 220, 120, 0.45);
-  transform-origin: center;
-  animation: birlesKristalGem 2.2s ease-in-out infinite;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  background: transparent;
+  border: 2px solid #ffd56a;
+  box-shadow: none;
+  text-shadow: inherit;
+  animation: none;
+  transform: none;
 }
 
 .birles-kristal__gem::before {
-  content: "";
-  position: absolute;
-  inset: 14% 16% auto 16%;
-  height: 26%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-@keyframes birlesKristalGem {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(160, 95, 10, 0.35),
-      0 0 6px rgba(255, 200, 80, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(180, 110, 15, 0.5),
-      0 0 12px rgba(255, 210, 90, 0.7),
-      0 0 18px rgba(255, 190, 50, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  }
+  content: none;
+  display: none;
 }
 
 .birles-kristal__slot:not(.is-empty):active {
