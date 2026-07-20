@@ -880,10 +880,23 @@
 
     overlay.querySelector("#birles-close").addEventListener("click", close);
     overlay.querySelector("#birles-back").addEventListener("click", goBack);
-    overlay.addEventListener("click", function (e) {
-      if (e.target === overlay) close();
-    });
+    /* Dışarı tıklayınca kapatma yok — SESLER açılışında aynı dokunuş overlay’e denk gelip
+       anında kapatıyordu. Kapatma: ✕ / Geri. */
     return overlay;
+  }
+
+  /** Açılış jesti bitsin diye kısa süre tıklama alma */
+  function armOverlayAfterOpen() {
+    if (!overlay) return;
+    try {
+      overlay.style.pointerEvents = "none";
+    } catch (_) {}
+    window.setTimeout(function () {
+      if (!overlay || !overlay.classList.contains("open")) return;
+      try {
+        overlay.style.pointerEvents = "";
+      } catch (_) {}
+    }, 700);
   }
 
   function setBack(on) {
@@ -1156,12 +1169,19 @@
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.add("birles-lock");
+    armOverlayAfterOpen();
     setBack(false);
     setAccentTheme(GROUP_THEMES[0]);
     setGroupsHeader();
-    ensureBirlesProgress().then(function () {
-      renderGroups();
-    });
+    ensureBirlesProgress()
+      .then(function () {
+        if (!overlay || !overlay.classList.contains("open") || view !== "groups") return;
+        renderGroups();
+      })
+      .catch(function () {
+        if (!overlay || !overlay.classList.contains("open") || view !== "groups") return;
+        renderGroups();
+      });
     var vv = voice();
     if (vv) vv.unlock();
     mediaReady = ensureMedia();
@@ -1169,6 +1189,7 @@
     Promise.resolve(mediaReady)
       .catch(function () {})
       .then(function () {
+        if (!overlay || !overlay.classList.contains("open")) return;
         overlay.style.visibility = "";
         overlay.setAttribute("aria-hidden", "false");
         if (loaderShown && typeof window.novaHideScreenLoaderWhenReady === "function") {
@@ -1186,6 +1207,7 @@
         }
       })
       .catch(function () {
+        if (!overlay || !overlay.classList.contains("open")) return;
         overlay.style.visibility = "";
         overlay.setAttribute("aria-hidden", "false");
         if (loaderShown && typeof window.novaHideScreenLoader === "function") {
@@ -1206,6 +1228,7 @@
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("birles-lock");
+    armOverlayAfterOpen();
     setBack(true);
     var DD = data();
     var group = DD && DD.getGroup ? DD.getGroup(activeGroupId) : null;

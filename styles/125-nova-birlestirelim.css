@@ -183,11 +183,12 @@ body.birles-kristal-fs {
 
 /*
  * Akıcı zoom(0.74) body’de kalır; overlay görsel olarak ekranı kaplasın.
- * İçerik boyutu aynı kalır (zoom reset yok) — sadece kesik / ana ekran sızıntısı gider.
+ * İçerik boyutu aynı (zoom reset yok). Padding yok — dış tıklama / ana ekran sızıntısı olmasın.
  */
 html.nova-perf-ultra-early.nova-has-session
   body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
   #birlestirelim-overlay.open {
+  position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   right: auto !important;
@@ -196,10 +197,12 @@ html.nova-perf-ultra-early.nova-has-session
   width: calc(100vw / var(--nova-perf-body-zoom, 0.74)) !important;
   height: calc(100vh / var(--nova-perf-body-zoom, 0.74)) !important;
   height: calc(100dvh / var(--nova-perf-body-zoom, 0.74)) !important;
-  transform-origin: top left;
+  transform-origin: top left !important;
   max-width: none !important;
   max-height: none !important;
-  padding: max(8px, env(safe-area-inset-top, 0px)) 8px max(8px, env(safe-area-inset-bottom, 0px)) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
 }
 
 html.nova-perf-ultra-early.nova-has-session
@@ -208,8 +211,9 @@ html.nova-perf-ultra-early.nova-has-session
   .birles-shell {
   width: 100% !important;
   height: 100% !important;
+  max-width: none !important;
   max-height: none !important;
-  border-radius: 22px;
+  border-radius: 0 !important;
 }
 
 .birles-overlay.open {
