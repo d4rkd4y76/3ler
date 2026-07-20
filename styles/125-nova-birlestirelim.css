@@ -14,6 +14,129 @@
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif !important;
 }
 
+/* Ortak ekran açılış kapısı — video/medya hazır olana kadar */
+.birles-view-boot {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(120, 210, 255, 0.18), transparent 55%),
+    linear-gradient(165deg, #0a2030 0%, #071820 100%);
+  animation: birlesViewBootIn 0.35s ease both;
+}
+
+.birles-body {
+  position: relative;
+}
+
+.birles-body.is-view-booting {
+  min-height: 220px;
+}
+
+.birles-view-boot__orb {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0%, #9be7ff 28%, #2a8fc4 70%, #0a3a55 100%);
+  box-shadow: 0 0 24px rgba(100, 210, 255, 0.55);
+  animation: birlesPoolBootPulse 1.4s ease-in-out infinite;
+}
+
+.birles-view-boot__title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #eaf7ff;
+}
+
+.birles-view-boot__text {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(210, 235, 250, 0.82);
+}
+
+.birles-view-boot__bar {
+  width: min(200px, 62vw);
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.birles-view-boot__bar > i {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5ec8f0, #b8f0ff, #5ec8f0);
+  animation: birlesPoolBootBar 1.1s ease-in-out infinite;
+}
+
+@keyframes birlesViewBootIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-hub--flower,
+.birles-sound-view {
+  opacity: 0;
+  transition: opacity 0.38s ease;
+}
+
+.birles-hub--flower.is-media-ready,
+.birles-sound-view.is-media-ready {
+  opacity: 1;
+}
+
+.birles-howto.is-booting .birles-howto__media {
+  opacity: 0;
+}
+
+.birles-howto__boot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  font-weight: 800;
+  color: #eaf7ff;
+  background: rgba(8, 20, 36, 0.72);
+}
+
+.birles-howto__frame {
+  position: relative;
+}
+
+.birles-howto:not(.is-booting) .birles-howto__boot {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-view-boot,
+  .birles-hub--flower,
+  .birles-sound-view {
+    animation: none;
+    transition: none;
+  }
+}
+
 body.birles-lock {
   overflow: hidden !important;
   zoom: 1 !important;
