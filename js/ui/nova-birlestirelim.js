@@ -3217,8 +3217,8 @@
     }
     if (token !== animToken) return;
 
-    /* 3) Yeni hece aşağıdan patlamaya uygun yükseliş */
-    await pace(reduceMotion ? 40 : 160);
+    /* 3) Yeni hece + ses: su yükselip patladığı ana hizalı */
+    await pace(reduceMotion ? 80 : 620);
     if (token !== animToken) return;
     if (burst) {
       burst.textContent = String(finalWord || "");
