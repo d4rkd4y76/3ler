@@ -1185,29 +1185,55 @@
 
   function openKristalCave(sound) {
     var K = window.NovaBirlestirelimKristal;
-    if (!K || !K.open) return;
-    ensureMedia().then(function () {
-      warmKristalCave(sound);
-      K.open({
-        sound: sound,
-        letterPack: letterPackFor(sound),
-        onDone: function (res) {
-          if (!res || !res.success) return;
-          Promise.resolve(
-            markLaneStarred(sound.id, sound.groupId || activeGroupId, "kristal")
-          )
-            .then(function (newly) {
-              if (newly) return playStarRewardOnce("Kristal Mağarası");
-            })
-            .then(function () {
-              if (activeSound && activeSound.id === sound.id) openSound(sound.id);
-            })
-            .catch(function () {
-              if (activeSound && activeSound.id === sound.id) openSound(sound.id);
-            });
+    if (!K || !K.open) {
+      try {
+        if (typeof window.showAlert === "function") {
+          window.showAlert("Kristal Mağarası yüklenemedi. Sayfayı yenileyip tekrar dene.");
         }
-      });
-    });
+      } catch (_) {}
+      return;
+    }
+    function go() {
+      try {
+        warmKristalCave(sound);
+        K.open({
+          sound: sound,
+          letterPack: letterPackFor(sound),
+          onDone: function (res) {
+            if (!res || !res.success) return;
+            Promise.resolve(
+              markLaneStarred(sound.id, sound.groupId || activeGroupId, "kristal")
+            )
+              .then(function (newly) {
+                if (newly) return playStarRewardOnce("Kristal Mağarası");
+              })
+              .then(function () {
+                if (activeSound && activeSound.id === sound.id) openSound(sound.id);
+              })
+              .catch(function () {
+                if (activeSound && activeSound.id === sound.id) openSound(sound.id);
+              });
+          }
+        });
+      } catch (err) {
+        try {
+          console.error("Kristal open", err);
+        } catch (_) {}
+      }
+    }
+    /* Medya beklerken ekranı kilitleme — en geç 400ms’de aç */
+    var started = false;
+    function once() {
+      if (started) return;
+      started = true;
+      go();
+    }
+    try {
+      Promise.resolve(ensureMedia()).then(once).catch(once);
+    } catch (_) {
+      once();
+    }
+    setTimeout(once, 400);
   }
 
   function openHowToVideo(sound) {

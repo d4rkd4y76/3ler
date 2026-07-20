@@ -356,10 +356,25 @@
     layoutBound = null;
   }
 
+  function forceHideBirlesMask() {
+    try {
+      var mask = document.getElementById("birles-zoom-mask");
+      if (mask) mask.classList.remove("is-on");
+      document.documentElement.classList.add("birles-kristal-open");
+    } catch (_) {}
+  }
+
+  function clearKristalHtmlFlag() {
+    try {
+      document.documentElement.classList.remove("birles-kristal-open");
+    } catch (_) {}
+  }
+
   function close() {
     openToken += 1;
     finishing = false;
     unbindLayout();
+    clearKristalHtmlFlag();
     try {
       document.body.classList.remove("birles-kristal-fs");
       if (typeof window.novaSyncPerfRuntime === "function") {
@@ -371,11 +386,10 @@
       if (birlesOv && birlesOv.getAttribute("data-kristal-under") === "1") {
         birlesOv.removeAttribute("data-kristal-under");
         if (birlesOv.classList.contains("open")) {
-          birlesOv.style.setProperty("visibility", "visible", "important");
-          birlesOv.style.setProperty("pointer-events", "auto", "important");
-        } else {
           birlesOv.style.removeProperty("visibility");
           birlesOv.style.removeProperty("pointer-events");
+          birlesOv.style.removeProperty("opacity");
+          birlesOv.style.removeProperty("z-index");
         }
         if (typeof window.__birlesScheduleHubCover === "function") {
           window.__birlesScheduleHubCover();
@@ -545,19 +559,6 @@
       warm(packRef);
     } catch (_) {}
 
-    /* Ses Evreni hub cover (zoom telafisi) yeşil ekranı kristalin üstüne taşımasın */
-    try {
-      if (typeof window.__birlesClearHubCover === "function") {
-        window.__birlesClearHubCover();
-      }
-      var birlesOv = document.getElementById("birlestirelim-overlay");
-      if (birlesOv) {
-        birlesOv.setAttribute("data-kristal-under", "1");
-        birlesOv.style.setProperty("visibility", "hidden", "important");
-        birlesOv.style.setProperty("pointer-events", "none", "important");
-      }
-    } catch (_) {}
-
     var box = document.createElement("div");
     box.id = "birles-kristal-overlay";
     box.className = "birles-kristal is-booting";
@@ -591,8 +592,12 @@
       '<p class="birles-kristal__hint">Doğru olanların hepsine dokun</p>' +
       '<button type="button" class="birles-kristal__exit" data-kristal-done="1" hidden aria-hidden="true" aria-label="Kapat">✕</button>';
 
-    document.body.appendChild(box);
+    /* Önce Kristal DOM’da olsun — yeşil maske/Ses Evreni’nden önce */
+    var mount = document.documentElement || document.body;
+    mount.appendChild(box);
     hostEl = box;
+
+    forceHideBirlesMask();
     try {
       document.body.classList.add("birles-kristal-fs");
       if (typeof window.novaSyncPerfRuntime === "function") {
@@ -603,6 +608,20 @@
         document.body.style.width = "100%";
       }
     } catch (_) {}
+
+    try {
+      if (typeof window.__birlesClearHubCover === "function") {
+        window.__birlesClearHubCover();
+      }
+      var birlesOv = document.getElementById("birlestirelim-overlay");
+      if (birlesOv) {
+        birlesOv.setAttribute("data-kristal-under", "1");
+        birlesOv.style.setProperty("visibility", "hidden", "important");
+        birlesOv.style.setProperty("pointer-events", "none", "important");
+        birlesOv.style.setProperty("z-index", "1", "important");
+      }
+    } catch (_) {}
+
     bindLayout();
     layoutStage();
     requestAnimationFrame(function () {
@@ -636,31 +655,29 @@
     });
 
     var vid = box.querySelector(".birles-kristal__video");
-    var minShow = new Promise(function (r) {
-      setTimeout(r, 480);
-    });
+
+    /* Hemen göster — video beklerken yeşil boş ekran olmasın */
+    setTimeout(function () {
+      if (token !== openToken || !box.parentNode) return;
+      revealReady(box, vid, token);
+    }, 280);
+
     var warmOk = Promise.resolve(warmPromise).catch(function () {
       return null;
     });
-
     Promise.all([
-      waitVideoReady(vid, 12000),
+      waitVideoReady(vid, 8000),
       waitPhotosInDom(box),
-      warmOk,
-      minShow
+      warmOk
     ])
       .then(function () {
+        if (token !== openToken || !box.parentNode) return;
         revealReady(box, vid, token);
       })
       .catch(function () {
+        if (token !== openToken || !box.parentNode) return;
         revealReady(box, vid, token);
       });
-
-    /* Emniyet: en geç 3.5 sn’de sahneyi göster */
-    setTimeout(function () {
-      if (token !== openToken || !box || !box.parentNode) return;
-      if (!box.classList.contains("is-ready")) revealReady(box, vid, token);
-    }, 3500);
   }
 
   global.NovaBirlestirelimKristal = {

@@ -217,9 +217,15 @@ body.birles-kristal-fs {
 #birles-zoom-mask.is-on {
   display: block;
 }
+/* Mask html kökünde — body altı seçici çalışmıyordu → yeşil boş ekran */
+html.birles-kristal-open #birles-zoom-mask,
+html:has(body.birles-kristal-fs) #birles-zoom-mask,
+html:has(body.birles-pool-fs) #birles-zoom-mask,
 body.birles-pool-fs #birles-zoom-mask,
 body.birles-kristal-fs #birles-zoom-mask {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 @keyframes birlesFadeIn {
