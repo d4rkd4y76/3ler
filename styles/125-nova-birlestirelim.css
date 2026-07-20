@@ -181,6 +181,37 @@ body.birles-kristal-fs {
   box-sizing: border-box;
 }
 
+/*
+ * Akıcı zoom(0.74) body’de kalır; overlay görsel olarak ekranı kaplasın.
+ * İçerik boyutu aynı kalır (zoom reset yok) — sadece kesik / ana ekran sızıntısı gider.
+ */
+html.nova-perf-ultra-early.nova-has-session
+  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
+  #birlestirelim-overlay.open {
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  width: calc(100vw / var(--nova-perf-body-zoom, 0.74)) !important;
+  height: calc(100vh / var(--nova-perf-body-zoom, 0.74)) !important;
+  height: calc(100dvh / var(--nova-perf-body-zoom, 0.74)) !important;
+  transform-origin: top left;
+  max-width: none !important;
+  max-height: none !important;
+  padding: max(8px, env(safe-area-inset-top, 0px)) 8px max(8px, env(safe-area-inset-bottom, 0px)) !important;
+}
+
+html.nova-perf-ultra-early.nova-has-session
+  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
+  #birlestirelim-overlay.open
+  .birles-shell {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  border-radius: 22px;
+}
+
 .birles-overlay.open {
   display: flex;
   animation: birlesFadeIn 0.38s ease both;
@@ -3776,14 +3807,58 @@ body.birles-kristal-fs {
   bottom: 0;
   z-index: 70;
   flex: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin: 0;
-  padding: 10px 12px max(14px, env(safe-area-inset-bottom, 0px));
+  padding: 8px 10px max(12px, env(safe-area-inset-bottom, 0px));
   background: linear-gradient(180deg, transparent, rgba(4, 16, 24, 0.88) 28%, rgba(4, 16, 24, 0.96));
   pointer-events: auto;
 }
 
+.birles-play--pool .birles-lane-bar {
+  flex-wrap: nowrap !important;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 8px 10px max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+.birles-play--pool .birles-lane-bar__track {
+  flex: 1 1 auto;
+  min-width: 40px;
+  max-width: 64px;
+  height: 6px;
+  order: 0;
+}
+
 .birles-play--pool .birles-lane-bar__progress {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 0.78rem;
   color: #dff4ff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.birles-play--pool .birles-lane-bar .birles-btn {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.birles-play--pool .birles-btn--replay,
+.birles-btn--replay {
+  min-width: 46px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 1.2rem;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .birles-play--pool .birles-btn--soft {
@@ -6445,10 +6520,10 @@ body.birles-kristal-fs {
 
 .birles-lane-bar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   margin-top: 10px;
   padding: 12px 10px;
   border-radius: 22px;
@@ -6461,7 +6536,9 @@ body.birles-kristal-fs {
 }
 
 .birles-lane-bar__track {
-  flex: 1 1 100%;
+  flex: 1 1 auto;
+  min-width: 40px;
+  max-width: 80px;
   height: 7px;
   border-radius: 999px;
   background: rgba(22, 50, 79, 0.1);
@@ -6480,13 +6557,15 @@ body.birles-kristal-fs {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 58px;
-  padding: 10px 14px;
+  flex: 0 0 auto;
+  min-width: 52px;
+  padding: 8px 12px;
   border-radius: 999px;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 800;
   color: #16324f;
   background: rgba(22, 50, 79, 0.08);
+  white-space: nowrap;
 }
 
 .birles-btn--go {
@@ -6511,10 +6590,19 @@ body.birles-kristal-fs {
 }
 
 @media (max-width: 640px) {
-  .birles-lane-bar { gap: 8px; padding: 10px 8px; }
+  .birles-lane-bar { gap: 6px; padding: 10px 8px; }
   .birles-lane-bar .birles-btn {
-    padding: 12px 16px;
-    font-size: 0.92rem;
+    padding: 10px 12px;
+    font-size: 0.84rem;
+  }
+  .birles-lane-bar .birles-btn--replay {
+    padding: 10px 11px;
+    font-size: 1.15rem;
+  }
+  .birles-lane-bar__progress {
+    padding: 8px 9px;
+    font-size: 0.76rem;
+    min-width: 0;
   }
 }
 

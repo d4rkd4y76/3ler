@@ -2090,7 +2090,7 @@
         '<span class="birles-lane-bar__progress" aria-live="polite">' +
         esc(laneProgressLabel()) +
         "</span>" +
-        '<button type="button" class="birles-btn birles-btn--soft" id="birles-replay">Tekrar</button>' +
+        '<button type="button" class="birles-btn birles-btn--soft birles-btn--replay" id="birles-replay" aria-label="Tekrar" title="Tekrar">🔁</button>' +
         '<button type="button" class="birles-btn birles-btn--soft" id="birles-lane-all">' +
         esc(activeLane.allLabel || "Tümü") +
         "</button>" +
@@ -2100,7 +2100,7 @@
     }
     return (
       '<div class="birles-play-actions">' +
-      '<button type="button" class="birles-btn birles-btn--ghost" id="birles-replay">Tekrar dinle</button>' +
+      '<button type="button" class="birles-btn birles-btn--ghost birles-btn--replay" id="birles-replay" aria-label="Tekrar" title="Tekrar">🔁</button>' +
       '<button type="button" class="birles-btn" id="birles-next">Başka birleştirme</button>' +
       "</div>"
     );
