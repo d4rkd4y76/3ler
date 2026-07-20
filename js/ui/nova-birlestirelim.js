@@ -854,6 +854,124 @@
     overlay.style.setProperty("--chip", t.chip);
   }
 
+  function getAkiciBodyZoom() {
+    try {
+      if (
+        document.body.classList.contains("birles-pool-fs") ||
+        document.body.classList.contains("birles-kristal-fs")
+      ) {
+        return 1;
+      }
+    } catch (_) {}
+    var z = 1;
+    try {
+      var inline = parseFloat(document.body.style.zoom);
+      if (inline > 0.2 && inline <= 1) z = inline;
+    } catch (_) {}
+    if (z >= 0.98) {
+      try {
+        var fromVar = parseFloat(
+          getComputedStyle(document.body).getPropertyValue("--nova-perf-body-zoom")
+        );
+        if (fromVar > 0.2 && fromVar <= 1) z = fromVar;
+      } catch (_) {}
+    }
+    if (z >= 0.98) {
+      try {
+        var fromCs = parseFloat(getComputedStyle(document.body).zoom);
+        if (fromCs > 0.2 && fromCs <= 1) z = fromCs;
+      } catch (_) {}
+    }
+    return z > 0.2 && z <= 1 ? z : 1;
+  }
+
+  function clearBirlesHubCoverLayout() {
+    var ov = document.getElementById("birlestirelim-overlay");
+    if (!ov) return;
+    try {
+      ov.style.removeProperty("top");
+      ov.style.removeProperty("left");
+      ov.style.removeProperty("right");
+      ov.style.removeProperty("bottom");
+      ov.style.removeProperty("width");
+      ov.style.removeProperty("height");
+      ov.style.removeProperty("max-width");
+      ov.style.removeProperty("max-height");
+      ov.style.removeProperty("inset");
+    } catch (_) {}
+  }
+
+  /**
+   * Telefonda body zoom(0.74) fixed overlay’i görsel olarak kısaltır.
+   * Overlay kutusunu (yazı ölçeğini değil) fiziksel ekranı kaplayacak boyuta getirir.
+   */
+  function layoutBirlesHubCover() {
+    var ov = document.getElementById("birlestirelim-overlay");
+    if (!ov || !ov.classList.contains("open")) return;
+    if (
+      ov.classList.contains("is-pool-play") ||
+      document.body.classList.contains("birles-pool-fs") ||
+      document.body.classList.contains("birles-kristal-fs")
+    ) {
+      clearBirlesHubCoverLayout();
+      return;
+    }
+    var z = getAkiciBodyZoom();
+    if (z >= 0.98) {
+      clearBirlesHubCoverLayout();
+      return;
+    }
+    var vv = window.visualViewport;
+    var vw = Math.max(
+      1,
+      (vv && vv.width) || window.innerWidth || document.documentElement.clientWidth || 1
+    );
+    var vh = Math.max(
+      1,
+      (vv && vv.height) || window.innerHeight || document.documentElement.clientHeight || 1
+    );
+    var top = (vv && typeof vv.offsetTop === "number" ? vv.offsetTop : 0) / z;
+    var left = (vv && typeof vv.offsetLeft === "number" ? vv.offsetLeft : 0) / z;
+    try {
+      ov.style.setProperty("position", "fixed", "important");
+      ov.style.setProperty("top", top + "px", "important");
+      ov.style.setProperty("left", left + "px", "important");
+      ov.style.setProperty("right", "auto", "important");
+      ov.style.setProperty("bottom", "auto", "important");
+      ov.style.setProperty("width", vw / z + "px", "important");
+      ov.style.setProperty("height", vh / z + "px", "important");
+      ov.style.setProperty("max-width", "none", "important");
+      ov.style.setProperty("max-height", "none", "important");
+    } catch (_) {}
+  }
+
+  var birlesHubCoverBound = false;
+  function bindBirlesHubCover() {
+    if (birlesHubCoverBound) return;
+    birlesHubCoverBound = true;
+    var run = function () {
+      layoutBirlesHubCover();
+    };
+    window.addEventListener("resize", run, { passive: true });
+    window.addEventListener("orientationchange", run, { passive: true });
+    try {
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", run, { passive: true });
+        window.visualViewport.addEventListener("scroll", run, { passive: true });
+      }
+    } catch (_) {}
+    window.__birlesHubCoverRun = run;
+  }
+
+  function scheduleBirlesHubCover() {
+    bindBirlesHubCover();
+    layoutBirlesHubCover();
+    requestAnimationFrame(function () {
+      layoutBirlesHubCover();
+      requestAnimationFrame(layoutBirlesHubCover);
+    });
+  }
+
   function ensureBirlesZoomMask() {
     var mask = document.getElementById("birles-zoom-mask");
     if (mask) return mask;
@@ -926,6 +1044,7 @@
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("birles-lock");
     setBirlesZoomMask(true);
+    scheduleBirlesHubCover();
   }
 
   function setBack(on) {
@@ -1237,6 +1356,7 @@
       overlay.style.opacity = "";
       overlay.style.pointerEvents = "";
     } catch (_) {}
+    clearBirlesHubCoverLayout();
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("birles-lock");
     document.body.classList.remove("birles-pool-fs");
@@ -1519,6 +1639,7 @@
     var group = DD.getGroup ? DD.getGroup(sound.groupId || activeGroupId) : null;
     setAccentTheme(groupThemeById(sound.groupId || activeGroupId));
     setHeader(sound.title, "", (group && group.title) || "Ses grubu");
+    scheduleBirlesHubCover();
     var bootTok = showBirlesViewBoot(sound.title || "Ses", "Ses açılıyor…");
     Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(280)])
       .then(function () {
@@ -2909,6 +3030,10 @@
     syncBirlesNativeScale();
     try {
       setBirlesZoomMask(!on && document.body.classList.contains("birles-lock"));
+    } catch (_) {}
+    try {
+      if (on) clearBirlesHubCoverLayout();
+      else scheduleBirlesHubCover();
     } catch (_) {}
     if (!on) {
       unbindPoolLayout();
