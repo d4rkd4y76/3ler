@@ -172,7 +172,7 @@ body.birles-kristal-fs {
   display: none;
   align-items: stretch;
   justify-content: center;
-  padding: 0;
+  padding: max(10px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
   margin: 0;
   background:
     radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.55), transparent 42%),
@@ -182,47 +182,8 @@ body.birles-kristal-fs {
   box-sizing: border-box;
 }
 
-/*
- * html kökünde (body zoom dışında) — telefonda Akıcı zoom fixed overlay’i yutmasın.
- * Açıkken her zaman gerçek tam ekran.
- */
-html > #birlestirelim-overlay.birles-overlay,
-#birlestirelim-overlay.birles-overlay {
-  position: fixed !important;
-  z-index: 12050 !important;
-}
-
-#birlestirelim-overlay.open {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  inset: 0 !important;
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  width: 100vw !important;
-  height: 100% !important;
-  height: 100dvh !important;
-  max-width: none !important;
-  max-height: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  transform: none !important;
-  zoom: 1 !important;
-  box-sizing: border-box !important;
-}
-
-#birlestirelim-overlay.open .birles-shell {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  border-radius: 0 !important;
-}
-
+/* Ses Evreni: Akıcı body zoom ölçeğinde (tam ekran zorlaması YOK).
+   Kristal / Havuz: .is-pool-play + body.birles-*-fs zoom:1 */
 .birles-overlay.open {
   display: flex;
   animation: birlesFadeIn 0.38s ease both;
@@ -3821,11 +3782,12 @@ html > #birlestirelim-overlay.birles-overlay,
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 6px;
   margin: 0;
-  padding: 8px 10px max(12px, env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(180deg, transparent, rgba(4, 16, 24, 0.88) 28%, rgba(4, 16, 24, 0.96));
+  padding: 10px 8px max(14px, env(safe-area-inset-bottom, 0px));
+  background: rgba(4, 16, 24, 0.94);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
   pointer-events: auto;
 }
 
@@ -3835,15 +3797,15 @@ html > #birlestirelim-overlay.birles-overlay,
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  padding: 8px 10px max(12px, env(safe-area-inset-bottom, 0px));
+  padding: 0;
+  gap: 6px;
+  width: 100%;
+  justify-content: space-between;
 }
 
+/* İlerleme çubuğu gizle — tek satıra sığsın; sayı yeter */
 .birles-play--pool .birles-lane-bar__track {
-  flex: 1 1 auto;
-  min-width: 40px;
-  max-width: 64px;
-  height: 6px;
-  order: 0;
+  display: none !important;
 }
 
 .birles-play--pool .birles-lane-bar__progress {
@@ -3851,34 +3813,63 @@ html > #birlestirelim-overlay.birles-overlay,
   min-width: 0;
   padding: 8px 10px;
   font-size: 0.78rem;
-  color: #dff4ff;
-  background: rgba(255, 255, 255, 0.12);
+  font-weight: 800;
+  color: #f2fbff;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
 }
 
 .birles-play--pool .birles-lane-bar .birles-btn {
-  flex: 0 0 auto;
-  padding: 10px 14px;
-  font-size: 0.88rem;
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 9px 11px;
+  font-size: 0.8rem;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 34vw;
+  opacity: 1 !important;
+  border: 0;
 }
 
 .birles-play--pool .birles-btn--replay,
 .birles-btn--replay {
-  min-width: 46px;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 1.2rem;
+  flex: 0 0 auto !important;
+  min-width: 44px;
+  max-width: none;
+  padding: 9px 11px;
+  font-size: 1.15rem;
   line-height: 1;
   letter-spacing: 0;
 }
 
 .birles-play--pool .birles-btn--soft {
-  background: rgba(255, 255, 255, 0.14);
-  color: #eaf7ff;
+  background: #eef7ff !important;
+  color: #12364a !important;
+  box-shadow: 0 4px 0 #9bb4c8, 0 6px 14px rgba(0, 0, 0, 0.25) !important;
+  opacity: 1 !important;
 }
 
 .birles-play--pool .birles-btn--go {
-  box-shadow: 0 8px 20px rgba(0, 180, 160, 0.35);
+  background: linear-gradient(135deg, #2ec4a0, #1b8f78) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 0 #146b5a, 0 8px 18px rgba(0, 180, 160, 0.4) !important;
+  opacity: 1 !important;
+  max-width: 38vw;
+}
+
+.birles-play--pool .birles-btn--go.is-locked,
+.birles-play--pool .birles-btn--go:disabled {
+  background: linear-gradient(135deg, #7a9a94, #5f7a74) !important;
+  color: #fff !important;
+  opacity: 0.95 !important;
+  box-shadow: 0 3px 0 #4a615c, 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.birles-play--pool .birles-btn--ghost {
+  background: #eef7ff !important;
+  color: #12364a !important;
+  opacity: 1 !important;
 }
 
 .birles-stage.is-quiet {

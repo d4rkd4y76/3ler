@@ -856,11 +856,12 @@
 
   function ensureOverlay() {
     overlay = document.getElementById("birlestirelim-overlay");
-    var mount = document.documentElement || document.body;
     if (overlay) {
-      /* Body zoom(0.74) fixed overlay’i telefonda kaybettiriyor — html köküne taşı */
+      /* Ses Evreni body zoom(Akıcı) ölçeğinde kalsın — html’e taşıma */
       try {
-        if (mount && overlay.parentElement !== mount) mount.appendChild(overlay);
+        if (document.body && overlay.parentElement !== document.body) {
+          document.body.appendChild(overlay);
+        }
       } catch (_) {}
       return overlay;
     }
@@ -883,7 +884,7 @@
       "  </header>" +
       '  <div class="birles-body" id="birles-body"></div>' +
       "</div>";
-    mount.appendChild(overlay);
+    document.body.appendChild(overlay);
 
     overlay.querySelector("#birles-close").addEventListener("click", close);
     overlay.querySelector("#birles-back").addEventListener("click", goBack);
@@ -2042,6 +2043,7 @@
       next.removeAttribute("aria-disabled");
       return;
     }
+    var pool = !!(overlay && overlay.classList.contains("is-pool-play"));
     if (on) {
       next.disabled = false;
       next.classList.remove("is-locked");
@@ -2052,16 +2054,19 @@
       next.disabled = true;
       next.classList.add("is-locked");
       next.setAttribute("aria-disabled", "true");
-      next.textContent = "Dinleniyor…";
+      next.textContent = pool ? "Bekle" : "Dinleniyor…";
       next.setAttribute("title", "Gösterim bitince açılır");
     }
   }
 
   function laneActionBarHtml(inLane) {
+    var pool = !!(overlay && overlay.classList.contains("is-pool-play"));
     if (inLane && activeLane) {
       var total = (activeLane.list || []).length || 1;
       var cur = (activeLane.index || 0) + 1;
       var pct = Math.max(6, Math.round((cur / total) * 100));
+      var allTxt = pool ? "Tümü" : activeLane.allLabel || "Tümü";
+      var waitTxt = pool ? "Bekle" : "Dinleniyor…";
       return (
         '<div class="birles-play-actions birles-lane-bar">' +
         '<div class="birles-lane-bar__track" aria-hidden="true"><span style="width:' +
@@ -2072,9 +2077,11 @@
         "</span>" +
         '<button type="button" class="birles-btn birles-btn--soft birles-btn--replay" id="birles-replay" aria-label="Tekrar" title="Tekrar">🔁</button>' +
         '<button type="button" class="birles-btn birles-btn--soft" id="birles-lane-all">' +
-        esc(activeLane.allLabel || "Tümü") +
+        esc(allTxt) +
         "</button>" +
-        '<button type="button" class="birles-btn birles-btn--go is-locked" id="birles-next" disabled aria-disabled="true" title="Gösterim bitince açılır">Dinleniyor…</button>' +
+        '<button type="button" class="birles-btn birles-btn--go is-locked" id="birles-next" disabled aria-disabled="true" title="Gösterim bitince açılır">' +
+        esc(waitTxt) +
+        "</button>" +
         "</div>"
       );
     }
