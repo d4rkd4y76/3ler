@@ -139,13 +139,9 @@
 
 body.birles-lock {
   overflow: hidden !important;
-  zoom: 1 !important;
-  transform: none !important;
-  width: 100% !important;
 }
 
-/* Akıcı (zoom 0.74) kapalı — Roborox/düello ile aynı native fullscreen */
-html.nova-perf-ultra-early.nova-has-session body.birles-lock,
+/* Native fullscreen ölçeği — sadece Kristal Mağarası + Sihirli Havuz videoları */
 html.nova-perf-ultra-early.nova-has-session body.birles-pool-fs,
 html.nova-perf-ultra-early.nova-has-session body.birles-kristal-fs,
 body.birles-pool-fs,

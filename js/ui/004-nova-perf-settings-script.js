@@ -174,7 +174,6 @@
     return (
       document.body.classList.contains('nova-duel-game-open') ||
       document.body.classList.contains('roborox-reader-open') ||
-      document.body.classList.contains('birles-lock') ||
       document.body.classList.contains('birles-pool-fs') ||
       document.body.classList.contains('birles-kristal-fs')
     );

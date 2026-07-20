@@ -1156,7 +1156,6 @@
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.add("birles-lock");
-    syncBirlesNativeScale();
     setBack(false);
     setAccentTheme(GROUP_THEMES[0]);
     setGroupsHeader();
@@ -1207,7 +1206,6 @@
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("birles-lock");
-    syncBirlesNativeScale();
     setBack(true);
     var DD = data();
     var group = DD && DD.getGroup ? DD.getGroup(activeGroupId) : null;
