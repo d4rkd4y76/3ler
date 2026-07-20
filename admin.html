@@ -2799,6 +2799,141 @@ window.NovaAdminExport = (function(){
       return { ready: filled >= total && total > 0, filled: filled, total: total };
     }
 
+    function trNormKey(s){
+      return String(s || '').trim().toLocaleLowerCase('tr-TR');
+    }
+
+    /** Harf (letters) veya hece/kelime (media) için kayıtlı MP3 URL’sini bul */
+    function lookupExistingAudioUrl(label){
+      var key = trNormKey(label);
+      if(!key) return '';
+
+      function fromLetters(id){
+        if(!id) return '';
+        var ui = els();
+        if(ui.letterList){
+          var live = ui.letterList.querySelector(
+            '[data-letter-key="'+id+'"] input[data-field="audioUrl"]'
+          );
+          if(live){
+            var lv = String(live.value || '').trim();
+            if(lv) return lv;
+          }
+        }
+        var row = cache.letters && cache.letters[id];
+        return row && row.audioUrl ? String(row.audioUrl).trim() : '';
+      }
+
+      function fromMedia(mk){
+        if(!mk) return '';
+        var ui = els();
+        if(ui.fusionList){
+          var live = ui.fusionList.querySelector(
+            '[data-audio-key="'+mk+'"] input[data-field="audioUrl"]'
+          );
+          if(live){
+            var lv = String(live.value || '').trim();
+            if(lv) return lv;
+          }
+        }
+        var row = cache.media && cache.media[mk];
+        return row && row.audioUrl ? String(row.audioUrl).trim() : '';
+      }
+
+      var hit = fromLetters(key);
+      if(hit) return hit;
+
+      var all = groups();
+      for(var gi = 0; gi < all.length; gi++){
+        var arr = all[gi].sounds || [];
+        for(var i = 0; i < arr.length; i++){
+          var s = arr[i];
+          if(!s) continue;
+          if(trNormKey(s.id) === key || trNormKey(s.letter) === key){
+            hit = fromLetters(s.id);
+            if(hit) return hit;
+          }
+        }
+      }
+
+      hit = fromMedia(key);
+      if(hit) return hit;
+
+      var media = cache.media || {};
+      var keys = Object.keys(media);
+      for(var mi = 0; mi < keys.length; mi++){
+        if(trNormKey(keys[mi]) === key){
+          hit = fromMedia(keys[mi]);
+          if(hit) return hit;
+        }
+      }
+
+      var ui2 = els();
+      if(ui2.fusionList){
+        var rows = ui2.fusionList.querySelectorAll('[data-audio-key]');
+        for(var ri = 0; ri < rows.length; ri++){
+          var ak = rows[ri].getAttribute('data-audio-key');
+          if(trNormKey(ak) !== key) continue;
+          var inp = rows[ri].querySelector('input[data-field="audioUrl"]');
+          var av = inp && String(inp.value || '').trim();
+          if(av) return av;
+        }
+      }
+
+      return '';
+    }
+
+    function applyAutofillAudio(labelInp, urlInp){
+      if(!labelInp || !urlInp) return;
+      var found = lookupExistingAudioUrl(labelInp.value);
+      var cur = String(urlInp.value || '').trim();
+      var wasAuto = urlInp.getAttribute('data-autofilled') === '1';
+      if(!found){
+        if(wasAuto){
+          urlInp.value = '';
+          urlInp.removeAttribute('data-autofilled');
+        }
+        return;
+      }
+      if(!cur || wasAuto){
+        urlInp.value = found;
+        urlInp.setAttribute('data-autofilled', '1');
+      }
+    }
+
+    function bindLabelAudioAutofill(root){
+      if(!root) return;
+      root.querySelectorAll('input[data-field="siralaLabel"]').forEach(function(inp){
+        if(inp._siralaAutofillBound) return;
+        inp._siralaAutofillBound = true;
+        var row = inp.closest('.birles-admin-row');
+        var urlInp = row && row.querySelector('input[data-field="siralaAudioUrl"]');
+        function run(){ applyAutofillAudio(inp, urlInp); }
+        inp.addEventListener('input', run);
+        inp.addEventListener('change', run);
+        inp.addEventListener('blur', run);
+        if(trNormKey(inp.value) && urlInp && !String(urlInp.value || '').trim()) run();
+      });
+      root.querySelectorAll('input[data-field="kristalLabel"]').forEach(function(inp){
+        if(inp._kristalAutofillBound) return;
+        inp._kristalAutofillBound = true;
+        var row = inp.closest('.birles-admin-row');
+        var urlInp = row && row.querySelector('input[data-field="kristalAudioUrl"]');
+        function run(){ applyAutofillAudio(inp, urlInp); }
+        inp.addEventListener('input', run);
+        inp.addEventListener('change', run);
+        inp.addEventListener('blur', run);
+        if(trNormKey(inp.value) && urlInp && !String(urlInp.value || '').trim()) run();
+      });
+      root.querySelectorAll('input[data-field="siralaAudioUrl"], input[data-field="kristalAudioUrl"]').forEach(function(urlInp){
+        if(urlInp._manualUrlBound) return;
+        urlInp._manualUrlBound = true;
+        urlInp.addEventListener('input', function(){
+          urlInp.removeAttribute('data-autofilled');
+        });
+      });
+    }
+
     function renderKristalBlock(sound, letterCur){
       var acts = listKristalActivities(letterCur && letterCur.kristal);
       if(activeKristalActIdx < 0) activeKristalActIdx = 0;
@@ -2813,6 +2948,7 @@ window.NovaAdminExport = (function(){
         var label = String(row.label || '').trim();
         var glow = String(row.glow || '').trim();
         var audioUrl = String(row.audioUrl || '').trim();
+        if(!audioUrl && label) audioUrl = lookupExistingAudioUrl(label);
         var prev = url
           ? '<img class="birles-admin-preview" src="'+escHtml(url)+'" alt="" style="aspect-ratio:3/4;width:72px;height:auto;object-fit:cover">'
           : '<div class="birles-admin-preview" style="aspect-ratio:3/4;width:72px;height:96px"></div>';
@@ -2827,7 +2963,7 @@ window.NovaAdminExport = (function(){
           '<div><label>Vurgula · kelime içinde parlayacak ses(ler)</label>'+
           '<input type="text" data-field="kristalGlow" value="'+escHtml(glow)+'" placeholder="ör. '+escHtml(String(letter).toLocaleLowerCase('tr-TR'))+'  veya  a,el"></div>'+
           '<div><label>Kelime MP3 URL (isimler gelince sırayla çalar)</label>'+
-          '<input type="url" data-field="kristalAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-e'+(activeKristalActIdx+1)+'-'+(i+1)+'.mp3"></div>'+
+          '<input type="url" data-field="kristalAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/kristal-'+escHtml(sound.id)+'-e'+(activeKristalActIdx+1)+'-'+(i+1)+'.mp3"'+(audioUrl && !row.audioUrl ? ' data-autofilled="1"' : '')+'></div>'+
           '</div>'+
           '<div style="padding-top:18px">'+
           '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:800">'+
@@ -2861,13 +2997,16 @@ window.NovaAdminExport = (function(){
       var rows = '';
       for(var i = 0; i < 5; i++){
         var s = act.sounds[i] || { label: '', audioUrl: '' };
+        var label = String(s.label || '').trim();
+        var audioUrl = String(s.audioUrl || '').trim();
+        if(!audioUrl && label) audioUrl = lookupExistingAudioUrl(label);
         rows +=
           '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-idx="'+i+'" style="grid-template-columns:70px 1fr 1.4fr 88px">'+
           '<div style="font-size:22px;font-weight:900;padding-top:18px;text-align:center;color:#38bdf8">'+(i+1)+'</div>'+
           '<div><label>Ses yazısı (kutuda görünür)</label>'+
-          '<input type="text" data-field="siralaLabel" value="'+escHtml(s.label||'')+'" placeholder="ör. e"></div>'+
+          '<input type="text" data-field="siralaLabel" value="'+escHtml(label)+'" placeholder="ör. e"></div>'+
           '<div><label>Ses MP3 URL</label>'+
-          '<input type="url" data-field="siralaAudioUrl" value="'+escHtml(s.audioUrl||'')+'" placeholder="https://….b-cdn.net/…mp3"></div>'+
+          '<input type="url" data-field="siralaAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/…mp3"'+(audioUrl && !s.audioUrl ? ' data-autofilled="1"' : '')+'></div>'+
           '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>';
       }
       var canDel = acts.length > 1;
@@ -2890,7 +3029,7 @@ window.NovaAdminExport = (function(){
         '<div><label>Yönerge MP3 (“duyduğun bu sesleri sırasıyla yuvasına sürükle…”)</label>'+
         '<input type="url" data-field="siralaInstructionUrl" value="'+escHtml(act.instructionAudioUrl||'')+'" placeholder="https://….b-cdn.net/yonerge.mp3"></div>'+
         '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>'+
-        '<p class="soft small" style="margin:0 0 8px"><b>Hece Avı aşaması</b> = kaçıncı sırada çıksın (ör. 5). <b>Doğru sıra</b> = yuvalar (ör. e,r → 2 yuva). Alttaki 5 kutu = raftaki tüm sesler (çeldirici dahil). Bu etkinlik ayrı kart değil; Hece Avı içinde oynanır.</p>'+
+        '<p class="soft small" style="margin:0 0 8px"><b>Hece Avı aşaması</b> = kaçıncı sırada çıksın (ör. 5). <b>Doğru sıra</b> = yuvalar (ör. e,r → 2 yuva). Alttaki 5 kutu = raftaki tüm sesler (çeldirici dahil). Ses yazınca harf/hece URL’si zaten yüklüyse MP3 alanı otomatik dolar. Bu etkinlik ayrı kart değil; Hece Avı içinde oynanır.</p>'+
         rows+
         '</div>';
     }
@@ -3516,6 +3655,7 @@ window.NovaAdminExport = (function(){
 
     function bindUrlWatchers(root){
       if(!root) return;
+      bindLabelAudioAutofill(root);
       root.querySelectorAll('input[data-field="audioUrl"]').forEach(function(inp){
         inp.addEventListener('input', function(){
           const row = inp.closest('.birles-admin-row');
