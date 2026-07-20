@@ -141,11 +141,13 @@ body.birles-lock {
   overflow: hidden !important;
 }
 
-/* Native fullscreen ölçeği — sadece Kristal Mağarası + Sihirli Havuz videoları */
+/* Native fullscreen ölçeği — Kristal + Havuz + Ses Yuvası */
 html.nova-perf-ultra-early.nova-has-session body.birles-pool-fs,
 html.nova-perf-ultra-early.nova-has-session body.birles-kristal-fs,
+html.nova-perf-ultra-early.nova-has-session body.birles-sirala-fs,
 body.birles-pool-fs,
-body.birles-kristal-fs {
+body.birles-kristal-fs,
+body.birles-sirala-fs {
   overflow: hidden !important;
   overscroll-behavior: none;
   zoom: 1 !important;
@@ -154,7 +156,8 @@ body.birles-kristal-fs {
   max-width: none !important;
 }
 
-body.birles-kristal-fs {
+body.birles-kristal-fs,
+body.birles-sirala-fs {
   position: fixed !important;
   inset: 0 !important;
   height: 100% !important;
@@ -221,8 +224,10 @@ body.birles-kristal-fs {
 html.birles-kristal-open #birles-zoom-mask,
 html:has(body.birles-kristal-fs) #birles-zoom-mask,
 html:has(body.birles-pool-fs) #birles-zoom-mask,
+html:has(body.birles-sirala-fs) #birles-zoom-mask,
 body.birles-pool-fs #birles-zoom-mask,
-body.birles-kristal-fs #birles-zoom-mask {
+body.birles-kristal-fs #birles-zoom-mask,
+body.birles-sirala-fs #birles-zoom-mask {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -260,7 +265,7 @@ body.birles-kristal-fs #birles-zoom-mask {
 
 /* Telefon Akıcı zoom: overlay kutusunu CSS ile de büyüt (JS asıl kaynak) */
 html.nova-perf-ultra-early.nova-has-session
-  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
+  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs):not(.birles-sirala-fs)
   #birlestirelim-overlay.open:not(.is-pool-play) {
   top: 0 !important;
   left: 0 !important;
@@ -6845,4 +6850,303 @@ html.nova-perf-ultra-early.nova-has-session
   .birles-lane-card {
     animation: none !important;
   }
+}
+
+/* ===== Ses Yuvası (sıralama) ===== */
+.birles-sirala {
+  position: fixed;
+  inset: 0;
+  z-index: 12050;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.birles-sirala__backdrop {
+  position: absolute;
+  inset: 0;
+  background: #041018;
+}
+.birles-sirala__stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.birles-sirala__stagebox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.birles-sirala__layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.12s linear;
+}
+.birles-sirala__vid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.birles-sirala__flash {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: radial-gradient(circle, rgba(255,255,255,0.85), transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+}
+.birles-sirala__flash.is-on {
+  animation: birlesSiralaFlash 0.55s ease-out forwards;
+}
+@keyframes birlesSiralaFlash {
+  0% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+.birles-sirala__board {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: max(12px, env(safe-area-inset-top)) 4% 18%;
+  box-sizing: border-box;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.birles-sirala__board.is-finale {
+  opacity: 0.15;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+.birles-sirala__ask {
+  margin: 0 0 10px;
+  padding: 0.35em 0.7em;
+  border-radius: 999px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(0.85rem, 3.2vmin, 1.15rem);
+  font-weight: 900;
+  color: #fff8e8;
+  background: rgba(8, 30, 48, 0.72);
+  border: 1.5px solid rgba(255, 220, 140, 0.55);
+  text-align: center;
+  pointer-events: auto;
+  max-width: 92%;
+}
+.birles-sirala__nests {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: clamp(6px, 2vmin, 12px);
+  width: 100%;
+  max-width: 96%;
+  margin: 0 0 auto;
+  pointer-events: auto;
+}
+.birles-sirala__nests.is-shake {
+  animation: birlesSiralaShake 0.55s ease;
+}
+@keyframes birlesSiralaShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+.birles-sirala__nest {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 72px;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 6px 4px;
+  border-radius: 14px;
+  border: 2.5px dashed rgba(255, 230, 160, 0.7);
+  background: rgba(10, 40, 60, 0.45);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.birles-sirala__nest.is-target {
+  border-style: solid;
+  border-color: #ffd56a;
+  background: rgba(255, 200, 80, 0.22);
+  transform: scale(1.04);
+}
+.birles-sirala__nest.is-filled {
+  border-style: solid;
+  border-color: rgba(120, 220, 180, 0.85);
+  background: rgba(20, 80, 70, 0.4);
+}
+.birles-sirala__nest-num {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: rgba(255, 245, 210, 0.85);
+}
+.birles-sirala__nest-slot {
+  width: 100%;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+.birles-sirala__rack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(8px, 2.2vmin, 14px);
+  width: 100%;
+  max-width: 96%;
+  margin-top: 10px;
+  padding: 10px 6px;
+  border-radius: 16px;
+  background: rgba(6, 24, 40, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: auto;
+  min-height: 72px;
+}
+.birles-sirala__chip {
+  min-width: clamp(52px, 14vmin, 72px);
+  min-height: clamp(52px, 14vmin, 72px);
+  padding: 0.35em 0.45em;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 220, 140, 0.85);
+  background: linear-gradient(165deg, #fff4c8 0%, #ffd166 45%, #e9a820 100%);
+  color: #3a2200;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.05rem, 4vmin, 1.45rem);
+  font-weight: 900;
+  cursor: grab;
+  touch-action: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+.birles-sirala__chip:active,
+.birles-sirala__chip.is-dragging {
+  cursor: grabbing;
+  opacity: 0.45;
+}
+.birles-sirala__chip.is-placed {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  max-height: 100%;
+  font-size: clamp(0.9rem, 3.2vmin, 1.2rem);
+  box-shadow: none;
+}
+.birles-sirala__ghost {
+  position: fixed;
+  z-index: 13000;
+  pointer-events: none;
+  opacity: 0.95;
+  margin: 0;
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+.birles-sirala__hint {
+  margin: 8px 0 0;
+  font-size: clamp(0.75rem, 2.6vmin, 0.95rem);
+  font-weight: 800;
+  color: rgba(255, 248, 230, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+.birles-sirala__replay {
+  position: absolute;
+  right: 4%;
+  bottom: 22%;
+  z-index: 6;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 230, 160, 0.7);
+  background: rgba(10, 40, 60, 0.75);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.birles-sirala__burst {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  z-index: 8;
+  margin: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(2.2rem, 10vmin, 4rem);
+  font-weight: 900;
+  color: #fff8e0;
+  text-shadow:
+    0 2px 0 rgba(40, 20, 0, 0.55),
+    0 0 18px rgba(255, 200, 80, 0.65);
+  opacity: 0;
+  pointer-events: none;
+}
+.birles-sirala__burst.is-boom-in {
+  animation: birlesSiralaBurst 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes birlesSiralaBurst {
+  0% { opacity: 0; transform: translate(-50%, -40%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.birles-sirala__close {
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  z-index: 12;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: rgba(20, 10, 40, 0.7);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+.birles-sirala__next,
+.birles-sirala__exit {
+  position: fixed;
+  left: 50%;
+  bottom: max(10px, env(safe-area-inset-bottom));
+  z-index: 12;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.birles-sirala__next {
+  min-width: 150px;
+  height: 56px;
+  padding: 0 1.1em;
+  border-radius: 999px;
+  border: 2.5px solid rgba(255, 220, 140, 0.9);
+  background: linear-gradient(165deg, #ffe08a, #e8a820);
+  color: #3a2200;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+.birles-sirala__exit {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(245, 230, 255, 0.85);
+  background: linear-gradient(160deg, #7a45b8, #3a1a68);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+.birles-lane-card--sirala {
+  --lane-accent: #38bdf8;
 }

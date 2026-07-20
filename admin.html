@@ -891,6 +891,12 @@ window.NovaAdminExport = (function(){
           <div id="birles_admin_kristal_list" class="mt8"></div>
         </div>
 
+        <div id="birles_admin_sec_sirala" class="birles-admin-secpanel" data-birles-sec="sirala" hidden>
+          <h4 class="birles-admin-sec">Ses Yuvası · sıralama</h4>
+          <p class="soft small">Yönerge MP3 + en fazla 5 ses (doğru sıra = satır sırası). Altta karışık kutular, üstte yuvalar; doğru sıralanınca su patlama videosu çalar.</p>
+          <div id="birles_admin_sirala_list" class="mt8"></div>
+        </div>
+
         <div id="birles_admin_sec_fusion" class="birles-admin-secpanel" data-birles-sec="fusion" hidden>
           <h4 class="birles-admin-sec" id="birles_admin_fusion_sec_title">Birleştirmeler</h4>
           <p class="soft small" id="birles_admin_fusion_sec_hint">Her birleştirme için Bunny ses URL’si; kelimelerde ayrıca görsel URL.</p>
@@ -2436,6 +2442,7 @@ window.NovaAdminExport = (function(){
     let activeGroupId = 'grup1';
     let activeSection = 'harf';
     let activeKristalActIdx = 0;
+    let activeSiralaActIdx = 0;
 
     const FUSION_SECTIONS = [
       { id: 'ses', title: 'Ses birleştirme', hint: 'Harf / giriş birleştirmeleri', kinds: ['ses'] },
@@ -2525,6 +2532,7 @@ window.NovaAdminExport = (function(){
         letterList: document.getElementById('birles_admin_letter_list'),
         yazilisList: document.getElementById('birles_admin_yazilis_list'),
         kristalList: document.getElementById('birles_admin_kristal_list'),
+        siralaList: document.getElementById('birles_admin_sirala_list'),
         fusionList: document.getElementById('birles_admin_fusion_list'),
         fusionSecTitle: document.getElementById('birles_admin_fusion_sec_title'),
         fusionSecHint: document.getElementById('birles_admin_fusion_sec_hint'),
@@ -2616,6 +2624,77 @@ window.NovaAdminExport = (function(){
       (activities || []).forEach(function(act, idx){
         var n = normalizeOneKristalActivity(act, idx);
         if(activityHasContent(n)) out.push(n);
+      });
+      if(!out.length) return null;
+      return { activities: out };
+    }
+
+    function emptySiralaSounds(){
+      var arr = [];
+      for(var i = 0; i < 5; i++) arr.push({ label: '', audioUrl: '' });
+      return arr;
+    }
+
+    function newSiralaActivity(n){
+      return {
+        id: 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+        title: 'Etkinlik ' + (n || 1),
+        result: '',
+        instructionAudioUrl: '',
+        sounds: emptySiralaSounds()
+      };
+    }
+
+    function normalizeOneSiralaActivity(raw, idx){
+      var row = raw && typeof raw === 'object' ? raw : {};
+      var soundsIn = Array.isArray(row.sounds) ? row.sounds : [];
+      var sounds = [];
+      for(var i = 0; i < 5; i++){
+        var s = soundsIn[i] || {};
+        sounds.push({
+          label: String(s.label || s.text || '').trim(),
+          audioUrl: String(s.audioUrl || s.mp3 || s.url || '').trim()
+        });
+      }
+      return {
+        id: String(row.id || ('s' + (idx + 1))).trim() || ('s' + (idx + 1)),
+        title: String(row.title || ('Etkinlik ' + (idx + 1))).trim() || ('Etkinlik ' + (idx + 1)),
+        result: String(row.result || '').trim(),
+        instructionAudioUrl: String(row.instructionAudioUrl || row.instructionUrl || '').trim(),
+        sounds: sounds
+      };
+    }
+
+    function listSiralaActivities(sirala){
+      if(!sirala || typeof sirala !== 'object') return [newSiralaActivity(1)];
+      if(Array.isArray(sirala.activities) && sirala.activities.length){
+        return sirala.activities.map(function(a, i){ return normalizeOneSiralaActivity(a, i); });
+      }
+      if(Array.isArray(sirala.sounds)){
+        return [normalizeOneSiralaActivity(sirala, 0)];
+      }
+      return [newSiralaActivity(1)];
+    }
+
+    function siralaActivityHasContent(act){
+      if(!act) return false;
+      if(String(act.instructionAudioUrl || '').trim()) return true;
+      var sounds = act.sounds || [];
+      var filled = 0;
+      for(var i = 0; i < sounds.length; i++){
+        if(sounds[i] && (sounds[i].label || sounds[i].audioUrl)) filled++;
+      }
+      return filled >= 2;
+    }
+
+    function packSiralaForSave(activities){
+      var out = [];
+      (activities || []).forEach(function(act, idx){
+        var n = normalizeOneSiralaActivity(act, idx);
+        if(siralaActivityHasContent(n)){
+          n.sounds = (n.sounds || []).filter(function(s){ return s.label || s.audioUrl; });
+          out.push(n);
+        }
       });
       if(!out.length) return null;
       return { activities: out };
@@ -2767,6 +2846,46 @@ window.NovaAdminExport = (function(){
         '</div>';
     }
 
+    function renderSiralaBlock(sound, letterCur){
+      var acts = listSiralaActivities(letterCur && letterCur.sirala);
+      if(activeSiralaActIdx < 0) activeSiralaActIdx = 0;
+      if(activeSiralaActIdx >= acts.length) activeSiralaActIdx = acts.length - 1;
+      var act = acts[activeSiralaActIdx] || newSiralaActivity(1);
+      var rows = '';
+      for(var i = 0; i < 5; i++){
+        var s = act.sounds[i] || { label: '', audioUrl: '' };
+        rows +=
+          '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-idx="'+i+'" style="grid-template-columns:70px 1fr 1.4fr 88px">'+
+          '<div style="font-size:22px;font-weight:900;padding-top:18px;text-align:center;color:#38bdf8">'+(i+1)+'</div>'+
+          '<div><label>Ses yazısı (kutuda görünür)</label>'+
+          '<input type="text" data-field="siralaLabel" value="'+escHtml(s.label||'')+'" placeholder="ör. e"></div>'+
+          '<div><label>Ses MP3 URL</label>'+
+          '<input type="url" data-field="siralaAudioUrl" value="'+escHtml(s.audioUrl||'')+'" placeholder="https://….b-cdn.net/…mp3"></div>'+
+          '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>';
+      }
+      var canDel = acts.length > 1;
+      return '<div class="birles-admin-fusion" style="margin-top:4px" data-sirala-editor="1" data-letter-key="'+escHtml(sound.id)+'">'+
+        '<div class="birles-admin-kristal-nav">'+
+        '<button type="button" class="btn" data-sirala-nav="prev"'+(activeSiralaActIdx<=0?' disabled':'')+'>◀ Önceki</button>'+
+        '<div class="birles-admin-kristal-nav__meta">Etkinlik '+(activeSiralaActIdx+1)+' / '+acts.length+'</div>'+
+        '<button type="button" class="btn" data-sirala-nav="next"'+(activeSiralaActIdx>=acts.length-1?' disabled':'')+'>Sonraki ▶</button>'+
+        '<button type="button" class="btn acc" data-sirala-nav="add">+ Yeni etkinlik</button>'+
+        (canDel ? '<button type="button" class="btn" data-sirala-nav="del" style="border-color:rgba(248,113,113,.5)">Bu etkinliği sil</button>' : '')+
+        '</div>'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 1fr">'+
+        '<div><label>Etkinlik adı (ör. er)</label>'+
+        '<input type="text" data-field="siralaTitle" value="'+escHtml(act.title||'')+'" placeholder="er"></div>'+
+        '<div><label>Patlamada görünen yazı (boş = etkinlik adı)</label>'+
+        '<input type="text" data-field="siralaResult" value="'+escHtml(act.result||'')+'" placeholder="er"></div></div>'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 88px">'+
+        '<div><label>Yönerge MP3 (“duyduğun bu sesleri sırasıyla yuvasına sürükle…”)</label>'+
+        '<input type="url" data-field="siralaInstructionUrl" value="'+escHtml(act.instructionAudioUrl||'')+'" placeholder="https://….b-cdn.net/yonerge.mp3"></div>'+
+        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>'+
+        '<p class="soft small" style="margin:0 0 8px">Aşağıdaki sıra = doğru yerleştirme sırası (1 → 5). Boş satırlar yok sayılır; en az 2 ses dolu olmalı.</p>'+
+        rows+
+        '</div>';
+    }
+
     function renderYazilisAudioBlock(sound, letterCur){
       var YD = window.NovaBirlestirelimYazilisData;
       if(!YD || !YD.hasWriting || !YD.hasWriting(sound.id)) return '';
@@ -2799,6 +2918,7 @@ window.NovaAdminExport = (function(){
       const letterBest = {};
       const yazilisBest = {};
       const kristalActsBest = {};
+      const siralaActsBest = {};
       function scanLetterRows(root){
         if(!root) return;
         root.querySelectorAll('[data-letter-key]').forEach(function(row){
@@ -2843,32 +2963,51 @@ window.NovaAdminExport = (function(){
               };
             }
           }
+
+          const sAct = row.getAttribute('data-sirala-act');
+          if(sAct != null){
+            const si = Number(sAct);
+            siralaActsBest[key] = siralaActsBest[key] || {};
+            siralaActsBest[key][si] = siralaActsBest[key][si] || {
+              id: '', title: '', result: '', instructionAudioUrl: '', sounds: []
+            };
+            if(row.getAttribute('data-sirala-meta') === '1'){
+              var tEl = row.querySelector('[data-field="siralaTitle"]');
+              var rEl = row.querySelector('[data-field="siralaResult"]');
+              var iEl = row.querySelector('[data-field="siralaInstructionUrl"]');
+              if(tEl) siralaActsBest[key][si].title = String(tEl.value||'').trim();
+              if(rEl) siralaActsBest[key][si].result = String(rEl.value||'').trim();
+              if(iEl) siralaActsBest[key][si].instructionAudioUrl = String(iEl.value||'').trim();
+            }
+            const sIdx = row.getAttribute('data-sirala-idx');
+            if(sIdx != null){
+              siralaActsBest[key][si].sounds[Number(sIdx)] = {
+                label: String((row.querySelector('[data-field="siralaLabel"]')||{}).value||'').trim(),
+                audioUrl: String((row.querySelector('[data-field="siralaAudioUrl"]')||{}).value||'').trim()
+              };
+            }
+          }
         });
       }
       scanLetterRows(ui.letterList);
       scanLetterRows(ui.yazilisList);
       scanLetterRows(ui.kristalList);
+      scanLetterRows(ui.siralaList);
 
       const keys = {};
       Object.keys(letterBest).forEach(function(k){ keys[k] = true; });
       Object.keys(yazilisBest).forEach(function(k){ keys[k] = true; });
       Object.keys(kristalActsBest).forEach(function(k){ keys[k] = true; });
+      Object.keys(siralaActsBest).forEach(function(k){ keys[k] = true; });
       /* Mevcut cache harflerini de koru (başka bölümde görünmeyen alanlar) */
       Object.keys(cache.letters || {}).forEach(function(k){ keys[k] = true; });
 
       Object.keys(keys).forEach(function(key){
         const prev = cache.letters[key] || {};
-        const audioUrl = (letterBest[key] && letterBest[key].audioUrl) || (ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"] [data-field="audioUrl"]') ? String((letterBest[key]||{}).audioUrl||'') : String(prev.audioUrl||''));
-        const videoUrl = (letterBest[key] && letterBest[key].videoUrl) || String(prev.videoUrl||'');
         /* Prefer harvested audio/video when letter panel was scanned for this key */
         var aUrl = String(prev.audioUrl || '').trim();
         var vUrl = String(prev.videoUrl || '').trim();
         if(letterBest[key]){
-          if(letterBest[key].audioUrl) aUrl = letterBest[key].audioUrl;
-          else if(ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"] [data-field="audioUrl"]')) aUrl = '';
-          if(letterBest[key].videoUrl) vUrl = letterBest[key].videoUrl;
-          else if(ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"] [data-field="videoUrl"]')) vUrl = '';
-          /* If letter rows exist in DOM for this key, use harvested (may be empty) */
           if(ui.letterList && ui.letterList.querySelector('[data-letter-key="'+key+'"]')){
             aUrl = String(letterBest[key].audioUrl || '').trim();
             vUrl = String(letterBest[key].videoUrl || '').trim();
@@ -2923,7 +3062,41 @@ window.NovaAdminExport = (function(){
           kristalOut = kept.length ? { activities: kept } : null;
         }
 
-        if(aUrl || vUrl || hasYaz || kristalOut){
+        var siralaOut = null;
+        if(siralaActsBest[key]){
+          var prevS = listSiralaActivities(prev.sirala);
+          var maxS = Math.max.apply(null, Object.keys(siralaActsBest[key]).map(Number).concat([prevS.length - 1]));
+          var mergedS = [];
+          for(var sj = 0; sj <= maxS; sj++){
+            var hs = siralaActsBest[key][sj];
+            var bs = prevS[sj] || newSiralaActivity(sj + 1);
+            if(hs){
+              var snds = [];
+              for(var si = 0; si < 5; si++){
+                var sr = (hs.sounds && hs.sounds[si]) || {};
+                snds.push({
+                  label: String(sr.label || '').trim(),
+                  audioUrl: String(sr.audioUrl || '').trim()
+                });
+              }
+              mergedS.push({
+                id: bs.id || ('s' + (sj + 1)),
+                title: String(hs.title || bs.title || ('Etkinlik ' + (sj + 1))).trim(),
+                result: String(hs.result != null ? hs.result : (bs.result || '')).trim(),
+                instructionAudioUrl: String(hs.instructionAudioUrl != null ? hs.instructionAudioUrl : (bs.instructionAudioUrl || '')).trim(),
+                sounds: snds
+              });
+            } else {
+              mergedS.push(bs);
+            }
+          }
+          siralaOut = { activities: mergedS.map(function(a, i){ return normalizeOneSiralaActivity(a, i); }) };
+        } else if(!(ui.siralaList && ui.siralaList.querySelector('[data-letter-key="'+key+'"]'))){
+          var keptS = listSiralaActivities(prev.sirala);
+          siralaOut = keptS.length ? { activities: keptS } : null;
+        }
+
+        if(aUrl || vUrl || hasYaz || kristalOut || siralaOut){
           cache.letters[key] = { updatedAt: Date.now() };
           if(aUrl) cache.letters[key].audioUrl = aUrl;
           if(vUrl) cache.letters[key].videoUrl = vUrl;
@@ -2936,7 +3109,8 @@ window.NovaAdminExport = (function(){
             cache.letters[key].yazilis = prev.yazilis;
           }
           if(kristalOut) cache.letters[key].kristal = kristalOut;
-        } else if(cache.letters[key] && !letterBest[key] && !yazilisBest[key] && !kristalActsBest[key]){
+          if(siralaOut) cache.letters[key].sirala = siralaOut;
+        } else if(cache.letters[key] && !letterBest[key] && !yazilisBest[key] && !kristalActsBest[key] && !siralaActsBest[key]){
           /* keep as-is */
         } else {
           delete cache.letters[key];
@@ -3060,6 +3234,10 @@ window.NovaAdminExport = (function(){
         ui.kristalList.innerHTML = renderKristalBlock(sound, letterCur);
         bindKristalNav(sound);
       }
+      if(ui.siralaList){
+        ui.siralaList.innerHTML = renderSiralaBlock(sound, letterCur);
+        bindSiralaNav(sound);
+      }
 
       renderSectionTabs(sound);
       renderFusionSection(sound);
@@ -3068,6 +3246,7 @@ window.NovaAdminExport = (function(){
       bindUrlWatchers(ui.letterList);
       if(ui.yazilisList) bindUrlWatchers(ui.yazilisList);
       if(ui.kristalList) bindUrlWatchers(ui.kristalList);
+      if(ui.siralaList) bindUrlWatchers(ui.siralaList);
       bindUrlWatchers(ui.fusionList);
       bindRemoveButtons(ui.fusionList, sound);
     }
@@ -3100,6 +3279,12 @@ window.NovaAdminExport = (function(){
         tabs.push({ id: 'yazilis', title: 'Yazılış', hint: 'Hamle sesleri', ready: !!(letterCur.yazilis) });
       }
       tabs.push({ id: 'kristal', title: 'Kristal', hint: 'Mağara etkinlikleri', ready: hasKristalContent(letterCur) });
+      tabs.push({
+        id: 'sirala',
+        title: 'Ses Yuvası',
+        hint: 'Sıralama · patlama',
+        ready: !!(letterCur.sirala && packSiralaForSave(listSiralaActivities(letterCur.sirala)))
+      });
       FUSION_SECTIONS.forEach(function(sec){
         var list = fusionsByLane(sound, sec.id);
         if(!list.length) return;
@@ -3142,10 +3327,12 @@ window.NovaAdminExport = (function(){
       var harf = document.getElementById('birles_admin_sec_harf');
       var yaz = document.getElementById('birles_admin_sec_yazilis');
       var kri = document.getElementById('birles_admin_sec_kristal');
+      var sir = document.getElementById('birles_admin_sec_sirala');
       var fus = document.getElementById('birles_admin_sec_fusion');
       if(harf) harf.hidden = activeSection !== 'harf';
       if(yaz) yaz.hidden = activeSection !== 'yazilis';
       if(kri) kri.hidden = activeSection !== 'kristal';
+      if(sir) sir.hidden = activeSection !== 'sirala';
       if(fus) fus.hidden = !isFusion;
     }
 
@@ -3249,6 +3436,39 @@ window.NovaAdminExport = (function(){
       });
     }
 
+    function bindSiralaNav(sound){
+      const ui = els();
+      if(!ui.siralaList || !sound) return;
+      ui.siralaList.querySelectorAll('[data-sirala-nav]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          const action = btn.getAttribute('data-sirala-nav');
+          harvestVisible();
+          var letterCur = cache.letters[sound.id] || {};
+          var acts = listSiralaActivities(letterCur.sirala);
+          if(action === 'prev'){
+            activeSiralaActIdx = Math.max(0, activeSiralaActIdx - 1);
+          } else if(action === 'next'){
+            activeSiralaActIdx = Math.min(acts.length - 1, activeSiralaActIdx + 1);
+          } else if(action === 'add'){
+            acts.push(newSiralaActivity(acts.length + 1));
+            cache.letters[sound.id] = cache.letters[sound.id] || { updatedAt: Date.now() };
+            cache.letters[sound.id].sirala = { activities: acts };
+            activeSiralaActIdx = acts.length - 1;
+          } else if(action === 'del'){
+            if(acts.length <= 1) return;
+            if(!window.confirm('Bu Ses Yuvası etkinliğini silmek istiyor musun?')) return;
+            acts.splice(activeSiralaActIdx, 1);
+            cache.letters[sound.id] = cache.letters[sound.id] || { updatedAt: Date.now() };
+            var packed = packSiralaForSave(acts);
+            if(packed) cache.letters[sound.id].sirala = packed;
+            else delete cache.letters[sound.id].sirala;
+            activeSiralaActIdx = Math.min(activeSiralaActIdx, Math.max(0, acts.length - 1));
+          }
+          renderSoundPanel(getSound(activeSoundId));
+        });
+      });
+    }
+
     function bindRemoveButtons(root, sound){
       if(!root || !sound) return;
       root.querySelectorAll('[data-remove-fusion]').forEach(function(btn){
@@ -3306,7 +3526,9 @@ window.NovaAdminExport = (function(){
           const row = btn.closest('.birles-admin-row');
           const inp = row && (
             row.querySelector('input[data-field="audioUrl"]') ||
-            row.querySelector('input[data-field="yazilisAudioUrl"]')
+            row.querySelector('input[data-field="yazilisAudioUrl"]') ||
+            row.querySelector('input[data-field="siralaAudioUrl"]') ||
+            row.querySelector('input[data-field="siralaInstructionUrl"]')
           );
           const url = inp && String(inp.value || '').trim();
           const ui = els();
@@ -3477,6 +3699,7 @@ window.NovaAdminExport = (function(){
       activeSoundId = String(id||'');
       activeSection = 'harf';
       activeKristalActIdx = 0;
+      activeSiralaActIdx = 0;
       renderTabs();
       renderSoundPanel(getSound(activeSoundId));
     }
@@ -3541,12 +3764,16 @@ window.NovaAdminExport = (function(){
         const kristal = row.kristal && typeof row.kristal === 'object' ? row.kristal : null;
         var kristalOut = kristal ? packKristalForSave(listKristalActivities(kristal)) : null;
         var hasKristal = !!kristalOut;
-        if(audioUrl || videoUrl || hasYaz || hasKristal){
+        const sirala = row.sirala && typeof row.sirala === 'object' ? row.sirala : null;
+        var siralaOut = sirala ? packSiralaForSave(listSiralaActivities(sirala)) : null;
+        var hasSirala = !!siralaOut;
+        if(audioUrl || videoUrl || hasYaz || hasKristal || hasSirala){
           letters[k] = { updatedAt: Date.now() };
           if(audioUrl) letters[k].audioUrl = audioUrl;
           if(videoUrl) letters[k].videoUrl = videoUrl;
           if(hasYaz) letters[k].yazilis = yazOut;
           if(kristalOut) letters[k].kristal = kristalOut;
+          if(siralaOut) letters[k].sirala = siralaOut;
         }
       });
       const settings = {};

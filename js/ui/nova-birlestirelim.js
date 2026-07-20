@@ -195,10 +195,17 @@
     return K.hasKristal(letterPackFor(sound));
   }
 
+  function hasSiralaForSound(sound) {
+    var S = window.NovaBirlestirelimSirala;
+    if (!S || !S.hasSirala) return false;
+    return S.hasSirala(letterPackFor(sound));
+  }
+
   function laneKeysForSound(sound) {
     var bags = collectSoundLanes(sound);
     var keys = [];
     if (hasKristalForSound(sound)) keys.push("kristal");
+    if (hasSiralaForSound(sound)) keys.push("sirala");
     LANE_DEFS.forEach(function (d) {
       if ((bags[d.key] || []).length) keys.push(d.key);
     });
@@ -1173,6 +1180,11 @@
         window.NovaBirlestirelimKristal.close();
       } catch (_) {}
     }
+    if (window.NovaBirlestirelimSirala && window.NovaBirlestirelimSirala.close) {
+      try {
+        window.NovaBirlestirelimSirala.close();
+      } catch (_) {}
+    }
   }
 
   function warmKristalCave(sound) {
@@ -1222,6 +1234,57 @@
       }
     }
     /* Medya beklerken ekranı kilitleme — en geç 400ms’de aç */
+    var started = false;
+    function once() {
+      if (started) return;
+      started = true;
+      go();
+    }
+    try {
+      Promise.resolve(ensureMedia()).then(once).catch(once);
+    } catch (_) {
+      once();
+    }
+    setTimeout(once, 400);
+  }
+
+  function openSiralaNest(sound) {
+    var S = window.NovaBirlestirelimSirala;
+    if (!S || !S.open) {
+      try {
+        if (typeof window.showAlert === "function") {
+          window.showAlert("Ses Yuvası yüklenemedi. Sayfayı yenileyip tekrar dene.");
+        }
+      } catch (_) {}
+      return;
+    }
+    function go() {
+      try {
+        S.open({
+          sound: sound,
+          letterPack: letterPackFor(sound),
+          onDone: function (res) {
+            if (!res || !res.success) return;
+            Promise.resolve(
+              markLaneStarred(sound.id, sound.groupId || activeGroupId, "sirala")
+            )
+              .then(function (newly) {
+                if (newly) return playStarRewardOnce("Ses Yuvası");
+              })
+              .then(function () {
+                if (activeSound && activeSound.id === sound.id) openSound(sound.id);
+              })
+              .catch(function () {
+                if (activeSound && activeSound.id === sound.id) openSound(sound.id);
+              });
+          }
+        });
+      } catch (err) {
+        try {
+          console.error("Sirala open", err);
+        } catch (_) {}
+      }
+    }
     var started = false;
     function once() {
       if (started) return;
@@ -1391,6 +1454,7 @@
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("birles-lock");
     document.body.classList.remove("birles-pool-fs");
+    document.body.classList.remove("birles-sirala-fs");
     setBirlesZoomMask(false);
     syncBirlesNativeScale();
     view = "groups";
@@ -1403,6 +1467,16 @@
     if (vv) vv.stop();
     animToken += 1;
     closeHowToVideo();
+    if (document.body.classList.contains("birles-sirala-fs")) {
+      if (window.NovaBirlestirelimSirala && window.NovaBirlestirelimSirala.close) {
+        try {
+          window.NovaBirlestirelimSirala.close();
+        } catch (_) {}
+      }
+      if (activeSound) openSound(activeSound.id);
+      else openGroups();
+      return;
+    }
     if (view === "gallery") {
       activeLane = null;
       if (activeSound) openSound(activeSound.id);
@@ -1960,6 +2034,19 @@
         "</svg>"
       );
     }
+    if (t === "sirala") {
+      return (
+        '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
+        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#7DD3FC"/>' +
+        '<rect x="10" y="12" width="8" height="12" rx="2" fill="#0EA5E9" stroke="#0369A1" stroke-width="1.2"/>' +
+        '<rect x="20" y="12" width="8" height="12" rx="2" fill="#38BDF8" stroke="#0369A1" stroke-width="1.2"/>' +
+        '<rect x="30" y="12" width="8" height="12" rx="2" fill="#BAE6FD" stroke="#0369A1" stroke-width="1.2"/>' +
+        '<rect x="12" y="30" width="8" height="8" rx="2" fill="#FFE566"/>' +
+        '<rect x="22" y="30" width="8" height="8" rx="2" fill="#FFD166"/>' +
+        '<rect x="32" y="30" width="8" height="8" rx="2" fill="#F4A261"/>' +
+        "</svg>"
+      );
+    }
     return (
       '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
       '<rect x="4" y="4" width="40" height="40" rx="12" fill="#A2D2FF"/>' +
@@ -2069,6 +2156,36 @@
         "</button>";
     }
 
+    var hasSirala = hasSiralaForSound(sound);
+    if (hasSirala) {
+      var siralaStarred = isLaneStarred(sound.id, "sirala");
+      var siralaActs =
+        (window.NovaBirlestirelimSirala &&
+          window.NovaBirlestirelimSirala.listActivities &&
+          window.NovaBirlestirelimSirala.listActivities(letterPackFor(sound))) ||
+        [];
+      html +=
+        '<button type="button" class="birles-lane-card birles-lane-card--sirala' +
+        (siralaStarred ? " is-starred" : "") +
+        '" data-sirala="1" role="listitem">' +
+        '<span class="birles-lane-card__ico" aria-hidden="true">' +
+        laneIconSvg("sirala") +
+        "</span>" +
+        '<span class="birles-lane-card__body">' +
+        '<span class="birles-lane-card__title">Ses Yuvası' +
+        (siralaStarred ? ' <span class="birles-lane-card__star" aria-hidden="true">★</span>' : "") +
+        "</span>" +
+        '<span class="birles-lane-card__sub">Sırayla yerleştir</span>' +
+        "</span>" +
+        '<span class="birles-lane-card__count">' +
+        Math.max(1, siralaActs.length) +
+        "</span>" +
+        '<span class="birles-lane-card__go">' +
+        (siralaStarred ? "Tekrar" : "Başla") +
+        "</span>" +
+        "</button>";
+    }
+
     LANE_DEFS.forEach(function (def) {
       var list = bags[def.key] || [];
       if (!list.length) return;
@@ -2142,6 +2259,13 @@
       kristalBtn.addEventListener("click", function (e) {
         e.preventDefault();
         openKristalCave(sound);
+      });
+    }
+    var siralaBtn = body.querySelector("[data-sirala]");
+    if (siralaBtn) {
+      siralaBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openSiralaNest(sound);
       });
     }
     body.querySelectorAll("[data-lane]").forEach(function (btn) {
