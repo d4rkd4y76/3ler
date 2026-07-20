@@ -4916,14 +4916,14 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-kristal__name-plate {
   display: block;
   width: 100%;
-  padding: 0.32em 0.4em 0.36em;
+  padding: 0.32em 0.48em 0.36em;
   box-sizing: border-box;
   text-align: center;
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
   font-size: clamp(0.82rem, 2.75vmin, 1.18rem);
   font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
   white-space: nowrap;
   overflow: visible;
   /* Admin’deki büyük/küçük harf aynen korunur */
@@ -4959,32 +4959,32 @@ html.nova-perf-ultra-early.nova-has-session
     transform: scale(1);
   }
   18% {
-    transform: scale(1.045);
+    transform: scale(1.03);
   }
   36% {
     transform: scale(1);
   }
   54% {
-    transform: scale(1.07);
+    transform: scale(1.045);
   }
   78% {
     transform: scale(1);
   }
 }
 
-/* MP3 çalarken: alta doğru büyü (resmi kapatma), tek satır, kalp atışı */
+/* MP3 çalarken: hafif büyü + altın vurgu; komşu isimleri kapatma */
 .birles-kristal__name.is-speaking {
   z-index: 8 !important;
   opacity: 1 !important;
   width: 24%;
   left: auto;
-  transform: translateY(6px) scale(1.12) !important;
+  transform: translateY(4px) scale(1.06) !important;
   transform-origin: top center !important;
   transition:
     opacity 0.22s ease,
     transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
     width 0.26s ease !important;
-  filter: drop-shadow(0 6px 12px rgba(120, 80, 200, 0.55));
+  filter: drop-shadow(0 4px 10px rgba(255, 190, 60, 0.45));
 }
 
 .birles-kristal__name.is-speaking.birles-kristal__name--0,
@@ -5007,12 +5007,13 @@ html.nova-perf-ultra-early.nova-has-session
   word-break: keep-all;
   overflow-wrap: normal;
   font-size: clamp(0.92rem, 3.2vmin, 1.32rem);
-  padding: 0.36em 0.55em 0.4em;
-  border-color: rgba(255, 230, 160, 0.95);
+  letter-spacing: 0.12em;
+  padding: 0.36em 0.62em 0.4em;
+  border-color: rgba(255, 214, 120, 0.9);
   background:
     linear-gradient(165deg, rgba(70, 40, 110, 0.98) 0%, rgba(28, 14, 52, 0.99) 100%);
   box-shadow:
-    0 0 0 2px rgba(255, 210, 120, 0.5),
+    0 0 0 2px rgba(255, 210, 120, 0.45),
     0 6px 18px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
   animation: birlesKristalHeartbeat 1.85s ease-in-out infinite;
@@ -5021,81 +5022,82 @@ html.nova-perf-ultra-early.nova-has-session
 
 .birles-kristal__name.is-speaking .birles-kristal__gem {
   display: inline-block;
-  margin: 0 0.02em;
-  padding: 0.04em 0.1em 0.05em;
+  margin: 0 0.1em;
+  padding: 0.06em 0.12em 0.07em;
   vertical-align: baseline;
   transform-origin: center center;
   animation: birlesKristalHeartbeat 1.85s ease-in-out infinite;
-  border-color: #fff;
+  color: #5a3200;
+  -webkit-text-fill-color: #5a3200;
+  background: linear-gradient(165deg, #fff4c2 0%, #ffd76a 42%, #e8a820 100%);
+  border: 1.5px solid rgba(255, 236, 170, 0.98);
   box-shadow:
-    0 0 0 1.5px rgba(255, 220, 120, 0.8),
-    0 0 12px rgba(255, 230, 150, 0.9),
-    0 0 18px rgba(180, 120, 255, 0.55),
+    0 0 0 1px rgba(180, 110, 20, 0.45),
+    0 0 10px rgba(255, 210, 90, 0.75),
+    0 0 16px rgba(255, 190, 60, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 6px rgba(255, 220, 120, 0.65);
 }
 
-/* Vurgulanan harf — net okunur + mor/beyaz kristal rozet */
+.birles-kristal__name.is-speaking .birles-kristal__gem::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+  opacity: 0.85;
+}
+
+/* Vurgulanan harf — altın, okunaklı, komşu harfleri kapatmaz */
 .birles-kristal__gem {
   display: inline-block;
   position: relative;
   z-index: 1;
-  margin: 0 0.02em;
-  padding: 0.02em 0.08em 0.04em;
-  border-radius: 0.28em;
+  margin: 0 0.12em;
+  padding: 0.04em 0.1em 0.05em;
+  border-radius: 0.32em;
   font-weight: 900;
   line-height: 1.05;
   vertical-align: baseline;
   white-space: nowrap;
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
-  background:
-    linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.42) 0%,
-      rgba(210, 175, 255, 0.55) 35%,
-      rgba(120, 70, 200, 0.65) 100%
-    );
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: #5c3408;
+  -webkit-text-fill-color: #5c3408;
+  background: linear-gradient(165deg, #fff6d0 0%, #ffd76a 45%, #efb028 100%);
+  border: 1.5px solid rgba(255, 228, 150, 0.95);
   box-shadow:
-    0 0 0 1px rgba(90, 40, 160, 0.55),
-    0 0 10px rgba(180, 130, 255, 0.75),
-    0 0 18px rgba(140, 80, 230, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    0 0 0 1px rgba(160, 95, 10, 0.4),
+    0 0 8px rgba(255, 200, 80, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   text-shadow:
-    0 1px 1px rgba(40, 10, 80, 0.9),
-    0 0 6px rgba(255, 255, 255, 0.55);
+    0 1px 0 rgba(255, 255, 255, 0.5),
+    0 0 5px rgba(255, 220, 120, 0.45);
   transform-origin: center;
-  animation: birlesKristalGem 1.8s ease-in-out infinite;
+  animation: birlesKristalGem 2.2s ease-in-out infinite;
 }
 
 .birles-kristal__gem::before {
   content: "";
   position: absolute;
-  inset: 15% 18% auto 18%;
-  height: 28%;
+  inset: 14% 16% auto 16%;
+  height: 26%;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 @keyframes birlesKristalGem {
   0%,
   100% {
     box-shadow:
-      0 0 0 1px rgba(90, 40, 160, 0.5),
-      0 0 8px rgba(170, 120, 255, 0.55),
-      0 0 14px rgba(130, 70, 210, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.55);
-    transform: scale(1);
+      0 0 0 1px rgba(160, 95, 10, 0.35),
+      0 0 6px rgba(255, 200, 80, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
   }
   50% {
     box-shadow:
-      0 0 0 1px rgba(120, 60, 200, 0.7),
-      0 0 14px rgba(220, 190, 255, 0.95),
-      0 0 24px rgba(170, 100, 255, 0.55),
-      inset 0 1px 0 rgba(255, 255, 255, 0.85);
-    transform: scale(1.08);
+      0 0 0 1px rgba(180, 110, 15, 0.5),
+      0 0 12px rgba(255, 210, 90, 0.7),
+      0 0 18px rgba(255, 190, 50, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 }
 
