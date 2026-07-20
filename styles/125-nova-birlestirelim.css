@@ -4922,8 +4922,10 @@ html.nova-perf-ultra-early.nova-has-session
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
   font-size: clamp(0.82rem, 2.75vmin, 1.18rem);
   font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: 0.03em;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: visible;
   /* Admin’deki büyük/küçük harf aynen korunur */
   text-transform: none;
   color: #f7f2ff;
@@ -4941,6 +4943,7 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-kristal.is-names-on .birles-kristal__name:not(.is-blank) {
   opacity: 1;
   transform: translateY(0) scale(1);
+  transform-origin: top center;
 }
 
 .birles-kristal.is-names-on .birles-kristal__name--0 { transition-delay: 0.05s; }
@@ -4950,41 +4953,84 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-kristal.is-names-on .birles-kristal__name--4 { transition-delay: 0.33s; }
 .birles-kristal.is-names-on .birles-kristal__name--5 { transition-delay: 0.4s; }
 
-/* MP3 çalarken aktif kelime — büyüt + vurgulu harfler daha belirgin */
+@keyframes birlesKristalHeartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  12% {
+    transform: scale(1.1);
+  }
+  24% {
+    transform: scale(1);
+  }
+  36% {
+    transform: scale(1.16);
+  }
+  55% {
+    transform: scale(1);
+  }
+}
+
+/* MP3 çalarken: alta doğru büyü (resmi kapatma), tek satır, kalp atışı */
 .birles-kristal__name.is-speaking {
   z-index: 8 !important;
   opacity: 1 !important;
-  transform: translateY(-6px) scale(1.42) !important;
+  width: 24%;
+  left: auto;
+  transform: translateY(6px) scale(1.12) !important;
+  transform-origin: top center !important;
   transition:
-    opacity 0.25s ease,
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  filter: drop-shadow(0 0 14px rgba(180, 140, 255, 0.85));
+    opacity 0.22s ease,
+    transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.26s ease !important;
+  filter: drop-shadow(0 6px 12px rgba(120, 80, 200, 0.55));
+}
+
+.birles-kristal__name.is-speaking.birles-kristal__name--0,
+.birles-kristal__name.is-speaking.birles-kristal__name--2,
+.birles-kristal__name.is-speaking.birles-kristal__name--4 {
+  left: 16.2%;
+}
+
+.birles-kristal__name.is-speaking.birles-kristal__name--1,
+.birles-kristal__name.is-speaking.birles-kristal__name--3,
+.birles-kristal__name.is-speaking.birles-kristal__name--5 {
+  left: 60.5%;
 }
 
 .birles-kristal__name.is-speaking .birles-kristal__name-plate {
-  font-size: clamp(1.15rem, 4.6vmin, 1.75rem);
-  padding: 0.42em 0.5em 0.48em;
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+  white-space: nowrap !important;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  font-size: clamp(0.92rem, 3.2vmin, 1.32rem);
+  padding: 0.36em 0.55em 0.4em;
   border-color: rgba(255, 230, 160, 0.95);
   background:
     linear-gradient(165deg, rgba(70, 40, 110, 0.98) 0%, rgba(28, 14, 52, 0.99) 100%);
   box-shadow:
-    0 0 0 2px rgba(255, 210, 120, 0.55),
-    0 0 22px rgba(200, 150, 255, 0.75),
-    0 8px 22px rgba(0, 0, 0, 0.55),
+    0 0 0 2px rgba(255, 210, 120, 0.5),
+    0 6px 18px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  animation: birlesKristalHeartbeat 1.05s ease-in-out infinite;
+  transform-origin: center center;
 }
 
 .birles-kristal__name.is-speaking .birles-kristal__gem {
-  transform: scale(1.45);
-  animation: none;
-  margin: 0 0.1em;
-  padding: 0.06em 0.14em 0.08em;
-  font-size: 1.12em;
+  display: inline-block;
+  margin: 0 0.02em;
+  padding: 0.04em 0.1em 0.05em;
+  vertical-align: baseline;
+  transform-origin: center center;
+  animation: birlesKristalHeartbeat 1.05s ease-in-out infinite;
   border-color: #fff;
   box-shadow:
-    0 0 0 2px rgba(255, 220, 120, 0.75),
-    0 0 16px rgba(255, 230, 150, 0.95),
-    0 0 28px rgba(180, 120, 255, 0.7),
+    0 0 0 1.5px rgba(255, 220, 120, 0.8),
+    0 0 12px rgba(255, 230, 150, 0.9),
+    0 0 18px rgba(180, 120, 255, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
@@ -4993,11 +5039,13 @@ html.nova-perf-ultra-early.nova-has-session
   display: inline-block;
   position: relative;
   z-index: 1;
-  margin: 0 0.14em;
-  padding: 0.02em 0.1em 0.04em;
+  margin: 0 0.02em;
+  padding: 0.02em 0.08em 0.04em;
   border-radius: 0.28em;
   font-weight: 900;
   line-height: 1.05;
+  vertical-align: baseline;
+  white-space: nowrap;
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
   background:
