@@ -306,12 +306,17 @@
     }
   }
 
-  function restoreChipToRack(chip) {
+  function restoreChipToRack(chip, beforeEl) {
     if (!chip || !hostEl) return;
     chip.classList.remove("is-dragging", "is-lifted", "is-placed");
     chip.style.cssText = "";
     var rack = hostEl.querySelector(".birles-sirala__rack");
-    if (rack) rack.appendChild(chip);
+    if (!rack) return;
+    if (beforeEl && beforeEl.parentNode === rack) {
+      rack.insertBefore(chip, beforeEl);
+    } else {
+      rack.appendChild(chip);
+    }
   }
 
   function endDrag(cancel) {
@@ -322,7 +327,6 @@
       }
     } catch (_) {}
 
-    var ghost = dragState.ghost;
     var chip = dragState.chip;
     var ph = dragState.placeholder;
     var nestI = dragState.nestI;
@@ -339,20 +343,23 @@
       });
     }
 
-    if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
-
-    if (ph && ph.parentNode) ph.parentNode.removeChild(ph);
-
     if (chip) {
       chip.classList.remove("is-dragging", "is-lifted");
       chip.style.cssText = "";
-      chip.style.visibility = "";
     }
 
-    if (!cancel && nestI != null && soundI != null) {
-      placeChipInNest(soundI, nestI);
+    if (!cancel && nestI != null && soundI != null && chip) {
+      if (ph && ph.parentNode) ph.parentNode.removeChild(ph);
+      placeChipInNest(soundI, nestI, chip);
     } else if (chip) {
-      restoreChipToRack(chip);
+      if (ph && ph.parentNode) {
+        restoreChipToRack(chip, ph);
+        ph.parentNode.removeChild(ph);
+      } else {
+        restoreChipToRack(chip);
+      }
+    } else if (ph && ph.parentNode) {
+      ph.parentNode.removeChild(ph);
     }
   }
 
@@ -538,7 +545,7 @@
     }
   }
 
-  function placeChipInNest(soundI, nestI) {
+  function placeChipInNest(soundI, nestI, chipEl) {
     if (!activityRef || finishing || !hostEl) return;
     var n = nestCount();
     if (nestI < 0 || nestI >= n) return;
@@ -558,17 +565,13 @@
 
     placements[nestI] = soundI;
     var nest = hostEl.querySelector('.birles-sirala__nest[data-nest="' + nestI + '"]');
-    var chip = hostEl.querySelector('.birles-sirala__chip[data-sound-i="' + soundI + '"]');
-    if (!chip) {
-      /* sürüklerken body’de olabilir */
-      chip = document.querySelector(
-        '#birles-sirala-overlay .birles-sirala__chip[data-sound-i="' +
-          soundI +
-          '"], body > .birles-sirala__chip[data-sound-i="' +
-          soundI +
-          '"]'
+    var chip =
+      chipEl ||
+      (hostEl &&
+        hostEl.querySelector('.birles-sirala__chip[data-sound-i="' + soundI + '"]')) ||
+      document.querySelector(
+        '#birles-sirala-overlay .birles-sirala__chip.is-lifted[data-sound-i="' + soundI + '"]'
       );
-    }
     if (nest && chip) {
       nest.classList.add("is-filled");
       var slot = nest.querySelector(".birles-sirala__nest-slot");
@@ -598,18 +601,17 @@
     return null;
   }
 
-  function moveGhost(x, y) {
-    if (!dragState || !dragState.ghost) return;
-    dragState.ghost.style.left = x - dragState.ox + "px";
-    dragState.ghost.style.top = y - dragState.oy + "px";
+  function moveLifted(x, y) {
+    if (!dragState || !dragState.chip) return;
+    dragState.chip.style.left = x - dragState.ox + "px";
+    dragState.chip.style.top = y - dragState.oy + "px";
   }
 
   function onPointerMove(e) {
     if (!dragState) return;
     if (dragState.pointerId != null && e.pointerId !== dragState.pointerId) return;
     e.preventDefault();
-    dragState.moved = true;
-    moveGhost(e.clientX, e.clientY);
+    moveLifted(e.clientX, e.clientY);
     var nestI = nestAtPoint(e.clientX, e.clientY);
     dragState.nestI = nestI;
     if (hostEl) {
@@ -629,7 +631,7 @@
     endDrag(false);
   }
 
-  /** Kutuyu olduğu gibi parmakla taşı — anında görünür ghost */
+  /** Gerçek kutuyu kaldır — yerinde sabit boşluk, diğerleri kaymaz */
   function startDrag(chip, e) {
     if (finishing || !chip || dragState) return;
     if (chip.classList.contains("is-placed")) return;
@@ -640,38 +642,48 @@
     e.stopPropagation();
 
     var rect = chip.getBoundingClientRect();
+    var parent = chip.parentNode;
+    if (!parent) return;
+
     var ph = document.createElement("div");
     ph.className = "birles-sirala__chip-ph";
-    ph.style.width = rect.width + "px";
-    ph.style.height = rect.height + "px";
-    if (chip.parentNode) chip.parentNode.insertBefore(ph, chip);
+    ph.style.width = Math.round(rect.width) + "px";
+    ph.style.height = Math.round(rect.height) + "px";
+    ph.style.flex = "0 0 " + Math.round(rect.width) + "px";
+    parent.insertBefore(ph, chip);
 
-    var ghost = chip.cloneNode(true);
-    ghost.className = "birles-sirala__chip birles-sirala__ghost";
-    ghost.removeAttribute("data-sound-i");
-    ghost.style.width = rect.width + "px";
-    ghost.style.height = rect.height + "px";
-    ghost.style.left = rect.left + "px";
-    ghost.style.top = rect.top + "px";
-    ghost.style.opacity = "1";
-    document.body.appendChild(ghost);
-
-    chip.style.visibility = "hidden";
+    /* Asıl kutuyu overlay içinde taşı — body’ye alınca z-index altında kayboluyordu */
+    hostEl.appendChild(chip);
+    chip.classList.add("is-lifted", "is-dragging");
+    chip.style.position = "fixed";
+    chip.style.left = rect.left + "px";
+    chip.style.top = rect.top + "px";
+    chip.style.width = rect.width + "px";
+    chip.style.height = rect.height + "px";
+    chip.style.margin = "0";
+    chip.style.zIndex = "15000";
+    chip.style.transform = "scale(1.08)";
+    chip.style.boxShadow = "0 14px 32px rgba(0,0,0,0.55), 0 0 0 2px rgba(255,236,170,0.95)";
+    chip.style.pointerEvents = "none";
+    chip.style.touchAction = "none";
+    chip.style.visibility = "visible";
+    chip.style.opacity = "1";
+    chip.style.display = "inline-flex";
+    chip.style.alignItems = "center";
+    chip.style.justifyContent = "center";
 
     dragState = {
       chip: chip,
-      ghost: ghost,
       placeholder: ph,
       soundI: soundI,
       nestI: null,
-      moved: true,
       ox: Math.max(8, Math.min(rect.width - 8, e.clientX - rect.left)),
       oy: Math.max(8, Math.min(rect.height - 8, e.clientY - rect.top)),
       pointerId: e.pointerId,
       capEl: hostEl || document.body
     };
 
-    moveGhost(e.clientX, e.clientY);
+    moveLifted(e.clientX, e.clientY);
 
     try {
       dragState.capEl.setPointerCapture(e.pointerId);

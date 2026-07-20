@@ -7186,29 +7186,31 @@ html.nova-perf-ultra-early.nova-has-session
   z-index: 90;
 }
 .birles-sirala__chip-ph {
-  flex: 0 0 auto;
-  border-radius: 14px;
-  border: 2px dashed rgba(255, 220, 140, 0.35);
-  background: rgba(0, 0, 0, 0.15);
-  pointer-events: none;
-  box-sizing: border-box;
-}
-.birles-sirala__ghost {
-  position: fixed !important;
-  z-index: 14000 !important;
-  margin: 0 !important;
+  flex: 0 0 auto !important;
+  min-width: clamp(52px, 14vmin, 72px) !important;
+  min-height: clamp(52px, 14vmin, 72px) !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  background: transparent !important;
+  visibility: hidden !important;
   pointer-events: none !important;
-  opacity: 1 !important;
-  transform: scale(1.08);
-  box-shadow:
-    0 14px 32px rgba(0, 0, 0, 0.55),
-    0 0 0 2px rgba(255, 236, 170, 0.9) !important;
-  cursor: grabbing !important;
+  margin: 0 !important;
 }
-.birles-sirala__chip {
+.birles-sirala__chip.is-lifted {
+  position: fixed !important;
+  z-index: 15000 !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+}
+.birles-sirala__rack {
   touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
+}
+.birles-sirala__nest {
+  border: 2.5px dashed rgba(255, 245, 200, 0.95) !important;
+  background: rgba(8, 28, 48, 0.72) !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(0, 0, 0, 0.25);
 }
 .birles-sirala__exit {
   display: none !important;
