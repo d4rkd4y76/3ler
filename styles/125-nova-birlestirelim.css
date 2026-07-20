@@ -4958,16 +4958,16 @@ html.nova-perf-ultra-early.nova-has-session
   100% {
     transform: scale(1);
   }
-  12% {
-    transform: scale(1.1);
-  }
-  24% {
-    transform: scale(1);
+  18% {
+    transform: scale(1.045);
   }
   36% {
-    transform: scale(1.16);
+    transform: scale(1);
   }
-  55% {
+  54% {
+    transform: scale(1.07);
+  }
+  78% {
     transform: scale(1);
   }
 }
@@ -5015,7 +5015,7 @@ html.nova-perf-ultra-early.nova-has-session
     0 0 0 2px rgba(255, 210, 120, 0.5),
     0 6px 18px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
-  animation: birlesKristalHeartbeat 1.05s ease-in-out infinite;
+  animation: birlesKristalHeartbeat 1.85s ease-in-out infinite;
   transform-origin: center center;
 }
 
@@ -5025,7 +5025,7 @@ html.nova-perf-ultra-early.nova-has-session
   padding: 0.04em 0.1em 0.05em;
   vertical-align: baseline;
   transform-origin: center center;
-  animation: birlesKristalHeartbeat 1.05s ease-in-out infinite;
+  animation: birlesKristalHeartbeat 1.85s ease-in-out infinite;
   border-color: #fff;
   box-shadow:
     0 0 0 1.5px rgba(255, 220, 120, 0.8),
