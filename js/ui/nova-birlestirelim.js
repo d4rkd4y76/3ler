@@ -195,19 +195,41 @@
     return K.hasKristal(letterPackFor(sound));
   }
 
-  function hasSiralaForSound(sound) {
+  function listSiralaForSound(sound) {
     var S = window.NovaBirlestirelimSirala;
-    if (!S || !S.hasSirala) return false;
-    return S.hasSirala(letterPackFor(sound));
+    if (!S || !S.listActivities) return [];
+    return S.listActivities(letterPackFor(sound)) || [];
+  }
+
+  /** Hece listesine “sıra sende” (sirala) aşamalarını heceStep konumuna yerleştir */
+  function buildHeceLaneWithSirala(sound, heceList) {
+    var items = (heceList || []).map(function (f) {
+      return f;
+    });
+    var acts = listSiralaForSound(sound);
+    acts.forEach(function (act) {
+      var step = act.heceStep > 0 ? act.heceStep : items.length + 1;
+      var pseudo = {
+        id: "sirala_" + act.id,
+        kind: "sirala",
+        type: "sirala",
+        result: act.result || act.title || "?",
+        label: "Sıra sende · yerleştir",
+        sirala: act
+      };
+      var idx = Math.min(Math.max(0, step - 1), items.length);
+      items.splice(idx, 0, pseudo);
+    });
+    return items;
   }
 
   function laneKeysForSound(sound) {
     var bags = collectSoundLanes(sound);
     var keys = [];
     if (hasKristalForSound(sound)) keys.push("kristal");
-    if (hasSiralaForSound(sound)) keys.push("sirala");
     LANE_DEFS.forEach(function (d) {
       if ((bags[d.key] || []).length) keys.push(d.key);
+      else if (d.key === "hece" && listSiralaForSound(sound).length) keys.push("hece");
     });
     return keys;
   }
@@ -1248,57 +1270,6 @@
     setTimeout(once, 400);
   }
 
-  function openSiralaNest(sound) {
-    var S = window.NovaBirlestirelimSirala;
-    if (!S || !S.open) {
-      try {
-        if (typeof window.showAlert === "function") {
-          window.showAlert("Ses Yuvası yüklenemedi. Sayfayı yenileyip tekrar dene.");
-        }
-      } catch (_) {}
-      return;
-    }
-    function go() {
-      try {
-        S.open({
-          sound: sound,
-          letterPack: letterPackFor(sound),
-          onDone: function (res) {
-            if (!res || !res.success) return;
-            Promise.resolve(
-              markLaneStarred(sound.id, sound.groupId || activeGroupId, "sirala")
-            )
-              .then(function (newly) {
-                if (newly) return playStarRewardOnce("Ses Yuvası");
-              })
-              .then(function () {
-                if (activeSound && activeSound.id === sound.id) openSound(sound.id);
-              })
-              .catch(function () {
-                if (activeSound && activeSound.id === sound.id) openSound(sound.id);
-              });
-          }
-        });
-      } catch (err) {
-        try {
-          console.error("Sirala open", err);
-        } catch (_) {}
-      }
-    }
-    var started = false;
-    function once() {
-      if (started) return;
-      started = true;
-      go();
-    }
-    try {
-      Promise.resolve(ensureMedia()).then(once).catch(once);
-    } catch (_) {
-      once();
-    }
-    setTimeout(once, 400);
-  }
-
   function openHowToVideo(sound) {
     var url = howToVideoUrl(sound);
     if (!url) {
@@ -1786,17 +1757,28 @@
 
   function fusionCardHtml(f, extraAttrs) {
     var kind = String(f.kind || f.type || "hece").toLowerCase();
+    var isSirala = kind === "sirala";
     var isCumle = kind === "cumle" || f.mode === "sentence";
-    var isWord = !isCumle && (kind === "kelime" || !!f.mediaKey);
+    var isWord = !isCumle && !isSirala && (kind === "kelime" || !!f.mediaKey);
     var isSes = kind === "ses" || f.type === "intro";
     var med = isWord && f.mediaKey ? mediaFor(f.mediaKey) : null;
     var hasImg = !!(med && med.imageUrl);
-    var badge = isSes ? "SES" : isCumle ? "CÜMLE" : isWord ? "KELİME" : "HECE";
-    var cardClass = isCumle ? "cumle" : isWord ? "word" : isSes ? "ses" : "hece";
+    var badge = isSirala
+      ? "SIRA SENDE"
+      : isSes
+        ? "SES"
+        : isCumle
+          ? "CÜMLE"
+          : isWord
+            ? "KELİME"
+            : "HECE";
+    var cardClass = isSirala ? "hece" : isCumle ? "cumle" : isWord ? "word" : isSes ? "ses" : "hece";
     var mediaInner;
     var attrs = extraAttrs ? " " + extraAttrs : "";
 
-    if (isWord && hasImg) {
+    if (isSirala) {
+      mediaInner = "";
+    } else if (isWord && hasImg) {
       mediaInner =
         '<img class="birles-fusion-card__img" src="' +
         esc(med.imageUrl) +
@@ -2156,38 +2138,11 @@
         "</button>";
     }
 
-    var hasSirala = hasSiralaForSound(sound);
-    if (hasSirala) {
-      var siralaStarred = isLaneStarred(sound.id, "sirala");
-      var siralaActs =
-        (window.NovaBirlestirelimSirala &&
-          window.NovaBirlestirelimSirala.listActivities &&
-          window.NovaBirlestirelimSirala.listActivities(letterPackFor(sound))) ||
-        [];
-      html +=
-        '<button type="button" class="birles-lane-card birles-lane-card--sirala' +
-        (siralaStarred ? " is-starred" : "") +
-        '" data-sirala="1" role="listitem">' +
-        '<span class="birles-lane-card__ico" aria-hidden="true">' +
-        laneIconSvg("sirala") +
-        "</span>" +
-        '<span class="birles-lane-card__body">' +
-        '<span class="birles-lane-card__title">Ses Yuvası' +
-        (siralaStarred ? ' <span class="birles-lane-card__star" aria-hidden="true">★</span>' : "") +
-        "</span>" +
-        '<span class="birles-lane-card__sub">Sırayla yerleştir</span>' +
-        "</span>" +
-        '<span class="birles-lane-card__count">' +
-        Math.max(1, siralaActs.length) +
-        "</span>" +
-        '<span class="birles-lane-card__go">' +
-        (siralaStarred ? "Tekrar" : "Başla") +
-        "</span>" +
-        "</button>";
-    }
-
     LANE_DEFS.forEach(function (def) {
       var list = bags[def.key] || [];
+      if (def.key === "hece") {
+        list = buildHeceLaneWithSirala(sound, list);
+      }
       if (!list.length) return;
       var sub = def.sub || def.tag || "";
       var starred = isLaneStarred(sound.id, def.key);
@@ -2261,13 +2216,6 @@
         openKristalCave(sound);
       });
     }
-    var siralaBtn = body.querySelector("[data-sirala]");
-    if (siralaBtn) {
-      siralaBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        openSiralaNest(sound);
-      });
-    }
     body.querySelectorAll("[data-lane]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         openLane(sound.id, btn.getAttribute("data-lane"));
@@ -2283,6 +2231,9 @@
     if (!def) return;
     var bags = collectSoundLanes(sound);
     var list = bags[laneKey] || [];
+    if (laneKey === "hece") {
+      list = buildHeceLaneWithSirala(sound, list);
+    }
     if (!list.length) return;
     activeLane = {
       key: laneKey,
@@ -2301,7 +2252,53 @@
     activeLane.index = index;
     var f = list[index];
     if (!f) return;
+    if (f.kind === "sirala" || f.type === "sirala") {
+      openSiralaInLane(sound, f);
+      return;
+    }
     startFusion(sound.id, f.id, { fromLane: true });
+  }
+
+  function openSiralaInLane(sound, item) {
+    var S = window.NovaBirlestirelimSirala;
+    if (!S || !S.open) {
+      try {
+        if (typeof window.showAlert === "function") {
+          window.showAlert("Ses Yuvası yüklenemedi. Sayfayı yenile.");
+        }
+      } catch (_) {}
+      return;
+    }
+    setLaneNextEnabled(false);
+    view = "play";
+    activeSound = sound;
+    activeFusion = item;
+    setPoolPlayMode(false);
+    setBack(true);
+    setHeader(
+      activeLane && activeLane.title ? activeLane.title : "Hece Avı",
+      sound.title || "",
+      laneProgressLabel()
+    );
+    try {
+      S.open({
+        sound: sound,
+        activity: item.sirala || item,
+        laneMode: true,
+        onDone: function (res) {
+          if (res && res.success) {
+            laneNextUnlocked = true;
+            advanceLane();
+            return;
+          }
+          if (activeSound) renderLaneGallery(activeSound);
+        }
+      });
+    } catch (err) {
+      try {
+        console.error("Sirala lane", err);
+      } catch (_) {}
+    }
   }
 
   function advanceLane() {

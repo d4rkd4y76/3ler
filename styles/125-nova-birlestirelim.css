@@ -7150,3 +7150,33 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-lane-card--sirala {
   --lane-accent: #38bdf8;
 }
+
+.birles-sirala__chip.is-selected {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+  transform: scale(1.06);
+}
+.birles-sirala__burst-chip {
+  display: inline-block;
+  padding: 0.2em 0.55em 0.28em;
+  border-radius: 0.45em;
+  background: linear-gradient(165deg, #fff4c8, #ffd166 50%, #e9a820);
+  color: #3a2200;
+  border: 3px solid rgba(255, 245, 210, 0.95);
+  box-shadow:
+    0 0 0 4px rgba(40, 20, 0, 0.35),
+    0 12px 28px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(255, 200, 80, 0.55);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  animation: birlesSiralaChipPulse 1.1s ease-in-out infinite;
+}
+@keyframes birlesSiralaChipPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.birles-sirala__nests {
+  max-width: min(96%, 420px);
+}
+.birles-sirala__nest {
+  max-width: 88px;
+}

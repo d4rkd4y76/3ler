@@ -1,8 +1,9 @@
 /**
- * Ses Yuvası — duyulan sesleri doğru sırayla yuvalara sürükle
- * Admin: birlestirelim/letters/{soundId}/sirala =
- *   { activities:[{ id, title, result, instructionAudioUrl,
- *                   sounds:[{label,audioUrl}] }] }  // en fazla 5
+ * Ses Yuvası — Hece Avı içinde “sıra sende” aşaması
+ * Admin: letters/{id}.sirala.activities[] =
+ *   { id, title, result, heceStep, correctOrder, instructionAudioUrl,
+ *     sounds:[{label,audioUrl}] }  // altta en fazla 5 kutu (çeldirici dahil)
+ * Yuva sayısı = correctOrder (ör. "e,r" → 2 yuva). Boşsa dolu seslerin sırası.
  */
 (function (global) {
   "use strict";
@@ -14,15 +15,15 @@
   var hostEl = null;
   var onDoneCb = null;
   var soundRef = null;
-  var packRef = null;
   var openToken = 0;
-  var activitiesRef = [];
-  var activityIdx = 0;
+  var activityRef = null;
   var finishing = false;
   var placements = [];
   var dragState = null;
+  var selectedSoundI = null;
   var layoutBound = null;
   var instructAudio = null;
+  var laneMode = false;
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -30,6 +31,12 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function normLabel(s) {
+    return String(s || "")
+      .trim()
+      .toLocaleLowerCase("tr-TR");
   }
 
   function normalizeSound(row) {
@@ -40,6 +47,29 @@
     };
   }
 
+  function parseCorrectOrder(raw, sounds) {
+    var out = [];
+    if (Array.isArray(raw)) {
+      raw.forEach(function (x) {
+        var t = String(x || "").trim();
+        if (t) out.push(t);
+      });
+    } else if (raw != null && String(raw).trim()) {
+      String(raw)
+        .split(/[,;]+/)
+        .forEach(function (p) {
+          var t = p.trim();
+          if (t) out.push(t);
+        });
+    }
+    if (out.length) return out;
+    return (sounds || [])
+      .map(function (s) {
+        return s.label;
+      })
+      .filter(Boolean);
+  }
+
   function normalizeActivity(raw, idx) {
     var row = raw && typeof raw === "object" ? raw : {};
     var soundsIn = Array.isArray(row.sounds) ? row.sounds : Array.isArray(row.slots) ? row.slots : [];
@@ -48,10 +78,16 @@
       var s = normalizeSound(soundsIn[i]);
       if (s.label || s.audioUrl) sounds.push(s);
     }
+    var correctOrder = parseCorrectOrder(row.correctOrder || row.order || row.nests, sounds);
+    var heceStep = parseInt(row.heceStep, 10);
+    if (!isFinite(heceStep) || heceStep < 1) heceStep = 0;
     return {
       id: String(row.id || "s" + (idx + 1)).trim() || "s" + (idx + 1),
       title: String(row.title || "").trim(),
       result: String(row.result || row.title || "").trim(),
+      heceStep: heceStep,
+      correctOrder: correctOrder,
+      correctOrderRaw: String(row.correctOrder || row.order || "").trim(),
       instructionAudioUrl: String(
         row.instructionAudioUrl || row.instructionUrl || row.promptAudioUrl || ""
       ).trim(),
@@ -62,27 +98,19 @@
   function listActivities(pack) {
     var k = pack && pack.sirala;
     if (!k || typeof k !== "object") return [];
-    var list = Array.isArray(k.activities) ? k.activities : k.images ? [] : [];
-    if (!list.length && Array.isArray(k.sounds)) {
-      list = [k];
-    }
+    var list = Array.isArray(k.activities) ? k.activities : [];
+    if (!list.length && Array.isArray(k.sounds)) list = [k];
     return list
       .map(function (a, i) {
         return normalizeActivity(a, i);
       })
       .filter(function (a) {
-        return a.sounds.length >= 2;
+        return a.sounds.length >= 2 && a.correctOrder.length >= 2;
       });
   }
 
   function hasSirala(pack) {
     return listActivities(pack).length > 0;
-  }
-
-  function currentActivity() {
-    if (!activitiesRef.length) return null;
-    var i = Math.max(0, Math.min(activityIdx, activitiesRef.length - 1));
-    return activitiesRef[i];
   }
 
   function shuffle(arr) {
@@ -179,9 +207,7 @@
     window.addEventListener("resize", layoutBound);
     window.addEventListener("orientationchange", layoutBound);
     try {
-      if (window.visualViewport) {
-        window.visualViewport.addEventListener("resize", layoutBound);
-      }
+      if (window.visualViewport) window.visualViewport.addEventListener("resize", layoutBound);
     } catch (_) {}
   }
 
@@ -190,16 +216,13 @@
     window.removeEventListener("resize", layoutBound);
     window.removeEventListener("orientationchange", layoutBound);
     try {
-      if (window.visualViewport) {
-        window.visualViewport.removeEventListener("resize", layoutBound);
-      }
+      if (window.visualViewport) window.visualViewport.removeEventListener("resize", layoutBound);
     } catch (_) {}
     layoutBound = null;
   }
 
   function setPoolFs(on) {
     try {
-      document.body.classList.toggle("birles-pool-fs", !!on);
       document.body.classList.toggle("birles-sirala-fs", !!on);
       if (typeof window.novaSyncPerfRuntime === "function") {
         window.novaSyncPerfRuntime();
@@ -209,21 +232,48 @@
     } catch (_) {}
   }
 
+  function endDrag(cancel) {
+    if (!dragState) return;
+    try {
+      if (dragState.chip && dragState.pointerId != null) {
+        dragState.chip.releasePointerCapture(dragState.pointerId);
+      }
+    } catch (_) {}
+    var ghost = dragState.ghost;
+    if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+    if (dragState.chip) dragState.chip.classList.remove("is-dragging");
+    if (hostEl) {
+      hostEl.querySelectorAll(".birles-sirala__nest.is-target").forEach(function (n) {
+        n.classList.remove("is-target");
+      });
+    }
+    var moved = !!(dragState.moved);
+    var nestI = dragState.nestI;
+    var soundI = dragState.soundI;
+    dragState = null;
+    document.removeEventListener("pointermove", onPointerMove, true);
+    document.removeEventListener("pointerup", onPointerUp, true);
+    document.removeEventListener("pointercancel", onPointerUp, true);
+    if (!cancel && moved && nestI != null && soundI != null) {
+      placeChipInNest(soundI, nestI);
+    }
+  }
+
   function close() {
     openToken += 1;
     finishing = false;
     stopInstruct();
     unbindLayout();
     endDrag(true);
+    clearSelection();
     setPoolFs(false);
     if (hostEl && hostEl.parentNode) hostEl.parentNode.removeChild(hostEl);
     hostEl = null;
     soundRef = null;
-    packRef = null;
     onDoneCb = null;
-    activitiesRef = [];
-    activityIdx = 0;
+    activityRef = null;
     placements = [];
+    laneMode = false;
   }
 
   function hardCutBoom(on) {
@@ -255,10 +305,41 @@
     });
   }
 
-  async function playFinale(act) {
-    if (!hostEl || finishing) return;
+  function nestCount() {
+    return (activityRef && activityRef.correctOrder && activityRef.correctOrder.length) || 0;
+  }
+
+  function filledCount() {
+    var n = 0;
+    for (var i = 0; i < placements.length; i++) {
+      if (placements[i] != null) n++;
+    }
+    return n;
+  }
+
+  function clearSelection() {
+    selectedSoundI = null;
+    if (hostEl) {
+      hostEl.querySelectorAll(".birles-sirala__chip.is-selected").forEach(function (c) {
+        c.classList.remove("is-selected");
+      });
+    }
+  }
+
+  function setSelected(soundI) {
+    clearSelection();
+    selectedSoundI = soundI;
+    if (hostEl && soundI != null) {
+      var chip = hostEl.querySelector('.birles-sirala__chip[data-sound-i="' + soundI + '"]');
+      if (chip) chip.classList.add("is-selected");
+    }
+  }
+
+  async function playFinale() {
+    if (!hostEl || finishing || !activityRef) return;
     finishing = true;
     hostEl.classList.add("is-done");
+    clearSelection();
 
     var merge = hostEl.querySelector(".birles-sirala__vid--merge");
     var boom = hostEl.querySelector(".birles-sirala__vid--boom");
@@ -306,16 +387,13 @@
     });
     if (!hostEl) return;
 
-    var word = act.result || act.title || "";
+    var word = activityRef.result || activityRef.title || activityRef.correctOrder.join("") || "";
     if (burst) {
-      burst.textContent = word;
+      burst.innerHTML =
+        '<span class="birles-sirala__burst-chip">' + esc(word) + "</span>";
       burst.hidden = false;
       burst.classList.add("is-boom-in");
     }
-
-    /* Sonuç sesi: son parçanın / birleşimin URL’si yoksa parçaları sırayla çalma */
-    var resultAudio = "";
-    /* result audio ayrı yok — parçaları bir kez daha çalmak yerine sessiz bırak */
 
     await waitBoomEnded(boom);
     if (!hostEl) return;
@@ -325,31 +403,11 @@
       flash.classList.remove("is-on");
       flash.hidden = true;
     }
-    if (merge) {
-      merge.muted = true;
-      merge.loop = true;
-      var mp = merge.play();
-      if (mp && typeof mp.catch === "function") mp.catch(function () {});
-    }
-    hardCutBoom(false);
 
-    updateDoneButtons();
-  }
-
-  function updateDoneButtons() {
-    if (!hostEl) return;
-    var hasNext = activityIdx < activitiesRef.length - 1;
-    var nextBtn = hostEl.querySelector("[data-sirala-next]");
-    var exitBtn = hostEl.querySelector("[data-sirala-done]");
-    if (nextBtn) {
-      nextBtn.hidden = !hasNext;
-      if (hasNext) {
-        nextBtn.textContent = "İleri · " + (activityIdx + 2) + "/" + activitiesRef.length;
-      }
-    }
-    if (exitBtn) {
-      exitBtn.hidden = hasNext;
-      if (!hasNext) exitBtn.textContent = "✓";
+    var doneBtn = hostEl.querySelector("[data-sirala-done]");
+    if (doneBtn) {
+      doneBtn.hidden = false;
+      doneBtn.textContent = laneMode ? "İlerle ›" : "✓";
     }
   }
 
@@ -359,96 +417,47 @@
     if (typeof cb === "function") cb({ success: true });
   }
 
-  function goNextActivity() {
-    if (activityIdx >= activitiesRef.length - 1) {
-      finishSuccess();
-      return;
-    }
-    stopInstruct();
-    activityIdx += 1;
-    finishing = false;
-    mountActivity();
-  }
-
-  function nestHtml(n) {
-    var html = "";
-    for (var i = 0; i < n; i++) {
-      html +=
-        '<div class="birles-sirala__nest" data-nest="' +
-        i +
-        '" aria-label="Yuva ' +
-        (i + 1) +
-        '">' +
-        '<span class="birles-sirala__nest-num">' +
-        (i + 1) +
-        "</span>" +
-        '<span class="birles-sirala__nest-slot"></span>' +
-        "</div>";
-    }
-    return html;
-  }
-
-  function rackHtml(order) {
-    var html = "";
-    order.forEach(function (origIdx) {
-      var act = currentActivity();
-      var s = act.sounds[origIdx];
-      html +=
-        '<button type="button" class="birles-sirala__chip" data-sound-i="' +
-        origIdx +
-        '" draggable="false">' +
-        '<span class="birles-sirala__chip-label">' +
-        esc(s.label || "?") +
-        "</span>" +
-        "</button>";
-    });
-    return html;
-  }
-
-  function filledCount() {
-    var n = 0;
-    for (var i = 0; i < placements.length; i++) {
-      if (placements[i] != null) n++;
-    }
-    return n;
-  }
-
   function checkComplete() {
-    var act = currentActivity();
-    if (!act || finishing) return;
-    if (filledCount() < act.sounds.length) return;
+    if (!activityRef || finishing) return;
+    var order = activityRef.correctOrder;
+    if (filledCount() < order.length) return;
+
     var ok = true;
-    for (var i = 0; i < act.sounds.length; i++) {
-      if (placements[i] !== i) {
+    for (var i = 0; i < order.length; i++) {
+      var soundI = placements[i];
+      if (soundI == null) {
+        ok = false;
+        break;
+      }
+      var lab = activityRef.sounds[soundI] && activityRef.sounds[soundI].label;
+      if (normLabel(lab) !== normLabel(order[i])) {
         ok = false;
         break;
       }
     }
+
     if (ok) {
-      playFinale(act);
+      playFinale();
       return;
     }
-    /* yanlış sıra — salla ve geri al */
-    if (hostEl) {
-      var nests = hostEl.querySelector(".birles-sirala__nests");
-      if (nests) {
-        nests.classList.remove("is-shake");
-        void nests.offsetWidth;
-        nests.classList.add("is-shake");
-      }
+
+    var nests = hostEl && hostEl.querySelector(".birles-sirala__nests");
+    if (nests) {
+      nests.classList.remove("is-shake");
+      void nests.offsetWidth;
+      nests.classList.add("is-shake");
     }
     setTimeout(function () {
       if (!hostEl || finishing) return;
-      resetPlacementsKeepOrder();
+      resetPlacements();
     }, 650);
   }
 
-  function resetPlacementsKeepOrder() {
-    var act = currentActivity();
-    if (!act || !hostEl) return;
-    placements = act.sounds.map(function () {
-      return null;
-    });
+  function resetPlacements() {
+    if (!activityRef || !hostEl) return;
+    var n = nestCount();
+    placements = [];
+    for (var i = 0; i < n; i++) placements.push(null);
     hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (nest) {
       nest.classList.remove("is-filled", "is-correct");
       var slot = nest.querySelector(".birles-sirala__nest-slot");
@@ -457,22 +466,22 @@
     var rack = hostEl.querySelector(".birles-sirala__rack");
     if (rack) {
       var order = shuffle(
-        act.sounds.map(function (_, i) {
+        activityRef.sounds.map(function (_, i) {
           return i;
         })
       );
       rack.innerHTML = rackHtml(order);
       bindChips();
     }
+    clearSelection();
   }
 
   function placeChipInNest(soundI, nestI) {
-    var act = currentActivity();
-    if (!act || finishing || !hostEl) return;
-    if (nestI < 0 || nestI >= act.sounds.length) return;
+    if (!activityRef || finishing || !hostEl) return;
+    var n = nestCount();
+    if (nestI < 0 || nestI >= n) return;
     if (placements[nestI] != null) return;
 
-    /* chip zaten bir yuvadaysa çıkar */
     for (var i = 0; i < placements.length; i++) {
       if (placements[i] === soundI) {
         placements[i] = null;
@@ -493,37 +502,21 @@
       var slot = nest.querySelector(".birles-sirala__nest-slot");
       if (slot) {
         chip.classList.add("is-placed");
+        chip.classList.remove("is-selected");
         slot.appendChild(chip);
       }
     }
+    clearSelection();
     try {
-      var s = act.sounds[soundI];
+      var s = activityRef.sounds[soundI];
       if (s && s.audioUrl) playUrl(s.audioUrl);
     } catch (_) {}
     checkComplete();
   }
 
-  function endDrag(cancel) {
-    if (!dragState) return;
-    var ghost = dragState.ghost;
-    if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
-    if (dragState.chip) dragState.chip.classList.remove("is-dragging");
-    hostEl &&
-      hostEl.querySelectorAll(".birles-sirala__nest.is-target").forEach(function (n) {
-        n.classList.remove("is-target");
-      });
-    if (!cancel && dragState.nestI != null && dragState.soundI != null) {
-      placeChipInNest(dragState.soundI, dragState.nestI);
-    }
-    dragState = null;
-    document.removeEventListener("pointermove", onPointerMove);
-    document.removeEventListener("pointerup", onPointerUp);
-    document.removeEventListener("pointercancel", onPointerUp);
-  }
-
   function nestAtPoint(x, y) {
     if (!hostEl) return null;
-    var nests = hostEl.querySelectorAll(".birles-sirala__nest");
+    var nests = hostEl.querySelectorAll(".birles-sirala__nest:not(.is-filled)");
     for (var i = 0; i < nests.length; i++) {
       var r = nests[i].getBoundingClientRect();
       if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
@@ -535,31 +528,53 @@
 
   function onPointerMove(e) {
     if (!dragState || !dragState.ghost) return;
+    if (dragState.pointerId != null && e.pointerId !== dragState.pointerId) return;
+    var dx = e.clientX - dragState.startX;
+    var dy = e.clientY - dragState.startY;
+    if (!dragState.moved && dx * dx + dy * dy > 36) dragState.moved = true;
     dragState.ghost.style.left = e.clientX - dragState.ox + "px";
     dragState.ghost.style.top = e.clientY - dragState.oy + "px";
+    if (dragState.moved) {
+      dragState.ghost.style.opacity = "1";
+      if (dragState.chip) dragState.chip.classList.add("is-dragging");
+    }
     var nestI = nestAtPoint(e.clientX, e.clientY);
     dragState.nestI = nestI;
     if (hostEl) {
-      hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (n) {
-        var i = Number(n.getAttribute("data-nest"));
-        n.classList.toggle("is-target", nestI === i && placements[i] == null);
+      hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (el) {
+        var i = Number(el.getAttribute("data-nest"));
+        el.classList.toggle("is-target", nestI === i);
       });
     }
   }
 
   function onPointerUp(e) {
     if (!dragState) return;
+    if (dragState.pointerId != null && e.pointerId !== dragState.pointerId) return;
     if (e && e.clientX != null) {
       dragState.nestI = nestAtPoint(e.clientX, e.clientY);
     }
+    var moved = dragState.moved;
+    var soundI = dragState.soundI;
     endDrag(false);
+    if (!moved && soundI != null) {
+      /* kısa dokunuş: seç / dinle */
+      setSelected(soundI);
+      try {
+        var s = activityRef && activityRef.sounds[soundI];
+        if (s && s.audioUrl) playUrl(s.audioUrl);
+      } catch (_) {}
+    }
   }
 
   function startDrag(chip, e) {
     if (finishing || !chip || dragState) return;
+    if (chip.classList.contains("is-placed")) return;
     var soundI = Number(chip.getAttribute("data-sound-i"));
     if (isNaN(soundI)) return;
     e.preventDefault();
+    e.stopPropagation();
+
     var rect = chip.getBoundingClientRect();
     var ghost = chip.cloneNode(true);
     ghost.classList.add("birles-sirala__ghost");
@@ -567,36 +582,74 @@
     ghost.style.height = rect.height + "px";
     ghost.style.left = rect.left + "px";
     ghost.style.top = rect.top + "px";
+    ghost.style.opacity = "0";
     document.body.appendChild(ghost);
-    chip.classList.add("is-dragging");
+
     dragState = {
       chip: chip,
       ghost: ghost,
       soundI: soundI,
       nestI: null,
+      moved: false,
+      startX: e.clientX,
+      startY: e.clientY,
       ox: e.clientX - rect.left,
-      oy: e.clientY - rect.top
+      oy: e.clientY - rect.top,
+      pointerId: e.pointerId
     };
-    document.addEventListener("pointermove", onPointerMove);
-    document.addEventListener("pointerup", onPointerUp);
-    document.addEventListener("pointercancel", onPointerUp);
+
+    try {
+      chip.setPointerCapture(e.pointerId);
+    } catch (_) {}
+
+    document.addEventListener("pointermove", onPointerMove, true);
+    document.addEventListener("pointerup", onPointerUp, true);
+    document.addEventListener("pointercancel", onPointerUp, true);
+  }
+
+  function nestHtml(n) {
+    var html = "";
+    for (var i = 0; i < n; i++) {
+      html +=
+        '<div class="birles-sirala__nest" data-nest="' +
+        i +
+        '">' +
+        '<span class="birles-sirala__nest-num">' +
+        (i + 1) +
+        "</span>" +
+        '<span class="birles-sirala__nest-slot"></span>' +
+        "</div>";
+    }
+    return html;
+  }
+
+  function rackHtml(order) {
+    var html = "";
+    order.forEach(function (origIdx) {
+      var s = activityRef.sounds[origIdx];
+      html +=
+        '<button type="button" class="birles-sirala__chip" data-sound-i="' +
+        origIdx +
+        '">' +
+        '<span class="birles-sirala__chip-label">' +
+        esc(s.label || "?") +
+        "</span>" +
+        "</button>";
+    });
+    return html;
   }
 
   function bindChips() {
     if (!hostEl) return;
     hostEl.querySelectorAll(".birles-sirala__chip").forEach(function (chip) {
-      chip.addEventListener("pointerdown", function (e) {
-        if (e.button != null && e.button !== 0) return;
-        startDrag(chip, e);
-      });
-      chip.addEventListener("click", function () {
-        if (finishing || dragState) return;
-        var soundI = Number(chip.getAttribute("data-sound-i"));
-        var act = currentActivity();
-        if (!act || isNaN(soundI)) return;
-        var s = act.sounds[soundI];
-        if (s && s.audioUrl) playUrl(s.audioUrl);
-      });
+      chip.addEventListener(
+        "pointerdown",
+        function (e) {
+          if (e.button != null && e.button !== 0) return;
+          startDrag(chip, e);
+        },
+        { passive: false }
+      );
     });
   }
 
@@ -606,54 +659,55 @@
       nest.addEventListener("click", function () {
         if (finishing) return;
         var nestI = Number(nest.getAttribute("data-nest"));
-        if (placements[nestI] == null) return;
-        /* yuvadan geri rafta */
-        var soundI = placements[nestI];
-        placements[nestI] = null;
-        nest.classList.remove("is-filled");
-        var slot = nest.querySelector(".birles-sirala__nest-slot");
-        var chip = slot && slot.querySelector(".birles-sirala__chip");
-        var rack = hostEl.querySelector(".birles-sirala__rack");
-        if (chip && rack) {
-          chip.classList.remove("is-placed");
-          rack.appendChild(chip);
+        if (placements[nestI] != null) {
+          var soundI = placements[nestI];
+          placements[nestI] = null;
+          nest.classList.remove("is-filled");
+          var slot = nest.querySelector(".birles-sirala__nest-slot");
+          var chip = slot && slot.querySelector(".birles-sirala__chip");
+          var rack = hostEl.querySelector(".birles-sirala__rack");
+          if (chip && rack) {
+            chip.classList.remove("is-placed");
+            rack.appendChild(chip);
+          }
+          if (slot) slot.innerHTML = "";
+          return;
         }
-        if (slot) slot.innerHTML = "";
+        if (selectedSoundI != null) {
+          placeChipInNest(selectedSoundI, nestI);
+        }
       });
     });
   }
 
   function mountActivity() {
-    var act = currentActivity();
-    if (!act || !hostEl) return;
-    placements = act.sounds.map(function () {
-      return null;
-    });
+    if (!activityRef || !hostEl) return;
+    var n = nestCount();
+    placements = [];
+    for (var i = 0; i < n; i++) placements.push(null);
+    finishing = false;
     hostEl.classList.remove("is-done");
 
     var title = hostEl.querySelector(".birles-sirala__ask");
     if (title) {
-      title.textContent =
-        (act.title ? act.title + " · " : "") + "Sesleri sırayla yuvaya sürükle";
+      var head = activityRef.result || activityRef.title || "";
+      title.textContent = (head ? head + " · " : "") + "Sesleri sırayla yuvaya sürükle";
     }
     var hint = hostEl.querySelector(".birles-sirala__hint");
     if (hint) {
       hint.hidden = false;
-      hint.textContent =
-        activitiesRef.length > 1
-          ? "Doğru sırayı bul · " + (activityIdx + 1) + "/" + activitiesRef.length
-          : "Doğru sırayı bul";
+      hint.textContent = "Dokun-sürükle veya önce sesi seç, sonra yuvaya dokun";
     }
 
     var nests = hostEl.querySelector(".birles-sirala__nests");
     if (nests) {
       nests.classList.remove("is-shake");
-      nests.innerHTML = nestHtml(act.sounds.length);
+      nests.innerHTML = nestHtml(n);
     }
     var rack = hostEl.querySelector(".birles-sirala__rack");
     if (rack) {
       var order = shuffle(
-        act.sounds.map(function (_, i) {
+        activityRef.sounds.map(function (_, i) {
           return i;
         })
       );
@@ -663,15 +717,12 @@
     if (burst) {
       burst.hidden = true;
       burst.classList.remove("is-boom-in");
-      burst.textContent = "";
+      burst.innerHTML = "";
     }
     var board = hostEl.querySelector(".birles-sirala__board");
     if (board) board.classList.remove("is-finale");
-
-    var nextBtn = hostEl.querySelector("[data-sirala-next]");
-    var exitBtn = hostEl.querySelector("[data-sirala-done]");
-    if (nextBtn) nextBtn.hidden = true;
-    if (exitBtn) exitBtn.hidden = true;
+    var doneBtn = hostEl.querySelector("[data-sirala-done]");
+    if (doneBtn) doneBtn.hidden = true;
 
     bindChips();
     bindNests();
@@ -688,10 +739,10 @@
     var boom = hostEl.querySelector(".birles-sirala__vid--boom");
     if (boom && !boom.getAttribute("src")) boom.src = POOL_BOOM_SRC;
 
-    if (act.instructionAudioUrl) {
+    if (activityRef.instructionAudioUrl) {
       setTimeout(function () {
-        playUrl(act.instructionAudioUrl);
-      }, 400);
+        playUrl(activityRef.instructionAudioUrl);
+      }, 350);
     }
   }
 
@@ -700,13 +751,18 @@
     close();
     var token = ++openToken;
     soundRef = opts.sound || null;
-    packRef = opts.letterPack || {};
     onDoneCb = typeof opts.onDone === "function" ? opts.onDone : null;
-    activitiesRef = listActivities(packRef);
-    activityIdx = 0;
+    laneMode = !!opts.laneMode;
     finishing = false;
 
-    if (!activitiesRef.length) {
+    if (opts.activity) {
+      activityRef = normalizeActivity(opts.activity, 0);
+    } else {
+      var acts = listActivities(opts.letterPack || {});
+      activityRef = acts[0] || null;
+    }
+
+    if (!activityRef || activityRef.sounds.length < 2 || activityRef.correctOrder.length < 2) {
       if (typeof onDoneCb === "function") onDoneCb({ success: false, empty: true });
       return;
     }
@@ -724,20 +780,19 @@
       '    <div class="birles-sirala__layer birles-sirala__layer--boom" style="opacity:0">' +
       '      <video class="birles-sirala__vid birles-sirala__vid--boom" playsinline preload="auto"></video>' +
       "    </div>" +
-      '    <div class="birles-sirala__flash" hidden aria-hidden="true"></div>' +
+      '    <div class="birles-sirala__flash" hidden></div>' +
       '    <div class="birles-sirala__board">' +
       '      <p class="birles-sirala__ask"></p>' +
-      '      <div class="birles-sirala__nests" aria-label="Yuvalar"></div>' +
-      '      <div class="birles-sirala__rack" aria-label="Sesler"></div>' +
+      '      <div class="birles-sirala__nests"></div>' +
+      '      <div class="birles-sirala__rack"></div>' +
       '      <p class="birles-sirala__hint"></p>' +
-      '      <button type="button" class="birles-sirala__replay" data-sirala-instruct="1" aria-label="Yönergeyi dinle">🔊</button>' +
+      '      <button type="button" class="birles-sirala__replay" data-sirala-instruct="1" aria-label="Yönerge">🔊</button>' +
       "    </div>" +
       '    <p class="birles-sirala__burst" hidden aria-live="polite"></p>' +
       "  </div>" +
       "</div>" +
       '<button type="button" class="birles-sirala__close" data-sirala-close="1" aria-label="Kapat">✕</button>' +
-      '<button type="button" class="birles-sirala__next" data-sirala-next="1" hidden>İleri ›</button>' +
-      '<button type="button" class="birles-sirala__exit" data-sirala-done="1" hidden aria-label="Bitir">✓</button>';
+      '<button type="button" class="birles-sirala__exit" data-sirala-done="1" hidden>İlerle ›</button>';
 
     (document.documentElement || document.body).appendChild(box);
     hostEl = box;
@@ -747,7 +802,7 @@
 
     box.querySelectorAll("[data-sirala-close]").forEach(function (el) {
       el.addEventListener("click", function () {
-        if (finishing && activityIdx >= activitiesRef.length - 1) {
+        if (finishing) {
           finishSuccess();
           return;
         }
@@ -761,15 +816,11 @@
         finishSuccess();
       });
     });
-    box.querySelectorAll("[data-sirala-next]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        goNextActivity();
-      });
-    });
     box.querySelectorAll("[data-sirala-instruct]").forEach(function (el) {
       el.addEventListener("click", function () {
-        var act = currentActivity();
-        if (act && act.instructionAudioUrl) playUrl(act.instructionAudioUrl);
+        if (activityRef && activityRef.instructionAudioUrl) {
+          playUrl(activityRef.instructionAudioUrl);
+        }
       });
     });
 

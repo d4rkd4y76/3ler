@@ -892,8 +892,8 @@ window.NovaAdminExport = (function(){
         </div>
 
         <div id="birles_admin_sec_sirala" class="birles-admin-secpanel" data-birles-sec="sirala" hidden>
-          <h4 class="birles-admin-sec">Ses Yuvası · sıralama</h4>
-          <p class="soft small">Yönerge MP3 + en fazla 5 ses (doğru sıra = satır sırası). Altta karışık kutular, üstte yuvalar; doğru sıralanınca su patlama videosu çalar.</p>
+          <h4 class="birles-admin-sec">Ses Yuvası · Hece Avı içi</h4>
+          <p class="soft small">Ayrı kart değil — <b>Hece Avı</b> aşamaları arasına girer. Doğru sıra (ör. <code>e,r</code>) = yuva sayısı; altta en fazla 5 ses kutusu (çeldirici olabilir).</p>
           <div id="birles_admin_sirala_list" class="mt8"></div>
         </div>
 
@@ -2640,6 +2640,8 @@ window.NovaAdminExport = (function(){
         id: 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
         title: 'Etkinlik ' + (n || 1),
         result: '',
+        heceStep: 5,
+        correctOrder: '',
         instructionAudioUrl: '',
         sounds: emptySiralaSounds()
       };
@@ -2656,10 +2658,14 @@ window.NovaAdminExport = (function(){
           audioUrl: String(s.audioUrl || s.mp3 || s.url || '').trim()
         });
       }
+      var heceStep = parseInt(row.heceStep, 10);
+      if(!isFinite(heceStep) || heceStep < 1) heceStep = 0;
       return {
         id: String(row.id || ('s' + (idx + 1))).trim() || ('s' + (idx + 1)),
         title: String(row.title || ('Etkinlik ' + (idx + 1))).trim() || ('Etkinlik ' + (idx + 1)),
         result: String(row.result || '').trim(),
+        heceStep: heceStep,
+        correctOrder: String(row.correctOrder || row.order || '').trim(),
         instructionAudioUrl: String(row.instructionAudioUrl || row.instructionUrl || '').trim(),
         sounds: sounds
       };
@@ -2679,6 +2685,7 @@ window.NovaAdminExport = (function(){
     function siralaActivityHasContent(act){
       if(!act) return false;
       if(String(act.instructionAudioUrl || '').trim()) return true;
+      if(String(act.correctOrder || '').trim()) return true;
       var sounds = act.sounds || [];
       var filled = 0;
       for(var i = 0; i < sounds.length; i++){
@@ -2872,16 +2879,18 @@ window.NovaAdminExport = (function(){
         '<button type="button" class="btn acc" data-sirala-nav="add">+ Yeni etkinlik</button>'+
         (canDel ? '<button type="button" class="btn" data-sirala-nav="del" style="border-color:rgba(248,113,113,.5)">Bu etkinliği sil</button>' : '')+
         '</div>'+
-        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 1fr">'+
-        '<div><label>Etkinlik adı (ör. er)</label>'+
-        '<input type="text" data-field="siralaTitle" value="'+escHtml(act.title||'')+'" placeholder="er"></div>'+
-        '<div><label>Patlamada görünen yazı (boş = etkinlik adı)</label>'+
-        '<input type="text" data-field="siralaResult" value="'+escHtml(act.result||'')+'" placeholder="er"></div></div>'+
+        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 1fr 120px">'+
+        '<div><label>Hedef hece / yazı (patlamada)</label>'+
+        '<input type="text" data-field="siralaResult" value="'+escHtml(act.result||act.title||'')+'" placeholder="er"></div>'+
+        '<div><label>Doğru sıra (virgülle) → yuva sayısı</label>'+
+        '<input type="text" data-field="siralaCorrectOrder" value="'+escHtml(act.correctOrder||'')+'" placeholder="e,r"></div>'+
+        '<div><label>Hece Avı aşaması</label>'+
+        '<input type="number" min="1" data-field="siralaHeceStep" value="'+(act.heceStep||'')+'" placeholder="5"></div></div>'+
         '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 88px">'+
         '<div><label>Yönerge MP3 (“duyduğun bu sesleri sırasıyla yuvasına sürükle…”)</label>'+
         '<input type="url" data-field="siralaInstructionUrl" value="'+escHtml(act.instructionAudioUrl||'')+'" placeholder="https://….b-cdn.net/yonerge.mp3"></div>'+
         '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>'+
-        '<p class="soft small" style="margin:0 0 8px">Aşağıdaki sıra = doğru yerleştirme sırası (1 → 5). Boş satırlar yok sayılır; en az 2 ses dolu olmalı.</p>'+
+        '<p class="soft small" style="margin:0 0 8px"><b>Hece Avı aşaması</b> = kaçıncı sırada çıksın (ör. 5). <b>Doğru sıra</b> = yuvalar (ör. e,r → 2 yuva). Alttaki 5 kutu = raftaki tüm sesler (çeldirici dahil). Bu etkinlik ayrı kart değil; Hece Avı içinde oynanır.</p>'+
         rows+
         '</div>';
     }
@@ -2974,9 +2983,16 @@ window.NovaAdminExport = (function(){
             if(row.getAttribute('data-sirala-meta') === '1'){
               var tEl = row.querySelector('[data-field="siralaTitle"]');
               var rEl = row.querySelector('[data-field="siralaResult"]');
+              var oEl = row.querySelector('[data-field="siralaCorrectOrder"]');
+              var hEl = row.querySelector('[data-field="siralaHeceStep"]');
               var iEl = row.querySelector('[data-field="siralaInstructionUrl"]');
               if(tEl) siralaActsBest[key][si].title = String(tEl.value||'').trim();
-              if(rEl) siralaActsBest[key][si].result = String(rEl.value||'').trim();
+              if(rEl) {
+                siralaActsBest[key][si].result = String(rEl.value||'').trim();
+                if(!siralaActsBest[key][si].title) siralaActsBest[key][si].title = siralaActsBest[key][si].result;
+              }
+              if(oEl) siralaActsBest[key][si].correctOrder = String(oEl.value||'').trim();
+              if(hEl) siralaActsBest[key][si].heceStep = parseInt(hEl.value, 10) || 0;
               if(iEl) siralaActsBest[key][si].instructionAudioUrl = String(iEl.value||'').trim();
             }
             const sIdx = row.getAttribute('data-sirala-idx');
@@ -3083,6 +3099,8 @@ window.NovaAdminExport = (function(){
                 id: bs.id || ('s' + (sj + 1)),
                 title: String(hs.title || bs.title || ('Etkinlik ' + (sj + 1))).trim(),
                 result: String(hs.result != null ? hs.result : (bs.result || '')).trim(),
+                heceStep: hs.heceStep != null ? hs.heceStep : (bs.heceStep || 0),
+                correctOrder: String(hs.correctOrder != null ? hs.correctOrder : (bs.correctOrder || '')).trim(),
                 instructionAudioUrl: String(hs.instructionAudioUrl != null ? hs.instructionAudioUrl : (bs.instructionAudioUrl || '')).trim(),
                 sounds: snds
               });
@@ -3282,7 +3300,7 @@ window.NovaAdminExport = (function(){
       tabs.push({
         id: 'sirala',
         title: 'Ses Yuvası',
-        hint: 'Sıralama · patlama',
+        hint: 'Hece Avı içi aşama',
         ready: !!(letterCur.sirala && packSiralaForSave(listSiralaActivities(letterCur.sirala)))
       });
       FUSION_SECTIONS.forEach(function(sec){
