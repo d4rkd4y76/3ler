@@ -3285,6 +3285,43 @@ body.birles-pool-fs {
   backface-visibility: hidden;
 }
 
+/* Patlama anı — sadece opacity (telefonda GPU dostu) */
+.birles-pool__flash {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.92) 0%, rgba(190, 235, 255, 0.55) 28%, transparent 62%),
+    radial-gradient(circle at 50% 55%, rgba(80, 180, 255, 0.35) 0%, transparent 55%);
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.birles-pool__flash.is-on {
+  animation: birlesPoolFlash 0.7s ease-out forwards;
+}
+
+.birles-pool__flash[hidden] {
+  display: none !important;
+}
+
+@keyframes birlesPoolFlash {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .birles-pool__ui {
   position: absolute;
   inset: 0;
@@ -3366,7 +3403,7 @@ body.birles-pool-fs {
   min-width: 42%;
   max-width: 78%;
   padding: 0.35em 0.7em 0.42em;
-  transform: translate(-50%, 36px) scale(0.78);
+  transform: translate(-50%, 78%) scale(0.52);
   opacity: 0;
   text-align: center;
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
@@ -3393,14 +3430,31 @@ body.birles-pool-fs {
     0 14px 32px rgba(0, 20, 40, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.45);
   pointer-events: none;
-  transition:
-    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  transform: translate3d(-50%, 78%, 0) scale(0.52);
 }
 
-.birles-pool__burst.is-rise {
-  opacity: 1;
-  transform: translate(-50%, -28px) scale(1);
+.birles-pool__burst.is-rise,
+.birles-pool__burst.is-boom-in {
+  animation: birlesPoolBurstBoom 0.9s cubic-bezier(0.18, 0.9, 0.28, 1.12) forwards;
+}
+
+@keyframes birlesPoolBurstBoom {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, 78%, 0) scale(0.48);
+  }
+  48% {
+    opacity: 1;
+    transform: translate3d(-50%, -36%, 0) scale(1.1);
+  }
+  72% {
+    transform: translate3d(-50%, -26%, 0) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-50%, -28%, 0) scale(1);
+  }
 }
 
 .birles-play--pool .birles-card.is-dim .birles-card__face {
@@ -3498,11 +3552,39 @@ body.birles-pool-fs {
   }
 }
 
+.birles-play--pool .birles-stage.is-finale-fade,
+.birles-play--pool .birles-tray.is-finale-fade {
+  opacity: 0;
+  transform: translate3d(0, -10px, 0) scale(0.94);
+  pointer-events: none;
+  transition:
+    opacity 0.48s ease-out,
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
 .birles-play--pool .birles-stage.is-finale,
 .birles-play--pool .birles-tray.is-finale {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-play--pool .birles-stage.is-finale-fade,
+  .birles-play--pool .birles-tray.is-finale-fade {
+    transition-duration: 0.12s;
+    transform: none;
+  }
+  .birles-pool__flash.is-on {
+    animation-duration: 0.25s;
+  }
+  .birles-pool__burst.is-rise,
+  .birles-pool__burst.is-boom-in {
+    animation: none;
+    opacity: 1;
+    transform: translate3d(-50%, -28%, 0) scale(1);
+  }
 }
 
 .birles-play--pool .birles-card__face {

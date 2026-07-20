@@ -3039,8 +3039,13 @@
     var burst = document.getElementById("birles-pool-burst");
     if (burst) {
       burst.hidden = true;
-      burst.classList.remove("is-rise");
+      burst.classList.remove("is-rise", "is-boom-in");
       burst.textContent = "";
+    }
+    var flash = document.getElementById("birles-pool-flash");
+    if (flash) {
+      flash.hidden = true;
+      flash.classList.remove("is-on");
     }
     if (veil) setPoolLayerVisible(veil, false);
     if (boom) {
@@ -3145,15 +3150,33 @@
     });
   }
 
-  /** Patlama (kendi sesiyle) + sert kesme — dissolve yok */
+  /** Patlama: ilk hece yumuşak kaybolur → parlama + video → yeni hece aşağıdan yükselir */
   async function playPoolFinale(finalWord, soundKey, vv, token) {
     var merge = document.getElementById("birles-pool-merge");
     var boom = document.getElementById("birles-pool-boom");
     var burst = document.getElementById("birles-pool-burst");
+    var flash = document.getElementById("birles-pool-flash");
     var stage = document.getElementById("birles-stage");
     var tray = document.getElementById("birles-tray");
     if (!boom) return;
 
+    var reduceMotion = false;
+    try {
+      reduceMotion =
+        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (_) {}
+
+    /* 1) İlk hece (birleşmiş kart) yumuşak kaybolsun */
+    if (stage) {
+      stage.classList.remove("is-finale");
+      stage.classList.add("is-finale-fade");
+    }
+    if (tray) {
+      tray.classList.remove("is-finale");
+      tray.classList.add("is-finale-fade");
+    }
+    await pace(reduceMotion ? 120 : 480);
+    if (token !== animToken) return;
     if (stage) stage.classList.add("is-finale");
     if (tray) tray.classList.add("is-finale");
 
@@ -3172,12 +3195,19 @@
 
     hardCutPoolLayers(true);
 
+    /* 2) Parlama + patlama videosu */
+    if (flash) {
+      flash.hidden = false;
+      flash.classList.remove("is-on");
+      void flash.offsetWidth;
+      flash.classList.add("is-on");
+    }
+
     var playP = boom.play();
     if (playP && typeof playP.catch === "function") {
       try {
         await playP;
       } catch (_) {
-        /* Autoplay ses engeli — sessiz dene sonra unmute */
         try {
           boom.muted = true;
           await boom.play();
@@ -3187,12 +3217,15 @@
     }
     if (token !== animToken) return;
 
+    /* 3) Yeni hece aşağıdan patlamaya uygun yükseliş */
+    await pace(reduceMotion ? 40 : 160);
+    if (token !== animToken) return;
     if (burst) {
       burst.textContent = String(finalWord || "");
       burst.hidden = false;
-      burst.classList.remove("is-rise");
+      burst.classList.remove("is-rise", "is-boom-in");
       void burst.offsetWidth;
-      burst.classList.add("is-rise");
+      burst.classList.add("is-boom-in");
     }
 
     var audioP = Promise.resolve();
@@ -3209,6 +3242,10 @@
     try {
       boom.muted = true;
     } catch (_) {}
+    if (flash) {
+      flash.classList.remove("is-on");
+      flash.hidden = true;
+    }
 
     if (merge) {
       merge.removeAttribute("hidden");
@@ -3315,6 +3352,7 @@
         '        <video class="birles-pool__vid birles-pool__vid--boom" id="birles-pool-boom" playsinline webkit-playsinline preload="auto"></video>' +
         "      </div>" +
         '      <div class="birles-pool__veil" id="birles-pool-veil" style="opacity:0" aria-hidden="true"></div>' +
+        '      <div class="birles-pool__flash" id="birles-pool-flash" hidden aria-hidden="true"></div>' +
         '      <div class="birles-pool__ui">' +
         core +
         '        <p class="birles-pool__burst" id="birles-pool-burst" hidden aria-live="polite"></p>' +
@@ -4061,9 +4099,9 @@
     if (!isKelime) setNarr(fusion.narration || "");
     setHint("");
     renderTray([]);
-    stage.classList.remove("is-quiet", "is-finale");
+    stage.classList.remove("is-quiet", "is-finale", "is-finale-fade");
     var trayEl0 = document.getElementById("birles-tray");
-    if (trayEl0) trayEl0.classList.remove("is-finale");
+    if (trayEl0) trayEl0.classList.remove("is-finale", "is-finale-fade");
     if (vv) vv.stop();
 
     if (fusion.mode === "sentence" || fusion.kind === "cumle") {
