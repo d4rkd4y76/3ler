@@ -854,10 +854,30 @@
     overlay.style.setProperty("--chip", t.chip);
   }
 
+  function ensureBirlesZoomMask() {
+    var mask = document.getElementById("birles-zoom-mask");
+    if (mask) return mask;
+    mask = document.createElement("div");
+    mask.id = "birles-zoom-mask";
+    mask.setAttribute("aria-hidden", "true");
+    (document.documentElement || document.body).appendChild(mask);
+    return mask;
+  }
+
+  /** Akıcı zoom altında ana menü sızıntısını kapat — overlay boyutuna dokunmaz */
+  function setBirlesZoomMask(on) {
+    try {
+      var mask = ensureBirlesZoomMask();
+      var poolOrKristal =
+        document.body.classList.contains("birles-pool-fs") ||
+        document.body.classList.contains("birles-kristal-fs");
+      mask.classList.toggle("is-on", !!on && !poolOrKristal);
+    } catch (_) {}
+  }
+
   function ensureOverlay() {
     overlay = document.getElementById("birlestirelim-overlay");
     if (overlay) {
-      /* Ses Evreni body zoom(Akıcı) ölçeğinde kalsın — html’e taşıma */
       try {
         if (document.body && overlay.parentElement !== document.body) {
           document.body.appendChild(overlay);
@@ -888,22 +908,24 @@
 
     overlay.querySelector("#birles-close").addEventListener("click", close);
     overlay.querySelector("#birles-back").addEventListener("click", goBack);
-    /* Dışarı tıklayınca kapatma yok — açılış dokunuşu yanlışlıkla kapatmasın */
     return overlay;
   }
 
-  /** Açılış jesti bitsin diye kısa süre tıklama alma */
-  function armOverlayAfterOpen() {
+  function revealBirlesOverlay() {
+    ensureOverlay();
     if (!overlay) return;
+    overlay.hidden = false;
     try {
-      overlay.style.pointerEvents = "none";
+      overlay.removeAttribute("hidden");
     } catch (_) {}
-    window.setTimeout(function () {
-      if (!overlay || !overlay.classList.contains("open")) return;
-      try {
-        overlay.style.pointerEvents = "";
-      } catch (_) {}
-    }, 500);
+    overlay.style.display = "flex";
+    overlay.style.visibility = "visible";
+    overlay.style.opacity = "1";
+    overlay.style.pointerEvents = "auto";
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("birles-lock");
+    setBirlesZoomMask(true);
   }
 
   function setBack(on) {
@@ -1142,15 +1164,7 @@
     activeGroupId = "";
     closeHowToVideo();
 
-    /* Telefonda visibility:hidden + body zoom = overlay kaybolur, sadece loader flaş eder.
-       Overlay’i hemen göster; içerik boot ile gelsin. */
-    overlay.hidden = false;
-    overlay.style.visibility = "";
-    overlay.style.opacity = "";
-    overlay.classList.add("open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.classList.add("birles-lock");
-    armOverlayAfterOpen();
+    revealBirlesOverlay();
     setBack(false);
     setAccentTheme(GROUP_THEMES[0]);
     setGroupsHeader();
@@ -1182,11 +1196,7 @@
     activeFusion = null;
     closeHowToVideo();
     activeGroupId = groupId || activeGroupId || "grup1";
-    overlay.hidden = false;
-    overlay.classList.add("open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.classList.add("birles-lock");
-    armOverlayAfterOpen();
+    revealBirlesOverlay();
     setBack(true);
     var DD = data();
     var group = DD && DD.getGroup ? DD.getGroup(activeGroupId) : null;
@@ -1221,10 +1231,16 @@
     }
     overlay.classList.remove("open");
     overlay.hidden = true;
-    overlay.style.visibility = "";
+    try {
+      overlay.style.display = "";
+      overlay.style.visibility = "";
+      overlay.style.opacity = "";
+      overlay.style.pointerEvents = "";
+    } catch (_) {}
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("birles-lock");
     document.body.classList.remove("birles-pool-fs");
+    setBirlesZoomMask(false);
     syncBirlesNativeScale();
     view = "groups";
     activeSound = null;
@@ -2891,6 +2907,9 @@
       document.body.classList.toggle("birles-pool-fs", !!on);
     } catch (_) {}
     syncBirlesNativeScale();
+    try {
+      setBirlesZoomMask(!on && document.body.classList.contains("birles-lock"));
+    } catch (_) {}
     if (!on) {
       unbindPoolLayout();
       try {

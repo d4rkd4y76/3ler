@@ -182,40 +182,44 @@ body.birles-kristal-fs {
   box-sizing: border-box;
 }
 
-/* Ses Evreni: Akıcı body zoom ölçeğinde (zoom:1 YOK — boyutlar aynı kalsın).
-   Sadece overlay kutusu fiziksel ekranı kaplar → altta ana menü sızmaz. */
-html.nova-perf-ultra-early.nova-has-session
-  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
-  #birlestirelim-overlay.open {
-  top: 0 !important;
-  left: 0 !important;
-  right: auto !important;
-  bottom: auto !important;
-  inset: auto !important;
-  width: calc(100vw / var(--nova-perf-body-zoom, 0.74)) !important;
-  height: calc(100vh / var(--nova-perf-body-zoom, 0.74)) !important;
-  height: calc(100dvh / var(--nova-perf-body-zoom, 0.74)) !important;
-  max-width: none !important;
-  max-height: none !important;
-  transform-origin: top left;
-  padding: max(8px, env(safe-area-inset-top, 0px)) 10px max(8px, env(safe-area-inset-bottom, 0px)) !important;
-  box-sizing: border-box !important;
-}
-
-html.nova-perf-ultra-early.nova-has-session
-  body.birles-lock:not(.birles-pool-fs):not(.birles-kristal-fs)
-  #birlestirelim-overlay.open
-  .birles-shell {
-  width: 100% !important;
-  height: 100% !important;
-  max-height: none !important;
-  /* köşe + gölge aynı dil — ölçek/zoom değişmez */
-  border-radius: 28px;
+/* Ses Evreni: Akıcı ölçek bozulmasın (zoom:1 / boyut büyütme YOK).
+   Alttaki ana menü sızıntısı: html mask (#birles-zoom-mask) ile kapatılır. */
+#birlestirelim-overlay.open {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 .birles-overlay.open {
-  display: flex;
-  animation: birlesFadeIn 0.38s ease both;
+  display: flex !important;
+  opacity: 1 !important;
+  /* fill-mode: both kullanma — telefonda opacity:0’da kalabiliyor */
+  animation: birlesFadeIn 0.38s ease;
+}
+
+/* Body zoom dışında tam ekran örtü — boyutları değiştirmez, sadece ana menüyü gizler */
+#birles-zoom-mask {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  z-index: 12040;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.55), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(76, 201, 240, 0.4), transparent 40%),
+    radial-gradient(circle at 70% 85%, rgba(6, 214, 160, 0.35), transparent 45%),
+    linear-gradient(160deg, #123047 0%, #1b4332 48%, #264653 100%);
+}
+#birles-zoom-mask.is-on {
+  display: block;
+}
+body.birles-pool-fs #birles-zoom-mask,
+body.birles-kristal-fs #birles-zoom-mask {
+  display: none !important;
 }
 
 @keyframes birlesFadeIn {
@@ -3915,17 +3919,17 @@ html.nova-perf-ultra-early.nova-has-session
   width: 42px;
   padding: 0;
   font-size: 1.2rem;
-  background: linear-gradient(160deg, #ffb347, #f08a24);
-  color: #fff;
+  background: #f3f9ff;
+  color: #12364a;
   box-shadow:
-    0 3px 0 #c56a12,
-    0 6px 14px rgba(240, 138, 36, 0.4);
+    0 3px 0 #8eacbf,
+    0 6px 14px rgba(0, 0, 0, 0.28);
 }
 
 .birles-fs-dock__btn--replay:active {
   box-shadow:
-    0 1px 0 #c56a12,
-    0 3px 8px rgba(240, 138, 36, 0.3);
+    0 1px 0 #8eacbf,
+    0 3px 8px rgba(0, 0, 0, 0.22);
 }
 
 .birles-fs-dock__btn--soft {

@@ -117,11 +117,17 @@
       } catch (_) {}
     }
     setOpen(false);
-    try {
-      if (typeof window.novaOpenBirlestirelim === 'function') {
-        window.novaOpenBirlestirelim();
+    window.setTimeout(function () {
+      try {
+        if (typeof window.novaOpenBirlestirelim === "function") {
+          window.novaOpenBirlestirelim();
+        }
+      } catch (err) {
+        try {
+          console.error("Sesler açılamadı", err);
+        } catch (_) {}
       }
-    } catch (_) {}
+    }, 0);
   }
 
   function bindBirles() {
