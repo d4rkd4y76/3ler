@@ -355,6 +355,12 @@
     openToken += 1;
     finishing = false;
     unbindLayout();
+    try {
+      document.body.classList.remove("birles-kristal-fs");
+      if (typeof window.novaSyncPerfRuntime === "function") {
+        window.novaSyncPerfRuntime();
+      }
+    } catch (_) {}
     if (hostEl && hostEl.parentNode) hostEl.parentNode.removeChild(hostEl);
     hostEl = null;
     soundRef = null;
@@ -554,8 +560,22 @@
 
     document.body.appendChild(box);
     hostEl = box;
+    try {
+      document.body.classList.add("birles-kristal-fs");
+      if (typeof window.novaSyncPerfRuntime === "function") {
+        window.novaSyncPerfRuntime();
+      } else {
+        document.body.style.zoom = "1";
+        document.body.style.transform = "none";
+        document.body.style.width = "100%";
+      }
+    } catch (_) {}
     bindLayout();
     layoutStage();
+    requestAnimationFrame(function () {
+      layoutStage();
+      requestAnimationFrame(layoutStage);
+    });
 
     box.querySelectorAll("[data-kristal-close]").forEach(function (el) {
       el.addEventListener("click", function () {

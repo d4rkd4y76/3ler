@@ -16,16 +16,39 @@
 
 body.birles-lock {
   overflow: hidden !important;
+  zoom: 1 !important;
+  transform: none !important;
+  width: 100% !important;
 }
 
-body.birles-pool-fs {
+/* Akıcı (zoom 0.74) kapalı — Roborox/düello ile aynı native fullscreen */
+html.nova-perf-ultra-early.nova-has-session body.birles-lock,
+html.nova-perf-ultra-early.nova-has-session body.birles-pool-fs,
+html.nova-perf-ultra-early.nova-has-session body.birles-kristal-fs,
+body.birles-pool-fs,
+body.birles-kristal-fs {
   overflow: hidden !important;
   overscroll-behavior: none;
+  zoom: 1 !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body.birles-kristal-fs {
+  position: fixed !important;
+  inset: 0 !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  background: #05030c !important;
 }
 
 .birles-overlay {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   z-index: 12050;
   display: none;
   align-items: stretch;
@@ -36,6 +59,7 @@ body.birles-pool-fs {
     radial-gradient(circle at 88% 12%, rgba(76, 201, 240, 0.4), transparent 40%),
     radial-gradient(circle at 70% 85%, rgba(6, 214, 160, 0.35), transparent 45%),
     linear-gradient(160deg, #123047 0%, #1b4332 48%, #264653 100%);
+  box-sizing: border-box;
 }
 
 .birles-overlay.open {
@@ -3138,10 +3162,17 @@ body.birles-pool-fs {
 /* ── Havuz birleştirme · tam ekran (yeni katman) ── */
 .birles-overlay.is-pool-play {
   padding: 0 !important;
-  margin: 0;
-  background: #041018;
+  margin: 0 !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  max-height: none !important;
+  background: #041018 !important;
   align-items: stretch;
   justify-content: stretch;
+  z-index: 13050;
 }
 
 .birles-overlay.is-pool-play .birles-shell {
@@ -4222,13 +4253,13 @@ body.birles-pool-fs {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  width: 100vw;
-  height: 100%;
-  height: 100vh;
-  height: 100dvh;
+  width: 100% !important;
+  height: 100% !important;
+  height: 100dvh !important;
   min-height: 100%;
   min-height: -webkit-fill-available;
+  max-width: none !important;
+  max-height: none !important;
   z-index: 13100;
   display: block;
   padding: 0;

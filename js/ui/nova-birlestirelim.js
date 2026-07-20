@@ -1058,6 +1058,7 @@
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.add("birles-lock");
+    syncBirlesNativeScale();
     setBack(false);
     setAccentTheme(GROUP_THEMES[0]);
     setGroupsHeader();
@@ -1136,6 +1137,8 @@
     overlay.style.visibility = "";
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("birles-lock");
+    document.body.classList.remove("birles-pool-fs");
+    syncBirlesNativeScale();
     view = "groups";
     activeSound = null;
     activeFusion = null;
@@ -2708,6 +2711,7 @@
     try {
       document.body.classList.toggle("birles-pool-fs", !!on);
     } catch (_) {}
+    syncBirlesNativeScale();
     if (!on) {
       unbindPoolLayout();
       try {
@@ -2720,6 +2724,19 @@
         requestAnimationFrame(layoutPoolStage);
       });
     }
+  }
+
+  /** Telefonda Akıcı zoom(0.74) — native fullscreen bağlamında kapat */
+  function syncBirlesNativeScale() {
+    try {
+      if (typeof window.novaSyncPerfRuntime === "function") {
+        window.novaSyncPerfRuntime();
+      } else if (document.body) {
+        document.body.style.zoom = "1";
+        document.body.style.transform = "none";
+        document.body.style.width = "100%";
+      }
+    } catch (_) {}
   }
 
   /** Telefon layout + visualViewport — en büyük kutu (letterbox yok) */

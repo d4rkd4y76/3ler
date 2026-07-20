@@ -39,7 +39,14 @@
     st.textContent =
       ':root{--nova-perf-scale:' + ULTRA_SCALE + ';--nova-perf-body-zoom:' + ULTRA_SCALE + ';--nova-perf-counter-zoom:1;--nova-perf-sp-boost:1}' +
       'html.nova-perf-ultra-early body{--nova-perf-scale:' + ULTRA_SCALE + ';--nova-perf-body-zoom:' + ULTRA_SCALE + ';--nova-perf-counter-zoom:1;--nova-perf-sp-boost:1}' +
-      'html.nova-perf-ultra-early.nova-has-session body{zoom:' + ULTRA_SCALE + '!important;transform:none!important;width:auto!important;transform-origin:top left!important}' +
+      'html.nova-perf-ultra-early.nova-has-session body:not(.birles-lock):not(.birles-pool-fs):not(.birles-kristal-fs):not(.nova-duel-game-open):not(.roborox-reader-open){zoom:' +
+      ULTRA_SCALE +
+      '!important;transform:none!important;width:auto!important;transform-origin:top left!important}' +
+      'html.nova-perf-ultra-early.nova-has-session body.birles-lock,' +
+      'html.nova-perf-ultra-early.nova-has-session body.birles-pool-fs,' +
+      'html.nova-perf-ultra-early.nova-has-session body.birles-kristal-fs,' +
+      'html.nova-perf-ultra-early.nova-has-session body.nova-duel-game-open,' +
+      'html.nova-perf-ultra-early.nova-has-session body.roborox-reader-open{zoom:1!important;transform:none!important;width:100%!important}' +
       'html.nova-perf-ultra-early:not(.nova-has-session) body,html:not(.nova-has-session) body{zoom:1!important;transform:none!important;width:100%!important}';
     (document.head || document.documentElement).appendChild(st);
   }
