@@ -2285,6 +2285,7 @@
         sound: sound,
         activity: item.sirala || item,
         laneMode: true,
+        laneProgress: laneProgressLabel(),
         onDone: function (res) {
           if (res && res.success) {
             laneNextUnlocked = true;

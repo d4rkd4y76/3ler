@@ -1,9 +1,7 @@
 /**
- * Ses Yuvası — Hece Avı içinde “sıra sende” aşaması
- * Admin: letters/{id}.sirala.activities[] =
- *   { id, title, result, heceStep, correctOrder, instructionAudioUrl,
- *     sounds:[{label,audioUrl}] }  // altta en fazla 5 kutu (çeldirici dahil)
- * Yuva sayısı = correctOrder (ör. "e,r" → 2 yuva). Boşsa dolu seslerin sırası.
+ * Ses Yuvası — Hece Avı içinde “sıra sende”
+ * Yuva = correctOrder (ör. e,r). Rafta en fazla 5 ses.
+ * Alt dock = havuz ile aynı (ilerleme · 🔁 · Tümü · Bekle/İlerle).
  */
 (function (global) {
   "use strict";
@@ -20,10 +18,11 @@
   var finishing = false;
   var placements = [];
   var dragState = null;
-  var selectedSoundI = null;
   var layoutBound = null;
   var instructAudio = null;
   var laneMode = false;
+  var laneProgressText = "";
+  var nextUnlocked = false;
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -87,7 +86,6 @@
       result: String(row.result || row.title || "").trim(),
       heceStep: heceStep,
       correctOrder: correctOrder,
-      correctOrderRaw: String(row.correctOrder || row.order || "").trim(),
       instructionAudioUrl: String(
         row.instructionAudioUrl || row.instructionUrl || row.promptAudioUrl || ""
       ).trim(),
@@ -232,40 +230,139 @@
     } catch (_) {}
   }
 
+  function nestCount() {
+    return (activityRef && activityRef.correctOrder && activityRef.correctOrder.length) || 0;
+  }
+
+  function filledCount() {
+    var n = 0;
+    for (var i = 0; i < placements.length; i++) {
+      if (placements[i] != null) n++;
+    }
+    return n;
+  }
+
+  function setNextEnabled(on) {
+    nextUnlocked = !!on;
+    if (!hostEl) return;
+    var next = hostEl.querySelector("#birles-sirala-next");
+    if (!next) return;
+    if (on) {
+      next.disabled = false;
+      next.classList.remove("is-locked");
+      next.setAttribute("aria-disabled", "false");
+      next.textContent = "İlerle";
+      next.removeAttribute("title");
+    } else {
+      next.disabled = true;
+      next.classList.add("is-locked");
+      next.setAttribute("aria-disabled", "true");
+      next.textContent = "Bekle";
+      next.setAttribute("title", "Gösterim bitince açılır");
+    }
+  }
+
+  function dockHtml() {
+    var prog = laneProgressText || "·";
+    return (
+      '<div class="birles-fs-dock" id="birles-sirala-dock" role="toolbar" aria-label="Oyun kontrolleri">' +
+      '  <div class="birles-fs-dock__bar">' +
+      '    <span class="birles-fs-dock__prog" aria-live="polite">' +
+      esc(prog) +
+      "</span>" +
+      '    <div class="birles-fs-dock__actions">' +
+      '      <button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--replay" id="birles-sirala-replay" aria-label="Tekrar" title="Tekrar">🔁</button>' +
+      '      <button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--soft" id="birles-sirala-all">Tümü</button>' +
+      '      <button type="button" class="birles-fs-dock__btn birles-fs-dock__btn--go is-locked" id="birles-sirala-next" disabled aria-disabled="true" title="Gösterim bitince açılır">Bekle</button>' +
+      "    </div>" +
+      "  </div>" +
+      "</div>"
+    );
+  }
+
+  function bindDock() {
+    if (!hostEl) return;
+    var replay = hostEl.querySelector("#birles-sirala-replay");
+    var allBtn = hostEl.querySelector("#birles-sirala-all");
+    var next = hostEl.querySelector("#birles-sirala-next");
+    if (replay) {
+      replay.addEventListener("click", function () {
+        if (finishing && !nextUnlocked) return;
+        mountActivity();
+      });
+    }
+    if (allBtn) {
+      allBtn.addEventListener("click", function () {
+        var cb = onDoneCb;
+        close();
+        if (typeof cb === "function") cb({ success: false, goGallery: true });
+      });
+    }
+    if (next) {
+      next.addEventListener("click", function () {
+        if (!nextUnlocked) return;
+        finishSuccess();
+      });
+    }
+  }
+
+  function restoreChipToRack(chip) {
+    if (!chip || !hostEl) return;
+    chip.classList.remove("is-dragging", "is-lifted", "is-placed");
+    chip.style.cssText = "";
+    var rack = hostEl.querySelector(".birles-sirala__rack");
+    if (rack) rack.appendChild(chip);
+  }
+
   function endDrag(cancel) {
     if (!dragState) return;
     try {
-      if (dragState.chip && dragState.pointerId != null) {
-        dragState.chip.releasePointerCapture(dragState.pointerId);
+      if (dragState.capEl && dragState.pointerId != null) {
+        dragState.capEl.releasePointerCapture(dragState.pointerId);
       }
     } catch (_) {}
+
     var ghost = dragState.ghost;
-    if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
-    if (dragState.chip) dragState.chip.classList.remove("is-dragging");
+    var chip = dragState.chip;
+    var ph = dragState.placeholder;
+    var nestI = dragState.nestI;
+    var soundI = dragState.soundI;
+
+    dragState = null;
+    document.removeEventListener("pointermove", onPointerMove, true);
+    document.removeEventListener("pointerup", onPointerUp, true);
+    document.removeEventListener("pointercancel", onPointerUp, true);
+
     if (hostEl) {
       hostEl.querySelectorAll(".birles-sirala__nest.is-target").forEach(function (n) {
         n.classList.remove("is-target");
       });
     }
-    var moved = !!(dragState.moved);
-    var nestI = dragState.nestI;
-    var soundI = dragState.soundI;
-    dragState = null;
-    document.removeEventListener("pointermove", onPointerMove, true);
-    document.removeEventListener("pointerup", onPointerUp, true);
-    document.removeEventListener("pointercancel", onPointerUp, true);
-    if (!cancel && moved && nestI != null && soundI != null) {
+
+    if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+
+    if (ph && ph.parentNode) ph.parentNode.removeChild(ph);
+
+    if (chip) {
+      chip.classList.remove("is-dragging", "is-lifted");
+      chip.style.cssText = "";
+      chip.style.visibility = "";
+    }
+
+    if (!cancel && nestI != null && soundI != null) {
       placeChipInNest(soundI, nestI);
+    } else if (chip) {
+      restoreChipToRack(chip);
     }
   }
 
   function close() {
     openToken += 1;
     finishing = false;
+    nextUnlocked = false;
     stopInstruct();
     unbindLayout();
     endDrag(true);
-    clearSelection();
     setPoolFs(false);
     if (hostEl && hostEl.parentNode) hostEl.parentNode.removeChild(hostEl);
     hostEl = null;
@@ -274,6 +371,7 @@
     activityRef = null;
     placements = [];
     laneMode = false;
+    laneProgressText = "";
   }
 
   function hardCutBoom(on) {
@@ -305,41 +403,10 @@
     });
   }
 
-  function nestCount() {
-    return (activityRef && activityRef.correctOrder && activityRef.correctOrder.length) || 0;
-  }
-
-  function filledCount() {
-    var n = 0;
-    for (var i = 0; i < placements.length; i++) {
-      if (placements[i] != null) n++;
-    }
-    return n;
-  }
-
-  function clearSelection() {
-    selectedSoundI = null;
-    if (hostEl) {
-      hostEl.querySelectorAll(".birles-sirala__chip.is-selected").forEach(function (c) {
-        c.classList.remove("is-selected");
-      });
-    }
-  }
-
-  function setSelected(soundI) {
-    clearSelection();
-    selectedSoundI = soundI;
-    if (hostEl && soundI != null) {
-      var chip = hostEl.querySelector('.birles-sirala__chip[data-sound-i="' + soundI + '"]');
-      if (chip) chip.classList.add("is-selected");
-    }
-  }
-
   async function playFinale() {
     if (!hostEl || finishing || !activityRef) return;
     finishing = true;
     hostEl.classList.add("is-done");
-    clearSelection();
 
     var merge = hostEl.querySelector(".birles-sirala__vid--merge");
     var boom = hostEl.querySelector(".birles-sirala__vid--boom");
@@ -404,11 +471,7 @@
       flash.hidden = true;
     }
 
-    var doneBtn = hostEl.querySelector("[data-sirala-done]");
-    if (doneBtn) {
-      doneBtn.hidden = false;
-      doneBtn.textContent = laneMode ? "İlerle ›" : "✓";
-    }
+    setNextEnabled(true);
   }
 
   function finishSuccess() {
@@ -459,7 +522,7 @@
     placements = [];
     for (var i = 0; i < n; i++) placements.push(null);
     hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (nest) {
-      nest.classList.remove("is-filled", "is-correct");
+      nest.classList.remove("is-filled");
       var slot = nest.querySelector(".birles-sirala__nest-slot");
       if (slot) slot.innerHTML = "";
     });
@@ -473,7 +536,6 @@
       rack.innerHTML = rackHtml(order);
       bindChips();
     }
-    clearSelection();
   }
 
   function placeChipInNest(soundI, nestI) {
@@ -497,16 +559,26 @@
     placements[nestI] = soundI;
     var nest = hostEl.querySelector('.birles-sirala__nest[data-nest="' + nestI + '"]');
     var chip = hostEl.querySelector('.birles-sirala__chip[data-sound-i="' + soundI + '"]');
+    if (!chip) {
+      /* sürüklerken body’de olabilir */
+      chip = document.querySelector(
+        '#birles-sirala-overlay .birles-sirala__chip[data-sound-i="' +
+          soundI +
+          '"], body > .birles-sirala__chip[data-sound-i="' +
+          soundI +
+          '"]'
+      );
+    }
     if (nest && chip) {
       nest.classList.add("is-filled");
       var slot = nest.querySelector(".birles-sirala__nest-slot");
       if (slot) {
         chip.classList.add("is-placed");
-        chip.classList.remove("is-selected");
+        chip.classList.remove("is-dragging", "is-lifted");
+        chip.style.cssText = "";
         slot.appendChild(chip);
       }
     }
-    clearSelection();
     try {
       var s = activityRef.sounds[soundI];
       if (s && s.audioUrl) playUrl(s.audioUrl);
@@ -526,18 +598,18 @@
     return null;
   }
 
-  function onPointerMove(e) {
+  function moveGhost(x, y) {
     if (!dragState || !dragState.ghost) return;
+    dragState.ghost.style.left = x - dragState.ox + "px";
+    dragState.ghost.style.top = y - dragState.oy + "px";
+  }
+
+  function onPointerMove(e) {
+    if (!dragState) return;
     if (dragState.pointerId != null && e.pointerId !== dragState.pointerId) return;
-    var dx = e.clientX - dragState.startX;
-    var dy = e.clientY - dragState.startY;
-    if (!dragState.moved && dx * dx + dy * dy > 36) dragState.moved = true;
-    dragState.ghost.style.left = e.clientX - dragState.ox + "px";
-    dragState.ghost.style.top = e.clientY - dragState.oy + "px";
-    if (dragState.moved) {
-      dragState.ghost.style.opacity = "1";
-      if (dragState.chip) dragState.chip.classList.add("is-dragging");
-    }
+    e.preventDefault();
+    dragState.moved = true;
+    moveGhost(e.clientX, e.clientY);
     var nestI = nestAtPoint(e.clientX, e.clientY);
     dragState.nestI = nestI;
     if (hostEl) {
@@ -554,52 +626,55 @@
     if (e && e.clientX != null) {
       dragState.nestI = nestAtPoint(e.clientX, e.clientY);
     }
-    var moved = dragState.moved;
-    var soundI = dragState.soundI;
     endDrag(false);
-    if (!moved && soundI != null) {
-      /* kısa dokunuş: seç / dinle */
-      setSelected(soundI);
-      try {
-        var s = activityRef && activityRef.sounds[soundI];
-        if (s && s.audioUrl) playUrl(s.audioUrl);
-      } catch (_) {}
-    }
   }
 
+  /** Kutuyu olduğu gibi parmakla taşı — anında görünür ghost */
   function startDrag(chip, e) {
     if (finishing || !chip || dragState) return;
     if (chip.classList.contains("is-placed")) return;
     var soundI = Number(chip.getAttribute("data-sound-i"));
     if (isNaN(soundI)) return;
+
     e.preventDefault();
     e.stopPropagation();
 
     var rect = chip.getBoundingClientRect();
+    var ph = document.createElement("div");
+    ph.className = "birles-sirala__chip-ph";
+    ph.style.width = rect.width + "px";
+    ph.style.height = rect.height + "px";
+    if (chip.parentNode) chip.parentNode.insertBefore(ph, chip);
+
     var ghost = chip.cloneNode(true);
-    ghost.classList.add("birles-sirala__ghost");
+    ghost.className = "birles-sirala__chip birles-sirala__ghost";
+    ghost.removeAttribute("data-sound-i");
     ghost.style.width = rect.width + "px";
     ghost.style.height = rect.height + "px";
     ghost.style.left = rect.left + "px";
     ghost.style.top = rect.top + "px";
-    ghost.style.opacity = "0";
+    ghost.style.opacity = "1";
     document.body.appendChild(ghost);
+
+    chip.style.visibility = "hidden";
 
     dragState = {
       chip: chip,
       ghost: ghost,
+      placeholder: ph,
       soundI: soundI,
       nestI: null,
-      moved: false,
-      startX: e.clientX,
-      startY: e.clientY,
-      ox: e.clientX - rect.left,
-      oy: e.clientY - rect.top,
-      pointerId: e.pointerId
+      moved: true,
+      ox: Math.max(8, Math.min(rect.width - 8, e.clientX - rect.left)),
+      oy: Math.max(8, Math.min(rect.height - 8, e.clientY - rect.top)),
+      pointerId: e.pointerId,
+      capEl: hostEl || document.body
     };
 
+    moveGhost(e.clientX, e.clientY);
+
     try {
-      chip.setPointerCapture(e.pointerId);
+      dragState.capEl.setPointerCapture(e.pointerId);
     } catch (_) {}
 
     document.addEventListener("pointermove", onPointerMove, true);
@@ -659,34 +734,28 @@
       nest.addEventListener("click", function () {
         if (finishing) return;
         var nestI = Number(nest.getAttribute("data-nest"));
-        if (placements[nestI] != null) {
-          var soundI = placements[nestI];
-          placements[nestI] = null;
-          nest.classList.remove("is-filled");
-          var slot = nest.querySelector(".birles-sirala__nest-slot");
-          var chip = slot && slot.querySelector(".birles-sirala__chip");
-          var rack = hostEl.querySelector(".birles-sirala__rack");
-          if (chip && rack) {
-            chip.classList.remove("is-placed");
-            rack.appendChild(chip);
-          }
-          if (slot) slot.innerHTML = "";
-          return;
-        }
-        if (selectedSoundI != null) {
-          placeChipInNest(selectedSoundI, nestI);
-        }
+        if (placements[nestI] == null) return;
+        var soundI = placements[nestI];
+        placements[nestI] = null;
+        nest.classList.remove("is-filled");
+        var slot = nest.querySelector(".birles-sirala__nest-slot");
+        var chip = slot && slot.querySelector(".birles-sirala__chip");
+        if (chip) restoreChipToRack(chip);
+        if (slot) slot.innerHTML = "";
       });
     });
   }
 
   function mountActivity() {
     if (!activityRef || !hostEl) return;
+    endDrag(true);
     var n = nestCount();
     placements = [];
     for (var i = 0; i < n; i++) placements.push(null);
     finishing = false;
+    nextUnlocked = false;
     hostEl.classList.remove("is-done");
+    setNextEnabled(false);
 
     var title = hostEl.querySelector(".birles-sirala__ask");
     if (title) {
@@ -696,7 +765,7 @@
     var hint = hostEl.querySelector(".birles-sirala__hint");
     if (hint) {
       hint.hidden = false;
-      hint.textContent = "Dokun-sürükle veya önce sesi seç, sonra yuvaya dokun";
+      hint.textContent = "Kutuyu tutup yuvaya sürükle";
     }
 
     var nests = hostEl.querySelector(".birles-sirala__nests");
@@ -721,8 +790,6 @@
     }
     var board = hostEl.querySelector(".birles-sirala__board");
     if (board) board.classList.remove("is-finale");
-    var doneBtn = hostEl.querySelector("[data-sirala-done]");
-    if (doneBtn) doneBtn.hidden = true;
 
     bindChips();
     bindNests();
@@ -753,7 +820,9 @@
     soundRef = opts.sound || null;
     onDoneCb = typeof opts.onDone === "function" ? opts.onDone : null;
     laneMode = !!opts.laneMode;
+    laneProgressText = String(opts.laneProgress || "").trim();
     finishing = false;
+    nextUnlocked = false;
 
     if (opts.activity) {
       activityRef = normalizeActivity(opts.activity, 0);
@@ -792,28 +861,24 @@
       "  </div>" +
       "</div>" +
       '<button type="button" class="birles-sirala__close" data-sirala-close="1" aria-label="Kapat">✕</button>' +
-      '<button type="button" class="birles-sirala__exit" data-sirala-done="1" hidden>İlerle ›</button>';
+      dockHtml();
 
     (document.documentElement || document.body).appendChild(box);
     hostEl = box;
     setPoolFs(true);
     bindLayout();
     layoutStage();
+    bindDock();
 
     box.querySelectorAll("[data-sirala-close]").forEach(function (el) {
       el.addEventListener("click", function () {
-        if (finishing) {
+        if (finishing && nextUnlocked) {
           finishSuccess();
           return;
         }
         var cb = onDoneCb;
         close();
         if (typeof cb === "function") cb({ success: false, closed: true });
-      });
-    });
-    box.querySelectorAll("[data-sirala-done]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        finishSuccess();
       });
     });
     box.querySelectorAll("[data-sirala-instruct]").forEach(function (el) {

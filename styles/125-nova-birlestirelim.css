@@ -7180,3 +7180,39 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-sirala__nest {
   max-width: 88px;
 }
+
+.birles-sirala .birles-fs-dock {
+  position: absolute;
+  z-index: 90;
+}
+.birles-sirala__chip-ph {
+  flex: 0 0 auto;
+  border-radius: 14px;
+  border: 2px dashed rgba(255, 220, 140, 0.35);
+  background: rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.birles-sirala__ghost {
+  position: fixed !important;
+  z-index: 14000 !important;
+  margin: 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  transform: scale(1.08);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 0 2px rgba(255, 236, 170, 0.9) !important;
+  cursor: grabbing !important;
+}
+.birles-sirala__chip {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.birles-sirala__exit {
+  display: none !important;
+}
+.birles-sirala__board {
+  padding-bottom: calc(18% + 72px);
+}
