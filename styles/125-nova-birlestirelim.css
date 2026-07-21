@@ -3645,8 +3645,8 @@ html.nova-perf-ultra-early.nova-has-session
   position: absolute;
   left: 0;
   right: 0;
-  /* Ortadaki patlama yazısının hemen altı */
-  top: calc(26% + 4.35rem);
+  /* Ortadaki patlama yazısının hemen altı (küçük boşluk) */
+  top: calc(26% + 5.6rem);
   z-index: 5;
   width: min(40%, 160px);
   max-width: min(40%, 160px);
@@ -3723,7 +3723,7 @@ html.nova-perf-ultra-early.nova-has-session
   position: absolute;
   left: 0;
   right: 0;
-  top: 27%;
+  top: 26%;
   z-index: 6;
   margin: 0 auto;
   min-width: 0;
