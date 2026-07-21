@@ -3550,18 +3550,43 @@ html.nova-perf-ultra-early.nova-has-session
 
 .birles-play--pool .birles-hece-board {
   position: absolute;
-  top: 11%;
-  left: 8%;
-  right: 8%;
+  top: 5%;
+  left: 50%;
+  right: auto;
   z-index: 3;
   margin: 0;
-  padding: 10px 12px 12px;
-  border-radius: 18px;
-  background: rgba(8, 24, 40, 0.45);
-  border: 1px solid rgba(180, 230, 255, 0.28);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(6px);
+  padding: 0.32em 0.78em 0.4em;
+  width: max-content;
+  max-width: min(88%, 280px);
+  transform: translateX(-50%);
+  border-radius: 16px;
+  background:
+    linear-gradient(165deg, rgba(255, 252, 245, 0.94) 0%, rgba(230, 245, 255, 0.9) 100%);
+  border: 2px solid rgba(255, 236, 190, 0.95);
+  box-shadow:
+    0 0 0 2px rgba(40, 90, 130, 0.2),
+    0 10px 26px rgba(0, 16, 32, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   pointer-events: auto;
+}
+
+.birles-play--pool .birles-hece-board__full {
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  gap: 0;
+}
+
+.birles-play--pool .birles-hece-seg {
+  font-size: clamp(1.45rem, 5.8vmin, 2.05rem);
+  line-height: 1.15;
+  padding: 0.05em 0.04em 0.12em;
+  color: #143246;
+}
+
+.birles-play--pool .birles-hece-seg.is-on {
+  padding: 0.08em 0.1em 0.16em;
 }
 
 .birles-play--pool .birles-stage {
@@ -3597,17 +3622,48 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-play--pool .birles-reveal {
   position: absolute;
   left: 50%;
-  top: 58%;
+  top: 48%;
   transform: translateX(-50%);
   z-index: 5;
   margin: 0;
-  max-width: 42%;
+  width: min(46%, 188px);
+  max-width: min(46%, 188px);
   pointer-events: none;
 }
 
-.birles-play--pool .birles-reveal__img {
+.birles-play--pool .birles-reveal__frame {
+  position: relative;
+  padding: 7px;
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, #fff8e8 0%, #ffe2a8 35%, #f0c878 70%, #e8b86a 100%);
+  border: 2px solid rgba(255, 248, 220, 0.95);
+  box-shadow:
+    0 0 0 3px rgba(120, 70, 20, 0.28),
+    0 14px 32px rgba(0, 20, 40, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.birles-play--pool .birles-reveal__frame::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
   border-radius: 16px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.birles-play--pool .birles-reveal__img {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .birles-pool__burst {
@@ -3616,9 +3672,10 @@ html.nova-perf-ultra-early.nova-has-session
   top: 28%;
   z-index: 6;
   margin: 0;
-  min-width: 42%;
+  min-width: 0;
+  width: max-content;
   max-width: 78%;
-  padding: 0.35em 0.7em 0.42em;
+  padding: 0.28em 0.62em 0.34em;
   opacity: 0;
   text-align: center;
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;

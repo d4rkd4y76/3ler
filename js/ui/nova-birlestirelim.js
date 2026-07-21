@@ -3815,11 +3815,11 @@
       (hasImg ? "" : " birles-reveal--textonly") +
       '" id="birles-reveal" hidden>' +
       (hasImg
-        ? '<img id="birles-reveal-img" class="birles-reveal__img" src="' +
+        ? '<div class="birles-reveal__frame"><img id="birles-reveal-img" class="birles-reveal__img" src="' +
           esc(med.imageUrl) +
           '" alt="' +
           esc(fusion.result) +
-          '" />'
+          '" /></div>'
         : "") +
       '    <strong id="birles-reveal-word" class="birles-reveal__word" hidden></strong>' +
       '    <span id="birles-reveal-msg" class="birles-reveal__msg"></span>' +
