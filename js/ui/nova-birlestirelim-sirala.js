@@ -13,6 +13,10 @@
   var ONCUL_MP3 =
     "https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3";
   var ONCUL_23_MP3 = "https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3";
+  /* Maarif: duyduğunu yazma — ilk anlamlı kısa sözcükler (at, et) ile t sesinde başlar */
+  var KELIME_SIRALA_START = "t";
+  var KELIME_ONCUL_1 = "https://dlxstore.b-cdn.net/KEL%C4%B0ME%201.MP3";
+  var KELIME_ONCUL_23 = "https://dlxstore.b-cdn.net/KEL%C4%B0ME%202.MP3";
 
   var hostEl = null;
   var onDoneCb = null;
@@ -241,6 +245,149 @@
           instructionAudioUrl: idx === 0 ? ONCUL_MP3 : ONCUL_23_MP3,
           endIndex: idx + 1,
           heceStep: 0,
+          mode: "hece",
+          sounds: sounds
+        },
+        idx
+      );
+    });
+  }
+
+  /**
+   * Maarif Modeli: duyduğunu yazma, ANETİL’de ilk anlamlı kısa sözcüklerle
+   * (at / et) t sesinde başlar → t ve sonraki tüm seslerde açılır.
+   */
+  function soundAllowsKelimeSirala(sound) {
+    if (!sound) return false;
+    var D = global.NovaBirlestirelimData;
+    var groups = (D && D.GROUPS) || [];
+    var pastStart = false;
+    var sid = sound.id;
+    for (var gi = 0; gi < groups.length; gi++) {
+      var arr = (groups[gi] && groups[gi].sounds) || [];
+      for (var si = 0; si < arr.length; si++) {
+        var s = arr[si];
+        if (!s) continue;
+        var lid = normLabel(s.id || s.letter);
+        if (lid === KELIME_SIRALA_START || s.id === KELIME_SIRALA_START) {
+          pastStart = true;
+        }
+        if (s.id === sid) return pastStart;
+      }
+    }
+    return false;
+  }
+
+  function isKelimeLaneFusion(f) {
+    if (!f) return false;
+    var kind = String(f.kind || f.type || "").toLowerCase();
+    return kind === "kelime" || !!f.mediaKey;
+  }
+
+  function kelimeWordLetters(result) {
+    return Array.from(normLabel(result || "")).filter(Boolean);
+  }
+
+  function collectKelimeCandidates(sound, kelimeList) {
+    var seen = {};
+    var out = [];
+
+    function addFusion(f) {
+      if (!isKelimeLaneFusion(f)) return;
+      var result = normLabel(f.result || "");
+      if (!result) {
+        var fp = fusionParts(f);
+        result = normLabel(fp.join(""));
+      }
+      if (!result || result.length < 2 || result.length > 4) return;
+      if (seen[result]) return;
+      var letters = kelimeWordLetters(result);
+      if (letters.length < 2 || letters.length > SLOT_MAX) return;
+      seen[result] = true;
+      out.push({ result: result, parts: letters });
+    }
+
+    (kelimeList || []).forEach(addFusion);
+    if (out.length >= END_ACT_COUNT) return out;
+
+    /* Yetmezse t’den bu sese kadar (dahil önceki) kelime adaylarından doldur */
+    if (!soundAllowsKelimeSirala(sound)) return out;
+    var D = global.NovaBirlestirelimData;
+    var groups = (D && D.GROUPS) || [];
+    var pastStart = false;
+    for (var gi = 0; gi < groups.length; gi++) {
+      var arr = (groups[gi] && groups[gi].sounds) || [];
+      for (var si = 0; si < arr.length; si++) {
+        var s = arr[si];
+        if (!s) continue;
+        var lid = normLabel(s.id || s.letter);
+        if (lid === KELIME_SIRALA_START || s.id === KELIME_SIRALA_START) {
+          pastStart = true;
+        }
+        if (!pastStart) continue;
+        ((s.fusions) || []).forEach(addFusion);
+        if (s.id === (sound && sound.id)) return out;
+        if (out.length >= END_ACT_COUNT * 2) return out;
+      }
+    }
+    return out;
+  }
+
+  function pickEndKelimes(sound, kelimeList) {
+    var cands = collectKelimeCandidates(sound, kelimeList);
+    if (!cands.length) return [];
+    var seed = hashSeed("kelime:" + ((sound && sound.id) || "x"));
+    var shuffled = seededShuffle(cands, seed);
+    return shuffled.slice(0, Math.min(END_ACT_COUNT, shuffled.length));
+  }
+
+  /** Rafta tekrarlı harfler de durur (anne → iki n) */
+  function buildKelimeRackSounds(parts, sound) {
+    var labels = [];
+    var seenUnique = {};
+    (parts || []).forEach(function (p) {
+      var L = normLabel(p);
+      if (!L) return;
+      labels.push(L);
+      seenUnique[L] = true;
+    });
+    var pool = unlockedLetters(sound).slice();
+    var g = findGroupForSound(sound);
+    ((g && g.sounds) || []).forEach(function (s) {
+      var L = normLabel(s && (s.letter || s.id));
+      if (L && pool.indexOf(L) < 0) pool.push(L);
+    });
+    var extras = seededShuffle(
+      pool.filter(function (L) {
+        return !seenUnique[L];
+      }),
+      hashSeed("kw:" + ((sound && sound.id) || "") + ":" + labels.join(""))
+    );
+    for (var i = 0; i < extras.length && labels.length < SLOT_MAX; i++) {
+      labels.push(extras[i]);
+    }
+    return labels.map(function (L) {
+      return { label: L, audioUrl: resolveAudio(L) };
+    });
+  }
+
+  /** Kelime Bahçesi sonunda 3 otomatik “Sıra sende / duyduğunu yaz” */
+  function buildEndKelimeActivities(sound, kelimeList) {
+    if (!soundAllowsKelimeSirala(sound)) return [];
+    var picked = pickEndKelimes(sound, kelimeList);
+    return picked.map(function (w, idx) {
+      var sounds = buildKelimeRackSounds(w.parts, sound);
+      return normalizeActivity(
+        {
+          id: "auto_kelime_" + ((sound && sound.id) || "x") + "_" + (idx + 1),
+          title: "Sıra sende " + (idx + 1),
+          result: w.result,
+          resultAudioUrl: resolveAudio(w.result),
+          correctOrder: w.parts.join(","),
+          instructionAudioUrl: idx === 0 ? KELIME_ONCUL_1 : KELIME_ONCUL_23,
+          endIndex: idx + 1,
+          heceStep: 0,
+          mode: "kelime",
           sounds: sounds
         },
         idx
@@ -296,6 +443,8 @@
       endIndex = idm ? parseInt(idm[1], 10) : idx + 1;
     }
     if (!isFinite(endIndex) || endIndex < 1) endIndex = idx + 1;
+    var mode = String(row.mode || "").trim().toLowerCase();
+    if (mode !== "kelime") mode = "hece";
     return {
       id: String(row.id || "s" + (idx + 1)).trim() || "s" + (idx + 1),
       title: String(row.title || "").trim(),
@@ -305,6 +454,7 @@
       ).trim(),
       heceStep: heceStep,
       endIndex: endIndex,
+      mode: mode,
       correctOrder: correctOrder,
       instructionAudioUrl: String(
         row.instructionAudioUrl || row.instructionUrl || row.promptAudioUrl || ""
@@ -1164,6 +1314,10 @@
   }
 
   function guideMp3ForActivity(act) {
+    if (act && act.mode === "kelime") {
+      if (act.endIndex > 1) return KELIME_ONCUL_23;
+      return KELIME_ONCUL_1;
+    }
     if (!act) return ONCUL_MP3;
     if (act.endIndex > 1) return ONCUL_23_MP3;
     return ONCUL_MP3;
@@ -1342,9 +1496,15 @@
     hasSirala: hasSirala,
     listActivities: listActivities,
     buildEndActivities: buildEndActivities,
+    buildEndKelimeActivities: buildEndKelimeActivities,
     pickEndHeces: pickEndHeces,
+    pickEndKelimes: pickEndKelimes,
+    soundAllowsKelimeSirala: soundAllowsKelimeSirala,
     ONCUL_MP3: ONCUL_MP3,
     ONCUL_23_MP3: ONCUL_23_MP3,
+    KELIME_ONCUL_1: KELIME_ONCUL_1,
+    KELIME_ONCUL_23: KELIME_ONCUL_23,
+    KELIME_SIRALA_START: KELIME_SIRALA_START,
     END_ACT_COUNT: END_ACT_COUNT,
     normalize: normalizeActivity,
     SLOT_MAX: SLOT_MAX

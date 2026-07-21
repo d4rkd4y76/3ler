@@ -202,6 +202,13 @@
     return S.buildEndActivities(sound, bags.hece || []) || [];
   }
 
+  function listKelimeSiralaForSound(sound) {
+    var S = window.NovaBirlestirelimSirala;
+    if (!S || !S.buildEndKelimeActivities) return [];
+    var bags = collectSoundLanes(sound);
+    return S.buildEndKelimeActivities(sound, bags.kelime || []) || [];
+  }
+
   /** Hece listesinin sonuna 3 otomatik “Sıra sende” ekle */
   function buildHeceLaneWithSirala(sound, heceList) {
     var items = (heceList || []).map(function (f) {
@@ -221,6 +228,25 @@
     return items;
   }
 
+  /** Kelime listesinin sonuna 3 otomatik “Sıra sende / duyduğunu yaz” ekle (t+) */
+  function buildKelimeLaneWithSirala(sound, kelimeList) {
+    var items = (kelimeList || []).map(function (f) {
+      return f;
+    });
+    var acts = listKelimeSiralaForSound(sound);
+    acts.forEach(function (act) {
+      items.push({
+        id: "sirala_" + act.id,
+        kind: "sirala",
+        type: "sirala",
+        result: act.result || act.title || "?",
+        label: "Sıra sende · yaz",
+        sirala: act
+      });
+    });
+    return items;
+  }
+
   function laneKeysForSound(sound) {
     var bags = collectSoundLanes(sound);
     var keys = [];
@@ -228,6 +254,7 @@
     LANE_DEFS.forEach(function (d) {
       if ((bags[d.key] || []).length) keys.push(d.key);
       else if (d.key === "hece" && listSiralaForSound(sound).length) keys.push("hece");
+      else if (d.key === "kelime" && listKelimeSiralaForSound(sound).length) keys.push("kelime");
     });
     return keys;
   }
@@ -2141,6 +2168,9 @@
       if (def.key === "hece") {
         list = buildHeceLaneWithSirala(sound, list);
       }
+      if (def.key === "kelime") {
+        list = buildKelimeLaneWithSirala(sound, list);
+      }
       if (!list.length) return;
       var sub = def.sub || def.tag || "";
       var starred = isLaneStarred(sound.id, def.key);
@@ -2231,6 +2261,9 @@
     var list = bags[laneKey] || [];
     if (laneKey === "hece") {
       list = buildHeceLaneWithSirala(sound, list);
+    }
+    if (laneKey === "kelime") {
+      list = buildKelimeLaneWithSirala(sound, list);
     }
     if (!list.length) return;
     activeLane = {

@@ -830,7 +830,7 @@ window.NovaAdminExport = (function(){
 
     <div id="birlestirelimView" class="view">
       <h2>BİRLEŞTİRELİM — Ses medyası</h2>
-      <div class="sub">Grup → ses → bölüm (Harf / Yazılış / Kristal / Sıra Sende / Hece / Kelime…). Sıra Sende Hece Avı sonunda otomatik 3 etkinliktir. Veritabanı: <span class="mono">/birlestirelim</span></div>
+      <div class="sub">Grup → ses → bölüm (Harf / Yazılış / Kristal / Sıra Sende / Hece / Kelime…). Sıra Sende: Hece Avı sonunda ×3; Kelime Bahçesi sonunda t sesinden itibaren ×3 (duyduğunu yazma). Veritabanı: <span class="mono">/birlestirelim</span></div>
       <div class="toolbar mt8" style="gap:8px;flex-wrap:wrap">
         <button type="button" class="btn" id="birles_admin_reload">Yenile</button>
         <button type="button" class="btn acc" id="birles_admin_save_all">Bu sesi / tümünü kaydet</button>
@@ -892,8 +892,8 @@ window.NovaAdminExport = (function(){
         </div>
 
         <div id="birles_admin_sec_sirala" class="birles-admin-secpanel" data-birles-sec="sirala" hidden>
-          <h4 class="birles-admin-sec">Sıra Sende · Hece Avı sonu</h4>
-          <p class="soft small">Elle etkinlik eklemen gerekmez. Her sesin <b>Hece Avı</b> listesi bittikten sonra otomatik <b>3 Sıra Sende</b> gelir. Önce hece MP3’ü (medyada yüklü URL), ardından öncül yönerge çalar; yuvalar ve kutular vurgulanır. Doğru olunca havuz patlaması devam eder.</p>
+          <h4 class="birles-admin-sec">Sıra Sende · otomatik son etkinlikler</h4>
+          <p class="soft small">Elle ekleme yok. <b>Hece Avı</b> sonunda her seste 3 etkinlik. <b>Kelime Bahçesi</b> sonunda Maarif’e göre <b>t</b> sesinden itibaren (at / et ile duyduğunu yazma) 3 etkinlik: önce kelime sesi, sonra KELİME 1 / KELİME 2 yönergesi.</p>
           <div id="birles_admin_sirala_list" class="mt8"></div>
         </div>
 
@@ -1102,7 +1102,7 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
 <script src="js/core/nova-birlestirelim-data.js?v=30260714birles36"></script>
 <script src="js/core/nova-birlestirelim-yazilis-data.js?v=30260719yazN3"></script>
-<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722sirala10"></script>
+<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722kelimesirala1"></script>
 <script src="js/ui/nova-kids-voice.js?v=30260714birles18"></script>
 <script>
 /** =============================
@@ -3009,34 +3009,56 @@ window.NovaAdminExport = (function(){
       var S = window.NovaBirlestirelimSirala;
       var oncul = (S && S.ONCUL_MP3) || 'https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3';
       var oncul23 = (S && S.ONCUL_23_MP3) || 'https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3';
+      var kelOncul1 = (S && S.KELIME_ONCUL_1) || 'https://dlxstore.b-cdn.net/KEL%C4%B0ME%201.MP3';
+      var kelOncul23 = (S && S.KELIME_ONCUL_23) || 'https://dlxstore.b-cdn.net/KEL%C4%B0ME%202.MP3';
       var heceList = fusionListFor(sound).filter(function(f){ return laneKeyForFusion(f) === 'hece'; });
+      var kelimeList = fusionListFor(sound).filter(function(f){ return laneKeyForFusion(f) === 'kelime'; });
       var acts = (S && S.buildEndActivities) ? (S.buildEndActivities(sound, heceList) || []) : [];
-      var rows = acts.map(function(act, i){
-        var order = Array.isArray(act.correctOrder) ? act.correctOrder.join(',') : String(act.correctOrder || '');
-        var chips = (act.sounds || []).map(function(s){ return s.label; }).filter(Boolean).join(' · ');
-        var heceUrl = String(act.resultAudioUrl || '').trim() || lookupExistingAudioUrl(act.result || '');
-        var st = urlStatus(heceUrl);
-        var guide = (act.endIndex > 1) ? oncul23 : oncul;
-        return '<div class="birles-admin-fusion" style="margin-top:10px">'+
-          '<div class="birles-admin-fusion__head"><div>'+
-          '<p class="birles-admin-fusion__title">Sıra sende '+(i+1)+' · <b>'+escHtml(act.result||'?')+'</b></p>'+
-          '<p class="birles-admin-fusion__label">Yuva: '+escHtml(order||'—')+' · Rafta: '+escHtml(chips||'—')+' · Yönerge: '+(i===0?'1. öncül':'2-3 öncül')+'</p>'+
-          '</div></div>'+
-          '<div class="birles-admin-row" style="grid-template-columns:1fr 88px 44px">'+
-          '<div><label>Hece okunuşu MP3 (medyadan)</label>'+
-          '<input type="url" readonly value="'+escHtml(heceUrl)+'" placeholder="Hece / harf URL’si henüz yok"></div>'+
-          '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(heceUrl)+'">Test</button></div>'+
-          '<div class="soft small" style="padding-top:22px">'+statusIcon(st)+'</div></div>'+
-          '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
-          '<div><label>Bu etkinliğin yönerge MP3’ü</label>'+
-          '<input type="url" readonly value="'+escHtml(guide)+'"></div>'+
-          '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(guide)+'">Test</button></div></div></div>';
-      }).join('');
-      if(!acts.length){
-        rows = '<p class="soft small">Bu ses için henüz 2 harfli hece adayı yok — Hece Avı içeriği gelince 3 Sıra Sende otomatik eklenir.</p>';
+      var kelActs = (S && S.buildEndKelimeActivities) ? (S.buildEndKelimeActivities(sound, kelimeList) || []) : [];
+      var allowsKel = !!(S && S.soundAllowsKelimeSirala && S.soundAllowsKelimeSirala(sound));
+
+      function actRows(list, guide1, guide23, wordLabel){
+        if(!list.length) return '';
+        return list.map(function(act, i){
+          var order = Array.isArray(act.correctOrder) ? act.correctOrder.join(',') : String(act.correctOrder || '');
+          var chips = (act.sounds || []).map(function(s){ return s.label; }).filter(Boolean).join(' · ');
+          var wordUrl = String(act.resultAudioUrl || '').trim() || lookupExistingAudioUrl(act.result || '');
+          var st = urlStatus(wordUrl);
+          var guide = (act.endIndex > 1) ? guide23 : guide1;
+          return '<div class="birles-admin-fusion" style="margin-top:10px">'+
+            '<div class="birles-admin-fusion__head"><div>'+
+            '<p class="birles-admin-fusion__title">Sıra sende '+(i+1)+' · <b>'+escHtml(act.result||'?')+'</b></p>'+
+            '<p class="birles-admin-fusion__label">Yuva: '+escHtml(order||'—')+' · Rafta: '+escHtml(chips||'—')+' · Yönerge: '+(i===0?'1.':'2–3')+'</p>'+
+            '</div></div>'+
+            '<div class="birles-admin-row" style="grid-template-columns:1fr 88px 44px">'+
+            '<div><label>'+escHtml(wordLabel)+' MP3 (medyadan)</label>'+
+            '<input type="url" readonly value="'+escHtml(wordUrl)+'" placeholder="URL henüz yok"></div>'+
+            '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(wordUrl)+'">Test</button></div>'+
+            '<div class="soft small" style="padding-top:22px">'+statusIcon(st)+'</div></div>'+
+            '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
+            '<div><label>Bu etkinliğin yönerge MP3’ü</label>'+
+            '<input type="url" readonly value="'+escHtml(guide)+'"></div>'+
+            '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(guide)+'">Test</button></div></div></div>';
+        }).join('');
       }
+
+      var heceRows = actRows(acts, oncul, oncul23, 'Hece okunuşu');
+      if(!acts.length){
+        heceRows = '<p class="soft small">Bu ses için henüz 2 harfli hece adayı yok — Hece Avı içeriği gelince 3 Sıra Sende otomatik eklenir.</p>';
+      }
+
+      var kelimeRows = '';
+      if(!allowsKel){
+        kelimeRows = '<p class="soft small">Kelime Sıra Sende Maarif’e göre <b>t</b> sesinden itibaren açılır (at / et ile duyduğunu yazma). Bu ses henüz eşikte değil.</p>';
+      } else if(!kelActs.length){
+        kelimeRows = '<p class="soft small">Bu ses için 2–4 harfli kelime adayı yok — Kelime Bahçesi içeriği gelince 3 etkinlik eklenir.</p>';
+      } else {
+        kelimeRows = actRows(kelActs, kelOncul1, kelOncul23, 'Kelime okunuşu');
+      }
+
       return '<div class="birles-admin-fusion" style="margin-top:4px" data-sirala-preview="1" data-letter-key="'+escHtml(sound.id)+'">'+
-        '<p class="soft small" style="margin:0 0 10px"><b>1. etkinlik:</b> hece → öncül (vurgu). <b>2–3:</b> hece → 2-3 yönerge. Hoparlör = sadece hece.</p>'+
+        '<h4 class="birles-admin-sec" style="margin:0 0 8px">Hece Avı sonu</h4>'+
+        '<p class="soft small" style="margin:0 0 10px"><b>1:</b> hece → öncül. <b>2–3:</b> hece → 2-3 yönerge. Hoparlör = sadece hece.</p>'+
         '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
         '<div><label>1. etkinlik öncül MP3</label>'+
         '<input type="url" readonly value="'+escHtml(oncul)+'"></div>'+
@@ -3045,8 +3067,19 @@ window.NovaAdminExport = (function(){
         '<div><label>2–3. etkinlik yönerge MP3</label>'+
         '<input type="url" readonly value="'+escHtml(oncul23)+'"></div>'+
         '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(oncul23)+'">Test</button></div></div>'+
-        '<p class="soft small" style="margin:12px 0 0">Aşağıdaki 3 etkinlik canlı önizlemedir. Kaydetmen gerekmez.</p>'+
-        rows+
+        heceRows+
+        '<h4 class="birles-admin-sec" style="margin:22px 0 8px">Kelime Bahçesi sonu · duyduğunu yaz</h4>'+
+        '<p class="soft small" style="margin:0 0 10px"><b>1:</b> kelime → KELİME 1. <b>2–3:</b> kelime → KELİME 2. Hoparlör = sadece kelime.</p>'+
+        '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
+        '<div><label>1. etkinlik KELİME 1 MP3</label>'+
+        '<input type="url" readonly value="'+escHtml(kelOncul1)+'"></div>'+
+        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(kelOncul1)+'">Test</button></div></div>'+
+        '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
+        '<div><label>2–3. etkinlik KELİME 2 MP3</label>'+
+        '<input type="url" readonly value="'+escHtml(kelOncul23)+'"></div>'+
+        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(kelOncul23)+'">Test</button></div></div>'+
+        '<p class="soft small" style="margin:12px 0 0">Aşağıdaki etkinlikler canlı önizlemedir. Kaydetmen gerekmez.</p>'+
+        kelimeRows+
         '</div>';
     }
 
@@ -3427,9 +3460,13 @@ window.NovaAdminExport = (function(){
       tabs.push({
         id: 'sirala',
         title: 'Sıra Sende',
-        hint: 'Hece Avı sonunda ×3',
-        ready: !!(window.NovaBirlestirelimSirala && window.NovaBirlestirelimSirala.buildEndActivities &&
-          (window.NovaBirlestirelimSirala.buildEndActivities(sound, fusionsByLane(sound, 'hece')) || []).length)
+        hint: 'Hece + Kelime sonu ×3',
+        ready: !!(window.NovaBirlestirelimSirala && (
+          (window.NovaBirlestirelimSirala.buildEndActivities &&
+            (window.NovaBirlestirelimSirala.buildEndActivities(sound, fusionsByLane(sound, 'hece')) || []).length) ||
+          (window.NovaBirlestirelimSirala.buildEndKelimeActivities &&
+            (window.NovaBirlestirelimSirala.buildEndKelimeActivities(sound, fusionsByLane(sound, 'kelime')) || []).length)
+        ))
       });
       FUSION_SECTIONS.forEach(function(sec){
         var list = fusionsByLane(sound, sec.id);
