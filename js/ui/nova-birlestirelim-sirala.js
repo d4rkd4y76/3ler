@@ -57,10 +57,6 @@
     return "";
   }
 
-  function isVowel(ch) {
-    return TR_VOWELS.indexOf(normLabel(ch)) >= 0;
-  }
-
   function hashSeed(str) {
     var h = 2166136261;
     var s = String(str || "");
