@@ -197,28 +197,26 @@
 
   function listSiralaForSound(sound) {
     var S = window.NovaBirlestirelimSirala;
-    if (!S || !S.listActivities) return [];
-    return S.listActivities(letterPackFor(sound)) || [];
+    if (!S || !S.buildEndActivities) return [];
+    var bags = collectSoundLanes(sound);
+    return S.buildEndActivities(sound, bags.hece || []) || [];
   }
 
-  /** Hece listesine “sıra sende” (sirala) aşamalarını heceStep konumuna yerleştir */
+  /** Hece listesinin sonuna 3 otomatik “Sıra sende” ekle */
   function buildHeceLaneWithSirala(sound, heceList) {
     var items = (heceList || []).map(function (f) {
       return f;
     });
     var acts = listSiralaForSound(sound);
     acts.forEach(function (act) {
-      var step = act.heceStep > 0 ? act.heceStep : items.length + 1;
-      var pseudo = {
+      items.push({
         id: "sirala_" + act.id,
         kind: "sirala",
         type: "sirala",
         result: act.result || act.title || "?",
         label: "Sıra sende · yerleştir",
         sirala: act
-      };
-      var idx = Math.min(Math.max(0, step - 1), items.length);
-      items.splice(idx, 0, pseudo);
+      });
     });
     return items;
   }

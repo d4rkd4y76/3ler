@@ -7185,6 +7185,37 @@ html.nova-perf-ultra-early.nova-has-session
   position: absolute;
   z-index: 90;
 }
+.birles-sirala.is-intro .birles-sirala__rack,
+.birles-sirala.is-intro .birles-sirala__nests {
+  pointer-events: none;
+}
+.birles-sirala__nest.is-tutor-pulse,
+.birles-sirala__chip.is-tutor-pulse {
+  animation: birlesSiralaTutorPulse 1.05s ease-in-out infinite;
+}
+.birles-sirala__nest.is-tutor-pulse {
+  border-color: #ffe08a !important;
+  background: rgba(255, 214, 90, 0.28) !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 220, 120, 0.75),
+    0 0 22px rgba(255, 200, 80, 0.55) !important;
+  transform: scale(1.06);
+}
+.birles-sirala__chip.is-tutor-pulse {
+  box-shadow:
+    0 0 0 3px rgba(255, 236, 170, 0.95),
+    0 10px 24px rgba(0, 0, 0, 0.35);
+  transform: scale(1.07);
+}
+@keyframes birlesSiralaTutorPulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.18);
+  }
+}
 .birles-sirala__chip-ph {
   flex: 0 0 auto !important;
   min-width: clamp(52px, 14vmin, 72px) !important;

@@ -7,8 +7,12 @@
   "use strict";
 
   var SLOT_MAX = 5;
+  var END_ACT_COUNT = 3;
   var POOL_MERGE_SRC = "assets/birles/ses_birlestirme.mp4?v=opt1";
   var POOL_BOOM_SRC = "assets/birles/ses_patlama.mp4?v=opt1";
+  var ONCUL_MP3 =
+    "https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3";
+  var TR_VOWELS = "aeıioöuü";
 
   var hostEl = null;
   var onDoneCb = null;
@@ -23,6 +27,8 @@
   var laneMode = false;
   var laneProgressText = "";
   var nextUnlocked = false;
+  var introLock = false;
+  var introSeq = 0;
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -36,6 +42,217 @@
     return String(s || "")
       .trim()
       .toLocaleLowerCase("tr-TR");
+  }
+
+  function resolveAudio(token) {
+    var t = normLabel(token);
+    if (!t) return "";
+    try {
+      var KV = global.NovaKidsVoice;
+      if (KV && typeof KV.resolveAudioUrl === "function") {
+        var u = String(KV.resolveAudioUrl(t) || "").trim();
+        if (u) return u;
+      }
+    } catch (_) {}
+    return "";
+  }
+
+  function isVowel(ch) {
+    return TR_VOWELS.indexOf(normLabel(ch)) >= 0;
+  }
+
+  function hashSeed(str) {
+    var h = 2166136261;
+    var s = String(str || "");
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+
+  function seededShuffle(arr, seed) {
+    var a = (arr || []).slice();
+    var s = seed >>> 0;
+    for (var i = a.length - 1; i > 0; i--) {
+      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+      var j = s % (i + 1);
+      var t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function findGroupForSound(sound) {
+    var D = global.NovaBirlestirelimData;
+    if (!D || !D.GROUPS) return null;
+    var sid = sound && sound.id;
+    var gid = sound && (sound.groupId || sound.group);
+    if (gid && D.getGroup) {
+      var g0 = D.getGroup(gid);
+      if (g0) return g0;
+    }
+    for (var i = 0; i < D.GROUPS.length; i++) {
+      var g = D.GROUPS[i];
+      var arr = (g && g.sounds) || [];
+      for (var j = 0; j < arr.length; j++) {
+        if (arr[j] && arr[j].id === sid) return g;
+      }
+    }
+    return D.GROUPS[0] || null;
+  }
+
+  function unlockedLetters(sound) {
+    var g = findGroupForSound(sound);
+    var out = [];
+    var seen = {};
+    var arr = (g && g.sounds) || [];
+    for (var i = 0; i < arr.length; i++) {
+      var s = arr[i];
+      if (!s) continue;
+      var L = normLabel(s.letter || s.id);
+      if (L && !seen[L]) {
+        seen[L] = true;
+        out.push(L);
+      }
+      if (s.id === (sound && sound.id)) break;
+    }
+    if (!out.length && sound) {
+      var one = normLabel(sound.letter || sound.id);
+      if (one) out.push(one);
+    }
+    return out;
+  }
+
+  function fusionParts(f) {
+    if (!f) return [];
+    if (Array.isArray(f.parts) && f.parts.length) {
+      return f.parts.map(function (p) {
+        return normLabel(p);
+      }).filter(Boolean);
+    }
+    if (Array.isArray(f.steps) && f.steps[0] && f.steps[0].length) {
+      return f.steps[0].map(function (p) {
+        return normLabel(p);
+      }).filter(Boolean);
+    }
+    var r = normLabel(f.result || f.id);
+    if (r.length === 2) return [r.charAt(0), r.charAt(1)];
+    return [];
+  }
+
+  function isTwoLetterHeceFusion(f) {
+    if (!f) return false;
+    var kind = String(f.kind || f.type || "").toLowerCase();
+    if (kind === "intro" || kind === "ses" || kind === "cumle" || kind === "metin" || kind === "piramit") {
+      return false;
+    }
+    if (kind === "sirala") return false;
+    var parts = fusionParts(f);
+    if (parts.length !== 2) return false;
+    var result = normLabel(f.result || parts.join(""));
+    return result.length >= 2 && result.length <= 3;
+  }
+
+  function collectHeceCandidates(sound, heceList) {
+    var seen = {};
+    var out = [];
+    function addFusion(f) {
+      if (!isTwoLetterHeceFusion(f)) return;
+      var parts = fusionParts(f);
+      var result = normLabel(f.result || parts.join(""));
+      if (!result || seen[result]) return;
+      seen[result] = true;
+      out.push({ result: result, parts: parts });
+    }
+    (heceList || []).forEach(addFusion);
+    ((sound && sound.fusions) || []).forEach(function (f) {
+      var kind = String((f && (f.kind || f.type)) || "hece").toLowerCase();
+      /* Hece Avı + iki harfli hece-benzeri kelimeler (at, et) */
+      if (kind === "hece" || (kind === "kelime" && fusionParts(f).length === 2)) {
+        addFusion(f);
+      }
+    });
+
+    if (out.length >= END_ACT_COUNT) return out;
+
+    var letters = unlockedLetters(sound);
+    var i;
+    var j;
+    for (i = 0; i < letters.length; i++) {
+      for (j = 0; j < letters.length; j++) {
+        if (i === j) continue;
+        var a = letters[i];
+        var b = letters[j];
+        /* En az biri ünlü olsun */
+        if (!isVowel(a) && !isVowel(b)) continue;
+        var result = a + b;
+        if (seen[result]) continue;
+        seen[result] = true;
+        out.push({ result: result, parts: [a, b] });
+      }
+    }
+    return out;
+  }
+
+  function pickEndHeces(sound, heceList) {
+    var cands = collectHeceCandidates(sound, heceList);
+    if (!cands.length) return [];
+    var seed = hashSeed((sound && sound.id) || "x");
+    var shuffled = seededShuffle(cands, seed);
+    return shuffled.slice(0, Math.min(END_ACT_COUNT, shuffled.length));
+  }
+
+  function buildRackSounds(parts, sound) {
+    var need = [];
+    var seen = {};
+    (parts || []).forEach(function (p) {
+      var L = normLabel(p);
+      if (!L || seen[L]) return;
+      seen[L] = true;
+      need.push(L);
+    });
+    var pool = unlockedLetters(sound).slice();
+    var g = findGroupForSound(sound);
+    ((g && g.sounds) || []).forEach(function (s) {
+      var L = normLabel(s && (s.letter || s.id));
+      if (L && pool.indexOf(L) < 0) pool.push(L);
+    });
+    var extras = seededShuffle(
+      pool.filter(function (L) {
+        return !seen[L];
+      }),
+      hashSeed(((sound && sound.id) || "") + ":" + need.join(""))
+    );
+    var labels = need.slice();
+    for (var i = 0; i < extras.length && labels.length < SLOT_MAX; i++) {
+      labels.push(extras[i]);
+    }
+    return labels.map(function (L) {
+      return { label: L, audioUrl: resolveAudio(L) };
+    });
+  }
+
+  /** Hece Avı sonunda 3 otomatik “Sıra sende” etkinliği */
+  function buildEndActivities(sound, heceList) {
+    var picked = pickEndHeces(sound, heceList);
+    return picked.map(function (h, idx) {
+      var sounds = buildRackSounds(h.parts, sound);
+      return normalizeActivity(
+        {
+          id: "auto_" + ((sound && sound.id) || "x") + "_" + (idx + 1),
+          title: "Sıra sende " + (idx + 1),
+          result: h.result,
+          resultAudioUrl: resolveAudio(h.result),
+          correctOrder: h.parts.join(","),
+          instructionAudioUrl: ONCUL_MP3,
+          heceStep: 0,
+          sounds: sounds
+        },
+        idx
+      );
+    });
   }
 
   function normalizeSound(row) {
@@ -368,6 +585,8 @@
 
   function close() {
     openToken += 1;
+    introSeq += 1;
+    introLock = false;
     finishing = false;
     nextUnlocked = false;
     stopInstruct();
@@ -498,7 +717,7 @@
   }
 
   function checkComplete() {
-    if (!activityRef || finishing) return;
+    if (!activityRef || finishing || introLock) return;
     var order = activityRef.correctOrder;
     if (filledCount() < order.length) return;
 
@@ -556,7 +775,7 @@
   }
 
   function placeChipInNest(soundI, nestI, chipEl) {
-    if (!activityRef || finishing || !hostEl) return;
+    if (!activityRef || finishing || introLock || !hostEl) return;
     var n = nestCount();
     if (nestI < 0 || nestI >= n) return;
     if (placements[nestI] != null) return;
@@ -594,7 +813,8 @@
     }
     try {
       var s = activityRef.sounds[soundI];
-      if (s && s.audioUrl) playUrl(s.audioUrl);
+      var chipUrl = (s && s.audioUrl) || resolveAudio(s && s.label);
+      if (chipUrl) playUrl(chipUrl);
     } catch (_) {}
     checkComplete();
   }
@@ -643,7 +863,7 @@
 
   /** Gerçek kutuyu kaldır — yerinde sabit boşluk, diğerleri kaymaz */
   function startDrag(chip, e) {
-    if (finishing || !chip || dragState) return;
+    if (finishing || introLock || !chip || dragState) return;
     if (chip.classList.contains("is-placed")) return;
     var soundI = Number(chip.getAttribute("data-sound-i"));
     if (isNaN(soundI)) return;
@@ -754,7 +974,7 @@
     if (!hostEl) return;
     hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (nest) {
       nest.addEventListener("click", function () {
-        if (finishing) return;
+        if (finishing || introLock) return;
         var nestI = Number(nest.getAttribute("data-nest"));
         if (placements[nestI] == null) return;
         var soundI = placements[nestI];
@@ -768,21 +988,56 @@
     });
   }
 
+  function setTutorHighlight(on) {
+    if (!hostEl) return;
+    hostEl.classList.toggle("is-tutor", !!on);
+    hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (el) {
+      el.classList.toggle("is-tutor-pulse", !!on);
+    });
+    hostEl.querySelectorAll(".birles-sirala__chip:not(.is-placed)").forEach(function (el) {
+      el.classList.toggle("is-tutor-pulse", !!on);
+    });
+  }
+
+  async function playIntroSequence() {
+    if (!hostEl || !activityRef) return;
+    var seq = ++introSeq;
+    introLock = true;
+    hostEl.classList.add("is-intro");
+    setTutorHighlight(false);
+
+    var heceUrl = String(activityRef.resultAudioUrl || "").trim();
+    if (!heceUrl && activityRef.result) heceUrl = resolveAudio(activityRef.result);
+    if (heceUrl) {
+      await playUrl(heceUrl);
+    }
+    if (seq !== introSeq || !hostEl) return;
+
+    setTutorHighlight(true);
+    await playUrl(ONCUL_MP3);
+    if (seq !== introSeq || !hostEl) return;
+
+    setTutorHighlight(false);
+    hostEl.classList.remove("is-intro");
+    introLock = false;
+  }
+
   function mountActivity() {
     if (!activityRef || !hostEl) return;
     endDrag(true);
+    introSeq++;
+    introLock = false;
     var n = nestCount();
     placements = [];
     for (var i = 0; i < n; i++) placements.push(null);
     finishing = false;
     nextUnlocked = false;
-    hostEl.classList.remove("is-done");
+    hostEl.classList.remove("is-done", "is-intro", "is-tutor");
     setNextEnabled(false);
 
     var title = hostEl.querySelector(".birles-sirala__ask");
     if (title) {
-      var head = activityRef.result || activityRef.title || "";
-      title.textContent = (head ? head + " · " : "") + "Sesleri sırayla yuvaya sürükle";
+      title.textContent = "Sıra sende · Sesleri sırayla yuvaya sürükle";
     }
     var hint = hostEl.querySelector(".birles-sirala__hint");
     if (hint) {
@@ -828,11 +1083,9 @@
     var boom = hostEl.querySelector(".birles-sirala__vid--boom");
     if (boom && !boom.getAttribute("src")) boom.src = POOL_BOOM_SRC;
 
-    if (activityRef.instructionAudioUrl) {
-      setTimeout(function () {
-        playUrl(activityRef.instructionAudioUrl);
-      }, 350);
-    }
+    setTimeout(function () {
+      playIntroSequence();
+    }, 280);
   }
 
   function open(opts) {
@@ -905,9 +1158,8 @@
     });
     box.querySelectorAll("[data-sirala-instruct]").forEach(function (el) {
       el.addEventListener("click", function () {
-        if (activityRef && activityRef.instructionAudioUrl) {
-          playUrl(activityRef.instructionAudioUrl);
-        }
+        if (finishing) return;
+        playIntroSequence();
       });
     });
 
@@ -923,6 +1175,10 @@
     close: close,
     hasSirala: hasSirala,
     listActivities: listActivities,
+    buildEndActivities: buildEndActivities,
+    pickEndHeces: pickEndHeces,
+    ONCUL_MP3: ONCUL_MP3,
+    END_ACT_COUNT: END_ACT_COUNT,
     normalize: normalizeActivity,
     SLOT_MAX: SLOT_MAX
   };

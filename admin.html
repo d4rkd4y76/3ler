@@ -830,7 +830,7 @@ window.NovaAdminExport = (function(){
 
     <div id="birlestirelimView" class="view">
       <h2>BİRLEŞTİRELİM — Ses medyası</h2>
-      <div class="sub">Grup → ses → bölüm (Harf / Yazılış / Kristal / Hece / Kelime…). Kristal’de birden fazla etkinlik ekleyebilirsin. Veritabanı: <span class="mono">/birlestirelim</span></div>
+      <div class="sub">Grup → ses → bölüm (Harf / Yazılış / Kristal / Sıra Sende / Hece / Kelime…). Sıra Sende Hece Avı sonunda otomatik 3 etkinliktir. Veritabanı: <span class="mono">/birlestirelim</span></div>
       <div class="toolbar mt8" style="gap:8px;flex-wrap:wrap">
         <button type="button" class="btn" id="birles_admin_reload">Yenile</button>
         <button type="button" class="btn acc" id="birles_admin_save_all">Bu sesi / tümünü kaydet</button>
@@ -892,8 +892,8 @@ window.NovaAdminExport = (function(){
         </div>
 
         <div id="birles_admin_sec_sirala" class="birles-admin-secpanel" data-birles-sec="sirala" hidden>
-          <h4 class="birles-admin-sec">Ses Yuvası · Hece Avı içi</h4>
-          <p class="soft small">Ayrı kart değil — <b>Hece Avı</b> aşamaları arasına girer. Doğru sıra (ör. <code>e,r</code>) = yuva sayısı; altta en fazla 5 ses kutusu (çeldirici olabilir).</p>
+          <h4 class="birles-admin-sec">Sıra Sende · Hece Avı sonu</h4>
+          <p class="soft small">Elle etkinlik eklemen gerekmez. Her sesin <b>Hece Avı</b> listesi bittikten sonra otomatik <b>3 Sıra Sende</b> gelir. Önce hece MP3’ü (medyada yüklü URL), ardından öncül yönerge çalar; yuvalar ve kutular vurgulanır. Doğru olunca havuz patlaması devam eder.</p>
           <div id="birles_admin_sirala_list" class="mt8"></div>
         </div>
 
@@ -1102,6 +1102,7 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
 <script src="js/core/nova-birlestirelim-data.js?v=30260714birles36"></script>
 <script src="js/core/nova-birlestirelim-yazilis-data.js?v=30260719yazN3"></script>
+<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722sirala6"></script>
 <script src="js/ui/nova-kids-voice.js?v=30260714birles18"></script>
 <script>
 /** =============================
@@ -3004,54 +3005,37 @@ window.NovaAdminExport = (function(){
         '</div>';
     }
 
-    function renderSiralaBlock(sound, letterCur){
-      var acts = listSiralaActivities(letterCur && letterCur.sirala);
-      if(activeSiralaActIdx < 0) activeSiralaActIdx = 0;
-      if(activeSiralaActIdx >= acts.length) activeSiralaActIdx = acts.length - 1;
-      var act = acts[activeSiralaActIdx] || newSiralaActivity(1);
-      var rows = '';
-      for(var i = 0; i < 5; i++){
-        var s = act.sounds[i] || { label: '', audioUrl: '' };
-        var label = String(s.label || '').trim();
-        var audioUrl = String(s.audioUrl || '').trim();
-        if(!audioUrl && label) audioUrl = lookupExistingAudioUrl(label);
-        rows +=
-          '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-idx="'+i+'" style="grid-template-columns:70px 1fr 1.4fr 88px">'+
-          '<div style="font-size:22px;font-weight:900;padding-top:18px;text-align:center;color:#38bdf8">'+(i+1)+'</div>'+
-          '<div><label>Ses yazısı (kutuda görünür)</label>'+
-          '<input type="text" data-field="siralaLabel" value="'+escHtml(label)+'" placeholder="ör. e"></div>'+
-          '<div><label>Ses MP3 URL</label>'+
-          '<input type="url" data-field="siralaAudioUrl" value="'+escHtml(audioUrl)+'" placeholder="https://….b-cdn.net/…mp3"'+(audioUrl && !s.audioUrl ? ' data-autofilled="1"' : '')+'></div>'+
-          '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>';
+    function renderSiralaBlock(sound){
+      var S = window.NovaBirlestirelimSirala;
+      var oncul = (S && S.ONCUL_MP3) || 'https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3';
+      var heceList = fusionListFor(sound).filter(function(f){ return laneKeyForFusion(f) === 'hece'; });
+      var acts = (S && S.buildEndActivities) ? (S.buildEndActivities(sound, heceList) || []) : [];
+      var rows = acts.map(function(act, i){
+        var order = Array.isArray(act.correctOrder) ? act.correctOrder.join(',') : String(act.correctOrder || '');
+        var chips = (act.sounds || []).map(function(s){ return s.label; }).filter(Boolean).join(' · ');
+        var heceUrl = String(act.resultAudioUrl || '').trim() || lookupExistingAudioUrl(act.result || '');
+        var st = urlStatus(heceUrl);
+        return '<div class="birles-admin-fusion" style="margin-top:10px">'+
+          '<div class="birles-admin-fusion__head"><div>'+
+          '<p class="birles-admin-fusion__title">Sıra sende '+(i+1)+' · <b>'+escHtml(act.result||'?')+'</b></p>'+
+          '<p class="birles-admin-fusion__label">Yuva sırası: '+escHtml(order||'—')+' · Rafta: '+escHtml(chips||'—')+'</p>'+
+          '</div></div>'+
+          '<div class="birles-admin-row" style="grid-template-columns:1fr 88px 44px">'+
+          '<div><label>Hece okunuşu MP3 (medyadan)</label>'+
+          '<input type="url" readonly value="'+escHtml(heceUrl)+'" placeholder="Hece / harf URL’si henüz yok"></div>'+
+          '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(heceUrl)+'">Test</button></div>'+
+          '<div class="soft small" style="padding-top:22px">'+statusIcon(st)+'</div></div></div>';
+      }).join('');
+      if(!acts.length){
+        rows = '<p class="soft small">Bu ses için henüz 2 harfli hece adayı yok — Hece Avı içeriği gelince 3 Sıra Sende otomatik eklenir.</p>';
       }
-      var canDel = acts.length > 1;
-      var result = String(act.result || act.title || '').trim();
-      var resultAudioUrl = String(act.resultAudioUrl || '').trim();
-      if(!resultAudioUrl && result) resultAudioUrl = lookupExistingAudioUrl(result);
-      return '<div class="birles-admin-fusion" style="margin-top:4px" data-sirala-editor="1" data-letter-key="'+escHtml(sound.id)+'">'+
-        '<div class="birles-admin-kristal-nav">'+
-        '<button type="button" class="btn" data-sirala-nav="prev"'+(activeSiralaActIdx<=0?' disabled':'')+'>◀ Önceki</button>'+
-        '<div class="birles-admin-kristal-nav__meta">Etkinlik '+(activeSiralaActIdx+1)+' / '+acts.length+'</div>'+
-        '<button type="button" class="btn" data-sirala-nav="next"'+(activeSiralaActIdx>=acts.length-1?' disabled':'')+'>Sonraki ▶</button>'+
-        '<button type="button" class="btn acc" data-sirala-nav="add">+ Yeni etkinlik</button>'+
-        (canDel ? '<button type="button" class="btn" data-sirala-nav="del" style="border-color:rgba(248,113,113,.5)">Bu etkinliği sil</button>' : '')+
-        '</div>'+
-        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 1.4fr 120px 88px">'+
-        '<div><label>Hedef hece / yazı (patlamada)</label>'+
-        '<input type="text" data-field="siralaResult" value="'+escHtml(result)+'" placeholder="er"></div>'+
-        '<div><label>Patlama okunuşu MP3</label>'+
-        '<input type="url" data-field="siralaResultAudioUrl" value="'+escHtml(resultAudioUrl)+'" placeholder="https://….b-cdn.net/er.mp3"'+(resultAudioUrl && !act.resultAudioUrl ? ' data-autofilled="1"' : '')+'></div>'+
-        '<div><label>Hece Avı aşaması</label>'+
-        '<input type="number" min="1" data-field="siralaHeceStep" value="'+(act.heceStep||'')+'" placeholder="5"></div>'+
-        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-test-result-audio="1">Test</button></div></div>'+
-        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr">'+
-        '<div><label>Doğru sıra (virgülle) → yuva sayısı</label>'+
-        '<input type="text" data-field="siralaCorrectOrder" value="'+escHtml(act.correctOrder||'')+'" placeholder="e,r"></div></div>'+
-        '<div class="birles-admin-row" data-letter-key="'+escHtml(sound.id)+'" data-sirala-act="'+activeSiralaActIdx+'" data-sirala-meta="1" style="grid-template-columns:1fr 88px">'+
-        '<div><label>Yönerge MP3 (“duyduğun bu sesleri sırasıyla yuvasına sürükle…”)</label>'+
-        '<input type="url" data-field="siralaInstructionUrl" value="'+escHtml(act.instructionAudioUrl||'')+'" placeholder="https://….b-cdn.net/yonerge.mp3"></div>'+
-        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1">Test</button></div></div>'+
-        '<p class="soft small" style="margin:0 0 8px"><b>Hece Avı aşaması</b> = kaçıncı sırada çıksın (ör. 5). <b>Doğru sıra</b> = yuvalar (ör. e,r → 2 yuva). <b>Patlama okunuşu</b> = hece chip’i gelince çalan ses (hece URL’si varsa otomatik dolar). Alttaki 5 kutu = raftaki tüm sesler (çeldirici dahil).</p>'+
+      return '<div class="birles-admin-fusion" style="margin-top:4px" data-sirala-preview="1" data-letter-key="'+escHtml(sound.id)+'">'+
+        '<p class="soft small" style="margin:0 0 10px">Öğrenci akışı: <b>1)</b> hece sesi → <b>2)</b> öncül yönerge (yuva + kutular vurgulanır) → <b>3)</b> sürükle-bırak → doğruysa patlama.</p>'+
+        '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
+        '<div><label>Öncül yönerge MP3 (sabit)</label>'+
+        '<input type="url" readonly value="'+escHtml(oncul)+'"></div>'+
+        '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(oncul)+'">Test</button></div></div>'+
+        '<p class="soft small" style="margin:12px 0 0">Aşağıdaki 3 etkinlik canlı önizlemedir (Hece Avı + grup harflerinden seçilir). Kaydetmen gerekmez.</p>'+
         rows+
         '</div>';
     }
@@ -3242,43 +3226,12 @@ window.NovaAdminExport = (function(){
         }
 
         var siralaOut = null;
-        if(siralaActsBest[key]){
-          var prevS = listSiralaActivities(prev.sirala);
-          var maxS = Math.max.apply(null, Object.keys(siralaActsBest[key]).map(Number).concat([prevS.length - 1]));
-          var mergedS = [];
-          for(var sj = 0; sj <= maxS; sj++){
-            var hs = siralaActsBest[key][sj];
-            var bs = prevS[sj] || newSiralaActivity(sj + 1);
-            if(hs){
-              var snds = [];
-              for(var si = 0; si < 5; si++){
-                var sr = (hs.sounds && hs.sounds[si]) || {};
-                snds.push({
-                  label: String(sr.label || '').trim(),
-                  audioUrl: String(sr.audioUrl || '').trim()
-                });
-              }
-              mergedS.push({
-                id: bs.id || ('s' + (sj + 1)),
-                title: String(hs.title || bs.title || ('Etkinlik ' + (sj + 1))).trim(),
-                result: String(hs.result != null ? hs.result : (bs.result || '')).trim(),
-                resultAudioUrl: String(hs.resultAudioUrl != null ? hs.resultAudioUrl : (bs.resultAudioUrl || '')).trim(),
-                heceStep: hs.heceStep != null ? hs.heceStep : (bs.heceStep || 0),
-                correctOrder: String(hs.correctOrder != null ? hs.correctOrder : (bs.correctOrder || '')).trim(),
-                instructionAudioUrl: String(hs.instructionAudioUrl != null ? hs.instructionAudioUrl : (bs.instructionAudioUrl || '')).trim(),
-                sounds: snds
-              });
-            } else {
-              mergedS.push(bs);
-            }
-          }
-          siralaOut = { activities: mergedS.map(function(a, i){ return normalizeOneSiralaActivity(a, i); }) };
-        } else if(!(ui.siralaList && ui.siralaList.querySelector('[data-letter-key="'+key+'"]'))){
-          var keptS = listSiralaActivities(prev.sirala);
-          siralaOut = keptS.length ? { activities: keptS } : null;
+        /* Sıra Sende artık otomatik — eski elle kayıtları cache’ten düş */
+        if(prev && prev.sirala){
+          /* no-op: aşağıda letters yazılırken sirala eklenmez */
         }
 
-        if(aUrl || vUrl || hasYaz || kristalOut || siralaOut){
+        if(aUrl || vUrl || hasYaz || kristalOut){
           cache.letters[key] = { updatedAt: Date.now() };
           if(aUrl) cache.letters[key].audioUrl = aUrl;
           if(vUrl) cache.letters[key].videoUrl = vUrl;
@@ -3291,12 +3244,13 @@ window.NovaAdminExport = (function(){
             cache.letters[key].yazilis = prev.yazilis;
           }
           if(kristalOut) cache.letters[key].kristal = kristalOut;
-          if(siralaOut) cache.letters[key].sirala = siralaOut;
-        } else if(cache.letters[key] && !letterBest[key] && !yazilisBest[key] && !kristalActsBest[key] && !siralaActsBest[key]){
-          /* keep as-is */
+        } else if(cache.letters[key] && !letterBest[key] && !yazilisBest[key] && !kristalActsBest[key]){
+          /* keep as-is — ama eski sirala kaydını temizle */
+          if(cache.letters[key].sirala) delete cache.letters[key].sirala;
         } else {
           delete cache.letters[key];
         }
+        if(cache.letters[key] && cache.letters[key].sirala) delete cache.letters[key].sirala;
       });
 
       /* Aynı token (ör. "ne") birden fazla birleştirmede tekrarlanır.
@@ -3417,8 +3371,7 @@ window.NovaAdminExport = (function(){
         bindKristalNav(sound);
       }
       if(ui.siralaList){
-        ui.siralaList.innerHTML = renderSiralaBlock(sound, letterCur);
-        bindSiralaNav(sound);
+        ui.siralaList.innerHTML = renderSiralaBlock(sound);
       }
 
       renderSectionTabs(sound);
@@ -3463,9 +3416,10 @@ window.NovaAdminExport = (function(){
       tabs.push({ id: 'kristal', title: 'Kristal', hint: 'Mağara etkinlikleri', ready: hasKristalContent(letterCur) });
       tabs.push({
         id: 'sirala',
-        title: 'Ses Yuvası',
-        hint: 'Hece Avı içi aşama',
-        ready: !!(letterCur.sirala && packSiralaForSave(listSiralaActivities(letterCur.sirala)))
+        title: 'Sıra Sende',
+        hint: 'Hece Avı sonunda ×3',
+        ready: !!(window.NovaBirlestirelimSirala && window.NovaBirlestirelimSirala.buildEndActivities &&
+          (window.NovaBirlestirelimSirala.buildEndActivities(sound, fusionsByLane(sound, 'hece')) || []).length)
       });
       FUSION_SECTIONS.forEach(function(sec){
         var list = fusionsByLane(sound, sec.id);
@@ -3707,6 +3661,7 @@ window.NovaAdminExport = (function(){
       root.querySelectorAll('[data-test-audio]').forEach(function(btn){
         btn.addEventListener('click', async function(){
           const row = btn.closest('.birles-admin-row');
+          const previewUrl = String(btn.getAttribute('data-sirala-preview-url') || '').trim();
           const inp = row && (
             row.querySelector('[data-test-result-audio]')
               ? row.querySelector('input[data-field="siralaResultAudioUrl"]')
@@ -3716,9 +3671,10 @@ window.NovaAdminExport = (function(){
             row.querySelector('input[data-field="yazilisAudioUrl"]') ||
             row.querySelector('input[data-field="siralaAudioUrl"]') ||
             row.querySelector('input[data-field="siralaResultAudioUrl"]') ||
-            row.querySelector('input[data-field="siralaInstructionUrl"]')
+            row.querySelector('input[data-field="siralaInstructionUrl"]') ||
+            row.querySelector('input[type="url"]')
           );
-          const url = inp && String(inp.value || '').trim();
+          const url = previewUrl || (inp && String(inp.value || '').trim());
           const ui = els();
           if(!url){
             if(ui.statusEl) ui.statusEl.textContent = 'Test: URL boş.';
@@ -3952,16 +3908,15 @@ window.NovaAdminExport = (function(){
         const kristal = row.kristal && typeof row.kristal === 'object' ? row.kristal : null;
         var kristalOut = kristal ? packKristalForSave(listKristalActivities(kristal)) : null;
         var hasKristal = !!kristalOut;
-        const sirala = row.sirala && typeof row.sirala === 'object' ? row.sirala : null;
-        var siralaOut = sirala ? packSiralaForSave(listSiralaActivities(sirala)) : null;
-        var hasSirala = !!siralaOut;
-        if(audioUrl || videoUrl || hasYaz || hasKristal || hasSirala){
+        const sirala = null;
+        var siralaOut = null;
+        var hasSirala = false;
+        if(audioUrl || videoUrl || hasYaz || hasKristal){
           letters[k] = { updatedAt: Date.now() };
           if(audioUrl) letters[k].audioUrl = audioUrl;
           if(videoUrl) letters[k].videoUrl = videoUrl;
           if(hasYaz) letters[k].yazilis = yazOut;
           if(kristalOut) letters[k].kristal = kristalOut;
-          if(siralaOut) letters[k].sirala = siralaOut;
         }
       });
       const settings = {};
