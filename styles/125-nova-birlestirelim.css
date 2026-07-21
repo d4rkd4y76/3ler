@@ -7259,6 +7259,39 @@ html.nova-perf-ultra-early.nova-has-session
     0 0 0 3px rgba(74, 222, 128, 0.95),
     0 8px 18px rgba(0, 0, 0, 0.35);
 }
+.birles-sirala__nest.is-wrong {
+  border-color: #fca5a5 !important;
+  background: rgba(140, 30, 40, 0.55) !important;
+  box-shadow:
+    0 0 0 3px rgba(248, 113, 113, 0.9),
+    0 0 22px rgba(239, 68, 68, 0.55) !important;
+}
+.birles-sirala__nest-x {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 5;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.95rem, 3.8vmin, 1.25rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  background: #ef4444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  animation: birlesSiralaCheckPop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+.birles-sirala__chip.is-wrong {
+  box-shadow:
+    0 0 0 3px rgba(248, 113, 113, 0.95),
+    0 8px 18px rgba(0, 0, 0, 0.35);
+  filter: saturate(0.85);
+}
 @keyframes birlesSiralaCheckPop {
   0% {
     transform: scale(0.2);

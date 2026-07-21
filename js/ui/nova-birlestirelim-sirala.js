@@ -381,6 +381,30 @@
     ping(2640, 0.18, 0.28, 0.11);
   }
 
+  /** Yüksek cız / buzz — yanlış yerleştirme */
+  function playWrongBuzzSfx() {
+    var ctx = ensureSfxCtx();
+    if (!ctx) return;
+    var t0 = ctx.currentTime;
+    function buzz(type, freqStart, freqEnd, delay, gainPeak, dur) {
+      var osc = ctx.createOscillator();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freqStart, t0 + delay);
+      osc.frequency.exponentialRampToValueAtTime(Math.max(40, freqEnd), t0 + delay + dur);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t0 + delay);
+      g.gain.exponentialRampToValueAtTime(gainPeak, t0 + delay + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + delay + dur);
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.start(t0 + delay);
+      osc.stop(t0 + delay + dur + 0.03);
+    }
+    buzz("sawtooth", 420, 110, 0, 0.62, 0.22);
+    buzz("square", 280, 90, 0.08, 0.48, 0.2);
+    buzz("triangle", 180, 70, 0.16, 0.38, 0.18);
+  }
+
   function sleep(ms) {
     return new Promise(function (resolve) {
       setTimeout(resolve, ms);
@@ -390,7 +414,10 @@
   function showCorrectMarks() {
     if (!hostEl) return;
     hostEl.querySelectorAll(".birles-sirala__nest.is-filled").forEach(function (nest) {
+      nest.classList.remove("is-wrong");
       nest.classList.add("is-correct");
+      var oldX = nest.querySelector(".birles-sirala__nest-x");
+      if (oldX) oldX.remove();
       if (!nest.querySelector(".birles-sirala__nest-check")) {
         var mark = document.createElement("span");
         mark.className = "birles-sirala__nest-check";
@@ -399,7 +426,32 @@
         nest.appendChild(mark);
       }
       var chip = nest.querySelector(".birles-sirala__chip");
-      if (chip) chip.classList.add("is-correct");
+      if (chip) {
+        chip.classList.remove("is-wrong");
+        chip.classList.add("is-correct");
+      }
+    });
+  }
+
+  function showWrongMarks() {
+    if (!hostEl) return;
+    hostEl.querySelectorAll(".birles-sirala__nest.is-filled").forEach(function (nest) {
+      nest.classList.remove("is-correct");
+      nest.classList.add("is-wrong");
+      var oldCheck = nest.querySelector(".birles-sirala__nest-check");
+      if (oldCheck) oldCheck.remove();
+      if (!nest.querySelector(".birles-sirala__nest-x")) {
+        var mark = document.createElement("span");
+        mark.className = "birles-sirala__nest-x";
+        mark.setAttribute("aria-hidden", "true");
+        mark.textContent = "✕";
+        nest.appendChild(mark);
+      }
+      var chip = nest.querySelector(".birles-sirala__chip");
+      if (chip) {
+        chip.classList.remove("is-correct");
+        chip.classList.add("is-wrong");
+      }
     });
   }
 
@@ -793,6 +845,29 @@
     await playFinale();
   }
 
+  async function runWrongSequence() {
+    if (!hostEl || !activityRef || finishing) return;
+    introLock = true;
+    hostEl.classList.add("is-success-hold");
+
+    showWrongMarks();
+    var nests = hostEl.querySelector(".birles-sirala__nests");
+    if (nests) {
+      nests.classList.remove("is-shake");
+      void nests.offsetWidth;
+      nests.classList.add("is-shake");
+    }
+    try {
+      playWrongBuzzSfx();
+    } catch (_) {}
+    await sleep(900);
+    if (!hostEl || finishing) return;
+
+    hostEl.classList.remove("is-success-hold");
+    introLock = false;
+    resetPlacements();
+  }
+
   function checkComplete() {
     if (!activityRef || finishing) return;
     var order = activityRef.correctOrder;
@@ -817,17 +892,7 @@
       return;
     }
 
-    introLock = false;
-    var nests = hostEl && hostEl.querySelector(".birles-sirala__nests");
-    if (nests) {
-      nests.classList.remove("is-shake");
-      void nests.offsetWidth;
-      nests.classList.add("is-shake");
-    }
-    setTimeout(function () {
-      if (!hostEl || finishing) return;
-      resetPlacements();
-    }, 650);
+    runWrongSequence();
   }
 
   function resetPlacements() {
@@ -836,9 +901,11 @@
     placements = [];
     for (var i = 0; i < n; i++) placements.push(null);
     hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (nest) {
-      nest.classList.remove("is-filled", "is-correct");
+      nest.classList.remove("is-filled", "is-correct", "is-wrong");
       var check = nest.querySelector(".birles-sirala__nest-check");
       if (check) check.remove();
+      var xMark = nest.querySelector(".birles-sirala__nest-x");
+      if (xMark) xMark.remove();
       var slot = nest.querySelector(".birles-sirala__nest-slot");
       if (slot) slot.innerHTML = "";
     });
