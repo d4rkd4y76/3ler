@@ -6927,19 +6927,9 @@ html.nova-perf-ultra-early.nova-has-session
   transform: translateY(-8px);
   pointer-events: none;
 }
-.birles-sirala__ask {
-  margin: 0 0 10px;
-  padding: 0.35em 0.7em;
-  border-radius: 999px;
-  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
-  font-size: clamp(0.85rem, 3.2vmin, 1.15rem);
-  font-weight: 900;
-  color: #fff8e8;
-  background: rgba(8, 30, 48, 0.72);
-  border: 1.5px solid rgba(255, 220, 140, 0.55);
-  text-align: center;
-  pointer-events: auto;
-  max-width: 92%;
+.birles-sirala__ask,
+.birles-sirala__hint {
+  display: none !important;
 }
 .birles-sirala__nests {
   display: flex;
@@ -7055,27 +7045,26 @@ html.nova-perf-ultra-early.nova-has-session
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 .birles-sirala__hint {
-  margin: 8px 0 0;
-  font-size: clamp(0.75rem, 2.6vmin, 0.95rem);
-  font-weight: 800;
-  color: rgba(255, 248, 230, 0.9);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-  pointer-events: none;
+  display: none !important;
 }
 .birles-sirala__replay {
-  position: absolute;
-  right: 4%;
-  bottom: 22%;
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 14px auto 0;
   z-index: 6;
-  width: 44px;
-  height: 44px;
+  width: clamp(56px, 14vmin, 72px);
+  height: clamp(56px, 14vmin, 72px);
   border-radius: 50%;
-  border: 2px solid rgba(255, 230, 160, 0.7);
-  background: rgba(10, 40, 60, 0.75);
+  border: 2.5px solid rgba(255, 230, 160, 0.85);
+  background: rgba(20, 90, 150, 0.92);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: clamp(1.45rem, 5.2vmin, 1.9rem);
   cursor: pointer;
   pointer-events: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
 }
 .birles-sirala__burst {
   position: absolute;

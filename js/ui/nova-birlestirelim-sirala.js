@@ -12,6 +12,7 @@
   var POOL_BOOM_SRC = "assets/birles/ses_patlama.mp4?v=opt1";
   var ONCUL_MP3 =
     "https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3";
+  var ONCUL_23_MP3 = "https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3";
   var TR_VOWELS = "aeıioöuü";
 
   var hostEl = null;
@@ -246,7 +247,8 @@
           result: h.result,
           resultAudioUrl: resolveAudio(h.result),
           correctOrder: h.parts.join(","),
-          instructionAudioUrl: ONCUL_MP3,
+          instructionAudioUrl: idx === 0 ? ONCUL_MP3 : ONCUL_23_MP3,
+          endIndex: idx + 1,
           heceStep: 0,
           sounds: sounds
         },
@@ -297,6 +299,12 @@
     var correctOrder = parseCorrectOrder(row.correctOrder || row.order || row.nests, sounds);
     var heceStep = parseInt(row.heceStep, 10);
     if (!isFinite(heceStep) || heceStep < 1) heceStep = 0;
+    var endIndex = parseInt(row.endIndex, 10);
+    if (!isFinite(endIndex) || endIndex < 1) {
+      var idm = String(row.id || "").match(/_(\d+)$/);
+      endIndex = idm ? parseInt(idm[1], 10) : idx + 1;
+    }
+    if (!isFinite(endIndex) || endIndex < 1) endIndex = idx + 1;
     return {
       id: String(row.id || "s" + (idx + 1)).trim() || "s" + (idx + 1),
       title: String(row.title || "").trim(),
@@ -305,6 +313,7 @@
         row.resultAudioUrl || row.resultUrl || row.heceAudioUrl || ""
       ).trim(),
       heceStep: heceStep,
+      endIndex: endIndex,
       correctOrder: correctOrder,
       instructionAudioUrl: String(
         row.instructionAudioUrl || row.instructionUrl || row.promptAudioUrl || ""
@@ -999,6 +1008,19 @@
     });
   }
 
+  function guideMp3ForActivity(act) {
+    if (!act) return ONCUL_MP3;
+    if (act.endIndex > 1) return ONCUL_23_MP3;
+    return ONCUL_MP3;
+  }
+
+  function playHeceOnly() {
+    if (!activityRef || finishing) return;
+    var heceUrl = String(activityRef.resultAudioUrl || "").trim();
+    if (!heceUrl && activityRef.result) heceUrl = resolveAudio(activityRef.result);
+    if (heceUrl) playUrl(heceUrl);
+  }
+
   async function playIntroSequence() {
     if (!hostEl || !activityRef) return;
     var seq = ++introSeq;
@@ -1013,8 +1035,9 @@
     }
     if (seq !== introSeq || !hostEl) return;
 
+    var guideUrl = guideMp3ForActivity(activityRef);
     setTutorHighlight(true);
-    await playUrl(ONCUL_MP3);
+    await playUrl(guideUrl);
     if (seq !== introSeq || !hostEl) return;
 
     setTutorHighlight(false);
@@ -1034,16 +1057,6 @@
     nextUnlocked = false;
     hostEl.classList.remove("is-done", "is-intro", "is-tutor");
     setNextEnabled(false);
-
-    var title = hostEl.querySelector(".birles-sirala__ask");
-    if (title) {
-      title.textContent = "Sıra sende · Sesleri sırayla yuvaya sürükle";
-    }
-    var hint = hostEl.querySelector(".birles-sirala__hint");
-    if (hint) {
-      hint.hidden = false;
-      hint.textContent = "Kutuyu tutup yuvaya sürükle";
-    }
 
     var nests = hostEl.querySelector(".birles-sirala__nests");
     if (nests) {
@@ -1126,11 +1139,9 @@
       "    </div>" +
       '    <div class="birles-sirala__flash" hidden></div>' +
       '    <div class="birles-sirala__board">' +
-      '      <p class="birles-sirala__ask"></p>' +
       '      <div class="birles-sirala__nests"></div>' +
       '      <div class="birles-sirala__rack"></div>' +
-      '      <p class="birles-sirala__hint"></p>' +
-      '      <button type="button" class="birles-sirala__replay" data-sirala-instruct="1" aria-label="Yönerge">🔊</button>' +
+      '      <button type="button" class="birles-sirala__replay" data-sirala-instruct="1" aria-label="Heceyi dinle">🔊</button>' +
       "    </div>" +
       '    <p class="birles-sirala__burst" hidden aria-live="polite"></p>' +
       "  </div>" +
@@ -1159,7 +1170,7 @@
     box.querySelectorAll("[data-sirala-instruct]").forEach(function (el) {
       el.addEventListener("click", function () {
         if (finishing) return;
-        playIntroSequence();
+        playHeceOnly();
       });
     });
 
@@ -1178,6 +1189,7 @@
     buildEndActivities: buildEndActivities,
     pickEndHeces: pickEndHeces,
     ONCUL_MP3: ONCUL_MP3,
+    ONCUL_23_MP3: ONCUL_23_MP3,
     END_ACT_COUNT: END_ACT_COUNT,
     normalize: normalizeActivity,
     SLOT_MAX: SLOT_MAX
