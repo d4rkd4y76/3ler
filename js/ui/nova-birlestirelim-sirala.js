@@ -13,7 +13,6 @@
   var ONCUL_MP3 =
     "https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3";
   var ONCUL_23_MP3 = "https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3";
-  var TR_VOWELS = "aeıioöuü";
 
   var hostEl = null;
   var onDoneCb = null;
@@ -143,56 +142,52 @@
     return [];
   }
 
-  function isTwoLetterHeceFusion(f) {
+  function isPureHeceFusion(f) {
     if (!f) return false;
-    var kind = String(f.kind || f.type || "").toLowerCase();
-    if (kind === "intro" || kind === "ses" || kind === "cumle" || kind === "metin" || kind === "piramit") {
-      return false;
-    }
-    if (kind === "sirala") return false;
+    var kind = String(f.kind || f.type || "hece").toLowerCase();
+    if (kind !== "hece") return false;
+    if (f.mediaKey) return false;
+    if (f.mode === "chain" || f.mode === "syllables" || f.mode === "simple") return false;
+    if (kind === "kelime" || f.type === "kelime") return false;
     var parts = fusionParts(f);
     if (parts.length !== 2) return false;
+    /* Her parça tek harf olmalı — “ke”+“k” (kek) gibi kelime parçaları elenir */
+    if (parts[0].length !== 1 || parts[1].length !== 1) return false;
     var result = normLabel(f.result || parts.join(""));
-    return result.length >= 2 && result.length <= 3;
+    if (result.length !== 2) return false;
+    if (result !== parts[0] + parts[1]) return false;
+    return true;
   }
 
   function collectHeceCandidates(sound, heceList) {
     var seen = {};
     var out = [];
     function addFusion(f) {
-      if (!isTwoLetterHeceFusion(f)) return;
+      if (!isPureHeceFusion(f)) return;
       var parts = fusionParts(f);
       var result = normLabel(f.result || parts.join(""));
       if (!result || seen[result]) return;
       seen[result] = true;
       out.push({ result: result, parts: parts });
     }
+
+    /* Sadece Hece Avı listesi */
     (heceList || []).forEach(addFusion);
-    ((sound && sound.fusions) || []).forEach(function (f) {
-      var kind = String((f && (f.kind || f.type)) || "hece").toLowerCase();
-      /* Hece Avı + iki harfli hece-benzeri kelimeler (at, et) */
-      if (kind === "hece" || (kind === "kelime" && fusionParts(f).length === 2)) {
-        addFusion(f);
-      }
-    });
 
     if (out.length >= END_ACT_COUNT) return out;
 
-    var letters = unlockedLetters(sound);
-    var i;
-    var j;
-    for (i = 0; i < letters.length; i++) {
-      for (j = 0; j < letters.length; j++) {
-        if (i === j) continue;
-        var a = letters[i];
-        var b = letters[j];
-        /* En az biri ünlü olsun */
-        if (!isVowel(a) && !isVowel(b)) continue;
-        var result = a + b;
-        if (seen[result]) continue;
-        seen[result] = true;
-        out.push({ result: result, parts: [a, b] });
-      }
+    /* Yetmezse aynı gruptaki önceki seslerin Hece Avı hecelerinden doldur */
+    var g = findGroupForSound(sound);
+    var arr = (g && g.sounds) || [];
+    for (var i = 0; i < arr.length; i++) {
+      var s = arr[i];
+      if (!s) continue;
+      ((s.fusions) || []).forEach(function (f) {
+        var kind = String((f && (f.kind || f.type)) || "hece").toLowerCase();
+        if (kind === "hece" && !f.mediaKey) addFusion(f);
+      });
+      if (s.id === (sound && sound.id)) break;
+      if (out.length >= END_ACT_COUNT * 2) break;
     }
     return out;
   }
