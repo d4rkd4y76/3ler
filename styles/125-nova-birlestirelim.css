@@ -3550,25 +3550,42 @@ html.nova-perf-ultra-early.nova-has-session
 
 .birles-play--pool .birles-hece-board {
   position: absolute;
-  top: 5%;
-  left: 50%;
-  right: auto;
+  top: 2.8%;
+  left: 0;
+  right: 0;
   z-index: 3;
-  margin: 0;
-  padding: 0.32em 0.78em 0.4em;
-  width: max-content;
-  max-width: min(88%, 280px);
-  transform: translateX(-50%);
-  border-radius: 16px;
+  width: fit-content;
+  max-width: min(86%, 260px);
+  margin: 0 auto;
+  padding: 0.28em 0.7em 0.32em;
+  transform: none;
+  border-radius: 14px;
   background:
-    linear-gradient(165deg, rgba(255, 252, 245, 0.94) 0%, rgba(230, 245, 255, 0.9) 100%);
-  border: 2px solid rgba(255, 236, 190, 0.95);
+    linear-gradient(160deg, #fffdf6 0%, #fff3d6 45%, #eaf6ff 100%);
+  border: 2.5px solid rgba(255, 220, 150, 0.98);
   box-shadow:
-    0 0 0 2px rgba(40, 90, 130, 0.2),
-    0 10px 26px rgba(0, 16, 32, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+    0 0 0 3px rgba(30, 70, 110, 0.22),
+    0 8px 22px rgba(0, 12, 28, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(180, 140, 60, 0.18);
+  backdrop-filter: blur(8px);
   pointer-events: auto;
+  text-align: center;
+}
+
+.birles-play--pool .birles-hece-board--spotlight {
+  animation: birlesPoolWordIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes birlesPoolWordIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .birles-play--pool .birles-hece-board__full {
@@ -3576,17 +3593,22 @@ html.nova-perf-ultra-early.nova-has-session
   padding: 0;
   min-height: 0;
   gap: 0;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .birles-play--pool .birles-hece-seg {
-  font-size: clamp(1.45rem, 5.8vmin, 2.05rem);
-  line-height: 1.15;
-  padding: 0.05em 0.04em 0.12em;
-  color: #143246;
+  font-size: clamp(1.35rem, 5.2vmin, 1.9rem);
+  line-height: 1.05;
+  padding: 0.02em 0.02em 0.06em;
+  color: #122a3c;
+  letter-spacing: 0.02em;
 }
 
 .birles-play--pool .birles-hece-seg.is-on {
-  padding: 0.08em 0.1em 0.16em;
+  padding: 0.06em 0.1em 0.1em;
 }
 
 .birles-play--pool .birles-stage {
@@ -3621,35 +3643,65 @@ html.nova-perf-ultra-early.nova-has-session
 
 .birles-play--pool .birles-reveal {
   position: absolute;
-  left: 50%;
-  top: 48%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  top: 46%;
   z-index: 5;
-  margin: 0;
-  width: min(46%, 188px);
-  max-width: min(46%, 188px);
+  width: min(44%, 176px);
+  max-width: min(44%, 176px);
+  margin: 0 auto;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   pointer-events: none;
+}
+
+.birles-play--pool .birles-reveal.is-pop {
+  animation: none !important;
+}
+
+.birles-play--pool .birles-reveal.is-pop .birles-reveal__frame {
+  animation: birlesPoolRevealPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes birlesPoolRevealPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .birles-play--pool .birles-reveal__frame {
   position: relative;
-  padding: 7px;
-  border-radius: 22px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  border-radius: 20px;
   background:
-    linear-gradient(145deg, #fff8e8 0%, #ffe2a8 35%, #f0c878 70%, #e8b86a 100%);
-  border: 2px solid rgba(255, 248, 220, 0.95);
+    linear-gradient(145deg, #fffaf0 0%, #ffe6b0 40%, #efc06a 78%, #d9a84a 100%);
+  border: 2.5px solid rgba(255, 248, 220, 0.98);
   box-shadow:
-    0 0 0 3px rgba(120, 70, 20, 0.28),
-    0 14px 32px rgba(0, 20, 40, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    0 0 0 3px rgba(90, 50, 10, 0.3),
+    0 12px 28px rgba(0, 16, 32, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .birles-play--pool .birles-reveal__frame::before {
   content: "";
   position: absolute;
-  inset: 4px;
-  border-radius: 16px;
-  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  inset: 5px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
   pointer-events: none;
   z-index: 1;
 }
@@ -3662,27 +3714,28 @@ html.nova-perf-ultra-early.nova-has-session
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .birles-pool__burst {
   position: absolute;
-  left: 50%;
-  top: 28%;
+  left: 0;
+  right: 0;
+  top: 27%;
   z-index: 6;
-  margin: 0;
+  margin: 0 auto;
   min-width: 0;
-  width: max-content;
+  width: fit-content;
   max-width: 78%;
-  padding: 0.28em 0.62em 0.34em;
+  padding: 0.22em 0.55em 0.26em;
   opacity: 0;
   text-align: center;
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
-  font-size: clamp(2.35rem, 11vmin, 3.8rem);
+  font-size: clamp(2rem, 9.5vmin, 3.2rem);
   font-weight: 900;
-  letter-spacing: 0.06em;
-  line-height: 1.05;
+  letter-spacing: 0.04em;
+  line-height: 1.02;
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
   text-shadow:
@@ -3691,11 +3744,11 @@ html.nova-perf-ultra-early.nova-has-session
     0 0 48px rgba(80, 180, 255, 0.85);
   background: linear-gradient(
     165deg,
-    rgba(20, 50, 90, 0.72) 0%,
-    rgba(8, 30, 55, 0.78) 100%
+    rgba(20, 50, 90, 0.78) 0%,
+    rgba(8, 30, 55, 0.84) 100%
   );
-  border: 2.5px solid rgba(230, 250, 255, 0.9);
-  border-radius: 22px;
+  border: 2.5px solid rgba(230, 250, 255, 0.92);
+  border-radius: 18px;
   box-shadow:
     0 0 0 3px rgba(60, 140, 200, 0.35),
     0 0 36px rgba(100, 210, 255, 0.75),
@@ -3703,7 +3756,7 @@ html.nova-perf-ultra-early.nova-has-session
     inset 0 1px 0 rgba(255, 255, 255, 0.45);
   pointer-events: none;
   will-change: transform, opacity;
-  transform: translate3d(-50%, 78%, 0) scale(0.52);
+  transform: translate3d(0, 78%, 0) scale(0.52);
 }
 
 .birles-pool__burst.is-rise,
@@ -3714,18 +3767,18 @@ html.nova-perf-ultra-early.nova-has-session
 @keyframes birlesPoolBurstBoom {
   0% {
     opacity: 0;
-    transform: translate3d(-50%, 78%, 0) scale(0.48);
+    transform: translate3d(0, 78%, 0) scale(0.48);
   }
   48% {
     opacity: 1;
-    transform: translate3d(-50%, -36%, 0) scale(1.1);
+    transform: translate3d(0, -36%, 0) scale(1.08);
   }
   72% {
-    transform: translate3d(-50%, -26%, 0) scale(0.97);
+    transform: translate3d(0, -26%, 0) scale(0.97);
   }
   100% {
     opacity: 1;
-    transform: translate3d(-50%, -28%, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -3855,7 +3908,7 @@ html.nova-perf-ultra-early.nova-has-session
   .birles-pool__burst.is-boom-in {
     animation: none;
     opacity: 1;
-    transform: translate3d(-50%, -28%, 0) scale(1);
+    transform: none;
   }
 }
 
