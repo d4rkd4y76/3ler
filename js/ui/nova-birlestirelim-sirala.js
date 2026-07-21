@@ -351,6 +351,67 @@
     return a;
   }
 
+  var sfxCtx = null;
+
+  function ensureSfxCtx() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    if (!sfxCtx) sfxCtx = new AC();
+    if (sfxCtx.state === "suspended") {
+      try {
+        sfxCtx.resume();
+      } catch (_) {}
+    }
+    return sfxCtx;
+  }
+
+  /** Yüksek, net tik — doğru yerleştirme */
+  function playCorrectTickSfx() {
+    var ctx = ensureSfxCtx();
+    if (!ctx) return;
+    var t0 = ctx.currentTime;
+    function ping(freq, delay, gainPeak, dur) {
+      var osc = ctx.createOscillator();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, t0 + delay);
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t0 + delay);
+      g.gain.exponentialRampToValueAtTime(gainPeak, t0 + delay + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + delay + dur);
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.start(t0 + delay);
+      osc.stop(t0 + delay + dur + 0.02);
+    }
+    /* Kısa tık + parlak tik */
+    ping(1200, 0, 0.72, 0.09);
+    ping(1680, 0.05, 0.58, 0.12);
+    ping(2100, 0.11, 0.4, 0.14);
+    ping(2640, 0.18, 0.28, 0.11);
+  }
+
+  function sleep(ms) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  function showCorrectMarks() {
+    if (!hostEl) return;
+    hostEl.querySelectorAll(".birles-sirala__nest.is-filled").forEach(function (nest) {
+      nest.classList.add("is-correct");
+      if (!nest.querySelector(".birles-sirala__nest-check")) {
+        var mark = document.createElement("span");
+        mark.className = "birles-sirala__nest-check";
+        mark.setAttribute("aria-hidden", "true");
+        mark.textContent = "✓";
+        nest.appendChild(mark);
+      }
+      var chip = nest.querySelector(".birles-sirala__chip");
+      if (chip) chip.classList.add("is-correct");
+    });
+  }
+
   function stopInstruct() {
     if (instructAudio) {
       try {
@@ -725,8 +786,24 @@
     if (typeof cb === "function") cb({ success: true });
   }
 
+  async function runSuccessSequence() {
+    if (!hostEl || !activityRef || finishing) return;
+    introLock = true;
+    hostEl.classList.add("is-success-hold");
+
+    showCorrectMarks();
+    try {
+      playCorrectTickSfx();
+    } catch (_) {}
+    await sleep(950);
+    if (!hostEl) return;
+
+    hostEl.classList.remove("is-success-hold");
+    await playFinale();
+  }
+
   function checkComplete() {
-    if (!activityRef || finishing || introLock) return;
+    if (!activityRef || finishing) return;
     var order = activityRef.correctOrder;
     if (filledCount() < order.length) return;
 
@@ -745,10 +822,11 @@
     }
 
     if (ok) {
-      playFinale();
+      runSuccessSequence();
       return;
     }
 
+    introLock = false;
     var nests = hostEl && hostEl.querySelector(".birles-sirala__nests");
     if (nests) {
       nests.classList.remove("is-shake");
@@ -767,7 +845,9 @@
     placements = [];
     for (var i = 0; i < n; i++) placements.push(null);
     hostEl.querySelectorAll(".birles-sirala__nest").forEach(function (nest) {
-      nest.classList.remove("is-filled");
+      nest.classList.remove("is-filled", "is-correct");
+      var check = nest.querySelector(".birles-sirala__nest-check");
+      if (check) check.remove();
       var slot = nest.querySelector(".birles-sirala__nest-slot");
       if (slot) slot.innerHTML = "";
     });
@@ -794,9 +874,11 @@
         placements[i] = null;
         var oldNest = hostEl.querySelector('.birles-sirala__nest[data-nest="' + i + '"]');
         if (oldNest) {
-          oldNest.classList.remove("is-filled");
+          oldNest.classList.remove("is-filled", "is-correct");
           var os = oldNest.querySelector(".birles-sirala__nest-slot");
           if (os) os.innerHTML = "";
+          var oldCheck = oldNest.querySelector(".birles-sirala__nest-check");
+          if (oldCheck) oldCheck.remove();
         }
       }
     }
@@ -820,12 +902,27 @@
         slot.appendChild(chip);
       }
     }
-    try {
-      var s = activityRef.sounds[soundI];
-      var chipUrl = (s && s.audioUrl) || resolveAudio(s && s.label);
-      if (chipUrl) playUrl(chipUrl);
-    } catch (_) {}
-    checkComplete();
+
+    var s = activityRef.sounds[soundI];
+    var chipUrl = (s && s.audioUrl) || resolveAudio(s && s.label);
+    var shouldEvaluate = filledCount() >= nestCount();
+    if (shouldEvaluate) introLock = true;
+
+    /* Önce harf sesi bitsin, sonra doğruluk / patlama */
+    Promise.resolve()
+      .then(function () {
+        return chipUrl ? playUrl(chipUrl) : null;
+      })
+      .then(function () {
+        if (!hostEl || finishing) return;
+        if (shouldEvaluate) checkComplete();
+        else introLock = false;
+      })
+      .catch(function () {
+        if (!hostEl || finishing) return;
+        if (shouldEvaluate) checkComplete();
+        else introLock = false;
+      });
   }
 
   function nestAtPoint(x, y) {

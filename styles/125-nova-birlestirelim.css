@@ -7227,10 +7227,61 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-sirala__rack {
   touch-action: none;
 }
+.birles-sirala__nest.is-correct {
+  border-color: #86efac !important;
+  background: rgba(16, 120, 60, 0.55) !important;
+  box-shadow:
+    0 0 0 3px rgba(74, 222, 128, 0.85),
+    0 0 22px rgba(74, 222, 128, 0.55) !important;
+}
+.birles-sirala__nest-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 5;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.95rem, 3.8vmin, 1.25rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #052e16;
+  background: #4ade80;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  animation: birlesSiralaCheckPop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+.birles-sirala__chip.is-correct {
+  box-shadow:
+    0 0 0 3px rgba(74, 222, 128, 0.95),
+    0 8px 18px rgba(0, 0, 0, 0.35);
+}
+@keyframes birlesSiralaCheckPop {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 .birles-sirala__nest {
+  position: relative;
   border: 2.5px dashed rgba(255, 245, 200, 0.95) !important;
   background: rgba(8, 28, 48, 0.72) !important;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(0, 0, 0, 0.25);
+}
+.birles-sirala.is-success-hold .birles-sirala__rack,
+.birles-sirala.is-success-hold .birles-sirala__nests {
+  pointer-events: none;
 }
 .birles-sirala__exit {
   display: none !important;
