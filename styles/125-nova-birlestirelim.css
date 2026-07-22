@@ -3625,8 +3625,9 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 /*
- * Kelime oyunu: yalnızca AKTİF hecede yeşil alt çizgi.
- * is-done / complete: mint arka plan, renk değişimi, çizgi YOK (mavi ton kalmasın).
+ * Kelime: okurken yalnızca AKTİF hecede yeşil çizgi.
+ * Bitince (is-complete) tüm hecelerde yeşil çizgi kalsın.
+ * Mint/mavi arka plan yok.
  */
 .birles-play--kelime .birles-hece-seg.is-on,
 .birles-play--kelime .birles-hece-seg.is-done,
@@ -3648,16 +3649,16 @@ html.nova-perf-ultra-early.nova-has-session
   z-index: 2;
 }
 
-.birles-play--kelime .birles-hece-seg.is-done::after,
-.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after,
-.birles-play--pool.birles-play--kelime .birles-hece-seg.is-done::after,
-.birles-play--pool.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after {
+.birles-play--kelime .birles-hece-board:not(.is-complete) .birles-hece-seg.is-done::after,
+.birles-play--pool.birles-play--kelime .birles-hece-board:not(.is-complete) .birles-hece-seg.is-done::after {
   content: none !important;
   display: none !important;
 }
 
 .birles-play--kelime .birles-hece-seg.is-on::after,
-.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after {
+.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after,
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after,
+.birles-play--pool.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after {
   content: "" !important;
   display: block !important;
   position: absolute !important;
@@ -3677,7 +3678,9 @@ html.nova-perf-ultra-early.nova-has-session
 
 @media (max-width: 640px) {
   .birles-play--kelime .birles-hece-seg.is-on::after,
-  .birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after {
+  .birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after,
+  .birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after,
+  .birles-play--pool.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after {
     height: 5px !important;
   }
 }
