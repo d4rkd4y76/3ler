@@ -1102,7 +1102,7 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
 <script src="js/core/nova-birlestirelim-data.js?v=30260714birles36"></script>
 <script src="js/core/nova-birlestirelim-yazilis-data.js?v=30260719yazN3"></script>
-<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722kelimeson1"></script>
+<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722kelimehece1"></script>
 <script src="js/ui/nova-kids-voice.js?v=30260714birles18"></script>
 <script>
 /** =============================
@@ -3051,7 +3051,7 @@ window.NovaAdminExport = (function(){
       if(!allowsKel){
         kelimeRows = '<p class="soft small">Kelime Sıra Sende Maarif’e göre <b>t</b> sesinden itibaren açılır (at / et ile duyduğunu yazma). Bu ses henüz eşikte değil.</p>';
       } else if(!kelActs.length){
-        kelimeRows = '<p class="soft small">Bu ses için 2–4 harfli kelime adayı yok — Kelime Bahçesi içeriği gelince 3 etkinlik eklenir.</p>';
+        kelimeRows = '<p class="soft small">Bu ses için en az 2 heceli kelime adayı yok — Kelime Bahçesi içeriği gelince 3 etkinlik eklenir.</p>';
       } else {
         kelimeRows = actRows(kelActs, kelOncul1, kelOncul23, 'Kelime okunuşu');
       }
@@ -3069,7 +3069,7 @@ window.NovaAdminExport = (function(){
         '<div style="padding-top:18px"><button type="button" class="btn" data-test-audio="1" data-sirala-preview-url="'+escHtml(oncul23)+'">Test</button></div></div>'+
         heceRows+
         '<h4 class="birles-admin-sec" style="margin:22px 0 8px">Kelime Bahçesi sonu · duyduğunu yaz</h4>'+
-        '<p class="soft small" style="margin:0 0 10px"><b>1:</b> kelime → KELİME 1. <b>2–3:</b> kelime → KELİME 2. Hoparlör = sadece kelime.</p>'+
+        '<p class="soft small" style="margin:0 0 10px"><b>1:</b> kelime → KELIMESON1. <b>2–3:</b> kelime → KELIMESON 2. Rafta heceler; yuvalara doğru sırayla yerleştir. Hoparlör = sadece kelime.</p>'+
         '<div class="birles-admin-row" style="grid-template-columns:1fr 88px">'+
         '<div><label>1. etkinlik KELİME 1 MP3</label>'+
         '<input type="url" readonly value="'+escHtml(kelOncul1)+'"></div>'+

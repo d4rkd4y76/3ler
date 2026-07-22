@@ -284,8 +284,29 @@
     return kind === "kelime" || !!f.mediaKey;
   }
 
-  function kelimeWordLetters(result) {
-    return Array.from(normLabel(result || "")).filter(Boolean);
+  /** Kelime → hece listesi (a-ta, an-ne…). Tek heceliler elenir. */
+  function kelimeSyllableParts(f) {
+    var result = normLabel((f && (f.say || f.result)) || "");
+    if (!result) {
+      var fp = fusionParts(f);
+      result = normLabel(fp.join(""));
+    }
+    if (!result) return [];
+
+    if (f && Array.isArray(f.displaySyllables) && f.displaySyllables.length >= 2) {
+      return f.displaySyllables.map(normLabel).filter(Boolean);
+    }
+    if (f && Array.isArray(f.syllables) && f.syllables.length >= 2) {
+      if (typeof f.syllables[0] === "string") {
+        return f.syllables.map(normLabel).filter(Boolean);
+      }
+    }
+    var D = global.NovaBirlestirelimData;
+    if (D && typeof D.syllabifyTR === "function") {
+      var syls = D.syllabifyTR(result) || [];
+      if (syls.length >= 2) return syls.map(normLabel).filter(Boolean);
+    }
+    return [];
   }
 
   function collectKelimeCandidates(sound, kelimeList) {
@@ -294,23 +315,22 @@
 
     function addFusion(f) {
       if (!isKelimeLaneFusion(f)) return;
-      var result = normLabel(f.result || "");
+      var result = normLabel((f && (f.say || f.result)) || "");
       if (!result) {
         var fp = fusionParts(f);
         result = normLabel(fp.join(""));
       }
-      if (!result || result.length < 2 || result.length > 4) return;
-      if (seen[result]) return;
-      var letters = kelimeWordLetters(result);
-      if (letters.length < 2 || letters.length > SLOT_MAX) return;
+      if (!result || seen[result]) return;
+      var parts = kelimeSyllableParts(f);
+      if (parts.length < 2 || parts.length > Math.min(4, SLOT_MAX)) return;
       seen[result] = true;
-      out.push({ result: result, parts: letters });
+      out.push({ result: result, parts: parts });
     }
 
     (kelimeList || []).forEach(addFusion);
     if (out.length >= END_ACT_COUNT) return out;
 
-    /* Yetmezse t’den bu sese kadar (dahil önceki) kelime adaylarından doldur */
+    /* Yetmezse t’den bu sese kadar kelime adaylarından doldur */
     if (!soundAllowsKelimeSirala(sound)) return out;
     var D = global.NovaBirlestirelimData;
     var groups = (D && D.GROUPS) || [];
@@ -341,7 +361,49 @@
     return shuffled.slice(0, Math.min(END_ACT_COUNT, shuffled.length));
   }
 
-  /** Rafta tekrarlı harfler de durur (anne → iki n) */
+  /** Öğretilmiş hece havuzu — rafta çeldirici heceler için */
+  function unlockedHeces(sound) {
+    var out = [];
+    var seen = {};
+    function add(h) {
+      var L = normLabel(h);
+      if (!L || L.length < 1 || seen[L]) return;
+      seen[L] = true;
+      out.push(L);
+    }
+    var g = findGroupForSound(sound);
+    var arr = (g && g.sounds) || [];
+    for (var i = 0; i < arr.length; i++) {
+      var s = arr[i];
+      if (!s) continue;
+      ((s.fusions) || []).forEach(function (f) {
+        if (isPureHeceFusion(f)) {
+          add(f.result || fusionParts(f).join(""));
+          return;
+        }
+        if (isKelimeLaneFusion(f)) {
+          kelimeSyllableParts(f).forEach(add);
+        }
+      });
+      if (s.id === (sound && sound.id)) break;
+    }
+    /* Önceki gruplardan da hece (t sonrası kelimeler için) */
+    var D = global.NovaBirlestirelimData;
+    var groups = (D && D.GROUPS) || [];
+    for (var gi = 0; gi < groups.length; gi++) {
+      var gs = groups[gi];
+      if (g && gs && gs.id === g.id) break;
+      ((gs && gs.sounds) || []).forEach(function (s2) {
+        ((s2 && s2.fusions) || []).forEach(function (f2) {
+          if (isPureHeceFusion(f2)) add(f2.result || fusionParts(f2).join(""));
+          else if (isKelimeLaneFusion(f2)) kelimeSyllableParts(f2).forEach(add);
+        });
+      });
+    }
+    return out;
+  }
+
+  /** Rafta heceler (tekrarlı hece varsa iki kez) + çeldirici heceler */
   function buildKelimeRackSounds(parts, sound) {
     var labels = [];
     var seenUnique = {};
@@ -351,18 +413,22 @@
       labels.push(L);
       seenUnique[L] = true;
     });
-    var pool = unlockedLetters(sound).slice();
-    var g = findGroupForSound(sound);
-    ((g && g.sounds) || []).forEach(function (s) {
-      var L = normLabel(s && (s.letter || s.id));
-      if (L && pool.indexOf(L) < 0) pool.push(L);
-    });
+    var pool = unlockedHeces(sound);
     var extras = seededShuffle(
       pool.filter(function (L) {
-        return !seenUnique[L];
+        return !seenUnique[L] && String(L).length >= 2;
       }),
       hashSeed("kw:" + ((sound && sound.id) || "") + ":" + labels.join(""))
     );
+    if (extras.length < SLOT_MAX - labels.length) {
+      var more = seededShuffle(
+        pool.filter(function (L) {
+          return !seenUnique[L] && extras.indexOf(L) < 0;
+        }),
+        hashSeed("kw2:" + ((sound && sound.id) || "") + ":" + labels.join(""))
+      );
+      extras = extras.concat(more);
+    }
     for (var i = 0; i < extras.length && labels.length < SLOT_MAX; i++) {
       labels.push(extras[i]);
     }
@@ -371,7 +437,7 @@
     });
   }
 
-  /** Kelime Bahçesi sonunda 3 otomatik “Sıra sende / duyduğunu yaz” */
+  /** Kelime Bahçesi sonunda 3 otomatik “Sıra sende / duyduğunu yaz” (hece sırala) */
   function buildEndKelimeActivities(sound, kelimeList) {
     if (!soundAllowsKelimeSirala(sound)) return [];
     var picked = pickEndKelimes(sound, kelimeList);
