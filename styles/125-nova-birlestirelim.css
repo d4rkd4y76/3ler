@@ -8121,32 +8121,159 @@ html.nova-perf-ultra-early.nova-has-session
   padding-bottom: calc(18% + 72px);
 }
 
-/* Zirve Mağarası — cümle kelime sıralama */
+/* Zirve Mağarası — cümle kelime sıralama (ejderha / kristal) */
+.birles-sirala--cumle .birles-sirala__flash.is-on {
+  background: radial-gradient(circle, rgba(125, 211, 252, 0.75), transparent 62%);
+}
+
 .birles-sirala--cumle .birles-sirala__nests {
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: min(96%, 560px);
-}
-.birles-sirala--cumle .birles-sirala__nest {
-  min-width: clamp(64px, 18vmin, 96px);
-  min-height: clamp(56px, 15vmin, 78px);
-  flex: 0 1 auto;
-}
-.birles-sirala--cumle .birles-sirala__chip {
-  min-width: clamp(64px, 17vmin, 110px);
-  padding: 0.35em 0.55em;
-  font-size: clamp(0.95rem, 3.6vmin, 1.25rem);
-}
-.birles-sirala--cumle .birles-sirala__rack {
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: min(96%, 560px);
+  max-width: min(96%, 580px);
+  padding: 10px 12px 12px;
+  border-radius: 22px;
+  background:
+    linear-gradient(165deg, rgba(8, 24, 52, 0.55), rgba(4, 12, 28, 0.62));
+  border: 1.5px solid rgba(125, 211, 252, 0.28);
+  box-shadow:
+    0 10px 28px rgba(0, 8, 24, 0.45),
+    inset 0 1px 0 rgba(186, 230, 253, 0.12);
 }
+
+.birles-sirala--cumle .birles-sirala__nest {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: clamp(70px, 19vmin, 104px);
+  min-height: clamp(64px, 17vmin, 88px);
+  max-width: none;
+  aspect-ratio: auto;
+  border-radius: 18px 18px 22px 22px !important;
+  border: 2.5px solid rgba(56, 189, 248, 0.55) !important;
+  background:
+    linear-gradient(160deg, rgba(15, 40, 78, 0.82) 0%, rgba(8, 22, 48, 0.88) 55%, rgba(12, 30, 60, 0.9) 100%) !important;
+  box-shadow:
+    0 0 0 2px rgba(0, 20, 50, 0.45),
+    0 8px 18px rgba(0, 12, 40, 0.4),
+    inset 0 1px 0 rgba(186, 230, 253, 0.2),
+    inset 0 -8px 16px rgba(2, 8, 24, 0.35) !important;
+  clip-path: polygon(8% 0, 92% 0, 100% 12%, 100% 88%, 92% 100%, 8% 100%, 0 88%, 0 12%);
+}
+
+.birles-sirala--cumle .birles-sirala__nest::before {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 5px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.85), transparent);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.birles-sirala--cumle .birles-sirala__nest.is-target {
+  border-color: rgba(74, 222, 128, 0.85) !important;
+  box-shadow:
+    0 0 0 3px rgba(74, 222, 128, 0.28),
+    0 8px 18px rgba(0, 12, 40, 0.4),
+    inset 0 0 18px rgba(74, 222, 128, 0.18) !important;
+}
+
+.birles-sirala--cumle .birles-sirala__nest.is-filled {
+  border-color: rgba(125, 211, 252, 0.75) !important;
+  background:
+    linear-gradient(160deg, rgba(20, 55, 100, 0.88) 0%, rgba(10, 28, 58, 0.92) 100%) !important;
+}
+
+.birles-sirala--cumle .birles-sirala__nest-num {
+  color: #7dd3fc;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  font-weight: 900;
+}
+
+.birles-sirala--cumle .birles-sirala__nest-slot {
+  border-radius: 14px;
+}
+
+.birles-sirala--cumle .birles-sirala__rack {
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: min(96%, 580px);
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background:
+    linear-gradient(165deg, rgba(10, 28, 58, 0.72), rgba(6, 14, 32, 0.78));
+  border: 1.5px solid rgba(140, 200, 255, 0.28);
+  box-shadow:
+    0 10px 24px rgba(0, 8, 24, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.birles-sirala--cumle .birles-sirala__chip {
+  min-width: clamp(72px, 18vmin, 118px);
+  min-height: clamp(52px, 13vmin, 70px);
+  padding: 0.4em 0.65em;
+  border-radius: 16px 16px 20px 20px;
+  border: 2.5px solid rgba(125, 211, 252, 0.7);
+  background:
+    linear-gradient(165deg, #e0f2fe 0%, #bae6fd 38%, #7dd3fc 72%, #38bdf8 100%);
+  color: #0c1929;
+  font-size: clamp(0.95rem, 3.6vmin, 1.25rem);
+  font-weight: 900;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 8px 18px rgba(0, 20, 50, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -6px 12px rgba(14, 116, 144, 0.22);
+  clip-path: polygon(7% 0, 93% 0, 100% 14%, 100% 86%, 93% 100%, 7% 100%, 0 86%, 0 14%);
+}
+
+.birles-sirala--cumle .birles-sirala__chip.is-placed {
+  background:
+    linear-gradient(165deg, #f0f9ff 0%, #e0f2fe 45%, #bae6fd 100%);
+  border-color: rgba(56, 189, 248, 0.85);
+  color: #0f172a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 2px 8px rgba(0, 20, 50, 0.25);
+}
+
+.birles-sirala--cumle .birles-sirala__chip.is-correct {
+  border-color: #4ade80 !important;
+  background:
+    linear-gradient(165deg, #ecfdf5 0%, #bbf7d0 55%, #86efac 100%) !important;
+  color: #14532d !important;
+}
+
+.birles-sirala--cumle .birles-sirala__nest.is-correct {
+  border-color: #4ade80 !important;
+  box-shadow:
+    0 0 0 3px rgba(74, 222, 128, 0.3),
+    0 8px 18px rgba(0, 12, 40, 0.4),
+    inset 0 0 16px rgba(74, 222, 128, 0.2) !important;
+}
+
+.birles-sirala--cumle .birles-sirala__nest-check {
+  background: linear-gradient(160deg, #4ade80, #16a34a);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.5);
+}
+
+.birles-sirala--cumle .birles-sirala__burst-chip--cumle,
 .birles-sirala__burst-chip--cumle {
   font-size: clamp(1.05rem, 4.2vmin, 1.55rem) !important;
-  padding: 0.45em 0.7em !important;
+  padding: 0.5em 0.85em !important;
   max-width: min(92vw, 480px);
   text-wrap: balance;
+  border-radius: 18px !important;
+  border: 2.5px solid rgba(125, 211, 252, 0.65) !important;
+  background:
+    linear-gradient(165deg, rgba(12, 28, 58, 0.92), rgba(6, 14, 32, 0.94)) !important;
+  color: #e0f2fe !important;
+  box-shadow:
+    0 12px 28px rgba(0, 8, 24, 0.55),
+    0 0 0 3px rgba(56, 189, 248, 0.22) !important;
 }

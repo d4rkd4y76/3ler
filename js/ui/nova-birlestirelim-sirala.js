@@ -10,6 +10,9 @@
   var END_ACT_COUNT = 3;
   var POOL_MERGE_SRC = "assets/birles/ses_birlestirme.mp4?v=opt1";
   var POOL_BOOM_SRC = "assets/birles/ses_patlama.mp4?v=opt1";
+  /* Zirve Mağarası Sıra sende — ejderha mağara (ses/kelime havuzu değil) */
+  var CUMLE_MERGE_SRC = "assets/birles/cumle_loop.mp4?v=opt1";
+  var CUMLE_BOOM_SRC = "assets/birles/cumle_patlama.mp4?v=opt1";
   var ONCUL_MP3 =
     "https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3";
   var ONCUL_23_MP3 = "https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3";
@@ -1645,16 +1648,32 @@
     bindNests();
     hardCutBoom(false);
 
+    var isCumleMode = !!(activityRef && activityRef.mode === "cumle");
+    var mergeSrc = isCumleMode ? CUMLE_MERGE_SRC : POOL_MERGE_SRC;
+    var boomSrc = isCumleMode ? CUMLE_BOOM_SRC : POOL_BOOM_SRC;
+
     var merge = hostEl.querySelector(".birles-sirala__vid--merge");
     if (merge) {
       merge.muted = true;
       merge.loop = true;
-      if (!merge.getAttribute("src")) merge.src = POOL_MERGE_SRC;
+      if (merge.getAttribute("src") !== mergeSrc) {
+        merge.setAttribute("src", mergeSrc);
+        try {
+          merge.load();
+        } catch (_) {}
+      }
       var p = merge.play();
       if (p && typeof p.catch === "function") p.catch(function () {});
     }
     var boom = hostEl.querySelector(".birles-sirala__vid--boom");
-    if (boom && !boom.getAttribute("src")) boom.src = POOL_BOOM_SRC;
+    if (boom) {
+      if (boom.getAttribute("src") !== boomSrc) {
+        boom.setAttribute("src", boomSrc);
+        try {
+          boom.load();
+        } catch (_) {}
+      }
+    }
 
     setTimeout(function () {
       playIntroSequence();
