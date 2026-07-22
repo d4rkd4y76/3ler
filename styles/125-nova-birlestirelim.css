@@ -3325,6 +3325,61 @@ html.nova-perf-ultra-early.nova-has-session
   margin-bottom: 18px;
 }
 
+/* Kelime: okunan hece — sadece yeşil alt çizgi, büyütme yok */
+.birles-play--kelime .birles-hece-seg.is-on {
+  color: inherit;
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0.14em 0.16em;
+  font-weight: 700;
+  z-index: 2;
+  position: relative;
+  animation: none;
+}
+
+.birles-play--kelime .birles-hece-seg.is-on::after {
+  content: "";
+  position: absolute;
+  left: 0.16em;
+  right: 0.16em;
+  bottom: 0.08em;
+  height: 4px;
+  border-radius: 999px;
+  background: #1a9b75;
+  opacity: 0.95;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on {
+  padding: 0.08em 0.1em;
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+  animation: none;
+  font-weight: 700;
+  color: #122a3c;
+  text-shadow: none;
+}
+
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after {
+  left: 0.1em;
+  right: 0.1em;
+  bottom: 0.04em;
+  height: 4px;
+  background: #1a9b75;
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .birles-play--kelime .birles-hece-seg.is-on::after,
+  .birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after {
+    height: 5px;
+  }
+}
+
 .birles-play__narration[hidden] {
   display: none !important;
 }
