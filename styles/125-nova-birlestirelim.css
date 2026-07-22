@@ -5155,9 +5155,9 @@ html.nova-perf-ultra-early.nova-has-session
  * Net altın renk + ince alt çizgi; glow/padding/şerit yok.
  */
 .birles-kristal__plain {
-  color: rgba(232, 224, 248, 0.72);
-  -webkit-text-fill-color: rgba(232, 224, 248, 0.72);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+  color: #f7f2ff;
+  -webkit-text-fill-color: #f7f2ff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
 }
 
 .birles-kristal__gem {
