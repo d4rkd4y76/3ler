@@ -3775,12 +3775,17 @@
     /* 3) Yeni hece + ses: su yükselip patladığı ana hizalı */
     await pace(isCumleFinale ? (reduceMotion ? 40 : 180) : reduceMotion ? 80 : 620);
     if (token !== animToken) return;
-    if (burst) {
+    /* Cümle: üstte tik paneli var — patlamada ekstra metin overlay gösterme */
+    if (burst && !isCumleFinale) {
       burst.textContent = String(finalWord || "");
       burst.hidden = false;
       burst.classList.remove("is-rise", "is-boom-in");
       void burst.offsetWidth;
       burst.classList.add("is-boom-in");
+    } else if (burst && isCumleFinale) {
+      burst.hidden = true;
+      burst.textContent = "";
+      burst.classList.remove("is-rise", "is-boom-in");
     }
 
     var audioP = Promise.resolve();
@@ -4090,11 +4095,12 @@
     var root = heceBoardRoot(boardId);
     if (!root) return;
     var isKelime = !!(root.closest && root.closest(".birles-play--kelime"));
+    var isCumle = !!(root.closest && root.closest(".birles-play--cumle"));
     root.querySelectorAll(".birles-hece-seg").forEach(function (el) {
       var on = String(el.getAttribute("data-syl")) === String(sylIndex);
       el.classList.toggle("is-on", on);
-      /* Kelime: önceki hecede is-done (mint/mavi ton) bırakma — sadece aktif yeşil çizgi */
-      if (isKelime) {
+      /* Kelime/Cümle: önceki hecede mint ton bırakma — sadece aktif yeşil çizgi */
+      if (isKelime || isCumle) {
         el.classList.remove("is-done");
       } else {
         el.classList.toggle("is-done", Number(el.getAttribute("data-syl")) < Number(sylIndex));
@@ -4472,80 +4478,84 @@
       );
     }
 
-    /** Kelime sahnede düşer — üstteki yazı yerinde kalır */
-    async function dropWordFromSentence(i, word) {
-      setFocus(i);
-      setNarr(word.text);
-      stage.classList.remove("is-quiet");
-      stage.innerHTML = stagePanel(
-        "Kelime geliyor",
-        cardHtml(word.text, "result"),
-        "birles-cards--drop-in birles-cards--cumle-hero"
+    /** Ortada tek panel: kelime + net hece kutuları (üst cümle sabit) */
+    function cumleMidHeceHtml(wordText, displaySyls) {
+      var syls = displaySyls && displaySyls.length ? displaySyls : [wordText];
+      var chips = [];
+      for (var si = 0; si < syls.length; si++) {
+        if (si > 0) {
+          chips.push('<span class="birles-cumle-mid__dot" aria-hidden="true">·</span>');
+        }
+        chips.push(
+          '<span class="birles-cumle-mid__syl birles-hece-seg" data-syl="' +
+            si +
+            '">' +
+            esc(syls[si]) +
+            "</span>"
+        );
+      }
+      return (
+        '<div class="birles-cumle-mid" role="group" aria-label="Hece hece">' +
+        '<p class="birles-cumle-mid__cap">Hece hece okuyalım</p>' +
+        '<p class="birles-cumle-mid__word">' +
+        esc(wordText) +
+        "</p>" +
+        '<div class="birles-cumle-mid__syls" id="birles-hece-board-cumle">' +
+        chips.join("") +
+        "</div></div>"
       );
-      bindTokenClicks(stage);
-      await pace(620);
-      return token === animToken;
     }
 
-    /** Hemen hecelere ayır ve oku — üst kelime ile eşzamanlı vurgu */
-    async function splitAndReadSyllables(word, displaySyls, audioSyls) {
-      audioSyls = audioSyls || displaySyls;
-      setNarr(displaySyls.join("  ·  "));
-      stage.innerHTML =
-        heceBoardHtml(word.text, displaySyls, {
-          id: "birles-hece-board-cumle",
-          kicker: "Hece hece",
-          spotlight: true
+    /** Bir kelime: üstte odak, ortada hecele + oku, sonra tikle */
+    async function teachWordBySyllables(i, word) {
+      var displaySyls =
+        word.displaySyllables && word.displaySyllables.length
+          ? word.displaySyllables.slice()
+          : word.syllables && word.syllables.length
+            ? word.syllables.slice()
+            : [word.text || word.say];
+      if (displaySyls.length && typeof displaySyls[0] !== "string") {
+        displaySyls = displaySyls.map(function (s) {
+          return Array.isArray(s) ? s.join("") : String(s || "");
         });
-      await pace(360);
+      }
+      var audioSyls =
+        word.syllables && word.syllables.length
+          ? word.syllables.map(function (s) {
+              return Array.isArray(s) ? s.join("") : String(s || "");
+            })
+          : displaySyls.slice();
+
+      setFocus(i);
+      setNarr(word.text);
+      stage.classList.remove("is-quiet", "is-finale", "is-finale-fade");
+      stage.innerHTML = cumleMidHeceHtml(word.text, displaySyls);
+      await pace(480);
       if (token !== animToken) return false;
 
       if (!(await playHeceSequence(displaySyls, audioSyls, token, "birles-hece-board-cumle"))) {
         return false;
       }
-      return token === animToken;
-    }
-
-    /** Heceleri birleştir */
-    async function mergeSyllablesToWord(word, displaySyls) {
-      setNarr(displaySyls.join(" + ") + " → " + word.text);
-      var wrap = stage.querySelector(".birles-cards");
-      if (wrap) wrap.classList.add("is-merge");
-      stage.classList.add("is-merging");
-      await pace(760);
       if (token !== animToken) return false;
 
-      stage.classList.remove("is-merging");
-      stage.innerHTML = stagePanel(
-        "Kelime oldu!",
-        cardHtml(word.text, "result"),
-        "birles-cards--result birles-cards--cumle-hero"
-      );
-      bindTokenClicks(stage);
-      var resultCard = stage.querySelector(".birles-card");
-      if (resultCard) resultCard.classList.add("is-merged", "is-speaking");
-      await pace(140);
-      if (vv) await vv.playToken(word.say, { waitUntilEnd: true });
-      await pace(220);
-      if (resultCard) resultCard.classList.remove("is-speaking");
-      return token === animToken;
-    }
-
-    /** Birleşen kelime yukarı, cümledeki yerine döner */
-    async function returnWordToSentence(i, word) {
-      setNarr(word.text + " yerine dönüyor");
-      var wrap = stage.querySelector(".birles-cards");
-      if (wrap) {
-        wrap.classList.remove("birles-cards--drop-in", "birles-cards--split", "is-merge");
-        wrap.classList.add("birles-cards--return-up");
+      /* Tüm heceler bitti → kelimenin tamamını bir kez oku */
+      var board = document.getElementById("birles-hece-board-cumle");
+      if (board) {
+        board.querySelectorAll(".birles-hece-seg").forEach(function (el) {
+          el.classList.remove("is-on");
+          el.classList.add("is-done");
+        });
+        board.classList.add("is-word-done");
       }
-      await pace(560);
+      var mid = stage.querySelector(".birles-cumle-mid");
+      if (mid) mid.classList.add("is-word-done");
+      await pace(220);
+      if (vv) await vv.playToken(word.say, { waitUntilEnd: true });
+      await pace(280);
       if (token !== animToken) return false;
+
       markRead(i);
-      stage.innerHTML = "";
-      stage.classList.add("is-quiet");
-      renderTray([]);
-      await pace(200);
+      await pace(360);
       return token === animToken;
     }
 
@@ -4575,12 +4585,14 @@
       stage.classList.remove("is-quiet", "is-finale", "is-finale-fade");
       stage.innerHTML =
         '<div class="birles-cumle-done" role="status" aria-live="polite">' +
+        '<div class="birles-cumle-done__burst" aria-hidden="true"></div>' +
         '<div class="birles-cumle-done__tick" aria-hidden="true">' +
-        '<svg viewBox="0 0 52 52" width="64" height="64" focusable="false">' +
+        '<span class="birles-cumle-done__ring"></span>' +
+        '<svg viewBox="0 0 52 52" width="88" height="88" focusable="false">' +
         '<circle cx="26" cy="26" r="24" fill="none"/>' +
         '<path d="M14.5 27.2 L22.2 34.6 L37.8 17.8" fill="none"/>' +
         "</svg></div>" +
-        '<p class="birles-cumle-done__label">Cümle tamam!</p>' +
+        '<p class="birles-cumle-done__label">Süper! Cümle doğru</p>' +
         '<div class="birles-cumle-done__box">' +
         '<span class="birles-cumle-done__text">' +
         esc(plain) +
@@ -4588,50 +4600,30 @@
         "</span></div></div>";
     }
 
-    /* 1) Cümlenin tamamı üstte — tekrar dinle’de tikler sıfırlanır */
+    /* Üst cümle sabit; orta panel boş başlar */
     resetSentenceWords();
     if (bar) bar.classList.remove("is-complete");
     renderTray([]);
     stage.classList.add("is-quiet");
-    stage.innerHTML = "";
+    stage.innerHTML =
+      '<div class="birles-cumle-mid birles-cumle-mid--idle" aria-hidden="true">' +
+      '<p class="birles-cumle-mid__cap">Cümleyi dinle</p></div>';
     setNarr(fusion.result);
     if (bar) bar.classList.add("is-intro");
-    await pace(820);
+    await pace(700);
     if (bar) bar.classList.remove("is-intro");
     if (token !== animToken) return;
 
     for (var wi = 0; wi < words.length; wi++) {
       if (token !== animToken) return;
-      var word = words[wi];
-      var syls =
-        word.displaySyllables && word.displaySyllables.length
-          ? word.displaySyllables.slice()
-          : word.syllables && word.syllables.length
-            ? word.syllables.slice()
-            : [word.text || word.say];
-      var audioSyls = word.syllables && word.syllables.length ? word.syllables.slice() : [word.say];
-
-      if (!(await dropWordFromSentence(wi, word))) return;
-
-      if (syls.length === 1) {
-        setNarr(word.text);
-        var solo = stage.querySelector(".birles-card");
-        if (solo) solo.classList.add("is-merged", "birles-card--cumle-solo");
-        await playWithHighlight(solo, word.say);
-        if (token !== animToken) return;
-      } else {
-        if (!(await splitAndReadSyllables(word, syls, audioSyls))) return;
-        if (!(await mergeSyllablesToWord(word, syls))) return;
-      }
-
-      if (!(await returnWordToSentence(wi, word))) return;
+      if (!(await teachWordBySyllables(wi, words[wi]))) return;
     }
 
     if (token !== animToken) return;
     clearFocus();
     showCumleCompleteBox();
-    setNarrForce("Cümle tamam!");
-    await pace(1100);
+    setNarrForce("Süper! Cümle doğru");
+    await pace(1750);
   }
 
   /** Patlamadan sonra: cümleyi bir kez daha kelime kelime oku */
@@ -4761,17 +4753,8 @@
       await runSentenceAnimation(sound, fusion, token);
       if (token !== animToken) return;
       if (reveal) reveal.hidden = true;
-      var sentenceText = String(fusion.result || "").trim();
-      if (!sentenceText && fusion.words && fusion.words.length) {
-        sentenceText = fusion.words
-          .map(function (w) {
-            return w.text || w.say || "";
-          })
-          .filter(Boolean)
-          .join(" ");
-      }
-      /* 1) Tamam kutusu gösterildi → 2) patlama → 3) son bir okuma */
-      await playPoolFinale(sentenceText, null);
+      /* 1) Tamam kutusu + tik → 2) patlama → loop devam → 3) son bir okuma */
+      await playPoolFinale("", null, vv, token);
       if (token !== animToken) return;
       await runSentenceFinalRead(fusion, token);
       if (token !== animToken) return;

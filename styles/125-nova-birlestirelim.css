@@ -3055,17 +3055,16 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-play--pool.birles-play--cumle .birles-stage {
-  position: absolute;
-  top: 28%;
+  top: 26%;
   left: 5%;
   right: 5%;
   min-height: 0;
   height: auto;
   margin: 0;
-  padding: 14px 12px;
+  padding: 16px 14px 18px;
   border-radius: 22px;
   background:
-    linear-gradient(165deg, rgba(12, 28, 58, 0.72), rgba(6, 14, 32, 0.78));
+    linear-gradient(165deg, rgba(12, 28, 58, 0.78), rgba(6, 14, 32, 0.84));
   border: 1.5px solid rgba(140, 200, 255, 0.28);
   box-shadow:
     0 12px 28px rgba(0, 8, 24, 0.45),
@@ -3075,8 +3074,168 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-play--pool.birles-play--cumle .birles-stage.is-quiet {
-  opacity: 0.35;
+  opacity: 0.92;
   min-height: 0;
+}
+
+/* Ortadaki hece paneli — havuz kelime panosuna karışmasın */
+.birles-play--pool.birles-play--cumle .birles-cumle-mid,
+.birles-play--pool.birles-play--cumle .birles-hece-board {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  transform: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+.birles-cumle-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  animation: birlesCumleMidIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-cumle-mid--idle {
+  opacity: 0.85;
+  animation: none;
+  padding: 8px 0;
+}
+
+@keyframes birlesCumleMidIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.birles-cumle-mid__cap {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bfdbfe;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.birles-cumle-mid__word {
+  margin: 0;
+  padding: 8px 18px;
+  border-radius: 14px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: clamp(1.45rem, 5.2vmin, 1.95rem);
+  font-weight: 800;
+  color: #f8fafc;
+  background: rgba(15, 40, 80, 0.55);
+  border: 1.5px solid rgba(125, 211, 252, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.birles-cumle-mid__syls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 6px 4px 4px;
+}
+
+.birles-cumle-mid__dot {
+  font-size: clamp(1.4rem, 5vmin, 1.9rem);
+  font-weight: 900;
+  color: rgba(186, 230, 253, 0.75);
+  line-height: 1;
+  user-select: none;
+}
+
+.birles-cumle-mid__syl.birles-hece-seg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4em;
+  min-height: 2.35em;
+  padding: 0.28em 0.55em;
+  margin: 0;
+  border-radius: 16px;
+  font-size: clamp(1.55rem, 6vmin, 2.15rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #0f172a;
+  background: linear-gradient(165deg, #ffffff 0%, #e0f2fe 100%);
+  border: 2.5px solid rgba(56, 189, 248, 0.55);
+  box-shadow:
+    0 8px 18px rgba(0, 20, 50, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: none !important;
+  text-shadow: none !important;
+  animation: none !important;
+  position: relative;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-on,
+.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-on {
+  color: #0f172a !important;
+  background: linear-gradient(165deg, #fffbeb 0%, #fde68a 100%) !important;
+  border-color: #16a34a !important;
+  font-weight: 900 !important;
+  transform: none !important;
+  scale: none !important;
+  box-shadow:
+    0 8px 18px rgba(0, 20, 50, 0.35),
+    0 0 0 3px rgba(22, 163, 74, 0.28) !important;
+  text-shadow: none !important;
+  padding: 0.28em 0.55em !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-on::after,
+.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-on::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 18% !important;
+  right: 18% !important;
+  bottom: 0.28em !important;
+  height: 5px !important;
+  border-radius: 999px !important;
+  background: #16a34a !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-done,
+.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-done {
+  color: #14532d !important;
+  background: linear-gradient(165deg, #ecfdf5 0%, #bbf7d0 100%) !important;
+  border-color: #22c55e !important;
+  transform: none !important;
+  padding: 0.28em 0.55em !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-done::after,
+.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-done::after {
+  content: none !important;
+  display: none !important;
+}
+
+.birles-cumle-mid.is-word-done .birles-cumle-mid__word {
+  border-color: rgba(74, 222, 128, 0.7);
+  background: rgba(22, 101, 52, 0.45);
 }
 
 .birles-play--pool.birles-play--cumle .birles-drop-zone__cap {
@@ -3151,11 +3310,6 @@ html.nova-perf-ultra-early.nova-has-session
   box-shadow: 0 4px 12px rgba(22, 163, 74, 0.45);
 }
 
-.birles-play--pool.birles-play--cumle .birles-stage {
-  top: 26%;
-  padding: 16px 14px 18px;
-}
-
 .birles-play--pool.birles-play--cumle .birles-drop-zone__cap {
   font-size: 0.95rem;
   letter-spacing: 0.06em;
@@ -3170,11 +3324,12 @@ html.nova-perf-ultra-early.nova-has-session
 
 /* Tamam kutusu + yeşil tik */
 .birles-cumle-done {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  width: min(92%, 420px);
+  gap: 14px;
+  width: min(92%, 440px);
   margin: 0 auto;
   animation: birlesCumleDoneIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   pointer-events: auto;
@@ -3191,18 +3346,73 @@ html.nova-perf-ultra-early.nova-has-session
   }
 }
 
+.birles-cumle-done__burst {
+  position: absolute;
+  left: 50%;
+  top: 44px;
+  width: 220px;
+  height: 220px;
+  margin: -110px 0 0 -110px;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(74, 222, 128, 0.45) 0%, rgba(74, 222, 128, 0) 68%),
+    radial-gradient(circle at 22% 30%, rgba(253, 224, 71, 0.7) 0 5px, transparent 6px),
+    radial-gradient(circle at 78% 28%, rgba(255, 255, 255, 0.95) 0 4px, transparent 5px),
+    radial-gradient(circle at 18% 72%, rgba(134, 239, 172, 0.9) 0 5px, transparent 6px),
+    radial-gradient(circle at 82% 70%, rgba(253, 224, 71, 0.85) 0 4px, transparent 5px),
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.9) 0 3px, transparent 4px),
+    radial-gradient(circle at 50% 88%, rgba(74, 222, 128, 0.9) 0 4px, transparent 5px);
+  animation: birlesCumleSpark 0.9s ease-out both;
+}
+
+@keyframes birlesCumleSpark {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
 .birles-cumle-done__tick {
-  width: 72px;
-  height: 72px;
+  position: relative;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: linear-gradient(160deg, #4ade80 0%, #16a34a 55%, #15803d 100%);
   box-shadow:
-    0 10px 28px rgba(22, 163, 74, 0.55),
-    0 0 0 5px rgba(74, 222, 128, 0.28),
-    inset 0 2px 0 rgba(255, 255, 255, 0.35);
-  animation: birlesCumleTickPop 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    0 12px 32px rgba(22, 163, 74, 0.6),
+    0 0 0 6px rgba(74, 222, 128, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  animation: birlesCumleTickPop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.birles-cumle-done__ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 3px solid rgba(134, 239, 172, 0.85);
+  animation: birlesCumleRing 0.85s 0.12s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes birlesCumleRing {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.72);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
 }
 
 .birles-cumle-done__tick.is-static {
