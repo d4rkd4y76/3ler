@@ -3325,61 +3325,6 @@ html.nova-perf-ultra-early.nova-has-session
   margin-bottom: 18px;
 }
 
-/* Kelime: okunan hece — sadece yeşil alt çizgi, büyütme yok */
-.birles-play--kelime .birles-hece-seg.is-on {
-  color: inherit;
-  background: transparent;
-  transform: none;
-  box-shadow: none;
-  text-shadow: none;
-  padding: 0.14em 0.16em;
-  font-weight: 700;
-  z-index: 2;
-  position: relative;
-  animation: none;
-}
-
-.birles-play--kelime .birles-hece-seg.is-on::after {
-  content: "";
-  position: absolute;
-  left: 0.16em;
-  right: 0.16em;
-  bottom: 0.08em;
-  height: 4px;
-  border-radius: 999px;
-  background: #1a9b75;
-  opacity: 0.95;
-  pointer-events: none;
-  box-shadow: none;
-}
-
-.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on {
-  padding: 0.08em 0.1em;
-  background: transparent;
-  transform: none;
-  box-shadow: none;
-  animation: none;
-  font-weight: 700;
-  color: #122a3c;
-  text-shadow: none;
-}
-
-.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after {
-  left: 0.1em;
-  right: 0.1em;
-  bottom: 0.04em;
-  height: 4px;
-  background: #1a9b75;
-  box-shadow: none;
-}
-
-@media (max-width: 640px) {
-  .birles-play--kelime .birles-hece-seg.is-on::after,
-  .birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after {
-    height: 5px;
-  }
-}
-
 .birles-play__narration[hidden] {
   display: none !important;
 }
@@ -3677,6 +3622,64 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-play--pool .birles-hece-board.is-complete .birles-hece-seg {
   padding: 0.08em 0.1em;
   transform: none;
+}
+
+/*
+ * Kelime oyunu: hece vurgusu = SADECE yeşil alt çizgi.
+ * Renk/arka plan/büyütme/gölge yok (pool is-on kurallarını da ezer).
+ */
+.birles-play--kelime .birles-hece-seg.is-on,
+.birles-play--kelime .birles-hece-seg.is-done,
+.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg,
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on,
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-done,
+.birles-play--pool.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg {
+  color: #122a3c !important;
+  background: transparent !important;
+  transform: none !important;
+  scale: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+  font-weight: 700 !important;
+  padding: 0.08em 0.1em !important;
+  position: relative !important;
+  z-index: 2;
+}
+
+.birles-play--kelime .birles-hece-seg.is-on::after,
+.birles-play--kelime .birles-hece-seg.is-done::after,
+.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after,
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after,
+.birles-play--pool.birles-play--kelime .birles-hece-seg.is-done::after,
+.birles-play--pool.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0.1em !important;
+  right: 0.1em !important;
+  bottom: 0.04em !important;
+  height: 4px !important;
+  border-radius: 999px !important;
+  background: #1a9b75 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  transform: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+@media (max-width: 640px) {
+  .birles-play--kelime .birles-hece-seg.is-on::after,
+  .birles-play--kelime .birles-hece-seg.is-done::after,
+  .birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after,
+  .birles-play--pool.birles-play--kelime .birles-hece-seg.is-on::after,
+  .birles-play--pool.birles-play--kelime .birles-hece-seg.is-done::after,
+  .birles-play--pool.birles-play--kelime .birles-hece-board.is-complete .birles-hece-seg::after {
+    height: 5px !important;
+  }
 }
 
 .birles-play--pool .birles-stage {
