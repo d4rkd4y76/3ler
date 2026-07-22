@@ -3830,7 +3830,7 @@
 
     /* Cümle: patlama bitmek üzereyken tamam kutusu 2 sn yavaşça kaybolur → sonra son okuma */
     if (isCumleFinale) {
-      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 2.05);
+      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 3.05);
       if (token !== animToken) return;
       if (stage) {
         stage.classList.remove("is-finale", "is-finale-fade");
@@ -4699,7 +4699,7 @@
         .join(" ");
     }
 
-    stage.classList.remove("is-quiet", "is-finale", "is-finale-fade");
+    stage.classList.remove("is-quiet", "is-finale", "is-finale-fade", "is-cumle-done-out");
     if (bar) {
       bar.classList.add("is-complete", "is-reading-pass");
       bar.querySelectorAll(".birles-sentence-word").forEach(function (el) {
