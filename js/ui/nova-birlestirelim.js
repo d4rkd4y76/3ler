@@ -4500,9 +4500,10 @@
       );
     }
 
-    /** Ortada tek panel: kelime + net hece kutuları (üst cümle sabit) */
+    /** Ortada tek panel: kelime + net hece kutuları (üst cümle sabit; virgül yok) */
     function cumleMidHeceHtml(wordText, displaySyls) {
-      var syls = displaySyls && displaySyls.length ? displaySyls : [wordText];
+      var bare = String(wordText || "").replace(/^[,;:]+|[,;:.!?]+$/g, "");
+      var syls = displaySyls && displaySyls.length ? displaySyls : [bare];
       var chips = [];
       for (var si = 0; si < syls.length; si++) {
         if (si > 0) {
@@ -4518,9 +4519,11 @@
       }
       return (
         '<div class="birles-cumle-mid" role="group" aria-label="Hece hece">' +
-        '<p class="birles-cumle-mid__cap">Hece hece okuyalım</p>' +
+        '<p class="birles-cumle-mid__cap">' +
+        (syls.length > 1 ? "Hece hece okuyalım" : "Kelimeyi okuyalım") +
+        "</p>" +
         '<p class="birles-cumle-mid__word">' +
-        esc(wordText) +
+        esc(bare) +
         "</p>" +
         '<div class="birles-cumle-mid__syls" id="birles-hece-board-cumle">' +
         chips.join("") +
@@ -4530,49 +4533,68 @@
 
     /** Bir kelime: üstte odak, ortada hecele + oku, sonra tikle */
     async function teachWordBySyllables(i, word) {
+      var bareText = String(word.text || word.say || "").replace(/^[,;:]+|[,;:.!?]+$/g, "");
       var displaySyls =
         word.displaySyllables && word.displaySyllables.length
           ? word.displaySyllables.slice()
           : word.syllables && word.syllables.length
             ? word.syllables.slice()
-            : [word.text || word.say];
+            : [bareText];
       if (displaySyls.length && typeof displaySyls[0] !== "string") {
         displaySyls = displaySyls.map(function (s) {
           return Array.isArray(s) ? s.join("") : String(s || "");
         });
       }
+      displaySyls = displaySyls
+        .map(function (s) {
+          return String(s || "").replace(/^[,;:]+|[,;:.!?]+$/g, "");
+        })
+        .filter(Boolean);
+      if (!displaySyls.length) displaySyls = [bareText];
+
       var audioSyls =
         word.syllables && word.syllables.length
           ? word.syllables.map(function (s) {
               return Array.isArray(s) ? s.join("") : String(s || "");
             })
           : displaySyls.slice();
+      var sayTok = word.say || bareText.toLocaleLowerCase("tr-TR");
+      var isMono = displaySyls.length <= 1;
 
       setFocus(i);
-      setNarr(word.text);
+      setNarr(bareText);
       stage.classList.remove("is-quiet", "is-finale", "is-finale-fade");
-      stage.innerHTML = cumleMidHeceHtml(word.text, displaySyls);
-      await pace(480);
+      stage.innerHTML = cumleMidHeceHtml(bareText, displaySyls);
+      await pace(isMono ? 320 : 480);
       if (token !== animToken) return false;
 
-      if (!(await playHeceSequence(displaySyls, audioSyls, token, "birles-hece-board-cumle"))) {
-        return false;
-      }
-      if (token !== animToken) return false;
+      if (isMono) {
+        /* Tek hece: bir kez oku — birleştirme yok, tekrar yok */
+        setHeceActive(0, "birles-hece-board-cumle");
+        if (vv) await vv.playToken(sayTok, { waitUntilEnd: true });
+        else await pace(700);
+        if (token !== animToken) return false;
+        markHeceComplete("birles-hece-board-cumle");
+      } else {
+        if (!(await playHeceSequence(displaySyls, audioSyls, token, "birles-hece-board-cumle"))) {
+          return false;
+        }
+        if (token !== animToken) return false;
 
-      /* Tüm heceler bitti → kelimenin tamamını bir kez oku */
-      var board = document.getElementById("birles-hece-board-cumle");
-      if (board) {
-        board.querySelectorAll(".birles-hece-seg").forEach(function (el) {
-          el.classList.remove("is-on");
-          el.classList.add("is-done");
-        });
-        board.classList.add("is-word-done");
+        /* Çok hece: heceler bitti → kelimenin tamamını bir kez oku */
+        var board = document.getElementById("birles-hece-board-cumle");
+        if (board) {
+          board.querySelectorAll(".birles-hece-seg").forEach(function (el) {
+            el.classList.remove("is-on");
+            el.classList.add("is-done");
+          });
+          board.classList.add("is-word-done");
+        }
+        var mid = stage.querySelector(".birles-cumle-mid");
+        if (mid) mid.classList.add("is-word-done");
+        await pace(220);
+        if (vv) await vv.playToken(sayTok, { waitUntilEnd: true });
       }
-      var mid = stage.querySelector(".birles-cumle-mid");
-      if (mid) mid.classList.add("is-word-done");
-      await pace(220);
-      if (vv) await vv.playToken(word.say, { waitUntilEnd: true });
       await pace(280);
       if (token !== animToken) return false;
 
@@ -4645,7 +4667,7 @@
     clearFocus();
     showCumleCompleteBox();
     setNarrForce("Süper! Cümle doğru");
-    await pace(1750);
+    await pace(1200);
   }
 
   /** Patlamadan sonra: cümleyi bir kez daha kelime kelime oku */
@@ -4698,7 +4720,7 @@
       '<span class="birles-cumle-done__dot">.</span></div></div>';
 
     setNarrForce("Cümleyi okuyalım");
-    await pace(420);
+    await pace(160);
     if (token !== animToken) return;
 
     for (var rj = 0; rj < words.length; rj++) {
