@@ -244,7 +244,8 @@
       } else {
         var k = i;
         while (k < text.length && !marks[k]) k++;
-        html += esc(text.slice(i, k));
+        html +=
+          '<span class="birles-kristal__plain">' + esc(text.slice(i, k)) + "</span>";
         i = k;
       }
     }
