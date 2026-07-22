@@ -4061,10 +4061,16 @@
   function setHeceActive(sylIndex, boardId) {
     var root = heceBoardRoot(boardId);
     if (!root) return;
+    var isKelime = !!(root.closest && root.closest(".birles-play--kelime"));
     root.querySelectorAll(".birles-hece-seg").forEach(function (el) {
       var on = String(el.getAttribute("data-syl")) === String(sylIndex);
       el.classList.toggle("is-on", on);
-      el.classList.toggle("is-done", Number(el.getAttribute("data-syl")) < Number(sylIndex));
+      /* Kelime: önceki hecede is-done (mint/mavi ton) bırakma — sadece aktif yeşil çizgi */
+      if (isKelime) {
+        el.classList.remove("is-done");
+      } else {
+        el.classList.toggle("is-done", Number(el.getAttribute("data-syl")) < Number(sylIndex));
+      }
     });
     root.classList.toggle("is-active", sylIndex != null && sylIndex >= 0);
   }
