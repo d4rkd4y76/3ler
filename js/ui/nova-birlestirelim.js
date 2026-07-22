@@ -3169,14 +3169,11 @@
     activeFusion = fusion;
     setBack(true);
     setHeader(fusion.result, fusion.label, sound.title.toUpperCase());
-    var isCumleBoot = fusion.kind === "cumle" || fusion.mode === "sentence";
-    var isPool = true;
+    var isPool =
+      !(fusion.kind === "cumle" || fusion.mode === "sentence");
     var bootTok = 0;
     if (isPool) {
-      bootTok = showBirlesViewBoot(
-        isCumleBoot ? "Zirve Mağarası" : "Sihirli Havuz",
-        isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
-      );
+      bootTok = showBirlesViewBoot("Sihirli Havuz", "Sihirli Havuz hazırlanıyor…");
     }
     ensureMedia()
       .then(function () {
@@ -3185,10 +3182,7 @@
         clearBirlesViewBootFlag();
         renderPlayStage(sound, fusion);
         if (document.getElementById("birles-pool")) {
-          setPoolBoot(
-            true,
-            isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
-          );
+          setPoolBoot(true, "Sihirli Havuz hazırlanıyor…");
           return preparePoolReady();
         }
         return null;
@@ -3207,23 +3201,8 @@
 
   var POOL_MERGE_SRC = "assets/birles/ses_birlestirme.mp4?v=opt1";
   var POOL_BOOM_SRC = "assets/birles/ses_patlama.mp4?v=opt1";
-  var CUMLE_LOOP_SRC = "assets/birles/cumle_loop.mp4?v=opt1";
-  var CUMLE_BOOM_SRC = "assets/birles/cumle_patlama.mp4?v=opt1";
   var poolLayoutBound = null;
-  var poolMediaCache = { merge: "", boom: "", ready: null, kind: "" };
-
-  function currentPoolKind() {
-    var f = activeFusion;
-    if (f && (f.kind === "cumle" || f.mode === "sentence")) return "cumle";
-    return "pool";
-  }
-
-  function poolSrcPair(kind) {
-    if (kind === "cumle") {
-      return { merge: CUMLE_LOOP_SRC, boom: CUMLE_BOOM_SRC };
-    }
-    return { merge: POOL_MERGE_SRC, boom: POOL_BOOM_SRC };
-  }
+  var poolMediaCache = { merge: "", boom: "", ready: null };
 
   function setPoolPlayMode(on) {
     var ov = document.getElementById("birlestirelim-overlay");
@@ -3374,29 +3353,22 @@
 
   /** Videoları bir kez indirip blob URL olarak sakla — tekrar indirmez */
   function ensurePoolBlobUrls() {
-    var kind = currentPoolKind();
-    if (poolMediaCache.kind === kind && poolMediaCache.merge && poolMediaCache.boom) {
+    if (poolMediaCache.merge && poolMediaCache.boom) {
       return Promise.resolve(poolMediaCache);
     }
-    if (poolMediaCache.ready && poolMediaCache.kind === kind) return poolMediaCache.ready;
-    poolMediaCache.kind = kind;
-    poolMediaCache.merge = "";
-    poolMediaCache.boom = "";
-    var pair = poolSrcPair(kind);
+    if (poolMediaCache.ready) return poolMediaCache.ready;
     poolMediaCache.ready = Promise.all([
-      fetchPoolBlobUrl(pair.merge),
-      fetchPoolBlobUrl(pair.boom)
+      fetchPoolBlobUrl(POOL_MERGE_SRC),
+      fetchPoolBlobUrl(POOL_BOOM_SRC)
     ])
       .then(function (urls) {
         poolMediaCache.merge = urls[0];
         poolMediaCache.boom = urls[1];
-        poolMediaCache.kind = kind;
         return poolMediaCache;
       })
       .catch(function () {
-        poolMediaCache.merge = pair.merge;
-        poolMediaCache.boom = pair.boom;
-        poolMediaCache.kind = kind;
+        poolMediaCache.merge = POOL_MERGE_SRC;
+        poolMediaCache.boom = POOL_BOOM_SRC;
         poolMediaCache.ready = null;
         return poolMediaCache;
       });
@@ -3718,21 +3690,17 @@
         window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     } catch (_) {}
 
-    var isCumleFinale = !!document.querySelector(".birles-play--cumle");
-
-    /* Havuz: kart yumuşak kaybolsun. Cümle: geçiş yok — direkt patlama */
-    if (!isCumleFinale) {
-      if (stage) {
-        stage.classList.remove("is-finale");
-        stage.classList.add("is-finale-fade");
-      }
-      if (tray) {
-        tray.classList.remove("is-finale");
-        tray.classList.add("is-finale-fade");
-      }
-      await pace(reduceMotion ? 120 : 480);
-      if (token !== animToken) return;
+    /* 1) İlk hece (birleşmiş kart) yumuşak kaybolsun */
+    if (stage) {
+      stage.classList.remove("is-finale");
+      stage.classList.add("is-finale-fade");
     }
+    if (tray) {
+      tray.classList.remove("is-finale");
+      tray.classList.add("is-finale-fade");
+    }
+    await pace(reduceMotion ? 120 : 480);
+    if (token !== animToken) return;
     if (stage) stage.classList.add("is-finale");
     if (tray) tray.classList.add("is-finale");
 
@@ -3751,7 +3719,8 @@
 
     hardCutPoolLayers(true);
 
-    if (flash && !isCumleFinale) {
+    /* 2) Parlama + patlama videosu */
+    if (flash) {
       flash.hidden = false;
       flash.classList.remove("is-on");
       void flash.offsetWidth;
@@ -3773,7 +3742,7 @@
     if (token !== animToken) return;
 
     /* 3) Yeni hece + ses: su yükselip patladığı ana hizalı */
-    await pace(isCumleFinale ? (reduceMotion ? 40 : 180) : reduceMotion ? 80 : 620);
+    await pace(reduceMotion ? 80 : 620);
     if (token !== animToken) return;
     if (burst) {
       burst.textContent = String(finalWord || "");
@@ -3821,7 +3790,7 @@
     var isKelime =
       !isCumle &&
       (fusion.kind === "kelime" || fusion.type === "kelime" || !!fusion.mediaKey);
-    var usePool = true;
+    var usePool = !isCumle;
     var med = fusion.mediaKey ? mediaFor(fusion.mediaKey) : null;
     var hasImg = !!(med && med.imageUrl);
     var sentenceBar = "";
@@ -3830,7 +3799,7 @@
       sentenceBar =
         '<div class="birles-sentence-board" id="birles-sentence-bar" aria-label="Cümle">' +
         '<div class="birles-sentence-board__top">' +
-        '<span class="birles-sentence-board__kicker">Zirve Mağarası</span>' +
+        '<span class="birles-sentence-board__kicker">Cümle</span>' +
         '<span class="birles-sentence-board__step" id="birles-sentence-step">1 / ' +
         fusion.words.length +
         "</span>" +
@@ -3866,9 +3835,9 @@
 
     var core =
       '  <p class="birles-play__narration" id="birles-narration"' +
-      (isKelime || isCumle ? " hidden" : "") +
+      (isKelime ? " hidden" : "") +
       ">" +
-      esc(isKelime || isCumle ? "" : fusion.narration || "") +
+      esc(isKelime ? "" : fusion.narration || "") +
       "</p>" +
       wordBoard +
       sentenceBar +
@@ -3889,51 +3858,54 @@
       '    <span id="birles-reveal-msg" class="birles-reveal__msg"></span>' +
       "  </div>";
 
-    var playMods = "birles-play--pool";
-    if (isKelime) playMods += " birles-play--kelime";
-    if (isCumle) playMods += " birles-play--cumle";
-    var bootTitle = isCumle ? "Zirve Mağarası" : "Sihirli Havuz";
-    var bootText = isCumle ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…";
-
-    body.innerHTML =
-      '<div class="birles-play ' +
-      playMods +
-      '" style="--chip:' +
-      esc(sound.color) +
-      ";--glow:" +
-      esc(sound.glow) +
-      '">' +
-      '  <div class="birles-pool" id="birles-pool">' +
-      '    <div class="birles-pool__stagebox" id="birles-pool-stagebox">' +
-      '      <div class="birles-pool__layer birles-pool__layer--merge is-on" id="birles-pool-layer-merge" style="opacity:1">' +
-      '        <video class="birles-pool__vid birles-pool__vid--merge" id="birles-pool-merge" playsinline webkit-playsinline muted loop preload="auto"></video>' +
-      "      </div>" +
-      '      <div class="birles-pool__layer birles-pool__layer--boom" id="birles-pool-layer-boom" style="opacity:0">' +
-      '        <video class="birles-pool__vid birles-pool__vid--boom" id="birles-pool-boom" playsinline webkit-playsinline preload="auto"></video>' +
-      "      </div>" +
-      '      <div class="birles-pool__veil" id="birles-pool-veil" style="opacity:0" aria-hidden="true"></div>' +
-      '      <div class="birles-pool__flash" id="birles-pool-flash" hidden aria-hidden="true"></div>' +
-      '      <div class="birles-pool__ui">' +
-      core +
-      '        <p class="birles-pool__burst" id="birles-pool-burst" hidden aria-live="polite"></p>' +
-      "      </div>" +
-      "    </div>" +
-      '    <div class="birles-pool__boot" id="birles-pool-boot" role="status" aria-live="polite">' +
-      '      <div class="birles-pool__boot-orb" aria-hidden="true"></div>' +
-      '      <p class="birles-pool__boot-title">' +
-      esc(bootTitle) +
-      "</p>" +
-      '      <p class="birles-pool__boot-text">' +
-      esc(bootText) +
-      "</p>" +
-      '      <div class="birles-pool__boot-bar" aria-hidden="true"><i></i></div>' +
-      "    </div>" +
-      "  </div>" +
-      laneActionBarHtml(!!activeLane) +
-      "</div>";
-    bindPoolLayout();
-    layoutPoolStage();
-    setPoolBoot(true, bootText);
+    if (usePool) {
+      body.innerHTML =
+        '<div class="birles-play birles-play--pool' +
+        (isKelime ? " birles-play--kelime" : "") +
+        '" style="--chip:' +
+        esc(sound.color) +
+        ";--glow:" +
+        esc(sound.glow) +
+        '">' +
+        '  <div class="birles-pool" id="birles-pool">' +
+        '    <div class="birles-pool__stagebox" id="birles-pool-stagebox">' +
+        '      <div class="birles-pool__layer birles-pool__layer--merge is-on" id="birles-pool-layer-merge" style="opacity:1">' +
+        '        <video class="birles-pool__vid birles-pool__vid--merge" id="birles-pool-merge" playsinline webkit-playsinline muted loop preload="auto"></video>' +
+        "      </div>" +
+        '      <div class="birles-pool__layer birles-pool__layer--boom" id="birles-pool-layer-boom" style="opacity:0">' +
+        '        <video class="birles-pool__vid birles-pool__vid--boom" id="birles-pool-boom" playsinline webkit-playsinline preload="auto"></video>' +
+        "      </div>" +
+        '      <div class="birles-pool__veil" id="birles-pool-veil" style="opacity:0" aria-hidden="true"></div>' +
+        '      <div class="birles-pool__flash" id="birles-pool-flash" hidden aria-hidden="true"></div>' +
+        '      <div class="birles-pool__ui">' +
+        core +
+        '        <p class="birles-pool__burst" id="birles-pool-burst" hidden aria-live="polite"></p>' +
+        "      </div>" +
+        "    </div>" +
+        '    <div class="birles-pool__boot" id="birles-pool-boot" role="status" aria-live="polite">' +
+        '      <div class="birles-pool__boot-orb" aria-hidden="true"></div>' +
+        '      <p class="birles-pool__boot-title">Sihirli Havuz</p>' +
+        '      <p class="birles-pool__boot-text">Sihirli Havuz hazırlanıyor…</p>' +
+        '      <div class="birles-pool__boot-bar" aria-hidden="true"><i></i></div>' +
+        "    </div>" +
+        "  </div>" +
+        laneActionBarHtml(!!activeLane) +
+        "</div>";
+      bindPoolLayout();
+      layoutPoolStage();
+      setPoolBoot(true, "Sihirli Havuz hazırlanıyor…");
+      /* preparePoolReady startFusion / Tekrar içinde çağrılır */
+    } else {
+      body.innerHTML =
+        '<div class="birles-play birles-play--cumle" style="--chip:' +
+        esc(sound.color) +
+        ";--glow:" +
+        esc(sound.glow) +
+        '">' +
+        core +
+        laneActionBarHtml(!!activeLane) +
+        "</div>";
+    }
 
     wireLanePlayActions(sound, function () {
       var go = function () {
@@ -4670,18 +4642,7 @@
       /* Dönüt metni yok — sadece ses */
       if (reveal) reveal.hidden = true;
       setNarrForce("");
-      var sentenceText = String(fusion.result || "").trim();
-      if (!sentenceText && fusion.words && fusion.words.length) {
-        sentenceText = fusion.words
-          .map(function (w) {
-            return w.text || w.say || "";
-          })
-          .filter(Boolean)
-          .join(" ");
-      }
-      await playPoolFinale(sentenceText, null);
-      if (token !== animToken) return;
-      await pace(200);
+      await pace(320);
       if (token === animToken && activeLane) setLaneNextEnabled(true);
       return;
     }
