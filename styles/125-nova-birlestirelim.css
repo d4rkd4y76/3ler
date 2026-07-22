@@ -8120,3 +8120,33 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-sirala__board {
   padding-bottom: calc(18% + 72px);
 }
+
+/* Zirve Mağarası — cümle kelime sıralama */
+.birles-sirala--cumle .birles-sirala__nests {
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: min(96%, 560px);
+}
+.birles-sirala--cumle .birles-sirala__nest {
+  min-width: clamp(64px, 18vmin, 96px);
+  min-height: clamp(56px, 15vmin, 78px);
+  flex: 0 1 auto;
+}
+.birles-sirala--cumle .birles-sirala__chip {
+  min-width: clamp(64px, 17vmin, 110px);
+  padding: 0.35em 0.55em;
+  font-size: clamp(0.95rem, 3.6vmin, 1.25rem);
+}
+.birles-sirala--cumle .birles-sirala__rack {
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: min(96%, 560px);
+}
+.birles-sirala__burst-chip--cumle {
+  font-size: clamp(1.05rem, 4.2vmin, 1.55rem) !important;
+  padding: 0.45em 0.7em !important;
+  max-width: min(92vw, 480px);
+  text-wrap: balance;
+}

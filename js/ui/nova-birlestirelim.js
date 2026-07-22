@@ -43,9 +43,9 @@
     },
     {
       key: "cumle",
-      title: "Cümle Treni",
+      title: "Zirve Mağarası",
       tag: "Cümle",
-      sub: "Vagon vagon oku",
+      sub: "Oku, sonra kelimeleri sırala",
       allLabel: "Tüm cümleler",
       tone: "cumle"
     },
@@ -209,6 +209,13 @@
     return S.buildEndKelimeActivities(sound, bags.kelime || []) || [];
   }
 
+  function listCumleSiralaForSound(sound) {
+    var S = window.NovaBirlestirelimSirala;
+    if (!S || !S.buildEndCumleActivities) return [];
+    var bags = collectSoundLanes(sound);
+    return S.buildEndCumleActivities(sound, bags.cumle || []) || [];
+  }
+
   /** Hece listesinin sonuna 3 otomatik “Sıra sende” ekle */
   function buildHeceLaneWithSirala(sound, heceList) {
     var items = (heceList || []).map(function (f) {
@@ -247,6 +254,25 @@
     return items;
   }
 
+  /** Zirve Mağarası sonuna 3 otomatik “Sıra sende” ekle (o+ — Maarif 2. grup) */
+  function buildCumleLaneWithSirala(sound, cumleList) {
+    var items = (cumleList || []).map(function (f) {
+      return f;
+    });
+    var acts = listCumleSiralaForSound(sound);
+    acts.forEach(function (act) {
+      items.push({
+        id: "sirala_" + act.id,
+        kind: "sirala",
+        type: "sirala",
+        result: act.result || act.title || "?",
+        label: "Sıra sende · cümle",
+        sirala: act
+      });
+    });
+    return items;
+  }
+
   function laneKeysForSound(sound) {
     var bags = collectSoundLanes(sound);
     var keys = [];
@@ -255,6 +281,7 @@
       if ((bags[d.key] || []).length) keys.push(d.key);
       else if (d.key === "hece" && listSiralaForSound(sound).length) keys.push("hece");
       else if (d.key === "kelime" && listKelimeSiralaForSound(sound).length) keys.push("kelime");
+      else if (d.key === "cumle" && listCumleSiralaForSound(sound).length) keys.push("cumle");
     });
     return keys;
   }
@@ -2171,6 +2198,9 @@
       if (def.key === "kelime") {
         list = buildKelimeLaneWithSirala(sound, list);
       }
+      if (def.key === "cumle") {
+        list = buildCumleLaneWithSirala(sound, list);
+      }
       if (!list.length) return;
       var sub = def.sub || def.tag || "";
       var starred = isLaneStarred(sound.id, def.key);
@@ -2264,6 +2294,9 @@
     }
     if (laneKey === "kelime") {
       list = buildKelimeLaneWithSirala(sound, list);
+    }
+    if (laneKey === "cumle") {
+      list = buildCumleLaneWithSirala(sound, list);
     }
     if (!list.length) return;
     activeLane = {

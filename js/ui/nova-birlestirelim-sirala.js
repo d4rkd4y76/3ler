@@ -1,7 +1,7 @@
 /**
- * Ses Yuvası — Hece Avı içinde “sıra sende”
- * Yuva = correctOrder (ör. e,r). Rafta en fazla 5 ses.
- * Alt dock = havuz ile aynı (ilerleme · 🔁 · Tümü · Bekle/İlerle).
+ * Ses Yuvası — Hece Avı / Kelime / Zirve Mağarası içinde “sıra sende”
+ * Hece: yuva = harf sırası. Kelime: yuva = hece sırası.
+ * Cümle (o+): yuva = kelime sırası — Maarif 2. gruptan itibaren.
  */
 (function (global) {
   "use strict";
@@ -17,6 +17,10 @@
   var KELIME_SIRALA_START = "t";
   var KELIME_ONCUL_1 = "https://dlxstore.b-cdn.net/KEL%C4%B0MESON1.MP3";
   var KELIME_ONCUL_23 = "https://dlxstore.b-cdn.net/KEL%C4%B0MESON%202.MP3";
+  /* Maarif TYMM: 1. grupta yalnız ses/hece/sözcük; 2. gruptan (o) itibaren cümle */
+  var CUMLE_SIRALA_START = "o";
+  var CUMLE_ONCUL_1 = KELIME_ONCUL_1;
+  var CUMLE_ONCUL_23 = KELIME_ONCUL_23;
 
   var hostEl = null;
   var onDoneCb = null;
@@ -461,6 +465,174 @@
     });
   }
 
+  /**
+   * Maarif TYMM: 1. harf grubunda cümle yok; 2. gruptan (o) itibaren cümle.
+   * Zirve Mağarası sonunda kelime sıralama (boş yuvalara doğru sıra).
+   */
+  function soundAllowsCumleSirala(sound) {
+    if (!sound) return false;
+    var D = global.NovaBirlestirelimData;
+    var groups = (D && D.GROUPS) || [];
+    var pastStart = false;
+    var sid = sound.id;
+    for (var gi = 0; gi < groups.length; gi++) {
+      var arr = (groups[gi] && groups[gi].sounds) || [];
+      for (var si = 0; si < arr.length; si++) {
+        var s = arr[si];
+        if (!s) continue;
+        var lid = normLabel(s.id || s.letter);
+        if (lid === CUMLE_SIRALA_START || s.id === CUMLE_SIRALA_START) {
+          pastStart = true;
+        }
+        if (s.id === sid) return pastStart;
+      }
+    }
+    return false;
+  }
+
+  function isCumleLaneFusion(f) {
+    if (!f) return false;
+    var kind = String(f.kind || f.type || "").toLowerCase();
+    return kind === "cumle" || f.mode === "sentence";
+  }
+
+  /** Cümle → kelime parçaları (gösterim + ses anahtarı). Virgül gösterime alınmaz. */
+  function cumleWordParts(f) {
+    var words = (f && f.words) || [];
+    var out = [];
+    if (words.length) {
+      words.forEach(function (w) {
+        var say = normLabel((w && (w.say || w.text)) || "");
+        if (!say) return;
+        var label = String((w && (w.text || w.say)) || "")
+          .trim()
+          .replace(/^[,;:]+|[,;:.!?]+$/g, "");
+        if (!label) label = say;
+        out.push({ say: say, label: label });
+      });
+      return out;
+    }
+    var raw = String((f && (f.result || f.label)) || "")
+      .replace(/[.!?]+$/g, "")
+      .trim();
+    if (!raw) return [];
+    raw.split(/\s+/).forEach(function (tok) {
+      var label = String(tok || "")
+        .trim()
+        .replace(/^[,;:]+|[,;:.!?]+$/g, "");
+      var say = normLabel(label);
+      if (!say) return;
+      out.push({ say: say, label: label || say });
+    });
+    return out;
+  }
+
+  function collectCumleCandidates(sound, cumleList) {
+    var seen = {};
+    var out = [];
+
+    function addFusion(f) {
+      if (!isCumleLaneFusion(f)) return;
+      var parts = cumleWordParts(f);
+      if (parts.length < 2 || parts.length > SLOT_MAX) return;
+      var result = String((f && f.result) || "")
+        .trim()
+        .replace(/[.!?]+$/g, "");
+      if (!result) {
+        result = parts
+          .map(function (p) {
+            return p.label;
+          })
+          .join(" ");
+      }
+      var key = parts
+        .map(function (p) {
+          return p.say;
+        })
+        .join("|");
+      if (!key || seen[key]) return;
+      seen[key] = true;
+      out.push({
+        result: /[.!?]$/.test(String((f && f.result) || "").trim())
+          ? String(f.result).trim()
+          : result + ".",
+        parts: parts
+      });
+    }
+
+    (cumleList || []).forEach(addFusion);
+    if (out.length >= END_ACT_COUNT) return out;
+
+    if (!soundAllowsCumleSirala(sound)) return out;
+    var D = global.NovaBirlestirelimData;
+    var groups = (D && D.GROUPS) || [];
+    var pastStart = false;
+    for (var gi = 0; gi < groups.length; gi++) {
+      var arr = (groups[gi] && groups[gi].sounds) || [];
+      for (var si = 0; si < arr.length; si++) {
+        var s = arr[si];
+        if (!s) continue;
+        var lid = normLabel(s.id || s.letter);
+        if (lid === CUMLE_SIRALA_START || s.id === CUMLE_SIRALA_START) {
+          pastStart = true;
+        }
+        if (!pastStart) continue;
+        ((s.fusions) || []).forEach(addFusion);
+        if (s.id === (sound && sound.id)) return out;
+        if (out.length >= END_ACT_COUNT * 2) return out;
+      }
+    }
+    return out;
+  }
+
+  function pickEndCumles(sound, cumleList) {
+    var cands = collectCumleCandidates(sound, cumleList);
+    if (!cands.length) return [];
+    var seed = hashSeed("cumle:" + ((sound && sound.id) || "x"));
+    var shuffled = seededShuffle(cands, seed);
+    return shuffled.slice(0, Math.min(END_ACT_COUNT, shuffled.length));
+  }
+
+  /** Rafta yalnızca cümlenin kelimeleri (karışık) — çeldirici yok */
+  function buildCumleRackSounds(parts) {
+    return (parts || []).map(function (p) {
+      var say = p && p.say ? p.say : normLabel(p && p.label);
+      var label = (p && p.label) || say;
+      return { label: label, audioUrl: resolveAudio(say) };
+    });
+  }
+
+  /** Zirve Mağarası sonunda 3 otomatik “Sıra sende” (kelime sırala) — o+ */
+  function buildEndCumleActivities(sound, cumleList) {
+    if (!soundAllowsCumleSirala(sound)) return [];
+    var picked = pickEndCumles(sound, cumleList);
+    return picked.map(function (c, idx) {
+      var sounds = buildCumleRackSounds(c.parts);
+      var orderSays = c.parts.map(function (p) {
+        return p.say;
+      });
+      return normalizeActivity(
+        {
+          id: "auto_cumle_" + ((sound && sound.id) || "x") + "_" + (idx + 1),
+          title: "Sıra sende " + (idx + 1),
+          result: c.result,
+          resultAudioUrl: resolveAudio(
+            String(c.result || "")
+              .replace(/[.!?]+$/g, "")
+              .trim()
+          ),
+          correctOrder: orderSays.join(","),
+          instructionAudioUrl: idx === 0 ? CUMLE_ONCUL_1 : CUMLE_ONCUL_23,
+          endIndex: idx + 1,
+          heceStep: 0,
+          mode: "cumle",
+          sounds: sounds
+        },
+        idx
+      );
+    });
+  }
+
   function normalizeSound(row) {
     var r = row && typeof row === "object" ? row : {};
     return {
@@ -495,8 +667,12 @@
   function normalizeActivity(raw, idx) {
     var row = raw && typeof raw === "object" ? raw : {};
     var soundsIn = Array.isArray(row.sounds) ? row.sounds : Array.isArray(row.slots) ? row.slots : [];
+    var mode = String(row.mode || "").trim().toLowerCase();
+    if (mode !== "kelime" && mode !== "cumle") mode = "hece";
+    var slotCap = Math.max(SLOT_MAX, soundsIn.length || 0);
+    if (mode === "cumle") slotCap = Math.max(slotCap, SLOT_MAX);
     var sounds = [];
-    for (var i = 0; i < SLOT_MAX; i++) {
+    for (var i = 0; i < slotCap; i++) {
       var s = normalizeSound(soundsIn[i]);
       if (s.label || s.audioUrl) sounds.push(s);
     }
@@ -509,8 +685,6 @@
       endIndex = idm ? parseInt(idm[1], 10) : idx + 1;
     }
     if (!isFinite(endIndex) || endIndex < 1) endIndex = idx + 1;
-    var mode = String(row.mode || "").trim().toLowerCase();
-    if (mode !== "kelime") mode = "hece";
     return {
       id: String(row.id || "s" + (idx + 1)).trim() || "s" + (idx + 1),
       title: String(row.title || "").trim(),
@@ -1012,10 +1186,17 @@
     });
     if (!hostEl) return;
 
-    var word = activityRef.result || activityRef.title || activityRef.correctOrder.join("") || "";
+    var word = activityRef.result || activityRef.title || "";
+    if (!word) {
+      word = activityRef.correctOrder.join(activityRef.mode === "cumle" ? " " : "");
+    }
     if (burst) {
       burst.innerHTML =
-        '<span class="birles-sirala__burst-chip">' + esc(word) + "</span>";
+        '<span class="birles-sirala__burst-chip' +
+        (activityRef.mode === "cumle" ? " birles-sirala__burst-chip--cumle" : "") +
+        '">' +
+        esc(word) +
+        "</span>";
       burst.hidden = false;
       burst.classList.add("is-boom-in");
     }
@@ -1380,6 +1561,10 @@
   }
 
   function guideMp3ForActivity(act) {
+    if (act && act.mode === "cumle") {
+      if (act.endIndex > 1) return CUMLE_ONCUL_23;
+      return CUMLE_ONCUL_1;
+    }
     if (act && act.mode === "kelime") {
       if (act.endIndex > 1) return KELIME_ONCUL_23;
       return KELIME_ONCUL_1;
@@ -1501,7 +1686,13 @@
 
     var box = document.createElement("div");
     box.id = "birles-sirala-overlay";
-    box.className = "birles-sirala";
+    box.className =
+      "birles-sirala" +
+      (activityRef.mode === "cumle"
+        ? " birles-sirala--cumle"
+        : activityRef.mode === "kelime"
+          ? " birles-sirala--kelime"
+          : "");
     box.innerHTML =
       '<div class="birles-sirala__backdrop"></div>' +
       '<div class="birles-sirala__stage">' +
@@ -1516,7 +1707,13 @@
       '    <div class="birles-sirala__board">' +
       '      <div class="birles-sirala__nests"></div>' +
       '      <div class="birles-sirala__rack"></div>' +
-      '      <button type="button" class="birles-sirala__replay" data-sirala-instruct="1" aria-label="Heceyi dinle">🔊</button>' +
+      '      <button type="button" class="birles-sirala__replay" data-sirala-instruct="1" aria-label="' +
+      (activityRef.mode === "cumle"
+        ? "Cümleyi dinle"
+        : activityRef.mode === "kelime"
+          ? "Kelimeyi dinle"
+          : "Heceyi dinle") +
+      '">🔊</button>' +
       "    </div>" +
       '    <p class="birles-sirala__burst" hidden aria-live="polite"></p>' +
       "  </div>" +
@@ -1563,14 +1760,18 @@
     listActivities: listActivities,
     buildEndActivities: buildEndActivities,
     buildEndKelimeActivities: buildEndKelimeActivities,
+    buildEndCumleActivities: buildEndCumleActivities,
     pickEndHeces: pickEndHeces,
     pickEndKelimes: pickEndKelimes,
+    pickEndCumles: pickEndCumles,
     soundAllowsKelimeSirala: soundAllowsKelimeSirala,
+    soundAllowsCumleSirala: soundAllowsCumleSirala,
     ONCUL_MP3: ONCUL_MP3,
     ONCUL_23_MP3: ONCUL_23_MP3,
     KELIME_ONCUL_1: KELIME_ONCUL_1,
     KELIME_ONCUL_23: KELIME_ONCUL_23,
     KELIME_SIRALA_START: KELIME_SIRALA_START,
+    CUMLE_SIRALA_START: CUMLE_SIRALA_START,
     END_ACT_COUNT: END_ACT_COUNT,
     normalize: normalizeActivity,
     SLOT_MAX: SLOT_MAX
