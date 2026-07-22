@@ -15,8 +15,8 @@
   var ONCUL_23_MP3 = "https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3";
   /* Maarif: duyduğunu yazma — ilk anlamlı kısa sözcükler (at, et) ile t sesinde başlar */
   var KELIME_SIRALA_START = "t";
-  var KELIME_ONCUL_1 = "https://dlxstore.b-cdn.net/KEL%C4%B0ME%201.MP3";
-  var KELIME_ONCUL_23 = "https://dlxstore.b-cdn.net/KEL%C4%B0ME%202.MP3";
+  var KELIME_ONCUL_1 = "https://dlxstore.b-cdn.net/KEL%C4%B0MESON1.MP3";
+  var KELIME_ONCUL_23 = "https://dlxstore.b-cdn.net/KEL%C4%B0MESON%202.MP3";
 
   var hostEl = null;
   var onDoneCb = null;

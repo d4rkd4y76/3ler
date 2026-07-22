@@ -1102,7 +1102,7 @@ window.NovaAdminExport = (function(){
 <script src="js/core/nova-roborox-data.js?v=30260622kabuksec1"></script>
 <script src="js/core/nova-birlestirelim-data.js?v=30260714birles36"></script>
 <script src="js/core/nova-birlestirelim-yazilis-data.js?v=30260719yazN3"></script>
-<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722kelimesirala1"></script>
+<script src="js/ui/nova-birlestirelim-sirala.js?v=30260722kelimeson1"></script>
 <script src="js/ui/nova-kids-voice.js?v=30260714birles18"></script>
 <script>
 /** =============================
@@ -3009,8 +3009,8 @@ window.NovaAdminExport = (function(){
       var S = window.NovaBirlestirelimSirala;
       var oncul = (S && S.ONCUL_MP3) || 'https://dlxstore.b-cdn.net/SES%20SIRA%20SENDE%20%C3%96NC%C3%9CL.MP3';
       var oncul23 = (S && S.ONCUL_23_MP3) || 'https://dlxstore.b-cdn.net/SIRA%20SENDE%202-3.MP3';
-      var kelOncul1 = (S && S.KELIME_ONCUL_1) || 'https://dlxstore.b-cdn.net/KEL%C4%B0ME%201.MP3';
-      var kelOncul23 = (S && S.KELIME_ONCUL_23) || 'https://dlxstore.b-cdn.net/KEL%C4%B0ME%202.MP3';
+      var kelOncul1 = (S && S.KELIME_ONCUL_1) || 'https://dlxstore.b-cdn.net/KEL%C4%B0MESON1.MP3';
+      var kelOncul23 = (S && S.KELIME_ONCUL_23) || 'https://dlxstore.b-cdn.net/KEL%C4%B0MESON%202.MP3';
       var heceList = fusionListFor(sound).filter(function(f){ return laneKeyForFusion(f) === 'hece'; });
       var kelimeList = fusionListFor(sound).filter(function(f){ return laneKeyForFusion(f) === 'kelime'; });
       var acts = (S && S.buildEndActivities) ? (S.buildEndActivities(sound, heceList) || []) : [];
