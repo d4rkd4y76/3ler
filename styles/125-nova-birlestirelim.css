@@ -4544,6 +4544,24 @@ html.nova-perf-ultra-early.nova-has-session
   visibility: hidden;
 }
 
+/* Cümle tamam kutusu: son okumadan önce yavaşça kaybolsun */
+.birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out {
+  opacity: 0;
+  visibility: visible;
+  pointer-events: none;
+  transform: translate3d(0, 10px, 0) scale(0.96);
+  transition:
+    opacity 2s ease,
+    transform 2s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out {
+    transition-duration: 0.2s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .birles-play--pool .birles-stage.is-finale-fade,
   .birles-play--pool .birles-tray.is-finale-fade {

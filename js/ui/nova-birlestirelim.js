@@ -3747,7 +3747,7 @@
 
     var isCumleFinale = !!document.querySelector(".birles-play--cumle");
 
-    /* Havuz: kart yumuşak kaybolsun. Cümle: geçiş yok — direkt patlama */
+    /* Havuz: kart yumuşak kaybolsun. Cümle: tamam kutusu patlama boyunca kalsın */
     if (!isCumleFinale) {
       if (stage) {
         stage.classList.remove("is-finale");
@@ -3759,9 +3759,15 @@
       }
       await pace(reduceMotion ? 120 : 480);
       if (token !== animToken) return;
+      if (stage) stage.classList.add("is-finale");
+      if (tray) tray.classList.add("is-finale");
+    } else {
+      /* Cümle: tepsi gizlensin, tamam cümlesi ekranda kalsın */
+      if (tray) tray.classList.add("is-finale");
+      if (stage) {
+        stage.classList.remove("is-finale", "is-finale-fade", "is-cumle-done-out");
+      }
     }
-    if (stage) stage.classList.add("is-finale");
-    if (tray) tray.classList.add("is-finale");
 
     softPauseVideo(merge);
 
@@ -3822,11 +3828,16 @@
       );
     }
 
-    /* Cümle: patlama bitmeden ~1.3 sn önce okumaya geç — loop arka planda toparlanır */
+    /* Cümle: patlama bitmek üzereyken tamam kutusu 2 sn yavaşça kaybolur → sonra son okuma */
     if (isCumleFinale) {
-      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.35 : 1.35);
+      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 2.05);
       if (token !== animToken) return;
-      if (stage) stage.classList.remove("is-finale", "is-finale-fade");
+      if (stage) {
+        stage.classList.remove("is-finale", "is-finale-fade");
+        stage.classList.add("is-cumle-done-out");
+      }
+      await pace(reduceMotion ? 180 : 2000);
+      if (token !== animToken) return;
       if (tray) tray.classList.remove("is-finale", "is-finale-fade");
       waitBoomEnded(boom, token).then(function () {
         restorePoolLoopAfterBoom(boom, merge, flash, token);
