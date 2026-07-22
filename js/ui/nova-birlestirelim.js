@@ -3656,6 +3656,12 @@
   }
 
   function waitBoomEnded(boom, token) {
+    return waitBoomUntilRemaining(boom, token, 0.05);
+  }
+
+  /** Patlama videosu bitimine remainSec kala resolve — erken okuma için */
+  function waitBoomUntilRemaining(boom, token, remainSec) {
+    remainSec = remainSec == null ? 0.05 : Math.max(0, Number(remainSec) || 0);
     return new Promise(function (resolve) {
       var finished = false;
       function done() {
@@ -3679,7 +3685,7 @@
           return;
         }
         var d = boom && boom.duration;
-        if (d && isFinite(d) && d > 0 && boom.currentTime >= d - 0.05) {
+        if (d && isFinite(d) && d > 0 && boom.currentTime >= Math.max(0, d - remainSec)) {
           cleanup();
           done();
         }
@@ -3694,12 +3700,33 @@
       }
       boom.addEventListener("ended", onEnded);
       boom.addEventListener("timeupdate", onTime);
+      onTime();
       setTimeout(function () {
         if (finished) return;
         cleanup();
         done();
       }, 12000);
     });
+  }
+
+  function restorePoolLoopAfterBoom(boom, merge, flash, token) {
+    if (token !== animToken) return;
+    softPauseVideo(boom);
+    try {
+      if (boom) boom.muted = true;
+    } catch (_) {}
+    if (flash) {
+      flash.classList.remove("is-on");
+      flash.hidden = true;
+    }
+    if (merge) {
+      merge.removeAttribute("hidden");
+      merge.muted = true;
+      merge.loop = true;
+      var mp = merge.play();
+      if (mp && typeof mp.catch === "function") mp.catch(function () {});
+    }
+    hardCutPoolLayers(false);
   }
 
   /** Patlama: ilk hece yumuşak kaybolur → parlama + video → yeni hece aşağıdan yükselir */
@@ -3795,27 +3822,22 @@
       );
     }
 
+    /* Cümle: patlama bitmeden ~1.3 sn önce okumaya geç — loop arka planda toparlanır */
+    if (isCumleFinale) {
+      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.35 : 1.35);
+      if (token !== animToken) return;
+      if (stage) stage.classList.remove("is-finale", "is-finale-fade");
+      if (tray) tray.classList.remove("is-finale", "is-finale-fade");
+      waitBoomEnded(boom, token).then(function () {
+        restorePoolLoopAfterBoom(boom, merge, flash, token);
+      });
+      return;
+    }
+
     await waitBoomEnded(boom, token);
     if (token !== animToken) return;
 
-    softPauseVideo(boom);
-    try {
-      boom.muted = true;
-    } catch (_) {}
-    if (flash) {
-      flash.classList.remove("is-on");
-      flash.hidden = true;
-    }
-
-    if (merge) {
-      merge.removeAttribute("hidden");
-      merge.muted = true;
-      merge.loop = true;
-      var mp = merge.play();
-      if (mp && typeof mp.catch === "function") mp.catch(function () {});
-    }
-    hardCutPoolLayers(false);
-
+    restorePoolLoopAfterBoom(boom, merge, flash, token);
     await audioP;
   }
 
