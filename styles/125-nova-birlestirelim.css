@@ -8262,6 +8262,26 @@ html.nova-perf-ultra-early.nova-has-session
   box-shadow: 0 4px 12px rgba(22, 163, 74, 0.5);
 }
 
+/* Patlama cümlesi — ejderha patlamasının merkezine */
+.birles-sirala--cumle .birles-sirala__burst {
+  top: 30%;
+}
+
+.birles-sirala--cumle .birles-sirala__burst.is-boom-in {
+  animation: birlesSiralaBurstCumle 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes birlesSiralaBurstCumle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -35%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .birles-sirala--cumle .birles-sirala__burst-chip--cumle,
 .birles-sirala__burst-chip--cumle {
   font-size: clamp(1.05rem, 4.2vmin, 1.55rem) !important;
