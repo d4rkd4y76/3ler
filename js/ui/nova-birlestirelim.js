@@ -195,6 +195,12 @@
     return K.hasKristal(letterPackFor(sound));
   }
 
+  function hasYaziUstasiForSound(sound) {
+    var Y = window.NovaBirlestirelimYaziUstasi;
+    if (!Y || !Y.hasYaziUstasi || !sound) return false;
+    return !!Y.hasYaziUstasi(sound.id);
+  }
+
   function listSiralaForSound(sound) {
     var S = window.NovaBirlestirelimSirala;
     if (!S || !S.buildEndActivities) return [];
@@ -277,6 +283,7 @@
     var bags = collectSoundLanes(sound);
     var keys = [];
     if (hasKristalForSound(sound)) keys.push("kristal");
+    if (hasYaziUstasiForSound(sound)) keys.push("yaziUstasi");
     LANE_DEFS.forEach(function (d) {
       if ((bags[d.key] || []).length) keys.push(d.key);
       else if (d.key === "hece" && listSiralaForSound(sound).length) keys.push("hece");
@@ -1804,6 +1811,59 @@
     });
   }
 
+  function openYaziUstasi(sound) {
+    if (!sound || !window.NovaBirlestirelimYaziUstasi) return;
+    if (!hasYaziUstasiForSound(sound)) return;
+    var body = document.getElementById("birles-body");
+    if (!body) return;
+    view = "play";
+    activeSound = sound;
+    activeFusion = null;
+    animToken += 1;
+    var bootTok = showBirlesViewBoot("Yazı Ustası", "Hazırlanıyor…");
+    Promise.all([ensureMedia(), waitMinMs(200)])
+      .then(function () {
+        if (!isBirlesViewBootCurrent(bootTok)) return;
+        return finishBirlesViewBoot(bootTok, "Yazı Ustası", "Hazırlanıyor…", function () {
+          window.NovaBirlestirelimYaziUstasi.open({
+            sound: sound,
+            body: body,
+            setBack: setBack,
+            setHeader: setHeader,
+            onClose: function () {
+              animToken += 1;
+              openSound(sound.id);
+            },
+            onComplete: function () {
+              markLaneStarred(sound.id, sound.groupId || activeGroupId, "yaziUstasi").then(
+                function (newly) {
+                  if (newly && typeof playStarRewardOnce === "function") {
+                    return playStarRewardOnce("Yazı Ustası");
+                  }
+                }
+              );
+            }
+          });
+        });
+      })
+      .catch(function () {
+        clearBirlesViewBootFlag();
+        window.NovaBirlestirelimYaziUstasi.open({
+          sound: sound,
+          body: body,
+          setBack: setBack,
+          setHeader: setHeader,
+          onClose: function () {
+            animToken += 1;
+            openSound(sound.id);
+          },
+          onComplete: function () {
+            markLaneStarred(sound.id, sound.groupId || activeGroupId, "yaziUstasi");
+          }
+        });
+      });
+  }
+
   function openSound(soundId) {
     var DD = data();
     var sound = DD && DD.getSound ? DD.getSound(soundId) : null;
@@ -2128,6 +2188,17 @@
         "</svg>"
       );
     }
+    if (t === "yaziUstasi") {
+      return (
+        '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
+        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#99F6E4"/>' +
+        '<rect x="12" y="14" width="24" height="20" rx="4" fill="#F0FDFA"/>' +
+        '<path d="M16 20h16M16 26h12M16 32h14" stroke="#0F766E" stroke-width="2.2" stroke-linecap="round"/>' +
+        '<path d="M30 12l6 2-4 10-6-2z" fill="#F59E0B"/>' +
+        '<circle cx="35" cy="13" r="2.2" fill="#FEF3C7"/>' +
+        "</svg>"
+      );
+    }
     if (t === "sirala") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
@@ -2250,6 +2321,34 @@
         "</button>";
     }
 
+    if (hasYaziUstasiForSound(sound)) {
+      var yaziStarred = isLaneStarred(sound.id, "yaziUstasi");
+      var yaziWords =
+        (window.NovaBirlestirelimYaziUstasi.wordsForSound &&
+          window.NovaBirlestirelimYaziUstasi.wordsForSound(sound.id)) ||
+        [];
+      html +=
+        '<button type="button" class="birles-lane-card birles-lane-card--yaziUstasi' +
+        (yaziStarred ? " is-starred" : "") +
+        '" data-yazi-ustasi="1" role="listitem">' +
+        '<span class="birles-lane-card__ico" aria-hidden="true">' +
+        laneIconSvg("yaziUstasi") +
+        "</span>" +
+        '<span class="birles-lane-card__body">' +
+        '<span class="birles-lane-card__title">Yazı Ustası' +
+        (yaziStarred ? ' <span class="birles-lane-card__star" aria-hidden="true">★</span>' : "") +
+        "</span>" +
+        '<span class="birles-lane-card__sub">Kelimeyi kılavuzda yaz</span>' +
+        "</span>" +
+        '<span class="birles-lane-card__count">' +
+        Math.max(2, yaziWords.length) +
+        "</span>" +
+        '<span class="birles-lane-card__go">' +
+        (yaziStarred ? "Tekrar" : "Başla") +
+        "</span>" +
+        "</button>";
+    }
+
     LANE_DEFS.forEach(function (def) {
       var list = bags[def.key] || [];
       if (def.key === "hece") {
@@ -2332,6 +2431,13 @@
       kristalBtn.addEventListener("click", function (e) {
         e.preventDefault();
         openKristalCave(sound);
+      });
+    }
+    var yaziUstasiBtn = body.querySelector("[data-yazi-ustasi]");
+    if (yaziUstasiBtn) {
+      yaziUstasiBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openYaziUstasi(sound);
       });
     }
     body.querySelectorAll("[data-lane]").forEach(function (btn) {
