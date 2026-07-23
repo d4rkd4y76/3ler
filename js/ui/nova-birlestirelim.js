@@ -3875,7 +3875,7 @@
 
     /* Cümle: patlama bitmek üzereyken üst panel + tamam kutusu eşzamanlı yumuşakça kaybolur */
     if (isCumleFinale) {
-      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 3.05);
+      await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 4.85);
       if (token !== animToken) return;
       var sentBar = document.getElementById("birles-sentence-bar");
       if (stage) {
