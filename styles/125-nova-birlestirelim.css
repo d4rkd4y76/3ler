@@ -7517,7 +7517,7 @@ html.nova-perf-ultra-early.nova-has-session
 }
 .birles-yazu__hero {
   text-align: center;
-  padding: 10px 12px 8px;
+  padding: 12px 14px 10px;
   border-radius: 20px;
   background:
     radial-gradient(ellipse 80% 70% at 50% 0%, rgba(45, 212, 191, 0.28), transparent 60%),
@@ -7525,22 +7525,24 @@ html.nova-perf-ultra-early.nova-has-session
   border: 1.5px solid rgba(13, 148, 136, 0.28);
 }
 .birles-yazu__kicker {
-  margin: 0 0 2px;
+  margin: 0 0 4px;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #0f766e;
 }
-.birles-yazu__headline {
+.birles-yazu__word-big {
   margin: 0;
   font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
-  font-size: clamp(1.25rem, 4.5vmin, 1.55rem);
+  font-size: clamp(2rem, 8vmin, 2.75rem);
   font-weight: 800;
+  letter-spacing: 0.06em;
   color: #134e4a;
+  line-height: 1.05;
 }
 .birles-yazu__progress {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   font-size: 0.82rem;
   font-weight: 700;
   color: #0f766e;
@@ -7612,14 +7614,14 @@ html.nova-perf-ultra-early.nova-has-session
   stroke: rgba(13, 148, 136, 0.45);
 }
 .birles-yazu__ghost {
-  stroke: rgba(15, 118, 110, 0.16);
-  stroke-width: 12;
+  stroke: rgba(15, 118, 110, 0.22);
+  stroke-width: 11;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .birles-yazu__stroke {
   stroke: #0f766e;
-  stroke-width: 11;
+  stroke-width: 10;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0.95;
@@ -7725,8 +7727,8 @@ html.nova-perf-ultra-early.nova-has-session
   font-weight: 700;
   opacity: 0.72;
 }
-.birles-yazu-act--demo.is-on,
-.birles-yazu-act--write.is-on {
+.birles-yazu-act--write.is-on,
+.birles-yazu-act--listen:active {
   background: linear-gradient(165deg, #5eead4, #14b8a6);
   color: #042f2e;
   box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
