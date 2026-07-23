@@ -38,6 +38,14 @@
 
 .birles-body.is-view-booting {
   min-height: 220px;
+  position: relative;
+}
+
+/* Boot açıkken içerik hazırlanır ama görünmez — yarım yerleşmiş flash yok */
+.birles-body.is-view-booting > *:not(.birles-view-boot) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 .birles-view-boot__orb {
@@ -7722,6 +7730,70 @@ html.nova-perf-ultra-early.nova-has-session
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+}
+.birles-sirala.is-booting .birles-sirala__board,
+.birles-sirala.is-booting .birles-sirala__close,
+.birles-sirala.is-booting .birles-fs-dock,
+.birles-sirala.is-booting .birles-sirala__replay {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.birles-sirala__boot {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 35%, rgba(60, 140, 200, 0.35), transparent 60%),
+    rgba(4, 16, 24, 0.88);
+  transition: opacity 0.24s ease;
+}
+.birles-sirala__boot.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+.birles-sirala__boot-orb {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0%, #9be7ff 28%, #2a8fc4 70%, #0a3a55 100%);
+  box-shadow: 0 0 22px rgba(100, 210, 255, 0.55);
+  animation: birlesPoolBootPulse 1.35s ease-in-out infinite;
+}
+.birles-sirala__boot-title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #eaf7ff;
+}
+.birles-sirala__boot-text {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(210, 235, 250, 0.82);
+}
+.birles-sirala__boot-bar {
+  width: min(180px, 56vw);
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.birles-sirala__boot-bar > i {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5ec8f0, #b8f0ff, #5ec8f0);
+  animation: birlesPoolBootBar 1.1s ease-in-out infinite;
 }
 .birles-sirala__backdrop {
   position: absolute;

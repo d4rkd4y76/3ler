@@ -145,6 +145,7 @@
         fi = 0;
         try {
           document.documentElement.classList.add('nova-login-ice-ready');
+          document.dispatchEvent(new CustomEvent('nova:login-ice-ready'));
         } catch (_) {}
         drawFrame(m);
         raf = requestAnimationFrame(tick);
@@ -152,6 +153,7 @@
       .catch(function () {
         try {
           document.documentElement.classList.add('nova-login-ice-fallback');
+          document.dispatchEvent(new CustomEvent('nova:login-ice-ready'));
         } catch (_) {}
       });
   }

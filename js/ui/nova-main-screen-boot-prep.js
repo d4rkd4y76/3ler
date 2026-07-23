@@ -239,19 +239,49 @@
 
   window.novaMainScreenShellReady = mainScreenShellReady;
 
+  function lobbyTilesReady() {
+    var lobby = document.getElementById('nova-main-lobby');
+    if (!lobby) return false;
+    try {
+      var tiles = lobby.querySelectorAll(
+        '.nova-lobby-tile, .nova-main-lobby__tile, button, a, [data-nova-lobby]'
+      );
+      if (tiles.length < 2) {
+        /* Lazy / alternatif yapı — en az lobby boyutu yeterli */
+        var lr = lobby.getBoundingClientRect();
+        return lr.width >= 80 && lr.height >= 80;
+      }
+      var visible = 0;
+      for (var i = 0; i < tiles.length && i < 12; i++) {
+        var r = tiles[i].getBoundingClientRect();
+        if (r.width >= 24 && r.height >= 24) visible += 1;
+      }
+      return visible >= 2;
+    } catch (_) {
+      return true;
+    }
+  }
+
   function mainScreenElementsReady() {
-    /* Kapı: iskelet hazır olsun — arka plan/kahraman arka planda gelsin */
+    /* Kapı kapanması: iskelet + lobby oturmuş olsun (bg/foto oranını doldurur) */
     if (!mainChromeReady() || !studentNameReady()) return false;
-    if (lazyTabsActive()) return true;
     if (!creditsReady()) {
       var cred = document.getElementById('duel-credits-value');
       if (cred && String(cred.textContent || '').trim() === '') cred.textContent = '0';
     }
+    if (!lobbyTilesReady()) return false;
     return true;
   }
 
   function mainScreenReadinessRatio() {
-    var checks = [mainChromeReady(), studentNameReady()];
+    var checks = [
+      mainChromeReady(),
+      studentNameReady(),
+      creditsReady(),
+      mainBgPaintReady(),
+      profilePhotoBootReady(),
+      lobbyTilesReady()
+    ];
     var n = 0;
     for (var i = 0; i < checks.length; i++) if (checks[i]) n += 1;
     return n / checks.length;

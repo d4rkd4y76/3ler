@@ -1,7 +1,11 @@
-/* Giriş ekranı — ComfortaaOkul hazır olmadan açılmaz */
+/* Giriş ekranı — font + ejderha hazır olmadan açılmaz */
 
 (function () {
   'use strict';
+
+  var revealed = false;
+  var ICE_MAX_MS = 9000;
+  var MIN_SHOW_MS = 280;
 
   function hasStoredStudent() {
     try {
@@ -35,6 +39,18 @@
     } catch (_) {}
   }
 
+  function iceReady() {
+    try {
+      var html = document.documentElement;
+      return (
+        html.classList.contains('nova-login-ice-ready') ||
+        html.classList.contains('nova-login-ice-fallback')
+      );
+    } catch (_) {
+      return true;
+    }
+  }
+
   function whenFontReady(fn) {
     if (typeof window.novaWhenOkulFontReady === 'function') {
       window.novaWhenOkulFontReady(fn);
@@ -49,7 +65,75 @@
     requestAnimationFrame(fn);
   }
 
+  function whenIceReady(fn) {
+    var started = Date.now();
+    function check() {
+      if (iceReady() || Date.now() - started >= ICE_MAX_MS) {
+        fn();
+        return;
+      }
+      setTimeout(check, 60);
+    }
+    try {
+      if (typeof window.novaStartLoginIceSprite === 'function') {
+        window.novaStartLoginIceSprite();
+      }
+    } catch (_) {}
+    check();
+  }
+
+  function ensureLoginBootEl() {
+    var screen = document.getElementById('student-selection-screen');
+    if (!screen) return null;
+    var el = document.getElementById('nova-login-boot');
+    if (el) return el;
+    el = document.createElement('div');
+    el.id = 'nova-login-boot';
+    el.className = 'nova-login-boot';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.innerHTML =
+      '<div class="nova-login-boot__orb" aria-hidden="true"></div>' +
+      '<p class="nova-login-boot__title">Düellox</p>' +
+      '<p class="nova-login-boot__text">Hazırlanıyor…</p>' +
+      '<div class="nova-login-boot__bar" aria-hidden="true"><i></i></div>';
+    screen.appendChild(el);
+    return el;
+  }
+
+  function showLoginBoot() {
+    try {
+      document.documentElement.classList.add('nova-login-booting');
+    } catch (_) {}
+    var el = ensureLoginBootEl();
+    if (el) {
+      el.hidden = false;
+      el.classList.add('is-open');
+      el.classList.remove('is-leaving');
+    }
+  }
+
+  function hideLoginBoot() {
+    var el = document.getElementById('nova-login-boot');
+    function done() {
+      try {
+        document.documentElement.classList.remove('nova-login-booting');
+      } catch (_) {}
+      if (el) {
+        el.classList.remove('is-open', 'is-leaving');
+        el.hidden = true;
+      }
+    }
+    if (el) {
+      el.classList.add('is-leaving');
+      setTimeout(done, 260);
+    } else {
+      done();
+    }
+  }
+
   function revealLogin() {
+    if (revealed) return;
     if (hasStoredStudent()) {
       whenFontReady(function () {
         try {
@@ -69,32 +153,47 @@
       return;
     }
 
+    showLoginBoot();
+    var shownAt = Date.now();
+
     whenFontReady(function () {
-      try {
-        if (typeof window.novaApplyGuestLoginShell === 'function') {
-          window.novaApplyGuestLoginShell();
-        }
-      } catch (_) {}
+      whenIceReady(function () {
+        var waitMore = Math.max(0, MIN_SHOW_MS - (Date.now() - shownAt));
+        setTimeout(function () {
+          if (revealed) return;
+          revealed = true;
 
-      neutralizeBodyScale();
+          try {
+            if (typeof window.novaApplyGuestLoginShell === 'function') {
+              window.novaApplyGuestLoginShell();
+            }
+          } catch (_) {}
 
-      var el = document.getElementById('student-selection-screen');
-      if (!el) return;
+          neutralizeBodyScale();
 
-      el.style.display = 'flex';
-      el.style.visibility = 'visible';
-      el.style.opacity = '1';
-      el.style.position = 'fixed';
-      el.style.inset = '0';
-      el.style.zoom = '1';
-      el.style.transform = 'none';
-      el.dataset.novaFastShown = '1';
+          var el = document.getElementById('student-selection-screen');
+          if (!el) {
+            hideLoginBoot();
+            return;
+          }
 
-      try {
-        document.body.classList.add('nova-login-fast-visible');
-      } catch (_) {}
+          el.style.display = 'flex';
+          el.style.visibility = 'visible';
+          el.style.opacity = '1';
+          el.style.position = 'fixed';
+          el.style.inset = '0';
+          el.style.zoom = '1';
+          el.style.transform = 'none';
+          el.dataset.novaFastShown = '1';
 
-      markLoginReady();
+          try {
+            document.body.classList.add('nova-login-fast-visible');
+          } catch (_) {}
+
+          markLoginReady();
+          hideLoginBoot();
+        }, waitMore);
+      });
     });
   }
 

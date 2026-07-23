@@ -2,16 +2,18 @@
 (function () {
   'use strict';
 
-  var MIN_SHOW_MS = 320;
-  var MAX_SHOW_MS = 12000;
-  var HARD_FAILSAFE_MS = 18000;
+  var MIN_SHOW_MS = 480;
+  var MAX_SHOW_MS = 16000;
+  var HARD_FAILSAFE_MS = 22000;
   var POLL_MS = 50;
+  var READY_STREAK_NEED = 3;
   var startedAt = 0;
   var shown = false;
   var done = false;
   var raf = 0;
   var pollTimer = 0;
   var displayRatio = 0;
+  var readyStreak = 0;
 
   function hasSession() {
     if (typeof window.novaHasStoredStudentSession === 'function') {
@@ -99,6 +101,7 @@
       shown = true;
       startedAt = Date.now();
       displayRatio = 0;
+      readyStreak = 0;
     }
     g.hidden = false;
     g.removeAttribute('hidden');
@@ -157,18 +160,22 @@
     }
   }
 
-  function maybeFinish(force) {
+  function maybeFinish() {
     if (done) return;
     var ratio = readiness();
     setVisual(ratio);
     var elapsed = Date.now() - (startedAt || Date.now());
-    var trulyReady = elementsReady() && ratio >= 0.999;
-    if (trulyReady && elapsed >= MIN_SHOW_MS) {
+    var readyNow = elementsReady() && ratio >= 0.999;
+    if (readyNow) readyStreak += 1;
+    else readyStreak = 0;
+
+    /* Birkaç ardışık hazır tick — yavaş ağda yarım yerleşmiş ekranı açma */
+    if (readyStreak >= READY_STREAK_NEED && elapsed >= MIN_SHOW_MS) {
       hideGate();
       return;
     }
-    /* Zaman aşımında yalnız yeterince hazırsa kapat — boş ana ekranı gösterme */
-    if (elapsed >= MAX_SHOW_MS && elementsReady() && ratio >= 0.7) {
+    /* Zaman aşımında yalnız neredeyse tam hazırsa kapat */
+    if (elapsed >= MAX_SHOW_MS && elementsReady() && ratio >= 0.83 && readyStreak >= 1) {
       hideGate();
       return;
     }
@@ -179,7 +186,7 @@
 
   function tick() {
     if (done) return;
-    maybeFinish(false);
+    maybeFinish();
     if (done) return;
     pollTimer = setTimeout(function () {
       raf = requestAnimationFrame(tick);
@@ -217,7 +224,7 @@
   document.addEventListener(
     'nova:main-screen-ready',
     function () {
-      maybeFinish(true);
+      maybeFinish();
     },
     { passive: true }
   );

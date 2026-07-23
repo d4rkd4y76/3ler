@@ -1809,9 +1809,56 @@
       }
     }
 
-    setTimeout(function () {
-      playIntroSequence();
-    }, 280);
+    function clearSiralaBoot() {
+      if (!hostEl) return;
+      hostEl.classList.remove("is-booting");
+      var boot = hostEl.querySelector(".birles-sirala__boot");
+      if (boot) {
+        boot.classList.add("is-leaving");
+        setTimeout(function () {
+          if (boot && boot.parentNode) boot.parentNode.removeChild(boot);
+        }, 240);
+      }
+    }
+
+    function waitMergeReady() {
+      return new Promise(function (resolve) {
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          resolve();
+        }
+        if (!merge) {
+          finish();
+          return;
+        }
+        function ok() {
+          try {
+            if (merge.readyState >= 2) {
+              finish();
+              return true;
+            }
+          } catch (_) {}
+          return false;
+        }
+        if (ok()) return;
+        merge.addEventListener("canplay", finish, { once: true });
+        merge.addEventListener("loadeddata", finish, { once: true });
+        merge.addEventListener("error", finish, { once: true });
+        setTimeout(finish, 5000);
+      });
+    }
+
+    waitMergeReady().then(function () {
+      return sleep(220);
+    }).then(function () {
+      if (!hostEl) return;
+      clearSiralaBoot();
+      setTimeout(function () {
+        playIntroSequence();
+      }, 120);
+    });
   }
 
   function open(opts) {
@@ -1847,6 +1894,12 @@
           ? " birles-sirala--kelime"
           : "");
     box.innerHTML =
+      '<div class="birles-sirala__boot is-open" id="birles-sirala-boot" role="status" aria-live="polite">' +
+      '  <div class="birles-sirala__boot-orb" aria-hidden="true"></div>' +
+      '  <p class="birles-sirala__boot-title">Sıra Sende</p>' +
+      '  <p class="birles-sirala__boot-text">Hazırlanıyor…</p>' +
+      '  <div class="birles-sirala__boot-bar" aria-hidden="true"><i></i></div>' +
+      "</div>" +
       '<div class="birles-sirala__backdrop"></div>' +
       '<div class="birles-sirala__stage">' +
       '  <div class="birles-sirala__stagebox">' +
@@ -1876,6 +1929,7 @@
 
     (document.documentElement || document.body).appendChild(box);
     hostEl = box;
+    hostEl.classList.add("is-booting");
     setPoolFs(true);
     bindLayout();
     layoutStage();

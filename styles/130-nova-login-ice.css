@@ -373,3 +373,93 @@ html:not(.nova-has-session) .nova-register-close {
     border-radius: 0 !important;
   }
 }
+
+/* Giriş boot — ejderha + form oturana kadar */
+.nova-login-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(80, 160, 220, 0.35) 0%, transparent 58%),
+    linear-gradient(180deg, #0a1c34 0%, #071428 55%, #04101f 100%);
+  pointer-events: auto;
+  opacity: 1;
+  transition: opacity 0.26s ease;
+}
+.nova-login-boot.is-open {
+  display: flex;
+}
+.nova-login-boot.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+.nova-login-boot__orb {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff 0%, #9be7ff 28%, #2a8fc4 70%, #0a3a55 100%);
+  box-shadow: 0 0 22px rgba(100, 210, 255, 0.55);
+  animation: novaLoginBootPulse 1.35s ease-in-out infinite;
+}
+.nova-login-boot__title {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #eaf7ff;
+  letter-spacing: 0.04em;
+}
+.nova-login-boot__text {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(210, 235, 250, 0.82);
+}
+.nova-login-boot__bar {
+  width: min(180px, 56vw);
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.nova-login-boot__bar > i {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5ec8e0, #b8f0ff, #5ec8e0);
+  animation: novaLoginBootBar 1.1s ease-in-out infinite;
+}
+@keyframes novaLoginBootPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.88;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+@keyframes novaLoginBootBar {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+html.nova-login-booting:not(.nova-has-session) #student-selection-screen .nova-login-ice__slot,
+html.nova-login-booting:not(.nova-has-session) #student-selection-screen .nova-login-ice__brand {
+  visibility: hidden;
+  pointer-events: none;
+}
+

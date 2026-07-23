@@ -816,6 +816,15 @@
     return token;
   }
 
+  function pinBirlesViewBoot(title, text) {
+    var body = document.getElementById("birles-body");
+    if (!body) return;
+    body.classList.add("is-view-booting");
+    if (!document.getElementById("birles-view-boot")) {
+      body.insertAdjacentHTML("afterbegin", birlesViewBootHtml(title, text));
+    }
+  }
+
   function isBirlesViewBootCurrent(token) {
     return token === viewBootToken;
   }
@@ -823,6 +832,40 @@
   function clearBirlesViewBootFlag() {
     var body = document.getElementById("birles-body");
     if (body) body.classList.remove("is-view-booting");
+    var boot = document.getElementById("birles-view-boot");
+    if (boot) boot.remove();
+  }
+
+  function waitBirlesPaintSettle(minMs) {
+    minMs = minMs == null ? 220 : minMs;
+    return new Promise(function (resolve) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          setTimeout(resolve, Math.max(0, minMs));
+        });
+      });
+    });
+  }
+
+  async function finishBirlesViewBoot(bootTok, title, text, renderFn, settlePromise) {
+    if (!isBirlesViewBootCurrent(bootTok)) return false;
+    try {
+      if (typeof renderFn === "function") renderFn();
+    } catch (_) {}
+    pinBirlesViewBoot(title || "Ses Evreni", text || "Hazırlanıyor…");
+    var waits = [waitBirlesPaintSettle(240)];
+    if (settlePromise && typeof settlePromise.then === "function") {
+      waits.push(
+        Promise.race([
+          settlePromise.catch(function () {}),
+          waitMinMs(7000)
+        ])
+      );
+    }
+    await Promise.all(waits);
+    if (!isBirlesViewBootCurrent(bootTok)) return false;
+    clearBirlesViewBootFlag();
+    return true;
   }
 
   function waitElVideoReady(selectorOrEl, timeoutMs) {
@@ -1409,18 +1452,20 @@
     var vv = voice();
     if (vv) vv.unlock();
 
-    Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(180)])
+    Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(220)])
       .then(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "groups") return;
         if (!overlay || !overlay.classList.contains("open")) return;
-        clearBirlesViewBootFlag();
-        renderGroups();
+        return finishBirlesViewBoot(bootTok, "Ses Evreni", "Açılıyor…", function () {
+          renderGroups();
+        });
       })
       .catch(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "groups") return;
         if (!overlay || !overlay.classList.contains("open")) return;
-        clearBirlesViewBootFlag();
-        renderGroups();
+        return finishBirlesViewBoot(bootTok, "Ses Evreni", "Açılıyor…", function () {
+          renderGroups();
+        });
       });
   }
 
@@ -1444,14 +1489,21 @@
     Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(260)])
       .then(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "letters") return;
-        clearBirlesViewBootFlag();
-        renderLetters();
-        return revealHubAfterVideo(".birles-hub--flower", ".birles-flower__mascot");
+        return finishBirlesViewBoot(
+          bootTok,
+          "Ses Evreni",
+          "Grup açılıyor…",
+          function () {
+            renderLetters();
+          },
+          revealHubAfterVideo(".birles-hub--flower", ".birles-flower__mascot")
+        );
       })
       .catch(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "letters") return;
-        clearBirlesViewBootFlag();
-        renderLetters();
+        return finishBirlesViewBoot(bootTok, "Ses Evreni", "Grup açılıyor…", function () {
+          renderLetters();
+        });
       });
   }
 
@@ -1772,11 +1824,18 @@
     Promise.all([ensureBirlesProgress(), ensureMedia(), waitMinMs(280)])
       .then(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "sound") return null;
-        clearBirlesViewBootFlag();
-        renderSound(sound);
-        return revealHubAfterVideo(".birles-sound-view", ".birles-ses-evreni__vid");
+        return finishBirlesViewBoot(
+          bootTok,
+          sound.title || "Ses",
+          "Ses açılıyor…",
+          function () {
+            renderSound(sound);
+          },
+          revealHubAfterVideo(".birles-sound-view", ".birles-ses-evreni__vid")
+        );
       })
-      .then(function () {
+      .then(function (ok) {
+        if (!ok) return;
         if (!isBirlesViewBootCurrent(bootTok) || view !== "sound") return;
         if (activeSound !== sound) return;
         var vv = voice();
@@ -1787,8 +1846,9 @@
       })
       .catch(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "sound") return;
-        clearBirlesViewBootFlag();
-        renderSound(sound);
+        return finishBirlesViewBoot(bootTok, sound.title || "Ses", "Ses açılıyor…", function () {
+          renderSound(sound);
+        });
       });
   }
 
@@ -2526,13 +2586,15 @@
     Promise.all([ensureMedia(), waitMinMs(200)])
       .then(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "gallery") return;
-        clearBirlesViewBootFlag();
-        paintLaneGallery(sound);
+        return finishBirlesViewBoot(bootTok, activeLane.title || "Galeri", "Galeri açılıyor…", function () {
+          paintLaneGallery(sound);
+        });
       })
       .catch(function () {
         if (!isBirlesViewBootCurrent(bootTok) || view !== "gallery") return;
-        clearBirlesViewBootFlag();
-        paintLaneGallery(sound);
+        return finishBirlesViewBoot(bootTok, activeLane.title || "Galeri", "Galeri açılıyor…", function () {
+          paintLaneGallery(sound);
+        });
       });
   }
 
@@ -3215,18 +3277,30 @@
       .then(function () {
         if (view !== "play" || activeFusion !== fusion) return null;
         if (isPool && !isBirlesViewBootCurrent(bootTok)) return null;
-        clearBirlesViewBootFlag();
-        renderPlayStage(sound, fusion);
-        if (document.getElementById("birles-pool")) {
-          setPoolBoot(
-            true,
-            isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
-          );
-          return preparePoolReady();
-        }
-        return null;
+        return finishBirlesViewBoot(
+          bootTok,
+          isCumleBoot ? "Zirve Mağarası" : "Sihirli Havuz",
+          isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…",
+          function () {
+            renderPlayStage(sound, fusion);
+          }
+        ).then(function (ok) {
+          if (!ok) return false;
+          if (view !== "play" || activeFusion !== fusion) return false;
+          if (document.getElementById("birles-pool")) {
+            setPoolBoot(
+              true,
+              isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
+            );
+            return preparePoolReady().then(function () {
+              return true;
+            });
+          }
+          return true;
+        });
       })
-      .then(function () {
+      .then(function (ok) {
+        if (!ok) return;
         if (view !== "play" || activeFusion !== fusion) return;
         runFusionAnimation(sound, fusion);
       })
