@@ -3795,17 +3795,22 @@
       if (stage) stage.classList.add("is-finale");
       if (tray) tray.classList.add("is-finale");
     } else {
-      /* Cümle: tepsi gizlensin, tamam cümlesi ekranda kalsın */
+      /* Cümle: tepsi gizlensin; üst panel + tamam kutusu patlama boyunca kalsın */
       if (tray) tray.classList.add("is-finale");
       if (stage) {
         stage.classList.remove("is-finale", "is-finale-fade", "is-cumle-done-out");
       }
-      /* Üst cümle paneli patlama boyunca da kapalı kalsın — sonra tekrar gelmesin */
       var sentBar0 = document.getElementById("birles-sentence-bar");
       if (sentBar0) {
-        sentBar0.classList.remove("is-finale", "is-finale-fade", "is-intro", "is-reading-pass");
-        sentBar0.classList.add("is-cumle-done-out", "is-after-boom");
-        sentBar0.setAttribute("aria-hidden", "true");
+        sentBar0.classList.remove(
+          "is-finale",
+          "is-finale-fade",
+          "is-cumle-done-out",
+          "is-after-boom",
+          "is-intro",
+          "is-reading-pass"
+        );
+        sentBar0.removeAttribute("aria-hidden");
       }
     }
 
@@ -3868,7 +3873,7 @@
       );
     }
 
-    /* Cümle: patlama bitmek üzereyken tamam kutusu + üst cümle paneli birlikte kaybolur */
+    /* Cümle: patlama bitmek üzereyken üst panel + tamam kutusu eşzamanlı yumuşakça kaybolur */
     if (isCumleFinale) {
       await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 3.05);
       if (token !== animToken) return;
@@ -3878,12 +3883,16 @@
         stage.classList.add("is-cumle-done-out");
       }
       if (sentBar) {
-        sentBar.classList.remove("is-finale", "is-finale-fade");
-        sentBar.classList.add("is-cumle-done-out", "is-after-boom");
-        sentBar.setAttribute("aria-hidden", "true");
+        sentBar.classList.remove("is-finale", "is-finale-fade", "is-after-boom");
+        sentBar.classList.add("is-cumle-done-out");
       }
       await pace(reduceMotion ? 180 : 2000);
       if (token !== animToken) return;
+      /* Solma bittikten sonra üst panel yer tutmasın / tekrar gelmesin */
+      if (sentBar) {
+        sentBar.classList.add("is-after-boom");
+        sentBar.setAttribute("aria-hidden", "true");
+      }
       if (tray) tray.classList.remove("is-finale", "is-finale-fade");
       waitBoomEnded(boom, token).then(function () {
         restorePoolLoopAfterBoom(boom, merge, flash, token);
