@@ -8309,9 +8309,12 @@ html.nova-perf-ultra-early.nova-has-session
   box-shadow: 0 4px 12px rgba(22, 163, 74, 0.5);
 }
 
-/* Patlama cümlesi — ejderha patlamasının merkezine */
+/* Patlama cümlesi — ejderha patlamasının merkezine, büyük okunaklı */
 .birles-sirala--cumle .birles-sirala__burst {
-  top: 30%;
+  top: 34%;
+  font-size: clamp(1.55rem, 7.2vmin, 2.6rem);
+  width: min(94vw, 520px);
+  text-align: center;
 }
 
 .birles-sirala--cumle .birles-sirala__burst.is-boom-in {
@@ -8321,7 +8324,7 @@ html.nova-perf-ultra-early.nova-has-session
 @keyframes birlesSiralaBurstCumle {
   0% {
     opacity: 0;
-    transform: translate(-50%, -35%) scale(0.5);
+    transform: translate(-50%, -35%) scale(0.55);
   }
   100% {
     opacity: 1;
@@ -8331,18 +8334,23 @@ html.nova-perf-ultra-early.nova-has-session
 
 .birles-sirala--cumle .birles-sirala__burst-chip--cumle,
 .birles-sirala__burst-chip--cumle {
-  font-size: clamp(1.05rem, 4.2vmin, 1.55rem) !important;
-  padding: 0.5em 0.85em !important;
-  max-width: min(92vw, 480px);
+  display: inline-block;
+  font-size: clamp(1.55rem, 7vmin, 2.55rem) !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  padding: 0.55em 0.9em !important;
+  max-width: min(94vw, 520px);
   text-wrap: balance;
-  border-radius: 18px !important;
-  border: 2.5px solid rgba(125, 211, 252, 0.65) !important;
+  border-radius: 20px !important;
+  border: 3px solid rgba(125, 211, 252, 0.75) !important;
   background:
-    linear-gradient(165deg, rgba(12, 28, 58, 0.92), rgba(6, 14, 32, 0.94)) !important;
-  color: #e0f2fe !important;
+    linear-gradient(165deg, rgba(12, 28, 58, 0.94), rgba(6, 14, 32, 0.96)) !important;
+  color: #f0f9ff !important;
   box-shadow:
-    0 12px 28px rgba(0, 8, 24, 0.55),
-    0 0 0 3px rgba(56, 189, 248, 0.22) !important;
+    0 14px 32px rgba(0, 8, 24, 0.6),
+    0 0 0 3px rgba(56, 189, 248, 0.28),
+    0 0 28px rgba(56, 189, 248, 0.35) !important;
+  letter-spacing: 0.01em;
 }
 
 /* —— Zirve Mağarası: kompakt yazı (arka plan / ejderha görünür kalsın) —— */
@@ -8381,12 +8389,6 @@ html.nova-perf-ultra-early.nova-has-session
   min-height: clamp(40px, 10vmin, 54px);
   padding: 0.28em 0.45em;
   font-size: clamp(0.82rem, 3vmin, 1.05rem);
-}
-
-.birles-sirala--cumle .birles-sirala__burst-chip--cumle,
-.birles-sirala__burst-chip--cumle {
-  font-size: clamp(0.92rem, 3.5vmin, 1.25rem) !important;
-  padding: 0.38em 0.65em !important;
 }
 
 /*

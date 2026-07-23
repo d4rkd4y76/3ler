@@ -1138,6 +1138,63 @@
     });
   }
 
+  /** Patlama videosunda progress (0–1) oranına gelince resolve — zirve anı */
+  function waitBoomAtProgress(boom, progress) {
+    progress = Math.max(0.05, Math.min(0.95, Number(progress) || 0.4));
+    return new Promise(function (resolve) {
+      var finished = false;
+      function done() {
+        if (finished) return;
+        finished = true;
+        resolve();
+      }
+      function cleanup() {
+        if (!boom) return;
+        boom.removeEventListener("ended", onEnded);
+        boom.removeEventListener("timeupdate", onTime);
+        boom.removeEventListener("loadedmetadata", onMeta);
+      }
+      function onEnded() {
+        cleanup();
+        done();
+      }
+      function check() {
+        if (!hostEl) {
+          cleanup();
+          done();
+          return;
+        }
+        var d = boom && boom.duration;
+        if (d && isFinite(d) && d > 0 && boom.currentTime >= d * progress) {
+          cleanup();
+          done();
+        }
+      }
+      function onTime() {
+        check();
+      }
+      function onMeta() {
+        check();
+      }
+      if (!boom) {
+        done();
+        return;
+      }
+      if (boom.ended) {
+        done();
+        return;
+      }
+      boom.addEventListener("ended", onEnded);
+      boom.addEventListener("timeupdate", onTime);
+      boom.addEventListener("loadedmetadata", onMeta);
+      check();
+      setTimeout(function () {
+        cleanup();
+        done();
+      }, 12000);
+    });
+  }
+
   async function playFinale() {
     if (!hostEl || finishing || !activityRef) return;
     finishing = true;
@@ -1148,6 +1205,7 @@
     var burst = hostEl.querySelector(".birles-sirala__burst");
     var flash = hostEl.querySelector(".birles-sirala__flash");
     var board = hostEl.querySelector(".birles-sirala__board");
+    var isCumleFinale = activityRef.mode === "cumle";
 
     if (board) board.classList.add("is-finale");
     softPause(merge);
@@ -1184,19 +1242,24 @@
       }
     }
 
-    await new Promise(function (r) {
-      setTimeout(r, 620);
-    });
+    /* Cümle: metin patlamanın zirvesinde; diğerleri kısa gecikme */
+    if (isCumleFinale) {
+      await waitBoomAtProgress(boom, 0.44);
+    } else {
+      await new Promise(function (r) {
+        setTimeout(r, 620);
+      });
+    }
     if (!hostEl) return;
 
     var word = activityRef.result || activityRef.title || "";
     if (!word) {
-      word = activityRef.correctOrder.join(activityRef.mode === "cumle" ? " " : "");
+      word = activityRef.correctOrder.join(isCumleFinale ? " " : "");
     }
     if (burst) {
       burst.innerHTML =
         '<span class="birles-sirala__burst-chip' +
-        (activityRef.mode === "cumle" ? " birles-sirala__burst-chip--cumle" : "") +
+        (isCumleFinale ? " birles-sirala__burst-chip--cumle" : "") +
         '">' +
         esc(word) +
         "</span>";
