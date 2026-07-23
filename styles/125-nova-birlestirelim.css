@@ -4583,6 +4583,11 @@ html.nova-perf-ultra-early.nova-has-session
   will-change: opacity, transform;
 }
 
+/* Patlamadan sonra üst cümle paneli tamamen kapalı kalsın */
+.birles-play--pool.birles-play--cumle .birles-sentence-board.is-after-boom {
+  display: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out,
   .birles-play--pool.birles-play--cumle .birles-sentence-board.is-cumle-done-out {
@@ -8451,7 +8456,7 @@ html.nova-perf-ultra-early.nova-has-session
     max(12px, env(safe-area-inset-right, 0px) + 10px);
   box-sizing: border-box;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud > * {
@@ -8486,14 +8491,11 @@ html.nova-perf-ultra-early.nova-has-session
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board__top {
   margin-bottom: 2px;
+  justify-content: flex-end;
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board__kicker {
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  color: #7dd3fc;
-  text-transform: uppercase;
-  font-weight: 800;
+  display: none !important;
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board__step {
@@ -8550,14 +8552,14 @@ html.nova-perf-ultra-early.nova-has-session
   top: auto !important;
   left: auto !important;
   right: auto !important;
-  width: min(100%, 380px);
+  width: min(100%, 400px);
   margin: 0;
   z-index: 2;
   flex: 0 1 auto;
   min-height: 0;
-  max-height: min(42vh, 280px);
-  overflow: auto;
-  padding: 12px 12px 14px;
+  max-height: none;
+  overflow: visible;
+  padding: 14px 14px 16px;
   border-radius: 20px;
   background:
     linear-gradient(165deg, rgba(10, 28, 58, 0.72), rgba(6, 14, 32, 0.78));
@@ -8662,7 +8664,7 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__label {
-  font-size: clamp(0.85rem, 3vmin, 1.05rem) !important;
+  font-size: clamp(0.95rem, 3.3vmin, 1.15rem) !important;
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__box {
@@ -8672,11 +8674,11 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__text {
-  font-size: clamp(1.1rem, 4vmin, 1.45rem) !important;
+  font-size: clamp(1.22rem, 4.4vmin, 1.58rem) !important;
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__word {
-  font-size: clamp(1rem, 3.7vmin, 1.3rem) !important;
+  font-size: clamp(1.12rem, 4vmin, 1.42rem) !important;
 }
 
 .birles-play--pool.birles-play--cumle .birles-fs-dock {

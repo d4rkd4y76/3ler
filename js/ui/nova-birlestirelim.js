@@ -3910,7 +3910,6 @@
       sentenceBar =
         '<div class="birles-sentence-board" id="birles-sentence-bar" aria-label="Cümle">' +
         '<div class="birles-sentence-board__top">' +
-        '<span class="birles-sentence-board__kicker" aria-hidden="true">✦ Kristal cümle</span>' +
         '<span class="birles-sentence-board__step" id="birles-sentence-step">1 / ' +
         fusion.words.length +
         "</span>" +
@@ -4745,7 +4744,7 @@
     await pace(1200);
   }
 
-  /** Patlamadan sonra: cümleyi bir kez daha kelime kelime oku */
+  /** Patlamadan sonra: cümleyi bir kez daha kelime kelime oku (üst cümle paneli kapalı kalır) */
   async function runSentenceFinalRead(fusion, token) {
     var vv = voice();
     var stage = document.getElementById("birles-stage");
@@ -4764,13 +4763,11 @@
     }
 
     stage.classList.remove("is-quiet", "is-finale", "is-finale-fade", "is-cumle-done-out");
+    /* Üst cümle paneli patlamadan sonra tekrar gelmesin */
     if (bar) {
-      bar.classList.remove("is-cumle-done-out");
-      bar.classList.add("is-complete", "is-reading-pass");
-      bar.querySelectorAll(".birles-sentence-word").forEach(function (el) {
-        el.classList.remove("is-focus", "is-speaking-now", "is-pop");
-        el.classList.add("is-read");
-      });
+      bar.classList.add("is-cumle-done-out", "is-after-boom");
+      bar.classList.remove("is-reading-pass", "is-intro");
+      bar.setAttribute("aria-hidden", "true");
     }
 
     stage.innerHTML =
@@ -4804,12 +4801,6 @@
       var stepEl = document.getElementById("birles-sentence-step");
       if (stepEl) stepEl.textContent = rj + 1 + " / " + words.length;
 
-      if (bar) {
-        bar.querySelectorAll(".birles-sentence-word").forEach(function (el, idx) {
-          el.classList.toggle("is-speaking-now", idx === rj);
-          el.classList.remove("is-focus");
-        });
-      }
       stage.querySelectorAll(".birles-cumle-done__word").forEach(function (el, idx) {
         el.classList.toggle("is-on", idx === rj);
         el.classList.toggle("is-done", idx < rj);
@@ -4819,10 +4810,6 @@
       if (vv) await vv.playToken(words[rj].say, { waitUntilEnd: true });
       await pace(160);
 
-      if (bar) {
-        var spoken = bar.querySelector('.birles-sentence-word[data-word-i="' + rj + '"]');
-        if (spoken) spoken.classList.remove("is-speaking-now");
-      }
       var rw = stage.querySelector('.birles-cumle-done__word[data-rw="' + rj + '"]');
       if (rw) {
         rw.classList.remove("is-on");
@@ -4830,13 +4817,6 @@
       }
     }
 
-    if (bar) {
-      bar.classList.remove("is-reading-pass");
-      bar.querySelectorAll(".birles-sentence-word").forEach(function (el) {
-        el.classList.remove("is-speaking-now", "is-focus");
-        el.classList.add("is-read");
-      });
-    }
     stage.querySelectorAll(".birles-cumle-done__word").forEach(function (el) {
       el.classList.remove("is-on");
       el.classList.add("is-done");
