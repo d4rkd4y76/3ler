@@ -3800,6 +3800,10 @@
       if (stage) {
         stage.classList.remove("is-finale", "is-finale-fade", "is-cumle-done-out");
       }
+      var sentBar0 = document.getElementById("birles-sentence-bar");
+      if (sentBar0) {
+        sentBar0.classList.remove("is-finale", "is-finale-fade", "is-cumle-done-out");
+      }
     }
 
     softPauseVideo(merge);
@@ -3861,13 +3865,18 @@
       );
     }
 
-    /* Cümle: patlama bitmek üzereyken tamam kutusu 2 sn yavaşça kaybolur → sonra son okuma */
+    /* Cümle: patlama bitmek üzereyken tamam kutusu + üst cümle paneli birlikte kaybolur */
     if (isCumleFinale) {
       await waitBoomUntilRemaining(boom, token, reduceMotion ? 0.45 : 3.05);
       if (token !== animToken) return;
+      var sentBar = document.getElementById("birles-sentence-bar");
       if (stage) {
         stage.classList.remove("is-finale", "is-finale-fade");
         stage.classList.add("is-cumle-done-out");
+      }
+      if (sentBar) {
+        sentBar.classList.remove("is-finale", "is-finale-fade");
+        sentBar.classList.add("is-cumle-done-out");
       }
       await pace(reduceMotion ? 180 : 2000);
       if (token !== animToken) return;
@@ -4756,6 +4765,7 @@
 
     stage.classList.remove("is-quiet", "is-finale", "is-finale-fade", "is-cumle-done-out");
     if (bar) {
+      bar.classList.remove("is-cumle-done-out");
       bar.classList.add("is-complete", "is-reading-pass");
       bar.querySelectorAll(".birles-sentence-word").forEach(function (el) {
         el.classList.remove("is-focus", "is-speaking-now", "is-pop");

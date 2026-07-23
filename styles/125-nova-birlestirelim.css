@@ -3958,17 +3958,33 @@ html.nova-perf-ultra-early.nova-has-session
   left: 0;
   right: 0;
   z-index: 80;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
   /* Status bar / notch altında kalmasın — safe-area yoksa da minimum boşluk */
   padding-top: max(36px, calc(env(safe-area-inset-top, 0px) + 14px));
-  padding-right: max(14px, calc(env(safe-area-inset-right, 0px) + 8px));
-  padding-bottom: 10px;
-  padding-left: max(14px, calc(env(safe-area-inset-left, 0px) + 8px));
+  padding-right: max(12px, calc(env(safe-area-inset-right, 0px) + 8px));
+  padding-bottom: 8px;
+  padding-left: max(12px, calc(env(safe-area-inset-left, 0px) + 8px));
   background: linear-gradient(180deg, rgba(4, 16, 24, 0.78) 0%, transparent 100%);
   box-sizing: border-box;
 }
 
 .birles-overlay.is-pool-play .birles-top-text {
-  display: none;
+  display: none !important;
+}
+
+.birles-overlay.is-pool-play .birles-top #birles-back {
+  order: 1;
+  margin-right: auto;
+}
+
+.birles-overlay.is-pool-play .birles-top #birles-close,
+.birles-overlay.is-pool-play .birles-top .birles-close {
+  order: 3;
+  margin-left: auto;
 }
 
 .birles-overlay.is-pool-play .birles-top #birles-title,
@@ -4554,8 +4570,9 @@ html.nova-perf-ultra-early.nova-has-session
   visibility: hidden;
 }
 
-/* Cümle tamam kutusu: son okumadan önce yavaşça kaybolsun */
-.birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out {
+/* Cümle tamam kutusu + üst cümle paneli: son okumadan önce yavaşça kaybolsun */
+.birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out,
+.birles-play--pool.birles-play--cumle .birles-sentence-board.is-cumle-done-out {
   opacity: 0;
   visibility: visible;
   pointer-events: none;
@@ -4567,7 +4584,8 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out {
+  .birles-play--pool.birles-play--cumle .birles-stage.is-cumle-done-out,
+  .birles-play--pool.birles-play--cumle .birles-sentence-board.is-cumle-done-out {
     transition-duration: 0.2s;
   }
 }
@@ -8357,14 +8375,50 @@ html.nova-perf-ultra-early.nova-has-session
  * Üst: geri/X → cümle paneli → hece paneli (çakışma yok).
  * Alt: dock üstünde ejderler görünür.
  */
+/* Zirve Mağarası: ince alt dock */
+.birles-play--pool.birles-play--cumle .birles-fs-dock__bar {
+  gap: 8px;
+  padding: 6px 10px max(8px, calc(6px + env(safe-area-inset-bottom, 0px)));
+  background:
+    linear-gradient(180deg, rgba(3, 14, 22, 0.28) 0%, rgba(3, 14, 22, 0.88) 48%, #041018 100%);
+}
+
+.birles-play--pool.birles-play--cumle .birles-fs-dock__prog {
+  min-width: 44px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 11px;
+  font-size: 0.74rem;
+}
+
+.birles-play--pool.birles-play--cumle .birles-fs-dock__btn {
+  height: 34px;
+  min-width: 34px;
+  padding: 0 11px;
+  border-radius: 11px;
+  font-size: 0.76rem;
+  box-shadow:
+    0 2px 0 #8eacbf,
+    0 4px 10px rgba(0, 0, 0, 0.24);
+}
+
+.birles-play--pool.birles-play--cumle .birles-fs-dock__btn--replay {
+  width: 34px;
+  font-size: 1.05rem;
+}
+
+.birles-play--pool.birles-play--cumle .birles-fs-dock__btn--go {
+  min-width: 58px;
+}
+
 .birles-overlay.is-pool-play {
   --birles-head-h: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 54px);
-  --birles-dock-h: calc(72px + env(safe-area-inset-bottom, 0px));
+  --birles-dock-h: calc(52px + env(safe-area-inset-bottom, 0px));
 }
 
 .birles-play--pool.birles-play--cumle {
   --birles-head-h: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 54px);
-  --birles-dock-h: calc(72px + env(safe-area-inset-bottom, 0px));
+  --birles-dock-h: calc(52px + env(safe-area-inset-bottom, 0px));
 }
 
 .birles-play--pool.birles-play--cumle .birles-pool {
@@ -8376,11 +8430,6 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-play--pool.birles-play--cumle .birles-pool__vid {
   object-fit: cover;
   object-position: center 68%;
-}
-
-.birles-play--pool.birles-play--cumle .birles-fs-dock__bar {
-  background:
-    linear-gradient(180deg, rgba(3, 14, 22, 0.35) 0%, rgba(3, 14, 22, 0.88) 42%, #041018 100%);
 }
 
 .birles-play--pool.birles-play--cumle .birles-cumle-hud {
@@ -8637,12 +8686,12 @@ html.nova-perf-ultra-early.nova-has-session
 @media (max-width: 480px) {
   .birles-overlay.is-pool-play {
     --birles-head-h: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 54px);
-    --birles-dock-h: calc(78px + env(safe-area-inset-bottom, 0px));
+    --birles-dock-h: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 
   .birles-play--pool.birles-play--cumle {
     --birles-head-h: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 54px);
-    --birles-dock-h: calc(78px + env(safe-area-inset-bottom, 0px));
+    --birles-dock-h: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 
   .birles-overlay.is-pool-play .birles-top {
