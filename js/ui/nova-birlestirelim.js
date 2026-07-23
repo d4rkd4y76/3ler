@@ -3800,9 +3800,12 @@
       if (stage) {
         stage.classList.remove("is-finale", "is-finale-fade", "is-cumle-done-out");
       }
+      /* Üst cümle paneli patlama boyunca da kapalı kalsın — sonra tekrar gelmesin */
       var sentBar0 = document.getElementById("birles-sentence-bar");
       if (sentBar0) {
-        sentBar0.classList.remove("is-finale", "is-finale-fade", "is-cumle-done-out");
+        sentBar0.classList.remove("is-finale", "is-finale-fade", "is-intro", "is-reading-pass");
+        sentBar0.classList.add("is-cumle-done-out", "is-after-boom");
+        sentBar0.setAttribute("aria-hidden", "true");
       }
     }
 
@@ -3876,7 +3879,8 @@
       }
       if (sentBar) {
         sentBar.classList.remove("is-finale", "is-finale-fade");
-        sentBar.classList.add("is-cumle-done-out");
+        sentBar.classList.add("is-cumle-done-out", "is-after-boom");
+        sentBar.setAttribute("aria-hidden", "true");
       }
       await pace(reduceMotion ? 180 : 2000);
       if (token !== animToken) return;
@@ -4720,7 +4724,10 @@
 
     /* Üst cümle sabit; orta panel boş başlar */
     resetSentenceWords();
-    if (bar) bar.classList.remove("is-complete");
+    if (bar) {
+      bar.classList.remove("is-complete", "is-cumle-done-out", "is-after-boom");
+      bar.removeAttribute("aria-hidden");
+    }
     renderTray([]);
     stage.classList.add("is-quiet");
     stage.innerHTML =

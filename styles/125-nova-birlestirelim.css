@@ -4583,9 +4583,19 @@ html.nova-perf-ultra-early.nova-has-session
   will-change: opacity, transform;
 }
 
-/* Patlamadan sonra üst cümle paneli tamamen kapalı kalsın */
-.birles-play--pool.birles-play--cumle .birles-sentence-board.is-after-boom {
+/* Patlamadan sonra üst cümle paneli tamamen kapalı kalsın (yer de tutmasın) */
+.birles-play--pool.birles-play--cumle .birles-sentence-board.is-after-boom,
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board.is-after-boom {
   display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -8707,8 +8717,28 @@ html.nova-perf-ultra-early.nova-has-session
   }
 
   .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-stage {
-    max-height: min(38vh, 240px);
-    padding: 10px;
+    max-height: none;
+    overflow: visible;
+    padding: 10px 12px 12px;
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done {
+    gap: 6px;
+    width: min(100%, 320px);
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__tick {
+    width: 48px;
+    height: 48px;
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__tick svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__box {
+    padding: 8px 10px 10px;
   }
 
   .birles-play--pool.birles-play--cumle .birles-pool__vid {
