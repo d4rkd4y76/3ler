@@ -8534,6 +8534,14 @@ html.nova-perf-ultra-early.nova-has-session
     padding-top: max(40px, calc(env(safe-area-inset-top, 0px) + 16px));
   }
 
+  .birles-play--pool.birles-play--cumle .birles-sentence-board {
+    top: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 52px);
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-stage {
+    top: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 52px + 88px);
+  }
+
   .birles-play--pool.birles-play--cumle .birles-pool {
     bottom: calc(78px + env(safe-area-inset-bottom, 0px));
   }
