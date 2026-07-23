@@ -3948,7 +3948,8 @@ html.nova-perf-ultra-early.nova-has-session
   border-radius: 0;
   background: #041018;
   box-shadow: none;
-  overflow: hidden;
+  /* fixed geri/X üstte kesilmesin */
+  overflow: visible;
 }
 
 .birles-overlay.is-pool-play .birles-top {
@@ -3957,8 +3958,13 @@ html.nova-perf-ultra-early.nova-has-session
   left: 0;
   right: 0;
   z-index: 80;
-  padding: max(10px, env(safe-area-inset-top, 0px)) 14px 10px;
-  background: linear-gradient(180deg, rgba(4, 16, 24, 0.72) 0%, transparent 100%);
+  /* Status bar / notch altında kalmasın — safe-area yoksa da minimum boşluk */
+  padding-top: max(36px, calc(env(safe-area-inset-top, 0px) + 14px));
+  padding-right: max(14px, calc(env(safe-area-inset-right, 0px) + 8px));
+  padding-bottom: 10px;
+  padding-left: max(14px, calc(env(safe-area-inset-left, 0px) + 8px));
+  background: linear-gradient(180deg, rgba(4, 16, 24, 0.78) 0%, transparent 100%);
+  box-sizing: border-box;
 }
 
 .birles-overlay.is-pool-play .birles-top-text {
@@ -3973,9 +3979,13 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-overlay.is-pool-play .birles-icon-btn {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.18);
   color: #fff;
   border: 0;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  margin: 0;
 }
 
 .birles-overlay.is-pool-play .birles-body {
