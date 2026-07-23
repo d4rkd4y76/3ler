@@ -4779,6 +4779,13 @@
     }
 
     stage.classList.remove("is-quiet", "is-finale", "is-finale-fade", "is-cumle-done-out");
+    /* Telefonda solma sınıfı opacity:0’da kalabiliyor — zorla görünür yap */
+    try {
+      stage.style.opacity = "1";
+      stage.style.visibility = "visible";
+      stage.style.transform = "none";
+      stage.style.pointerEvents = "auto";
+    } catch (_) {}
     /* Üst cümle paneli patlamadan sonra tekrar gelmesin */
     if (bar) {
       bar.classList.add("is-cumle-done-out", "is-after-boom");
@@ -4812,6 +4819,12 @@
     await pace(160);
     if (token !== animToken) return;
 
+    if (vv && typeof vv.unlock === "function") {
+      try {
+        await vv.unlock();
+      } catch (_) {}
+    }
+
     for (var rj = 0; rj < words.length; rj++) {
       if (token !== animToken) return;
       var stepEl = document.getElementById("birles-sentence-step");
@@ -4823,7 +4836,11 @@
       });
 
       setNarr(words[rj].text);
-      if (vv) await vv.playToken(words[rj].say, { waitUntilEnd: true });
+      if (vv) {
+        try {
+          await vv.playToken(words[rj].say || words[rj].text, { waitUntilEnd: true });
+        } catch (_) {}
+      }
       await pace(160);
 
       var rw = stage.querySelector('.birles-cumle-done__word[data-rw="' + rj + '"]');
@@ -4873,7 +4890,7 @@
       await playPoolFinale("", null, vv, token);
       if (token !== animToken) return;
       /* Son okuma paneli: solma bittikten sonra biraz bekleyip açılsın */
-      await pace(reduceMotion ? 200 : 1100);
+      await pace(1100);
       if (token !== animToken) return;
       await runSentenceFinalRead(fusion, token);
       if (token !== animToken) return;

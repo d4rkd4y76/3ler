@@ -1141,8 +1141,10 @@
   /** Patlama videosunda progress (0–1) oranına gelince resolve — zirve anı */
   function waitBoomAtProgress(boom, progress) {
     progress = Math.max(0.05, Math.min(0.95, Number(progress) || 0.4));
+    var fallbackMs = Math.round(5080 * progress);
     return new Promise(function (resolve) {
       var finished = false;
+      var started = Date.now();
       function done() {
         if (finished) return;
         finished = true;
@@ -1168,6 +1170,12 @@
         if (d && isFinite(d) && d > 0 && boom.currentTime >= d * progress) {
           cleanup();
           done();
+          return;
+        }
+        /* Telefonda duration/timeupdate gecikebilir — duvar saati yedek */
+        if (Date.now() - started >= fallbackMs) {
+          cleanup();
+          done();
         }
       }
       function onTime() {
@@ -1191,8 +1199,55 @@
       setTimeout(function () {
         cleanup();
         done();
-      }, 12000);
+      }, Math.max(fallbackMs + 800, 3500));
     });
+  }
+
+  async function playCumleResultVoice() {
+    if (!activityRef) return;
+    var order = activityRef.correctOrder || [];
+    var sounds = activityRef.sounds || [];
+    var played = false;
+
+    async function speakOne(token, fallbackUrl) {
+      var t = String(token || "").trim();
+      var url =
+        String(fallbackUrl || "").trim() ||
+        resolveAudio(t) ||
+        resolveAudio(normLabel(t));
+      if (!url) return false;
+      await playUrl(url);
+      return true;
+    }
+
+    for (var i = 0; i < order.length; i++) {
+      if (!hostEl) return;
+      var tok = order[i];
+      var match = null;
+      for (var j = 0; j < sounds.length; j++) {
+        var s = sounds[j];
+        if (!s) continue;
+        if (normLabel(s.label) === normLabel(tok)) {
+          match = s;
+          break;
+        }
+      }
+      var ok = await speakOne(tok, match && match.audioUrl);
+      if (ok) played = true;
+      await sleep(140);
+    }
+
+    if (!played) {
+      var full = String(activityRef.resultAudioUrl || "").trim();
+      if (!full && activityRef.result) {
+        full = resolveAudio(
+          String(activityRef.result || "")
+            .replace(/[.!?]+$/g, "")
+            .trim()
+        );
+      }
+      if (full) await playUrl(full);
+    }
   }
 
   async function playFinale() {
@@ -1257,21 +1312,37 @@
       word = activityRef.correctOrder.join(isCumleFinale ? " " : "");
     }
     if (burst) {
+      burst.hidden = false;
+      burst.style.opacity = "1";
+      burst.style.visibility = "visible";
       burst.innerHTML =
         '<span class="birles-sirala__burst-chip' +
         (isCumleFinale ? " birles-sirala__burst-chip--cumle" : "") +
         '">' +
         esc(word) +
         "</span>";
-      burst.hidden = false;
+      burst.classList.remove("is-boom-in");
+      void burst.offsetWidth;
       burst.classList.add("is-boom-in");
     }
 
-    var resultAudio = String(activityRef.resultAudioUrl || "").trim();
-    if (resultAudio) {
+    /* Cümle: kelime kelime sesli oku (tam cümle MP3 yok) — patlama sesini kıs */
+    if (isCumleFinale) {
+      if (boom) {
+        try {
+          boom.volume = 0.22;
+        } catch (_) {}
+      }
       try {
-        playUrl(resultAudio);
+        await playCumleResultVoice();
       } catch (_) {}
+    } else {
+      var resultAudio = String(activityRef.resultAudioUrl || "").trim();
+      if (resultAudio) {
+        try {
+          playUrl(resultAudio);
+        } catch (_) {}
+      }
     }
 
     await waitBoomEnded(boom);

@@ -3331,8 +3331,16 @@ html.nova-perf-ultra-early.nova-has-session
   gap: 14px;
   width: min(92%, 440px);
   margin: 0 auto;
-  animation: birlesCumleDoneIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+  /* both kullanma — telefonda opacity:0’da kalabiliyor */
+  animation: birlesCumleDoneIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   pointer-events: auto;
+}
+
+.birles-cumle-done--read {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 @keyframes birlesCumleDoneIn {
@@ -4583,6 +4591,12 @@ html.nova-perf-ultra-early.nova-has-session
     opacity 2s ease,
     transform 2s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: opacity, transform;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-stage:not(.is-cumle-done-out) {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
 }
 
 /* Patlamadan sonra üst cümle paneli tamamen kapalı kalsın (yer de tutmasın) */
@@ -7929,6 +7943,7 @@ html.nova-perf-ultra-early.nova-has-session
   pointer-events: none;
 }
 .birles-sirala__burst.is-boom-in {
+  opacity: 1;
   animation: birlesSiralaBurst 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @keyframes birlesSiralaBurst {
@@ -8318,6 +8333,8 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-sirala--cumle .birles-sirala__burst.is-boom-in {
+  opacity: 1 !important;
+  visibility: visible !important;
   animation: birlesSiralaBurstCumle 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
