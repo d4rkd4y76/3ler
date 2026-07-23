@@ -3901,7 +3901,7 @@
       sentenceBar =
         '<div class="birles-sentence-board" id="birles-sentence-bar" aria-label="Cümle">' +
         '<div class="birles-sentence-board__top">' +
-        '<span class="birles-sentence-board__kicker">Zirve Mağarası</span>' +
+        '<span class="birles-sentence-board__kicker" aria-hidden="true">✦ Kristal cümle</span>' +
         '<span class="birles-sentence-board__step" id="birles-sentence-step">1 / ' +
         fusion.words.length +
         "</span>" +
@@ -3935,14 +3935,14 @@
 
     setPoolPlayMode(usePool);
 
-    var core =
+    var coreInner =
       '  <p class="birles-play__narration" id="birles-narration"' +
       (isKelime || isCumle ? " hidden" : "") +
       ">" +
       esc(isKelime || isCumle ? "" : fusion.narration || "") +
       "</p>" +
       wordBoard +
-      sentenceBar +
+      (isCumle ? "" : sentenceBar) +
       '  <div class="birles-stage" id="birles-stage" aria-live="polite"></div>' +
       '  <div class="birles-tray" id="birles-tray" aria-label="Birleşen heceler"></div>' +
       '  <p class="birles-audio-hint" id="birles-audio-hint" hidden></p>' +
@@ -3960,11 +3960,33 @@
       '    <span id="birles-reveal-msg" class="birles-reveal__msg"></span>' +
       "  </div>";
 
+    /* Cümle: HUD video stagebox dışında — geri/X ve paneller kesişmez */
+    var cumleHud = "";
+    if (isCumle) {
+      cumleHud =
+        '<div class="birles-cumle-hud" id="birles-cumle-hud">' +
+        sentenceBar +
+        '  <div class="birles-stage" id="birles-stage" aria-live="polite"></div>' +
+        '  <div class="birles-tray" id="birles-tray" aria-label="Birleşen heceler" hidden></div>' +
+        '  <p class="birles-audio-hint" id="birles-audio-hint" hidden></p>' +
+        '  <div class="birles-reveal birles-reveal--textonly" id="birles-reveal" hidden>' +
+        '    <strong id="birles-reveal-word" class="birles-reveal__word" hidden></strong>' +
+        '    <span id="birles-reveal-msg" class="birles-reveal__msg"></span>' +
+        "  </div>" +
+        "</div>";
+    }
+
     var playMods = "birles-play--pool";
     if (isKelime) playMods += " birles-play--kelime";
     if (isCumle) playMods += " birles-play--cumle";
     var bootTitle = isCumle ? "Zirve Mağarası" : "Sihirli Havuz";
     var bootText = isCumle ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…";
+
+    var poolUiCore = isCumle
+      ? '<p class="birles-play__narration" id="birles-narration" hidden></p>' +
+        '<p class="birles-pool__burst" id="birles-pool-burst" hidden aria-live="polite"></p>'
+      : coreInner +
+        '<p class="birles-pool__burst" id="birles-pool-burst" hidden aria-live="polite"></p>';
 
     body.innerHTML =
       '<div class="birles-play ' +
@@ -3985,8 +4007,7 @@
       '      <div class="birles-pool__veil" id="birles-pool-veil" style="opacity:0" aria-hidden="true"></div>' +
       '      <div class="birles-pool__flash" id="birles-pool-flash" hidden aria-hidden="true"></div>' +
       '      <div class="birles-pool__ui">' +
-      core +
-      '        <p class="birles-pool__burst" id="birles-pool-burst" hidden aria-live="polite"></p>' +
+      poolUiCore +
       "      </div>" +
       "    </div>" +
       '    <div class="birles-pool__boot" id="birles-pool-boot" role="status" aria-live="polite">' +
@@ -4000,6 +4021,7 @@
       '      <div class="birles-pool__boot-bar" aria-hidden="true"><i></i></div>' +
       "    </div>" +
       "  </div>" +
+      cumleHud +
       laneActionBarHtml(!!activeLane) +
       "</div>";
     bindPoolLayout();

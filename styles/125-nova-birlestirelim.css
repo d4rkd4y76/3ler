@@ -8309,164 +8309,7 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 /* —— Zirve Mağarası: kompakt yazı (arka plan / ejderha görünür kalsın) —— */
-.birles-play--pool.birles-play--cumle .birles-sentence-board {
-  /* Geri/X satırının hemen altında (viewport’a sabit) */
-  position: fixed !important;
-  top: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 52px);
-  left: 5%;
-  right: 5%;
-  z-index: 70;
-  padding: 8px 10px 10px;
-  border-radius: 16px;
-  background:
-    linear-gradient(165deg, rgba(18, 36, 72, 0.72) 0%, rgba(8, 18, 40, 0.78) 100%);
-  backdrop-filter: blur(6px);
-}
-
-.birles-play--pool.birles-play--cumle .birles-sentence-board__kicker {
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-}
-
-.birles-play--pool.birles-play--cumle .birles-sentence-board__step {
-  font-size: 0.72rem;
-  padding: 4px 10px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-sentence-bar {
-  padding-top: 8px;
-  min-height: 40px;
-  gap: 6px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-sentence-word {
-  min-height: 36px;
-  padding: 5px 10px;
-  border-radius: 12px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-sentence-word__text {
-  font-size: clamp(0.95rem, 3.4vmin, 1.2rem) !important;
-  letter-spacing: 0.01em;
-}
-
-.birles-play--pool.birles-play--cumle .birles-sentence-dot {
-  font-size: clamp(0.95rem, 3.4vmin, 1.2rem);
-}
-
-.birles-play--pool.birles-play--cumle .birles-stage {
-  top: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 52px + 92px);
-  left: 6%;
-  right: 6%;
-  padding: 10px 10px 12px;
-  border-radius: 18px;
-  background:
-    linear-gradient(165deg, rgba(12, 28, 58, 0.62), rgba(6, 14, 32, 0.68));
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid {
-  gap: 8px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__cap {
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__word {
-  padding: 5px 12px;
-  border-radius: 11px;
-  font-size: clamp(1.05rem, 3.8vmin, 1.35rem) !important;
-  background: rgba(15, 40, 80, 0.48);
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__syls {
-  gap: 0.4rem;
-  padding: 2px 2px 0;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__dot {
-  font-size: clamp(1rem, 3.6vmin, 1.35rem) !important;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg {
-  min-width: 2em;
-  min-height: 1.9em;
-  padding: 0.2em 0.42em;
-  border-radius: 12px;
-  font-size: clamp(1.1rem, 4.2vmin, 1.45rem) !important;
-  border-width: 2px;
-  box-shadow:
-    0 5px 12px rgba(0, 20, 50, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-on {
-  padding: 0.2em 0.42em !important;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-mid__syl.birles-hece-seg.is-on::after {
-  bottom: 0.2em !important;
-  height: 3.5px !important;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done {
-  gap: 10px;
-  width: min(88%, 360px);
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__tick {
-  width: 64px;
-  height: 64px;
-  box-shadow:
-    0 8px 22px rgba(22, 163, 74, 0.55),
-    0 0 0 4px rgba(74, 222, 128, 0.28),
-    inset 0 2px 0 rgba(255, 255, 255, 0.35);
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__tick svg {
-  width: 56px;
-  height: 56px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__tick.is-static {
-  width: 44px;
-  height: 44px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__tick.is-static svg {
-  width: 36px;
-  height: 36px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__label {
-  font-size: clamp(0.88rem, 3.1vmin, 1.1rem) !important;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__box {
-  padding: 12px 14px 14px;
-  border-radius: 16px;
-  border-width: 2.5px;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__text {
-  font-size: clamp(1.15rem, 4.2vmin, 1.55rem) !important;
-  line-height: 1.3;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__word {
-  font-size: clamp(1.05rem, 3.9vmin, 1.4rem) !important;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cumle-done__dot {
-  font-size: clamp(1.05rem, 3.9vmin, 1.4rem) !important;
-}
-
-.birles-play--pool.birles-play--cumle .birles-cards--cumle-hero .birles-card__face {
-  font-size: clamp(1.25rem, 4.5vmin, 1.7rem);
-  min-width: 96px;
-  padding: 12px 14px;
-}
+/* Eski absolute kurallar — HUD ile değiştirildi (aşağıda) */
 
 .birles-sirala--cumle .birles-sirala__nests {
   gap: 7px;
@@ -8510,12 +8353,23 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 /*
- * Zirve Mağarası: alt dock ejderleri kesmesin —
- * video alanı dock’un üstünde bitsin; çerçeve altını öne al.
+ * Zirve Mağarası HUD — video stagebox DIŞINDA flex kolon.
+ * Üst: geri/X → cümle paneli → hece paneli (çakışma yok).
+ * Alt: dock üstünde ejderler görünür.
  */
+.birles-overlay.is-pool-play {
+  --birles-head-h: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 54px);
+  --birles-dock-h: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+
+.birles-play--pool.birles-play--cumle {
+  --birles-head-h: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 54px);
+  --birles-dock-h: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+
 .birles-play--pool.birles-play--cumle .birles-pool {
   top: 0;
-  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  bottom: var(--birles-dock-h);
   height: auto;
 }
 
@@ -8529,21 +8383,281 @@ html.nova-perf-ultra-early.nova-has-session
     linear-gradient(180deg, rgba(3, 14, 22, 0.35) 0%, rgba(3, 14, 22, 0.88) 42%, #041018 100%);
 }
 
+.birles-play--pool.birles-play--cumle .birles-cumle-hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: var(--birles-dock-h, 72px);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding:
+    var(--birles-head-h, 90px)
+    max(12px, env(safe-area-inset-left, 0px) + 10px)
+    10px
+    max(12px, env(safe-area-inset-right, 0px) + 10px);
+  box-sizing: border-box;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud > * {
+  pointer-events: auto;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: min(100%, 400px);
+  margin: 0;
+  z-index: 2;
+  flex: 0 0 auto;
+  padding: 8px 10px 10px;
+  border-radius: 18px;
+  background:
+    linear-gradient(155deg, rgba(14, 36, 72, 0.78) 0%, rgba(8, 18, 42, 0.82) 100%);
+  border: 1.5px solid rgba(125, 211, 252, 0.42);
+  box-shadow:
+    0 10px 24px rgba(0, 8, 28, 0.4),
+    inset 0 1px 0 rgba(186, 230, 253, 0.16),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  clip-path: polygon(3% 0, 97% 0, 100% 10%, 100% 90%, 97% 100%, 3% 100%, 0 90%, 0 10%);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board::before {
+  display: none;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board__top {
+  margin-bottom: 2px;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board__kicker {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  color: #7dd3fc;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-board__step {
+  font-size: 0.7rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: linear-gradient(160deg, #38bdf8, #0284c7);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(14, 116, 144, 0.4);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-bar {
+  padding-top: 6px;
+  min-height: 0;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-word {
+  min-height: 34px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(180, 220, 255, 0.3);
+  color: #f0f7ff;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-word__text {
+  font-size: clamp(0.92rem, 3.2vmin, 1.15rem) !important;
+  font-weight: 800;
+  color: #f4f9ff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-word.is-focus {
+  background: rgba(56, 189, 248, 0.24);
+  border-color: rgba(125, 211, 252, 0.8);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.22);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-word.is-read {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(74, 222, 128, 0.55);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-sentence-dot {
+  font-size: clamp(0.92rem, 3.2vmin, 1.15rem);
+  color: rgba(200, 230, 255, 0.85);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-stage {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: min(100%, 380px);
+  margin: 0;
+  z-index: 2;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: min(42vh, 280px);
+  overflow: auto;
+  padding: 12px 12px 14px;
+  border-radius: 20px;
+  background:
+    linear-gradient(165deg, rgba(10, 28, 58, 0.72), rgba(6, 14, 32, 0.78));
+  border: 1.5px solid rgba(140, 200, 255, 0.32);
+  box-shadow:
+    0 12px 28px rgba(0, 8, 24, 0.42),
+    inset 0 1px 0 rgba(186, 230, 253, 0.12);
+  backdrop-filter: blur(8px);
+  clip-path: polygon(4% 0, 96% 0, 100% 12%, 100% 88%, 96% 100%, 4% 100%, 0 88%, 0 12%);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-stage.is-quiet {
+  opacity: 0.95;
+  min-height: 0;
+  padding: 10px 12px;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid,
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-hece-board {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  transform: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid {
+  gap: 8px;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__cap {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #93c5fd;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__word {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: clamp(1rem, 3.6vmin, 1.28rem) !important;
+  background: rgba(15, 40, 80, 0.5);
+  border: 1.5px solid rgba(125, 211, 252, 0.45);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__syls {
+  gap: 0.4rem;
+  padding: 2px 0 0;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__dot {
+  font-size: clamp(0.95rem, 3.4vmin, 1.25rem) !important;
+  color: rgba(125, 211, 252, 0.8);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__syl.birles-hece-seg {
+  min-width: 1.9em;
+  min-height: 1.85em;
+  padding: 0.18em 0.4em;
+  border-radius: 12px;
+  font-size: clamp(1.05rem, 4vmin, 1.35rem) !important;
+  border-width: 2px;
+  background: linear-gradient(165deg, #f0f9ff 0%, #bae6fd 100%);
+  color: #0c1929;
+  box-shadow:
+    0 5px 12px rgba(0, 20, 50, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  clip-path: polygon(8% 0, 92% 0, 100% 14%, 100% 86%, 92% 100%, 8% 100%, 0 86%, 0 14%);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__syl.birles-hece-seg.is-on {
+  padding: 0.18em 0.4em !important;
+  background: linear-gradient(165deg, #fffbeb 0%, #fde68a 100%) !important;
+  border-color: #16a34a !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-mid__syl.birles-hece-seg.is-on::after {
+  bottom: 0.18em !important;
+  height: 3px !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done {
+  gap: 8px;
+  width: min(100%, 340px);
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__tick {
+  width: 58px;
+  height: 58px;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__tick svg {
+  width: 48px;
+  height: 48px;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__label {
+  font-size: clamp(0.85rem, 3vmin, 1.05rem) !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__box {
+  padding: 10px 12px 12px;
+  border-radius: 14px;
+  border-width: 2.5px;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__text {
+  font-size: clamp(1.1rem, 4vmin, 1.45rem) !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-cumle-done__word {
+  font-size: clamp(1rem, 3.7vmin, 1.3rem) !important;
+}
+
+.birles-play--pool.birles-play--cumle .birles-fs-dock {
+  z-index: 80;
+}
+
 @media (max-width: 480px) {
+  .birles-overlay.is-pool-play {
+    --birles-head-h: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 54px);
+    --birles-dock-h: calc(78px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .birles-play--pool.birles-play--cumle {
+    --birles-head-h: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 54px);
+    --birles-dock-h: calc(78px + env(safe-area-inset-bottom, 0px));
+  }
+
   .birles-overlay.is-pool-play .birles-top {
     padding-top: max(40px, calc(env(safe-area-inset-top, 0px) + 16px));
   }
 
-  .birles-play--pool.birles-play--cumle .birles-sentence-board {
-    top: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 52px);
+  .birles-cumle-hud {
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
-  .birles-play--pool.birles-play--cumle .birles-stage {
-    top: calc(max(40px, env(safe-area-inset-top, 0px) + 16px) + 52px + 88px);
-  }
-
-  .birles-play--pool.birles-play--cumle .birles-pool {
-    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  .birles-play--pool.birles-play--cumle .birles-cumle-hud .birles-stage {
+    max-height: min(38vh, 240px);
+    padding: 10px;
   }
 
   .birles-play--pool.birles-play--cumle .birles-pool__vid {
