@@ -4872,6 +4872,9 @@
       /* 1) Tamam kutusu + tik → 2) patlama → loop devam → 3) son bir okuma */
       await playPoolFinale("", null, vv, token);
       if (token !== animToken) return;
+      /* Son okuma paneli: solma bittikten sonra biraz bekleyip açılsın */
+      await pace(reduceMotion ? 200 : 1100);
+      if (token !== animToken) return;
       await runSentenceFinalRead(fusion, token);
       if (token !== animToken) return;
       if (token === animToken && activeLane) setLaneNextEnabled(true);
