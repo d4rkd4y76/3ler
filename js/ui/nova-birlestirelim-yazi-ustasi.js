@@ -7,10 +7,13 @@
 (function (global) {
   "use strict";
 
-  /* Harf yolları 200×286’da; ölçekleyip sıkı diz */
-  var LETTER_SCALE = 0.5;
-  var CELL_W = 98;
-  var PAD_X = 14;
+  /*
+   * Harf yolları yazılışta 0 0 200 286 + kılavuz 40/120/200.
+   * Ölçekleme YAPMA — yükseklik bozulmasın; yalnız yatayda kaydır.
+   * Glif ~x 55–145 → hücre ~100 yeterli.
+   */
+  var CELL_W = 102;
+  var PAD_X = 12;
   var VIEW_H = 286;
   var GUIDE_YS = [40, 120, 200];
   /* Hassas takip — uzağı kabul etme */
@@ -81,24 +84,18 @@
     return PAD_X + letterIndex * CELL_W + CELL_W * 0.5;
   }
 
-  /** Yerel harf noktası → viewBox */
+  /** Yerel harf noktası → viewBox (yalnız yatay kaydırma; y aynı = kılavuz doğru) */
   function mapLocalToView(localX, localY, letterIndex) {
     var cx = letterCenterX(letterIndex);
     return {
-      x: cx + (localX - 100) * LETTER_SCALE,
-      y: 120 + (localY - 120) * LETTER_SCALE
+      x: localX + (cx - 100),
+      y: localY
     };
   }
 
   function letterGroupTransform(letterIndex) {
     var cx = letterCenterX(letterIndex);
-    return (
-      "translate(" +
-      cx +
-      " 120) scale(" +
-      LETTER_SCALE +
-      ") translate(-100 -120)"
-    );
+    return "translate(" + (cx - 100) + " 0)";
   }
 
   function hasYaziUstasi(soundId) {

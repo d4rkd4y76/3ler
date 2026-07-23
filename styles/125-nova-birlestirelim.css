@@ -7614,14 +7614,14 @@ html.nova-perf-ultra-early.nova-has-session
   stroke: rgba(13, 148, 136, 0.45);
 }
 .birles-yazu__ghost {
-  stroke: rgba(15, 118, 110, 0.22);
+  stroke: rgba(15, 118, 110, 0.2);
   stroke-width: 11;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .birles-yazu__stroke {
   stroke: #0f766e;
-  stroke-width: 10;
+  stroke-width: 11;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0.95;
