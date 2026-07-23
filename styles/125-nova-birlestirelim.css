@@ -8310,9 +8310,12 @@ html.nova-perf-ultra-early.nova-has-session
 
 /* —— Zirve Mağarası: kompakt yazı (arka plan / ejderha görünür kalsın) —— */
 .birles-play--pool.birles-play--cumle .birles-sentence-board {
-  top: 2.2%;
+  /* Geri/X satırının hemen altında (viewport’a sabit) */
+  position: fixed !important;
+  top: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 52px);
   left: 5%;
   right: 5%;
+  z-index: 70;
   padding: 8px 10px 10px;
   border-radius: 16px;
   background:
@@ -8352,7 +8355,7 @@ html.nova-perf-ultra-early.nova-has-session
 }
 
 .birles-play--pool.birles-play--cumle .birles-stage {
-  top: 22%;
+  top: calc(max(36px, env(safe-area-inset-top, 0px) + 14px) + 52px + 92px);
   left: 6%;
   right: 6%;
   padding: 10px 10px 12px;
@@ -8504,4 +8507,38 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-sirala__burst-chip--cumle {
   font-size: clamp(0.92rem, 3.5vmin, 1.25rem) !important;
   padding: 0.38em 0.65em !important;
+}
+
+/*
+ * Zirve Mağarası: alt dock ejderleri kesmesin —
+ * video alanı dock’un üstünde bitsin; çerçeve altını öne al.
+ */
+.birles-play--pool.birles-play--cumle .birles-pool {
+  top: 0;
+  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  height: auto;
+}
+
+.birles-play--pool.birles-play--cumle .birles-pool__vid {
+  object-fit: cover;
+  object-position: center 68%;
+}
+
+.birles-play--pool.birles-play--cumle .birles-fs-dock__bar {
+  background:
+    linear-gradient(180deg, rgba(3, 14, 22, 0.35) 0%, rgba(3, 14, 22, 0.88) 42%, #041018 100%);
+}
+
+@media (max-width: 480px) {
+  .birles-overlay.is-pool-play .birles-top {
+    padding-top: max(40px, calc(env(safe-area-inset-top, 0px) + 16px));
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-pool {
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .birles-play--pool.birles-play--cumle .birles-pool__vid {
+    object-position: center 72%;
+  }
 }
