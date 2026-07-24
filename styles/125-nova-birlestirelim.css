@@ -7849,6 +7849,26 @@ html.nova-perf-ultra-early.nova-has-session
   outline: 3px solid rgba(255, 255, 255, 0.85);
   outline-offset: 2px;
 }
+.birles-yazu__ghost.is-dim {
+  stroke: rgba(15, 92, 86, 0.1);
+  stroke-width: 14;
+}
+.birles-yazu__ghost.is-active {
+  stroke: rgba(15, 92, 86, 0.28);
+  stroke-width: 17;
+}
+.birles-yazu__stroke.is-ahead {
+  opacity: 0;
+  pointer-events: none;
+}
+.birles-yazu__stroke.is-focus {
+  opacity: 1;
+}
+.birles-yazu__stroke.is-done {
+  stroke: #15803d;
+  opacity: 0.92;
+}
+
 .birles-yazu__wide-btn {
   display: flex;
   flex-direction: column;
@@ -7909,13 +7929,12 @@ html.nova-perf-ultra-early.nova-has-session
   border: 1px solid rgba(239, 68, 68, 0.22);
 }
 
-/* Geniş yaz paneli */
+/* Geniş yaz — telefon/tablet tam ekran yan panel; yalnız çarpı */
 .birles-yazu__sheet {
   position: fixed;
   inset: 0;
-  z-index: 80;
-  display: flex;
-  justify-content: flex-end;
+  z-index: 120;
+  display: block;
   pointer-events: none;
 }
 .birles-yazu__sheet[hidden] {
@@ -7924,119 +7943,83 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-yazu__sheet.is-open {
   pointer-events: auto;
 }
-.birles-yazu__sheet-backdrop {
+.birles-yazu__sheet-panel {
   position: absolute;
   inset: 0;
-  background: rgba(10, 40, 38, 0.42);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  animation: birlesYazuFadeIn 0.22s ease;
-}
-.birles-yazu__sheet-panel {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: min(100%, 720px);
+  width: 100%;
   height: 100%;
-  max-height: 100%;
-  padding: 14px 16px 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(45, 212, 191, 0.18), transparent 55%),
-    linear-gradient(180deg, #f7fffc 0%, #fffdf6 40%, #f3faf8 100%);
-  box-shadow: -18px 0 48px rgba(8, 40, 36, 0.22);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(45, 212, 191, 0.16), transparent 55%),
+    linear-gradient(180deg, #f4fffb 0%, #fffdf6 45%, #eefaf6 100%);
+  box-shadow: none;
   animation: birlesYazuSheetIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.birles-yazu__sheet-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 4px 2px 8px;
-}
-.birles-yazu__sheet-title {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-.birles-yazu__sheet-kicker {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #0f766e;
-}
-.birles-yazu__sheet-title strong {
-  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
-  font-size: clamp(1.6rem, 5vmin, 2.2rem);
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  line-height: 1.1;
-}
 .birles-yazu__sheet-close {
-  flex: 0 0 auto;
-  width: 44px;
-  height: 44px;
+  position: absolute;
+  top: max(10px, env(safe-area-inset-top, 0px));
+  right: max(10px, env(safe-area-inset-right, 0px));
+  z-index: 6;
+  width: 48px;
+  height: 48px;
   border: 0;
-  border-radius: 14px;
-  background: rgba(15, 118, 110, 0.1);
+  border-radius: 16px;
+  background: rgba(15, 118, 110, 0.14);
   color: #0f766e;
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
+  box-shadow: 0 6px 16px rgba(8, 40, 36, 0.12);
 }
-.birles-yazu__sheet-close:hover {
-  background: rgba(15, 118, 110, 0.18);
-}
-.birles-yazu__stage-wrap--wide {
-  max-width: none;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  padding: 14px;
-  border-radius: 28px;
+.birles-yazu__sheet-close:hover,
+.birles-yazu__sheet-close:active {
+  background: rgba(15, 118, 110, 0.24);
 }
 .birles-yazu__stage--wide {
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  box-sizing: border-box;
+  touch-action: none;
 }
 .birles-yazu__stage--wide .birles-yazu__svg {
-  max-height: min(68vh, 620px);
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
 }
-.birles-yazu__stage--wide .birles-yazu__ghost,
+.birles-yazu__stage--wide .birles-yazu__paper {
+  rx: 12;
+}
+.birles-yazu__stage--wide .birles-yazu__ghost.is-active {
+  stroke-width: 18;
+}
+.birles-yazu__stage--wide .birles-yazu__ghost.is-dim {
+  stroke-width: 13;
+}
 .birles-yazu__stage--wide .birles-yazu__stroke {
-  stroke-width: 19;
+  stroke-width: 18;
 }
 .birles-yazu__stage--wide .birles-yazu__user {
-  stroke-width: 16;
+  stroke-width: 15;
 }
-.birles-yazu__sheet-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: auto;
-}
-.birles-yazu__sheet-actions .birles-yazu-act {
-  min-height: 72px;
-  flex-direction: column;
-}
-@keyframes birlesYazuFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.birles-yazu__stage--wide .birles-yazu__hit {
+  inset: 0;
 }
 @keyframes birlesYazuSheetIn {
   from {
-    transform: translateX(18px);
-    opacity: 0.6;
+    transform: translateX(28px);
+    opacity: 0.55;
   }
   to {
     transform: translateX(0);
@@ -8044,29 +8027,13 @@ html.nova-perf-ultra-early.nova-has-session
   }
 }
 
-@media (max-width: 720px) {
+/* Masaüstü: Geniş yaz butonu yok (JS de gizler) */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+  .birles-yazu__wide-btn {
+    display: none !important;
+  }
   .birles-yazu__sheet {
-    justify-content: stretch;
-    align-items: flex-end;
-  }
-  .birles-yazu__sheet-panel {
-    width: 100%;
-    height: min(94vh, 100%);
-    border-radius: 24px 24px 0 0;
-    animation-name: birlesYazuSheetUp;
-  }
-  @keyframes birlesYazuSheetUp {
-    from {
-      transform: translateY(24px);
-      opacity: 0.7;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  .birles-yazu__stage--wide .birles-yazu__svg {
-    max-height: min(58vh, 520px);
+    display: none !important;
   }
 }
 
@@ -8087,10 +8054,13 @@ html.nova-perf-ultra-early.nova-has-session
     width: 34px;
     height: 34px;
   }
+  .birles-yazu__sheet-close {
+    width: 46px;
+    height: 46px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .birles-yazu__sheet-backdrop,
   .birles-yazu__sheet-panel,
   .birles-yazu__word,
   .birles-yazu-act,

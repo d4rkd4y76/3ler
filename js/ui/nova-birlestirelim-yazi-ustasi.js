@@ -1,7 +1,7 @@
 /**
  * Yazı Ustası — kelime yazılışı (kılavuz çizgili).
  * O sesi: nota, olan, alto
- * Ana tahta + isteğe bağlı Geniş Yaz panelı.
+ * Geniş yaz: yalnızca telefon/tablet · tam ekran yan panel.
  */
 (function (global) {
   "use strict";
@@ -11,18 +11,30 @@
    * Ölçekleme YAPMA — yalnız yatayda kaydır.
    */
   var CELL_W = 102;
-  var PAD_X = 12;
+  var CELL_W_WIDE = 124;
+  var PAD_X = 14;
   var VIEW_H = 286;
   var GUIDE_YS = [40, 120, 200];
 
-  /* Rahat takip — çocuk parmağı için */
   var TOL = 28;
   var TOL_START = 36;
-  var TOL_WIDE = 40;
-  var TOL_START_WIDE = 52;
+  var TOL_WIDE = 42;
+  var TOL_START_WIDE = 54;
   var MISS_LIMIT = 10;
-  var WINDOW_N = 16;
+  var WINDOW_N = 14;
   var COMPLETE_RATIO = 0.8;
+
+  /** Geniş yaz: yalnızca telefon / tablet */
+  function isPhoneOrTablet() {
+    try {
+      if (!global.matchMedia) return true;
+      return global.matchMedia(
+        "(max-width: 1024px), (hover: none) and (pointer: coarse)"
+      ).matches;
+    } catch (e) {
+      return true;
+    }
+  }
 
   var WORDS_BY_SOUND = {
     o: [
@@ -76,20 +88,21 @@
     return Math.sqrt(dx * dx + dy * dy);
   }
 
-  function letterCenterX(letterIndex) {
-    return PAD_X + letterIndex * CELL_W + CELL_W * 0.5;
+  function letterCenterX(letterIndex, cellW) {
+    var cw = cellW || CELL_W;
+    return PAD_X + letterIndex * cw + cw * 0.5;
   }
 
-  function mapLocalToView(localX, localY, letterIndex) {
-    var cx = letterCenterX(letterIndex);
+  function mapLocalToView(localX, localY, letterIndex, cellW) {
+    var cx = letterCenterX(letterIndex, cellW);
     return {
       x: localX + (cx - 100),
       y: localY
     };
   }
 
-  function letterGroupTransform(letterIndex) {
-    var cx = letterCenterX(letterIndex);
+  function letterGroupTransform(letterIndex, cellW) {
+    var cx = letterCenterX(letterIndex, cellW);
     return "translate(" + (cx - 100) + " 0)";
   }
 
@@ -103,9 +116,10 @@
     return (WORDS_BY_SOUND[sid] || []).slice();
   }
 
-  function composeWord(word) {
+  function composeWord(word, cellW) {
     var D = yazData();
     if (!D || !word) return null;
+    var cw = cellW || CELL_W;
     var strokes = [];
     var letters = word.letters || [];
     for (var i = 0; i < letters.length; i++) {
@@ -130,7 +144,8 @@
       say: word.say || word.label,
       hint: word.hint || "",
       letterCount: letters.length,
-      viewW: PAD_X + letters.length * CELL_W + PAD_X,
+      cellW: cw,
+      viewW: PAD_X + letters.length * cw + PAD_X,
       strokes: strokes
     };
   }
@@ -141,9 +156,19 @@
     var body = opts.body;
     if (!sound || !body || !hasYaziUstasi(sound.id)) return;
 
-    var words = wordsForSound(sound.id)
-      .map(composeWord)
-      .filter(Boolean);
+    var wideOpen = false;
+    var layoutCellW = CELL_W;
+
+    function buildWords() {
+      layoutCellW = wideOpen ? CELL_W_WIDE : CELL_W;
+      return wordsForSound(sound.id)
+        .map(function (w) {
+          return composeWord(w, layoutCellW);
+        })
+        .filter(Boolean);
+    }
+
+    var words = buildWords();
     if (!words.length) return;
 
     var activeIdx = 0;
@@ -153,13 +178,13 @@
     var practiceBound = false;
     var drawing = false;
     var samples = [];
+    var otherStrokeSamples = [];
     var progress = 0;
     var userPts = [];
     var missStreak = 0;
     var lastPointerId = null;
     var lastPt = null;
     var strokeLock = false;
-    var wideOpen = false;
 
     if (opts.setBack) opts.setBack(true);
     if (opts.setHeader) {
@@ -250,6 +275,7 @@
     function boardHtml(W) {
       if (!W) return "";
       var vbW = W.viewW;
+      var cw = W.cellW || layoutCellW;
       var guides = GUIDE_YS.map(function (y, gi) {
         return (
           '<line class="birles-yazu__guide' +
@@ -288,7 +314,7 @@
         }
         letterGroups +=
           '<g class="birles-yazu__letter" transform="' +
-          letterGroupTransform(li) +
+          letterGroupTransform(li, cw) +
           '">' +
           ghostPaths +
           inkPaths +
@@ -300,7 +326,7 @@
         vbW +
         " " +
         VIEW_H +
-        '" shape-rendering="geometricPrecision" aria-label="' +
+        '" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision" aria-label="' +
         esc(W.label) +
         '">' +
         '<rect class="birles-yazu__paper" x="2" y="6" width="' +
@@ -345,18 +371,69 @@
       return Array.prototype.slice.call(body.querySelectorAll(".birles-yazu__stroke"));
     }
 
+    function ghostEls() {
+      return Array.prototype.slice.call(body.querySelectorAll(".birles-yazu__ghost"));
+    }
+
+    /** Aktif hamleyi öne çıkar; diğer hamleleri soluk tut — çakışma hissi azalır */
+    function updateStrokeFocus() {
+      strokeEls().forEach(function (p) {
+        var i = Number(p.getAttribute("data-stroke"));
+        p.classList.remove("is-focus", "is-wait", "is-ahead");
+        if (i < strokeIndex) {
+          p.classList.add("is-done");
+          p.classList.remove("is-live", "is-fail");
+        } else if (i === strokeIndex) {
+          p.classList.add("is-focus");
+          p.classList.remove("is-done");
+        } else {
+          p.classList.add("is-ahead");
+          p.classList.remove("is-done", "is-live");
+        }
+      });
+      ghostEls().forEach(function (g) {
+        var i = Number(g.getAttribute("data-ghost"));
+        g.classList.toggle("is-active", i === strokeIndex);
+        g.classList.toggle("is-dim", i !== strokeIndex);
+      });
+    }
+
     function resetStrokesVisual() {
       strokeEls().forEach(function (p) {
         p.style.transition = "none";
         var len = pathLen(p) || 1;
         p.style.strokeDasharray = String(len);
         p.style.strokeDashoffset = String(len);
-        p.classList.remove("is-done", "is-live", "is-fail");
+        p.classList.remove("is-done", "is-live", "is-fail", "is-focus", "is-ahead");
       });
       var user = document.getElementById("birles-yazu-user");
       if (user) user.setAttribute("d", "");
       var pen = document.getElementById("birles-yazu-pen");
       if (pen) pen.setAttribute("hidden", "hidden");
+      updateStrokeFocus();
+    }
+
+    function restoreStrokeProgress(si) {
+      strokeIndex = Math.max(0, si || 0);
+      strokeEls().forEach(function (p) {
+        var i = Number(p.getAttribute("data-stroke"));
+        var len = pathLen(p) || 1;
+        p.style.transition = "none";
+        p.style.strokeDasharray = String(len);
+        if (i < strokeIndex) {
+          p.style.strokeDashoffset = "0";
+          p.classList.add("is-done");
+          p.classList.remove("is-live", "is-fail");
+        } else {
+          p.style.strokeDashoffset = String(len);
+          p.classList.remove("is-done", "is-live", "is-fail");
+        }
+      });
+      var user = document.getElementById("birles-yazu-user");
+      if (user) user.setAttribute("d", "");
+      var pen = document.getElementById("birles-yazu-pen");
+      if (pen) pen.setAttribute("hidden", "hidden");
+      updateStrokeFocus();
     }
 
     function doneCount() {
@@ -365,12 +442,16 @@
       }).length;
     }
 
-    function renderShell() {
+    function renderShell(shellOpts) {
+      shellOpts = shellOpts || {};
+      var keepProgress = !!shellOpts.keepProgress;
+      var savedStroke = strokeIndex;
       animToken += 1;
       unbindPractice();
       var W = activeWord();
       var nDone = doneCount();
       var chip = esc(sound.color || "#0d9488");
+      var showWideBtn = isPhoneOrTablet();
 
       body.innerHTML =
         '<div class="birles-yazu' +
@@ -453,51 +534,41 @@
         "</span>" +
         '<span class="birles-yazu-act__txt"><strong>Sese dön</strong><small>geri</small></span></button>' +
         "</div>" +
-        '<button type="button" class="birles-yazu__wide-btn" id="birles-yazu-wide-open">' +
-        '<span class="birles-yazu__wide-btn-ico" aria-hidden="true">' +
-        '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>' +
-        "</span>" +
-        "<strong>Geniş yaz</strong>" +
-        "<small>Daha büyük · daha rahat tahta</small>" +
-        "</button>" +
+        (showWideBtn
+          ? '<button type="button" class="birles-yazu__wide-btn" id="birles-yazu-wide-open">' +
+            '<span class="birles-yazu__wide-btn-ico" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>' +
+            "</span>" +
+            "<strong>Geniş yaz</strong>" +
+            "<small>Tam ekran yan tahta</small>" +
+            "</button>"
+          : "") +
         '<p class="birles-yazu__status" id="birles-yazu-status" hidden></p>' +
         '<div class="birles-yazu__sheet' +
         (wideOpen ? " is-open" : "") +
         '" id="birles-yazu-sheet" ' +
         (wideOpen ? "" : "hidden") +
         ">" +
-        '<div class="birles-yazu__sheet-backdrop" id="birles-yazu-sheet-bg"></div>' +
         '<div class="birles-yazu__sheet-panel" role="dialog" aria-modal="true" aria-label="Geniş yazma tahtası">' +
-        '<div class="birles-yazu__sheet-bar">' +
-        '<div class="birles-yazu__sheet-title">' +
-        '<span class="birles-yazu__sheet-kicker">Geniş tahta</span>' +
-        '<strong id="birles-yazu-sheet-word">' +
-        esc(W ? W.label : "") +
-        "</strong>" +
-        "</div>" +
         '<button type="button" class="birles-yazu__sheet-close" id="birles-yazu-wide-close" aria-label="Kapat">×</button>' +
-        "</div>" +
         (wideOpen
-          ? '<div class="birles-yazu__stage-wrap birles-yazu__stage-wrap--wide">' +
-            '<div class="birles-yazu__stage birles-yazu__stage--wide" id="birles-yazu-stage">' +
+          ? '<div class="birles-yazu__stage birles-yazu__stage--wide" id="birles-yazu-stage">' +
             boardHtml(W) +
-            "</div>" +
-            "</div>" +
-            '<p class="birles-yazu__tip birles-yazu__tip--sheet"></p>' +
-            '<div class="birles-yazu__sheet-actions">' +
-            '<button type="button" class="birles-yazu-act birles-yazu-act--write is-on" id="birles-yazu-practice-w">' +
-            "<strong>Yeniden yaz</strong><small>parmakla çiz</small></button>" +
-            '<button type="button" class="birles-yazu-act birles-yazu-act--listen" id="birles-yazu-listen-w">' +
-            "<strong>Dinle</strong><small>kelimeyi duy</small></button>" +
-            "</div>" +
-            '<p class="birles-yazu__status birles-yazu__status--sheet" hidden></p>'
+            "</div>"
           : "") +
         "</div>" +
         "</div>" +
         "</div>";
 
       wire();
-      startPractice(true);
+      if (keepProgress) {
+        restoreStrokeProgress(savedStroke);
+        setTip("");
+        setStatus("", true);
+        bindPractice();
+      } else {
+        startPractice(true);
+      }
     }
 
     function clientToSvg(clientX, clientY) {
@@ -525,10 +596,11 @@
       var len = pathLen(pathEl);
       var pts = [];
       if (!len) return pts;
+      var cw = (activeWord() && activeWord().cellW) || layoutCellW;
       var n = Math.max(28, Math.round(Math.max(56, len / 2.4)));
       for (var i = 0; i <= n; i++) {
         var p = pathEl.getPointAtLength((i / n) * len);
-        var mapped = mapLocalToView(p.x, p.y, letterIndex);
+        var mapped = mapLocalToView(p.x, p.y, letterIndex, cw);
         var pt = { x: mapped.x, y: mapped.y, t: i / n };
         if (i > 0) {
           pt.dx = pt.x - pts[i - 1].x;
@@ -542,6 +614,19 @@
       return pts;
     }
 
+    /** Aynı harfin diğer hamlelerine en yakın mesafe — çakışmayı engelle */
+    function nearestOtherStrokeDist(pt) {
+      var best = 1e9;
+      for (var s = 0; s < otherStrokeSamples.length; s++) {
+        var pts = otherStrokeSamples[s];
+        for (var i = 0; i < pts.length; i += 2) {
+          var d = dist(pt, pts[i]);
+          if (d < best) best = d;
+        }
+      }
+      return best;
+    }
+
     function advanceAlongPath(pt, prevPt) {
       if (!samples.length) return { ok: false, far: true };
       var best = -1;
@@ -551,6 +636,13 @@
       var moveLen = Math.sqrt(moveDx * moveDx + moveDy * moveDy) || 0;
       var tol = tolNow();
 
+      /* Diğer hamleye daha yakınsa bu hamleye sayma */
+      var dCurHint = dist(pt, samples[Math.min(progress, samples.length - 1)]);
+      var dOther = nearestOtherStrokeDist(pt);
+      if (dOther + 6 < dCurHint && dOther < tol * 0.85) {
+        return { ok: false, far: true };
+      }
+
       for (var i = progress; i < samples.length && i <= progress + WINDOW_N; i++) {
         var d = dist(pt, samples[i]);
         if (d > tol) continue;
@@ -559,10 +651,10 @@
           var pLen =
             Math.sqrt(samples[i].dx * samples[i].dx + samples[i].dy * samples[i].dy) || 1;
           var align = (moveDx * samples[i].dx + moveDy * samples[i].dy) / (moveLen * pLen);
-          if (align < 0.05) score += 6;
+          if (align < 0.08) score += 8;
           else score -= align * 3.5;
         }
-        score += (i - progress) * 0.28;
+        score += (i - progress) * 0.3;
         if (score < bestScore) {
           bestScore = score;
           best = i;
@@ -573,10 +665,14 @@
         var nearest = dist(pt, samples[Math.min(progress, samples.length - 1)]);
         return { ok: false, far: nearest > tol };
       }
-      if (best > progress + 10) {
+      /* Geriye veya çok ileri zıplama yok */
+      if (best < progress) {
+        return { ok: false, far: false };
+      }
+      if (best > progress + 9) {
         return { ok: false, far: true };
       }
-      if (best >= progress) progress = best;
+      progress = best;
       return { ok: true, far: false };
     }
 
@@ -606,6 +702,7 @@
       ink.style.strokeDasharray = String(len);
       ink.style.strokeDashoffset = String(len);
       ink.classList.remove("is-live", "is-done");
+      updateStrokeFocus();
     }
 
     function failStroke() {
@@ -619,8 +716,8 @@
           if (ink) ink.classList.remove("is-fail");
         }, 420);
       }
-      setStatus("Çizgiye biraz daha yakın yaz", false);
-      setTip("Silik harfin üstünden, sırayla çiz — acele etme");
+      setStatus("Bu hamleyi kendi çizgisinden yaz", false);
+      setTip("Her hamle ayrı · sıradaki çizgiye geçme");
       var user = document.getElementById("birles-yazu-user");
       if (user) user.setAttribute("d", "");
       var pen = document.getElementById("birles-yazu-pen");
@@ -628,11 +725,10 @@
       resetStrokeForRetry();
       progress = 0;
       userPts = [];
+      var W = activeWord();
       samples = samplePathView(
         body.querySelector('.birles-yazu__stroke[data-stroke="' + strokeIndex + '"]'),
-        activeWord() && activeWord().strokes[strokeIndex]
-          ? activeWord().strokes[strokeIndex].letterIndex
-          : 0
+        W && W.strokes[strokeIndex] ? W.strokes[strokeIndex].letterIndex : 0
       );
     }
 
@@ -643,7 +739,7 @@
       var ink = body.querySelector('.birles-yazu__stroke[data-stroke="' + strokeIndex + '"]');
       if (ink) {
         ink.style.strokeDashoffset = "0";
-        ink.classList.remove("is-live");
+        ink.classList.remove("is-live", "is-focus");
         ink.classList.add("is-done");
       }
       var user = document.getElementById("birles-yazu-user");
@@ -669,8 +765,6 @@
         if (prog) {
           prog.textContent = doneCount() + " / " + words.length + " kelime";
         }
-        var sheetWord = document.getElementById("birles-yazu-sheet-word");
-        if (sheetWord) sheetWord.textContent = W.label;
 
         if (allWordsDone()) {
           setStatus("Süper! Yazı Ustası tamam · yıldız kazandın", true);
@@ -699,12 +793,27 @@
       }
 
       playTickSfx(false);
-      setTip("Devam · sıradaki harfi yaz");
-      setStatus("Güzel gidiyor · silik çizgiyi takip et", true);
+      setTip("Parmağı kaldır · sıradaki hamleyi yaz");
+      setStatus("Hamle tamam · sıradakine geç", true);
       var pen = document.getElementById("birles-yazu-pen");
       if (pen) pen.setAttribute("hidden", "hidden");
       strokeLock = false;
+      updateStrokeFocus();
       bindPractice();
+    }
+
+    function buildOtherStrokeSamples(W, currentIdx) {
+      otherStrokeSamples = [];
+      if (!W) return;
+      var curLetter = W.strokes[currentIdx] ? W.strokes[currentIdx].letterIndex : -1;
+      for (var i = 0; i < W.strokes.length; i++) {
+        if (i === currentIdx) continue;
+        /* Aynı harfin diğer hamleleri — çakışma riski yüksek */
+        if (W.strokes[i].letterIndex !== curLetter) continue;
+        var path = body.querySelector('.birles-yazu__stroke[data-stroke="' + i + '"]');
+        if (!path) continue;
+        otherStrokeSamples.push(samplePathView(path, W.strokes[i].letterIndex));
+      }
     }
 
     function bindPractice() {
@@ -716,11 +825,13 @@
       hit.style.pointerEvents = "auto";
       var letterIndex = W.strokes[strokeIndex].letterIndex;
       samples = samplePathView(path, letterIndex);
+      buildOtherStrokeSamples(W, strokeIndex);
       progress = 0;
       userPts = [];
       drawing = false;
       strokeLock = false;
       practiceBound = true;
+      updateStrokeFocus();
 
       hit.onpointerdown = function (e) {
         e.preventDefault();
@@ -733,7 +844,14 @@
         var start = samples[0];
         if (dist(pt, start) > tolStartNow()) {
           playBuzzSfx();
-          setStatus("Harfin başlangıcına biraz daha yakın başla", false);
+          setStatus("Bu hamlenin başlangıcından başla", false);
+          return;
+        }
+        /* Başlangıç başka hamleye daha yakınsa alma */
+        var dOther = nearestOtherStrokeDist(pt);
+        if (dOther + 4 < dist(pt, start) && dOther < tolStartNow() * 0.7) {
+          playBuzzSfx();
+          setStatus("Önceki/sonraki hamleye değme · bu çizgiden başla", false);
           return;
         }
         drawing = true;
@@ -796,24 +914,27 @@
       resetStrokesVisual();
       setTip(
         wideOpen
-          ? "Geniş tahtada yaz — çizgiye yapışık olman yeterli"
+          ? "Tam ekranda yaz · her hamle kendi çizgisinde"
           : "Silik harflerin üstünden sırayla yaz"
       );
-      setStatus(wideOpen ? "Rahat yaz · geniş tahta açık" : "Parmağınla çizgiyi takip et", true);
+      setStatus(wideOpen ? "Geniş tahta · hamleleri karıştırma" : "Parmağınla çizgiyi takip et", true);
       if (playAudio) playWordAudio();
       bindPractice();
     }
 
     function openWide() {
+      if (!isPhoneOrTablet()) return;
       if (wideOpen) return;
       wideOpen = true;
-      renderShell();
+      words = buildWords();
+      renderShell({ keepProgress: true });
     }
 
     function closeWide() {
       if (!wideOpen) return;
       wideOpen = false;
-      renderShell();
+      words = buildWords();
+      renderShell({ keepProgress: true });
     }
 
     function wire() {
@@ -826,24 +947,18 @@
         });
       });
 
-      function bindPracticeBtn(id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener("click", function () {
+      var prac = document.getElementById("birles-yazu-practice");
+      if (prac) {
+        prac.addEventListener("click", function () {
           startPractice(false);
         });
       }
-      function bindListenBtn(id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener("click", function () {
+      var listen = document.getElementById("birles-yazu-listen");
+      if (listen) {
+        listen.addEventListener("click", function () {
           playWordAudio();
         });
       }
-      bindPracticeBtn("birles-yazu-practice");
-      bindPracticeBtn("birles-yazu-practice-w");
-      bindListenBtn("birles-yazu-listen");
-      bindListenBtn("birles-yazu-listen-w");
 
       var back = document.getElementById("birles-yazu-back");
       if (back) {
@@ -862,10 +977,6 @@
       if (wideCloseBtn) {
         wideCloseBtn.addEventListener("click", closeWide);
       }
-      var sheetBg = document.getElementById("birles-yazu-sheet-bg");
-      if (sheetBg) {
-        sheetBg.addEventListener("click", closeWide);
-      }
     }
 
     renderShell();
@@ -874,6 +985,7 @@
   global.NovaBirlestirelimYaziUstasi = {
     open: openYaziUstasi,
     hasYaziUstasi: hasYaziUstasi,
-    wordsForSound: wordsForSound
+    wordsForSound: wordsForSound,
+    isPhoneOrTablet: isPhoneOrTablet
   };
 })(typeof window !== "undefined" ? window : this);
