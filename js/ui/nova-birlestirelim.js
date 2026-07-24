@@ -1567,6 +1567,9 @@
     }
     if (view === "play") {
       setPoolPlayMode(false);
+      if (window.NovaPortraitLock && window.NovaPortraitLock.allowLandscape) {
+        window.NovaPortraitLock.allowLandscape(false);
+      }
       if (activeLane && activeSound) {
         openSound(activeSound.id);
         return;

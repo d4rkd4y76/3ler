@@ -194,6 +194,16 @@
         "Yazı"
       );
     }
+    /* Yazı Ustası: yatay ekran serbest */
+    if (global.NovaPortraitLock && global.NovaPortraitLock.allowLandscape) {
+      global.NovaPortraitLock.allowLandscape(true);
+    }
+
+    function releaseLandscape() {
+      if (global.NovaPortraitLock && global.NovaPortraitLock.allowLandscape) {
+        global.NovaPortraitLock.allowLandscape(false);
+      }
+    }
 
     function activeWord() {
       return words[activeIdx] || null;
@@ -976,6 +986,7 @@
         back.addEventListener("click", function () {
           animToken += 1;
           unbindPractice();
+          releaseLandscape();
           if (opts.onClose) opts.onClose();
         });
       }

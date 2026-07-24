@@ -113,3 +113,85 @@ html.nova-main-gate-on #nova-main-gate,
 #nova-main-gate.is-open {
   z-index: 120000 !important;
 }
+
+/* —— Dikey ekran kilidi (Yazı Ustası muaf) —— */
+.nova-portrait-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  box-sizing: border-box;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 30%, rgba(56, 189, 248, 0.22), transparent 60%),
+    linear-gradient(165deg, #0b1f2c 0%, #123447 45%, #0a2433 100%);
+  color: #e8f6ff;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+}
+.nova-portrait-lock.is-on,
+.nova-portrait-lock:not([hidden]) {
+  display: flex;
+}
+.nova-portrait-lock[hidden] {
+  display: none !important;
+}
+.nova-portrait-lock__card {
+  width: min(420px, 100%);
+  text-align: center;
+  padding: 28px 22px 26px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.nova-portrait-lock__ico {
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  color: #7dd3fc;
+  animation: novaPortraitTilt 1.6s ease-in-out infinite;
+}
+.nova-portrait-lock__title {
+  margin: 0 0 8px;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", system-ui, sans-serif;
+  font-size: clamp(1.25rem, 4.5vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #f0f9ff;
+}
+.nova-portrait-lock__text {
+  margin: 0;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", system-ui, sans-serif;
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: rgba(226, 242, 255, 0.88);
+}
+@keyframes novaPortraitTilt {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(-18deg);
+  }
+  70% {
+    transform: rotate(8deg);
+  }
+}
+html.nova-allow-landscape .nova-portrait-lock,
+html.nova-allow-landscape.nova-portrait-locked .nova-portrait-lock {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-portrait-lock__ico {
+    animation: none !important;
+  }
+}
