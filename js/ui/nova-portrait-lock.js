@@ -1,6 +1,6 @@
 /**
  * NovaPortraitLock — uygulama genelinde yalnız dikey ekran.
- * Yatayda tam ekran uyarı. Yazı Ustası muaf (allowLandscape).
+ * Yatayda uyarı. Yazı Ustası “Geniş yaz” açıkken landscape serbest + kilit dener.
  */
 (function (global) {
   "use strict";
@@ -13,7 +13,6 @@
   function isTouchOrCompact() {
     try {
       if (!global.matchMedia) return true;
-      /* Masaüstü geniş ekran: kilitleme (normal yatay monitör) */
       if (
         global.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1025px)").matches
       ) {
@@ -34,17 +33,9 @@
     return global.innerWidth > global.innerHeight;
   }
 
-  function isYaziUstasiActive() {
-    try {
-      if (document.documentElement.classList.contains("nova-allow-landscape")) return true;
-      if (document.body && document.body.classList.contains("nova-allow-landscape")) return true;
-      if (document.querySelector(".birles-yazu")) return true;
-    } catch (e) {}
-    return false;
-  }
-
   function shouldBlock() {
-    if (allowLandscape || isYaziUstasiActive()) return false;
+    /* Yalnız açıkça serbest bırakıldığında (Geniş yaz) yatay kabul */
+    if (allowLandscape) return false;
     if (!isTouchOrCompact()) return false;
     return isLandscape();
   }
@@ -76,6 +67,34 @@
     return el;
   }
 
+  function lockOrientation(mode) {
+    try {
+      var o = global.screen && global.screen.orientation;
+      if (!o || typeof o.lock !== "function") return Promise.resolve(false);
+      var p = o.lock(mode);
+      if (p && typeof p.then === "function") {
+        return p.then(
+          function () {
+            return true;
+          },
+          function () {
+            return false;
+          }
+        );
+      }
+      return Promise.resolve(true);
+    } catch (e) {
+      return Promise.resolve(false);
+    }
+  }
+
+  function unlockOrientation() {
+    try {
+      var o = global.screen && global.screen.orientation;
+      if (o && typeof o.unlock === "function") o.unlock();
+    } catch (e) {}
+  }
+
   function sync() {
     var el = ensureOverlay();
     var block = shouldBlock();
@@ -85,18 +104,8 @@
       document.documentElement.classList.toggle("nova-portrait-locked", block);
     } catch (e) {}
     if (block) {
-      tryLockPortrait();
+      lockOrientation("portrait");
     }
-  }
-
-  function tryLockPortrait() {
-    try {
-      var o = global.screen && global.screen.orientation;
-      if (o && typeof o.lock === "function") {
-        var p = o.lock("portrait");
-        if (p && typeof p.catch === "function") p.catch(function () {});
-      }
-    } catch (e) {}
   }
 
   function setAllowLandscape(on) {
@@ -107,6 +116,17 @@
         document.body.classList.toggle("nova-allow-landscape", allowLandscape);
       }
     } catch (e) {}
+    if (allowLandscape) {
+      /* Geniş yaz: yataya kilitlemeyi dene, paneli hemen aç */
+      lockOrientation("landscape").then(function () {
+        sync();
+      });
+    } else {
+      unlockOrientation();
+      lockOrientation("portrait").then(function () {
+        sync();
+      });
+    }
     sync();
   }
 
@@ -132,6 +152,8 @@
   global.NovaPortraitLock = {
     sync: sync,
     allowLandscape: setAllowLandscape,
-    isBlocking: shouldBlock
+    lockOrientation: lockOrientation,
+    isBlocking: shouldBlock,
+    isLandscape: isLandscape
   };
 })(typeof window !== "undefined" ? window : this);

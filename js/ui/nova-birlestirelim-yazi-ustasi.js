@@ -16,13 +16,13 @@
   var VIEW_H = 286;
   var GUIDE_YS = [40, 120, 200];
 
-  var TOL = 30;
-  var TOL_START = 38;
-  var TOL_WIDE = 48;
-  var TOL_START_WIDE = 58;
-  var MISS_LIMIT = 18;
-  var WINDOW_N = 20;
-  var COMPLETE_RATIO = 0.78;
+  var TOL = 34;
+  var TOL_START = 42;
+  var TOL_WIDE = 52;
+  var TOL_START_WIDE = 62;
+  var MISS_LIMIT = 22;
+  var WINDOW_N = 24;
+  var COMPLETE_RATIO = 0.75;
 
   /** Geniş yaz: yalnızca telefon / tablet */
   function isPhoneOrTablet() {
@@ -185,6 +185,13 @@
     var lastPointerId = null;
     var lastPt = null;
     var strokeLock = false;
+    var svgCtmInv = null;
+    var cachedInk = null;
+    var cachedInkLen = 1;
+    var cachedUser = null;
+    var cachedPen = null;
+    var paintRaf = 0;
+    var pendingPaint = false;
 
     if (opts.setBack) opts.setBack(true);
     if (opts.setHeader) {
@@ -194,15 +201,15 @@
         "Yazı"
       );
     }
-    /* Yazı Ustası: yatay ekran serbest */
-    if (global.NovaPortraitLock && global.NovaPortraitLock.allowLandscape) {
-      global.NovaPortraitLock.allowLandscape(true);
+
+    function setLandscapeForWide(on) {
+      if (global.NovaPortraitLock && global.NovaPortraitLock.allowLandscape) {
+        global.NovaPortraitLock.allowLandscape(!!on);
+      }
     }
 
     function releaseLandscape() {
-      if (global.NovaPortraitLock && global.NovaPortraitLock.allowLandscape) {
-        global.NovaPortraitLock.allowLandscape(false);
-      }
+      setLandscapeForWide(false);
     }
 
     function activeWord() {
@@ -544,7 +551,7 @@
             '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>' +
             "</span>" +
             "<strong>Geniş yaz</strong>" +
-            "<small>Tam ekran yan tahta</small>" +
+            "<small>Yatay · tam ekran tahta</small>" +
             "</button>"
           : "") +
         '<p class="birles-yazu__status" id="birles-yazu-status" hidden></p>' +
@@ -558,7 +565,8 @@
         (wideOpen
           ? '<div class="birles-yazu__stage birles-yazu__stage--wide" id="birles-yazu-stage">' +
             boardHtml(W) +
-            "</div>"
+            "</div>" +
+            '<p class="birles-yazu__wide-hint" id="birles-yazu-wide-hint" hidden>Yataya çevir · daha rahat yaz</p>'
           : "") +
         "</div>" +
         "</div>" +
@@ -573,17 +581,43 @@
       } else {
         startPractice(true);
       }
+      refreshSvgCtm();
+      syncWideHint();
+    }
+
+    function refreshSvgCtm() {
+      var svg = body.querySelector(".birles-yazu__svg");
+      if (!svg) {
+        svgCtmInv = null;
+        return;
+      }
+      try {
+        var ctm = svg.getScreenCTM();
+        svgCtmInv = ctm ? ctm.inverse() : null;
+      } catch (e) {
+        svgCtmInv = null;
+      }
     }
 
     function clientToSvg(clientX, clientY) {
       var svg = body.querySelector(".birles-yazu__svg");
       if (!svg) return null;
+      if (!svgCtmInv) refreshSvgCtm();
+      if (!svgCtmInv) return null;
       var pt = svg.createSVGPoint();
       pt.x = clientX;
       pt.y = clientY;
-      var ctm = svg.getScreenCTM();
-      if (!ctm) return null;
-      return pt.matrixTransform(ctm.inverse());
+      try {
+        return pt.matrixTransform(svgCtmInv);
+      } catch (e) {
+        refreshSvgCtm();
+        if (!svgCtmInv) return null;
+        try {
+          return pt.matrixTransform(svgCtmInv);
+        } catch (e2) {
+          return null;
+        }
+      }
     }
 
     function unbindPractice() {
@@ -710,9 +744,8 @@
       if (best < progress) {
         return { ok: false, far: false };
       }
-      if (best > progress + (nearJunction ? 14 : 11)) {
-        /* Kesişimde biraz daha ileri yakalamaya izin */
-        if (nearJunction && dist(pt, samples[best]) <= useTol * 0.9) {
+      if (best > progress + (nearJunction ? 16 : 14)) {
+        if (dist(pt, samples[best]) <= useTol) {
           progress = best;
           return { ok: true, far: false };
         }
@@ -723,22 +756,42 @@
     }
 
     function paintProgressInk() {
-      var ink = body.querySelector('.birles-yazu__stroke[data-stroke="' + strokeIndex + '"]');
-      if (!ink || !samples.length) return;
-      var len = pathLen(ink) || 1;
-      ink.style.strokeDasharray = String(len);
-      ink.style.strokeDashoffset = String(len * (1 - progress / Math.max(1, samples.length - 1)));
-      ink.classList.add("is-live");
+      if (!cachedInk || !samples.length) return;
+      cachedInk.style.strokeDashoffset = String(
+        cachedInkLen * (1 - progress / Math.max(1, samples.length - 1))
+      );
+      if (!cachedInk.classList.contains("is-live")) cachedInk.classList.add("is-live");
     }
 
     function paintUserTrail() {
-      var user = document.getElementById("birles-yazu-user");
-      if (!user || userPts.length < 2) return;
+      if (!cachedUser || userPts.length < 2) return;
       var d = "M " + userPts[0].x + " " + userPts[0].y;
       for (var i = 1; i < userPts.length; i++) {
         d += " L " + userPts[i].x + " " + userPts[i].y;
       }
-      user.setAttribute("d", d);
+      cachedUser.setAttribute("d", d);
+    }
+
+    function schedulePaint() {
+      if (paintRaf) {
+        pendingPaint = true;
+        return;
+      }
+      paintRaf = global.requestAnimationFrame
+        ? global.requestAnimationFrame(function () {
+            paintRaf = 0;
+            paintUserTrail();
+            paintProgressInk();
+            if (pendingPaint) {
+              pendingPaint = false;
+              schedulePaint();
+            }
+          })
+        : 0;
+      if (!paintRaf) {
+        paintUserTrail();
+        paintProgressInk();
+      }
     }
 
     function resetStrokeForRetry() {
@@ -850,6 +903,11 @@
 
     function bindPractice() {
       unbindPractice();
+      if (paintRaf && global.cancelAnimationFrame) {
+        global.cancelAnimationFrame(paintRaf);
+        paintRaf = 0;
+      }
+      pendingPaint = false;
       var hit = document.getElementById("birles-yazu-hit");
       var W = activeWord();
       var path = body.querySelector('.birles-yazu__stroke[data-stroke="' + strokeIndex + '"]');
@@ -865,12 +923,21 @@
       practiceBound = true;
       updateStrokeFocus();
 
+      cachedInk = path;
+      cachedInkLen = pathLen(path) || 1;
+      cachedInk.style.strokeDasharray = String(cachedInkLen);
+      cachedInk.style.strokeDashoffset = String(cachedInkLen);
+      cachedUser = document.getElementById("birles-yazu-user");
+      cachedPen = document.getElementById("birles-yazu-pen");
+      refreshSvgCtm();
+
       hit.onpointerdown = function (e) {
         e.preventDefault();
         try {
           hit.setPointerCapture(e.pointerId);
         } catch (err) {}
         lastPointerId = e.pointerId;
+        refreshSvgCtm();
         var pt = clientToSvg(e.clientX, e.clientY);
         if (!pt || !samples.length) return;
         var start = samples[0];
@@ -884,11 +951,10 @@
         progress = 0;
         userPts = [pt];
         lastPt = pt;
-        var pen = document.getElementById("birles-yazu-pen");
-        if (pen) {
-          pen.removeAttribute("hidden");
-          pen.setAttribute("cx", pt.x);
-          pen.setAttribute("cy", pt.y);
+        if (cachedPen) {
+          cachedPen.removeAttribute("hidden");
+          cachedPen.setAttribute("cx", pt.x);
+          cachedPen.setAttribute("cy", pt.y);
         }
         paintProgressInk();
       };
@@ -909,14 +975,12 @@
         }
         missStreak = 0;
         userPts.push(pt);
-        if (userPts.length > 180) userPts = userPts.slice(-120);
-        paintUserTrail();
-        paintProgressInk();
-        var pen = document.getElementById("birles-yazu-pen");
-        if (pen) {
-          pen.setAttribute("cx", pt.x);
-          pen.setAttribute("cy", pt.y);
+        if (userPts.length > 90) userPts = userPts.slice(-64);
+        if (cachedPen) {
+          cachedPen.setAttribute("cx", pt.x);
+          cachedPen.setAttribute("cy", pt.y);
         }
+        schedulePaint();
         if (progress >= samples.length - 2) {
           completeStroke();
         }
@@ -933,6 +997,17 @@
       hit.onpointercancel = hit.onpointerup;
     }
 
+    function syncWideHint() {
+      var hint = document.getElementById("birles-yazu-wide-hint");
+      if (!hint) return;
+      var needRotate =
+        wideOpen &&
+        global.NovaPortraitLock &&
+        global.NovaPortraitLock.isLandscape &&
+        !global.NovaPortraitLock.isLandscape();
+      hint.hidden = !needRotate;
+    }
+
     function startPractice(playAudio) {
       animToken += 1;
       strokeIndex = 0;
@@ -941,21 +1016,34 @@
       setStatus("Parmağınla çizgiyi takip et", true);
       if (playAudio) playWordAudio();
       bindPractice();
+      syncWideHint();
     }
 
     function openWide() {
       if (!isPhoneOrTablet()) return;
       if (wideOpen) return;
       wideOpen = true;
+      setLandscapeForWide(true);
       words = buildWords();
       renderShell({ keepProgress: true });
+      syncWideHint();
+      /* Dönüş sonrası CTM yenile */
+      setTimeout(function () {
+        refreshSvgCtm();
+        syncWideHint();
+        if (global.NovaPortraitLock && global.NovaPortraitLock.sync) {
+          global.NovaPortraitLock.sync();
+        }
+      }, 320);
     }
 
     function closeWide() {
       if (!wideOpen) return;
       wideOpen = false;
+      setLandscapeForWide(false);
       words = buildWords();
       renderShell({ keepProgress: true });
+      setTimeout(refreshSvgCtm, 320);
     }
 
     function wire() {

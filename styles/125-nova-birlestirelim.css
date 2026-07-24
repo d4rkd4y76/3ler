@@ -7993,6 +7993,27 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-yazu__stage--wide .birles-yazu__hit {
   inset: 0;
 }
+.birles-yazu__wide-hint {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 7;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.88);
+  color: #fff;
+  font-family: "ComfortaaOkul", "Comfortaa", "Baloo 2", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(8, 40, 36, 0.25);
+}
+.birles-yazu__wide-hint[hidden] {
+  display: none !important;
+}
 @keyframes birlesYazuSheetIn {
   from {
     transform: translateX(28px);
