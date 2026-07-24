@@ -2419,10 +2419,10 @@
   }
 
   /*
-   * 2–4. grup cümleler — yalnız mantıklı, çocuk dünyasına uygun eylemler.
+   * 2–5. grup cümleler — yalnız mantıklı, çocuk dünyasına uygun eylemler.
    * Yasak örnek: “temizlik al”, “nalın al”, “akıl al”, “kulak al”, “otel al”…
    * Fiiller: al (satın al), ara (bul/bak), tat, tak, oku — somut nesne/kişi/yer.
-   * Her ses: ~15 özgün cümle (yalnız özne değiştirerek kopya yok).
+   * Her ses: özgün cümleler (yalnız özne değiştirerek kopya yok).
    * Harfler kümülatif: o ana kadar öğretilen sesler.
    */
   var SENTENCE_BANK = {
@@ -2739,7 +2739,7 @@
       "Ali güzel çiçek al.",
       "Gamze gözlük ara.",
       "Ali gökyüzü ara.",
-      "Lale göl ara.",
+      "Lale minik gül al.",
       "Ali minik gemi al.",
       "Gaye gaga ara.",
       "Ali ile Gül gemi ara.",
@@ -2778,6 +2778,139 @@
       "Ali kaşık ile şeker al.",
       "Ali ile Şule şarkı oku.",
       "anne, Ali şemsiye al."
+    ],
+    /* 5. grup · p h v ğ f j — kümülatif harf; 20 özgün cümle / ses */
+    p: [
+      "Ali top al.",
+      "anne sepet al.",
+      "Lale papatya al.",
+      "Polat park ara.",
+      "Ali pasta tat.",
+      "Pelin şapka tak.",
+      "anne pamuk al.",
+      "Ali piyano ara.",
+      "Lale pide al.",
+      "Alper portakal al.",
+      "Ali kapı ara.",
+      "Pınar para al.",
+      "anne patates al.",
+      "Ali ipek al.",
+      "Toprak tepe ara.",
+      "Lale köpük al.",
+      "Ali parmak ara.",
+      "Serpil kupa al.",
+      "Ali ile Pelin top al.",
+      "anne, Ali pasta al."
+    ],
+    h: [
+      "Ali hala ara.",
+      "anne hediye al.",
+      "Lale hurma tat.",
+      "Hasan horoz ara.",
+      "Ali harita al.",
+      "Hande halı al.",
+      "anne sabah ara.",
+      "Ali hoca ara.",
+      "Hale hikaye ara.",
+      "Ali sahil ara.",
+      "Hamza haber ara.",
+      "anne bahar ara.",
+      "Hülya harita ara.",
+      "Ali hikaye oku.",
+      "Hakan halı ara.",
+      "Lale hurma al.",
+      "Ali hemen su al.",
+      "Halil hurma ara.",
+      "Ali ile Hasan harita al.",
+      "anne, Ali hediye al."
+    ],
+    v: [
+      "Ali vazo al.",
+      "anne kivi al.",
+      "Lale ceviz tat.",
+      "Veli vapur ara.",
+      "Ali mavi boya al.",
+      "anne tavuk ara.",
+      "Vedat valiz al.",
+      "Ali çivi al.",
+      "Merve kivi tat.",
+      "Ali hayvan ara.",
+      "anne havuç al.",
+      "Volkan vazo ara.",
+      "Ali yuva ara.",
+      "Sevgi mavi vazo al.",
+      "Lale deve ara.",
+      "Ali kova al.",
+      "Vildan mavi top al.",
+      "Ali vatan ara.",
+      "Ali ile Veli vapur ara.",
+      "anne, Ali valiz al."
+    ],
+    ğ: [
+      "Ali ağaç ara.",
+      "anne yağ al.",
+      "Lale soğan al.",
+      "Uğur dağ ara.",
+      "Ali kağıt al.",
+      "Doğa soğan ara.",
+      "anne düğme al.",
+      "Ali oğlak ara.",
+      "Yiğit tuğla al.",
+      "Ali yağmur ara.",
+      "Çağla bağ ara.",
+      "anne soğuk su al.",
+      "Oğuz yağlı ekmek al.",
+      "Ali öğrenci ara.",
+      "Tuğçe düğün ara.",
+      "Ali ağır kutu al.",
+      "Yağız tuğla ara.",
+      "Lale doğa ara.",
+      "Ali ile Uğur dağ ara.",
+      "anne, Ali kağıt al."
+    ],
+    f: [
+      "Ali fil ara.",
+      "anne defter al.",
+      "Lale fındık al.",
+      "Fatih fener al.",
+      "Ali fare ara.",
+      "Elif şeftali tat.",
+      "anne fasulye al.",
+      "Ali fırça al.",
+      "Funda fırın ara.",
+      "Ali zürafa ara.",
+      "Defne fide al.",
+      "anne futbol ara.",
+      "Furkan fermuar al.",
+      "Ali filiz ara.",
+      "Fikret şeftali al.",
+      "Lale fındık tat.",
+      "Ali çiftçi ara.",
+      "Efe fener ara.",
+      "Ali ile Fatih fil ara.",
+      "anne, Ali defter al."
+    ],
+    j: [
+      "Ali jet ara.",
+      "anne jaket al.",
+      "Lale jöle al.",
+      "Ali jel al.",
+      "Jale jilet al.",
+      "Ali jaket tak.",
+      "anne jöle tat.",
+      "Ejder jöle ara.",
+      "Ali iki jel al.",
+      "Lale şirin jöle al.",
+      "Tanju büyük jel al.",
+      "Ali minik jet al.",
+      "Müjde jaket ara.",
+      "Ali jilet ara.",
+      "anne jel ile jöle al.",
+      "Ajda jel ara.",
+      "Ali büyük jaket al.",
+      "Jülide jet al.",
+      "Ali ile Jale jet ara.",
+      "anne, Ali jaket al."
     ]
   };
 
