@@ -7849,26 +7849,6 @@ html.nova-perf-ultra-early.nova-has-session
   outline: 3px solid rgba(255, 255, 255, 0.85);
   outline-offset: 2px;
 }
-.birles-yazu__ghost.is-dim {
-  stroke: rgba(15, 92, 86, 0.1);
-  stroke-width: 14;
-}
-.birles-yazu__ghost.is-active {
-  stroke: rgba(15, 92, 86, 0.28);
-  stroke-width: 17;
-}
-.birles-yazu__stroke.is-ahead {
-  opacity: 0;
-  pointer-events: none;
-}
-.birles-yazu__stroke.is-focus {
-  opacity: 1;
-}
-.birles-yazu__stroke.is-done {
-  stroke: #15803d;
-  opacity: 0.92;
-}
-
 .birles-yazu__wide-btn {
   display: flex;
   flex-direction: column;
@@ -8001,11 +7981,8 @@ html.nova-perf-ultra-early.nova-has-session
 .birles-yazu__stage--wide .birles-yazu__paper {
   rx: 12;
 }
-.birles-yazu__stage--wide .birles-yazu__ghost.is-active {
+.birles-yazu__stage--wide .birles-yazu__ghost {
   stroke-width: 18;
-}
-.birles-yazu__stage--wide .birles-yazu__ghost.is-dim {
-  stroke-width: 13;
 }
 .birles-yazu__stage--wide .birles-yazu__stroke {
   stroke-width: 18;

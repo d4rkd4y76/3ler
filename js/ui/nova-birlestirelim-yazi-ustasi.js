@@ -178,7 +178,6 @@
     var practiceBound = false;
     var drawing = false;
     var samples = [];
-    var otherStrokeSamples = [];
     var progress = 0;
     var userPts = [];
     var missStreak = 0;
@@ -375,26 +374,20 @@
       return Array.prototype.slice.call(body.querySelectorAll(".birles-yazu__ghost"));
     }
 
-    /** Aktif hamleyi öne çıkar; diğer hamleleri soluk tut — çakışma hissi azalır */
+    /** Görsel sıra yok — tüm silik harfler eşit; yalnız biten mürekkep yeşil */
     function updateStrokeFocus() {
+      ghostEls().forEach(function (g) {
+        g.classList.remove("is-active", "is-dim");
+      });
       strokeEls().forEach(function (p) {
         var i = Number(p.getAttribute("data-stroke"));
         p.classList.remove("is-focus", "is-wait", "is-ahead");
         if (i < strokeIndex) {
           p.classList.add("is-done");
           p.classList.remove("is-live", "is-fail");
-        } else if (i === strokeIndex) {
-          p.classList.add("is-focus");
-          p.classList.remove("is-done");
         } else {
-          p.classList.add("is-ahead");
-          p.classList.remove("is-done", "is-live");
+          p.classList.remove("is-done");
         }
-      });
-      ghostEls().forEach(function (g) {
-        var i = Number(g.getAttribute("data-ghost"));
-        g.classList.toggle("is-active", i === strokeIndex);
-        g.classList.toggle("is-dim", i !== strokeIndex);
       });
     }
 
@@ -614,19 +607,6 @@
       return pts;
     }
 
-    /** Aynı harfin diğer hamlelerine en yakın mesafe — çakışmayı engelle */
-    function nearestOtherStrokeDist(pt) {
-      var best = 1e9;
-      for (var s = 0; s < otherStrokeSamples.length; s++) {
-        var pts = otherStrokeSamples[s];
-        for (var i = 0; i < pts.length; i += 2) {
-          var d = dist(pt, pts[i]);
-          if (d < best) best = d;
-        }
-      }
-      return best;
-    }
-
     function advanceAlongPath(pt, prevPt) {
       if (!samples.length) return { ok: false, far: true };
       var best = -1;
@@ -635,26 +615,24 @@
       var moveDy = prevPt ? pt.y - prevPt.y : 0;
       var moveLen = Math.sqrt(moveDx * moveDx + moveDy * moveDy) || 0;
       var tol = tolNow();
-
-      /* Diğer hamleye daha yakınsa bu hamleye sayma */
-      var dCurHint = dist(pt, samples[Math.min(progress, samples.length - 1)]);
-      var dOther = nearestOtherStrokeDist(pt);
-      if (dOther + 6 < dCurHint && dOther < tol * 0.85) {
-        return { ok: false, far: true };
-      }
-
+      /*
+       * Yalnız AKTİF yol. Aynı harfin diğer hamlesiyle kesişen noktalarda
+       * (n dik+kemer, a kâse+dik, t gövde+çubuk) diğer yola bakma —
+       * yoksa kesişimde “yanlış” der.
+       */
       for (var i = progress; i < samples.length && i <= progress + WINDOW_N; i++) {
         var d = dist(pt, samples[i]);
         if (d > tol) continue;
-        var score = d * 1.2;
+        var score = d * 1.15;
         if (moveLen > 1 && samples[i].dx !== undefined) {
           var pLen =
             Math.sqrt(samples[i].dx * samples[i].dx + samples[i].dy * samples[i].dy) || 1;
           var align = (moveDx * samples[i].dx + moveDy * samples[i].dy) / (moveLen * pLen);
-          if (align < 0.08) score += 8;
-          else score -= align * 3.5;
+          /* Ters yöne gitmeyi hafifçe cezalandır; kesişimde sıkı olma */
+          if (align < -0.2) score += 5;
+          else if (align > 0.15) score -= align * 3;
         }
-        score += (i - progress) * 0.3;
+        score += (i - progress) * 0.22;
         if (score < bestScore) {
           bestScore = score;
           best = i;
@@ -663,13 +641,13 @@
 
       if (best < 0) {
         var nearest = dist(pt, samples[Math.min(progress, samples.length - 1)]);
-        return { ok: false, far: nearest > tol };
+        /* Kesişimde hafif sapmaya tolerans */
+        return { ok: false, far: nearest > tol * 1.15 };
       }
-      /* Geriye veya çok ileri zıplama yok */
       if (best < progress) {
         return { ok: false, far: false };
       }
-      if (best > progress + 9) {
+      if (best > progress + 10) {
         return { ok: false, far: true };
       }
       progress = best;
@@ -716,8 +694,8 @@
           if (ink) ink.classList.remove("is-fail");
         }, 420);
       }
-      setStatus("Bu hamleyi kendi çizgisinden yaz", false);
-      setTip("Her hamle ayrı · sıradaki çizgiye geçme");
+      setStatus("Çizgiye biraz daha yakın yaz", false);
+      setTip("Silik harfin üstünden yaz");
       var user = document.getElementById("birles-yazu-user");
       if (user) user.setAttribute("d", "");
       var pen = document.getElementById("birles-yazu-pen");
@@ -793,27 +771,13 @@
       }
 
       playTickSfx(false);
-      setTip("Parmağı kaldır · sıradaki hamleyi yaz");
-      setStatus("Hamle tamam · sıradakine geç", true);
+      setTip("Devam · silik çizgiyi takip et");
+      setStatus("Güzel · devam et", true);
       var pen = document.getElementById("birles-yazu-pen");
       if (pen) pen.setAttribute("hidden", "hidden");
       strokeLock = false;
       updateStrokeFocus();
       bindPractice();
-    }
-
-    function buildOtherStrokeSamples(W, currentIdx) {
-      otherStrokeSamples = [];
-      if (!W) return;
-      var curLetter = W.strokes[currentIdx] ? W.strokes[currentIdx].letterIndex : -1;
-      for (var i = 0; i < W.strokes.length; i++) {
-        if (i === currentIdx) continue;
-        /* Aynı harfin diğer hamleleri — çakışma riski yüksek */
-        if (W.strokes[i].letterIndex !== curLetter) continue;
-        var path = body.querySelector('.birles-yazu__stroke[data-stroke="' + i + '"]');
-        if (!path) continue;
-        otherStrokeSamples.push(samplePathView(path, W.strokes[i].letterIndex));
-      }
     }
 
     function bindPractice() {
@@ -825,7 +789,6 @@
       hit.style.pointerEvents = "auto";
       var letterIndex = W.strokes[strokeIndex].letterIndex;
       samples = samplePathView(path, letterIndex);
-      buildOtherStrokeSamples(W, strokeIndex);
       progress = 0;
       userPts = [];
       drawing = false;
@@ -844,14 +807,7 @@
         var start = samples[0];
         if (dist(pt, start) > tolStartNow()) {
           playBuzzSfx();
-          setStatus("Bu hamlenin başlangıcından başla", false);
-          return;
-        }
-        /* Başlangıç başka hamleye daha yakınsa alma */
-        var dOther = nearestOtherStrokeDist(pt);
-        if (dOther + 4 < dist(pt, start) && dOther < tolStartNow() * 0.7) {
-          playBuzzSfx();
-          setStatus("Önceki/sonraki hamleye değme · bu çizgiden başla", false);
+          setStatus("Harfin başlangıcına biraz daha yakın başla", false);
           return;
         }
         drawing = true;
@@ -912,12 +868,8 @@
       animToken += 1;
       strokeIndex = 0;
       resetStrokesVisual();
-      setTip(
-        wideOpen
-          ? "Tam ekranda yaz · her hamle kendi çizgisinde"
-          : "Silik harflerin üstünden sırayla yaz"
-      );
-      setStatus(wideOpen ? "Geniş tahta · hamleleri karıştırma" : "Parmağınla çizgiyi takip et", true);
+      setTip(wideOpen ? "Tam ekranda silik harflerin üstünden yaz" : "Silik harflerin üstünden sırayla yaz");
+      setStatus("Parmağınla çizgiyi takip et", true);
       if (playAudio) playWordAudio();
       bindPractice();
     }
