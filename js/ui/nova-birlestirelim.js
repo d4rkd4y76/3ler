@@ -2531,7 +2531,7 @@
     setPoolPlayMode(false);
     setBack(true);
     setHeader(
-      activeLane && activeLane.title ? activeLane.title : "Hece Avı",
+      activeLane && activeLane.title ? activeLane.title : "Sihirli Havuz",
       sound.title || "",
       laneProgressLabel()
     );
