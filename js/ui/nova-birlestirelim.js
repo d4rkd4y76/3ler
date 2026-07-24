@@ -27,17 +27,17 @@
   var LANE_DEFS = [
     {
       key: "hece",
-      title: "Hece Avı",
+      title: "Sihirli Havuz",
       tag: "Hece",
-      sub: "Küçük parçaları yakala",
+      sub: "Heceleri Birleştiriyoruz",
       allLabel: "Tüm heceler",
       tone: "hece"
     },
     {
       key: "kelime",
-      title: "Kelime Bahçesi",
+      title: "Sihirli Havuz",
       tag: "Kelime",
-      sub: "Sözcükleri bir bir topla",
+      sub: "Kelimeleri Oluşturuyoruz",
       allLabel: "Tüm kelimeler",
       tone: "kelime"
     },
@@ -283,13 +283,19 @@
     var bags = collectSoundLanes(sound);
     var keys = [];
     if (hasKristalForSound(sound)) keys.push("kristal");
-    if (hasYaziUstasiForSound(sound)) keys.push("yaziUstasi");
     LANE_DEFS.forEach(function (d) {
       if ((bags[d.key] || []).length) keys.push(d.key);
       else if (d.key === "hece" && listSiralaForSound(sound).length) keys.push("hece");
       else if (d.key === "kelime" && listKelimeSiralaForSound(sound).length) keys.push("kelime");
       else if (d.key === "cumle" && listCumleSiralaForSound(sound).length) keys.push("cumle");
+      /* Yazı Ustası · Kelime Bahçesi (Sihirli Havuz kelime) altında */
+      if (d.key === "kelime" && hasYaziUstasiForSound(sound)) keys.push("yaziUstasi");
     });
+    if (hasYaziUstasiForSound(sound) && keys.indexOf("yaziUstasi") < 0) {
+      var heceAt = keys.indexOf("hece");
+      if (heceAt >= 0) keys.splice(heceAt + 1, 0, "yaziUstasi");
+      else keys.push("yaziUstasi");
+    }
     return keys;
   }
 
@@ -1520,6 +1526,9 @@
     if (vv) vv.stop();
     closeHowToVideo();
     setPoolPlayMode(false);
+    if (window.NovaPortraitLock && window.NovaPortraitLock.allowLandscape) {
+      window.NovaPortraitLock.allowLandscape(false);
+    }
     if (!overlay) return;
     if (typeof window.novaForceHideScreenLoader === "function") {
       try { window.novaForceHideScreenLoader(); } catch (_) {}
@@ -2324,7 +2333,8 @@
         "</button>";
     }
 
-    if (hasYaziUstasiForSound(sound)) {
+    function appendYaziUstasiCard() {
+      if (!hasYaziUstasiForSound(sound)) return;
       var yaziStarred = isLaneStarred(sound.id, "yaziUstasi");
       var yaziWords =
         (window.NovaBirlestirelimYaziUstasi.wordsForSound &&
@@ -2352,6 +2362,7 @@
         "</button>";
     }
 
+    var yaziUstasiPlaced = false;
     LANE_DEFS.forEach(function (def) {
       var list = bags[def.key] || [];
       if (def.key === "hece") {
@@ -2363,7 +2374,13 @@
       if (def.key === "cumle") {
         list = buildCumleLaneWithSirala(sound, list);
       }
-      if (!list.length) return;
+      if (!list.length) {
+        if (def.key === "kelime" && !yaziUstasiPlaced) {
+          appendYaziUstasiCard();
+          yaziUstasiPlaced = true;
+        }
+        return;
+      }
       var sub = def.sub || def.tag || "";
       var starred = isLaneStarred(sound.id, def.key);
       html +=
@@ -2392,7 +2409,12 @@
         (starred ? "Tekrar" : "Başla") +
         "</span>" +
         "</button>";
+      if (def.key === "kelime" && !yaziUstasiPlaced) {
+        appendYaziUstasiCard();
+        yaziUstasiPlaced = true;
+      }
     });
+    if (!yaziUstasiPlaced) appendYaziUstasiCard();
 
     html += "</div></div>";
     body.innerHTML = html;
