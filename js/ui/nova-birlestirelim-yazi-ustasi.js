@@ -1,26 +1,28 @@
 /**
  * Yazı Ustası — kelime yazılışı (kılavuz çizgili).
- * O sesi: 4–6 sesli kelimeler · nota, olan, alto
- * Üstte kelime metni; altta silik harfler; hamle numarası yok.
- * Doğru sıra zorunlu; yoldan uzak çizim kabul edilmez.
+ * O sesi: nota, olan, alto
+ * Ana tahta + isteğe bağlı Geniş Yaz panelı.
  */
 (function (global) {
   "use strict";
 
   /*
    * Harf yolları yazılışta 0 0 200 286 + kılavuz 40/120/200.
-   * Ölçekleme YAPMA — yükseklik bozulmasın; yalnız yatayda kaydır.
-   * Glif ~x 55–145 → hücre ~100 yeterli.
+   * Ölçekleme YAPMA — yalnız yatayda kaydır.
    */
   var CELL_W = 102;
   var PAD_X = 12;
   var VIEW_H = 286;
   var GUIDE_YS = [40, 120, 200];
-  /* Hassas takip — uzağı kabul etme */
-  var TOL = 16;
-  var TOL_START = 20;
-  var MISS_LIMIT = 5;
-  var WINDOW_N = 12;
+
+  /* Rahat takip — çocuk parmağı için */
+  var TOL = 28;
+  var TOL_START = 36;
+  var TOL_WIDE = 40;
+  var TOL_START_WIDE = 52;
+  var MISS_LIMIT = 10;
+  var WINDOW_N = 16;
+  var COMPLETE_RATIO = 0.8;
 
   var WORDS_BY_SOUND = {
     o: [
@@ -29,21 +31,21 @@
         label: "nota",
         say: "nota",
         letters: ["n", "o", "t", "a"],
-        hint: "Kelimeyi silik çizginin üstünden yaz"
+        hint: "Silik harflerin üstünden sırayla yaz"
       },
       {
         id: "olan",
         label: "olan",
         say: "olan",
         letters: ["o", "l", "a", "n"],
-        hint: "Kelimeyi silik çizginin üstünden yaz"
+        hint: "Silik harflerin üstünden sırayla yaz"
       },
       {
         id: "alto",
         label: "alto",
         say: "alto",
         letters: ["a", "l", "t", "o"],
-        hint: "Kelimeyi silik çizginin üstünden yaz"
+        hint: "Silik harflerin üstünden sırayla yaz"
       }
     ]
   };
@@ -58,12 +60,6 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
-  }
-
-  function pace(ms) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, ms);
-    });
   }
 
   function pathLen(pathEl) {
@@ -84,7 +80,6 @@
     return PAD_X + letterIndex * CELL_W + CELL_W * 0.5;
   }
 
-  /** Yerel harf noktası → viewBox (yalnız yatay kaydırma; y aynı = kılavuz doğru) */
   function mapLocalToView(localX, localY, letterIndex) {
     var cx = letterCenterX(letterIndex);
     return {
@@ -164,6 +159,7 @@
     var lastPointerId = null;
     var lastPt = null;
     var strokeLock = false;
+    var wideOpen = false;
 
     if (opts.setBack) opts.setBack(true);
     if (opts.setHeader) {
@@ -182,6 +178,14 @@
       return words.every(function (w) {
         return !!completedWords[w.id];
       });
+    }
+
+    function tolNow() {
+      return wideOpen ? TOL_WIDE : TOL;
+    }
+
+    function tolStartNow() {
+      return wideOpen ? TOL_START_WIDE : TOL_START;
     }
 
     var sfxCtx = null;
@@ -262,7 +266,6 @@
         );
       }).join("");
 
-      /* Her harfin stroke’ları aynı grupta — silik gövde + mürekkep */
       var letterGroups = "";
       for (var li = 0; li < W.letterCount; li++) {
         var ghostPaths = "";
@@ -300,38 +303,42 @@
         '" shape-rendering="geometricPrecision" aria-label="' +
         esc(W.label) +
         '">' +
-        '<rect class="birles-yazu__paper" x="4" y="8" width="' +
-        (vbW - 8) +
-        '" height="250" rx="18" />' +
+        '<rect class="birles-yazu__paper" x="2" y="6" width="' +
+        (vbW - 4) +
+        '" height="254" rx="22" />' +
+        '<rect class="birles-yazu__paper-edge" x="2" y="6" width="10" height="254" rx="4" />' +
         guides +
         letterGroups +
         '<path class="birles-yazu__user" id="birles-yazu-user" d="" fill="none" />' +
-        '<circle class="birles-yazu__pen" id="birles-yazu-pen" r="5" hidden />' +
+        '<circle class="birles-yazu__pen" id="birles-yazu-pen" r="7" hidden />' +
         "</svg>" +
         '<div class="birles-yazu__hit" id="birles-yazu-hit" aria-hidden="true"></div>'
       );
     }
 
     function setTip(t) {
-      var el = document.getElementById("birles-yazu-tip");
-      if (!el) return;
-      el.textContent = t || "";
-      el.hidden = !t;
+      var els = body.querySelectorAll(".birles-yazu__tip");
+      for (var i = 0; i < els.length; i++) {
+        els[i].textContent = t || "";
+        els[i].hidden = !t;
+      }
     }
 
     function setStatus(msg, ok) {
-      var el = document.getElementById("birles-yazu-status");
-      if (!el) return;
-      if (!msg) {
-        el.hidden = true;
-        el.textContent = "";
-        el.classList.remove("is-ok", "is-bad");
-        return;
+      var els = body.querySelectorAll(".birles-yazu__status");
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!msg) {
+          el.hidden = true;
+          el.textContent = "";
+          el.classList.remove("is-ok", "is-bad");
+          continue;
+        }
+        el.hidden = false;
+        el.textContent = msg;
+        el.classList.toggle("is-ok", !!ok);
+        el.classList.toggle("is-bad", ok === false);
       }
-      el.hidden = false;
-      el.textContent = msg;
-      el.classList.toggle("is-ok", !!ok);
-      el.classList.toggle("is-bad", ok === false);
     }
 
     function strokeEls() {
@@ -352,29 +359,51 @@
       if (pen) pen.setAttribute("hidden", "hidden");
     }
 
+    function doneCount() {
+      return words.filter(function (w) {
+        return completedWords[w.id];
+      }).length;
+    }
+
     function renderShell() {
       animToken += 1;
       unbindPractice();
       var W = activeWord();
-      var doneCount = words.filter(function (w) {
-        return completedWords[w.id];
-      }).length;
+      var nDone = doneCount();
+      var chip = esc(sound.color || "#0d9488");
 
       body.innerHTML =
-        '<div class="birles-yazu" style="--chip:' +
-        esc(sound.color || "#0d9488") +
+        '<div class="birles-yazu' +
+        (wideOpen ? " is-wide-open" : "") +
+        '" style="--chip:' +
+        chip +
         '">' +
-        '<div class="birles-yazu__hero">' +
-        '<p class="birles-yazu__kicker">Yazı Ustası</p>' +
+        '<div class="birles-yazu__ambient" aria-hidden="true"></div>' +
+        '<header class="birles-yazu__hero">' +
+        '<div class="birles-yazu__badge">Yazı Ustası</div>' +
         '<p class="birles-yazu__word-big" id="birles-yazu-word-big">' +
         esc(W ? W.label : "") +
         "</p>" +
-        '<p class="birles-yazu__progress">' +
-        doneCount +
+        '<div class="birles-yazu__progress-row">' +
+        '<span class="birles-yazu__progress">' +
+        nDone +
         " / " +
         words.length +
-        " kelime</p>" +
+        " kelime</span>" +
+        '<span class="birles-yazu__dots" aria-hidden="true">' +
+        words
+          .map(function (w) {
+            return (
+              '<i class="birles-yazu__dot-pip' +
+              (completedWords[w.id] ? " is-done" : "") +
+              (words[activeIdx] && w.id === words[activeIdx].id ? " is-on" : "") +
+              '"></i>'
+            );
+          })
+          .join("") +
+        "</span>" +
         "</div>" +
+        "</header>" +
         '<div class="birles-yazu__words" role="tablist">' +
         words
           .map(function (w, i) {
@@ -385,8 +414,12 @@
               '" data-word="' +
               i +
               '" role="tab">' +
+              '<span class="birles-yazu__word-label">' +
               esc(w.label) +
-              (completedWords[w.id] ? " ✓" : "") +
+              "</span>" +
+              (completedWords[w.id]
+                ? '<span class="birles-yazu__word-check" aria-hidden="true">✓</span>'
+                : "") +
               "</button>"
             );
           })
@@ -395,19 +428,72 @@
         '<p class="birles-yazu__meta">' +
         esc(W ? W.hint : "") +
         "</p>" +
-        '<div class="birles-yazu__stage" id="birles-yazu-stage">' +
-        boardHtml(W) +
-        "</div>" +
+        (wideOpen
+          ? ""
+          : '<div class="birles-yazu__stage-wrap">' +
+            '<div class="birles-yazu__stage" id="birles-yazu-stage">' +
+            boardHtml(W) +
+            "</div>" +
+            "</div>") +
         '<p class="birles-yazu__tip" id="birles-yazu-tip"></p>' +
         '<div class="birles-yazu__actions">' +
         '<button type="button" class="birles-yazu-act birles-yazu-act--write is-on" id="birles-yazu-practice">' +
-        "<strong>Yeniden yaz</strong><small>parmakla çiz</small></button>" +
+        '<span class="birles-yazu-act__ico" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M4 19h16v2H4v-2zm2.3-3.4l8.1-8.1 2.1 2.1-8.1 8.1H6.3v-2.1zm10.4-8.3 1.5-1.5a1.2 1.2 0 0 1 1.7 0l1.4 1.4a1.2 1.2 0 0 1 0 1.7l-1.5 1.5-3.1-3.1z"/></svg>' +
+        "</span>" +
+        '<span class="birles-yazu-act__txt"><strong>Yeniden yaz</strong><small>parmakla çiz</small></span></button>' +
         '<button type="button" class="birles-yazu-act birles-yazu-act--listen" id="birles-yazu-listen">' +
-        "<strong>Dinle</strong><small>kelimeyi duy</small></button>" +
+        '<span class="birles-yazu-act__ico" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 3a4 4 0 0 0-4 4v4a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4zm-7 8a1 1 0 0 1 2 0 5 5 0 0 0 10 0 1 1 0 1 1 2 0 7 7 0 0 1-6 6.9V21h4a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2h4v-3.1A7 7 0 0 1 5 11z"/></svg>' +
+        "</span>" +
+        '<span class="birles-yazu-act__txt"><strong>Dinle</strong><small>kelimeyi duy</small></span></button>' +
         '<button type="button" class="birles-yazu-act birles-yazu-act--back" id="birles-yazu-back">' +
-        "<strong>Sese dön</strong><small>geri</small></button>" +
+        '<span class="birles-yazu-act__ico" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M10.8 5.2a1 1 0 0 1 0 1.4L6.4 11H20a1 1 0 1 1 0 2H6.4l4.4 4.4a1 1 0 1 1-1.4 1.4l-6.1-6.1a1 1 0 0 1 0-1.4l6.1-6.1a1 1 0 0 1 1.4 0z"/></svg>' +
+        "</span>" +
+        '<span class="birles-yazu-act__txt"><strong>Sese dön</strong><small>geri</small></span></button>' +
         "</div>" +
+        '<button type="button" class="birles-yazu__wide-btn" id="birles-yazu-wide-open">' +
+        '<span class="birles-yazu__wide-btn-ico" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>' +
+        "</span>" +
+        "<strong>Geniş yaz</strong>" +
+        "<small>Daha büyük · daha rahat tahta</small>" +
+        "</button>" +
         '<p class="birles-yazu__status" id="birles-yazu-status" hidden></p>' +
+        '<div class="birles-yazu__sheet' +
+        (wideOpen ? " is-open" : "") +
+        '" id="birles-yazu-sheet" ' +
+        (wideOpen ? "" : "hidden") +
+        ">" +
+        '<div class="birles-yazu__sheet-backdrop" id="birles-yazu-sheet-bg"></div>' +
+        '<div class="birles-yazu__sheet-panel" role="dialog" aria-modal="true" aria-label="Geniş yazma tahtası">' +
+        '<div class="birles-yazu__sheet-bar">' +
+        '<div class="birles-yazu__sheet-title">' +
+        '<span class="birles-yazu__sheet-kicker">Geniş tahta</span>' +
+        '<strong id="birles-yazu-sheet-word">' +
+        esc(W ? W.label : "") +
+        "</strong>" +
+        "</div>" +
+        '<button type="button" class="birles-yazu__sheet-close" id="birles-yazu-wide-close" aria-label="Kapat">×</button>' +
+        "</div>" +
+        (wideOpen
+          ? '<div class="birles-yazu__stage-wrap birles-yazu__stage-wrap--wide">' +
+            '<div class="birles-yazu__stage birles-yazu__stage--wide" id="birles-yazu-stage">' +
+            boardHtml(W) +
+            "</div>" +
+            "</div>" +
+            '<p class="birles-yazu__tip birles-yazu__tip--sheet"></p>' +
+            '<div class="birles-yazu__sheet-actions">' +
+            '<button type="button" class="birles-yazu-act birles-yazu-act--write is-on" id="birles-yazu-practice-w">' +
+            "<strong>Yeniden yaz</strong><small>parmakla çiz</small></button>" +
+            '<button type="button" class="birles-yazu-act birles-yazu-act--listen" id="birles-yazu-listen-w">' +
+            "<strong>Dinle</strong><small>kelimeyi duy</small></button>" +
+            "</div>" +
+            '<p class="birles-yazu__status birles-yazu__status--sheet" hidden></p>'
+          : "") +
+        "</div>" +
+        "</div>" +
         "</div>";
 
       wire();
@@ -463,20 +549,20 @@
       var moveDx = prevPt ? pt.x - prevPt.x : 0;
       var moveDy = prevPt ? pt.y - prevPt.y : 0;
       var moveLen = Math.sqrt(moveDx * moveDx + moveDy * moveDy) || 0;
+      var tol = tolNow();
 
       for (var i = progress; i < samples.length && i <= progress + WINDOW_N; i++) {
         var d = dist(pt, samples[i]);
-        if (d > TOL) continue;
-        var score = d * 1.35;
+        if (d > tol) continue;
+        var score = d * 1.2;
         if (moveLen > 1 && samples[i].dx !== undefined) {
           var pLen =
             Math.sqrt(samples[i].dx * samples[i].dx + samples[i].dy * samples[i].dy) || 1;
           var align = (moveDx * samples[i].dx + moveDy * samples[i].dy) / (moveLen * pLen);
-          /* Ters yöne gitmeyi cezalandır */
-          if (align < 0.15) score += 8;
-          else score -= align * 3;
+          if (align < 0.05) score += 6;
+          else score -= align * 3.5;
         }
-        score += (i - progress) * 0.35;
+        score += (i - progress) * 0.28;
         if (score < bestScore) {
           bestScore = score;
           best = i;
@@ -485,10 +571,9 @@
 
       if (best < 0) {
         var nearest = dist(pt, samples[Math.min(progress, samples.length - 1)]);
-        return { ok: false, far: nearest > TOL };
+        return { ok: false, far: nearest > tol };
       }
-      /* Çok ileri zıplamayı engelle */
-      if (best > progress + 8) {
+      if (best > progress + 10) {
         return { ok: false, far: true };
       }
       if (best >= progress) progress = best;
@@ -534,8 +619,8 @@
           if (ink) ink.classList.remove("is-fail");
         }, 420);
       }
-      setStatus("Çizgiye daha yakın yaz · sırayı bozma", false);
-      setTip("Silik harfin tam üstünden, sırayla çiz");
+      setStatus("Çizgiye biraz daha yakın yaz", false);
+      setTip("Silik harfin üstünden, sırayla çiz — acele etme");
       var user = document.getElementById("birles-yazu-user");
       if (user) user.setAttribute("d", "");
       var pen = document.getElementById("birles-yazu-pen");
@@ -545,9 +630,9 @@
       userPts = [];
       samples = samplePathView(
         body.querySelector('.birles-yazu__stroke[data-stroke="' + strokeIndex + '"]'),
-        (activeWord() && activeWord().strokes[strokeIndex]
+        activeWord() && activeWord().strokes[strokeIndex]
           ? activeWord().strokes[strokeIndex].letterIndex
-          : 0)
+          : 0
       );
     }
 
@@ -582,11 +667,10 @@
         });
         var prog = body.querySelector(".birles-yazu__progress");
         if (prog) {
-          var n = words.filter(function (w) {
-            return completedWords[w.id];
-          }).length;
-          prog.textContent = n + " / " + words.length + " kelime";
+          prog.textContent = doneCount() + " / " + words.length + " kelime";
         }
+        var sheetWord = document.getElementById("birles-yazu-sheet-word");
+        if (sheetWord) sheetWord.textContent = W.label;
 
         if (allWordsDone()) {
           setStatus("Süper! Yazı Ustası tamam · yıldız kazandın", true);
@@ -616,7 +700,7 @@
 
       playTickSfx(false);
       setTip("Devam · sıradaki harfi yaz");
-      setStatus("Devam et · silik çizgiyi takip et", true);
+      setStatus("Güzel gidiyor · silik çizgiyi takip et", true);
       var pen = document.getElementById("birles-yazu-pen");
       if (pen) pen.setAttribute("hidden", "hidden");
       strokeLock = false;
@@ -647,9 +731,9 @@
         var pt = clientToSvg(e.clientX, e.clientY);
         if (!pt || !samples.length) return;
         var start = samples[0];
-        if (dist(pt, start) > TOL_START) {
+        if (dist(pt, start) > tolStartNow()) {
           playBuzzSfx();
-          setStatus("Harfin başlangıcına daha yakın başla", false);
+          setStatus("Harfin başlangıcına biraz daha yakın başla", false);
           return;
         }
         drawing = true;
@@ -682,7 +766,7 @@
         }
         missStreak = 0;
         userPts.push(pt);
-        if (userPts.length > 160) userPts = userPts.slice(-110);
+        if (userPts.length > 180) userPts = userPts.slice(-120);
         paintUserTrail();
         paintProgressInk();
         var pen = document.getElementById("birles-yazu-pen");
@@ -698,8 +782,7 @@
       hit.onpointerup = function (e) {
         if (e.pointerId !== lastPointerId) return;
         if (drawing) {
-          /* En az %88’i çizilmiş olmalı */
-          if (progress < samples.length * 0.88) failStroke();
+          if (progress < samples.length * COMPLETE_RATIO) failStroke();
           else completeStroke();
         }
         drawing = false;
@@ -711,10 +794,26 @@
       animToken += 1;
       strokeIndex = 0;
       resetStrokesVisual();
-      setTip("Silik harflerin üstünden sırayla yaz");
-      setStatus("Parmağınla çizgiye yapışık yaz", true);
+      setTip(
+        wideOpen
+          ? "Geniş tahtada yaz — çizgiye yapışık olman yeterli"
+          : "Silik harflerin üstünden sırayla yaz"
+      );
+      setStatus(wideOpen ? "Rahat yaz · geniş tahta açık" : "Parmağınla çizgiyi takip et", true);
       if (playAudio) playWordAudio();
       bindPractice();
+    }
+
+    function openWide() {
+      if (wideOpen) return;
+      wideOpen = true;
+      renderShell();
+    }
+
+    function closeWide() {
+      if (!wideOpen) return;
+      wideOpen = false;
+      renderShell();
     }
 
     function wire() {
@@ -726,18 +825,26 @@
           renderShell();
         });
       });
-      var prac = document.getElementById("birles-yazu-practice");
-      if (prac) {
-        prac.addEventListener("click", function () {
+
+      function bindPracticeBtn(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("click", function () {
           startPractice(false);
         });
       }
-      var listen = document.getElementById("birles-yazu-listen");
-      if (listen) {
-        listen.addEventListener("click", function () {
+      function bindListenBtn(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("click", function () {
           playWordAudio();
         });
       }
+      bindPracticeBtn("birles-yazu-practice");
+      bindPracticeBtn("birles-yazu-practice-w");
+      bindListenBtn("birles-yazu-listen");
+      bindListenBtn("birles-yazu-listen-w");
+
       var back = document.getElementById("birles-yazu-back");
       if (back) {
         back.addEventListener("click", function () {
@@ -745,6 +852,19 @@
           unbindPractice();
           if (opts.onClose) opts.onClose();
         });
+      }
+
+      var wideOpenBtn = document.getElementById("birles-yazu-wide-open");
+      if (wideOpenBtn) {
+        wideOpenBtn.addEventListener("click", openWide);
+      }
+      var wideCloseBtn = document.getElementById("birles-yazu-wide-close");
+      if (wideCloseBtn) {
+        wideCloseBtn.addEventListener("click", closeWide);
+      }
+      var sheetBg = document.getElementById("birles-yazu-sheet-bg");
+      if (sheetBg) {
+        sheetBg.addEventListener("click", closeWide);
       }
     }
 
