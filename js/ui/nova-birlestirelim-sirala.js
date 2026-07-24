@@ -1,5 +1,5 @@
 /**
- * Ses Yuvası — Hece Avı / Kelime / Zirve Mağarası içinde “sıra sende”
+ * Ses Yuvası — Hece Avı / Kelime / Ejderha Yuvası içinde “sıra sende”
  * Hece: yuva = harf sırası. Kelime: yuva = hece sırası.
  * Cümle (o+): yuva = kelime sırası — Maarif 2. gruptan itibaren.
  */
@@ -10,7 +10,7 @@
   var END_ACT_COUNT = 3;
   var POOL_MERGE_SRC = "assets/birles/ses_birlestirme.mp4?v=opt1";
   var POOL_BOOM_SRC = "assets/birles/ses_patlama.mp4?v=opt1";
-  /* Zirve Mağarası Sıra sende — ejderha mağara (ses/kelime havuzu değil) */
+  /* Ejderha Yuvası Sıra sende — ejderha mağara (ses/kelime havuzu değil) */
   var CUMLE_MERGE_SRC = "assets/birles/cumle_loop.mp4?v=opt1";
   var CUMLE_BOOM_SRC = "assets/birles/cumle_patlama.mp4?v=opt1";
   var ONCUL_MP3 =
@@ -470,7 +470,7 @@
 
   /**
    * Maarif TYMM: 1. harf grubunda cümle yok; 2. gruptan (o) itibaren cümle.
-   * Zirve Mağarası sonunda kelime sıralama (boş yuvalara doğru sıra).
+   * Ejderha Yuvası sonunda kelime sıralama (boş yuvalara doğru sıra).
    */
   function soundAllowsCumleSirala(sound) {
     if (!sound) return false;
@@ -605,7 +605,7 @@
     });
   }
 
-  /** Zirve Mağarası sonunda 3 otomatik “Sıra sende” (kelime sırala) — o+ */
+  /** Ejderha Yuvası sonunda 3 otomatik “Sıra sende” (kelime sırala) — o+ */
   function buildEndCumleActivities(sound, cumleList) {
     if (!soundAllowsCumleSirala(sound)) return [];
     var picked = pickEndCumles(sound, cumleList);

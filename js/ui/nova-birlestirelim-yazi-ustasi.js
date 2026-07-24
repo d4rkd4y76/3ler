@@ -16,13 +16,14 @@
   var VIEW_H = 286;
   var GUIDE_YS = [40, 120, 200];
 
-  var TOL = 34;
-  var TOL_START = 42;
-  var TOL_WIDE = 52;
-  var TOL_START_WIDE = 62;
-  var MISS_LIMIT = 22;
-  var WINDOW_N = 24;
-  var COMPLETE_RATIO = 0.75;
+  /* Küçük hata payı var; yolun çok dışına çıkınca kabul etmez */
+  var TOL = 20;
+  var TOL_START = 26;
+  var TOL_WIDE = 28;
+  var TOL_START_WIDE = 34;
+  var MISS_LIMIT = 9;
+  var WINDOW_N = 16;
+  var COMPLETE_RATIO = 0.88;
 
   /** Geniş yaz: yalnızca telefon / tablet */
   function isPhoneOrTablet() {
@@ -696,13 +697,12 @@
       if (!samples.length) return { ok: false, far: true };
       var tol = tolNow();
       /*
-       * t çubuğu × dik gövde, n kemer × dik, a dik × kâse:
-       * parmak bitmiş çizgiye değince aktif yoldan biraz sapar.
-       * Bitmiş yola YAKINLIK ceza değil — toleransı büyüt, yön cezasını kaldır.
+       * t / n / a kesişimlerinde bitmiş çizgiye hafif değme affedilir,
+       * ama toleransı şişirip yolun dışını kabul etmeyiz.
        */
-      var nearJunction = distToDoneJunction(pt) <= tol * 1.05;
-      var useTol = nearJunction ? tol * 2.1 : tol;
-      var win = nearJunction ? WINDOW_N * 2 : WINDOW_N;
+      var nearJunction = distToDoneJunction(pt) <= tol * 0.7;
+      var useTol = nearJunction ? tol * 1.28 : tol;
+      var win = nearJunction ? WINDOW_N + 5 : WINDOW_N;
 
       var best = -1;
       var bestScore = 1e9;
@@ -714,14 +714,15 @@
         var d = dist(pt, samples[i]);
         if (d > useTol) continue;
         var score = d;
-        if (!nearJunction && moveLen > 1.2 && samples[i].dx !== undefined) {
+        if (moveLen > 1.2 && samples[i].dx !== undefined) {
           var pLen =
             Math.sqrt(samples[i].dx * samples[i].dx + samples[i].dy * samples[i].dy) || 1;
           var align = (moveDx * samples[i].dx + moveDy * samples[i].dy) / (moveLen * pLen);
-          if (align < -0.35) score += 4;
-          else if (align > 0.2) score -= align * 2.5;
+          if (align < -0.2) score += nearJunction ? 6 : 10;
+          else if (align < 0.05) score += nearJunction ? 1.5 : 3;
+          else if (align > 0.25) score -= align * 2.2;
         }
-        score += (i - progress) * 0.18;
+        score += (i - progress) * 0.28;
         if (score < bestScore) {
           bestScore = score;
           best = i;
@@ -729,27 +730,26 @@
       }
 
       if (best < 0) {
-        /* Aktif yolun ilerisindeki en yakın nokta — kesişimde kaybolmayı affet */
-        var near = nearestOnActivePath(pt, progress, progress + win + 8);
+        var near = nearestOnActivePath(pt, progress, progress + win + 4);
         if (near.i >= progress && near.d <= useTol) {
           progress = near.i;
           return { ok: true, far: false };
         }
-        if (nearJunction && near.d <= useTol * 1.25) {
-          /* Bitmiş dikeye değdi: yanlış sayma, ilerlemeyi zorlama */
+        if (nearJunction && near.d <= useTol * 1.08) {
+          /* Kesişimde kısa durak: yanlış sayma, ilerletme */
           return { ok: false, far: false };
         }
-        return { ok: false, far: near.d > useTol * 1.35 };
+        return { ok: false, far: near.d > useTol * 1.1 };
       }
       if (best < progress) {
         return { ok: false, far: false };
       }
-      if (best > progress + (nearJunction ? 16 : 14)) {
-        if (dist(pt, samples[best]) <= useTol) {
+      if (best > progress + (nearJunction ? 9 : 7)) {
+        if (dist(pt, samples[best]) <= useTol * 0.92) {
           progress = best;
           return { ok: true, far: false };
         }
-        return { ok: false, far: !nearJunction };
+        return { ok: false, far: true };
       }
       progress = best;
       return { ok: true, far: false };

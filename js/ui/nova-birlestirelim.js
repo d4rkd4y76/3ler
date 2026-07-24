@@ -43,7 +43,7 @@
     },
     {
       key: "cumle",
-      title: "Zirve Mağarası",
+      title: "Ejderha Yuvası",
       tag: "Cümle",
       sub: "Oku, sonra kelimeleri sırala",
       allLabel: "Tüm cümleler",
@@ -260,7 +260,7 @@
     return items;
   }
 
-  /** Zirve Mağarası sonuna 3 otomatik “Sıra sende” ekle (o+ — Maarif 2. grup) */
+  /** Ejderha Yuvası sonuna 3 otomatik “Sıra sende” ekle (o+ — Maarif 2. grup) */
   function buildCumleLaneWithSirala(sound, cumleList) {
     var items = (cumleList || []).map(function (f) {
       return f;
@@ -2147,89 +2147,127 @@
 
   function laneIconSvg(tone) {
     var t = String(tone || "metin");
+    /* Sihirli Havuz · hece — büyülü su + hece baloncukları */
     if (t === "hece") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<circle cx="24" cy="24" r="22" fill="#FFE566"/>' +
-        '<circle cx="24" cy="24" r="16" fill="#FFF7D6"/>' +
-        '<path d="M12 26c4-8 8-8 12 0 4-8 8-8 12 0" fill="none" stroke="#9A5B00" stroke-width="2.8" stroke-linecap="round"/>' +
-        '<circle cx="17" cy="17" r="2.2" fill="#9A5B00"/>' +
-        '<circle cx="31" cy="16" r="1.8" fill="#9A5B00"/>' +
+        '<defs><linearGradient id="bhHece" x1="8" y1="8" x2="40" y2="42"><stop stop-color="#67E8F9"/><stop offset="1" stop-color="#0284C7"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhHece)"/>' +
+        '<ellipse cx="24" cy="30" rx="14" ry="7" fill="#E0F2FE" opacity="0.55"/>' +
+        '<ellipse cx="24" cy="28" rx="11" ry="5" fill="#7DD3FC" opacity="0.85"/>' +
+        '<circle cx="16" cy="18" r="6.2" fill="#FFF7ED"/>' +
+        '<circle cx="32" cy="17" r="5.4" fill="#FEF3C7"/>' +
+        '<text x="16" y="20.5" text-anchor="middle" font-size="7" font-weight="800" fill="#0C4A6E" font-family="ComfortaaOkul,sans-serif">a</text>' +
+        '<text x="32" y="19.5" text-anchor="middle" font-size="6.5" font-weight="800" fill="#92400E" font-family="ComfortaaOkul,sans-serif">n</text>' +
+        '<circle cx="11" cy="11" r="1.4" fill="#FDE68A"/>' +
+        '<circle cx="38" cy="12" r="1.2" fill="#FDE68A"/>' +
+        '<circle cx="36" cy="36" r="1.1" fill="#FFF"/>' +
         "</svg>"
       );
     }
+    /* Sihirli Havuz · kelime — su + birleşen harf kartları */
     if (t === "kelime") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#7BE495"/>' +
-        '<rect x="12" y="14" width="10" height="20" rx="4" fill="#2A9D8F"/>' +
-        '<rect x="26" y="14" width="10" height="20" rx="4" fill="#1B6B5A"/>' +
-        '<path d="M22 20h4M22 28h4" stroke="#16324F" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>' +
+        '<defs><linearGradient id="bhKel" x1="6" y1="6" x2="42" y2="42"><stop stop-color="#5EEAD4"/><stop offset="1" stop-color="#0F766E"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhKel)"/>' +
+        '<ellipse cx="24" cy="32" rx="13" ry="6" fill="#CCFBF1" opacity="0.5"/>' +
+        '<rect x="11" y="14" width="11" height="14" rx="3.5" fill="#FFF" opacity="0.95"/>' +
+        '<rect x="26" y="14" width="11" height="14" rx="3.5" fill="#FEF3C7"/>' +
+        '<text x="16.5" y="24" text-anchor="middle" font-size="9" font-weight="800" fill="#0F766E" font-family="ComfortaaOkul,sans-serif">el</text>' +
+        '<text x="31.5" y="24" text-anchor="middle" font-size="9" font-weight="800" fill="#B45309" font-family="ComfortaaOkul,sans-serif">ma</text>' +
+        '<path d="M22 21h4" stroke="#FFF" stroke-width="1.8" stroke-linecap="round"/>' +
+        '<circle cx="10" cy="10" r="1.3" fill="#FDE68A"/>' +
+        '<circle cx="39" cy="11" r="1.1" fill="#ECFDF5"/>' +
         "</svg>"
       );
     }
+    /* Ejderha Yuvası · cümle */
     if (t === "cumle") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#FFD166"/>' +
-        '<rect x="8" y="20" width="12" height="10" rx="3" fill="#E76F51"/>' +
-        '<rect x="18" y="20" width="12" height="10" rx="3" fill="#F4A261"/>' +
-        '<rect x="28" y="20" width="12" height="10" rx="3" fill="#E9C46A"/>' +
-        '<circle cx="11" cy="33" r="3" fill="#16324F"/>' +
-        '<circle cx="37" cy="33" r="3" fill="#16324F"/>' +
+        '<defs><linearGradient id="bhEj" x1="8" y1="6" x2="40" y2="44"><stop stop-color="#FDBA74"/><stop offset="1" stop-color="#C2410C"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhEj)"/>' +
+        '<path d="M8 36c4-10 8-16 16-18 8 2 12 8 16 18" fill="#7C2D12" opacity="0.35"/>' +
+        '<ellipse cx="24" cy="34" rx="12" ry="5" fill="#9A3412" opacity="0.55"/>' +
+        '<path d="M15 26c2-8 6-12 9-12s7 4 9 12c-3 2-6 3-9 3s-6-1-9-3z" fill="#16A34A"/>' +
+        '<path d="M22 18c1-3 3-4 4-2 2 1 1 4-1 5" fill="#15803D"/>' +
+        '<circle cx="21" cy="23" r="1.5" fill="#FEF08A"/>' +
+        '<circle cx="27" cy="23" r="1.5" fill="#FEF08A"/>' +
+        '<circle cx="21" cy="23" r="0.6" fill="#1C1917"/>' +
+        '<circle cx="27" cy="23" r="0.6" fill="#1C1917"/>' +
+        '<path d="M22 27h4" stroke="#14532D" stroke-width="1.4" stroke-linecap="round"/>' +
+        '<path d="M30 16l4-3M33 20l4 0" stroke="#FDE68A" stroke-width="1.6" stroke-linecap="round"/>' +
         "</svg>"
       );
     }
+    /* Piramit Parkuru */
     if (t === "piramit") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#CDB4DB"/>' +
-        '<path d="M24 12l14 24H10z" fill="#9B5DE5"/>' +
-        '<path d="M24 18l9 16H15z" fill="#F15BB5" opacity="0.85"/>' +
+        '<defs><linearGradient id="bhPir" x1="10" y1="8" x2="38" y2="40"><stop stop-color="#E9D5FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhPir)"/>' +
+        '<path d="M24 11l15 24H9z" fill="#A78BFA"/>' +
+        '<path d="M24 11l15 24H24z" fill="#6D28D9" opacity="0.55"/>' +
+        '<path d="M14 29h20M17 24h14M20 19h8" stroke="#F5F3FF" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>' +
+        '<circle cx="24" cy="14" r="1.8" fill="#FDE68A"/>' +
         "</svg>"
       );
     }
+    /* Kristal Mağarası */
     if (t === "kristal") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#B8A4FF"/>' +
-        '<path d="M24 10l8 12-8 16-8-16z" fill="#7B61FF"/>' +
-        '<path d="M24 14l5 8-5 10-5-10z" fill="#E0D4FF" opacity="0.9"/>' +
-        '<circle cx="18" cy="34" r="2" fill="#FFD166"/>' +
-        '<circle cx="30" cy="32" r="1.6" fill="#9EFCFFaa"/>' +
+        '<defs><linearGradient id="bhKri" x1="8" y1="6" x2="40" y2="42"><stop stop-color="#DDD6FE"/><stop offset="1" stop-color="#5B21B6"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhKri)"/>' +
+        '<path d="M24 9l9 13-9 17-9-17z" fill="#C4B5FD"/>' +
+        '<path d="M24 9l9 13H24z" fill="#8B5CF6"/>' +
+        '<path d="M24 13l5 8-5 11-5-11z" fill="#EDE9FE" opacity="0.9"/>' +
+        '<circle cx="15" cy="34" r="2.2" fill="#FDE68A"/>' +
+        '<circle cx="34" cy="31" r="1.6" fill="#A5F3FC"/>' +
+        '<circle cx="12" cy="14" r="1.2" fill="#FFF"/>' +
         "</svg>"
       );
     }
+    /* Yazı Ustası */
     if (t === "yaziUstasi") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#99F6E4"/>' +
-        '<rect x="12" y="14" width="24" height="20" rx="4" fill="#F0FDFA"/>' +
-        '<path d="M16 20h16M16 26h12M16 32h14" stroke="#0F766E" stroke-width="2.2" stroke-linecap="round"/>' +
-        '<path d="M30 12l6 2-4 10-6-2z" fill="#F59E0B"/>' +
-        '<circle cx="35" cy="13" r="2.2" fill="#FEF3C7"/>' +
+        '<defs><linearGradient id="bhYaz" x1="8" y1="6" x2="40" y2="42"><stop stop-color="#99F6E4"/><stop offset="1" stop-color="#0F766E"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhYaz)"/>' +
+        '<rect x="11" y="12" width="26" height="22" rx="5" fill="#FFFBEB"/>' +
+        '<path d="M15 18h18M15 24h18M15 30h12" stroke="#5EEAD4" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<path d="M15 24h10" stroke="#0F766E" stroke-width="2.4" stroke-linecap="round"/>' +
+        '<path d="M29 10l7 3-5 12-7-3z" fill="#F59E0B"/>' +
+        '<circle cx="35.5" cy="11.5" r="2" fill="#FEF3C7"/>' +
         "</svg>"
       );
     }
+    /* Sıra sende */
     if (t === "sirala") {
       return (
         '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-        '<rect x="4" y="4" width="40" height="40" rx="12" fill="#7DD3FC"/>' +
-        '<rect x="10" y="12" width="8" height="12" rx="2" fill="#0EA5E9" stroke="#0369A1" stroke-width="1.2"/>' +
-        '<rect x="20" y="12" width="8" height="12" rx="2" fill="#38BDF8" stroke="#0369A1" stroke-width="1.2"/>' +
-        '<rect x="30" y="12" width="8" height="12" rx="2" fill="#BAE6FD" stroke="#0369A1" stroke-width="1.2"/>' +
-        '<rect x="12" y="30" width="8" height="8" rx="2" fill="#FFE566"/>' +
-        '<rect x="22" y="30" width="8" height="8" rx="2" fill="#FFD166"/>' +
-        '<rect x="32" y="30" width="8" height="8" rx="2" fill="#F4A261"/>' +
+        '<defs><linearGradient id="bhSir" x1="8" y1="8" x2="40" y2="40"><stop stop-color="#7DD3FC"/><stop offset="1" stop-color="#0369A1"/></linearGradient></defs>' +
+        '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhSir)"/>' +
+        '<rect x="10" y="12" width="8" height="11" rx="2.5" fill="#E0F2FE"/>' +
+        '<rect x="20" y="12" width="8" height="11" rx="2.5" fill="#BAE6FD"/>' +
+        '<rect x="30" y="12" width="8" height="11" rx="2.5" fill="#7DD3FC"/>' +
+        '<rect x="12" y="29" width="8" height="8" rx="2" fill="#FDE68A"/>' +
+        '<rect x="20" y="29" width="8" height="8" rx="2" fill="#FBBF24"/>' +
+        '<rect x="28" y="29" width="8" height="8" rx="2" fill="#F59E0B"/>' +
+        '<path d="M16 25v3M24 25v3M32 25v3" stroke="#FFF" stroke-width="1.6" stroke-linecap="round"/>' +
         "</svg>"
       );
     }
+    /* Hikâye Yolu · metin */
     return (
       '<svg class="birles-lane-ico" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">' +
-      '<rect x="4" y="4" width="40" height="40" rx="12" fill="#A2D2FF"/>' +
-      '<rect x="12" y="14" width="24" height="6" rx="2" fill="#3A86FF"/>' +
-      '<rect x="12" y="23" width="24" height="4" rx="2" fill="#fff" opacity="0.85"/>' +
-      '<rect x="12" y="30" width="18" height="4" rx="2" fill="#fff" opacity="0.7"/>' +
+      '<defs><linearGradient id="bhMet" x1="8" y1="6" x2="40" y2="42"><stop stop-color="#93C5FD"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient></defs>' +
+      '<rect x="4" y="4" width="40" height="40" rx="14" fill="url(#bhMet)"/>' +
+      '<path d="M12 14h11c2 0 3 1 3 3v17c-2-1-4-1-6 0H12V14z" fill="#DBEAFE"/>' +
+      '<path d="M36 14H25c-2 0-3 1-3 3v17c2-1 4-1 6 0h8V14z" fill="#EFF6FF"/>' +
+      '<path d="M24 17v16" stroke="#1E40AF" stroke-width="1.4" opacity="0.45"/>' +
+      '<path d="M15 20h6M15 24h5M15 28h6" stroke="#3B82F6" stroke-width="1.4" stroke-linecap="round"/>' +
       "</svg>"
     );
   }
@@ -3400,8 +3438,8 @@
     var bootTok = 0;
     if (isPool) {
       bootTok = showBirlesViewBoot(
-        isCumleBoot ? "Zirve Mağarası" : "Sihirli Havuz",
-        isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
+        isCumleBoot ? "Ejderha Yuvası" : "Sihirli Havuz",
+        isCumleBoot ? "Ejderha Yuvası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
       );
     }
     ensureMedia()
@@ -3410,8 +3448,8 @@
         if (isPool && !isBirlesViewBootCurrent(bootTok)) return null;
         return finishBirlesViewBoot(
           bootTok,
-          isCumleBoot ? "Zirve Mağarası" : "Sihirli Havuz",
-          isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…",
+          isCumleBoot ? "Ejderha Yuvası" : "Sihirli Havuz",
+          isCumleBoot ? "Ejderha Yuvası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…",
           function () {
             renderPlayStage(sound, fusion);
           }
@@ -3421,7 +3459,7 @@
           if (document.getElementById("birles-pool")) {
             setPoolBoot(
               true,
-              isCumleBoot ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
+              isCumleBoot ? "Ejderha Yuvası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…"
             );
             return preparePoolReady().then(function () {
               return true;
@@ -4205,8 +4243,8 @@
     var playMods = "birles-play--pool";
     if (isKelime) playMods += " birles-play--kelime";
     if (isCumle) playMods += " birles-play--cumle";
-    var bootTitle = isCumle ? "Zirve Mağarası" : "Sihirli Havuz";
-    var bootText = isCumle ? "Zirve Mağarası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…";
+    var bootTitle = isCumle ? "Ejderha Yuvası" : "Sihirli Havuz";
+    var bootText = isCumle ? "Ejderha Yuvası hazırlanıyor…" : "Sihirli Havuz hazırlanıyor…";
 
     var poolUiCore = isCumle
       ? '<p class="birles-play__narration" id="birles-narration" hidden></p>' +
