@@ -2419,9 +2419,11 @@
   }
 
   /*
-   * 2–3. grup cümleler — yalnız mantıklı, çocuk dünyasına uygun eylemler.
+   * 2–4. grup cümleler — yalnız mantıklı, çocuk dünyasına uygun eylemler.
    * Yasak örnek: “temizlik al”, “nalın al”, “akıl al”, “kulak al”, “otel al”…
    * Fiiller: al (satın al), ara (bul/bak), tat, tak, oku — somut nesne/kişi/yer.
+   * Her ses: ~15 özgün cümle (yalnız özne değiştirerek kopya yok).
+   * Harfler kümülatif: o ana kadar öğretilen sesler.
    */
   var SENTENCE_BANK = {
     o: [
@@ -2690,6 +2692,92 @@
       "Ali ile Lale üzüm al.",
       "anne, Ali deniz ara.",
       "Ata ile Ali muz al."
+    ],
+    /* 4. grup · ç b g c ş — kümülatif harf + mevcut kelimeler; özgün eylem/nesne */
+    ç: [
+      "Ali çay al.",
+      "anne çilek al.",
+      "Lale çiçek al.",
+      "Ali çanta al.",
+      "anne çikolata tat.",
+      "Ali uçak ara.",
+      "Lale uçurtma al.",
+      "Çetin çekiç al.",
+      "Ayça üç çilek al.",
+      "Ali çakı al.",
+      "anne ölçü al.",
+      "Lale saç ara.",
+      "Ali çok çay al.",
+      "Ali ile Ayça çiçek al.",
+      "anne, Ali çanta al."
+    ],
+    b: [
+      "Ali bal al.",
+      "anne börek al.",
+      "Lale boya al.",
+      "Burak balık ara.",
+      "anne bebek ara.",
+      "Ali biber al.",
+      "Lale börek tat.",
+      "Ali bardak al.",
+      "anne buz al.",
+      "Ali bisiklet al.",
+      "Berna bere tak.",
+      "Ali büyük bal al.",
+      "Bora bakkal ara.",
+      "Ali ile Burak balık al.",
+      "anne, Ali boya al."
+    ],
+    g: [
+      "Ali gül al.",
+      "anne gözlük al.",
+      "Lale gitar al.",
+      "Ali gemi ara.",
+      "Gül göl ara.",
+      "anne gözlük tak.",
+      "Tolga gitar al.",
+      "Ali güzel çiçek al.",
+      "Gamze gül al.",
+      "Ali gökyüzü ara.",
+      "Lale gölge ara.",
+      "Ali minik gemi al.",
+      "Gaye gaga ara.",
+      "Ali ile Gül gemi ara.",
+      "anne, Ali gözlük al."
+    ],
+    c: [
+      "Ali cam al.",
+      "anne inci al.",
+      "Can cami ara.",
+      "Ali çocuk ara.",
+      "Cem inci al.",
+      "anne ocak ara.",
+      "Lale acı biber al.",
+      "Candan cadde ara.",
+      "Ali cümle oku.",
+      "Lale cüce ara.",
+      "Ata amca ara.",
+      "Ceren cam al.",
+      "Ali gece yıldız ara.",
+      "Ali ile Can çocuk ara.",
+      "anne, Ali inci al."
+    ],
+    ş: [
+      "Ali şeker al.",
+      "anne kaşık al.",
+      "Lale şişe al.",
+      "Ali kuş ara.",
+      "Şule şarkı oku.",
+      "anne şemsiye al.",
+      "Ali beş şeker al.",
+      "Lale şeker tat.",
+      "Şermin şişe al.",
+      "Ali şirin kuş ara.",
+      "anne aşçı ara.",
+      "Şenol şarkı oku.",
+      "Ali kaşık ile şeker al.",
+      "Ali ile Şule şarkı oku.",
+      "anne, Ali şemsiye al."
     ]
   };
 
