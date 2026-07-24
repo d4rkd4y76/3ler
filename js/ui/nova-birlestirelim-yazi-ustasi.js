@@ -16,13 +16,13 @@
   var VIEW_H = 286;
   var GUIDE_YS = [40, 120, 200];
 
-  var TOL = 28;
-  var TOL_START = 36;
-  var TOL_WIDE = 42;
-  var TOL_START_WIDE = 54;
-  var MISS_LIMIT = 10;
-  var WINDOW_N = 14;
-  var COMPLETE_RATIO = 0.8;
+  var TOL = 30;
+  var TOL_START = 38;
+  var TOL_WIDE = 48;
+  var TOL_START_WIDE = 58;
+  var MISS_LIMIT = 18;
+  var WINDOW_N = 20;
+  var COMPLETE_RATIO = 0.78;
 
   /** Geniş yaz: yalnızca telefon / tablet */
   function isPhoneOrTablet() {
@@ -178,6 +178,7 @@
     var practiceBound = false;
     var drawing = false;
     var samples = [];
+    var doneJunctionSamples = [];
     var progress = 0;
     var userPts = [];
     var missStreak = 0;
@@ -607,32 +608,76 @@
       return pts;
     }
 
+    /** Bitmiş hamle örnekleri — kesişimde “yanlış” dememek için (ceza değil, yumuşak bölge) */
+    function buildDoneJunctionSamples(W, currentIdx) {
+      doneJunctionSamples = [];
+      if (!W || currentIdx <= 0) return;
+      var curLetter = W.strokes[currentIdx].letterIndex;
+      for (var i = 0; i < currentIdx; i++) {
+        if (W.strokes[i].letterIndex !== curLetter) continue;
+        var path = body.querySelector('.birles-yazu__stroke[data-stroke="' + i + '"]');
+        if (!path) continue;
+        doneJunctionSamples.push(samplePathView(path, W.strokes[i].letterIndex));
+      }
+    }
+
+    function distToDoneJunction(pt) {
+      var best = 1e9;
+      for (var s = 0; s < doneJunctionSamples.length; s++) {
+        var pts = doneJunctionSamples[s];
+        for (var i = 0; i < pts.length; i += 2) {
+          var d = dist(pt, pts[i]);
+          if (d < best) best = d;
+        }
+      }
+      return best;
+    }
+
+    function nearestOnActivePath(pt, fromIdx, toIdx) {
+      var best = -1;
+      var bestD = 1e9;
+      var a = Math.max(0, fromIdx);
+      var b = Math.min(samples.length - 1, toIdx);
+      for (var i = a; i <= b; i++) {
+        var d = dist(pt, samples[i]);
+        if (d < bestD) {
+          bestD = d;
+          best = i;
+        }
+      }
+      return { i: best, d: bestD };
+    }
+
     function advanceAlongPath(pt, prevPt) {
       if (!samples.length) return { ok: false, far: true };
+      var tol = tolNow();
+      /*
+       * t çubuğu × dik gövde, n kemer × dik, a dik × kâse:
+       * parmak bitmiş çizgiye değince aktif yoldan biraz sapar.
+       * Bitmiş yola YAKINLIK ceza değil — toleransı büyüt, yön cezasını kaldır.
+       */
+      var nearJunction = distToDoneJunction(pt) <= tol * 1.05;
+      var useTol = nearJunction ? tol * 2.1 : tol;
+      var win = nearJunction ? WINDOW_N * 2 : WINDOW_N;
+
       var best = -1;
       var bestScore = 1e9;
       var moveDx = prevPt ? pt.x - prevPt.x : 0;
       var moveDy = prevPt ? pt.y - prevPt.y : 0;
       var moveLen = Math.sqrt(moveDx * moveDx + moveDy * moveDy) || 0;
-      var tol = tolNow();
-      /*
-       * Yalnız AKTİF yol. Aynı harfin diğer hamlesiyle kesişen noktalarda
-       * (n dik+kemer, a kâse+dik, t gövde+çubuk) diğer yola bakma —
-       * yoksa kesişimde “yanlış” der.
-       */
-      for (var i = progress; i < samples.length && i <= progress + WINDOW_N; i++) {
+
+      for (var i = progress; i < samples.length && i <= progress + win; i++) {
         var d = dist(pt, samples[i]);
-        if (d > tol) continue;
-        var score = d * 1.15;
-        if (moveLen > 1 && samples[i].dx !== undefined) {
+        if (d > useTol) continue;
+        var score = d;
+        if (!nearJunction && moveLen > 1.2 && samples[i].dx !== undefined) {
           var pLen =
             Math.sqrt(samples[i].dx * samples[i].dx + samples[i].dy * samples[i].dy) || 1;
           var align = (moveDx * samples[i].dx + moveDy * samples[i].dy) / (moveLen * pLen);
-          /* Ters yöne gitmeyi hafifçe cezalandır; kesişimde sıkı olma */
-          if (align < -0.2) score += 5;
-          else if (align > 0.15) score -= align * 3;
+          if (align < -0.35) score += 4;
+          else if (align > 0.2) score -= align * 2.5;
         }
-        score += (i - progress) * 0.22;
+        score += (i - progress) * 0.18;
         if (score < bestScore) {
           bestScore = score;
           best = i;
@@ -640,15 +685,28 @@
       }
 
       if (best < 0) {
-        var nearest = dist(pt, samples[Math.min(progress, samples.length - 1)]);
-        /* Kesişimde hafif sapmaya tolerans */
-        return { ok: false, far: nearest > tol * 1.15 };
+        /* Aktif yolun ilerisindeki en yakın nokta — kesişimde kaybolmayı affet */
+        var near = nearestOnActivePath(pt, progress, progress + win + 8);
+        if (near.i >= progress && near.d <= useTol) {
+          progress = near.i;
+          return { ok: true, far: false };
+        }
+        if (nearJunction && near.d <= useTol * 1.25) {
+          /* Bitmiş dikeye değdi: yanlış sayma, ilerlemeyi zorlama */
+          return { ok: false, far: false };
+        }
+        return { ok: false, far: near.d > useTol * 1.35 };
       }
       if (best < progress) {
         return { ok: false, far: false };
       }
-      if (best > progress + 10) {
-        return { ok: false, far: true };
+      if (best > progress + (nearJunction ? 14 : 11)) {
+        /* Kesişimde biraz daha ileri yakalamaya izin */
+        if (nearJunction && dist(pt, samples[best]) <= useTol * 0.9) {
+          progress = best;
+          return { ok: true, far: false };
+        }
+        return { ok: false, far: !nearJunction };
       }
       progress = best;
       return { ok: true, far: false };
@@ -789,6 +847,7 @@
       hit.style.pointerEvents = "auto";
       var letterIndex = W.strokes[strokeIndex].letterIndex;
       samples = samplePathView(path, letterIndex);
+      buildDoneJunctionSamples(W, strokeIndex);
       progress = 0;
       userPts = [];
       drawing = false;
